@@ -182,7 +182,7 @@ LazyLoad.js([
     Global.baseJsDir + "vkbeautify.0.99.00.beta.js", 
     Global.baseJsDir + "prettify.js", 
     Global.baseJsDir + "consolesettings.js", 
-    Global.baseJsDir + "jquery-2.1.0.min.js", 
+    Global.baseJsDir + "jquery-2.1.3.min.js", 
     Global.baseJsDir + "jquery.cookie.js", 
     Global.baseJsDir + "jquery.enterpress.js", 
     Global.baseJsDir + "bootstrap.min.js", 
@@ -325,6 +325,8 @@ LazyLoad.js([
 				example += "\"" + $(".__field" + fieldName).val() + "\"";
 			} else if (type.name.contains("Boolean")) {
 				example += "\"" + $(".__field" + fieldName).is(":checked") + "\"";
+			} else if (type.simpleName == "Set"){
+				example += JSON.stringify($(".__field" + fieldName).val().split(',').map(function(e){ return e.trim(); }).filter(function(e){ return e.length > 0;}));
 			} else if (type.name.contains("javax.activation.DataHandler")) {
 				example += "\"" + $(".__field" + fieldName).data("base64") + "\"";
 			} else if (type.name.contains("org.bimserver")) {

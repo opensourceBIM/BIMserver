@@ -1,7 +1,7 @@
 package org.bimserver.ifc.step.deserializer;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -44,8 +44,10 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.MetaDataException;
 import org.bimserver.emf.Schema;
-import org.bimserver.ifc.IfcModel;
-import org.bimserver.interfaces.objects.SIfcHeader;
+import org.bimserver.ifc.BasicIfcModel;
+import org.bimserver.models.store.IfcHeader;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.Attribute;
@@ -87,17 +89,17 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 	private Mode mode = Mode.HEADER;
 	private IfcModelInterface model;
 	private int lineNumber;
-	private Schema schema2;
+	private Schema schema;
 
 	public enum Mode {
 		HEADER, DATA, FOOTER, DONE
 	}
 
 	public IfcStepDeserializer(Schema schema) {
-		schema2 = schema;
+		this.schema = schema;
 	}
 
-	public IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException {
+	public IfcModelInterface read(InputStream in, String filename, long fileSize, ByteProgressReporter byteProgressReporter) throws DeserializeException {
 		mode = Mode.HEADER;
 		if (filename != null && (filename.toUpperCase().endsWith(".ZIP") || filename.toUpperCase().endsWith(".IFCZIP"))) {
 			ZipInputStream zipInputStream = new ZipInputStream(in);
@@ -110,7 +112,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 				if (nextEntry.getName().toUpperCase().endsWith(".IFC")) {
 					IfcModelInterface model = null;
 					FakeClosingInputStream fakeClosingInputStream = new FakeClosingInputStream(zipInputStream);
-					model = read(fakeClosingInputStream, fileSize);
+					model = read(fakeClosingInputStream, fileSize, byteProgressReporter);
 					if (model.size() == 0) {
 						throw new DeserializeException("Uploaded file does not seem to be a correct IFC file");
 					}
@@ -128,7 +130,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 				throw new DeserializeException(e);
 			}
 		} else {
-			return read(in, fileSize);
+			return read(in, fileSize, byteProgressReporter);
 		}
 	}
 
@@ -140,13 +142,17 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 		}
 	}
 	
-	private IfcModelInterface read(InputStream inputStream, long fileSize) throws DeserializeException {
+	private IfcModelInterface read(InputStream inputStream, long fileSize, ByteProgressReporter byteProgressReporter) throws DeserializeException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
-		model = new IfcModel(getPackageMetaData(), initialCapacity);
+		model = new BasicIfcModel(getPackageMetaData(), null, initialCapacity);
+		long bytesRead = 0;
 		lineNumber = 0;
 		try {
 			String line = reader.readLine();
+			if (line == null) {
+				throw new DeserializeException("Unexpected end of stream reading first line " + model);
+			}
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			while (line != null) {
 				byte[] bytes = line.getBytes(Charsets.UTF_8);
@@ -167,6 +173,11 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 						throw new DeserializeException(lineNumber, " (" + e.getMessage() + ") " + line, e);
 					}
 				}
+				bytesRead += bytes.length;
+				if (byteProgressReporter != null) {
+					byteProgressReporter.progress(bytesRead);
+				}
+
 				line = reader.readLine();
 				lineNumber++;
 			}
@@ -187,7 +198,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 	public IfcModelInterface read(File sourceFile) throws DeserializeException {
 		try {
 			FileInputStream in = new FileInputStream(sourceFile);
-			read(in, sourceFile.length());
+			read(in, sourceFile.length(), null);
 			in.close();
 			model.getModelMetaData().setDate(new Date());
 			model.getModelMetaData().setName(sourceFile.getName());
@@ -234,6 +245,11 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 			}
 			break;
 		case FOOTER:
+			for (IdEObject idEObject : getModel().getValues()) {
+				if (idEObject.getOid() != -1) {
+					System.out.println(idEObject);
+				}
+			}
 			if (line.equals("ENDSEC;")) {
 				mode = Mode.DONE;
 			}
@@ -245,9 +261,9 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 
 	private void processHeader(String line) throws DeserializeException {
 		try {
-			SIfcHeader ifcHeader = model.getModelMetaData().getIfcHeader();
+			IfcHeader ifcHeader = model.getModelMetaData().getIfcHeader();
 			if (ifcHeader == null) {
-				ifcHeader = new SIfcHeader();
+				ifcHeader = StoreFactory.eINSTANCE.createIfcHeader();
 				model.getModelMetaData().setIfcHeader(ifcHeader);
 			}
 			if (line.startsWith("FILE_DESCRIPTION")) {
@@ -314,8 +330,8 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 			} else if (line.startsWith("FILE_SCHEMA")) {
 				Tokenizer tokenizer = new Tokenizer(line.substring(line.indexOf("(")));
 				String ifcSchemaVersion = tokenizer.zoomIn("(", ")").zoomIn("(", ")").readSingleQuoted();
-				if (!ifcSchemaVersion.toLowerCase().equalsIgnoreCase(schema2.getHeaderName().toLowerCase())) {
-					throw new DeserializeException(lineNumber, ifcSchemaVersion + " is not supported by this deserializer (" + schema2.getHeaderName() + " is)");
+				if (!ifcSchemaVersion.toLowerCase().equalsIgnoreCase(schema.getHeaderName().toLowerCase())) {
+					throw new DeserializeException(lineNumber, ifcSchemaVersion + " is not supported by this deserializer (" + schema.getHeaderName() + " is)");
 				}
 				ifcHeader.setIfcSchemaVersion(ifcSchemaVersion);
 			} else if (line.startsWith("ENDSEC;")) {
@@ -450,7 +466,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 							EClass referenceEClass = referencedObject.eClass();
 							if (((EClass) structuralFeature.getEType()).isSuperTypeOf(referenceEClass)) {
 								while (list.size() <= index) {
-									list.addUnique(getPackageMetaData().create(referenceEClass));
+									list.addUnique(referencedObject);
 								}
 								list.setUnique(index, referencedObject);
 							} else {
@@ -460,6 +476,11 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 					} else {
 						waitingList.add(referenceId, new ListWaitingObject(lineNumber, object, structuralFeature, index));
 					}
+				} else if (stringValue.charAt(0) == '(') {
+					// Two dimensional list
+					IdEObject newObject = (IdEObject) getPackageMetaData().create((EClass) structuralFeature.getEType());
+					readList(stringValue, newObject, newObject.eClass().getEStructuralFeature("List"));
+					list.addUnique(newObject);
 				} else {
 					Object convert = convert(structuralFeature.getEType(), stringValue);
 					if (convert != null) {
@@ -492,7 +513,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 				try {
 					return Double.parseDouble(value);
 				} catch (NumberFormatException e) {
-					throw new DeserializeException(lineNumber, "Incorrect double floating point value", e);
+					throw new DeserializeException(lineNumber, "Incorrect double floating point value: " + value, e);
 				}
 			} else if (instanceClass == String.class) {
 				if (value.startsWith("'") && value.endsWith("'")) {
@@ -574,30 +595,30 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 		if (classifier != null) {
 			if (classifier instanceof EClassImpl) {
 				if (null != ((EClassImpl) classifier).getEStructuralFeature(WRAPPED_VALUE)) {
-					IdEObject create = (IdEObject) getPackageMetaData().create((EClass) classifier);
-					Class<?> instanceClass = create.eClass().getEStructuralFeature(WRAPPED_VALUE).getEType().getInstanceClass();
+					IdEObject newObject = (IdEObject) getPackageMetaData().create((EClass) classifier);
+					Class<?> instanceClass = newObject.eClass().getEStructuralFeature(WRAPPED_VALUE).getEType().getInstanceClass();
 					if (value.equals("")) {
 
 					} else {
 						if (instanceClass == Integer.class || instanceClass == int.class) {
 							try {
-								create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Integer.parseInt(value));
+								newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), Integer.parseInt(value));
 							} catch (NumberFormatException e) {
 								throw new DeserializeException(lineNumber, value + " is not a valid integer value");
 							}
 						} else if (instanceClass == Long.class || instanceClass == long.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Long.parseLong(value));
+							newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), Long.parseLong(value));
 						} else if (instanceClass == Boolean.class || instanceClass == boolean.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), value.equals(".T."));
+							newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), value.equals(".T."));
 						} else if (instanceClass == Double.class || instanceClass == double.class) {
 							try {
-								create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Double.parseDouble(value));
+								newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), Double.parseDouble(value));
 							} catch (NumberFormatException e) {
 								throw new DeserializeException(lineNumber, value + " is not a valid double floating point number");
 							}
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE + "AsString"), value);
+							newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE + "AsString"), value);
 						} else if (instanceClass == String.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), readString(value));
+							newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), readString(value));
 						} else if (instanceClass.getName().equals("Tristate")) {
 							Object tristate = null;
 							if (value.equals(".T.")) {
@@ -607,10 +628,10 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 							} else if (value.equals(".U.")) {
 								tristate = getPackageMetaData().getEEnumLiteral("Tristate", "UNDEFINED");
 							}
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), tristate);
+							newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), tristate);
 						}
 					}
-					return create;
+					return newObject;
 				} else {
 					return processInline(classifier, value);
 				}

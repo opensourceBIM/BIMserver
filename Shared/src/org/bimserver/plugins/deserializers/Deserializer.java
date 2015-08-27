@@ -1,7 +1,7 @@
 package org.bimserver.plugins.deserializers;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,6 +25,8 @@ import org.bimserver.emf.PackageMetaData;
 
 public interface Deserializer {
 	void init(PackageMetaData packageMetaData);
-	IfcModelInterface read(InputStream inputStream, String fileName, long fileSize) throws DeserializeException;
+	IfcModelInterface read(File file, ByteProgressReporter progressReporter) throws DeserializeException;
+	IfcModelInterface read(InputStream inputStream, String fileName, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException;
 	IfcModelInterface read(File file) throws DeserializeException;
+	IfcModelInterface read(InputStream inputStream, String fileName, long fileSize) throws DeserializeException;
 }

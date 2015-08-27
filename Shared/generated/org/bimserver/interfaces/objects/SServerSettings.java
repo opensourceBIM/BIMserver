@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -55,6 +55,8 @@ public class SServerSettings implements SDataBase
 	private int smtpPort;
 	private SSmtpProtocol smtpProtocol;
 	private boolean reuseGeometry;
+	private boolean allowCreateValidatedUser;
+	private int renderEngineProcesses;
 
 	public long getOid() {
 		return this.oid;
@@ -153,6 +155,12 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("reuseGeometry")) {
 			return isReuseGeometry();
+		}
+		if (sField.getName().equals("allowCreateValidatedUser")) {
+			return isAllowCreateValidatedUser();
+		}
+		if (sField.getName().equals("renderEngineProcesses")) {
+			return getRenderEngineProcesses();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -259,6 +267,14 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("reuseGeometry")) {
 			setReuseGeometry((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("allowCreateValidatedUser")) {
+			setAllowCreateValidatedUser((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("renderEngineProcesses")) {
+			setRenderEngineProcesses((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -463,6 +479,22 @@ public class SServerSettings implements SDataBase
 
 	public void setReuseGeometry(boolean reuseGeometry) {
 		this.reuseGeometry = reuseGeometry;
+	}
+	
+	public boolean isAllowCreateValidatedUser() {
+		return allowCreateValidatedUser;
+	}
+
+	public void setAllowCreateValidatedUser(boolean allowCreateValidatedUser) {
+		this.allowCreateValidatedUser = allowCreateValidatedUser;
+	}
+	
+	public int getRenderEngineProcesses() {
+		return renderEngineProcesses;
+	}
+
+	public void setRenderEngineProcesses(int renderEngineProcesses) {
+		this.renderEngineProcesses = renderEngineProcesses;
 	}
 	
 	@Override

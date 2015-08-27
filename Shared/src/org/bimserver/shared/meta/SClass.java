@@ -1,7 +1,7 @@
 package org.bimserver.shared.meta;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -31,11 +31,12 @@ import java.util.TreeSet;
 import javax.activation.DataHandler;
 
 import org.bimserver.utils.StringUtils;
-import org.codehaus.jettison.json.JSONArray;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class SClass implements Comparable<SClass> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SClass.class);
@@ -54,6 +55,13 @@ public class SClass implements Comparable<SClass> {
 		this.sConstructor = sConstructor;
 		if (instanceClass == null) {
 			throw new RuntimeException("InstanceClass cannot be null");
+		}
+		if (instanceClass.isEnum() || instanceClass.isArray() || instanceClass == Enum.class || instanceClass.getName().equals("java.lang.Object") || instanceClass.isPrimitive() || instanceClass == String.class || instanceClass.getName().startsWith("java.")) {
+			
+		} else {
+			if (sConstructor == null) {
+				throw new RuntimeException("No constructor for " + instanceClass.getName());
+			}
 		}
 		this.instanceClass = instanceClass;
 		this.name = instanceClass.getName();
@@ -277,16 +285,16 @@ public class SClass implements Comparable<SClass> {
 		return simpleType;
 	}
 
-	public JSONObject toJson() throws JSONException {
-		JSONObject result = new JSONObject();
+	public ObjectNode toJson(ObjectMapper objectMapper) {
+		ObjectNode result = objectMapper.createObjectNode();
 		result.put("name", getName());
 		result.put("simpleName", getSimpleName());
 		result.put("simpleType", getSimpleType().name());
-		JSONArray fieldsJson = new JSONArray();
+		ArrayNode fieldsJson = objectMapper.createArrayNode();
 		for (SField field : ownFields.values()) {
-			fieldsJson.put(field.toJson());
+			fieldsJson.add(field.toJson(objectMapper));
 		}
-		result.put("fields", fieldsJson);
+		result.set("fields", fieldsJson);
 		return result;
 	}
 

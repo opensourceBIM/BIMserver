@@ -6,8 +6,8 @@ import java.util.List;
 import javax.xml.bind.JAXBElement;
 
 import org.bimserver.tools.ifctocsv.PropertyDef;
-import org.bimserver.tools.ifctocsv.PropertyType;
 import org.bimserver.tools.ifctocsv.PropertyDef.ValueDef;
+import org.bimserver.tools.ifctocsv.PropertyType;
 import org.bimserver.tools.ifctocsv.PropertyType.TypeComplexProperty;
 
 public class ComplexType extends PropertyTypeDefinition {

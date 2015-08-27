@@ -1,7 +1,7 @@
 package org.bimserver.ifc.xml.deserializer;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -31,9 +31,11 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.utils.FakeClosingInputStream;
@@ -52,11 +54,11 @@ public abstract class IfcXmlDeserializer extends EmfDeserializer {
 	@Override
 	public void init(PackageMetaData packageMetaData) {
 		super.init(packageMetaData);
-		 model = new IfcModel(packageMetaData);
+		 model = new BasicIfcModel(packageMetaData, null);
 	}
 	
 	@Override
-	public IfcModelInterface read(InputStream inputStream, String filename, long fileSize) throws DeserializeException {
+	public IfcModelInterface read(InputStream inputStream, String filename, long fileSize, ByteProgressReporter byteProgressReporter) throws DeserializeException {
 		if (filename != null && (filename.toUpperCase().endsWith(".ZIP") || filename.toUpperCase().endsWith(".IFCZIP") || filename.toUpperCase().endsWith(".IFCXMLZIP"))) {
 			ZipInputStream zipInputStream = new ZipInputStream(inputStream);
 			ZipEntry nextEntry;

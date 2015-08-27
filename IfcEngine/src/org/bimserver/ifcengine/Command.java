@@ -1,7 +1,7 @@
 package org.bimserver.ifcengine;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -46,7 +46,10 @@ public enum Command {
 	GET_INSTANCE_FROM_EXPRESSID,
 	SET_FORMAT,
 	GET_TRANSFORMATION_MATRIX, 
-	INITIALIZE_MODELLING_INSTANCE;
+	INITIALIZE_MODELLING_INSTANCE,
+	OPEN_MODEL_STREAMING_PARTS,
+	SET_FILTER,
+	GET_AREA;
 
 	private static final Map<Byte, Command> map = initMap();
 	private byte id;

@@ -2,6 +2,7 @@ package org.bimserver.demoplugins.service;
 import java.util.Date;
 
 import org.bimserver.interfaces.objects.SActionState;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -63,15 +64,15 @@ public class DemoServicePlugin3 extends ServicePlugin {
 	}
 
 	@Override
-	public void register(PluginConfiguration pluginConfiguration) {
+	public void register(long uoid, SInternalServicePluginConfiguration internalServicePluginConfiguration, PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
-		serviceDescriptor.setIdentifier(getClass().getName());
+		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
 		serviceDescriptor.setName("Demo Service 3");
 		serviceDescriptor.setDescription("Demo Service 3");
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
 		serviceDescriptor.setTrigger(Trigger.NEW_EXTENDED_DATA);
-		registerNewExtendedDataOnRevisionHandler(serviceDescriptor, new NewExtendedDataOnRevisionHandler(){
+		registerNewExtendedDataOnRevisionHandler(uoid, serviceDescriptor, new NewExtendedDataOnRevisionHandler(){
 			@Override
 			public void newExtendedDataOnRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, long edid, String userToken, long soid, SObjectType settings) {
 				try {
@@ -108,5 +109,9 @@ public class DemoServicePlugin3 extends ServicePlugin {
 				}
 			}
 		});
+	}
+
+	@Override
+	public void unregister(SInternalServicePluginConfiguration internalService) {
 	}
 }

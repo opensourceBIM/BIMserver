@@ -1,7 +1,7 @@
 package org.bimserver.shared.meta;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,8 +20,8 @@ package org.bimserver.shared.meta;
 import java.util.List;
 import java.util.Set;
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class SParameter {
 
@@ -81,11 +81,11 @@ public class SParameter {
 		return doc;
 	}
 
-	public JSONObject toJson() throws JSONException {
-		JSONObject parameterJson = new JSONObject();
+	public ObjectNode toJson(ObjectMapper objectMapper) {
+		ObjectNode parameterJson = objectMapper.createObjectNode();
 		parameterJson.put("name", getName());
 		parameterJson.put("doc", getDoc());
-		parameterJson.put("type", getType().toJson());
+		parameterJson.set("type", getType().toJson(objectMapper));
 		return parameterJson;
 	}
 }

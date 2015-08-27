@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,9 +18,12 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bimserver.BimServer;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -29,7 +32,6 @@ import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -62,24 +64,28 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 
 	@Override
 	public List<DataObject> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		EClass eClass = getDatabaseSession().getEClass(packageName, className);
+		EClass eClass = getDatabaseSession().getEClassForName(packageName, className);
 		Revision virtualRevision = getRevisionByRoid(roid);
 		if (virtualRevision == null) {
 			throw new UserException("No revision with roid " + roid + " found");
 		}
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		IfcModelSet ifcModelSet = new IfcModelSet();
+		pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
+		PackageMetaData lastPackageMetaData = null;
 		Project project = virtualRevision.getProject();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 			int highestStopId = findHighestStopRid(project, concreteRevision);
-			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
-			IfcModelInterface subModel = getDatabaseSession().getAllOfType(packageName, className, query);
+			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), -1, null, Deep.NO, highestStopId);
+			lastPackageMetaData = packageMetaData;
+			IfcModelInterface subModel = getDatabaseSession().getAllOfType(packageMetaData.getEPackage().getName(), className, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface ifcModel = new IfcModel(null); //TODO
+		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, getDatabaseSession());
 		try {
-			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

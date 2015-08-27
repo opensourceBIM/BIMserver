@@ -1,5 +1,22 @@
 package org.bimserver.emf;
 
+/******************************************************************************
+ * Copyright (C) 2009-2015  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,7 +34,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -25,7 +41,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
-public class PackageMetaData {
+public class PackageMetaData implements ObjectFactory {
 	private final Map<String, Set<EClass>> directSubClasses = new TreeMap<String, Set<EClass>>();
 	private final Map<String, Set<EClass>> allSubClasses = new TreeMap<String, Set<EClass>>();
 	private final Map<String, EClassifier> caseInsensitive = new TreeMap<String, EClassifier>();
@@ -33,9 +49,10 @@ public class PackageMetaData {
 	private final Map<EClassifier, String> upperCases = new HashMap<>();
 	private final BiMap<EClass, Class<?>> eClassClassMap = HashBiMap.create();
 	private final Map<EStructuralFeature, Boolean> inverseCache = new HashMap<EStructuralFeature, Boolean>();
-	private EPackage ePackage;
+	private final EPackage ePackage;
+	private final Schema schema;
+	private final Set<PackageMetaData> dependencies = new HashSet<>();
 	private SchemaDefinition schemaDefinition;
-	private Schema schema;
 
 	public PackageMetaData(MetaDataManager metaDataManager, EPackage ePackage, Schema schema) {
 		this.ePackage = ePackage;
@@ -79,8 +96,38 @@ public class PackageMetaData {
 		return eClassClassMap.inverse().get(clazz);
 	}
 
+	public EClass getEClassIncludingDependencies(String type) {
+		EClass eClass = getEClass(type);
+		if (eClass == null) {
+			for (PackageMetaData packageMetaData : dependencies) {
+				EClass eClass2 = packageMetaData.getEClass(type);
+				if (eClass2 != null) {
+					return eClass2;
+				}
+			}
+		}
+		return eClass;
+	}
+	
+	public EClass getEClassIncludingDependencies(Class<?> clazz) {
+		EClass eClass = getEClass(clazz);
+		if (eClass == null) {
+			for (PackageMetaData packageMetaData : dependencies) {
+				EClass eClass2 = packageMetaData.getEClass(clazz);
+				if (eClass2 != null) {
+					return eClass2;
+				}
+			}
+		}
+		return eClass;
+	}
+	
 	public EClass getEClass(String name) {
 		return (EClass) ePackage.getEClassifier(name);
+	}
+
+	public EEnum getEEnum(String name) {
+		return (EEnum) ePackage.getEClassifier(name);
 	}
 	
 	public Set<EClass> getEClasses() {
@@ -184,12 +231,17 @@ public class PackageMetaData {
 		return ePackage;
 	}
 
-	public EObject create(EClass eClass) {
-		return ePackage.getEFactoryInstance().create(eClass);
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends IdEObject> T create(EClass eClass) {
+		return (T) ePackage.getEFactoryInstance().create(eClass);
 	}
 
-	public EObject create(Class<?> clazz) {
-		return ePackage.getEFactoryInstance().create(getEClass(clazz));
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends IdEObject> T create(Class<T> clazz) {
+		EClass eClassIncludingDependencies = getEClassIncludingDependencies(clazz);
+		return (T) eClassIncludingDependencies.getEPackage().getEFactoryInstance().create(eClassIncludingDependencies);
 	}
 
 	public SchemaDefinition getSchemaDefinition() {
@@ -198,5 +250,13 @@ public class PackageMetaData {
 	
 	public Schema getSchema() {
 		return schema;
+	}
+
+	public Set<PackageMetaData> getDependencies() {
+		return dependencies;
+	}
+	
+	void addDependency(PackageMetaData dependency) {
+		dependencies.add(dependency);
 	}
 }

@@ -15,7 +15,7 @@
 	</div>
 </div>
 <script>
-	function ServerSettings(main) {
+	function ServerSettings(main, loadHistory) {
 		var othis = this;
 
 		this.show = function(){
@@ -81,7 +81,6 @@
 
 		this.showPlugins = function(callback) {
 			othis.pageChanger.changePage($(".pluginsLink"), "plugins.html", function(){
-				pushHistory({page: "ServerSettings", subpage: "Plugins"}, "Server Settings");
 				return new Plugins(main, othis);
 			}, callback);
 		};
@@ -114,28 +113,33 @@
 			return "ServerSettings";
 		};
 
-		var history = History.getState().data;
-		if (history.subpage == "BasicServerSettings") {
-			othis.showBasicServerSettings();
-		} else if (history.subpage == "Migrations") {
-			othis.showMigrations();
-		} else if (history.subpage == "Plugins") {
-			othis.showPlugins();
-		} else if (history.subpage == "WebModules") {
-			othis.showWebModules();
-		} else if (history.subpage == "ModelCheckers") {
-			othis.showModelCheckers();
-		} else if (history.subpage == "ExtendedDataSchemas") {
-			othis.showExtendedDataSchemas();
-		} else if (history.subpage == "ExtendedDataSchema") {
-			othis.showExtendedDataSchema(history.edsid);
-		} else {
-			othis.showBasicServerSettings();
+		if (loadHistory) {
+			var history = History.getState().data;
+			if (history.subpage == "BasicServerSettings") {
+				othis.showBasicServerSettings();
+			} else if (history.subpage == "Migrations") {
+				othis.showMigrations();
+			} else if (history.subpage == "Plugins") {
+				othis.showPlugins();
+			} else if (history.subpage == "WebModules") {
+				othis.showWebModules();
+			} else if (history.subpage == "ModelCheckers") {
+				othis.showModelCheckers();
+			} else if (history.subpage == "ExtendedDataSchemas") {
+				othis.showExtendedDataSchemas();
+			} else if (history.subpage == "ExtendedDataSchema") {
+				othis.showExtendedDataSchema(history.edsid);
+			} else {
+				othis.showBasicServerSettings();
+			}
 		}
 
 		$(".serversettings .basicServerSettingsLink").click(function(){othis.showBasicServerSettings(null, true)});
 		$(".serversettings .migrationsLink").click(function(){othis.showMigrations(null, true)});
-		$(".serversettings .pluginsLink").click(function(){othis.showPlugins(null, true)});
+		$(".serversettings .pluginsLink").click(function(){
+			pushHistory({page: "ServerSettings", subpage: "Plugins"}, "Server Settings");
+			othis.showPlugins(null, true)
+		});
 		$(".serversettings .webModulesLink").click(function(){othis.showWebModules(null, true)});
 		$(".serversettings .modelCheckersLink").click(function(){othis.showModelCheckers(null, true)});
 		$(".serversettings .extendedDataSchemasLink").click(function(){othis.showExtendedDataSchemas(null, true)});

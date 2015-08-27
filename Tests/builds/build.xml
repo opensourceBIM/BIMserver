@@ -1,0 +1,33 @@
+<project name="Test">
+	<import file="../../Builds/build/common.build.xml" />
+	<target name="Test">
+		<antcall target="Build" />
+		<antcall target="Tests" />
+		<java classname="org.bimserver.tests.TestBigFilesRemote">
+			<arg value="${address}">
+			</arg>
+			<arg value="${username}">
+			</arg>
+			<arg value="${password}">
+			</arg>
+			<arg value="${basepath}">
+			</arg>
+			<classpath>
+				<pathelement path="${java.class.path}" />
+				<pathelement location="${build.tests}" />
+				<pathelement location="../bin" />
+				<path>
+					<fileset dir="../../BimServer/lib">
+						<include name="**/*.jar" />
+					</fileset>
+					<fileset dir="builds/pluginlibs" >
+						<include name="**/*.jar" />
+					</fileset>
+					<fileset dir="builds/lib" >
+						<include name="**/*.jar" />
+					</fileset>
+				</path>
+			</classpath>
+		</java>
+	</target>
+</project>

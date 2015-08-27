@@ -1,7 +1,7 @@
 package org.bimserver.plugins.renderengine;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,6 +23,7 @@ import java.io.InputStream;
 public interface RenderEngine {
 	RenderEngineModel openModel(File ifcFile) throws RenderEngineException;
 	RenderEngineModel openModel(InputStream inputStream, int size) throws RenderEngineException;
+	RenderEngineModel openModel(InputStream inputStream) throws RenderEngineException;
 	RenderEngineModel openModel(byte[] bytes) throws RenderEngineException;
 	void close() throws RenderEngineException;
 	void init() throws RenderEngineException;

@@ -1,7 +1,7 @@
 package org.bimserver.webservices.impl;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -22,12 +22,15 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -38,6 +41,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 import org.apache.commons.collections.comparators.ComparatorChain;
+import org.bimserver.BimServerImporter;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -76,6 +80,7 @@ import org.bimserver.database.actions.GetAvailableClassesInRevisionDatabaseActio
 import org.bimserver.database.actions.GetCheckinWarningsDatabaseAction;
 import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
+import org.bimserver.database.actions.GetIfcHeaderDatabaseAction;
 import org.bimserver.database.actions.GetModelCheckerOidDatabaseAction;
 import org.bimserver.database.actions.GetOidByGuidDatabaseAction;
 import org.bimserver.database.actions.GetProjectsOfUserDatabaseAction;
@@ -83,6 +88,7 @@ import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
 import org.bimserver.database.actions.RemoveModelCheckerFromProjectDatabaseAction;
+import org.bimserver.database.actions.RemoveServiceFromProjectDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
 import org.bimserver.database.actions.SetRevisionTagDatabaseAction;
@@ -110,6 +116,7 @@ import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SExtendedDataSchemaType;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
+import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SModelCheckerInstance;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
@@ -125,6 +132,7 @@ import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.longaction.DownloadParameters;
+import org.bimserver.longaction.DownloadParameters.DownloadType;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.mail.EmailMessage;
 import org.bimserver.models.log.LogAction;
@@ -145,7 +153,6 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.notifications.NewExtendedDataOnRevisionNotification;
 import org.bimserver.notifications.NewRevisionNotification;
-import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -169,6 +176,8 @@ import org.codehaus.jettison.json.JSONTokener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
+
 public class ServiceImpl extends GenericServiceImpl implements ServiceInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceImpl.class);
 
@@ -186,6 +195,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		try {
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
 			Project project = session.get(poid, Query.getDefault());
+			if (project == null) {
+				throw new UserException("No project found with poid " + poid);
+			}
 			username = user.getName();
 			userUsername = user.getUsername();
 			File homeDirIncoming = new File(getBimServer().getHomeDir(), "incoming");
@@ -206,31 +218,22 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			String cacheFileName = dateFormat.format(new Date()) + "-" + fileName;
 			File file = new File(userDirIncoming, cacheFileName);
 			InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(file));
-			try {
-				DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
-				if (deserializerObject == null) {
-					throw new UserException("Deserializer with oid " + deserializerOid + " not found");
-				}
-				Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
-				deserializer.init(getBimServer().getDatabase().getMetaDataManager().getEPackage(project.getSchema()));
-				IfcModelInterface model = deserializer.read(inputStream, cacheFileName, fileSize);
-				if (model.size() == 0) {
-					throw new DeserializeException("Cannot checkin empty model");
-				}
-				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
-				LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
-				getBimServer().getLongActionManager().start(longAction);
-				if (sync) {
-					longAction.waitForCompletion();
-				}
-				return longAction.getProgressTopic().getKey().getId();
-			} catch (UserException e) {
-				throw e;
-			} catch (DeserializeException e) {
-				throw new UserException(e);
-			} finally {
-				inputStream.close();
+			DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
+			if (deserializerObject == null) {
+				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			}
+			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
+			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
+			
+			IfcModelInterface model = deserializer.read(inputStream, fileName, 0, null);
+			
+			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
+			LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+			getBimServer().getLongActionManager().start(longAction);
+			if (sync) {
+				longAction.waitForCompletion();
+			}
+			return longAction.getProgressTopic().getKey().getId();
 		} catch (UserException e) {
 			throw e;
 		} catch (Throwable e) {
@@ -261,7 +264,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 			
 			URL url = new URL(urlString);
-			InputStream input = url.openStream();
+			URLConnection openConnection = url.openConnection();
+			InputStream input = openConnection.getInputStream();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 			if (fileName == null) {
 				if (urlString.contains("/")) {
@@ -269,36 +273,28 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				} else {
 					fileName = urlString;
 				}
+				fileName = URLDecoder.decode(fileName, Charsets.UTF_8.name());
 			} else {
 				fileName = dateFormat.format(new Date()) + "-" + fileName;
 			}
 			File file = new File(userDirIncoming, fileName);
 			InputStream inputStream = new MultiplexingInputStream(input, new FileOutputStream(file));
-			try {
-				DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
-				if (deserializerObject == null) {
-					throw new UserException("Deserializer with oid " + deserializerOid + " not found");
-				}
-				Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
-				deserializer.init(getBimServer().getDatabase().getMetaDataManager().getEPackage("ifc2x3tc1"));
-				IfcModelInterface model = deserializer.read(inputStream, fileName, 0);
-				if (model.size() == 0) {
-					throw new DeserializeException("Cannot checkin empty model");
-				}
-				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
-				LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
-				getBimServer().getLongActionManager().start(longAction);
-				if (sync) {
-					longAction.waitForCompletion();
-				}
-				return longAction.getProgressTopic().getKey().getId();
-			} catch (UserException e) {
-				throw e;
-			} catch (DeserializeException e) {
-				throw new UserException(e);
-			} finally {
-				inputStream.close();
+			DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
+			if (deserializerObject == null) {
+				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			}
+			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
+			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
+
+			IfcModelInterface model = deserializer.read(inputStream, fileName, 0, null);
+			
+			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
+			LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+			getBimServer().getLongActionManager().start(longAction);
+			if (sync) {
+				longAction.waitForCompletion();
+			}
+			return longAction.getProgressTopic().getKey().getId();
 		} catch (UserException e) {
 			throw e;
 		} catch (Throwable e) {
@@ -319,6 +315,25 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				requireRealUserAuthentication();
 			}
 			BimDatabaseAction<User> action = new AddUserDatabaseAction(getBimServer(), session, getInternalAccessMethod(), username, name, getBimServer().getSConverter().convertFromSObject(type), getAuthorization(),
+					selfRegistration, resetUrl);
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public SUser addUserWithPassword(String username, String password, String name, SUserType type, Boolean selfRegistration, String resetUrl) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			if (selfRegistration) {
+				requireSelfregistrationAllowed();
+			} else if (!getBimServer().getServerSettingsCache().getServerSettings().getAllowSelfRegistration()) {
+				requireRealUserAuthentication();
+			}
+			BimDatabaseAction<User> action = new AddUserDatabaseAction(getBimServer(), session, getInternalAccessMethod(), username, password, name, getBimServer().getSConverter().convertFromSObject(type), getAuthorization(),
 					selfRegistration, resetUrl);
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
@@ -466,7 +481,16 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public Long downloadCompareResults(Long serializerOid, Long roid1, Long roid2, Long mcid, SCompareType type, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return ((Bimsie1ServiceIImpl)getServiceMap().getBimsie1ServiceInterface()).download(DownloadParameters.fromCompare(getBimServer(), roid1, roid2, getBimServer().getSConverter().convertFromSObject(type), mcid, serializerOid), sync);
+		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_COMPARE);
+		downloadParameters.setModelCompareIdentifier(mcid);
+		downloadParameters.setCompareType(getBimServer().getSConverter().convertFromSObject(type));
+		downloadParameters.setSerializerOid(serializerOid);
+		Set<Long> roids = new HashSet<>();
+		roids.add(roid1);
+		roids.add(roid2);
+		downloadParameters.setRoids(roids);
+		
+		return ((Bimsie1ServiceImpl)getServiceMap().getBimsie1ServiceInterface()).download(downloadParameters, sync);
 	}
 
 	@Override
@@ -902,14 +926,14 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public void addExtendedDataSchema(SExtendedDataSchema extendedDataSchema) throws ServerException, UserException {
+	public Long addExtendedDataSchema(SExtendedDataSchema extendedDataSchema) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			ExtendedDataSchema convert = getBimServer().getSConverter().convertFromSObject(extendedDataSchema, session);
-			session.executeAndCommitAction(new AddExtendedDataSchemaDatabaseAction(session, getInternalAccessMethod(), convert));
+			return session.executeAndCommitAction(new AddExtendedDataSchemaDatabaseAction(session, getInternalAccessMethod(), convert));
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -994,7 +1018,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public SServiceDescriptor getServiceDescriptor(String baseUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(baseUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getDatabase().getMetaDataManager());
+			BimServerClientFactory factory = new JsonBimServerClientFactory(baseUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager());
 			BimServerClientInterface client = factory.create();
 			SServiceDescriptor service = client.getRemoteServiceInterface().getService(serviceIdentifier);
 			if (service == null) {
@@ -1009,7 +1033,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public List<SServiceDescriptor> getAllLocalServiceDescriptors() throws ServerException, UserException {
-		return sort(getBimServer().getSConverter().convertToSListServiceDescriptor(getBimServer().getInternalServicesManager().getInternalServices().values()));
+		return sort(getBimServer().getSConverter().convertToSListServiceDescriptor(getBimServer().getInternalServicesManager().getInternalServices(getAuthorization().getUoid()).values()));
 	}
 	
 	@Override
@@ -1017,7 +1041,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		try {
 			List<SServiceDescriptor> sServiceDescriptors = new ArrayList<SServiceDescriptor>();
-			URL url = new URL(getServiceMap().get(SettingsInterface.class).getServiceRepositoryUrl() + "/services");
+			URL url = new URL(getServiceMap().get(SettingsInterface.class).getServiceRepositoryUrl() + "/services.json");
 			String content = NetUtils.getContent(url, 5000);
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray services = root.getJSONArray("services");
@@ -1074,7 +1098,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		try {
 			List<SExtendedDataSchema> extendedDataSchemas = new ArrayList<SExtendedDataSchema>();
-			String content = NetUtils.getContent(new URL(getServiceMap().get(SettingsInterface.class).getServiceRepositoryUrl() + "/extendeddataschemas"), 5000);
+			String content = NetUtils.getContent(new URL(getServiceMap().get(SettingsInterface.class).getServiceRepositoryUrl() + "/extendeddataschemas.json"), 5000);
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray extendedDataSchemasJson = root.getJSONArray("extendeddataschemas");
 			for (int i = 0; i < extendedDataSchemasJson.length(); i++) {
@@ -1148,14 +1172,14 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
-	public void addServiceToProject(Long poid, org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException {
+	public Long addServiceToProject(Long poid, org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			AddServiceToProjectDatabaseAction action = new AddServiceToProjectDatabaseAction(session, getInternalAccessMethod(), poid, getBimServer().getSConverter().convertFromSObject(sService, session), getAuthorization());
-			session.executeAndCommitAction(action);
+			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		} finally {
 			session.close();
 		}
@@ -1179,7 +1203,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getDatabase().getMetaDataManager());
+			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager());
 			BimServerClientInterface client = factory.create();
 			return client.getRemoteServiceInterface().getPublicProfiles(serviceIdentifier);
 		} catch (Exception e) {
@@ -1191,7 +1215,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public List<SProfileDescriptor> getAllPrivateProfiles(String notificationsUrl, String serviceIdentifier, String token) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getDatabase().getMetaDataManager());
+			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager());
 			BimServerClientInterface client = factory.create();
 			return client.getRemoteServiceInterface().getPrivateProfiles(serviceIdentifier, token);
 		} catch (Exception e) {
@@ -1210,7 +1234,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			User user = session.querySingle(condition, User.class, Query.getDefault());
 			if (user != null) {
 				for (InternalServicePluginConfiguration internalServicePluginConfiguration : user.getUserSettings().getServices()) {
-					if (internalServicePluginConfiguration.getPluginDescriptor().getPluginClassName().equals(serviceIdentifier)) {
+					if (serviceIdentifier.equals("" + internalServicePluginConfiguration.getOid())) {
 						SProfileDescriptor sProfileDescriptor = new SProfileDescriptor();
 						descriptors.add(sProfileDescriptor);
 						
@@ -1304,7 +1328,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	
 	@Override
 	public String shareRevision(Long roid) throws UserException, ServerException {
-		ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(getBimServer(), getCurrentUser().getOid(), -1, roid, -1, -1, -1);
+		ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(getBimServer(), getCurrentUser().getOid(), -1, new long[]{roid}, -1, -1, -1);
 		return authorization.asHexToken(getBimServer().getEncryptionKey());
 	}
 	
@@ -1471,6 +1495,39 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void removeServiceFromProject(Long poid, Long serviceOid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Boolean> action = new RemoveServiceFromProjectDatabaseAction(getBimServer(), session, getInternalAccessMethod(), serviceOid, poid, getAuthorization());
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void importData(String address, String username, String password, String path) {
+		new BimServerImporter(getBimServer(), address, username, password, path).start();
+	}
+
+	@Override
+	public SIfcHeader getIfcHeader(Long croid) throws UserException, ServerException {
+		requireAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<SIfcHeader> action = new GetIfcHeaderDatabaseAction(getBimServer(), session, getInternalAccessMethod(), croid, getAuthorization());
+			return session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}

@@ -17,42 +17,28 @@
 package org.bimserver.models.ifc4.impl;
 
 import java.io.IOException;
-
 import java.net.URL;
 
 import org.bimserver.models.geometry.GeometryPackage;
-
 import org.bimserver.models.geometry.impl.GeometryPackageImpl;
-
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-
 import org.bimserver.models.ifc2x3tc1.impl.Ifc2x3tc1PackageImpl;
-
 import org.bimserver.models.ifc4.Ifc4Factory;
 import org.bimserver.models.ifc4.Ifc4Package;
-
 import org.bimserver.models.log.LogPackage;
-
 import org.bimserver.models.log.impl.LogPackageImpl;
-
 import org.bimserver.models.store.StorePackage;
-
 import org.bimserver.models.store.impl.StorePackageImpl;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 
 /**
@@ -6731,6 +6717,48 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass listOfIfcCartesianPointEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass listOfIfcLengthMeasureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass listOfIfcNormalisedRatioMeasureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass listOfEIntEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass listOfEDoubleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass listOfIfcParameterValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum tristateEEnum = null;
 
 	/**
@@ -9698,8 +9726,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIfcBSplineSurface_SurfaceForm() {
-		return (EAttribute) getIfcBSplineSurface().getEStructuralFeatures().get(2);
+	public EReference getIfcBSplineSurface_ControlPointsList() {
+		return (EReference) getIfcBSplineSurface().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -9707,7 +9735,7 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIfcBSplineSurface_UClosed() {
+	public EAttribute getIfcBSplineSurface_SurfaceForm() {
 		return (EAttribute) getIfcBSplineSurface().getEStructuralFeatures().get(3);
 	}
 
@@ -9716,7 +9744,7 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIfcBSplineSurface_VClosed() {
+	public EAttribute getIfcBSplineSurface_UClosed() {
 		return (EAttribute) getIfcBSplineSurface().getEStructuralFeatures().get(4);
 	}
 
@@ -9725,8 +9753,17 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIfcBSplineSurface_SelfIntersect() {
+	public EAttribute getIfcBSplineSurface_VClosed() {
 		return (EAttribute) getIfcBSplineSurface().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIfcBSplineSurface_SelfIntersect() {
+		return (EAttribute) getIfcBSplineSurface().getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -11015,6 +11052,15 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIfcCartesianPointList3D_CoordList() {
+		return (EReference) getIfcCartesianPointList3D().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIfcCartesianTransformationOperator() {
 		if (ifcCartesianTransformationOperatorEClass == null) {
 			ifcCartesianTransformationOperatorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(80);
@@ -11695,6 +11741,15 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 			ifcColourRgbListEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(101);
 		}
 		return ifcColourRgbListEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIfcColourRgbList_ColourList() {
+		return (EReference) getIfcColourRgbList().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -18260,6 +18315,15 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIfcIndexedTriangleTextureMap_TexCoordIndex() {
+		return (EReference) getIfcIndexedTriangleTextureMap().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIfcInterceptor() {
 		if (ifcInterceptorEClass == null) {
 			ifcInterceptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(320);
@@ -24413,6 +24477,15 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIfcRationalBSplineSurfaceWithKnots_WeightsData() {
+		return (EReference) getIfcRationalBSplineSurfaceWithKnots().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIfcRectangleHollowProfileDef() {
 		if (ifcRectangleHollowProfileDefEClass == null) {
 			ifcRectangleHollowProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(496);
@@ -29555,6 +29628,15 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIfcStructuralLoadConfiguration_Locations() {
+		return (EReference) getIfcStructuralLoadConfiguration().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIfcStructuralLoadGroup() {
 		if (ifcStructuralLoadGroupEClass == null) {
 			ifcStructuralLoadGroupEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(635);
@@ -32444,8 +32526,17 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIfcTessellatedFaceSet_Normals() {
+		return (EReference) getIfcTessellatedFaceSet().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getIfcTessellatedFaceSet_Closed() {
-		return (EAttribute) getIfcTessellatedFaceSet().getEStructuralFeatures().get(1);
+		return (EAttribute) getIfcTessellatedFaceSet().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -32454,7 +32545,7 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * @generated
 	 */
 	public EReference getIfcTessellatedFaceSet_HasColours() {
-		return (EReference) getIfcTessellatedFaceSet().getEStructuralFeatures().get(2);
+		return (EReference) getIfcTessellatedFaceSet().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -32463,7 +32554,7 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * @generated
 	 */
 	public EReference getIfcTessellatedFaceSet_HasTextures() {
-		return (EReference) getIfcTessellatedFaceSet().getEStructuralFeatures().get(3);
+		return (EReference) getIfcTessellatedFaceSet().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -32894,6 +32985,15 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIfcTextureVertexList_TexCoordsList() {
+		return (EReference) getIfcTextureVertexList().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIfcTimePeriod() {
 		if (ifcTimePeriodEClass == null) {
 			ifcTimePeriodEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(713);
@@ -33235,6 +33335,24 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 			ifcTriangulatedFaceSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(723);
 		}
 		return ifcTriangulatedFaceSetEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIfcTriangulatedFaceSet_CoordIndex() {
+		return (EReference) getIfcTriangulatedFaceSet().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIfcTriangulatedFaceSet_NormalIndex() {
+		return (EReference) getIfcTriangulatedFaceSet().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -39022,6 +39140,132 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 			ifcWarpingStiffnessSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1157);
 		}
 		return ifcWarpingStiffnessSelectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getListOfIfcCartesianPoint() {
+		if (listOfIfcCartesianPointEClass == null) {
+			listOfIfcCartesianPointEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1158);
+		}
+		return listOfIfcCartesianPointEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getListOfIfcCartesianPoint_List() {
+		return (EReference) getListOfIfcCartesianPoint().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getListOfIfcLengthMeasure() {
+		if (listOfIfcLengthMeasureEClass == null) {
+			listOfIfcLengthMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1159);
+		}
+		return listOfIfcLengthMeasureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getListOfIfcLengthMeasure_List() {
+		return (EReference) getListOfIfcLengthMeasure().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getListOfIfcNormalisedRatioMeasure() {
+		if (listOfIfcNormalisedRatioMeasureEClass == null) {
+			listOfIfcNormalisedRatioMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1160);
+		}
+		return listOfIfcNormalisedRatioMeasureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getListOfIfcNormalisedRatioMeasure_List() {
+		return (EReference) getListOfIfcNormalisedRatioMeasure().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getListOfEInt() {
+		if (listOfEIntEClass == null) {
+			listOfEIntEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1161);
+		}
+		return listOfEIntEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getListOfEInt_List() {
+		return (EAttribute) getListOfEInt().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getListOfEDouble() {
+		if (listOfEDoubleEClass == null) {
+			listOfEDoubleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1162);
+		}
+		return listOfEDoubleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getListOfEDouble_List() {
+		return (EAttribute) getListOfEDouble().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getListOfIfcParameterValue() {
+		if (listOfIfcParameterValueEClass == null) {
+			listOfIfcParameterValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1163);
+		}
+		return listOfIfcParameterValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getListOfIfcParameterValue_List() {
+		return (EReference) getListOfIfcParameterValue().getEStructuralFeatures().get(0);
 	}
 
 	/**

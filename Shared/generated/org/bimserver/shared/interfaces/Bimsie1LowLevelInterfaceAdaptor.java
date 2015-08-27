@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -47,7 +47,7 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 		return null;
 	}
 	
-	public java.lang.Long createObject(java.lang.Long tid, java.lang.String className) throws UserException, ServerException {
+	public java.lang.Long createObject(java.lang.Long tid, java.lang.String className, java.lang.Boolean generateGuid) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -83,7 +83,7 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SDataObject> getDataObjectsByType(java.lang.Long roid, java.lang.String schema, java.lang.String className, java.lang.Boolean flat) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SDataObject> getDataObjectsByType(java.lang.Long roid, java.lang.String packageName, java.lang.String className, java.lang.Boolean flat) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -149,6 +149,9 @@ public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.int
 	}
 	
 	public void removeReference(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName, java.lang.Integer index) throws UserException, ServerException {
+	}
+	
+	public void removeReferenceByOid(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName, java.lang.Long referencedOid) throws UserException, ServerException {
 	}
 	
 	public void setBooleanAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Boolean value) throws UserException, ServerException {

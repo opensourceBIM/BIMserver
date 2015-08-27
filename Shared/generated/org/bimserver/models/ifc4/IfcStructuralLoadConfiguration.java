@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadConfiguration#getValues <em>Values</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadConfiguration#getLocations <em>Locations</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,5 +51,21 @@ public interface IfcStructuralLoadConfiguration extends IfcStructuralLoad {
 	 * @generated
 	 */
 	EList<IfcStructuralLoadOrResult> getValues();
+
+	/**
+	 * Returns the value of the '<em><b>Locations</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.ListOfIfcLengthMeasure}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Locations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Locations</em>' reference list.
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadConfiguration_Locations()
+	 * @model
+	 * @generated
+	 */
+	EList<ListOfIfcLengthMeasure> getLocations();
 
 } // IfcStructuralLoadConfiguration

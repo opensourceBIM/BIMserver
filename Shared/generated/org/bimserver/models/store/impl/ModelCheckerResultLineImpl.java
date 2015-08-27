@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,6 @@ package org.bimserver.models.store.impl;
 import org.bimserver.models.store.ModelCheckerResultLine;
 import org.bimserver.models.store.ModelCheckerResultType;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -28,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerResultLineImpl#getFieldOrClass <em>Field Or Class</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerResultLineImpl#getValue <em>Value</em>}</li>
@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerResultLineImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerResultLineImpl#getObjectId <em>Object Id</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

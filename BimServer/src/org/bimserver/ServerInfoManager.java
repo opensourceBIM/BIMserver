@@ -1,7 +1,7 @@
 package org.bimserver;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -42,7 +42,7 @@ public class ServerInfoManager {
 	private BimServer bimServer;
 	private final Set<StateChangeListener> stateChangeListeners = new HashSet<StateChangeListener>();
 	private final ServerInfo serverInfo = StoreFactory.eINSTANCE.createServerInfo();
-
+	
 	public void registerStateChangeListener(StateChangeListener stateChangeListener) {
 		stateChangeListeners.add(stateChangeListener);
 	}
@@ -54,6 +54,11 @@ public class ServerInfoManager {
 	}
 
 	public void update() {
+		try {
+			serverInfo.setVersion(bimServer.getSConverter().convertFromSObject(bimServer.getVersionChecker().getLocalVersion(), null));
+		} catch (BimserverDatabaseException e) {
+			LOGGER.error("", e);
+		}
 		if (bimServer.getDatabase().getMigrator().migrationRequired()) {
 			setServerState(ServerState.MIGRATION_REQUIRED);
 			if (bimServer.getConfig().isAutoMigrate()) {
@@ -99,7 +104,7 @@ public class ServerInfoManager {
 	}
 
 	public void setOutOfMemory() {
-		serverInfo.setErrorMessage("This server is out of memory, more info on how to fix this can be found on <a href=\"http://support.bimserver.org/\">support.bimserver.org</a>. Or let us handle the hosting stuff and join our VIP hosting solutions at <a href=\"http://vip.bimserver.org/\">vip.bimserver.org</a>.  ");
+		serverInfo.setErrorMessage("This server is out of memory, more info on how to fix this can be found on <a href=\"http://support.opensourcebim.org/\">support.opensourcebim.org</a>. Or let us handle the hosting stuff and join our VIP hosting solutions at <a href=\"http://vip.bimserver.org/\">vip.bimserver.org</a>.  ");
 	}
 
 	public void setServerState(ServerState serverState) {

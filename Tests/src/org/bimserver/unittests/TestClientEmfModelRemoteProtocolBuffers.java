@@ -1,7 +1,7 @@
 package org.bimserver.unittests;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -45,7 +45,7 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 		try {
 			ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
 			protocolBuffersMetaData.load(null, ProtocolBuffersBimServerClientFactory.class); // TODO
-			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData);
+			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData, null);
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 			bimServerClient = factory.create(usernamePasswordAuthenticationInfo);
 		} catch (ChannelConnectionException e1) {
@@ -77,7 +77,7 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 	@Test
 	public void test() {
 		try {
-			IfcModelInterface model = bimServerClient.newModel(createProject());
+			IfcModelInterface model = bimServerClient.newModel(createProject(), false);
 			new CreateFromScratch().createIfcProject(model);
 			model.commit("tralala");
 		} catch (Exception e) {

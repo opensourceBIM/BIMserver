@@ -19,7 +19,6 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -29,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.DatabaseInformation#getNumberOfProjects <em>Number Of Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.DatabaseInformation#getNumberOfUsers <em>Number Of Users</em>}</li>
@@ -41,7 +41,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.DatabaseInformation#getSchemaVersion <em>Schema Version</em>}</li>
  *   <li>{@link org.bimserver.models.store.DatabaseInformation#getCategories <em>Categories</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getDatabaseInformation()
  * @model

@@ -1,7 +1,7 @@
 package org.bimserver.shared.meta;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -175,6 +175,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SModelCheckerInstance");
 		Class.forName("org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SSmtpProtocol");
+		Class.forName("org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration");
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

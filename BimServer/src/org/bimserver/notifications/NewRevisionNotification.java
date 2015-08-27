@@ -1,7 +1,7 @@
 package org.bimserver.notifications;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,10 +17,13 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
@@ -33,7 +36,7 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.mail.EmailMessage;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -46,6 +49,7 @@ import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 import org.bimserver.plugins.modelchecker.ModelCheckException;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
@@ -58,7 +62,10 @@ import org.bimserver.shared.interfaces.async.AsyncBimsie1RemoteServiceInterface;
 import org.bimserver.shared.interfaces.async.AsyncBimsie1RemoteServiceInterface.NewRevisionCallback;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.templating.TemplateIdentifier;
+import org.bimserver.webservices.authorization.AdminAuthorization;
+import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
+import org.bimserver.webservices.authorization.UserAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,12 +75,14 @@ public class NewRevisionNotification extends Notification {
 	private long roid;
 	private long poid;
 	private long soid;
+	private boolean sendEmail = true;
 
 	public NewRevisionNotification(BimServer bimServer, long poid, long roid, long soid) {
 		super(bimServer);
 		this.poid = poid;
 		this.roid = roid;
 		this.soid = soid;
+		sendEmail = false;
 	}
 
 	public NewRevisionNotification(BimServer bimServer, long poid, long roid) {
@@ -88,8 +97,12 @@ public class NewRevisionNotification extends Notification {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
+			if (project == null) {
+				LOGGER.error("Project with oid " + poid + " not found");
+				return;
+			}
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
-			if (getBimServer().getServerSettingsCache().getServerSettings().isSendEmailOnNewRevision()) {
+			if  (project.isSendEmailOnNewRevision() && sendEmail) {
 				sendEmail(session, project, revision);
 			}
 			for (Service service : project.getServices()) {
@@ -135,6 +148,18 @@ public class NewRevisionNotification extends Notification {
 					context.put("username", user.getUsername());
 					context.put("siteaddress", serverSettings.getSiteAddress());
 					context.put("revisionId", revision.getId());
+					
+					Authorization authorization = null;
+					if (user.getUserType() == UserType.ADMIN) {
+						authorization = new AdminAuthorization(getBimServer().getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
+					} else {
+						authorization = new UserAuthorization(getBimServer().getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
+					}
+					authorization.setUoid(user.getOid());
+					String asHexToken = authorization.asHexToken(getBimServer().getEncryptionKey());
+					
+					context.put("token", asHexToken);
+					context.put("roid", revision.getOid());
 					context.put("comment", revision.getComment());
 					context.put("projectName", project.getName());
 					String subject = null;
@@ -199,12 +224,12 @@ public class NewRevisionNotification extends Notification {
 							ModelCheckerResult result;
 							try {
 								if (model == null) {
-									PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(project.getSchema());
-									model = new IfcModel(packageMetaData);
+									PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
+									model = new BasicIfcModel(packageMetaData, null);
 									Revision revision;
 									try {
 										revision = session.get(roid, Query.getDefault());
-										session.getMap(model, new Query(packageMetaData, project.getId(), revision.getId(), null, Deep.NO));
+										session.getMap(model, new Query(packageMetaData, project.getId(), revision.getId(), revision.getOid(), null, Deep.NO));
 									} catch (BimserverDatabaseException e) {
 										LOGGER.error("", e);
 									}
@@ -225,9 +250,23 @@ public class NewRevisionNotification extends Notification {
 				final Bimsie1RemoteServiceInterface remoteServiceInterface = channel.get(Bimsie1RemoteServiceInterface.class);
 				long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
 				long writeExtendedDataRoid = service.getWriteExtendedData() != null ? roid : -1;
+				@SuppressWarnings("unused")
 				long readRevisionRoid = service.isReadRevision() ? roid : -1;
 				long readExtendedDataRoid = service.getReadExtendedData() != null ? roid : -1;
-				final ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(bimServer, service.getUser().getOid(), service.getOid(), readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
+				
+				List<Long> roidsList = new ArrayList<>();
+				Set<Project> relatedProjects = getRelatedProjects(project);
+				for (Project p : relatedProjects) {
+					if (p.getLastRevision() != null) {
+						roidsList.add(p.getLastRevision().getOid());
+					}
+				}
+				
+				long[] roids = new long[roidsList.size()];
+				for (int i=0; i<roids.length; i++) {
+					roids[i] = roidsList.get(i);
+				}
+				final ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(bimServer, service.getUser().getOid(), service.getOid(), service.isReadRevision() ? roids : new long[0], writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
 				ServiceInterface newService = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL).get(ServiceInterface.class);
 				((org.bimserver.webservices.impl.ServiceImpl)newService).setAuthorization(authorization); // TODO redundant?
 				

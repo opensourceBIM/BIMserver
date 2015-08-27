@@ -71,7 +71,7 @@ public class ExpressToExcel {
 				// Determine if there is at least one type eligible
 				int x =0;
 				for (String className : ifcDoc.getClassNames(domain)) {
-					EClassifier eClassifier = metaDataManager.getEPackage("ifc2x3tc1").getEClassifierCaseInsensitive(className);
+					EClassifier eClassifier = metaDataManager.getPackageMetaData("ifc2x3tc1").getEClassifierCaseInsensitive(className);
 					if (eClassifier instanceof EClass) {
 						EClass eClass = (EClass)eClassifier;
 						if (Ifc2x3tc1Package.eINSTANCE.getIfcProduct().isSuperTypeOf(eClass)) {
@@ -84,7 +84,7 @@ public class ExpressToExcel {
 					row = 0;
 					WritableSheet excelSheet = workbook.createSheet(domain, i);
 					for (String className : ifcDoc.getClassNames(domain)) {
-						EClassifier eClassifier = metaDataManager.getEPackage("ifc2x3tc1").getEClassifierCaseInsensitive(className);
+						EClassifier eClassifier = metaDataManager.getPackageMetaData("ifc2x3tc1").getEClassifierCaseInsensitive(className);
 						if (eClassifier instanceof EClass) {
 							EClass eClass = (EClass)eClassifier;
 							if (Ifc2x3tc1Package.eINSTANCE.getIfcProduct().isSuperTypeOf(eClass)) {

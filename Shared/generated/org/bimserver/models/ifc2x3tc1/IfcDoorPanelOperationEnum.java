@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -263,8 +263,8 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorPanelOperationEnum[] VALUES_ARRAY = new IfcDoorPanelOperationEnum[] { NULL, DOUBLE_ACTING, SWINGING, NOTDEFINED, REVOLVING, ROLLINGUP, FOLDING,
-			SLIDING, USERDEFINED, };
+	private static final IfcDoorPanelOperationEnum[] VALUES_ARRAY = new IfcDoorPanelOperationEnum[] { NULL, DOUBLE_ACTING, SWINGING, NOTDEFINED, REVOLVING,
+			ROLLINGUP, FOLDING, SLIDING, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Panel Operation Enum</b></em>' enumerators.

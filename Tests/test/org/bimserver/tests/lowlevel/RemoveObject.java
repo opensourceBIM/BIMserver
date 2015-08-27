@@ -20,13 +20,13 @@ public class RemoveObject extends TestWithEmbeddedServer {
 			Bimsie1LowLevelInterface lowLevelInterface = bimServerClient.getBimsie1LowLevelInterface();
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// Start a transaction
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
-			Long ifcRelContainedInSpatialStructureOid = lowLevelInterface.createObject(tid, "IfcRelContainedInSpatialStructure");
-			Long ifcBuildingOid = lowLevelInterface.createObject(tid, "IfcBuilding");
+			Long ifcRelContainedInSpatialStructureOid = lowLevelInterface.createObject(tid, "IfcRelContainedInSpatialStructure", true);
+			Long ifcBuildingOid = lowLevelInterface.createObject(tid, "IfcBuilding", true);
 			lowLevelInterface.addReference(tid, ifcBuildingOid, "ContainsElements", ifcRelContainedInSpatialStructureOid);
 			
 			lowLevelInterface.commitTransaction(tid, "Initial");

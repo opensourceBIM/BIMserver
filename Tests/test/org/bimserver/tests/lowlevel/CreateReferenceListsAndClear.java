@@ -23,16 +23,16 @@ public class CreateReferenceListsAndClear extends TestWithEmbeddedServer {
 			Bimsie1LowLevelInterface lowLevelInterface = bimServerClient.getBimsie1LowLevelInterface();
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// Start a transaction
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
-			Long ifcShapeRepresentationOid = lowLevelInterface.createObject(tid, "IfcShapeRepresentation");
+			Long ifcShapeRepresentationOid = lowLevelInterface.createObject(tid, "IfcShapeRepresentation", false);
 			
-			long ifcRepresentationItem1 = lowLevelInterface.createObject(tid, "IfcStyledItem");
-			long ifcRepresentationItem2 = lowLevelInterface.createObject(tid, "IfcMappedItem");
-			long ifcRepresentationItem3 = lowLevelInterface.createObject(tid, "IfcGeometricRepresentationItem");
+			long ifcRepresentationItem1 = lowLevelInterface.createObject(tid, "IfcStyledItem", false);
+			long ifcRepresentationItem2 = lowLevelInterface.createObject(tid, "IfcMappedItem", false);
+			long ifcRepresentationItem3 = lowLevelInterface.createObject(tid, "IfcGeometricRepresentationItem", false);
 			
 			lowLevelInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem1);
 			lowLevelInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem2);

@@ -1,7 +1,7 @@
 package org.bimserver.merging;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -26,6 +26,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.TracingGarbageCollector;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
@@ -44,7 +45,7 @@ public class RevisionMerger {
 	public RevisionMerger(IfcModelInterface oldModel, IfcModelInterface newModel) {
 		this.oldModel = oldModel;
 		this.newModel = newModel;
-		resultModel = new IfcModel(null, (int)oldModel.size()); // TODO
+		resultModel = new BasicIfcModel(null, null, (int)oldModel.size()); //TODO
 	}
 	
 	public IfcModel merge() throws IfcModelInterfaceException {

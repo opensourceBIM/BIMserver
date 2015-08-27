@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,7 +18,8 @@ package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcRationalBSplineSurfaceWithKnots;
-
+import org.bimserver.models.ifc4.ListOfEDouble;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -26,6 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Ifc Rational BSpline Surface With Knots</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcRationalBSplineSurfaceWithKnotsImpl#getWeightsData <em>Weights Data</em>}</li>
+ * </ul>
  * </p>
  *
  * @generated
@@ -48,6 +53,16 @@ public class IfcRationalBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceWit
 	@Override
 	protected EClass eStaticClass() {
 		return Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_SURFACE_WITH_KNOTS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ListOfEDouble> getWeightsData() {
+		return (EList<ListOfEDouble>) eGet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_SURFACE_WITH_KNOTS__WEIGHTS_DATA, true);
 	}
 
 } //IfcRationalBSplineSurfaceWithKnotsImpl

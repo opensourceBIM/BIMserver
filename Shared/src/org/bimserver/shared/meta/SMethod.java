@@ -1,7 +1,7 @@
 package org.bimserver.shared.meta;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -33,13 +33,14 @@ import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.json.ReflectorException;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
-import org.codehaus.jettison.json.JSONArray;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class SMethod {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SMethod.class);
@@ -222,15 +223,15 @@ public class SMethod {
 		return service;
 	}
 
-	public JSONObject toJson() throws JSONException {
-		JSONObject methodJson = new JSONObject();
+	public ObjectNode toJson(ObjectMapper objectMapper) {
+		ObjectNode methodJson = objectMapper.createObjectNode();
 		methodJson.put("name", getName());
 		methodJson.put("doc", getDoc());
 		methodJson.put("returnDoc", getReturnDoc());
-		JSONArray parametersJson = new JSONArray();
-		methodJson.put("parameters", parametersJson);
+		ArrayNode parametersJson = objectMapper.createArrayNode();
+		methodJson.set("parameters", parametersJson);
 		for (SParameter parameter : parameters) {
-			parametersJson.put(parameter.toJson());
+			parametersJson.add(parameter.toJson(objectMapper));
 		}
 		return methodJson;
 	}

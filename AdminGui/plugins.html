@@ -25,11 +25,14 @@ function Plugins(main, serversettings) {
 		}
 	};
 	
-	this.showPlugin = function(){
-		var plugin = $(this).data("plugin");
-		$(".plugins").load("plugin.html", function(){
-			new Plugin($(this), plugin);
-		});
+	this.showPlugin = function(event){
+		if (!$(event.target).is("input")) {
+			var plugin = $(this).data("plugin");
+			pushHistory({page: "ServerSettings", subpage: "Plugins", plugin: plugin.oid}, "Server Settings");
+			$(".plugins").load("plugin.html", function(){
+				new Plugin($(this), plugin);
+			});
+		}
 	};
 	
 	this.addPlugin = function(plugin){
@@ -93,6 +96,15 @@ function Plugins(main, serversettings) {
 	this.close = function(){
 	};
 
-	othis.loadPlugins();
+	var history = History.getState().data;
+	if (history.plugin != null) {
+		Global.bimServerApi.call("PluginInterface", "getPluginDescriptor", {oid: history.plugin}, function(plugin){
+			$(".plugins").load("plugin.html", function(){
+				new Plugin($(this), plugin);
+			});
+		});
+	} else {
+		othis.loadPlugins();
+	}
 }
 </script>

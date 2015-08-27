@@ -19,7 +19,6 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.bimserver.models.log.AccessMethod;
 
 /**
@@ -29,6 +28,7 @@ import org.bimserver.models.log.AccessMethod;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.UserSession#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSession#getUsername <em>Username</em>}</li>
@@ -39,7 +39,6 @@ import org.bimserver.models.log.AccessMethod;
  *   <li>{@link org.bimserver.models.store.UserSession#getLastActive <em>Last Active</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSession#getAccessMethod <em>Access Method</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getUserSession()
  * @model

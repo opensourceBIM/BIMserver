@@ -1,7 +1,7 @@
 package org.bimserver.pb;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -102,6 +102,8 @@ service Bimsie1LowLevelInterface {
 	rpc removeObject (RemoveObjectRequest) returns (VoidResponse);
 
 	rpc removeReference (RemoveReferenceRequest) returns (VoidResponse);
+
+	rpc removeReferenceByOid (RemoveReferenceByOidRequest) returns (VoidResponse);
 
 	rpc setBooleanAttribute (SetBooleanAttributeRequest) returns (VoidResponse);
 
@@ -217,6 +219,7 @@ message CountResponse {
 message CreateObjectRequest {
 	optional int64 tid = 1;
 	optional string className = 2;
+	optional bool generateGuid = 3;
 }
 
 message CreateObjectResponse {
@@ -311,7 +314,7 @@ message GetDataObjectsResponse {
 
 message GetDataObjectsByTypeRequest {
 	optional int64 roid = 1;
-	optional string schema = 2;
+	optional string packageName = 2;
 	optional string className = 3;
 	optional bool flat = 4;
 }
@@ -490,6 +493,13 @@ message RemoveReferenceRequest {
 	optional int64 oid = 2;
 	optional string referenceName = 3;
 	optional int32 index = 4;
+}
+
+message RemoveReferenceByOidRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string referenceName = 3;
+	optional int64 referencedOid = 4;
 }
 
 message SetBooleanAttributeRequest {

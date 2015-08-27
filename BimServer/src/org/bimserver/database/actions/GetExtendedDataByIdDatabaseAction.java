@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -22,6 +22,8 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
@@ -38,7 +40,16 @@ public class GetExtendedDataByIdDatabaseAction extends GetByIdDatabaseAction<Ext
 	@Override
 	public ExtendedData execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		ExtendedData extendedData = super.execute();
-		authorization.canReadExtendedData(extendedData.getRevision().getOid());
+		if (authorization == null) {
+			throw new UserException("Authorization required for this call");
+		}
+		if (extendedData.getRevision() != null) {
+			Revision revision = extendedData.getRevision();
+			authorization.canReadExtendedData(revision.getOid());
+		} else if (extendedData.getProject() != null) {
+			Project project = extendedData.getProject();
+			// TODO check auth
+		}
 		return extendedData;
 	}
 }

@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.bimserver.BimServer;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -29,7 +30,6 @@ import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcCharacterStyleSelect;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcCurveStyle;
@@ -126,8 +126,8 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 //			bimServer.getCompareCache().storeResults(roid1, roid2, compareType, compareIdentifier, compareResults);
 
 			ModelMerger merger = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid());
-			IfcModelInterface mergedModel = new IfcModel(null); // TODO
-			mergedModel = merger.merge(project, new IfcModelSet(model1, model2), new ModelHelper(mergedModel));
+			IfcModelInterface mergedModel = new ServerIfcModel(null, null, getDatabaseSession()); // TODO
+			mergedModel = merger.merge(project, new IfcModelSet(model1, model2), new ModelHelper(getBimServer().getMetaDataManager(), mergedModel));
 			mergedModel.getModelMetaData().setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
 
 			Set<Long> added = new HashSet<Long>();

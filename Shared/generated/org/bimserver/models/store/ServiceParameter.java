@@ -25,13 +25,13 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ServiceParameter#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceParameter#getDoc <em>Doc</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceParameter#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceParameter#getGenericType <em>Generic Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getServiceParameter()
  * @model

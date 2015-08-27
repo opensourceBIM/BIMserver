@@ -1,7 +1,7 @@
 package org.bimserver.collada;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,20 +21,26 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.geometry.Matrix;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingElementProxy;
@@ -42,18 +48,23 @@ import org.bimserver.models.ifc2x3tc1.IfcColumn;
 import org.bimserver.models.ifc2x3tc1.IfcCurtainWall;
 import org.bimserver.models.ifc2x3tc1.IfcDoor;
 import org.bimserver.models.ifc2x3tc1.IfcFeatureElementSubtraction;
-import org.bimserver.models.ifc2x3tc1.IfcFlowFitting;
 import org.bimserver.models.ifc2x3tc1.IfcFlowSegment;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcMember;
 import org.bimserver.models.ifc2x3tc1.IfcPlate;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcRailing;
 import org.bimserver.models.ifc2x3tc1.IfcRoof;
+import org.bimserver.models.ifc2x3tc1.IfcSIUnit;
 import org.bimserver.models.ifc2x3tc1.IfcSlab;
+import org.bimserver.models.ifc2x3tc1.IfcSlabTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.ifc2x3tc1.IfcStair;
 import org.bimserver.models.ifc2x3tc1.IfcStairFlight;
+import org.bimserver.models.ifc2x3tc1.IfcUnit;
+import org.bimserver.models.ifc2x3tc1.IfcUnitAssignment;
+import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
@@ -62,134 +73,88 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
+import org.eclipse.emf.common.util.EList;
 import org.openmali.vecmath2.Vector3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ColladaSerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ColladaSerializer.class);
-	// Prepare a transformer for floating-point numbers into a strings, clipping extraneous zeros.
-	static final DecimalFormat decimalFormat = new DecimalFormat("#.###############");
-	// Prepare a transformer for integers into strings.
-	static final DecimalFormat intFormat = new DecimalFormat("#");
-	// Provide a date formatter.
-	private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
+	private static final Map<Class<? extends IfcProduct>, Convertor<? extends IfcProduct>> convertors = new LinkedHashMap<Class<? extends IfcProduct>, Convertor<? extends IfcProduct>>();
+	private final Map<String, Set<IfcProduct>> converted = new HashMap<String, Set<IfcProduct>>();
+	private SIPrefix lengthUnitPrefix;
 
-	// Boundaries of geometry. Not necessarily used.
+	private static <T extends IfcProduct> void addConvertor(Convertor<T> convertor) {
+		convertors.put(convertor.getCl(), convertor);
+	}
+
+	static {
+		addConvertor(new Convertor<IfcRoof>(IfcRoof.class, new double[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f));
+		addConvertor(new Convertor<IfcSlab>(IfcSlab.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f) {
+			@Override
+			public String getMaterialName(Object ifcSlab) {
+				if (ifcSlab == null || !(ifcSlab instanceof IfcSlab) || ((IfcSlab) ifcSlab).getPredefinedType() != IfcSlabTypeEnum.ROOF) {
+					return "IfcSlab";
+				} else {
+					return "IfcRoof";
+				}
+			}
+		});
+		addConvertor(new Convertor<IfcWindow>(IfcWindow.class, new double[] { 0.2f, 0.2f, 0.8f }, 0.2f));
+		addConvertor(new Convertor<IfcSpace>(IfcSpace.class, new double[] { 0.5f, 0.4f, 0.1f }, 0.2f));
+		addConvertor(new Convertor<IfcDoor>(IfcDoor.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
+		addConvertor(new Convertor<IfcStair>(IfcStair.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
+		addConvertor(new Convertor<IfcStairFlight>(IfcStairFlight.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
+		addConvertor(new Convertor<IfcFlowSegment>(IfcFlowSegment.class, new double[] { 0.6f, 0.4f, 0.5f }, 1.0f));
+		addConvertor(new Convertor<IfcFurnishingElement>(IfcFurnishingElement.class, new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f));
+		addConvertor(new Convertor<IfcPlate>(IfcPlate.class, new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f));
+		addConvertor(new Convertor<IfcMember>(IfcMember.class, new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f));
+		addConvertor(new Convertor<IfcWallStandardCase>(IfcWallStandardCase.class, new double[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f));
+		addConvertor(new Convertor<IfcWall>(IfcWall.class, new double[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f));
+		addConvertor(new Convertor<IfcCurtainWall>(IfcCurtainWall.class, new double[] { 0.5f, 0.5f, 0.5f }, 0.5f));
+		addConvertor(new Convertor<IfcRailing>(IfcRailing.class, new double[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f));
+		addConvertor(new Convertor<IfcColumn>(IfcColumn.class, new double[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f));
+		addConvertor(new Convertor<IfcBuildingElementProxy>(IfcBuildingElementProxy.class, new double[] { 0.5f, 0.5f, 0.5f }, 1.0f));
+		addConvertor(new Convertor<IfcProduct>(IfcProduct.class, new double[] { 0.5f, 0.5f, 0.5f }, 1.0f));
+	}
+
+	// Prepare a transformer for floating-point numbers into a strings, clipping extraneous zeros.
+	private static final DecimalFormat decimalFormat = new DecimalFormat("#.##########");
+	// Prepare a transformer for integers into strings.
+	private static final DecimalFormat intFormat = new DecimalFormat("#");
+
 	private Vector3d lowestObserved = new Vector3d();
 	private Vector3d highestObserved = new Vector3d();
-	// Materials for converting a general class or a specific IfcProduct into a material (where an IfcProduct has a surface style).
-	private ConvertorsKeyedCollection convertors = new ConvertorsKeyedCollection();
-	private Map<IfcProduct, String> materialCalls = new HashMap<IfcProduct, String>();
-	// Unit name.
-	private SIPrefix lengthUnitPrefix;
-	// Do not bother to configure the serializer if it's only being used by its parent plugin.
-	public ColladaConfiguration configuration = null;
-
-	public ColladaSerializer() {
-		// WARN: Do not configure here, since "model" is not initialized at this point. Use the init method.
-		// Add default convertors. More specific IfcProduct convertors may be created in the process of parsing IfcProduct objects. Only the materials that are used will be put in the Collada file. 
-		convertors.add(new Convertor(IfcRoof.class, new double[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f));
-		convertors.add(new Convertor(IfcSlab.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
-		convertors.add(new Convertor(IfcWindow.class, new double[] { 0.2f, 0.2f, 0.8f }, 0.5f));
-		convertors.add(new Convertor(IfcSpace.class, new double[] { 0.5f, 0.4f, 0.1f }, 0.05f));
-		convertors.add(new Convertor(IfcDoor.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
-		convertors.add(new Convertor(IfcStair.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
-		convertors.add(new Convertor(IfcStairFlight.class, new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f));
-		convertors.add(new Convertor(IfcFlowSegment.class, new double[] { 0.6f, 0.4f, 0.5f }, 1.0f));
-		convertors.add(new Convertor(IfcFurnishingElement.class, new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f));
-		convertors.add(new Convertor(IfcPlate.class, new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f));
-		convertors.add(new Convertor(IfcMember.class, new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f));
-		convertors.add(new Convertor(IfcWallStandardCase.class, new double[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f));
-		convertors.add(new Convertor(IfcWall.class, new double[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f));
-		convertors.add(new Convertor(IfcCurtainWall.class, new double[] { 0.5f, 0.5f, 0.5f }, 0.5f));
-		convertors.add(new Convertor(IfcRailing.class, new double[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f));
-		convertors.add(new Convertor(IfcColumn.class, new double[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f));
-		convertors.add(new Convertor(IfcBuildingElementProxy.class, new double[] { 0.5f, 0.5f, 0.5f }, 1.0f));
-		convertors.add(new Convertor(IfcFlowFitting.class, new double[] { 0.7215686274509804f, 0.45098039215686275f, 0.2f }, 1.0f));
-		convertors.add(new Convertor(IfcProduct.class, new double[] { 0.5f, 0.5f, 0.5f }, 1.0f));
-	}
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
-		this.lengthUnitPrefix = SupportFunctions.getLengthUnitPrefix(model);
+		this.lengthUnitPrefix = getLengthUnitPrefix(model);
 		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
-		// Configure to export all objects.
-		configuration = new ColladaConfiguration(model.getAllWithSubTypes(IfcProduct.class));
-	}
-
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids, ColladaConfiguration configuration) throws SerializerException {
-		this.lengthUnitPrefix = SupportFunctions.getLengthUnitPrefix(model);
-		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
-		// Honor whatever configuration comes in, except if it's null.
-		this.configuration = (configuration != null)? configuration : new ColladaConfiguration(model.getAllWithSubTypes(IfcProduct.class));
 	}
 
 	@Override
 	public void reset() {
 		setMode(Mode.BODY);
-		resetMaterialCalls();
-	}
-
-	public void resetMaterialCalls() {
-		// Basically, remove all products from the purview of the serializer's write feature.
-		materialCalls = new HashMap<IfcProduct, String>();
 	}
 
 	@Override
-	public boolean write(OutputStream out) throws SerializerException {
+	public boolean write(OutputStream out, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
-			boolean exportCameras = configuration.wantCameras;
-			boolean exportLights = configuration.wantLights;
-			boolean exportGeometry = configuration.wantGeometry;
-			// Figure out what materials will need to be generated.
-			if (exportGeometry) {
-				try {
-					determineAllMaterialRequests();
-				} catch (RenderEngineException e1) {
-					e1.printStackTrace();
-				}
-			}
-			// Figure out where the boundaries are, so the camera and light can be made.
-			if (exportCameras || exportLights) {
-				try {
-					observeAllBoundaries();
-				} catch (RenderEngineException e1) {
-					e1.printStackTrace();
-				}
-			}
-			//
 			PrintWriter writer = new UTF8PrintWriter(out);
 			try {
 				writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 				writer.println("<COLLADA xmlns=\"http://www.collada.org/2008/03/COLLADASchema\" version=\"1.5.0\">");
-				// Write assets, which includes units and coordinate system.
+				// Data sections.
 				writeAssets(writer);
-				// Write or ignore camera definition.
-				if (exportCameras)
-					writeCameras(writer);
-				else
-					writeEmptyCameras(writer);
-				// Write or ignore light definition.
-				if (exportLights)
-					writeLights(writer);
-				else
-					writeEmptyLights(writer);
-				// Write or ignore geometry-related definitions.
-				if (exportGeometry) {
-					writeEffects(writer);
-					writeMaterials(writer);
-					writeGeometries(writer);
-				}
-				else {
-					writeEmptyEffects(writer);
-					writeEmptyMaterials(writer);
-					writeEmptyGeometries(writer);
-				}
-				//
+				writeCameras(writer);
+				writeLights(writer);
+				writeEffects(writer);
+				writeMaterials(writer);
+				writeGeometries(writer);
 				writeVisualScenes(writer);
 				writeScene(writer);
 				// End of root section.
@@ -206,6 +171,9 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		}
 		return false;
 	}
+
+	// Provide a date formatter.
+	private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
 
 	private void writeAssets(PrintWriter out) {
 		// Produce a date based on now.
@@ -228,57 +196,48 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		out.println(" </asset>");
 	}
 
-	private void determineAllMaterialRequests() throws RenderEngineException, SerializerException {
-		// Prepare storage to check against to make sure the same object doesn't go out more than once.
-		Set<IfcProduct> convertedObjects = new HashSet<IfcProduct>();
+	private void writeGeometries(PrintWriter out) throws RenderEngineException, SerializerException {
+		// Prepare the section.
+		out.println(" <library_geometries>");
 		// For each IfcProduct, get the geometry for each object in the product.
-		for (IfcProduct ifcProduct : configuration.exportedObjects) {
-			// If the current object has not already been written, write it out.
-			if (!convertedObjects.contains(ifcProduct)) {
-				convertedObjects.add(ifcProduct);
-				// Get the material out of the IfcProduct (may be a default material, as specified in the this serializer's constructor). 
-				determineMaterialRequest(ifcProduct);
+		Set<IfcProduct> convertedObjects = new HashSet<IfcProduct>();
+		for (Class<? extends IfcProduct> cl : convertors.keySet()) {
+			Convertor<? extends IfcProduct> convertor = convertors.get(cl);
+			for (IfcProduct object : model.getAllWithSubTypes(cl)) {
+				if (!convertedObjects.contains(object)) {
+					convertedObjects.add(object);
+					setGeometry(out, object, convertor.getMaterialName(object));
+				}
 			}
 		}
+		// Close the section.
+		out.println(" </library_geometries>");
 	}
 
-	private void determineMaterialRequest(IfcProduct ifcProduct) throws RenderEngineException, SerializerException {
+	private void setGeometry(PrintWriter out, IfcProduct ifcProductObject, String material) throws RenderEngineException, SerializerException {
 		// Mostly just skips IfcOpeningElements which one would probably not want to end up in the Collada file.
-		if (ifcProduct instanceof IfcFeatureElementSubtraction)
+		if (ifcProductObject instanceof IfcFeatureElementSubtraction)
 			return;
 		//
-		GeometryInfo geometryInfo = ifcProduct.getGeometry();
-		if (geometryInfo != null) {
-			// Get the default material name in the form of: IfcWindow, IfcDoor, etc. For only default materials, use: convertors.getValidDefaultMaterialName(ifcProduct);
-			String materialName = getMaterialNameForIfcProduct(ifcProduct);
-			// For this IfcProduct, call the material name.
-			materialCalls.put(ifcProduct, materialName);
-		}
-	}
-
-	private void observeAllBoundaries() throws RenderEngineException, SerializerException {
-		// Prepare storage to check against to make sure the same object doesn't go out more than once.
-		Set<IfcProduct> convertedObjects = new HashSet<IfcProduct>();
-		// For each IfcProduct, get the geometry for each object in the product.
-		for (IfcProduct ifcProduct : configuration.exportedObjects) {
-			// If the current object has not already been written, write it out.
-			if (!convertedObjects.contains(ifcProduct)) {
-				convertedObjects.add(ifcProduct);
-				// Observe the boundaries of the geometry, pushing maximum/minimum values as observed. 
-				observeBoundaries(ifcProduct);
-			}
-		}
-	}
-
-	private void observeBoundaries(IfcProduct ifcProduct) throws RenderEngineException, SerializerException {
-		// Mostly just skips IfcOpeningElements which one would probably not want to end up in the Collada file.
-		if (ifcProduct instanceof IfcFeatureElementSubtraction)
-			return;
-		// Get the geometry info from the IFC product.
-		GeometryInfo geometryInfo = ifcProduct.getGeometry();
-		if (geometryInfo != null) {
-			// Get the actual data out of the geometry information.
+		GeometryInfo geometryInfo = ifcProductObject.getGeometry();
+		if (geometryInfo != null && geometryInfo.getTransformation() != null) {
 			GeometryData geometryData = geometryInfo.getData();
+			ByteBuffer indicesBuffer = ByteBuffer.wrap(geometryData.getIndices());
+			indicesBuffer.order(ByteOrder.LITTLE_ENDIAN);
+			// TODO: In Blender (3d modeling tool) and Three.js, normals are ignored in favor of vertex order. The incoming geometry seems to be in order 0 1 2 when it needs to be in 1 0 2. Need more test cases.
+			// Failing order: (0, 1050, 2800), (0, 1050, 3100), (3580, 1050, 3100)
+			// Successful order: (0, 1050, 3100), (0, 1050, 2800), (3580, 1050, 3100)
+			List<Integer> list = new ArrayList<Integer>();
+			while (indicesBuffer.hasRemaining())
+				list.add(indicesBuffer.getInt());
+			indicesBuffer.rewind();
+			for (int i = 0; i < list.size(); i += 3)
+			{
+				Integer first = list.get(i);
+				Integer next = list.get(i + 1);
+				list.set(i, next);
+				list.set(i + 1, first);
+			}
 			// Positions the X or the Y or the Z of (X, Y, Z).
 			ByteBuffer positionsBuffer = ByteBuffer.wrap(geometryData.getVertices());
 			positionsBuffer.order(ByteOrder.LITTLE_ENDIAN);
@@ -305,87 +264,28 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 					lowestObserved.z(z);
 			}
 			positionsBuffer.rewind();
-		}
-	}
-
-	private void writeEmptyGeometries(PrintWriter out) throws RenderEngineException, SerializerException {
-		// Open and close the section.
-		out.println(" <library_geometries/>");
-	}
-
-	private void writeGeometries(PrintWriter out) throws RenderEngineException, SerializerException {
-		// Prepare the section.
-		out.println(" <library_geometries>");
-		// Prepare storage to check against to make sure the same object doesn't go out more than once.
-		Set<IfcProduct> convertedObjects = new HashSet<IfcProduct>();
-		// For each IfcProduct, get the geometry for each object in the product.
-		for (IfcProduct ifcProduct : configuration.exportedObjects) {
-			// If the current object has not already been written, write it out.
-			if (!convertedObjects.contains(ifcProduct)) {
-				convertedObjects.add(ifcProduct);
-				// Print out the geometry, and push the material to IfcProduct relationship. 
-				setGeometry(out, ifcProduct);
-			}
-		}
-		// Close the section.
-		out.println(" </library_geometries>");
-	}
-
-	private void setGeometry(PrintWriter out, IfcProduct ifcProduct) throws RenderEngineException, SerializerException {
-		// Mostly just skips IfcOpeningElements which one would probably not want to end up in the Collada file.
-		if (ifcProduct instanceof IfcFeatureElementSubtraction)
-			return;
-		// Get the geometry info from the IFC product.
-		GeometryInfo geometryInfo = ifcProduct.getGeometry();
-		if (geometryInfo != null) {
-			// Get the actual data out of the geometry information.
-			GeometryData geometryData = geometryInfo.getData();
-			// Positions the X or the Y or the Z of (X, Y, Z).
-			ByteBuffer positionsBuffer = ByteBuffer.wrap(geometryData.getVertices());
-			positionsBuffer.order(ByteOrder.LITTLE_ENDIAN);
-			// Get the positions into a list for transmission.
-			List<Float> positionsList = new ArrayList<Float>();
-			while (positionsBuffer.hasRemaining())
-				positionsList.add(positionsBuffer.getFloat());
-			positionsBuffer.rewind();
-			// Get the indices.
-			ByteBuffer indicesBuffer = ByteBuffer.wrap(geometryData.getIndices());
-			indicesBuffer.order(ByteOrder.LITTLE_ENDIAN);
-			// Get the indices into a list for transmission.
-			List<Integer> vertexIndexList = new ArrayList<Integer>();
-			while (indicesBuffer.hasRemaining())
-				vertexIndexList.add(indicesBuffer.getInt());
-			indicesBuffer.rewind();
-			// Create a normals buffer.
+			//
 			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
 			normalsBuffer.order(ByteOrder.LITTLE_ENDIAN);
-			// Get the normals into a list for transmission.
-			List<Float> normalsList = new ArrayList<Float>();
-			while (normalsBuffer.hasRemaining())
-				normalsList.add(normalsBuffer.getFloat());
-			normalsBuffer.rewind();
-			// Create storage for the actual vertices that will be used without losing the storage for the default order.
-			List<Integer> actualIndices = new ArrayList<Integer>();
-			// Best general output. Other options generally look terrible.
-			reorderTriangleWinding(positionsList, vertexIndexList, actualIndices);
-			// Option if normals can be uniformly trusted (unlikely).
-			//makeTrianglesPointToProvidedNormals(positionsList, vertexIndexList, initialNormalsList, normalsList, actualIndices);
 			// Create a geometry identification number in the form of: geom-320450
-			long oid = ifcProduct.getOid();
+			long oid = ifcProductObject.getOid();
 			String id = String.format("geom-%d", oid);
+			// If the material doesn't exist in the converted map, add it.
+			if (!converted.containsKey(material))
+				converted.put(material, new HashSet<IfcProduct>());
+			// Add the current IfcProduct to the appropriate entry in the material map.
+			converted.get(material).add(ifcProductObject);
 			// Name for geometry.
-			String name = (ifcProduct.getGlobalId() == null) ? "[NO_GUID]" : ifcProduct.getGlobalId();
+			String name = (ifcProductObject.getGlobalId() == null) ? "[NO_GUID]" : ifcProductObject.getGlobalId();
 			// Counts.
-			int vertexComponentsTotal = positionsList.size(), normalComponentsTotal = normalsList.size();
-			int verticesCount = vertexComponentsTotal / 3, normalsCount = normalComponentsTotal / 3, triangleCount = vertexIndexList.size() / 3;
+			int vertexComponentsTotal = positionsBuffer.capacity() / 4, normalComponentsTotal = normalsBuffer.capacity() / 4;
+			int verticesCount = positionsBuffer.capacity() / 12, normalsCount = normalsBuffer.capacity() / 12, triangleCount = indicesBuffer.capacity() / 12;
 			// Vertex scalars as one long string: 4.05 2 1 55.0 34.01 2
-			//String stringPositionScalars = SupportFunctions.byteBufferToFloatingPointSpaceDelimitedString(positionsBuffer);
-			String stringPositionScalars = SupportFunctions.listToSpaceDelimitedString(positionsList, decimalFormat);
+			String stringPositionScalars = byteBufferToFloatingPointSpaceDelimitedString(positionsBuffer);
 			// Normal scalars as one long string: 4.05 2 1 55.0 34.01 2
-			String stringNormalScalars = SupportFunctions.listToSpaceDelimitedString(normalsList, decimalFormat);
-			//String stringNormalScalars = SupportFunctions.byteBufferToFloatingPointSpaceDelimitedString(normalsBuffer);
+			String stringNormalScalars = byteBufferToFloatingPointSpaceDelimitedString(normalsBuffer); //doubleBufferToFloatingPointSpaceDelimitedString(flippedNormalsBuffer);
 			// Vertex indices as one long string: 1 0 2 0 3 2 5 4 6
-			String stringIndexScalars = SupportFunctions.listToSpaceDelimitedString(actualIndices, intFormat);
+			String stringIndexScalars = listToSpaceDelimitedString(list, intFormat);
 			// Write geometry block for this IfcProduct (i.e. IfcRoof, IfcSlab, etc).
 			out.println(" <geometry id=\"" + id + "\" name=\"" + name + "\">");
 			out.println("  <mesh>");
@@ -422,23 +322,83 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		}
 	}
 
-	private void reorderTriangleWinding(List<Float> positionsList, List<Integer> vertexIndexList, List<Integer> actualIndices) {
-		// Pass through the data, rewriting it to be in the winding order that would match the provided normal (which will not be respected in an actual 3D space without a matching winding order; the actual provided normal probably isn't uniformly correct, either).
-		int sizeAtStart = vertexIndexList.size();
-		for (int i = 0; i < sizeAtStart; i += 3)
-		{
-			Integer first = getIndexNumber(i, vertexIndexList);
-			Integer next = getIndexNumber(i + 1, vertexIndexList);
-			Integer last = getIndexNumber(i + 2, vertexIndexList);
-			//
-			actualIndices.add(next);
-			actualIndices.add(first);
-			actualIndices.add(last);
-		}
+	@SuppressWarnings("unused")
+	private String doubleBufferToFloatingPointSpaceDelimitedString(DoubleBuffer buffer) {
+		// For each scalar in the buffer, turn it into a string, adding it to the overall list.
+		List<String> stringScalars = doubleBufferToStringList(buffer, decimalFormat);
+		// Send back a space-delimited list of the strings: 1 2.45 0
+		return StringUtils.join(stringScalars, " ");
 	}
 
-	private Integer getIndexNumber(int i, List<Integer> vertices) {
-		return vertices.get(i);
+	private String byteBufferToFloatingPointSpaceDelimitedString(ByteBuffer buffer) {
+		// For each scalar in the buffer, turn it into a string, adding it to the overall list.
+		List<String> stringScalars = floatBufferToStringList(buffer, decimalFormat);
+		// Send back a space-delimited list of the strings: 1 2.45 0
+		return StringUtils.join(stringScalars, " ");
+	}
+
+	@SuppressWarnings("unused")
+	private String byteBufferToIntPointSpaceDelimitedString(ByteBuffer buffer) {
+		// Prepare to store integers as a list of strings.
+		List<String> stringScalars = intBufferToStringList(buffer, intFormat);
+		// Send back a space-delimited list of the strings: 1 2 0
+		return StringUtils.join(stringScalars, " ");
+	}
+
+	private List<String> doubleBufferToStringList(DoubleBuffer buffer, Format formatter) {
+		// Transform the array into a list.
+		List<Float> list = new ArrayList<Float>();
+		while (buffer.hasRemaining())
+			list.add(new Float(buffer.get()));
+		// Get the data as a list of String objects.
+		return listToStringList(list, formatter);
+	}
+
+	private List<String> floatBufferToStringList(ByteBuffer buffer, Format formatter) {
+		// Transform the array into a list.
+		List<Float> list = new ArrayList<Float>();
+		while (buffer.hasRemaining())
+			list.add(new Float(buffer.getFloat()));
+		// Get the data as a list of String objects.
+		return listToStringList(list, formatter);
+	}
+
+	private List<String> intBufferToStringList(ByteBuffer buffer, Format formatter) {
+		List<Integer> list = new ArrayList<Integer>();
+		while (buffer.hasRemaining())
+			list.add(new Integer(buffer.getInt()));
+		// Get the data as a list of String objects.
+		return listToStringList(list, formatter);
+	}
+
+	private String floatArrayToSpaceDelimitedString(float[] matrix) {
+		List<Float> floatMatrix = floatArrayToFloatList(matrix);
+		List<String> list = listToStringList(floatMatrix, decimalFormat);
+		// Get data as space-delimited string: 1.004 5.0 24.00145
+		return StringUtils.join(list, " ");
+	}
+
+	private List<Float> floatArrayToFloatList(float[] array) {
+		List<Float> list = new ArrayList<Float>();
+		for (float f : array)
+			list.add(new Float(f));
+		return list;
+	}
+	
+	private String listToSpaceDelimitedString(List<?> list, Format formatter) {
+		List<String> stringScalars = listToStringList(list, formatter);
+		return StringUtils.join(stringScalars, " ");
+	}
+
+	private List<String> listToStringList(List<?> list, Format formatter) {
+		// Prepare to store floating-points as a list of strings.
+		List<String> stringScalars = new ArrayList<String>();
+		// For each scalar in the buffer, turn it into a string, adding it to the overall list.
+		for (Object scalar : list) {
+			String scalarAsString = formatter.format(scalar);
+			stringScalars.add(scalarAsString);
+		}
+		return stringScalars;
 	}
 
 	private void writeScene(PrintWriter out) {
@@ -446,102 +406,120 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		out.println("  <instance_visual_scene url=\"#VisualSceneNode\"/>");
 		out.println(" </scene>");
 	}
-
+	
+	
+	//String leftLightLocationString = String.format("%f %f %f", leftLightLocation.x(), leftLightLocation.y(), leftLightLocation.z());
+	@SuppressWarnings("unused")
 	private void writeVisualScenes(PrintWriter out) {
 		// Open the section.
 		out.println(" <library_visual_scenes>");
 		out.println("  <visual_scene id=\"VisualSceneNode\" name=\"VisualSceneNode\">");
-		// Write each IFC object as a node entry (maps to a displayed object). Will be empty if configuration.wantGeometry is false.
-		for (Entry<IfcProduct, String> entry : materialCalls.entrySet())
-		{
-			IfcProduct ifcProduct = entry.getKey();
-			String materialName = entry.getValue();
-			GeometryInfo geometryInfo = ifcProduct.getGeometry();
-			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
-				out.println("   <node id=\"node-" + ifcProduct.getOid() + "\" name=\"node-" + ifcProduct.getOid() + "\">");
-				SupportFunctions.printMatrix(out, geometryInfo);
-				out.println("    <instance_geometry url=\"#geom-" + ifcProduct.getOid() + "\">");
-				out.println("     <bind_material>");
-				out.println("      <technique_common>");
-				out.println("       <instance_material symbol=\"Material-" + ifcProduct.getOid() + "\" target=\"#" + materialName + "Material\"/>");
-				out.println("      </technique_common>");
-				out.println("     </bind_material>");
-				out.println("    </instance_geometry>");
-				out.println("   </node>");
+		// Write each IFC object as a node entry (maps to a displayed object).
+		for (String material : converted.keySet()) {
+			Set<IfcProduct> ids = converted.get(material);
+			for (IfcProduct product : ids) {
+				GeometryInfo geometryInfo = product.getGeometry();
+				if (geometryInfo != null && geometryInfo.getTransformation() != null) {
+					out.println("   <node id=\"node-" + product.getOid() + "\" name=\"node-" + product.getOid() + "\">");
+					printMatrix(out, geometryInfo);
+					out.println("    <instance_geometry url=\"#geom-" + product.getOid() + "\">");
+					out.println("     <bind_material>");
+					out.println("      <technique_common>");
+					out.println("       <instance_material symbol=\"Material-" + product.getOid() + "\" target=\"#" + material + "Material\"/>");
+					out.println("      </technique_common>");
+					out.println("     </bind_material>");
+					out.println("    </instance_geometry>");
+					out.println("   </node>");
+				}
 			}
 		}
-		// Write cameras and lights.
-		if (configuration.wantCameras || configuration.wantLights) {
-			// Create convenience variables to simplify the perceived complexity of the equations.
-			float lx = (float) lowestObserved.x(), ly = (float) lowestObserved.y();
-			float hx = (float) highestObserved.x(), hy = (float) highestObserved.y(), hz = (float) highestObserved.z();
-			// Derive useful information from the observed boundary of the IFC objects.
-			Vector3d delta = new Vector3d(hx, hy, hz);
-			delta.sub(lowestObserved);
-			// Move the light left (-x) and back (-y) and up (+z) at 20% of the size of the observed objects. 
-			Vector3d leftLightLocation = new Vector3d(lx - (0.2 * delta.x()), ly - (0.2 * delta.y()), hz + (0.2 * delta.z()));
-			float x = (float) leftLightLocation.x(), y = (float) leftLightLocation.y(), z = (float) leftLightLocation.z();
-			// Move left (-x) and back (-y) at 500% and up (+z) at 200% of the light (so that the objects are in sensing range of the camera). 
-			Vector3d leftCameraLocation = new Vector3d(x, y, z);
-			float cx = (float) leftCameraLocation.x(), cy = (float) leftCameraLocation.y(), cz = (float) leftCameraLocation.z();
-			// Include the camera.
-			if (configuration.wantCameras) {
-				out.println("   <node id=\"Camera\" name=\"Camera\">");
-				out.println("    <translate>"+ cx + " " + cy + " " + cz + "</translate>");
-				out.println("    <rotate>"+ 0f + " " + 0f + " " + 1f + " " + -45f + "</rotate>");
-				out.println("    <rotate>"+ 1f + " " + 0f + " " + 0f + " " + 45f + "</rotate>");
-				out.println("    <instance_camera url=\"#PerspCamera\"/>");
-				out.println("   </node>");
-			}
-			// Include the light.
-			if (configuration.wantLights) {
-				out.println("   <node id=\"Light\" name=\"Light\">");
-				out.println("    <translate>"+ x + " " + y + " " + z + "</translate>");
-				out.println("    <rotate>"+ 0f + " " + 0f + " " + 1f + " " + 225f + "</rotate>");
-				out.println("    <rotate>"+ 0f + " " + 1f + " " + 0f + " " + 45f + "</rotate>");
-				out.println("    <instance_light url=\"#light-lib\"/>");
-				out.println("   </node>");
-			}
-		}
+		// Create convenience variables to simplify the perceived complexity of the equations.
+		float lx = (float) lowestObserved.x(), ly = (float) lowestObserved.y(), lz = (float) lowestObserved.z();
+		float hx = (float) highestObserved.x(), hy = (float) highestObserved.y(), hz = (float) highestObserved.z();
+		// Derive useful information from the observed boundary of the IFC objects.
+		Vector3d delta = new Vector3d(hx, hy, hz);
+		delta.sub(lowestObserved);
+		// Move the light left (-x) and back (-y) and up (+z) at 20% of the size of the observed objects. 
+		Vector3d leftLightLocation = new Vector3d(lx - (0.2 * delta.x()), ly - (0.2 * delta.y()), hz + (0.2 * delta.z()));
+		float x = (float) leftLightLocation.x(), y = (float) leftLightLocation.y(), z = (float) leftLightLocation.z();
+		// Move left (-x) and back (-y) at 500% and up (+z) at 200% of the light (so that the objects are in sensing range of the camera). 
+		Vector3d leftCameraLocation = new Vector3d(5 * x, 5 * y, 2 * z);
+		float cx = (float) leftCameraLocation.x(), cy = (float) leftCameraLocation.y(), cz = (float) leftCameraLocation.z();
+		// TODO: Three.js doesn't seem to care about the camera and the light.
+		// Include the camera.
+		out.println("   <node id=\"Camera\" name=\"Camera\">");
+		out.println("    <translate>"+ cx + " " + cy + " " + cz + "</translate>");
+		out.println("    <rotate>"+ 0f + " " + 0f + " " + 1f + " " + -45f + "</rotate>");
+		out.println("    <rotate>"+ 1f + " " + 0f + " " + 0f + " " + 45f + "</rotate>");
+		out.println("    <instance_camera url=\"#PerspCamera\"/>");
+		out.println("   </node>");
+		// Include the light.
+		out.println("   <node id=\"Light\" name=\"Light\">");
+		out.println("    <translate>"+ x + " " + y + " " + z + "</translate>");
+		out.println("    <rotate>"+ 0f + " " + 0f + " " + 1f + " " + 225f + "</rotate>");
+		out.println("    <rotate>"+ 0f + " " + 1f + " " + 0f + " " + 45f + "</rotate>");
+		out.println("    <instance_light url=\"#light-lib\"/>");
+		out.println("   </node>");
 		// Close the section.
 		out.println("  </visual_scene>");
 		out.println(" </library_visual_scenes>");
 	}
 
-	private void writeEmptyEffects(PrintWriter out) {
-		// Open and close the section.
-		out.println(" <library_effects/>");
+	private void printMatrix(PrintWriter out, GeometryInfo geometryInfo) {
+		ByteBuffer transformation = ByteBuffer.wrap(geometryInfo.getTransformation());
+		transformation.order(ByteOrder.LITTLE_ENDIAN);
+		FloatBuffer floatBuffer = transformation.asFloatBuffer();
+		// Prepare to create the transform matrix.
+		float[] matrix = new float[16];
+		// Add the first 16 values of the buffer.
+		for (int i = 0; i < matrix.length; i++)
+			matrix[i] = floatBuffer.get();
+		// Switch from column-major (x.x ... x.y ... x.z ... 0 ...) to row-major orientation (x.x x.y x.z 0 ...)?
+		matrix = Matrix.changeOrientation(matrix);
+		// List all 16 elements of the matrix as a single space-delimited String object.
+		out.println("    <matrix>" + floatArrayToSpaceDelimitedString(matrix) + "</matrix>");
 	}
 
 	private void writeEffects(PrintWriter out) {
 		out.println(" <library_effects>");
-		// Prepare storage to check against to make sure the same object doesn't go out more than once.
-		Set<String> convertedObjects = new HashSet<String>();
-		// Iterate all the calls in the material calls, looking beneath them at the effects.
-		for (Entry<IfcProduct, String> entry : materialCalls.entrySet())
-		{
-			String materialName = entry.getValue();
-			// Only write effects with names that have not already been written.
-			if (!convertedObjects.contains(materialName))
-			{
-				convertedObjects.add(materialName);
-				// Get the convertor.
-				Convertor convertor = convertors.get(materialName);
-				// Write the "effect" element for this effect.
-				writeEffect(out, convertor);
-			}
-		}
+		for (Convertor<? extends IfcProduct> convertor : convertors.values())
+			writeEffect(out, convertor.getMaterialName(null), convertor.getColors(), convertor.getOpacity());
 		out.println(" </library_effects>");
 	}
 
-	private void writeEffect(PrintWriter out, Convertor convertor) {
-		if (convertor != null)
-			out.println(convertor.getEffectString());
-	}
-
-	private void writeEmptyLights(PrintWriter out) {
-		// Open and close the section.
-		out.println(" <library_lights/>");
+	private void writeEffect(PrintWriter out, String name, double[] colors, double transparency) {
+		out.println("  <effect id=\"" + name + "-fx\">");
+		out.println("   <profile_COMMON>");
+		out.println("    <technique sid=\"common\">");
+		out.println("     <phong>");
+		out.println("      <emission>");
+		out.println("       <color>0 0 0 1</color>");
+		out.println("      </emission>");
+		out.println("      <ambient>");
+		out.println("       <color>0 0 0 1</color>");
+		out.println("      </ambient>");
+		out.println("      <diffuse>");
+		out.println("       <color>" + colors[0] + " " + colors[1] + " " + colors[2] + " " + transparency + "</color>");
+		out.println("      </diffuse>");
+		out.println("      <specular>");
+		out.println("       <color>0.5 0.5 0.5 1</color>");
+		out.println("      </specular>");
+		out.println("      <shininess>");
+		out.println("       <float>16</float>");
+		out.println("      </shininess>");
+		out.println("      <reflective>");
+		out.println("       <color>0 0 0 1</color>");
+		out.println("      </reflective>");
+		out.println("      <reflectivity>");
+		out.println("       <float>0.5</float>");
+		out.println("      </reflectivity>");
+		out.println("      <index_of_refraction>");
+		out.println("       <float>0</float>");
+		out.println("      </index_of_refraction>");
+		out.println("     </phong>");
+		out.println("    </technique>");
+		out.println("   </profile_COMMON>");
+		out.println("  </effect>");
 	}
 
 	private void writeLights(PrintWriter out) {
@@ -553,13 +531,11 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		out.println("     <color>1 1 1</color>");
 		out.println("    </directional>");
 		out.println("   </technique_common>");
+		out.println("   <technique profile=\"MAX3D\">");
+		out.println("    <intensity>1.000000</intensity>");
+		out.println("   </technique>");
 		out.println("  </light>");
 		out.println(" </library_lights>");
-	}
-
-	private void writeEmptyCameras(PrintWriter out) {
-		// Open and close the section.
-		out.println(" <library_cameras/>");
 	}
 
 	private void writeCameras(PrintWriter out) {
@@ -568,10 +544,22 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		out.println("   <optics>");
 		out.println("    <technique_common>");
 		out.println("     <perspective>");
-		out.println("      <xfov>90</xfov>");
 		out.println("      <yfov>37.8493</yfov>");
-		out.println("      <znear>0.1</znear>");
-		out.println("      <zfar>10000</zfar>");
+		out.println("      <aspect_ratio>1</aspect_ratio>");
+		out.println("      <znear>10</znear>");
+		out.println("      <zfar>1000</zfar>");
+		out.println("     </perspective>");
+		out.println("    </technique_common>");
+		out.println("   </optics>");
+		out.println("  </camera>");
+		out.println("  <camera id=\"testCameraShape\" name=\"testCameraShape\">");
+		out.println("   <optics>");
+		out.println("    <technique_common>");
+		out.println("     <perspective>");
+		out.println("      <yfov>37.8501</yfov>");
+		out.println("      <aspect_ratio>1</aspect_ratio>");
+		out.println("      <znear>0.01</znear>");
+		out.println("      <zfar>1000</zfar>");
 		out.println("     </perspective>");
 		out.println("    </technique_common>");
 		out.println("   </optics>");
@@ -579,31 +567,10 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		out.println(" </library_cameras>");
 	}
 
-	private void writeEmptyMaterials(PrintWriter out) {
-		// Open and close the section.
-		out.println(" <library_materials/>");
-	}
-
 	private void writeMaterials(PrintWriter out) {
 		out.println(" <library_materials>");
-		// Prepare storage to check against to make sure the same object doesn't go out more than once.
-		Set<String> convertedObjects = new HashSet<String>();
-		// Iterate all the material calls, looking at the material definitions.
-		for (Entry<IfcProduct, String> entry : materialCalls.entrySet())
-		{
-			String materialName = entry.getValue();
-			// Only add the material definitions that haven't been defined yet.
-			if (!convertedObjects.contains(materialName))
-			{
-				// Add it.
-				convertedObjects.add(materialName);
-				// Get the convertor.
-				Convertor convertor = convertors.get(materialName);
-				// Write the "material" element for this material name.
-				if (convertor != null)
-					writeMaterial(out, materialName);
-			}
-		}
+		for (Convertor<? extends IfcProduct> convertor : convertors.values())
+			writeMaterial(out, convertor.getMaterialName(null));
 		out.println(" </library_materials>");
 	}
 
@@ -613,19 +580,83 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		out.println("  </material>");
 	}
 
-	// Try to parameterize materials that the IFC specifically defined.
-	private String getMaterialNameForIfcProduct(IfcProduct ifcProduct) {
-		ColladaMaterial material = ColladaMaterial.getMaterialForIfcProduct(ifcProduct);
-		if (material != null)
-		{
-			// Create converter.
-			Convertor thisConvertor = new Convertor(material);
-			// Add converter.
-			convertors.add(thisConvertor);
-			// Send back something that's probably a specific material name (based on the oid field of the IfcProduct): 2345235, 1350285, etc.
-			return material.name;
+	private static SIPrefix getLengthUnitPrefix(IfcModelInterface model) {
+		SIPrefix lengthUnitPrefix = null;
+		boolean prefixFound = false;
+		Map<Long, IdEObject> objects = model.getObjects();
+		for (IdEObject object : objects.values()) {
+			if (object instanceof IfcProject) {
+				IfcUnitAssignment unitsInContext = ((IfcProject) object).getUnitsInContext();
+				if (unitsInContext != null) {
+					EList<IfcUnit> units = unitsInContext.getUnits();
+					for (IfcUnit unit : units) {
+						if (unit instanceof IfcSIUnit) {
+							IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
+							IfcUnitEnum unitType = ifcSIUnit.getUnitType();
+							if (unitType == IfcUnitEnum.LENGTHUNIT) {
+								prefixFound = true;
+								switch (ifcSIUnit.getPrefix()) {
+								case EXA:
+									lengthUnitPrefix = SIPrefix.EXAMETER;
+									break;
+								case PETA:
+									lengthUnitPrefix = SIPrefix.PETAMETER;
+									break;
+								case TERA:
+									lengthUnitPrefix = SIPrefix.TERAMETER;
+									break;
+								case GIGA:
+									lengthUnitPrefix = SIPrefix.GIGAMETER;
+									break;
+								case MEGA:
+									lengthUnitPrefix = SIPrefix.MEGAMETER;
+									break;
+								case KILO:
+									lengthUnitPrefix = SIPrefix.KILOMETER;
+									break;
+								case HECTO:
+									lengthUnitPrefix = SIPrefix.HECTOMETER;
+									break;
+								case DECA:
+									lengthUnitPrefix = SIPrefix.DECAMETER;
+									break;
+								case DECI:
+									lengthUnitPrefix = SIPrefix.DECIMETER;
+									break;
+								case CENTI:
+									lengthUnitPrefix = SIPrefix.CENTIMETER;
+									break;
+								case MILLI:
+									lengthUnitPrefix = SIPrefix.MILLIMETER;
+									break;
+								case MICRO:
+									lengthUnitPrefix = SIPrefix.MICROMETER;
+									break;
+								case NANO:
+									lengthUnitPrefix = SIPrefix.NANOMETER;
+									break;
+								case PICO:
+									lengthUnitPrefix = SIPrefix.PICOMETER;
+									break;
+								case FEMTO:
+									lengthUnitPrefix = SIPrefix.FEMTOMETER;
+									break;
+								case ATTO:
+									lengthUnitPrefix = SIPrefix.ATTOMETER;
+									break;
+								case NULL:
+									lengthUnitPrefix = SIPrefix.METER;
+									break;
+								}
+								break;
+							}
+						}
+					}
+				}
+			}
+			if (prefixFound)
+				break;
 		}
-		// Send back something that's probably a default material name (based on the more specific class of the IfcProduct): IfcRoof, IfcWindow, etc.
-		return convertors.getValidMaterialName(ifcProduct);
+		return lengthUnitPrefix;
 	}
 }

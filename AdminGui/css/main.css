@@ -1,6 +1,9 @@
-
 a {
 	cursor: pointer;
+}
+
+.spaced {
+	margin: 9px;
 }
 
 .sidespan .tree ul li {
@@ -42,6 +45,33 @@ table .header {
 
 .linkspacer {
 	margin: 8px;
+}
+
+.threedviewTabs .btn.active, .threedviewTabs .btn:active {
+	webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.threedview .visualization .panel-body {
+	margin-left: 10px;
+}
+
+.threedview .visualization label {
+}
+
+.threedview .visualization {
+	top: 130px;
+	text-align: left;
+	right: 20px;
+	opacity: 0.6;
+	z-index: 5000;
+	margin: 10px;
+	position: fixed;
+}
+
+.threedviewTabs label {
+	border: 0;
+	padding: 10px;
 }
 
 table.table-hover tr {
@@ -161,6 +191,7 @@ div.setup form.form-horizontal label {
 
 .my-fluid-container {
 	padding: 15px;
+	padding-bottom: 0px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -174,6 +205,10 @@ div.sidespan > div > ul {
 	z-index: 5000;
 }
 
+.sidespan .tree ul.rootnode {
+	padding-left: 0px;
+}
+
 .sidespan .tree ul {
 	padding-left: 10px;
 	padding-bottom: 0px;
@@ -181,18 +216,9 @@ div.sidespan > div > ul {
 	margin: 0;
 }
 
-ul.rootnode {
-	padding-left: 0px;
-}
-
 .nav-stacked {
 	width: 250px;
 	float: left;	
-}
-
-.indexcontainer {
-	padding-left: 20px;	
-	padding-right: 20px;	
 }
 
 .indexStatus {
@@ -210,6 +236,17 @@ li.treenode {
 }
 
 .treenode .treeicon {
+	display: inline-block;
+	width: 23px;
+	height: 23px;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.treenode .treepreicon {
 	display: inline-block;
 	width: 23px;
 	height: 23px;
@@ -238,8 +275,24 @@ li.treenode {
 	background-image: url("../img/loading.gif");
 }
 
+.ball {
+	background-image: url("../img/ball.gif");
+}
+
+.hierarchy {
+	background-image: url("../img/hierarchy.gif");
+}
+
+.projecttree .types {
+	background-image: url("../img/types.png");
+}
+
 .treenodeclosed {
 	background-image: url("../img/black_arrow.png");
+}
+
+.folder {
+	background-image: url("../img/folder.gif");
 }
 
 .treenodeclosed:hover {
@@ -304,7 +357,7 @@ div#viewport {
 	border-top: 0px;
 }
 
-.types .badge, .classifications .badge {
+.types .badge, .classifications .badge, .layers .badge {
 	background-color: #DDDDDD;
 }
 
@@ -384,9 +437,23 @@ div#viewport {
 	width: 400px;
 }
 
+.startLink {
+	color: white;
+}
+
+caption {
+	text-align: left;
+	padding-left: 6px;
+	font-size: 140%;
+}
+
 .dropdown-submenu{position:relative;}
 .dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
 .dropdown-submenu:hover>.dropdown-menu{display:block;}
 .dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
 .dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
 .dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+
+.navigator {
+	height: 100%;
+}

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,10 +17,8 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getDescription <em>Description</em>}</li>
@@ -37,7 +36,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#isValid <em>Valid</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getModelCheckerPluginClassName <em>Model Checker Plugin Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -176,7 +174,8 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements ModelChec
 	 * @generated
 	 */
 	public void setModelCheckerPluginClassName(String newModelCheckerPluginClassName) {
-		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME, newModelCheckerPluginClassName);
+		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME,
+				newModelCheckerPluginClassName);
 	}
 
 } //ModelCheckerInstanceImpl

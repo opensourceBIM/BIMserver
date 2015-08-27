@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,11 +17,9 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.ServiceParameter;
 import org.bimserver.models.store.ServiceType;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -30,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ServiceParameterImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceParameterImpl#getDoc <em>Doc</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceParameterImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceParameterImpl#getGenericType <em>Generic Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

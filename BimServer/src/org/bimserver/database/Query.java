@@ -1,7 +1,7 @@
 package org.bimserver.database;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,8 @@ package org.bimserver.database;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Map;
+
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.plugins.objectidms.ObjectIDM;
@@ -30,12 +32,14 @@ public class Query implements QueryInterface {
 		YES
 	}
 	
-	private final Integer pid;
-	private final Integer rid;
+	private final int pid;
+	private final int rid;
+	private final long roid;
 	private final ObjectIDM objectIDM;
 	private final Deep deep;
 	private final int stopRid;
 	private PackageMetaData packageMetaData;
+	private Map<EClass, Long> oidCounters;
 
 	private static final Query DEFAULT = new Query();
 	
@@ -47,19 +51,29 @@ public class Query implements QueryInterface {
 		return DEFAULT;
 	}
 	
+	public void setOidCounters(Map<EClass, Long> oidCounters) {
+		this.oidCounters = oidCounters;
+	}
+	
+	public Map<EClass, Long> getOidCounters() {
+		return oidCounters;
+	}
+	
 	private Query() {
 		this.packageMetaData = null;
 		this.pid = Database.STORE_PROJECT_ID;
+		this.roid = -1;
 		this.rid = Integer.MAX_VALUE;
 		this.stopRid = Integer.MIN_VALUE;
 		this.objectIDM = null;
 		this.deep = Deep.NO;
 	}
 	
-	public Query(PackageMetaData packageMetaData, int pid, int rid) {
+	public Query(PackageMetaData packageMetaData, int pid, int rid, long roid) {
 		this.packageMetaData = packageMetaData;
 		this.pid = pid;
 		this.rid = rid;
+		this.roid = roid;
 		this.stopRid = Integer.MIN_VALUE;
 		this.objectIDM = null;
 		this.deep = Deep.NO;
@@ -69,33 +83,37 @@ public class Query implements QueryInterface {
 		this.packageMetaData = packageMetaData;
 		this.pid = Database.STORE_PROJECT_ID;
 		this.rid = Integer.MAX_VALUE;
+		this.roid = -1;
 		this.stopRid = Integer.MIN_VALUE;
 		this.objectIDM = null;
 		this.deep = deep ? Deep.YES : Deep.NO;
 	}
 
-	public Query(PackageMetaData packageMetaData, int pid, int rid, Deep deep) {
+	public Query(PackageMetaData packageMetaData, int pid, int rid, long roid, Deep deep) {
 		this.packageMetaData = packageMetaData;
 		this.objectIDM = null;
 		this.pid = pid;
 		this.rid = rid;
+		this.roid = roid;
 		this.stopRid = Integer.MIN_VALUE;
 		this.deep = deep;
 	}
 
-	public Query(PackageMetaData packageMetaData, int pid, int rid, ObjectIDM objectIDM, Deep deep) {
+	public Query(PackageMetaData packageMetaData, int pid, int rid, long roid, ObjectIDM objectIDM, Deep deep) {
 		this.packageMetaData = packageMetaData;
 		this.pid = pid;
 		this.rid = rid;
+		this.roid = roid;
 		this.stopRid = Integer.MIN_VALUE;
 		this.objectIDM = objectIDM;
 		this.deep = deep;
 	}
 	
-	public Query(PackageMetaData packageMetaData, int pid, int rid, ObjectIDM objectIDM, Deep deep, int stopRid) {
+	public Query(PackageMetaData packageMetaData, int pid, int rid, long roid, ObjectIDM objectIDM, Deep deep, int stopRid) {
 		this.packageMetaData = packageMetaData;
 		this.pid = pid;
 		this.rid = rid;
+		this.roid = roid;
 		this.stopRid = stopRid;
 		this.objectIDM = objectIDM;
 		this.deep = deep;
@@ -132,5 +150,10 @@ public class Query implements QueryInterface {
 	@Override
 	public PackageMetaData getPackageMetaData() {
 		return packageMetaData;
+	}
+
+	@Override
+	public long getRoid() {
+		return roid;
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -388,8 +388,9 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcThermalLoadSourceEnum[] VALUES_ARRAY = new IfcThermalLoadSourceEnum[] { NULL, DRYBULBTEMPERATURE, VENTILATIONINDOORAIR, RECIRCULATEDAIR, NOTDEFINED,
-			RELATIVEHUMIDITY, EXHAUSTAIR, VENTILATIONOUTSIDEAIR, PEOPLE, INFILTRATION, USERDEFINED, EQUIPMENT, AIREXCHANGERATE, LIGHTING, };
+	private static final IfcThermalLoadSourceEnum[] VALUES_ARRAY = new IfcThermalLoadSourceEnum[] { NULL, DRYBULBTEMPERATURE, VENTILATIONINDOORAIR,
+			RECIRCULATEDAIR, NOTDEFINED, RELATIVEHUMIDITY, EXHAUSTAIR, VENTILATIONOUTSIDEAIR, PEOPLE, INFILTRATION, USERDEFINED, EQUIPMENT, AIREXCHANGERATE,
+			LIGHTING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Thermal Load Source Enum</b></em>' enumerators.

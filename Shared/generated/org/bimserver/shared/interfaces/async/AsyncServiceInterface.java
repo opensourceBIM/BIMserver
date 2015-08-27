@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.async;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -30,7 +30,7 @@ public class AsyncServiceInterface {
 	}
 
 	public interface AddExtendedDataSchemaCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
@@ -55,7 +55,7 @@ public class AsyncServiceInterface {
 	}
 	
 	public interface AddServiceToProjectCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
@@ -71,6 +71,11 @@ public class AsyncServiceInterface {
 	
 	public interface AddUserToProjectCallback {
 		void success(java.lang.Boolean result);
+		void error(Throwable e);
+	}
+	
+	public interface AddUserWithPasswordCallback {
+		void success(org.bimserver.interfaces.objects.SUser result);
 		void error(Throwable e);
 	}
 	
@@ -264,6 +269,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetIfcHeaderCallback {
+		void success(org.bimserver.interfaces.objects.SIfcHeader result);
+		void error(Throwable e);
+	}
+	
 	public interface GetModelCheckerInstanceCallback {
 		void success(org.bimserver.interfaces.objects.SModelCheckerInstance result);
 		void error(Throwable e);
@@ -324,7 +334,17 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface ImportDataCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface RemoveModelCheckerFromProjectCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
+	public interface RemoveServiceFromProjectCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -415,8 +435,7 @@ public class AsyncServiceInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addExtendedDataSchema(extendedDataSchema);
-					callback.success();
+					callback.success(syncService.addExtendedDataSchema(extendedDataSchema));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -479,8 +498,7 @@ public class AsyncServiceInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addServiceToProject(poid, sService);
-					callback.success();
+					callback.success(syncService.addServiceToProject(poid, sService));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -518,6 +536,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.addUserToProject(uoid, poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void addUserWithPassword(final java.lang.String username, final java.lang.String password, final java.lang.String name, final org.bimserver.interfaces.objects.SUserType type, final java.lang.Boolean selfRegistration, final java.lang.String resetUrl, final AddUserWithPasswordCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.addUserWithPassword(username, password, name, type, selfRegistration, resetUrl));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -984,6 +1014,18 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void getIfcHeader(final java.lang.Long croid, final GetIfcHeaderCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getIfcHeader(croid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getModelCheckerInstance(final java.lang.Long mcioid, final GetModelCheckerInstanceCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1128,11 +1170,37 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void importData(final java.lang.String address, final java.lang.String username, final java.lang.String password, final java.lang.String path, final ImportDataCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.importData(address, username, password, path);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void removeModelCheckerFromProject(final java.lang.Long poid, final java.lang.Long modelCheckerOid, final RemoveModelCheckerFromProjectCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
 					syncService.removeModelCheckerFromProject(poid, modelCheckerOid);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void removeServiceFromProject(final java.lang.Long poid, final java.lang.Long serviceOid, final RemoveServiceFromProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.removeServiceFromProject(poid, serviceOid);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

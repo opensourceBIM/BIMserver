@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,10 +21,9 @@ import org.bimserver.models.ifc4.IfcCartesianPointList3D;
 import org.bimserver.models.ifc4.IfcIndexedColourMap;
 import org.bimserver.models.ifc4.IfcIndexedTextureMap;
 import org.bimserver.models.ifc4.IfcTessellatedFaceSet;
+import org.bimserver.models.ifc4.ListOfIfcParameterValue;
 import org.bimserver.models.ifc4.Tristate;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -35,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getCoordinates <em>Coordinates</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getNormals <em>Normals</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getClosed <em>Closed</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getHasColours <em>Has Colours</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getHasTextures <em>Has Textures</em>}</li>
@@ -79,6 +79,16 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 */
 	public void setCoordinates(IfcCartesianPointList3D newCoordinates) {
 		eSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__COORDINATES, newCoordinates);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ListOfIfcParameterValue> getNormals() {
+		return (EList<ListOfIfcParameterValue>) eGet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__NORMALS, true);
 	}
 
 	/**

@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -37,6 +37,7 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
+import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SModelCheckerInstance;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
@@ -136,6 +137,24 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "type", partName = "addUser.type") SUserType type,
 		@WebParam(name = "selfRegistration", partName = "addUser.selfRegistration") Boolean selfRegistration,
 		@WebParam(name = "resetUrl", partName = "addUser.resetUrl") String resetUrl) throws ServerException, UserException;
+
+	/**
+	 * Add a new user
+	 * @param username The username (must be a valid e-mail address)
+	 * @param name The name (e.g. "Bill Gates")
+	 * @param type Type of user
+	 * @param selfRegistration Whether this is a self-registration (for example e-mails will be different)
+	 * @return The ObjectID of the created User object
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "addUserWithPassword")
+	SUser addUserWithPassword(
+			@WebParam(name = "username", partName = "addUser.username") String username,
+			@WebParam(name = "password", partName = "addUser.password") String password,
+			@WebParam(name = "name", partName = "addUser.name") String name,
+			@WebParam(name = "type", partName = "addUser.type") SUserType type,
+			@WebParam(name = "selfRegistration", partName = "addUser.selfRegistration") Boolean selfRegistration,
+			@WebParam(name = "resetUrl", partName = "addUser.resetUrl") String resetUrl) throws ServerException, UserException;
 
 	/**
 	 * Change the type of a user
@@ -476,7 +495,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "addExtendedDataSchema")
-	void addExtendedDataSchema(
+	Long addExtendedDataSchema(
 		@WebParam(name = "extendedDataSchema", partName = "addExtendedDataSchema.extendedDataSchema") SExtendedDataSchema extendedDataSchema) throws ServerException, UserException;
 
 	/**
@@ -552,7 +571,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "serviceIdentifier", partName = "getAllPublicProfiles.serviceIdentifier") String serviceIdentifier) throws ServerException, UserException;
 
 	@WebMethod(action="addServiceToProject")
-	void addServiceToProject(
+	Long addServiceToProject(
 		@WebParam(name = "poid", partName = "addServiceToProject.poid") Long poid, 
 		@WebParam(name = "sService", partName = "addServiceToProject.sService") org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException;
 
@@ -649,4 +668,19 @@ public interface ServiceInterface extends PublicInterface {
 	void removeModelCheckerFromProject(
 		@WebParam(name = "poid", partName = "removeModelCheckerFromProject.poid") Long poid, 
 		@WebParam(name = "modelCheckerOid", partName = "removeModelCheckerFromProject.modelCheckerOid") Long modelCheckerOid) throws ServerException, UserException;
+
+	@WebMethod(action = "removeServiceFromProject")
+	void removeServiceFromProject(
+			@WebParam(name = "poid", partName = "removeServiceFromProject.poid") Long poid, 
+			@WebParam(name = "serviceOid", partName = "removeServiceFromProject.serviceOid") Long serviceOid) throws ServerException, UserException;
+	
+	@WebMethod(action = "importData")
+	void importData(
+		@WebParam(name = "address", partName = "importData.address") String address,
+		@WebParam(name = "username", partName = "importData.username") String username,
+		@WebParam(name = "password", partName = "importData.password") String password,
+		@WebParam(name = "path", partName = "importData.path") String path) throws ServerException, UserException;
+	
+	@WebMethod(action = "getIfcHeader")
+	SIfcHeader getIfcHeader(@WebParam(name = "croid", partName = "getIfcHeader.croid") Long croid) throws UserException, ServerException;
 }

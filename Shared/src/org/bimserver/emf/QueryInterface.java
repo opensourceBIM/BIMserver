@@ -1,7 +1,7 @@
 package org.bimserver.emf;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,22 +17,20 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public interface QueryInterface {
 
 	int getPid();
-
 	int getRid();
-
 	boolean isDeep();
-
 	int getStopRid();
-
 	boolean shouldFollowReference(EClass originalQueryClass, EClass eClass, EStructuralFeature feature);
-
 	boolean shouldIncludeClass(EClass eClass);
-	
 	PackageMetaData getPackageMetaData();
+	long getRoid();
+	Map<EClass, Long> getOidCounters();
 }

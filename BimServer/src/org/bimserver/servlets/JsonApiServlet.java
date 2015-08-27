@@ -1,7 +1,7 @@
 package org.bimserver.servlets;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -61,7 +61,10 @@ public class JsonApiServlet extends SubServlet {
 		try {
 			ServletInputStream inputStream = request.getInputStream();
 			byte[] bytes = IOUtils.toByteArray(inputStream); // Not streaming here, because we want to be able to show the request-data when it's not valid
-			JsonReader jsonReader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(bytes)));
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug("Incoming JSON " + new String(bytes, Charsets.UTF_8));
+			}
+			JsonReader jsonReader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(bytes), Charsets.UTF_8));
 			JsonParser parser = new JsonParser();
 			JsonElement parse = parser.parse(jsonReader);
 			if (parse instanceof JsonObject) {

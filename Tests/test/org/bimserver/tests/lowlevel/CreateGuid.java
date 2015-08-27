@@ -22,13 +22,13 @@ public class CreateGuid extends TestWithEmbeddedServer {
 			Bimsie1LowLevelInterface lowLevelInterface = bimServerClient.getBimsie1LowLevelInterface();
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// Start a transaction
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
 			// Create furnishing
-			Long furnishingOid = lowLevelInterface.createObject(tid, "IfcFurnishingElement");
+			Long furnishingOid = lowLevelInterface.createObject(tid, "IfcFurnishingElement", true);
 			lowLevelInterface.setStringAttribute(tid, furnishingOid, "GlobalId", "0uyjn9Jan3nRq36Uj6gwws");
 			
 			// Commit the transaction

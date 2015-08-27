@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,7 +17,10 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.nio.ByteBuffer;
 import java.util.Date;
+import java.util.Map;
+import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryCache;
@@ -30,7 +33,6 @@ import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
@@ -43,11 +45,13 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.User;
 import org.bimserver.notifications.NewRevisionNotification;
+import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
+import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,10 +67,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private Authorization authorization;
 	private final GeometryCache geometryCache = new GeometryCache();
 	private String fileName;
+	private long fileSize;
 
-	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model,
+	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface ifcModel,
 			String comment, String fileName, boolean merge) {
-		super(databaseSession, accessMethod, model);
+		super(databaseSession, accessMethod, ifcModel);
 		this.bimServer = bimServer;
 		this.poid = poid;
 		this.authorization = authorization;
@@ -78,6 +83,14 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {
+			if (fileSize == -1) {
+				setProgress("Deserializing IFC file...", -1);
+			} else {
+				setProgress("Deserializing IFC file...", 0);
+			}
+			if (getModel().size() == 0) {
+				throw new DeserializeException("Cannot checkin empty model");
+			}
 			authorization.canCheckin(poid);
 			project = getProjectByPoid(poid);
 			int nrConcreteRevisionsBefore = project.getConcreteRevisions().size();
@@ -102,6 +115,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 						size++;
 					}
 				}
+				getModel().fixInverseMismatches();
 			}
 			
 			for (ModelCheckerInstance modelCheckerInstance : project.getModelCheckers()) {
@@ -119,11 +133,10 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			
 			CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), size, project, user, comment.trim());
 			concreteRevision = result.getConcreteRevision();
-			SIfcHeader ifcHeader = getModel().getModelMetaData().getIfcHeader();
+			IfcHeader ifcHeader = getModel().getModelMetaData().getIfcHeader();
 			if (ifcHeader != null) {
-				IfcHeader convertFromSObject = bimServer.getSConverter().convertFromSObject(ifcHeader, getDatabaseSession());
-				getDatabaseSession().store(convertFromSObject);
-				concreteRevision.setIfcHeader(convertFromSObject);
+				getDatabaseSession().store(ifcHeader);
+				concreteRevision.setIfcHeader(ifcHeader);
 			}
 			project.getConcreteRevisions().add(concreteRevision);
 			if (getModel() != null) {
@@ -169,6 +182,24 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				// There already was a revision, lets delete it (only when not merging)
 				concreteRevision.setClear(true);
 			}
+			Set<EClass> eClasses = ifcModel.getUsedClasses();
+			Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
+			int s = 0;
+			for (EClass eClass : eClasses) {
+				if (getDatabaseSession().perRecordVersioning(eClass)) {
+					s++;
+				}
+			}
+			ByteBuffer buffer = ByteBuffer.allocate(10 * s);
+			for (EClass eClass : eClasses) {
+				long oid = startOids.get(eClass);
+				if (getDatabaseSession().perRecordVersioning(eClass)) {
+					buffer.putShort(getDatabaseSession().getCid(eClass));
+					buffer.putLong(oid);
+				}
+			}
+			
+			concreteRevision.setOidCounters(buffer.array());
 
 			if (ifcModel != null) {
 				getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
@@ -200,13 +231,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	}
 	
 	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
-		throw new RuntimeException("Not implemented");
 //		IfcModelSet ifcModelSet = new IfcModelSet();
 //		for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {
 //			if (concreteRevision != subRevision) {
-//				PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
-//				IfcModel subModel = new IfcModel(packageMetaData);
-//				Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), Deep.YES);
+//				IfcModel subModel = new IfcModel();
+//				Query query = new Query(subRevision.getProject().getId(), subRevision.getId(), Deep.YES);
 //				getDatabaseSession().getMap(subModel, query);
 //				subModel.getModelMetaData().setDate(subRevision.getDate());
 //				ifcModelSet.add(subModel);
@@ -240,7 +269,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 //			((IdEObjectImpl) idEObject).setRid(concreteRevision.getId());
 //			((IdEObjectImpl) idEObject).setPid(concreteRevision.getProject().getId());
 //		}
-//		return ifcModel;
+		return null;
 	}
 
 	public ConcreteRevision getConcreteRevision() {

@@ -1,7 +1,7 @@
 package org.bimserver.test;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,36 +20,33 @@ package org.bimserver.test;
 import java.io.File;
 import java.io.IOException;
 
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Formatters;
 
 public class TestUploadDir {
-	private BimServerClient client;
+	private BimServerClientInterface client;
 
 	public static void main(String[] args) {
 		new TestUploadDir().start();
 	}
 
 	private void start() {
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 		try {
-			client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			client = LocalDevSetup.setupJson("http://localhost:8080");
 			client.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 			
 			File directory = new File("d:\\testfiles");
 			for (File f : directory.listFiles()) {
 				process(f, null);
 			}
-		} catch (ServiceException | ChannelConnectionException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
@@ -62,9 +59,9 @@ public class TestUploadDir {
 		if (directory.isDirectory()) {
 			SProject project = null;
 			if (parentProject == null) {
-				project = client.getBimsie1ServiceInterface().addProject(directory.getName(), "ifc4");
+				project = client.getBimsie1ServiceInterface().addProject(directory.getName(), "ifc2x3tc1");
 			} else {
-				project = client.getBimsie1ServiceInterface().addProjectAsSubProject(directory.getName(), parentProject.getOid(), "ifc4");
+				project = client.getBimsie1ServiceInterface().addProjectAsSubProject(directory.getName(), parentProject.getOid(), "ifc2x3tc1");
 			}
 			for (File file : directory.listFiles()) {
 				process(file, project);

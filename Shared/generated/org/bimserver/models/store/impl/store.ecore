@@ -66,6 +66,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="modelCheckers" upperBound="-1"
         eType="#//ModelCheckerInstance"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="schema" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sendEmailOnNewRevision"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="User">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -134,6 +136,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="summary" eType="#//RevisionSummary"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#//User"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ifcHeader" eType="#//IfcHeader"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="oidCounters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GeoTag">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
@@ -198,6 +201,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="smtpProtocol" eType="#//SmtpProtocol"
         defaultValueLiteral="SMTP"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reuseGeometry" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowCreateValidatedUser"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="renderEngineProcesses"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserSettings">
     <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
@@ -222,6 +229,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultObjectIDM" eType="#//ObjectIDMPluginConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
         eType="#//InternalServicePluginConfiguration" eOpposite="#//InternalServicePluginConfiguration/userSettings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="messagingSerializerPlugins"
+        upperBound="-1" eType="#//MessagingSerializerPluginConfiguration" eOpposite="#//MessagingSerializerPluginConfiguration/userSettings"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -431,6 +440,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="ServerInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="serverState" eType="#//ServerState"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="errorMessage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="version" eType="#//Version">
+      <eAnnotations source="embedsreference"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Version">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="major" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -780,15 +792,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="schema" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcHeader">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationLevel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="filename" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeStamp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="author" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="organization" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="author" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="organization" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="preProcessorVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="originatingSystem" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ifcSchemaVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -827,5 +839,11 @@
   <eClassifiers xsi:type="ecore:EEnum" name="SmtpProtocol">
     <eLiterals name="SMTP"/>
     <eLiterals name="SMTPS" value="1"/>
+    <eLiterals name="STARTTLS" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MessagingSerializerPluginConfiguration"
+      eSuperTypes="#//PluginConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
+        eOpposite="#//UserSettings/messagingSerializerPlugins"/>
   </eClassifiers>
 </ecore:EPackage>

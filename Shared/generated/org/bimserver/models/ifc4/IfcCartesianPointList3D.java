@@ -16,15 +16,39 @@
  */
 package org.bimserver.models.ifc4;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ifc Cartesian Point List3 D</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.bimserver.models.ifc4.IfcCartesianPointList3D#getCoordList <em>Coord List</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianPointList3D()
  * @model
  * @generated
  */
 public interface IfcCartesianPointList3D extends IfcCartesianPointList {
+
+	/**
+	 * Returns the value of the '<em><b>Coord List</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.ListOfIfcLengthMeasure}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Coord List</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Coord List</em>' reference list.
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianPointList3D_CoordList()
+	 * @model
+	 * @generated
+	 */
+	EList<ListOfIfcLengthMeasure> getCoordList();
 } // IfcCartesianPointList3D

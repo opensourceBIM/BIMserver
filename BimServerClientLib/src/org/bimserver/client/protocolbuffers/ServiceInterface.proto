@@ -1,7 +1,7 @@
 package org.bimserver.pb;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,7 +23,7 @@ option java_outer_classname = "ServiceInterfaceImpl";
 option optimize_for = SPEED;
 
 service ServiceInterface {
-	rpc addExtendedDataSchema (AddExtendedDataSchemaRequest) returns (VoidResponse);
+	rpc addExtendedDataSchema (AddExtendedDataSchemaRequest) returns (AddExtendedDataSchemaResponse);
 
 	rpc addExtendedDataToProject (AddExtendedDataToProjectRequest) returns (VoidResponse);
 
@@ -33,13 +33,15 @@ service ServiceInterface {
 
 	rpc addModelCheckerToProject (AddModelCheckerToProjectRequest) returns (VoidResponse);
 
-	rpc addServiceToProject (AddServiceToProjectRequest) returns (VoidResponse);
+	rpc addServiceToProject (AddServiceToProjectRequest) returns (AddServiceToProjectResponse);
 
 	rpc addUser (AddUserRequest) returns (AddUserResponse);
 
 	rpc addUserToExtendedDataSchema (AddUserToExtendedDataSchemaRequest) returns (VoidResponse);
 
 	rpc addUserToProject (AddUserToProjectRequest) returns (AddUserToProjectResponse);
+
+	rpc addUserWithPassword (AddUserWithPasswordRequest) returns (AddUserWithPasswordResponse);
 
 	rpc changeUserType (ChangeUserTypeRequest) returns (VoidResponse);
 
@@ -117,6 +119,8 @@ service ServiceInterface {
 
 	rpc getGeoTag (GetGeoTagRequest) returns (GetGeoTagResponse);
 
+	rpc getIfcHeader (GetIfcHeaderRequest) returns (GetIfcHeaderResponse);
+
 	rpc getModelCheckerInstance (GetModelCheckerInstanceRequest) returns (GetModelCheckerInstanceResponse);
 
 	rpc getOidByGuid (GetOidByGuidRequest) returns (GetOidByGuidResponse);
@@ -141,7 +145,11 @@ service ServiceInterface {
 
 	rpc getUsersProjects (GetUsersProjectsRequest) returns (GetUsersProjectsResponse);
 
+	rpc importData (ImportDataRequest) returns (VoidResponse);
+
 	rpc removeModelCheckerFromProject (RemoveModelCheckerFromProjectRequest) returns (VoidResponse);
+
+	rpc removeServiceFromProject (RemoveServiceFromProjectRequest) returns (VoidResponse);
 
 	rpc removeUserFromExtendedDataSchema (RemoveUserFromExtendedDataSchemaRequest) returns (VoidResponse);
 
@@ -205,6 +213,11 @@ message SExtendedDataSchema {
 
 message AddExtendedDataSchemaRequest {
 	optional SExtendedDataSchema extendedDataSchema = 1;
+}
+
+message AddExtendedDataSchemaResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
 }
 
 message SExtendedData {
@@ -304,6 +317,11 @@ message AddServiceToProjectRequest {
 	optional SService sService = 2;
 }
 
+message AddServiceToProjectResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
 enum SUserType{
 	SUserType_SYSTEM = 0;
 	SUserType_ADMIN = 1;
@@ -366,6 +384,20 @@ message AddUserToProjectRequest {
 message AddUserToProjectResponse {
 	optional string errorMessage = 1;
 	optional bool value = 2;
+}
+
+message AddUserWithPasswordRequest {
+	optional string username = 1;
+	optional string password = 2;
+	optional string name = 3;
+	optional SUserType type = 4;
+	optional bool selfRegistration = 5;
+	optional string resetUrl = 6;
+}
+
+message AddUserWithPasswordResponse {
+	optional string errorMessage = 1;
+	optional SUser value = 2;
 }
 
 message ChangeUserTypeRequest {
@@ -729,9 +761,10 @@ message SProject {
 	repeated int64 revisions = 18;
 	optional int32 rid = 19;
 	optional string schema = 20;
-	repeated int64 services = 21;
-	optional SObjectState state = 22;
-	repeated int64 subProjects = 23;
+	optional bool sendEmailOnNewRevision = 21;
+	repeated int64 services = 22;
+	optional SObjectState state = 23;
+	repeated int64 subProjects = 24;
 }
 
 message GetAllNonAuthorizedProjectsOfUserResponse {
@@ -937,6 +970,30 @@ message SGeoTag {
 message GetGeoTagResponse {
 	optional string errorMessage = 1;
 	optional SGeoTag value = 2;
+}
+
+message GetIfcHeaderRequest {
+	optional int64 croid = 1;
+}
+
+message SIfcHeader {
+	repeated string author = 1;
+	optional string authorization = 2;
+	repeated string description = 3;
+	optional string filename = 4;
+	optional string ifcSchemaVersion = 5;
+	optional string implementationLevel = 6;
+	optional int64 oid = 7;
+	repeated string organization = 8;
+	optional string originatingSystem = 9;
+	optional string preProcessorVersion = 10;
+	optional int32 rid = 11;
+	optional int64 timeStamp = 12;
+}
+
+message GetIfcHeaderResponse {
+	optional string errorMessage = 1;
+	optional SIfcHeader value = 2;
 }
 
 message GetModelCheckerInstanceRequest {
@@ -1383,15 +1440,16 @@ message SUserSettings {
 	optional int64 defaultRenderEngineId = 5;
 	optional int64 defaultSerializerId = 6;
 	repeated int64 deserializers = 7;
-	repeated int64 modelcompares = 8;
-	repeated int64 modelmergers = 9;
-	repeated int64 objectIDMs = 10;
-	optional int64 oid = 11;
-	repeated int64 queryengines = 12;
-	repeated int64 renderEngines = 13;
-	optional int32 rid = 14;
-	repeated int64 serializers = 15;
-	repeated int64 services = 16;
+	repeated int64 messagingSerializerPlugins = 8;
+	repeated int64 modelcompares = 9;
+	repeated int64 modelmergers = 10;
+	repeated int64 objectIDMs = 11;
+	optional int64 oid = 12;
+	repeated int64 queryengines = 13;
+	repeated int64 renderEngines = 14;
+	optional int32 rid = 15;
+	repeated int64 serializers = 16;
+	repeated int64 services = 17;
 }
 
 message GetUserSettingsResponse {
@@ -1408,9 +1466,21 @@ message GetUsersProjectsResponse {
 	repeated SProject value = 2;
 }
 
+message ImportDataRequest {
+	optional string address = 1;
+	optional string username = 2;
+	optional string password = 3;
+	optional string path = 4;
+}
+
 message RemoveModelCheckerFromProjectRequest {
 	optional int64 poid = 1;
 	optional int64 modelCheckerOid = 2;
+}
+
+message RemoveServiceFromProjectRequest {
+	optional int64 poid = 1;
+	optional int64 serviceOid = 2;
 }
 
 message RemoveUserFromExtendedDataSchemaRequest {

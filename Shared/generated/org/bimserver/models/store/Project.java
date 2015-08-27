@@ -19,9 +19,7 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.bimserver.models.log.ProjectRelated;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -31,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.Project#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getName <em>Name</em>}</li>
@@ -53,8 +52,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Project#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getModelCheckers <em>Model Checkers</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getSchema <em>Schema</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Project#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getProject()
  * @model
@@ -543,5 +542,31 @@ public interface Project extends IdEObject {
 	 * @generated
 	 */
 	void setSchema(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Send Email On New Revision</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Send Email On New Revision</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Send Email On New Revision</em>' attribute.
+	 * @see #setSendEmailOnNewRevision(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getProject_SendEmailOnNewRevision()
+	 * @model
+	 * @generated
+	 */
+	boolean isSendEmailOnNewRevision();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Project#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Send Email On New Revision</em>' attribute.
+	 * @see #isSendEmailOnNewRevision()
+	 * @generated
+	 */
+	void setSendEmailOnNewRevision(boolean value);
 
 } // Project

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -413,8 +413,8 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRoofTypeEnum[] VALUES_ARRAY = new IfcRoofTypeEnum[] { NULL, HIPPED_GABLE_ROOF, NOTDEFINED, SHED_ROOF, HIP_ROOF, DOME_ROOF, PAVILION_ROOF, FREEFORM,
-			GABLE_ROOF, BARREL_ROOF, MANSARD_ROOF, FLAT_ROOF, RAINBOW_ROOF, GAMBREL_ROOF, BUTTERFLY_ROOF, };
+	private static final IfcRoofTypeEnum[] VALUES_ARRAY = new IfcRoofTypeEnum[] { NULL, HIPPED_GABLE_ROOF, NOTDEFINED, SHED_ROOF, HIP_ROOF, DOME_ROOF,
+			PAVILION_ROOF, FREEFORM, GABLE_ROOF, BARREL_ROOF, MANSARD_ROOF, FLAT_ROOF, RAINBOW_ROOF, GAMBREL_ROOF, BUTTERFLY_ROOF, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Roof Type Enum</b></em>' enumerators.

@@ -17,14 +17,11 @@
 package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.models.ifc4.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
@@ -1854,6 +1851,18 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcComplexNumber();
 		case Ifc4Package.IFC_NULL_STYLE:
 			return (EObject) createIfcNullStyle();
+		case Ifc4Package.LIST_OF_IFC_CARTESIAN_POINT:
+			return (EObject) createListOfIfcCartesianPoint();
+		case Ifc4Package.LIST_OF_IFC_LENGTH_MEASURE:
+			return (EObject) createListOfIfcLengthMeasure();
+		case Ifc4Package.LIST_OF_IFC_NORMALISED_RATIO_MEASURE:
+			return (EObject) createListOfIfcNormalisedRatioMeasure();
+		case Ifc4Package.LIST_OF_EINT:
+			return (EObject) createListOfEInt();
+		case Ifc4Package.LIST_OF_EDOUBLE:
+			return (EObject) createListOfEDouble();
+		case Ifc4Package.LIST_OF_IFC_PARAMETER_VALUE:
+			return (EObject) createListOfIfcParameterValue();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -11631,6 +11640,66 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	public IfcNullStyle createIfcNullStyle() {
 		IfcNullStyleImpl ifcNullStyle = new IfcNullStyleImpl();
 		return ifcNullStyle;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ListOfIfcCartesianPoint createListOfIfcCartesianPoint() {
+		ListOfIfcCartesianPointImpl listOfIfcCartesianPoint = new ListOfIfcCartesianPointImpl();
+		return listOfIfcCartesianPoint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ListOfIfcLengthMeasure createListOfIfcLengthMeasure() {
+		ListOfIfcLengthMeasureImpl listOfIfcLengthMeasure = new ListOfIfcLengthMeasureImpl();
+		return listOfIfcLengthMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ListOfIfcNormalisedRatioMeasure createListOfIfcNormalisedRatioMeasure() {
+		ListOfIfcNormalisedRatioMeasureImpl listOfIfcNormalisedRatioMeasure = new ListOfIfcNormalisedRatioMeasureImpl();
+		return listOfIfcNormalisedRatioMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ListOfEInt createListOfEInt() {
+		ListOfEIntImpl listOfEInt = new ListOfEIntImpl();
+		return listOfEInt;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ListOfEDouble createListOfEDouble() {
+		ListOfEDoubleImpl listOfEDouble = new ListOfEDoubleImpl();
+		return listOfEDouble;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ListOfIfcParameterValue createListOfIfcParameterValue() {
+		ListOfIfcParameterValueImpl listOfIfcParameterValue = new ListOfIfcParameterValueImpl();
+		return listOfIfcParameterValue;
 	}
 
 	/**

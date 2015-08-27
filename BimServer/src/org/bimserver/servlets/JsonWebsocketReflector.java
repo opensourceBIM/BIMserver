@@ -1,7 +1,7 @@
 package org.bimserver.servlets;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,9 +17,9 @@ package org.bimserver.servlets;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.shared.StreamingSocketInterface;
 import org.bimserver.shared.json.JsonReflector;
 import org.bimserver.shared.meta.SServicesMap;
-import org.codehaus.jettison.json.JSONException;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.JsonObject;
@@ -34,7 +34,7 @@ public class JsonWebsocketReflector extends JsonReflector {
 	}
 
 	@Override
-	public JsonObject call(JsonObject request) throws JSONException {
+	public JsonObject call(JsonObject request) {
 		LoggerFactory.getLogger(JsonWebsocketReflector.class).debug("WS: " + request);
 		streamingSocket.send(request);
 		return new JsonObject();

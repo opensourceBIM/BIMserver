@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -26,6 +26,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -39,9 +40,9 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
@@ -77,10 +78,12 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 		Project project = null;
 		long incrSize = 0L;
 		
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
-		
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
+		PackageMetaData lastPackageMetaData = null;
+		Map<Integer, Long> ridRoidMap = new HashMap<Integer, Long>();
 		for (Long roid : roids) {
 			Revision virtualRevision = getRevisionByRoid(roid);
+			ridRoidMap.put(virtualRevision.getRid(), virtualRevision.getOid());
 			project = virtualRevision.getProject();
 			if (!getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
@@ -90,7 +93,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 				if (!foundNames.contains(name)) {
 					for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 						try {
-							for (ObjectIdentifier objectIdentifier : getDatabaseSession().getOidsOfName(project.getSchema(), name, concreteRevision.getProject().getId(),
+							for (ObjectIdentifier objectIdentifier : getDatabaseSession().getOidsOfName(concreteRevision.getProject().getSchema(), name, concreteRevision.getProject().getId(),
 									concreteRevision.getId())) {
 								foundNames.add(name);
 								if (!map.containsKey(concreteRevision)) {
@@ -100,7 +103,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 								map.get(concreteRevision).add(objectIdentifier.getOid());
 							}
 						} catch (MetaDataException e) {
-							throw new UserException(e);
+							e.printStackTrace();
 						}
 					}
 				}
@@ -109,10 +112,11 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 			final AtomicLong total = new AtomicLong();
 
 			for (ConcreteRevision concreteRevision : map.keySet()) {
-				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
-				IfcModel subModel = new IfcModel(packageMetaData);
+				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
+				lastPackageMetaData = packageMetaData;
+				IfcModel subModel = new ServerIfcModel(packageMetaData, ridRoidMap, getDatabaseSession());
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
+				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), objectIDM, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {
@@ -133,9 +137,9 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModelInterface ifcModel = new IfcModel(null); // TODO
+		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, ridRoidMap, getDatabaseSession());
 		try {
-			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
 			ifcModel.getModelMetaData().setName("query");
 			for (String name : names) {
 				if (!foundNames.contains(name)) {

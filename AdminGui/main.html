@@ -104,7 +104,7 @@ function Main(address, user) {
 			} else if (history.page == "UserSettings") {
 				othis.showUserSettings(null);
 			} else if (history.page == "ServerSettings") {
-				othis.showServerSettings(null);
+				othis.showServerSettings(true, null);
 			} else if (history.page == "ServerInfo") {
 				othis.showServerInfo(null);
 			} else if (history.page == "Testing") {
@@ -177,9 +177,9 @@ function Main(address, user) {
 		}, callback);
 	};
 
-	this.showAddService = function(project, callback) {
+	this.showAddService = function(project, callback, longCallBack) {
 		othis.pageChanger.changePage($(".projectsLink"), "addservice.html", function(){
-			return new AddService(othis, project);
+			return new AddService(othis, project, longCallBack);
 		}, callback);
 	};
 	
@@ -189,9 +189,9 @@ function Main(address, user) {
 		}, callback);
 	};
 
-	this.showAddService2 = function(project, serviceDescriptor, isLocal, callback) {
+	this.showAddService2 = function(project, serviceDescriptor, isLocal, callback, longCallBack) {
 		othis.pageChanger.changePage($(".projectsLink"), "addservice2.html", function(){
-			return new AddService2(othis, project, serviceDescriptor, isLocal);
+			return new AddService2(othis, project, serviceDescriptor, isLocal, longCallBack);
 		}, callback);
 	};
 
@@ -221,13 +221,13 @@ function Main(address, user) {
 	};
 
 	this.showExtendedDataSchema = function(oid, callback) {
-		this.showServerSettings(function(){
+		this.showServerSettings(false, function(){
 			this.showExtendedDataSchema(oid);
 		});
 	};
 
 	this.showModelChecker = function(oid, callback) {
-		this.showServerSettings(function(){
+		this.showServerSettings(false, function(){
 			this.showModelChecker(oid);
 		});
 	};
@@ -254,12 +254,12 @@ function Main(address, user) {
 		});
 	};
 
-	this.showServerSettings = function(callback) {
+	this.showServerSettings = function(loadFromHistory, callback) {
 		if (othis.current != null && othis.current.getName != null && othis.current.getName() == "ServerSettings") {
 			callback.call(othis.current);
 		} else {
 			othis.pageChanger.changePage($(".serversettingsLink"), "serversettings.html", function(){
-				return new ServerSettings(othis);
+				return new ServerSettings(othis, loadFromHistory);
 			}, callback);
 		}
 	};
@@ -323,7 +323,7 @@ function Main(address, user) {
 		};
 		div.load(Global.baseDir + "download.html", function(){
 			new Download($(this), params);
-		}).modal({keyboard:true});
+		}).modal("show");
 	};
 
 	this.showDownloadRevisionsPopup = function(roids) {
@@ -335,7 +335,7 @@ function Main(address, user) {
 		};
 		div.load(Global.baseDir + "download.html", function(){
 			new Download($(this), params);
-		}).modal({keyboard:true});
+		}).modal({keyboard:true, show: true});
 	};
 
 	this.addMenuDivider = function(mainTitle){
@@ -372,7 +372,7 @@ function Main(address, user) {
 	$(".btnShowProjects").click(function(event){othis.showProjects(null, true)});
 	$(".btnListUsers").click(function(event){othis.showUsers(null, true)});
 	$(".serverinfoLink").click(function(event){othis.showServerInfo(null, true)});
-	$(".btnBasicServerSettings").click(function(event){othis.showServerSettings(function(){
+	$(".btnBasicServerSettings").click(function(event){othis.showServerSettings(false, function(){
 		this.showBasicServerSettings();
 	}, true)});
 	$(".btnSystem").click(function(event){othis.showServerInfo(function(){
@@ -445,27 +445,27 @@ function Main(address, user) {
 		});
 	});
 	$(".btnMigrations").click(function(){
-		othis.showServerSettings(function(){
+		othis.showServerSettings(false, function(){
 			this.showMigrations();
 		});
 	});
 	$(".btnPlugins").click(function(){
-		othis.showServerSettings(function(){
+		othis.showServerSettings(false, function(){
 			this.showPlugins();
 		});
 	});
 	$(".btnWebModules").click(function(){
-		othis.showServerSettings(function(){
+		othis.showServerSettings(false, function(){
 			this.showWebModules();
 		});
 	});
 	$(".btnExtendedDataSchemas").click(function(){
-		othis.showServerSettings(function(){
+		othis.showServerSettings(false, function(){
 			this.showExtendedDataSchemas();
 		});
 	});
 	$(".btnModelCheckers").click(function(){
-		othis.showServerSettings(function(){
+		othis.showServerSettings(false, function(){
 			this.showModelCheckers();
 		});
 	});

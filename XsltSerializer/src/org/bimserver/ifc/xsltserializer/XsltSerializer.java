@@ -1,7 +1,7 @@
 package org.bimserver.ifc.xsltserializer;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -30,8 +30,14 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginConfiguration;
+import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.ProgressReporter;
+import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -40,6 +46,12 @@ public class XsltSerializer extends EmfSerializer {
 
 	private URL xsltUrl;
 	private Set<XsltParameter> parameters = new HashSet<XsltParameter>();
+
+	@Override
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids)
+			throws SerializerException {
+		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
+	}
 
 	public void setXsltUrl(URL url) {
 		xsltUrl = url;
@@ -51,7 +63,7 @@ public class XsltSerializer extends EmfSerializer {
 	}
 
 	@Override
-	protected boolean write(OutputStream outputStream) throws SerializerException {
+	protected boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		switch (getMode()) {
 		case BODY:
 			SerializerPlugin plugin = (SerializerPlugin) getPluginManager().getPlugin("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin", true);

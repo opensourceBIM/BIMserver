@@ -106,6 +106,13 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="control-label col-lg-2"><a rel="tooltip" data-original-title="Maximum amount of processes to use concurrently when generating geometry for 1 revision" data-placement="right">Max Render Engine Processes (BETA)</a>
+			</label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control renderEngineProcesses">
+			</div>
+		</div>
+		<div class="form-group">
 			<div class="col-lg-8">
 				<label class="checkbox"><a rel="tooltip" data-original-title="Allow user to create top level projects" data-placement="right">Allow user to create top level projects</a>
 					<input type="checkbox" class="createTopLevelProjects">
@@ -211,6 +218,7 @@ function BasicServerSettings(main, serversettings) {
 			serverSettings.protocolBuffersPort = $(".basicserversettings .protocolBuffersPort").val();
 			serverSettings.sessionTimeOutSeconds = $(".basicserversettings .sessionTimeOutSeconds").val();
 			serverSettings.cacheOutputFiles = $(".basicserversettings .cacheOutputFiles").prop("checked");
+			serverSettings.renderEngineProcesses = $(".basicserversettings .renderEngineProcesses").val();
 			serverSettings.reuseGeometry = $(".basicserversettings .geometryReuseEnabled").prop("checked");
 			serverSettings.checkinMergingEnabled = $(".basicserversettings .checkinMergingEnabled").prop("checked");
 			serverSettings.allowUsersToCreateTopLevelProjects = $(".basicserversettings .createTopLevelProjects").prop("checked");
@@ -258,6 +266,7 @@ function BasicServerSettings(main, serversettings) {
 			$(".basicserversettings .emailSenderName").val(data.emailSenderName);
 			$(".basicserversettings .hideUserList").prop("checked", data.hideUserListForNonAdmin);
 			$(".basicserversettings .protocolBuffersPort").val(data.protocolBuffersPort);
+			$(".basicserversettings .renderEngineProcesses").val(data.renderEngineProcesses);
 			$(".basicserversettings .sessionTimeOutSeconds").val(data.sessionTimeOutSeconds);
 			$(".basicserversettings .cacheOutputFiles").prop("checked", data.cacheOutputFiles);
 			$(".basicserversettings .geometryReuseEnabled").prop("checked", data.reuseGeometry);

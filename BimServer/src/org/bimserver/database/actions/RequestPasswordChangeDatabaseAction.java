@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -84,7 +84,7 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 						context.put("name", user.getName());
 						context.put("username", user.getUsername());
 						context.put("siteaddress", bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
-						context.put("validationlink", resetUrl + "&username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token + "&address=" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
+						context.put("validationlink", resetUrl + "&username=" + user.getUsername() + "&uoid=" + user.getOid() + "&validationtoken=" + token + "&address=" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
 						body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_BODY);
 						subject = bimServer.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_SUBJECT);
 						message.setContent(body, "text/html");

@@ -1,7 +1,7 @@
 package org.bimserver;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -50,14 +50,13 @@ public class MemoryLeakTester {
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 		config.setStartEmbeddedWebServer(true);
 		config.setClassPath(System.getProperty("java.class.path"));
-		config.setInitialProtocolBuffersPort(pbport);
 		config.setStartCommandLine(false);
 		config.setLocalDev(true);
 		config.setPort(port);
 		bimServer = new BimServer(config);
 		bimServer.getVersionChecker().getLocalVersion().setDate(new Date());
 		try {
-	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), pluginDirectories);
+	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);

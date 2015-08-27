@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -31,6 +31,7 @@ import javax.jws.soap.SOAPBinding.Use;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
+import org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
@@ -80,6 +81,16 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action="setDefaultRenderEngine")
 	void setDefaultRenderEngine(
 		@WebParam(name = "oid", partName = "setDefaultRenderEngine.oid") Long oid) throws UserException, ServerException;
+
+	/**
+	 * @param onlyEnabled Whether to only include enabled serializers
+	 * @return A list of Serializers
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllSerializersForRoids")
+	List<SSerializerPluginConfiguration> getAllSerializersForRoids(
+		@WebParam(name = "onlyEnabled", partName = "getAllSerializersForRoids.onlyEnabled") Boolean onlyEnabled,
+		@WebParam(name = "roids", partName = "getAllSerializersForRoids.roids") Set<Long> roids) throws ServerException, UserException;
 
 	@WebMethod(action="setDefaultWebModule")
 	void setDefaultWebModule(
@@ -216,16 +227,6 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getAllSerializers")
 	List<SSerializerPluginConfiguration> getAllSerializers(
 		@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
-
-	/**
-	 * @param onlyEnabled Whether to only include enabled serializers
-	 * @return A list of Serializers
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllSerializersForRoids")
-	List<SSerializerPluginConfiguration> getAllSerializersForRoids(
-		@WebParam(name = "onlyEnabled", partName = "getAllSerializersForRoids.onlyEnabled") Boolean onlyEnabled,
-		@WebParam(name = "roids", partName = "getAllSerializersForRoids.roids") Set<Long> roids) throws ServerException, UserException;
 
 	/**
 	 * @param onlyEnabled Whether to only include enabled IFC engines
@@ -532,7 +533,7 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getAllDeserializers")
 	List<SDeserializerPluginConfiguration> getAllDeserializers(
 		@WebParam(name = "onlyEnabled", partName = "getAllDeserializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
-
+	
 	/**
 	 * @param onlyEnabled Whether to only include enabled deserializers
 	 * @return A list of all available deserializers
@@ -542,7 +543,7 @@ public interface PluginInterface extends PublicInterface {
 	List<SDeserializerPluginConfiguration> getAllDeserializersForProject (
 		@WebParam(name = "onlyEnabled", partName = "getAllDeserializersForProject.onlyEnabled") Boolean onlyEnabled,
 		@WebParam(name = "poid", partName = "getAllDeserializersForProject.poid") Long poid) throws ServerException, UserException;
-	
+
 	/**
 	 * @param contentType The ContentType
 	 * @return Serializer supporting the given ContentType
@@ -551,6 +552,15 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getSerializerByPluginClassName")
 	SSerializerPluginConfiguration getSerializerByPluginClassName(
 		@WebParam(name = "pluginClassName", partName = "getSerializerByPluginClassName.pluginClassName") String pluginClassName) throws ServerException, UserException;
+
+	/**
+	 * @param contentType The ContentType
+	 * @return Serializer supporting the given ContentType
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getMessagingSerializerByPluginClassName")
+	SMessagingSerializerPluginConfiguration getMessagingSerializerByPluginClassName(
+			@WebParam(name = "pluginClassName", partName = "getMessagingSerializerByPluginClassName.pluginClassName") String pluginClassName) throws ServerException, UserException;
 	
 	/**
 	 * @param type The type

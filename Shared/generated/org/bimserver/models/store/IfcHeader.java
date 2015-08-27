@@ -19,7 +19,6 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -29,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.IfcHeader#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.IfcHeader#getImplementationLevel <em>Implementation Level</em>}</li>
@@ -41,7 +41,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.IfcHeader#getIfcSchemaVersion <em>Ifc Schema Version</em>}</li>
  *   <li>{@link org.bimserver.models.store.IfcHeader#getAuthorization <em>Authorization</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getIfcHeader()
  * @model
@@ -60,7 +59,7 @@ public interface IfcHeader extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute list.
 	 * @see org.bimserver.models.store.StorePackage#getIfcHeader_Description()
-	 * @model
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<String> getDescription();
@@ -154,7 +153,7 @@ public interface IfcHeader extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Author</em>' attribute list.
 	 * @see org.bimserver.models.store.StorePackage#getIfcHeader_Author()
-	 * @model
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<String> getAuthor();
@@ -170,7 +169,7 @@ public interface IfcHeader extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Organization</em>' attribute list.
 	 * @see org.bimserver.models.store.StorePackage#getIfcHeader_Organization()
-	 * @model
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<String> getOrganization();

@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -38,7 +38,7 @@ import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -111,11 +111,11 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		newRevisionAdded.setProject(project);
 		newRevisionAdded.setAccessMethod(getAccessMethod());
 		
-		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(project.getSchema());
-		IfcModelInterface ifcModel = new IfcModel(packageMetaData);
+		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
+		IfcModelInterface ifcModel = new BasicIfcModel(packageMetaData, null);
 		if (oldLastRevision != null) {
 			int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
-			getDatabaseSession().getMap(ifcModel, new Query(longTransaction.getPackageMetaData(), project.getId(), oldLastRevision.getId(), null, Deep.YES, highestStopId));
+			getDatabaseSession().getMap(ifcModel, new Query(longTransaction.getPackageMetaData(), project.getId(), oldLastRevision.getId(), -1, null, Deep.YES, highestStopId));
 		}
 		
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
@@ -158,7 +158,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				change.execute(ifcModel, project, concreteRevision, getDatabaseSession(), created, deleted);
 			}
 		}
-		
+
+		ifcModel.fixInverseMismatches();
+
 		if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin() && geometryChanged) {
 			setProgress("Generating Geometry...", -1);
 			try {

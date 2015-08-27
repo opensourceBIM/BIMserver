@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.async;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -200,6 +200,11 @@ public class AsyncBimsie1LowLevelInterface {
 	}
 	
 	public interface RemoveReferenceCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
+	public interface RemoveReferenceByOidCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -433,11 +438,11 @@ public class AsyncBimsie1LowLevelInterface {
 		});
 	}
 	
-	public void createObject(final java.lang.Long tid, final java.lang.String className, final CreateObjectCallback callback) {
+	public void createObject(final java.lang.Long tid, final java.lang.String className, final java.lang.Boolean generateGuid, final CreateObjectCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.createObject(tid, className));
+					callback.success(syncService.createObject(tid, className, generateGuid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -541,11 +546,11 @@ public class AsyncBimsie1LowLevelInterface {
 		});
 	}
 	
-	public void getDataObjectsByType(final java.lang.Long roid, final java.lang.String schema, final java.lang.String className, final java.lang.Boolean flat, final GetDataObjectsByTypeCallback callback) {
+	public void getDataObjectsByType(final java.lang.Long roid, final java.lang.String packageName, final java.lang.String className, final java.lang.Boolean flat, final GetDataObjectsByTypeCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getDataObjectsByType(roid, schema, className, flat));
+					callback.success(syncService.getDataObjectsByType(roid, packageName, className, flat));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -753,6 +758,19 @@ public class AsyncBimsie1LowLevelInterface {
 			public void run(){
 				try {
 					syncService.removeReference(tid, oid, referenceName, index);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void removeReferenceByOid(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String referenceName, final java.lang.Long referencedOid, final RemoveReferenceByOidCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.removeReferenceByOid(tid, oid, referenceName, referencedOid);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

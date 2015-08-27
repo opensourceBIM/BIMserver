@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -92,6 +92,10 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			}
 			project.setGeoTag(parent.getGeoTag());
 		}
+		if (schema == null || (!schema.equals("ifc2x3tc1") && !schema.equals("ifc4"))) {
+			throw new UserException("Invalid schema, the only 2 valid options are: \"ifc2x3tc1\" and \"ifc4\"");
+		}
+		
 		final NewProjectAdded newProjectAdded = getDatabaseSession().create(NewProjectAdded.class);
 		newProjectAdded.setDate(new Date());
 		newProjectAdded.setExecutor(actingUser);
@@ -105,6 +109,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 //				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newProjectAdded));
 			}
 		});
+		project.setSendEmailOnNewRevision(bimServer.getServerSettingsCache().getServerSettings().isSendEmailOnNewRevision());
 		project.setId(getDatabaseSession().newPid());
 		project.setName(trimmedName);
 		project.setSchema(schema);

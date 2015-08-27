@@ -1,7 +1,7 @@
 package org.bimserver.tests.diff;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -46,10 +46,12 @@ public class Diff {
 	private int addedByHashMatch = 0;
 	private int valueMatches = 0;
 	private int addedByGraphIsomorphing = 0;
+	private File file1;
+	private File file2;
 
 	public static void main(String[] args) {
 		try {
-			new Diff(false, false, false).start();
+			new Diff(false, false, false, new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc")).start();
 		} catch (CompareException e) {
 			e.printStackTrace();
 		} catch (NoSuchAlgorithmException e) {
@@ -57,25 +59,27 @@ public class Diff {
 		}
 	}
 
-	public Diff(boolean ignoreIntegerZeroDollar, boolean ignoreDoubleZeroDollar, boolean ignoreListEmptyDollar) {
+	public Diff(boolean ignoreIntegerZeroDollar, boolean ignoreDoubleZeroDollar, boolean ignoreListEmptyDollar, File file1, File file2) {
 		this.ignoreIntegerZeroDollar = ignoreIntegerZeroDollar;
 		this.ignoreDoubleZeroDollar = ignoreDoubleZeroDollar;
 		this.ignoreListEmptyDollar = ignoreListEmptyDollar;
+		this.file1 = file1;
+		this.file2 = file2;
 		for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
 				EClass eClass = (EClass) eClassifier;
 				if (Ifc2x3tc1Package.eINSTANCE.getIfcRoot().isSuperTypeOf(eClass)) {
 					guidPositions.add(eClass.getName().toUpperCase() + "_" + eClass.getEAllStructuralFeatures().indexOf(eClass.getEStructuralFeature("GlobalId")));
 				}
-			}
+			} 
 		}
 	}
 
-	private void start() throws CompareException, NoSuchAlgorithmException {
+	public void start() throws CompareException, NoSuchAlgorithmException {
 		CountDownLatch countDownLatch = new CountDownLatch(2);
 		
-		DiffReader diffReader1 = new DiffReader(1, this, countDownLatch, new File("C:\\Users\\Ruben de Laat\\Downloads\\dgdfgdfgdfgf.1.ifc"));
-		DiffReader diffReader2 = new DiffReader(2, this, countDownLatch, new File("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\Atrium%20Offices%20-%20PROJETO_EXECUTIVO%20-%202012.05.03.ifc"));
+		DiffReader diffReader1 = new DiffReader(1, this, countDownLatch, file1);
+		DiffReader diffReader2 = new DiffReader(2, this, countDownLatch, file2);
 
 		diffReader1.start();
 		diffReader2.start();
@@ -135,6 +139,9 @@ public class Diff {
 					// We know m1 and m2 are isomorph, so just get their canonical form, and then match all objects
 					Fingerprint f1 = m1.toCanonicalForm();
 					Fingerprint f2 = m2.toCanonicalForm();
+					if (f1.getPermutationIndices().length != f2.getPermutationIndices().length) {
+						throw new CompareException("Not the same amount of permutation indices " + f1.getPermutationIndices().length + " / " + f2.getPermutationIndices().length);
+					}
 					for (int i=0; i<m1.size(); i++) {
 						addedByGraphIsomorphing++;
 						match(m1.getByIndex(f1.getPermutationIndices()[i]), m2.getByIndex(f2.getPermutationIndices()[i]));
@@ -432,6 +439,9 @@ public class Diff {
 	}
 
 	public void match(ModelObject modelObject1, ModelObject modelObject2) throws CompareException {
+		if (!modelObject1.getType().equals(modelObject2.getType())) {
+			throw new CompareException("Types not the same: " + modelObject1.getType() + "/" + modelObject2.getType());
+		}
 		if (modelObject1.getId() != modelObject2.getId()) {
 			System.out.println(modelObject1.getId() + "/" + modelObject2.getId());
 		}
@@ -491,7 +501,7 @@ public class Diff {
 					throw new CompareException("Objects not of same type: " + valueObject.getType() + " / " + remoteValueObject.getType());
 				}
 			} else {
-				throw new CompareException("Remote object not a ModelObject");
+				throw new CompareException("Remote object not a ModelObject: " + remoteValue);
 			}
 		} else if (value instanceof List) {
 			List<?> valueList = (List<?>) value;

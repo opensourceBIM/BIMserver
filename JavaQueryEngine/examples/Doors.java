@@ -5,16 +5,19 @@
  * 
  * Example file: AC9R1-Haus-G-H-Ver2-2x3.ifc
  */
-
 package org.bimserver.jqep;
 
 import java.io.PrintWriter;
 
+import org.bimserver.jqep.*;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+
 import java.util.*;
+
 import org.bimserver.models.ifc2x3tc1.*;
 
 public class Query implements QueryInterface {
@@ -22,13 +25,17 @@ public class Query implements QueryInterface {
 	private IfcModelInterface model;
 
 	@Override
-	public void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, ModelHelper modelHelper) throws IfcModelInterfaceException {
+	public void query(IfcModelInterface source, Reporter reporter, ModelHelper modelHelper) throws IfcModelInterfaceException {
 		reporter.info("Running doors example");
         List<IfcBuildingStorey> stories = source.getAll(IfcBuildingStorey.class);
         Map<Double, IfcBuildingStorey> orderedStories = new TreeMap<Double, IfcBuildingStorey>();
         for (IfcBuildingStorey storey : stories) {
             orderedStories.put(storey.getElevation(), storey);
         }
+
+		final Map<IdEObject, IdEObject> bigMap = new HashMap<IdEObject, IdEObject>();
+        IdEObject newOwnerHistory = modelHelper.copyBasicObjects(source, bigMap);
+        
         if (orderedStories.size() > 1) {
             IfcBuildingStorey firstFloor = stories.get(1);
             for (IfcRelContainedInSpatialStructure rel : firstFloor.getContainsElements()) {
@@ -37,7 +44,10 @@ public class Query implements QueryInterface {
             			IfcDoor ifcDoor = (IfcDoor)product;
                         if (ifcDoor.getOverallHeight() > 2) {
                         	reporter.info(ifcDoor.getName() + " " + ifcDoor.getOverallHeight());
-                        	modelHelper.copy(ifcDoor, dest);
+                        	
+    						IdEObject newObject = modelHelper.copy(ifcDoor, false, ModelHelper.createObjectIdm(ifcDoor.eClass()));
+    						modelHelper.copyDecomposes(ifcDoor, newOwnerHistory);
+    						bigMap.put(newObject, ifcDoor);
                         }
             		}
             	}

@@ -1,7 +1,7 @@
 package org.bimserver.webservices;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,12 +21,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.bimserver.emf.PackageMetaData;
+
 public class LongTransactionManager {
 	private final AtomicLong counter = new AtomicLong();
 	private final Map<Long, LongTransaction> runningTransactions = new HashMap<Long, LongTransaction>();
 	
-	public synchronized LongTransaction newLongTransaction(long poid, int pid, int rid, String schemaName) {
-		LongTransaction longTransaction = new LongTransaction(poid, pid, rid, counter.incrementAndGet(), schemaName);
+	public synchronized LongTransaction newLongTransaction(PackageMetaData packageMetaData, long poid, int pid, int rid, long roid) {
+		LongTransaction longTransaction = new LongTransaction(packageMetaData, poid, roid, pid, rid, counter.incrementAndGet());
 		runningTransactions.put(longTransaction.getTid(), longTransaction);
 		return longTransaction;
 	}

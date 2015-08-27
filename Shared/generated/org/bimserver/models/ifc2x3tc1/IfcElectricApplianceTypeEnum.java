@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -713,9 +713,10 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY = new IfcElectricApplianceTypeEnum[] { NULL, FRIDGE_FREEZER, REFRIGERATOR, NOTDEFINED, WASHINGMACHINE,
-			SCANNER, FREEZER, COMPUTER, INDIRECTWATERHEATER, PHOTOCOPIER, FACSIMILE, VENDINGMACHINE, DISHWASHER, HANDDRYER, MICROWAVE, FREESTANDINGFAN, PRINTER, RADIANTHEATER,
-			ELECTRICHEATER, WATERCOOLER, TELEPHONE, WATERHEATER, DIRECTWATERHEATER, TUMBLEDRYER, USERDEFINED, ELECTRICCOOKER, TV, };
+	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY = new IfcElectricApplianceTypeEnum[] { NULL, FRIDGE_FREEZER, REFRIGERATOR, NOTDEFINED,
+			WASHINGMACHINE, SCANNER, FREEZER, COMPUTER, INDIRECTWATERHEATER, PHOTOCOPIER, FACSIMILE, VENDINGMACHINE, DISHWASHER, HANDDRYER, MICROWAVE,
+			FREESTANDINGFAN, PRINTER, RADIANTHEATER, ELECTRICHEATER, WATERCOOLER, TELEPHONE, WATERHEATER, DIRECTWATERHEATER, TUMBLEDRYER, USERDEFINED,
+			ELECTRICCOOKER, TV, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Appliance Type Enum</b></em>' enumerators.

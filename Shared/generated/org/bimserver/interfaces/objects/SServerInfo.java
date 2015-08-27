@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -31,6 +31,7 @@ public class SServerInfo implements SDataBase
 	private static SClass sClass;
 	private SServerState serverState;
 	private java.lang.String errorMessage;
+	private SVersion version;
 
 	public long getOid() {
 		return this.oid;
@@ -64,6 +65,9 @@ public class SServerInfo implements SDataBase
 		if (sField.getName().equals("errorMessage")) {
 			return getErrorMessage();
 		}
+		if (sField.getName().equals("version")) {
+			return getVersion();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -80,6 +84,10 @@ public class SServerInfo implements SDataBase
 		}
 		if (sField.getName().equals("errorMessage")) {
 			setErrorMessage((String)val);
+			return;
+		}
+		if (sField.getName().equals("version")) {
+			setVersion((SVersion)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -108,6 +116,15 @@ public class SServerInfo implements SDataBase
 	public void setErrorMessage(java.lang.String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
+	
+	public SVersion getVersion() {
+		return version;
+	}
+
+	public void setVersion(SVersion version) {
+		this.version = version;
+	}
+	
 	
 	@Override
 	public int hashCode() {

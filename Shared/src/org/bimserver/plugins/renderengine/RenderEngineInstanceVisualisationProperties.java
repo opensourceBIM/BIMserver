@@ -1,7 +1,7 @@
 package org.bimserver.plugins.renderengine;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -21,11 +21,15 @@ public class RenderEngineInstanceVisualisationProperties {
 	private final float[] vertices;
 	private final int[] indices;
 	private final float[] normals;
+	private int[] materialIndices;
+	private float[] materials;
 
-	public RenderEngineInstanceVisualisationProperties(int[] indices, float[] vertices, float[] normals) {
+	public RenderEngineInstanceVisualisationProperties(int[] indices, float[] vertices, float[] normals, int[] materialIndices, float[] materials) {
 		this.indices = indices;
 		this.vertices = vertices;
 		this.normals = normals;
+		this.materialIndices = materialIndices;
+		this.materials = materials;
 	}
 	
 	public float[] getVertices() {
@@ -37,11 +41,11 @@ public class RenderEngineInstanceVisualisationProperties {
 	}
 
 	public float[] getMaterials() {
-		return null;
+		return materials;
 	}
 
 	public int[] getMaterialIndices() {
-		return null;
+		return materialIndices;
 	}
 
 	public float[] getNormals() {

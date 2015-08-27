@@ -1,7 +1,7 @@
 package org.bimserver.ifcengine.jvm;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -36,6 +36,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.ifcengine.Command;
+import org.bimserver.ifcengine.jvm.IfcEngine.InstanceTransformationMatrix;
 import org.bimserver.ifcengine.jvm.IfcEngine.SurfaceProperties;
 import org.bimserver.plugins.renderengine.RenderEngineClash;
 import org.bimserver.plugins.renderengine.RenderEngineException;
@@ -97,6 +98,13 @@ public class IfcEngineServer extends Thread {
 					out.writeInt(newPointerKey);
 				}
 					break;
+				case OPEN_MODEL_STREAMING_PARTS: {
+					ConvertingInputStream convertingInputStream = new ConvertingInputStream(in);
+					Pointer modelId = ifcEngine.loadFromInputStream(convertingInputStream, schemaFileName);
+					int newPointerKey = savePointer(modelId);
+					out.writeInt(newPointerKey);
+				}
+				break;
 				case FINALIZE_MODELLING: {
 					int modelId = in.readInt();
 					int indicesCount = in.readInt();
@@ -137,7 +145,7 @@ public class IfcEngineServer extends Thread {
 					out.writeInt(surfaceProperties.getIndicesCount());
 					out.writeInt(surfaceProperties.getVerticesCount());
 				}
-				break;
+					break;
 				case SET_POSTPROCESSING: {
 					int modelId = in.readInt();
 					ifcEngine.setPostProcessing(pointers.get(modelId), in.readBoolean() ? 1 : 0);
@@ -206,15 +214,26 @@ public class IfcEngineServer extends Thread {
 					pointers.remove(modelId);
 					break;
 				}
+				case GET_AREA: {
+					int modelId = in.readInt();
+					int instanceId = in.readInt();
+					out.writeDouble(ifcEngine.getArea(pointers.get(modelId), pointers.get(instanceId)));
+					break;
+				}
 				case SET_FORMAT: {
 					int modelId = in.readInt();
 					ifcEngine.setFormat(pointers.get(modelId), in.readInt(), in.readInt());
 				}
 					break;
+				case SET_FILTER: {
+					int modelId = in.readInt();
+					ifcEngine.setFilter(pointers.get(modelId), in.readInt(), in.readInt());
+				}
+				break;
 				case GET_INSTANCE_FROM_EXPRESSID: {
-					in.readInt(); // modelid
+					int modelId = in.readInt();
 					int expressId = in.readInt();
-					Pointer internalGetInstanceFromP21Line = ifcEngine.internalGetInstanceFromP21Line(expressId);
+					Pointer internalGetInstanceFromP21Line = ifcEngine.internalGetInstanceFromP21Line(pointers.get(modelId), expressId);
 					if (internalGetInstanceFromP21Line == Pointer.NULL) {
 						out.writeInt(-1);
 					} else {
@@ -223,29 +242,25 @@ public class IfcEngineServer extends Thread {
 					break;
 				}
 				case GET_TRANSFORMATION_MATRIX: {
-					in.readInt(); // modelid
-					in.readInt(); // instanceid
-//					long owlInstance = ifcEngine.owlGetInstance(pointers.get(modelId), pointers.get(instanceId));
-//					float[] transformationMatrix = ifcEngine.owlGetMappedItem(pointers.get(modelId), pointers.get(instanceId), owlInstance);
-//					for (int i=0; i<16; i++) {
-//						out.writeFloat(transformationMatrix[i]);
-//					}
-					out.writeFloat(1f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(1f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(1f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(0f);
-					out.writeFloat(1f);
+					int modelId = in.readInt();
+					int instanceId = in.readInt();
+					InstanceTransformationMatrix instanceTransformationMatrix = ifcEngine.getInstanceTransformationMatrix(pointers.get(modelId), pointers.get(instanceId));
+					out.writeFloat((float) instanceTransformationMatrix._11);
+					out.writeFloat((float) instanceTransformationMatrix._12);
+					out.writeFloat((float) instanceTransformationMatrix._13);
+					out.writeFloat((float) instanceTransformationMatrix._14);
+					out.writeFloat((float) instanceTransformationMatrix._21);
+					out.writeFloat((float) instanceTransformationMatrix._22);
+					out.writeFloat((float) instanceTransformationMatrix._23);
+					out.writeFloat((float) instanceTransformationMatrix._24);
+					out.writeFloat((float) instanceTransformationMatrix._31);
+					out.writeFloat((float) instanceTransformationMatrix._32);
+					out.writeFloat((float) instanceTransformationMatrix._33);
+					out.writeFloat((float) instanceTransformationMatrix._34);
+					out.writeFloat((float) instanceTransformationMatrix._41);
+					out.writeFloat((float) instanceTransformationMatrix._42);
+					out.writeFloat((float) instanceTransformationMatrix._43);
+					out.writeFloat((float) instanceTransformationMatrix._44);
 					break;					
 				}
 				case CLOSE: {

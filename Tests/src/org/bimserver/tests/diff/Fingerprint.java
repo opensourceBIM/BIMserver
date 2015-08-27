@@ -1,7 +1,7 @@
 package org.bimserver.tests.diff;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -30,16 +30,16 @@ public class Fingerprint {
 	}
 	
 	private int[] createDefaultPermutationIndices() {
-		int[] indices = new int[data.length];
-		for (int i=0; i<data.length; i++) {
+		int[] indices = new int[(int) Math.sqrt(data.length)];
+		for (int i=0; i<indices.length; i++) {
 			indices[i] = i;
 		}
 		return indices;
 	}
 
 	public Fingerprint(int[] permutationIndices, int nrVertices) {
-		this.permutationIndices = permutationIndices;
 		data = new int[nrVertices * nrVertices];
+		this.permutationIndices = permutationIndices;
 	}
 	
 	public int[] getPermutationIndices() {
@@ -94,8 +94,9 @@ public class Fingerprint {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		for (int i=0; i<data.length; i++) {
-			sb.append(data[i] + (i < data.length ? ", " : ""));
+			sb.append(data[i] + (i < data.length - 1 ? ", " : ""));
 		}
+		sb.append(" - " + permutationIndices.length);
 		return sb.toString();
 	}
 }

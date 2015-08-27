@@ -1,0 +1,21 @@
+<project name="GitHubRelease">
+	<target name="GitHubRelease">
+		<mkdir dir="build" />
+		<javac destdir="build" debug="on" includeantruntime="false">
+			<src path="../src" />
+			<classpath>
+				<path>
+					<fileset file="antlibs/gson-2.2.4.jar"/>
+					<fileset file="antlibs/org.eclipse.egit.github.core-2.1.5.jar"/>
+					<fileset file="antlibs/httpclient-4.3.2.jar"/>
+					<fileset file="antlibs/httpcore-4.3.1.jar"/>
+				</path>
+			</classpath>
+		</javac>
+		<jar basedir="build" file="githubrelease.jar">
+			<manifest>
+				<attribute name="Main-Class" value="org.bimserver.build.CreateGitHubRelease" />
+			</manifest>
+		</jar>
+	</target>
+</project>

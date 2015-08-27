@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,14 +17,11 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.SmtpProtocol;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.WebModulePluginConfiguration;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -33,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isSendConfirmationEmailAfterRegistration <em>Send Confirmation Email After Registration</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getAllowSelfRegistration <em>Allow Self Registration</em>}</li>
@@ -58,8 +56,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpPort <em>Smtp Port</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpProtocol <em>Smtp Protocol</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isReuseGeometry <em>Reuse Geometry</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getRenderEngineProcesses <em>Render Engine Processes</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -108,7 +107,8 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setSendConfirmationEmailAfterRegistration(boolean newSendConfirmationEmailAfterRegistration) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION, newSendConfirmationEmailAfterRegistration);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION,
+				newSendConfirmationEmailAfterRegistration);
 	}
 
 	/**
@@ -144,7 +144,8 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setAllowUsersToCreateTopLevelProjects(boolean newAllowUsersToCreateTopLevelProjects) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS, newAllowUsersToCreateTopLevelProjects);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS,
+				newAllowUsersToCreateTopLevelProjects);
 	}
 
 	/**
@@ -507,6 +508,42 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setReuseGeometry(boolean newReuseGeometry) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__REUSE_GEOMETRY, newReuseGeometry);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isAllowCreateValidatedUser() {
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAllowCreateValidatedUser(boolean newAllowCreateValidatedUser) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER, newAllowCreateValidatedUser);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getRenderEngineProcesses() {
+		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__RENDER_ENGINE_PROCESSES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRenderEngineProcesses(int newRenderEngineProcesses) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__RENDER_ENGINE_PROCESSES, newRenderEngineProcesses);
 	}
 
 } //ServerSettingsImpl

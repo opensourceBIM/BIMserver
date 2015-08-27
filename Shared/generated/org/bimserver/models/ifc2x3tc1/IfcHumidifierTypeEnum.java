@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -438,9 +438,9 @@ public enum IfcHumidifierTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcHumidifierTypeEnum[] VALUES_ARRAY = new IfcHumidifierTypeEnum[] { NULL, NOTDEFINED, ADIABATICULTRASONIC, STEAMINJECTION, ADIABATICWETTEDELEMENT,
-			ASSISTEDSTEAM, ADIABATICATOMIZING, ADIABATICPAN, ASSISTEDELECTRIC, ASSISTEDBUTANE, ASSISTEDPROPANE, ADIABATICRIGIDMEDIA, USERDEFINED, ADIABATICCOMPRESSEDAIRNOZZLE,
-			ADIABATICAIRWASHER, ASSISTEDNATURALGAS, };
+	private static final IfcHumidifierTypeEnum[] VALUES_ARRAY = new IfcHumidifierTypeEnum[] { NULL, NOTDEFINED, ADIABATICULTRASONIC, STEAMINJECTION,
+			ADIABATICWETTEDELEMENT, ASSISTEDSTEAM, ADIABATICATOMIZING, ADIABATICPAN, ASSISTEDELECTRIC, ASSISTEDBUTANE, ASSISTEDPROPANE, ADIABATICRIGIDMEDIA,
+			USERDEFINED, ADIABATICCOMPRESSEDAIRNOZZLE, ADIABATICAIRWASHER, ASSISTEDNATURALGAS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Humidifier Type Enum</b></em>' enumerators.

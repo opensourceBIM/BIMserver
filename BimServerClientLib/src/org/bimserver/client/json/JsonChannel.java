@@ -1,7 +1,7 @@
 package org.bimserver.client.json;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,6 +17,7 @@ package org.bimserver.client.json;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.bimserver.client.Channel;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.TokenHolder;
@@ -33,8 +34,8 @@ public class JsonChannel extends Channel {
 	private String address;
 	private SServicesMap sServicesMap;
 
-	public JsonChannel(ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory, String address, SServicesMap sServicesMap) {
-		super();
+	public JsonChannel(CloseableHttpClient closeableHttpClient, ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory, String address, SServicesMap sServicesMap) {
+		super(closeableHttpClient);
 		this.reflectorFactory = reflectorFactory;
 		this.jsonReflectorFactory = jsonReflectorFactory;
 		this.address = address;

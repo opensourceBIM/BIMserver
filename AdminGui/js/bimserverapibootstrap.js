@@ -1,6 +1,6 @@
 function loadBimServerApi(address, notifier, callback, errorCallback) {
-	if (Window.Global == null) {
-		Window.Global = {};
+	if (window.Global == null) {
+		window.Global = {};
 	}
 	var timeoutId = window.setTimeout(function() {
 		notifier.setError("Could not connect");
@@ -9,31 +9,29 @@ function loadBimServerApi(address, notifier, callback, errorCallback) {
 	if (address.endsWith("/")) {
 		address = address.substring(0, address.length - 1);
 	}
-	$.getScript(address + "/js/bimserverapi.js").done(function(){
-		window.clearTimeout(timeoutId);
-		if (typeof BimServerApi != 'function') {
-			notifier.setError("Could not connect");
-			errorCallback();
-		} else {
-			if (BimServerApi != null) {
-				Global.bimServerApi = new BimServerApi(address, notifier);
-				Global.bimServerApi.init(function(){
-					// TODO make 1 call
-
-					Global.bimServerApi.call("AdminInterface", "getServerInfo", {}, function(serverInfo){
-						Global.bimServerApi.call("AdminInterface", "getVersion", {}, function(version){
-							Global.bimServerApi.version = version;
+	$.ajax({
+		  url: address + "/js/bimserverapi.js?_v=" + Global.version,
+		  dataType: "script",
+		  cache: true,
+		  success: function(){
+				window.clearTimeout(timeoutId);
+				if (typeof BimServerApi != 'function') {
+					notifier.setError("Could not connect");
+					errorCallback();
+				} else {
+					if (BimServerApi != null) {
+						Global.bimServerApi = new BimServerApi(address, notifier);
+						Global.bimServerApi.init(function(api, serverInfo){
 							callback(serverInfo);
 						});
-					});
-				});
-			} else {
-				window.clearTimeout(timeoutId);
-				notifier.setError("Could not find BIMserver API");
-				errorCallback();
-			}
-		}
-	}).fail(function(jqxhr, settings, exception){
+					} else {
+						window.clearTimeout(timeoutId);
+						notifier.setError("Could not find BIMserver API");
+						errorCallback();
+					}
+				}
+		  }
+		}).fail(function(jqxhr, settings, exception){
 		window.clearTimeout(timeoutId);
 		notifier.setError("Could not connect");
 		errorCallback();

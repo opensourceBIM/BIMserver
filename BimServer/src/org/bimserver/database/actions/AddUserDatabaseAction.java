@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -43,7 +43,6 @@ import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.utils.GeneratorUtils;
 import org.bimserver.utils.Hashers;
 import org.bimserver.webservices.authorization.Authorization;
-import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,7 +55,6 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 	private final String password;
 	private boolean createSystemUser = false;
 	private final BimServer bimServer;
-	private Authorization authorization;
 	private String resetUrl;
 
 	public AddUserDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String username, String name, UserType userType,
@@ -66,7 +64,6 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		this.name = name;
 		this.username = username;
 		this.userType = userType;
-		this.authorization = authorization;
 		this.selfRegistration = selfRegistration;
 		this.resetUrl = resetUrl;
 		this.password = null;
@@ -80,13 +77,12 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		this.name = name;
 		this.username = username;
 		this.userType = userType;
-		this.authorization = authorization;
 		this.selfRegistration = selfRegistration;
 		this.resetUrl = resetUrl;
 	}
 
 	public User execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		String trimmedUserName = username.trim();
+		String trimmedUserName = username.trim().toLowerCase();
 		String trimmedName = name.trim();
 		if (userType == UserType.SYSTEM && !createSystemUser) {
 			throw new UserException("Cannot create system users");
@@ -107,14 +103,16 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 			throw new UserException("A user with the username " + trimmedUserName + " already exists");
 		}
 		User actingUser = null;
-		if (authorization != null && !(authorization instanceof SystemAuthorization)) {
-			actingUser = getUserByUoid(authorization.getUoid());
-			if (actingUser == null || actingUser.getUserType() != UserType.SYSTEM) {
-				if (authorization.getUoid() != -1 && actingUser.getUserType() != UserType.ADMIN) {
-					throw new UserException("Only admin users can create other users");
-				}
-			}
-		}
+//		if (bimServer.getServerSettingsCache() != null && !bimServer.getServerSettingsCache().getServerSettings().isAllowCreateValidatedUser()) {
+//			if (authorization != null && !(authorization instanceof SystemAuthorization)) {
+//				actingUser = getUserByUoid(authorization.getUoid());
+//				if (actingUser == null || actingUser.getUserType() != UserType.SYSTEM) {
+//					if (authorization.getUoid() != -1 && actingUser.getUserType() != UserType.ADMIN) {
+//						throw new UserException("Only admin users can create other users");
+//					}
+//				}
+//			}
+//		}
 		final User user = getDatabaseSession().create(User.class);
 		if (password != null) {
 			byte[] salt = new byte[32];
@@ -143,7 +141,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					bimServer.getNotificationsManager().notify(new NewUserNotification(bimServer,user.getOid()));
+					bimServer.getNotificationsManager().notify(new NewUserNotification(bimServer, user.getOid()));
 				}
 			});
 			bimServer.updateUserSettings(getDatabaseSession(), user);
@@ -174,7 +172,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 								context.put("name", user.getName());
 								context.put("username", user.getUsername());
 								context.put("siteaddress", serverSettings.getSiteAddress());
-								context.put("validationlink", resetUrl + "&username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token + "&address=" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
+								context.put("validationlink", resetUrl + "&username=" + user.getUsername() + "&uoid=" + user.getOid() + "&validationtoken=" + token + "&address=" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
 								String subject = null;
 								if (selfRegistration) {
 									body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_BODY);

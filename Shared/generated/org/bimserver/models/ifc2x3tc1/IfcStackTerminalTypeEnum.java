@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -188,7 +188,8 @@ public enum IfcStackTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStackTerminalTypeEnum[] VALUES_ARRAY = new IfcStackTerminalTypeEnum[] { NULL, COWL, NOTDEFINED, BIRDCAGE, USERDEFINED, RAINWATERHOPPER, };
+	private static final IfcStackTerminalTypeEnum[] VALUES_ARRAY = new IfcStackTerminalTypeEnum[] { NULL, COWL, NOTDEFINED, BIRDCAGE, USERDEFINED,
+			RAINWATERHOPPER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Stack Terminal Type Enum</b></em>' enumerators.

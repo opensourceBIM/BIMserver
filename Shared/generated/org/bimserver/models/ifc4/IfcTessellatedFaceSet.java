@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTessellatedFaceSet#getCoordinates <em>Coordinates</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcTessellatedFaceSet#getNormals <em>Normals</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTessellatedFaceSet#getClosed <em>Closed</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTessellatedFaceSet#getHasColours <em>Has Colours</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTessellatedFaceSet#getHasTextures <em>Has Textures</em>}</li>
@@ -63,6 +64,22 @@ public interface IfcTessellatedFaceSet extends IfcTessellatedItem {
 	 * @generated
 	 */
 	void setCoordinates(IfcCartesianPointList3D value);
+
+	/**
+	 * Returns the value of the '<em><b>Normals</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.ListOfIfcParameterValue}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Normals</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Normals</em>' reference list.
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTessellatedFaceSet_Normals()
+	 * @model
+	 * @generated
+	 */
+	EList<ListOfIfcParameterValue> getNormals();
 
 	/**
 	 * Returns the value of the '<em><b>Closed</b></em>' attribute.

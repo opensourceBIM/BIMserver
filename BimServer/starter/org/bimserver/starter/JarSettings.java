@@ -37,6 +37,9 @@ public class JarSettings {
 	@XmlElement
 	private String stacksize = "1024k";
 
+	@XmlElement
+	private boolean forceipv4 = false;
+
 	public JarSettings() {
 		com.sun.management.OperatingSystemMXBean os = (com.sun.management.OperatingSystemMXBean) java.lang.management.ManagementFactory.getOperatingSystemMXBean();
 		long physicalMemorySize = os.getTotalPhysicalMemorySize();
@@ -139,5 +142,13 @@ public class JarSettings {
 
 	public String getPermsize() {
 		return permsize;
+	}
+
+	public boolean isForceipv4() {
+		return forceipv4;
+	}
+
+	public void setForceipv4(boolean forceipv4) {
+		this.forceipv4 = forceipv4;
 	}
 }

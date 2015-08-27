@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SActionState;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -70,16 +71,16 @@ public class SpaceInvadersService extends ServicePlugin {
 	}
 
 	@Override
-	public void register(final PluginConfiguration pluginConfiguration) {
+	public void register(long uoid, SInternalServicePluginConfiguration internalServicePluginConfiguration, final PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
-		serviceDescriptor.setIdentifier(getClass().getName());
+		serviceDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
 		serviceDescriptor.setName("Space Invaders Service");
 		serviceDescriptor.setDescription("Space Invaders Service");
 		serviceDescriptor.setReadRevision(true);
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
-		registerNewRevisionHandler(serviceDescriptor, new NewRevisionHandler() {
+		registerNewRevisionHandler(uoid, serviceDescriptor, new NewRevisionHandler() {
 			@Override
 			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				try {
@@ -96,7 +97,7 @@ public class SpaceInvadersService extends ServicePlugin {
 					
 					try {
 						SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
-						IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true);
+						IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true, false);
 						for (IfcSpace ifcSpace : model.getAllWithSubTypes(IfcSpace.class)) {
 //							GeometryInfo geometry = ifcSpace.getGeometry();
 							bimServerClientInterface.getGeometry(roid, ifcSpace);
@@ -121,5 +122,9 @@ public class SpaceInvadersService extends ServicePlugin {
 				}
 			}
 		});
+	}
+
+	@Override
+	public void unregister(SInternalServicePluginConfiguration internalService) {
 	}
 }

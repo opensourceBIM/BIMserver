@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -31,14 +31,15 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
@@ -100,16 +101,18 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 	}
 
 	private IfcModel realCheckout(Project project, Revision revision, DatabaseSession databaseSession, User user) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
 		final long totalSize = revision.getSize();
 		final AtomicLong total = new AtomicLong();
 		
 		IfcModelSet ifcModelSet = new IfcModelSet();
+		PackageMetaData lastPackageMetaData = null;
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
-			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(subRevision.getProject().getSchema());
-			IfcModel subModel = new IfcModel(packageMetaData);
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(subRevision.getProject().getSchema());
+			lastPackageMetaData = packageMetaData;
+			IfcModel subModel = new BasicIfcModel(packageMetaData, null);
 			int highestStopId = findHighestStopRid(project, subRevision);
-			Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), null, Deep.YES, highestStopId);
+			Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), revision.getOid(), null,  Deep.YES, highestStopId);
 			subModel.addChangeListener(new IfcModelChangeListener() {
 				@Override
 				public void objectAdded() {
@@ -131,11 +134,11 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			ifcModelSet.add(subModel);
 		}
 		
-		IfcModelInterface ifcModel = new IfcModel(null); // TODO
+		IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, null);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid())
-						.merge(revision.getProject(), ifcModelSet, new ModelHelper(ifcModel));
+						.merge(revision.getProject(), ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
 			} catch (MergeException e) {
 				throw new UserException(e);
 			}

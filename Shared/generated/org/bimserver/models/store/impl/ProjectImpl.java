@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,9 +19,7 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.log.ProjectRelated;
-
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
@@ -34,9 +32,7 @@ import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -45,6 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getName <em>Name</em>}</li>
@@ -67,8 +64,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getModelCheckers <em>Model Checkers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getSchema <em>Schema</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -406,6 +403,24 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	public void setSchema(String newSchema) {
 		eSet(StorePackage.Literals.PROJECT__SCHEMA, newSchema);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSendEmailOnNewRevision() {
+		return (Boolean) eGet(StorePackage.Literals.PROJECT__SEND_EMAIL_ON_NEW_REVISION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSendEmailOnNewRevision(boolean newSendEmailOnNewRevision) {
+		eSet(StorePackage.Literals.PROJECT__SEND_EMAIL_ON_NEW_REVISION, newSendEmailOnNewRevision);
 	}
 
 } //ProjectImpl

@@ -1,5 +1,5 @@
 
-Ö²
+¨·
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"¸
  SDeserializerPluginConfiguration
 description (	
@@ -267,7 +267,22 @@ settingsId ("p
 oid ("|
 GetInternalServiceByIdResponse
 errorMessage (	D
-value (25.org.bimserver.pb.SInternalServicePluginConfiguration")
+value (25.org.bimserver.pb.SInternalServicePluginConfiguration"I
+.GetMessagingSerializerByPluginClassNameRequest
+pluginClassName (	"¿
+'SMessagingSerializerPluginConfiguration
+description (	
+enabled (
+name (	
+oid (
+pluginDescriptorId (
+rid (
+
+settingsId (
+userSettingsId ("‘
+/GetMessagingSerializerByPluginClassNameResponse
+errorMessage (	H
+value (29.org.bimserver.pb.SMessagingSerializerPluginConfiguration")
 GetModelCompareByIdRequest
 oid ("v
 GetModelCompareByIdResponse
@@ -458,7 +473,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*š
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2ØF
+SPrimitiveEnum_BYTE_ARRAY2‰H
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -505,7 +520,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*š
 getDefaultRenderEngine/.org.bimserver.pb.GetDefaultRenderEngineRequest0.org.bimserver.pb.GetDefaultRenderEngineResponseu
 getDefaultSerializer-.org.bimserver.pb.GetDefaultSerializerRequest..org.bimserver.pb.GetDefaultSerializerResponser
 getDefaultWebModule,.org.bimserver.pb.GetDefaultWebModuleRequest-.org.bimserver.pb.GetDefaultWebModuleResponse{
-getInternalServiceById/.org.bimserver.pb.GetInternalServiceByIdRequest0.org.bimserver.pb.GetInternalServiceByIdResponser
+getInternalServiceById/.org.bimserver.pb.GetInternalServiceByIdRequest0.org.bimserver.pb.GetInternalServiceByIdResponse®
+'getMessagingSerializerByPluginClassName@.org.bimserver.pb.GetMessagingSerializerByPluginClassNameRequestA.org.bimserver.pb.GetMessagingSerializerByPluginClassNameResponser
 getModelCompareById,.org.bimserver.pb.GetModelCompareByIdRequest-.org.bimserver.pb.GetModelCompareByIdResponsex
 getModelCompareByName..org.bimserver.pb.GetModelCompareByNameRequest/.org.bimserver.pb.GetModelCompareByNameResponseo
 getModelMergerById+.org.bimserver.pb.GetModelMergerByIdRequest,.org.bimserver.pb.GetModelMergerByIdResponseu

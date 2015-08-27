@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,8 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcBSplineSurface;
 import org.bimserver.models.ifc4.IfcBSplineSurfaceForm;
-
+import org.bimserver.models.ifc4.ListOfIfcCartesianPoint;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getUDegree <em>UDegree</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getVDegree <em>VDegree</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getControlPointsList <em>Control Points List</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getSurfaceForm <em>Surface Form</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#isUClosed <em>UClosed</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#isVClosed <em>VClosed</em>}</li>
@@ -94,6 +96,16 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements IfcB
 	 */
 	public void setVDegree(int newVDegree) {
 		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__VDEGREE, newVDegree);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ListOfIfcCartesianPoint> getControlPointsList() {
+		return (EList<ListOfIfcCartesianPoint>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__CONTROL_POINTS_LIST, true);
 	}
 
 	/**

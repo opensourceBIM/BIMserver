@@ -1,7 +1,7 @@
 package nl.tue.buildingsmart.emf;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -382,9 +382,6 @@ public class Express2EMF {
 		Iterator<EntityDefinition> entIter = schema.getEntities().iterator();
 		while (entIter.hasNext()) {
 			EntityDefinition ent = (EntityDefinition) entIter.next();
-			if (ent.getName().equalsIgnoreCase("IfcRelConnectsPathElements")) {
-				System.out.println();
-			}
 			Iterator<Attribute> attribIter = ent.getAttributes(false).iterator();
 			while (attribIter.hasNext()) {
 				Attribute attrib = (Attribute) attribIter.next();
@@ -566,6 +563,11 @@ public class Express2EMF {
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEBoolean());
 				eAttribute.setUnsettable(expAttrib.isOptional());
 				cls.getEStructuralFeatures().add(eAttribute);
+			} else if (bt == null) {
+				// TODO These are the new 2-dimensional arrays in IFC4, there is 10 of them
+				System.out.println(ent.getName() + "." + attrib.getName() + " not implemented");
+				
+				addTwoDimensionalArray(ent.getName(), attrib.getName());
 			}
 			if (domain instanceof ArrayType) {
 				// TODO this is not yet implmented in simpelSDAI
@@ -623,6 +625,69 @@ public class Express2EMF {
 				throw new RuntimeException("Unknown type: " + domain);
 			}
 		}
+	}
+
+	private void addTwoDimensionalArray(String entityName, String attribName) {
+		EClassifier finalType = null;
+		if (entityName.equals("IfcBSplineSurface") && attribName.equals("ControlPointsList")) {
+			finalType = schemaPack.getEClassifier("IfcCartesianPoint");
+		} else if (entityName.equals("IfcCartesianPointList3D") && attribName.equals("CoordList")) {
+			finalType = schemaPack.getEClassifier("IfcLengthMeasure");
+		} else if (entityName.equals("IfcColourRgbList") && attribName.equals("ColourList")) {
+			finalType = schemaPack.getEClassifier("IfcNormalisedRatioMeasure");
+		} else if (entityName.equals("IfcIndexedTriangleTextureMap") && attribName.equals("TexCoordIndex")) {
+			finalType = EcorePackage.eINSTANCE.getEInt();
+		} else if (entityName.equals("IfcRationalBSplineSurfaceWithKnots") && attribName.equals("WeightsData")) {
+			finalType = EcorePackage.eINSTANCE.getEDouble();
+		} else if (entityName.equals("IfcStructuralLoadConfiguration") && attribName.equals("Locations")) {
+			finalType = schemaPack.getEClassifier("IfcLengthMeasure");
+		} else if (entityName.equals("IfcTessellatedFaceSet") && attribName.equals("Normals")) {
+			finalType = schemaPack.getEClassifier("IfcParameterValue");
+		} else if (entityName.equals("IfcTextureVertexList") && attribName.equals("TexCoordsList")) {
+			finalType = schemaPack.getEClassifier("IfcParameterValue");
+		} else if (entityName.equals("IfcTriangulatedFaceSet") && attribName.equals("CoordIndex")) {
+			finalType = EcorePackage.eINSTANCE.getEInt();
+		} else if (entityName.equals("IfcTriangulatedFaceSet") && attribName.equals("NormalIndex")) {
+			finalType = EcorePackage.eINSTANCE.getEInt();
+		} else {
+			System.out.println("Unimplemented " + entityName + "." + attribName);
+		}
+		EClass containerClass = (EClass) schemaPack.getEClassifier("ListOf" + finalType.getName());
+		if (containerClass == null) {
+			containerClass = EcoreFactory.eINSTANCE.createEClass();
+			containerClass.setName("ListOf" + finalType.getName());
+
+			if (finalType.getEPackage() == EcorePackage.eINSTANCE) {
+				EAttribute finalAttribute = EcoreFactory.eINSTANCE.createEAttribute();
+				finalAttribute.setName("List");
+				finalAttribute.setEType(finalType);
+				finalAttribute.setUpperBound(-1);
+				containerClass.getEAttributes().add(finalAttribute);
+			} else {
+				EReference finalReference = EcoreFactory.eINSTANCE.createEReference();
+				finalReference.setName("List");
+				finalReference.setEType(finalType);
+				finalReference.setUpperBound(-1);
+				containerClass.getEReferences().add(finalReference);
+			}
+
+			schemaPack.getEClassifiers().add(containerClass);
+		}
+		
+		EReference eReference = EcoreFactory.eINSTANCE.createEReference();
+		eReference.getEAnnotations().add(createTwoDimensionalArrayAnnotation());
+		eReference.setName(attribName);
+		eReference.setUpperBound(-1);
+		eReference.setEType(containerClass);
+		
+		EClass cls = (EClass) schemaPack.getEClassifier(entityName);
+		cls.getEStructuralFeatures().add(eReference);
+	}
+
+	private EAnnotation createTwoDimensionalArrayAnnotation() {
+		EAnnotation asStringAnnotation = eFactory.createEAnnotation();
+		asStringAnnotation.setSource("twodimensionalarray");
+		return asStringAnnotation;
 	}
 
 	private boolean superTypeIsWrapped(EClass eType) {

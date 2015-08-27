@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -53,6 +53,7 @@ public class SProject implements SDataBase
 	private List<Long> logs = new ArrayList<Long>();
 	private List<Long> modelCheckers = new ArrayList<Long>();
 	private java.lang.String schema;
+	private boolean sendEmailOnNewRevision;
 
 	public long getOid() {
 		return this.oid;
@@ -142,6 +143,9 @@ public class SProject implements SDataBase
 		}
 		if (sField.getName().equals("schema")) {
 			return getSchema();
+		}
+		if (sField.getName().equals("sendEmailOnNewRevision")) {
+			return isSendEmailOnNewRevision();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -236,6 +240,10 @@ public class SProject implements SDataBase
 		}
 		if (sField.getName().equals("schema")) {
 			setSchema((String)val);
+			return;
+		}
+		if (sField.getName().equals("sendEmailOnNewRevision")) {
+			setSendEmailOnNewRevision((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -415,6 +423,14 @@ public class SProject implements SDataBase
 
 	public void setSchema(java.lang.String schema) {
 		this.schema = schema;
+	}
+	
+	public boolean isSendEmailOnNewRevision() {
+		return sendEmailOnNewRevision;
+	}
+
+	public void setSendEmailOnNewRevision(boolean sendEmailOnNewRevision) {
+		this.sendEmailOnNewRevision = sendEmailOnNewRevision;
 	}
 	
 	@Override

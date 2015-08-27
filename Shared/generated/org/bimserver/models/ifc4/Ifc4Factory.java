@@ -8064,6 +8064,60 @@ public interface Ifc4Factory extends EFactory {
 	IfcNullStyle createIfcNullStyle();
 
 	/**
+	 * Returns a new object of class '<em>List Of Ifc Cartesian Point</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>List Of Ifc Cartesian Point</em>'.
+	 * @generated
+	 */
+	ListOfIfcCartesianPoint createListOfIfcCartesianPoint();
+
+	/**
+	 * Returns a new object of class '<em>List Of Ifc Length Measure</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>List Of Ifc Length Measure</em>'.
+	 * @generated
+	 */
+	ListOfIfcLengthMeasure createListOfIfcLengthMeasure();
+
+	/**
+	 * Returns a new object of class '<em>List Of Ifc Normalised Ratio Measure</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>List Of Ifc Normalised Ratio Measure</em>'.
+	 * @generated
+	 */
+	ListOfIfcNormalisedRatioMeasure createListOfIfcNormalisedRatioMeasure();
+
+	/**
+	 * Returns a new object of class '<em>List Of EInt</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>List Of EInt</em>'.
+	 * @generated
+	 */
+	ListOfEInt createListOfEInt();
+
+	/**
+	 * Returns a new object of class '<em>List Of EDouble</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>List Of EDouble</em>'.
+	 * @generated
+	 */
+	ListOfEDouble createListOfEDouble();
+
+	/**
+	 * Returns a new object of class '<em>List Of Ifc Parameter Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>List Of Ifc Parameter Value</em>'.
+	 * @generated
+	 */
+	ListOfIfcParameterValue createListOfIfcParameterValue();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

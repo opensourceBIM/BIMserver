@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -62,6 +62,7 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 		revision.getExtendedData().add(getIdEObject());
 		getDatabaseSession().store(revision);
 		getIdEObject().setProject(revision.getProject());
+		getIdEObject().setRevision(revision);
 		
 		if (getIdEObject().getSchema() != null) {
 			getDatabaseSession().store(getIdEObject().getSchema());

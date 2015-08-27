@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -76,6 +76,7 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 				}
 			}
 		}
+		project.setSendEmailOnNewRevision(sProject.isSendEmailOnNewRevision());
 		project.setName(sProject.getName());
 		project.setDescription(sProject.getDescription());
 		project.setExportLengthMeasurePrefix(SIPrefix.get(sProject.getExportLengthMeasurePrefix().getOrdinal()));

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,12 +17,10 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -31,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getEnabled <em>Enabled</em>}</li>
@@ -38,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getPluginDescriptor <em>Plugin Descriptor</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getSettings <em>Settings</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

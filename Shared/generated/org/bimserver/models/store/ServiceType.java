@@ -17,7 +17,6 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -27,13 +26,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ServiceType#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceType#getSimpleName <em>Simple Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceType#getFields <em>Fields</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceType#getSimpleType <em>Simple Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getServiceType()
  * @model

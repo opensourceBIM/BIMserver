@@ -1,7 +1,7 @@
 package org.bimserver.tests;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -72,13 +72,12 @@ public class TestSimultaniousDownloadWithCaching {
 		}
 		config.setClassPath(System.getProperty("java.class.path"));
 		config.setHomeDir(homeDir);
-		config.setInitialProtocolBuffersPort(8020);
 		config.setPort(8080);
 		config.setStartEmbeddedWebServer(true);
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 		final BimServer bimServer = new BimServer(config);
 		try {
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new File(".."), null);
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), null);
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getService(AdminInterface.class).setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
@@ -105,7 +104,7 @@ public class TestSimultaniousDownloadWithCaching {
 			serviceInterface = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL).get(ServiceInterface.class);
 			settingsInterface.setCacheOutputFiles(true);
 			settingsInterface.setGenerateGeometryOnCheckin(false);
-			final SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test", "ifc4");
+			final SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test", "ifc2x3tc1");
 			SDeserializerPluginConfiguration deserializerByName = serviceMap.getBimsie1ServiceInterface().getDeserializerByName("IfcStepDeserializer");
 			File file = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
 			serviceInterface.checkin(project.getOid(), "test", deserializerByName.getOid(), file.length(), file.getName(), new DataHandler(new FileDataSource(file)), false, true);
@@ -124,7 +123,7 @@ public class TestSimultaniousDownloadWithCaching {
 								CacheStoringEmfSerializerDataSource c = (CacheStoringEmfSerializerDataSource)downloadData.getFile().getDataSource();
 								try {
 									ByteArrayOutputStream baos = new ByteArrayOutputStream();
-									c.writeToOutputStream(baos);
+									c.writeToOutputStream(baos, null);
 									System.out.println(baos.size());
 								} catch (SerializerException e) {
 									e.printStackTrace();

@@ -1,6 +1,9 @@
 package org.bimserver.tests.emf;
 
 import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProject;
@@ -12,7 +15,8 @@ import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class RemoveReferenceList extends TestWithEmbeddedServer {
-
+	
+	// This test makes no sense, since getContainedInStructure is a Set (unordered)
 	@Test
 	public void test() {
 		try {
@@ -23,9 +27,9 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			bimServerClient.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc4");
+			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
-			IfcModelInterface model = bimServerClient.newModel(newProject);
+			IfcModelInterface model = bimServerClient.newModel(newProject, true);
 			
 			IfcFurnishingElement furnishingElement = model.create(IfcFurnishingElement.class);
 			furnishingElement.setName("Furnishing 1");
@@ -41,31 +45,36 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			link2.getRelatedElements().add(furnishingElement);
 			link3.getRelatedElements().add(furnishingElement);
 			
-			furnishingElement.getContainedInStructure().add(link1);
-			furnishingElement.getContainedInStructure().add(link2);
-			furnishingElement.getContainedInStructure().add(link3);
-			
 			model.commit("initial");
 			
 			// refresh
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
-			
-			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true);
+
+			bimServerClient.download(newProject.getLastRevisionId(), bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc").getOid(), new File("testX.ifc"));
+
+			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, true);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
 				if (ifcFurnishingElement.getContainedInStructure().size() != 3) {
 					fail("Size should be 3, is " + ifcFurnishingElement.getContainedInStructure().size());
 				}
 				// Remove the middle one
-				ifcFurnishingElement.getContainedInStructure().remove(1);
+				IfcRelContainedInSpatialStructure middleOne = null;
+				for (IfcRelContainedInSpatialStructure rel : ifcFurnishingElement.getContainedInStructure()) {
+					if (rel.getName().equals("link2")) {
+						middleOne = rel;
+						break;
+					}
+				}
+				ifcFurnishingElement.getContainedInStructure().remove(middleOne);
 			}
+			
 			model.commit("removed middle link");
 			
 			// refresh
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
+			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
-				if (ifcFurnishingElement.getContainedInStructure().size() != 2) {
-					fail("Size should be 2");
-				}
+				assertTrue("Size should be 2, is " + ifcFurnishingElement.getContainedInStructure().size(), ifcFurnishingElement.getContainedInStructure().size() == 2);
 				if (!ifcFurnishingElement.getContainedInStructure().get(0).getName().equals("link1")) {
 					fail("First one should be link 1");
 				}
@@ -73,7 +82,6 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 					fail("Second one should be link 3");
 				}
 			}
-			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true);
 		} catch (Throwable e) {
 			e.printStackTrace();
 			if (e instanceof AssertionError) {

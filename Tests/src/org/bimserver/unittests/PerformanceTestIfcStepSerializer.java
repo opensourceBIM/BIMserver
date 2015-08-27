@@ -1,7 +1,7 @@
 package org.bimserver.unittests;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -28,6 +28,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.PluginConfiguration;
@@ -52,9 +53,9 @@ public class PerformanceTestIfcStepSerializer {
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
-			PackageMetaData packageMetaData = metaDataManager.getEPackage("ifc2x3tc1");
+			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
-			IfcModel model = new IfcModel(packageMetaData);
+			IfcModel model = new BasicIfcModel(packageMetaData, null);
 			EList<EClassifier> classifiers = Ifc2x3tc1Package.eINSTANCE.getEClassifiers();
 			for (int i=0; i<100000; i++) {
 				EClassifier eClassifier = classifiers.get(new Random().nextInt(classifiers.size()));
@@ -71,7 +72,7 @@ public class PerformanceTestIfcStepSerializer {
 			}
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);
 			long start = System.nanoTime();
-			serializer.writeToFile(new File("output/test.ifc"));
+			serializer.writeToFile(new File("output/test.ifc"), null);
 			System.out.println("Serialize took: " + ((System.nanoTime() - start) / 1000000) + "ms");
 		} catch (PluginException e) {
 			e.printStackTrace();

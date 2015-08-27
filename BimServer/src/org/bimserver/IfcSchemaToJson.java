@@ -1,7 +1,7 @@
 package org.bimserver;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -47,7 +47,7 @@ public class IfcSchemaToJson {
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(new File("www/js/ifc4.js"));
-			new IfcSchemaToJson().convert(fos, new File("C:\\Users\\Ruben de Laat\\Downloads\\20130305_IFC4_HTML_distribution\\IFC4"), Ifc4Package.eINSTANCE);
+			new IfcSchemaToJson().convert(fos, new File("C:\\Users\\Ruben de Laat\\Downloads\\20130305_IFC4_HTML_distribution\\IFC4\\schema"), Ifc4Package.eINSTANCE);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

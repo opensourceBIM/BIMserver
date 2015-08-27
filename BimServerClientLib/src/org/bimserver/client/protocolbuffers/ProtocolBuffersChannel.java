@@ -1,7 +1,7 @@
 package org.bimserver.client.protocolbuffers;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -20,6 +20,7 @@ package org.bimserver.client.protocolbuffers;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.bimserver.client.Channel;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
@@ -40,7 +41,8 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 	private int port;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
 
-	public ProtocolBuffersChannel(SServicesMap servicesMap, ProtocolBuffersMetaData protocolBuffersMetaData, ReflectorFactory reflectorFactory, String address, int port) {
+	public ProtocolBuffersChannel(CloseableHttpClient httpClient, SServicesMap servicesMap, ProtocolBuffersMetaData protocolBuffersMetaData, ReflectorFactory reflectorFactory, String address, int port) {
+		super(httpClient);
 		this.servicesMap = servicesMap;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.reflectorFactory = reflectorFactory;

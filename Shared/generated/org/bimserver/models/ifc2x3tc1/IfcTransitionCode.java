@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -163,7 +163,8 @@ public enum IfcTransitionCode implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTransitionCode[] VALUES_ARRAY = new IfcTransitionCode[] { NULL, CONTSAMEGRADIENT, CONTSAMEGRADIENTSAMECURVATURE, CONTINUOUS, DISCONTINUOUS, };
+	private static final IfcTransitionCode[] VALUES_ARRAY = new IfcTransitionCode[] { NULL, CONTSAMEGRADIENT, CONTSAMEGRADIENTSAMECURVATURE, CONTINUOUS,
+			DISCONTINUOUS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Transition Code</b></em>' enumerators.

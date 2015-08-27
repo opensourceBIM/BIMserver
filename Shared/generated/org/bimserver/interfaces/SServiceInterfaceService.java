@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.bimserver.shared.interfaces.PublicInterface;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -517,6 +517,11 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 					}
 				}));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SSmtpProtocol"), null));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);

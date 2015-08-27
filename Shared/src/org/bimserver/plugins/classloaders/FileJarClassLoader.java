@@ -1,7 +1,7 @@
 package org.bimserver.plugins.classloaders;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -36,6 +36,7 @@ import java.util.jar.JarInputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,9 +44,11 @@ public class FileJarClassLoader extends JarClassLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileJarClassLoader.class);
 	private final Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
 	private File tempDir;
+	private File jarFile;
 
 	public FileJarClassLoader(ClassLoader parentClassLoader, File jarFile, File tempDir) throws FileNotFoundException, IOException {
 		super(parentClassLoader);
+		this.jarFile = jarFile;
 		FileInputStream fis = new FileInputStream(jarFile);
 		try {
 			String md5 = org.apache.commons.codec.digest.DigestUtils.md5Hex(fis);
@@ -143,7 +146,11 @@ public class FileJarClassLoader extends JarClassLoader {
 			return loadedClasses.get(fileName);
 		}
 		try {
-			FileInputStream fileInputStream = new FileInputStream(new File(tempDir, fileName));
+			File file = new File(tempDir, fileName);
+			if (!file.exists()) {
+				throw new ClassNotFoundException();
+			}
+			FileInputStream fileInputStream = new FileInputStream(file);
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 			try {
 				IOUtils.copy(fileInputStream, byteArrayOutputStream);
@@ -174,5 +181,11 @@ public class FileJarClassLoader extends JarClassLoader {
 		} catch (IOException e) {
 			throw new ClassNotFoundException();
 		}
+	}
+
+	@Override
+	public void dumpStructure(int indent) {
+		System.out.print(StringUtils.gen("  ", indent));
+		System.out.println("FileJarClassLoader " + jarFile.getName());
 	}
 }

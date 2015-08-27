@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,11 +17,14 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
+import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -33,9 +36,10 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.IfcHeader;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
@@ -74,17 +78,24 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 		final long totalSize = incrSize;
 		final AtomicLong total = new AtomicLong();
 
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
-
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
+		PackageMetaData lastPackageMetaData = null;
+		
+		IfcHeader ifcHeader = null;
+		
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		for (long roid : roids) {
 			Revision revision = getRevisionByRoid(roid);
 			project = revision.getProject();
+			pidRoidMap.put(project.getId(), roid);
 			if (getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(concreteRevision.getProject().getSchema());
-					IfcModel subModel = new IfcModel(packageMetaData);
+					ifcHeader = concreteRevision.getIfcHeader();
+					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
+					lastPackageMetaData = packageMetaData;
+					IfcModel subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
 					int highestStopId = findHighestStopRid(project, concreteRevision);
-					Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, Deep.YES, highestStopId);
+					Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), revision.getOid(), objectIDM, Deep.YES, highestStopId);
 					subModel.addChangeListener(new IfcModelChangeListener() {
 						@Override
 						public void objectAdded() {
@@ -96,6 +107,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 							}
 						}
 					});
+					updateOidCounters(concreteRevision, query);
 					getDatabaseSession().getMap(subModel, query);
 					projectName += concreteRevision.getProject().getName() + "-";
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());
@@ -112,12 +124,15 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
-		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getEPackage(project.getSchema());
-		IfcModelInterface ifcModel = new IfcModel(packageMetaData);
+		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, getDatabaseSession());
 		try {
-			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(ifcModel));
+			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
 		} catch (MergeException e) {
 			throw new UserException(e);
+		}
+		if (ifcHeader != null) {
+			ifcHeader.load();
+			ifcModel.getModelMetaData().setIfcHeader(ifcHeader);
 		}
 		if (projectName.endsWith("-")) {
 			projectName = projectName.substring(0, projectName.length() - 1);

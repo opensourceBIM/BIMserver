@@ -1,7 +1,7 @@
 package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -818,12 +818,12 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(projectSmall, "parentId", EcorePackage.eINSTANCE.getELong());
 		
 		EClass ifcHeader = schema.createEClass("store", "IfcHeader");
-		schema.createEAttribute(ifcHeader, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
+		schema.createEAttribute(ifcHeader, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY).setUnique(false);
 		schema.createEAttribute(ifcHeader, "implementationLevel", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(ifcHeader, "filename", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(ifcHeader, "timeStamp", EcorePackage.eINSTANCE.getEDate());
-		schema.createEAttribute(ifcHeader, "author", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
-		schema.createEAttribute(ifcHeader, "organization", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
+		schema.createEAttribute(ifcHeader, "author", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY).setUnique(false);
+		schema.createEAttribute(ifcHeader, "organization", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY).setUnique(false);
 		schema.createEAttribute(ifcHeader, "preProcessorVersion", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(ifcHeader, "originatingSystem", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(ifcHeader, "ifcSchemaVersion", EcorePackage.eINSTANCE.getEString());

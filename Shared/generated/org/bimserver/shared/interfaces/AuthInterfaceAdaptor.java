@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,9 @@ public class AuthInterfaceAdaptor implements org.bimserver.shared.interfaces.Aut
 	}
 	
 	public void requestPasswordChange(java.lang.String username, java.lang.String resetUrl) throws UserException, ServerException {
+	}
+	
+	public void setHash(java.lang.Long uoid, byte[] hash, byte[] salt) throws UserException, ServerException {
 	}
 	
 	public org.bimserver.interfaces.objects.SUser validateAccount(java.lang.Long uoid, java.lang.String token, java.lang.String password) throws UserException, ServerException {

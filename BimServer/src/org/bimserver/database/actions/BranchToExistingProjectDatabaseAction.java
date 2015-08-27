@@ -1,7 +1,7 @@
 package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2014  BIMserver.org
+ * Copyright (C) 2009-2015  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,6 +25,7 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -71,23 +72,20 @@ public class BranchToExistingProjectDatabaseAction extends AbstractBranchDatabas
 		if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, oldProject)) {
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}
-		PackageMetaData lastMetaData = null;
 		IfcModelSet ifcModelSet = new IfcModelSet();
+		PackageMetaData lastMetaData = null;
 		for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
-			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getEPackage(subRevision.getProject().getSchema());
-			if (lastMetaData != null && lastMetaData != packageMetaData) {
-				throw new UserException("Cannot branch revision with different schemas");
-			}
-			IfcModel subModel = new IfcModel(packageMetaData);
-			getDatabaseSession().getMap(subModel, new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), Deep.YES));
+			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(subRevision.getProject().getSchema());
+			IfcModel subModel = new BasicIfcModel(packageMetaData, null);
+			getDatabaseSession().getMap(subModel, new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), -1, Deep.YES));
 			subModel.getModelMetaData().setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 			lastMetaData = packageMetaData;
 		}
-		IfcModelInterface model = new IfcModel(lastMetaData);
+		IfcModelInterface model = new BasicIfcModel(lastMetaData, null);
 		try {
 			model = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid())
-					.merge(oldRevision.getProject(), ifcModelSet, new ModelHelper(model));
+					.merge(oldRevision.getProject(), ifcModelSet, new ModelHelper(bimServer.getMetaDataManager(), model));
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

@@ -16,6 +16,8 @@
  */
 package org.bimserver.models.ifc4;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ifc BSpline Surface</b></em>'.
@@ -26,6 +28,7 @@ package org.bimserver.models.ifc4;
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getUDegree <em>UDegree</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getVDegree <em>VDegree</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getControlPointsList <em>Control Points List</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getSurfaceForm <em>Surface Form</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#isUClosed <em>UClosed</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#isVClosed <em>VClosed</em>}</li>
@@ -89,6 +92,22 @@ public interface IfcBSplineSurface extends IfcBoundedSurface {
 	 * @generated
 	 */
 	void setVDegree(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Control Points List</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.ListOfIfcCartesianPoint}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Control Points List</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Control Points List</em>' reference list.
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurface_ControlPointsList()
+	 * @model
+	 * @generated
+	 */
+	EList<ListOfIfcCartesianPoint> getControlPointsList();
 
 	/**
 	 * Returns the value of the '<em><b>Surface Form</b></em>' attribute.

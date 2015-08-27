@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009-2013 BIMserver.org
+ * Copyright (C) 2009-2014 BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -288,8 +288,8 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY = new IfcSpaceHeaterTypeEnum[] { NULL, UNITHEATER, BASEBOARDHEATER, NOTDEFINED, PANELRADIATOR, CONVECTOR,
-			TUBULARRADIATOR, USERDEFINED, FINNEDTUBEUNIT, SECTIONALRADIATOR, };
+	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY = new IfcSpaceHeaterTypeEnum[] { NULL, UNITHEATER, BASEBOARDHEATER, NOTDEFINED, PANELRADIATOR,
+			CONVECTOR, TUBULARRADIATOR, USERDEFINED, FINNEDTUBEUNIT, SECTIONALRADIATOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Space Heater Type Enum</b></em>' enumerators.
