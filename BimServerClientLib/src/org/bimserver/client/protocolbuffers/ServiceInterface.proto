@@ -105,6 +105,8 @@ service ServiceInterface {
 
 	rpc getAllWritableProjects (GetAllWritableProjectsRequest) returns (GetAllWritableProjectsResponse);
 
+	rpc getArea (GetAreaRequest) returns (GetAreaResponse);
+
 	rpc getAvailableClasses (GetAvailableClassesRequest) returns (GetAvailableClassesResponse);
 
 	rpc getAvailableClassesInRevision (GetAvailableClassesInRevisionRequest) returns (GetAvailableClassesInRevisionResponse);
@@ -144,6 +146,8 @@ service ServiceInterface {
 	rpc getUserSettings (GetUserSettingsRequest) returns (GetUserSettingsResponse);
 
 	rpc getUsersProjects (GetUsersProjectsRequest) returns (GetUsersProjectsResponse);
+
+	rpc getVolume (GetVolumeRequest) returns (GetVolumeResponse);
 
 	rpc importData (ImportDataRequest) returns (VoidResponse);
 
@@ -890,6 +894,16 @@ message GetAllWritableProjectsResponse {
 	repeated SProject value = 2;
 }
 
+message GetAreaRequest {
+	optional int64 roid = 1;
+	optional int64 oid = 2;
+}
+
+message GetAreaResponse {
+	optional string errorMessage = 1;
+	optional double value = 2;
+}
+
 message GetAvailableClassesRequest {
 }
 
@@ -1464,6 +1478,16 @@ message GetUsersProjectsRequest {
 message GetUsersProjectsResponse {
 	optional string errorMessage = 1;
 	repeated SProject value = 2;
+}
+
+message GetVolumeRequest {
+	optional int64 roid = 1;
+	optional int64 oid = 2;
+}
+
+message GetVolumeResponse {
+	optional string errorMessage = 1;
+	optional double value = 2;
 }
 
 message ImportDataRequest {

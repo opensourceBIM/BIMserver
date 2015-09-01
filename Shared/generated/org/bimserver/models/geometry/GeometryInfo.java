@@ -34,6 +34,8 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getData <em>Data</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getInstance <em>Instance</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getTransformation <em>Transformation</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getArea <em>Area</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getVolume <em>Volume</em>}</li>
  * </ul>
  * </p>
  *
@@ -250,5 +252,57 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setTransformation(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Area</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Area</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Area</em>' attribute.
+	 * @see #setArea(double)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_Area()
+	 * @model
+	 * @generated
+	 */
+	double getArea();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getArea <em>Area</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Area</em>' attribute.
+	 * @see #getArea()
+	 * @generated
+	 */
+	void setArea(double value);
+
+	/**
+	 * Returns the value of the '<em><b>Volume</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Volume</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Volume</em>' attribute.
+	 * @see #setVolume(double)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_Volume()
+	 * @model
+	 * @generated
+	 */
+	double getVolume();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getVolume <em>Volume</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Volume</em>' attribute.
+	 * @see #getVolume()
+	 * @generated
+	 */
+	void setVolume(double value);
 
 } // GeometryInfo

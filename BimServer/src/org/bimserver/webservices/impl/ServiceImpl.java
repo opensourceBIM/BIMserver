@@ -75,6 +75,7 @@ import org.bimserver.database.actions.GetAllRevisionsByUserDatabaseAction;
 import org.bimserver.database.actions.GetAllServicesOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllUsersDatabaseAction;
 import org.bimserver.database.actions.GetAllWritableProjectsDatabaseAction;
+import org.bimserver.database.actions.GetAreaDatabaseAction;
 import org.bimserver.database.actions.GetAvailableClassesDatabaseAction;
 import org.bimserver.database.actions.GetAvailableClassesInRevisionDatabaseAction;
 import org.bimserver.database.actions.GetCheckinWarningsDatabaseAction;
@@ -87,6 +88,7 @@ import org.bimserver.database.actions.GetProjectsOfUserDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
+import org.bimserver.database.actions.GetVolumeDatabaseAction;
 import org.bimserver.database.actions.RemoveModelCheckerFromProjectDatabaseAction;
 import org.bimserver.database.actions.RemoveServiceFromProjectDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromExtendedDataSchemaDatabaseAction;
@@ -1525,6 +1527,34 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			BimDatabaseAction<SIfcHeader> action = new GetIfcHeaderDatabaseAction(getBimServer(), session, getInternalAccessMethod(), croid, getAuthorization());
+			return session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public Double getArea(Long roid, Long oid) throws UserException, ServerException {
+		requireAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Double> action = new GetAreaDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, oid, getAuthorization());
+			return session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public Double getVolume(Long roid, Long oid) throws UserException, ServerException {
+		requireAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Double> action = new GetVolumeDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, oid, getAuthorization());
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			return handleException(e);

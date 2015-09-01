@@ -65,6 +65,17 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 		}
 	}
 
+	@Override
+	public double getVolume() throws RenderEngineException {
+		synchronized (failSafeIfcEngine) {
+			failSafeIfcEngine.writeCommand(Command.GET_VOLUME);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeInt(instanceId);
+			failSafeIfcEngine.flush();
+			return failSafeIfcEngine.readDouble();
+		}
+	}
+	
 	private RenderEngineSurfaceProperties initialize() throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.INITIALIZE_MODELLING_INSTANCE);

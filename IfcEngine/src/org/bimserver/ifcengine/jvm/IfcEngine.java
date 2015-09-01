@@ -1530,4 +1530,8 @@ public class IfcEngine {
 	public double getArea(Pointer model, Pointer instance) {
 		return engine.GetArea(instance, Pointer.NULL, Pointer.NULL);
 	}
+
+	public double getVolume(Pointer model, Pointer instance) {
+		return engine.GetVolume(instance, Pointer.NULL, Pointer.NULL);
+	}
 }

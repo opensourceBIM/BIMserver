@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.geometry.impl;
 
+import org.bimserver.models.geometry.*;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;

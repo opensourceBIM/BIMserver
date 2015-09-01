@@ -20,6 +20,8 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="#/0/GeometryInstance"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="area" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="volume" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Vector3f">
       <eAnnotations source="hidden"/>

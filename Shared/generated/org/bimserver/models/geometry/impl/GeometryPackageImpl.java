@@ -249,6 +249,24 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGeometryInfo_Area() {
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGeometryInfo_Volume() {
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVector3f() {
 		if (vector3fEClass == null) {
 			vector3fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(1);

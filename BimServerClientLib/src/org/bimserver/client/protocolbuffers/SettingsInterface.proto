@@ -104,6 +104,7 @@ message GetServerSettingsRequest {
 enum SSmtpProtocol{
 	SSmtpProtocol_SMTP = 0;
 	SSmtpProtocol_SMTPS = 1;
+	SSmtpProtocol_STARTTLS = 2;
 }
 
 message SServerSettings {
