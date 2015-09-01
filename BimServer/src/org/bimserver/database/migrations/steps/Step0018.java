@@ -1,4 +1,4 @@
-package org.bimserver.plugins.renderengine;
+package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
@@ -17,9 +17,23 @@ package org.bimserver.plugins.renderengine;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public interface RenderEngineInstance {
-	float[] getTransformationMatrix() throws RenderEngineException;
-	RenderEngineGeometry generateGeometry() throws RenderEngineException;
-	double getArea() throws RenderEngineException;
-	double getVolume() throws RenderEngineException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EcorePackage;
+
+public class Step0018 extends Migration {
+
+	@Override
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
+		EClass geometryInfoClass = schema.getEClass("geometry", "GeometryInfo");
+		schema.createEAttribute(geometryInfoClass, "area", EcorePackage.eINSTANCE.getEDouble());
+		schema.createEAttribute(geometryInfoClass, "volume", EcorePackage.eINSTANCE.getEDouble());
+	}
+
+	@Override
+	public String getDescription() {
+		return "Adding area/volume";
+	}
 }

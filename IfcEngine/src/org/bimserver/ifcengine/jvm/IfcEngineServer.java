@@ -220,6 +220,12 @@ public class IfcEngineServer extends Thread {
 					out.writeDouble(ifcEngine.getArea(pointers.get(modelId), pointers.get(instanceId)));
 					break;
 				}
+				case GET_VOLUME: {
+					int modelId = in.readInt();
+					int instanceId = in.readInt();
+					out.writeDouble(ifcEngine.getVolume(pointers.get(modelId), pointers.get(instanceId)));
+					break;
+				}
 				case SET_FORMAT: {
 					int modelId = in.readInt();
 					ifcEngine.setFormat(pointers.get(modelId), in.readInt(), in.readInt());

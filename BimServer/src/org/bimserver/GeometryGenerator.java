@@ -40,6 +40,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.NotImplementedException;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
@@ -206,6 +207,22 @@ public class GeometryGenerator {
 									geometryInfo.setMinBounds(createVector3f(packageMetaData, model, oidCounter, Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
 									geometryInfo.setMaxBounds(createVector3f(packageMetaData, model, oidCounter, Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
 
+									try {
+										double area = renderEngineInstance.getArea();
+										geometryInfo.setArea(area);
+										double volume = renderEngineInstance.getVolume();
+										if (volume < 0d) {
+											volume = -volume;
+										}
+										geometryInfo.setVolume(volume);
+										
+										EStructuralFeature guidFeature = ifcProduct.eClass().getEStructuralFeature("GlobalId");
+										String guid = (String) ifcProduct.eGet(guidFeature);
+										
+										System.out.println(guid + ": " + "Area: " + area + ", Volume: " + volume);
+									} catch (NotImplementedException e) {
+									}
+									
 									GeometryData geometryData = null;
 									if (store) {
 										geometryData = packageMetaData.create(GeometryData.class);

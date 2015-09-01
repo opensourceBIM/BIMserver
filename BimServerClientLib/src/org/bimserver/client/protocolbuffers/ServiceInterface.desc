@@ -1,5 +1,5 @@
 
-ˇä
+Ûç
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -467,7 +467,13 @@ $GetAllRepositoryModelCheckersRequest"u
 GetAllWritableProjectsRequest"a
 GetAllWritableProjectsResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"
+value (2.org.bimserver.pb.SProject"+
+GetAreaRequest
+roid (
+oid ("6
+GetAreaResponse
+errorMessage (	
+value ("
 GetAvailableClassesRequest"B
 GetAvailableClassesResponse
 errorMessage (	
@@ -928,7 +934,13 @@ objectIDMs (
 uoid ("[
 GetUsersProjectsResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"V
+value (2.org.bimserver.pb.SProject"-
+GetVolumeRequest
+roid (
+oid ("8
+GetVolumeResponse
+errorMessage (	
+value ("V
 ImportDataRequest
 address (	
 username (	
@@ -1054,7 +1066,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2®G
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2ŒH
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponsem
@@ -1097,7 +1109,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getAllServiceDescriptors1.org.bimserver.pb.GetAllServiceDescriptorsRequest2.org.bimserver.pb.GetAllServiceDescriptorsResponse~
 getAllServicesOfProject0.org.bimserver.pb.GetAllServicesOfProjectRequest1.org.bimserver.pb.GetAllServicesOfProjectResponseZ
 getAllUsers$.org.bimserver.pb.GetAllUsersRequest%.org.bimserver.pb.GetAllUsersResponse{
-getAllWritableProjects/.org.bimserver.pb.GetAllWritableProjectsRequest0.org.bimserver.pb.GetAllWritableProjectsResponser
+getAllWritableProjects/.org.bimserver.pb.GetAllWritableProjectsRequest0.org.bimserver.pb.GetAllWritableProjectsResponseN
+getArea .org.bimserver.pb.GetAreaRequest!.org.bimserver.pb.GetAreaResponser
 getAvailableClasses,.org.bimserver.pb.GetAvailableClassesRequest-.org.bimserver.pb.GetAvailableClassesResponseê
 getAvailableClassesInRevision6.org.bimserver.pb.GetAvailableClassesInRevisionRequest7.org.bimserver.pb.GetAvailableClassesInRevisionResponseo
 getCheckinWarnings+.org.bimserver.pb.GetCheckinWarningsRequest,.org.bimserver.pb.GetCheckinWarningsResponser
@@ -1118,7 +1131,8 @@ getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceRes
 getUserByUserName*.org.bimserver.pb.GetUserByUserNameRequest+.org.bimserver.pb.GetUserByUserNameResponseo
 getUserRelatedLogs+.org.bimserver.pb.GetUserRelatedLogsRequest,.org.bimserver.pb.GetUserRelatedLogsResponsef
 getUserSettings(.org.bimserver.pb.GetUserSettingsRequest).org.bimserver.pb.GetUserSettingsResponsei
-getUsersProjects).org.bimserver.pb.GetUsersProjectsRequest*.org.bimserver.pb.GetUsersProjectsResponseQ
+getUsersProjects).org.bimserver.pb.GetUsersProjectsRequest*.org.bimserver.pb.GetUsersProjectsResponseT
+	getVolume".org.bimserver.pb.GetVolumeRequest#.org.bimserver.pb.GetVolumeResponseQ
 
 importData#.org.bimserver.pb.ImportDataRequest.org.bimserver.pb.VoidResponsew
 removeModelCheckerFromProject6.org.bimserver.pb.RemoveModelCheckerFromProjectRequest.org.bimserver.pb.VoidResponsem

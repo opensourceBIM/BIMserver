@@ -683,4 +683,10 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "getIfcHeader")
 	SIfcHeader getIfcHeader(@WebParam(name = "croid", partName = "getIfcHeader.croid") Long croid) throws UserException, ServerException;
+	
+	@WebMethod(action = "getArea")
+	Double getArea(@WebParam(name = "roid", partName = "getArea.roid") Long roid, @WebParam(name = "oid", partName = "getArea.oid") Long oid) throws UserException, ServerException;
+
+	@WebMethod(action = "getVolume")
+	Double getVolume(@WebParam(name = "roid", partName = "getVolume.roid") Long roid, @WebParam(name = "oid", partName = "getVolume.oid") Long oid) throws UserException, ServerException;
 }

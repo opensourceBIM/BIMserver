@@ -234,6 +234,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetAreaCallback {
+		void success(java.lang.Double result);
+		void error(Throwable e);
+	}
+	
 	public interface GetAvailableClassesCallback {
 		void success(java.util.List<java.lang.String> result);
 		void error(Throwable e);
@@ -331,6 +336,11 @@ public class AsyncServiceInterface {
 	
 	public interface GetUsersProjectsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
+		void error(Throwable e);
+	}
+	
+	public interface GetVolumeCallback {
+		void success(java.lang.Double result);
 		void error(Throwable e);
 	}
 	
@@ -930,6 +940,18 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void getArea(final java.lang.Long roid, final java.lang.Long oid, final GetAreaCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getArea(roid, oid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getAvailableClasses(final GetAvailableClassesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1163,6 +1185,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getUsersProjects(uoid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getVolume(final java.lang.Long roid, final java.lang.Long oid, final GetVolumeCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getVolume(roid, oid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

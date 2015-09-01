@@ -178,6 +178,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public java.lang.Double getArea(java.lang.Long roid, java.lang.Long oid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<java.lang.String> getAvailableClasses() throws UserException, ServerException {
 		return null;
 	}
@@ -255,6 +259,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getUsersProjects(java.lang.Long uoid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.lang.Double getVolume(java.lang.Long roid, java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
 	

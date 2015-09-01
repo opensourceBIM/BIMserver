@@ -49,7 +49,8 @@ public enum Command {
 	INITIALIZE_MODELLING_INSTANCE,
 	OPEN_MODEL_STREAMING_PARTS,
 	SET_FILTER,
-	GET_AREA;
+	GET_AREA, 
+	GET_VOLUME;
 
 	private static final Map<Byte, Command> map = initMap();
 	private byte id;

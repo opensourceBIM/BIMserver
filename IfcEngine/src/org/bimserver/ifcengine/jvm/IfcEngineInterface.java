@@ -223,6 +223,17 @@ public interface IfcEngineInterface extends Library {
 	 */
 	double GetArea(Pointer instance, Pointer insdices, Pointer vertices);
 
+	/**
+	 * @param model
+	 * @param instance
+	 * @param mode
+	 * @param pV
+	 * @param pI
+	 * @param pC
+	 * @return
+	 */
+	double GetVolume(Pointer instance, Pointer insdices, Pointer vertices);
+
 	
 	/**
 	 * Returns an integer representing internal 'clock'.
