@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getUrl <em>Url</em>}</li>
@@ -47,6 +46,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getTokenUrl <em>Token Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getNewProfileUrl <em>New Profile Url</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

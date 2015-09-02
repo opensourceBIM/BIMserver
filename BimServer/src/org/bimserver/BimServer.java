@@ -495,7 +495,7 @@ public class BimServer {
 			pluginConfiguration.setPluginDescriptor(pluginDescriptor);
 			
 			// For the opposite of setPluginDescriptor
-			session.store(pluginDescriptor);
+			//session.store(pluginDescriptor); Disabled for now, this creates massive lists, that are not really useful...
 			
 			pluginConfiguration.setDescription(plugin.getDescription());
 			pluginConfiguration.setEnabled(true);
@@ -506,8 +506,7 @@ public class BimServer {
 	}
 
 	private PluginDescriptor getPluginDescriptor(DatabaseSession session, String pluginClassName) throws BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(pluginClassName));
-		return session.querySingle(condition, PluginDescriptor.class, Query.getDefault());
+		return session.querySingle(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), pluginClassName);
 	}
 	
 	public void updateUserSettings(DatabaseSession session, User user) throws BimserverLockConflictException, BimserverDatabaseException {

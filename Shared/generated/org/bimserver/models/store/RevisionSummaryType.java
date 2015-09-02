@@ -25,12 +25,12 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.RevisionSummaryType#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.RevisionSummaryType#getCount <em>Count</em>}</li>
  *   <li>{@link org.bimserver.models.store.RevisionSummaryType#getSchema <em>Schema</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getRevisionSummaryType()
  * @model

@@ -26,13 +26,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.DataObject#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.DataObject#getGuid <em>Guid</em>}</li>
  *   <li>{@link org.bimserver.models.store.DataObject#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.DataObject#getValues <em>Values</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getDataObject()
  * @model

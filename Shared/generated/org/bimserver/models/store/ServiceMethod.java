@@ -25,12 +25,12 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ServiceMethod#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceMethod#getDoc <em>Doc</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceMethod#getReturnDoc <em>Return Doc</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getServiceMethod()
  * @model

@@ -27,7 +27,6 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.BimServerInfo#getCurrentVersion <em>Current Version</em>}</li>
  *   <li>{@link org.bimserver.models.store.BimServerInfo#getCurrentDate <em>Current Date</em>}</li>
@@ -41,6 +40,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.BimServerInfo#getServerLogUrl <em>Server Log Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.BimServerInfo#getStarted <em>Started</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getBimServerInfo()
  * @model

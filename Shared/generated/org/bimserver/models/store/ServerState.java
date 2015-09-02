@@ -188,8 +188,7 @@ public enum ServerState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ServerState[] VALUES_ARRAY = new ServerState[] { UNDEFINED, NOT_SETUP, MIGRATION_REQUIRED,
-			MIGRATION_IMPOSSIBLE, FATAL_ERROR, RUNNING, };
+	private static final ServerState[] VALUES_ARRAY = new ServerState[] { UNDEFINED, NOT_SETUP, MIGRATION_REQUIRED, MIGRATION_IMPOSSIBLE, FATAL_ERROR, RUNNING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Server State</b></em>' enumerators.
@@ -203,8 +202,6 @@ public enum ServerState implements Enumerator {
 	 * Returns the '<em><b>Server State</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param literal the literal.
-	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ServerState get(String literal) {
@@ -221,8 +218,6 @@ public enum ServerState implements Enumerator {
 	 * Returns the '<em><b>Server State</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param name the name.
-	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ServerState getByName(String name) {
@@ -239,8 +234,6 @@ public enum ServerState implements Enumerator {
 	 * Returns the '<em><b>Server State</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the integer value.
-	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ServerState get(int value) {

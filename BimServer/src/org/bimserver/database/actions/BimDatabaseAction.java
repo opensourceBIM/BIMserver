@@ -18,16 +18,13 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
-import org.bimserver.database.query.conditions.AttributeCondition;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.literals.IntegerLiteral;
-import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -36,7 +33,6 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.utils.CollectionUtils;
 
 public abstract class BimDatabaseAction<T> {
 	private final Set<ProgressListener> progressListeners = new HashSet<ProgressListener>();
@@ -89,18 +85,15 @@ public abstract class BimDatabaseAction<T> {
 	}
 	
 	public Project getProjectById(int pid) throws BimserverDatabaseException, BimserverLockConflictException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Id(), new IntegerLiteral(pid));
-		return databaseSession.querySingle(condition, Project.class, Query.getDefault());
+		return (Project) databaseSession.query(StorePackage.eINSTANCE.getProject_Id(), pid);
 	}
 
-	public Set<Project> getProjectsByName(String projectName) throws BimserverDatabaseException, BimserverLockConflictException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(projectName));
-		return CollectionUtils.mapToSet(databaseSession.query(condition, Project.class, Query.getDefault()));
+	public List<Project> getProjectsByName(String projectName) throws BimserverDatabaseException, BimserverLockConflictException {
+		return databaseSession.query(StorePackage.eINSTANCE.getProject_Name(), projectName);
 	}
 
 	public User getUserByUserName(String username) throws BimserverDatabaseException, BimserverLockConflictException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(username));
-		return databaseSession.querySingle(condition, User.class, Query.getDefault());
+		return (User) databaseSession.querySingle(StorePackage.eINSTANCE.getUser_Username(), username);
 	}
 
 	public Revision getRevisionByRoid(long roid) throws BimserverDatabaseException {

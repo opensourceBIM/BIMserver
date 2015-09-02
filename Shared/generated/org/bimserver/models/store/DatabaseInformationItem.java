@@ -25,11 +25,11 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.DatabaseInformationItem#getKey <em>Key</em>}</li>
  *   <li>{@link org.bimserver.models.store.DatabaseInformationItem#getValue <em>Value</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getDatabaseInformationItem()
  * @model

@@ -27,15 +27,14 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ModelMergerPluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
-public class ModelMergerPluginConfigurationImpl extends PluginConfigurationImpl
-		implements ModelMergerPluginConfiguration {
+public class ModelMergerPluginConfigurationImpl extends PluginConfigurationImpl implements ModelMergerPluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

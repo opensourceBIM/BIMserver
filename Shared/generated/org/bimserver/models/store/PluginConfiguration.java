@@ -25,7 +25,6 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.PluginConfiguration#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginConfiguration#getEnabled <em>Enabled</em>}</li>
@@ -33,6 +32,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.PluginConfiguration#getPluginDescriptor <em>Plugin Descriptor</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginConfiguration#getSettings <em>Settings</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getPluginConfiguration()
  * @model
