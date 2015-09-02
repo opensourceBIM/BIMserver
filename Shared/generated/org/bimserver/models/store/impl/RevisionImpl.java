@@ -37,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getUser <em>User</em>}</li>
@@ -56,6 +55,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getService <em>Service</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#isHasGeometry <em>Has Geometry</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

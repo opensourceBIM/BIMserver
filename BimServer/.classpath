@@ -42,6 +42,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-common-9.2.5.v20141112.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-server-9.2.5.v20141112.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/websocket-servlet-9.2.5.v20141112.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/je-6.4.9.jar" sourcepath="libsrc/je-6.4.9.zip"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="starter"/>
@@ -97,7 +98,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/wsdl4j-1.6.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlschema-core-2.1.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmltooling-1.4.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/je-6.2.31.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-core-3.0.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-rt-bindings-coloc-3.0.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-rt-bindings-corba-3.0.3.jar"/>

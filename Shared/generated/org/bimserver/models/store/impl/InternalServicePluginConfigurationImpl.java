@@ -27,17 +27,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.InternalServicePluginConfigurationImpl#isRemoteAccessible <em>Remote Accessible</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.InternalServicePluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.InternalServicePluginConfigurationImpl#isPublicProfile <em>Public Profile</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
-public class InternalServicePluginConfigurationImpl extends PluginConfigurationImpl
-		implements InternalServicePluginConfiguration {
+public class InternalServicePluginConfigurationImpl extends PluginConfigurationImpl implements InternalServicePluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

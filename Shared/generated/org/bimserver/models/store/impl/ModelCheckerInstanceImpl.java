@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getDescription <em>Description</em>}</li>
@@ -36,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#isValid <em>Valid</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerInstanceImpl#getModelCheckerPluginClassName <em>Model Checker Plugin Class Name</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
@@ -174,8 +174,7 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements ModelChec
 	 * @generated
 	 */
 	public void setModelCheckerPluginClassName(String newModelCheckerPluginClassName) {
-		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME,
-				newModelCheckerPluginClassName);
+		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME, newModelCheckerPluginClassName);
 	}
 
 } //ModelCheckerInstanceImpl

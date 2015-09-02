@@ -27,15 +27,14 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.QueryEnginePluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
-public class QueryEnginePluginConfigurationImpl extends PluginConfigurationImpl
-		implements QueryEnginePluginConfiguration {
+public class QueryEnginePluginConfigurationImpl extends PluginConfigurationImpl implements QueryEnginePluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

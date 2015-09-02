@@ -22,6 +22,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,6 +45,11 @@ public class NewClassChange implements Change {
 				if (!created) {
 					throw new BimserverDatabaseException("Could not create table " + tableName);
 				}
+//				for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+//					if (eStructuralFeature.getEAnnotation("index") != null) {
+//						database.createIndexTable(eClass, eStructuralFeature, databaseSession);
+//					}
+//				}
 			} catch (BimserverLockConflictException e) {
 				LOGGER.error("", e);
 			}

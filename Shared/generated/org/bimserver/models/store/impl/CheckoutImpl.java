@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#getRevision <em>Revision</em>}</li>
@@ -44,6 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#getActive <em>Active</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#getLogs <em>Logs</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

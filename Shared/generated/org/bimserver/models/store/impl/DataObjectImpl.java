@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.DataObjectImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DataObjectImpl#getGuid <em>Guid</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DataObjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DataObjectImpl#getValues <em>Values</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

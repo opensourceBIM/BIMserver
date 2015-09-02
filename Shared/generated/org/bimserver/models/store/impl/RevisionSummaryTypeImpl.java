@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getCount <em>Count</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl#getSchema <em>Schema</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

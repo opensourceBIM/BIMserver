@@ -25,12 +25,12 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ServiceInterface#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceInterface#getNameSpace <em>Name Space</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceInterface#getSimpleName <em>Simple Name</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getServiceInterface()
  * @model

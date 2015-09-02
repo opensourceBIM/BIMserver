@@ -25,11 +25,11 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ImmediateNotificationResult#getResult <em>Result</em>}</li>
  *   <li>{@link org.bimserver.models.store.ImmediateNotificationResult#getDescription <em>Description</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getImmediateNotificationResult()
  * @model

@@ -26,12 +26,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ObjectModifiedImpl#getFieldName <em>Field Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ObjectModifiedImpl#getOldValue <em>Old Value</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ObjectModifiedImpl#getNewValue <em>New Value</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

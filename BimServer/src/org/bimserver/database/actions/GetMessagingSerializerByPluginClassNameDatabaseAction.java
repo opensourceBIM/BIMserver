@@ -20,13 +20,8 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
-import org.bimserver.database.query.conditions.AttributeCondition;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
-import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
@@ -47,16 +42,15 @@ public class GetMessagingSerializerByPluginClassNameDatabaseAction extends BimDa
 
 	@Override
 	public MessagingSerializerPluginConfiguration execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(pluginClassName));
-		PluginDescriptor pluginDescriptor = getDatabaseSession().querySingle(condition, PluginDescriptor.class, Query.getDefault());
+		PluginDescriptor pluginDescriptor = getDatabaseSession().querySingle(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), pluginClassName);
 		if (pluginDescriptor == null) {
 			throw new UserException("No plugin found with classname " + pluginClassName);
 		}
 		User user = getUserByUoid(authorization.getUoid());
 		UserSettings userSettings = user.getUserSettings();
-		for (PluginConfiguration pluginConfiguration : pluginDescriptor.getConfigurations()) {
-			if (userSettings.getMessagingSerializerPlugins().contains(pluginConfiguration)) {
-				return (MessagingSerializerPluginConfiguration) pluginConfiguration;
+		for (MessagingSerializerPluginConfiguration messagingSerializerPluginConfiguration : userSettings.getMessagingSerializerPlugins()) {
+			if (messagingSerializerPluginConfiguration.getPluginDescriptor() == pluginDescriptor) {
+				return messagingSerializerPluginConfiguration;
 			}
 		}
 		return null;

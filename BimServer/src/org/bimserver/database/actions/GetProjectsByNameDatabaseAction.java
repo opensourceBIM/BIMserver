@@ -19,7 +19,6 @@ package org.bimserver.database.actions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -44,7 +43,7 @@ public class GetProjectsByNameDatabaseAction extends BimDatabaseAction<List<Proj
 
 	@Override
 	public List<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Set<Project> projects = getProjectsByName(name);
+		List<Project> projects = getProjectsByName(name);
 		List<Project> result = new ArrayList<Project>();
 		User user = getUserByUoid(authorization.getUoid());
 		for (Project project : projects) {

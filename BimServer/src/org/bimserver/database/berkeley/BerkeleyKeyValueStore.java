@@ -19,8 +19,10 @@ package org.bimserver.database.berkeley;
 
 import java.io.File;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -145,6 +147,24 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		return true;
 	}
 
+	public boolean createIndexTable(String tableName, DatabaseSession databaseSession) throws BimserverDatabaseException {
+		if (tables.containsKey(tableName)) {
+			throw new BimserverDatabaseException("Table " + tableName + " already created");
+		}
+		DatabaseConfig databaseConfig = new DatabaseConfig();
+		databaseConfig.setAllowCreate(true);
+		databaseConfig.setDeferredWrite(false);
+		databaseConfig.setTransactional(true);
+		databaseConfig.setSortedDuplicates(true);
+		Database database = environment.openDatabase(null, tableName, databaseConfig);
+		if (database == null) {
+			return false;
+		}
+		tables.put(tableName, database);
+		
+		return true;
+	}
+	
 	public boolean openTable(String tableName) throws BimserverDatabaseException {
 		if (tables.containsKey(tableName)) {
 			throw new BimserverDatabaseException("Table " + tableName + " already opened");
@@ -160,6 +180,22 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		}
 		tables.put(tableName, database);
 		return true;
+	}
+
+	public void openIndexTable(String tableName) throws BimserverDatabaseException {
+		if (tables.containsKey(tableName)) {
+			throw new BimserverDatabaseException("Table " + tableName + " already opened");
+		}
+		DatabaseConfig databaseConfig = new DatabaseConfig();
+		databaseConfig.setAllowCreate(false);
+		databaseConfig.setDeferredWrite(false);
+		databaseConfig.setTransactional(true);
+		databaseConfig.setSortedDuplicates(true);
+		Database database = environment.openDatabase(null, tableName, databaseConfig);
+		if (database == null) {
+			throw new BimserverDatabaseException("Table " + tableName + " not found in database");
+		}
+		tables.put(tableName, database);
 	}
 	
 	private Database getDatabase(String tableName) throws BimserverDatabaseException {
@@ -202,6 +238,29 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			OperationStatus operationStatus = getDatabase(tableName).get(getTransaction(databaseSession), key, value, LockMode.DEFAULT);
 			if (operationStatus == OperationStatus.SUCCESS) {
 				return value.getData();
+			}
+		} catch (DatabaseException e) {
+			LOGGER.error("", e);
+		}
+		return null;
+	}
+
+	@Override
+	public List<byte[]> getDuplicates(String tableName, byte[] keyBytes, DatabaseSession databaseSession) throws BimserverDatabaseException {
+		DatabaseEntry key = new DatabaseEntry(keyBytes);
+		DatabaseEntry value = new DatabaseEntry();
+		try {
+			Cursor cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
+			try {
+				OperationStatus operationStatus = cursor.getSearchKey(key, value, LockMode.DEFAULT);
+				List<byte[]> result = new ArrayList<byte[]>();
+				while (operationStatus == OperationStatus.SUCCESS) {
+					result.add(value.getData());
+					operationStatus = cursor.getNextDup(key, value, LockMode.DEFAULT);
+				}
+				return result;
+			} finally {
+				cursor.close();
 			}
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
@@ -303,6 +362,30 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseEntry entry = new DatabaseEntry(key);
 		try {
 			getDatabase(tableName).delete(getTransaction(databaseSession), entry);
+		} catch (LockConflictException e) {
+			throw new BimserverLockConflictException(e);
+		} catch (DatabaseException e) {
+			LOGGER.error("", e);
+		} catch (UnsupportedOperationException e) {
+			LOGGER.error("", e);
+		} catch (IllegalArgumentException e) {
+			LOGGER.error("", e);
+		} catch (BimserverDatabaseException e) {
+			LOGGER.error("", e);
+		}
+	}
+	
+	@Override
+	public void delete(String indexTableName, byte[] featureBytesOldIndex, byte[] array, DatabaseSession databaseSession) throws BimserverLockConflictException {
+		try {
+			Cursor cursor = getDatabase(indexTableName).openCursor(getTransaction(databaseSession), cursorConfig);
+			try {
+				if (cursor.getSearchBoth(new DatabaseEntry(featureBytesOldIndex), new DatabaseEntry(array), LockMode.DEFAULT) == OperationStatus.SUCCESS) {
+					cursor.delete();
+				}
+			} finally {
+				cursor.close();
+			}
 		} catch (LockConflictException e) {
 			throw new BimserverLockConflictException(e);
 		} catch (DatabaseException e) {

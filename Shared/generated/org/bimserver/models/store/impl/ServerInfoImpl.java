@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ServerInfoImpl#getServerState <em>Server State</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerInfoImpl#getErrorMessage <em>Error Message</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerInfoImpl#getVersion <em>Version</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

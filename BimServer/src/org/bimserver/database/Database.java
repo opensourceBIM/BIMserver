@@ -57,6 +57,7 @@ import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -88,7 +89,7 @@ public class Database implements BimDatabase {
 	 * database-schema change. Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 18;
+	public static final int APPLICATION_SCHEMA_VERSION = 19;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore, MetaDataManager metaDataManager) throws DatabaseInitException {
 		this.bimServer = bimServer;
@@ -273,6 +274,14 @@ public class Database implements BimDatabase {
 				String className = packageAndClassName.substring(packageAndClassName.indexOf("_") + 1);
 				EClass eClass = (EClass) getEClassifier(packageName, className);
 				keyValueStore.openTable(packageAndClassName);
+				
+				for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+					if (eStructuralFeature.getEAnnotation("singleindex") != null) {
+						String indexTableName = eClass.getEPackage().getName() + "_" + eClass.getName() + "_" + eStructuralFeature.getName();
+						keyValueStore.openIndexTable(indexTableName);
+					}
+				}
+				
 				Short cid = BinUtils.byteArrayToShort(record.getKey());
 				classifiers.put(cid, eClass);
 				record = recordIterator.next();
@@ -380,6 +389,11 @@ public class Database implements BimDatabase {
 			return true;
 		}
 		return false;
+	}
+
+	public boolean createIndexTable(EClass eClass, EStructuralFeature eStructuralFeature, DatabaseSession databaseSession) throws BimserverDatabaseException {
+		boolean createTable = keyValueStore.createIndexTable(eClass.getEPackage().getName() + "_" + eClass.getName() + "_" + eStructuralFeature.getName(), databaseSession);
+		return createTable;
 	}
 
 	public MetaDataManager getMetaDataManager() {

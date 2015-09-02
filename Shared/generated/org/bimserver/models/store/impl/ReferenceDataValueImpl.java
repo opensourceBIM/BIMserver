@@ -26,11 +26,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ReferenceDataValueImpl#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ReferenceDataValueImpl#getGuid <em>Guid</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
