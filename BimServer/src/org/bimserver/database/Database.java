@@ -61,6 +61,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sleepycat.je.DatabaseNotFoundException;
+
 public class Database implements BimDatabase {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Database.class);
@@ -278,7 +280,10 @@ public class Database implements BimDatabase {
 				for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 					if (eStructuralFeature.getEAnnotation("singleindex") != null) {
 						String indexTableName = eClass.getEPackage().getName() + "_" + eClass.getName() + "_" + eStructuralFeature.getName();
-						keyValueStore.openIndexTable(indexTableName);
+						try {
+							keyValueStore.openIndexTable(indexTableName);
+						} catch (DatabaseNotFoundException e) {
+						}
 					}
 				}
 				
