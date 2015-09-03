@@ -32,7 +32,6 @@ public class AddIndexChange implements Change {
 		
 		for (EClass subClass : schema.getSubClasses(eClass)) {
 			try {
-				// No data migration if the database is new
 				if (subClass.getEAnnotation("nodatabase") == null) {
 					String indexTableName = subClass.getEPackage().getName() + "_" + subClass.getName() + "_" + eStructuralFeature.getName();
 					keyValueStore.createIndexTable(indexTableName, databaseSession);
