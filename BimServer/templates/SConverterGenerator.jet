@@ -78,7 +78,7 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
-		<% if (!metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
+		<% if (metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass) != null && !metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
 	for (EClass subClass : metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass)) {
 %>
 		<%=metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else "%>if (input instanceof <%=subClass.getName()%>) {

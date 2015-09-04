@@ -123,7 +123,11 @@ public class JsonHandler {
 		String oldThreadName = Thread.currentThread().getName();
 		Thread.currentThread().setName(interfaceName + "." + methodName);
 		try {
+			Recording recording = bimServer.getMetricsRegistry().startRecording(sService, method);
+
 			Object result = method.invoke(sService.getInterfaceClass(), service, parameters);
+			
+			recording.finish();
 			
 			// When we have managed to get here, no exceptions have been thrown. We
 			// can safely assume further serialization to JSON won't fail. So now we

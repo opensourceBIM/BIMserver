@@ -649,6 +649,21 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseMetrics(Metrics object) {
+			return createMetricsAdapter();
+		}
+
+		@Override
+		public Adapter caseInterfaceMetric(InterfaceMetric object) {
+			return createInterfaceMetricAdapter();
+		}
+
+		@Override
+		public Adapter caseMethodMetric(MethodMetric object) {
+			return createMethodMetricAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -1994,6 +2009,48 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMessagingSerializerPluginConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Metrics <em>Metrics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.Metrics
+	 * @generated
+	 */
+	public Adapter createMetricsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.InterfaceMetric <em>Interface Metric</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.InterfaceMetric
+	 * @generated
+	 */
+	public Adapter createInterfaceMetricAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.MethodMetric <em>Method Metric</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.MethodMetric
+	 * @generated
+	 */
+	public Adapter createMethodMetricAdapter() {
 		return null;
 	}
 

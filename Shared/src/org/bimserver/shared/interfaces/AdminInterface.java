@@ -32,6 +32,7 @@ import org.bimserver.interfaces.objects.SBimServerInfo;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SJavaInfo;
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SMetrics;
 import org.bimserver.interfaces.objects.SMigration;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
@@ -224,4 +225,7 @@ public interface AdminInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "regenerateGeometry")
 	void regenerateGeometry(@WebParam(name = "croid", partName = "regenerateGeometry.croid") Long croid) throws ServerException, UserException;
+	
+	@WebMethod(action = "getMetrics")
+	SMetrics getMetrics() throws UserException, ServerException;
 }

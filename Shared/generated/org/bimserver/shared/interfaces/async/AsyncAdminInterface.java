@@ -79,6 +79,11 @@ public class AsyncAdminInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetMetricsCallback {
+		void success(org.bimserver.interfaces.objects.SMetrics result);
+		void error(Throwable e);
+	}
+	
 	public interface GetMigrationsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SMigration> result);
 		void error(Throwable e);
@@ -251,6 +256,18 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getLogs());
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getMetrics(final GetMetricsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getMetrics());
 				} catch (Throwable e) {
 					callback.error(e);
 				}

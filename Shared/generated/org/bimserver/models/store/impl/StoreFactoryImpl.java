@@ -259,6 +259,12 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createModelCheckerPluginDescriptor();
 		case StorePackage.MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION:
 			return (EObject) createMessagingSerializerPluginConfiguration();
+		case StorePackage.METRICS:
+			return (EObject) createMetrics();
+		case StorePackage.INTERFACE_METRIC:
+			return (EObject) createInterfaceMetric();
+		case StorePackage.METHOD_METRIC:
+			return (EObject) createMethodMetric();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1298,6 +1304,36 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public MessagingSerializerPluginConfiguration createMessagingSerializerPluginConfiguration() {
 		MessagingSerializerPluginConfigurationImpl messagingSerializerPluginConfiguration = new MessagingSerializerPluginConfigurationImpl();
 		return messagingSerializerPluginConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Metrics createMetrics() {
+		MetricsImpl metrics = new MetricsImpl();
+		return metrics;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InterfaceMetric createInterfaceMetric() {
+		InterfaceMetricImpl interfaceMetric = new InterfaceMetricImpl();
+		return interfaceMetric;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MethodMetric createMethodMetric() {
+		MethodMetricImpl methodMetric = new MethodMetricImpl();
+		return methodMetric;
 	}
 
 	/**
