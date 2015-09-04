@@ -191,6 +191,7 @@ public class BimServer {
 	private MetaDataManager metaDataManager;
 	private SchemaConverterManager schemaConverterManager = new SchemaConverterManager();
 	private WebModuleManager webModuleManager;
+	private MetricsRegistry metricsRegistry;
 
 	/**
 	 * Create a new BIMserver
@@ -358,6 +359,8 @@ public class BimServer {
 			
 			schemaConverterManager.registerConverter(new Ifc2x3tc1ToIfc4SchemaConverterFactory());
 			schemaConverterManager.registerConverter(new Ifc4ToIfc2x3tc1SchemaConverterFactory());
+			
+			metricsRegistry = new MetricsRegistry();
 			
 			Query.setPackageMetaDataForDefaultQuery(metaDataManager.getPackageMetaData("store"));
 			
@@ -1074,5 +1077,9 @@ public class BimServer {
 	
 	public SchemaConverterManager getSchemaConverterManager() {
 		return schemaConverterManager;
+	}
+
+	public MetricsRegistry getMetricsRegistry() {
+		return metricsRegistry;
 	}
 }

@@ -59,6 +59,10 @@ public class AdminInterfaceAdaptor implements org.bimserver.shared.interfaces.Ad
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SMetrics getMetrics() throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SMigration> getMigrations() throws UserException, ServerException {
 		return null;
 	}

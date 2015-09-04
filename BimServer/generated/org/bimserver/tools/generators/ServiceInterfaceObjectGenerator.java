@@ -200,7 +200,7 @@ public class ServiceInterfaceObjectGenerator
     stringBuffer.append(TEXT_5);
     
 importManager.getImport("javax.xml.bind.annotation.XmlTransient");
-if (!metaDataManager.getPackageMetaData(eClassifier.getEPackage().getName()).getDirectSubClasses(eClass).isEmpty()) { 
+if (metaDataManager.getPackageMetaData(eClassifier.getEPackage().getName()).getDirectSubClasses(eClass) != null && !metaDataManager.getPackageMetaData(eClassifier.getEPackage().getName()).getDirectSubClasses(eClass).isEmpty()) { 
 importManager.getImport("javax.xml.bind.annotation.XmlSeeAlso");
 
     stringBuffer.append(TEXT_6);

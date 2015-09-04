@@ -44,7 +44,7 @@ package org.bimserver.interfaces.objects;
 @XmlRootElement
 <%
 importManager.getImport("javax.xml.bind.annotation.XmlTransient");
-if (!metaDataManager.getPackageMetaData(eClassifier.getEPackage().getName()).getDirectSubClasses(eClass).isEmpty()) { 
+if (metaDataManager.getPackageMetaData(eClassifier.getEPackage().getName()).getDirectSubClasses(eClass) != null && !metaDataManager.getPackageMetaData(eClassifier.getEPackage().getName()).getDirectSubClasses(eClass).isEmpty()) { 
 importManager.getImport("javax.xml.bind.annotation.XmlSeeAlso");
 %>
 @XmlSeeAlso(value={

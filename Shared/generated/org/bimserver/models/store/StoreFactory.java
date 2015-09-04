@@ -891,6 +891,33 @@ public interface StoreFactory extends EFactory {
 	MessagingSerializerPluginConfiguration createMessagingSerializerPluginConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Metrics</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Metrics</em>'.
+	 * @generated
+	 */
+	Metrics createMetrics();
+
+	/**
+	 * Returns a new object of class '<em>Interface Metric</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interface Metric</em>'.
+	 * @generated
+	 */
+	InterfaceMetric createInterfaceMetric();
+
+	/**
+	 * Returns a new object of class '<em>Method Metric</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Method Metric</em>'.
+	 * @generated
+	 */
+	MethodMetric createMethodMetric();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

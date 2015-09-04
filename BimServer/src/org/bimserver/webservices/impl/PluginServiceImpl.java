@@ -1270,7 +1270,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			List<SDeserializerPluginConfiguration> sDeserializers = new ArrayList<SDeserializerPluginConfiguration>();
 			for (DeserializerPluginConfiguration deserializerPluginConfiguration : deserializers) {
 				DeserializerPlugin plugin = getBimServer().getPluginManager().getDeserializerPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-				if (plugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
+				if (plugin != null && plugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
 					if (!onlyEnabled || (deserializerPluginConfiguration.getEnabled() && deserializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
 						sDeserializers.add(getBimServer().getSConverter().convertToSObject(deserializerPluginConfiguration));
 					}

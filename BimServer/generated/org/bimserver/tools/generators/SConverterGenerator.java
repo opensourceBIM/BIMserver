@@ -246,7 +246,7 @@ public class SConverterGenerator
     stringBuffer.append(TEXT_30);
     stringBuffer.append(eClass.getName());
     stringBuffer.append(TEXT_31);
-     if (!metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
+     if (metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass) != null && !metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
 	for (EClass subClass : metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass)) {
 
     stringBuffer.append(TEXT_32);

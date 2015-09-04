@@ -44,6 +44,8 @@ service AdminInterface {
 
 	rpc getLogs (GetLogsRequest) returns (GetLogsResponse);
 
+	rpc getMetrics (GetMetricsRequest) returns (GetMetricsResponse);
+
 	rpc getMigrations (GetMigrationsRequest) returns (GetMigrationsResponse);
 
 	rpc getProtocolBuffersFile (GetProtocolBuffersFileRequest) returns (GetProtocolBuffersFileResponse);
@@ -363,6 +365,36 @@ message GetLogsRequest {
 message GetLogsResponse {
 	optional string errorMessage = 1;
 	repeated SLogAction value = 2;
+}
+
+message GetMetricsRequest {
+}
+
+message SMethodMetric {
+	optional int64 averageMs = 1;
+	optional int64 lastCall = 2;
+	optional int64 longestMs = 3;
+	optional int64 nrCalls = 4;
+	optional int64 oid = 5;
+	optional int32 rid = 6;
+	optional int64 shortestMs = 7;
+}
+
+message SInterfaceMetric {
+	repeated SMethodMetric methods = 1;
+	optional int64 oid = 2;
+	optional int32 rid = 3;
+}
+
+message SMetrics {
+	repeated SInterfaceMetric interfaces = 1;
+	optional int64 oid = 2;
+	optional int32 rid = 3;
+}
+
+message GetMetricsResponse {
+	optional string errorMessage = 1;
+	optional SMetrics value = 2;
 }
 
 message GetMigrationsRequest {

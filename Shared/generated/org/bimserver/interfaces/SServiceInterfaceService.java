@@ -522,6 +522,21 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration();
 					}
 				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SMetrics"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SMetrics();
+					}
+				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SInterfaceMetric"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SInterfaceMetric();
+					}
+				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SMethodMetric"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SMethodMetric();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
