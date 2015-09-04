@@ -17,10 +17,13 @@ package org.bimserver.database;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.nio.ByteBuffer;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
+import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -119,6 +122,19 @@ public class Query implements QueryInterface {
 		this.deep = deep;
 	}
 
+	public void updateOidCounters(ConcreteRevision subRevision, DatabaseSession databaseSession) {
+		if (subRevision.getOidCounters() != null) {
+			Map<EClass, Long> oidCounters = new HashMap<>();
+			ByteBuffer buffer = ByteBuffer.wrap(subRevision.getOidCounters());
+			for (int i=0; i<buffer.capacity() / 10; i++) {
+				short cid = buffer.getShort();
+				long oid = buffer.getLong();
+				oidCounters.put(databaseSession.getEClass(cid), oid);
+			}
+			setOidCounters(oidCounters);
+		}
+	}
+	
 	public int getStopRid() {
 		return stopRid;
 	}

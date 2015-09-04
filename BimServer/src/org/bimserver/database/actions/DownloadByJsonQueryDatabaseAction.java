@@ -111,7 +111,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					IfcModelInterface subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
 					
 					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.NO, highestStopId);
-					updateOidCounters(concreteRevision, databaseQuery);
+					databaseQuery.updateOidCounters(concreteRevision, getDatabaseSession());
 					JsonObject queryObject = (JsonObject)query;
 					JsonArray queries = queryObject.get("queries").getAsJsonArray();
 					for (JsonElement queryElement : queries) {

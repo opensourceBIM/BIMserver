@@ -17,18 +17,14 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.bimserver.BimServer;
 import org.bimserver.GeometryGeneratingException;
 import org.bimserver.GeometryGenerator;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.geometry.GeometryInfo;
@@ -83,19 +79,6 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 					}
 				}
 			}
-		}
-	}
-	
-	protected void updateOidCounters(ConcreteRevision subRevision, Query query) {
-		if (subRevision.getOidCounters() != null) {
-			Map<EClass, Long> oidCounters = new HashMap<>();
-			ByteBuffer buffer = ByteBuffer.wrap(subRevision.getOidCounters());
-			for (int i=0; i<buffer.capacity() / 10; i++) {
-				short cid = buffer.getShort();
-				long oid = buffer.getLong();
-				oidCounters.put(getDatabaseSession().getEClass(cid), oid);
-			}
-			query.setOidCounters(oidCounters);
 		}
 	}
 

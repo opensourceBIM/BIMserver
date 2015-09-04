@@ -107,7 +107,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 							}
 						}
 					});
-					updateOidCounters(concreteRevision, query);
+					query.updateOidCounters(concreteRevision, getDatabaseSession());
 					getDatabaseSession().getMap(subModel, query);
 					projectName += concreteRevision.getProject().getName() + "-";
 					subModel.getModelMetaData().setDate(concreteRevision.getDate());

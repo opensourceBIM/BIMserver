@@ -45,6 +45,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.OidProvider;
@@ -199,7 +200,9 @@ public class GeometryGenerator {
 									GeometryInfo geometryInfo = null;
 									if (store) {
 										geometryInfo = packageMetaData.create(GeometryInfo.class);
-										model.add(databaseSession.newOid(GeometryPackage.eINSTANCE.getGeometryInfo()), geometryInfo);
+										Long newOid = databaseSession.newOid(GeometryPackage.eINSTANCE.getGeometryInfo());
+										((IdEObjectImpl) geometryInfo).setOid(newOid);
+										model.add(newOid, geometryInfo);
 									} else {
 										geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
 									}
@@ -219,7 +222,7 @@ public class GeometryGenerator {
 										EStructuralFeature guidFeature = ifcProduct.eClass().getEStructuralFeature("GlobalId");
 										String guid = (String) ifcProduct.eGet(guidFeature);
 										
-										System.out.println(guid + ": " + "Area: " + area + ", Volume: " + volume);
+//										System.out.println(guid + ": " + "Area: " + area + ", Volume: " + volume);
 									} catch (NotImplementedException e) {
 									}
 									
