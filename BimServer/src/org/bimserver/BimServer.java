@@ -741,8 +741,10 @@ public class BimServer {
 					setDefaultWebModule(pluginManager.getWebModulePlugin(bimviewsWebModule.getPluginDescriptor().getPluginClassName(), true));
 				} else {
 					WebModulePluginConfiguration defaultWebModule = findWebModule(serverSettings, "org.bimserver.defaultwebmodule.DefaultWebModulePlugin");
-					serverSettings.setWebModule(defaultWebModule);
-					setDefaultWebModule(pluginManager.getWebModulePlugin(defaultWebModule.getPluginDescriptor().getPluginClassName(), true));
+					if (defaultWebModule != null) {
+						serverSettings.setWebModule(defaultWebModule);
+						setDefaultWebModule(pluginManager.getWebModulePlugin(defaultWebModule.getPluginDescriptor().getPluginClassName(), true));
+					}
 				}
 			}
 			session.store(serverSettings);

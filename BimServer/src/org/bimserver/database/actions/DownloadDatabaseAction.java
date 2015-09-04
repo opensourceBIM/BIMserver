@@ -117,7 +117,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 						}
 					}
 				});
-				updateOidCounters(concreteRevision, query);
+				query.updateOidCounters(concreteRevision, getDatabaseSession());
 				getDatabaseSession().getMap(subModel, query);
 				if (serializerPluginConfiguration != null) {
 					try {

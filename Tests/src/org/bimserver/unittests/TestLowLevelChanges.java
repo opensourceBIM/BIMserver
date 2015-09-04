@@ -93,7 +93,9 @@ public class TestLowLevelChanges {
 			bimServer = new BimServer(config);
 			
 			// Load plugins
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), null);
+			File[] pluginDirectories = new File[]{new File("E:\\Git\\BIMserverMaster2")};
+			
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 
 			// Start
 			bimServer.start();
@@ -101,6 +103,7 @@ public class TestLowLevelChanges {
 			// Convenience, setup the server to make sure it is in RUNNING state
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getService(AdminInterface.class).setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
+				bimServer.getService(Bimsie1AuthInterface.class).login("admin@bimserver.org", "admin");
 			}
 			
 			// Change a setting to normal users can create projects
