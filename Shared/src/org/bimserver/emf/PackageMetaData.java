@@ -40,7 +40,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 public class PackageMetaData implements ObjectFactory {
 	private final Map<String, Set<EClass>> directSubClasses = new TreeMap<String, Set<EClass>>();
@@ -171,6 +170,7 @@ public class PackageMetaData implements ObjectFactory {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public Set<EClass> getDirectSubClasses(EClass superClass) {
 		if (!directSubClasses.containsKey(superClass.getName())) {
 			return java.util.Collections.EMPTY_SET;
