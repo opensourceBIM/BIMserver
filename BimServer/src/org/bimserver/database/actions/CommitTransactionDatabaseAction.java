@@ -173,7 +173,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 			revision.setHasGeometry(true);
 		}
 
-		concreteRevision.setOidCounters(oldLastRevision.getConcreteRevisions().get(0).getOidCounters());
+		if (oldLastRevision != null) {
+			concreteRevision.setOidCounters(oldLastRevision.getConcreteRevisions().get(0).getOidCounters());
+		}
 		concreteRevision.setSummary(summaryMap.toRevisionSummary(getDatabaseSession()));
 
 		getDatabaseSession().store(concreteRevision);
