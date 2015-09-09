@@ -144,9 +144,6 @@ public class SharedJsonDeserializer {
 				if (eClass == null) {
 					throw new DeserializeException("No class found with name " + type);
 				}
-				if (eClass == Ifc2x3tc1Package.eINSTANCE.getIfcWallStandardCase()) {
-					System.out.println();
-				}
 				if (model.containsNoFetch(oid)) {
 					object = (IdEObjectImpl) model.getNoFetch(oid);
 				} else {
