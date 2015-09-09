@@ -4,10 +4,8 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
-import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
@@ -34,7 +32,7 @@ public class SetString extends TestWithEmbeddedServer {
 			
 			long tid = lowLevelInterface.startTransaction(newProject.getOid());
 
-			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), false, false);
+//			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), false, false);
 			lowLevelInterface.commitTransaction(tid, "v2");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1963,6 +1963,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public <T extends IdEObject> List<T> query(EAttribute attribute, Object value) throws BimserverLockConflictException, BimserverDatabaseException {
 		List<T> result = new ArrayList<>();
 		if (attribute.getEAnnotation("singleindex") != null) {

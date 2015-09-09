@@ -219,11 +219,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 			String cacheFileName = dateFormat.format(new Date()) + "-" + fileName;
 			File file = new File(userDirIncoming, cacheFileName);
-			InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(file));
 			DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
 			if (deserializerObject == null) {
 				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			}
+			InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(file));
 			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
 			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
 			
@@ -280,11 +280,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				fileName = dateFormat.format(new Date()) + "-" + fileName;
 			}
 			File file = new File(userDirIncoming, fileName);
-			InputStream inputStream = new MultiplexingInputStream(input, new FileOutputStream(file));
 			DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
 			if (deserializerObject == null) {
 				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			}
+			InputStream inputStream = new MultiplexingInputStream(input, new FileOutputStream(file));
 			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
 			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 

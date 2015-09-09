@@ -6,14 +6,10 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SService;
 
 public class MethodStats {
-	private SService sService;
-	private SMethod sMethod;
 	private final AtomicLong nrCalls = new AtomicLong();
 	private final AtomicLong totalNanoSeconds = new AtomicLong();
 
 	public MethodStats(SService sService, SMethod sMethod) {
-		this.sService = sService;
-		this.sMethod = sMethod;
 	}
 
 	public void add(Recording recording) {
