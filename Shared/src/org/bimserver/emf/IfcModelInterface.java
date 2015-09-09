@@ -226,4 +226,8 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	Set<EClass> getUsedClasses();
 
 	void query(ObjectNode query);
+
+	<T extends IdEObject> T createAndAdd(EClass eClass, long oid) throws IfcModelInterfaceException;
+
+	<T extends IdEObject> T createAndAdd(EClass eClass) throws IfcModelInterfaceException;
 }

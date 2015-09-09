@@ -16,6 +16,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.StoreFactory;
@@ -143,7 +144,9 @@ public class SharedJsonDeserializer {
 				if (eClass == null) {
 					throw new DeserializeException("No class found with name " + type);
 				}
-				
+				if (eClass == Ifc2x3tc1Package.eINSTANCE.getIfcWallStandardCase()) {
+					System.out.println();
+				}
 				if (model.containsNoFetch(oid)) {
 					object = (IdEObjectImpl) model.getNoFetch(oid);
 				} else {
@@ -314,6 +317,7 @@ public class SharedJsonDeserializer {
 					if (waitingList.containsKey(oid)) {
 						waitingList.updateNode(oid, eClass, object);
 					}
+					model.add(object.getOid(), object);
 				} else {
 					LOGGER.info("_s expected");
 				}
