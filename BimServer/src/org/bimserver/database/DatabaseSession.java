@@ -285,7 +285,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 			((IdEObjectImpl) idEObject).setLoadingState(State.LOADING);
 
-			objectCache.put(new RecordIdentifier(query.getPid(), oid, rid), idEObject);
+			objectCache.put(oid, idEObject);
 			
 			byte unsettedLength = buffer.get();
 			byte[] unsetted = new byte[unsettedLength];
@@ -765,8 +765,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				throw new BimserverDatabaseException("Object with oid " + oid + " is a " + idEObject.eClass().getName() + " but it's cid-part says it's a " + eClass.getName());
 			}
 		}
-		RecordIdentifier recordIdentifier = new RecordIdentifier(query.getPid(), oid, query.getRid());
-		IdEObjectImpl cachedObject = (IdEObjectImpl) objectCache.get(recordIdentifier);
+		IdEObjectImpl cachedObject = (IdEObjectImpl) objectCache.get(oid);
 		if (cachedObject != null) {
 			idEObject = cachedObject;
 			if (cachedObject.getLoadingState() == State.LOADED && cachedObject.getRid() != Integer.MAX_VALUE) {
@@ -811,7 +810,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 						if (convertByteArrayToObject.getRid() == Integer.MAX_VALUE) {
 							((IdEObjectImpl) convertByteArrayToObject).setRid(keyRid);
 						}
-						objectCache.put(recordIdentifier, convertByteArrayToObject);
+						objectCache.put(oid, convertByteArrayToObject);
 						return convertByteArrayToObject;
 					}
 				}
@@ -1028,8 +1027,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		checkOpen();
 		if (keyPid == query.getPid()) {
 			if (keyRid <= query.getRid() && keyRid >= query.getStopRid()) {
-				RecordIdentifier recordIdentifier = new RecordIdentifier(query.getPid(), keyOid, keyRid);
-				IdEObject cachedObject = objectCache.get(recordIdentifier);
+				IdEObject cachedObject = objectCache.get(keyOid);
 				if (cachedObject != null && ((IdEObjectImpl)cachedObject).getLoadingState() == State.LOADED) {
 					if (!model.contains(keyOid) && cachedObject.eClass().getEAnnotation("wrapped") == null) {
 						try {
@@ -1053,7 +1051,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 						}
 					}
 					if (object != null) {
-						objectCache.put(recordIdentifier, object);
+						objectCache.put(keyOid, object);
 						return GetResult.CONTINUE_WITH_NEXT_OID;
 					}
 				}
@@ -1371,8 +1369,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return perRecordVersioning(idEObject.eClass());
 	}
 
-	public boolean perRecordVersioning(EClass eClass) {
-		return eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE;
+	public static boolean perRecordVersioning(EClass eClass) {
+		return eClass.getEPackage() != Ifc2x3tc1Package.eINSTANCE && eClass.getEPackage() != Ifc4Package.eINSTANCE;
 	}
 
 	public IfcModelInterface createModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap) {
@@ -1635,7 +1633,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			return null;
 		}
 		long oid = buffer.getLong();
-		RecordIdentifier recordIdentifier = new RecordIdentifier(query.getPid(), oid, query.getRid());
 		IdEObject foundInCache = objectCache.get(oid);
 		if (foundInCache != null) {
 			return foundInCache;
@@ -1656,7 +1653,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		} catch (IfcModelInterfaceException e) {
 			LOGGER.error("", e);
 		}
-		objectCache.put(recordIdentifier, newObject);
+		objectCache.put(oid, newObject);
 		if (query.isDeep() && object.eClass().getEAnnotation("wrapped") == null) {
 			if (feature.getEAnnotation("nolazyload") == null) {
 				todoList.add(newObject);
@@ -1728,7 +1725,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public long store(IdEObject object, int pid, int rid) throws BimserverDatabaseException {
 		checkOpen();
 		if (!objectsToCommit.containsObject(object) && !objectsToDelete.contains(object)) {
-			objectCache.put(new RecordIdentifier(pid, object.getOid(), rid), object);
+			objectCache.put(object.getOid(), object);
 			boolean wrappedValue = object.eClass().getEAnnotation("wrapped") != null;
 			if (!wrappedValue) {
 				if (object.getOid() == -1) {

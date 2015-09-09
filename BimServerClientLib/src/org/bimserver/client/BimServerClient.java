@@ -271,9 +271,12 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		try {
 			Long download = getBimsie1ServiceInterface().download(roid, serializerOid, true, false);
 			InputStream inputStream = getDownloadData(download, serializerOid);
-			IOUtils.copy(inputStream, outputStream);
-			inputStream.close();
-			getServiceInterface().cleanupLongAction(download);
+			try {
+				IOUtils.copy(inputStream, outputStream);
+				getServiceInterface().cleanupLongAction(download);
+			} finally {
+				inputStream.close();
+			}
 		} catch (ServerException e) {
 			LOGGER.error("", e);
 		} catch (UserException e) {
@@ -287,8 +290,11 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	public void download(long roid, long serializerOid, File file) throws IOException {
 		FileOutputStream outputStream = new FileOutputStream(file);
-		download(roid, serializerOid, outputStream);
-		outputStream.close();
+		try {
+			download(roid, serializerOid, outputStream);
+		} finally {
+			outputStream.close();
+		}
 	}
 
 	public InputStream getDownloadData(long downloadId, long serializerOid) throws IOException {

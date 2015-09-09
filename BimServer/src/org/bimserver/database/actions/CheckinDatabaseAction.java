@@ -186,14 +186,14 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
 			int s = 0;
 			for (EClass eClass : eClasses) {
-				if (getDatabaseSession().perRecordVersioning(eClass)) {
+				if (!DatabaseSession.perRecordVersioning(eClass)) {
 					s++;
 				}
 			}
 			ByteBuffer buffer = ByteBuffer.allocate(10 * s);
 			for (EClass eClass : eClasses) {
 				long oid = startOids.get(eClass);
-				if (getDatabaseSession().perRecordVersioning(eClass)) {
+				if (!DatabaseSession.perRecordVersioning(eClass)) {
 					buffer.putShort(getDatabaseSession().getCid(eClass));
 					buffer.putLong(oid);
 				}
