@@ -120,7 +120,9 @@
 				    				cache: true
 				    			});
 
-				    			SceneJS.configure({ pluginPath: baseJsDir + "bimsurfer/lib/scenejs/plugins" });
+				    			if (Settings.useBimSurfer()) {
+					    			SceneJS.configure({ pluginPath: baseJsDir + "bimsurfer/lib/scenejs/plugins" });
+				    			}
 				    			
 				    			var jQueryLoad = $.fn.load;
 				    			$.fn.load = function(url, params, callback) {
@@ -143,7 +145,8 @@
 				    			});
 				    			
 				    			othis.loadBimServerApiFromAddress = function(address, successFunction, errorFunction){
-				    				loadBimServerApi(address, Global.notifier, function(serverInfo){
+				    				loadBimServerApi(address, Global.notifier, Global.version, function(api, serverInfo){
+				    					Global.bimServerApi = api;
 				    					if (serverInfo.serverState == "NOT_SETUP") {
 				    						$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
 				    							new Setup(address);

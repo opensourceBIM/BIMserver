@@ -84,7 +84,7 @@ public class RootServlet extends HttpServlet {
 //				LOGGER.info(requestUri);
 			}
 			setContentType(response, requestUri);
-			if (request.getRequestURI().endsWith("getbimserveraddress")) {
+			if (request.getRequestURI().endsWith(".getbimserveraddress")) {
 				response.setContentType("application/json; charset=utf-8");
 				String siteAddress = bimServer.getServerSettingsCache().getServerSettings().getSiteAddress();
 				if (siteAddress == null || siteAddress.trim().isEmpty()) {

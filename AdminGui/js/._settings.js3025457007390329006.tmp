@@ -18,7 +18,7 @@ var Settings = {
 		return version.major == 1 && version.minor == 3 && version.revision == 0;
 	},
 	getStaticServerAddress: function(callback){
-		$.getJSON("getbimserveraddress", function(data){
+		$.getJSON("x.getbimserveraddress", function(data){
 			callback(data.address);
 		}).fail(function(){
 			callback(null);

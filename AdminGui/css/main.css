@@ -111,6 +111,7 @@ table .btn {
 	width: 100%;
 	text-align: center;
 	height: 0px;
+	z-index: 50;
 }
 
 .status {
@@ -348,7 +349,7 @@ div#viewport {
 	padding: 0px;
 }
 
-.threedview .panel-body {
+.threedview .panel-body, .right .panel-body {
 	padding: 0;
 	margin: 0;
 }
@@ -456,4 +457,14 @@ caption {
 
 .navigator {
 	height: 100%;
+}
+
+div.left {
+	margin-right: 0px;	
+	padding-right: 15px;
+}
+
+div.right {
+	margin-left: 0px;
+	padding-left: 0px;
 }

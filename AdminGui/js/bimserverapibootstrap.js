@@ -1,4 +1,4 @@
-function loadBimServerApi(address, notifier, callback, errorCallback) {
+function loadBimServerApi(address, notifier, version, callback, errorCallback) {
 	if (window.Global == null) {
 		window.Global = {};
 	}
@@ -10,7 +10,7 @@ function loadBimServerApi(address, notifier, callback, errorCallback) {
 		address = address.substring(0, address.length - 1);
 	}
 	$.ajax({
-		  url: address + "/js/bimserverapi.js?_v=" + Global.version,
+		  url: address + "/js/bimserverapi.js?_v=" + version,
 		  dataType: "script",
 		  cache: true,
 		  success: function(){
@@ -20,10 +20,8 @@ function loadBimServerApi(address, notifier, callback, errorCallback) {
 					errorCallback();
 				} else {
 					if (BimServerApi != null) {
-						Global.bimServerApi = new BimServerApi(address, notifier);
-						Global.bimServerApi.init(function(api, serverInfo){
-							callback(serverInfo);
-						});
+						var bimServerApi = new BimServerApi(address, notifier);
+						bimServerApi.init(callback);
 					} else {
 						window.clearTimeout(timeoutId);
 						notifier.setError("Could not find BIMserver API");
