@@ -92,10 +92,17 @@ public class RemoveReferenceChange implements Change {
 		List list = (List) idEObject.eGet(eReference);
 		EntityDefinition entityBN = packageMetaData.getSchemaDefinition().getEntityBN(idEObject.eClass().getName());
 		Attribute attributeBNWithSuper = entityBN.getAttributeBNWithSuper(eReference.getName());
-		if (eReference.getEOpposite() != null) {
+		EReference oppositeReference = eReference.getEOpposite();
+		if (oppositeReference != null) {
 			IdEObject referenced = getReferencedObject(list);
-			referenced.eSet(eReference.getEOpposite(), null); // This will automatically remove the object from the list
-			databaseSession.store(referenced, project.getId(), concreteRevision.getId());
+			if (oppositeReference.isMany()) {
+				List oppositeList = (List)referenced.eGet(oppositeReference);
+				oppositeList.remove(idEObject);
+				databaseSession.store(referenced, project.getId(), concreteRevision.getId());
+			} else {
+				referenced.eSet(oppositeReference, null); // This will automatically remove the object from the list
+				databaseSession.store(referenced, project.getId(), concreteRevision.getId());
+			}
 		} else {
 			IdEObject referenced = getReferencedObject(list);
 			if (attributeBNWithSuper instanceof InverseAttribute) {
