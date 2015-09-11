@@ -6,6 +6,7 @@
 			<li><a class="link bimserverLink" data-toggle="tab" href="#bimserver">BIMserver</a></li>
 			<li><a class="link databaseLink" data-toggle="tab" href="#database">Database</a></li>
 			<li><a class="link webservicesLink" data-toggle="tab" href="#webservices">Web Services</a></li>
+			<li><a class="link metricsLink" data-toggle="tab" href="#metrics">Metrics</a></li>
 			<li><a class="link transactionsLink" data-toggle="tab" href="#transactions">Transactions</a></li>
 			<li><a class="link longrunningactionsLink" data-toggle="tab" href="#longrunningactions">Long running actions</a></li>
 			<li><a class="link logLink" data-toggle="tab" href="#log">Log</a></li>
@@ -24,6 +25,9 @@
 				<table class="table"></table>
 			</div>
 			<div id="webservices" class="tab-pane webservices">
+				<table class="table"></table>
+			</div>
+			<div id="metrics" class="tab-pane metrics">
 				<table class="table"></table>
 			</div>
 			<div id="transactions" class="tab-pane transactions">
@@ -171,6 +175,21 @@ function ServerInfo(containerDiv, main) {
 				$(".webservices table").append(tr);
 			});
 		});
+
+		Global.bimServerApi.call("AdminInterface", "getMetrics", {}, function(metrics){
+			$(".metrics table").append("<tr><th class=\"header\">Name</th><th># Calls</th><th>Average (ms)</th></tr>");
+
+			metrics.interfaces.forEach(function(service){
+				$(".metrics table").append("<tr><th class=\"header\" colspan=\"3\">" + service.name + "</th></tr>");
+				service.methods.forEach(function(method){
+					var tr = $("<tr>");
+					tr.append("<td>" + method.name + "</td>");
+					tr.append("<td>" + method.nrCalls + "</td>");
+					tr.append("<td>" + method.averageMs + "</td>");
+					$(".metrics table").append(tr);
+				});
+			});
+		});
 	}
 	
 	$(".serverinfo .link").click(function(){
@@ -243,6 +262,9 @@ function ServerInfo(containerDiv, main) {
 	};
 	this.showWebServices = function(){
 		$(".webservicesLink").tab("show");
+	};
+	this.showMetrics = function(){
+		$(".metricsLink").tab("show");
 	};
 	this.showLog = function(){
 		$(".logLink").tab("show");

@@ -105,7 +105,7 @@ public class Streamer implements EndPoint {
 									byteBuffer.putInt(4, messages);
 									if (byteArrayOutputStream.size() > 8) {
 										bytes += byteArray.length;
-										streamingSocketInterface.sendBlocking(byteArray, 0, byteArray.length);
+										streamingSocketInterface.send(byteArray, 0, byteArray.length);
 										counter++;
 									}
 								} while (writeMessage);

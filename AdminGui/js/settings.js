@@ -10,7 +10,7 @@ var Settings = {
 		});
 	},
 	getStaticServerAddress: function(callback){
-		$.getJSON("getbimserveraddress", function(data){
+		$.getJSON("x.getbimserveraddress", function(data){
 			callback(data.address);
 		});
 	},

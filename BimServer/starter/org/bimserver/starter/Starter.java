@@ -349,6 +349,9 @@ public class Starter extends JFrame {
 	
 	private void start(File destDir, String address, String port, String heapsize, String stacksize, String permsize, String jvmPath, String homedir) {
 		try {
+			String os = System.getProperty("os.name");
+			boolean isMac = os.toLowerCase().contains("mac");
+			System.out.println("OS: " + os);
 			String command = "";
 			if (jvmPath.equalsIgnoreCase("default")) {
 				command = "java";
@@ -360,6 +363,9 @@ public class Starter extends JFrame {
 						jre = jvm;
 					}
 					command = new File(jre, "bin" + File.separator + "java").getAbsolutePath();
+					if (command.contains(" ") && isMac) {
+						command = "\"" + command + "\"";
+					}
 					File jreLib = new File(jre, "lib");
 					command += " -Xbootclasspath:";
 					for (File file : jreLib.listFiles()) {
@@ -391,8 +397,7 @@ public class Starter extends JFrame {
 //				command += " -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y";
 //			}
 			command += " -classpath ";
-			System.out.println(System.getProperty("os.name"));
-			boolean escapeCompletePath = System.getProperty("os.name").toLowerCase().contains("mac");
+			boolean escapeCompletePath = isMac;
 			if (escapeCompletePath) {
 				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
 				command += "\"";

@@ -39,6 +39,7 @@
 							<li><a class="btnBimServer">BIMserver</a></li>
 							<li><a class="btnDatabase">Database</a></li>
 							<li><a class="btnWebServices">Web Services</a></li>
+							<li><a class="btnMetrics">Metrics</a></li>
 							<li><a class="btnLog">Log</a></li>
 							<li class="userDivider divider"></li>
 							<li><a class="btnAddUser">Add User</a></li>
@@ -386,6 +387,9 @@ function Main(address, user) {
 	}, true)});
 	$(".btnWebServices").click(function(event){othis.showServerInfo(function(){
 		this.showWebServices();
+	}, true)});
+	$(".btnMetrics").click(function(event){othis.showServerInfo(function(){
+		this.showMetrics();
 	}, true)});
 	$(".btnDatabase").click(function(event){othis.showServerInfo(function(){
 		this.showDatabase();

@@ -1,5 +1,7 @@
 package org.bimserver.servlets.websockets.jsr356;
 
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -27,6 +29,7 @@ import javax.servlet.annotation.WebListener;
 import javax.websocket.CloseReason;
 import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
+import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
@@ -57,6 +60,7 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	
 	@OnOpen
 	public void onOpen(Session websocketSession, EndpointConfig config) {
+		LOGGER.info("WebSocket open");
 		try {
 			this.websocketSession = websocketSession;
 			BimServer bimServer = (BimServer) servletContext.getAttribute("bimserver");
@@ -69,17 +73,23 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
+		LOGGER.info("WebSocket context initialized");
         servletContext = servletContextEvent.getServletContext();
     }
 
 	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
+		LOGGER.info("WebSocket context destroyed");
 	}
 
 	@OnMessage
-	public String onMessage(String message, Session session) {
+	public void onMessage(String message, Session session) {
 		streamer.onText(new StringReader(message));
-		return null;
+	}
+	
+	@OnError
+	public void onError(Throwable exception, Session session) {
+		LOGGER.error("", exception);
 	}
 
 	@OnClose
@@ -89,16 +99,30 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 
 	@Override
 	public void send(JsonObject request) {
-		websocketSession.getAsyncRemote().sendText(request.toString());
+		synchronized (this) {
+			try {
+				websocketSession.getBasicRemote().sendText(request.toString());
+			} catch (IOException e) {
+				LOGGER.error("", e);
+			}
+		}
 	}
 
 	@Override
 	public void send(byte[] data, int start, int length) {
-		websocketSession.getAsyncRemote().sendBinary(ByteBuffer.wrap(data, start, length));
+		synchronized (this) {
+			try {
+				websocketSession.getBasicRemote().sendBinary(ByteBuffer.wrap(data, start, length));
+			} catch (IOException e) {
+				LOGGER.error("", e);
+			}
+		}
 	}
 
 	@Override
 	public void sendBlocking(byte[] data, int start, int length) {
-		websocketSession.getAsyncRemote().sendBinary(ByteBuffer.wrap(data, start, length));
+		synchronized (this) {
+			websocketSession.getAsyncRemote().sendBinary(ByteBuffer.wrap(data, start, length));
+		}
 	}
 }
