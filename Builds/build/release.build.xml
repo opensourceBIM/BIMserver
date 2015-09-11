@@ -25,9 +25,6 @@
 		<ant antfile="bimserver.build.xml" target="Build War"/>
 		<copy file="builds/bimserver-${version}.war" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 
-		<ant antfile="bimserver.build.xml" target="Build War Tomcat7"/>
-		<copy file="builds/bimserver-tomcat7-${version}.war" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
-
 		<ant antfile="bimserver.build.xml" target="Build Jar"/>
 		<copy file="builds/bimserver-${version}.jar" todir="/var/www/BIMserver/${majorversion}.${minorversion}/${version}"/>
 		
