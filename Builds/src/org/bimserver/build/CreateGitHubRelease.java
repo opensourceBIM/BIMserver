@@ -72,8 +72,8 @@ public class CreateGitHubRelease {
 		// map.put("target_commitish", "test");
 		map.put("name", name);
 		map.put("body", body);
-		map.put("draft", draft);
-		map.put("prerelease", prerelease);
+//		map.put("draft", draft);
+//		map.put("prerelease", prerelease);
 		try {
 			String string = "/repos/" + repo + "/" + project + "/releases";
 			System.out.println(string);
