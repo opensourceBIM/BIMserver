@@ -19,6 +19,7 @@ package org.bimserver.database.actions;
 
 import java.nio.ByteBuffer;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,6 +33,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -169,6 +171,8 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			} else {
 				ifcModel = getModel();
 			}
+
+			ifcModel.fixOids(getDatabaseSession());
 
 			if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
 				setProgress("Generating Geometry...", -1);

@@ -1680,11 +1680,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return eObject;
 	}
 
-	public void store(Collection<? extends IdEObject> values) throws BimserverDatabaseException {
-		checkOpen();
-		store(values, Database.STORE_PROJECT_ID, Integer.MAX_VALUE);
-	}
-
 	public void store(Collection<? extends IdEObject> values, int pid, int rid) throws BimserverDatabaseException {
 		checkOpen();
 		for (IdEObject object : values) {
