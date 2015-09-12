@@ -43,7 +43,7 @@
 			<classpath>
 				<pathelement location="antlibs/gson-2.2.4.jar"/>
 				<pathelement location="antlibs/githubrelease.jar"/>
-				<pathelement location="antlibs/org.eclipse.egit.github.core-2.1.5.jar"/>
+				<pathelement location="antlibs/github.jar"/>
 				<pathelement location="antlibs/httpcore-4.3.1.jar"/>
 				<pathelement location="antlibs/httpclient-4.3.2.jar"/>
 				<pathelement location="antlibs/commons-logging-1.1.3.jar"/>
