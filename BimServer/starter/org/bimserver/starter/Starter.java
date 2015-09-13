@@ -39,7 +39,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -352,9 +354,12 @@ public class Starter extends JFrame {
 			String os = System.getProperty("os.name");
 			boolean isMac = os.toLowerCase().contains("mac");
 			System.out.println("OS: " + os);
-			String command = "";
+//			String command = "";
+			
+			List<String> commands = new ArrayList<>();
+			
 			if (jvmPath.equalsIgnoreCase("default")) {
-				command = "java";
+				commands.add("java");
 			} else {
 				File jvm = new File(jvmPath);
 				if (jvm.exists()) {
@@ -362,64 +367,63 @@ public class Starter extends JFrame {
 					if (!jre.exists()) {
 						jre = jvm;
 					}
-					command = new File(jre, "bin" + File.separator + "java").getAbsolutePath();
-					if (command.contains(" ") && isMac) {
-						command = "\"" + command + "\"";
-					}
+					commands.add(new File(jre, "bin" + File.separator + "java").getAbsolutePath());
 					File jreLib = new File(jre, "lib");
-					command += " -Xbootclasspath:";
+					commands.add("-Xbootclasspath:");
 					for (File file : jreLib.listFiles()) {
 						if (file.getName().endsWith(".jar")) {
 							if (file.getAbsolutePath().contains(" ")) {
-								command += "\"" + file.getAbsolutePath() + "\"" + File.pathSeparator;
+								commands.add("\"" + file.getAbsolutePath() + "\"" + File.pathSeparator);
 							} else {
-								command += file.getAbsolutePath() + File.pathSeparator;
+								commands.add(file.getAbsolutePath() + File.pathSeparator);
 							}
 						}
 					}
 					if (jre != jvm) {
 						File toolsFile = new File(jvm, "lib" + File.separator + "tools.jar");
 						if (toolsFile.getAbsolutePath().contains(" ")) {
-							command += "\"" + toolsFile.getAbsolutePath() + "\"";
+							commands.add("\"" + toolsFile.getAbsolutePath() + "\"");
 						} else {
-							command += toolsFile.getAbsolutePath();
+							commands.add(toolsFile.getAbsolutePath());
 						}
 					}
 				} else {
 					System.out.println("Not using selected JVM (directory not found), using default JVM");
 				}
 			}
-			command += " -Xmx" + heapsize;
-			command += " -Xss" + stacksize;
-			command += " -XX:MaxPermSize=" + permsize;
+			commands.add("-Xmx" + heapsize);
+			commands.add("-Xss" + stacksize);
+			commands.add("-XX:MaxPermSize=" + permsize);
 //			boolean debug = true;
 //			if (debug ) {
 //				command += " -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y";
 //			}
-			command += " -classpath ";
+			String cp = "";
 			boolean escapeCompletePath = isMac;
-			if (escapeCompletePath) {
-				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
-				command += "\"";
-			}
-			command += "lib" + File.pathSeparator;
+//			if (escapeCompletePath) {
+//				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
+//				command += "\"";
+//			}
+			cp += "lib" + File.pathSeparator;
 			File dir = new File(destDir + File.separator + "lib");
 			for (File lib : dir.listFiles()) {
 				if (lib.isFile()) {
 					if (lib.getName().contains(" ") && !escapeCompletePath) {
-						command += "\"lib" + File.separator + lib.getName() + "\"" + File.pathSeparator;
+						cp += "\"lib" + File.separator + lib.getName() + "\"" + File.pathSeparator;
 					} else {
-						command += "lib" + File.separator + lib.getName() + File.pathSeparator;
+						cp += "lib" + File.separator + lib.getName() + File.pathSeparator;
 					}
 				}
 			}
-			if (command.endsWith(File.pathSeparator)) {
-				command = command.substring(0, command.length()-1);
+			if (cp.endsWith(File.pathSeparator)) {
+				cp = cp.substring(0, cp.length()-1);
 			}
-			if (escapeCompletePath) {
-				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
-				command += "\"";
-			}
+			commands.add("-classpath");
+			commands.add(cp);
+//			if (escapeCompletePath) {
+//				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
+//				command += "\"";
+//			}
 			Enumeration<URL> resources = getClass().getClassLoader().getResources("META-INF/MANIFEST.MF");
 			String realMainClass = "";
 			while (resources.hasMoreElements()) {
@@ -434,12 +438,21 @@ public class Starter extends JFrame {
 				}
 			}
 			System.out.println("Main class: " + realMainClass);
-			command += " " + realMainClass;
-			command += " address=" + address;
-			command += " port=" + port;
-			command += " homedir=\"" + homedir + "\"";
-			System.out.println("Running: " + command);
-			exec = Runtime.getRuntime().exec(command, null, destDir);
+			commands.add(realMainClass);
+			commands.add("address=" + address);
+			commands.add("port=" + port);
+			commands.add("homedir=" + homedir);
+			
+			System.out.println("\nCommands:");
+			for (String command : commands) {
+				System.out.println(command);
+			}
+			ProcessBuilder processBuilder = new ProcessBuilder(commands);
+			processBuilder.directory(destDir);
+			
+//			System.out.println("Running: " + command);
+			exec = processBuilder.start();
+//			exec = Runtime.getRuntime().exec(command, null, destDir);
 
 			new Thread(new Runnable(){
 				@Override
