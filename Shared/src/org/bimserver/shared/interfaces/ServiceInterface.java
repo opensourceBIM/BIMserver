@@ -139,7 +139,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "resetUrl", partName = "addUser.resetUrl") String resetUrl) throws ServerException, UserException;
 
 	/**
-	 * Add a new user
+	 * Add a new user with a given password
 	 * @param username The username (must be a valid e-mail address)
 	 * @param name The name (e.g. "Bill Gates")
 	 * @param type Type of user
@@ -237,13 +237,33 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getAllWritableProjects")
 	List<SProject> getAllWritableProjects() throws ServerException, UserException;
 
+	/**
+	 * Get a list of all users
+	 * @return All users
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action = "getAllUsers")
 	List<SUser> getAllUsers() throws ServerException, UserException;
 
+	/**
+	 * Get a list of all the services attached to the given project
+	 * @param poid Project-ID of the Project
+	 * @return
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action = "getAllServicesOfProject")
 	List<SService> getAllServicesOfProject(
 		@WebParam(name = "poid", partName = "getAllServicesOfProject.poid") Long poid) throws ServerException, UserException;
 
+	/**
+	 * Get a list of all the model checkers attached to the given Project
+	 * @param poid Project-ID of the Project
+	 * @return
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action = "getAllModelCheckersOfProject")
 	List<SModelCheckerInstance> getAllModelCheckersOfProject(
 			@WebParam(name = "poid", partName = "getAllModelCheckersOfProject.poid") Long poid) throws ServerException, UserException;
@@ -385,6 +405,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "poid", partName = "userHasRights.poid") Long poid) throws ServerException, UserException;
 
 	/**
+	 * Get the GeoTag attached to the given Project
 	 * @param goid The ObjectID of the GeoTag
 	 * @return The GeoTag object
 	 * @throws ServerException, UserException
@@ -394,6 +415,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "goid", partName = "getGeoTag.goid") Long goid) throws ServerException, UserException;
 
 	/**
+	 * Update the GeoTag of a project
 	 * @param sGeoTag A GeoTag object containing the new properties
 	 * @throws ServerException, UserException
 	 */
@@ -448,6 +470,13 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "roid", partName = "setRevisionTag.roid") Long roid,
 		@WebParam(name = "tag", partName = "setRevisionTag.tag") String tag) throws ServerException, UserException;
 
+	/**
+	 * Get a list of all checkouts of the given project and it's sub projects
+	 * @param poid Project-ID of the given Project
+	 * @return
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action = "getAllCheckoutsOfProjectAndSubProjects")
 	List<SCheckout> getAllCheckoutsOfProjectAndSubProjects(
 		@WebParam(name = "poid", partName = "getAllCheckoutsOfProjectAndSubProjects.poid") Long poid) throws ServerException, UserException;
@@ -664,16 +693,39 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getModelCheckerInstance")
 	SModelCheckerInstance getModelCheckerInstance(@WebParam(name = "mcioid", partName = "getModelCheckerInstance.mcioid") Long mcioid) throws UserException, ServerException;
 	
+	/**
+	 * Remove the given model checker from the given project
+	 * @param poid
+	 * @param modelCheckerOid
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action = "removeModelCheckerFromProject")
 	void removeModelCheckerFromProject(
 		@WebParam(name = "poid", partName = "removeModelCheckerFromProject.poid") Long poid, 
 		@WebParam(name = "modelCheckerOid", partName = "removeModelCheckerFromProject.modelCheckerOid") Long modelCheckerOid) throws ServerException, UserException;
 
+	/**
+	 * Remove the given service from the given project
+	 * @param poid Project-ID
+	 * @param serviceOid Service-ID
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action = "removeServiceFromProject")
 	void removeServiceFromProject(
 			@WebParam(name = "poid", partName = "removeServiceFromProject.poid") Long poid, 
 			@WebParam(name = "serviceOid", partName = "removeServiceFromProject.serviceOid") Long serviceOid) throws ServerException, UserException;
 	
+	/**
+	 * Import data from another BIMserver, mainly used for migrations. EXPERIMENTAL CODE!
+	 * @param address Address of the other BIMserver (http(s)://host:port/[contextpath])
+	 * @param username Username of the admin user on the remote server
+	 * @param password Password of the admin user on the remote server
+	 * @param path A local path pointing to a copy of the incoming directory of the original server
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action = "importData")
 	void importData(
 		@WebParam(name = "address", partName = "importData.address") String address,
@@ -681,12 +733,35 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "password", partName = "importData.password") String password,
 		@WebParam(name = "path", partName = "importData.path") String path) throws ServerException, UserException;
 	
+	/**
+	 * Get the IfcHeader of the given ConcreteRevision-ID
+	 * @param croid
+	 * @return
+	 * @throws UserException
+	 * @throws ServerException
+	 */
 	@WebMethod(action = "getIfcHeader")
 	SIfcHeader getIfcHeader(@WebParam(name = "croid", partName = "getIfcHeader.croid") Long croid) throws UserException, ServerException;
 	
+	/**
+	 * Get the area of the given object
+	 * @param roid Revision-ID of the revision this object belongs to
+	 * @param oid Object-ID of the object
+	 * @return
+	 * @throws UserException
+	 * @throws ServerException
+	 */
 	@WebMethod(action = "getArea")
 	Double getArea(@WebParam(name = "roid", partName = "getArea.roid") Long roid, @WebParam(name = "oid", partName = "getArea.oid") Long oid) throws UserException, ServerException;
 
+	/**
+	 * Get the volume of the given object
+	 * @param roid Revision-ID of the revision this object belongs to
+	 * @param oid Object-ID of the object
+	 * @return
+	 * @throws UserException
+	 * @throws ServerException
+	 */
 	@WebMethod(action = "getVolume")
 	Double getVolume(@WebParam(name = "roid", partName = "getVolume.roid") Long roid, @WebParam(name = "oid", partName = "getVolume.oid") Long oid) throws UserException, ServerException;
 }
