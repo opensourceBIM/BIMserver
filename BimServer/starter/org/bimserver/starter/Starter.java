@@ -369,24 +369,27 @@ public class Starter extends JFrame {
 					}
 					commands.add(new File(jre, "bin" + File.separator + "java").getAbsolutePath());
 					File jreLib = new File(jre, "lib");
-					commands.add("-Xbootclasspath:");
+					
+					String xbcp = "";
+					xbcp += "-Xbootclasspath:";
 					for (File file : jreLib.listFiles()) {
 						if (file.getName().endsWith(".jar")) {
 							if (file.getAbsolutePath().contains(" ")) {
-								commands.add("\"" + file.getAbsolutePath() + "\"" + File.pathSeparator);
+								xbcp += "\"" + file.getAbsolutePath() + "\"" + File.pathSeparator;
 							} else {
-								commands.add(file.getAbsolutePath() + File.pathSeparator);
+								xbcp += file.getAbsolutePath() + File.pathSeparator;
 							}
 						}
 					}
 					if (jre != jvm) {
 						File toolsFile = new File(jvm, "lib" + File.separator + "tools.jar");
 						if (toolsFile.getAbsolutePath().contains(" ")) {
-							commands.add("\"" + toolsFile.getAbsolutePath() + "\"");
+							xbcp += "\"" + toolsFile.getAbsolutePath() + "\"";
 						} else {
-							commands.add(toolsFile.getAbsolutePath());
+							xbcp += toolsFile.getAbsolutePath();
 						}
 					}
+					commands.add(xbcp);
 				} else {
 					System.out.println("Not using selected JVM (directory not found), using default JVM");
 				}
