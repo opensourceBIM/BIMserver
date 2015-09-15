@@ -17,7 +17,7 @@ public class MetricsRegistry {
 		return new Recording(this, sService, method);
 	}
 	
-	public MethodStats getMethodStats(SMethod sMethod) {
+	public synchronized MethodStats getMethodStats(SMethod sMethod) {
 		Map<SMethod, MethodStats> map = this.methodStats.get(sMethod.getService());
 		if (map == null) {
 			map = new HashMap<SMethod, MethodStats>();
@@ -31,7 +31,7 @@ public class MetricsRegistry {
 		return methodStats;
 	}
 	
-	public SMetrics getMetrics() {
+	public synchronized SMetrics getMetrics() {
 		SMetrics sMetrics = new SMetrics();
 		for (SService sService : methodStats.keySet()) {
 			SInterfaceMetric interfaceMetric = new SInterfaceMetric();
