@@ -696,6 +696,9 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 	
 	public SExtendedDataSchema getExtendedDataSchemaByNamespace(String nameSpace) throws UserException, ServerException {
 		// Not checking for real authentication here because a remote service should be able to use an exs
+		if (nameSpace == null) {
+			throw new UserException("NameSpace required");
+		}
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {

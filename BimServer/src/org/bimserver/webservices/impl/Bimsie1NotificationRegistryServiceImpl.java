@@ -57,6 +57,9 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 
 	@Override
 	public void registerProgressHandler(Long topicId, Long endPointId) throws UserException {
+		if (endPointId == null) {
+			throw new UserException("No EndpointId given");
+		}
 		EndPoint endPoint = getEndPoint(endPointId);
 		if (endPoint == null) {
 			throw new UserException("Endpoint with id " + endPointId + " not found");
@@ -299,6 +302,9 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	
 	@Override
 	public void registerChangeProgressOnProject(Long endPointId, Long poid) throws ServerException, UserException {
+		if (endPointId == null) {
+			throw new UserException("No endpoint given");
+		}
 		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = getBimServer().getNotificationsManager().getChangeProgressOnProjectTopic(poid);
 		EndPoint endPoint = getEndPoint(endPointId);
 		try {

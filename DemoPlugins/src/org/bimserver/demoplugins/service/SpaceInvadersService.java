@@ -78,6 +78,7 @@ public class SpaceInvadersService extends ServicePlugin {
 		serviceDescriptor.setName("Space Invaders Service");
 		serviceDescriptor.setDescription("Space Invaders Service");
 		serviceDescriptor.setReadRevision(true);
+		serviceDescriptor.setWriteRevision(true);
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 		registerNewRevisionHandler(uoid, serviceDescriptor, new NewRevisionHandler() {

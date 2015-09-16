@@ -49,6 +49,6 @@ public class GetRevisionDatabaseAction extends BimDatabaseAction<Revision> {
 		if (authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 			return revision;
 		}
-		throw new UserException("User has no rights on this revision's project");
+		throw new UserException("User has no rights on this revision's project (" + project.getName() + ")");
 	}
 }

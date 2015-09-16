@@ -114,7 +114,8 @@ public class JsonHandler {
 					parameters[i] = new KeyValuePair(parameter.getName(), converter.fromJson(parameter.getType(), parameter.getGenericType(),
 							parametersJson.get(parameter.getName())));
 				} else {
-					LOGGER.error("Missing parameters: " + method.getName() + " -> " + parameter.getName());
+					LOGGER.error("Missing parameter: " + method.getName() + " -> " + parameter.getName());
+					throw new UserException("Missing parameter: " + method.getName() + " -> " + parameter.getName());
 				}
 			}
 		}

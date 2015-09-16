@@ -566,6 +566,14 @@ public abstract class IfcModel implements IfcModelInterface {
 		objects = temp;
 	}
 
+	public void fixOidsFlat(OidProvider<Long> oidProvider) {
+		BiMap<Long, IdEObject> temp = HashBiMap.create();
+		for (long oid : objects.keySet()) {
+			fixOidsFlat(objects.get(oid), oidProvider, temp);
+		}
+		objects = temp;
+	}
+
 	public void fixOids() {
 		BiMap<Long, IdEObject> temp = HashBiMap.create();
 		for (IdEObject object : objects.values()) {
@@ -596,6 +604,19 @@ public abstract class IfcModel implements IfcModelInterface {
 			} else {
 				fixOids((IdEObject) val, oidProvider, temp);
 			}
+		}
+	}
+
+	private void fixOidsFlat(IdEObject idEObject, OidProvider<Long> oidProvider, BiMap<Long, IdEObject> temp) {
+		if (idEObject == null) {
+			return;
+		}
+		if (temp.containsValue(idEObject)) {
+			return;
+		}
+		((IdEObjectImpl) idEObject).setOid(oidProvider.newOid(idEObject.eClass()));
+		if (objects.containsValue(idEObject)) {
+			temp.put(idEObject.getOid(), idEObject);
 		}
 	}
 

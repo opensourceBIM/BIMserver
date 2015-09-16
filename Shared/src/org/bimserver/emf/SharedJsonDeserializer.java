@@ -16,7 +16,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.StoreFactory;
@@ -25,6 +24,7 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.InverseAttribute;
+import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.SingleWaitingObject;
 import org.bimserver.shared.WaitingList;
@@ -55,7 +55,7 @@ public class SharedJsonDeserializer {
 	@SuppressWarnings("rawtypes")
 	public IfcModelInterface read(InputStream in, IfcModelInterface model) throws DeserializeException {
 		WaitingList<Long> waitingList = new WaitingList<Long>();
-		final boolean log = false;
+		final boolean log = true;
 		if (log) {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			try {
@@ -125,6 +125,12 @@ public class SharedJsonDeserializer {
 			}
 		}
 		if (waitingList.size() > 0) {
+			try {
+				waitingList.dumpIfNotEmpty();
+			} catch (BimServerClientException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			throw new DeserializeException("Waitinglist should be empty (" + waitingList.size() + ")");
 		}
 		return model;
@@ -206,44 +212,35 @@ public class SharedJsonDeserializer {
 									AbstractEList list = (AbstractEList) object.eGet(eStructuralFeature);
 									while (jsonReader.hasNext()) {
 										if (embedded) {
-											jsonReader.beginObject();
-											if (jsonReader.nextName().equals("_t")) {
-												String t = jsonReader.nextString();
-												IdEObject wrappedObject = (IdEObject) model.create(model.getPackageMetaData().getEClass(t), -1);
-												if (jsonReader.nextName().equals("_v")) {
-													EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
-													wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
-													list.add(wrappedObject);
-												} else {
-													// error
+											JsonToken peek = jsonReader.peek();
+											if (peek == JsonToken.NUMBER) {
+												long refOid = jsonReader.nextLong();
+												processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
+											} else {
+												jsonReader.beginObject();
+												String nextName = jsonReader.nextName();
+												if (nextName.equals("_t")) {
+													String t = jsonReader.nextString();
+													IdEObject wrappedObject = (IdEObject) model.create(model.getPackageMetaData().getEClass(t), -1);
+													if (jsonReader.nextName().equals("_v")) {
+														EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
+														wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
+														list.add(wrappedObject);
+													} else {
+														// error
+													}
+												} else if (nextName.equals("_i")) {
+													// Not all are embedded...
+													long refOid = jsonReader.nextLong();
+													processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
 												}
+												jsonReader.endObject();
 											}
-											jsonReader.endObject();
 										} else {
 											long refOid = jsonReader.nextLong();
-											EntityDefinition entityBN = model.getPackageMetaData().getSchemaDefinition().getEntityBN(object.eClass().getName());
-											Attribute attributeBN = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
-											if (skipInverses && attributeBN instanceof InverseAttribute && ((EReference)eStructuralFeature).getEOpposite() != null) {
-												// skip
-											} else {
-												if (model.contains(refOid)) {
-													EObject referencedObject = model.get(refOid);
-													if (referencedObject != null) {
-														EClass referenceEClass = referencedObject.eClass();
-														if (((EClass) eStructuralFeature.getEType()).isSuperTypeOf(referenceEClass)) {
-															while (list.size() <= index) {
-																list.addUnique(referencedObject);
-															}
-														} else {
-															throw new DeserializeException(-1, referenceEClass.getName() + " cannot be stored in " + eStructuralFeature.getName());
-														}
-													}
-												} else {
-													waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
-												}
-											}
-											index++;
+											processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
 										}
+										index++;
 									}
 								}
 								jsonReader.endArray();
@@ -252,7 +249,9 @@ public class SharedJsonDeserializer {
 									Object x = readPrimitive(jsonReader, eStructuralFeature);
 									if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
 										EStructuralFeature asStringFeature = object.eClass().getEStructuralFeature(eStructuralFeature.getName() + "AsString");
-										object.eSet(asStringFeature, "" + x); // TODO
+										if (asStringFeature != null) {
+											object.eSet(asStringFeature, "" + x); // TODO
+										}
 										// this
 										// is
 										// losing
@@ -326,6 +325,32 @@ public class SharedJsonDeserializer {
 		}
 		jsonReader.endObject();
 		return object;
+	}
+
+	private void processRef(IfcModelInterface model, WaitingList<Long> waitingList, IdEObjectImpl object,
+			EStructuralFeature eStructuralFeature, int index, AbstractEList list, long refOid)
+					throws DeserializeException {
+		EntityDefinition entityBN = model.getPackageMetaData().getSchemaDefinition().getEntityBN(object.eClass().getName());
+		Attribute attributeBN = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
+		if (skipInverses && attributeBN instanceof InverseAttribute && ((EReference)eStructuralFeature).getEOpposite() != null) {
+			// skip
+		} else {
+			if (model.contains(refOid)) {
+				EObject referencedObject = model.get(refOid);
+				if (referencedObject != null) {
+					EClass referenceEClass = referencedObject.eClass();
+					if (((EClass) eStructuralFeature.getEType()).isSuperTypeOf(referenceEClass)) {
+						while (list.size() <= index) {
+							list.addUnique(referencedObject);
+						}
+					} else {
+						throw new DeserializeException(-1, referenceEClass.getName() + " cannot be stored in " + eStructuralFeature.getName());
+					}
+				}
+			} else {
+				waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
+			}
+		}
 	}
 	
 

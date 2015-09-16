@@ -28,6 +28,7 @@ import java.util.List;
 import org.apache.commons.codec.binary.Base64;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3tc1.IfcTrimmedCurve;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -169,7 +170,7 @@ public class SharedJsonSerializer implements StreamingReader {
 											f = false;
 										}
 										IdEObject ref = (IdEObject) o;
-										if (ref.getOid() == -1) {
+										if (ref.getOid() < 0 || ((IdEObject) o).eClass().getEAnnotation("wrapped") != null) {
 											write(ref);
 										} else {
 											if (wrapped != 0 && referred != 0) {
