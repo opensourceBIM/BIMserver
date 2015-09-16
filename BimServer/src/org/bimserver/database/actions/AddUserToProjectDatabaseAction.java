@@ -55,6 +55,7 @@ public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 		if (authorization.hasRightsOnProject(actingUser, project)) {
 			User user = getUserByUoid(uoid);
 			project.getHasAuthorizedUsers().add(user);
+			user.getHasRightsOn().add(project);
 			final UserAddedToProject userAddedToProject = getDatabaseSession().create(UserAddedToProject.class);
 			userAddedToProject.setExecutor(actingUser);
 			userAddedToProject.setDate(new Date());

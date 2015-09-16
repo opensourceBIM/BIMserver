@@ -680,7 +680,9 @@ function BimServerApi(baseUrl, notifier) {
 			othis.user = data;
 			othis.server.connect(callback);
 		}, function(){
-			errorCallback();
+			if (errorCallBack != null) {
+				errorCallback();
+			}
 		});
 	};
 
@@ -1264,6 +1266,9 @@ function Model(bimServerApi, poid, roid, schema) {
 		if (othis.objects[object._i] != null) {
 			console.log("Warning!", object);
 		}
+		if (typeName == null) {
+			console.warn("typeName = null", object);
+		}
 		object.oid = object._i;
 		var cl = othis.getClass(typeName);
 		var wrapper = Object.create(cl);
@@ -1572,7 +1577,9 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	this.messagesReceived = 0;
 
 	this.connect = function(callback) {
-		othis.openCallbacks.push(callback);
+		if (callback != null) {
+			othis.openCallbacks.push(callback);
+		}
 		var location = bimServerApi.baseUrl.toString().replace('http://', 'ws://').replace('https://', 'wss://') + "/stream";
 		if ("WebSocket" in window) {
 			try {

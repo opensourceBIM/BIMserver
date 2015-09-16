@@ -102,6 +102,10 @@ public class NewRevisionNotification extends Notification {
 				return;
 			}
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
+			if (revision == null) {
+				LOGGER.error("Revision with roid " + roid + " not found");
+				return;
+			}
 			if  (project.isSendEmailOnNewRevision() && sendEmail) {
 				sendEmail(session, project, revision);
 			}
