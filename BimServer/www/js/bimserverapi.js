@@ -182,9 +182,11 @@ function BimServerApi(baseUrl, notifier) {
 		othis.call("Bimsie1AuthInterface", "login", request, function(data){
 			othis.token = data;
 			if (rememberme) {
+				// Stored cookie
 				$.cookie("autologin" + window.document.location.port, othis.token, { expires: 31, path: "/"});
 				$.cookie("address" + window.document.location.port, othis.baseUrl, { expires: 31, path: "/"});
-			} else {
+			} else if (!options.suppressSessionCookie) {
+				// Session cookie
 				$.cookie("autologin" + window.document.location.port, othis.token, { path: "/"});
 				$.cookie("address" + window.document.location.port, othis.baseUrl, { path: "/"});
 			}
@@ -672,6 +674,43 @@ function BimServerApi(baseUrl, notifier) {
 			return false;
 		});
 		return isa;
+	};
+
+	this.checkin = function(project, file, deserializerOid, progressListener, success, error){
+		var reader = new FileReader();
+		var xhr = new XMLHttpRequest();
+		
+		xhr.upload.addEventListener("progress",
+			function(e) {
+				if (e.lengthComputable) {
+					var percentage = Math.round((e.loaded * 100) / e.total);
+					progressListener(percentage);
+				}
+			}, false);
+
+		xhr.addEventListener("load", function(e) {
+			var result = JSON.parse(this.response);
+			
+			if (result.exception == null) {
+				success(result.checkinid);
+			} else {
+				error(result.exception);
+			}
+		}, false);
+		xhr.open("POST", Global.bimServerApi.baseUrl + "/upload");
+		reader.onload = function(evt) {
+			var formData = new FormData();
+			formData.append("token", othis.token);
+			formData.append("deserializerOid", deserializerOid);
+			formData.append("comment", file.name);
+			formData.append("merge", false);
+			formData.append("poid", project.oid);
+			formData.append("sync", false);
+			formData.append("file", file);
+			
+			xhr.send(formData);
+		};
+		reader.readAsBinaryString(file);
 	};
 	
 	this.setToken = function(token, callback, errorCallback) {
