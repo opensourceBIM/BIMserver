@@ -1614,6 +1614,7 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	this.tosend = [];
 	this.tosendAfterConnect = [];
 	this.messagesReceived = 0;
+	this.intervalId = null;
 
 	this.connect = function(callback) {
 		if (callback != null) {
@@ -1642,6 +1643,10 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 
 	this._onopen = function() {
+		othis.intervalId = window.setInterval(function(){
+			console.log("Sending hb");
+			othis.send({"hb": true});
+		}, 30 * 1000); // Send hb every 30 seconds
 		while (othis.tosendAfterConnect.length > 0 && othis._ws.readyState == 1) {
 			var messageArray = othis.tosendAfterConnect.splice(0, 1);
 			othis._sendWithoutEndPoint(messageArray[0]);
@@ -1708,6 +1713,8 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 
 	this._onclose = function(m) {
+		console.log("WebSocket closed");
+		window.clearInterval(othis.intervalId);
 		othis._ws = null;
 		othis.connected = false;
 		othis.openCallbacks = [];
