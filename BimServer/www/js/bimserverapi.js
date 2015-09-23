@@ -1644,7 +1644,6 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 
 	this._onopen = function() {
 		othis.intervalId = window.setInterval(function(){
-			console.log("Sending hb");
 			othis.send({"hb": true});
 		}, 30 * 1000); // Send hb every 30 seconds
 		while (othis.tosendAfterConnect.length > 0 && othis._ws.readyState == 1) {
