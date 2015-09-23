@@ -370,8 +370,9 @@ public class Starter extends JFrame {
 					commands.add(new File(jre, "bin" + File.separator + "java").getAbsolutePath());
 					File jreLib = new File(jre, "lib");
 					
-					String xbcp = "";
-					xbcp += "-Xbootclasspath:";
+					System.out.println("Using " + jreLib.getAbsolutePath() + " for bootclasspath");
+					
+					String xbcp = "-Xbootclasspath:";
 					for (File file : jreLib.listFiles()) {
 						if (file.getName().endsWith(".jar")) {
 							if (file.getAbsolutePath().contains(" ")) {
