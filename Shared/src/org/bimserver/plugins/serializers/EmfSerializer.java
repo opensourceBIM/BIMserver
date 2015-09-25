@@ -124,7 +124,7 @@ public abstract class EmfSerializer implements Serializer, StreamingReader {
 		while (result) {
 			result = write(outputStream, progressReporter);
 		}
-		progressReporter.update(1, 1);
+		if(progressReporter!=null) progressReporter.update(1, 1);
 	}
 
 	public void writeToFile(File file, ProgressReporter progressReporter) throws SerializerException {

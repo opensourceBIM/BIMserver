@@ -95,7 +95,7 @@ public abstract class IfcXmlSerializer extends IfcSerializer {
 				if (object.eClass().getEStructuralFeature("wrappedValue") == null) {
 					store(key, object);
 				}
-				progressReporter.update(progress++, keySet.size());
+				if (progressReporter != null) progressReporter.update(progress++, keySet.size());
 			}
 			tabs--;
 			printLineTabbed("</uos>");
