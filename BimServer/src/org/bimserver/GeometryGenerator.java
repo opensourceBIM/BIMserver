@@ -58,6 +58,7 @@ import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
+import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -180,6 +181,7 @@ public class GeometryGenerator {
 					for (IdEObject ifcProduct : allWithSubTypes) {
 						IdEObject representation = (IdEObject) ifcProduct.eGet(representationFeature);
 						if (representation != null && ((List<?>) representation.eGet(representationsFeature)).size() > 0) {
+							List<?> representations = (List<?>) representation.eGet(representationsFeature);
 							try {
 								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
 								RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
@@ -304,7 +306,19 @@ public class GeometryGenerator {
 									}
 								}
 							} catch (EntityNotFoundException e) {
-								LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + ifcProduct.getExpressId() + "/" + ifcProduct.getOid());
+								// As soon as we find a representation that is not Curve2D, then we should show a "INFO" message in the log to indicate there could be something wrong
+								boolean ignoreNotFound = true;
+								for (Object rep : representations) {
+									if (rep instanceof IfcShapeRepresentation) {
+										IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation)rep;
+										if (!"Curve2D".equals(ifcShapeRepresentation.getRepresentationType())) {
+											ignoreNotFound = false;
+										}
+									}
+								}
+								if (!ignoreNotFound) {
+									LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + ifcProduct.getExpressId() + "/" + ifcProduct.getOid());
+								}
 							} catch (BimserverDatabaseException | RenderEngineException e) {
 								LOGGER.error("", e);
 							} catch (IfcModelInterfaceException e) {
