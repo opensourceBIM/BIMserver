@@ -54,8 +54,11 @@ public class SharedJsonDeserializer {
 
 	@SuppressWarnings("rawtypes")
 	public IfcModelInterface read(InputStream in, IfcModelInterface model) throws DeserializeException {
+		if (model.getPackageMetaData().getSchemaDefinition() == null) {
+			throw new DeserializeException("No SchemaDefinition available");
+		}
 		WaitingList<Long> waitingList = new WaitingList<Long>();
-		final boolean log = true;
+		final boolean log = false;
 		if (log) {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			try {
@@ -327,6 +330,7 @@ public class SharedJsonDeserializer {
 		return object;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void processRef(IfcModelInterface model, WaitingList<Long> waitingList, IdEObjectImpl object,
 			EStructuralFeature eStructuralFeature, int index, AbstractEList list, long refOid)
 					throws DeserializeException {

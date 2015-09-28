@@ -116,11 +116,6 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	}
 
 	@Override
-	public MetaDataManager getMetaDataManager() {
-		return null;
-	}
-	
-	@Override
 	public BimServerClient create() throws ServiceException, ChannelConnectionException {
 		return null;
 	}

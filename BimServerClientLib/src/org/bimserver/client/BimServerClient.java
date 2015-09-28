@@ -39,7 +39,6 @@ import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.Geometry;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
-import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
@@ -81,10 +80,10 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	private final String baseAddress;
 	private AuthenticationInfo authenticationInfo = new AnonymousAuthentication();
 	private String token;
-	private BimServerClientFactory factory;
+	private MetaDataManager metaDataManager;
 
-	public BimServerClient(BimServerClientFactory factory, String baseAddress, SServicesMap servicesMap, Channel channel) {
-		this.factory = factory;
+	public BimServerClient(MetaDataManager metaDataManager, String baseAddress, SServicesMap servicesMap, Channel channel) {
+		this.metaDataManager = metaDataManager;
 		this.baseAddress = baseAddress;
 		this.servicesMap = servicesMap;
 		this.channel = channel;
@@ -92,7 +91,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 
 	public MetaDataManager getMetaDataManager() {
-		return factory.getMetaDataManager();
+		return metaDataManager;
 	}
 	
 	public void setAuthentication(AuthenticationInfo authenticationInfo) throws ServerException, UserException, ChannelConnectionException {

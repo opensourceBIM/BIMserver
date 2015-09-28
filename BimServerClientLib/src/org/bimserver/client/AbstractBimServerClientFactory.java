@@ -121,7 +121,6 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		httpClient = builder.build();
 	}
 	
-	@Override
 	public MetaDataManager getMetaDataManager() {
 		return metaDataManager;
 	}
