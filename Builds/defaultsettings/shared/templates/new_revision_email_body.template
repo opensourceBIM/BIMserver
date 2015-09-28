@@ -4,10 +4,10 @@
 ##   siteaddress: The address of the running BIMserver
 ##   validationlink: A link where the user can set his/her password
 #parse("inc/header.template")
-Dear $name,<br/>
+Hello,<br/>
 
-A new revision ($revisionId) with comment "$comment" has been checked-in on project "$projectName".
+Your model has been uploaded successfully to thebimfederation.com.<br/>
 
-<a href="http://localhost:8080/thebimfederation/?token=$token&page=Results&roid=$roid">link</a>
+Click <a href="http://localhost:8080/thebimfederation?page=Results&token=$token&roid=$roid">here</a> to view the results.<br/>
 
 #parse("inc/footer.template")

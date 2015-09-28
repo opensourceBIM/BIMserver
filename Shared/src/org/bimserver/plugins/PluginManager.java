@@ -26,6 +26,7 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -335,23 +336,27 @@ public class PluginManager {
 		throw new RuntimeException("No plugin context found for " + plugin);
 	}
 
-//	public void loadPluginsFromCurrentClassloader() {
-//		try {
-//			Enumeration<URL> resources = getClass().getClassLoader().getResources("plugin/plugin.xml");
-//			while (resources.hasMoreElements()) {
-//				URL url = resources.nextElement();
-//				LOGGER.info("Loading " + url);
-//				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
-//				loadPlugins(getClass().getClassLoader(), url.toString(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL);
-//			}
-//		} catch (IOException e) {
-//			LOGGER.error("", e);
-//		} catch (JAXBException e) {
-//			LOGGER.error("", e);
-//		} catch (PluginException e) {
-//			LOGGER.error("", e);
-//		}
-//	}
+	/**
+	 * Load all plugins that can be found in the current classloader, if you downloaded a BIMserver client library and 
+	 * added certain plugins to the classpath, this method should be able to find and load them
+	 */
+	public void loadPluginsFromCurrentClassloader() {
+		try {
+			Enumeration<URL> resources = getClass().getClassLoader().getResources("plugin/plugin.xml");
+			while (resources.hasMoreElements()) {
+				URL url = resources.nextElement();
+				LOGGER.info("Loading " + url);
+				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
+				loadPlugins(getClass().getClassLoader(), url.toString(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL);
+			}
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		} catch (JAXBException e) {
+			LOGGER.error("", e);
+		} catch (PluginException e) {
+			LOGGER.error("", e);
+		}
+	}
 	
 	public void enablePlugin(String name) {
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
@@ -485,6 +490,11 @@ public class PluginManager {
 		}
 	}
 	
+	/**
+	 * This method will initialize all the loaded plugins
+	 * 
+	 * @throws PluginException
+	 */
 	public void initAllLoadedPlugins() throws PluginException {
 		LOGGER.debug("Initializig all loaded plugins");
 		for (Class<? extends Plugin> pluginClass : implementations.keySet()) {

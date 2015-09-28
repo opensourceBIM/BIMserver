@@ -23,6 +23,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
@@ -37,11 +39,14 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 public class PackageMetaData implements ObjectFactory {
+	private static final Logger LOGGER = LoggerFactory.getLogger(PackageMetaData.class);
 	private final Map<String, Set<EClass>> directSubClasses = new TreeMap<String, Set<EClass>>();
 	private final Map<String, Set<EClass>> allSubClasses = new TreeMap<String, Set<EClass>>();
 	private final Map<String, EClassifier> caseInsensitive = new TreeMap<String, EClassifier>();
@@ -84,11 +89,12 @@ public class PackageMetaData implements ObjectFactory {
 		}
 		initUpperCases();
 		initEClassClassMap();
-		try {
-			if (metaDataManager != null && metaDataManager.getPluginManager() != null) {
+		if (ePackage == Ifc2x3tc1Package.eINSTANCE || ePackage == Ifc4Package.eINSTANCE) {
+			try {
 				schemaDefinition = metaDataManager.getPluginManager().requireSchemaDefinition(ePackage.getName().toLowerCase());
+			} catch (PluginException e) {
+				LOGGER.error("", e);
 			}
-		} catch (PluginException e) {
 		}
 	}
 	

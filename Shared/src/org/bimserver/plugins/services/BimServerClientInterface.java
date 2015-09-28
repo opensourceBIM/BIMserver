@@ -38,15 +38,42 @@ public interface BimServerClientInterface extends ServiceHolder {
 
 	IfcModelInterface getModel(SProject project, long roid, boolean deep, boolean recordChanges, boolean includeGeometry) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException;
 	IfcModelInterface getModel(SProject project, long roid, boolean deep, boolean recordChanges) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException;
+
+	IfcModelInterface newModel(SProject newProject, boolean recordChanges) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException;
+
 	void commit(IfcModelInterface model, String comment);
+	
 	void download(long roid, long serializerOid, OutputStream outputStream);
 	void download(long roid, long serializerOid, File file) throws IOException;
+	
 	long checkin(long poid, String string, long deserializerOid, boolean merge, boolean sync, File file) throws IOException, UserException, ServerException;
-	IfcModelInterface newModel(SProject newProject, boolean recordChanges) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException;
-	AuthInterface getBimServerAuthInterface() throws PublicInterfaceNotFoundException;
-	void disconnect();
+	
+	/**
+	 * Convenience method that given you the InputStream belonging to an already started download
+	 * 
+	 * @param download
+	 * @param serializerOid
+	 * @return
+	 * @throws IOException
+	 */
 	InputStream getDownloadData(long download, long serializerOid) throws IOException;
-	Bimsie1RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException;
+	
 	void setAuthentication(AuthenticationInfo authenticationInfo) throws ServerException, UserException, ChannelConnectionException;
+	
+	/**
+	 * Get the geometry for the given revision/product, this method is not tested
+	 * 
+	 * @param roid
+	 * @param ifcProduct
+	 * @return
+	 */
 	Geometry getGeometry(long roid, IfcProduct ifcProduct);
+
+	AuthInterface getBimServerAuthInterface() throws PublicInterfaceNotFoundException;
+	Bimsie1RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException;
+
+	/**
+	 * This will close all the connections, call this method as soon as you are done using this BimServerClient
+	 */
+	void disconnect();
 }

@@ -79,6 +79,10 @@ public class LocalDevSetup {
 		return null;
 	}
 	
+	/**
+	 * @param address
+	 * @return
+	 */
 	public static final BimServerClientInterface setupJson(String address) {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));

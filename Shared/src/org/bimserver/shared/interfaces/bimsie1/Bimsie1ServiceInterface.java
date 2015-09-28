@@ -323,6 +323,10 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 		@WebParam(name = "oid", partName = "getQueryEngineById.oid") Long oid) throws ServerException, UserException;
 	
 	/**
+	 * Get a suggested deserializer for the given file extension and project
+	 * 
+	 * @param extension File extension without the dot(.), for example "ifc"
+	 * @param poid ProjectID of the project, this is relevant because a project has a specific schema, so we are looking for a deserializer that can handle this schema
 	 * @return The name of the suggested deserializer
 	 * @throws ServerException 
 	 */
@@ -483,6 +487,7 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	/**
 	 * Add a new project
 	 * @param projectName Name of the project, must be a unique name within all root-projects
+	 * @param schema Schema of the project, you can only checkin models of this schema (available options are: "ifc2x3tc1" and "ifc4")
 	 * @return The created Project
 	 * @throws ServerException, UserException
 	 */
