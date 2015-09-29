@@ -65,4 +65,9 @@
 		<implementationClass>org.bimserver.demoplugins.service.HtmlService</implementationClass>
 		<enabled>true</enabled>
 	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
+		<implementationClass>org.bimserver.demoplugins.service.EventLogService</implementationClass>
+		<enabled>true</enabled>
+	</PluginImplementation>
 </PluginDescriptor>
