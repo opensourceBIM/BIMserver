@@ -159,6 +159,13 @@ public class PluginManager {
 						if (libFile.getName().toLowerCase().endsWith(".jar")) {
 							FileJarClassLoader jarClassLoader = new FileJarClassLoader(depDelLoader, libFile, tempDir);
 							depDelLoader.add(jarClassLoader);
+						} else if (libFile.isDirectory()) {
+							for (File libFile2 : libFile.listFiles()) {
+								if (libFile2.getName().endsWith(".jar")) {
+									FileJarClassLoader jarClassLoader = new FileJarClassLoader(depDelLoader, libFile2, tempDir);
+									depDelLoader.add(jarClassLoader);
+								}
+							}
 						}
 					}
 				}
@@ -173,6 +180,13 @@ public class PluginManager {
 					if (libFile.getName().toLowerCase().endsWith(".jar")) {
 						FileJarClassLoader jarClassLoader = new FileJarClassLoader(delegatingClassLoader, libFile, tempDir);
 						delegatingClassLoader.add(jarClassLoader);
+					} else if (libFile.isDirectory()) {
+						for (File libFile2 : libFile.listFiles()) {
+							if (libFile2.getName().endsWith(".jar")) {
+								FileJarClassLoader jarClassLoader = new FileJarClassLoader(delegatingClassLoader, libFile2, tempDir);
+								delegatingClassLoader.add(jarClassLoader);
+							}
+						}
 					}
 				}
 			}
