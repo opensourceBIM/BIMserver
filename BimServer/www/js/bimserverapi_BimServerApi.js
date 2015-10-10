@@ -1,14 +1,10 @@
 "use strict"
 
 define(
-     
     ["bimserverapi_BimServerWebSocket", "bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise", "bimserverapi_Model", "bimserverapi_Ifc2x3tc1", "bimserverapi_Ifc4", "bimserverapi_Translations_EN"], 
     function(BimServerWebSocket, Synchronizer, BimServerApiPromise, Model, ifc2x3tc1, ifc4, translations){
     	return function(baseUrl, notifier) {
 	    	var othis = this;
-	    	
-	    	// Convenience method for non-requirejs dependants...	    	
-	    	othis.BimServerApiPromise = BimServerApiPromise;
 	    	
 	    	othis.interfaceMapping = {
 	    		"ServiceInterface": "org.bimserver.ServiceInterface",
@@ -23,18 +19,19 @@ define(
 	    		"Bimsie1ServiceInterface": "org.buildingsmart.bimsie1.Bimsie1ServiceInterface"
 	    	};
 	
-	    	othis.jsonSerializerFetcher = new Synchronizer(function(callback){
-	    		othis.call("PluginInterface", "getSerializerByPluginClassName", {pluginClassName: "org.bimserver.serializers.JsonSerializerPlugin"}, function(serializer){
-	    			callback(serializer.oid);
-	    		});
-	    	});
-	
+	    	// Current BIMserver token
 	    	othis.token = null;
+	    	
+	    	// Base URL of the BIMserver
 	    	othis.baseUrl = baseUrl;
 	    	if (othis.baseUrl.substring(othis.baseUrl.length - 1) == "/") {
 	    		othis.baseUrl = othis.baseUrl.substring(0, othis.baseUrl.length - 1);
 	    	}
+	    	
+	    	// JSON endpoint on BIMserver
 	    	othis.address = othis.baseUrl + "/json";
+	    	
+	    	// Notifier, default implementation does nothing
 	    	othis.notifier = notifier;
 	    	if (othis.notifier == null) {
 	    		othis.notifier = {
@@ -46,14 +43,30 @@ define(
 	    			clear: function(){}
 	    		};
 	    	}
+	    	
+	    	// The websocket client
 	    	othis.server = new BimServerWebSocket(baseUrl, othis);
+	    	
+	    	// Cached user object
 	    	othis.user = null;
-	    	othis.listeners = {};
-	    	othis.autoLoginTried = false;
+	    	
+	    	othis.listeners = {};   	
+	    	
+//	    	othis.autoLoginTried = false;
+	    	
+	    	// Cache for serializers, PluginClassName(String) -> Serializer
 	    	othis.serializersByPluginClassName = [];
+
+	    	// Whether debugging is enabled, just a lot more logging
 	    	othis.debug = false;
-	    	othis.classes = {};
+	    	
+	    	// Mapping from ChannelId -> Listener (function)
 	    	othis.binaryDataListener = {};
+	    	
+	    	// This mapping keeps track of the prototype objects per class, will be lazily popuplated by the getClass method
+	    	othis.classes = {};
+	    	
+	    	// Schema name (String) -> Schema
 	    	othis.schemas = {};
 	
 	    	this.init = function(callback) {
@@ -194,28 +207,32 @@ define(
 	    	this.generateExtendedDataDownloadUrl = function(edid) {
 	    		return othis.baseUrl + "/download?token=" + othis.token + "&action=extendeddata&edid=" + edid;
 	    	};
-	
+
+	    	this.getJsonSerializer = function(callback) {
+	    		othis.getSerializerByPluginClassName("org.bimserver.serializers.JsonSerializerPlugin", callback);
+	    	};
+	    	
 	    	this.getSerializerByPluginClassName = function(pluginClassName, callback) {
-	    		if (othis.serializersByPluginClassName[name] == null) {
+	    		if (othis.serializersByPluginClassName[pluginClassName] == null) {
 	    			othis.call("PluginInterface", "getSerializerByPluginClassName", {pluginClassName : pluginClassName}, function(serializer) {
-	    				othis.serializersByPluginClassName[name] = serializer;
+	    				othis.serializersByPluginClassName[pluginClassName] = serializer;
 	    				callback(serializer);
 	    			});
 	    		} else {
-	    			callback(othis.serializersByPluginClassName[name]);
+	    			callback(othis.serializersByPluginClassName[pluginClassName]);
 	    		}
-	    	},
+	    	};
 	
 	    	this.getMessagingSerializerByPluginClassName = function(pluginClassName, callback) {
-	    		if (othis.serializersByPluginClassName[name] == null) {
+	    		if (othis.serializersByPluginClassName[pluginClassName] == null) {
 	    			othis.call("PluginInterface", "getMessagingSerializerByPluginClassName", {pluginClassName : pluginClassName}, function(serializer) {
-	    				othis.serializersByPluginClassName[name] = serializer;
+	    				othis.serializersByPluginClassName[pluginClassName] = serializer;
 	    				callback(serializer);
 	    			});
 	    		} else {
-	    			callback(othis.serializersByPluginClassName[name]);
+	    			callback(othis.serializersByPluginClassName[pluginClassName]);
 	    		}
-	    	},
+	    	};
 	
 	    	this.register = function(interfaceName, methodName, callback, registerCallback) {
 	    		if (callback == null) {
@@ -395,16 +412,6 @@ define(
 	    				}
 	    			}
 	    		}
-	    	};
-	
-	    	this.callWs = function(interfaceName, method, data) {
-	    		var requestObject = {
-	    			request: othis.createRequest(interfaceName, method, data)
-	    		};
-	    		if (othis.token != null) {
-	    			requestObject.token = othis.token;
-	    		}
-	    		othis.server.send(requestObject);
 	    	};
 	
 	    	this.createRequest = function(interfaceName, method, data) {
@@ -667,6 +674,18 @@ define(
 	    		});
 	    	};
 	
+	    	/**
+	    	 * Call a single method, this method delegates to the multiCall method
+	    	 * @param {string} interfaceName - Interface name, e.g. "Bimsie1ServiceInterface"
+	    	 * @param {string} methodName - Methodname, e.g. "addProject"
+	    	 * @param {Object} data - Object with a field per arument
+	    	 * @param {Function} callback - Function to callback, first argument in callback will be the returned object
+	    	 * @param {Function} errorCallback - Function to callback on error
+	    	 * @param {boolean} showBusy - Whether to show busy indication
+	    	 * @param {boolean} showDone - Whether to show done indication
+	    	 * @param {boolean} showError - Whether to show errors
+	    	 * 
+	    	 */
 	    	this.call = function(interfaceName, methodName, data, callback, errorCallback, showBusy, showDone, showError) {
 	    		var showBusy = typeof showBusy !== 'undefined' ? showBusy : true;
 	    		var showDone = typeof showDone !== 'undefined' ? showDone : false;
