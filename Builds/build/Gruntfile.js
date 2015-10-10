@@ -23,5 +23,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-css");
     grunt.loadNpmTasks("grunt-contrib-clean");
 
-    grunt.registerTask("default", ["clean", "concat", "uglify", "cssmin"]);
+    grunt.registerTask("default", ["concat", "uglify"]);
 };
