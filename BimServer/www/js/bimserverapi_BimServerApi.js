@@ -112,7 +112,7 @@ define(
 	    		return key;
 	    	};
 	
-	    	this.login = function(username, password, rememberme, callback, errorCallback, options) {
+	    	this.login = function(username, password, callback, errorCallback, options) {
 	    		if (options == null) {
 	    			options = {};
 	    		}
@@ -122,15 +122,6 @@ define(
 	    		};
 	    		othis.call("Bimsie1AuthInterface", "login", request, function(data){
 	    			othis.token = data;
-	    			if (rememberme) {
-	    				// Stored cookie
-	    				$.cookie("autologin" + window.document.location.port, othis.token, { expires: 31, path: "/"});
-	    				$.cookie("address" + window.document.location.port, othis.baseUrl, { expires: 31, path: "/"});
-	    			} else if (!options.suppressSessionCookie) {
-	    				// Session cookie
-	    				$.cookie("autologin" + window.document.location.port, othis.token, { path: "/"});
-	    				$.cookie("address" + window.document.location.port, othis.baseUrl, { path: "/"});
-	    			}
 	    			if (options.done != false) {
 	    				othis.notifier.setInfo("Login successful", 2000);
 	    			}
@@ -190,7 +181,6 @@ define(
 	    	};
 	
 	    	this.logout = function(callback) {
-	    		$.removeCookie("autologin" + window.document.location.port, {path: "/"});
 	    		othis.call("Bimsie1AuthInterface", "logout", {}, function(){
 	    			othis.notifier.setInfo("Logout successful");
 	    			callback();
@@ -425,7 +415,24 @@ define(
 	
 	    		return object;
 	    	};
-	
+	    	
+	    	this.getJson = function(address, data, success, error){
+	    		var xhr = new XMLHttpRequest();
+	    		xhr.open("POST", address);
+	    		xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+	    		xhr.onload = function(jqXHR, textStatus, errorThrown) {
+	    		    if (xhr.status === 200) {
+	    		        var data = JSON.parse(xhr.responseText);
+	    		        success(data);
+	    		    } else {
+	    		    	if (error != null) {
+	    		    		error(jqXHR, textStatus, errorThrown);
+	    		    	}
+	    		    }
+	    		};
+	    		xhr.send(JSON.stringify(data));
+	    	};
+	    	
 	    	this.multiCall = function(requests, callback, errorCallback, showBusy, showDone, showError) {
 	    		var promise = new BimServerApiPromise();
 	    		var request = null;
@@ -479,90 +486,84 @@ define(
 	
 	    		othis.log("request", request);
 	
-	    		$.ajax(othis.address, {
-	    			type: "POST",
-	    			contentType: 'application/json; charset=UTF-8',
-	    			data: JSON.stringify(request),
-	    			dataType: "json",
-	    			success: function(data) {
-	    				othis.log("response", data);
-	    				var errorsToReport = [];
-	    				if (requests.length == 1) {
-	    					if (showBusy) {
-	    						if (othis.lastBusyTimeOut != null) {
-	    							clearTimeout(othis.lastBusyTimeOut);
-	    						}
-	    					}
-	    					if (data.response.exception != null) {
-	    						if (data.response.exception.message == "Invalid token" && !othis.autoLoginTried && $.cookie("username" + window.document.location.port) != null && $.cookie("autologin" + window.document.location.port) != null) {
-	    							othis.autologin($.cookie("username" + window.document.location.port), $.cookie("autologin" + window.document.location.port), function(){
-	    								othis.log("Trying to connect with autologin");
-	    								othis.multiCall(requests, callback, errorCallback);
-	    							});
-	    						} else {
-	    							if (showError) {
-	    								if (othis.lastTimeOut != null) {
-	    									clearTimeout(othis.lastTimeOut);
-	    								}
-	    								othis.notifier.setError(data.response.exception.message);
-	    							} else {
-	    								if (showedBusy) {
-	    									othis.notifier.resetStatus();
-	    								}
-	    							}
-	    						}
-	    					} else {
-	    						if (showDone) {
-	    							othis.notifier.setSuccess(othis.translate(key + "_DONE"), 5000);
-	    						} else {
-	    							if (showedBusy) {
-	    								othis.notifier.resetStatus();
-	    							}
-	    						}
-	    					}
-	    				} else if (requests.length > 1) {
-	    					data.responses.forEach(function(response){
-	    						if (response.exception != null) {
-	    							if (errorCallback == null) {
-	    								othis.notifier.setError(response.exception.message);
-	    							} else {
-	    								errorsToReport.push(response.exception);
-	    							}
-	    						}
-	    					});
-	    				}
-	    				if (errorsToReport.length > 0) {
-	    					errorCallback(errorsToReport);
-	    				} else {
-	    					if (requests.length == 1) {
-	    						callback(data.response);
-	    					} else if (requests.length > 1) {
-	    						callback(data.responses);
-	    					}
-	    				}
-	    				promise.fire();
-	    			},
-	    			error: function(jqXHR, textStatus, errorThrown){
-	    				if (textStatus == "abort") {
-	    					// ignore
-	    				} else {
-	    					othis.log(errorThrown);
-	    					othis.log(textStatus);
-	    					othis.log(jqXHR);
-	    					if (othis.lastTimeOut != null) {
-	    						clearTimeout(othis.lastTimeOut);
-	    					}
-	    					othis.notifier.setError("ERROR_REMOTE_METHOD_CALL");
-	    				}
-	    				if (callback != null) {
-	    					var result = new Object();
-	    					result.error = textStatus;
-	    					result.ok = false;
-	    					callback(result);
-	    				}
-	    				promise.fire();
-	    			}
-	    		});
+	    		othis.getJson(othis.address, request, function(data) {
+    				othis.log("response", data);
+    				var errorsToReport = [];
+    				if (requests.length == 1) {
+    					if (showBusy) {
+    						if (othis.lastBusyTimeOut != null) {
+    							clearTimeout(othis.lastBusyTimeOut);
+    						}
+    					}
+    					if (data.response.exception != null) {
+//	    						if (data.response.exception.message == "Invalid token" && !othis.autoLoginTried && $.cookie("username" + window.document.location.port) != null && $.cookie("autologin" + window.document.location.port) != null) {
+//	    							othis.autologin($.cookie("username" + window.document.location.port), $.cookie("autologin" + window.document.location.port), function(){
+//	    								othis.log("Trying to connect with autologin");
+//	    								othis.multiCall(requests, callback, errorCallback);
+//	    							});
+//	    						} else {
+    							if (showError) {
+    								if (othis.lastTimeOut != null) {
+    									clearTimeout(othis.lastTimeOut);
+    								}
+    								othis.notifier.setError(data.response.exception.message);
+    							} else {
+    								if (showedBusy) {
+    									othis.notifier.resetStatus();
+    								}
+    							}
+//	    						}
+    					} else {
+    						if (showDone) {
+    							othis.notifier.setSuccess(othis.translate(key + "_DONE"), 5000);
+    						} else {
+    							if (showedBusy) {
+    								othis.notifier.resetStatus();
+    							}
+    						}
+    					}
+    				} else if (requests.length > 1) {
+    					data.responses.forEach(function(response){
+    						if (response.exception != null) {
+    							if (errorCallback == null) {
+    								othis.notifier.setError(response.exception.message);
+    							} else {
+    								errorsToReport.push(response.exception);
+    							}
+    						}
+    					});
+    				}
+    				if (errorsToReport.length > 0) {
+    					errorCallback(errorsToReport);
+    				} else {
+    					if (requests.length == 1) {
+    						callback(data.response);
+    					} else if (requests.length > 1) {
+    						callback(data.responses);
+    					}
+    				}
+    				promise.fire();
+    			},
+    			function(jqXHR, textStatus, errorThrown){
+    				if (textStatus == "abort") {
+    					// ignore
+    				} else {
+    					othis.log(errorThrown);
+    					othis.log(textStatus);
+    					othis.log(jqXHR);
+    					if (othis.lastTimeOut != null) {
+    						clearTimeout(othis.lastTimeOut);
+    					}
+    					othis.notifier.setError("ERROR_REMOTE_METHOD_CALL");
+    				}
+    				if (callback != null) {
+    					var result = new Object();
+    					result.error = textStatus;
+    					result.ok = false;
+    					callback(result);
+    				}
+    				promise.fire();
+    			});
 	    		return promise;
 	    	};
 	

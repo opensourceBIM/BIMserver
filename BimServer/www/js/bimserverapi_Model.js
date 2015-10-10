@@ -40,7 +40,7 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 				othis.decrementRunningCalls("init");
 			});
 		};
-
+		
 		this.load = function(deep, modelLoadCallback) {
 			if (deep) {
 				othis.loading = true;
@@ -57,7 +57,7 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 							topicId: laid,
 							serializerOid: jsonSerializerOid
 						});
-						$.getJSON(url, function(data, textStatus, jqXHR){
+						othis.bimServerApi.getJson(url, null, function(data){
 							data.objects.forEach(function(object){
 								othis.objects[object._i] = othis.createWrapper(object, object._t);
 							});
@@ -73,6 +73,8 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 								}
 								othis.decrementRunningCalls("load");
 							});
+						}, function(error){
+							console.log(error);
 						});
 					});
 				});
@@ -600,7 +602,7 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 								topicId: laid,
 								serializerOid: jsonSerializerOid
 							});
-							$.getJSON(url, function(data, textStatus, jqXHR){
+							othis.bimServerApi.getJson(url, null, function(data){
 								if (data.objects.length > 0) {
 									var done = 0;
 									data.objects.forEach(function(object){
@@ -615,7 +617,7 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 										}
 										var item = getValueMethod(object);
 										// Checking the value again, because sometimes serializers send more objects...
-										if ($.inArray(item, list) != -1) {
+										if (list.indexOf(item) != -1) {
 											targetMap[item] = wrapper;
 											if (fetchingMap[item] != null) {
 												fetchingMap[item].forEach(function(cb){
@@ -638,6 +640,8 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 									callback(null);
 									promise.fire();
 								}
+							}, function(error){
+								console.log(error);
 							});
 						});
 					});
@@ -691,7 +695,7 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 							serializerOid: jsonSerializerOid
 						});
 						othis.bimServerApi.notifier.setInfo("Getting model data...", -1);
-						$.getJSON(url, function(data, textStatus, jqXHR){
+						othis.bimServerApi.getJson(url, null, function(data){
 //							console.log("query", data.objects.length);
 							data.objects.forEach(function(object){
 								var wrapper = othis.objects[object._i];
@@ -719,6 +723,8 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 								promise.fire();
 								othis.bimServerApi.notifier.setSuccess("Model data successfully downloaded...");
 							});
+						}, function(error){
+							console.log(error);
 						});
 					});
 				});
@@ -777,7 +783,7 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 									topicId: laid,
 									serializerOid: jsonSerializerOid
 								});
-								$.getJSON(url, function(data, textStatus, jqXHR){
+								othis.bimServerApi.getJson(url, null, function(data){
 									if (othis.loadedTypes[type] == null) {
 										othis.loadedTypes[type] = {};
 									}
@@ -811,6 +817,8 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 										othis.decrementRunningCalls("getAllOfType");
 										promise.fire();
 									});
+								}, function(error){
+									console.log(error);
 								});
 							});
 						});					
