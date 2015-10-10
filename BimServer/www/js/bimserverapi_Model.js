@@ -1,4 +1,4 @@
-define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], function(Synchronizer, BimServerPromise){
+define(["bimserverapi_BimServerApiPromise"], function(BimServerPromise){
 	return function(bimServerApi, poid, roid, schema) {
 		var othis = this;
 		othis.schema = schema;
@@ -27,18 +27,7 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 		othis.changes = 0;
 		othis.changeListeners = [];
 		
-		othis.transactionSynchronizer = new Synchronizer(function(callback){
-			bimServerApi.call("Bimsie1LowLevelInterface", "startTransaction", {poid: othis.poid}, function(tid){
-				callback(tid);
-			});
-		});
-
 		this.init = function(callback){
-			othis.incrementRunningCalls("init");
-			othis.transactionSynchronizer.fetch(function(){
-				callback(othis);
-				othis.decrementRunningCalls("init");
-			});
 		};
 		
 		this.load = function(deep, modelLoadCallback) {
@@ -85,21 +74,36 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 				}
 			}
 		};
+		
+		// Start a transaction, make sure to wait for the callback to be called, only after that the transaction will be active
+		this.startTransaction = function(callback){
+			bimServerApi.call("Bimsie1LowLevelInterface", "startTransaction", {poid: othis.poid}, function(tid){
+				othis.tid = tid;
+				callback(tid);
+			});
+		};
 
+		// Checks whether a transaction is running, if not, it throws an exception, otherwise it return the tid
+		this.checkTransaction = function(){
+			if (othis.tid != null) {
+				return othis.tid;
+			}
+			throw Exception("No transaction is running, call startTransaction first");
+		};
+		
 		this.create = function(className, object, callback) {
 			othis.incrementRunningCalls("create (" + className + ")");
-			othis.transactionSynchronizer.fetch(function(tid){
-				object._t = className;
-				var wrapper = othis.createWrapper({}, className);
-				bimServerApi.call("Bimsie1LowLevelInterface", "createObject", {tid: tid, className: className}, function(oid){
-					wrapper._i = oid;
-					othis.objects[object._i] = wrapper;
-					object._s = 1;
-					if (callback != null) {
-						callback(object);
-					}
-					othis.decrementRunningCalls("create (" + className + ")");
-				});
+			var tid = othis.checkTransaction();
+			object._t = className;
+			var wrapper = othis.createWrapper({}, className);
+			bimServerApi.call("Bimsie1LowLevelInterface", "createObject", {tid: tid, className: className}, function(oid){
+				wrapper._i = oid;
+				othis.objects[object._i] = wrapper;
+				object._s = 1;
+				if (callback != null) {
+					callback(object);
+				}
+				othis.decrementRunningCalls("create (" + className + ")");
 			});
 			return object;
 		};
@@ -137,22 +141,20 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 		};
 
 		this.commit = function(comment, callback){
-			othis.transactionSynchronizer.fetch(function(tid){
-				bimServerApi.call("Bimsie1LowLevelInterface", "commitTransaction", {tid: tid, comment: comment}, function(roid){
-					if (callback != null) {
-						callback(roid);
-					}
-				});
+			var tid = othis.checkTransaction();
+			bimServerApi.call("Bimsie1LowLevelInterface", "commitTransaction", {tid: tid, comment: comment}, function(roid){
+				if (callback != null) {
+					callback(roid);
+				}
 			});
 		};
 		
 		this.abort = function(callback){
-			othis.transactionSynchronizer.fetch(function(tid){
-				bimServerApi.call("Bimsie1LowLevelInterface", "abortTransaction", {tid: tid}, function(roid){
-					if (callback != null) {
-						callback();
-					}
-				});
+			var tid = othis.checkTransaction();
+			bimServerApi.call("Bimsie1LowLevelInterface", "abortTransaction", {tid: tid}, function(roid){
+				if (callback != null) {
+					callback();
+				}
 			});
 		};
 		
@@ -180,113 +182,109 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 							var object = this.object;
 							object[fieldName] = {_t: typeName, value: value};
 							othis.incrementRunningCalls("set" + fieldName.firstUpper() + "Wrapped");
-							othis.transactionSynchronizer.fetch(function(tid){
-								var type = othis.bimServerApi.schemas[othis.schema][typeName];
-								var wrappedValueType = type.fields.wrappedValue;
-								if (wrappedValueType.type == "string") {
-									bimServerApi.call("Bimsie1LowLevelInterface", "setWrappedStringAttribute", {
-										tid: tid,
-										oid: object._i,
-										attributeName: fieldName,
-										type: typeName,
-										value: value
-									}, function(){
-										if (object.changedFields == null) {
-											object.changedFields = {};
-										}
-										object.changedFields[fieldName] = true;
-										othis.changedObjectOids[object.oid] = true;
-										othis.incrementChanges();
-										othis.decrementRunningCalls("set" + fieldName.firstUpper() + "Wrapped");
-									});
-								}
-							});
+							var tid = othis.checkTransaction();
+							var type = othis.bimServerApi.schemas[othis.schema][typeName];
+							var wrappedValueType = type.fields.wrappedValue;
+							if (wrappedValueType.type == "string") {
+								bimServerApi.call("Bimsie1LowLevelInterface", "setWrappedStringAttribute", {
+									tid: tid,
+									oid: object._i,
+									attributeName: fieldName,
+									type: typeName,
+									value: value
+								}, function(){
+									if (object.changedFields == null) {
+										object.changedFields = {};
+									}
+									object.changedFields[fieldName] = true;
+									othis.changedObjectOids[object.oid] = true;
+									othis.incrementChanges();
+									othis.decrementRunningCalls("set" + fieldName.firstUpper() + "Wrapped");
+								});
+							}
 						};
 						wrapperClass["set" + fieldName.firstUpper()] = function(value) {
+							var tid = othis.checkTransaction();
 							var object = this.object;
-							othis.transactionSynchronizer.fetch(function(tid){
-								object[fieldName] = value;
-								othis.incrementRunningCalls("set" + fieldName.firstUpper());
-								if (value == null) {
-									bimServerApi.call("Bimsie1LowLevelInterface", "unsetReference", {
-										tid: tid,
-										oid: object._i,
-										referenceName: fieldName,
-									}, function(){
-										othis.decrementRunningCalls("set" + fieldName.firstUpper());
-										if (object.changedFields == null) {
-											object.changedFields = {};
-										}
-										object.changedFields[fieldName] = true;
-										othis.changedObjectOids[object.oid] = true;
-									});
-								} else {
-									bimServerApi.call("Bimsie1LowLevelInterface", "setReference", {
-										tid: tid,
-										oid: object._i,
-										referenceName: fieldName,
-										referenceOid: value._i
-									}, function(){
-										othis.decrementRunningCalls("set" + fieldName.firstUpper());
-										if (object.changedFields == null) {
-											object.changedFields = {};
-										}
-										object.changedFields[fieldName] = true;
-										othis.changedObjectOids[object.oid] = true;
-									});
-								}
-							});
-						};
-						wrapperClass["add" + fieldName.firstUpper()] = function(value, callback) {
-							var object = this.object;
-							othis.transactionSynchronizer.fetch(function(tid){
-								if (object[fieldName] == null) {
-									object[fieldName] = [];
-								}
-								object[fieldName].push(value);
-								othis.incrementRunningCalls("add" + fieldName.firstUpper());
-								bimServerApi.call("Bimsie1LowLevelInterface", "addReference", {
+							object[fieldName] = value;
+							othis.incrementRunningCalls("set" + fieldName.firstUpper());
+							if (value == null) {
+								bimServerApi.call("Bimsie1LowLevelInterface", "unsetReference", {
+									tid: tid,
+									oid: object._i,
+									referenceName: fieldName,
+								}, function(){
+									othis.decrementRunningCalls("set" + fieldName.firstUpper());
+									if (object.changedFields == null) {
+										object.changedFields = {};
+									}
+									object.changedFields[fieldName] = true;
+									othis.changedObjectOids[object.oid] = true;
+								});
+							} else {
+								bimServerApi.call("Bimsie1LowLevelInterface", "setReference", {
 									tid: tid,
 									oid: object._i,
 									referenceName: fieldName,
 									referenceOid: value._i
 								}, function(){
-									othis.decrementRunningCalls("add" + fieldName.firstUpper());
+									othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									if (object.changedFields == null) {
 										object.changedFields = {};
 									}
 									object.changedFields[fieldName] = true;
 									othis.changedObjectOids[object.oid] = true;
-									if (callback != null) {
-										callback();
-									}
 								});
+							}
+						};
+						wrapperClass["add" + fieldName.firstUpper()] = function(value, callback) {
+							var object = this.object;
+							var tid = othis.checkTransaction();
+							if (object[fieldName] == null) {
+								object[fieldName] = [];
+							}
+							object[fieldName].push(value);
+							othis.incrementRunningCalls("add" + fieldName.firstUpper());
+							bimServerApi.call("Bimsie1LowLevelInterface", "addReference", {
+								tid: tid,
+								oid: object._i,
+								referenceName: fieldName,
+								referenceOid: value._i
+							}, function(){
+								othis.decrementRunningCalls("add" + fieldName.firstUpper());
+								if (object.changedFields == null) {
+									object.changedFields = {};
+								}
+								object.changedFields[fieldName] = true;
+								othis.changedObjectOids[object.oid] = true;
+								if (callback != null) {
+									callback();
+								}
 							});
 						};
 						wrapperClass["remove" + fieldName.firstUpper()] = function(value, callback) {
 							var object = this.object;
-							othis.transactionSynchronizer.fetch(function(tid){
-								var list = object[fieldName];
-								var index = list.indexOf(value);
-								list.splice(index, 1);
-								
-								othis.incrementRunningCalls("remove" + fieldName.firstUpper());
-								bimServerApi.call("Bimsie1LowLevelInterface", "removeReference", {
-									tid: tid,
-									oid: object._i,
-									referenceName: fieldName,
-									index: index
-								}, function(){
-									othis.decrementRunningCalls("remove" + fieldName.firstUpper());
-									if (object.changedFields == null) {
-										object.changedFields = {};
-									}
-									object.changedFields[fieldName] = true;
-									othis.changedObjectOids[object.oid] = true;
-									if (callback != null) {
-										callback();
-									}
-								});
+							var tid = othis.checkTransaction();
+							var list = object[fieldName];
+							var index = list.indexOf(value);
+							list.splice(index, 1);
+							
+							othis.incrementRunningCalls("remove" + fieldName.firstUpper());
+							bimServerApi.call("Bimsie1LowLevelInterface", "removeReference", {
+								tid: tid,
+								oid: object._i,
+								referenceName: fieldName,
+								index: index
+							}, function(){
+								othis.decrementRunningCalls("remove" + fieldName.firstUpper());
+								if (object.changedFields == null) {
+									object.changedFields = {};
+								}
+								object.changedFields[fieldName] = true;
+								othis.changedObjectOids[object.oid] = true;
+								if (callback != null) {
+									callback();
+								}
 							});
 						};
 						wrapperClass["get" + fieldName.firstUpper()] = function(callback) {
@@ -369,82 +367,81 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 							var object = this.object;
 							object[fieldName] = value;
 							othis.incrementRunningCalls("set" + fieldName.firstUpper());
-							othis.transactionSynchronizer.fetch(function(tid){
-								if (field.many) {
-									bimServerApi.call("Bimsie1LowLevelInterface", "setDoubleAttributes", {
+							var tid = othis.checkTransaction();
+							if (field.many) {
+								bimServerApi.call("Bimsie1LowLevelInterface", "setDoubleAttributes", {
+									tid: tid,
+									oid: object._i,
+									attributeName: fieldName,
+									values: value
+								}, function(){
+									othis.decrementRunningCalls("set" + fieldName.firstUpper());
+								});
+							} else {
+								if (value == null) {
+									bimServerApi.call("Bimsie1LowLevelInterface", "unsetAttribute", {
+										tid: tid,
+										oid: object._i,
+										attributeName: fieldName
+									}, function(){
+										othis.decrementRunningCalls("set" + fieldName.firstUpper());
+									});
+								} else if (field.type == "string") {
+									bimServerApi.call("Bimsie1LowLevelInterface", "setStringAttribute", {
 										tid: tid,
 										oid: object._i,
 										attributeName: fieldName,
-										values: value
+										value: value
+									}, function(){
+										othis.decrementRunningCalls("set" + fieldName.firstUpper());
+									});
+								} else if (field.type == "double") {
+									bimServerApi.call("Bimsie1LowLevelInterface", "setDoubleAttribute", {
+										tid: tid,
+										oid: object._i,
+										attributeName: fieldName,
+										value: value
+									}, function(){
+										othis.decrementRunningCalls("set" + fieldName.firstUpper());
+									});
+								} else if (field.type == "boolean") {
+									bimServerApi.call("Bimsie1LowLevelInterface", "setBooleanAttribute", {
+										tid: tid,
+										oid: object._i,
+										attributeName: fieldName,
+										value: value
+									}, function(){
+										othis.decrementRunningCalls("set" + fieldName.firstUpper());
+									});
+								} else if (field.type == "int") {
+									bimServerApi.call("Bimsie1LowLevelInterface", "setIntegerAttribute", {
+										tid: tid,
+										oid: object._i,
+										attributeName: fieldName,
+										value: value
+									}, function(){
+										othis.decrementRunningCalls("set" + fieldName.firstUpper());
+									});
+								} else if (field.type == "enum") {
+									bimServerApi.call("Bimsie1LowLevelInterface", "setEnumAttribute", {
+										tid: tid,
+										oid: object._i,
+										attributeName: fieldName,
+										value: value
 									}, function(){
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									});
 								} else {
-									if (value == null) {
-										bimServerApi.call("Bimsie1LowLevelInterface", "unsetAttribute", {
-											tid: tid,
-											oid: object._i,
-											attributeName: fieldName
-										}, function(){
-											othis.decrementRunningCalls("set" + fieldName.firstUpper());
-										});
-									} else if (field.type == "string") {
-										bimServerApi.call("Bimsie1LowLevelInterface", "setStringAttribute", {
-											tid: tid,
-											oid: object._i,
-											attributeName: fieldName,
-											value: value
-										}, function(){
-											othis.decrementRunningCalls("set" + fieldName.firstUpper());
-										});
-									} else if (field.type == "double") {
-										bimServerApi.call("Bimsie1LowLevelInterface", "setDoubleAttribute", {
-											tid: tid,
-											oid: object._i,
-											attributeName: fieldName,
-											value: value
-										}, function(){
-											othis.decrementRunningCalls("set" + fieldName.firstUpper());
-										});
-									} else if (field.type == "boolean") {
-										bimServerApi.call("Bimsie1LowLevelInterface", "setBooleanAttribute", {
-											tid: tid,
-											oid: object._i,
-											attributeName: fieldName,
-											value: value
-										}, function(){
-											othis.decrementRunningCalls("set" + fieldName.firstUpper());
-										});
-									} else if (field.type == "int") {
-										bimServerApi.call("Bimsie1LowLevelInterface", "setIntegerAttribute", {
-											tid: tid,
-											oid: object._i,
-											attributeName: fieldName,
-											value: value
-										}, function(){
-											othis.decrementRunningCalls("set" + fieldName.firstUpper());
-										});
-									} else if (field.type == "enum") {
-										bimServerApi.call("Bimsie1LowLevelInterface", "setEnumAttribute", {
-											tid: tid,
-											oid: object._i,
-											attributeName: fieldName,
-											value: value
-										}, function(){
-											othis.decrementRunningCalls("set" + fieldName.firstUpper());
-										});
-									} else {
-										othis.bimServerApi.log("Unimplemented type " + typeof value);
-										othis.decrementRunningCalls("set" + fieldName.firstUpper());
-									}
-									object[fieldName] = value;
+									othis.bimServerApi.log("Unimplemented type " + typeof value);
+									othis.decrementRunningCalls("set" + fieldName.firstUpper());
 								}
-								if (object.changedFields == null) {
-									object.changedFields = {};
-								}
-								object.changedFields[fieldName] = true;
-								othis.changedObjectOids[object.oid] = true;
-							});
+								object[fieldName] = value;
+							}
+							if (object.changedFields == null) {
+								object.changedFields = {};
+							}
+							object.changedFields[fieldName] = true;
+							othis.changedObjectOids[object.oid] = true;
 						};
 					}
 				})(field, fieldName);
@@ -504,14 +501,13 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 				};
 				wrapperClass.remove = function(removeCallback){
 					othis.incrementRunningCalls("removeObject");
-					othis.transactionSynchronizer.fetch(function(tid){
-						bimServerApi.call("Bimsie1LowLevelInterface", "removeObject", {tid: tid, oid: this.object._i}, function(){
-							if (removeCallback != null) {
-								removeCallback();
-							}
-							delete othis.objects[this.object._i];
-							othis.decrementRunningCalls("removeObject");
-						});
+					var tid = othis.checkTransaction();
+					bimServerApi.call("Bimsie1LowLevelInterface", "removeObject", {tid: tid, oid: this.object._i}, function(){
+						if (removeCallback != null) {
+							removeCallback();
+						}
+						delete othis.objects[this.object._i];
+						othis.decrementRunningCalls("removeObject");
 					});
 				};
 				
