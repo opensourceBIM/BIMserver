@@ -1,8 +1,8 @@
 "use strict"
 
 define(
-    ["bimserverapi_BimServerWebSocket", "bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise", "bimserverapi_Model", "bimserverapi_Ifc2x3tc1", "bimserverapi_Ifc4", "bimserverapi_Translations_EN"], 
-    function(BimServerWebSocket, Synchronizer, BimServerApiPromise, Model, ifc2x3tc1, ifc4, translations){
+    ["bimserverapi_BimServerWebSocket", "bimserverapi_BimServerApiPromise", "bimserverapi_Model", "bimserverapi_Ifc2x3tc1", "bimserverapi_Ifc4", "bimserverapi_Translations_EN"], 
+    function(BimServerWebSocket, BimServerApiPromise, Model, ifc2x3tc1, ifc4, translations){
     	return function(baseUrl, notifier) {
 	    	var othis = this;
 	    	
@@ -45,7 +45,7 @@ define(
 	    	}
 	    	
 	    	// The websocket client
-	    	othis.server = new BimServerWebSocket(baseUrl, othis);
+	    	othis.webSocket = new BimServerWebSocket(baseUrl, othis);
 	    	
 	    	// Cached user object
 	    	othis.user = null;
@@ -139,14 +139,14 @@ define(
 	    				othis.notifier.setInfo("Login successful", 2000);
 	    			}
 	    			othis.resolveUser();
-	    			othis.server.connect(callback);
+	    			othis.webSocket.connect(callback);
 	    		}, errorCallback, options.busy == false ? false : true, options.done == false ? false : true, options.error == false ? false : true);
 	    	};
 	
 	    	this.downloadViaWebsocket = function(msg){
 	    		msg.action = "download";
 	    		msg.token = othis.token;
-	    		othis.server.send(msg);
+	    		othis.webSocket.send(msg);
 	    	};
 	    	
 	    	this.setBinaryDataListener = function(channelId, listener){
@@ -252,7 +252,7 @@ define(
 	
 	    	this.registerNewRevisionOnSpecificProjectHandler = function(poid, handler, callback){
 	    		othis.register("Bimsie1NotificationInterface", "newRevision", handler, function(){
-	    			othis.call("Bimsie1NotificationRegistryInterface", "registerNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
+	    			othis.call("Bimsie1NotificationRegistryInterface", "registerNewRevisionOnSpecificProjectHandler", {endPointId: othis.webSocket.endPointId, poid: poid}, function(){
 	    				if (callback != null) {
 	    					callback();
 	    				}
@@ -262,7 +262,7 @@ define(
 	
 	    	this.registerNewExtendedDataOnRevisionHandler = function(roid, handler, callback){
 	    		othis.register("Bimsie1NotificationInterface", "newExtendedData", handler, function(){
-	    			othis.call("Bimsie1NotificationRegistryInterface", "registerNewExtendedDataOnRevisionHandler", {endPointId: othis.server.endPointId, roid: roid}, function(){
+	    			othis.call("Bimsie1NotificationRegistryInterface", "registerNewExtendedDataOnRevisionHandler", {endPointId: othis.webSocket.endPointId, roid: roid}, function(){
 	    				if (callback != null) {
 	    					callback();
 	    				}
@@ -272,7 +272,7 @@ define(
 	    	
 	    	this.registerNewUserHandler = function(handler, callback) {
 	    		othis.register("Bimsie1NotificationInterface", "newUser", handler, function(){
-	    			othis.call("Bimsie1NotificationRegistryInterface", "registerNewUserHandler", {endPointId: othis.server.endPointId}, function(){
+	    			othis.call("Bimsie1NotificationRegistryInterface", "registerNewUserHandler", {endPointId: othis.webSocket.endPointId}, function(){
 	    				if (callback != null) {
 	    					callback();
 	    				}
@@ -282,7 +282,7 @@ define(
 	
 	    	this.unregisterNewUserHandler = function(handler, callback) {
 	    		othis.unregister(handler);
-	    		othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewUserHandler", {endPointId: othis.server.endPointId}, function(){
+	    		othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewUserHandler", {endPointId: othis.webSocket.endPointId}, function(){
 	    			if (callback != null) {
 	    				callback();
 	    			}
@@ -292,13 +292,13 @@ define(
 	    	this.unregisterChangeProgressProjectHandler = function(poid, newHandler, closedHandler, callback) {
 	    		othis.unregister(newHandler);
 	    		othis.unregister(closedHandler);
-	    		othis.call("Bimsie1NotificationRegistryInterface", "unregisterChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, callback);
+	    		othis.call("Bimsie1NotificationRegistryInterface", "unregisterChangeProgressOnProject", {poid: poid, endPointId: othis.webSocket.endPointId}, callback);
 	    	};
 	
 	    	this.registerChangeProgressProjectHandler = function(poid, newHandler, closedHandler, callback) {
 	    		othis.register("Bimsie1NotificationInterface", "newProgressOnProjectTopic", newHandler, function(){
 	    			othis.register("Bimsie1NotificationInterface", "closedProgressOnProjectTopic", closedHandler, function(){
-	    				othis.call("Bimsie1NotificationRegistryInterface", "registerChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, function(){
+	    				othis.call("Bimsie1NotificationRegistryInterface", "registerChangeProgressOnProject", {poid: poid, endPointId: othis.webSocket.endPointId}, function(){
 	    					if (callback != null) {
 	    						callback();
 	    					}
@@ -310,15 +310,15 @@ define(
 	    	this.unregisterChangeProgressServerHandler = function(newHandler, closedHandler, callback) {
 	    		othis.unregister(newHandler);
 	    		othis.unregister(closedHandler);
-	    		if (othis.server.endPointId != null) {
-	    			othis.call("Bimsie1NotificationRegistryInterface", "unregisterChangeProgressOnServer", {endPointId: othis.server.endPointId}, callback);
+	    		if (othis.webSocket.endPointId != null) {
+	    			othis.call("Bimsie1NotificationRegistryInterface", "unregisterChangeProgressOnServer", {endPointId: othis.webSocket.endPointId}, callback);
 	    		}
 	    	};
 	
 	    	this.registerChangeProgressServerHandler = function(newHandler, closedHandler, callback) {
 	    		othis.register("Bimsie1NotificationInterface", "newProgressOnServerTopic", newHandler, function(){
 	    			othis.register("Bimsie1NotificationInterface", "closedProgressOnServerTopic", closedHandler, function(){
-	    				othis.call("Bimsie1NotificationRegistryInterface", "registerChangeProgressOnServer", {endPointId: othis.server.endPointId}, function(){
+	    				othis.call("Bimsie1NotificationRegistryInterface", "registerChangeProgressOnServer", {endPointId: othis.webSocket.endPointId}, function(){
 	    					if (callback != null) {
 	    						callback();
 	    					}
@@ -330,13 +330,13 @@ define(
 	    	this.unregisterChangeProgressRevisionHandler = function(roid, newHandler, closedHandler, callback) {
 	    		othis.unregister(newHandler);
 	    		othis.unregister(closedHandler);
-	    		othis.call("Bimsie1NotificationRegistryInterface", "unregisterChangeProgressOnProject", {roid: roid, endPointId: othis.server.endPointId}, callback);
+	    		othis.call("Bimsie1NotificationRegistryInterface", "unregisterChangeProgressOnProject", {roid: roid, endPointId: othis.webSocket.endPointId}, callback);
 	    	};
 	
 	    	this.registerChangeProgressRevisionHandler = function(poid, roid, newHandler, closedHandler, callback) {
 	    		othis.register("Bimsie1NotificationInterface", "newProgressOnRevisionTopic", newHandler, function(){
 	    			othis.register("Bimsie1NotificationInterface", "closedProgressOnRevisionTopic", closedHandler, function(){
-	    				othis.call("Bimsie1NotificationRegistryInterface", "registerChangeProgressOnRevision", {poid: poid, roid: roid, endPointId: othis.server.endPointId}, function(){
+	    				othis.call("Bimsie1NotificationRegistryInterface", "registerChangeProgressOnRevision", {poid: poid, roid: roid, endPointId: othis.webSocket.endPointId}, function(){
 	    					if (callback != null) {
 	    						callback();
 	    					}
@@ -347,7 +347,7 @@ define(
 	
 	    	this.registerNewProjectHandler = function(handler, callback) {
 	    		othis.register("Bimsie1NotificationInterface", "newProject", handler, function(){
-	    			othis.call("Bimsie1NotificationRegistryInterface", "registerNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
+	    			othis.call("Bimsie1NotificationRegistryInterface", "registerNewProjectHandler", {endPointId: othis.webSocket.endPointId}, function(){
 	    				if (callback != null) {
 	    					callback();
 	    				}
@@ -357,8 +357,8 @@ define(
 	
 	    	this.unregisterNewProjectHandler = function(handler, callback){
 	    		othis.unregister(handler);
-	    		if (othis.server.endPointId != null) {
-	    			othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
+	    		if (othis.webSocket.endPointId != null) {
+	    			othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewProjectHandler", {endPointId: othis.webSocket.endPointId}, function(){
 	    				if (callback != null) {
 	    					callback();
 	    				}
@@ -368,7 +368,7 @@ define(
 	
 	    	this.unregisterNewRevisionOnSpecificProjectHandler = function(poid, handler, callback){
 	    		othis.unregister(handler);
-	    		othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
+	    		othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewRevisionOnSpecificProjectHandler", {endPointId: othis.webSocket.endPointId, poid: poid}, function(){
 	    			if (callback != null) {
 	    				callback();
 	    			}
@@ -377,7 +377,7 @@ define(
 	
 	    	this.unregisterNewExtendedDataOnRevisionHandler = function(roid, handler, callback){
 	    		othis.unregister(handler);
-	    		othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewExtendedDataOnRevisionHandler", {endPointId: othis.server.endPointId, roid: roid}, function(){
+	    		othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewExtendedDataOnRevisionHandler", {endPointId: othis.webSocket.endPointId, roid: roid}, function(){
 	    			if (callback != null) {
 	    				callback();
 	    			}
@@ -386,7 +386,7 @@ define(
 	
 	    	this.registerProgressHandler = function(topicId, handler, callback){
 	    		othis.register("Bimsie1NotificationInterface", "progress", handler, function(){
-	    			othis.call("Bimsie1NotificationRegistryInterface", "registerProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
+	    			othis.call("Bimsie1NotificationRegistryInterface", "registerProgressHandler", {topicId: topicId, endPointId: othis.webSocket.endPointId}, function(){
 	    				if (callback != null) {
 	    					callback();
 	    				}
@@ -396,7 +396,7 @@ define(
 	
 	    	this.unregisterProgressHandler = function(topicId, handler, callback){
 	    		othis.unregister(handler);
-	    		othis.call("Bimsie1NotificationRegistryInterface", "unregisterProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
+	    		othis.call("Bimsie1NotificationRegistryInterface", "unregisterProgressHandler", {topicId: topicId, endPointId: othis.webSocket.endPointId}, function(){
 	    		}).done(callback);
 	    	};
 	
@@ -666,7 +666,7 @@ define(
 	    		othis.token = token;
 	    		othis.call("AuthInterface", "getLoggedInUser", {}, function(data){
 	    			othis.user = data;
-	    			othis.server.connect(callback);
+	    			othis.webSocket.connect(callback);
 	    		}, function(){
 	    			if (errorCallBack != null) {
 	    				errorCallback();
@@ -708,7 +708,7 @@ define(
 	    		}, errorCallback, showBusy, showDone, showError);
 	    	};
 	
-	    	othis.server.listener = othis.processNotification;
+	    	othis.webSocket.listener = othis.processNotification;
 	    }
     }
 );
