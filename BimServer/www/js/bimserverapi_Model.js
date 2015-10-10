@@ -127,7 +127,7 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 		};
 
 		this.waitForLoaded = function(callback) {
-			if (othis.loaded) {
+			if (othis.loaded || othis.loadedDeep) {
 				callback();
 			} else {
 				othis.waiters.push(callback);
