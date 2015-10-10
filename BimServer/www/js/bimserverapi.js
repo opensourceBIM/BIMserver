@@ -107,8 +107,6 @@ function BimServerApi(baseUrl, notifier) {
 			othis.version = serverInfo.version;
 			var versionString = othis.version.major + "." + othis.version.minor + "." + othis.version.revision;
 
-			// Let's do the callback here, saves us 2 roundtrips to the server, and no body is going to use the schema's that soon... (we hope)
-			callback(othis, serverInfo);
 			$.ajax({
 				dataType: "json",
 				url: othis.baseUrl + "/js/ifc2x3tc1.js?_v=" + versionString,
@@ -123,6 +121,7 @@ function BimServerApi(baseUrl, notifier) {
 						success: function(result){
 							othis.schemas["ifc4"] = result.classes;
 							othis.addSubtypesToSchema(result.classes);
+							callback(othis, serverInfo);
 						}
 					});
 				}
