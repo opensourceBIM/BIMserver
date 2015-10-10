@@ -45,17 +45,17 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 			if (deep) {
 				othis.loading = true;
 				othis.incrementRunningCalls("load");
-				othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
+				othis.bimServerApi.getJsonSerializer(function(serializer){
 					bimServerApi.call("Bimsie1ServiceInterface", "download", {
 						roid: othis.roid,
-						serializerOid: jsonSerializerOid,
+						serializerOid: serializer.oid,
 						showOwn: true,
 						sync: true
 					}, function(laid){
 						var url = bimServerApi.generateRevisionDownloadUrl({
 							laid: laid,
 							topicId: laid,
-							serializerOid: jsonSerializerOid
+							serializerOid: serializer.oid
 						});
 						othis.bimServerApi.getJson(url, null, function(data){
 							data.objects.forEach(function(object){
@@ -588,10 +588,10 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 					list.forEach(function(item){
 						fetchingMap[item] = [];
 					});
-					othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
+					othis.bimServerApi.getJsonSerializer(function(serializer){
 						var request = {
 							roids: [othis.roid],
-							serializerOid: jsonSerializerOid,
+							serializerOid: serializer.oid,
 							deep: false,
 							sync: true
 						};
@@ -600,7 +600,7 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 							var url = bimServerApi.generateRevisionDownloadUrl({
 								laid: laid,
 								topicId: laid,
-								serializerOid: jsonSerializerOid
+								serializerOid: serializer.oid
 							});
 							othis.bimServerApi.getJson(url, null, function(data){
 								if (data.objects.length > 0) {
@@ -682,17 +682,17 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 				}
 			});
 			othis.waitForLoaded(function(){
-				othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
+				othis.bimServerApi.getJsonSerializer(function(serializer){
 					bimServerApi.callWithFullIndication("Bimsie1ServiceInterface", "downloadByJsonQuery", {
 						roids: [othis.roid],
 						jsonQuery: JSON.stringify(query),
-						serializerOid: jsonSerializerOid,
+						serializerOid: serializer.oid,
 						sync: true
 					}, function(laid){
 						var url = bimServerApi.generateRevisionDownloadUrl({
 							laid: laid,
 							topicId: laid,
-							serializerOid: jsonSerializerOid
+							serializerOid: serializer.oid
 						});
 						othis.bimServerApi.notifier.setInfo("Getting model data...", -1);
 						othis.bimServerApi.getJson(url, null, function(data){
@@ -767,13 +767,13 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 					});
 
 					if (typesToLoad.length > 0) {
-						othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
+						othis.bimServerApi.getJsonSerializer(function(serializer){
 							bimServerApi.call("Bimsie1ServiceInterface", "downloadByTypes", {
 								roids: [othis.roid],
 								classNames: typesToLoad,
 								schema: othis.schema,
 								includeAllSubtypes: false,
-								serializerOid: jsonSerializerOid,
+								serializerOid: serializer.oid,
 								useObjectIDM: false,
 								deep: false,
 								sync: true
@@ -781,7 +781,7 @@ define(["bimserverapi_Synchronizer", "bimserverapi_BimServerApiPromise"], functi
 								var url = bimServerApi.generateRevisionDownloadUrl({
 									laid: laid,
 									topicId: laid,
-									serializerOid: jsonSerializerOid
+									serializerOid: serializer
 								});
 								othis.bimServerApi.getJson(url, null, function(data){
 									if (othis.loadedTypes[type] == null) {
