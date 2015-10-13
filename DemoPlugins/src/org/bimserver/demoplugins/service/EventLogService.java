@@ -2,6 +2,7 @@ package org.bimserver.demoplugins.service;
 import java.io.StringWriter;
 import java.util.Date;
 
+import org.bimserver.demoplugins.service.planner.EventLog;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SExtendedData;
@@ -119,87 +120,12 @@ public class EventLogService extends ServicePlugin {
 					
 					try {
 						SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getBimsie1ServiceInterface().getExtendedDataSchemaByNamespace(NAMESPACE);
-
-						StringWriter sw = new StringWriter();
-						CSVWriter csvWriter = new CSVWriter(sw);
-						csvWriter.writeNext(new String[]{"GUID", "ifcClass", "Nl-sfb", "Material", "Task", "Resource", "TaskName", "TaskStart", "TaskFinish"});
 						
-						for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-							String guid = ifcProduct.getGlobalId();
-							String nlsfb = "";
-							String material = "";
-							String type = "";
-							String taskid = "";
-							String taskname = "";
-							String resource = ifcProduct.getName();
-							String taskstart = "";
-							String taskfinish = "";
-							
-							for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
-								if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
-									IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
-									IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
-									if (propertySetDefinition instanceof IfcPropertySet) {
-										IfcPropertySet ifcPropertySet = (IfcPropertySet)propertySetDefinition;
-										for (IfcProperty ifcProperty : ifcPropertySet.getHasProperties()) {
-											if (ifcProperty instanceof IfcPropertySingleValue) {
-												IfcPropertySingleValue propertyValue = (IfcPropertySingleValue)ifcProperty;
-												if (propertyValue.getNominalValue() instanceof IfcLabel) {
-													IfcLabel label = (IfcLabel)propertyValue.getNominalValue();
-													if (ifcProperty.getName().equals("[ArchiCADProperties]Element Classification")) {
-														type = label.getWrappedValue();
-													} else if (ifcProperty.getName().equals("[ArchiCADProperties]Building Material / Composite / Profile / Fill")) {
-														material = label.getWrappedValue();
-													} else if (ifcProperty.getName().equals("[ArchiCADProperties]Layer")) {
-														nlsfb = label.getWrappedValue();
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-							
-							for (IfcRelAssigns ifcRelAssigns : ifcProduct.getHasAssignments()) {
-								if (ifcRelAssigns instanceof IfcRelAssignsToProcess) {
-									IfcRelAssignsToProcess ifcRelAssignsToProcess = (IfcRelAssignsToProcess)ifcRelAssigns;
-									IfcProcess ifcProcess = ifcRelAssignsToProcess.getRelatingProcess();
-									if (ifcProcess instanceof IfcTask) {
-										IfcTask task = (IfcTask)ifcProcess;
-										taskname = task.getName();
-										taskid = task.getTaskId();
-										
-										for (IfcRelAssigns ifcRelAssigns2 : task.getHasAssignments()) {
-											if (ifcRelAssigns2 instanceof IfcRelAssignsTasks) {
-												IfcRelAssignsTasks ifcRelAssignsTasks = (IfcRelAssignsTasks)ifcRelAssigns2;
-												IfcScheduleTimeControl timeForTask = ifcRelAssignsTasks.getTimeForTask();
-												IfcDateAndTime start = (IfcDateAndTime) timeForTask.getScheduleStart();
-												IfcDateAndTime finish = (IfcDateAndTime) timeForTask.getScheduleFinish();
-												
-												taskstart = start.getDateComponent().getDayComponent() + "-" + start.getDateComponent().getMonthComponent() + "-" + start.getDateComponent().getYearComponent();
-												taskfinish = finish.getDateComponent().getDayComponent() + "-" + finish.getDateComponent().getMonthComponent() + "-" + finish.getDateComponent().getYearComponent();
-											}
-										}
-									}
-									
-									csvWriter.writeNext(new String[]{
-											guid,
-											type,
-											nlsfb,
-											material,
-											taskid,
-											resource,
-											taskname,
-											taskstart,
-											taskfinish
-										});
-								}
-							}
-						}
+						EventLog eventLog = new EventLog(model);
 						
-						csvWriter.close();
+						String csvString = eventLog.toCsvString();
 						
-						addExtendedData(sw.toString().getBytes(Charsets.UTF_8), "eventlog.csv", "Eventlog", bimServerClientInterface, roid, extendedDataSchemaByNamespace);
+						addExtendedData(csvString.getBytes(Charsets.UTF_8), "eventlog.csv", "Eventlog", bimServerClientInterface, roid, extendedDataSchemaByNamespace);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
