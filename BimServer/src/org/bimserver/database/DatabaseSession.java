@@ -102,7 +102,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	private final Map<EClass, Long> startOids = new HashMap<EClass, Long>();
 	private long reads;
 
-	private enum SessionState {
+	public enum SessionState {
 		OPEN, CLOSED
 	}
 
@@ -1999,5 +1999,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			fieldCounter++;
 		}
 		return null;
+	}
+	
+	public SessionState getState() {
+		return state;
 	}
 }

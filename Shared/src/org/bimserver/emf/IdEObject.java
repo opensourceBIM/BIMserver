@@ -27,4 +27,5 @@ public interface IdEObject extends EObject {
 	void load();
 	void forceLoad();
 	void remove();
+	boolean isLoadedOrLoading();
 }
