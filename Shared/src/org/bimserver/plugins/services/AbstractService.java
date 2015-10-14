@@ -1,4 +1,4 @@
-package org.bimserver.demoplugins.service;
+package org.bimserver.plugins.services;
 
 import java.util.Date;
 
@@ -13,6 +13,7 @@ import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.PluginConfiguration;
+import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.services.BimServerClientException;
@@ -25,13 +26,13 @@ import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractModifyRevisionService extends ServicePlugin {
-	private static final Logger LOGGER = LoggerFactory.getLogger(DemoServicePlugin1.class);
-	private boolean initialized;
+public abstract class AbstractService extends ServicePlugin {
+	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractService.class);
 	private String name;
 	private String description;
+	private PluginContext pluginContext;
 
-	public AbstractModifyRevisionService(String name, String description) {
+	public AbstractService(String name, String description) {
 		this.name = name;
 		this.description = description;
 	}
@@ -39,7 +40,11 @@ public abstract class AbstractModifyRevisionService extends ServicePlugin {
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		super.init(pluginManager);
-		initialized = true;
+		pluginContext = pluginManager.getPluginContext(this);
+	}
+
+	public PluginContext getPluginContext() {
+		return pluginContext;
 	}
 	
 	@Override
@@ -63,11 +68,6 @@ public abstract class AbstractModifyRevisionService extends ServicePlugin {
 	}
 
 	@Override
-	public boolean isInitialized() {
-		return initialized;
-	}
-
-	@Override
 	public String getTitle() {
 		return name;
 	}
@@ -77,7 +77,24 @@ public abstract class AbstractModifyRevisionService extends ServicePlugin {
 		KNOWN
 	}
 	
-	public abstract void newRevision(RunningService runningService, BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException, PublicInterfaceNotFoundException, BimServerClientException;
+	/**
+	 * This method gets called when there is a new revision
+	 * 
+	 * @param runningService A reference to the RunningService, you can use it to update the progress if you know it
+	 * @param bimServerClientInterface A client with the proper authorization on this or a remote BIMserver to fetch the revision, and write extended data to
+	 * @param poid ProjectID of the project
+	 * @param roid RevisionID of the new revision
+	 * @param userToken Optional token, unused at the moment
+	 * @param soid ServiceID
+	 * @param settings Optional settings a user might have given in the InternalService settings
+	 * @throws Exception 
+	 */
+	public abstract void newRevision(RunningService runningService, BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws Exception;
+
+	/**
+	 * Should return whether this service can report progress (as a percentage) or not
+	 * @return ProgressType.UNKNOWN when the progress is not known, or KNOWN when it is
+	 */
 	public abstract ProgressType getProgressType();
 
 	public class RunningService {
@@ -114,8 +131,18 @@ public abstract class AbstractModifyRevisionService extends ServicePlugin {
 		}
 	}
 	
+	/**
+	 * This gets called when the plugin configuration is registered (this happens for every user that has the service configured, by default every user has)
+	 * 
+	 * @param pluginConfiguration The PluginConfiguration can be used to get configuration parameters that are defined in getSettingsDefinition
+	 */
+	public void onRegister(PluginConfiguration pluginConfiguration) {
+		// Meant to be overridden, but not required to do so
+	}
+	
 	@Override
 	public void register(long uoid, SInternalServicePluginConfiguration internalService, PluginConfiguration pluginConfiguration) {
+		onRegister(pluginConfiguration);
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
 		serviceDescriptor.setIdentifier("" + internalService.getOid());
@@ -139,7 +166,7 @@ public abstract class AbstractModifyRevisionService extends ServicePlugin {
 						state.setStart(runningService.getStartDate());
 						bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 						
-						AbstractModifyRevisionService.this.newRevision(runningService, bimServerClientInterface, poid, roid, userToken, soid, settings);
+						AbstractService.this.newRevision(runningService, bimServerClientInterface, poid, roid, userToken, soid, settings);
 						
 						state = new SLongActionState();
 						state.setProgress(100);
@@ -149,6 +176,8 @@ public abstract class AbstractModifyRevisionService extends ServicePlugin {
 						state.setEnd(new Date());
 						bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					} catch (BimServerClientException e) {
+						LOGGER.error("", e);
+					} catch (Exception e) {
 						LOGGER.error("", e);
 					} finally {
 						bimServerClientInterface.getRegistry().unregisterProgressTopic(topicId);

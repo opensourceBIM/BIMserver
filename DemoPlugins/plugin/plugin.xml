@@ -2,11 +2,6 @@
 <PluginDescriptor>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
-		<implementationClass>org.bimserver.demoplugins.service.DemoServicePlugin1</implementationClass>
-		<enabled>true</enabled>
-	</PluginImplementation>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
 		<implementationClass>org.bimserver.demoplugins.service.GuidFixerService</implementationClass>
 		<enabled>true</enabled>
 	</PluginImplementation>
@@ -22,22 +17,7 @@
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
-		<implementationClass>org.bimserver.demoplugins.service.DemoServicePlugin2</implementationClass>
-		<enabled>true</enabled>
-	</PluginImplementation>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
-		<implementationClass>org.bimserver.demoplugins.service.DemoServicePlugin3</implementationClass>
-		<enabled>true</enabled>
-	</PluginImplementation>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
 		<implementationClass>org.bimserver.demoplugins.service.CloneService</implementationClass>
-		<enabled>true</enabled>
-	</PluginImplementation>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.services.ServicePlugin</interfaceClass>
-		<implementationClass>org.bimserver.demoplugins.service.SpaceInvadersService</implementationClass>
 		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
