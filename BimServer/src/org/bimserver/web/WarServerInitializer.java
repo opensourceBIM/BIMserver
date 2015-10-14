@@ -18,6 +18,7 @@ package org.bimserver.web;
  *****************************************************************************/
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -78,9 +79,11 @@ public class WarServerInitializer implements ServletContextListener {
 		Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
 		LOGGER.info("Servlet Context Name: " + servletContext.getServletContextName());
 		
-		File file = resourceFetcher.getFile("plugins");
+		List<File> files = resourceFetcher.getFiles("plugins");
 		try {
-			bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(file);
+			for (File file : files) {
+				bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(file);
+			}
 			bimServer.start();
 		} catch (ServerException e) {
 			LOGGER.error("", e);
