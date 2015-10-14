@@ -34,7 +34,7 @@ public class Lod2CsvServicePlugin extends AbstractAddExtendedDataService {
 	private static final String NAMESPACE = "http://bimserver.org/lodcsv";
 	
 	public Lod2CsvServicePlugin() {
-		super("LOD to CSV", "LOD to CSV");
+		super("LOD to CSV", "LOD to CSV", NAMESPACE);
 	}
 
 	@Override
@@ -184,9 +184,9 @@ public class Lod2CsvServicePlugin extends AbstractAddExtendedDataService {
 	    csvWriterNoFurniture.close();
 	    csvWriterNoProxy.close();
 		
-		addExtendedData(outAll.toByteArray(), "all.csv", "All objects", "text/csv", bimServerClientInterface, roid, NAMESPACE);
-		addExtendedData(outNoFurniture.toByteArray(), "nofurniture.csv", "All objects except furniture", "text/csv", bimServerClientInterface, roid, NAMESPACE);
-		addExtendedData(outNoProxy.toByteArray(), "noproxy.csv", "All objects except proxies", "text/csv", bimServerClientInterface, roid, NAMESPACE);
+		addExtendedData(outAll.toByteArray(), "all.csv", "All objects", "text/csv", bimServerClientInterface, roid);
+		addExtendedData(outNoFurniture.toByteArray(), "nofurniture.csv", "All objects except furniture", "text/csv", bimServerClientInterface, roid);
+		addExtendedData(outNoProxy.toByteArray(), "noproxy.csv", "All objects except proxies", "text/csv", bimServerClientInterface, roid);
 	}
 
 	private void writeRow(CSVWriter csvWriter, double cubicScaleFactor, int totalNrTriangles, int nrIfcProducts, Bounds totalBounds, int totalUsedProperties, double totalSpaceM3, int nrSpaces) throws WriteException, RowsExceededException {
@@ -265,10 +265,5 @@ public class Lod2CsvServicePlugin extends AbstractAddExtendedDataService {
 		public String toString() {
 			return minX + ", " + minY + ", " + minZ + ", " + maxX + ", " + maxY + ", " + maxZ;
 		}
-	}
-	
-	@Override
-	public ProgressType getProgressType() {
-		return ProgressType.UNKNOWN;
 	}
 }

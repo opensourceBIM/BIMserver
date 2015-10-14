@@ -1,4 +1,5 @@
 package org.bimserver.demoplugins.service.planner;
+import java.io.ByteArrayInputStream;
 import java.util.Map;
 
 import org.bimserver.emf.IfcModelInterface;
@@ -9,14 +10,12 @@ import org.bimserver.models.store.ParameterDefinition;
 import org.bimserver.models.store.PrimitiveDefinition;
 import org.bimserver.models.store.PrimitiveEnum;
 import org.bimserver.models.store.StoreFactory;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.services.AbstractAddExtendedDataService;
 import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.fusesource.hawtbuf.ByteArrayInputStream;
 
 import com.google.common.base.Charsets;
 
@@ -26,19 +25,9 @@ public class PlanningConsultService extends AbstractAddExtendedDataService {
 	private Planner planner;
 
 	public PlanningConsultService() {
-		super("Planning Consult", "Planning Consult");
+		super("Planning Consult", "Planning Consult", NAMESPACE);
 	}
 	
-	@Override
-	public void onRegister(PluginConfiguration pluginConfiguration) {
-		byte[] eventLogBytes = pluginConfiguration.getByteArray("EventLog");
-		planner = new Planner();
-		if (eventLogBytes != null) {
-			planner.feedTrainingData(new EventLog(new ByteArrayInputStream(eventLogBytes)));
-			planner.analyze();
-		}
-	}
-
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
 		ObjectDefinition objectDefinition = StoreFactory.eINSTANCE.createObjectDefinition();
@@ -60,6 +49,13 @@ public class PlanningConsultService extends AbstractAddExtendedDataService {
 		SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
 		IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true, false, true);
 
+		byte[] eventLogBytes = runningService.getPluginConfiguration().getByteArray("EventLog");
+		planner = new Planner();
+		if (eventLogBytes != null) {
+			planner.feedTrainingData(new EventLog(new ByteArrayInputStream(eventLogBytes)));
+			planner.analyze();
+		}
+		
 		Map<String, PlanningAdvice> suggestedPlanningsPerMaterial = planner.getSuggestedPlanningsPerMaterial(model);
 		
 		StringBuilder recognized = new StringBuilder();
@@ -98,11 +94,6 @@ public class PlanningConsultService extends AbstractAddExtendedDataService {
 			unrecognized.append("</tbody></table>");
 		}
 		
-		addExtendedData(((unrecognized == null ? "" : unrecognized.toString()) + recognized.toString()).getBytes(Charsets.UTF_8), "planning.html", "Planning", "text/html", bimServerClientInterface, roid, NAMESPACE);		
-	}
-
-	@Override
-	public ProgressType getProgressType() {
-		return ProgressType.UNKNOWN;
+		addExtendedData(((unrecognized == null ? "" : unrecognized.toString()) + recognized.toString()).getBytes(Charsets.UTF_8), "planning.html", "Planning", "text/html", bimServerClientInterface, roid);		
 	}
 }

@@ -41,7 +41,7 @@ public class Lod2ExcelServicePlugin extends AbstractAddExtendedDataService {
 	private WritableCellFormat timesbold;
 
 	public Lod2ExcelServicePlugin(String name, String description) {
-		super("LOD to Excel", "LOD to Excel");
+		super("LOD to Excel", "LOD to Excel", NAMESPACE);
 	}
 
 	@Override
@@ -190,7 +190,7 @@ public class Lod2ExcelServicePlugin extends AbstractAddExtendedDataService {
 		workbook.close();
 		
 		byte[] bytes = byteArrayOutputStream.toByteArray();
-		addExtendedData(bytes, "lod.xls", "Excel LOD Results", "application/excel", bimServerClientInterface, roid, NAMESPACE);
+		addExtendedData(bytes, "lod.xls", "Excel LOD Results", "application/excel", bimServerClientInterface, roid);
 	}
 	
 	private void writeRow(WritableSheet allSheet, int row, String name, double cubicScaleFactor, int totalNrTriangles, int nrIfcProducts, Bounds totalBounds, int totalUsedProperties, double totalSpaceM3, int nrSpaces) throws WriteException, RowsExceededException {
@@ -267,10 +267,5 @@ public class Lod2ExcelServicePlugin extends AbstractAddExtendedDataService {
 		public String toString() {
 			return minX + ", " + minY + ", " + minZ + ", " + maxX + ", " + maxY + ", " + maxZ;
 		}
-	}
-
-	@Override
-	public ProgressType getProgressType() {
-		return ProgressType.UNKNOWN;
 	}
 }

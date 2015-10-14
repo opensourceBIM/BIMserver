@@ -41,7 +41,7 @@ public class GeometryMatcher extends AbstractAddExtendedDataService {
 	private static final String NAMESPACE = "geometrymatching";
 
 	public GeometryMatcher() {
-		super("Geometry Matcher", "Geometry Matcher");
+		super("Geometry Matcher", "Geometry Matcher", NAMESPACE);
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class GeometryMatcher extends AbstractAddExtendedDataService {
 		}
 		csvWriter.close();
 
-		addExtendedData(byteArrayOutputStream.toByteArray(), "geometrymatching.csv", "Geometry Matching Results", "text/csv", bimServerClientInterface, roid, NAMESPACE);
+		addExtendedData(byteArrayOutputStream.toByteArray(), "geometrymatching.csv", "Geometry Matching Results", "text/csv", bimServerClientInterface, roid);
 	}
 
 
@@ -252,10 +252,5 @@ public class GeometryMatcher extends AbstractAddExtendedDataService {
 			this.el1 = el1;
 			this.el2 = el2;
 		}
-	}
-	
-	@Override
-	public ProgressType getProgressType() {
-		return ProgressType.UNKNOWN;
 	}
 }

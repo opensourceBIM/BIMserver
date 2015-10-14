@@ -16,10 +16,6 @@ import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.services.BimServerClientException;
-import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.NewRevisionHandler;
-import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -95,17 +91,25 @@ public abstract class AbstractService extends ServicePlugin {
 	 * Should return whether this service can report progress (as a percentage) or not
 	 * @return ProgressType.UNKNOWN when the progress is not known, or KNOWN when it is
 	 */
-	public abstract ProgressType getProgressType();
+	public ProgressType getProgressType() {
+		return ProgressType.UNKNOWN;
+	}
 
 	public class RunningService {
 		private long topicId;
 		private BimServerClientInterface bimServerClientInterface;
 		private Date startDate;
+		private PluginConfiguration pluginConfiguration;
 
-		public RunningService(long topicId, BimServerClientInterface bimServerClientInterface) {
+		public RunningService(long topicId, BimServerClientInterface bimServerClientInterface, PluginConfiguration pluginConfiguration) {
+			this.pluginConfiguration = pluginConfiguration;
 			this.startDate = new Date();
 			this.topicId = topicId;
 			this.bimServerClientInterface = bimServerClientInterface;
+		}
+		
+		public PluginConfiguration getPluginConfiguration() {
+			return pluginConfiguration;
 		}
 
 		public Date getStartDate() {
@@ -131,18 +135,10 @@ public abstract class AbstractService extends ServicePlugin {
 		}
 	}
 	
-	/**
-	 * This gets called when the plugin configuration is registered (this happens for every user that has the service configured, by default every user has)
-	 * 
-	 * @param pluginConfiguration The PluginConfiguration can be used to get configuration parameters that are defined in getSettingsDefinition
-	 */
-	public void onRegister(PluginConfiguration pluginConfiguration) {
-		// Meant to be overridden, but not required to do so
-	}
+	public abstract void addRequiredRights(ServiceDescriptor serviceDescriptor);
 	
 	@Override
-	public void register(long uoid, SInternalServicePluginConfiguration internalService, PluginConfiguration pluginConfiguration) {
-		onRegister(pluginConfiguration);
+	public void register(long uoid, SInternalServicePluginConfiguration internalService, final PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
 		serviceDescriptor.setIdentifier("" + internalService.getOid());
@@ -150,14 +146,14 @@ public abstract class AbstractService extends ServicePlugin {
 		serviceDescriptor.setDescription(description);
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
-		serviceDescriptor.setWriteRevision(true);
+		addRequiredRights(serviceDescriptor);
 		serviceDescriptor.setReadRevision(true);
 		registerNewRevisionHandler(uoid, serviceDescriptor, new NewRevisionHandler() {
 			@Override
 			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				try {
 					Long topicId = bimServerClientInterface.getRegistry().registerProgressOnRevisionTopic(SProgressTopicType.RUNNING_SERVICE, poid, roid, "Running " + name);
-					RunningService runningService = new RunningService(topicId, bimServerClientInterface);
+					RunningService runningService = new RunningService(topicId, bimServerClientInterface, pluginConfiguration);
 					try {
 						SLongActionState state = new SLongActionState();
 						state.setProgress(getProgressType() == ProgressType.KNOWN ? 0 : -1);
