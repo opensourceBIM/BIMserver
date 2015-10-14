@@ -20,7 +20,9 @@ package org.bimserver.plugins;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -54,5 +56,16 @@ public abstract class ResourceFetcher {
 			}			
 		}
 		return null;
+	}
+
+	public List<File> getFiles(String name) {
+		List<File> result = new ArrayList<File>();
+		for (File path : paths) {
+			File file = new File(path, name);
+			if (file.exists()) {
+				result.add(file);
+			}			
+		}
+		return result;
 	}
 }
