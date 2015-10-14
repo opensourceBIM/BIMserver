@@ -12,7 +12,7 @@ public class EventLogService extends AbstractAddExtendedDataService {
 	private static final String NAMESPACE = "http://bimserver.org/eventlog";
 
 	public EventLogService() {
-		super("EventLog", "EventLog");
+		super("EventLog", "EventLog", NAMESPACE);
 	}
 	
 	@Override
@@ -24,11 +24,6 @@ public class EventLogService extends AbstractAddExtendedDataService {
 		
 		String csvString = eventLog.toCsvString();
 		
-		addExtendedData(csvString.getBytes(Charsets.UTF_8), "eventlog.csv", "Eventlog", "text/csv", bimServerClientInterface, roid, NAMESPACE);
-	}
-
-	@Override
-	public ProgressType getProgressType() {
-		return ProgressType.UNKNOWN;
+		addExtendedData(csvString.getBytes(Charsets.UTF_8), "eventlog.csv", "Eventlog", "text/csv", bimServerClientInterface, roid);
 	}
 }
