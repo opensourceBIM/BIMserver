@@ -116,6 +116,10 @@ public abstract class AbstractService extends ServicePlugin {
 			return startDate;
 		}
 		
+		/**
+		 * Update progress
+		 * @param progress Between 0 and 100 inclusive
+		 */
 		public void updateProgress(int progress) {
 			SLongActionState state = new SLongActionState();
 			state.setProgress(progress);
