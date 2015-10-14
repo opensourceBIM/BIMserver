@@ -85,9 +85,19 @@ public class LocalDevSetup {
 	 */
 	public static final BimServerClientInterface setupJson(String address) {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			File home = new File("home");
+			if (!home.exists()) {
+				home.mkdir();
+			}
+			PluginManager pluginManager = new PluginManager(new File(home, "tmp"), System.getProperty("java.class.path"), null, null, null);
+			pluginManager.loadAllPluginsFromEclipseWorkspace(new File("../"), true);
+			
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
 			pluginManager.setMetaDataManager(metaDataManager);
+			metaDataManager.init();
+
+			pluginManager.initAllLoadedPlugins();
+			
 			BimServerClientFactory factory = new JsonBimServerClientFactory(metaDataManager, address);
 			return factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 		} catch (PluginException e) {

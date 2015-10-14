@@ -336,7 +336,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 		}
 	}
 
-	private void writeObject(EObject object, EStructuralFeature feature) throws SerializerException, IOException {
+	private void writeObject(IdEObject object, EStructuralFeature feature) throws SerializerException, IOException {
 		Object ref = object.eGet(feature);
 		if (ref == null || (feature.isUnsettable() && !object.eIsSet(feature))) {
 			EClassifier type = feature.getEType();

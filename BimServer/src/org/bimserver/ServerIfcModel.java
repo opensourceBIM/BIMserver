@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.DatabaseSession.SessionState;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
@@ -26,9 +27,11 @@ public class ServerIfcModel extends IfcModel {
 	}
 	
 	public void load(IdEObject idEObject) {
-		((IdEObjectImpl)idEObject).setLoadingState(State.LOADING);
-		databaseSession.load(idEObject);
-		((IdEObjectImpl)idEObject).setLoadingState(State.LOADED);
+		if (databaseSession.getState() == SessionState.OPEN) {
+			((IdEObjectImpl)idEObject).setLoadingState(State.LOADING);
+			databaseSession.load(idEObject);
+			((IdEObjectImpl)idEObject).setLoadingState(State.LOADED);
+		}
 	}
 
 	@Override
