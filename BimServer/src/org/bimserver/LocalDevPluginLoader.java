@@ -1,23 +1,8 @@
 package org.bimserver;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -27,27 +12,33 @@ import org.slf4j.LoggerFactory;
 public class LocalDevPluginLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevPluginLoader.class);
 	
-	public static void loadPlugins(PluginManager pluginManager, File[] pluginDirectories) throws PluginException {
+	public static void loadPlugins(PluginManager pluginManager, Path[] pluginDirectories) throws PluginException {
 		if (pluginDirectories != null) {
-			for (File pluginDirectory : pluginDirectories) {
+			for (Path pluginDirectory : pluginDirectories) {
 				try {
 					pluginManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
 				} catch (PluginException e) {
+					LOGGER.error("", e);
+				} catch (IOException e) {
 					LOGGER.error("", e);
 				}
 			}
 		}
 	}
 	
-	public static PluginManager createPluginManager(File home) throws PluginException {
+	public static PluginManager createPluginManager(Path home) throws PluginException {
 		return createPluginManager(home, null);
 	}
 	
-	public static PluginManager createPluginManager(File home, File[] pluginDirectories) throws PluginException {
-		if (!home.exists()) {
-			home.mkdir();
+	public static PluginManager createPluginManager(Path home, Path[] pluginDirectories) throws PluginException {
+		if (!Files.exists(home)) {
+			try {
+				Files.createDirectories(home);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		PluginManager pluginManager = new PluginManager(new File(home, "tmp"), System.getProperty("java.class.path"), null, null, null);
+		PluginManager pluginManager = new PluginManager(home.resolve("tmp"), System.getProperty("java.class.path"), null, null, null);
 		loadPlugins(pluginManager, pluginDirectories);
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;

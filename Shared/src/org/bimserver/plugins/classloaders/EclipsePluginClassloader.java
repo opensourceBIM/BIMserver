@@ -21,10 +21,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,18 +35,18 @@ public class EclipsePluginClassloader extends PublicFindClassClassLoader {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EclipsePluginClassloader.class);
 	private final Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
-	private final File projectFolder;
-	private final File classFolder;
+	private final Path projectFolder;
+	private final Path classFolder;
 
-	public EclipsePluginClassloader(ClassLoader parentClassloader, File projectFolder) {
+	public EclipsePluginClassloader(ClassLoader parentClassloader, Path projectFolder) {
 		super(parentClassloader);
 		this.projectFolder = projectFolder;
-		this.classFolder = new File(projectFolder, "bin");
+		this.classFolder = projectFolder.resolve("bin");
 	}
 	
 	@Override
 	public String toString() {
-		return "EclipsePluginClassLoader: " + projectFolder.getAbsolutePath();
+		return "EclipsePluginClassLoader: " + projectFolder.toString();
 	}
 
 	@Override
@@ -54,10 +56,10 @@ public class EclipsePluginClassloader extends PublicFindClassClassLoader {
 	
 	@Override
 	public URL findResource(String name) {
-		File file = new File(projectFolder, name);
-		if (file.exists()) {
+		Path file = projectFolder.resolve(name);
+		if (Files.exists(file)) {
 			try {
-				return file.toURI().toURL();
+				return file.toUri().toURL();
 			} catch (MalformedURLException e) {
 				LOGGER.error("", e);
 			}
@@ -71,10 +73,10 @@ public class EclipsePluginClassloader extends PublicFindClassClassLoader {
 		if (loadedClasses.containsKey(filename)) {
 			return loadedClasses.get(filename);
 		}
-		File classFile = new File(classFolder, filename);
-		if (classFile.isFile()) {
+		Path classFile = classFolder.resolve(filename);
+		if (Files.exists(classFile)) {
 			try {
-				byte[] bytes = FileUtils.readFileToByteArray(classFile);
+				byte[] bytes = IOUtils.toByteArray(Files.newInputStream(classFile));
 				Class<?> definedClass = defineClass(name, bytes, 0, bytes.length);
 				if (definedClass != null) {
 					loadedClasses.put(filename, definedClass);

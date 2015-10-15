@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.zip.ZipEntry;
@@ -122,16 +124,17 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 	@Override
 	protected boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
-			File writeDirectory = null;
+			Path writeDirectory = null;
 			try {
-				File tempDirectory = pluginManager.getTempDir();
-				if (!tempDirectory.exists())
-					tempDirectory.mkdir();
+				Path tempDirectory = pluginManager.getTempDir();
+				if (!Files.exists(tempDirectory))
+					Files.createDirectory(tempDirectory);
 				//
 				UUID id = UUID.randomUUID();
-				writeDirectory = new File(tempDirectory, id.toString());
-				if (!writeDirectory.exists())
-					writeDirectory.mkdir();
+				writeDirectory = tempDirectory.resolve(id.toString());
+				if (!Files.exists(writeDirectory)) {
+					Files.createDirectories(writeDirectory);
+				}
 				// Export the IFC objects internally into a DAE then into the output of collada2gltf. 
 				exportToGLTF(writeDirectory);
 				//

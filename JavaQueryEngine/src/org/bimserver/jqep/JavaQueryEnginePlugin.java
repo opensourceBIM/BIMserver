@@ -1,17 +1,23 @@
 package org.bimserver.jqep;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.VirtualFile;
 import org.bimserver.plugins.queryengine.QueryEngine;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.utils.PathUtils;
 
 import com.google.common.base.Charsets;
 
@@ -29,10 +35,17 @@ public class JavaQueryEnginePlugin implements QueryEnginePlugin {
 
 	private void initExamples(PluginManager pluginManager) {
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
-		for (VirtualFile virtualFile : pluginContext.listResources("examples")) {
-			if (!virtualFile.getSimpleName().startsWith(".svn")) {
-				examples.put(virtualFile.getSimpleName(), new String(virtualFile.getData(), Charsets.UTF_8));
+		try {
+			for (Path path : PathUtils.getDirectories(pluginContext.getRootPath().resolve("examples"))) {
+				InputStream inputStream = Files.newInputStream(path);
+				try {
+					examples.put(path.getFileName().toString(), IOUtils.toString(inputStream, Charsets.UTF_8.name()));
+				} finally {
+					inputStream.close();
+				}
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -1,6 +1,7 @@
 package org.bimserver.ifcengine.tests;
 
 import java.io.File;
+import java.nio.file.Paths;
 
 import org.bimserver.ifcengine.JvmIfcEngine;
 import org.bimserver.plugins.renderengine.RenderEngine;
@@ -17,7 +18,7 @@ public class TestFailSafe {
 
 	private void start() {
 		try {
-			RenderEngine failSafeIfcEngine = new JvmIfcEngine(new File("../buildingSMARTLibrary/schema/IFC2X3_TC1.exp"), new File("lib/64"), new File("tmp"), System.getProperty("java.class.path"));
+			RenderEngine failSafeIfcEngine = new JvmIfcEngine(Paths.get("../buildingSMARTLibrary/schema/IFC2X3_TC1.exp"), Paths.get("lib/64"), Paths.get("tmp"), System.getProperty("java.class.path"));
 			failSafeIfcEngine.init();
 			RenderEngineModel model = failSafeIfcEngine.openModel(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 			model.setSettings(new RenderEngineSettings());

@@ -18,6 +18,7 @@ package org.bimserver.version;
  *****************************************************************************/
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
@@ -66,6 +67,8 @@ public class VersionChecker {
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 			localVersion = (SVersion) unmarshaller.unmarshal(resourceFetcher.getResource("version.xml"));
 		} catch (JAXBException e) {
+			LOGGER.error("", e);
+		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
 	}

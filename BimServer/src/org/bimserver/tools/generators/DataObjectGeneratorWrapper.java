@@ -23,6 +23,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -63,7 +64,7 @@ public class DataObjectGeneratorWrapper {
 		Set<String> fileNamesCreated = new HashSet<String>();
 		org.bimserver.plugins.PluginManager pluginManager;
 		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
 			pluginManager.setMetaDataManager(metaDataManager);
 			metaDataManager.init();

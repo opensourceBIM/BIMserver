@@ -19,7 +19,10 @@ package org.bimserver.plugins;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.nio.file.Path;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.tools.FileObject;
@@ -27,15 +30,19 @@ import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
 import javax.tools.JavaFileObject.Kind;
 
-public class VirtualFileManager implements JavaFileManager {
-	private final VirtualFile baseDir;
+import org.bimserver.utils.PathUtils;
+
+public class VirtualFileManager2 implements JavaFileManager {
 	private final JavaFileManager fallbackFileManager;
 	private final ClassLoader classLoader;
+	private final FileSystem fileSystem;
+	private final Path rootPath;
 
-	public VirtualFileManager(JavaFileManager fallbackFileManager, ClassLoader classLoader, VirtualFile baseDir) {
+	public VirtualFileManager2(JavaFileManager fallbackFileManager, ClassLoader classLoader, FileSystem fileSystem, Path rootPath) {
 		this.fallbackFileManager = fallbackFileManager;
 		this.classLoader = classLoader;
-		this.baseDir = baseDir;
+		this.fileSystem = fileSystem;
+		this.rootPath = rootPath;
 	}
 
 	@Override
@@ -83,9 +90,10 @@ public class VirtualFileManager implements JavaFileManager {
 		if (cleanPath.contains("$")) {
 			cleanPath = cleanPath.substring(0, cleanPath.indexOf("$"));
 		}
-		if (baseDir.containsType(cleanPath)) {
-			return baseDir.createFile(path.replace(".java", "").replace(".", "/") + ".class");
-		}
+		Path resolved = rootPath.resolve(cleanPath);
+//		if (baseDir.containsType(cleanPath)) {
+//			return baseDir.createFile(path.replace(".java", "").replace(".", "/") + ".class");
+//		}
 		return null;
 	}
 
@@ -110,7 +118,8 @@ public class VirtualFileManager implements JavaFileManager {
 
 	@Override
 	public Iterable<JavaFileObject> list(Location location, final String packageName, Set<Kind> kinds, boolean recurse) throws IOException {
-		final Iterator<VirtualFile> myIterator = baseDir.getFiles(kinds, packageName.replace(".", File.separator)).iterator();
+		List<Path> directories = PathUtils.getDirectories(rootPath.resolve(packageName.replace(".", File.separator)));
+		final Iterator<Path> myIterator = directories.iterator();
 		Iterable<JavaFileObject> base = fallbackFileManager.list(location, packageName, kinds, recurse);
 		if (!myIterator.hasNext()) {
 			return base;
@@ -128,7 +137,8 @@ public class VirtualFileManager implements JavaFileManager {
 				if (baseIterator.hasNext()) {
 					return baseIterator.next();
 				} else if (myIterator.hasNext()) {
-					return myIterator.next();
+					Path next = myIterator.next();
+					return new PathJavaFileObject(next);
 				}
 				return null;
 			}

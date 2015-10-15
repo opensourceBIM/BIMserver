@@ -1,6 +1,7 @@
 package org.bimserver.ifcgeometryremover;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -33,7 +34,7 @@ public class IfcGeometryRemover {
 
 	public IfcGeometryRemover() {
 		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			ifcDoc = new IfcDoc(new File("C:\\Users\\Ruben\\git\\BootstrapBIM\\BootstrapBIM\\docs\\R2x3_TC1"));
 			metaDataManager = new MetaDataManager(null);
 			metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1);

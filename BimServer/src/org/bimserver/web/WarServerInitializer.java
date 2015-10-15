@@ -18,6 +18,9 @@ package org.bimserver.web;
  *****************************************************************************/
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -33,6 +36,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.utils.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,12 +47,12 @@ public class WarServerInitializer implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		ServletContext servletContext = servletContextEvent.getServletContext();
-		File homeDir = null;
+		Path homeDir = null;
 		if (servletContext.getAttribute("homedir") != null) {
-			homeDir = new File((String) servletContext.getAttribute("homedir"));
+			homeDir = Paths.get((String) servletContext.getAttribute("homedir"));
 		}
 		if (homeDir == null && servletContext.getInitParameter("homedir") != null) {
-			homeDir = new File(servletContext.getInitParameter("homedir"));
+			homeDir = Paths.get(servletContext.getInitParameter("homedir"));
 		}
 
 		boolean autoMigrate = false;
@@ -63,7 +67,7 @@ public class WarServerInitializer implements ServletContextListener {
 		if (!realPath.endsWith("/")) {
 			realPath = realPath + "/";
 		}
-		File baseDir = new File(realPath + "WEB-INF");
+		Path baseDir = Paths.get(realPath + "WEB-INF");
 		if (homeDir == null) {
 			homeDir = baseDir;
 		}
@@ -72,16 +76,20 @@ public class WarServerInitializer implements ServletContextListener {
 		config.setAutoMigrate(autoMigrate);
 		config.setHomeDir(homeDir);
 		config.setResourceFetcher(resourceFetcher);
-		config.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));
+		try {
+			config.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		config.setStartEmbeddedWebServer(false);
 		bimServer = new BimServer(config);
 		
 		Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
 		LOGGER.info("Servlet Context Name: " + servletContext.getServletContextName());
 		
-		List<File> files = resourceFetcher.getFiles("plugins");
+		List<Path> files = resourceFetcher.getFiles("plugins");
 		try {
-			for (File file : files) {
+			for (Path file : files) {
 				bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(file);
 			}
 			bimServer.start();
@@ -95,20 +103,26 @@ public class WarServerInitializer implements ServletContextListener {
 			LOGGER.error("", e);
 		} catch (DatabaseRestartRequiredException e) {
 			LOGGER.error("", e);
+		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
 		servletContext.setAttribute("bimserver", bimServer);
 	}
 	
-	private String makeClassPath(File file) {
+	private String makeClassPath(Path file) {
 		// Added for Tomcat8
 		if (file == null) {
 			return "";
 		}
 		StringBuilder sb = new StringBuilder();
-		for (File f : file.listFiles()) {
-			if (f.getName().toLowerCase().endsWith(".jar")) {
-				sb.append(f.getAbsolutePath() + File.pathSeparator);
+		try {
+			for (Path f : PathUtils.getDirectories(file)) {
+				if (f.getFileName().toString().toLowerCase().endsWith(".jar")) {
+					sb.append(f.toString() + File.pathSeparator);
+				}
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return sb.toString();
 	}

@@ -2,6 +2,7 @@ package org.bimserver.download;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.bimserver.LocalDevPluginLoader;
@@ -29,7 +30,7 @@ public class DownloadLatestRevisions {
 
 	private void start(String[] args) {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
 			pluginManager.setMetaDataManager(metaDataManager);
 			BimServerClientFactory factory = new JsonBimServerClientFactory(metaDataManager, "http://elassticbim.eu:8080");

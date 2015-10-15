@@ -68,12 +68,8 @@ public class ExpressSchemaParser {
 	Express2DictWalker walker;
 	private InputStream inputStream;
 
-	public ExpressSchemaParser(File file) {
-		try {
-			this.inputStream = new FileInputStream(file);
-		} catch (FileNotFoundException e) {
-			LOGGER.error("", e);
-		}
+	public ExpressSchemaParser(InputStream inputStream) {
+		this.inputStream = inputStream;
 	}
 
 	public ExpressSchemaParser(URL url) {

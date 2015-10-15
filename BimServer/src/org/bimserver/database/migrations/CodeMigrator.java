@@ -19,6 +19,7 @@ package org.bimserver.database.migrations;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -83,7 +84,7 @@ public class CodeMigrator {
 		DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper();
 		Set<EPackage> ePackages = new HashSet<EPackage>();
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
 			pluginManager.setMetaDataManager(metaDataManager);
 			metaDataManager.init();

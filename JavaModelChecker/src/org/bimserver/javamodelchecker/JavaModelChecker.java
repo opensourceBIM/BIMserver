@@ -20,6 +20,7 @@ import org.bimserver.models.store.ModelCheckerResult;
 import org.bimserver.plugins.VirtualClassLoader;
 import org.bimserver.plugins.VirtualFile;
 import org.bimserver.plugins.VirtualFileManager;
+import org.bimserver.plugins.VirtualFileManager2;
 import org.bimserver.plugins.modelchecker.ModelCheckException;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.slf4j.Logger;

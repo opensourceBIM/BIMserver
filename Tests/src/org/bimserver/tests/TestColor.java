@@ -18,6 +18,7 @@ package org.bimserver.tests;
  *****************************************************************************/
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.Random;
 
 import org.bimserver.LocalDevPluginLoader;
@@ -40,7 +41,7 @@ public class TestColor {
 	public static void main(String[] args) {
 		PluginManager pluginManager;
 		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
