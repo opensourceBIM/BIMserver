@@ -39,6 +39,7 @@ import org.bimserver.plugins.web.WebModulePlugin;
 
 public class PluginContext {
 
+	private static final Map<String, FileSystem> fileSystems = new HashMap<>();
 	private final PluginManager pluginManager;
 	private final ClassLoader classLoader;
 	private final PluginSourceType pluginType;
@@ -48,7 +49,7 @@ public class PluginContext {
 	private final String classLocation;
 	private boolean enabled = true;
 	private JavaFileManager javaFileManager;
-	private FileSystem filesystem;
+	private FileSystem fileSystem;
 	private Path rootPath;
 
 	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginSourceType pluginType, String location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation) throws IOException {
@@ -61,18 +62,21 @@ public class PluginContext {
 		this.classLocation = classLocation;
 		switch (pluginType) {
 		case ECLIPSE_PROJECT:
-			filesystem = FileSystems.getDefault();
-			rootPath = filesystem.getPath(location);
+			fileSystem = FileSystems.getDefault();
+			rootPath = fileSystem.getPath(location);
 			break;
 		case INTERNAL:
 			break;
 		case JAR_FILE:
-			URI uri = URI.create("jar:" + new File(location).toURI());
-			System.out.println(uri);
-			Map<String, String> env = new HashMap<>();
-			env.put("create", "true");
-			filesystem = FileSystems.newFileSystem(uri, env, null);
-			rootPath = filesystem.getPath("/");
+			fileSystem = fileSystems.get(location);
+			if (fileSystem == null) {
+				URI uri = URI.create("jar:" + new File(location).toURI());
+				Map<String, String> env = new HashMap<>();
+				env.put("create", "true");
+				fileSystem = FileSystems.newFileSystem(uri, env, null);
+				fileSystems.put(location, fileSystem);
+			}
+			rootPath = fileSystem.getPath("/");
 			break;
 		default:
 			break;
@@ -147,7 +151,7 @@ public class PluginContext {
 			this.javaFileManager = systemJavaCompiler.getStandardFileManager(null, null, null);
 			break;
 		case JAR_FILE:
-			this.javaFileManager = new VirtualFileManager2(systemJavaCompiler.getStandardFileManager(null, null, null), classLoader, filesystem, rootPath);
+			this.javaFileManager = new VirtualFileManager2(systemJavaCompiler.getStandardFileManager(null, null, null), classLoader, fileSystem, rootPath);
 			break;
 		default:
 			break;
@@ -160,7 +164,7 @@ public class PluginContext {
 	}
 	
 	public FileSystem getFilesystem() {
-		return filesystem;
+		return fileSystem;
 	}
 
 	public Parameter getParameter(String name) {
