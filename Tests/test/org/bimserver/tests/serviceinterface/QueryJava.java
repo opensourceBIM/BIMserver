@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -32,7 +34,7 @@ public class QueryJava extends TestWithEmbeddedServer {
 		try {
 			newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			// This is the file we will be checking in
-			File ifcFile = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");
+			Path ifcFile = Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 			
 			// Find a deserializer to use
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());

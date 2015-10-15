@@ -18,6 +18,8 @@ package org.bimserver.tests;
  *****************************************************************************/
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -42,10 +44,10 @@ public class CompareTest {
 
 	@SuppressWarnings("rawtypes")
 	private void start() {
-		File file1 = new File("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\_IFC revisies wozoco\\1407_WE_WOZOCO_versie_1_general_translator.ifc");
-		File file2 = new File("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\_IFC revisies wozoco\\1407_WE_WOZOCO_versie_2_verplaatsen_binnenwandje.ifc");
+		Path file1 = Paths.get("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\_IFC revisies wozoco\\1407_WE_WOZOCO_versie_1_general_translator.ifc");
+		Path file2 = Paths.get("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\_IFC revisies wozoco\\1407_WE_WOZOCO_versie_2_verplaatsen_binnenwandje.ifc");
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			IfcModelInterface model1 = readModel(file1, pluginManager);
 			IfcModelInterface model2 = readModel(file2, pluginManager);
 
@@ -127,7 +129,7 @@ public class CompareTest {
 		}
 	}
 
-	private IfcModelInterface readModel(File file1, PluginManager pluginManager) throws DeserializeException, PluginException {
+	private IfcModelInterface readModel(Path file1, PluginManager pluginManager) throws DeserializeException, PluginException {
 		Deserializer deserializer = pluginManager.requireDeserializer("ifc").createDeserializer(new PluginConfiguration());
 		deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 		IfcModelInterface model1 = deserializer.read(file1);

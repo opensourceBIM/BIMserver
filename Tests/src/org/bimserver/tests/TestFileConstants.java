@@ -18,7 +18,9 @@ package org.bimserver.tests;
  *****************************************************************************/
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class TestFileConstants {
-	public static final File DATA_FOLDER = new File(".." + File.separator + "TestData" + File.separator + "data");
+	public static final Path DATA_FOLDER = Paths.get(".." + File.separator + "TestData" + File.separator + "data");
 }

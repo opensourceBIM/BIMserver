@@ -52,8 +52,8 @@ package org.bimserver.tests;
 //	@Override
 //	public void run() {
 //		Random random = new Random();
-////		File testFilesDir = new File("C:\\Documents and Settings\\Ruben de Laat\\My Documents\\ifc selected");
-//		File testFilesDir = new File("G:\\ifc selected");
+////		File testFilesDir = Paths.get("C:\\Documents and Settings\\Ruben de Laat\\My Documents\\ifc selected");
+//		File testFilesDir = Paths.get("G:\\ifc selected");
 //		File[] listFiles = testFilesDir.listFiles();
 //		for (File file : listFiles) {
 //			System.out.println(file);

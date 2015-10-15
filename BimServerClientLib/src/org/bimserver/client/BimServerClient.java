@@ -18,12 +18,12 @@ package org.bimserver.client;
  *****************************************************************************/
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -253,9 +253,9 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		tokenChangeListeners.add(tokenChangeListener);
 	}
 
-	public long checkin(long poid, String comment, long deserializerOid, boolean merge, boolean sync, File file) throws IOException, UserException, ServerException {
-		FileInputStream fis = new FileInputStream(file);
-		long result = checkin(poid, comment, deserializerOid, merge, sync, file.length(), file.getName(), fis);
+	public long checkin(long poid, String comment, long deserializerOid, boolean merge, boolean sync, Path file) throws IOException, UserException, ServerException {
+		FileInputStream fis = new FileInputStream(file.toFile());
+		long result = checkin(poid, comment, deserializerOid, merge, sync, file.toFile().length(), file.getFileName().toString(), fis);
 		if (sync) {
 			fis.close();
 		}
@@ -287,8 +287,8 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		}
 	}
 
-	public void download(long roid, long serializerOid, File file) throws IOException {
-		FileOutputStream outputStream = new FileOutputStream(file);
+	public void download(long roid, long serializerOid, Path file) throws IOException {
+		FileOutputStream outputStream = new FileOutputStream(file.toFile());
 		try {
 			download(roid, serializerOid, outputStream);
 		} finally {

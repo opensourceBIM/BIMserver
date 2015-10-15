@@ -1,6 +1,6 @@
 package org.bimserver.saapc;
 
-import java.io.File;
+import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.bimserver.LocalDevPluginLoader;
@@ -12,6 +12,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.utils.PathUtils;
 
 public class SurfaceAreaAndPeopleCalculator {
 	public static void main(String[] args) {
@@ -24,18 +25,20 @@ public class SurfaceAreaAndPeopleCalculator {
 			DeserializerPlugin ifcDeserializerPlugin = pluginManager.getDeserializerPlugin("org.bimserver.ifc.step.deserializer.Ifc2x3tc1StepDeserializerPlugin", true);
 			Deserializer ifcDeserializer = ifcDeserializerPlugin.createDeserializer(null);
 			ifcDeserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
-			File baseDirectory = new File("C:\\Arch");
-			for (File originalIfcFile : baseDirectory.listFiles()) {
+			java.nio.file.Path baseDirectory = Paths.get("C:\\Arch");
+			for (java.nio.file.Path originalIfcFile : PathUtils.getDirectories(baseDirectory)) {
 				processFile(ifcDeserializer, originalIfcFile);
 			}
 		} catch (PluginException e) {
 			e.printStackTrace();
 		} catch (DeserializeException e) {
 			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
-	private void processFile(Deserializer ifcDeserializer, File originalIfcFile)
+	private void processFile(Deserializer ifcDeserializer, java.nio.file.Path originalIfcFile)
 			throws DeserializeException {
 		IfcModelInterface model = ifcDeserializer.read(originalIfcFile);
 		for (IfcSpace ifcSpace : model.getAllWithSubTypes(IfcSpace.class)) {

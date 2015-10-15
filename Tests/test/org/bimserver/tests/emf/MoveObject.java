@@ -2,7 +2,7 @@ package org.bimserver.tests.emf;
 
 import static org.junit.Assert.fail;
 
-import java.io.File;
+import java.nio.file.Paths;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
@@ -33,7 +33,7 @@ public class MoveObject extends TestWithEmbeddedServer{
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 
 			// Checkin the file
-			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
+			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 
 			// Refresh project info
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
@@ -57,7 +57,7 @@ public class MoveObject extends TestWithEmbeddedServer{
 			}
 			long newRoid = model.commit("Moved all furniture 50 meters up");
 			SSerializerPluginConfiguration ifcSerializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
-			bimServerClient.download(newRoid, ifcSerializer.getOid(), new File("movedf.ifc"));
+			bimServerClient.download(newRoid, ifcSerializer.getOid(), Paths.get("movedf.ifc"));
 		} catch (Throwable e) {
 			e.printStackTrace();
 			if (e instanceof AssertionError) {

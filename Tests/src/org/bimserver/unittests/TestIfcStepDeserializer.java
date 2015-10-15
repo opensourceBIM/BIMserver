@@ -19,7 +19,7 @@ package org.bimserver.unittests;
 
 import static org.junit.Assert.fail;
 
-import java.io.File;
+import java.nio.file.Paths;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
@@ -42,7 +42,7 @@ public class TestIfcStepDeserializer {
 	@Test
 	public void testSpaceEndOfLineBeforeSemiColon() {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			
@@ -55,7 +55,7 @@ public class TestIfcStepDeserializer {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			serializer.init(modelInterface, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);
-			serializer.writeToFile(new File("output/test.ifc"), null);
+			serializer.writeToFile(Paths.get("output/test.ifc"), null);
 		} catch (PluginException e) {
 			e.printStackTrace();
 			fail(e.getMessage());

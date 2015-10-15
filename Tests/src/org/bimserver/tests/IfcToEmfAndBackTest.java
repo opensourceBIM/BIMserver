@@ -41,7 +41,7 @@ package org.bimserver.tests;
 //import org.bimserver.ifc.file.writer.IfcStepSerializer;
 //
 //public class IfcToEmfAndBackTest {
-//	private final HtmlWriter htmlWriter = new HtmlWriter(new File("result.html"));
+//	private final HtmlWriter htmlWriter = new HtmlWriter(Paths.get("result.html"));
 //
 //	private class Result {
 //		public Result(File sourceFile) {
@@ -142,7 +142,7 @@ package org.bimserver.tests;
 ////		 }
 ////		 });
 ////		 }
-////		File dir = new File("G:\\ifc selected");
+////		File dir = Paths.get("G:\\ifc selected");
 ////		for (final File file : dir.listFiles()) {
 ////			if (file.getName().endsWith(".ifc")) {
 ////				completionService.submit(new Callable<Result>() {
@@ -175,11 +175,11 @@ package org.bimserver.tests;
 //		}
 //		htmlWriter.endTable();
 //		htmlWriter.close();
-//		// test(new File("G:\\ifc selected\\00000 test.ifc"));
+//		// test(Paths.get("G:\\ifc selected\\00000 test.ifc"));
 //	}
 //
 //	private Result test(File sourceFile) {
-//		File destFile = new File(sourceFile.getAbsolutePath() + ".dump");
+//		File destFile = Paths.get(sourceFile.getAbsolutePath() + ".dump");
 //		Result result = new Result(sourceFile);
 //		IfcModel model = null;
 //		try {
@@ -194,13 +194,13 @@ package org.bimserver.tests;
 //			} catch (InterruptedException e1) {
 //				e1.printStackTrace();
 //			}
-//			sourceFile.renameTo(new File("incorrect\\" + sourceFile.getName()));
+//			sourceFile.renameTo(Paths.get("incorrect\\" + sourceFile.getName()));
 //			return result;
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //			result.setReadSuccess(false);
 //			result.setReadError(e.getMessage());
-//			sourceFile.renameTo(new File("incorrect\\" + sourceFile.getName()));
+//			sourceFile.renameTo(Paths.get("incorrect\\" + sourceFile.getName()));
 //			return result;
 //		}
 //		result.setReadSuccess(true);
@@ -218,10 +218,10 @@ package org.bimserver.tests;
 //			NewIfcFileCompare compare = new NewIfcFileCompare(sourceFile, destFile);
 //			boolean compare2 = compare.compare();
 //			if (compare2) {
-//				sourceFile.renameTo(new File("oke\\" + sourceFile.getName()));
+//				sourceFile.renameTo(Paths.get("oke\\" + sourceFile.getName()));
 //			} else {
-//				compare.dumpSource(new File("faults\\" + sourceFile.getName() + ".1"));
-//				compare.dumpGenerated(new File("faults\\" + sourceFile.getName() + ".2"));
+//				compare.dumpSource(Paths.get("faults\\" + sourceFile.getName() + ".1"));
+//				compare.dumpGenerated(Paths.get("faults\\" + sourceFile.getName() + ".2"));
 //			}
 //			result.setCompareResult(compare2);
 //		} catch (Exception e) {

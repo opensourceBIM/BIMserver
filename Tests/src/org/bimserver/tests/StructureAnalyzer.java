@@ -1,25 +1,8 @@
 package org.bimserver.tests;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -44,7 +27,7 @@ public class StructureAnalyzer {
 	private void start() {
 		limit = 1000000;
 		try {
-			out = new PrintWriter(new File("structure.txt"));
+			out = new PrintWriter(Paths.get("structure.txt").toFile());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -56,7 +39,7 @@ public class StructureAnalyzer {
 		classifiers.add(Ifc2x3tc1Package.eINSTANCE.getEClassifier("IfcWall"));
 		for (EClassifier ecl : classifiers) {
 			try {
-				out2 = new PrintWriter(new File("structure/" + ecl.getName() + ".txt"));
+				out2 = new PrintWriter(Paths.get("structure/" + ecl.getName() + ".txt").toFile());
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}

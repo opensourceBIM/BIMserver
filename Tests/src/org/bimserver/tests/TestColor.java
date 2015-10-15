@@ -1,23 +1,5 @@
 package org.bimserver.tests;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
 import java.nio.file.Paths;
 import java.util.Random;
 
@@ -45,8 +27,8 @@ public class TestColor {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
-//			IfcModelInterface model = deserializer.read(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
-			IfcModelInterface model = deserializer.read(new File("D:\\Dropbox\\Shared\\BIMserver\\IFC modellen\\top secret statsbygg\\SB_11873_6_ARK_PNN_2012.02.13.ifc"));
+//			IfcModelInterface model = deserializer.read(Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
+			IfcModelInterface model = deserializer.read(Paths.get("D:\\Dropbox\\Shared\\BIMserver\\IFC modellen\\top secret statsbygg\\SB_11873_6_ARK_PNN_2012.02.13.ifc"));
 			model.fixOidCounter();
 //			ModelColorizer modelColorizer = new ModelColorizer(model);
 			Random random = new Random();
@@ -76,7 +58,7 @@ public class TestColor {
 			Serializer serializer = serializerPlugin.createSerializer(null);
 			model.generateMinimalExpressIds();
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, false);
-			serializer.writeToFile(new File("color.ifc"), null);
+			serializer.writeToFile(Paths.get("color.ifc"), null);
 		} catch (PluginException e1) {
 			e1.printStackTrace();
 		} catch (DeserializeException e) {

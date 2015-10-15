@@ -1,7 +1,8 @@
 package org.bimserver.tests;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -23,18 +24,18 @@ public class TestManyRevisions {
 
 	private void start(String[] args) {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
 			pluginManager.setMetaDataManager(metaDataManager);
 			BimServerClientFactory factory = new JsonBimServerClientFactory(metaDataManager, "http://localhost:8080");
 			BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			try {
 				SProject project = client.getBimsie1ServiceInterface().addProject("lots2", "ifc2x3tc1");
-				File[] files = new File[]{new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), new File("../TestData/data/AC11-FZK-Haus-IFC - Alt.ifc")};
+				Path[] files = new Path[]{Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), Paths.get("../TestData/data/AC11-FZK-Haus-IFC - Alt.ifc")};
 				SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 				int fn = 0;
 				for (int i=0; i<20; i++) {
-					System.out.println(i + ": " + files[fn].getName());
+					System.out.println(i + ": " + files[fn].getFileName().toString());
 					client.checkin(project.getOid(), "comment" + i, deserializer.getOid(), false, true, files[fn]);
 					fn = 1 - fn;
 				}

@@ -3,8 +3,9 @@ package org.bimserver.tests.serviceinterface;
 import static org.junit.Assert.fail;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
@@ -27,7 +28,7 @@ public class SingleCheckinAndDownloadSimplified extends TestWithEmbeddedServer {
 			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// This is the file we will be checking in
-			File ifcFile = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");
+			Path ifcFile = Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 			
 			// Find a deserializer to use
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());

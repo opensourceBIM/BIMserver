@@ -2,12 +2,11 @@ package org.bimserver.tests;
 
 import static org.junit.Assert.fail;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
@@ -36,6 +35,7 @@ import org.bimserver.tests.lowlevel.UnsetReferenceWithOpposite;
 import org.bimserver.tests.serviceinterface.MultiCheckinAndDownload;
 import org.bimserver.tests.serviceinterface.SingleCheckinAndDownload;
 import org.bimserver.tests.serviceinterface.UpdateProject;
+import org.bimserver.utils.PathUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -80,9 +80,9 @@ public class AllTests {
 		Path home = Paths.get("home");
 		
 		// Remove the home dir if it's there
-		if (home.exists()) {
+		if (Files.exists(home)) {
 			try {
-				FileUtils.deleteDirectory(home);
+				PathUtils.removeDirectoryWithContent(home);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -92,7 +92,7 @@ public class AllTests {
 		config.setHomeDir(home);
 		config.setStartEmbeddedWebServer(true);
 		config.setPort(8080);
-		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
+		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(Paths.get("../")));
 		config.setClassPath(System.getProperty("java.class.path"));
 		
 		bimServer = new BimServer(config);

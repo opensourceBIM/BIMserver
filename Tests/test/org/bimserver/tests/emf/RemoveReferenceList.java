@@ -1,9 +1,9 @@
 package org.bimserver.tests.emf;
 
-import static org.junit.Assert.fail;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import java.io.File;
+import java.nio.file.Paths;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProject;
@@ -50,7 +50,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			// refresh
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 
-			bimServerClient.download(newProject.getLastRevisionId(), bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc").getOid(), new File("testX.ifc"));
+			bimServerClient.download(newProject.getLastRevisionId(), bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc").getOid(), Paths.get("testX.ifc"));
 
 			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, true);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {

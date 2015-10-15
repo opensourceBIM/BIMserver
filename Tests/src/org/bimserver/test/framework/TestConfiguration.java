@@ -18,6 +18,8 @@ package org.bimserver.test.framework;
  *****************************************************************************/
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.test.framework.actions.ActionFactory;
@@ -31,9 +33,9 @@ public class TestConfiguration {
 	private boolean stopOnServerException = true;
 	private boolean stopNoVirtualUsers = true;
 	private ActionFactory actionFactory;
-	private File outputFolder;
+	private Path outputFolder;
 	private BimServerClientFactory bimServerClientFactory;
-	private File homeDir = new File("home");
+	private Path homeDir = Paths.get("home");
 	private TestFileProvider testFileProvider;
 	
 	public int getNrVirtualUsers() {
@@ -92,11 +94,11 @@ public class TestConfiguration {
 		this.actionFactory = actionFactory;
 	}
 
-	public File getOutputFolder() {
+	public Path getOutputFolder() {
 		return outputFolder;
 	}
 
-	public void setOutputFolder(File outputFolder) {
+	public void setOutputFolder(Path outputFolder) {
 		this.outputFolder = outputFolder;
 	}
 
@@ -108,11 +110,11 @@ public class TestConfiguration {
 		this.bimServerClientFactory = bimServerClientFactory;
 	}
 	
-	public File getHomeDir() {
+	public Path getHomeDir() {
 		return homeDir;
 	}
 
-	public void setHomeDir(File homeDir) {
+	public void setHomeDir(Path homeDir) {
 		this.homeDir = homeDir;
 	}
 

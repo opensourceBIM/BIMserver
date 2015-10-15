@@ -1,26 +1,9 @@
 package org.bimserver.tests;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +22,8 @@ public class ReadTest {
 
 	public static void main(String[] args) {
 		try {
-//			FileInputStream fis = new FileInputStream(new File("C:\\Documents and Settings\\Ruben de Laat\\My Documents\\index-buffers.bin"));
-			FileInputStream fis = new FileInputStream(new File("C:\\Workspaces\\BimServer\\BimServer\\www\\index-buffers.bin"));
+//			FileInputStream fis = new FileInputStream(Paths.get("C:\\Documents and Settings\\Ruben de Laat\\My Documents\\index-buffers.bin"));
+			FileInputStream fis = new FileInputStream(Paths.get("C:\\Workspaces\\BimServer\\BimServer\\www\\index-buffers.bin").toFile());
 			byte[] buffer = new byte[4];
 			fis.read(buffer);
 			System.out.println("id: " + new String(buffer, "ASCII"));

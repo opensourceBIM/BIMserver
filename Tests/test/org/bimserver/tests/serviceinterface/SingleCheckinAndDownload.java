@@ -3,8 +3,9 @@ package org.bimserver.tests.serviceinterface;
 import static org.junit.Assert.fail;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -36,7 +37,7 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// This is the file we will be checking in
-			File ifcFile = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");
+			Path ifcFile = Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 			
 			// Find a deserializer to use
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
@@ -44,7 +45,7 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 			// Checkin
 			Long progressId = -1L;
 			if (useChannel) {
-				progressId = bimServerClient.getBimsie1ServiceInterface().checkin(newProject.getOid(), "test", deserializer.getOid(), ifcFile.length(), ifcFile.getName(), new DataHandler(new FileDataSource(ifcFile)), true);
+				progressId = bimServerClient.getBimsie1ServiceInterface().checkin(newProject.getOid(), "test", deserializer.getOid(), ifcFile.toFile().length(), ifcFile.getFileName().toString(), new DataHandler(new FileDataSource(ifcFile.toFile())), true);
 			} else {
 				progressId = bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, ifcFile);
 			}

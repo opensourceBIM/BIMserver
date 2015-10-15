@@ -18,11 +18,12 @@ package org.bimserver.tests;
  *****************************************************************************/
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -32,14 +33,14 @@ public class Bla {
 	}
 
 	private void start() {
-		sortFile(TestFile.MERGE_TEST_SOURCE_FILE.getFile(), new File("1.ifc"));
-		sortFile(new File("in.ifc"), new File("2.ifc"));
+		sortFile(TestFile.MERGE_TEST_SOURCE_FILE.getFile(), Paths.get("1.ifc"));
+		sortFile(Paths.get("in.ifc"), Paths.get("2.ifc"));
 	}
 
-	public static void sortFile(File sourceFile, File destFile) {
+	public static void sortFile(Path sourceFile, Path destFile) {
 		try {
 			System.out.println(sourceFile);
-			BufferedReader reader = new BufferedReader(new FileReader(sourceFile));
+			BufferedReader reader = new BufferedReader(new FileReader(sourceFile.toFile()));
 			String line = reader.readLine();
 			Set<String> lines = new TreeSet<String>();
 			while (line != null) {
@@ -51,7 +52,7 @@ public class Bla {
 				line = reader.readLine();
 			}
 			reader.close();
-			PrintWriter out = new PrintWriter(destFile);
+			PrintWriter out = new PrintWriter(destFile.toFile());
 			for (String r : lines) {
 				out.write(r + "\n");
 			}

@@ -1,23 +1,7 @@
 package org.bimserver.tests.diff;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -46,12 +30,12 @@ public class Diff {
 	private int addedByHashMatch = 0;
 	private int valueMatches = 0;
 	private int addedByGraphIsomorphing = 0;
-	private File file1;
-	private File file2;
+	private Path file1;
+	private Path file2;
 
 	public static void main(String[] args) {
 		try {
-			new Diff(false, false, false, new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc")).start();
+			new Diff(false, false, false, Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc")).start();
 		} catch (CompareException e) {
 			e.printStackTrace();
 		} catch (NoSuchAlgorithmException e) {
@@ -59,7 +43,7 @@ public class Diff {
 		}
 	}
 
-	public Diff(boolean ignoreIntegerZeroDollar, boolean ignoreDoubleZeroDollar, boolean ignoreListEmptyDollar, File file1, File file2) {
+	public Diff(boolean ignoreIntegerZeroDollar, boolean ignoreDoubleZeroDollar, boolean ignoreListEmptyDollar, Path file1, Path file2) {
 		this.ignoreIntegerZeroDollar = ignoreIntegerZeroDollar;
 		this.ignoreDoubleZeroDollar = ignoreDoubleZeroDollar;
 		this.ignoreListEmptyDollar = ignoreListEmptyDollar;

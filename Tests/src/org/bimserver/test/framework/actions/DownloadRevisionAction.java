@@ -1,26 +1,10 @@
 package org.bimserver.test.framework.actions;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -81,10 +65,14 @@ public class DownloadRevisionAction extends Action {
 					if (downloadData != null) {
 						PluginConfiguration pluginConfiguration = new PluginConfiguration(virtualUser.getBimServerClient().getPluginInterface().getPluginSettings(serializer.getOid()));
 						String filename = project.getName() + "." + revision.getId() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);
-						FileOutputStream fos = new FileOutputStream(new File(getTestFramework().getTestConfiguration().getOutputFolder(), filename));
-						IOUtils.copy(downloadData, fos);
+						Path resolve = getTestFramework().getTestConfiguration().getOutputFolder().resolve(filename);
+						OutputStream outputStream = Files.newOutputStream(resolve);
+						try {
+							IOUtils.copy(downloadData, outputStream);
+						} finally {
+							outputStream.close();
+						}
 						virtualUser.getLogger().info(filename + " downloaded");
-						fos.close();
 					} else {
 						virtualUser.getLogger().warn("Downloaddata = null...");
 					}

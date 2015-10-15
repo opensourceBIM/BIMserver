@@ -19,7 +19,7 @@ package org.bimserver.unittests;
 
 import static org.junit.Assert.fail;
 
-import java.io.File;
+import java.nio.file.Paths;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
@@ -47,7 +47,7 @@ public class TestIfcSerializeDeserialize {
 	@Test
 	public void testSerializeDeserializer() throws IfcModelInterfaceException {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
 			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
@@ -58,12 +58,12 @@ public class TestIfcSerializeDeserialize {
 			IfcWall wall = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
 			wall.setName("Test with 'quote and \\backslash");
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);
-			serializer.writeToFile(new File("output/test.ifc"), null);
+			serializer.writeToFile(Paths.get("output/test.ifc"), null);
 			
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(packageMetaData);
-			IfcModelInterface modelInterface = deserializer.read(new File("output/test.ifc"));
+			IfcModelInterface modelInterface = deserializer.read(Paths.get("output/test.ifc"));
 			
 			IdEObject object = modelInterface.iterator().next();
 			System.out.println(((IfcWall)object).getName());

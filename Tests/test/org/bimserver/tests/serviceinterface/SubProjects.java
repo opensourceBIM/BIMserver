@@ -4,6 +4,8 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
@@ -29,9 +31,9 @@ public class SubProjects extends TestWithEmbeddedServer {
 			SProject sub3 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub3" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
 
 			// This is the file we will be checking in
-			File ifcFile1 = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
-			File ifcFile2 = new File("../TestData/data/AC90R1-niedriha-V2-2x3.ifc");
-			File ifcFile3 = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");
+			Path ifcFile1 = Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
+			Path ifcFile2 = Paths.get("../TestData/data/AC90R1-niedriha-V2-2x3.ifc");
+			Path ifcFile3 = Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 
 			// Find a deserializer to use
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", mainProject.getOid());

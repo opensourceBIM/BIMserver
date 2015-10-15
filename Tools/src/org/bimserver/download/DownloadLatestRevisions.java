@@ -1,7 +1,8 @@
 package org.bimserver.download;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class DownloadLatestRevisions {
 	private BimServerClientInterface client;
-	private File toDir = new File("D:\\Dropbox\\Shared\\Elasstic Ifc Models");
+	private Path toDir = Paths.get("D:\\Dropbox\\Shared\\Elasstic Ifc Models");
 	private SSerializerPluginConfiguration serializer;
 
 	public static void main(String[] args) {
@@ -46,16 +47,16 @@ public class DownloadLatestRevisions {
 		}
 	}
 
-	private void downloadProject(File baseDir, SProject project) throws ServerException, UserException, PublicInterfaceNotFoundException {
-		File projectDir = new File(baseDir, project.getName());
-		projectDir.mkdir();
+	private void downloadProject(Path baseDir, SProject project) throws ServerException, UserException, PublicInterfaceNotFoundException, IOException {
+		Path projectDir = baseDir.resolve(project.getName());
+		Files.createDirectory(projectDir);
 		
 		if (!project.getRevisions().isEmpty()) {
 			SRevision revision = client.getBimsie1ServiceInterface().getRevision(project.getLastRevisionId());
 			System.out.println(revision.getComment());
 			if (!revision.getComment().startsWith("generated")) {
 				try {
-					client.download(project.getLastRevisionId(), serializer.getOid(), new File(projectDir, revision.getComment()));
+					client.download(project.getLastRevisionId(), serializer.getOid(), projectDir.resolve(revision.getComment()));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

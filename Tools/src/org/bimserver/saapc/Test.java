@@ -1,6 +1,6 @@
 package org.bimserver.saapc;
 
-import java.io.File;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -27,7 +27,7 @@ public class Test {
 			Deserializer ifcDeserializer = ifcDeserializerPlugin.createDeserializer(null);
 			PackageMetaData packageMetaData = pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
 			ifcDeserializer.init(packageMetaData);
-			IfcModelInterface model = ifcDeserializer.read(new File("C:\\Arch\\2014-10-22-17-10-14-Archi_Elasstic_ribbon_2.ifc"));
+			IfcModelInterface model = ifcDeserializer.read(Paths.get("C:\\Arch\\2014-10-22-17-10-14-Archi_Elasstic_ribbon_2.ifc"));
 			IfcRoot space = model.getByGuid("360RrcTsD148LBtQ0v7EoT");
 			IfcRoot window = model.getByGuid("34twxE9mT4pRJLS4Gz2YhE");
 			

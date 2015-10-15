@@ -21,6 +21,9 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
 
@@ -133,11 +136,11 @@ public class TestClientEmfModelLocal {
 			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
 			serializer.init(model, null, bimServer.getPluginManager(), null, packageMetaData, false);
-			File output = new File("output");
-			if (!output.exists()) {
-				output.mkdir();
+			Path output = Paths.get("output");
+			if (!Files.exists(output)) {
+				Files.createDirectory(output);
 			}
-			serializer.writeToFile(new File(output, roid + ".ifc"), null);
+			serializer.writeToFile(output.resolve(roid + ".ifc"), null);
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
@@ -145,6 +148,8 @@ public class TestClientEmfModelLocal {
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
