@@ -11,7 +11,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-codec-1.9.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-collections-3.2.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-fileupload-1.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/commons/commons-io-1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons/commons-io-1.4.jar" sourcepath="/BimServer/libsrc/commons-io-2.4-src.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-lang-2.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-logging-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-pool-1.5.2.jar"/>
@@ -46,6 +46,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/other/jackson-core-2.5.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/other/jackson-databind-2.5.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/other/jackson-annotations-2.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/other/jimfs-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.4.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.4.3-src.zip"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.7.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.7.3-src.zip"/>

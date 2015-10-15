@@ -18,6 +18,7 @@ package org.bimserver.tests;
  *****************************************************************************/
 
 import java.io.File;
+import java.nio.file.Paths;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
@@ -37,7 +38,7 @@ public class TestDeserializer {
 
 	private void start() {
 		try {
-			final PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			final PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			final DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());

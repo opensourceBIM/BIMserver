@@ -19,8 +19,9 @@ package org.bimserver.tests;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
@@ -34,6 +35,7 @@ import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.utils.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -117,16 +119,14 @@ public class TestIfcEngineEmbedded {
 	public static void main(String[] args) {
 		// Create a config
 		BimServerConfig config = new BimServerConfig();
-		File home = new File("home");
+		Path home = Paths.get("home");
 		
 		// Remove the home dir if it's there
 		if (WIPE_HOMEDIR) {
-			if (home.exists()) {
-				try {
-					FileUtils.deleteDirectory(home);
-				} catch (IOException e) {
-					// Meh.
-				}
+			try {
+				PathUtils.removeDirectoryWithContent(home);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 		
@@ -141,7 +141,7 @@ public class TestIfcEngineEmbedded {
 		BimServerClientInterface client = null;
 		try {
 			// Load plugins
-			File[] pluginDirs = new File[] {
+			Path[] pluginDirs = new Path[] {
 				// TODO: Set these up yourself...
 			};
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirs);

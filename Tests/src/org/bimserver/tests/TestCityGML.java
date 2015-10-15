@@ -18,6 +18,7 @@ package org.bimserver.tests;
  *****************************************************************************/
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.Collection;
 
 import org.bimserver.LocalDevPluginLoader;
@@ -39,7 +40,7 @@ public class TestCityGML {
 
 	private void start() {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			SerializerPlugin plugin = pluginManager.getSerializerPlugin("org.bimserver.citygml.CityGmlSerializerPlugin", true);
 			Serializer serializer = plugin.createSerializer(new PluginConfiguration());
 			Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins("ifc", true);

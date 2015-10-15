@@ -18,7 +18,10 @@ package org.bimserver.database.berkeley;
  *****************************************************************************/
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -37,6 +40,7 @@ import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
 import org.bimserver.database.SearchingRecordIterator;
+import org.bimserver.utils.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,22 +76,27 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	private final AtomicLong cursorCounter = new AtomicLong();
 	private final Map<Long, StackTraceElement[]> openCursors = new ConcurrentHashMap<>();
 
-	public BerkeleyKeyValueStore(File dataDir) throws DatabaseInitException {
-		if (dataDir.isDirectory()) {
-			if (dataDir.listFiles().length > 0) {
-				LOGGER.info("Non-empty database directory found \"" + dataDir.getAbsolutePath() + "\"");
-				isNew = false;
-			} else {
-				LOGGER.info("Empty database directory found \"" + dataDir.getAbsolutePath() + "\"");
-				isNew = true;
+	public BerkeleyKeyValueStore(Path dataDir) throws DatabaseInitException {
+		if (Files.isDirectory(dataDir)) {
+			try {
+				if (PathUtils.getDirectories(dataDir).size() > 0) {
+					LOGGER.info("Non-empty database directory found \"" + dataDir.toString() + "\"");
+					isNew = false;
+				} else {
+					LOGGER.info("Empty database directory found \"" + dataDir.toString() + "\"");
+					isNew = true;
+				}
+			} catch (IOException e) {
+				LOGGER.error("", e);
 			}
 		} else {
 			isNew = true;
-			LOGGER.info("No database directory found, creating \"" + dataDir.getAbsolutePath() + "\"");
-			if (dataDir.mkdir()) {
-				LOGGER.info("Successfully created database dir \"" + dataDir.getAbsolutePath() + "\"");
-			} else {
-				LOGGER.error("Error creating database dir \"" + dataDir.getAbsolutePath() + "\"");
+			LOGGER.info("No database directory found, creating \"" + dataDir.toString() + "\"");
+			try {
+				Files.createDirectory(dataDir);
+				LOGGER.info("Successfully created database dir \"" + dataDir.toString() + "\"");
+			} catch (Exception e) {
+				LOGGER.error("Error creating database dir \"" + dataDir.toString() + "\"");
 			}
 		}
 		EnvironmentConfig envConfig = new EnvironmentConfig();
@@ -99,10 +108,10 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		envConfig.setConfigParam(EnvironmentConfig.CHECKPOINTER_HIGH_PRIORITY, "true");
 		envConfig.setConfigParam(EnvironmentConfig.CLEANER_THREADS, "5");
 		try {
-			environment = new Environment(dataDir, envConfig);
+			environment = new Environment(dataDir.toFile(), envConfig);
 		} catch (EnvironmentLockedException e) {
 			String message = "Environment locked exception. Another process is using the same database, or the current user has no write access (database location: \""
-					+ dataDir.getAbsolutePath() + "\")";
+					+ dataDir.toString() + "\")";
 			throw new DatabaseInitException(message);
 		} catch (DatabaseException e) {
 			String message = "A database initialisation error has occured (" + e.getMessage() + ")";

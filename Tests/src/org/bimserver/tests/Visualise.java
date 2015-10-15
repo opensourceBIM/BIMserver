@@ -19,6 +19,7 @@ package org.bimserver.tests;
 
 import java.awt.BorderLayout;
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,7 +60,7 @@ public class Visualise extends JFrame {
 	public static void main(String[] args) {
 		PluginManager pluginManager;
 		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("application/ifc");
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));

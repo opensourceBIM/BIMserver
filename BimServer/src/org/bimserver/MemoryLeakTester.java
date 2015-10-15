@@ -1,23 +1,7 @@
 package org.bimserver;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -44,10 +28,10 @@ public class MemoryLeakTester {
 		new MemoryLeakTester().start(1, "localhost", 8080, 8085, new OptionsParser(args).getPluginDirectories());
 	}
 
-	public void start(int id, String address, int port, int pbport, File[] pluginDirectories) {
+	public void start(int id, String address, int port, int pbport, Path[] pluginDirectories) {
 		BimServerConfig config = new BimServerConfig();
-		config.setHomeDir(new File("home" + id));
-		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
+		config.setHomeDir(Paths.get("home" + id));
+		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(Paths.get("../")));
 		config.setStartEmbeddedWebServer(true);
 		config.setClassPath(System.getProperty("java.class.path"));
 		config.setStartCommandLine(false);

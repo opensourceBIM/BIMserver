@@ -1,24 +1,9 @@
 package org.bimserver.cache;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -28,29 +13,34 @@ import javax.activation.DataSource;
 
 import org.bimserver.BimServer;
 import org.bimserver.longaction.DownloadParameters;
+import org.bimserver.utils.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DiskCacheManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DiskCacheManager.class);
-	private final File cacheDir;
+	private final Path cacheDir;
 	private final BimServer bimServer;
 	private final Set<String> cachedFileNames = new HashSet<String>();
 	private final Map<DownloadParameters, DiskCacheOutputStream> busyCaching = new HashMap<DownloadParameters, DiskCacheOutputStream>();
 
-	public DiskCacheManager(BimServer bimServer, File cacheDir) {
+	public DiskCacheManager(BimServer bimServer, Path cacheDir) {
 		this.bimServer = bimServer;
 		this.cacheDir = cacheDir;
-		if (!cacheDir.exists()) {
-			cacheDir.mkdir();
-		}
-		for (File file : this.cacheDir.listFiles()) {
-			if (file.getName().endsWith(".__tmp")) {
-				file.delete();
-			} else {
-				cachedFileNames.add(file.getName());
+		try {
+			if (!Files.exists(cacheDir)) {
+					Files.createDirectory(cacheDir);
 			}
+			for (Path file : PathUtils.getDirectories(this.cacheDir)) {
+				if (file.getFileName().toString().endsWith(".__tmp")) {
+					Files.delete(file);
+				} else {
+					cachedFileNames.add(file.getFileName().toString());
+				}
+			}
+		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
 	}
 	
@@ -87,9 +77,9 @@ public class DiskCacheManager {
 					LOGGER.error("", e);
 				}
 			}
-			File file = new File(cacheDir, downloadParameters.getId());
-			if (!file.exists()) {
-				LOGGER.error("File " + file.getName() + " not found in cache");
+			Path file = cacheDir.resolve(downloadParameters.getId());
+			if (!Files.exists(file)) {
+				LOGGER.error("File " + file.getFileName().toString() + " not found in cache");
 			} else {
 				LOGGER.info("Reading from cache " + downloadParameters.getFileName());
 				FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(file);
@@ -103,7 +93,7 @@ public class DiskCacheManager {
 	public DiskCacheOutputStream startCaching(DownloadParameters downloadParameters) {
 		try {
 			LOGGER.info("Start caching " + downloadParameters.getFileName());
-			DiskCacheOutputStream out = new DiskCacheOutputStream(this, new File(cacheDir, downloadParameters.getId()), downloadParameters);
+			DiskCacheOutputStream out = new DiskCacheOutputStream(this, cacheDir.resolve(downloadParameters.getId()), downloadParameters);
 			synchronized (busyCaching) {
 				busyCaching.put(downloadParameters, out);
 			}
@@ -116,10 +106,17 @@ public class DiskCacheManager {
 
 	public synchronized Integer cleanup() {
 		int removed = 0;
-		for (File file : cacheDir.listFiles()) {
-			if (file.delete()) {
-				removed++;
+		try {
+			for (Path file : PathUtils.getDirectories(cacheDir)) {
+				try {
+					Files.delete(file);
+					removed++;
+				} catch (IOException e) {
+					LOGGER.error("", e);
+				}
 			}
+		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
 		cachedFileNames.clear();
 		return removed;

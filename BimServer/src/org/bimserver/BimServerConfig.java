@@ -18,12 +18,13 @@ package org.bimserver;
  *****************************************************************************/
 
 import java.io.File;
+import java.nio.file.Path;
 
 import org.bimserver.plugins.ResourceFetcher;
 
 public class BimServerConfig {
 	private boolean startEmbeddedWebServer;
-	private File homeDir;
+	private Path homeDir;
 	private ResourceFetcher resourceFetcher;
 	private String classPath;
 	private int port;
@@ -53,14 +54,14 @@ public class BimServerConfig {
 		this.resourceFetcher = resourceFetcher;
 	}
 
-	public File getHomeDir() {
+	public Path getHomeDir() {
 		return homeDir;
 	}
 
 	/**
 	 * @param homeDir The home directory is a directory used for: database, logging, tmp and configuration
 	 */
-	public void setHomeDir(File homeDir) {
+	public void setHomeDir(Path homeDir) {
 		this.homeDir = homeDir;
 	}
 

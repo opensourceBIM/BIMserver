@@ -2,6 +2,7 @@ package org.bimserver.tools.colorizer;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -124,7 +125,7 @@ public class Colorizer {
 			e.printStackTrace();
 		}
 		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 		} catch (PluginException e) {
 			e.printStackTrace();
 		}

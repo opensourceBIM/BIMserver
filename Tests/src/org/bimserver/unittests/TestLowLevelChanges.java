@@ -21,6 +21,8 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
 
@@ -88,12 +90,12 @@ public class TestLowLevelChanges {
 			
 			// Create a BIMserver
 			BimServerConfig config = new BimServerConfig();
-			config.setHomeDir(new File("home"));
+			config.setHomeDir(Paths.get("home"));
 			config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 			bimServer = new BimServer(config);
 			
 			// Load plugins
-			File[] pluginDirectories = new File[]{new File("E:\\Git\\BIMserverMaster2")};
+			Path[] pluginDirectories = new Path[]{Paths.get("E:\\Git\\BIMserverMaster2")};
 			
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 

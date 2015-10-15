@@ -4,6 +4,8 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
@@ -75,7 +77,7 @@ public class AllTests {
 
 	private static void setup() {
 		// Create a config
-		File home = new File("home");
+		Path home = Paths.get("home");
 		
 		// Remove the home dir if it's there
 		if (home.exists()) {
@@ -96,7 +98,7 @@ public class AllTests {
 		bimServer = new BimServer(config);
 		try {
 			// CHANGE THESE TO MATCH YOUR CONFIGURATION
-			File[] pluginDirectories = new File[]{new File("C:\\Git\\BIMserver")};
+			Path[] pluginDirectories = new Path[]{Paths.get("C:\\Git\\BIMserver")};
 			
 			// Load plugins
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);

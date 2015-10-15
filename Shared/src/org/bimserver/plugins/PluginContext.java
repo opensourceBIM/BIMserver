@@ -22,10 +22,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.tools.JavaCompiler;
 import javax.tools.JavaFileManager;
@@ -36,30 +39,40 @@ import org.bimserver.plugins.web.WebModulePlugin;
 
 public class PluginContext {
 
-	private Plugin plugin;
-	private String location;
-	private boolean enabled = true;
 	private final PluginManager pluginManager;
-	private String classLocation;
-	private final PluginSourceType pluginType;
-	private JavaFileManager javaFileManager;
 	private final ClassLoader classLoader;
-	private VirtualFile virtualFile;
-	private PluginImplementation pluginImplementation;
+	private final PluginSourceType pluginType;
+	private final String location;
+	private final Plugin plugin;
+	private final PluginImplementation pluginImplementation;
+	private final String classLocation;
+	private boolean enabled = true;
+	private JavaFileManager javaFileManager;
+	private FileSystem filesystem;
+	private Path rootPath;
 
-	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginSourceType pluginType, String location) throws IOException {
+	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginSourceType pluginType, String location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation) throws IOException {
 		this.pluginManager = pluginManager;
 		this.classLoader = classLoader;
 		this.pluginType = pluginType;
 		this.location = location;
+		this.plugin = plugin;
+		this.pluginImplementation = pluginImplementation;
+		this.classLocation = classLocation;
 		switch (pluginType) {
 		case ECLIPSE_PROJECT:
-			virtualFile = VirtualFile.fromDirectory(new File(location));
+			filesystem = FileSystems.getDefault();
+			rootPath = filesystem.getPath(location);
 			break;
 		case INTERNAL:
 			break;
 		case JAR_FILE:
-			virtualFile = VirtualFile.fromJar(new File(location));
+			URI uri = URI.create("jar:file:/" + location.replace("\\", "/"));
+			System.out.println(uri);
+			Map<String, String> env = new HashMap<>();
+			env.put("create", "true");
+			filesystem = FileSystems.newFileSystem(uri, env, null);
+			rootPath = filesystem.getPath("/");
 			break;
 		default:
 			break;
@@ -70,20 +83,12 @@ public class PluginContext {
 		return pluginType;
 	}
 
-	public void setPlugin(Plugin plugin) {
-		this.plugin = plugin;
-	}
-
 	public Plugin getPlugin() {
 		return plugin;
 	}
 
 	public String getLocation() {
 		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
 	}
 
 	public void setEnabled(boolean enabled, boolean notify) {
@@ -121,10 +126,6 @@ public class PluginContext {
 		return classLoader.getResource(name);
 	}
 
-	public void setClassLocation(String classLocation) {
-		this.classLocation = classLocation;
-	}
-
 	public String getClassLocation() {
 		return classLocation;
 	}
@@ -146,7 +147,7 @@ public class PluginContext {
 			this.javaFileManager = systemJavaCompiler.getStandardFileManager(null, null, null);
 			break;
 		case JAR_FILE:
-			this.javaFileManager = new VirtualFileManager(systemJavaCompiler.getStandardFileManager(null, null, null), classLoader, virtualFile);
+			this.javaFileManager = new VirtualFileManager2(systemJavaCompiler.getStandardFileManager(null, null, null), classLoader, filesystem, rootPath);
 			break;
 		default:
 			break;
@@ -154,38 +155,16 @@ public class PluginContext {
 		return javaFileManager;
 	}
 
-	public Collection<VirtualFile> listResources(String path) {
-		List<VirtualFile> urls = new ArrayList<VirtualFile>();
-		switch (pluginType) {
-		case ECLIPSE_PROJECT: {
-			VirtualFile folder = virtualFile.get(path);
-			if (folder != null) {
-				return folder.listFiles();
-			}
-			break;
-		}
-		case INTERNAL:
-			// Not supported yet
-			break;
-		case JAR_FILE: {
-			VirtualFile folder = virtualFile.get(path);
-			if (folder != null) {
-				return folder.listFiles();
-			}
-			break;
-		}
-		default:
-			break;
-		}
-		return urls;
+	public Path getRootPath() {
+		return rootPath;
 	}
 	
-	public Parameter getParameter(String name) {
-		return pluginManager.getParameter(this, name);
+	public FileSystem getFilesystem() {
+		return filesystem;
 	}
 
-	public void setConfig(PluginImplementation pluginImplementation) {
-		this.pluginImplementation = pluginImplementation;
+	public Parameter getParameter(String name) {
+		return pluginManager.getParameter(this, name);
 	}
 	
 	public PluginImplementation getPluginImplementation() {

@@ -20,6 +20,7 @@ package nl.tue.buildingsmart.express.population.test;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 
 import nl.tue.buildingsmart.express.population.ModelPopulation;
 
@@ -48,7 +49,7 @@ public class PopulationTest {
 			 * Auto-generated catch block LOGGER.error("", e); }
 			 */
 			model = new ModelPopulation(input);
-			model.setSchemaFile(new File("data" + File.separator + "IFC2X3_TC1.exp"));
+			model.setSchemaFile(Paths.get("data" + File.separator + "IFC2X3_TC1.exp"));
 			model.load();
 
 			System.out.println(model.getInstancesOfType("IfcWall").size());

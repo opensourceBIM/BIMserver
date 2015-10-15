@@ -33,6 +33,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.ifcengine.jvm.IfcEngineServer;
@@ -47,14 +49,14 @@ public class JvmIfcEngine implements RenderEngine {
 	private DataInputStream in;
 	private DataOutputStream out;
 	private InputStream err;
-	private final File schemaFile;
-	private final File nativeBaseDir;
+	private final Path schemaFile;
+	private final Path nativeBaseDir;
 	private boolean useSecondJvm = true;
 	private final String classPath;
-	private final File tempDir;
+	private final Path tempDir;
 	private volatile RenderEngineException lastException;
 
-	public JvmIfcEngine(File schemaFile, File nativeBaseDir, File tempDir, String classPath) throws RenderEngineException {
+	public JvmIfcEngine(Path schemaFile, Path nativeBaseDir, Path tempDir, String classPath) throws RenderEngineException {
 		this.schemaFile = schemaFile;
 		this.nativeBaseDir = nativeBaseDir;
 		this.tempDir = tempDir;
@@ -73,7 +75,7 @@ public class JvmIfcEngine implements RenderEngine {
 		try {
 			PipedInputStream pipedInputStream = new PipedInputStream();
 			PipedOutputStream pipedOutputStream = new PipedOutputStream(pipedInputStream);
-			IfcEngineServer ifcEngineServer = new IfcEngineServer(schemaFile.getAbsolutePath(), pipedInputStream, pipedOutputStream, null);
+			IfcEngineServer ifcEngineServer = new IfcEngineServer(schemaFile.toString(), pipedInputStream, pipedOutputStream, null);
 			in = new DataInputStream(new BufferedInputStream(pipedInputStream));
 			out = new DataOutputStream(new BufferedOutputStream(pipedOutputStream));
 			ifcEngineServer.start();
@@ -84,8 +86,8 @@ public class JvmIfcEngine implements RenderEngine {
 
 	public void startJvm() throws RenderEngineException {
 		try {
-			if (!tempDir.exists()) {
-				tempDir.mkdir();
+			if (!Files.exists(tempDir)) {
+				Files.createDirectory(tempDir);
 			}
 			StringBuilder command = new StringBuilder("java");
 			if (nativeBaseDir.toString().contains(" ")) {
@@ -93,10 +95,10 @@ public class JvmIfcEngine implements RenderEngine {
 			} else {
 				command.append(" -Djna.library.path=" + nativeBaseDir.toString());
 			}
-			if (tempDir.getAbsolutePath().toString().contains(" ")) {
-				command.append(" -Djava.io.tmpdir=\"" + tempDir.getAbsolutePath().toString() + "\"");
+			if (tempDir.toString().contains(" ")) {
+				command.append(" -Djava.io.tmpdir=\"" + tempDir.toString() + "\"");
 			} else {
-				command.append(" -Djava.io.tmpdir=" + tempDir.getAbsolutePath().toString());
+				command.append(" -Djava.io.tmpdir=" + tempDir.toString());
 			}
 			command.append(" -classpath ");
 			command.append("\"");
@@ -125,10 +127,10 @@ public class JvmIfcEngine implements RenderEngine {
 			command.append(" -Xms" + mem);
 			
 			command.append(" org.bimserver.ifcengine.jvm.IfcEngineServer");
-			if (schemaFile.getAbsolutePath().contains(" ")) {
-				command.append(" \"" + schemaFile.getAbsolutePath() + "\"");
+			if (schemaFile.toString().contains(" ")) {
+				command.append(" \"" + schemaFile.toString() + "\"");
 			} else {
-				command.append(" " + schemaFile.getAbsolutePath());
+				command.append(" " + schemaFile.toString());
 			}
 //			LOGGER.info(command.toString());
 			process = Runtime.getRuntime().exec(command.toString());

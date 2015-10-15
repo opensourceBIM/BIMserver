@@ -191,7 +191,7 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	public boolean isDirectory() {
-		return !files.isEmpty();
+		return files.size() != 0;
 	}
 
 	public String getName() {
@@ -422,20 +422,18 @@ public class VirtualFile implements JavaFileObject {
 		JarEntry jarEntry = jarInputStream.getNextJarEntry();
 		while (jarEntry != null) {
 			String n = jarEntry.getName();
-			if (n.endsWith(".class")) {
-				n = n.replace("/", File.separator);
-				n = n.replace("\\", File.separator);
-				VirtualFile newFile = result.createFile(n);
-				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-				IOUtils.copy(jarInputStream, byteArrayOutputStream);
-				newFile.setData(byteArrayOutputStream.toByteArray());
-			}
+			n = n.replace("/", File.separator);
+			n = n.replace("\\", File.separator);
+			VirtualFile newFile = result.createFile(n);
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			IOUtils.copy(jarInputStream, byteArrayOutputStream);
+			newFile.setData(byteArrayOutputStream.toByteArray());
 			jarEntry = jarInputStream.getNextJarEntry();
 		}
 		return result;
 	}
 	
-	private void setData(byte[] data) {
+	public void setData(byte[] data) {
 		this.data = data;
 	}
 
@@ -445,5 +443,9 @@ public class VirtualFile implements JavaFileObject {
 	
 	public static VirtualFile fromDirectory(File file) throws IOException {
 		return new VirtualFile(file);
+	}
+
+	public void copyTo(VirtualFile virtualFile) {
+		// TODO
 	}
 }

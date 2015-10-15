@@ -1,6 +1,7 @@
 package org.bimserver.saapc;
 
 import java.io.File;
+import java.nio.file.Paths;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
@@ -19,7 +20,7 @@ public class SurfaceAreaAndPeopleCalculator {
 
 	private void start() {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			DeserializerPlugin ifcDeserializerPlugin = pluginManager.getDeserializerPlugin("org.bimserver.ifc.step.deserializer.Ifc2x3tc1StepDeserializerPlugin", true);
 			Deserializer ifcDeserializer = ifcDeserializerPlugin.createDeserializer(null);
 			ifcDeserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
