@@ -1,7 +1,7 @@
 package org.bimserver.test;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import org.bimserver.LocalDevSetup;
 import org.bimserver.emf.IfcModelInterface;
@@ -26,7 +26,7 @@ public class Tmp {
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 			
 			// Checkin file
-			bimServerClient.checkin(project.getOid(), "test", deserializer.getOid(), false, true, new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
+			bimServerClient.checkin(project.getOid(), "test", deserializer.getOid(), false, true, Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 			
 			// Refresh project
 			project = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());

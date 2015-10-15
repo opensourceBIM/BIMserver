@@ -18,7 +18,6 @@ package org.bimserver.tests;
  *****************************************************************************/
 
 import java.awt.BorderLayout;
-import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,7 +78,7 @@ public class Visualise extends JFrame {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			serializer.init(merged, null, null, pluginManager.requireRenderEngine(), null, false);
-			serializer.writeToFile(new File("merged.ifc"), null);
+			serializer.writeToFile(Paths.get("merged.ifc"), null);
 			new Visualise().start(model1b, "Model 1");
 			new Visualise().start(model2b, "Model 2");
 			new Visualise().start(merged, "Merged");

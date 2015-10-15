@@ -1,24 +1,9 @@
 package org.bimserver.test;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
@@ -29,6 +14,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Formatters;
+import org.bimserver.utils.PathUtils;
 
 public class TestUploadDir {
 	private BimServerClientInterface client;
@@ -42,8 +28,8 @@ public class TestUploadDir {
 			client = LocalDevSetup.setupJson("http://localhost:8080");
 			client.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 			
-			File directory = new File("d:\\testfiles");
-			for (File f : directory.listFiles()) {
+			Path directory = Paths.get("d:\\testfiles");
+			for (Path f :  PathUtils.getDirectories(directory)) {
 				process(f, null);
 			}
 		} catch (ServiceException e) {
@@ -55,29 +41,29 @@ public class TestUploadDir {
 		}
 	}
 
-	private void process(File directory, SProject parentProject) throws ServerException, UserException, PublicInterfaceNotFoundException, IOException {
-		if (directory.isDirectory()) {
+	private void process(Path directory, SProject parentProject) throws ServerException, UserException, PublicInterfaceNotFoundException, IOException {
+		if (Files.isDirectory(directory)) {
 			SProject project = null;
 			if (parentProject == null) {
-				project = client.getBimsie1ServiceInterface().addProject(directory.getName(), "ifc2x3tc1");
+				project = client.getBimsie1ServiceInterface().addProject(directory.getFileName().toString(), "ifc2x3tc1");
 			} else {
-				project = client.getBimsie1ServiceInterface().addProjectAsSubProject(directory.getName(), parentProject.getOid(), "ifc2x3tc1");
+				project = client.getBimsie1ServiceInterface().addProjectAsSubProject(directory.getFileName().toString(), parentProject.getOid(), "ifc2x3tc1");
 			}
-			for (File file : directory.listFiles()) {
+			for (Path file : PathUtils.getDirectories(directory)) {
 				process(file, project);
 			}
 		} else {
-			String lowerCase = directory.getName().toLowerCase();
+			String lowerCase = directory.getFileName().toString().toLowerCase();
 			if (lowerCase.endsWith("ifc") || lowerCase.endsWith("ifcxml") || lowerCase.endsWith("ifczip")) {
-				SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension(directory.getName().substring(directory.getName().lastIndexOf(".") + 1), parentProject.getOid());
-				System.out.println("Checking in " + directory.getAbsolutePath() + " - " + Formatters.bytesToString(directory.length()));
+				SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension(directory.getFileName().toString().substring(directory.getFileName().toString().lastIndexOf(".") + 1), parentProject.getOid());
+				System.out.println("Checking in " + directory.toString() + " - " + Formatters.bytesToString(directory.toFile().length()));
 				try {
 					client.checkin(parentProject.getOid(), "", deserializerForExtension.getOid(), false, true, directory);
 				} catch (UserException e) {
 					e.printStackTrace();
 				}
 			} else {
-				System.out.println("Ignoring " + directory.getAbsolutePath());
+				System.out.println("Ignoring " + directory.toString());
 			}
 		}
 	}

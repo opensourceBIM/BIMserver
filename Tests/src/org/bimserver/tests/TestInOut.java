@@ -2,10 +2,12 @@ package org.bimserver.tests;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
@@ -29,6 +31,7 @@ import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.tests.diff.CompareException;
 import org.bimserver.tests.diff.Diff;
+import org.bimserver.utils.PathUtils;
 import org.bimserver.webservices.authorization.SystemAuthorization;
 
 public class TestInOut {
@@ -38,10 +41,10 @@ public class TestInOut {
 
 	private void start(String[] args) {
 		BimServerConfig config = new BimServerConfig();
-		File homeDir = new File("home");
+		Path homeDir = Paths.get("home");
 		try {
-			if (homeDir.isDirectory()) {
-				FileUtils.forceDelete(homeDir);
+			if (Files.isDirectory(homeDir)) {
+				PathUtils.removeDirectoryWithContent(homeDir);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -50,7 +53,7 @@ public class TestInOut {
 		config.setHomeDir(homeDir);
 		config.setPort(8080);
 		config.setStartEmbeddedWebServer(true);
-		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
+		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(Paths.get("../")));
 
 		BimServer bimServer = new BimServer(config);
 		try {
@@ -65,11 +68,11 @@ public class TestInOut {
 			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 			SProject project = client.getBimsie1ServiceInterface().addProject("test", "ifc2x3tc1");
 			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-			File inputFile = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
+			Path inputFile = Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
 			client.checkin(project.getOid(), "test", deserializer.getOid(), false, true, inputFile);
 			project = client.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
 			SSerializerPluginConfiguration serializer = client.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
-			File outputFile = new File("output.ifc");
+			Path outputFile = Paths.get("output.ifc");
 			client.download(project.getLastRevisionId(), serializer.getOid(), outputFile);
 			
 			Diff diff = new Diff(false, false, false, inputFile, outputFile);

@@ -1,23 +1,6 @@
 package org.bimserver.test.framework.tests;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
+import java.nio.file.Paths;
 
 import org.bimserver.plugins.OptionsParser;
 import org.bimserver.test.framework.FolderWalker;
@@ -43,7 +26,7 @@ public class TestCheckin {
 		testConfiguration.setStopNoVirtualUsers(false);
 //		testConfiguration.setNrRunsPerVirtualUser(30);
 
-		testConfiguration.setHomeDir(new File("E:\\Testing"));
+		testConfiguration.setHomeDir(Paths.get("E:\\Testing"));
 		testConfiguration.setActionFactory(new RandomActionFactory(
 			new ActionCreater(){
 				public Action create() {
@@ -78,9 +61,9 @@ public class TestCheckin {
 		));
 //		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
 		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.JSON));
-		testConfiguration.setTestFileProvider(new FolderWalker(new File("E:\\Ifc Files"), testFramework));
+		testConfiguration.setTestFileProvider(new FolderWalker(Paths.get("E:\\Ifc Files"), testFramework));
 //		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected")));
-		testConfiguration.setOutputFolder(new File("E:\\output"));
+		testConfiguration.setOutputFolder(Paths.get("E:\\output"));
 		testConfiguration.setNrVirtualUsers(4);
 		
 		testFramework.start();

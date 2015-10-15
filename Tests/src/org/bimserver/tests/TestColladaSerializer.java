@@ -1,23 +1,9 @@
 package org.bimserver.tests;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
@@ -32,6 +18,7 @@ import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.utils.PathUtils;
 
 public class TestColladaSerializer {
 	public static void main(String[] args) {
@@ -40,16 +27,16 @@ public class TestColladaSerializer {
 
 	private void start() {
 		try {
-			File testFiles = new File("../TestData/data");
-			File output = new File("output");
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			Path testFiles = Paths.get("../TestData/data");
+			Path output = Paths.get("output");
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			
 			DeserializerPlugin ifcDeserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.collada.ColladaSerializerPlugin", true);
-			for (File file : testFiles.listFiles()) {
-				if (file.isFile() && file.getName().endsWith(".ifc") && file.getName().equals("Vogel_Gesamt.ifc")) {
-					System.out.println(file.getName());
+			for (Path file : PathUtils.getDirectories(testFiles)) {
+				if (!Files.isDirectory(file) && file.getFileName().toString().endsWith(".ifc") && file.getFileName().toString().equals("Vogel_Gesamt.ifc")) {
+					System.out.println(file.getFileName().toString());
 					ProjectInfo projectInfo = new ProjectInfo();
 					projectInfo.setAuthorName("test");
 					projectInfo.setDescription("");
@@ -60,7 +47,7 @@ public class TestColladaSerializer {
 
 					Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 					serializer.init(model, projectInfo, pluginManager, pluginManager.requireRenderEngine(), null, false);
-					serializer.writeToFile(new File(output, file.getName() + ".dae"), null);
+					serializer.writeToFile(output.resolve(file.getFileName().toString() + ".dae"), null);
 				}
 			}
 		} catch (PluginException e) {
@@ -68,6 +55,8 @@ public class TestColladaSerializer {
 		} catch (DeserializeException e) {
 			e.printStackTrace();
 		} catch (SerializerException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

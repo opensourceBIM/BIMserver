@@ -18,9 +18,11 @@ package org.bimserver.tests;
  *****************************************************************************/
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +30,6 @@ import java.util.concurrent.TimeUnit;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
@@ -53,6 +54,7 @@ import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
+import org.bimserver.utils.PathUtils;
 import org.bimserver.webservices.ServiceMap;
 
 public class TestSimultaniousDownloadWithCaching {
@@ -62,10 +64,10 @@ public class TestSimultaniousDownloadWithCaching {
 
 	private void start() {
 		BimServerConfig config = new BimServerConfig();
-		File homeDir = new File("home");
+		Path homeDir = Paths.get("home");
 		try {
-			if (homeDir.isDirectory()) {
-				FileUtils.forceDelete(homeDir);
+			if (Files.isDirectory(homeDir)) {
+				PathUtils.removeDirectoryWithContent(homeDir);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -74,7 +76,7 @@ public class TestSimultaniousDownloadWithCaching {
 		config.setHomeDir(homeDir);
 		config.setPort(8080);
 		config.setStartEmbeddedWebServer(true);
-		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
+		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(Paths.get("../")));
 		final BimServer bimServer = new BimServer(config);
 		try {
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), null);
@@ -106,8 +108,8 @@ public class TestSimultaniousDownloadWithCaching {
 			settingsInterface.setGenerateGeometryOnCheckin(false);
 			final SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test", "ifc2x3tc1");
 			SDeserializerPluginConfiguration deserializerByName = serviceMap.getBimsie1ServiceInterface().getDeserializerByName("IfcStepDeserializer");
-			File file = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
-			serviceInterface.checkin(project.getOid(), "test", deserializerByName.getOid(), file.length(), file.getName(), new DataHandler(new FileDataSource(file)), false, true);
+			Path file = Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
+			serviceInterface.checkin(project.getOid(), "test", deserializerByName.getOid(), file.toFile().length(), file.getFileName().toString(), new DataHandler(new FileDataSource(file.toFile())), false, true);
 			final SProject projectUpdate = serviceMap.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(20, 20, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(1000));
 			for (int i=0; i<20; i++) {

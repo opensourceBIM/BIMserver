@@ -42,14 +42,14 @@ package org.bimserver.tests;
 //	}
 //
 //	private void start() {
-//		File ifcSchemaFile = new File("C:\\Users\\Ruben\\Workspaces\\BIMserver\\BimServer\\deploy\\shared\\IFC2X3_TC1.exp");
+//		File ifcSchemaFile = Paths.get("C:\\Users\\Ruben\\Workspaces\\BIMserver\\BimServer\\deploy\\shared\\IFC2X3_TC1.exp");
 //		ExpressSchemaParser schemaParser = new ExpressSchemaParser(ifcSchemaFile);
 //		schemaParser.parse();
 //		SchemaDefinition schema = schemaParser.getSchema();
 //		try {
 //			new DerivedReader(ifcSchemaFile, schema);
 //			FastIfcFileReader fastIfcFileReader = new FastIfcFileReader(schema);
-//			fastIfcFileReader.read(new File("C:\\Users\\Ruben\\Workspaces\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
+//			fastIfcFileReader.read(Paths.get("C:\\Users\\Ruben\\Workspaces\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
 //			IfcModel model = fastIfcFileReader.getModel();
 //			LocalDevelopmentResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
 //			Set<Ifc2x3tc1Package> packages = CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE);
@@ -60,7 +60,7 @@ package org.bimserver.tests;
 //			for (int i=0; i<100; i++) {
 //				System.out.println(i);
 //				ColladaSerializer colladaSerializer = new ColladaSerializer("test", model, schema, fieldIgnoreMap, failSafeIfcEngine);
-//				colladaSerializer.writeToFile(new File("test" + i + ".collada"));
+//				colladaSerializer.writeToFile(Paths.get("test" + i + ".collada"));
 //			}
 //		} catch (FileNotFoundException e) {
 //			e.printStackTrace();

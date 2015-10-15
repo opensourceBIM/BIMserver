@@ -77,7 +77,7 @@ package org.bimserver.tests;
 //	    	}
 //			CheckoutResult download = service.download(token, pid, lastRevision.getId(), ResultType.IFC);
 //	    	InputStream inputStream = download.getFile().getInputStream();
-//	    	FileOutputStream fos = new FileOutputStream(new File(subproject.getName() + ".ifc"));
+//	    	FileOutputStream fos = new FileOutputStream(Paths.get(subproject.getName() + ".ifc"));
 //	    	IOUtils.copy(inputStream, fos);
 //	    	fos.close();
 //	    	listSubProject(subproject, service, token);

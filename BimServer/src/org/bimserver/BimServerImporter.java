@@ -1,24 +1,8 @@
 package org.bimserver;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -54,6 +38,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Formatters;
+import org.bimserver.utils.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -106,10 +91,10 @@ public class BimServerImporter {
 		public String comment;
 		public long userId;
 		public Date date;
-		public File file;
+		public Path file;
 		public long poid;
 
-		public Key(File file, long oid, String comment, Date date, long userId) {
+		public Key(Path file, long oid, String comment, Date date, long userId) {
 			this.file = file;
 			poid = oid;
 			this.comment = comment;
@@ -148,7 +133,7 @@ public class BimServerImporter {
 //					client.getPluginInterface().setDefaultRenderEngine(renderEnginePluginConfiguration.getOid());
 //				}
 //			}
-			File incoming = new File(path);
+			Path incoming = Paths.get(path);
 			final Map<GregorianCalendar, Key> comments = new TreeMap<>();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
 			for (SProject project : remoteClient.getBimsie1ServiceInterface().getAllProjects(false, false)) {
@@ -157,11 +142,11 @@ public class BimServerImporter {
 					gregorianCalendar.setTime(revision.getDate());
 					if (!revision.getComment().startsWith("generated for")) {
 						User user = users.get(revision.getUserId());
-						File userFolder = new File(incoming, user.getUsername());
+						Path userFolder = incoming.resolve(user.getUsername());
 						boolean found = false;
-						for (File file : userFolder.listFiles()) {
-							if (file.getName().endsWith(revision.getComment())) {
-								String dateStr = file.getName().substring(0, 19);
+						for (Path file : PathUtils.getDirectories(userFolder)) {
+							if (file.getFileName().toString().endsWith(revision.getComment())) {
+								String dateStr = file.getFileName().toString().substring(0, 19);
 								Date parse = dateFormat.parse(dateStr);
 								GregorianCalendar fileDate = new GregorianCalendar();
 								fileDate.setTime(parse);
@@ -187,7 +172,7 @@ public class BimServerImporter {
 					@Override
 					public void run() {
 						Key key = comments.get(gregorianCalendar);
-						LOGGER.info("Checking in: " + key.file.getName() + " " + Formatters.bytesToString(key.file.length()));
+						LOGGER.info("Checking in: " + key.file.getFileName().toString() + " " + Formatters.bytesToString(key.file.toFile().length()));
 						Project sProject = projects.get(key.poid);
 						try {
 							SDeserializerPluginConfiguration desserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", sProject.getOid());
@@ -231,6 +216,8 @@ public class BimServerImporter {
 		} catch (PublicInterfaceNotFoundException e) {
 			LOGGER.error("", e);
 		} catch (ParseException e) {
+			LOGGER.error("", e);
+		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
 	}

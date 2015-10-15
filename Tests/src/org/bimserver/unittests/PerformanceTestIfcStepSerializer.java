@@ -19,7 +19,7 @@ package org.bimserver.unittests;
 
 import static org.junit.Assert.fail;
 
-import java.io.File;
+import java.nio.file.Paths;
 import java.util.Random;
 
 import org.apache.commons.lang.RandomStringUtils;
@@ -48,7 +48,7 @@ public class PerformanceTestIfcStepSerializer {
 	@Test
 	public void performanceTest() throws IfcModelInterfaceException {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			
@@ -72,7 +72,7 @@ public class PerformanceTestIfcStepSerializer {
 			}
 			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);
 			long start = System.nanoTime();
-			serializer.writeToFile(new File("output/test.ifc"), null);
+			serializer.writeToFile(Paths.get("output/test.ifc"), null);
 			System.out.println("Serialize took: " + ((System.nanoTime() - start) / 1000000) + "ms");
 		} catch (PluginException e) {
 			e.printStackTrace();

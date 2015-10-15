@@ -2,7 +2,7 @@ package org.bimserver.tests.lowlevel;
 
 import static org.junit.Assert.fail;
 
-import java.io.File;
+import java.nio.file.Paths;
 
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
@@ -39,14 +39,14 @@ public class RemoveObject2 extends TestWithEmbeddedServer {
 			
 			Long newRoid = lowLevelInterface.commitTransaction(tid, "Initial");
 
-			bimServerClient.download(newRoid, serializer.getOid(), new File("test1.ifc"));
+			bimServerClient.download(newRoid, serializer.getOid(), Paths.get("test1.ifc"));
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			lowLevelInterface.removeObject(tid, ifcWallOid);
 			lowLevelInterface.removeObject(tid, ifcRelContainedInSpatialStructureOid);
 			newRoid = lowLevelInterface.commitTransaction(tid, "removed");
 			
-			bimServerClient.download(newRoid, serializer.getOid(), new File("test2.ifc"));
+			bimServerClient.download(newRoid, serializer.getOid(), Paths.get("test2.ifc"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());

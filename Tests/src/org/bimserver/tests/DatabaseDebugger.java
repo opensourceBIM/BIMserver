@@ -77,12 +77,12 @@ package org.bimserver.tests;
 //		this.emfPackages.add(Ifc2x3tc1Package.eINSTANCE);
 //		
 //		try {
-//			fieldIgnoreMap = new FileFieldIgnoreMap(emfPackages, new File("../BimServer/www/WEB-INF/ignore.xml").toURI().toURL());
+//			fieldIgnoreMap = new FileFieldIgnoreMap(emfPackages, Paths.get("../BimServer/www/WEB-INF/ignore.xml").toURI().toURL());
 //		} catch (MalformedURLException e1) {
 //			e1.printStackTrace();
 //		}
 //
-//		columnDatabase = new BerkeleyColumnDatabase(new File("../BimServer/database"));
+//		columnDatabase = new BerkeleyColumnDatabase(Paths.get("../BimServer/database"));
 //		initInternalStructure();
 //
 //		JPanel selectPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));

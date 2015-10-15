@@ -59,7 +59,7 @@ package org.bimserver.tests;
 //			@Override
 //			public URL getResource(String name) {
 //				try {
-//					File file = new File("C:\\Workspaces\\BimServer\\BimServer\\www\\WEB-INF\\" + name);
+//					File file = Paths.get("C:\\Workspaces\\BimServer\\BimServer\\www\\WEB-INF\\" + name);
 //					if (file.exists()) {
 //						return new URL("file:///" + file.getAbsolutePath());
 //					} else {
@@ -70,7 +70,7 @@ package org.bimserver.tests;
 //				return null;
 //			}
 //		};
-//		File schemaFile = new File("../BimServer/www/WEB-INF/IFC2x3_FINAL.exp");
+//		File schemaFile = Paths.get("../BimServer/www/WEB-INF/IFC2x3_FINAL.exp");
 //		ExpressSchemaParser schemaParser = new ExpressSchemaParser(schemaFile);
 //		schemaParser.parse();
 //		final SchemaDefinition schema = schemaParser.getSchema();
@@ -80,7 +80,7 @@ package org.bimserver.tests;
 //			e1.printStackTrace();
 //		}
 //		final FileFieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(packages, resourceFetcher);
-//		File databaseDir = new File("database");
+//		File databaseDir = Paths.get("database");
 //		BerkeleyColumnDatabase columnDatabase;
 //		try {
 //			columnDatabase = new BerkeleyColumnDatabase(databaseDir);

@@ -1,6 +1,7 @@
 package org.bimserver.ifcgeometryremover;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -43,7 +44,7 @@ public class IfcGeometryRemover {
 		}
 	}
 
-	public void removeGeometry(File inputFile, File outputFile) {
+	public void removeGeometry(Path inputFile, Path outputFile) {
 		IfcModelInterface model = readModel(inputFile);
 
 		referenceCounter = new ReferenceCounter(model);
@@ -84,7 +85,7 @@ public class IfcGeometryRemover {
 		}
 	}
 
-	private void writeModel(IfcModelInterface model, File outFile) {
+	private void writeModel(IfcModelInterface model, Path outFile) {
 		SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 		Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 		try {
@@ -98,7 +99,7 @@ public class IfcGeometryRemover {
 		}
 	}
 
-	public IfcModelInterface readModel(File file) {
+	public IfcModelInterface readModel(Path file) {
 		try {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			deserializerPlugin.createDeserializer(new PluginConfiguration());

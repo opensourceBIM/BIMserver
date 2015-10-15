@@ -2,7 +2,7 @@ package org.bimserver.tests.emf;
 
 import static org.junit.Assert.fail;
 
-import java.io.File;
+import java.nio.file.Paths;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
@@ -30,7 +30,7 @@ public class ReadTrim extends TestWithEmbeddedServer {
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 			
 			// Checkin the file
-			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, new File("../TestData/data/TST.ifc"));
+			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, Paths.get("../TestData/data/TST.ifc"));
 			
 			// Refresh project info
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());

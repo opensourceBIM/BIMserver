@@ -18,6 +18,7 @@ package org.bimserver.tests.diff;
  *****************************************************************************/
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 
 public class DiffReader extends Thread {
-	private File file;
+	private Path file;
 	private Diff diff;
 	private Map<String, Set<Model>> sizeMapped;
 	private FullModel model;
@@ -36,7 +37,7 @@ public class DiffReader extends Thread {
 	private CountDownLatch countDownLatch;
 	private int id;
 
-	public DiffReader(int id, Diff diff, CountDownLatch countDownLatch, File file) {
+	public DiffReader(int id, Diff diff, CountDownLatch countDownLatch, Path file) {
 		this.id = id;
 		this.diff = diff;
 		this.countDownLatch = countDownLatch;

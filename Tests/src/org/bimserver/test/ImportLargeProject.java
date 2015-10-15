@@ -1,24 +1,8 @@
 package org.bimserver.test;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
@@ -33,7 +17,7 @@ public class ImportLargeProject {
 	public static void main(String[] args) {
 		BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 		try {
-			File baseFolder = new File("C:\\Users\\Ruben de Laat\\Documents\\ttt");
+			Path baseFolder = Paths.get("C:\\Users\\Ruben de Laat\\Documents\\ttt");
 			
 			Bimsie1ServiceInterface serviceInterface = client.getBimsie1ServiceInterface();
 			SProject mainProject = serviceInterface.addProject("Tekla Demo Model", "ifc2x3tc1");
@@ -71,27 +55,27 @@ public class ImportLargeProject {
 			
 			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", grid.getOid());
 			
-			client.checkin(teklaHouseStructural.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Structural.ifcZIP"));
-			client.checkin(teklaHouseGrids.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Grids.ifc"));
-			client.checkin(teklaHouseFoundationFootings.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Foundation Footings.ifcZIP"));
-			client.checkin(teklaHouseFoundationPiles.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Foundation Piles.ifcZIP"));
-			client.checkin(teklaHouseFoundationRebars.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Foundation Rebars.ifcZIP"));
-			client.checkin(teklaHouseFoundationEmbedments.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Foundation Embedments.ifcZIP"));
-			client.checkin(teklaHousePrecastRebars.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Precast Rebars.ifcZIP"));
-			client.checkin(teklaHousePrecastConcrete.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Precast Concrete.ifcZIP"));
-//			client.checkin(teklaHouseCIPPours.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House CIP Pours.ifc"));
-			client.checkin(teklaHouseCIPRebars.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House CIP Rebars.ifcZIP"));
-			client.checkin(teklaHouseCIPColumns.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House CIP Columns.ifcZIP"));
-			client.checkin(teklaHouseArchitectural.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House Architectural.ifczip"));
-			client.checkin(teklaHouseMEPGround.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House MEP, Ground.ifc"));
-			client.checkin(teklaHouseMEP1.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House MEP, 1st.ifc"));
-			client.checkin(teklaHouseMEP2.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House MEP, 2nd.ifc"));
-			client.checkin(teklaHouseMEP3.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House MEP, 3rd.ifc"));
-			client.checkin(teklaHouseMEPRoof.getOid(), "Initial", deserializer.getOid(), false, true, new File(baseFolder, "Tekla House MEP, Roof.ifc"));
+			client.checkin(teklaHouseStructural.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House Structural.ifcZIP"));
+			client.checkin(teklaHouseGrids.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House Grids.ifc"));
+			client.checkin(teklaHouseFoundationFootings.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House Foundation Footings.ifcZIP"));
+			client.checkin(teklaHouseFoundationPiles.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House Foundation Piles.ifcZIP"));
+			client.checkin(teklaHouseFoundationRebars.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House Foundation Rebars.ifcZIP"));
+			client.checkin(teklaHouseFoundationEmbedments.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House Foundation Embedments.ifcZIP"));
+			client.checkin(teklaHousePrecastRebars.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House Precast Rebars.ifcZIP"));
+			client.checkin(teklaHousePrecastConcrete.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House Precast Concrete.ifcZIP"));
+//			client.checkin(teklaHouseCIPPours.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder, "Tekla House CIP Pours.ifc"));
+			client.checkin(teklaHouseCIPRebars.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House CIP Rebars.ifcZIP"));
+			client.checkin(teklaHouseCIPColumns.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House CIP Columns.ifcZIP"));
+			client.checkin(teklaHouseArchitectural.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House Architectural.ifczip"));
+			client.checkin(teklaHouseMEPGround.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House MEP, Ground.ifc"));
+			client.checkin(teklaHouseMEP1.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House MEP, 1st.ifc"));
+			client.checkin(teklaHouseMEP2.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House MEP, 2nd.ifc"));
+			client.checkin(teklaHouseMEP3.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House MEP, 3rd.ifc"));
+			client.checkin(teklaHouseMEPRoof.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House MEP, Roof.ifc"));
 
 			mainProject = serviceInterface.getProjectByPoid(mainProject.getOid());
 			SSerializerPluginConfiguration serializer = client.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
-			client.download(mainProject.getLastRevisionId(), serializer.getOid(), new File("output.ifc"));
+			client.download(mainProject.getLastRevisionId(), serializer.getOid(), Paths.get("output.ifc"));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {

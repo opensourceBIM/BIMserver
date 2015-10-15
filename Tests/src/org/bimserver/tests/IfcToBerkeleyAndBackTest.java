@@ -47,10 +47,10 @@ package org.bimserver.tests;
 //
 //		try {
 //			File src = TestFileConstants.HITOS_SOURCE_FILE;
-//			File dest = new File("test.txt");
+//			File dest = Paths.get("test.txt");
 //
 //			Map<Long, EObject> map = new IfcFileReader().read(schemaDefinition, src);
-//			database = new BerkeleyColumnDatabase(new File("bdb"));
+//			database = new BerkeleyColumnDatabase(Paths.get("bdb"));
 //			Transaction writeTransaction = null;//database.startTransaction();
 //			try {
 //				BerkeleyIfcWriter berkeleyIfcWriter = new BerkeleyIfcWriter(database);

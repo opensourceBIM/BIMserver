@@ -2,7 +2,7 @@ package org.bimserver.tests.emf;
 
 import static org.junit.Assert.fail;
 
-import java.io.File;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -41,7 +41,7 @@ public class CreateProperties extends TestWithEmbeddedServer  {
 			// Look for a deserializer
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 			
-			bimServerClient.checkin(project.getOid(), "test", deserializer.getOid(), false, true, new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
+			bimServerClient.checkin(project.getOid(), "test", deserializer.getOid(), false, true, Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 			
 			// Refresh project
 			project = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());

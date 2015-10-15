@@ -1,23 +1,9 @@
 package org.bimserver.unittests;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Random;
 
 import javax.activation.DataHandler;
@@ -69,8 +55,8 @@ public class TestEmbeddedBimServer {
 		try {
 			// Create a BIMserver
 			BimServerConfig config = new BimServerConfig();
-			config.setHomeDir(new File("home"));
-			config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
+			config.setHomeDir(Paths.get("home"));
+			config.setResourceFetcher(new LocalDevelopmentResourceFetcher(Paths.get("../")));
 			bimServer = new BimServer(config);
 
 			// Load plugins
@@ -133,9 +119,11 @@ public class TestEmbeddedBimServer {
 			ServiceInterface service = serviceMap.get(ServiceInterface.class);
 			serviceMap.get(Bimsie1AuthInterface.class).login(username, password);
 			SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test " + new Random().nextInt(), "ifc4");
-			File sourceFile = TestFile.AC11.getFile();
-			service.checkin(project.getOid(), "test", -1L, sourceFile.length(), "test", new DataHandler(new FileDataSource(sourceFile)), false, true); // TODO
+			Path sourceFile = TestFile.AC11.getFile();
+			service.checkin(project.getOid(), "test", -1L, Files.size(sourceFile), "test", new DataHandler(new FileDataSource(sourceFile.toFile())), false, true); // TODO
 		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

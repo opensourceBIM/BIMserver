@@ -2,7 +2,7 @@ package org.bimserver.tests.lowlevel;
 
 import static org.junit.Assert.fail;
 
-import java.io.File;
+import java.nio.file.Paths;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
@@ -27,12 +27,12 @@ public class SetString extends TestWithEmbeddedServer {
 			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			SDeserializerPluginConfiguration suggestedDeserializerForExtension = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
-			bimServerClient.checkin(newProject.getOid(), "initial", suggestedDeserializerForExtension.getOid(), false, true, new File("../TestData/data/WallOnly.ifc"));
+			bimServerClient.checkin(newProject.getOid(), "initial", suggestedDeserializerForExtension.getOid(), false, true, Paths.get("../TestData/data/WallOnly.ifc"));
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 			
 			SSerializerPluginConfiguration serializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByName("Ifc2x3");
 			
-			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), new File("test1.ifc"));
+			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("test1.ifc"));
 
 			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), false, false);
 			long tid = lowLevelInterface.startTransaction(newProject.getOid());
@@ -43,9 +43,9 @@ public class SetString extends TestWithEmbeddedServer {
 			
 			long roid = lowLevelInterface.commitTransaction(tid, "v2");
 			
-			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), new File("test2.ifc"));
+			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("test2.ifc"));
 			
-			bimServerClient.download(roid, serializer.getOid(), new File("test3.ifc"));
+			bimServerClient.download(roid, serializer.getOid(), Paths.get("test3.ifc"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());

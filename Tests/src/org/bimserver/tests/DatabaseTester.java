@@ -55,7 +55,7 @@ package org.bimserver.tests;
 //		schemaParser.parse();
 //		schema = schemaParser.getSchema();
 //
-//		File dataDir = new File("../BimServer/database");
+//		File dataDir = Paths.get("../BimServer/database");
 //		FileUtils.removeDir(dataDir);
 //		ColumnDatabase cdb = new BerkeleyColumnDatabase(dataDir);
 //		HashSet<EPackage> packages = CollectionUtils.singleSet((EPackage) Ifc2x3tc1Package.eINSTANCE);
@@ -202,7 +202,7 @@ package org.bimserver.tests;
 ////
 ////		IfcFileWriter writer = new IfcFileWriter(ModelConverter.newIfcModel(checkout), schema);
 ////		try {
-////			writer.write(new File("tmp" + revisionNr + ".ifc"));
+////			writer.write(Paths.get("tmp" + revisionNr + ".ifc"));
 ////		} catch (FileNotFoundException e) {
 ////			e.printStackTrace();
 ////		}

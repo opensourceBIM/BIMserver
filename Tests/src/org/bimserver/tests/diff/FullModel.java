@@ -18,10 +18,10 @@ package org.bimserver.tests.diff;
  *****************************************************************************/
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -34,11 +34,11 @@ public class FullModel extends AbstractModel {
 		this.diff = diff;
 	}
 	
-	public FullModel(Diff diff, File file) throws CompareException {
+	public FullModel(Diff diff, Path file) throws CompareException {
 		this.diff = diff;
-		System.out.println("Reading model " + file.getName());
+		System.out.println("Reading model " + file.getFileName().toString());
 		try {
-			FileReader in = new FileReader(file);
+			FileReader in = new FileReader(file.toFile());
 			BufferedReader reader = new BufferedReader(in);
 			String line = reader.readLine();
 			while (line != null) {
@@ -49,7 +49,7 @@ public class FullModel extends AbstractModel {
 				line = reader.readLine();
 			}
 			reader.close();
-			in = new FileReader(file);
+			in = new FileReader(file.toFile());
 			reader = new BufferedReader(in);
 			try {
 				line = reader.readLine();

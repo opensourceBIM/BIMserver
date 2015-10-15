@@ -2,6 +2,7 @@ package org.bimserver.tools.colorizer;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class Colorizer {
 	public static void main(String[] args) {
 		try {
 			Colorizer colorizer = new Colorizer();
-			File baseDir = new File("D:\\Dropbox\\Shared\\BIMserver\\IFC modellen\\kleurtjes\\");
+			Path baseDir = Paths.get("D:\\Dropbox\\Shared\\BIMserver\\IFC modellen\\kleurtjes\\");
 //			colorizer.colorize(new File(baseDir, "Compleet_Imro.ifc"), new File(baseDir, "Compleet_Imro-Colored.ifc"));
 //			colorizer.colorize(new File(baseDir, "3D_Imro_new.ifc"), new File(baseDir, "3D_Imro_new-Colored.ifc"));
 //			colorizer.colorize(new File(baseDir, "Compleet_Imro+Noise.ifc"), new File(baseDir, "Compleet_Imro+Noise-Colored.ifc"));
@@ -60,7 +61,7 @@ public class Colorizer {
 //			colorizer.colorize(new File(baseDir, "NoiseContourFlat_06m.ifc"), new File(baseDir, "NoiseContourFlat_06m-Colored.ifc"));
 //			colorizer.colorize(new File(baseDir, "NoiseContourFlat_09m.ifc"), new File(baseDir, "NoiseContourFlat_09m-Colored.ifc"));
 //			colorizer.colorize(new File(baseDir, "NoiseContourFlat_12m.ifc"), new File(baseDir, "NoiseContourFlat_12m-Colored.ifc"));
-			colorizer.colorize(new File(baseDir, "3D_Imro_withId.ifc"), new File(baseDir, "3D_Imro_withId-Colored.ifc"));
+			colorizer.colorize(baseDir.resolve("3D_Imro_withId.ifc"), baseDir.resolve("3D_Imro_withId-Colored.ifc"));
 		} catch (IfcModelInterfaceException e) {
 			e.printStackTrace();
 		}
@@ -131,7 +132,7 @@ public class Colorizer {
 		}
 	}
 
-	public IfcModelInterface readModel(File file) {
+	public IfcModelInterface readModel(Path file) {
 		try {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
@@ -146,7 +147,7 @@ public class Colorizer {
 		return null;
 	}
 
-	private void colorize(File inFile, File outFile) throws IfcModelInterfaceException {
+	private void colorize(Path inFile, Path outFile) throws IfcModelInterfaceException {
 		IfcModelInterface model = readModel(inFile);
 		model.fixOidCounter();
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
@@ -244,7 +245,7 @@ public class Colorizer {
 		ifcSurfaceStyleRendering.setTransparency(alpha);
 	}
 
-	private void writeModel(IfcModelInterface model, File outFile) {
+	private void writeModel(IfcModelInterface model, Path outFile) {
 		SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 		Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 		try {

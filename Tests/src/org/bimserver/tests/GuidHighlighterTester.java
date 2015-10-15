@@ -23,6 +23,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -69,10 +71,10 @@ public class GuidHighlighterTester {
 		return null;
 	}
 
-	public IfcModelInterface readModel(File file) {
+	public IfcModelInterface readModel(Path file) {
 		PluginManager pluginManager;
 		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+			pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
@@ -89,11 +91,11 @@ public class GuidHighlighterTester {
 	}
 
 	private void start() {
-//		File lars = new File("C:\\Users\\Ruben\\Documents\\My Dropbox\\Logic Labs\\Projecten\\BIMserver\\Lars\\");
-//		Set<String> highlightedGuids = readGuidsFromFile(new File(lars, "missing.csv"));
+//		File lars = Paths.get("C:\\Users\\Ruben\\Documents\\My Dropbox\\Logic Labs\\Projecten\\BIMserver\\Lars\\");
+//		Set<String> highlightedGuids = readGuidsFromFile(Paths.get(lars, "missing.csv"));
 //		System.out.println(highlightedGuids.size() + " GUIDs");
-//		File inputFile1 = new File(lars, "2440_ARK_Alt4.ifc");
-//		File inputFile2 = new File(lars, "612252_RIV_Alt4.ifc");
+//		File inputFile1 = Paths.get(lars, "2440_ARK_Alt4.ifc");
+//		File inputFile2 = Paths.get(lars, "612252_RIV_Alt4.ifc");
 //		ModelMerger merger = new IntelligentGuidBasedModelMerger();
 //		IfcModelInterface model1 = readModel(inputFile1);
 //		IfcModelInterface model2 = readModel(inputFile2);
@@ -102,7 +104,7 @@ public class GuidHighlighterTester {
 //		IfcModelInterface mergedModel;
 //		try {
 //			mergedModel = merger.merge(null, modelSet);
-//			new GuidHighlighter(schema, mergedModel, new File(lars, "output.ifc"), highlightedGuids);
+//			new GuidHighlighter(schema, mergedModel, Paths.get(lars, "output.ifc"), highlightedGuids);
 //		} catch (MergeException e) {
 //			e.printStackTrace();
 //		}

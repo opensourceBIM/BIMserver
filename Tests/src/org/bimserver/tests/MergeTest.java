@@ -24,13 +24,13 @@ public class MergeTest {
 
 	private void start() {
 //		try {
-//			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
+//			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 //			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 //			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 //			deserializer.init(pluginManager.requireSchemaDefinition());
-////			File baseFolder = new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Logic Labs\\Projecten\\BIMserver\\IFCFiles");
-////			IfcModel model1 = deserializer.read(new File(baseFolder, "Constructiedeel.ifc"));
-////			IfcModel model2 = deserializer.read(new File(baseFolder, "Installatiedeel.ifc"));
+////			File baseFolder = Paths.get("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Logic Labs\\Projecten\\BIMserver\\IFCFiles");
+////			IfcModel model1 = deserializer.read(Paths.get(baseFolder, "Constructiedeel.ifc"));
+////			IfcModel model2 = deserializer.read(Paths.get(baseFolder, "Installatiedeel.ifc"));
 //			
 //			IfcModelInterface model1 = deserializer.read(TestFile.EXPORT1.getFile(), true);
 //			IfcModelInterface model2 = deserializer.read(TestFile.EXPORT1.getFile(), true);
@@ -47,7 +47,7 @@ public class MergeTest {
 //			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 //			EmfSerializer serializer = serializerPlugin.createSerializer();
 //			serializer.init(merged, null, null, pluginManager.requireIfcEngine().createIfcEngine());
-//			serializer.writeToFile(new File("merged.ifc"));
+//			serializer.writeToFile(Paths.get("merged.ifc"));
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}

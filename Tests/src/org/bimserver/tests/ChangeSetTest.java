@@ -59,7 +59,7 @@ package org.bimserver.tests;
 //	}
 //
 //	private void start() {
-//		File dataDir = new File("../BimServer/database");
+//		File dataDir = Paths.get("../BimServer/database");
 //		FileUtils.removeDir(dataDir);
 //		BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(dataDir);
 //		packages = new HashSet<EPackage>();
@@ -75,15 +75,15 @@ package org.bimserver.tests;
 //		Revision checkInModel = checkInModel(ModelConverter.newIfcModel(model), pid, uid, TestFile.WALL_ONLY.getFile().getName());
 //		check(1);
 //
-//		ChangeSetResult processChangeSet = processChangeSet(new File("ChangeSetAuto.xml"));
+//		ChangeSetResult processChangeSet = processChangeSet(Paths.get("ChangeSetAuto.xml"));
 //		check(processChangeSet.getNewRevisionNr());
 //	}
 //
 //	private void check(int rid) {
-//		File dataDir = new File("../BimServer/database");
+//		File dataDir = Paths.get("../BimServer/database");
 //		BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(dataDir);
 //		IfcModel newModel2 = downloadModel(pid, rid);
-//		writeToFile(ModelConverter.newIfcModel(newModel2), new File("files" + File.separator + "test." + rid + ".ifc"));
+//		writeToFile(ModelConverter.newIfcModel(newModel2), Paths.get("files" + File.separator + "test." + rid + ".ifc"));
 //	}
 //
 //	private void writeToFile(IfcModel newModel, File file) {

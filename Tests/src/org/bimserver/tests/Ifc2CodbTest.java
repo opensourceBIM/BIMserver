@@ -52,7 +52,7 @@ package org.bimserver.tests;
 //	}
 //
 //	private void start() {
-//		File dataDir = new File("../BimServer/database");
+//		File dataDir = Paths.get("../BimServer/database");
 //		FileUtils.removeDir(dataDir);
 //		BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(dataDir);
 //		packages = new HashSet<EPackage>();
@@ -78,19 +78,19 @@ package org.bimserver.tests;
 //		// pid, uid, TestFile.HAUS_SOURCE_FILE.getFile().getName());
 //		// IfcModel newModel1 = downloadModel(revision1.getProject().getId(),
 //		// revision1.getId());
-//		// writeToFile(newModel1, new File("files" + File.separator + "test." +
+//		// writeToFile(newModel1, Paths.get("files" + File.separator + "test." +
 //		// TestFile.HAUS_SOURCE_FILE.getFile().getName()));
 //		// IfcModel newModel2 = downloadModel(revision2.getProject().getId(),
 //		// revision2.getId());
-//		// writeToFile(newModel2, new File("files" + File.separator + "test." +
+//		// writeToFile(newModel2, Paths.get("files" + File.separator + "test." +
 //		// TestFile.MERGE_TEST_SOURCE_FILE.getFile().getName()));
 //		// IfcModel newModel3 = downloadModel(revision3.getProject().getId(),
 //		// revision3.getId());
-//		// writeToFile(newModel3, new File("files" + File.separator + "test." +
+//		// writeToFile(newModel3, Paths.get("files" + File.separator + "test." +
 //		// TestFile.NIEDRI.getFile().getName()));
 //		// IfcModel newModel4 = downloadModel(revision4.getProject().getId(),
 //		// revision4.getId());
-//		// writeToFile(newModel4, new File("files" + File.separator + "test." +
+//		// writeToFile(newModel4, Paths.get("files" + File.separator + "test." +
 //		// TestFile.HAUS_SOURCE_FILE.getFile().getName()));
 //
 //		// pid = createProject("project");
@@ -108,11 +108,11 @@ package org.bimserver.tests;
 //		// uid, TestFile.EMPTY_TEST.getFile().getName());
 //		// IfcModel newModel1 = downloadModel(revision1.getProject().getId(),
 //		// revision1.getId());
-//		// writeToFile(newModel1, new File("files" + File.separator + "test." +
+//		// writeToFile(newModel1, Paths.get("files" + File.separator + "test." +
 //		// TestFile.NIEDRI.getFile().getName()));
 //		// IfcModel newModel2 = downloadModel(revision2.getProject().getId(),
 //		// revision2.getId());
-//		// writeToFile(newModel2, new File("files" + File.separator + "test." +
+//		// writeToFile(newModel2, Paths.get("files" + File.separator + "test." +
 //		// TestFile.EMPTY_TEST.getFile().getName()));
 //
 //		// int j=1;
@@ -127,7 +127,7 @@ package org.bimserver.tests;
 //				model = null;
 //				System.gc();
 //				IfcModel newModel = downloadModel(revision.getProject().getId(), revision.getId());
-//				writeToFile(ModelConverter.newIfcModel(newModel), new File("files" + File.separator + "test." + testFile.getFile().getName()));
+//				writeToFile(ModelConverter.newIfcModel(newModel), Paths.get("files" + File.separator + "test." + testFile.getFile().getName()));
 //			}
 //		}
 //		// writeToFile(newModel);
@@ -142,11 +142,11 @@ package org.bimserver.tests;
 //	}
 //
 //	private void check(Revision revision) {
-//		File dataDir = new File("../BimServer/database");
+//		File dataDir = Paths.get("../BimServer/database");
 //		BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(dataDir);
 //		database = new Database(packages, columnDatabase, new FieldIgnoreMap(packages));
 //		IfcModel newModel2 = downloadModel(revision.getProject().getId(), revision.getId());
-//		writeToFile(ModelConverter.newIfcModel(newModel2), new File("files" + File.separator + "test." + revision.getId() + "."
+//		writeToFile(ModelConverter.newIfcModel(newModel2), Paths.get("files" + File.separator + "test." + revision.getId() + "."
 //				+ TestFile.EMPTY_TEST.getFile().getName()));
 //		database.close();
 //	}

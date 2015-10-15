@@ -3,6 +3,7 @@ package org.bimserver.tests.ifc;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.nio.file.Paths;
 
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
@@ -35,10 +36,10 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 			};
 			
 			for (File file : files) {
-				bimServerClient.checkin(newProject.getOid(), "initial", deserializer.getOid(), false, true, new File("../TestData/data/revit2013_unicode.ifc"));
+				bimServerClient.checkin(newProject.getOid(), "initial", deserializer.getOid(), false, true, Paths.get("../TestData/data/revit2013_unicode.ifc"));
 				newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 				SSerializerPluginConfiguration serializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
-				bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), new File("bimserver_" + file.getName()));
+				bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("bimserver_" + file.getName()));
 			}
 		} catch (Throwable e) {
 			if (e instanceof AssertionError) {

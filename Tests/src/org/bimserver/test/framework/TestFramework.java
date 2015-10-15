@@ -1,28 +1,12 @@
 package org.bimserver.test.framework;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.EmbeddedWebServer;
@@ -33,6 +17,7 @@ import org.bimserver.servlets.StreamingServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.utils.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,9 +29,9 @@ public class TestFramework {
 	private final TestResults testResults = new TestResults();
 	private BimServer bimServer;
 
-	private File[] pluginDirectories;
+	private Path[] pluginDirectories;
 
-	public TestFramework(TestConfiguration testConfiguration, File[] pluginDirectories) {
+	public TestFramework(TestConfiguration testConfiguration, Path[] pluginDirectories) {
 		this.testConfiguration = testConfiguration;
 		this.pluginDirectories = pluginDirectories;
 	}
@@ -55,8 +40,8 @@ public class TestFramework {
 		if (testConfiguration.isStartEmbeddedBimServer()) {
 			if (testConfiguration.isCleanEnvironmentFirst()) {
 				try {
-					if (testConfiguration.getHomeDir().isDirectory()) {
-						FileUtils.forceDelete(testConfiguration.getHomeDir());
+					if (Files.isDirectory(testConfiguration.getHomeDir())) {
+						PathUtils.removeDirectoryWithContent(testConfiguration.getHomeDir());
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -66,7 +51,7 @@ public class TestFramework {
 			bimServerConfig.setStartEmbeddedWebServer(true);
 			bimServerConfig.setHomeDir(testConfiguration.getHomeDir());
 			bimServerConfig.setPort(8080);
-			bimServerConfig.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
+			bimServerConfig.setResourceFetcher(new LocalDevelopmentResourceFetcher(Paths.get("../")));
 			bimServerConfig.setClassPath(System.getProperty("java.class.path"));
 			bimServer = new BimServer(bimServerConfig);
 			EmbeddedWebServer embeddedWebServer = bimServer.getEmbeddedWebServer();
@@ -87,8 +72,12 @@ public class TestFramework {
 				LOGGER.error("", e);
 			}
 		}
-		if (!testConfiguration.getOutputFolder().exists()) {
-			testConfiguration.getOutputFolder().mkdir();
+		if (!Files.exists(testConfiguration.getOutputFolder())) {
+			try {
+				PathUtils.removeDirectoryWithContent(testConfiguration.getOutputFolder());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		VirtualUserFactory virtualUserFactory = new VirtualUserFactory(this, testConfiguration.getBimServerClientFactory());
 		for (int i=0; i<testConfiguration.getNrVirtualUsers(); i++) {
@@ -102,7 +91,7 @@ public class TestFramework {
 		commandLine.start();
 	}
 
-	public synchronized File getTestFile() {
+	public synchronized Path getTestFile() {
 		return testConfiguration.getTestFileProvider().getNewFile();
 	}
 

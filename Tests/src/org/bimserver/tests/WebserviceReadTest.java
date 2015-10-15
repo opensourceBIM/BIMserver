@@ -65,7 +65,7 @@ package org.bimserver.tests;
 //							CheckoutResult download = client.download(token, project.getId(), revision.getId(), resultType);
 //							String pathname = download.getProjectName() + download.getRevisionNr() + "." + resultType.getDefaultExtension();
 //							System.out.println("Downloading " + pathname);
-//							File file = new File("downloaded" + File.separator + pathname);
+//							File file = Paths.get("downloaded" + File.separator + pathname);
 //							FileOutputStream out = new FileOutputStream(file);
 //							IOUtils.copy(download.getFile().getInputStream(), out);
 //							out.close();
