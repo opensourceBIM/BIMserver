@@ -67,7 +67,7 @@ public class PluginContext {
 		case INTERNAL:
 			break;
 		case JAR_FILE:
-			URI uri = URI.create("jar:file:/" + location.replace("\\", "/"));
+			URI uri = URI.create("jar:" + new File(location).toURI());
 			System.out.println(uri);
 			Map<String, String> env = new HashMap<>();
 			env.put("create", "true");
