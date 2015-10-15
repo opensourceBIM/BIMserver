@@ -1,24 +1,7 @@
 package org.bimserver.collada;
 
-/******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
-
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,15 +14,15 @@ public class Collada2GLTFThread implements Runnable {
 	public boolean crashed = false;
 
 	// File-related.
-	private File basePath = null;
+	private Path basePath = null;
 	private Collada2GLTFConfiguration configuration = new Collada2GLTFConfiguration(); 
 
-	public Collada2GLTFThread(File file, File basePath){
-		this.configuration = new Collada2GLTFConfiguration(file.getName());
+	public Collada2GLTFThread(Path file, Path basePath){
+		this.configuration = new Collada2GLTFConfiguration(file.getFileName().toString());
 		this.basePath = basePath;
 	}
 	
-	public Collada2GLTFThread(File basePath, Collada2GLTFConfiguration configuration){
+	public Collada2GLTFThread(Path basePath, Collada2GLTFConfiguration configuration){
 		this.basePath = basePath;
 		this.configuration = configuration;
 	}
@@ -51,7 +34,7 @@ public class Collada2GLTFThread implements Runnable {
 		// Build the process.
 		ProcessBuilder builder = new ProcessBuilder(configuration.getCall());
 		// Set the working directory to the place where the DAE is.
-		builder.directory(basePath);
+		builder.directory(basePath.toFile());
 		try {
 			// Attempt to run the subprocess.
 			Process p = builder.start();

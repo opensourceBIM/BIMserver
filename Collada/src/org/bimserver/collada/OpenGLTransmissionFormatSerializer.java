@@ -19,9 +19,7 @@ package org.bimserver.collada;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +33,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.codec.binary.Base64OutputStream;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.collada.Collada2GLTFThread.Collada2GLTFConfiguration;
 import org.bimserver.emf.IfcModelInterface;
@@ -46,6 +43,7 @@ import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.utils.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -147,8 +145,9 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 			} finally {
 				// Attempt to clean up the temporary directory created by this serializer.
 				try {
-					if (writeDirectory != null && writeDirectory.exists())
-						FileUtils.deleteDirectory(writeDirectory);
+					if (writeDirectory != null && Files.exists(writeDirectory)) {
+						PathUtils.removeDirectoryWithContent(writeDirectory);
+					}
 				} catch (IOException ioe) {}
 			}
 			setMode(Mode.FINISHED);
@@ -159,22 +158,23 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 		return false;
 	}
 
-	private void jsonTheDirectory(OutputStream outputStream, File writeDirectory) throws IOException, UnsupportedEncodingException {
+	private void jsonTheDirectory(OutputStream outputStream, Path writeDirectory) throws IOException, UnsupportedEncodingException {
 		OutputStream jsonOutputStream = outputStream;
 		// Write the opening brace and a new-line.
 		jsonOutputStream.write(String.format("{%n").getBytes());
 		// Put the individual files into a JSON file.
-		for (File f : writeDirectory.listFiles(ignoreDAEFilter))
+		for (Path f : PathUtils.getDirectories(writeDirectory)) {
 			addFileToJSON(jsonOutputStream, f);
+		}
 		// Write the closing brace.
 		jsonOutputStream.write(String.format("}").getBytes());
 		// Push the data into the parent stream (gets returned to the server).
 		jsonOutputStream.flush();
 	}
 
-	private void addFileToJSON(OutputStream jsonOutputStream, File f) throws IOException, UnsupportedEncodingException {
+	private void addFileToJSON(OutputStream jsonOutputStream, Path f) throws IOException, UnsupportedEncodingException {
 		// Use the file name as the key: file.ext
-		String key = f.getName();
+		String key = f.getFileName().toString();
 		// Create a place to store the base64 bytes.
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		// Base64 encode the file.
@@ -183,38 +183,40 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 		jsonOutputStream.write(String.format("\t\"%s\": \"%s,%s\",%n", key, "data:text/plain;base64", stream.toString("UTF-8")).getBytes());
 	}
 
-	public void encodeFileToBase64Stream(File file, OutputStream base64OutputStream) throws IOException {
-		InputStream is = new FileInputStream(file);
+	public void encodeFileToBase64Stream(Path file, OutputStream base64OutputStream) throws IOException {
+		InputStream inputStream = Files.newInputStream(file);
 		OutputStream out = new Base64OutputStream(base64OutputStream, true);
-		IOUtils.copy(is, out);
-		is.close();
+		IOUtils.copy(inputStream, out);
+		inputStream.close();
 		out.close();
 	}
 
-	private void zipTheDirectory(OutputStream outputStream, File writeDirectory) throws IOException {
+	private void zipTheDirectory(OutputStream outputStream, Path writeDirectory) throws IOException {
 		// Create the archive.
 		ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
 		// Copy the files into the ZIP file.
-		for (File f : writeDirectory.listFiles(ignoreDAEFilter))
+		for (Path f : PathUtils.getDirectories(writeDirectory)) {
 			addToZipFile(f, zipOutputStream);
+		}
 		// Push the data into the parent stream (gets returned to the server).
 		zipOutputStream.finish();
 		zipOutputStream.flush();
 	}
 
-	private void exportToGLTF(File writeDirectory) throws IOException, FileNotFoundException, SerializerException {
-		File colladaFile = new File(writeDirectory, projectInfo.getName() + ".dae");
+	private void exportToGLTF(Path writeDirectory) throws IOException, FileNotFoundException, SerializerException {
+		Path colladaFile = writeDirectory.resolve(projectInfo.getName() + ".dae");
 		// Create the Collada file: example.dae
-		if (!colladaFile.exists())
-			colladaFile.createNewFile();
+		if (!Files.exists(colladaFile)) {
+			Files.createFile(colladaFile);
+		}
 		// Prepare to write the Collada file.
-		FileOutputStream fileOutputStream = new FileOutputStream(colladaFile);
+		OutputStream outputStream = Files.newOutputStream(colladaFile);
 		// Write into the Collada file.
-		colladaSerializer.write(fileOutputStream, null);
+		colladaSerializer.write(outputStream, null);
 		// Push the data into the stream.
-		fileOutputStream.flush();
+		outputStream.flush();
 		// Finalize the stream and close the file.
-		fileOutputStream.close();
+		outputStream.close();
 		// Launch a thread to run the collada2gltf converter.
 		Collada2GLTFThread thread = new Collada2GLTFThread(colladaFile, writeDirectory);
 		synchronized (thread) {
@@ -227,15 +229,15 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 		}
 	}
 
-	public void addToZipFile(File file, ZipOutputStream outputStream) throws FileNotFoundException, IOException {
+	public void addToZipFile(Path file, ZipOutputStream outputStream) throws FileNotFoundException, IOException {
 		// Get file name: example.file
-		String fileName = file.getName();
+		String fileName = file.getFileName().toString();
 		// Create an abstraction for how it will appear in the ZIP file.
 		ZipEntry zipEntry = new ZipEntry(fileName);
 		// Write the file's abstraction into the ZIP file.
 		outputStream.putNextEntry(zipEntry);
 		// Prepare to read the actual file.
-		FileInputStream inputStream = new FileInputStream(file);
+		InputStream inputStream = Files.newInputStream(file);
 		// Buffer the file 4 kilobytes at a time.
 		byte[] bytes = new byte[4096];
 		// Read the file to its conclusion, writing out the information on the way.
