@@ -732,7 +732,7 @@ public class PluginManager {
 	public FileSystem getOrCreateFileSystem(String location) throws IOException {
 		FileSystem fileSystem = fileSystems.get(location);
 		if (fileSystem == null) {
-			URI uri = URI.create("jar:" + new File(location).toURI());
+			URI uri = URI.create("jar:file:" + new File(location).toURI());
 			Map<String, String> env = new HashMap<>();
 			env.put("create", "true");
 			try {
