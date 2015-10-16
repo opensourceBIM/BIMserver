@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.nio.file.FileSystem;
+import java.nio.file.FileSystemAlreadyExistsException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -734,7 +735,11 @@ public class PluginManager {
 			URI uri = URI.create("jar:" + new File(location).toURI());
 			Map<String, String> env = new HashMap<>();
 			env.put("create", "true");
-			fileSystem = FileSystems.newFileSystem(uri, env, null);
+			try {
+				fileSystem = FileSystems.newFileSystem(uri, env, null);
+			} catch (FileSystemAlreadyExistsException e) {
+				LOGGER.error(location, e);
+			}
 			fileSystems.put(location, fileSystem);
 		}
 		return fileSystem;
