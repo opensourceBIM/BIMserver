@@ -23,7 +23,7 @@ public class Search {
 		final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>();
 		ExecutorService executorService = new ThreadPoolExecutor(8, 8, 1000L, TimeUnit.MINUTES, queue);
 		try {
-			for (final Path f : PathUtils.getDirectories(file)) {
+			for (final Path f : PathUtils.list(file)) {
 				Runnable runnable = new Runnable(){
 					@Override
 					public void run() {

@@ -26,7 +26,7 @@ public class SurfaceAreaAndPeopleCalculator {
 			Deserializer ifcDeserializer = ifcDeserializerPlugin.createDeserializer(null);
 			ifcDeserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			java.nio.file.Path baseDirectory = Paths.get("C:\\Arch");
-			for (java.nio.file.Path originalIfcFile : PathUtils.getDirectories(baseDirectory)) {
+			for (java.nio.file.Path originalIfcFile : PathUtils.list(baseDirectory)) {
 				processFile(ifcDeserializer, originalIfcFile);
 			}
 		} catch (PluginException e) {

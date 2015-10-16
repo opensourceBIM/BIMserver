@@ -19,7 +19,7 @@ public class FolderWalker implements TestFileProvider {
 	public FolderWalker(Path folder, TestFramework testFramework) {
 		this.testFramework = testFramework;
 		try {
-			this.listFiles = PathUtils.getDirectories(folder);
+			this.listFiles = PathUtils.list(folder);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

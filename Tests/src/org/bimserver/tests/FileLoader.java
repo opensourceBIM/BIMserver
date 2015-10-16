@@ -27,7 +27,7 @@ public class FileLoader {
 		try {
 			final BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 			ExecutorService executorService = new ThreadPoolExecutor(1, 1, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(200));
-			for (final Path file : PathUtils.getDirectories(dir)) {
+			for (final Path file : PathUtils.list(dir)) {
 				executorService.submit(new Runnable(){
 					@Override
 					public void run() {

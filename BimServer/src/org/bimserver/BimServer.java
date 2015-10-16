@@ -337,7 +337,7 @@ public class BimServer {
 						}
 					}
 				});
-				pluginManager.loadPlugin(ObjectIDMPlugin.class, new File(".").getAbsolutePath(), "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL, null);
+				pluginManager.loadPlugin(ObjectIDMPlugin.class, new File(".").toURI(), "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL, null);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
@@ -848,7 +848,7 @@ public class BimServer {
 				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
 				pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
 				pluginDescriptor.setDescription(plugin.getDescription() + " " + plugin.getVersion());
-				pluginDescriptor.setLocation(pluginContext.getLocation());
+				pluginDescriptor.setLocation(pluginContext.getLocation().toString());
 				pluginDescriptor.setPluginInterfaceClassName(getPluginInterfaceClass(plugin).getName());
 				pluginDescriptor.setEnabled(true); // New plugins are enabled by default
 			} else if (results.size() == 1) {
@@ -857,7 +857,7 @@ public class BimServer {
 				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
 				pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
 				pluginDescriptor.setDescription(plugin.getDescription() + " " + plugin.getVersion());
-				pluginDescriptor.setLocation(pluginContext.getLocation());
+				pluginDescriptor.setLocation(pluginContext.getLocation().toString());
 				pluginDescriptor.setPluginInterfaceClassName(getPluginInterfaceClass(plugin).getName());
 				session.store(pluginDescriptor);
 				pluginManager.getPluginContext(plugin).setEnabled(pluginDescriptor.getEnabled(), false);
@@ -906,10 +906,10 @@ public class BimServer {
 					if (!Files.exists(destFile)) {
 						if (Files.isDirectory(sourceFile)) {
 							Files.createDirectories(destFile);
-							for (Path f : PathUtils.getDirectories(sourceFile)) {
+							for (Path f : PathUtils.list(sourceFile)) {
 								if (Files.isDirectory(f)) {
 									Path destDir2 = destFile.resolve(f.getFileName().toString());
-									for (Path x : PathUtils.getDirectories(f)) {
+									for (Path x : PathUtils.list(f)) {
 										FileUtils.copyFile(x.toFile(), destDir2.resolve(x.getFileName().toString()).toFile());
 									}
 								} else if (Files.isDirectory(f)) {

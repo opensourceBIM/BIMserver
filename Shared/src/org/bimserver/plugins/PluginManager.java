@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.FileSystem;
-import java.nio.file.FileSystemAlreadyExistsException;
 import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -70,7 +70,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PluginManager {
-	private static final Map<String, FileSystem> fileSystems = new HashMap<>();
 	private static final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<Class<? extends Plugin>, Set<PluginContext>>();
 	private final Set<Path> loadedLocations = new HashSet<>();
@@ -156,7 +155,7 @@ public class PluginManager {
 			EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
 //			pluginClassloader.dumpStructure(0);
 			loadedLocations.add(projectRoot);
-			loadPlugins(pluginClassloader, projectRoot.toString(), projectRoot.resolve("bin").toString(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT);
+			loadPlugins(pluginClassloader, projectRoot.toUri(), projectRoot.resolve("bin").toString(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
@@ -168,12 +167,12 @@ public class PluginManager {
 
 	private void loadDependencies(Path libFolder, DelegatingClassLoader classLoader) throws FileNotFoundException, IOException {
 		if (Files.isDirectory(libFolder)) {
-			for (Path libFile : PathUtils.getDirectories(libFolder)) {
+			for (Path libFile : PathUtils.list(libFolder)) {
 				if (libFile.getFileName().toString().toLowerCase().endsWith(".jar")) {
 					FileJarClassLoader jarClassLoader = new FileJarClassLoader(this, classLoader, libFile);
 					classLoader.add(jarClassLoader);
 				} else if (Files.isDirectory(libFile)) {
-					for (Path libFile2 : PathUtils.getDirectories(libFile)) {
+					for (Path libFile2 : PathUtils.list(libFile)) {
 						if (libFile2.getFileName().toString().toLowerCase().endsWith(".jar")) {
 							FileJarClassLoader jarClassLoader = new FileJarClassLoader(this, classLoader, libFile2);
 							classLoader.add(jarClassLoader);
@@ -185,7 +184,7 @@ public class PluginManager {
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void loadPlugins(ClassLoader classLoader, String location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType) throws PluginException {
+	private void loadPlugins(ClassLoader classLoader, URI location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType) throws PluginException {
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
 			if (pluginImplementation.isEnabled()) {
 				String interfaceClassName = pluginImplementation.getInterfaceClass().trim().replace("\n", "");
@@ -228,7 +227,7 @@ public class PluginManager {
 		if (!Files.isDirectory(directory)) {
 			throw new PluginException("No directory: " + directory.toString());
 		}
-		for (Path file : PathUtils.getDirectories(directory)) {
+		for (Path file : PathUtils.list(directory)) {
 			if (file.getFileName().toString().toLowerCase().endsWith(".jar")) {
 				try {
 					loadPluginsFromJar(file);
@@ -262,12 +261,16 @@ public class PluginManager {
 			}
 			LOGGER.debug(pluginDescriptor.toString());
 			loadedLocations.add(file);
-			loadPlugins(jarClassLoader, file.toAbsolutePath().toString(), file.toAbsolutePath().toString(), pluginDescriptor, PluginSourceType.JAR_FILE);
+			URI fileUri = file.toAbsolutePath().toUri();
+			URI jarUri = new URI("jar:" + fileUri.toString());
+			loadPlugins(jarClassLoader, jarUri, file.toAbsolutePath().toString(), pluginDescriptor, PluginSourceType.JAR_FILE);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
 			throw new PluginException(e);
 		} catch (IOException e) {
+			throw new PluginException(e);
+		} catch (URISyntaxException e) {
 			throw new PluginException(e);
 		}
 	}
@@ -342,13 +345,15 @@ public class PluginManager {
 				URL url = resources.nextElement();
 				LOGGER.info("Loading " + url);
 				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
-				loadPlugins(getClass().getClassLoader(), url.toString(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL);
+				loadPlugins(getClass().getClassLoader(), url.toURI(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL);
 			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		} catch (JAXBException e) {
 			LOGGER.error("", e);
 		} catch (PluginException e) {
+			LOGGER.error("", e);
+		} catch (URISyntaxException e) {
 			LOGGER.error("", e);
 		}
 	}
@@ -465,7 +470,7 @@ public class PluginManager {
 		return tempDir;
 	}
 
-	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType, PluginImplementation pluginImplementation) throws PluginException {
+	public void loadPlugin(Class<? extends Plugin> interfaceClass, URI location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType, PluginImplementation pluginImplementation) throws PluginException {
 		LOGGER.debug("Loading plugin " + plugin.getClass().getSimpleName() + " of type " + interfaceClass.getSimpleName());
 		if (!Plugin.class.isAssignableFrom(interfaceClass)) {
 			throw new PluginException("Given interface class (" + interfaceClass.getName() + ") must be a subclass of " + Plugin.class.getName());
@@ -576,7 +581,7 @@ public class PluginManager {
 
 	public void loadAllPluginsFromEclipseWorkspace(Path file, boolean showExceptions) throws PluginException, IOException {
 		if (file != null && Files.isDirectory(file)) {
-			for (Path project : PathUtils.getDirectories(file)) {
+			for (Path project : PathUtils.list(file)) {
 				if (Files.isDirectory(project)) {
 					Path pluginDir = project.resolve("plugin");
 					if (Files.exists(pluginDir)) {
@@ -606,7 +611,7 @@ public class PluginManager {
 			}
 		}
 		loadAllPluginsFromEclipseWorkspace(directory, showExceptions);
-		for (Path workspace : PathUtils.getDirectories(directory)) {
+		for (Path workspace : PathUtils.list(directory)) {
 			if (Files.isDirectory(workspace)) {
 				loadAllPluginsFromEclipseWorkspace(workspace, showExceptions);
 			}
@@ -730,30 +735,16 @@ public class PluginManager {
 		this.metaDataManager = metaDataManager;
 	}
 	
-	public FileSystem getOrCreateFileSystem(String location) throws IOException {
-		FileSystem fileSystem = fileSystems.get(location);
-		if (fileSystem == null) {
-			LOGGER.info("Location: " + location);
-			String baseURI = new File(location).toURI().toString();
-			if (!baseURI.startsWith("file:")) {
-				baseURI = "file:" + baseURI;
-			}
-			baseURI = "jar:" + baseURI;
-			LOGGER.info("Base URI: " + baseURI);
-			URI uri = URI.create(baseURI);
-			try {
-				try {
-					fileSystem = FileSystems.getFileSystem(uri);
-				} catch (FileSystemNotFoundException e) {
-					Map<String, String> env = new HashMap<>();
-					env.put("create", "true");
-					fileSystem = FileSystems.newFileSystem(uri, env, null);
-					LOGGER.info("Created VFS for " + location);
-				}
-			} catch (FileSystemAlreadyExistsException e) {
-				LOGGER.error(location, e);
-			}
-			fileSystems.put(location, fileSystem);
+	public FileSystem getOrCreateFileSystem(URI uri) throws IOException {
+		LOGGER.info(uri.toString());
+		FileSystem fileSystem = null;
+		try {
+			fileSystem = FileSystems.getFileSystem(uri);
+		} catch (FileSystemNotFoundException e) {
+			Map<String, String> env = new HashMap<>();
+			env.put("create", "true");
+			fileSystem = FileSystems.newFileSystem(uri, env, null);
+			LOGGER.info("Created VFS for " + uri);
 		}
 		return fileSystem;
 	}

@@ -27,8 +27,7 @@ import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
+import java.nio.file.Paths;
 
 import javax.tools.JavaCompiler;
 import javax.tools.JavaFileManager;
@@ -42,7 +41,7 @@ public class PluginContext {
 	private final PluginManager pluginManager;
 	private final ClassLoader classLoader;
 	private final PluginSourceType pluginType;
-	private final String location;
+	private final URI location;
 	private final Plugin plugin;
 	private final PluginImplementation pluginImplementation;
 	private final String classLocation;
@@ -51,7 +50,7 @@ public class PluginContext {
 	private FileSystem fileSystem;
 	private Path rootPath;
 
-	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginSourceType pluginType, String location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation) throws IOException {
+	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginSourceType pluginType, URI location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation) throws IOException {
 		this.pluginManager = pluginManager;
 		this.classLoader = classLoader;
 		this.pluginType = pluginType;
@@ -62,7 +61,7 @@ public class PluginContext {
 		switch (pluginType) {
 		case ECLIPSE_PROJECT:
 			fileSystem = FileSystems.getDefault();
-			rootPath = fileSystem.getPath(location);
+			rootPath = Paths.get(location);
 			break;
 		case INTERNAL:
 			break;
@@ -83,7 +82,7 @@ public class PluginContext {
 		return plugin;
 	}
 
-	public String getLocation() {
+	public URI getLocation() {
 		return location;
 	}
 
@@ -137,7 +136,7 @@ public class PluginContext {
 		}
 		switch (pluginType) {
 		case ECLIPSE_PROJECT:
-			this.javaFileManager = new EclipseProjectPluginFileManager(systemJavaCompiler.getStandardFileManager(null, null, null), classLoader, new File(location, "bin"));
+			this.javaFileManager = new EclipseProjectPluginFileManager(systemJavaCompiler.getStandardFileManager(null, null, null), classLoader, new File(location.toString(), "bin"));
 			break;
 		case INTERNAL:
 			this.javaFileManager = systemJavaCompiler.getStandardFileManager(null, null, null);

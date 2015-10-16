@@ -116,7 +116,7 @@ public class WarServerInitializer implements ServletContextListener {
 		}
 		StringBuilder sb = new StringBuilder();
 		try {
-			for (Path f : PathUtils.getDirectories(file)) {
+			for (Path f : PathUtils.list(file)) {
 				if (f.getFileName().toString().toLowerCase().endsWith(".jar")) {
 					sb.append(f.toString() + File.pathSeparator);
 				}

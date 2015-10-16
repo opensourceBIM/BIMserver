@@ -10,7 +10,7 @@ public class IfcGeometryRemoverTest {
 	public static void main(String[] args) throws IOException {
 		Path baseDir = Paths.get("D:\\Dropbox\\Shared\\BIMserver\\IFC modellen\\simple changes");
 		IfcGeometryRemover ifcGeometryRemover = new IfcGeometryRemover();
-		for (Path inputFile : PathUtils.getDirectories(baseDir)) {
+		for (Path inputFile : PathUtils.list(baseDir)) {
 			if (inputFile.getFileName().toString().endsWith(".ifc") && !inputFile.getFileName().toString().startsWith("NOGEOM_")) {
 				System.out.println(inputFile.getFileName().toString());
 				ifcGeometryRemover.removeGeometry(inputFile, inputFile.getParent().resolve("NOGEOM_" + inputFile.getFileName().toString()));

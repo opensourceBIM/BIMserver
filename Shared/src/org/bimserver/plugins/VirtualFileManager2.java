@@ -118,7 +118,7 @@ public class VirtualFileManager2 implements JavaFileManager {
 
 	@Override
 	public Iterable<JavaFileObject> list(Location location, final String packageName, Set<Kind> kinds, boolean recurse) throws IOException {
-		List<Path> directories = PathUtils.getDirectories(rootPath.resolve(packageName.replace(".", File.separator)));
+		List<Path> directories = PathUtils.list(rootPath.resolve(packageName.replace(".", File.separator)));
 		final Iterator<Path> myIterator = directories.iterator();
 		Iterable<JavaFileObject> base = fallbackFileManager.list(location, packageName, kinds, recurse);
 		if (!myIterator.hasNext()) {

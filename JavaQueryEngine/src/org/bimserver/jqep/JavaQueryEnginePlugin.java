@@ -36,7 +36,7 @@ public class JavaQueryEnginePlugin implements QueryEnginePlugin {
 	private void initExamples(PluginManager pluginManager) {
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
 		try {
-			for (Path path : PathUtils.getDirectories(pluginContext.getRootPath().resolve("examples"))) {
+			for (Path path : PathUtils.list(pluginContext.getRootPath().resolve("examples"))) {
 				InputStream inputStream = Files.newInputStream(path);
 				try {
 					examples.put(path.getFileName().toString(), IOUtils.toString(inputStream, Charsets.UTF_8.name()));
