@@ -1,6 +1,7 @@
 package org.bimserver.jqep;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -29,11 +30,12 @@ public class JavaQueryEngine implements QueryEngine {
 	private static String libPath = System.getProperty("java.class.path");
 	private final ClassLoader classLoader;
 	private final JavaFileManager pluginFileManager;
+	private Path rootPath;
 
-	public JavaQueryEngine(ClassLoader classLoader, JavaFileManager pluginFileManager) {
+	public JavaQueryEngine(ClassLoader classLoader, Path rootPath) {
 		this.classLoader = classLoader;
-		this.pluginFileManager = pluginFileManager;
-		pluginFileManager = ToolProvider.getSystemJavaCompiler().getStandardFileManager(null, null, null);
+		this.rootPath = rootPath;
+		this.pluginFileManager = ToolProvider.getSystemJavaCompiler().getStandardFileManager(null, null, null);
 	}
 
 	@Override

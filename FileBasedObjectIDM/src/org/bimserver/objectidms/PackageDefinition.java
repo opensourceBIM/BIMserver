@@ -19,7 +19,10 @@ package org.bimserver.objectidms;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +72,19 @@ public class PackageDefinition {
 		marshaller.marshal(this, file);
 	}
 	
+	public static PackageDefinition readFromFile(Path file) throws JAXBException, IOException {
+		JAXBContext jc = JAXBContext.newInstance(PackageDefinition.class);
+		Unmarshaller unmarshaller = jc.createUnmarshaller();
+		InputStream newInputStream = Files.newInputStream(file);
+		try {
+			Object unmarshal = unmarshaller.unmarshal(newInputStream);
+			PackageDefinition settings = (PackageDefinition) unmarshal;
+			return settings;
+		} finally {
+			newInputStream.close();
+		}
+	}
+
 	public static PackageDefinition readFromFile(File file) throws JAXBException {
 		JAXBContext jc = JAXBContext.newInstance(PackageDefinition.class);
 		Unmarshaller unmarshaller = jc.createUnmarshaller();

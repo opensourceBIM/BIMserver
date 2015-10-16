@@ -448,4 +448,11 @@ public class VirtualFile implements JavaFileObject {
 	public void copyTo(VirtualFile virtualFile) {
 		// TODO
 	}
+
+	public void setData(InputStream inputStream) throws IOException {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		IOUtils.copy(inputStream, output);
+		setData(output.toByteArray());
+		inputStream.close();
+	}
 }

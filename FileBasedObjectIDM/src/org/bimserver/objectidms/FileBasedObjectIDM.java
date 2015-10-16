@@ -18,7 +18,7 @@ package org.bimserver.objectidms;
  *****************************************************************************/
 
 import java.io.IOException;
-import java.net.URL;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -41,8 +41,8 @@ public class FileBasedObjectIDM extends AbstractObjectIDM {
 	public FileBasedObjectIDM(SchemaDefinition schemaDefinition, PluginContext pluginContext, PackageMetaData packageMetaData) throws ObjectIDMException {
 		super(schemaDefinition, packageMetaData);
 		try {
-			URL ignoreFile = pluginContext.getResourceAsUrl("objectidm.xml");
-			PackageDefinition packageDefinition = PackageDefinition.readFromFile(ignoreFile);
+			Path objectIdmXml = pluginContext.getRootPath().resolve("objectidm.xml");
+			PackageDefinition packageDefinition = PackageDefinition.readFromFile(objectIdmXml);
 			if (!packageDefinition.getName().equals("Ifc2x3")) {
 				throw new ObjectIDMException("Package must be Ifc2x3");
 			}

@@ -18,12 +18,8 @@ package org.bimserver.plugins;
  *****************************************************************************/
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
-import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -34,7 +30,6 @@ import javax.tools.JavaFileManager;
 import javax.tools.ToolProvider;
 
 import org.bimserver.models.store.Parameter;
-import org.bimserver.plugins.web.WebModulePlugin;
 
 public class PluginContext {
 
@@ -97,29 +92,25 @@ public class PluginContext {
 		return enabled;
 	}
 
-	public InputStream getResourceAsInputStream(String name) throws FileNotFoundException {
-		InputStream resourceAsStream = classLoader.getResourceAsStream(name);
-		if (resourceAsStream == null) {
-			File file = new File(location + File.separator + name);
-			if (file.exists()) {
-				resourceAsStream = new FileInputStream(file);
-			}
-		}
-		if (resourceAsStream == null && !pluginImplementation.getRequires().isEmpty()) {
-			for (String dep : pluginImplementation.getRequires()) {
-				WebModulePlugin webModulePlugin = pluginManager.getWebModulePlugin(dep, true);
-				InputStream resourceAsInputStream = pluginManager.getPluginContext(webModulePlugin).getResourceAsInputStream(name);
-				if (resourceAsInputStream != null) {
-					return resourceAsInputStream;
-				}
-			}
-		}
-		return resourceAsStream;
-	}
-
-	public URL getResourceAsUrl(String name) {
-		return classLoader.getResource(name);
-	}
+//	public InputStream getResourceAsInputStream(String name) throws FileNotFoundException {
+//		InputStream resourceAsStream = classLoader.getResourceAsStream(name);
+//		if (resourceAsStream == null) {
+//			File file = new File(location + File.separator + name);
+//			if (file.exists()) {
+//				resourceAsStream = new FileInputStream(file);
+//			}
+//		}
+//		if (resourceAsStream == null && !pluginImplementation.getRequires().isEmpty()) {
+//			for (String dep : pluginImplementation.getRequires()) {
+//				WebModulePlugin webModulePlugin = pluginManager.getWebModulePlugin(dep, true);
+//				InputStream resourceAsInputStream = pluginManager.getPluginContext(webModulePlugin).getResourceAsInputStream(name);
+//				if (resourceAsInputStream != null) {
+//					return resourceAsInputStream;
+//				}
+//			}
+//		}
+//		return resourceAsStream;
+//	}
 
 	public String getClassLocation() {
 		return classLocation;
@@ -129,7 +120,7 @@ public class PluginContext {
 		return classLoader;
 	}
 
-	public JavaFileManager getFileManager() {
+	private JavaFileManager getFileManager() {
 		JavaCompiler systemJavaCompiler = ToolProvider.getSystemJavaCompiler();
 		if (systemJavaCompiler == null) {
 			throw new RuntimeException("JDK needed");
@@ -154,10 +145,6 @@ public class PluginContext {
 		return rootPath;
 	}
 	
-	public FileSystem getFilesystem() {
-		return fileSystem;
-	}
-
 	public Parameter getParameter(String name) {
 		return pluginManager.getParameter(this, name);
 	}

@@ -44,7 +44,7 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 			} else if (os.contains("linux")) {
 				libraryName = "libifcengine.so";
 			}
-			InputStream inputStream = pluginContext.getResourceAsInputStream("lib/" + System.getProperty("sun.arch.data.model") + "/" + libraryName);
+			InputStream inputStream = Files.newInputStream(pluginContext.getRootPath().resolve("lib/" + System.getProperty("sun.arch.data.model") + "/" + libraryName));
 			if (inputStream != null) {
 				try {
 					Path tmpFolder = pluginManager.getTempDir();
