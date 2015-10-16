@@ -276,7 +276,7 @@ function formatLogState(state) {
 }
 
 function load(element, url, constructor) {
-	var promise = new Promise();
+	var promise = new window.BimServerApiPromise();
 	element.load(url, function(){
 		var res = constructor.call(element);
 		if (res instanceof Promise) {
@@ -333,5 +333,10 @@ function Tabs(tabsDiv, contentDiv) {
 //			o.label.find("input").attr("checked", "checked");
 		}
 		return tab;
+	};
+	
+	this.clear = function(){
+		o.tabs = [];
+		o.tabsDiv.find("label").remove();
 	};
 }

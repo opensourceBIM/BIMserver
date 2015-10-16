@@ -60,7 +60,16 @@ function Login(address, username) {
 	});
 	
 	this.login = function(address) {
-		Global.bimServerApi.login($(".username").val(), $("#inputPassword").val(), $("#rememberMe").is(":checked"), function(data){
+		Global.bimServerApi.login($(".username").val(), $("#inputPassword").val(), function(data){
+			if ($("#rememberMe").is(":checked")) {
+				// Stored cookie
+				$.cookie("autologin" + window.document.location.port, Global.bimServerApi.token, { expires: 31, path: "/"});
+				$.cookie("address" + window.document.location.port, Global.bimServerApi.baseUrl, { expires: 31, path: "/"});
+			} else if (!options.suppressSessionCookie) {
+				// Session cookie
+				$.cookie("autologin" + window.document.location.port, Global.bimServerApi.token, { path: "/"});
+				$.cookie("address" + window.document.location.port, Global.bimServerApi.baseUrl, { path: "/"});
+			}
 			Global.bimServerApi.resolveUser(function(user){
 				$(".indexcontainer").load(Global.baseDir + "main.html", function(){
 					new Main(address, user).show(false);

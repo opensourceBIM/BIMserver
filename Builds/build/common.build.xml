@@ -254,6 +254,10 @@
 		<copy todir="builds/javaqueryengine/plugin">
 			<fileset dir="../../JavaQueryEngine/plugin"></fileset>
 		</copy>
+		<mkdir dir="builds/javaqueryengine/examples"/>
+		<copy todir="builds/javaqueryengine/examples">
+			<fileset dir="../../JavaQueryEngine/examples"></fileset>
+		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-${version}-javaqueryengine.jar">
 			<fileset dir="builds/javaqueryengine"/>
 		</jar>
