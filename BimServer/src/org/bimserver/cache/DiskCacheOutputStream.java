@@ -22,8 +22,8 @@ public class DiskCacheOutputStream extends RemovableFileOutputStream {
 	private final DownloadParameters downloadParameters;
 
 	public DiskCacheOutputStream(DiskCacheManager diskCacheManager, Path file, DownloadParameters downloadParameters) throws FileNotFoundException {
-		super(file.resolve(".__tmp"));
-		this.tempFile = file.resolve(".__tmp");
+		super(file.getParent().resolve(file.getFileName().toString() + ".__tmp"));
+		this.tempFile = file.getParent().resolve(file.getFileName().toString() + ".__tmp");
 		this.diskCacheManager = diskCacheManager;
 		this.file = file;
 		this.downloadParameters = downloadParameters;
