@@ -4,13 +4,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -64,7 +68,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PluginManager {
-	private final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
+	private static final Map<String, FileSystem> fileSystems = new HashMap<>();
+	private static final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<Class<? extends Plugin>, Set<PluginContext>>();
 	private final Set<Path> loadedLocations = new HashSet<>();
 	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<PluginChangeListener>();
@@ -163,12 +168,12 @@ public class PluginManager {
 		if (Files.isDirectory(libFolder)) {
 			for (Path libFile : PathUtils.getDirectories(libFolder)) {
 				if (libFile.getFileName().toString().toLowerCase().endsWith(".jar")) {
-					FileJarClassLoader jarClassLoader = new FileJarClassLoader(classLoader, libFile, tempDir);
+					FileJarClassLoader jarClassLoader = new FileJarClassLoader(this, classLoader, libFile);
 					classLoader.add(jarClassLoader);
 				} else if (Files.isDirectory(libFile)) {
 					for (Path libFile2 : PathUtils.getDirectories(libFile)) {
 						if (libFile2.getFileName().toString().toLowerCase().endsWith(".jar")) {
-							FileJarClassLoader jarClassLoader = new FileJarClassLoader(classLoader, libFile2, tempDir);
+							FileJarClassLoader jarClassLoader = new FileJarClassLoader(this, classLoader, libFile2);
 							classLoader.add(jarClassLoader);
 						}
 					}
@@ -244,10 +249,10 @@ public class PluginManager {
 			throw new PluginException("Not a file: " + file.toString());
 		}
 		try {
-			FileJarClassLoader jarClassLoader = new FileJarClassLoader(getClass().getClassLoader(), file, tempDir);
+			FileJarClassLoader jarClassLoader = new FileJarClassLoader(this, getClass().getClassLoader(), file);
 			InputStream pluginStream = jarClassLoader.getResourceAsStream("plugin/plugin.xml");
 			if (pluginStream == null) {
-				throw new PluginException("No plugin/plugin.xml found");
+				throw new PluginException("No plugin/plugin.xml found in " + file.getFileName().toString());
 			}
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(pluginStream);
 			if (pluginDescriptor == null) {
@@ -721,5 +726,17 @@ public class PluginManager {
 	
 	public void setMetaDataManager(MetaDataManager metaDataManager) {
 		this.metaDataManager = metaDataManager;
+	}
+	
+	public FileSystem getOrCreateFileSystem(String location) throws IOException {
+		FileSystem fileSystem = fileSystems.get(location);
+		if (fileSystem == null) {
+			URI uri = URI.create("jar:" + new File(location).toURI());
+			Map<String, String> env = new HashMap<>();
+			env.put("create", "true");
+			fileSystem = FileSystems.newFileSystem(uri, env, null);
+			fileSystems.put(location, fileSystem);
+		}
+		return fileSystem;
 	}
 }

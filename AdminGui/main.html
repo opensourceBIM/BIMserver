@@ -131,6 +131,7 @@ function Main(address, user) {
 	this.logout = function() {
 		$(".sidespan").empty();
 		Global.bimServerApi.logout(function(){
+    		$.removeCookie("autologin" + window.document.location.port, {path: "/"});
 			$(".indexcontainer").load(Global.baseDir + "login.html", function(){
 				Global.notifier.setSelector(".indexStatus .status");
 				new Login(Global.bimServerApi.baseUrl);

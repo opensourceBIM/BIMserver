@@ -39,7 +39,6 @@ import org.bimserver.plugins.web.WebModulePlugin;
 
 public class PluginContext {
 
-	private static final Map<String, FileSystem> fileSystems = new HashMap<>();
 	private final PluginManager pluginManager;
 	private final ClassLoader classLoader;
 	private final PluginSourceType pluginType;
@@ -68,14 +67,7 @@ public class PluginContext {
 		case INTERNAL:
 			break;
 		case JAR_FILE:
-			fileSystem = fileSystems.get(location);
-			if (fileSystem == null) {
-				URI uri = URI.create("jar:" + new File(location).toURI());
-				Map<String, String> env = new HashMap<>();
-				env.put("create", "true");
-				fileSystem = FileSystems.newFileSystem(uri, env, null);
-				fileSystems.put(location, fileSystem);
-			}
+			fileSystem = pluginManager.getOrCreateFileSystem(location);
 			rootPath = fileSystem.getPath("/");
 			break;
 		default:

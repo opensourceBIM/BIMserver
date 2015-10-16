@@ -1,37 +1,29 @@
-function loadBimServerApi(address, notifier, callback, errorCallback) {
-	var timeoutId = window.setTimeout(function() {
-		notifier.setError("Could not connect");
-		errorCallback();
-	}, 3000);
-	if (address.endsWith("/")) {
-		address = address.substring(0, address.length - 1);
-	}
-	$.getScript(address + "/js/bimserverapi.js").done(function(){
-		window.clearTimeout(timeoutId);
-		if (typeof BimServerApi != 'function') {
-			notifier.setError("Could not connect");
-			errorCallback();
-		} else {
-			if (BimServerApi != null) {
-				Global.bimServerApi = new BimServerApi(address, notifier);
-				Global.bimServerApi.init(function(){
-					// TODO make 1 call
-					Global.bimServerApi.call("AdminInterface", "getServerInfo", {}, function(serverInfo){
-						Global.bimServerApi.call("AdminInterface", "getVersion", {}, function(version){
-							Global.bimServerApi.version = version;
-							callback(serverInfo);
-						});
-					});
-				});
-			} else {
-				window.clearTimeout(timeoutId);
-				notifier.setError("Could not find BIMserver API");
-				errorCallback();
-			}
+function loadBimServerApi(address, notifier, version, callback, errorCallback) {
+	requirejs.config({
+	    baseUrl: address + "/js",
+	    urlArgs: "bust=" + version
+	});
+
+	requirejs(["bimserverapi_BimServerApi", "bimserverapi_BimServerApiPromise"], function(BimServerApi, BimServerApiPromise) {
+		if (window.Global == null) {
+			window.Global = {};
 		}
-	}).fail(function(jqxhr, settings, exception){
-		window.clearTimeout(timeoutId);
-		notifier.setError("Could not connect");
+		// Convenience hack for now, until BIMvie.ws is converted to requirejs as well
+		window.BimServerApiPromise = BimServerApiPromise;
+		
+		if (address.endsWith("/")) {
+			address = address.substring(0, address.length - 1);
+		}
+		if (BimServerApi != null) {
+			var bimServerApi = new BimServerApi(address, notifier);
+			bimServerApi.init(callback);
+		} else {
+			notifier.setError("Could not find BIMserver API");
+			errorCallback();
+		}
+	}, function (err) {
+		console.log(err);
+		notifier.setError("Error " + err);
 		errorCallback();
 	});
 }
