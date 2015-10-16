@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystemAlreadyExistsException;
+import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -740,11 +741,15 @@ public class PluginManager {
 			baseURI = "jar:" + baseURI;
 			LOGGER.info("Base URI: " + baseURI);
 			URI uri = URI.create(baseURI);
-			Map<String, String> env = new HashMap<>();
-			env.put("create", "true");
 			try {
-				fileSystem = FileSystems.newFileSystem(uri, env, null);
-				LOGGER.info("Created VFS for " + location);
+				try {
+					fileSystem = FileSystems.getFileSystem(uri);
+				} catch (FileSystemNotFoundException e) {
+					Map<String, String> env = new HashMap<>();
+					env.put("create", "true");
+					fileSystem = FileSystems.newFileSystem(uri, env, null);
+					LOGGER.info("Created VFS for " + location);
+				}
 			} catch (FileSystemAlreadyExistsException e) {
 				LOGGER.error(location, e);
 			}
