@@ -737,6 +737,7 @@ public class PluginManager {
 			env.put("create", "true");
 			try {
 				fileSystem = FileSystems.newFileSystem(uri, env, null);
+				LOGGER.info("Created VFS for " + location);
 			} catch (FileSystemAlreadyExistsException e) {
 				LOGGER.error(location, e);
 			}
