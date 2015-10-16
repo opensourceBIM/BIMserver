@@ -20,6 +20,8 @@ package org.bimserver.plugins.web;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -97,11 +99,15 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 			if (!requestUri.equals("index.html")) {
 				response.setHeader("Expires", FAR_FUTURE_EXPIRE_DATE);
 			}
-			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(getSubDir() + requestUri);
+			Path resolved = pluginContext.getRootPath().resolve(getSubDir() + requestUri);
+			InputStream resourceAsInputStream = Files.newInputStream(resolved);
 //			LOGGER.info("Getting " + getSubDir() + path + " results in: " + resourceAsInputStream);
 			if (resourceAsInputStream != null) {
-				IOUtils.copy(resourceAsInputStream, response.getOutputStream());
-				resourceAsInputStream.close();
+				try {
+					IOUtils.copy(resourceAsInputStream, response.getOutputStream());
+				} finally {
+					resourceAsInputStream.close();
+				}
 				return true;
 			} else {
 				return false;

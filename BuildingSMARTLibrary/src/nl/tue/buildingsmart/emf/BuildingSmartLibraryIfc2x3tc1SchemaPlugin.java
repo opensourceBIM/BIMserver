@@ -43,7 +43,7 @@ public class BuildingSmartLibraryIfc2x3tc1SchemaPlugin extends AbstractSchemaPlu
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
 		try {
 			String schemaName = "IFC2X3_TC1.exp";
-			InputStream inputStream = pluginContext.getResourceAsInputStream("schema/" + schemaName);
+			InputStream inputStream = Files.newInputStream(pluginContext.getRootPath().resolve("schema/" + schemaName));
 			try {
 				byte[] data = IOUtils.toByteArray(inputStream);
 				if (!Files.exists(pluginManager.getTempDir())) {

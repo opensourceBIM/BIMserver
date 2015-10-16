@@ -43,7 +43,7 @@ public class BuildingSmartLibraryIfc4SchemaPlugin extends AbstractSchemaPlugin {
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
 		try {
 			String schemaName = "IFC4.exp";
-			InputStream inputStream = pluginContext.getResourceAsInputStream("schema/" + schemaName);
+			InputStream inputStream = Files.newInputStream(pluginContext.getRootPath().resolve("schema/" + schemaName));
 			try {
 				byte[] data = IOUtils.toByteArray(inputStream);
 				if (!Files.exists(pluginManager.getTempDir())) {

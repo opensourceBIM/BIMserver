@@ -46,39 +46,42 @@ public class FileJarClassLoader extends JarClassLoader {
 		}
 	}
 
-	private void loadEmbeddedJarFileSystems(Path path) {
+	private void loadEmbeddedJarFileSystems() {
 		if (!embeddedJarFilesLoaded) {
-			
-			try {
-				if (Files.isDirectory(path)) {
-					for (Path subPath : PathUtils.list(path)) {
-						loadEmbeddedJarFileSystems(subPath);
-					}
-				} else {
-					// This is annoying, but we are caching the contents of JAR files within JAR files in memory, could not get the JarFileSystem to work with jar:jar:file URI's
-					// Also there is a problem with not being able to change position within a file, at least in the JarFileSystem
-					// It looks like there are 2 other solutions to this problem:
-					// - Copy the embedded JAR files to a tmp directory, and load from there with a JarFileSystem wrapper (at some stage we were doing this for all JAR contents, 
-					// resulted in 50.000 files, which was annoying, but a few JAR files probably won't hurt
-					// - Don't allow plugins to have embedded JAR's, could force them to extract all dependencies...
-					//
-					if (path.getFileName().toString().toLowerCase().endsWith(".jar")) {
-						JarInputStream jarInputStream = new JarInputStream(Files.newInputStream(path));
-						try {
-							JarEntry jarEntry = jarInputStream.getNextJarEntry();
-							while (jarEntry != null) {
-								jarContent.put(jarEntry.getName(), IOUtils.toByteArray(jarInputStream));
-								jarEntry = jarInputStream.getNextJarEntry();
-							}
-						} finally {
-							jarInputStream.close();
+			loadEmbeddedJarFileSystems(fileSystem.getPath("/"));
+			embeddedJarFilesLoaded = true;
+		}
+	}
+	
+	private void loadEmbeddedJarFileSystems(Path path) {
+		try {
+			if (Files.isDirectory(path)) {
+				for (Path subPath : PathUtils.list(path)) {
+					loadEmbeddedJarFileSystems(subPath);
+				}
+			} else {
+				// This is annoying, but we are caching the contents of JAR files within JAR files in memory, could not get the JarFileSystem to work with jar:jar:file URI's
+				// Also there is a problem with not being able to change position within a file, at least in the JarFileSystem
+				// It looks like there are 2 other solutions to this problem:
+				// - Copy the embedded JAR files to a tmp directory, and load from there with a JarFileSystem wrapper (at some stage we were doing this for all JAR contents, 
+				// resulted in 50.000 files, which was annoying, but a few JAR files probably won't hurt
+				// - Don't allow plugins to have embedded JAR's, could force them to extract all dependencies...
+				//
+				if (path.getFileName().toString().toLowerCase().endsWith(".jar")) {
+					JarInputStream jarInputStream = new JarInputStream(Files.newInputStream(path));
+					try {
+						JarEntry jarEntry = jarInputStream.getNextJarEntry();
+						while (jarEntry != null) {
+							jarContent.put(jarEntry.getName(), IOUtils.toByteArray(jarInputStream));
+							jarEntry = jarInputStream.getNextJarEntry();
 						}
+					} finally {
+						jarInputStream.close();
 					}
 				}
-				embeddedJarFilesLoaded = true;
-			} catch (IOException e) {
-				LOGGER.error("", e);
 			}
+		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
 	}
 
@@ -118,7 +121,7 @@ public class FileJarClassLoader extends JarClassLoader {
 	}
 
 	private Lazy<InputStream> findPath(final String name) throws IOException {
-		loadEmbeddedJarFileSystems(fileSystem.getPath("/"));
+		loadEmbeddedJarFileSystems();
 		final Path file = this.fileSystem.getPath(name);
 		if (Files.exists(file)) {
 			return new Lazy<InputStream>(){
@@ -144,6 +147,9 @@ public class FileJarClassLoader extends JarClassLoader {
 	
 	@Override
 	public Class<?> findClass(String name) throws ClassNotFoundException {
+		if (name.contains("Tuple3f")) {
+			System.out.println();
+		}
 		String fileName = name.replace(".", "/") + ".class";
 		if (loadedClasses.containsKey(fileName)) {
 			return loadedClasses.get(fileName);

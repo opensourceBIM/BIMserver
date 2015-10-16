@@ -1,6 +1,8 @@
 package org.bimserver.demoplugins.service;
 
-import org.apache.commons.io.IOUtils;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.plugins.services.AbstractAddExtendedDataService;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -14,7 +16,7 @@ public class HtmlService extends AbstractAddExtendedDataService {
 
 	@Override
 	public void newRevision(RunningService runningService, BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws Exception {
-		byte[] bytes = IOUtils.toByteArray(getPluginContext().getResourceAsInputStream("data/example.html"));
-		addExtendedData(bytes, "example.html", "HTML Demo Results", "text/html", bimServerClientInterface, roid);
+		Path path = getPluginContext().getRootPath().resolve("data").resolve("example.html");
+		addExtendedData(Files.readAllBytes(path), "example.html", "HTML Demo Results", "text/html", bimServerClientInterface, roid);
 	}
 }

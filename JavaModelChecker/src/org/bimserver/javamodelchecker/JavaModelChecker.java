@@ -3,6 +3,7 @@ package org.bimserver.javamodelchecker;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -20,7 +21,6 @@ import org.bimserver.models.store.ModelCheckerResult;
 import org.bimserver.plugins.VirtualClassLoader;
 import org.bimserver.plugins.VirtualFile;
 import org.bimserver.plugins.VirtualFileManager;
-import org.bimserver.plugins.VirtualFileManager2;
 import org.bimserver.plugins.modelchecker.ModelCheckException;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.slf4j.Logger;
@@ -31,10 +31,12 @@ public class JavaModelChecker implements ModelChecker {
 	private static String libPath = System.getProperty("java.class.path");
 	private ClassLoader classLoader;
 	private JavaFileManager pluginFileManager;
+	private Path rootPath;
 
-	public JavaModelChecker(ClassLoader classLoader, JavaFileManager pluginFileManager) {
+	public JavaModelChecker(ClassLoader classLoader, Path rootPath) {
 		this.classLoader = classLoader;
-		this.pluginFileManager = pluginFileManager;
+		this.rootPath = rootPath;
+		this.pluginFileManager = ToolProvider.getSystemJavaCompiler().getStandardFileManager(null, null, null);
 	}
 
 	@Override

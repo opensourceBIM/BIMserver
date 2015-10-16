@@ -2,6 +2,8 @@ package org.bimserver.demoplugins.service;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +39,7 @@ import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
 import org.bimserver.plugins.ModelHelper;
+import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
@@ -82,7 +85,10 @@ public class FurniturePlacerServicePlugin extends AbstractModifyRevisionService 
 		
 		Deserializer deserializer = deserializerPlugin.createDeserializer(null);
 		deserializer.init(model.getPackageMetaData());
-		InputStream resourceAsInputStream = getPluginManager().getPluginContext(FurniturePlacerServicePlugin.this).getResourceAsInputStream("data/picknicktable.ifc");
+		PluginContext pluginContext = getPluginManager().getPluginContext(FurniturePlacerServicePlugin.this);
+		Path pickNickTableFile = pluginContext.getRootPath().resolve("data").resolve("picknicktable.ifc");
+		InputStream resourceAsInputStream = Files.newInputStream(pickNickTableFile);
+		
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 		IOUtils.copy(resourceAsInputStream, byteArrayOutputStream);
 		resourceAsInputStream.close();

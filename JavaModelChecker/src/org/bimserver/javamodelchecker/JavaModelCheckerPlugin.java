@@ -51,6 +51,6 @@ public class JavaModelCheckerPlugin implements ModelCheckerPlugin {
 	@Override
 	public ModelChecker createModelChecker(PluginConfiguration pluginConfiguration) {
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
-		return new JavaModelChecker(pluginContext.getClassLoader(), pluginContext.getFileManager());
+		return new JavaModelChecker(pluginContext.getClassLoader(), pluginContext.getRootPath());
 	}
 }

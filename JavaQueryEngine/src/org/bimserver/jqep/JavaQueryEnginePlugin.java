@@ -75,7 +75,7 @@ public class JavaQueryEnginePlugin implements QueryEnginePlugin {
 	@Override
 	public QueryEngine getQueryEngine(PluginConfiguration pluginConfiguration) {
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
-		return new JavaQueryEngine(pluginContext.getClassLoader(), pluginContext.getFileManager());
+		return new JavaQueryEngine(pluginContext.getClassLoader(), pluginContext.getRootPath());
 	}
 
 	@Override
