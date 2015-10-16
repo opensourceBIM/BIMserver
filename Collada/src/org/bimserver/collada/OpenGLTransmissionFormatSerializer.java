@@ -163,7 +163,7 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 		// Write the opening brace and a new-line.
 		jsonOutputStream.write(String.format("{%n").getBytes());
 		// Put the individual files into a JSON file.
-		for (Path f : PathUtils.getDirectories(writeDirectory)) {
+		for (Path f : PathUtils.list(writeDirectory)) {
 			addFileToJSON(jsonOutputStream, f);
 		}
 		// Write the closing brace.
@@ -195,7 +195,7 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 		// Create the archive.
 		ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
 		// Copy the files into the ZIP file.
-		for (Path f : PathUtils.getDirectories(writeDirectory)) {
+		for (Path f : PathUtils.list(writeDirectory)) {
 			addToZipFile(f, zipOutputStream);
 		}
 		// Push the data into the parent stream (gets returned to the server).

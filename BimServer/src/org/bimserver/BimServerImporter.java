@@ -144,7 +144,7 @@ public class BimServerImporter {
 						User user = users.get(revision.getUserId());
 						Path userFolder = incoming.resolve(user.getUsername());
 						boolean found = false;
-						for (Path file : PathUtils.getDirectories(userFolder)) {
+						for (Path file : PathUtils.list(userFolder)) {
 							if (file.getFileName().toString().endsWith(revision.getComment())) {
 								String dateStr = file.getFileName().toString().substring(0, 19);
 								Date parse = dateFormat.parse(dateStr);

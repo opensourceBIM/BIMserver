@@ -36,6 +36,7 @@ public class CacheStoringEmfSerializerDataSource extends EmfSerializerDataSource
 		try {
 			super.writeToOutputStream(new MultiplexingOutputStream(outputStream, diskCacheOutputStream), progressReporter);
 		} catch (Exception e) {
+			e.printStackTrace();
 			diskCacheOutputStream.remove();
 			throw e;
 		}

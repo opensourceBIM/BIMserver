@@ -79,7 +79,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	public BerkeleyKeyValueStore(Path dataDir) throws DatabaseInitException {
 		if (Files.isDirectory(dataDir)) {
 			try {
-				if (PathUtils.getDirectories(dataDir).size() > 0) {
+				if (PathUtils.list(dataDir).size() > 0) {
 					LOGGER.info("Non-empty database directory found \"" + dataDir.toString() + "\"");
 					isNew = false;
 				} else {

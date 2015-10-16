@@ -21,7 +21,7 @@ public class LocalDevelopmentResourceFetcher extends ResourceFetcher {
 	@Override
 	public Path getFile(String name) throws IOException {
 		if (name.startsWith("lib")) {
-			for (Path projectFile : PathUtils.getDirectories(Paths.get(".."))) {
+			for (Path projectFile : PathUtils.list(Paths.get(".."))) {
 				Path file = projectFile.resolve(name);
 				if (Files.exists(file)) {
 					return file;

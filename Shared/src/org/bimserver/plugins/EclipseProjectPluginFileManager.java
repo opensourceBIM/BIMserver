@@ -19,6 +19,7 @@ package org.bimserver.plugins;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Set;

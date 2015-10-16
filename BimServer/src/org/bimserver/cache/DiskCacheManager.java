@@ -32,7 +32,7 @@ public class DiskCacheManager {
 			if (!Files.exists(cacheDir)) {
 					Files.createDirectory(cacheDir);
 			}
-			for (Path file : PathUtils.getDirectories(this.cacheDir)) {
+			for (Path file : PathUtils.list(this.cacheDir)) {
 				if (file.getFileName().toString().endsWith(".__tmp")) {
 					Files.delete(file);
 				} else {
@@ -107,7 +107,7 @@ public class DiskCacheManager {
 	public synchronized Integer cleanup() {
 		int removed = 0;
 		try {
-			for (Path file : PathUtils.getDirectories(cacheDir)) {
+			for (Path file : PathUtils.list(cacheDir)) {
 				try {
 					Files.delete(file);
 					removed++;

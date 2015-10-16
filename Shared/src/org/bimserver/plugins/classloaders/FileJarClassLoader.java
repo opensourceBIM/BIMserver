@@ -1,9 +1,12 @@
 package org.bimserver.plugins.classloaders;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -12,10 +15,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.jar.JarEntry;
+import java.util.jar.JarInputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.utils.PathUtils;
 import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,46 +29,119 @@ import org.slf4j.LoggerFactory;
 public class FileJarClassLoader extends JarClassLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileJarClassLoader.class);
 	private final Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
+	private final Map<String, byte[]> jarContent = new HashMap<>();
 	private Path jarFile;
 	private FileSystem fileSystem;
+	private boolean embeddedJarFilesLoaded = false;
 
 	public FileJarClassLoader(PluginManager pluginManager, ClassLoader parentClassLoader, Path jarFile) throws FileNotFoundException, IOException {
 		super(parentClassLoader);
 		this.jarFile = jarFile;
-		fileSystem = pluginManager.getOrCreateFileSystem(jarFile.toAbsolutePath().toString());
+		URI uri = jarFile.toUri();
+		try {
+			URI x = new URI("jar:" + uri.toString());
+			fileSystem = pluginManager.getOrCreateFileSystem(x);
+		} catch (URISyntaxException e) {
+			LOGGER.error("", e);
+		}
+	}
+
+	private void loadEmbeddedJarFileSystems(Path path) {
+		if (!embeddedJarFilesLoaded) {
+			
+			try {
+				if (Files.isDirectory(path)) {
+					for (Path subPath : PathUtils.list(path)) {
+						loadEmbeddedJarFileSystems(subPath);
+					}
+				} else {
+					// This is annoying, but we are caching the contents of JAR files within JAR files in memory, could not get the JarFileSystem to work with jar:jar:file URI's
+					// Also there is a problem with not being able to change position within a file, at least in the JarFileSystem
+					// It looks like there are 2 other solutions to this problem:
+					// - Copy the embedded JAR files to a tmp directory, and load from there with a JarFileSystem wrapper (at some stage we were doing this for all JAR contents, 
+					// resulted in 50.000 files, which was annoying, but a few JAR files probably won't hurt
+					// - Don't allow plugins to have embedded JAR's, could force them to extract all dependencies...
+					//
+					if (path.getFileName().toString().toLowerCase().endsWith(".jar")) {
+						JarInputStream jarInputStream = new JarInputStream(Files.newInputStream(path));
+						try {
+							JarEntry jarEntry = jarInputStream.getNextJarEntry();
+							while (jarEntry != null) {
+								jarContent.put(jarEntry.getName(), IOUtils.toByteArray(jarInputStream));
+								jarEntry = jarInputStream.getNextJarEntry();
+							}
+						} finally {
+							jarInputStream.close();
+						}
+					}
+				}
+				embeddedJarFilesLoaded = true;
+			} catch (IOException e) {
+				LOGGER.error("", e);
+			}
+		}
 	}
 
 	@Override
 	public URL findResource(String name) {
-		final Path path = fileSystem.getPath(name);
-		if (Files.exists(path)) {
-			try {
-				URL baseUrl = new URL("file:" + name);
-				URL url = new URL(baseUrl, name, new URLStreamHandler() {
-					@Override
-					protected URLConnection openConnection(URL u) throws IOException {
-						return new URLConnection(u) {
-							@Override
-							public void connect() throws IOException {
-							}
+		try {
+			final Lazy<InputStream> lazyInputStream = findPath(name);
+			if (lazyInputStream != null) {
+				try {
+					URL baseUrl = new URL("file:" + name);
+					URL url = new URL(baseUrl, name, new URLStreamHandler() {
+						@Override
+						protected URLConnection openConnection(URL u) throws IOException {
+							return new URLConnection(u) {
+								@Override
+								public void connect() throws IOException {
+								}
 
-							@Override
-							public InputStream getInputStream() throws IOException {
-								return Files.newInputStream(path);
-							}
-						};
-					}
-				});
-				return url;
-			} catch (MalformedURLException e) {
-				LOGGER.error("", e);
+								@Override
+								public InputStream getInputStream() throws IOException {
+									return lazyInputStream.get();
+								}
+							};
+						}
+					});
+					return url;
+				} catch (MalformedURLException e) {
+					LOGGER.error("", e);
+				}
+			} else {
+				LOGGER.info("File not found: " + name + " (in " + jarFile.getFileName().toString() + ")");
 			}
-		} else {
-			LOGGER.info("File not found: " + name + " (in " + jarFile.getFileName().toString() + ")");
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 		return null;
 	}
 
+	private Lazy<InputStream> findPath(final String name) throws IOException {
+		loadEmbeddedJarFileSystems(fileSystem.getPath("/"));
+		final Path file = this.fileSystem.getPath(name);
+		if (Files.exists(file)) {
+			return new Lazy<InputStream>(){
+				@Override
+				public InputStream get() {
+					try {
+						return Files.newInputStream(file);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					return null;
+				}};
+		}
+		if (jarContent.containsKey(name)) {
+			return new Lazy<InputStream>(){
+				@Override
+				public InputStream get() {
+					return new ByteArrayInputStream(jarContent.get(name));
+				}};
+		}
+		return null;
+	}
+	
 	@Override
 	public Class<?> findClass(String name) throws ClassNotFoundException {
 		String fileName = name.replace(".", "/") + ".class";
@@ -70,11 +149,11 @@ public class FileJarClassLoader extends JarClassLoader {
 			return loadedClasses.get(fileName);
 		}
 		try {
-			Path file = fileSystem.getPath(fileName);
-			if (!Files.exists(file)) {
+			Lazy<InputStream> lazyInputStream = findPath(fileName);
+			if (lazyInputStream == null) {
 				throw new ClassNotFoundException();
 			}
-			InputStream inputStream = Files.newInputStream(file);
+			InputStream inputStream = lazyInputStream.get();
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 			try {
 				IOUtils.copy(inputStream, byteArrayOutputStream);

@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class PathUtils {
-	public static List<Path> getDirectories(final Path dir) throws IOException {
+	public static List<Path> list(final Path dir) throws IOException {
 		final List<Path> dirlist = new ArrayList<>();
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 			for (final Iterator<Path> it = stream.iterator(); it.hasNext();) {

@@ -29,7 +29,7 @@ public class TestUploadDir {
 			client.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 			
 			Path directory = Paths.get("d:\\testfiles");
-			for (Path f :  PathUtils.getDirectories(directory)) {
+			for (Path f :  PathUtils.list(directory)) {
 				process(f, null);
 			}
 		} catch (ServiceException e) {
@@ -49,7 +49,7 @@ public class TestUploadDir {
 			} else {
 				project = client.getBimsie1ServiceInterface().addProjectAsSubProject(directory.getFileName().toString(), parentProject.getOid(), "ifc2x3tc1");
 			}
-			for (Path file : PathUtils.getDirectories(directory)) {
+			for (Path file : PathUtils.list(directory)) {
 				process(file, project);
 			}
 		} else {
