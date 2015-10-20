@@ -49,7 +49,9 @@ public class DiskCacheOutputStream extends RemovableFileOutputStream {
 	@Override
 	public void remove() throws IOException {
 		super.remove();
-		Files.delete(this.tempFile);
+		if (Files.exists(this.tempFile)) {
+			Files.delete(this.tempFile);
+		}
 		diskCacheManager.remove(this);
 		latch.countDown();
 	}
