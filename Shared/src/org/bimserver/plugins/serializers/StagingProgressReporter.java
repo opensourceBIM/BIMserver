@@ -46,4 +46,10 @@ public class StagingProgressReporter implements ProgressReporter {
 			progressReporter.update((long) (totalPerc * 1000), 1000);
 		}
 	}
+
+	@Override
+	public void setTitle(String stage) {
+		// TODO Auto-generated method stub
+		
+	}
 }
