@@ -225,15 +225,40 @@ public class DownloadServlet extends SubServlet {
 					final ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
 
 					ProgressReporter progressReporter = new ProgressReporter() {
+						private long lastMax;
+						private long lastProgress;
+						private int stage = 3;
+						private Date start = new Date();
+						private String title = "Downloading...";
+						
 						@Override
 						public void update(long progress, long max) {
 							if (progressTopic != null) {
 								LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
-								ds.setStart(new Date());
+								ds.setStart(start);
 								ds.setState(progress == max ? ActionState.FINISHED : ActionState.STARTED);
-								ds.setTitle("Downloading...");
-								ds.setStage(3);
+								ds.setTitle(title);
+								ds.setStage(stage);
 								ds.setProgress((int) Math.round(100.0 * progress / max));
+
+								progressTopic.stageProgressUpdate(ds);
+								
+								this.lastMax = max;
+								this.lastProgress = progress;
+							}
+						}
+
+						@Override
+						public void setTitle(String title) {
+							if (progressTopic != null) {
+								stage++;
+								this.title = title;
+								LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
+								ds.setStart(new Date());
+								ds.setState(lastProgress == lastMax ? ActionState.FINISHED : ActionState.STARTED);
+								ds.setTitle(title);
+								ds.setStage(stage);
+								ds.setProgress((int) Math.round(100.0 * lastProgress / lastMax));
 
 								progressTopic.stageProgressUpdate(ds);
 							}
