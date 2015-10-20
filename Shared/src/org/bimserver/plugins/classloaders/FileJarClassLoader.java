@@ -30,7 +30,7 @@ public class FileJarClassLoader extends JarClassLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileJarClassLoader.class);
 	private final Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
 	private final Map<String, byte[]> jarContent = new HashMap<>();
-	private Path jarFile;
+	private final Path jarFile;
 	private FileSystem fileSystem;
 	private boolean embeddedJarFilesLoaded = false;
 
