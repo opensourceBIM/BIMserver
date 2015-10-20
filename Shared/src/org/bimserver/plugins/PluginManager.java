@@ -12,7 +12,6 @@ import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -72,13 +71,14 @@ import org.slf4j.LoggerFactory;
 public class PluginManager {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<Class<? extends Plugin>, Set<PluginContext>>();
+	private final Map<Plugin, PluginContext> pluginToPluginContext = new HashMap<>();
 	private final Set<Path> loadedLocations = new HashSet<>();
 	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<PluginChangeListener>();
-	private Path tempDir;
+	private final Path tempDir;
 	private final String baseClassPath;
-	private ServiceFactory serviceFactory;
-	private NotificationsManagerInterface notificationsManagerInterface;
-	private SServicesMap servicesMap;
+	private final ServiceFactory serviceFactory;
+	private final NotificationsManagerInterface notificationsManagerInterface;
+	private final SServicesMap servicesMap;
 	private BimServerClientFactory bimServerClientFactory;
 	private MetaDataManager metaDataManager;
 
@@ -89,11 +89,6 @@ public class PluginManager {
 		this.serviceFactory = serviceFactory;
 		this.notificationsManagerInterface = notificationsManagerInterface;
 		this.servicesMap = servicesMap;
-	}
-
-	public PluginManager() {
-		this.tempDir = Paths.get(System.getProperty("java.io.tmpdir"));
-		this.baseClassPath = null;
 	}
 
 	public void loadPluginsFromEclipseProjectNoExceptions(Path projectRoot) {
@@ -323,15 +318,11 @@ public class PluginManager {
 	}
 
 	public PluginContext getPluginContext(Plugin plugin) {
-		// TODO make more efficient
-		for (Set<PluginContext> pluginContexts : implementations.values()) {
-			for (PluginContext pluginContext : pluginContexts) {
-				if (pluginContext.getPlugin() == plugin) {
-					return pluginContext;
-				}
-			}
+		PluginContext pluginContext = pluginToPluginContext.get(plugin);
+		if (pluginContext == null) {
+			throw new RuntimeException("No plugin context found for " + plugin);
 		}
-		throw new RuntimeException("No plugin context found for " + plugin);
+		return pluginContext;
 	}
 
 	/**
@@ -480,7 +471,9 @@ public class PluginManager {
 		}
 		Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
 		try {
-			set.add(new PluginContext(this, classLoader, pluginType, location, plugin, pluginImplementation, classLocation));
+			PluginContext pluginContext = new PluginContext(this, classLoader, pluginType, location, plugin, pluginImplementation, classLocation);
+			pluginToPluginContext.put(plugin, pluginContext);
+			set.add(pluginContext);
 		} catch (IOException e) {
 			throw new PluginException(e);
 		}
