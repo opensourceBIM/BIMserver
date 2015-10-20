@@ -104,6 +104,9 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	public VirtualFile createFile(String path) {
+		if (path.startsWith("/")) {
+			path = path.substring(1);
+		}
 		if (path.contains(File.separator)) {
 			String newName = path.substring(0, path.indexOf(File.separator));
 			if (files.containsKey(newName)) {
