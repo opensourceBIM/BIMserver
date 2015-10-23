@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/js-1.7R2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xml-resolver-1.2.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
+	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-core-3.0.3.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-rt-databinding-jaxb-3.0.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
