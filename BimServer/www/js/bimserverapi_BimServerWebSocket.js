@@ -11,8 +11,10 @@ define([], function(){
 		this.intervalId = null;
 	
 		this.connect = function(callback) {
-			if (callback != null) {
+			if (callback != null && typeof callback === "function") {
 				othis.openCallbacks.push(callback);
+			} else {
+				console.error("Callback was not a function", callback);
 			}
 			var location = bimServerApi.baseUrl.toString().replace('http://', 'ws://').replace('https://', 'wss://') + "/stream";
 			if ("WebSocket" in window) {
