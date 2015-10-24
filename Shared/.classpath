@@ -47,7 +47,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/other/jackson-databind-2.5.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/other/jackson-annotations-2.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/other/jimfs-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/other/truevfs-profile-default-0.11.0-all.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.4.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.4.3-src.zip"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.7.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.7.3-src.zip"/>
