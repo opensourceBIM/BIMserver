@@ -1,5 +1,10 @@
 "use strict"
 
+// NodeJS stuff
+if (XMLHttpRequest == null) {
+	XMLHttpRequest = require("xhr2");
+}
+
 define(
     ["bimserverapi_BimServerWebSocket", "bimserverapi_BimServerApiPromise", "bimserverapi_Model", "bimserverapi_Ifc2x3tc1", "bimserverapi_Ifc4", "bimserverapi_Translations_EN"], 
     function(BimServerWebSocket, BimServerApiPromise, Model, ifc2x3tc1, ifc4, translations){
