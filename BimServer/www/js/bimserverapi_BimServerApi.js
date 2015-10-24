@@ -661,6 +661,41 @@ define(
 	    		};
 	    		reader.readAsBinaryString(file);
 	    	};
+
+	    	this.addExtendedData = function(roid, file, success, error){
+	    		var reader = new FileReader();
+	    		var xhr = new XMLHttpRequest();
+	    		
+	    		xhr.addEventListener("load", function(e) {
+	    			var result = JSON.parse(this.response);
+	    			
+	    			if (result.exception == null) {
+	    				Global.bimServerApi.call("Bimsie1ServiceInterface", "addExtendedDataToRevision", {
+	    					roid: roid,
+	    					extendedData: {
+	    						__type: "SExtendedData",
+	    						title: $(".addextendeddata .title").val(),
+	    						schemaId: $(".addextendeddata .schemaSelect").val(),
+	    						fileId: result.fileId
+	    					}
+	    				}, function(){
+		    				success(result.checkinid);
+	    				});
+	    			} else {
+	    				error(result.exception);
+	    			}
+	    		}, false);
+	    		xhr.open("POST", Global.bimServerApi.baseUrl + "/upload");
+	    		reader.onload = function(evt) {
+	    			var formData = new FormData();
+	    			formData.append("action", "file");
+	    			formData.append("token", othis.token);
+	    			formData.append("file", file);
+	    			
+	    			xhr.send(formData);
+	    		};
+	    		reader.readAsBinaryString(file);
+	    	};
 	    	
 	    	this.setToken = function(token, callback, errorCallback) {
 	    		othis.token = token;
