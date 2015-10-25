@@ -27,6 +27,8 @@ import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.models.ifc2x3tc1.IfcBoolean;
+import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
@@ -94,6 +96,13 @@ public class SetWrappedAttributeChange implements Change {
 					throw new UserException("Not a wrapped type");
 				}
 				EObject wrappedObject = databaseSession.create(typeEClass);
+				if (wrappedObject instanceof IfcBoolean) {
+					if ((Boolean)value == true) {
+						value = Tristate.TRUE;
+					} else {
+						value = Tristate.FALSE;
+					}
+				}
 				wrappedObject.eSet(wrappedObject.eClass().getEStructuralFeature("wrappedValue"), value);
 				idEObject.eSet(eReference, wrappedObject);
 			}
