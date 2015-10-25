@@ -1,6 +1,6 @@
 package org.bimserver.tests.lowlevel;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -37,14 +37,16 @@ public class RemoveReferenceWithOpposite2 extends TestWithEmbeddedServer {
 			lowLevelInterface.commitTransaction(tid, "Initial");
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
+			
+			List<Long> references = lowLevelInterface.getReferences(tid, ifcRelAssignsToGroupOid, "RelatedObjects");
+			assertEquals("Number of references", 2, references.size());
+			
 			lowLevelInterface.removeReferenceByOid(tid, ifcRelAssignsToGroupOid, "RelatedObjects", ifcFurnishingElement1Oid);
 			lowLevelInterface.commitTransaction(tid, "2");
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
-			List<Long> references = lowLevelInterface.getReferences(tid, ifcFurnishingElement1Oid, "HasAssignments");
-			if (references.size() != 1) {
-				fail("References should be 1");
-			}
+			references = lowLevelInterface.getReferences(tid, ifcRelAssignsToGroupOid, "RelatedObjects");
+			assertEquals("Number of references", 1, references.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());

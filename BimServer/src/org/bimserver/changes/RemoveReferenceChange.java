@@ -98,6 +98,7 @@ public class RemoveReferenceChange implements Change {
 			if (oppositeReference.isMany()) {
 				List oppositeList = (List)referenced.eGet(oppositeReference);
 				oppositeList.remove(idEObject);
+				((List)idEObject.eGet(eReference)).remove(referenced); // Opposites don't seem to work here, no clue why, let's just delete...
 				databaseSession.store(referenced, project.getId(), concreteRevision.getId());
 			} else {
 				referenced.eSet(oppositeReference, null); // This will automatically remove the object from the list
