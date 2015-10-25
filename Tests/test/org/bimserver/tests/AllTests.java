@@ -30,6 +30,7 @@ import org.bimserver.tests.lowlevel.RemoveObject;
 import org.bimserver.tests.lowlevel.RemoveObject2;
 import org.bimserver.tests.lowlevel.RemoveReferenceWithOpposite;
 import org.bimserver.tests.lowlevel.SetReferenceWithOpposite;
+import org.bimserver.tests.lowlevel.SetString;
 import org.bimserver.tests.lowlevel.UnsetReference;
 import org.bimserver.tests.lowlevel.UnsetReferenceWithOpposite;
 import org.bimserver.tests.serviceinterface.MultiCheckinAndDownload;
@@ -50,6 +51,7 @@ import org.junit.runners.Suite;
         CreateUnknownType.class,
         GetDataObjectsByType.class,
         IfcMeasureWithUnit.class,
+        SetString.class,
         RemoveObject.class,
         RemoveObject2.class,
         RemoveReferenceWithOpposite.class,
@@ -98,7 +100,7 @@ public class AllTests {
 		bimServer = new BimServer(config);
 		try {
 			// CHANGE THESE TO MATCH YOUR CONFIGURATION
-			Path[] pluginDirectories = new Path[]{Paths.get("C:\\Git\\BIMserver")};
+			Path[] pluginDirectories = new Path[]{Paths.get("D:\\Git\\BIMserverMaster")};
 			
 			// Load plugins
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
