@@ -729,7 +729,6 @@ public class PluginManager {
 	}
 	
 	public FileSystem getOrCreateFileSystem(URI uri) throws IOException {
-		LOGGER.info(uri.toString());
 		FileSystem fileSystem = null;
 		try {
 			fileSystem = FileSystems.getFileSystem(uri);
@@ -737,7 +736,7 @@ public class PluginManager {
 			Map<String, String> env = new HashMap<>();
 			env.put("create", "true");
 			fileSystem = FileSystems.newFileSystem(uri, env, null);
-			LOGGER.info("Created VFS for " + uri);
+			LOGGER.debug("Created VFS for " + uri);
 		}
 		return fileSystem;
 	}
