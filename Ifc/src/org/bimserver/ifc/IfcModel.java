@@ -973,8 +973,8 @@ public abstract class IfcModel implements IfcModelInterface {
 	@Override
 	public void fixInverseMismatches() {
 		int nrFixes = 0;
-		for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : getAll(IfcRelContainedInSpatialStructure.class)) {
-			for (IfcProduct ifcProduct : ifcRelContainedInSpatialStructure.getRelatedElements()) {
+		for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : new ArrayList<>(getAll(IfcRelContainedInSpatialStructure.class))) {
+			for (IfcProduct ifcProduct : new ArrayList<>(ifcRelContainedInSpatialStructure.getRelatedElements())) {
 				if (ifcProduct instanceof IfcElement) {
 					IfcElement ifcElement = (IfcElement)ifcProduct;
 					ifcElement.getContainedInStructure().add(ifcRelContainedInSpatialStructure);
@@ -990,8 +990,8 @@ public abstract class IfcModel implements IfcModelInterface {
 				}
 			}
 		}
-		for (IfcPresentationLayerAssignment ifcPresentationLayerAssignment : getAllWithSubTypes(IfcPresentationLayerAssignment.class)) {
-			for (IfcLayeredItem ifcLayeredItem : ifcPresentationLayerAssignment.getAssignedItems()) {
+		for (IfcPresentationLayerAssignment ifcPresentationLayerAssignment : new ArrayList<>(getAllWithSubTypes(IfcPresentationLayerAssignment.class))) {
+			for (IfcLayeredItem ifcLayeredItem : new ArrayList<>(ifcPresentationLayerAssignment.getAssignedItems())) {
 				if (ifcLayeredItem instanceof IfcRepresentation) {
 					IfcRepresentation ifcRepresentation = (IfcRepresentation)ifcLayeredItem;
 					ifcRepresentation.getLayerAssignments().add(ifcPresentationLayerAssignment);
@@ -1003,8 +1003,8 @@ public abstract class IfcModel implements IfcModelInterface {
 				}
 			}
 		}
-		for (IfcRelAssociates ifcRelAssociates : getAllWithSubTypes(IfcRelAssociates.class)) {
-			for (IfcRoot ifcRoot : ifcRelAssociates.getRelatedObjects()) {
+		for (IfcRelAssociates ifcRelAssociates : new ArrayList<>(getAllWithSubTypes(IfcRelAssociates.class))) {
+			for (IfcRoot ifcRoot : new ArrayList<>(ifcRelAssociates.getRelatedObjects())) {
 				if (ifcRoot instanceof IfcObjectDefinition) {
 					((IfcObjectDefinition)ifcRoot).getHasAssociations().add(ifcRelAssociates);
 					nrFixes++;
@@ -1014,29 +1014,29 @@ public abstract class IfcModel implements IfcModelInterface {
 				}
 			}
 		}
-		for (IfcTerminatorSymbol ifcTerminatorSymbol : getAllWithSubTypes(IfcTerminatorSymbol.class)) {
+		for (IfcTerminatorSymbol ifcTerminatorSymbol : new ArrayList<>(getAllWithSubTypes(IfcTerminatorSymbol.class))) {
 			IfcAnnotationCurveOccurrence ifcAnnotationCurveOccurrence = ifcTerminatorSymbol.getAnnotatedCurve();
 			if (ifcAnnotationCurveOccurrence instanceof IfcDimensionCurve) {
 				((IfcDimensionCurve)ifcAnnotationCurveOccurrence).setItem(ifcTerminatorSymbol);
 				nrFixes++;
 			}
 		}
-		for (IfcRelReferencedInSpatialStructure ifcRelReferencedInSpatialStructure : getAllWithSubTypes(IfcRelReferencedInSpatialStructure.class)) {
-			for (IfcProduct ifcProduct : ifcRelReferencedInSpatialStructure.getRelatedElements()) {
+		for (IfcRelReferencedInSpatialStructure ifcRelReferencedInSpatialStructure : new ArrayList<>(getAllWithSubTypes(IfcRelReferencedInSpatialStructure.class))) {
+			for (IfcProduct ifcProduct : new ArrayList<>(ifcRelReferencedInSpatialStructure.getRelatedElements())) {
 				if (ifcProduct instanceof IfcElement) {
 					((IfcElement)ifcProduct).getReferencedInStructures().add(ifcRelReferencedInSpatialStructure);
 					nrFixes++;
 				}
 			}
 		}
-		for (IfcProduct ifcProduct : getAllWithSubTypes(IfcProduct.class)) {
+		for (IfcProduct ifcProduct : new ArrayList<>(getAllWithSubTypes(IfcProduct.class))) {
 			IfcProductRepresentation ifcProductRepresentation = ifcProduct.getRepresentation();
 			if (ifcProductRepresentation instanceof IfcProductDefinitionShape) {
 				((IfcProductDefinitionShape)ifcProductRepresentation).getShapeOfProduct().add(ifcProduct);
 				nrFixes++;
 			}
 		}
-		for (IfcRelConnectsStructuralActivity ifcRelConnectsStructuralActivity : getAllWithSubTypes(IfcRelConnectsStructuralActivity.class)) {
+		for (IfcRelConnectsStructuralActivity ifcRelConnectsStructuralActivity : new ArrayList<>(getAllWithSubTypes(IfcRelConnectsStructuralActivity.class))) {
 			IfcStructuralActivityAssignmentSelect ifcStructuralActivityAssignmentSelect = ifcRelConnectsStructuralActivity.getRelatingElement();
 			if (ifcStructuralActivityAssignmentSelect instanceof IfcStructuralItem) {
 				((IfcStructuralItem)ifcStructuralActivityAssignmentSelect).getAssignedStructuralActivity().add(ifcRelConnectsStructuralActivity);
