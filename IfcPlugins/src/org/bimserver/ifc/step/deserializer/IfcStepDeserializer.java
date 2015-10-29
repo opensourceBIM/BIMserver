@@ -245,11 +245,6 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 			}
 			break;
 		case FOOTER:
-			for (IdEObject idEObject : getModel().getValues()) {
-				if (idEObject.getOid() != -1) {
-					System.out.println(idEObject);
-				}
-			}
 			if (line.equals("ENDSEC;")) {
 				mode = Mode.DONE;
 			}
