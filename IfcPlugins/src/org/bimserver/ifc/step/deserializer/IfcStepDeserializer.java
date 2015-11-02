@@ -614,7 +614,7 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 							newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE + "AsString"), value);
 						} else if (instanceClass == String.class) {
 							newObject.eSet(newObject.eClass().getEStructuralFeature(WRAPPED_VALUE), readString(value));
-						} else if (instanceClass.getName().equals("Tristate")) {
+						} else if (instanceClass.getSimpleName().equals("Tristate")) {
 							Object tristate = null;
 							if (value.equals(".T.")) {
 								tristate = getPackageMetaData().getEEnumLiteral("Tristate", "TRUE");
