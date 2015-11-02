@@ -708,7 +708,7 @@ define(
 	    			othis.user = data;
 	    			othis.webSocket.connect(callback);
 	    		}, function(){
-	    			if (errorCallBack != null) {
+	    			if (errorCallback != null) {
 	    				errorCallback();
 	    			}
 	    		});
