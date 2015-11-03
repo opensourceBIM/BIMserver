@@ -65,7 +65,7 @@ function Login(address, username) {
 				// Stored cookie
 				$.cookie("autologin" + window.document.location.port, Global.bimServerApi.token, { expires: 31, path: "/"});
 				$.cookie("address" + window.document.location.port, Global.bimServerApi.baseUrl, { expires: 31, path: "/"});
-			} else if (!options.suppressSessionCookie) {
+			} else {
 				// Session cookie
 				$.cookie("autologin" + window.document.location.port, Global.bimServerApi.token, { path: "/"});
 				$.cookie("address" + window.document.location.port, Global.bimServerApi.baseUrl, { path: "/"});

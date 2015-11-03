@@ -110,7 +110,7 @@ function Setup(address) {
 	};
 	
 	this.stage2 = function(){
-		Global.bimServerApi.login($(".setup .adminUsernameInput").val(), $(".setup .adminPasswordInput").val(), true, function(data){
+		Global.bimServerApi.login($(".setup .adminUsernameInput").val(), $(".setup .adminPasswordInput").val(), function(data){
 			Global.bimServerApi.call("SettingsInterface", "getServerSettings", {}, function(serverSettings){
 				serverSettings.smtpServer = $(".setup .smtpServer").val();
 				serverSettings.smtpProtocol = $(".setup .smtpProtocol").val();
@@ -127,7 +127,7 @@ function Setup(address) {
 	};
 	
 	this.nostage2 = function(){
-		Global.bimServerApi.login($(".setup .adminUsernameInput").val(), $(".setup .adminPasswordInput").val(), true, function(data){
+		Global.bimServerApi.login($(".setup .adminUsernameInput").val(), $(".setup .adminPasswordInput").val(), function(data){
 			othis.finalStage();
 		});
 	};
