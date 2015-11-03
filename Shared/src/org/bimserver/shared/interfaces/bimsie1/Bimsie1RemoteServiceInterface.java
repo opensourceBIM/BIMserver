@@ -37,6 +37,20 @@ import org.bimserver.shared.interfaces.PublicInterface;
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface Bimsie1RemoteServiceInterface extends PublicInterface {
 	
+	/**
+	 * This method gets called when a new revision has been created
+	 * 
+	 * @param poid ProjectID
+	 * @param roid RevisionID
+	 * @param soid ServiceID (optional)
+	 * @param serviceIdentifier
+	 * @param profileIdentifier
+	 * @param userToken
+	 * @param token
+	 * @param apiUrl
+	 * @throws UserException
+	 * @throws ServerException
+	 */
 	@WebMethod(action = "newRevision")
 	void newRevision(
 		@WebParam(name = "poid", partName = "newRevision.poid") Long poid,
@@ -48,6 +62,20 @@ public interface Bimsie1RemoteServiceInterface extends PublicInterface {
 		@WebParam(name = "token", partName = "newRevision.token") String token,
 		@WebParam(name = "apiUrl", partName = "newRevision.apiUrl") String apiUrl) throws UserException, ServerException;
 
+	/**
+	 * This method gets called when new extended data has been added to a project
+	 * 
+	 * @param poid ProjectID
+	 * @param edid ExtendedDataID
+	 * @param soid ServiceID (optional)
+	 * @param serviceIdentifier
+	 * @param profileIdentifier
+	 * @param userToken
+	 * @param token
+	 * @param apiUrl
+	 * @throws UserException
+	 * @throws ServerException
+	 */
 	@WebMethod(action = "newExtendedDataOnProject")
 	void newExtendedDataOnProject(
 		@WebParam(name = "poid", partName = "newExtendedDataOnProject.poid") Long poid,
@@ -59,6 +87,21 @@ public interface Bimsie1RemoteServiceInterface extends PublicInterface {
 		@WebParam(name = "token", partName = "newExtendedDataOnProject.token") String token,
 		@WebParam(name = "apiUrl", partName = "newExtendedDataOnProject.apiUrl") String apiUrl) throws UserException, ServerException;
 
+	/**
+	 * This method gets called when new extended data has been added to a revision
+	 * 
+	 * @param poid
+	 * @param roid
+	 * @param edid
+	 * @param soid
+	 * @param serviceIdentifier
+	 * @param profileIdentifier
+	 * @param userToken
+	 * @param token
+	 * @param apiUrl
+	 * @throws UserException
+	 * @throws ServerException
+	 */
 	@WebMethod(action = "newExtendedDataOnRevision")
 	void newExtendedDataOnRevision(
 		@WebParam(name = "poid", partName = "newExtendedDataOnRevision.poid") Long poid,
@@ -71,15 +114,34 @@ public interface Bimsie1RemoteServiceInterface extends PublicInterface {
 		@WebParam(name = "token", partName = "newExtendedDataOnRevision.token") String token,
 		@WebParam(name = "apiUrl", partName = "newExtendedDataOnRevision.apiUrl") String apiUrl) throws UserException, ServerException;
 	
+	/**
+	 * @param serviceIdentifier
+	 * @return
+	 * @throws UserException
+	 * @throws ServerException
+	 */
 	@WebMethod(action = "getPublicProfiles")
 	List<SProfileDescriptor> getPublicProfiles(
 		@WebParam(name = "serviceIdentifier", partName = "getPrivateProfiles.serviceIdentifier") String serviceIdentifier) throws UserException, ServerException;
 	
+	/**
+	 * @param serviceIdentifier
+	 * @param token
+	 * @return
+	 * @throws UserException
+	 * @throws ServerException
+	 */
 	@WebMethod(action = "getPrivateProfiles")
 	List<SProfileDescriptor> getPrivateProfiles(
 		@WebParam(name = "serviceIdentifier", partName = "getPrivateProfiles.serviceIdentifier") String serviceIdentifier,
 		@WebParam(name = "token", partName = "getPrivateProfiles.token") String token) throws UserException, ServerException;
 
+	/**
+	 * @param serviceIdentifier
+	 * @return
+	 * @throws UserException
+	 * @throws ServerException
+	 */
 	@WebMethod(action = "getService")
 	SServiceDescriptor getService(
 		@WebParam(name = "serviceIdentifier", partName = "getService.serviceIdentifier") String serviceIdentifier) throws UserException, ServerException;
