@@ -35,12 +35,12 @@ public class CopyAdminAndBIMsieInterface {
 //	private static final File baseGitDir = new File("D:\\git");
 	private static final File bootstrap = new File(baseGitDir, "bimvie.ws");
 	private static final File bimsie = new File(baseGitDir, "BIMSie");
-	private static final File admin = new File(baseGitDir, "BIMserver2\\AdminGui");;
+	private static final File admin = new File(baseGitDir, "BIMserver3\\AdminGui");;
 
 	public static void main(String[] args) {
 		CopyAdminAndBIMsieInterface copyAdminAndBIMsieInterface = new CopyAdminAndBIMsieInterface();
 		copyAdminAndBIMsieInterface.copyAdminInterface();
-//		copyAdminAndBIMsieInterface.copyBimsieInterface();
+		copyAdminAndBIMsieInterface.copyBimsieInterface();
 	}
 
 	protected void copyBimsieInterface() {
