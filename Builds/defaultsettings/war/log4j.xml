@@ -29,6 +29,6 @@
 		<level value="error" />
 	</logger>
 	<root>
-		<priority value="debug" />
+		<priority value="info" />
 	</root>
 </log4j:configuration>
