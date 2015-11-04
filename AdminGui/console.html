@@ -60,9 +60,13 @@
 										<form class="parametersForm form-horizontal">
 										</form>
 									</div>
-									<div class="protocolSelector btn-group" data-toggle="buttons-radio">
-										<button type="button" class="btn btn-default active jsonRadio">JSON</button>
-										<button type="button" class="btn btn-default soapRadio">SOAP</button>
+									<div class="protocolSelector btn-group" data-toggle="buttons">
+										<label class="btn btn-default active">
+											<input type="radio" name="options" class="jsonRadio" id="option1" autocomplete="off" checked> JSON
+										</label>
+										<label class="btn btn-default">
+											<input type="radio" name="options" class="soapRadio" id="option2" autocomplete="off"> SOAP
+										</label>
 									</div>
 									<button class="btn btn-primary sendButton">Send</button>
 									<div class="textareas">
@@ -323,6 +327,8 @@ LazyLoad.js([
 			var example = "";
 			if (type.simpleName == "String") {
 				example += "\"" + $(".__field" + fieldName).val() + "\"";
+			} else if (type.name.contains("Long")) {
+				example += $(".__field" + fieldName).val();
 			} else if (type.name.contains("Boolean")) {
 				example += "\"" + $(".__field" + fieldName).is(":checked") + "\"";
 			} else if (type.simpleName == "Set"){
@@ -401,10 +407,14 @@ LazyLoad.js([
 			}());
 
 			var interfaceConstructor = global[othis.namespaceMapping[othis.lastCall.serviceInterface.simpleName]];
-			var interfaceObject = conthunktor(interfaceConstructor)();
-			var inputSerializer = interfaceObject[othis.lastCall.method.name + "_serializeInput"];
-			var code = inputSerializer(new CxfApacheOrgUtil(), params);
-			return vkbeautify.xml(code);
+			if (interfaceConstructor == null) {
+				console.error("No constructor found for", othis.lastCall.serviceInterface.simpleName);
+			} else {
+				var interfaceObject = conthunktor(interfaceConstructor)();
+				var inputSerializer = interfaceObject[othis.lastCall.method.name + "_serializeInput"];
+				var code = inputSerializer(new CxfApacheOrgUtil(), params);
+				return vkbeautify.xml(code);
+			}
 		};
 
 		this.inputChange = function() {
@@ -417,9 +427,14 @@ LazyLoad.js([
 			prettyPrint();
 		};
 
-		this.makeFieldFromType = function(call, fieldName, type, genericType, doc) {
+		this.makeFieldFromType = function(call, fieldName, type, genericType, doc, callback) {
 			var div = $("<div class=\"form-group\">");
-			var label = $("<label><a>" + fieldName + "</a></label>");
+			var fullTypeString = type.simpleName;
+			if (genericType != null) {
+				fullTypeString += "<" + genericType.simpleName + ">";
+			}
+			var label = $("<label><a></a></label>");
+			label.find("a").text(fieldName + " (" + fullTypeString + ")");
 			label.find("a").attr("title", doc);
 			label.find("a").tooltip();
 			var controls = $("<div class=\"controls\">");
@@ -438,7 +453,7 @@ LazyLoad.js([
 				select.change(othis.inputChange);
 				var request = {
 					request: {
-						interface: "MetaInterface",
+						"interface": "MetaInterface",
 						method: "getEnumLiterals",
 						parameters: {
 							enumName: type.name
@@ -450,10 +465,12 @@ LazyLoad.js([
 						var option = $("<option value=\"" + enumConstant + "\">" + enumConstant + "</option>");
 						select.append(option);
 					});
+					controls.append(select);
+					callback(div);
 				});
-				controls.append(select);
+				return;
 			} else if (type.name.contains("org.bimserver")) {
-				return $("<div>Unimplemented</div>");
+				controls.append("Complex objects have not been implemented in console.html");
 			} else if (type.name.contains("javax.activation.DataHandler")) {
 				var input = $("<input class=\"form-control\" type=\"file\"/>");
 				input.addClass("__field" + fieldName);
@@ -499,10 +516,8 @@ LazyLoad.js([
 				div.append(label);
 				
 				label.append(input);
-				
-				return div;
 			} else if (type.simpleName == "List") {
-				
+				controls.append("List objects have not been implemented in console.html");
 			} else {
 				var input = $("<input type=\"text\" class=\"form-control\"/>");
 				input.keyup(othis.inputChange);
@@ -510,9 +525,21 @@ LazyLoad.js([
 				input.addClass("__field" + fieldName);
 				controls.append(input);
 			}
-			return div;
+			callback(div);
 		};
 
+		this.loadParameter = function(container, call, index, method, keys, callback){
+			var parameter = method.parameters[keys[index]];
+			othis.makeFieldFromType(call, parameter.name, parameter.type, parameter.genericType, parameter.doc, function(div){
+				container.find(".parametersForm").append(div);
+				if (index + 1 < keys.length) {
+					othis.loadParameter(container, call, index + 1, method, keys, callback);
+				} else {
+					callback();
+				}
+			});
+		};
+		
 		this.loadExampleJson = function(call, serviceInterface, method, container) {
 			if ($(".jumbotron").is(":visible")) {
 				$(".jumbotron").hide();
@@ -533,14 +560,18 @@ LazyLoad.js([
 			container.find(".parametersForm *").remove();
 			container.find(".noparameters").hide();
 			container.find(".parameters").show();
-			method.parameters.forEach(function(parameter, index){
-				var div = othis.makeFieldFromType(call, parameter.name, parameter.type, parameter.genericType, parameter.doc);
-				container.find(".parametersForm").append(div);
-			});
-			container.show();
-			container.find(".parameters input:first").focus();
-			container.find(".responsediv").hide();
-			othis.inputChange();
+			
+			var keys = Object.keys(method.parameters);
+			if (keys.length > 0) {
+				othis.loadParameter(container, call, 0, method, keys, function(){
+					container.show();
+					container.find(".parameters input:first").focus();
+					container.find(".responsediv").hide();
+					othis.inputChange();
+				});
+			} else {
+				container.find(".parametersForm").append("<p>This method has no arguments</p>");
+			}
 		};
 
 		this.loadMethods = function(event) {
@@ -550,7 +581,7 @@ LazyLoad.js([
 			ConsoleSettings.getServiceInterfaces(othis, function(serviceInterfaces){
 				$(".innerMethodList").empty();
 				serviceInterfaces.forEach(function(serviceInterface, index){
-					var headerLi = $("<li class=\"list-group-item header\"><h3>" + serviceInterface.simpleName + "</h3></li>");
+					var headerLi = $("<li class=\"list-group-item header\"><h4>" + serviceInterface.simpleName + "</h4></li>");
 					$(".innerMethodList").append(headerLi);
 					serviceInterface.methods.forEach(function(serviceMethod){
 						var a = $("<a class=\"list-group-item\">" + serviceMethod.name + "</a>");
@@ -762,7 +793,7 @@ LazyLoad.js([
 			$(".scenarioNav").append(li);
 		});
 		
-		$(".soapRadio, .jsonRadio").click(function(){
+		$(".soapRadio, .jsonRadio").change(function(){
 			if ($(this).hasClass("jsonRadio")) {
 				protocol = "json";
 			} else if ($(this).hasClass("soapRadio")) {
@@ -808,7 +839,12 @@ LazyLoad.js([
 			Global.address = address;
 			$(".addressInput").val(address);
 			for (var key in othis.namespaceMapping) {
-				$.getScript(Global.address + "/soap11/" + key + "?js");
+				$.ajax({
+					url: Global.address + "/soap12/" + key + "?js",
+					dataType: "script",
+					cache: true,
+					success: function(){}
+				});
 			}
 			othis.loadMethods();
 		});
