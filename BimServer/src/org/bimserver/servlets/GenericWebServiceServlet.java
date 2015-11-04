@@ -160,6 +160,8 @@ public class GenericWebServiceServlet extends SubServlet {
 			}
 			BusFactory.setThreadDefaultBus(bus);
 			controller.invoke(request, response);
+		} catch (ClassCastException e) {
+			// Since updating to CXF 3.1.3 we are getting java.lang.ClassCastException: org.apache.cxf.message.MessageImpl cannot be cast to org.apache.cxf.binding.soap.SoapMessage
 		} finally {
 			BusFactory.setThreadDefaultBus(null);
 			Thread.currentThread().setContextClassLoader(origLoader);
@@ -252,7 +254,6 @@ public class GenericWebServiceServlet extends SubServlet {
 		} catch (IOException ex) {
 			throw new ServletException("Static resource " + pathInfo + " can not be written to the output stream");
 		}
-
 	}
 
 	protected void redirect(HttpServletRequest request, HttpServletResponse response, String pathInfo) throws ServletException {
