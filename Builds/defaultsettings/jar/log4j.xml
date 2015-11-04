@@ -43,6 +43,10 @@
 		<level value="error" />
 		<appender-ref ref="Console" />
 	</logger>
+	<logger name="org.apache.cxf.service.invoker.AbstractInvoker">
+		<level value="fatal" />
+		<appender-ref ref="ErrorConsole" />
+	</logger>
 	<root>
 		<priority value="info" />
 		<appender-ref ref="Console" />
