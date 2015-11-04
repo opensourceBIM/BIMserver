@@ -48,7 +48,7 @@ public interface Bimsie1NotificationInterface extends PublicInterface {
 		@WebParam(name = "roid", partName = "progress.roid") Long roid) throws UserException, ServerException;
 
 	/**
-	 * Called then there is a new progress topic related to a project
+	 * Called when there is a new progress topic related to a project
 	 * 
 	 * @param poid ProjectID
 	 * @param topicId The TopicID
