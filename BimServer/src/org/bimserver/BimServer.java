@@ -912,7 +912,7 @@ public class BimServer {
 									for (Path x : PathUtils.list(f)) {
 										FileUtils.copyFile(x.toFile(), destDir2.resolve(x.getFileName().toString()).toFile());
 									}
-								} else if (Files.isDirectory(f)) {
+								} else {
 									FileUtils.copyFile(f.toFile(), destFile.resolve(f.getFileName().toString()).toFile());
 								}
 							}
