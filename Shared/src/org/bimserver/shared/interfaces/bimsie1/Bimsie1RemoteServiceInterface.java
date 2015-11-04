@@ -115,6 +115,8 @@ public interface Bimsie1RemoteServiceInterface extends PublicInterface {
 		@WebParam(name = "apiUrl", partName = "newExtendedDataOnRevision.apiUrl") String apiUrl) throws UserException, ServerException;
 	
 	/**
+	 * A remote server should be able to provide a list of profiles. This method returns the public profiles that do not need authentication
+	 * 
 	 * @param serviceIdentifier
 	 * @return
 	 * @throws UserException
@@ -125,8 +127,10 @@ public interface Bimsie1RemoteServiceInterface extends PublicInterface {
 		@WebParam(name = "serviceIdentifier", partName = "getPrivateProfiles.serviceIdentifier") String serviceIdentifier) throws UserException, ServerException;
 	
 	/**
-	 * @param serviceIdentifier
-	 * @param token
+	 * A remote server should be able to provide a list of profiles
+	 * 
+	 * @param serviceIdentifier A unique service identifier, defined by the remote server
+	 * @param token A token the remote server can use to identify the user
 	 * @return
 	 * @throws UserException
 	 * @throws ServerException
@@ -137,7 +141,9 @@ public interface Bimsie1RemoteServiceInterface extends PublicInterface {
 		@WebParam(name = "token", partName = "getPrivateProfiles.token") String token) throws UserException, ServerException;
 
 	/**
-	 * @param serviceIdentifier
+	 * Should return a description of a certain service
+	 * 
+	 * @param serviceIdentifier Unique service identifier
 	 * @return
 	 * @throws UserException
 	 * @throws ServerException

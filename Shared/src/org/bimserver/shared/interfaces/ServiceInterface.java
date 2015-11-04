@@ -63,8 +63,9 @@ public interface ServiceInterface extends PublicInterface {
 	 * @param comment A comment
 	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
 	 * @param fileSize The size of the file in bytes
-	 * @param file The actual file
-	 * @param merge Whether to use checkin merging (this will alter your model!)
+	 * @param fileName Name of the file
+	 * @param data The actual data
+	 * @param merge Whether to use checkin merging (this will alter your model!) DEPRICATED
 	 * @param sync Whether the call should return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getCheckinState method
 	 * @throws ServerException, UserException
@@ -86,7 +87,8 @@ public interface ServiceInterface extends PublicInterface {
 	 * @param poid The Project's ObjectID
 	 * @param comment A comment
 	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
-	 * @param url A URL to the file
+	 * @param fileName Name of the file
+	 * @param url A URL to the 'file'
 	 * @param merge Whether to use checkin merging (this will alter your model!)
 	 * @param sync Whether the call should return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getCheckinState method
@@ -129,6 +131,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * @param name The name (e.g. "Bill Gates")
 	 * @param type Type of user
 	 * @param selfRegistration Whether this is a self-registration (for example e-mails will be different)
+	 * @param resetUrl Reset URL (webbased clients can provide a url that handles the activation of the account)
 	 * @return The ObjectID of the created User object
 	 * @throws ServerException, UserException
 	 */
