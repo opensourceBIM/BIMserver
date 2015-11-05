@@ -86,6 +86,9 @@ public class SParameter {
 		parameterJson.put("name", getName());
 		parameterJson.put("doc", getDoc());
 		parameterJson.set("type", getType().toJson(objectMapper));
+		if (getGenericType() != null) {
+			parameterJson.set("genericType", getGenericType().toJson(objectMapper));
+		}
 		return parameterJson;
 	}
 }

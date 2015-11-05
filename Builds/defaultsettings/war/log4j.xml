@@ -28,6 +28,10 @@
 	<logger name="org.bimserver.ifcengine.jvm">
 		<level value="error" />
 	</logger>
+	<logger name="org.apache.cxf.service.invoker.AbstractInvoker">
+		<level value="fatal" />
+		<appender-ref ref="ErrorConsole" />
+	</logger>
 	<root>
 		<priority value="info" />
 	</root>
