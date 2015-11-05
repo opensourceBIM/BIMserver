@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;

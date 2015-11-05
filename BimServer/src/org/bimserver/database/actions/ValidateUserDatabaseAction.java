@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import org.bimserver.Authenticator;
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;

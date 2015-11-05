@@ -18,8 +18,8 @@ package org.bimserver.notifications;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.Channel;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;

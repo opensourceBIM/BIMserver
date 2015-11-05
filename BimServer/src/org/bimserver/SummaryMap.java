@@ -20,7 +20,6 @@ package org.bimserver;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
@@ -31,11 +30,12 @@ import org.bimserver.models.store.RevisionSummaryType;
 import org.eclipse.emf.ecore.EClass;
 
 public class SummaryMap {
-	private final Map<EClass, Integer> summaryMap = new TreeMap<EClass, Integer>(new EClassNameComparator());
+	private final Map<EClass, Integer> summaryMap;
 	private final PackageMetaData packageMetaData;
 
 	public SummaryMap(IfcModelInterface model) throws BimserverDatabaseException {
 		this.packageMetaData = model.getPackageMetaData();
+		this.summaryMap = new TreeMap<EClass, Integer>(new EClassNameComparator());
 		for (IdEObject idEObject : model.getValues()) {
 			if (!summaryMap.containsKey(idEObject.eClass())) {
 				summaryMap.put(idEObject.eClass(), 1);
@@ -46,11 +46,13 @@ public class SummaryMap {
 	}
 
 	public SummaryMap(PackageMetaData packageMetaData) {
+		this.summaryMap = new TreeMap<EClass, Integer>(new EClassNameComparator());
 		this.packageMetaData = packageMetaData;
 	}
 	
 	public SummaryMap(PackageMetaData packageMetaData, RevisionSummary revisionSummary) {
 		this.packageMetaData = packageMetaData;
+		this.summaryMap = new TreeMap<EClass, Integer>(new EClassNameComparator());
 		for (RevisionSummaryContainer revisionSummaryContainer : revisionSummary.getList()) {
 			for (RevisionSummaryType revisionSummaryType : revisionSummaryContainer.getTypes()) {
 				summaryMap.put((EClass)packageMetaData.getEPackage().getEClassifier(revisionSummaryType.getName()), revisionSummaryType.getCount());
@@ -58,6 +60,11 @@ public class SummaryMap {
 		}
 	}
 	
+	public SummaryMap(PackageMetaData packageMetaData, Map<EClass, Integer> summaryMap) {
+		this.packageMetaData = packageMetaData;
+		this.summaryMap = summaryMap;
+	}
+
 	public void remove(EClass eClass, int count) {
 		if (count == 0) {
 			return;

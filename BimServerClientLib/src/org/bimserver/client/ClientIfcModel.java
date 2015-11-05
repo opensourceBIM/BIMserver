@@ -604,10 +604,10 @@ public class ClientIfcModel extends IfcModel {
 	}
 	
 	public void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
-		this.fixOids(new OidProvider<Long>() {
+		this.fixOids(new OidProvider() {
 			private long c = 1;
 			@Override
-			public Long newOid(EClass eClass) {
+			public long newOid(EClass eClass) {
 				return c++;
 			}
 		});

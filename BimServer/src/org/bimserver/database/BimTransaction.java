@@ -1,5 +1,7 @@
 package org.bimserver.database;
 
+import org.bimserver.BimserverDatabaseException;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 

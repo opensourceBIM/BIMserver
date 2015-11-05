@@ -11,9 +11,9 @@ import javax.activation.FileDataSource;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.database.BimDatabase;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.DownloadDatabaseAction;

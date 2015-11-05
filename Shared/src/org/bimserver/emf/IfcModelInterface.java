@@ -175,8 +175,8 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	 */
 	ModelMetaData getModelMetaData();
 	
-	void fixOids(OidProvider<Long> oidProvider);
-	void fixOidsFlat(OidProvider<Long> oidProvider);
+	void fixOids(OidProvider oidProvider);
+	void fixOidsFlat(OidProvider oidProvider);
 	void setObjectOids();
 	void indexGuids();
 	long getHighestOid();
@@ -204,8 +204,8 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 
 	long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException;
 
-	<T extends IdEObject> T create(Class<T> class1, OidProvider<Long> oidProvider) throws IfcModelInterfaceException;
-	<T extends IdEObject> T create(EClass eClass, OidProvider<Long> oidProvider) throws IfcModelInterfaceException;
+	<T extends IdEObject> T create(Class<T> class1, OidProvider oidProvider) throws IfcModelInterfaceException;
+	<T extends IdEObject> T create(EClass eClass, OidProvider oidProvider) throws IfcModelInterfaceException;
 	
 	PackageMetaData getPackageMetaData();
 	Map<Integer, Long> getPidRoidMap();

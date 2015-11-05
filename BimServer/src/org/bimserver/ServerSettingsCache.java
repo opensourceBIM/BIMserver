@@ -21,7 +21,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.database.BimDatabase;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.models.store.ServerSettings;

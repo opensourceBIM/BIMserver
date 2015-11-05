@@ -558,7 +558,7 @@ public abstract class IfcModel implements IfcModelInterface {
 		objects.forcePut(oid, object);
 	}
 
-	public void fixOids(OidProvider<Long> oidProvider) {
+	public void fixOids(OidProvider oidProvider) {
 		BiMap<Long, IdEObject> temp = HashBiMap.create();
 		for (long oid : objects.keySet()) {
 			fixOids(objects.get(oid), oidProvider, temp);
@@ -566,7 +566,7 @@ public abstract class IfcModel implements IfcModelInterface {
 		objects = temp;
 	}
 
-	public void fixOidsFlat(OidProvider<Long> oidProvider) {
+	public void fixOidsFlat(OidProvider oidProvider) {
 		BiMap<Long, IdEObject> temp = HashBiMap.create();
 		for (long oid : objects.keySet()) {
 			fixOidsFlat(objects.get(oid), oidProvider, temp);
@@ -583,7 +583,7 @@ public abstract class IfcModel implements IfcModelInterface {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	private void fixOids(IdEObject idEObject, OidProvider<Long> oidProvider, BiMap<Long, IdEObject> temp) {
+	private void fixOids(IdEObject idEObject, OidProvider oidProvider, BiMap<Long, IdEObject> temp) {
 		if (idEObject == null) {
 			return;
 		}
@@ -607,7 +607,7 @@ public abstract class IfcModel implements IfcModelInterface {
 		}
 	}
 
-	private void fixOidsFlat(IdEObject idEObject, OidProvider<Long> oidProvider, BiMap<Long, IdEObject> temp) {
+	private void fixOidsFlat(IdEObject idEObject, OidProvider oidProvider, BiMap<Long, IdEObject> temp) {
 		if (idEObject == null) {
 			return;
 		}
@@ -906,7 +906,7 @@ public abstract class IfcModel implements IfcModelInterface {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEObject> T create(EClass eClass, OidProvider<Long> oidProvider) throws IfcModelInterfaceException {
+	public <T extends IdEObject> T create(EClass eClass, OidProvider oidProvider) throws IfcModelInterfaceException {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		long oid = oidProvider.newOid(eClass);
 		((IdEObjectImpl) object).setOid(oid);
@@ -923,7 +923,7 @@ public abstract class IfcModel implements IfcModelInterface {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEObject> T create(Class<T> clazz, OidProvider<Long> oidProvider) throws IfcModelInterfaceException {
+	public <T extends IdEObject> T create(Class<T> clazz, OidProvider oidProvider) throws IfcModelInterfaceException {
 		return (T) create(packageMetaData.getEClass(clazz), oidProvider);
 	}
 	

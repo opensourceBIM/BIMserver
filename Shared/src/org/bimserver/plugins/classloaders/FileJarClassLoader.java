@@ -112,7 +112,7 @@ public class FileJarClassLoader extends JarClassLoader {
 					LOGGER.error("", e);
 				}
 			} else {
-				LOGGER.info("File not found: " + name + " (in " + jarFile.getFileName().toString() + ")");
+				LOGGER.debug("File not found: " + name + " (in " + jarFile.getFileName().toString() + ")");
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();

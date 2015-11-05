@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.CompareContainerImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CompareContainerImpl#getItems <em>Items</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

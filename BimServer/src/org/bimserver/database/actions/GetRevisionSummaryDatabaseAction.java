@@ -21,7 +21,7 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;

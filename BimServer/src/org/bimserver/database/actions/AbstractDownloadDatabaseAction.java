@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GeometryGeneratingException;
 import org.bimserver.GeometryGenerator;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;

@@ -102,6 +102,8 @@ public enum ModelCheckerResultType implements Enumerator {
 	 * Returns the '<em><b>Model Checker Result Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ModelCheckerResultType get(String literal) {
@@ -118,6 +120,8 @@ public enum ModelCheckerResultType implements Enumerator {
 	 * Returns the '<em><b>Model Checker Result Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ModelCheckerResultType getByName(String name) {
@@ -134,6 +138,8 @@ public enum ModelCheckerResultType implements Enumerator {
 	 * Returns the '<em><b>Model Checker Result Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ModelCheckerResultType get(int value) {

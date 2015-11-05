@@ -18,7 +18,7 @@ package org.bimserver.notifications;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;

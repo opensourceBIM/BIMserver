@@ -19,7 +19,7 @@ package org.bimserver.webservices.impl;
 
 import java.util.List;
 
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.actions.ServerSettingsSetter;

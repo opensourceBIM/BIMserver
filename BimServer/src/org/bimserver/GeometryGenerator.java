@@ -41,7 +41,6 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.NotImplementedException;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
@@ -420,9 +419,9 @@ public class GeometryGenerator {
 				final Map<IdEObject, IdEObject> bigMap = new HashMap<IdEObject, IdEObject>();
 
 				HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(packageMetaData.getEPackage()), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1").getSchemaDefinition());
-				OidProvider<Long> oidProvider = new OidProvider<Long>(){
+				OidProvider oidProvider = new OidProvider(){
 					@Override
-					public Long newOid(EClass eClass) {
+					public long newOid(EClass eClass) {
 						return databaseSession.newOid(eClass);
 					}};
 				for (final EClass eClass : classes) {

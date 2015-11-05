@@ -10,9 +10,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.LocalDevSetup;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;

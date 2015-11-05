@@ -1,4 +1,4 @@
-package org.bimserver.database;
+package org.bimserver;
 
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org

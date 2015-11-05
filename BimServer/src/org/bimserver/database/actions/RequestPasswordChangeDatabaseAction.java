@@ -25,7 +25,7 @@ import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;

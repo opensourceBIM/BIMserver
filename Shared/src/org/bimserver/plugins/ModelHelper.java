@@ -54,7 +54,7 @@ public class ModelHelper {
 	private final HashMap<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 	private ObjectFactory objectFactory;
 	private IfcModelInterface targetModel;
-	private OidProvider<Long> oidProvider;
+	private OidProvider oidProvider;
 	private boolean keepOriginalOids;
 	private final HashMap<Long, InverseFix> inverseFixes = new HashMap<>();
 	
@@ -265,7 +265,7 @@ public class ModelHelper {
 		return newObject;
 	}
 
-	public void setOidProvider(OidProvider<Long> oidProvider) {
+	public void setOidProvider(OidProvider oidProvider) {
 		this.oidProvider = oidProvider;
 	}
 	

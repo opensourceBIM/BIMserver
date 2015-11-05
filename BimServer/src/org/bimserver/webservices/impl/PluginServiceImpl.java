@@ -25,7 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.actions.AddDeserializerDatabaseAction;
@@ -113,6 +113,7 @@ import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
@@ -1270,9 +1271,20 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			List<SDeserializerPluginConfiguration> sDeserializers = new ArrayList<SDeserializerPluginConfiguration>();
 			for (DeserializerPluginConfiguration deserializerPluginConfiguration : deserializers) {
 				DeserializerPlugin plugin = getBimServer().getPluginManager().getDeserializerPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-				if (plugin != null && plugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
-					if (!onlyEnabled || (deserializerPluginConfiguration.getEnabled() && deserializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
-						sDeserializers.add(getBimServer().getSConverter().convertToSObject(deserializerPluginConfiguration));
+				if (plugin == null) {
+					StreamingDeserializerPlugin streamingPlugin = getBimServer().getPluginManager().getStreamingDeserializerPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+					if (streamingPlugin != null) {
+						if (streamingPlugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
+							if (!onlyEnabled || (deserializerPluginConfiguration.getEnabled() && deserializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
+								sDeserializers.add(getBimServer().getSConverter().convertToSObject(deserializerPluginConfiguration));
+							}
+						}
+					}
+				} else {
+					if (plugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
+						if (!onlyEnabled || (deserializerPluginConfiguration.getEnabled() && deserializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
+							sDeserializers.add(getBimServer().getSConverter().convertToSObject(deserializerPluginConfiguration));
+						}
 					}
 				}
 			}

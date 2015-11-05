@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerResultImpl#isValid <em>Valid</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ModelCheckerResultImpl#getItems <em>Items</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
