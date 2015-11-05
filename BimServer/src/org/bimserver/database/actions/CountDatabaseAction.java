@@ -1,5 +1,7 @@
 package org.bimserver.database.actions;
 
+import org.bimserver.BimserverDatabaseException;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -18,7 +20,6 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.SummaryMap;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;

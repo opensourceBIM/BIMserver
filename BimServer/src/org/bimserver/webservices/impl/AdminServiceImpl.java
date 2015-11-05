@@ -29,9 +29,9 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GeometryGenerator;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.actions.AddUserDatabaseAction;

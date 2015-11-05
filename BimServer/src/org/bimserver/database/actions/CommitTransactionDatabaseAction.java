@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GeometryCache;
 import org.bimserver.GeometryGeneratingException;
 import org.bimserver.GeometryGenerator;
@@ -29,7 +30,6 @@ import org.bimserver.SummaryMap;
 import org.bimserver.changes.Change;
 import org.bimserver.changes.CreateObjectChange;
 import org.bimserver.changes.RemoveObjectChange;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
@@ -65,7 +65,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 	private final GeometryCache geometryCache = new GeometryCache();
 
 	public CommitTransactionDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, LongTransaction longTransaction, String comment) {
-		super(databaseSession, accessMethod, null);
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.authorization = authorization;
 		this.longTransaction = longTransaction;

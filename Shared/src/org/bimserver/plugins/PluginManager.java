@@ -37,6 +37,7 @@ import org.bimserver.plugins.classloaders.FileJarClassLoader;
 import org.bimserver.plugins.classloaders.PublicFindClassClassLoader;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
@@ -311,6 +312,10 @@ public class PluginManager {
 
 	public Collection<DeserializerPlugin> getAllDeserializerPlugins(boolean onlyEnabled) {
 		return getPlugins(DeserializerPlugin.class, onlyEnabled);
+	}
+
+	public Collection<StreamingDeserializerPlugin> getAllStreamingDeserializerPlugins(boolean onlyEnabled) {
+		return getPlugins(StreamingDeserializerPlugin.class, onlyEnabled);
 	}
 
 	public Collection<Plugin> getAllPlugins(boolean onlyEnabled) {
@@ -718,6 +723,10 @@ public class PluginManager {
 	
 	public DeserializerPlugin getDeserializerPlugin(String pluginClassName, boolean onlyEnabled) {
 		return getPluginByClassName(DeserializerPlugin.class, pluginClassName, onlyEnabled);
+	}
+
+	public StreamingDeserializerPlugin getStreamingDeserializerPlugin(String pluginClassName, boolean onlyEnabled) {
+		return getPluginByClassName(StreamingDeserializerPlugin.class, pluginClassName, onlyEnabled);
 	}
 
 	public MetaDataManager getMetaDataManager() {

@@ -51,13 +51,13 @@ public enum SmtpProtocol implements Enumerator {
 	 * @ordered
 	 */
 	SMTPS(1, "SMTPS", "SMTPS"), /**
-								 * The '<em><b>STARTTLS</b></em>' literal object.
-								 * <!-- begin-user-doc -->
+								* The '<em><b>STARTTLS</b></em>' literal object.
+								* <!-- begin-user-doc -->
 								 * <!-- end-user-doc -->
-								 * @see #STARTTLS_VALUE
-								 * @generated
-								 * @ordered
-								 */
+								* @see #STARTTLS_VALUE
+								* @generated
+								* @ordered
+								*/
 	STARTTLS(2, "STARTTLS", "STARTTLS");
 
 	/**
@@ -125,6 +125,8 @@ public enum SmtpProtocol implements Enumerator {
 	 * Returns the '<em><b>Smtp Protocol</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static SmtpProtocol get(String literal) {
@@ -141,6 +143,8 @@ public enum SmtpProtocol implements Enumerator {
 	 * Returns the '<em><b>Smtp Protocol</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static SmtpProtocol getByName(String name) {
@@ -157,6 +161,8 @@ public enum SmtpProtocol implements Enumerator {
 	 * Returns the '<em><b>Smtp Protocol</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static SmtpProtocol get(int value) {

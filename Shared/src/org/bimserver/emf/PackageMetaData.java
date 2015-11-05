@@ -28,6 +28,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
+import org.bimserver.plugins.schema.ExplicitAttribute;
 import org.bimserver.plugins.schema.InverseAttribute;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -58,6 +59,7 @@ public class PackageMetaData implements ObjectFactory {
 	private final Schema schema;
 	private final Set<PackageMetaData> dependencies = new HashSet<>();
 	private SchemaDefinition schemaDefinition;
+	private final Map<EClass, Set<EStructuralFeature>> useForSerialization = new HashMap<>();
 
 	public PackageMetaData(MetaDataManager metaDataManager, EPackage ePackage, Schema schema) {
 		this.ePackage = ePackage;
@@ -149,6 +151,17 @@ public class PackageMetaData implements ObjectFactory {
 				}
 			}
 		}
+	}
+	
+	public boolean useForSerialization(EClass eClass, EStructuralFeature eStructuralFeature) {
+		if (this.getSchemaDefinition() == null) {
+			return true;
+		}
+		Set<EStructuralFeature> set = useForSerialization.get(eClass);
+		if (set == null) {
+			set = buildUseForSerializationSet(eClass);
+		}
+		return set.contains(eStructuralFeature);
 	}
 	
 	private void initUpperCases() {
@@ -268,5 +281,44 @@ public class PackageMetaData implements ObjectFactory {
 	
 	void addDependency(PackageMetaData dependency) {
 		dependencies.add(dependency);
+	}
+
+	public int getNrSerializableFeatures(EClass eClass) {
+		Set<EStructuralFeature> set = useForSerialization.get(eClass);
+		if (set == null) {
+			set = buildUseForSerializationSet(eClass);
+		}
+		return set.size();
+	}
+
+	private synchronized Set<EStructuralFeature> buildUseForSerializationSet(EClass eClass) {
+		if (this.getSchemaDefinition() != null) {
+			if (!useForSerialization.containsKey(eClass)) {
+				HashSet<EStructuralFeature> set = new HashSet<>();
+				for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+					EntityDefinition entityBN = this.getSchemaDefinition().getEntityBN(eClass.getName());
+					if (!entityBN.isDerived(eStructuralFeature.getName())) {
+						if (eStructuralFeature.getEAnnotation("hidden") != null) {
+							if (eStructuralFeature.getEAnnotation("asstring") == null) {
+							} else {
+								if (entityBN.isDerived(eStructuralFeature.getName().substring(0, eStructuralFeature.getName().length() - 8))) {
+								} else {
+									set.add(eStructuralFeature);
+								}
+							}
+						}
+						Attribute attribute = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
+						if (attribute != null && attribute instanceof ExplicitAttribute || attribute instanceof InverseAttribute) {
+							if (!entityBN.isDerived(attribute.getName())) {
+								set.add(eStructuralFeature);
+							}
+						}
+					}
+				}
+				useForSerialization.put(eClass, set);
+				return set;
+			}
+		}
+		return null;
 	}
 }

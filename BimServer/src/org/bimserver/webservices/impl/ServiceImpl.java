@@ -26,8 +26,8 @@ import javax.mail.internet.InternetAddress;
 
 import org.apache.commons.collections.comparators.ComparatorChain;
 import org.bimserver.BimServerImporter;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.json.JsonBimServerClientFactory;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.actions.AddExtendedDataSchemaDatabaseAction;
@@ -78,6 +78,7 @@ import org.bimserver.database.actions.RemoveServiceFromProjectDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
 import org.bimserver.database.actions.SetRevisionTagDatabaseAction;
+import org.bimserver.database.actions.StreamingCheckinDatabaseAction;
 import org.bimserver.database.actions.UndeleteUserDatabaseAction;
 import org.bimserver.database.actions.UpdateGeoTagDatabaseAction;
 import org.bimserver.database.actions.UpdateModelCheckerDatabaseAction;
@@ -120,6 +121,7 @@ import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.longaction.DownloadParameters.DownloadType;
 import org.bimserver.longaction.LongCheckinAction;
+import org.bimserver.longaction.LongStreamingCheckinAction;
 import org.bimserver.mail.EmailMessage;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
@@ -131,6 +133,7 @@ import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.models.store.ObjectState;
+import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
@@ -139,7 +142,12 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.notifications.NewExtendedDataOnRevisionNotification;
 import org.bimserver.notifications.NewRevisionNotification;
+import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.deserializers.Deserializer;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.StreamingDeserializer;
+import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
@@ -203,24 +211,50 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 			String cacheFileName = dateFormat.format(new Date()) + "-" + fileName;
 			Path file = userDirIncoming.resolve(cacheFileName);
-			DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
-			if (deserializerObject == null) {
+			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
+			if (deserializerPluginConfiguration == null) {
 				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
+			} else {
+				Plugin plugin = getBimServer().getPluginManager().getPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+				if (plugin != null) {
+					if (plugin instanceof DeserializerPlugin) {
+						DeserializerPlugin deserializerPlugin = (DeserializerPlugin)plugin;
+						ObjectType settings = deserializerPluginConfiguration.getSettings();
+						Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration(settings));
+						OutputStream outputStream = Files.newOutputStream(file);
+						InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), outputStream);
+						deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
+						
+						IfcModelInterface model = deserializer.read(inputStream, fileName, fileSize, null);
+						
+						CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
+						LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+						getBimServer().getLongActionManager().start(longAction);
+						if (sync) {
+							longAction.waitForCompletion();
+						}
+						return longAction.getProgressTopic().getKey().getId();
+					} else if (plugin instanceof StreamingDeserializerPlugin) {
+						StreamingDeserializerPlugin streaminDeserializerPlugin = (StreamingDeserializerPlugin) plugin;
+						ObjectType settings = deserializerPluginConfiguration.getSettings();
+						StreamingDeserializer streamingDeserializer = streaminDeserializerPlugin.createDeserializer(new PluginConfiguration(settings));
+						streamingDeserializer.init(getBimServer().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
+						OutputStream outputStream = Files.newOutputStream(file);
+						InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), outputStream);
+						StreamingCheckinDatabaseAction checkinDatabaseAction = new StreamingCheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), comment, fileName, merge, inputStream, streamingDeserializer);
+						LongStreamingCheckinAction longAction = new LongStreamingCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+						getBimServer().getLongActionManager().start(longAction);
+//						if (sync) {
+							longAction.waitForCompletion();
+//						}
+						return longAction.getProgressTopic().getKey().getId();
+					} else {
+						throw new UserException("No (enabled) (streaming) deserializer found with oid " + deserializerOid);
+					}
+				} else {
+					throw new UserException("No (enabled) (streaming) deserializer found with oid " + deserializerOid);
+				}
 			}
-			OutputStream outputStream = Files.newOutputStream(file);
-			InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), outputStream);
-			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
-			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
-			
-			IfcModelInterface model = deserializer.read(inputStream, fileName, 0, null);
-			
-			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
-			LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
-			getBimServer().getLongActionManager().start(longAction);
-			if (sync) {
-				longAction.waitForCompletion();
-			}
-			return longAction.getProgressTopic().getKey().getId();
 		} catch (UserException e) {
 			throw e;
 		} catch (Throwable e) {
@@ -265,13 +299,16 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				fileName = dateFormat.format(new Date()) + "-" + fileName;
 			}
 			Path file = userDirIncoming.resolve(fileName);
-			DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
-			if (deserializerObject == null) {
+			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
+			if (deserializerPluginConfiguration == null) {
 				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			}
 			OutputStream outputStream = Files.newOutputStream(file);
 			InputStream inputStream = new MultiplexingInputStream(input, outputStream);
-			Deserializer deserializer = getBimServer().getDeserializerFactory().createDeserializer(deserializerOid);
+			DeserializerPlugin deserializerPlugin = (DeserializerPlugin) getBimServer().getPluginManager().getPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+			ObjectType settings = deserializerPluginConfiguration.getSettings();
+
+			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration(settings));
 			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 
 			IfcModelInterface model = deserializer.read(inputStream, fileName, 0, null);

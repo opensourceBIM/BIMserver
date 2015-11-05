@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;

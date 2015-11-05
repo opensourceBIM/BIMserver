@@ -119,10 +119,10 @@ public class FurniturePlacerServicePlugin extends AbstractModifyRevisionService 
 
 		modelHelper.setTargetModel(model);
 		modelHelper.setObjectFactory(model);
-		OidProvider<Long> oidProvider = new OidProvider<Long>() {
+		OidProvider oidProvider = new OidProvider() {
 			long c = model.getHighestOid() + 1;
 			@Override
-			public Long newOid(EClass eClass) {
+			public long newOid(EClass eClass) {
 				return c++;
 			}
 		};

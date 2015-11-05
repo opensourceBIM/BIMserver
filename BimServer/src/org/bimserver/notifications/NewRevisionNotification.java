@@ -29,8 +29,8 @@ import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 
 import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.Channel;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;

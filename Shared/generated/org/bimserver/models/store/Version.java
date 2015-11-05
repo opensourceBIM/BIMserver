@@ -27,6 +27,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.Version#getMajor <em>Major</em>}</li>
  *   <li>{@link org.bimserver.models.store.Version#getMinor <em>Minor</em>}</li>
@@ -36,7 +37,6 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.Version#getSupportUrl <em>Support Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.Version#getSupportEmail <em>Support Email</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getVersion()
  * @model

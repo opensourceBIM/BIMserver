@@ -19,6 +19,7 @@ package org.bimserver.database.migrations;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,6 +30,7 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.InterfaceList;
@@ -71,6 +73,22 @@ public class CodeMigrator {
 		new CodeMigrator().start();
 	}
 
+	public static void loadPlugins(PluginManager pluginManager, Path current, Path[] pluginDirectories) throws PluginException {
+		LOGGER.info("Loading plugins from " + current.toString());
+
+		if (pluginDirectories != null) {
+			for (Path pluginDirectory : pluginDirectories) {
+				try {
+					pluginManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
+				} catch (PluginException e) {
+					LOGGER.error("", e);
+				} catch (IOException e) {
+					LOGGER.error("", e);
+				}
+			}
+		}
+	}
+	
 	private void start() {
 		LOGGER.info("Starting code migrator...");
 		Migrator migrator = new Migrator(null);
@@ -85,9 +103,14 @@ public class CodeMigrator {
 		Set<EPackage> ePackages = new HashSet<EPackage>();
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
+			
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
 			pluginManager.setMetaDataManager(metaDataManager);
+			loadPlugins(pluginManager, Paths.get(".."), new OptionsParser().getPluginDirectories());
 			metaDataManager.init();
+
+			pluginManager.initAllLoadedPlugins();
+			
 			for (EPackage ePackage : schema.getEPackages()) {
 				if (!ePackage.getName().equals("ifc2x3tc1") && !ePackage.getName().equals("ifc4") && !ePackage.getName().equals("geometry")) {
 					ePackages.add(ePackage);

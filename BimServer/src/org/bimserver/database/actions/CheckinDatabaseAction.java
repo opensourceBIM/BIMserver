@@ -23,10 +23,10 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GeometryCache;
 import org.bimserver.GeometryGenerator;
 import org.bimserver.SummaryMap;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
@@ -68,18 +68,23 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private final GeometryCache geometryCache = new GeometryCache();
 	private String fileName;
 	private long fileSize;
+	private IfcModelInterface model;
 
-	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface ifcModel,
-			String comment, String fileName, boolean merge) {
-		super(databaseSession, accessMethod, ifcModel);
+	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model, String comment, String fileName, boolean merge) {
+		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.poid = poid;
 		this.authorization = authorization;
+		this.model = model;
 		this.comment = comment;
 		this.fileName = fileName;
 		this.merge = merge;
 	}
-
+	
+	public IfcModelInterface getModel() {
+		return model;
+	}
+	
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {
@@ -105,7 +110,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				throw new UserException("Users must have a valid e-mail address to checkin");
 			}
 			if (getModel() != null) {
-				checkCheckSum(project);
+				checkCheckSum(project, getModel());
 			}
 			
 			long size = 0;

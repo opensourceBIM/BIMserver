@@ -1,5 +1,7 @@
 package org.bimserver.database.berkeley;
 
+import org.bimserver.BimserverDatabaseException;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -18,7 +20,6 @@ package org.bimserver.database.berkeley;
  *****************************************************************************/
 
 import org.bimserver.database.BimTransaction;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

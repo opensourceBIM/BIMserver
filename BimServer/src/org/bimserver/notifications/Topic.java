@@ -20,7 +20,7 @@ package org.bimserver.notifications;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;

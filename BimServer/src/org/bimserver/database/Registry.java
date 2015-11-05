@@ -19,6 +19,7 @@ package org.bimserver.database;
 
 import java.util.Date;
 
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.utils.BinUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

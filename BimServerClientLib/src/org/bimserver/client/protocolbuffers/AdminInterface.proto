@@ -374,16 +374,18 @@ message SMethodMetric {
 	optional int64 averageMs = 1;
 	optional int64 lastCall = 2;
 	optional int64 longestMs = 3;
-	optional int64 nrCalls = 4;
-	optional int64 oid = 5;
-	optional int32 rid = 6;
-	optional int64 shortestMs = 7;
+	optional string name = 4;
+	optional int64 nrCalls = 5;
+	optional int64 oid = 6;
+	optional int32 rid = 7;
+	optional int64 shortestMs = 8;
 }
 
 message SInterfaceMetric {
 	repeated SMethodMetric methods = 1;
-	optional int64 oid = 2;
-	optional int32 rid = 3;
+	optional string name = 2;
+	optional int64 oid = 3;
+	optional int32 rid = 4;
 }
 
 message SMetrics {

@@ -20,7 +20,7 @@ package org.bimserver.changes;
 import java.util.List;
 import java.util.Map;
 
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;

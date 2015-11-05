@@ -48,7 +48,6 @@ import org.bimserver.client.DirectBimServerClientFactory;
 import org.bimserver.client.json.JsonSocketReflectorFactory;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.database.BimDatabase;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
@@ -61,7 +60,6 @@ import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
-import org.bimserver.deserializers.DeserializerFactory;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.endpoints.EndPointManager;
@@ -114,6 +112,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.PluginSourceType;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
@@ -160,7 +159,6 @@ public class BimServer {
 	private JobScheduler bimScheduler;
 	private LongActionManager longActionManager;
 	private SerializerFactory serializerFactory;
-	private DeserializerFactory deserializerFactory;
 	private MergerFactory mergerFactory;
 	private PluginManager pluginManager;
 	private MailSystem mailSystem;
@@ -413,7 +411,6 @@ public class BimServer {
 			jsonHandler = new JsonHandler(this);
 			
 			serializerFactory = new SerializerFactory();
-			deserializerFactory = new DeserializerFactory();
 
 			serverSettingsCache = new ServerSettingsCache(bimDatabase);
 			
@@ -646,6 +643,14 @@ public class BimServer {
 				genericPluginConversion(session, deserializerPlugin, deserializerPluginConfiguration, getPluginDescriptor(session, deserializerPlugin.getClass().getName()));
 			}
 		}
+		for (StreamingDeserializerPlugin streamingDeserializerPlugin : pluginManager.getAllStreamingDeserializerPlugins(true)) {
+			DeserializerPluginConfiguration streamingDeserializerPluginConfiguration = find(userSettings.getDeserializers(), streamingDeserializerPlugin.getClass().getName());
+			if (streamingDeserializerPluginConfiguration == null) {
+				streamingDeserializerPluginConfiguration = session.create(DeserializerPluginConfiguration.class);
+				userSettings.getDeserializers().add(streamingDeserializerPluginConfiguration);
+				genericPluginConversion(session, streamingDeserializerPlugin, streamingDeserializerPluginConfiguration, getPluginDescriptor(session, streamingDeserializerPlugin.getClass().getName()));
+			}
+		}
 		session.store(userSettings);
 	}
 
@@ -706,7 +711,6 @@ public class BimServer {
 		notificationsManager.init();
 
 		getSerializerFactory().init(pluginManager, bimDatabase, this);
-		getDeserializerFactory().init(pluginManager, bimDatabase);
 		try {
 			DatabaseSession session = bimDatabase.createSession();
 			try {
@@ -912,7 +916,7 @@ public class BimServer {
 									for (Path x : PathUtils.list(f)) {
 										FileUtils.copyFile(x.toFile(), destDir2.resolve(x.getFileName().toString()).toFile());
 									}
-								} else if (Files.isDirectory(f)) {
+								} else {
 									FileUtils.copyFile(f.toFile(), destFile.resolve(f.getFileName().toString()).toFile());
 								}
 							}
@@ -978,10 +982,6 @@ public class BimServer {
 
 	public SerializerFactory getSerializerFactory() {
 		return serializerFactory;
-	}
-
-	public DeserializerFactory getDeserializerFactory() {
-		return deserializerFactory;
 	}
 
 	public DiskCacheManager getDiskCacheManager() {

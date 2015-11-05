@@ -20,7 +20,6 @@ package org.bimserver;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.migrations.InconsistentModelsException;

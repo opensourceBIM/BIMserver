@@ -27,6 +27,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.MethodMetric#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.MethodMetric#getNrCalls <em>Nr Calls</em>}</li>
@@ -35,7 +36,6 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.MethodMetric#getShortestMs <em>Shortest Ms</em>}</li>
  *   <li>{@link org.bimserver.models.store.MethodMetric#getLongestMs <em>Longest Ms</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getMethodMetric()
  * @model

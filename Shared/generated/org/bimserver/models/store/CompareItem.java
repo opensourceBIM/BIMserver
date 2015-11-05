@@ -25,10 +25,10 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.CompareItem#getDataObject <em>Data Object</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getCompareItem()
  * @model

@@ -22,10 +22,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.SimpleTokenHolder;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.client.json.JsonSocketReflectorFactory;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.interfaces.objects.SObjectType;

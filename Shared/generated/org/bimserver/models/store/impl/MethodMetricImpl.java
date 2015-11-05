@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.MethodMetricImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.MethodMetricImpl#getNrCalls <em>Nr Calls</em>}</li>
@@ -39,7 +40,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.MethodMetricImpl#getShortestMs <em>Shortest Ms</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.MethodMetricImpl#getLongestMs <em>Longest Ms</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

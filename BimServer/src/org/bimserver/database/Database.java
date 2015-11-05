@@ -32,6 +32,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.CreateBaseProjectDatabaseAction;
 import org.bimserver.database.berkeley.DatabaseInitException;

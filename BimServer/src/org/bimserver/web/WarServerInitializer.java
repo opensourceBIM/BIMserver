@@ -29,7 +29,7 @@ import javax.servlet.ServletContextListener;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.plugins.PluginException;

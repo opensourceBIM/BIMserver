@@ -20,6 +20,7 @@ package org.bimserver.webservices.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.changes.AddAttributeChange;
 import org.bimserver.changes.AddReferenceChange;
 import org.bimserver.changes.CreateObjectChange;
@@ -31,7 +32,6 @@ import org.bimserver.changes.SetAttributeChange;
 import org.bimserver.changes.SetAttributeChangeAtIndex;
 import org.bimserver.changes.SetReferenceChange;
 import org.bimserver.changes.SetWrappedAttributeChange;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;

@@ -18,8 +18,8 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.ServerIfcModel;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
@@ -84,10 +84,10 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 					QueryEngine queryEngine = queryEnginePlugin.getQueryEngine(new PluginConfiguration(queryEngineObject.getSettings()));
 					final IfcModelInterface result = new ServerIfcModel(packageMetaData, null, getDatabaseSession());
 					ModelHelper modelHelper = new ModelHelper(getBimServer().getMetaDataManager(), objectIDM, result);
-					modelHelper.setOidProvider(new OidProvider<Long>(){
+					modelHelper.setOidProvider(new OidProvider(){
 						private long oid = 1000000;
 						@Override
-						public Long newOid(EClass eClass) {
+						public long newOid(EClass eClass) {
 							return oid++;
 						}});
 					IfcModelInterface finalResult = queryEngine.query(ifcModel, code, new Reporter(){

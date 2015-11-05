@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.BimDatabase;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;

@@ -21,7 +21,7 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Date;
 
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
@@ -35,15 +35,13 @@ import org.bimserver.shared.exceptions.UserException;
 
 public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<ConcreteRevision>{
 
-	private IfcModelInterface model;
 	private InputStream inputStream;
 
-	public GenericCheckinDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcModelInterface ifcModel) {
+	public GenericCheckinDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod) {
 		super(databaseSession, accessMethod);
-		model = ifcModel;
 	}
 
-	protected void checkCheckSum(Project project) throws UserException {
+	protected void checkCheckSum(Project project, IfcModelInterface model) throws UserException {
 		ConcreteRevision lastConcreteRevision = project.getLastConcreteRevision();
 		if (lastConcreteRevision != null) {
 			int revisionId = -1;
@@ -53,16 +51,12 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 				}
 			}
 			byte[] revisionChecksum = lastConcreteRevision.getChecksum();
-			if (revisionChecksum != null && getModel().getModelMetaData().getChecksum() != null) {
-				if (Arrays.equals(revisionChecksum, getModel().getModelMetaData().getChecksum())) {
+			if (revisionChecksum != null && model.getModelMetaData().getChecksum() != null) {
+				if (Arrays.equals(revisionChecksum, model.getModelMetaData().getChecksum())) {
 					throw new UserException("Uploaded model is the same as last revision (" + revisionId + "), duplicate model not stored");
 				}
 			}
 		}
-	}
-	
-	public void setModel(IfcModelInterface model) {
-		this.model = model;
 	}
 	
 	public CreateRevisionResult createNewConcreteRevision(DatabaseSession session, long size, Project project, User user, String comment) throws BimserverDatabaseException, BimserverLockConflictException {
@@ -139,10 +133,6 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		return revision;
 	}
 
-	public IfcModelInterface getModel() {
-		return model;
-	}
-	
 	public InputStream getInputStream() {
 		return inputStream;
 	}

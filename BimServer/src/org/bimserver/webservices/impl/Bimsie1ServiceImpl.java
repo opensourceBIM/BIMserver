@@ -23,7 +23,7 @@ import java.util.Set;
 
 import javax.activation.DataHandler;
 
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;

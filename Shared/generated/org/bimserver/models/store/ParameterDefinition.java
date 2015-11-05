@@ -25,6 +25,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#isRequired <em>Required</em>}</li>
@@ -32,7 +33,6 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getParameterDefinition()
  * @model

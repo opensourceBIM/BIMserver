@@ -27,12 +27,12 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.DownloadResult#getProjectName <em>Project Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.DownloadResult#getRevisionNr <em>Revision Nr</em>}</li>
  *   <li>{@link org.bimserver.models.store.DownloadResult#getFile <em>File</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.store.StorePackage#getDownloadResult()
  * @model

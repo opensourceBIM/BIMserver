@@ -152,6 +152,8 @@ public enum ActionState implements Enumerator {
 	 * Returns the '<em><b>Action State</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ActionState get(String literal) {
@@ -168,6 +170,8 @@ public enum ActionState implements Enumerator {
 	 * Returns the '<em><b>Action State</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ActionState getByName(String name) {
@@ -184,6 +188,8 @@ public enum ActionState implements Enumerator {
 	 * Returns the '<em><b>Action State</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ActionState get(int value) {
