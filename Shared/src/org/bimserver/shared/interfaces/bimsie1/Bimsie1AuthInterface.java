@@ -36,6 +36,7 @@ public interface Bimsie1AuthInterface extends PublicInterface {
 	
 	/**
 	 * Login with a username/password combination
+	 * 
 	 * @param username The username (must be a valid e-mail address)
 	 * @param password The password
 	 * @return A token, use this token in subsequent calls. Read the documentation of the transport 
@@ -47,23 +48,43 @@ public interface Bimsie1AuthInterface extends PublicInterface {
 		@WebParam(name = "username", partName = "login.username") String username,
 		@WebParam(name = "password", partName = "login.password") String password) throws ServerException, UserException;
 
+	/**
+	 * DEPRICATED
+	 * 
+	 * @param op
+	 * @param returnUrl
+	 * @return
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action = "loginOpenId")
 	String loginOpenId(
 		@WebParam(name = "op", partName = "loginOpenId.op") String op,
 		@WebParam(name = "returnUrl", partName = "loginOpenId.returnUrl") String returnUrl) throws ServerException, UserException;
 
+	/**
+	 * DEPRICATED
+	 * 
+	 * @param queryString
+	 * @return
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action = "validateOpenId")
 	String validateOpenId(
 		@WebParam(name = "queryString", partName = "validateOpenId.queryString") String queryString) throws ServerException, UserException;
 	
 	/**
 	 * Logout
+	 * 
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "logout")
 	void logout() throws ServerException, UserException;
 	
 	/**
+	 * Check whether the server considers the user (token) as logged-in
+	 * 
 	 * @return Whether this ServiceInterface is logged-in
 	 * @throws ServerException, UserException
 	 */
@@ -77,6 +98,15 @@ public interface Bimsie1AuthInterface extends PublicInterface {
 	@WebMethod(action = "getAccessMethod")
 	SAccessMethod getAccessMethod() throws ServerException, UserException;
 
+	/**
+	 * Login with a user-token
+	 * 
+	 * @param token
+	 * @return A token, use this token in subsequent calls. Read the documentation of the transport 
+	 * mechanism (SOAP, Protocol Buffers or JSON) to see how to send the token
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action = "loginUserToken")
 	String loginUserToken(
 		@WebParam(name = "token", partName = "loginUserToken.token") String token) throws ServerException, UserException;
