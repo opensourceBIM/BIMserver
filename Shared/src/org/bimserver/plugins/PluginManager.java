@@ -143,7 +143,7 @@ public class PluginManager {
 				
 				DelegatingClassLoader depDelLoader = new DelegatingClassLoader(previous);
 				Path depLibFolder = path.resolve("lib");
-				loadDependencies(depLibFolder, delegatingClassLoader);
+				loadDependencies(depLibFolder, depDelLoader);
 				EclipsePluginClassloader depLoader = new EclipsePluginClassloader(depDelLoader, path);
 				previous = depLoader;
 			}
