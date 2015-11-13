@@ -76,6 +76,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	private final AtomicLong cursorCounter = new AtomicLong();
 	private final Map<Long, StackTraceElement[]> openCursors = new ConcurrentHashMap<>();
 	private boolean useTransactions = false;
+	private boolean defer = false;
 
 	public BerkeleyKeyValueStore(Path dataDir) throws DatabaseInitException {
 		if (Files.isDirectory(dataDir)) {
@@ -147,7 +148,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(true);
-		databaseConfig.setDeferredWrite(true);
+		databaseConfig.setDeferredWrite(defer);
 		databaseConfig.setTransactional(false);
 		databaseConfig.setSortedDuplicates(false);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
@@ -165,7 +166,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(true);
-		databaseConfig.setDeferredWrite(true);
+		databaseConfig.setDeferredWrite(defer);
 		databaseConfig.setTransactional(false);
 		databaseConfig.setSortedDuplicates(true);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
@@ -183,7 +184,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(false);
-		databaseConfig.setDeferredWrite(true);
+		databaseConfig.setDeferredWrite(defer);
 		databaseConfig.setTransactional(false);
 		databaseConfig.setSortedDuplicates(false);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
@@ -200,7 +201,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(false);
-		databaseConfig.setDeferredWrite(true);
+		databaseConfig.setDeferredWrite(defer);
 		databaseConfig.setTransactional(false);
 		databaseConfig.setSortedDuplicates(true);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);

@@ -61,6 +61,7 @@ public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements Ob
 			return null;
 		}
 		if (record == null) {
+			currentObject = null;
 			typeRecordIterator.close();
 			return null;
 		}
