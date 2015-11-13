@@ -53,8 +53,8 @@ public class QueryObjectProvider implements ObjectProvider {
 					HashMapVirtualObject currentObject = ((ObjectProvidingStackFrame) stackFrame).getCurrentObject();
 					if (currentObject != null) {
 						oidsRead.add(currentObject.getOid());
+						return currentObject;
 					}
-					return currentObject;
 				}
 			}
 		} catch (QueryException e) {

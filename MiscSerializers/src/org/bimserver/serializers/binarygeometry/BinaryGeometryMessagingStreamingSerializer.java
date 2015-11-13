@@ -170,7 +170,6 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 			if (totalNrIndices > maxIndexValues) {
 				dataOutputStream.write(MessageType.GEOMETRY_TRIANGLES_PARTED.getId());
 				dataOutputStream.write(new byte[3]);
-				dataOutputStream.writeLong(next.getRoid());
 				dataOutputStream.writeLong(next.getOid());
 				
 				// Split geometry, this algorithm - for now - just throws away all the reuse of vertices that might be there
