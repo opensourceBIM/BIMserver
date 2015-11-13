@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialDefinition#getAssociatedTo <em>Associated To</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialDefinition#getHasExternalReferences <em>Has External References</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialDefinition#getHasProperties <em>Has Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialDefinition()
  * @model

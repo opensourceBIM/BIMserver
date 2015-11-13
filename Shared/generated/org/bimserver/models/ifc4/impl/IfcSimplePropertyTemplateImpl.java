@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSimplePropertyTemplateImpl#getTemplateType <em>Template Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSimplePropertyTemplateImpl#getPrimaryMeasureType <em>Primary Measure Type</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSimplePropertyTemplateImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSimplePropertyTemplateImpl#getAccessState <em>Access State</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -70,7 +70,8 @@ public class IfcSimplePropertyTemplateImpl extends IfcPropertyTemplateImpl imple
 	 * @generated
 	 */
 	public IfcSimplePropertyTemplateTypeEnum getTemplateType() {
-		return (IfcSimplePropertyTemplateTypeEnum) eGet(Ifc4Package.Literals.IFC_SIMPLE_PROPERTY_TEMPLATE__TEMPLATE_TYPE, true);
+		return (IfcSimplePropertyTemplateTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_SIMPLE_PROPERTY_TEMPLATE__TEMPLATE_TYPE, true);
 	}
 
 	/**

@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRectangleProfileDefImpl#getXDim <em>XDim</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRectangleProfileDefImpl#getXDimAsString <em>XDim As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRectangleProfileDefImpl#getYDim <em>YDim</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRectangleProfileDefImpl#getYDimAsString <em>YDim As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

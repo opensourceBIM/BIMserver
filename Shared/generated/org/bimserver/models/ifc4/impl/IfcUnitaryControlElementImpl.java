@@ -27,14 +27,15 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcUnitaryControlElementImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcUnitaryControlElementImpl extends IfcDistributionControlElementImpl implements IfcUnitaryControlElement {
+public class IfcUnitaryControlElementImpl extends IfcDistributionControlElementImpl
+		implements IfcUnitaryControlElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcUnitaryControlElementImpl extends IfcDistributionControlElementI
 	 * @generated
 	 */
 	public IfcUnitaryControlElementTypeEnum getPredefinedType() {
-		return (IfcUnitaryControlElementTypeEnum) eGet(Ifc4Package.Literals.IFC_UNITARY_CONTROL_ELEMENT__PREDEFINED_TYPE, true);
+		return (IfcUnitaryControlElementTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_UNITARY_CONTROL_ELEMENT__PREDEFINED_TYPE, true);
 	}
 
 	/**

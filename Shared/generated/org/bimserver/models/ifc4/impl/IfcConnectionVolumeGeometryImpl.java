@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcConnectionVolumeGeometryImpl#getVolumeOnRelatingElement <em>Volume On Relating Element</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcConnectionVolumeGeometryImpl#getVolumeOnRelatedElement <em>Volume On Related Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -61,7 +61,8 @@ public class IfcConnectionVolumeGeometryImpl extends IfcConnectionGeometryImpl i
 	 * @generated
 	 */
 	public IfcSolidOrShell getVolumeOnRelatingElement() {
-		return (IfcSolidOrShell) eGet(Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATING_ELEMENT, true);
+		return (IfcSolidOrShell) eGet(Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATING_ELEMENT,
+				true);
 	}
 
 	/**
@@ -70,7 +71,8 @@ public class IfcConnectionVolumeGeometryImpl extends IfcConnectionGeometryImpl i
 	 * @generated
 	 */
 	public void setVolumeOnRelatingElement(IfcSolidOrShell newVolumeOnRelatingElement) {
-		eSet(Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATING_ELEMENT, newVolumeOnRelatingElement);
+		eSet(Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATING_ELEMENT,
+				newVolumeOnRelatingElement);
 	}
 
 	/**
@@ -79,7 +81,8 @@ public class IfcConnectionVolumeGeometryImpl extends IfcConnectionGeometryImpl i
 	 * @generated
 	 */
 	public IfcSolidOrShell getVolumeOnRelatedElement() {
-		return (IfcSolidOrShell) eGet(Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATED_ELEMENT, true);
+		return (IfcSolidOrShell) eGet(Ifc4Package.Literals.IFC_CONNECTION_VOLUME_GEOMETRY__VOLUME_ON_RELATED_ELEMENT,
+				true);
 	}
 
 	/**

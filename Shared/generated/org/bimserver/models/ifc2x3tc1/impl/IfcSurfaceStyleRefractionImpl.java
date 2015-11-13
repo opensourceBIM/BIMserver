@@ -27,13 +27,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSurfaceStyleRefractionImpl#getRefractionIndex <em>Refraction Index</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSurfaceStyleRefractionImpl#getRefractionIndexAsString <em>Refraction Index As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSurfaceStyleRefractionImpl#getDispersionFactor <em>Dispersion Factor</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSurfaceStyleRefractionImpl#getDispersionFactorAsString <em>Dispersion Factor As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -118,7 +118,8 @@ public class IfcSurfaceStyleRefractionImpl extends IdEObjectImpl implements IfcS
 	 * @generated
 	 */
 	public void setRefractionIndexAsString(String newRefractionIndexAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX_AS_STRING, newRefractionIndexAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__REFRACTION_INDEX_AS_STRING,
+				newRefractionIndexAsString);
 	}
 
 	/**
@@ -190,7 +191,8 @@ public class IfcSurfaceStyleRefractionImpl extends IdEObjectImpl implements IfcS
 	 * @generated
 	 */
 	public void setDispersionFactorAsString(String newDispersionFactorAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING, newDispersionFactorAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING,
+				newDispersionFactorAsString);
 	}
 
 	/**

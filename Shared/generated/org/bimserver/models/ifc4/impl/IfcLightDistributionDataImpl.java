@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLightDistributionDataImpl#getMainPlaneAngle <em>Main Plane Angle</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLightDistributionDataImpl#getMainPlaneAngleAsString <em>Main Plane Angle As String</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLightDistributionDataImpl#getLuminousIntensity <em>Luminous Intensity</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLightDistributionDataImpl#getLuminousIntensityAsString <em>Luminous Intensity As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -123,7 +123,8 @@ public class IfcLightDistributionDataImpl extends IdEObjectImpl implements IfcLi
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getSecondaryPlaneAngleAsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__SECONDARY_PLANE_ANGLE_AS_STRING, true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__SECONDARY_PLANE_ANGLE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -143,7 +144,8 @@ public class IfcLightDistributionDataImpl extends IdEObjectImpl implements IfcLi
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getLuminousIntensityAsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__LUMINOUS_INTENSITY_AS_STRING, true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__LUMINOUS_INTENSITY_AS_STRING,
+				true);
 	}
 
 } //IfcLightDistributionDataImpl

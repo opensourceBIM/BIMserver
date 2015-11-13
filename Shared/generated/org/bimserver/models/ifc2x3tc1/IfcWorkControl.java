@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcWorkControl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcWorkControl#getCreationDate <em>Creation Date</em>}</li>
@@ -39,7 +40,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcWorkControl#getWorkControlType <em>Work Control Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcWorkControl#getUserDefinedControlType <em>User Defined Control Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcWorkControl()
  * @model

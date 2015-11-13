@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSIUnitImpl#getPrefix <em>Prefix</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSIUnitImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLightSourceGoniometricImpl#getPosition <em>Position</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLightSourceGoniometricImpl#getColourAppearance <em>Colour Appearance</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLightSourceGoniometricImpl#getLightEmissionSource <em>Light Emission Source</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLightSourceGoniometricImpl#getLightDistributionDataSource <em>Light Distribution Data Source</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -151,7 +151,8 @@ public class IfcLightSourceGoniometricImpl extends IfcLightSourceImpl implements
 	 * @generated
 	 */
 	public void setColourTemperatureAsString(String newColourTemperatureAsString) {
-		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__COLOUR_TEMPERATURE_AS_STRING, newColourTemperatureAsString);
+		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__COLOUR_TEMPERATURE_AS_STRING,
+				newColourTemperatureAsString);
 	}
 
 	/**
@@ -196,7 +197,8 @@ public class IfcLightSourceGoniometricImpl extends IfcLightSourceImpl implements
 	 * @generated
 	 */
 	public IfcLightEmissionSourceEnum getLightEmissionSource() {
-		return (IfcLightEmissionSourceEnum) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__LIGHT_EMISSION_SOURCE, true);
+		return (IfcLightEmissionSourceEnum) eGet(
+				Ifc4Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__LIGHT_EMISSION_SOURCE, true);
 	}
 
 	/**
@@ -214,7 +216,8 @@ public class IfcLightSourceGoniometricImpl extends IfcLightSourceImpl implements
 	 * @generated
 	 */
 	public IfcLightDistributionDataSourceSelect getLightDistributionDataSource() {
-		return (IfcLightDistributionDataSourceSelect) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__LIGHT_DISTRIBUTION_DATA_SOURCE, true);
+		return (IfcLightDistributionDataSourceSelect) eGet(
+				Ifc4Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__LIGHT_DISTRIBUTION_DATA_SOURCE, true);
 	}
 
 	/**
@@ -223,7 +226,8 @@ public class IfcLightSourceGoniometricImpl extends IfcLightSourceImpl implements
 	 * @generated
 	 */
 	public void setLightDistributionDataSource(IfcLightDistributionDataSourceSelect newLightDistributionDataSource) {
-		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__LIGHT_DISTRIBUTION_DATA_SOURCE, newLightDistributionDataSource);
+		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__LIGHT_DISTRIBUTION_DATA_SOURCE,
+				newLightDistributionDataSource);
 	}
 
 } //IfcLightSourceGoniometricImpl

@@ -19,7 +19,6 @@ package org.bimserver.models.geometry.impl;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
-import org.bimserver.models.geometry.GeometryInstance;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
 import org.eclipse.emf.ecore.EClass;
@@ -43,7 +42,8 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 */
 	public static GeometryFactory init() {
 		try {
-			GeometryFactory theGeometryFactory = (GeometryFactory) EPackage.Registry.INSTANCE.getEFactory(GeometryPackage.eNS_URI);
+			GeometryFactory theGeometryFactory = (GeometryFactory) EPackage.Registry.INSTANCE
+					.getEFactory(GeometryPackage.eNS_URI);
 			if (theGeometryFactory != null) {
 				return theGeometryFactory;
 			}
@@ -77,8 +77,6 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 			return (EObject) createVector3f();
 		case GeometryPackage.GEOMETRY_DATA:
 			return (EObject) createGeometryData();
-		case GeometryPackage.GEOMETRY_INSTANCE:
-			return (EObject) createGeometryInstance();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -112,16 +110,6 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	public GeometryData createGeometryData() {
 		GeometryDataImpl geometryData = new GeometryDataImpl();
 		return geometryData;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GeometryInstance createGeometryInstance() {
-		GeometryInstanceImpl geometryInstance = new GeometryInstanceImpl();
-		return geometryInstance;
 	}
 
 	/**

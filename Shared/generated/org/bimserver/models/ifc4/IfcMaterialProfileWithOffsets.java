@@ -25,11 +25,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialProfileWithOffsets#getOffsetValues <em>Offset Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialProfileWithOffsets#getOffsetValuesAsString <em>Offset Values As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialProfileWithOffsets()
  * @model

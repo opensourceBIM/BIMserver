@@ -188,8 +188,8 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcOutletTypeEnum[] VALUES_ARRAY = new IfcOutletTypeEnum[] { NULL, NOTDEFINED, AUDIOVISUALOUTLET, COMMUNICATIONSOUTLET, USERDEFINED,
-			POWEROUTLET, };
+	private static final IfcOutletTypeEnum[] VALUES_ARRAY = new IfcOutletTypeEnum[] { NULL, NOTDEFINED,
+			AUDIOVISUALOUTLET, COMMUNICATIONSOUTLET, USERDEFINED, POWEROUTLET, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Outlet Type Enum</b></em>' enumerators.
@@ -203,6 +203,8 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Outlet Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcOutletTypeEnum get(String literal) {
@@ -219,6 +221,8 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Outlet Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcOutletTypeEnum getByName(String name) {
@@ -235,6 +239,8 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Outlet Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcOutletTypeEnum get(int value) {

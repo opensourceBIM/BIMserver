@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcWindowLiningProperties#getLiningDepth <em>Lining Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcWindowLiningProperties#getLiningDepthAsString <em>Lining Depth As String</em>}</li>
@@ -42,7 +43,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcWindowLiningProperties#getSecondMullionOffsetAsString <em>Second Mullion Offset As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcWindowLiningProperties#getShapeAspectStyle <em>Shape Aspect Style</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcWindowLiningProperties()
  * @model

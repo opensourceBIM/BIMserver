@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcHalfSpaceSolidImpl#getBaseSurface <em>Base Surface</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcHalfSpaceSolidImpl#getAgreementFlag <em>Agreement Flag</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcHalfSpaceSolidImpl#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

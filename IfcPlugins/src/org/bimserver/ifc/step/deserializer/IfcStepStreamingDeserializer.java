@@ -378,7 +378,9 @@ public abstract class IfcStepStreamingDeserializer implements StreamingDeseriali
 		}
 		mappedObjects.put(recordNumber, object.getOid());
 
-		boolean complete = true;
+		boolean openReferences = false;
+		boolean hasSingleOpposites = false;
+		boolean hasMultiOpposites = false;
 
 		if (eClass != null) {
 			String realData = line.substring(indexOfFirstParen + 1, indexOfLastParen);
@@ -395,6 +397,12 @@ public abstract class IfcStepStreamingDeserializer implements StreamingDeseriali
 				if (getPackageMetaData().useForSerialization(eClass, structuralFeature)) {
 					if (attribute instanceof InverseAttribute) {
 						if (structuralFeature instanceof EReference) {
+							EReference eReference = (EReference)structuralFeature;
+							if (eReference.isMany()) {
+								hasMultiOpposites = true;
+							} else {
+								hasSingleOpposites = true;
+							}
 							object.eUnset(structuralFeature);
 						} else {
 							throw new DeserializeException("Inverse should be a reference");
@@ -423,13 +431,13 @@ public abstract class IfcStepStreamingDeserializer implements StreamingDeseriali
 							}
 						} else if (firstChar == '#') {
 							if (!readReference(val, object, structuralFeature)) {
-								complete = false;
+								openReferences = true;
 							}
 						} else if (firstChar == '.') {
 							readEnum(val, object, structuralFeature);
 						} else if (firstChar == '(') {
 							if (!readList(val, object, structuralFeature)) {
-								complete = false;
+								openReferences = true;
 							}
 						} else if (firstChar == '*') {
 							object.eUnset(structuralFeature);
@@ -456,8 +464,8 @@ public abstract class IfcStepStreamingDeserializer implements StreamingDeseriali
 			if (waitingList.containsKey(recordNumber)) {
 				waitingList.updateNode(recordNumber, eClass, object);
 			}
-			
-			if (complete) {
+
+			if (!openReferences) {
 				int nrBytes = getDatabaseInterface().save(object);
 				metricCollector.collect(line.length(), nrBytes);
 			}

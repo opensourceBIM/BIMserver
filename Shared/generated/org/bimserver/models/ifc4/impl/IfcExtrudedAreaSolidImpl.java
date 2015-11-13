@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcExtrudedAreaSolidImpl#getExtrudedDirection <em>Extruded Direction</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcExtrudedAreaSolidImpl#getDepth <em>Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcExtrudedAreaSolidImpl#getDepthAsString <em>Depth As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

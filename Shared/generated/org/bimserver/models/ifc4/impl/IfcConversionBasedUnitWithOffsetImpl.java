@@ -26,15 +26,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcConversionBasedUnitWithOffsetImpl#getConversionOffset <em>Conversion Offset</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcConversionBasedUnitWithOffsetImpl#getConversionOffsetAsString <em>Conversion Offset As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcConversionBasedUnitWithOffsetImpl extends IfcConversionBasedUnitImpl implements IfcConversionBasedUnitWithOffset {
+public class IfcConversionBasedUnitWithOffsetImpl extends IfcConversionBasedUnitImpl
+		implements IfcConversionBasedUnitWithOffset {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,7 +79,8 @@ public class IfcConversionBasedUnitWithOffsetImpl extends IfcConversionBasedUnit
 	 * @generated
 	 */
 	public String getConversionOffsetAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT_WITH_OFFSET__CONVERSION_OFFSET_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT_WITH_OFFSET__CONVERSION_OFFSET_AS_STRING,
+				true);
 	}
 
 	/**
@@ -87,7 +89,8 @@ public class IfcConversionBasedUnitWithOffsetImpl extends IfcConversionBasedUnit
 	 * @generated
 	 */
 	public void setConversionOffsetAsString(String newConversionOffsetAsString) {
-		eSet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT_WITH_OFFSET__CONVERSION_OFFSET_AS_STRING, newConversionOffsetAsString);
+		eSet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT_WITH_OFFSET__CONVERSION_OFFSET_AS_STRING,
+				newConversionOffsetAsString);
 	}
 
 } //IfcConversionBasedUnitWithOffsetImpl

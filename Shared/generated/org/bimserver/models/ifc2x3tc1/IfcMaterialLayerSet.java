@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet#getMaterialLayers <em>Material Layers</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet#getLayerSetName <em>Layer Set Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet#getTotalThickness <em>Total Thickness</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet#getTotalThicknessAsString <em>Total Thickness As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcMaterialLayerSet()
  * @model

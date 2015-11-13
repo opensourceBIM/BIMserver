@@ -40,6 +40,9 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 			byte b = buffer.get(pos);
 			b |= (1 << (featureCounter % 8));
 			buffer.put(pos, b);
+			if (eClass.getName().equals("IfcSite")) {
+				System.out.println("UNSET: " + feature.getName());
+			}
 		} else {
 			if (feature instanceof EReference) {
 				ensureCapacity(buffer.position(), 2);

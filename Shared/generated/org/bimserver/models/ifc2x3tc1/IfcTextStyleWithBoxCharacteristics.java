@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getBoxHeight <em>Box Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getBoxHeightAsString <em>Box Height As String</em>}</li>
@@ -34,7 +35,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getBoxRotateAngleAsString <em>Box Rotate Angle As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getCharacterSpacing <em>Character Spacing</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTextStyleWithBoxCharacteristics()
  * @model

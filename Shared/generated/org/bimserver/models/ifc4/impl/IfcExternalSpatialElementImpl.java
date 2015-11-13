@@ -29,15 +29,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcExternalSpatialElementImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcExternalSpatialElementImpl#getBoundedBy <em>Bounded By</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcExternalSpatialElementImpl extends IfcExternalSpatialStructureElementImpl implements IfcExternalSpatialElement {
+public class IfcExternalSpatialElementImpl extends IfcExternalSpatialStructureElementImpl
+		implements IfcExternalSpatialElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,7 +64,8 @@ public class IfcExternalSpatialElementImpl extends IfcExternalSpatialStructureEl
 	 * @generated
 	 */
 	public IfcExternalSpatialElementTypeEnum getPredefinedType() {
-		return (IfcExternalSpatialElementTypeEnum) eGet(Ifc4Package.Literals.IFC_EXTERNAL_SPATIAL_ELEMENT__PREDEFINED_TYPE, true);
+		return (IfcExternalSpatialElementTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_EXTERNAL_SPATIAL_ELEMENT__PREDEFINED_TYPE, true);
 	}
 
 	/**

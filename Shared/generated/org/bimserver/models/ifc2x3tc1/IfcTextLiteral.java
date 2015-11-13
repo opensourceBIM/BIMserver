@@ -23,12 +23,12 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextLiteral#getLiteral <em>Literal</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextLiteral#getPlacement <em>Placement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextLiteral#getPath <em>Path</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTextLiteral()
  * @model

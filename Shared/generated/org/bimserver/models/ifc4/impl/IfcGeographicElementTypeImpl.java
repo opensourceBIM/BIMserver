@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcGeographicElementTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcGeographicElementTypeImpl extends IfcElementTypeImpl implements 
 	 * @generated
 	 */
 	public IfcGeographicElementTypeEnum getPredefinedType() {
-		return (IfcGeographicElementTypeEnum) eGet(Ifc4Package.Literals.IFC_GEOGRAPHIC_ELEMENT_TYPE__PREDEFINED_TYPE, true);
+		return (IfcGeographicElementTypeEnum) eGet(Ifc4Package.Literals.IFC_GEOGRAPHIC_ELEMENT_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

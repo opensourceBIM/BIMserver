@@ -213,8 +213,8 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCableCarrierFittingTypeEnum[] VALUES_ARRAY = new IfcCableCarrierFittingTypeEnum[] { NULL, NOTDEFINED, TEE, REDUCER, CROSS,
-			USERDEFINED, BEND, };
+	private static final IfcCableCarrierFittingTypeEnum[] VALUES_ARRAY = new IfcCableCarrierFittingTypeEnum[] { NULL,
+			NOTDEFINED, TEE, REDUCER, CROSS, USERDEFINED, BEND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cable Carrier Fitting Type Enum</b></em>' enumerators.
@@ -222,12 +222,15 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCableCarrierFittingTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCableCarrierFittingTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Cable Carrier Fitting Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCableCarrierFittingTypeEnum get(String literal) {
@@ -244,6 +247,8 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Cable Carrier Fitting Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCableCarrierFittingTypeEnum getByName(String name) {
@@ -260,6 +265,8 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Cable Carrier Fitting Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCableCarrierFittingTypeEnum get(int value) {

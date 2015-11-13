@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourceSpot#getOrientation <em>Orientation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourceSpot#getConcentrationExponent <em>Concentration Exponent</em>}</li>
@@ -32,7 +33,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourceSpot#getBeamWidthAngle <em>Beam Width Angle</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourceSpot#getBeamWidthAngleAsString <em>Beam Width Angle As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcLightSourceSpot()
  * @model

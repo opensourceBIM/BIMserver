@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalRelationshipImpl#getRelatedApproval <em>Related Approval</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalRelationshipImpl#getRelatingApproval <em>Relating Approval</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalRelationshipImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalRelationshipImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

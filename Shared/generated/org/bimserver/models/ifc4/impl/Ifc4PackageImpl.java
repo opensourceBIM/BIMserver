@@ -8244,20 +8244,26 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 			return (Ifc4Package) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI);
 
 		// Obtain or create and register package
-		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof Ifc4PackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-				: new Ifc4PackageImpl());
+		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (EPackage.Registry.INSTANCE
+				.get(eNS_URI) instanceof Ifc4PackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
+						: new Ifc4PackageImpl());
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		GeometryPackageImpl theGeometryPackage = (GeometryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI) instanceof GeometryPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(GeometryPackage.eNS_URI) : GeometryPackage.eINSTANCE);
-		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI) instanceof Ifc2x3tc1PackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(Ifc2x3tc1Package.eNS_URI) : Ifc2x3tc1Package.eINSTANCE);
-		LogPackageImpl theLogPackage = (LogPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI) instanceof LogPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(LogPackage.eNS_URI) : LogPackage.eINSTANCE);
-		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(StorePackage.eNS_URI) : StorePackage.eINSTANCE);
+		GeometryPackageImpl theGeometryPackage = (GeometryPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(GeometryPackage.eNS_URI) instanceof GeometryPackageImpl
+						? EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI) : GeometryPackage.eINSTANCE);
+		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(Ifc2x3tc1Package.eNS_URI) instanceof Ifc2x3tc1PackageImpl
+						? EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI)
+						: Ifc2x3tc1Package.eINSTANCE);
+		LogPackageImpl theLogPackage = (LogPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(LogPackage.eNS_URI) instanceof LogPackageImpl
+						? EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI) : LogPackage.eINSTANCE);
+		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(StorePackage.eNS_URI) instanceof StorePackageImpl
+						? EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI) : StorePackage.eINSTANCE);
 
 		// Load packages
 		theIfc4Package.loadPackage();
@@ -8288,7 +8294,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcActionRequest() {
 		if (ifcActionRequestEClass == null) {
-			ifcActionRequestEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1);
+			ifcActionRequestEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1);
 		}
 		return ifcActionRequestEClass;
 	}
@@ -8327,7 +8334,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcActor() {
 		if (ifcActorEClass == null) {
-			ifcActorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(2);
+			ifcActorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(2);
 		}
 		return ifcActorEClass;
 	}
@@ -8357,7 +8365,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcActorRole() {
 		if (ifcActorRoleEClass == null) {
-			ifcActorRoleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(3);
+			ifcActorRoleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(3);
 		}
 		return ifcActorRoleEClass;
 	}
@@ -8405,7 +8414,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcActuator() {
 		if (ifcActuatorEClass == null) {
-			ifcActuatorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(4);
+			ifcActuatorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(4);
 		}
 		return ifcActuatorEClass;
 	}
@@ -8426,7 +8436,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcActuatorType() {
 		if (ifcActuatorTypeEClass == null) {
-			ifcActuatorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(5);
+			ifcActuatorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(5);
 		}
 		return ifcActuatorTypeEClass;
 	}
@@ -8447,7 +8458,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAddress() {
 		if (ifcAddressEClass == null) {
-			ifcAddressEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(6);
+			ifcAddressEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(6);
 		}
 		return ifcAddressEClass;
 	}
@@ -8504,7 +8516,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAdvancedBrep() {
 		if (ifcAdvancedBrepEClass == null) {
-			ifcAdvancedBrepEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(7);
+			ifcAdvancedBrepEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(7);
 		}
 		return ifcAdvancedBrepEClass;
 	}
@@ -8516,7 +8529,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAdvancedBrepWithVoids() {
 		if (ifcAdvancedBrepWithVoidsEClass == null) {
-			ifcAdvancedBrepWithVoidsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(8);
+			ifcAdvancedBrepWithVoidsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(8);
 		}
 		return ifcAdvancedBrepWithVoidsEClass;
 	}
@@ -8537,7 +8551,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAdvancedFace() {
 		if (ifcAdvancedFaceEClass == null) {
-			ifcAdvancedFaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(9);
+			ifcAdvancedFaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(9);
 		}
 		return ifcAdvancedFaceEClass;
 	}
@@ -8549,7 +8564,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAirTerminal() {
 		if (ifcAirTerminalEClass == null) {
-			ifcAirTerminalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(10);
+			ifcAirTerminalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(10);
 		}
 		return ifcAirTerminalEClass;
 	}
@@ -8570,7 +8586,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAirTerminalBox() {
 		if (ifcAirTerminalBoxEClass == null) {
-			ifcAirTerminalBoxEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(11);
+			ifcAirTerminalBoxEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(11);
 		}
 		return ifcAirTerminalBoxEClass;
 	}
@@ -8591,7 +8608,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAirTerminalBoxType() {
 		if (ifcAirTerminalBoxTypeEClass == null) {
-			ifcAirTerminalBoxTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(12);
+			ifcAirTerminalBoxTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(12);
 		}
 		return ifcAirTerminalBoxTypeEClass;
 	}
@@ -8612,7 +8630,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAirTerminalType() {
 		if (ifcAirTerminalTypeEClass == null) {
-			ifcAirTerminalTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(13);
+			ifcAirTerminalTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(13);
 		}
 		return ifcAirTerminalTypeEClass;
 	}
@@ -8633,7 +8652,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAirToAirHeatRecovery() {
 		if (ifcAirToAirHeatRecoveryEClass == null) {
-			ifcAirToAirHeatRecoveryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(14);
+			ifcAirToAirHeatRecoveryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(14);
 		}
 		return ifcAirToAirHeatRecoveryEClass;
 	}
@@ -8654,7 +8674,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAirToAirHeatRecoveryType() {
 		if (ifcAirToAirHeatRecoveryTypeEClass == null) {
-			ifcAirToAirHeatRecoveryTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(15);
+			ifcAirToAirHeatRecoveryTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(15);
 		}
 		return ifcAirToAirHeatRecoveryTypeEClass;
 	}
@@ -8675,7 +8696,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAlarm() {
 		if (ifcAlarmEClass == null) {
-			ifcAlarmEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(16);
+			ifcAlarmEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(16);
 		}
 		return ifcAlarmEClass;
 	}
@@ -8696,7 +8718,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAlarmType() {
 		if (ifcAlarmTypeEClass == null) {
-			ifcAlarmTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(17);
+			ifcAlarmTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(17);
 		}
 		return ifcAlarmTypeEClass;
 	}
@@ -8717,7 +8740,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAnnotation() {
 		if (ifcAnnotationEClass == null) {
-			ifcAnnotationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(18);
+			ifcAnnotationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(18);
 		}
 		return ifcAnnotationEClass;
 	}
@@ -8738,7 +8762,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAnnotationFillArea() {
 		if (ifcAnnotationFillAreaEClass == null) {
-			ifcAnnotationFillAreaEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(19);
+			ifcAnnotationFillAreaEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(19);
 		}
 		return ifcAnnotationFillAreaEClass;
 	}
@@ -8768,7 +8793,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcApplication() {
 		if (ifcApplicationEClass == null) {
-			ifcApplicationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(20);
+			ifcApplicationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(20);
 		}
 		return ifcApplicationEClass;
 	}
@@ -8816,7 +8842,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAppliedValue() {
 		if (ifcAppliedValueEClass == null) {
-			ifcAppliedValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(21);
+			ifcAppliedValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(21);
 		}
 		return ifcAppliedValueEClass;
 	}
@@ -8927,7 +8954,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcApproval() {
 		if (ifcApprovalEClass == null) {
-			ifcApprovalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(22);
+			ifcApprovalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(22);
 		}
 		return ifcApprovalEClass;
 	}
@@ -9065,7 +9093,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcApprovalRelationship() {
 		if (ifcApprovalRelationshipEClass == null) {
-			ifcApprovalRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(23);
+			ifcApprovalRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(23);
 		}
 		return ifcApprovalRelationshipEClass;
 	}
@@ -9095,7 +9124,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcArbitraryClosedProfileDef() {
 		if (ifcArbitraryClosedProfileDefEClass == null) {
-			ifcArbitraryClosedProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(24);
+			ifcArbitraryClosedProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(24);
 		}
 		return ifcArbitraryClosedProfileDefEClass;
 	}
@@ -9116,7 +9146,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcArbitraryOpenProfileDef() {
 		if (ifcArbitraryOpenProfileDefEClass == null) {
-			ifcArbitraryOpenProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(25);
+			ifcArbitraryOpenProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(25);
 		}
 		return ifcArbitraryOpenProfileDefEClass;
 	}
@@ -9137,7 +9168,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcArbitraryProfileDefWithVoids() {
 		if (ifcArbitraryProfileDefWithVoidsEClass == null) {
-			ifcArbitraryProfileDefWithVoidsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(26);
+			ifcArbitraryProfileDefWithVoidsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(26);
 		}
 		return ifcArbitraryProfileDefWithVoidsEClass;
 	}
@@ -9158,7 +9190,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAsset() {
 		if (ifcAssetEClass == null) {
-			ifcAssetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(27);
+			ifcAssetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(27);
 		}
 		return ifcAssetEClass;
 	}
@@ -9251,7 +9284,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAsymmetricIShapeProfileDef() {
 		if (ifcAsymmetricIShapeProfileDefEClass == null) {
-			ifcAsymmetricIShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(28);
+			ifcAsymmetricIShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(28);
 		}
 		return ifcAsymmetricIShapeProfileDefEClass;
 	}
@@ -9479,7 +9513,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAudioVisualAppliance() {
 		if (ifcAudioVisualApplianceEClass == null) {
-			ifcAudioVisualApplianceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(29);
+			ifcAudioVisualApplianceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(29);
 		}
 		return ifcAudioVisualApplianceEClass;
 	}
@@ -9500,7 +9535,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAudioVisualApplianceType() {
 		if (ifcAudioVisualApplianceTypeEClass == null) {
-			ifcAudioVisualApplianceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(30);
+			ifcAudioVisualApplianceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(30);
 		}
 		return ifcAudioVisualApplianceTypeEClass;
 	}
@@ -9521,7 +9557,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAxis1Placement() {
 		if (ifcAxis1PlacementEClass == null) {
-			ifcAxis1PlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(31);
+			ifcAxis1PlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(31);
 		}
 		return ifcAxis1PlacementEClass;
 	}
@@ -9542,7 +9579,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAxis2Placement2D() {
 		if (ifcAxis2Placement2DEClass == null) {
-			ifcAxis2Placement2DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(32);
+			ifcAxis2Placement2DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(32);
 		}
 		return ifcAxis2Placement2DEClass;
 	}
@@ -9563,7 +9601,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAxis2Placement3D() {
 		if (ifcAxis2Placement3DEClass == null) {
-			ifcAxis2Placement3DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(33);
+			ifcAxis2Placement3DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(33);
 		}
 		return ifcAxis2Placement3DEClass;
 	}
@@ -9593,7 +9632,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBSplineCurve() {
 		if (ifcBSplineCurveEClass == null) {
-			ifcBSplineCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(34);
+			ifcBSplineCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(34);
 		}
 		return ifcBSplineCurveEClass;
 	}
@@ -9650,7 +9690,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBSplineCurveWithKnots() {
 		if (ifcBSplineCurveWithKnotsEClass == null) {
-			ifcBSplineCurveWithKnotsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(35);
+			ifcBSplineCurveWithKnotsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(35);
 		}
 		return ifcBSplineCurveWithKnotsEClass;
 	}
@@ -9698,7 +9739,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBSplineSurface() {
 		if (ifcBSplineSurfaceEClass == null) {
-			ifcBSplineSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(36);
+			ifcBSplineSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(36);
 		}
 		return ifcBSplineSurfaceEClass;
 	}
@@ -9773,7 +9815,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBSplineSurfaceWithKnots() {
 		if (ifcBSplineSurfaceWithKnotsEClass == null) {
-			ifcBSplineSurfaceWithKnotsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(37);
+			ifcBSplineSurfaceWithKnotsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(37);
 		}
 		return ifcBSplineSurfaceWithKnotsEClass;
 	}
@@ -9848,7 +9891,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBeam() {
 		if (ifcBeamEClass == null) {
-			ifcBeamEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(38);
+			ifcBeamEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(38);
 		}
 		return ifcBeamEClass;
 	}
@@ -9869,7 +9913,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBeamStandardCase() {
 		if (ifcBeamStandardCaseEClass == null) {
-			ifcBeamStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(39);
+			ifcBeamStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(39);
 		}
 		return ifcBeamStandardCaseEClass;
 	}
@@ -9881,7 +9926,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBeamType() {
 		if (ifcBeamTypeEClass == null) {
-			ifcBeamTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(40);
+			ifcBeamTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(40);
 		}
 		return ifcBeamTypeEClass;
 	}
@@ -9902,7 +9948,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBlobTexture() {
 		if (ifcBlobTextureEClass == null) {
-			ifcBlobTextureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(41);
+			ifcBlobTextureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(41);
 		}
 		return ifcBlobTextureEClass;
 	}
@@ -9932,7 +9979,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBlock() {
 		if (ifcBlockEClass == null) {
-			ifcBlockEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(42);
+			ifcBlockEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(42);
 		}
 		return ifcBlockEClass;
 	}
@@ -9998,7 +10046,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoiler() {
 		if (ifcBoilerEClass == null) {
-			ifcBoilerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(43);
+			ifcBoilerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(43);
 		}
 		return ifcBoilerEClass;
 	}
@@ -10019,7 +10068,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoilerType() {
 		if (ifcBoilerTypeEClass == null) {
-			ifcBoilerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(44);
+			ifcBoilerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(44);
 		}
 		return ifcBoilerTypeEClass;
 	}
@@ -10040,7 +10090,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBooleanClippingResult() {
 		if (ifcBooleanClippingResultEClass == null) {
-			ifcBooleanClippingResultEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(45);
+			ifcBooleanClippingResultEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(45);
 		}
 		return ifcBooleanClippingResultEClass;
 	}
@@ -10052,7 +10103,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBooleanResult() {
 		if (ifcBooleanResultEClass == null) {
-			ifcBooleanResultEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(46);
+			ifcBooleanResultEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(46);
 		}
 		return ifcBooleanResultEClass;
 	}
@@ -10100,7 +10152,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoundaryCondition() {
 		if (ifcBoundaryConditionEClass == null) {
-			ifcBoundaryConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(47);
+			ifcBoundaryConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(47);
 		}
 		return ifcBoundaryConditionEClass;
 	}
@@ -10121,7 +10174,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoundaryCurve() {
 		if (ifcBoundaryCurveEClass == null) {
-			ifcBoundaryCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(48);
+			ifcBoundaryCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(48);
 		}
 		return ifcBoundaryCurveEClass;
 	}
@@ -10133,7 +10187,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoundaryEdgeCondition() {
 		if (ifcBoundaryEdgeConditionEClass == null) {
-			ifcBoundaryEdgeConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(49);
+			ifcBoundaryEdgeConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(49);
 		}
 		return ifcBoundaryEdgeConditionEClass;
 	}
@@ -10199,7 +10254,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoundaryFaceCondition() {
 		if (ifcBoundaryFaceConditionEClass == null) {
-			ifcBoundaryFaceConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(50);
+			ifcBoundaryFaceConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(50);
 		}
 		return ifcBoundaryFaceConditionEClass;
 	}
@@ -10238,7 +10294,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoundaryNodeCondition() {
 		if (ifcBoundaryNodeConditionEClass == null) {
-			ifcBoundaryNodeConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(51);
+			ifcBoundaryNodeConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(51);
 		}
 		return ifcBoundaryNodeConditionEClass;
 	}
@@ -10304,7 +10361,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoundaryNodeConditionWarping() {
 		if (ifcBoundaryNodeConditionWarpingEClass == null) {
-			ifcBoundaryNodeConditionWarpingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(52);
+			ifcBoundaryNodeConditionWarpingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(52);
 		}
 		return ifcBoundaryNodeConditionWarpingEClass;
 	}
@@ -10325,7 +10383,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoundedCurve() {
 		if (ifcBoundedCurveEClass == null) {
-			ifcBoundedCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(53);
+			ifcBoundedCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(53);
 		}
 		return ifcBoundedCurveEClass;
 	}
@@ -10337,7 +10396,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoundedSurface() {
 		if (ifcBoundedSurfaceEClass == null) {
-			ifcBoundedSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(54);
+			ifcBoundedSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(54);
 		}
 		return ifcBoundedSurfaceEClass;
 	}
@@ -10349,7 +10409,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoundingBox() {
 		if (ifcBoundingBoxEClass == null) {
-			ifcBoundingBoxEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(55);
+			ifcBoundingBoxEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(55);
 		}
 		return ifcBoundingBoxEClass;
 	}
@@ -10433,7 +10494,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoxedHalfSpace() {
 		if (ifcBoxedHalfSpaceEClass == null) {
-			ifcBoxedHalfSpaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(56);
+			ifcBoxedHalfSpaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(56);
 		}
 		return ifcBoxedHalfSpaceEClass;
 	}
@@ -10454,7 +10516,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBuilding() {
 		if (ifcBuildingEClass == null) {
-			ifcBuildingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(57);
+			ifcBuildingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(57);
 		}
 		return ifcBuildingEClass;
 	}
@@ -10511,7 +10574,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBuildingElement() {
 		if (ifcBuildingElementEClass == null) {
-			ifcBuildingElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(58);
+			ifcBuildingElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(58);
 		}
 		return ifcBuildingElementEClass;
 	}
@@ -10532,7 +10596,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBuildingElementPart() {
 		if (ifcBuildingElementPartEClass == null) {
-			ifcBuildingElementPartEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(59);
+			ifcBuildingElementPartEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(59);
 		}
 		return ifcBuildingElementPartEClass;
 	}
@@ -10553,7 +10618,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBuildingElementPartType() {
 		if (ifcBuildingElementPartTypeEClass == null) {
-			ifcBuildingElementPartTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(60);
+			ifcBuildingElementPartTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(60);
 		}
 		return ifcBuildingElementPartTypeEClass;
 	}
@@ -10574,7 +10640,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBuildingElementProxy() {
 		if (ifcBuildingElementProxyEClass == null) {
-			ifcBuildingElementProxyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(61);
+			ifcBuildingElementProxyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(61);
 		}
 		return ifcBuildingElementProxyEClass;
 	}
@@ -10595,7 +10662,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBuildingElementProxyType() {
 		if (ifcBuildingElementProxyTypeEClass == null) {
-			ifcBuildingElementProxyTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(62);
+			ifcBuildingElementProxyTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(62);
 		}
 		return ifcBuildingElementProxyTypeEClass;
 	}
@@ -10616,7 +10684,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBuildingElementType() {
 		if (ifcBuildingElementTypeEClass == null) {
-			ifcBuildingElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(63);
+			ifcBuildingElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(63);
 		}
 		return ifcBuildingElementTypeEClass;
 	}
@@ -10628,7 +10697,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBuildingStorey() {
 		if (ifcBuildingStoreyEClass == null) {
-			ifcBuildingStoreyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(64);
+			ifcBuildingStoreyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(64);
 		}
 		return ifcBuildingStoreyEClass;
 	}
@@ -10658,7 +10728,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBuildingSystem() {
 		if (ifcBuildingSystemEClass == null) {
-			ifcBuildingSystemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(65);
+			ifcBuildingSystemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(65);
 		}
 		return ifcBuildingSystemEClass;
 	}
@@ -10679,7 +10750,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBurner() {
 		if (ifcBurnerEClass == null) {
-			ifcBurnerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(66);
+			ifcBurnerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(66);
 		}
 		return ifcBurnerEClass;
 	}
@@ -10700,7 +10772,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBurnerType() {
 		if (ifcBurnerTypeEClass == null) {
-			ifcBurnerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(67);
+			ifcBurnerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(67);
 		}
 		return ifcBurnerTypeEClass;
 	}
@@ -10721,7 +10794,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCShapeProfileDef() {
 		if (ifcCShapeProfileDefEClass == null) {
-			ifcCShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(68);
+			ifcCShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(68);
 		}
 		return ifcCShapeProfileDefEClass;
 	}
@@ -10823,7 +10897,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCableCarrierFitting() {
 		if (ifcCableCarrierFittingEClass == null) {
-			ifcCableCarrierFittingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(69);
+			ifcCableCarrierFittingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(69);
 		}
 		return ifcCableCarrierFittingEClass;
 	}
@@ -10844,7 +10919,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCableCarrierFittingType() {
 		if (ifcCableCarrierFittingTypeEClass == null) {
-			ifcCableCarrierFittingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(70);
+			ifcCableCarrierFittingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(70);
 		}
 		return ifcCableCarrierFittingTypeEClass;
 	}
@@ -10865,7 +10941,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCableCarrierSegment() {
 		if (ifcCableCarrierSegmentEClass == null) {
-			ifcCableCarrierSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(71);
+			ifcCableCarrierSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(71);
 		}
 		return ifcCableCarrierSegmentEClass;
 	}
@@ -10886,7 +10963,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCableCarrierSegmentType() {
 		if (ifcCableCarrierSegmentTypeEClass == null) {
-			ifcCableCarrierSegmentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(72);
+			ifcCableCarrierSegmentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(72);
 		}
 		return ifcCableCarrierSegmentTypeEClass;
 	}
@@ -10907,7 +10985,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCableFitting() {
 		if (ifcCableFittingEClass == null) {
-			ifcCableFittingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(73);
+			ifcCableFittingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(73);
 		}
 		return ifcCableFittingEClass;
 	}
@@ -10928,7 +11007,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCableFittingType() {
 		if (ifcCableFittingTypeEClass == null) {
-			ifcCableFittingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(74);
+			ifcCableFittingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(74);
 		}
 		return ifcCableFittingTypeEClass;
 	}
@@ -10949,7 +11029,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCableSegment() {
 		if (ifcCableSegmentEClass == null) {
-			ifcCableSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(75);
+			ifcCableSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(75);
 		}
 		return ifcCableSegmentEClass;
 	}
@@ -10970,7 +11051,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCableSegmentType() {
 		if (ifcCableSegmentTypeEClass == null) {
-			ifcCableSegmentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(76);
+			ifcCableSegmentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(76);
 		}
 		return ifcCableSegmentTypeEClass;
 	}
@@ -10991,7 +11073,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCartesianPoint() {
 		if (ifcCartesianPointEClass == null) {
-			ifcCartesianPointEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(77);
+			ifcCartesianPointEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(77);
 		}
 		return ifcCartesianPointEClass;
 	}
@@ -11030,7 +11113,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCartesianPointList() {
 		if (ifcCartesianPointListEClass == null) {
-			ifcCartesianPointListEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(78);
+			ifcCartesianPointListEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(78);
 		}
 		return ifcCartesianPointListEClass;
 	}
@@ -11042,7 +11126,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCartesianPointList3D() {
 		if (ifcCartesianPointList3DEClass == null) {
-			ifcCartesianPointList3DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(79);
+			ifcCartesianPointList3DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(79);
 		}
 		return ifcCartesianPointList3DEClass;
 	}
@@ -11063,7 +11148,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCartesianTransformationOperator() {
 		if (ifcCartesianTransformationOperatorEClass == null) {
-			ifcCartesianTransformationOperatorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(80);
+			ifcCartesianTransformationOperatorEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(80);
 		}
 		return ifcCartesianTransformationOperatorEClass;
 	}
@@ -11129,7 +11215,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCartesianTransformationOperator2D() {
 		if (ifcCartesianTransformationOperator2DEClass == null) {
-			ifcCartesianTransformationOperator2DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(81);
+			ifcCartesianTransformationOperator2DEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(81);
 		}
 		return ifcCartesianTransformationOperator2DEClass;
 	}
@@ -11141,7 +11228,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCartesianTransformationOperator2DnonUniform() {
 		if (ifcCartesianTransformationOperator2DnonUniformEClass == null) {
-			ifcCartesianTransformationOperator2DnonUniformEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(82);
+			ifcCartesianTransformationOperator2DnonUniformEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(82);
 		}
 		return ifcCartesianTransformationOperator2DnonUniformEClass;
 	}
@@ -11171,7 +11259,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCartesianTransformationOperator3D() {
 		if (ifcCartesianTransformationOperator3DEClass == null) {
-			ifcCartesianTransformationOperator3DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(83);
+			ifcCartesianTransformationOperator3DEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(83);
 		}
 		return ifcCartesianTransformationOperator3DEClass;
 	}
@@ -11192,7 +11281,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCartesianTransformationOperator3DnonUniform() {
 		if (ifcCartesianTransformationOperator3DnonUniformEClass == null) {
-			ifcCartesianTransformationOperator3DnonUniformEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(84);
+			ifcCartesianTransformationOperator3DnonUniformEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(84);
 		}
 		return ifcCartesianTransformationOperator3DnonUniformEClass;
 	}
@@ -11240,7 +11330,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCenterLineProfileDef() {
 		if (ifcCenterLineProfileDefEClass == null) {
-			ifcCenterLineProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(85);
+			ifcCenterLineProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(85);
 		}
 		return ifcCenterLineProfileDefEClass;
 	}
@@ -11270,7 +11361,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcChiller() {
 		if (ifcChillerEClass == null) {
-			ifcChillerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(86);
+			ifcChillerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(86);
 		}
 		return ifcChillerEClass;
 	}
@@ -11291,7 +11383,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcChillerType() {
 		if (ifcChillerTypeEClass == null) {
-			ifcChillerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(87);
+			ifcChillerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(87);
 		}
 		return ifcChillerTypeEClass;
 	}
@@ -11312,7 +11405,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcChimney() {
 		if (ifcChimneyEClass == null) {
-			ifcChimneyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(88);
+			ifcChimneyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(88);
 		}
 		return ifcChimneyEClass;
 	}
@@ -11333,7 +11427,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcChimneyType() {
 		if (ifcChimneyTypeEClass == null) {
-			ifcChimneyTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(89);
+			ifcChimneyTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(89);
 		}
 		return ifcChimneyTypeEClass;
 	}
@@ -11354,7 +11449,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCircle() {
 		if (ifcCircleEClass == null) {
-			ifcCircleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(90);
+			ifcCircleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(90);
 		}
 		return ifcCircleEClass;
 	}
@@ -11384,7 +11480,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCircleHollowProfileDef() {
 		if (ifcCircleHollowProfileDefEClass == null) {
-			ifcCircleHollowProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(91);
+			ifcCircleHollowProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(91);
 		}
 		return ifcCircleHollowProfileDefEClass;
 	}
@@ -11414,7 +11511,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCircleProfileDef() {
 		if (ifcCircleProfileDefEClass == null) {
-			ifcCircleProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(92);
+			ifcCircleProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(92);
 		}
 		return ifcCircleProfileDefEClass;
 	}
@@ -11444,7 +11542,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCivilElement() {
 		if (ifcCivilElementEClass == null) {
-			ifcCivilElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(93);
+			ifcCivilElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(93);
 		}
 		return ifcCivilElementEClass;
 	}
@@ -11456,7 +11555,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCivilElementType() {
 		if (ifcCivilElementTypeEClass == null) {
-			ifcCivilElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(94);
+			ifcCivilElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(94);
 		}
 		return ifcCivilElementTypeEClass;
 	}
@@ -11468,7 +11568,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcClassification() {
 		if (ifcClassificationEClass == null) {
-			ifcClassificationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(95);
+			ifcClassificationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(95);
 		}
 		return ifcClassificationEClass;
 	}
@@ -11561,7 +11662,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcClassificationReference() {
 		if (ifcClassificationReferenceEClass == null) {
-			ifcClassificationReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(96);
+			ifcClassificationReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(96);
 		}
 		return ifcClassificationReferenceEClass;
 	}
@@ -11618,7 +11720,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcClosedShell() {
 		if (ifcClosedShellEClass == null) {
-			ifcClosedShellEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(97);
+			ifcClosedShellEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(97);
 		}
 		return ifcClosedShellEClass;
 	}
@@ -11630,7 +11733,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCoil() {
 		if (ifcCoilEClass == null) {
-			ifcCoilEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(98);
+			ifcCoilEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(98);
 		}
 		return ifcCoilEClass;
 	}
@@ -11651,7 +11755,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCoilType() {
 		if (ifcCoilTypeEClass == null) {
-			ifcCoilTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(99);
+			ifcCoilTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(99);
 		}
 		return ifcCoilTypeEClass;
 	}
@@ -11672,7 +11777,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcColourRgb() {
 		if (ifcColourRgbEClass == null) {
-			ifcColourRgbEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(100);
+			ifcColourRgbEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(100);
 		}
 		return ifcColourRgbEClass;
 	}
@@ -11738,7 +11844,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcColourRgbList() {
 		if (ifcColourRgbListEClass == null) {
-			ifcColourRgbListEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(101);
+			ifcColourRgbListEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(101);
 		}
 		return ifcColourRgbListEClass;
 	}
@@ -11759,7 +11866,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcColourSpecification() {
 		if (ifcColourSpecificationEClass == null) {
-			ifcColourSpecificationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(102);
+			ifcColourSpecificationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(102);
 		}
 		return ifcColourSpecificationEClass;
 	}
@@ -11780,7 +11888,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcColumn() {
 		if (ifcColumnEClass == null) {
-			ifcColumnEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(103);
+			ifcColumnEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(103);
 		}
 		return ifcColumnEClass;
 	}
@@ -11801,7 +11910,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcColumnStandardCase() {
 		if (ifcColumnStandardCaseEClass == null) {
-			ifcColumnStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(104);
+			ifcColumnStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(104);
 		}
 		return ifcColumnStandardCaseEClass;
 	}
@@ -11813,7 +11923,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcColumnType() {
 		if (ifcColumnTypeEClass == null) {
-			ifcColumnTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(105);
+			ifcColumnTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(105);
 		}
 		return ifcColumnTypeEClass;
 	}
@@ -11834,7 +11945,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCommunicationsAppliance() {
 		if (ifcCommunicationsApplianceEClass == null) {
-			ifcCommunicationsApplianceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(106);
+			ifcCommunicationsApplianceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(106);
 		}
 		return ifcCommunicationsApplianceEClass;
 	}
@@ -11855,7 +11967,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCommunicationsApplianceType() {
 		if (ifcCommunicationsApplianceTypeEClass == null) {
-			ifcCommunicationsApplianceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(107);
+			ifcCommunicationsApplianceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(107);
 		}
 		return ifcCommunicationsApplianceTypeEClass;
 	}
@@ -11876,7 +11989,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcComplexProperty() {
 		if (ifcComplexPropertyEClass == null) {
-			ifcComplexPropertyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(108);
+			ifcComplexPropertyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(108);
 		}
 		return ifcComplexPropertyEClass;
 	}
@@ -11906,7 +12020,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcComplexPropertyTemplate() {
 		if (ifcComplexPropertyTemplateEClass == null) {
-			ifcComplexPropertyTemplateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(109);
+			ifcComplexPropertyTemplateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(109);
 		}
 		return ifcComplexPropertyTemplateEClass;
 	}
@@ -11945,7 +12060,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCompositeCurve() {
 		if (ifcCompositeCurveEClass == null) {
-			ifcCompositeCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(110);
+			ifcCompositeCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(110);
 		}
 		return ifcCompositeCurveEClass;
 	}
@@ -11975,7 +12091,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCompositeCurveOnSurface() {
 		if (ifcCompositeCurveOnSurfaceEClass == null) {
-			ifcCompositeCurveOnSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(111);
+			ifcCompositeCurveOnSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(111);
 		}
 		return ifcCompositeCurveOnSurfaceEClass;
 	}
@@ -11987,7 +12104,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCompositeCurveSegment() {
 		if (ifcCompositeCurveSegmentEClass == null) {
-			ifcCompositeCurveSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(112);
+			ifcCompositeCurveSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(112);
 		}
 		return ifcCompositeCurveSegmentEClass;
 	}
@@ -12044,7 +12162,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCompositeProfileDef() {
 		if (ifcCompositeProfileDefEClass == null) {
-			ifcCompositeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(113);
+			ifcCompositeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(113);
 		}
 		return ifcCompositeProfileDefEClass;
 	}
@@ -12074,7 +12193,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCompressor() {
 		if (ifcCompressorEClass == null) {
-			ifcCompressorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(114);
+			ifcCompressorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(114);
 		}
 		return ifcCompressorEClass;
 	}
@@ -12095,7 +12215,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCompressorType() {
 		if (ifcCompressorTypeEClass == null) {
-			ifcCompressorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(115);
+			ifcCompressorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(115);
 		}
 		return ifcCompressorTypeEClass;
 	}
@@ -12116,7 +12237,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCondenser() {
 		if (ifcCondenserEClass == null) {
-			ifcCondenserEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(116);
+			ifcCondenserEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(116);
 		}
 		return ifcCondenserEClass;
 	}
@@ -12137,7 +12259,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCondenserType() {
 		if (ifcCondenserTypeEClass == null) {
-			ifcCondenserTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(117);
+			ifcCondenserTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(117);
 		}
 		return ifcCondenserTypeEClass;
 	}
@@ -12158,7 +12281,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConic() {
 		if (ifcConicEClass == null) {
-			ifcConicEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(118);
+			ifcConicEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(118);
 		}
 		return ifcConicEClass;
 	}
@@ -12179,7 +12303,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConnectedFaceSet() {
 		if (ifcConnectedFaceSetEClass == null) {
-			ifcConnectedFaceSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(119);
+			ifcConnectedFaceSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(119);
 		}
 		return ifcConnectedFaceSetEClass;
 	}
@@ -12200,7 +12325,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConnectionCurveGeometry() {
 		if (ifcConnectionCurveGeometryEClass == null) {
-			ifcConnectionCurveGeometryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(120);
+			ifcConnectionCurveGeometryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(120);
 		}
 		return ifcConnectionCurveGeometryEClass;
 	}
@@ -12230,7 +12356,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConnectionGeometry() {
 		if (ifcConnectionGeometryEClass == null) {
-			ifcConnectionGeometryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(121);
+			ifcConnectionGeometryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(121);
 		}
 		return ifcConnectionGeometryEClass;
 	}
@@ -12242,7 +12369,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConnectionPointEccentricity() {
 		if (ifcConnectionPointEccentricityEClass == null) {
-			ifcConnectionPointEccentricityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(122);
+			ifcConnectionPointEccentricityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(122);
 		}
 		return ifcConnectionPointEccentricityEClass;
 	}
@@ -12308,7 +12436,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConnectionPointGeometry() {
 		if (ifcConnectionPointGeometryEClass == null) {
-			ifcConnectionPointGeometryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(123);
+			ifcConnectionPointGeometryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(123);
 		}
 		return ifcConnectionPointGeometryEClass;
 	}
@@ -12338,7 +12467,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConnectionSurfaceGeometry() {
 		if (ifcConnectionSurfaceGeometryEClass == null) {
-			ifcConnectionSurfaceGeometryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(124);
+			ifcConnectionSurfaceGeometryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(124);
 		}
 		return ifcConnectionSurfaceGeometryEClass;
 	}
@@ -12368,7 +12498,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConnectionVolumeGeometry() {
 		if (ifcConnectionVolumeGeometryEClass == null) {
-			ifcConnectionVolumeGeometryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(125);
+			ifcConnectionVolumeGeometryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(125);
 		}
 		return ifcConnectionVolumeGeometryEClass;
 	}
@@ -12398,7 +12529,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConstraint() {
 		if (ifcConstraintEClass == null) {
-			ifcConstraintEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(126);
+			ifcConstraintEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(126);
 		}
 		return ifcConstraintEClass;
 	}
@@ -12491,7 +12623,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConstructionEquipmentResource() {
 		if (ifcConstructionEquipmentResourceEClass == null) {
-			ifcConstructionEquipmentResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(127);
+			ifcConstructionEquipmentResourceEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(127);
 		}
 		return ifcConstructionEquipmentResourceEClass;
 	}
@@ -12512,7 +12645,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConstructionEquipmentResourceType() {
 		if (ifcConstructionEquipmentResourceTypeEClass == null) {
-			ifcConstructionEquipmentResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(128);
+			ifcConstructionEquipmentResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(128);
 		}
 		return ifcConstructionEquipmentResourceTypeEClass;
 	}
@@ -12533,7 +12667,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConstructionMaterialResource() {
 		if (ifcConstructionMaterialResourceEClass == null) {
-			ifcConstructionMaterialResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(129);
+			ifcConstructionMaterialResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(129);
 		}
 		return ifcConstructionMaterialResourceEClass;
 	}
@@ -12554,7 +12689,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConstructionMaterialResourceType() {
 		if (ifcConstructionMaterialResourceTypeEClass == null) {
-			ifcConstructionMaterialResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(130);
+			ifcConstructionMaterialResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(130);
 		}
 		return ifcConstructionMaterialResourceTypeEClass;
 	}
@@ -12575,7 +12711,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConstructionProductResource() {
 		if (ifcConstructionProductResourceEClass == null) {
-			ifcConstructionProductResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(131);
+			ifcConstructionProductResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(131);
 		}
 		return ifcConstructionProductResourceEClass;
 	}
@@ -12596,7 +12733,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConstructionProductResourceType() {
 		if (ifcConstructionProductResourceTypeEClass == null) {
-			ifcConstructionProductResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(132);
+			ifcConstructionProductResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(132);
 		}
 		return ifcConstructionProductResourceTypeEClass;
 	}
@@ -12617,7 +12755,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConstructionResource() {
 		if (ifcConstructionResourceEClass == null) {
-			ifcConstructionResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(133);
+			ifcConstructionResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(133);
 		}
 		return ifcConstructionResourceEClass;
 	}
@@ -12656,7 +12795,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConstructionResourceType() {
 		if (ifcConstructionResourceTypeEClass == null) {
-			ifcConstructionResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(134);
+			ifcConstructionResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(134);
 		}
 		return ifcConstructionResourceTypeEClass;
 	}
@@ -12686,7 +12826,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcContext() {
 		if (ifcContextEClass == null) {
-			ifcContextEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(135);
+			ifcContextEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(135);
 		}
 		return ifcContextEClass;
 	}
@@ -12761,7 +12902,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcContextDependentUnit() {
 		if (ifcContextDependentUnitEClass == null) {
-			ifcContextDependentUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(136);
+			ifcContextDependentUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(136);
 		}
 		return ifcContextDependentUnitEClass;
 	}
@@ -12791,7 +12933,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcControl() {
 		if (ifcControlEClass == null) {
-			ifcControlEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(137);
+			ifcControlEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(137);
 		}
 		return ifcControlEClass;
 	}
@@ -12821,7 +12964,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcController() {
 		if (ifcControllerEClass == null) {
-			ifcControllerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(138);
+			ifcControllerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(138);
 		}
 		return ifcControllerEClass;
 	}
@@ -12842,7 +12986,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcControllerType() {
 		if (ifcControllerTypeEClass == null) {
-			ifcControllerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(139);
+			ifcControllerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(139);
 		}
 		return ifcControllerTypeEClass;
 	}
@@ -12863,7 +13008,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConversionBasedUnit() {
 		if (ifcConversionBasedUnitEClass == null) {
-			ifcConversionBasedUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(140);
+			ifcConversionBasedUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(140);
 		}
 		return ifcConversionBasedUnitEClass;
 	}
@@ -12902,7 +13048,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcConversionBasedUnitWithOffset() {
 		if (ifcConversionBasedUnitWithOffsetEClass == null) {
-			ifcConversionBasedUnitWithOffsetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(141);
+			ifcConversionBasedUnitWithOffsetEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(141);
 		}
 		return ifcConversionBasedUnitWithOffsetEClass;
 	}
@@ -12932,7 +13079,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCooledBeam() {
 		if (ifcCooledBeamEClass == null) {
-			ifcCooledBeamEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(142);
+			ifcCooledBeamEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(142);
 		}
 		return ifcCooledBeamEClass;
 	}
@@ -12953,7 +13101,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCooledBeamType() {
 		if (ifcCooledBeamTypeEClass == null) {
-			ifcCooledBeamTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(143);
+			ifcCooledBeamTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(143);
 		}
 		return ifcCooledBeamTypeEClass;
 	}
@@ -12974,7 +13123,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCoolingTower() {
 		if (ifcCoolingTowerEClass == null) {
-			ifcCoolingTowerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(144);
+			ifcCoolingTowerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(144);
 		}
 		return ifcCoolingTowerEClass;
 	}
@@ -12995,7 +13145,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCoolingTowerType() {
 		if (ifcCoolingTowerTypeEClass == null) {
-			ifcCoolingTowerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(145);
+			ifcCoolingTowerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(145);
 		}
 		return ifcCoolingTowerTypeEClass;
 	}
@@ -13016,7 +13167,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCoordinateOperation() {
 		if (ifcCoordinateOperationEClass == null) {
-			ifcCoordinateOperationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(146);
+			ifcCoordinateOperationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(146);
 		}
 		return ifcCoordinateOperationEClass;
 	}
@@ -13046,7 +13198,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCoordinateReferenceSystem() {
 		if (ifcCoordinateReferenceSystemEClass == null) {
-			ifcCoordinateReferenceSystemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(147);
+			ifcCoordinateReferenceSystemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(147);
 		}
 		return ifcCoordinateReferenceSystemEClass;
 	}
@@ -13094,7 +13247,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCostItem() {
 		if (ifcCostItemEClass == null) {
-			ifcCostItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(148);
+			ifcCostItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(148);
 		}
 		return ifcCostItemEClass;
 	}
@@ -13133,7 +13287,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCostSchedule() {
 		if (ifcCostScheduleEClass == null) {
-			ifcCostScheduleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(149);
+			ifcCostScheduleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(149);
 		}
 		return ifcCostScheduleEClass;
 	}
@@ -13181,7 +13336,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCostValue() {
 		if (ifcCostValueEClass == null) {
-			ifcCostValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(150);
+			ifcCostValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(150);
 		}
 		return ifcCostValueEClass;
 	}
@@ -13193,7 +13349,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCovering() {
 		if (ifcCoveringEClass == null) {
-			ifcCoveringEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(151);
+			ifcCoveringEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(151);
 		}
 		return ifcCoveringEClass;
 	}
@@ -13232,7 +13389,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCoveringType() {
 		if (ifcCoveringTypeEClass == null) {
-			ifcCoveringTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(152);
+			ifcCoveringTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(152);
 		}
 		return ifcCoveringTypeEClass;
 	}
@@ -13253,7 +13411,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCrewResource() {
 		if (ifcCrewResourceEClass == null) {
-			ifcCrewResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(153);
+			ifcCrewResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(153);
 		}
 		return ifcCrewResourceEClass;
 	}
@@ -13274,7 +13433,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCrewResourceType() {
 		if (ifcCrewResourceTypeEClass == null) {
-			ifcCrewResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(154);
+			ifcCrewResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(154);
 		}
 		return ifcCrewResourceTypeEClass;
 	}
@@ -13295,7 +13455,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCsgPrimitive3D() {
 		if (ifcCsgPrimitive3DEClass == null) {
-			ifcCsgPrimitive3DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(155);
+			ifcCsgPrimitive3DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(155);
 		}
 		return ifcCsgPrimitive3DEClass;
 	}
@@ -13325,7 +13486,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCsgSolid() {
 		if (ifcCsgSolidEClass == null) {
-			ifcCsgSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(156);
+			ifcCsgSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(156);
 		}
 		return ifcCsgSolidEClass;
 	}
@@ -13346,7 +13508,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurrencyRelationship() {
 		if (ifcCurrencyRelationshipEClass == null) {
-			ifcCurrencyRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(157);
+			ifcCurrencyRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(157);
 		}
 		return ifcCurrencyRelationshipEClass;
 	}
@@ -13412,7 +13575,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurtainWall() {
 		if (ifcCurtainWallEClass == null) {
-			ifcCurtainWallEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(158);
+			ifcCurtainWallEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(158);
 		}
 		return ifcCurtainWallEClass;
 	}
@@ -13433,7 +13597,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurtainWallType() {
 		if (ifcCurtainWallTypeEClass == null) {
-			ifcCurtainWallTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(159);
+			ifcCurtainWallTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(159);
 		}
 		return ifcCurtainWallTypeEClass;
 	}
@@ -13454,7 +13619,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurve() {
 		if (ifcCurveEClass == null) {
-			ifcCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(160);
+			ifcCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(160);
 		}
 		return ifcCurveEClass;
 	}
@@ -13475,7 +13641,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurveBoundedPlane() {
 		if (ifcCurveBoundedPlaneEClass == null) {
-			ifcCurveBoundedPlaneEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(161);
+			ifcCurveBoundedPlaneEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(161);
 		}
 		return ifcCurveBoundedPlaneEClass;
 	}
@@ -13514,7 +13681,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurveBoundedSurface() {
 		if (ifcCurveBoundedSurfaceEClass == null) {
-			ifcCurveBoundedSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(162);
+			ifcCurveBoundedSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(162);
 		}
 		return ifcCurveBoundedSurfaceEClass;
 	}
@@ -13553,7 +13721,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurveStyle() {
 		if (ifcCurveStyleEClass == null) {
-			ifcCurveStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(163);
+			ifcCurveStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(163);
 		}
 		return ifcCurveStyleEClass;
 	}
@@ -13601,7 +13770,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurveStyleFont() {
 		if (ifcCurveStyleFontEClass == null) {
-			ifcCurveStyleFontEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(164);
+			ifcCurveStyleFontEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(164);
 		}
 		return ifcCurveStyleFontEClass;
 	}
@@ -13631,7 +13801,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurveStyleFontAndScaling() {
 		if (ifcCurveStyleFontAndScalingEClass == null) {
-			ifcCurveStyleFontAndScalingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(165);
+			ifcCurveStyleFontAndScalingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(165);
 		}
 		return ifcCurveStyleFontAndScalingEClass;
 	}
@@ -13679,7 +13850,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurveStyleFontPattern() {
 		if (ifcCurveStyleFontPatternEClass == null) {
-			ifcCurveStyleFontPatternEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(166);
+			ifcCurveStyleFontPatternEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(166);
 		}
 		return ifcCurveStyleFontPatternEClass;
 	}
@@ -13727,7 +13899,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCylindricalSurface() {
 		if (ifcCylindricalSurfaceEClass == null) {
-			ifcCylindricalSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(167);
+			ifcCylindricalSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(167);
 		}
 		return ifcCylindricalSurfaceEClass;
 	}
@@ -13757,7 +13930,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDamper() {
 		if (ifcDamperEClass == null) {
-			ifcDamperEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(168);
+			ifcDamperEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(168);
 		}
 		return ifcDamperEClass;
 	}
@@ -13778,7 +13952,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDamperType() {
 		if (ifcDamperTypeEClass == null) {
-			ifcDamperTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(169);
+			ifcDamperTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(169);
 		}
 		return ifcDamperTypeEClass;
 	}
@@ -13799,7 +13974,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDerivedProfileDef() {
 		if (ifcDerivedProfileDefEClass == null) {
-			ifcDerivedProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(170);
+			ifcDerivedProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(170);
 		}
 		return ifcDerivedProfileDefEClass;
 	}
@@ -13838,7 +14014,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDerivedUnit() {
 		if (ifcDerivedUnitEClass == null) {
-			ifcDerivedUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(171);
+			ifcDerivedUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(171);
 		}
 		return ifcDerivedUnitEClass;
 	}
@@ -13877,7 +14054,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDerivedUnitElement() {
 		if (ifcDerivedUnitElementEClass == null) {
-			ifcDerivedUnitElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(172);
+			ifcDerivedUnitElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(172);
 		}
 		return ifcDerivedUnitElementEClass;
 	}
@@ -13907,7 +14085,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDimensionalExponents() {
 		if (ifcDimensionalExponentsEClass == null) {
-			ifcDimensionalExponentsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(173);
+			ifcDimensionalExponentsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(173);
 		}
 		return ifcDimensionalExponentsEClass;
 	}
@@ -13982,7 +14161,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDirection() {
 		if (ifcDirectionEClass == null) {
-			ifcDirectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(174);
+			ifcDirectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(174);
 		}
 		return ifcDirectionEClass;
 	}
@@ -14021,7 +14201,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDiscreteAccessory() {
 		if (ifcDiscreteAccessoryEClass == null) {
-			ifcDiscreteAccessoryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(175);
+			ifcDiscreteAccessoryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(175);
 		}
 		return ifcDiscreteAccessoryEClass;
 	}
@@ -14042,7 +14223,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDiscreteAccessoryType() {
 		if (ifcDiscreteAccessoryTypeEClass == null) {
-			ifcDiscreteAccessoryTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(176);
+			ifcDiscreteAccessoryTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(176);
 		}
 		return ifcDiscreteAccessoryTypeEClass;
 	}
@@ -14063,7 +14245,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDistributionChamberElement() {
 		if (ifcDistributionChamberElementEClass == null) {
-			ifcDistributionChamberElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(177);
+			ifcDistributionChamberElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(177);
 		}
 		return ifcDistributionChamberElementEClass;
 	}
@@ -14084,7 +14267,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDistributionChamberElementType() {
 		if (ifcDistributionChamberElementTypeEClass == null) {
-			ifcDistributionChamberElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(178);
+			ifcDistributionChamberElementTypeEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(178);
 		}
 		return ifcDistributionChamberElementTypeEClass;
 	}
@@ -14105,7 +14289,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDistributionCircuit() {
 		if (ifcDistributionCircuitEClass == null) {
-			ifcDistributionCircuitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(179);
+			ifcDistributionCircuitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(179);
 		}
 		return ifcDistributionCircuitEClass;
 	}
@@ -14117,7 +14302,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDistributionControlElement() {
 		if (ifcDistributionControlElementEClass == null) {
-			ifcDistributionControlElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(180);
+			ifcDistributionControlElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(180);
 		}
 		return ifcDistributionControlElementEClass;
 	}
@@ -14138,7 +14324,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDistributionControlElementType() {
 		if (ifcDistributionControlElementTypeEClass == null) {
-			ifcDistributionControlElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(181);
+			ifcDistributionControlElementTypeEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(181);
 		}
 		return ifcDistributionControlElementTypeEClass;
 	}
@@ -14150,7 +14337,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDistributionElement() {
 		if (ifcDistributionElementEClass == null) {
-			ifcDistributionElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(182);
+			ifcDistributionElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(182);
 		}
 		return ifcDistributionElementEClass;
 	}
@@ -14171,7 +14359,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDistributionElementType() {
 		if (ifcDistributionElementTypeEClass == null) {
-			ifcDistributionElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(183);
+			ifcDistributionElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(183);
 		}
 		return ifcDistributionElementTypeEClass;
 	}
@@ -14183,7 +14372,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDistributionFlowElement() {
 		if (ifcDistributionFlowElementEClass == null) {
-			ifcDistributionFlowElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(184);
+			ifcDistributionFlowElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(184);
 		}
 		return ifcDistributionFlowElementEClass;
 	}
@@ -14204,7 +14394,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDistributionFlowElementType() {
 		if (ifcDistributionFlowElementTypeEClass == null) {
-			ifcDistributionFlowElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(185);
+			ifcDistributionFlowElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(185);
 		}
 		return ifcDistributionFlowElementTypeEClass;
 	}
@@ -14216,7 +14407,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDistributionPort() {
 		if (ifcDistributionPortEClass == null) {
-			ifcDistributionPortEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(186);
+			ifcDistributionPortEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(186);
 		}
 		return ifcDistributionPortEClass;
 	}
@@ -14255,7 +14447,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDistributionSystem() {
 		if (ifcDistributionSystemEClass == null) {
-			ifcDistributionSystemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(187);
+			ifcDistributionSystemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(187);
 		}
 		return ifcDistributionSystemEClass;
 	}
@@ -14285,7 +14478,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDocumentInformation() {
 		if (ifcDocumentInformationEClass == null) {
-			ifcDocumentInformationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(188);
+			ifcDocumentInformationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(188);
 		}
 		return ifcDocumentInformationEClass;
 	}
@@ -14486,7 +14680,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDocumentInformationRelationship() {
 		if (ifcDocumentInformationRelationshipEClass == null) {
-			ifcDocumentInformationRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(189);
+			ifcDocumentInformationRelationshipEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(189);
 		}
 		return ifcDocumentInformationRelationshipEClass;
 	}
@@ -14525,7 +14720,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDocumentReference() {
 		if (ifcDocumentReferenceEClass == null) {
-			ifcDocumentReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(190);
+			ifcDocumentReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(190);
 		}
 		return ifcDocumentReferenceEClass;
 	}
@@ -14564,7 +14760,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDoor() {
 		if (ifcDoorEClass == null) {
-			ifcDoorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(191);
+			ifcDoorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(191);
 		}
 		return ifcDoorEClass;
 	}
@@ -14639,7 +14836,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDoorLiningProperties() {
 		if (ifcDoorLiningPropertiesEClass == null) {
-			ifcDoorLiningPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(192);
+			ifcDoorLiningPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(192);
 		}
 		return ifcDoorLiningPropertiesEClass;
 	}
@@ -14876,7 +15074,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDoorPanelProperties() {
 		if (ifcDoorPanelPropertiesEClass == null) {
-			ifcDoorPanelPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(193);
+			ifcDoorPanelPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(193);
 		}
 		return ifcDoorPanelPropertiesEClass;
 	}
@@ -14951,7 +15150,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDoorStandardCase() {
 		if (ifcDoorStandardCaseEClass == null) {
-			ifcDoorStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(194);
+			ifcDoorStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(194);
 		}
 		return ifcDoorStandardCaseEClass;
 	}
@@ -14963,7 +15163,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDoorStyle() {
 		if (ifcDoorStyleEClass == null) {
-			ifcDoorStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(195);
+			ifcDoorStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(195);
 		}
 		return ifcDoorStyleEClass;
 	}
@@ -15011,7 +15212,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDoorType() {
 		if (ifcDoorTypeEClass == null) {
-			ifcDoorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(196);
+			ifcDoorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(196);
 		}
 		return ifcDoorTypeEClass;
 	}
@@ -15059,7 +15261,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDraughtingPreDefinedColour() {
 		if (ifcDraughtingPreDefinedColourEClass == null) {
-			ifcDraughtingPreDefinedColourEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(197);
+			ifcDraughtingPreDefinedColourEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(197);
 		}
 		return ifcDraughtingPreDefinedColourEClass;
 	}
@@ -15071,7 +15274,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDraughtingPreDefinedCurveFont() {
 		if (ifcDraughtingPreDefinedCurveFontEClass == null) {
-			ifcDraughtingPreDefinedCurveFontEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(198);
+			ifcDraughtingPreDefinedCurveFontEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(198);
 		}
 		return ifcDraughtingPreDefinedCurveFontEClass;
 	}
@@ -15083,7 +15287,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDuctFitting() {
 		if (ifcDuctFittingEClass == null) {
-			ifcDuctFittingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(199);
+			ifcDuctFittingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(199);
 		}
 		return ifcDuctFittingEClass;
 	}
@@ -15104,7 +15309,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDuctFittingType() {
 		if (ifcDuctFittingTypeEClass == null) {
-			ifcDuctFittingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(200);
+			ifcDuctFittingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(200);
 		}
 		return ifcDuctFittingTypeEClass;
 	}
@@ -15125,7 +15331,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDuctSegment() {
 		if (ifcDuctSegmentEClass == null) {
-			ifcDuctSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(201);
+			ifcDuctSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(201);
 		}
 		return ifcDuctSegmentEClass;
 	}
@@ -15146,7 +15353,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDuctSegmentType() {
 		if (ifcDuctSegmentTypeEClass == null) {
-			ifcDuctSegmentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(202);
+			ifcDuctSegmentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(202);
 		}
 		return ifcDuctSegmentTypeEClass;
 	}
@@ -15167,7 +15375,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDuctSilencer() {
 		if (ifcDuctSilencerEClass == null) {
-			ifcDuctSilencerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(203);
+			ifcDuctSilencerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(203);
 		}
 		return ifcDuctSilencerEClass;
 	}
@@ -15188,7 +15397,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDuctSilencerType() {
 		if (ifcDuctSilencerTypeEClass == null) {
-			ifcDuctSilencerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(204);
+			ifcDuctSilencerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(204);
 		}
 		return ifcDuctSilencerTypeEClass;
 	}
@@ -15209,7 +15419,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEdge() {
 		if (ifcEdgeEClass == null) {
-			ifcEdgeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(205);
+			ifcEdgeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(205);
 		}
 		return ifcEdgeEClass;
 	}
@@ -15239,7 +15450,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEdgeCurve() {
 		if (ifcEdgeCurveEClass == null) {
-			ifcEdgeCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(206);
+			ifcEdgeCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(206);
 		}
 		return ifcEdgeCurveEClass;
 	}
@@ -15269,7 +15481,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEdgeLoop() {
 		if (ifcEdgeLoopEClass == null) {
-			ifcEdgeLoopEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(207);
+			ifcEdgeLoopEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(207);
 		}
 		return ifcEdgeLoopEClass;
 	}
@@ -15290,7 +15503,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricAppliance() {
 		if (ifcElectricApplianceEClass == null) {
-			ifcElectricApplianceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(208);
+			ifcElectricApplianceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(208);
 		}
 		return ifcElectricApplianceEClass;
 	}
@@ -15311,7 +15525,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricApplianceType() {
 		if (ifcElectricApplianceTypeEClass == null) {
-			ifcElectricApplianceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(209);
+			ifcElectricApplianceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(209);
 		}
 		return ifcElectricApplianceTypeEClass;
 	}
@@ -15332,7 +15547,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricDistributionBoard() {
 		if (ifcElectricDistributionBoardEClass == null) {
-			ifcElectricDistributionBoardEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(210);
+			ifcElectricDistributionBoardEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(210);
 		}
 		return ifcElectricDistributionBoardEClass;
 	}
@@ -15353,7 +15569,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricDistributionBoardType() {
 		if (ifcElectricDistributionBoardTypeEClass == null) {
-			ifcElectricDistributionBoardTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(211);
+			ifcElectricDistributionBoardTypeEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(211);
 		}
 		return ifcElectricDistributionBoardTypeEClass;
 	}
@@ -15374,7 +15591,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricFlowStorageDevice() {
 		if (ifcElectricFlowStorageDeviceEClass == null) {
-			ifcElectricFlowStorageDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(212);
+			ifcElectricFlowStorageDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(212);
 		}
 		return ifcElectricFlowStorageDeviceEClass;
 	}
@@ -15395,7 +15613,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricFlowStorageDeviceType() {
 		if (ifcElectricFlowStorageDeviceTypeEClass == null) {
-			ifcElectricFlowStorageDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(213);
+			ifcElectricFlowStorageDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(213);
 		}
 		return ifcElectricFlowStorageDeviceTypeEClass;
 	}
@@ -15416,7 +15635,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricGenerator() {
 		if (ifcElectricGeneratorEClass == null) {
-			ifcElectricGeneratorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(214);
+			ifcElectricGeneratorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(214);
 		}
 		return ifcElectricGeneratorEClass;
 	}
@@ -15437,7 +15657,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricGeneratorType() {
 		if (ifcElectricGeneratorTypeEClass == null) {
-			ifcElectricGeneratorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(215);
+			ifcElectricGeneratorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(215);
 		}
 		return ifcElectricGeneratorTypeEClass;
 	}
@@ -15458,7 +15679,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricMotor() {
 		if (ifcElectricMotorEClass == null) {
-			ifcElectricMotorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(216);
+			ifcElectricMotorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(216);
 		}
 		return ifcElectricMotorEClass;
 	}
@@ -15479,7 +15701,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricMotorType() {
 		if (ifcElectricMotorTypeEClass == null) {
-			ifcElectricMotorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(217);
+			ifcElectricMotorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(217);
 		}
 		return ifcElectricMotorTypeEClass;
 	}
@@ -15500,7 +15723,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricTimeControl() {
 		if (ifcElectricTimeControlEClass == null) {
-			ifcElectricTimeControlEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(218);
+			ifcElectricTimeControlEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(218);
 		}
 		return ifcElectricTimeControlEClass;
 	}
@@ -15521,7 +15745,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricTimeControlType() {
 		if (ifcElectricTimeControlTypeEClass == null) {
-			ifcElectricTimeControlTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(219);
+			ifcElectricTimeControlTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(219);
 		}
 		return ifcElectricTimeControlTypeEClass;
 	}
@@ -15542,7 +15767,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElement() {
 		if (ifcElementEClass == null) {
-			ifcElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(220);
+			ifcElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(220);
 		}
 		return ifcElementEClass;
 	}
@@ -15662,7 +15888,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElementAssembly() {
 		if (ifcElementAssemblyEClass == null) {
-			ifcElementAssemblyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(221);
+			ifcElementAssemblyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(221);
 		}
 		return ifcElementAssemblyEClass;
 	}
@@ -15692,7 +15919,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElementAssemblyType() {
 		if (ifcElementAssemblyTypeEClass == null) {
-			ifcElementAssemblyTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(222);
+			ifcElementAssemblyTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(222);
 		}
 		return ifcElementAssemblyTypeEClass;
 	}
@@ -15713,7 +15941,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElementComponent() {
 		if (ifcElementComponentEClass == null) {
-			ifcElementComponentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(223);
+			ifcElementComponentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(223);
 		}
 		return ifcElementComponentEClass;
 	}
@@ -15725,7 +15954,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElementComponentType() {
 		if (ifcElementComponentTypeEClass == null) {
-			ifcElementComponentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(224);
+			ifcElementComponentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(224);
 		}
 		return ifcElementComponentTypeEClass;
 	}
@@ -15737,7 +15967,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElementQuantity() {
 		if (ifcElementQuantityEClass == null) {
-			ifcElementQuantityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(225);
+			ifcElementQuantityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(225);
 		}
 		return ifcElementQuantityEClass;
 	}
@@ -15767,7 +15998,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElementType() {
 		if (ifcElementTypeEClass == null) {
-			ifcElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(226);
+			ifcElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(226);
 		}
 		return ifcElementTypeEClass;
 	}
@@ -15788,7 +16020,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElementarySurface() {
 		if (ifcElementarySurfaceEClass == null) {
-			ifcElementarySurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(227);
+			ifcElementarySurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(227);
 		}
 		return ifcElementarySurfaceEClass;
 	}
@@ -15809,7 +16042,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEllipse() {
 		if (ifcEllipseEClass == null) {
-			ifcEllipseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(228);
+			ifcEllipseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(228);
 		}
 		return ifcEllipseEClass;
 	}
@@ -15857,7 +16091,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEllipseProfileDef() {
 		if (ifcEllipseProfileDefEClass == null) {
-			ifcEllipseProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(229);
+			ifcEllipseProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(229);
 		}
 		return ifcEllipseProfileDefEClass;
 	}
@@ -15905,7 +16140,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEnergyConversionDevice() {
 		if (ifcEnergyConversionDeviceEClass == null) {
-			ifcEnergyConversionDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(230);
+			ifcEnergyConversionDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(230);
 		}
 		return ifcEnergyConversionDeviceEClass;
 	}
@@ -15917,7 +16153,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEnergyConversionDeviceType() {
 		if (ifcEnergyConversionDeviceTypeEClass == null) {
-			ifcEnergyConversionDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(231);
+			ifcEnergyConversionDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(231);
 		}
 		return ifcEnergyConversionDeviceTypeEClass;
 	}
@@ -15929,7 +16166,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEngine() {
 		if (ifcEngineEClass == null) {
-			ifcEngineEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(232);
+			ifcEngineEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(232);
 		}
 		return ifcEngineEClass;
 	}
@@ -15950,7 +16188,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEngineType() {
 		if (ifcEngineTypeEClass == null) {
-			ifcEngineTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(233);
+			ifcEngineTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(233);
 		}
 		return ifcEngineTypeEClass;
 	}
@@ -15971,7 +16210,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEvaporativeCooler() {
 		if (ifcEvaporativeCoolerEClass == null) {
-			ifcEvaporativeCoolerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(234);
+			ifcEvaporativeCoolerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(234);
 		}
 		return ifcEvaporativeCoolerEClass;
 	}
@@ -15992,7 +16232,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEvaporativeCoolerType() {
 		if (ifcEvaporativeCoolerTypeEClass == null) {
-			ifcEvaporativeCoolerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(235);
+			ifcEvaporativeCoolerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(235);
 		}
 		return ifcEvaporativeCoolerTypeEClass;
 	}
@@ -16013,7 +16254,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEvaporator() {
 		if (ifcEvaporatorEClass == null) {
-			ifcEvaporatorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(236);
+			ifcEvaporatorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(236);
 		}
 		return ifcEvaporatorEClass;
 	}
@@ -16034,7 +16276,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEvaporatorType() {
 		if (ifcEvaporatorTypeEClass == null) {
-			ifcEvaporatorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(237);
+			ifcEvaporatorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(237);
 		}
 		return ifcEvaporatorTypeEClass;
 	}
@@ -16055,7 +16298,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEvent() {
 		if (ifcEventEClass == null) {
-			ifcEventEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(238);
+			ifcEventEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(238);
 		}
 		return ifcEventEClass;
 	}
@@ -16103,7 +16347,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEventTime() {
 		if (ifcEventTimeEClass == null) {
-			ifcEventTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(239);
+			ifcEventTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(239);
 		}
 		return ifcEventTimeEClass;
 	}
@@ -16151,7 +16396,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEventType() {
 		if (ifcEventTypeEClass == null) {
-			ifcEventTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(240);
+			ifcEventTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(240);
 		}
 		return ifcEventTypeEClass;
 	}
@@ -16190,7 +16436,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcExtendedProperties() {
 		if (ifcExtendedPropertiesEClass == null) {
-			ifcExtendedPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(241);
+			ifcExtendedPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(241);
 		}
 		return ifcExtendedPropertiesEClass;
 	}
@@ -16229,7 +16476,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcExternalInformation() {
 		if (ifcExternalInformationEClass == null) {
-			ifcExternalInformationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(242);
+			ifcExternalInformationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(242);
 		}
 		return ifcExternalInformationEClass;
 	}
@@ -16241,7 +16489,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcExternalReference() {
 		if (ifcExternalReferenceEClass == null) {
-			ifcExternalReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(243);
+			ifcExternalReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(243);
 		}
 		return ifcExternalReferenceEClass;
 	}
@@ -16289,7 +16538,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcExternalReferenceRelationship() {
 		if (ifcExternalReferenceRelationshipEClass == null) {
-			ifcExternalReferenceRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(244);
+			ifcExternalReferenceRelationshipEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(244);
 		}
 		return ifcExternalReferenceRelationshipEClass;
 	}
@@ -16319,7 +16569,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcExternalSpatialElement() {
 		if (ifcExternalSpatialElementEClass == null) {
-			ifcExternalSpatialElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(245);
+			ifcExternalSpatialElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(245);
 		}
 		return ifcExternalSpatialElementEClass;
 	}
@@ -16349,7 +16600,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcExternalSpatialStructureElement() {
 		if (ifcExternalSpatialStructureElementEClass == null) {
-			ifcExternalSpatialStructureElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(246);
+			ifcExternalSpatialStructureElementEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(246);
 		}
 		return ifcExternalSpatialStructureElementEClass;
 	}
@@ -16361,7 +16613,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcExternallyDefinedHatchStyle() {
 		if (ifcExternallyDefinedHatchStyleEClass == null) {
-			ifcExternallyDefinedHatchStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(247);
+			ifcExternallyDefinedHatchStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(247);
 		}
 		return ifcExternallyDefinedHatchStyleEClass;
 	}
@@ -16373,7 +16626,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcExternallyDefinedSurfaceStyle() {
 		if (ifcExternallyDefinedSurfaceStyleEClass == null) {
-			ifcExternallyDefinedSurfaceStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(248);
+			ifcExternallyDefinedSurfaceStyleEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(248);
 		}
 		return ifcExternallyDefinedSurfaceStyleEClass;
 	}
@@ -16385,7 +16639,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcExternallyDefinedTextFont() {
 		if (ifcExternallyDefinedTextFontEClass == null) {
-			ifcExternallyDefinedTextFontEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(249);
+			ifcExternallyDefinedTextFontEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(249);
 		}
 		return ifcExternallyDefinedTextFontEClass;
 	}
@@ -16397,7 +16652,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcExtrudedAreaSolid() {
 		if (ifcExtrudedAreaSolidEClass == null) {
-			ifcExtrudedAreaSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(250);
+			ifcExtrudedAreaSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(250);
 		}
 		return ifcExtrudedAreaSolidEClass;
 	}
@@ -16436,7 +16692,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcExtrudedAreaSolidTapered() {
 		if (ifcExtrudedAreaSolidTaperedEClass == null) {
-			ifcExtrudedAreaSolidTaperedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(251);
+			ifcExtrudedAreaSolidTaperedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(251);
 		}
 		return ifcExtrudedAreaSolidTaperedEClass;
 	}
@@ -16457,7 +16714,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFace() {
 		if (ifcFaceEClass == null) {
-			ifcFaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(252);
+			ifcFaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(252);
 		}
 		return ifcFaceEClass;
 	}
@@ -16487,7 +16745,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFaceBasedSurfaceModel() {
 		if (ifcFaceBasedSurfaceModelEClass == null) {
-			ifcFaceBasedSurfaceModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(253);
+			ifcFaceBasedSurfaceModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(253);
 		}
 		return ifcFaceBasedSurfaceModelEClass;
 	}
@@ -16517,7 +16776,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFaceBound() {
 		if (ifcFaceBoundEClass == null) {
-			ifcFaceBoundEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(254);
+			ifcFaceBoundEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(254);
 		}
 		return ifcFaceBoundEClass;
 	}
@@ -16547,7 +16807,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFaceOuterBound() {
 		if (ifcFaceOuterBoundEClass == null) {
-			ifcFaceOuterBoundEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(255);
+			ifcFaceOuterBoundEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(255);
 		}
 		return ifcFaceOuterBoundEClass;
 	}
@@ -16559,7 +16820,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFaceSurface() {
 		if (ifcFaceSurfaceEClass == null) {
-			ifcFaceSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(256);
+			ifcFaceSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(256);
 		}
 		return ifcFaceSurfaceEClass;
 	}
@@ -16589,7 +16851,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFacetedBrep() {
 		if (ifcFacetedBrepEClass == null) {
-			ifcFacetedBrepEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(257);
+			ifcFacetedBrepEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(257);
 		}
 		return ifcFacetedBrepEClass;
 	}
@@ -16601,7 +16864,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFacetedBrepWithVoids() {
 		if (ifcFacetedBrepWithVoidsEClass == null) {
-			ifcFacetedBrepWithVoidsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(258);
+			ifcFacetedBrepWithVoidsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(258);
 		}
 		return ifcFacetedBrepWithVoidsEClass;
 	}
@@ -16622,7 +16886,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFailureConnectionCondition() {
 		if (ifcFailureConnectionConditionEClass == null) {
-			ifcFailureConnectionConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(259);
+			ifcFailureConnectionConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(259);
 		}
 		return ifcFailureConnectionConditionEClass;
 	}
@@ -16742,7 +17007,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFan() {
 		if (ifcFanEClass == null) {
-			ifcFanEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(260);
+			ifcFanEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(260);
 		}
 		return ifcFanEClass;
 	}
@@ -16763,7 +17029,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFanType() {
 		if (ifcFanTypeEClass == null) {
-			ifcFanTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(261);
+			ifcFanTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(261);
 		}
 		return ifcFanTypeEClass;
 	}
@@ -16784,7 +17051,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFastener() {
 		if (ifcFastenerEClass == null) {
-			ifcFastenerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(262);
+			ifcFastenerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(262);
 		}
 		return ifcFastenerEClass;
 	}
@@ -16805,7 +17073,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFastenerType() {
 		if (ifcFastenerTypeEClass == null) {
-			ifcFastenerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(263);
+			ifcFastenerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(263);
 		}
 		return ifcFastenerTypeEClass;
 	}
@@ -16826,7 +17095,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFeatureElement() {
 		if (ifcFeatureElementEClass == null) {
-			ifcFeatureElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(264);
+			ifcFeatureElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(264);
 		}
 		return ifcFeatureElementEClass;
 	}
@@ -16838,7 +17108,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFeatureElementAddition() {
 		if (ifcFeatureElementAdditionEClass == null) {
-			ifcFeatureElementAdditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(265);
+			ifcFeatureElementAdditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(265);
 		}
 		return ifcFeatureElementAdditionEClass;
 	}
@@ -16859,7 +17130,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFeatureElementSubtraction() {
 		if (ifcFeatureElementSubtractionEClass == null) {
-			ifcFeatureElementSubtractionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(266);
+			ifcFeatureElementSubtractionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(266);
 		}
 		return ifcFeatureElementSubtractionEClass;
 	}
@@ -16880,7 +17152,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFillAreaStyle() {
 		if (ifcFillAreaStyleEClass == null) {
-			ifcFillAreaStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(267);
+			ifcFillAreaStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(267);
 		}
 		return ifcFillAreaStyleEClass;
 	}
@@ -16910,7 +17183,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFillAreaStyleHatching() {
 		if (ifcFillAreaStyleHatchingEClass == null) {
-			ifcFillAreaStyleHatchingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(268);
+			ifcFillAreaStyleHatchingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(268);
 		}
 		return ifcFillAreaStyleHatchingEClass;
 	}
@@ -16976,7 +17250,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFillAreaStyleTiles() {
 		if (ifcFillAreaStyleTilesEClass == null) {
-			ifcFillAreaStyleTilesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(269);
+			ifcFillAreaStyleTilesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(269);
 		}
 		return ifcFillAreaStyleTilesEClass;
 	}
@@ -17024,7 +17299,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFilter() {
 		if (ifcFilterEClass == null) {
-			ifcFilterEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(270);
+			ifcFilterEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(270);
 		}
 		return ifcFilterEClass;
 	}
@@ -17045,7 +17321,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFilterType() {
 		if (ifcFilterTypeEClass == null) {
-			ifcFilterTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(271);
+			ifcFilterTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(271);
 		}
 		return ifcFilterTypeEClass;
 	}
@@ -17066,7 +17343,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFireSuppressionTerminal() {
 		if (ifcFireSuppressionTerminalEClass == null) {
-			ifcFireSuppressionTerminalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(272);
+			ifcFireSuppressionTerminalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(272);
 		}
 		return ifcFireSuppressionTerminalEClass;
 	}
@@ -17087,7 +17365,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFireSuppressionTerminalType() {
 		if (ifcFireSuppressionTerminalTypeEClass == null) {
-			ifcFireSuppressionTerminalTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(273);
+			ifcFireSuppressionTerminalTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(273);
 		}
 		return ifcFireSuppressionTerminalTypeEClass;
 	}
@@ -17108,7 +17387,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFixedReferenceSweptAreaSolid() {
 		if (ifcFixedReferenceSweptAreaSolidEClass == null) {
-			ifcFixedReferenceSweptAreaSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(274);
+			ifcFixedReferenceSweptAreaSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(274);
 		}
 		return ifcFixedReferenceSweptAreaSolidEClass;
 	}
@@ -17174,7 +17454,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowController() {
 		if (ifcFlowControllerEClass == null) {
-			ifcFlowControllerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(275);
+			ifcFlowControllerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(275);
 		}
 		return ifcFlowControllerEClass;
 	}
@@ -17186,7 +17467,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowControllerType() {
 		if (ifcFlowControllerTypeEClass == null) {
-			ifcFlowControllerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(276);
+			ifcFlowControllerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(276);
 		}
 		return ifcFlowControllerTypeEClass;
 	}
@@ -17198,7 +17480,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowFitting() {
 		if (ifcFlowFittingEClass == null) {
-			ifcFlowFittingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(277);
+			ifcFlowFittingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(277);
 		}
 		return ifcFlowFittingEClass;
 	}
@@ -17210,7 +17493,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowFittingType() {
 		if (ifcFlowFittingTypeEClass == null) {
-			ifcFlowFittingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(278);
+			ifcFlowFittingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(278);
 		}
 		return ifcFlowFittingTypeEClass;
 	}
@@ -17222,7 +17506,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowInstrument() {
 		if (ifcFlowInstrumentEClass == null) {
-			ifcFlowInstrumentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(279);
+			ifcFlowInstrumentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(279);
 		}
 		return ifcFlowInstrumentEClass;
 	}
@@ -17243,7 +17528,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowInstrumentType() {
 		if (ifcFlowInstrumentTypeEClass == null) {
-			ifcFlowInstrumentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(280);
+			ifcFlowInstrumentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(280);
 		}
 		return ifcFlowInstrumentTypeEClass;
 	}
@@ -17264,7 +17550,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowMeter() {
 		if (ifcFlowMeterEClass == null) {
-			ifcFlowMeterEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(281);
+			ifcFlowMeterEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(281);
 		}
 		return ifcFlowMeterEClass;
 	}
@@ -17285,7 +17572,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowMeterType() {
 		if (ifcFlowMeterTypeEClass == null) {
-			ifcFlowMeterTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(282);
+			ifcFlowMeterTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(282);
 		}
 		return ifcFlowMeterTypeEClass;
 	}
@@ -17306,7 +17594,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowMovingDevice() {
 		if (ifcFlowMovingDeviceEClass == null) {
-			ifcFlowMovingDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(283);
+			ifcFlowMovingDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(283);
 		}
 		return ifcFlowMovingDeviceEClass;
 	}
@@ -17318,7 +17607,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowMovingDeviceType() {
 		if (ifcFlowMovingDeviceTypeEClass == null) {
-			ifcFlowMovingDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(284);
+			ifcFlowMovingDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(284);
 		}
 		return ifcFlowMovingDeviceTypeEClass;
 	}
@@ -17330,7 +17620,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowSegment() {
 		if (ifcFlowSegmentEClass == null) {
-			ifcFlowSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(285);
+			ifcFlowSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(285);
 		}
 		return ifcFlowSegmentEClass;
 	}
@@ -17342,7 +17633,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowSegmentType() {
 		if (ifcFlowSegmentTypeEClass == null) {
-			ifcFlowSegmentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(286);
+			ifcFlowSegmentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(286);
 		}
 		return ifcFlowSegmentTypeEClass;
 	}
@@ -17354,7 +17646,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowStorageDevice() {
 		if (ifcFlowStorageDeviceEClass == null) {
-			ifcFlowStorageDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(287);
+			ifcFlowStorageDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(287);
 		}
 		return ifcFlowStorageDeviceEClass;
 	}
@@ -17366,7 +17659,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowStorageDeviceType() {
 		if (ifcFlowStorageDeviceTypeEClass == null) {
-			ifcFlowStorageDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(288);
+			ifcFlowStorageDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(288);
 		}
 		return ifcFlowStorageDeviceTypeEClass;
 	}
@@ -17378,7 +17672,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowTerminal() {
 		if (ifcFlowTerminalEClass == null) {
-			ifcFlowTerminalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(289);
+			ifcFlowTerminalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(289);
 		}
 		return ifcFlowTerminalEClass;
 	}
@@ -17390,7 +17685,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowTerminalType() {
 		if (ifcFlowTerminalTypeEClass == null) {
-			ifcFlowTerminalTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(290);
+			ifcFlowTerminalTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(290);
 		}
 		return ifcFlowTerminalTypeEClass;
 	}
@@ -17402,7 +17698,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowTreatmentDevice() {
 		if (ifcFlowTreatmentDeviceEClass == null) {
-			ifcFlowTreatmentDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(291);
+			ifcFlowTreatmentDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(291);
 		}
 		return ifcFlowTreatmentDeviceEClass;
 	}
@@ -17414,7 +17711,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFlowTreatmentDeviceType() {
 		if (ifcFlowTreatmentDeviceTypeEClass == null) {
-			ifcFlowTreatmentDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(292);
+			ifcFlowTreatmentDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(292);
 		}
 		return ifcFlowTreatmentDeviceTypeEClass;
 	}
@@ -17426,7 +17724,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFooting() {
 		if (ifcFootingEClass == null) {
-			ifcFootingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(293);
+			ifcFootingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(293);
 		}
 		return ifcFootingEClass;
 	}
@@ -17447,7 +17746,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFootingType() {
 		if (ifcFootingTypeEClass == null) {
-			ifcFootingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(294);
+			ifcFootingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(294);
 		}
 		return ifcFootingTypeEClass;
 	}
@@ -17468,7 +17768,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFurnishingElement() {
 		if (ifcFurnishingElementEClass == null) {
-			ifcFurnishingElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(295);
+			ifcFurnishingElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(295);
 		}
 		return ifcFurnishingElementEClass;
 	}
@@ -17480,7 +17781,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFurnishingElementType() {
 		if (ifcFurnishingElementTypeEClass == null) {
-			ifcFurnishingElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(296);
+			ifcFurnishingElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(296);
 		}
 		return ifcFurnishingElementTypeEClass;
 	}
@@ -17492,7 +17794,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFurniture() {
 		if (ifcFurnitureEClass == null) {
-			ifcFurnitureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(297);
+			ifcFurnitureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(297);
 		}
 		return ifcFurnitureEClass;
 	}
@@ -17513,7 +17816,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFurnitureType() {
 		if (ifcFurnitureTypeEClass == null) {
-			ifcFurnitureTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(298);
+			ifcFurnitureTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(298);
 		}
 		return ifcFurnitureTypeEClass;
 	}
@@ -17543,7 +17847,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGeographicElement() {
 		if (ifcGeographicElementEClass == null) {
-			ifcGeographicElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(299);
+			ifcGeographicElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(299);
 		}
 		return ifcGeographicElementEClass;
 	}
@@ -17564,7 +17869,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGeographicElementType() {
 		if (ifcGeographicElementTypeEClass == null) {
-			ifcGeographicElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(300);
+			ifcGeographicElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(300);
 		}
 		return ifcGeographicElementTypeEClass;
 	}
@@ -17585,7 +17891,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGeometricCurveSet() {
 		if (ifcGeometricCurveSetEClass == null) {
-			ifcGeometricCurveSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(301);
+			ifcGeometricCurveSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(301);
 		}
 		return ifcGeometricCurveSetEClass;
 	}
@@ -17597,7 +17904,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGeometricRepresentationContext() {
 		if (ifcGeometricRepresentationContextEClass == null) {
-			ifcGeometricRepresentationContextEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(302);
+			ifcGeometricRepresentationContextEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(302);
 		}
 		return ifcGeometricRepresentationContextEClass;
 	}
@@ -17663,7 +17971,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGeometricRepresentationItem() {
 		if (ifcGeometricRepresentationItemEClass == null) {
-			ifcGeometricRepresentationItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(303);
+			ifcGeometricRepresentationItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(303);
 		}
 		return ifcGeometricRepresentationItemEClass;
 	}
@@ -17675,7 +17984,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGeometricRepresentationSubContext() {
 		if (ifcGeometricRepresentationSubContextEClass == null) {
-			ifcGeometricRepresentationSubContextEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(304);
+			ifcGeometricRepresentationSubContextEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(304);
 		}
 		return ifcGeometricRepresentationSubContextEClass;
 	}
@@ -17732,7 +18042,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGeometricSet() {
 		if (ifcGeometricSetEClass == null) {
-			ifcGeometricSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(305);
+			ifcGeometricSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(305);
 		}
 		return ifcGeometricSetEClass;
 	}
@@ -17762,7 +18073,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGrid() {
 		if (ifcGridEClass == null) {
-			ifcGridEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(306);
+			ifcGridEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(306);
 		}
 		return ifcGridEClass;
 	}
@@ -17819,7 +18131,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGridAxis() {
 		if (ifcGridAxisEClass == null) {
-			ifcGridAxisEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(307);
+			ifcGridAxisEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(307);
 		}
 		return ifcGridAxisEClass;
 	}
@@ -17894,7 +18207,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGridPlacement() {
 		if (ifcGridPlacementEClass == null) {
-			ifcGridPlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(308);
+			ifcGridPlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(308);
 		}
 		return ifcGridPlacementEClass;
 	}
@@ -17924,7 +18238,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGroup() {
 		if (ifcGroupEClass == null) {
-			ifcGroupEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(309);
+			ifcGroupEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(309);
 		}
 		return ifcGroupEClass;
 	}
@@ -17945,7 +18260,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcHalfSpaceSolid() {
 		if (ifcHalfSpaceSolidEClass == null) {
-			ifcHalfSpaceSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(310);
+			ifcHalfSpaceSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(310);
 		}
 		return ifcHalfSpaceSolidEClass;
 	}
@@ -17984,7 +18300,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcHeatExchanger() {
 		if (ifcHeatExchangerEClass == null) {
-			ifcHeatExchangerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(311);
+			ifcHeatExchangerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(311);
 		}
 		return ifcHeatExchangerEClass;
 	}
@@ -18005,7 +18322,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcHeatExchangerType() {
 		if (ifcHeatExchangerTypeEClass == null) {
-			ifcHeatExchangerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(312);
+			ifcHeatExchangerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(312);
 		}
 		return ifcHeatExchangerTypeEClass;
 	}
@@ -18026,7 +18344,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcHumidifier() {
 		if (ifcHumidifierEClass == null) {
-			ifcHumidifierEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(313);
+			ifcHumidifierEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(313);
 		}
 		return ifcHumidifierEClass;
 	}
@@ -18047,7 +18366,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcHumidifierType() {
 		if (ifcHumidifierTypeEClass == null) {
-			ifcHumidifierTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(314);
+			ifcHumidifierTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(314);
 		}
 		return ifcHumidifierTypeEClass;
 	}
@@ -18068,7 +18388,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcIShapeProfileDef() {
 		if (ifcIShapeProfileDefEClass == null) {
-			ifcIShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(315);
+			ifcIShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(315);
 		}
 		return ifcIShapeProfileDefEClass;
 	}
@@ -18206,7 +18527,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcImageTexture() {
 		if (ifcImageTextureEClass == null) {
-			ifcImageTextureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(316);
+			ifcImageTextureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(316);
 		}
 		return ifcImageTextureEClass;
 	}
@@ -18227,7 +18549,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcIndexedColourMap() {
 		if (ifcIndexedColourMapEClass == null) {
-			ifcIndexedColourMapEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(317);
+			ifcIndexedColourMapEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(317);
 		}
 		return ifcIndexedColourMapEClass;
 	}
@@ -18275,7 +18598,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcIndexedTextureMap() {
 		if (ifcIndexedTextureMapEClass == null) {
-			ifcIndexedTextureMapEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(318);
+			ifcIndexedTextureMapEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(318);
 		}
 		return ifcIndexedTextureMapEClass;
 	}
@@ -18305,7 +18629,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcIndexedTriangleTextureMap() {
 		if (ifcIndexedTriangleTextureMapEClass == null) {
-			ifcIndexedTriangleTextureMapEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(319);
+			ifcIndexedTriangleTextureMapEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(319);
 		}
 		return ifcIndexedTriangleTextureMapEClass;
 	}
@@ -18326,7 +18651,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcInterceptor() {
 		if (ifcInterceptorEClass == null) {
-			ifcInterceptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(320);
+			ifcInterceptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(320);
 		}
 		return ifcInterceptorEClass;
 	}
@@ -18347,7 +18673,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcInterceptorType() {
 		if (ifcInterceptorTypeEClass == null) {
-			ifcInterceptorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(321);
+			ifcInterceptorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(321);
 		}
 		return ifcInterceptorTypeEClass;
 	}
@@ -18368,7 +18695,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcInventory() {
 		if (ifcInventoryEClass == null) {
-			ifcInventoryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(322);
+			ifcInventoryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(322);
 		}
 		return ifcInventoryEClass;
 	}
@@ -18434,7 +18762,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcIrregularTimeSeries() {
 		if (ifcIrregularTimeSeriesEClass == null) {
-			ifcIrregularTimeSeriesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(323);
+			ifcIrregularTimeSeriesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(323);
 		}
 		return ifcIrregularTimeSeriesEClass;
 	}
@@ -18455,7 +18784,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcIrregularTimeSeriesValue() {
 		if (ifcIrregularTimeSeriesValueEClass == null) {
-			ifcIrregularTimeSeriesValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(324);
+			ifcIrregularTimeSeriesValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(324);
 		}
 		return ifcIrregularTimeSeriesValueEClass;
 	}
@@ -18485,7 +18815,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcJunctionBox() {
 		if (ifcJunctionBoxEClass == null) {
-			ifcJunctionBoxEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(325);
+			ifcJunctionBoxEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(325);
 		}
 		return ifcJunctionBoxEClass;
 	}
@@ -18506,7 +18837,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcJunctionBoxType() {
 		if (ifcJunctionBoxTypeEClass == null) {
-			ifcJunctionBoxTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(326);
+			ifcJunctionBoxTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(326);
 		}
 		return ifcJunctionBoxTypeEClass;
 	}
@@ -18527,7 +18859,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLShapeProfileDef() {
 		if (ifcLShapeProfileDefEClass == null) {
-			ifcLShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(327);
+			ifcLShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(327);
 		}
 		return ifcLShapeProfileDefEClass;
 	}
@@ -18647,7 +18980,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLaborResource() {
 		if (ifcLaborResourceEClass == null) {
-			ifcLaborResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(328);
+			ifcLaborResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(328);
 		}
 		return ifcLaborResourceEClass;
 	}
@@ -18668,7 +19002,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLaborResourceType() {
 		if (ifcLaborResourceTypeEClass == null) {
-			ifcLaborResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(329);
+			ifcLaborResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(329);
 		}
 		return ifcLaborResourceTypeEClass;
 	}
@@ -18689,7 +19024,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLagTime() {
 		if (ifcLagTimeEClass == null) {
-			ifcLagTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(330);
+			ifcLagTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(330);
 		}
 		return ifcLagTimeEClass;
 	}
@@ -18719,7 +19055,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLamp() {
 		if (ifcLampEClass == null) {
-			ifcLampEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(331);
+			ifcLampEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(331);
 		}
 		return ifcLampEClass;
 	}
@@ -18740,7 +19077,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLampType() {
 		if (ifcLampTypeEClass == null) {
-			ifcLampTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(332);
+			ifcLampTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(332);
 		}
 		return ifcLampTypeEClass;
 	}
@@ -18761,7 +19099,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLibraryInformation() {
 		if (ifcLibraryInformationEClass == null) {
-			ifcLibraryInformationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(333);
+			ifcLibraryInformationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(333);
 		}
 		return ifcLibraryInformationEClass;
 	}
@@ -18845,7 +19184,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLibraryReference() {
 		if (ifcLibraryReferenceEClass == null) {
-			ifcLibraryReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(334);
+			ifcLibraryReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(334);
 		}
 		return ifcLibraryReferenceEClass;
 	}
@@ -18893,7 +19233,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLightDistributionData() {
 		if (ifcLightDistributionDataEClass == null) {
-			ifcLightDistributionDataEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(335);
+			ifcLightDistributionDataEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(335);
 		}
 		return ifcLightDistributionDataEClass;
 	}
@@ -18959,7 +19300,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLightFixture() {
 		if (ifcLightFixtureEClass == null) {
-			ifcLightFixtureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(336);
+			ifcLightFixtureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(336);
 		}
 		return ifcLightFixtureEClass;
 	}
@@ -18980,7 +19322,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLightFixtureType() {
 		if (ifcLightFixtureTypeEClass == null) {
-			ifcLightFixtureTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(337);
+			ifcLightFixtureTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(337);
 		}
 		return ifcLightFixtureTypeEClass;
 	}
@@ -19001,7 +19344,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLightIntensityDistribution() {
 		if (ifcLightIntensityDistributionEClass == null) {
-			ifcLightIntensityDistributionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(338);
+			ifcLightIntensityDistributionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(338);
 		}
 		return ifcLightIntensityDistributionEClass;
 	}
@@ -19031,7 +19375,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLightSource() {
 		if (ifcLightSourceEClass == null) {
-			ifcLightSourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(339);
+			ifcLightSourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(339);
 		}
 		return ifcLightSourceEClass;
 	}
@@ -19097,7 +19442,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLightSourceAmbient() {
 		if (ifcLightSourceAmbientEClass == null) {
-			ifcLightSourceAmbientEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(340);
+			ifcLightSourceAmbientEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(340);
 		}
 		return ifcLightSourceAmbientEClass;
 	}
@@ -19109,7 +19455,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLightSourceDirectional() {
 		if (ifcLightSourceDirectionalEClass == null) {
-			ifcLightSourceDirectionalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(341);
+			ifcLightSourceDirectionalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(341);
 		}
 		return ifcLightSourceDirectionalEClass;
 	}
@@ -19130,7 +19477,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLightSourceGoniometric() {
 		if (ifcLightSourceGoniometricEClass == null) {
-			ifcLightSourceGoniometricEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(342);
+			ifcLightSourceGoniometricEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(342);
 		}
 		return ifcLightSourceGoniometricEClass;
 	}
@@ -19214,7 +19562,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLightSourcePositional() {
 		if (ifcLightSourcePositionalEClass == null) {
-			ifcLightSourcePositionalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(343);
+			ifcLightSourcePositionalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(343);
 		}
 		return ifcLightSourcePositionalEClass;
 	}
@@ -19307,7 +19656,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLightSourceSpot() {
 		if (ifcLightSourceSpotEClass == null) {
-			ifcLightSourceSpotEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(344);
+			ifcLightSourceSpotEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(344);
 		}
 		return ifcLightSourceSpotEClass;
 	}
@@ -19382,7 +19732,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLine() {
 		if (ifcLineEClass == null) {
-			ifcLineEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(345);
+			ifcLineEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(345);
 		}
 		return ifcLineEClass;
 	}
@@ -19412,7 +19763,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLocalPlacement() {
 		if (ifcLocalPlacementEClass == null) {
-			ifcLocalPlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(346);
+			ifcLocalPlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(346);
 		}
 		return ifcLocalPlacementEClass;
 	}
@@ -19442,7 +19794,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLoop() {
 		if (ifcLoopEClass == null) {
-			ifcLoopEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(347);
+			ifcLoopEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(347);
 		}
 		return ifcLoopEClass;
 	}
@@ -19454,7 +19807,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcManifoldSolidBrep() {
 		if (ifcManifoldSolidBrepEClass == null) {
-			ifcManifoldSolidBrepEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(348);
+			ifcManifoldSolidBrepEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(348);
 		}
 		return ifcManifoldSolidBrepEClass;
 	}
@@ -19475,7 +19829,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMapConversion() {
 		if (ifcMapConversionEClass == null) {
-			ifcMapConversionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(349);
+			ifcMapConversionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(349);
 		}
 		return ifcMapConversionEClass;
 	}
@@ -19595,7 +19950,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMappedItem() {
 		if (ifcMappedItemEClass == null) {
-			ifcMappedItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(350);
+			ifcMappedItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(350);
 		}
 		return ifcMappedItemEClass;
 	}
@@ -19625,7 +19981,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterial() {
 		if (ifcMaterialEClass == null) {
-			ifcMaterialEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(351);
+			ifcMaterialEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(351);
 		}
 		return ifcMaterialEClass;
 	}
@@ -19691,7 +20048,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialClassificationRelationship() {
 		if (ifcMaterialClassificationRelationshipEClass == null) {
-			ifcMaterialClassificationRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(352);
+			ifcMaterialClassificationRelationshipEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(352);
 		}
 		return ifcMaterialClassificationRelationshipEClass;
 	}
@@ -19721,7 +20079,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialConstituent() {
 		if (ifcMaterialConstituentEClass == null) {
-			ifcMaterialConstituentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(353);
+			ifcMaterialConstituentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(353);
 		}
 		return ifcMaterialConstituentEClass;
 	}
@@ -19796,7 +20155,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialConstituentSet() {
 		if (ifcMaterialConstituentSetEClass == null) {
-			ifcMaterialConstituentSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(354);
+			ifcMaterialConstituentSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(354);
 		}
 		return ifcMaterialConstituentSetEClass;
 	}
@@ -19835,7 +20195,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialDefinition() {
 		if (ifcMaterialDefinitionEClass == null) {
-			ifcMaterialDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(355);
+			ifcMaterialDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(355);
 		}
 		return ifcMaterialDefinitionEClass;
 	}
@@ -19874,7 +20235,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialDefinitionRepresentation() {
 		if (ifcMaterialDefinitionRepresentationEClass == null) {
-			ifcMaterialDefinitionRepresentationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(356);
+			ifcMaterialDefinitionRepresentationEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(356);
 		}
 		return ifcMaterialDefinitionRepresentationEClass;
 	}
@@ -19895,7 +20257,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialLayer() {
 		if (ifcMaterialLayerEClass == null) {
-			ifcMaterialLayerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(357);
+			ifcMaterialLayerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(357);
 		}
 		return ifcMaterialLayerEClass;
 	}
@@ -19997,7 +20360,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialLayerSet() {
 		if (ifcMaterialLayerSetEClass == null) {
-			ifcMaterialLayerSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(358);
+			ifcMaterialLayerSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(358);
 		}
 		return ifcMaterialLayerSetEClass;
 	}
@@ -20054,7 +20418,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialLayerSetUsage() {
 		if (ifcMaterialLayerSetUsageEClass == null) {
-			ifcMaterialLayerSetUsageEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(359);
+			ifcMaterialLayerSetUsageEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(359);
 		}
 		return ifcMaterialLayerSetUsageEClass;
 	}
@@ -20129,7 +20494,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialLayerWithOffsets() {
 		if (ifcMaterialLayerWithOffsetsEClass == null) {
-			ifcMaterialLayerWithOffsetsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(360);
+			ifcMaterialLayerWithOffsetsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(360);
 		}
 		return ifcMaterialLayerWithOffsetsEClass;
 	}
@@ -20168,7 +20534,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialList() {
 		if (ifcMaterialListEClass == null) {
-			ifcMaterialListEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(361);
+			ifcMaterialListEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(361);
 		}
 		return ifcMaterialListEClass;
 	}
@@ -20189,7 +20556,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialProfile() {
 		if (ifcMaterialProfileEClass == null) {
-			ifcMaterialProfileEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(362);
+			ifcMaterialProfileEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(362);
 		}
 		return ifcMaterialProfileEClass;
 	}
@@ -20273,7 +20641,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialProfileSet() {
 		if (ifcMaterialProfileSetEClass == null) {
-			ifcMaterialProfileSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(363);
+			ifcMaterialProfileSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(363);
 		}
 		return ifcMaterialProfileSetEClass;
 	}
@@ -20321,7 +20690,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialProfileSetUsage() {
 		if (ifcMaterialProfileSetUsageEClass == null) {
-			ifcMaterialProfileSetUsageEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(364);
+			ifcMaterialProfileSetUsageEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(364);
 		}
 		return ifcMaterialProfileSetUsageEClass;
 	}
@@ -20369,7 +20739,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialProfileSetUsageTapering() {
 		if (ifcMaterialProfileSetUsageTaperingEClass == null) {
-			ifcMaterialProfileSetUsageTaperingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(365);
+			ifcMaterialProfileSetUsageTaperingEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(365);
 		}
 		return ifcMaterialProfileSetUsageTaperingEClass;
 	}
@@ -20399,7 +20770,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialProfileWithOffsets() {
 		if (ifcMaterialProfileWithOffsetsEClass == null) {
-			ifcMaterialProfileWithOffsetsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(366);
+			ifcMaterialProfileWithOffsetsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(366);
 		}
 		return ifcMaterialProfileWithOffsetsEClass;
 	}
@@ -20429,7 +20801,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialProperties() {
 		if (ifcMaterialPropertiesEClass == null) {
-			ifcMaterialPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(367);
+			ifcMaterialPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(367);
 		}
 		return ifcMaterialPropertiesEClass;
 	}
@@ -20450,7 +20823,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialRelationship() {
 		if (ifcMaterialRelationshipEClass == null) {
-			ifcMaterialRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(368);
+			ifcMaterialRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(368);
 		}
 		return ifcMaterialRelationshipEClass;
 	}
@@ -20489,7 +20863,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialUsageDefinition() {
 		if (ifcMaterialUsageDefinitionEClass == null) {
-			ifcMaterialUsageDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(369);
+			ifcMaterialUsageDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(369);
 		}
 		return ifcMaterialUsageDefinitionEClass;
 	}
@@ -20510,7 +20885,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMeasureWithUnit() {
 		if (ifcMeasureWithUnitEClass == null) {
-			ifcMeasureWithUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(370);
+			ifcMeasureWithUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(370);
 		}
 		return ifcMeasureWithUnitEClass;
 	}
@@ -20540,7 +20916,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMechanicalFastener() {
 		if (ifcMechanicalFastenerEClass == null) {
-			ifcMechanicalFastenerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(371);
+			ifcMechanicalFastenerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(371);
 		}
 		return ifcMechanicalFastenerEClass;
 	}
@@ -20597,7 +20974,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMechanicalFastenerType() {
 		if (ifcMechanicalFastenerTypeEClass == null) {
-			ifcMechanicalFastenerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(372);
+			ifcMechanicalFastenerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(372);
 		}
 		return ifcMechanicalFastenerTypeEClass;
 	}
@@ -20654,7 +21032,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMedicalDevice() {
 		if (ifcMedicalDeviceEClass == null) {
-			ifcMedicalDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(373);
+			ifcMedicalDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(373);
 		}
 		return ifcMedicalDeviceEClass;
 	}
@@ -20675,7 +21054,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMedicalDeviceType() {
 		if (ifcMedicalDeviceTypeEClass == null) {
-			ifcMedicalDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(374);
+			ifcMedicalDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(374);
 		}
 		return ifcMedicalDeviceTypeEClass;
 	}
@@ -20696,7 +21076,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMember() {
 		if (ifcMemberEClass == null) {
-			ifcMemberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(375);
+			ifcMemberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(375);
 		}
 		return ifcMemberEClass;
 	}
@@ -20717,7 +21098,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMemberStandardCase() {
 		if (ifcMemberStandardCaseEClass == null) {
-			ifcMemberStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(376);
+			ifcMemberStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(376);
 		}
 		return ifcMemberStandardCaseEClass;
 	}
@@ -20729,7 +21111,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMemberType() {
 		if (ifcMemberTypeEClass == null) {
-			ifcMemberTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(377);
+			ifcMemberTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(377);
 		}
 		return ifcMemberTypeEClass;
 	}
@@ -20750,7 +21133,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMetric() {
 		if (ifcMetricEClass == null) {
-			ifcMetricEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(378);
+			ifcMetricEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(378);
 		}
 		return ifcMetricEClass;
 	}
@@ -20798,7 +21182,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMirroredProfileDef() {
 		if (ifcMirroredProfileDefEClass == null) {
-			ifcMirroredProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(379);
+			ifcMirroredProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(379);
 		}
 		return ifcMirroredProfileDefEClass;
 	}
@@ -20810,7 +21195,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMonetaryUnit() {
 		if (ifcMonetaryUnitEClass == null) {
-			ifcMonetaryUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(380);
+			ifcMonetaryUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(380);
 		}
 		return ifcMonetaryUnitEClass;
 	}
@@ -20831,7 +21217,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMotorConnection() {
 		if (ifcMotorConnectionEClass == null) {
-			ifcMotorConnectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(381);
+			ifcMotorConnectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(381);
 		}
 		return ifcMotorConnectionEClass;
 	}
@@ -20852,7 +21239,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMotorConnectionType() {
 		if (ifcMotorConnectionTypeEClass == null) {
-			ifcMotorConnectionTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(382);
+			ifcMotorConnectionTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(382);
 		}
 		return ifcMotorConnectionTypeEClass;
 	}
@@ -20873,7 +21261,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcNamedUnit() {
 		if (ifcNamedUnitEClass == null) {
-			ifcNamedUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(383);
+			ifcNamedUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(383);
 		}
 		return ifcNamedUnitEClass;
 	}
@@ -20903,7 +21292,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcObject() {
 		if (ifcObjectEClass == null) {
-			ifcObjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(384);
+			ifcObjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(384);
 		}
 		return ifcObjectEClass;
 	}
@@ -20960,7 +21350,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcObjectDefinition() {
 		if (ifcObjectDefinitionEClass == null) {
-			ifcObjectDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(385);
+			ifcObjectDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(385);
 		}
 		return ifcObjectDefinitionEClass;
 	}
@@ -21035,7 +21426,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcObjectPlacement() {
 		if (ifcObjectPlacementEClass == null) {
-			ifcObjectPlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(386);
+			ifcObjectPlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(386);
 		}
 		return ifcObjectPlacementEClass;
 	}
@@ -21065,7 +21457,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcObjective() {
 		if (ifcObjectiveEClass == null) {
-			ifcObjectiveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(387);
+			ifcObjectiveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(387);
 		}
 		return ifcObjectiveEClass;
 	}
@@ -21113,7 +21506,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOccupant() {
 		if (ifcOccupantEClass == null) {
-			ifcOccupantEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(388);
+			ifcOccupantEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(388);
 		}
 		return ifcOccupantEClass;
 	}
@@ -21134,7 +21528,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOffsetCurve2D() {
 		if (ifcOffsetCurve2DEClass == null) {
-			ifcOffsetCurve2DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(389);
+			ifcOffsetCurve2DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(389);
 		}
 		return ifcOffsetCurve2DEClass;
 	}
@@ -21182,7 +21577,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOffsetCurve3D() {
 		if (ifcOffsetCurve3DEClass == null) {
-			ifcOffsetCurve3DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(390);
+			ifcOffsetCurve3DEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(390);
 		}
 		return ifcOffsetCurve3DEClass;
 	}
@@ -21239,7 +21635,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOpenShell() {
 		if (ifcOpenShellEClass == null) {
-			ifcOpenShellEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(391);
+			ifcOpenShellEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(391);
 		}
 		return ifcOpenShellEClass;
 	}
@@ -21251,7 +21648,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOpeningElement() {
 		if (ifcOpeningElementEClass == null) {
-			ifcOpeningElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(392);
+			ifcOpeningElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(392);
 		}
 		return ifcOpeningElementEClass;
 	}
@@ -21281,7 +21679,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOpeningStandardCase() {
 		if (ifcOpeningStandardCaseEClass == null) {
-			ifcOpeningStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(393);
+			ifcOpeningStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(393);
 		}
 		return ifcOpeningStandardCaseEClass;
 	}
@@ -21293,7 +21692,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOrganization() {
 		if (ifcOrganizationEClass == null) {
-			ifcOrganizationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(394);
+			ifcOrganizationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(394);
 		}
 		return ifcOrganizationEClass;
 	}
@@ -21377,7 +21777,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOrganizationRelationship() {
 		if (ifcOrganizationRelationshipEClass == null) {
-			ifcOrganizationRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(395);
+			ifcOrganizationRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(395);
 		}
 		return ifcOrganizationRelationshipEClass;
 	}
@@ -21407,7 +21808,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOrientedEdge() {
 		if (ifcOrientedEdgeEClass == null) {
-			ifcOrientedEdgeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(396);
+			ifcOrientedEdgeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(396);
 		}
 		return ifcOrientedEdgeEClass;
 	}
@@ -21437,7 +21839,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOuterBoundaryCurve() {
 		if (ifcOuterBoundaryCurveEClass == null) {
-			ifcOuterBoundaryCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(397);
+			ifcOuterBoundaryCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(397);
 		}
 		return ifcOuterBoundaryCurveEClass;
 	}
@@ -21449,7 +21852,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOutlet() {
 		if (ifcOutletEClass == null) {
-			ifcOutletEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(398);
+			ifcOutletEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(398);
 		}
 		return ifcOutletEClass;
 	}
@@ -21470,7 +21874,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOutletType() {
 		if (ifcOutletTypeEClass == null) {
-			ifcOutletTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(399);
+			ifcOutletTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(399);
 		}
 		return ifcOutletTypeEClass;
 	}
@@ -21491,7 +21896,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcOwnerHistory() {
 		if (ifcOwnerHistoryEClass == null) {
-			ifcOwnerHistoryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(400);
+			ifcOwnerHistoryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(400);
 		}
 		return ifcOwnerHistoryEClass;
 	}
@@ -21575,7 +21981,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcParameterizedProfileDef() {
 		if (ifcParameterizedProfileDefEClass == null) {
-			ifcParameterizedProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(401);
+			ifcParameterizedProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(401);
 		}
 		return ifcParameterizedProfileDefEClass;
 	}
@@ -21596,7 +22003,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPath() {
 		if (ifcPathEClass == null) {
-			ifcPathEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(402);
+			ifcPathEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(402);
 		}
 		return ifcPathEClass;
 	}
@@ -21617,7 +22025,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPcurve() {
 		if (ifcPcurveEClass == null) {
-			ifcPcurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(403);
+			ifcPcurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(403);
 		}
 		return ifcPcurveEClass;
 	}
@@ -21647,7 +22056,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPerformanceHistory() {
 		if (ifcPerformanceHistoryEClass == null) {
-			ifcPerformanceHistoryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(404);
+			ifcPerformanceHistoryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(404);
 		}
 		return ifcPerformanceHistoryEClass;
 	}
@@ -21677,7 +22087,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPermeableCoveringProperties() {
 		if (ifcPermeableCoveringPropertiesEClass == null) {
-			ifcPermeableCoveringPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(405);
+			ifcPermeableCoveringPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(405);
 		}
 		return ifcPermeableCoveringPropertiesEClass;
 	}
@@ -21752,7 +22163,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPermit() {
 		if (ifcPermitEClass == null) {
-			ifcPermitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(406);
+			ifcPermitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(406);
 		}
 		return ifcPermitEClass;
 	}
@@ -21791,7 +22203,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPerson() {
 		if (ifcPersonEClass == null) {
-			ifcPersonEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(407);
+			ifcPersonEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(407);
 		}
 		return ifcPersonEClass;
 	}
@@ -21884,7 +22297,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPersonAndOrganization() {
 		if (ifcPersonAndOrganizationEClass == null) {
-			ifcPersonAndOrganizationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(408);
+			ifcPersonAndOrganizationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(408);
 		}
 		return ifcPersonAndOrganizationEClass;
 	}
@@ -21923,7 +22337,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPhysicalComplexQuantity() {
 		if (ifcPhysicalComplexQuantityEClass == null) {
-			ifcPhysicalComplexQuantityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(409);
+			ifcPhysicalComplexQuantityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(409);
 		}
 		return ifcPhysicalComplexQuantityEClass;
 	}
@@ -21971,7 +22386,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPhysicalQuantity() {
 		if (ifcPhysicalQuantityEClass == null) {
-			ifcPhysicalQuantityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(410);
+			ifcPhysicalQuantityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(410);
 		}
 		return ifcPhysicalQuantityEClass;
 	}
@@ -22019,7 +22435,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPhysicalSimpleQuantity() {
 		if (ifcPhysicalSimpleQuantityEClass == null) {
-			ifcPhysicalSimpleQuantityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(411);
+			ifcPhysicalSimpleQuantityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(411);
 		}
 		return ifcPhysicalSimpleQuantityEClass;
 	}
@@ -22040,7 +22457,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPile() {
 		if (ifcPileEClass == null) {
-			ifcPileEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(412);
+			ifcPileEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(412);
 		}
 		return ifcPileEClass;
 	}
@@ -22070,7 +22488,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPileType() {
 		if (ifcPileTypeEClass == null) {
-			ifcPileTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(413);
+			ifcPileTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(413);
 		}
 		return ifcPileTypeEClass;
 	}
@@ -22091,7 +22510,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPipeFitting() {
 		if (ifcPipeFittingEClass == null) {
-			ifcPipeFittingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(414);
+			ifcPipeFittingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(414);
 		}
 		return ifcPipeFittingEClass;
 	}
@@ -22112,7 +22532,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPipeFittingType() {
 		if (ifcPipeFittingTypeEClass == null) {
-			ifcPipeFittingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(415);
+			ifcPipeFittingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(415);
 		}
 		return ifcPipeFittingTypeEClass;
 	}
@@ -22133,7 +22554,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPipeSegment() {
 		if (ifcPipeSegmentEClass == null) {
-			ifcPipeSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(416);
+			ifcPipeSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(416);
 		}
 		return ifcPipeSegmentEClass;
 	}
@@ -22154,7 +22576,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPipeSegmentType() {
 		if (ifcPipeSegmentTypeEClass == null) {
-			ifcPipeSegmentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(417);
+			ifcPipeSegmentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(417);
 		}
 		return ifcPipeSegmentTypeEClass;
 	}
@@ -22175,7 +22598,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPixelTexture() {
 		if (ifcPixelTextureEClass == null) {
-			ifcPixelTextureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(418);
+			ifcPixelTextureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(418);
 		}
 		return ifcPixelTextureEClass;
 	}
@@ -22214,7 +22638,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPlacement() {
 		if (ifcPlacementEClass == null) {
-			ifcPlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(419);
+			ifcPlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(419);
 		}
 		return ifcPlacementEClass;
 	}
@@ -22244,7 +22669,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPlanarBox() {
 		if (ifcPlanarBoxEClass == null) {
-			ifcPlanarBoxEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(420);
+			ifcPlanarBoxEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(420);
 		}
 		return ifcPlanarBoxEClass;
 	}
@@ -22265,7 +22691,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPlanarExtent() {
 		if (ifcPlanarExtentEClass == null) {
-			ifcPlanarExtentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(421);
+			ifcPlanarExtentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(421);
 		}
 		return ifcPlanarExtentEClass;
 	}
@@ -22313,7 +22740,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPlane() {
 		if (ifcPlaneEClass == null) {
-			ifcPlaneEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(422);
+			ifcPlaneEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(422);
 		}
 		return ifcPlaneEClass;
 	}
@@ -22325,7 +22753,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPlate() {
 		if (ifcPlateEClass == null) {
-			ifcPlateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(423);
+			ifcPlateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(423);
 		}
 		return ifcPlateEClass;
 	}
@@ -22346,7 +22775,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPlateStandardCase() {
 		if (ifcPlateStandardCaseEClass == null) {
-			ifcPlateStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(424);
+			ifcPlateStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(424);
 		}
 		return ifcPlateStandardCaseEClass;
 	}
@@ -22358,7 +22788,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPlateType() {
 		if (ifcPlateTypeEClass == null) {
-			ifcPlateTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(425);
+			ifcPlateTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(425);
 		}
 		return ifcPlateTypeEClass;
 	}
@@ -22379,7 +22810,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPoint() {
 		if (ifcPointEClass == null) {
-			ifcPointEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(426);
+			ifcPointEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(426);
 		}
 		return ifcPointEClass;
 	}
@@ -22391,7 +22823,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPointOnCurve() {
 		if (ifcPointOnCurveEClass == null) {
-			ifcPointOnCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(427);
+			ifcPointOnCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(427);
 		}
 		return ifcPointOnCurveEClass;
 	}
@@ -22439,7 +22872,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPointOnSurface() {
 		if (ifcPointOnSurfaceEClass == null) {
-			ifcPointOnSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(428);
+			ifcPointOnSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(428);
 		}
 		return ifcPointOnSurfaceEClass;
 	}
@@ -22505,7 +22939,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPolyLoop() {
 		if (ifcPolyLoopEClass == null) {
-			ifcPolyLoopEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(429);
+			ifcPolyLoopEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(429);
 		}
 		return ifcPolyLoopEClass;
 	}
@@ -22526,7 +22961,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPolygonalBoundedHalfSpace() {
 		if (ifcPolygonalBoundedHalfSpaceEClass == null) {
-			ifcPolygonalBoundedHalfSpaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(430);
+			ifcPolygonalBoundedHalfSpaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(430);
 		}
 		return ifcPolygonalBoundedHalfSpaceEClass;
 	}
@@ -22556,7 +22992,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPolyline() {
 		if (ifcPolylineEClass == null) {
-			ifcPolylineEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(431);
+			ifcPolylineEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(431);
 		}
 		return ifcPolylineEClass;
 	}
@@ -22577,7 +23014,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPort() {
 		if (ifcPortEClass == null) {
-			ifcPortEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(432);
+			ifcPortEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(432);
 		}
 		return ifcPortEClass;
 	}
@@ -22616,7 +23054,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPostalAddress() {
 		if (ifcPostalAddressEClass == null) {
-			ifcPostalAddressEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(433);
+			ifcPostalAddressEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(433);
 		}
 		return ifcPostalAddressEClass;
 	}
@@ -22691,7 +23130,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPreDefinedColour() {
 		if (ifcPreDefinedColourEClass == null) {
-			ifcPreDefinedColourEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(434);
+			ifcPreDefinedColourEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(434);
 		}
 		return ifcPreDefinedColourEClass;
 	}
@@ -22703,7 +23143,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPreDefinedCurveFont() {
 		if (ifcPreDefinedCurveFontEClass == null) {
-			ifcPreDefinedCurveFontEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(435);
+			ifcPreDefinedCurveFontEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(435);
 		}
 		return ifcPreDefinedCurveFontEClass;
 	}
@@ -22715,7 +23156,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPreDefinedItem() {
 		if (ifcPreDefinedItemEClass == null) {
-			ifcPreDefinedItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(436);
+			ifcPreDefinedItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(436);
 		}
 		return ifcPreDefinedItemEClass;
 	}
@@ -22736,7 +23178,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPreDefinedProperties() {
 		if (ifcPreDefinedPropertiesEClass == null) {
-			ifcPreDefinedPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(437);
+			ifcPreDefinedPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(437);
 		}
 		return ifcPreDefinedPropertiesEClass;
 	}
@@ -22748,7 +23191,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPreDefinedPropertySet() {
 		if (ifcPreDefinedPropertySetEClass == null) {
-			ifcPreDefinedPropertySetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(438);
+			ifcPreDefinedPropertySetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(438);
 		}
 		return ifcPreDefinedPropertySetEClass;
 	}
@@ -22760,7 +23204,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPreDefinedTextFont() {
 		if (ifcPreDefinedTextFontEClass == null) {
-			ifcPreDefinedTextFontEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(439);
+			ifcPreDefinedTextFontEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(439);
 		}
 		return ifcPreDefinedTextFontEClass;
 	}
@@ -22772,7 +23217,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPresentationItem() {
 		if (ifcPresentationItemEClass == null) {
-			ifcPresentationItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(440);
+			ifcPresentationItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(440);
 		}
 		return ifcPresentationItemEClass;
 	}
@@ -22784,7 +23230,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPresentationLayerAssignment() {
 		if (ifcPresentationLayerAssignmentEClass == null) {
-			ifcPresentationLayerAssignmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(441);
+			ifcPresentationLayerAssignmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(441);
 		}
 		return ifcPresentationLayerAssignmentEClass;
 	}
@@ -22832,7 +23279,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPresentationLayerWithStyle() {
 		if (ifcPresentationLayerWithStyleEClass == null) {
-			ifcPresentationLayerWithStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(442);
+			ifcPresentationLayerWithStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(442);
 		}
 		return ifcPresentationLayerWithStyleEClass;
 	}
@@ -22880,7 +23328,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPresentationStyle() {
 		if (ifcPresentationStyleEClass == null) {
-			ifcPresentationStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(443);
+			ifcPresentationStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(443);
 		}
 		return ifcPresentationStyleEClass;
 	}
@@ -22901,7 +23350,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPresentationStyleAssignment() {
 		if (ifcPresentationStyleAssignmentEClass == null) {
-			ifcPresentationStyleAssignmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(444);
+			ifcPresentationStyleAssignmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(444);
 		}
 		return ifcPresentationStyleAssignmentEClass;
 	}
@@ -22922,7 +23372,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProcedure() {
 		if (ifcProcedureEClass == null) {
-			ifcProcedureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(445);
+			ifcProcedureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(445);
 		}
 		return ifcProcedureEClass;
 	}
@@ -22943,7 +23394,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProcedureType() {
 		if (ifcProcedureTypeEClass == null) {
-			ifcProcedureTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(446);
+			ifcProcedureTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(446);
 		}
 		return ifcProcedureTypeEClass;
 	}
@@ -22964,7 +23416,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProcess() {
 		if (ifcProcessEClass == null) {
-			ifcProcessEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(447);
+			ifcProcessEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(447);
 		}
 		return ifcProcessEClass;
 	}
@@ -23021,7 +23474,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProduct() {
 		if (ifcProductEClass == null) {
-			ifcProductEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(448);
+			ifcProductEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(448);
 		}
 		return ifcProductEClass;
 	}
@@ -23069,7 +23523,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProductDefinitionShape() {
 		if (ifcProductDefinitionShapeEClass == null) {
-			ifcProductDefinitionShapeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(449);
+			ifcProductDefinitionShapeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(449);
 		}
 		return ifcProductDefinitionShapeEClass;
 	}
@@ -23099,7 +23554,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProductRepresentation() {
 		if (ifcProductRepresentationEClass == null) {
-			ifcProductRepresentationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(450);
+			ifcProductRepresentationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(450);
 		}
 		return ifcProductRepresentationEClass;
 	}
@@ -23138,7 +23594,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProfileDef() {
 		if (ifcProfileDefEClass == null) {
-			ifcProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(451);
+			ifcProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(451);
 		}
 		return ifcProfileDefEClass;
 	}
@@ -23186,7 +23643,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProfileProperties() {
 		if (ifcProfilePropertiesEClass == null) {
-			ifcProfilePropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(452);
+			ifcProfilePropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(452);
 		}
 		return ifcProfilePropertiesEClass;
 	}
@@ -23207,7 +23665,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProject() {
 		if (ifcProjectEClass == null) {
-			ifcProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(453);
+			ifcProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(453);
 		}
 		return ifcProjectEClass;
 	}
@@ -23219,7 +23678,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProjectLibrary() {
 		if (ifcProjectLibraryEClass == null) {
-			ifcProjectLibraryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(454);
+			ifcProjectLibraryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(454);
 		}
 		return ifcProjectLibraryEClass;
 	}
@@ -23231,7 +23691,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProjectOrder() {
 		if (ifcProjectOrderEClass == null) {
-			ifcProjectOrderEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(455);
+			ifcProjectOrderEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(455);
 		}
 		return ifcProjectOrderEClass;
 	}
@@ -23270,7 +23731,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProjectedCRS() {
 		if (ifcProjectedCRSEClass == null) {
-			ifcProjectedCRSEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(456);
+			ifcProjectedCRSEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(456);
 		}
 		return ifcProjectedCRSEClass;
 	}
@@ -23309,7 +23771,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProjectionElement() {
 		if (ifcProjectionElementEClass == null) {
-			ifcProjectionElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(457);
+			ifcProjectionElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(457);
 		}
 		return ifcProjectionElementEClass;
 	}
@@ -23330,7 +23793,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProperty() {
 		if (ifcPropertyEClass == null) {
-			ifcPropertyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(458);
+			ifcPropertyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(458);
 		}
 		return ifcPropertyEClass;
 	}
@@ -23396,7 +23860,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertyAbstraction() {
 		if (ifcPropertyAbstractionEClass == null) {
-			ifcPropertyAbstractionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(459);
+			ifcPropertyAbstractionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(459);
 		}
 		return ifcPropertyAbstractionEClass;
 	}
@@ -23417,7 +23882,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertyBoundedValue() {
 		if (ifcPropertyBoundedValueEClass == null) {
-			ifcPropertyBoundedValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(460);
+			ifcPropertyBoundedValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(460);
 		}
 		return ifcPropertyBoundedValueEClass;
 	}
@@ -23465,7 +23931,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertyDefinition() {
 		if (ifcPropertyDefinitionEClass == null) {
-			ifcPropertyDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(461);
+			ifcPropertyDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(461);
 		}
 		return ifcPropertyDefinitionEClass;
 	}
@@ -23495,7 +23962,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertyDependencyRelationship() {
 		if (ifcPropertyDependencyRelationshipEClass == null) {
-			ifcPropertyDependencyRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(462);
+			ifcPropertyDependencyRelationshipEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(462);
 		}
 		return ifcPropertyDependencyRelationshipEClass;
 	}
@@ -23534,7 +24002,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertyEnumeratedValue() {
 		if (ifcPropertyEnumeratedValueEClass == null) {
-			ifcPropertyEnumeratedValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(463);
+			ifcPropertyEnumeratedValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(463);
 		}
 		return ifcPropertyEnumeratedValueEClass;
 	}
@@ -23564,7 +24033,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertyEnumeration() {
 		if (ifcPropertyEnumerationEClass == null) {
-			ifcPropertyEnumerationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(464);
+			ifcPropertyEnumerationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(464);
 		}
 		return ifcPropertyEnumerationEClass;
 	}
@@ -23603,7 +24073,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertyListValue() {
 		if (ifcPropertyListValueEClass == null) {
-			ifcPropertyListValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(465);
+			ifcPropertyListValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(465);
 		}
 		return ifcPropertyListValueEClass;
 	}
@@ -23633,7 +24104,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertyReferenceValue() {
 		if (ifcPropertyReferenceValueEClass == null) {
-			ifcPropertyReferenceValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(466);
+			ifcPropertyReferenceValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(466);
 		}
 		return ifcPropertyReferenceValueEClass;
 	}
@@ -23663,7 +24135,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertySet() {
 		if (ifcPropertySetEClass == null) {
-			ifcPropertySetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(467);
+			ifcPropertySetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(467);
 		}
 		return ifcPropertySetEClass;
 	}
@@ -23684,7 +24157,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertySetDefinition() {
 		if (ifcPropertySetDefinitionEClass == null) {
-			ifcPropertySetDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(468);
+			ifcPropertySetDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(468);
 		}
 		return ifcPropertySetDefinitionEClass;
 	}
@@ -23723,7 +24197,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertySetTemplate() {
 		if (ifcPropertySetTemplateEClass == null) {
-			ifcPropertySetTemplateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(469);
+			ifcPropertySetTemplateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(469);
 		}
 		return ifcPropertySetTemplateEClass;
 	}
@@ -23771,7 +24246,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertySingleValue() {
 		if (ifcPropertySingleValueEClass == null) {
-			ifcPropertySingleValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(470);
+			ifcPropertySingleValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(470);
 		}
 		return ifcPropertySingleValueEClass;
 	}
@@ -23801,7 +24277,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertyTableValue() {
 		if (ifcPropertyTableValueEClass == null) {
-			ifcPropertyTableValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(471);
+			ifcPropertyTableValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(471);
 		}
 		return ifcPropertyTableValueEClass;
 	}
@@ -23867,7 +24344,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertyTemplate() {
 		if (ifcPropertyTemplateEClass == null) {
-			ifcPropertyTemplateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(472);
+			ifcPropertyTemplateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(472);
 		}
 		return ifcPropertyTemplateEClass;
 	}
@@ -23897,7 +24375,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertyTemplateDefinition() {
 		if (ifcPropertyTemplateDefinitionEClass == null) {
-			ifcPropertyTemplateDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(473);
+			ifcPropertyTemplateDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(473);
 		}
 		return ifcPropertyTemplateDefinitionEClass;
 	}
@@ -23909,7 +24388,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProtectiveDevice() {
 		if (ifcProtectiveDeviceEClass == null) {
-			ifcProtectiveDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(474);
+			ifcProtectiveDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(474);
 		}
 		return ifcProtectiveDeviceEClass;
 	}
@@ -23930,7 +24410,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProtectiveDeviceTrippingUnit() {
 		if (ifcProtectiveDeviceTrippingUnitEClass == null) {
-			ifcProtectiveDeviceTrippingUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(475);
+			ifcProtectiveDeviceTrippingUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(475);
 		}
 		return ifcProtectiveDeviceTrippingUnitEClass;
 	}
@@ -23951,7 +24432,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProtectiveDeviceTrippingUnitType() {
 		if (ifcProtectiveDeviceTrippingUnitTypeEClass == null) {
-			ifcProtectiveDeviceTrippingUnitTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(476);
+			ifcProtectiveDeviceTrippingUnitTypeEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(476);
 		}
 		return ifcProtectiveDeviceTrippingUnitTypeEClass;
 	}
@@ -23972,7 +24454,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProtectiveDeviceType() {
 		if (ifcProtectiveDeviceTypeEClass == null) {
-			ifcProtectiveDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(477);
+			ifcProtectiveDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(477);
 		}
 		return ifcProtectiveDeviceTypeEClass;
 	}
@@ -23993,7 +24476,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProxy() {
 		if (ifcProxyEClass == null) {
-			ifcProxyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(478);
+			ifcProxyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(478);
 		}
 		return ifcProxyEClass;
 	}
@@ -24023,7 +24507,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPump() {
 		if (ifcPumpEClass == null) {
-			ifcPumpEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(479);
+			ifcPumpEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(479);
 		}
 		return ifcPumpEClass;
 	}
@@ -24044,7 +24529,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPumpType() {
 		if (ifcPumpTypeEClass == null) {
-			ifcPumpTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(480);
+			ifcPumpTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(480);
 		}
 		return ifcPumpTypeEClass;
 	}
@@ -24065,7 +24551,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcQuantityArea() {
 		if (ifcQuantityAreaEClass == null) {
-			ifcQuantityAreaEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(481);
+			ifcQuantityAreaEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(481);
 		}
 		return ifcQuantityAreaEClass;
 	}
@@ -24104,7 +24591,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcQuantityCount() {
 		if (ifcQuantityCountEClass == null) {
-			ifcQuantityCountEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(482);
+			ifcQuantityCountEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(482);
 		}
 		return ifcQuantityCountEClass;
 	}
@@ -24143,7 +24631,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcQuantityLength() {
 		if (ifcQuantityLengthEClass == null) {
-			ifcQuantityLengthEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(483);
+			ifcQuantityLengthEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(483);
 		}
 		return ifcQuantityLengthEClass;
 	}
@@ -24182,7 +24671,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcQuantitySet() {
 		if (ifcQuantitySetEClass == null) {
-			ifcQuantitySetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(484);
+			ifcQuantitySetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(484);
 		}
 		return ifcQuantitySetEClass;
 	}
@@ -24194,7 +24684,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcQuantityTime() {
 		if (ifcQuantityTimeEClass == null) {
-			ifcQuantityTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(485);
+			ifcQuantityTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(485);
 		}
 		return ifcQuantityTimeEClass;
 	}
@@ -24233,7 +24724,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcQuantityVolume() {
 		if (ifcQuantityVolumeEClass == null) {
-			ifcQuantityVolumeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(486);
+			ifcQuantityVolumeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(486);
 		}
 		return ifcQuantityVolumeEClass;
 	}
@@ -24272,7 +24764,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcQuantityWeight() {
 		if (ifcQuantityWeightEClass == null) {
-			ifcQuantityWeightEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(487);
+			ifcQuantityWeightEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(487);
 		}
 		return ifcQuantityWeightEClass;
 	}
@@ -24311,7 +24804,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRailing() {
 		if (ifcRailingEClass == null) {
-			ifcRailingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(488);
+			ifcRailingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(488);
 		}
 		return ifcRailingEClass;
 	}
@@ -24332,7 +24826,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRailingType() {
 		if (ifcRailingTypeEClass == null) {
-			ifcRailingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(489);
+			ifcRailingTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(489);
 		}
 		return ifcRailingTypeEClass;
 	}
@@ -24353,7 +24848,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRamp() {
 		if (ifcRampEClass == null) {
-			ifcRampEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(490);
+			ifcRampEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(490);
 		}
 		return ifcRampEClass;
 	}
@@ -24374,7 +24870,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRampFlight() {
 		if (ifcRampFlightEClass == null) {
-			ifcRampFlightEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(491);
+			ifcRampFlightEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(491);
 		}
 		return ifcRampFlightEClass;
 	}
@@ -24395,7 +24892,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRampFlightType() {
 		if (ifcRampFlightTypeEClass == null) {
-			ifcRampFlightTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(492);
+			ifcRampFlightTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(492);
 		}
 		return ifcRampFlightTypeEClass;
 	}
@@ -24416,7 +24914,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRampType() {
 		if (ifcRampTypeEClass == null) {
-			ifcRampTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(493);
+			ifcRampTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(493);
 		}
 		return ifcRampTypeEClass;
 	}
@@ -24437,7 +24936,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRationalBSplineCurveWithKnots() {
 		if (ifcRationalBSplineCurveWithKnotsEClass == null) {
-			ifcRationalBSplineCurveWithKnotsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(494);
+			ifcRationalBSplineCurveWithKnotsEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(494);
 		}
 		return ifcRationalBSplineCurveWithKnotsEClass;
 	}
@@ -24467,7 +24967,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRationalBSplineSurfaceWithKnots() {
 		if (ifcRationalBSplineSurfaceWithKnotsEClass == null) {
-			ifcRationalBSplineSurfaceWithKnotsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(495);
+			ifcRationalBSplineSurfaceWithKnotsEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(495);
 		}
 		return ifcRationalBSplineSurfaceWithKnotsEClass;
 	}
@@ -24488,7 +24989,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRectangleHollowProfileDef() {
 		if (ifcRectangleHollowProfileDefEClass == null) {
-			ifcRectangleHollowProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(496);
+			ifcRectangleHollowProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(496);
 		}
 		return ifcRectangleHollowProfileDefEClass;
 	}
@@ -24554,7 +25056,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRectangleProfileDef() {
 		if (ifcRectangleProfileDefEClass == null) {
-			ifcRectangleProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(497);
+			ifcRectangleProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(497);
 		}
 		return ifcRectangleProfileDefEClass;
 	}
@@ -24602,7 +25105,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRectangularPyramid() {
 		if (ifcRectangularPyramidEClass == null) {
-			ifcRectangularPyramidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(498);
+			ifcRectangularPyramidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(498);
 		}
 		return ifcRectangularPyramidEClass;
 	}
@@ -24668,7 +25172,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRectangularTrimmedSurface() {
 		if (ifcRectangularTrimmedSurfaceEClass == null) {
-			ifcRectangularTrimmedSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(499);
+			ifcRectangularTrimmedSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(499);
 		}
 		return ifcRectangularTrimmedSurfaceEClass;
 	}
@@ -24779,7 +25284,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRecurrencePattern() {
 		if (ifcRecurrencePatternEClass == null) {
-			ifcRecurrencePatternEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(500);
+			ifcRecurrencePatternEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(500);
 		}
 		return ifcRecurrencePatternEClass;
 	}
@@ -24863,7 +25369,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcReference() {
 		if (ifcReferenceEClass == null) {
-			ifcReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(501);
+			ifcReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(501);
 		}
 		return ifcReferenceEClass;
 	}
@@ -24920,7 +25427,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRegularTimeSeries() {
 		if (ifcRegularTimeSeriesEClass == null) {
-			ifcRegularTimeSeriesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(502);
+			ifcRegularTimeSeriesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(502);
 		}
 		return ifcRegularTimeSeriesEClass;
 	}
@@ -24959,7 +25467,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcReinforcementBarProperties() {
 		if (ifcReinforcementBarPropertiesEClass == null) {
-			ifcReinforcementBarPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(503);
+			ifcReinforcementBarPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(503);
 		}
 		return ifcReinforcementBarPropertiesEClass;
 	}
@@ -25061,7 +25570,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcReinforcementDefinitionProperties() {
 		if (ifcReinforcementDefinitionPropertiesEClass == null) {
-			ifcReinforcementDefinitionPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(504);
+			ifcReinforcementDefinitionPropertiesEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(504);
 		}
 		return ifcReinforcementDefinitionPropertiesEClass;
 	}
@@ -25091,7 +25601,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcReinforcingBar() {
 		if (ifcReinforcingBarEClass == null) {
-			ifcReinforcingBarEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(505);
+			ifcReinforcingBarEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(505);
 		}
 		return ifcReinforcingBarEClass;
 	}
@@ -25175,7 +25686,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcReinforcingBarType() {
 		if (ifcReinforcingBarTypeEClass == null) {
-			ifcReinforcingBarTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(506);
+			ifcReinforcingBarTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(506);
 		}
 		return ifcReinforcingBarTypeEClass;
 	}
@@ -25277,7 +25789,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcReinforcingElement() {
 		if (ifcReinforcingElementEClass == null) {
-			ifcReinforcingElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(507);
+			ifcReinforcingElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(507);
 		}
 		return ifcReinforcingElementEClass;
 	}
@@ -25298,7 +25811,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcReinforcingElementType() {
 		if (ifcReinforcingElementTypeEClass == null) {
-			ifcReinforcingElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(508);
+			ifcReinforcingElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(508);
 		}
 		return ifcReinforcingElementTypeEClass;
 	}
@@ -25310,7 +25824,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcReinforcingMesh() {
 		if (ifcReinforcingMeshEClass == null) {
-			ifcReinforcingMeshEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(509);
+			ifcReinforcingMeshEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(509);
 		}
 		return ifcReinforcingMeshEClass;
 	}
@@ -25475,7 +25990,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcReinforcingMeshType() {
 		if (ifcReinforcingMeshTypeEClass == null) {
-			ifcReinforcingMeshTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(510);
+			ifcReinforcingMeshTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(510);
 		}
 		return ifcReinforcingMeshTypeEClass;
 	}
@@ -25658,7 +26174,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAggregates() {
 		if (ifcRelAggregatesEClass == null) {
-			ifcRelAggregatesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(511);
+			ifcRelAggregatesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(511);
 		}
 		return ifcRelAggregatesEClass;
 	}
@@ -25688,7 +26205,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssigns() {
 		if (ifcRelAssignsEClass == null) {
-			ifcRelAssignsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(512);
+			ifcRelAssignsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(512);
 		}
 		return ifcRelAssignsEClass;
 	}
@@ -25718,7 +26236,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssignsToActor() {
 		if (ifcRelAssignsToActorEClass == null) {
-			ifcRelAssignsToActorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(513);
+			ifcRelAssignsToActorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(513);
 		}
 		return ifcRelAssignsToActorEClass;
 	}
@@ -25748,7 +26267,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssignsToControl() {
 		if (ifcRelAssignsToControlEClass == null) {
-			ifcRelAssignsToControlEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(514);
+			ifcRelAssignsToControlEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(514);
 		}
 		return ifcRelAssignsToControlEClass;
 	}
@@ -25769,7 +26289,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssignsToGroup() {
 		if (ifcRelAssignsToGroupEClass == null) {
-			ifcRelAssignsToGroupEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(515);
+			ifcRelAssignsToGroupEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(515);
 		}
 		return ifcRelAssignsToGroupEClass;
 	}
@@ -25790,7 +26311,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssignsToGroupByFactor() {
 		if (ifcRelAssignsToGroupByFactorEClass == null) {
-			ifcRelAssignsToGroupByFactorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(516);
+			ifcRelAssignsToGroupByFactorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(516);
 		}
 		return ifcRelAssignsToGroupByFactorEClass;
 	}
@@ -25820,7 +26342,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssignsToProcess() {
 		if (ifcRelAssignsToProcessEClass == null) {
-			ifcRelAssignsToProcessEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(517);
+			ifcRelAssignsToProcessEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(517);
 		}
 		return ifcRelAssignsToProcessEClass;
 	}
@@ -25850,7 +26373,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssignsToProduct() {
 		if (ifcRelAssignsToProductEClass == null) {
-			ifcRelAssignsToProductEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(518);
+			ifcRelAssignsToProductEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(518);
 		}
 		return ifcRelAssignsToProductEClass;
 	}
@@ -25871,7 +26395,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssignsToResource() {
 		if (ifcRelAssignsToResourceEClass == null) {
-			ifcRelAssignsToResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(519);
+			ifcRelAssignsToResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(519);
 		}
 		return ifcRelAssignsToResourceEClass;
 	}
@@ -25892,7 +26417,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssociates() {
 		if (ifcRelAssociatesEClass == null) {
-			ifcRelAssociatesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(520);
+			ifcRelAssociatesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(520);
 		}
 		return ifcRelAssociatesEClass;
 	}
@@ -25913,7 +26439,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssociatesApproval() {
 		if (ifcRelAssociatesApprovalEClass == null) {
-			ifcRelAssociatesApprovalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(521);
+			ifcRelAssociatesApprovalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(521);
 		}
 		return ifcRelAssociatesApprovalEClass;
 	}
@@ -25934,7 +26461,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssociatesClassification() {
 		if (ifcRelAssociatesClassificationEClass == null) {
-			ifcRelAssociatesClassificationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(522);
+			ifcRelAssociatesClassificationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(522);
 		}
 		return ifcRelAssociatesClassificationEClass;
 	}
@@ -25955,7 +26483,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssociatesConstraint() {
 		if (ifcRelAssociatesConstraintEClass == null) {
-			ifcRelAssociatesConstraintEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(523);
+			ifcRelAssociatesConstraintEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(523);
 		}
 		return ifcRelAssociatesConstraintEClass;
 	}
@@ -25985,7 +26514,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssociatesDocument() {
 		if (ifcRelAssociatesDocumentEClass == null) {
-			ifcRelAssociatesDocumentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(524);
+			ifcRelAssociatesDocumentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(524);
 		}
 		return ifcRelAssociatesDocumentEClass;
 	}
@@ -26006,7 +26536,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssociatesLibrary() {
 		if (ifcRelAssociatesLibraryEClass == null) {
-			ifcRelAssociatesLibraryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(525);
+			ifcRelAssociatesLibraryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(525);
 		}
 		return ifcRelAssociatesLibraryEClass;
 	}
@@ -26027,7 +26558,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelAssociatesMaterial() {
 		if (ifcRelAssociatesMaterialEClass == null) {
-			ifcRelAssociatesMaterialEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(526);
+			ifcRelAssociatesMaterialEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(526);
 		}
 		return ifcRelAssociatesMaterialEClass;
 	}
@@ -26048,7 +26580,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelConnects() {
 		if (ifcRelConnectsEClass == null) {
-			ifcRelConnectsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(527);
+			ifcRelConnectsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(527);
 		}
 		return ifcRelConnectsEClass;
 	}
@@ -26060,7 +26593,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelConnectsElements() {
 		if (ifcRelConnectsElementsEClass == null) {
-			ifcRelConnectsElementsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(528);
+			ifcRelConnectsElementsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(528);
 		}
 		return ifcRelConnectsElementsEClass;
 	}
@@ -26099,7 +26633,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelConnectsPathElements() {
 		if (ifcRelConnectsPathElementsEClass == null) {
-			ifcRelConnectsPathElementsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(529);
+			ifcRelConnectsPathElementsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(529);
 		}
 		return ifcRelConnectsPathElementsEClass;
 	}
@@ -26147,7 +26682,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelConnectsPortToElement() {
 		if (ifcRelConnectsPortToElementEClass == null) {
-			ifcRelConnectsPortToElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(530);
+			ifcRelConnectsPortToElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(530);
 		}
 		return ifcRelConnectsPortToElementEClass;
 	}
@@ -26177,7 +26713,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelConnectsPorts() {
 		if (ifcRelConnectsPortsEClass == null) {
-			ifcRelConnectsPortsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(531);
+			ifcRelConnectsPortsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(531);
 		}
 		return ifcRelConnectsPortsEClass;
 	}
@@ -26216,7 +26753,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelConnectsStructuralActivity() {
 		if (ifcRelConnectsStructuralActivityEClass == null) {
-			ifcRelConnectsStructuralActivityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(532);
+			ifcRelConnectsStructuralActivityEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(532);
 		}
 		return ifcRelConnectsStructuralActivityEClass;
 	}
@@ -26246,7 +26784,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelConnectsStructuralMember() {
 		if (ifcRelConnectsStructuralMemberEClass == null) {
-			ifcRelConnectsStructuralMemberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(533);
+			ifcRelConnectsStructuralMemberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(533);
 		}
 		return ifcRelConnectsStructuralMemberEClass;
 	}
@@ -26321,7 +26860,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelConnectsWithEccentricity() {
 		if (ifcRelConnectsWithEccentricityEClass == null) {
-			ifcRelConnectsWithEccentricityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(534);
+			ifcRelConnectsWithEccentricityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(534);
 		}
 		return ifcRelConnectsWithEccentricityEClass;
 	}
@@ -26342,7 +26882,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelConnectsWithRealizingElements() {
 		if (ifcRelConnectsWithRealizingElementsEClass == null) {
-			ifcRelConnectsWithRealizingElementsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(535);
+			ifcRelConnectsWithRealizingElementsEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(535);
 		}
 		return ifcRelConnectsWithRealizingElementsEClass;
 	}
@@ -26372,7 +26913,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelContainedInSpatialStructure() {
 		if (ifcRelContainedInSpatialStructureEClass == null) {
-			ifcRelContainedInSpatialStructureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(536);
+			ifcRelContainedInSpatialStructureEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(536);
 		}
 		return ifcRelContainedInSpatialStructureEClass;
 	}
@@ -26402,7 +26944,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelCoversBldgElements() {
 		if (ifcRelCoversBldgElementsEClass == null) {
-			ifcRelCoversBldgElementsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(537);
+			ifcRelCoversBldgElementsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(537);
 		}
 		return ifcRelCoversBldgElementsEClass;
 	}
@@ -26432,7 +26975,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelCoversSpaces() {
 		if (ifcRelCoversSpacesEClass == null) {
-			ifcRelCoversSpacesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(538);
+			ifcRelCoversSpacesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(538);
 		}
 		return ifcRelCoversSpacesEClass;
 	}
@@ -26462,7 +27006,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelDeclares() {
 		if (ifcRelDeclaresEClass == null) {
-			ifcRelDeclaresEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(539);
+			ifcRelDeclaresEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(539);
 		}
 		return ifcRelDeclaresEClass;
 	}
@@ -26492,7 +27037,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelDecomposes() {
 		if (ifcRelDecomposesEClass == null) {
-			ifcRelDecomposesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(540);
+			ifcRelDecomposesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(540);
 		}
 		return ifcRelDecomposesEClass;
 	}
@@ -26504,7 +27050,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelDefines() {
 		if (ifcRelDefinesEClass == null) {
-			ifcRelDefinesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(541);
+			ifcRelDefinesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(541);
 		}
 		return ifcRelDefinesEClass;
 	}
@@ -26516,7 +27063,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelDefinesByObject() {
 		if (ifcRelDefinesByObjectEClass == null) {
-			ifcRelDefinesByObjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(542);
+			ifcRelDefinesByObjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(542);
 		}
 		return ifcRelDefinesByObjectEClass;
 	}
@@ -26546,7 +27094,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelDefinesByProperties() {
 		if (ifcRelDefinesByPropertiesEClass == null) {
-			ifcRelDefinesByPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(543);
+			ifcRelDefinesByPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(543);
 		}
 		return ifcRelDefinesByPropertiesEClass;
 	}
@@ -26576,7 +27125,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelDefinesByTemplate() {
 		if (ifcRelDefinesByTemplateEClass == null) {
-			ifcRelDefinesByTemplateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(544);
+			ifcRelDefinesByTemplateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(544);
 		}
 		return ifcRelDefinesByTemplateEClass;
 	}
@@ -26606,7 +27156,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelDefinesByType() {
 		if (ifcRelDefinesByTypeEClass == null) {
-			ifcRelDefinesByTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(545);
+			ifcRelDefinesByTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(545);
 		}
 		return ifcRelDefinesByTypeEClass;
 	}
@@ -26636,7 +27187,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelFillsElement() {
 		if (ifcRelFillsElementEClass == null) {
-			ifcRelFillsElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(546);
+			ifcRelFillsElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(546);
 		}
 		return ifcRelFillsElementEClass;
 	}
@@ -26666,7 +27218,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelFlowControlElements() {
 		if (ifcRelFlowControlElementsEClass == null) {
-			ifcRelFlowControlElementsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(547);
+			ifcRelFlowControlElementsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(547);
 		}
 		return ifcRelFlowControlElementsEClass;
 	}
@@ -26696,7 +27249,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelInterferesElements() {
 		if (ifcRelInterferesElementsEClass == null) {
-			ifcRelInterferesElementsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(548);
+			ifcRelInterferesElementsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(548);
 		}
 		return ifcRelInterferesElementsEClass;
 	}
@@ -26753,7 +27307,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelNests() {
 		if (ifcRelNestsEClass == null) {
-			ifcRelNestsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(549);
+			ifcRelNestsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(549);
 		}
 		return ifcRelNestsEClass;
 	}
@@ -26783,7 +27338,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelProjectsElement() {
 		if (ifcRelProjectsElementEClass == null) {
-			ifcRelProjectsElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(550);
+			ifcRelProjectsElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(550);
 		}
 		return ifcRelProjectsElementEClass;
 	}
@@ -26813,7 +27369,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelReferencedInSpatialStructure() {
 		if (ifcRelReferencedInSpatialStructureEClass == null) {
-			ifcRelReferencedInSpatialStructureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(551);
+			ifcRelReferencedInSpatialStructureEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(551);
 		}
 		return ifcRelReferencedInSpatialStructureEClass;
 	}
@@ -26843,7 +27400,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelSequence() {
 		if (ifcRelSequenceEClass == null) {
-			ifcRelSequenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(552);
+			ifcRelSequenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(552);
 		}
 		return ifcRelSequenceEClass;
 	}
@@ -26900,7 +27458,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelServicesBuildings() {
 		if (ifcRelServicesBuildingsEClass == null) {
-			ifcRelServicesBuildingsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(553);
+			ifcRelServicesBuildingsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(553);
 		}
 		return ifcRelServicesBuildingsEClass;
 	}
@@ -26930,7 +27489,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelSpaceBoundary() {
 		if (ifcRelSpaceBoundaryEClass == null) {
-			ifcRelSpaceBoundaryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(554);
+			ifcRelSpaceBoundaryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(554);
 		}
 		return ifcRelSpaceBoundaryEClass;
 	}
@@ -26987,7 +27547,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelSpaceBoundary1stLevel() {
 		if (ifcRelSpaceBoundary1stLevelEClass == null) {
-			ifcRelSpaceBoundary1stLevelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(555);
+			ifcRelSpaceBoundary1stLevelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(555);
 		}
 		return ifcRelSpaceBoundary1stLevelEClass;
 	}
@@ -27017,7 +27578,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelSpaceBoundary2ndLevel() {
 		if (ifcRelSpaceBoundary2ndLevelEClass == null) {
-			ifcRelSpaceBoundary2ndLevelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(556);
+			ifcRelSpaceBoundary2ndLevelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(556);
 		}
 		return ifcRelSpaceBoundary2ndLevelEClass;
 	}
@@ -27047,7 +27609,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelVoidsElement() {
 		if (ifcRelVoidsElementEClass == null) {
-			ifcRelVoidsElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(557);
+			ifcRelVoidsElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(557);
 		}
 		return ifcRelVoidsElementEClass;
 	}
@@ -27077,7 +27640,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRelationship() {
 		if (ifcRelationshipEClass == null) {
-			ifcRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(558);
+			ifcRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(558);
 		}
 		return ifcRelationshipEClass;
 	}
@@ -27089,7 +27653,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcReparametrisedCompositeCurveSegment() {
 		if (ifcReparametrisedCompositeCurveSegmentEClass == null) {
-			ifcReparametrisedCompositeCurveSegmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(559);
+			ifcReparametrisedCompositeCurveSegmentEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(559);
 		}
 		return ifcReparametrisedCompositeCurveSegmentEClass;
 	}
@@ -27119,7 +27684,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRepresentation() {
 		if (ifcRepresentationEClass == null) {
-			ifcRepresentationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(560);
+			ifcRepresentationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(560);
 		}
 		return ifcRepresentationEClass;
 	}
@@ -27194,7 +27760,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRepresentationContext() {
 		if (ifcRepresentationContextEClass == null) {
-			ifcRepresentationContextEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(561);
+			ifcRepresentationContextEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(561);
 		}
 		return ifcRepresentationContextEClass;
 	}
@@ -27233,7 +27800,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRepresentationItem() {
 		if (ifcRepresentationItemEClass == null) {
-			ifcRepresentationItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(562);
+			ifcRepresentationItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(562);
 		}
 		return ifcRepresentationItemEClass;
 	}
@@ -27263,7 +27831,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRepresentationMap() {
 		if (ifcRepresentationMapEClass == null) {
-			ifcRepresentationMapEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(563);
+			ifcRepresentationMapEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(563);
 		}
 		return ifcRepresentationMapEClass;
 	}
@@ -27311,7 +27880,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcResource() {
 		if (ifcResourceEClass == null) {
-			ifcResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(564);
+			ifcResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(564);
 		}
 		return ifcResourceEClass;
 	}
@@ -27350,7 +27920,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcResourceApprovalRelationship() {
 		if (ifcResourceApprovalRelationshipEClass == null) {
-			ifcResourceApprovalRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(565);
+			ifcResourceApprovalRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(565);
 		}
 		return ifcResourceApprovalRelationshipEClass;
 	}
@@ -27380,7 +27951,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcResourceConstraintRelationship() {
 		if (ifcResourceConstraintRelationshipEClass == null) {
-			ifcResourceConstraintRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(566);
+			ifcResourceConstraintRelationshipEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(566);
 		}
 		return ifcResourceConstraintRelationshipEClass;
 	}
@@ -27410,7 +27982,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcResourceLevelRelationship() {
 		if (ifcResourceLevelRelationshipEClass == null) {
-			ifcResourceLevelRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(567);
+			ifcResourceLevelRelationshipEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(567);
 		}
 		return ifcResourceLevelRelationshipEClass;
 	}
@@ -27440,7 +28013,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcResourceTime() {
 		if (ifcResourceTimeEClass == null) {
-			ifcResourceTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(568);
+			ifcResourceTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(568);
 		}
 		return ifcResourceTimeEClass;
 	}
@@ -27623,7 +28197,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRevolvedAreaSolid() {
 		if (ifcRevolvedAreaSolidEClass == null) {
-			ifcRevolvedAreaSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(569);
+			ifcRevolvedAreaSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(569);
 		}
 		return ifcRevolvedAreaSolidEClass;
 	}
@@ -27662,7 +28237,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRevolvedAreaSolidTapered() {
 		if (ifcRevolvedAreaSolidTaperedEClass == null) {
-			ifcRevolvedAreaSolidTaperedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(570);
+			ifcRevolvedAreaSolidTaperedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(570);
 		}
 		return ifcRevolvedAreaSolidTaperedEClass;
 	}
@@ -27683,7 +28259,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRightCircularCone() {
 		if (ifcRightCircularConeEClass == null) {
-			ifcRightCircularConeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(571);
+			ifcRightCircularConeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(571);
 		}
 		return ifcRightCircularConeEClass;
 	}
@@ -27731,7 +28308,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRightCircularCylinder() {
 		if (ifcRightCircularCylinderEClass == null) {
-			ifcRightCircularCylinderEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(572);
+			ifcRightCircularCylinderEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(572);
 		}
 		return ifcRightCircularCylinderEClass;
 	}
@@ -27779,7 +28357,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRoof() {
 		if (ifcRoofEClass == null) {
-			ifcRoofEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(573);
+			ifcRoofEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(573);
 		}
 		return ifcRoofEClass;
 	}
@@ -27800,7 +28379,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRoofType() {
 		if (ifcRoofTypeEClass == null) {
-			ifcRoofTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(574);
+			ifcRoofTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(574);
 		}
 		return ifcRoofTypeEClass;
 	}
@@ -27821,7 +28401,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRoot() {
 		if (ifcRootEClass == null) {
-			ifcRootEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(575);
+			ifcRootEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(575);
 		}
 		return ifcRootEClass;
 	}
@@ -27869,7 +28450,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRoundedRectangleProfileDef() {
 		if (ifcRoundedRectangleProfileDefEClass == null) {
-			ifcRoundedRectangleProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(576);
+			ifcRoundedRectangleProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(576);
 		}
 		return ifcRoundedRectangleProfileDefEClass;
 	}
@@ -27899,7 +28481,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSIUnit() {
 		if (ifcSIUnitEClass == null) {
-			ifcSIUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(577);
+			ifcSIUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(577);
 		}
 		return ifcSIUnitEClass;
 	}
@@ -27929,7 +28512,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSanitaryTerminal() {
 		if (ifcSanitaryTerminalEClass == null) {
-			ifcSanitaryTerminalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(578);
+			ifcSanitaryTerminalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(578);
 		}
 		return ifcSanitaryTerminalEClass;
 	}
@@ -27950,7 +28534,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSanitaryTerminalType() {
 		if (ifcSanitaryTerminalTypeEClass == null) {
-			ifcSanitaryTerminalTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(579);
+			ifcSanitaryTerminalTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(579);
 		}
 		return ifcSanitaryTerminalTypeEClass;
 	}
@@ -27971,7 +28556,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSchedulingTime() {
 		if (ifcSchedulingTimeEClass == null) {
-			ifcSchedulingTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(580);
+			ifcSchedulingTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(580);
 		}
 		return ifcSchedulingTimeEClass;
 	}
@@ -28010,7 +28596,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSectionProperties() {
 		if (ifcSectionPropertiesEClass == null) {
-			ifcSectionPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(581);
+			ifcSectionPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(581);
 		}
 		return ifcSectionPropertiesEClass;
 	}
@@ -28049,7 +28636,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSectionReinforcementProperties() {
 		if (ifcSectionReinforcementPropertiesEClass == null) {
-			ifcSectionReinforcementPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(582);
+			ifcSectionReinforcementPropertiesEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(582);
 		}
 		return ifcSectionReinforcementPropertiesEClass;
 	}
@@ -28142,7 +28730,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSectionedSpine() {
 		if (ifcSectionedSpineEClass == null) {
-			ifcSectionedSpineEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(583);
+			ifcSectionedSpineEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(583);
 		}
 		return ifcSectionedSpineEClass;
 	}
@@ -28190,7 +28779,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSensor() {
 		if (ifcSensorEClass == null) {
-			ifcSensorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(584);
+			ifcSensorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(584);
 		}
 		return ifcSensorEClass;
 	}
@@ -28211,7 +28801,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSensorType() {
 		if (ifcSensorTypeEClass == null) {
-			ifcSensorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(585);
+			ifcSensorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(585);
 		}
 		return ifcSensorTypeEClass;
 	}
@@ -28232,7 +28823,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcShadingDevice() {
 		if (ifcShadingDeviceEClass == null) {
-			ifcShadingDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(586);
+			ifcShadingDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(586);
 		}
 		return ifcShadingDeviceEClass;
 	}
@@ -28253,7 +28845,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcShadingDeviceType() {
 		if (ifcShadingDeviceTypeEClass == null) {
-			ifcShadingDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(587);
+			ifcShadingDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(587);
 		}
 		return ifcShadingDeviceTypeEClass;
 	}
@@ -28274,7 +28867,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcShapeAspect() {
 		if (ifcShapeAspectEClass == null) {
-			ifcShapeAspectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(588);
+			ifcShapeAspectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(588);
 		}
 		return ifcShapeAspectEClass;
 	}
@@ -28331,7 +28925,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcShapeModel() {
 		if (ifcShapeModelEClass == null) {
-			ifcShapeModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(589);
+			ifcShapeModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(589);
 		}
 		return ifcShapeModelEClass;
 	}
@@ -28352,7 +28947,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcShapeRepresentation() {
 		if (ifcShapeRepresentationEClass == null) {
-			ifcShapeRepresentationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(590);
+			ifcShapeRepresentationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(590);
 		}
 		return ifcShapeRepresentationEClass;
 	}
@@ -28364,7 +28960,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcShellBasedSurfaceModel() {
 		if (ifcShellBasedSurfaceModelEClass == null) {
-			ifcShellBasedSurfaceModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(591);
+			ifcShellBasedSurfaceModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(591);
 		}
 		return ifcShellBasedSurfaceModelEClass;
 	}
@@ -28394,7 +28991,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSimpleProperty() {
 		if (ifcSimplePropertyEClass == null) {
-			ifcSimplePropertyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(592);
+			ifcSimplePropertyEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(592);
 		}
 		return ifcSimplePropertyEClass;
 	}
@@ -28406,7 +29004,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSimplePropertyTemplate() {
 		if (ifcSimplePropertyTemplateEClass == null) {
-			ifcSimplePropertyTemplateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(593);
+			ifcSimplePropertyTemplateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(593);
 		}
 		return ifcSimplePropertyTemplateEClass;
 	}
@@ -28490,7 +29089,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSite() {
 		if (ifcSiteEClass == null) {
-			ifcSiteEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(594);
+			ifcSiteEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(594);
 		}
 		return ifcSiteEClass;
 	}
@@ -28556,7 +29156,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSlab() {
 		if (ifcSlabEClass == null) {
-			ifcSlabEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(595);
+			ifcSlabEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(595);
 		}
 		return ifcSlabEClass;
 	}
@@ -28577,7 +29178,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSlabElementedCase() {
 		if (ifcSlabElementedCaseEClass == null) {
-			ifcSlabElementedCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(596);
+			ifcSlabElementedCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(596);
 		}
 		return ifcSlabElementedCaseEClass;
 	}
@@ -28589,7 +29191,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSlabStandardCase() {
 		if (ifcSlabStandardCaseEClass == null) {
-			ifcSlabStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(597);
+			ifcSlabStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(597);
 		}
 		return ifcSlabStandardCaseEClass;
 	}
@@ -28601,7 +29204,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSlabType() {
 		if (ifcSlabTypeEClass == null) {
-			ifcSlabTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(598);
+			ifcSlabTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(598);
 		}
 		return ifcSlabTypeEClass;
 	}
@@ -28622,7 +29226,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSlippageConnectionCondition() {
 		if (ifcSlippageConnectionConditionEClass == null) {
-			ifcSlippageConnectionConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(599);
+			ifcSlippageConnectionConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(599);
 		}
 		return ifcSlippageConnectionConditionEClass;
 	}
@@ -28688,7 +29293,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSolarDevice() {
 		if (ifcSolarDeviceEClass == null) {
-			ifcSolarDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(600);
+			ifcSolarDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(600);
 		}
 		return ifcSolarDeviceEClass;
 	}
@@ -28709,7 +29315,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSolarDeviceType() {
 		if (ifcSolarDeviceTypeEClass == null) {
-			ifcSolarDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(601);
+			ifcSolarDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(601);
 		}
 		return ifcSolarDeviceTypeEClass;
 	}
@@ -28730,7 +29337,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSolidModel() {
 		if (ifcSolidModelEClass == null) {
-			ifcSolidModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(602);
+			ifcSolidModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(602);
 		}
 		return ifcSolidModelEClass;
 	}
@@ -28751,7 +29359,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpace() {
 		if (ifcSpaceEClass == null) {
-			ifcSpaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(603);
+			ifcSpaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(603);
 		}
 		return ifcSpaceEClass;
 	}
@@ -28808,7 +29417,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpaceHeater() {
 		if (ifcSpaceHeaterEClass == null) {
-			ifcSpaceHeaterEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(604);
+			ifcSpaceHeaterEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(604);
 		}
 		return ifcSpaceHeaterEClass;
 	}
@@ -28829,7 +29439,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpaceHeaterType() {
 		if (ifcSpaceHeaterTypeEClass == null) {
-			ifcSpaceHeaterTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(605);
+			ifcSpaceHeaterTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(605);
 		}
 		return ifcSpaceHeaterTypeEClass;
 	}
@@ -28850,7 +29461,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpaceType() {
 		if (ifcSpaceTypeEClass == null) {
-			ifcSpaceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(606);
+			ifcSpaceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(606);
 		}
 		return ifcSpaceTypeEClass;
 	}
@@ -28880,7 +29492,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpatialElement() {
 		if (ifcSpatialElementEClass == null) {
-			ifcSpatialElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(607);
+			ifcSpatialElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(607);
 		}
 		return ifcSpatialElementEClass;
 	}
@@ -28928,7 +29541,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpatialElementType() {
 		if (ifcSpatialElementTypeEClass == null) {
-			ifcSpatialElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(608);
+			ifcSpatialElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(608);
 		}
 		return ifcSpatialElementTypeEClass;
 	}
@@ -28949,7 +29563,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpatialStructureElement() {
 		if (ifcSpatialStructureElementEClass == null) {
-			ifcSpatialStructureElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(609);
+			ifcSpatialStructureElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(609);
 		}
 		return ifcSpatialStructureElementEClass;
 	}
@@ -28970,7 +29585,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpatialStructureElementType() {
 		if (ifcSpatialStructureElementTypeEClass == null) {
-			ifcSpatialStructureElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(610);
+			ifcSpatialStructureElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(610);
 		}
 		return ifcSpatialStructureElementTypeEClass;
 	}
@@ -28982,7 +29598,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpatialZone() {
 		if (ifcSpatialZoneEClass == null) {
-			ifcSpatialZoneEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(611);
+			ifcSpatialZoneEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(611);
 		}
 		return ifcSpatialZoneEClass;
 	}
@@ -29003,7 +29620,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpatialZoneType() {
 		if (ifcSpatialZoneTypeEClass == null) {
-			ifcSpatialZoneTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(612);
+			ifcSpatialZoneTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(612);
 		}
 		return ifcSpatialZoneTypeEClass;
 	}
@@ -29033,7 +29651,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSphere() {
 		if (ifcSphereEClass == null) {
-			ifcSphereEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(613);
+			ifcSphereEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(613);
 		}
 		return ifcSphereEClass;
 	}
@@ -29063,7 +29682,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStackTerminal() {
 		if (ifcStackTerminalEClass == null) {
-			ifcStackTerminalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(614);
+			ifcStackTerminalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(614);
 		}
 		return ifcStackTerminalEClass;
 	}
@@ -29084,7 +29704,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStackTerminalType() {
 		if (ifcStackTerminalTypeEClass == null) {
-			ifcStackTerminalTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(615);
+			ifcStackTerminalTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(615);
 		}
 		return ifcStackTerminalTypeEClass;
 	}
@@ -29105,7 +29726,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStair() {
 		if (ifcStairEClass == null) {
-			ifcStairEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(616);
+			ifcStairEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(616);
 		}
 		return ifcStairEClass;
 	}
@@ -29126,7 +29748,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStairFlight() {
 		if (ifcStairFlightEClass == null) {
-			ifcStairFlightEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(617);
+			ifcStairFlightEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(617);
 		}
 		return ifcStairFlightEClass;
 	}
@@ -29201,7 +29824,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStairFlightType() {
 		if (ifcStairFlightTypeEClass == null) {
-			ifcStairFlightTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(618);
+			ifcStairFlightTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(618);
 		}
 		return ifcStairFlightTypeEClass;
 	}
@@ -29222,7 +29846,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStairType() {
 		if (ifcStairTypeEClass == null) {
-			ifcStairTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(619);
+			ifcStairTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(619);
 		}
 		return ifcStairTypeEClass;
 	}
@@ -29243,7 +29868,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralAction() {
 		if (ifcStructuralActionEClass == null) {
-			ifcStructuralActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(620);
+			ifcStructuralActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(620);
 		}
 		return ifcStructuralActionEClass;
 	}
@@ -29264,7 +29890,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralActivity() {
 		if (ifcStructuralActivityEClass == null) {
-			ifcStructuralActivityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(621);
+			ifcStructuralActivityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(621);
 		}
 		return ifcStructuralActivityEClass;
 	}
@@ -29303,7 +29930,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralAnalysisModel() {
 		if (ifcStructuralAnalysisModelEClass == null) {
-			ifcStructuralAnalysisModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(622);
+			ifcStructuralAnalysisModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(622);
 		}
 		return ifcStructuralAnalysisModelEClass;
 	}
@@ -29360,7 +29988,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralConnection() {
 		if (ifcStructuralConnectionEClass == null) {
-			ifcStructuralConnectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(623);
+			ifcStructuralConnectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(623);
 		}
 		return ifcStructuralConnectionEClass;
 	}
@@ -29390,7 +30019,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralConnectionCondition() {
 		if (ifcStructuralConnectionConditionEClass == null) {
-			ifcStructuralConnectionConditionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(624);
+			ifcStructuralConnectionConditionEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(624);
 		}
 		return ifcStructuralConnectionConditionEClass;
 	}
@@ -29411,7 +30041,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralCurveAction() {
 		if (ifcStructuralCurveActionEClass == null) {
-			ifcStructuralCurveActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(625);
+			ifcStructuralCurveActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(625);
 		}
 		return ifcStructuralCurveActionEClass;
 	}
@@ -29441,7 +30072,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralCurveConnection() {
 		if (ifcStructuralCurveConnectionEClass == null) {
-			ifcStructuralCurveConnectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(626);
+			ifcStructuralCurveConnectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(626);
 		}
 		return ifcStructuralCurveConnectionEClass;
 	}
@@ -29462,7 +30094,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralCurveMember() {
 		if (ifcStructuralCurveMemberEClass == null) {
-			ifcStructuralCurveMemberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(627);
+			ifcStructuralCurveMemberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(627);
 		}
 		return ifcStructuralCurveMemberEClass;
 	}
@@ -29492,7 +30125,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralCurveMemberVarying() {
 		if (ifcStructuralCurveMemberVaryingEClass == null) {
-			ifcStructuralCurveMemberVaryingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(628);
+			ifcStructuralCurveMemberVaryingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(628);
 		}
 		return ifcStructuralCurveMemberVaryingEClass;
 	}
@@ -29504,7 +30138,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralCurveReaction() {
 		if (ifcStructuralCurveReactionEClass == null) {
-			ifcStructuralCurveReactionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(629);
+			ifcStructuralCurveReactionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(629);
 		}
 		return ifcStructuralCurveReactionEClass;
 	}
@@ -29525,7 +30160,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralItem() {
 		if (ifcStructuralItemEClass == null) {
-			ifcStructuralItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(630);
+			ifcStructuralItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(630);
 		}
 		return ifcStructuralItemEClass;
 	}
@@ -29546,7 +30182,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLinearAction() {
 		if (ifcStructuralLinearActionEClass == null) {
-			ifcStructuralLinearActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(631);
+			ifcStructuralLinearActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(631);
 		}
 		return ifcStructuralLinearActionEClass;
 	}
@@ -29558,7 +30195,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoad() {
 		if (ifcStructuralLoadEClass == null) {
-			ifcStructuralLoadEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(632);
+			ifcStructuralLoadEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(632);
 		}
 		return ifcStructuralLoadEClass;
 	}
@@ -29579,7 +30217,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoadCase() {
 		if (ifcStructuralLoadCaseEClass == null) {
-			ifcStructuralLoadCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(633);
+			ifcStructuralLoadCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(633);
 		}
 		return ifcStructuralLoadCaseEClass;
 	}
@@ -29609,7 +30248,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoadConfiguration() {
 		if (ifcStructuralLoadConfigurationEClass == null) {
-			ifcStructuralLoadConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(634);
+			ifcStructuralLoadConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(634);
 		}
 		return ifcStructuralLoadConfigurationEClass;
 	}
@@ -29639,7 +30279,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoadGroup() {
 		if (ifcStructuralLoadGroupEClass == null) {
-			ifcStructuralLoadGroupEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(635);
+			ifcStructuralLoadGroupEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(635);
 		}
 		return ifcStructuralLoadGroupEClass;
 	}
@@ -29723,7 +30364,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoadLinearForce() {
 		if (ifcStructuralLoadLinearForceEClass == null) {
-			ifcStructuralLoadLinearForceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(636);
+			ifcStructuralLoadLinearForceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(636);
 		}
 		return ifcStructuralLoadLinearForceEClass;
 	}
@@ -29843,7 +30485,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoadOrResult() {
 		if (ifcStructuralLoadOrResultEClass == null) {
-			ifcStructuralLoadOrResultEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(637);
+			ifcStructuralLoadOrResultEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(637);
 		}
 		return ifcStructuralLoadOrResultEClass;
 	}
@@ -29855,7 +30498,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoadPlanarForce() {
 		if (ifcStructuralLoadPlanarForceEClass == null) {
-			ifcStructuralLoadPlanarForceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(638);
+			ifcStructuralLoadPlanarForceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(638);
 		}
 		return ifcStructuralLoadPlanarForceEClass;
 	}
@@ -29921,7 +30565,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoadSingleDisplacement() {
 		if (ifcStructuralLoadSingleDisplacementEClass == null) {
-			ifcStructuralLoadSingleDisplacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(639);
+			ifcStructuralLoadSingleDisplacementEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(639);
 		}
 		return ifcStructuralLoadSingleDisplacementEClass;
 	}
@@ -30041,7 +30686,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoadSingleDisplacementDistortion() {
 		if (ifcStructuralLoadSingleDisplacementDistortionEClass == null) {
-			ifcStructuralLoadSingleDisplacementDistortionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(640);
+			ifcStructuralLoadSingleDisplacementDistortionEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(640);
 		}
 		return ifcStructuralLoadSingleDisplacementDistortionEClass;
 	}
@@ -30071,7 +30717,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoadSingleForce() {
 		if (ifcStructuralLoadSingleForceEClass == null) {
-			ifcStructuralLoadSingleForceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(641);
+			ifcStructuralLoadSingleForceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(641);
 		}
 		return ifcStructuralLoadSingleForceEClass;
 	}
@@ -30191,7 +30838,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoadSingleForceWarping() {
 		if (ifcStructuralLoadSingleForceWarpingEClass == null) {
-			ifcStructuralLoadSingleForceWarpingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(642);
+			ifcStructuralLoadSingleForceWarpingEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(642);
 		}
 		return ifcStructuralLoadSingleForceWarpingEClass;
 	}
@@ -30221,7 +30869,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoadStatic() {
 		if (ifcStructuralLoadStaticEClass == null) {
-			ifcStructuralLoadStaticEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(643);
+			ifcStructuralLoadStaticEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(643);
 		}
 		return ifcStructuralLoadStaticEClass;
 	}
@@ -30233,7 +30882,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralLoadTemperature() {
 		if (ifcStructuralLoadTemperatureEClass == null) {
-			ifcStructuralLoadTemperatureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(644);
+			ifcStructuralLoadTemperatureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(644);
 		}
 		return ifcStructuralLoadTemperatureEClass;
 	}
@@ -30299,7 +30949,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralMember() {
 		if (ifcStructuralMemberEClass == null) {
-			ifcStructuralMemberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(645);
+			ifcStructuralMemberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(645);
 		}
 		return ifcStructuralMemberEClass;
 	}
@@ -30320,7 +30971,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralPlanarAction() {
 		if (ifcStructuralPlanarActionEClass == null) {
-			ifcStructuralPlanarActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(646);
+			ifcStructuralPlanarActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(646);
 		}
 		return ifcStructuralPlanarActionEClass;
 	}
@@ -30332,7 +30984,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralPointAction() {
 		if (ifcStructuralPointActionEClass == null) {
-			ifcStructuralPointActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(647);
+			ifcStructuralPointActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(647);
 		}
 		return ifcStructuralPointActionEClass;
 	}
@@ -30344,7 +30997,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralPointConnection() {
 		if (ifcStructuralPointConnectionEClass == null) {
-			ifcStructuralPointConnectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(648);
+			ifcStructuralPointConnectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(648);
 		}
 		return ifcStructuralPointConnectionEClass;
 	}
@@ -30365,7 +31019,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralPointReaction() {
 		if (ifcStructuralPointReactionEClass == null) {
-			ifcStructuralPointReactionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(649);
+			ifcStructuralPointReactionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(649);
 		}
 		return ifcStructuralPointReactionEClass;
 	}
@@ -30377,7 +31032,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralReaction() {
 		if (ifcStructuralReactionEClass == null) {
-			ifcStructuralReactionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(650);
+			ifcStructuralReactionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(650);
 		}
 		return ifcStructuralReactionEClass;
 	}
@@ -30389,7 +31045,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralResultGroup() {
 		if (ifcStructuralResultGroupEClass == null) {
-			ifcStructuralResultGroupEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(651);
+			ifcStructuralResultGroupEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(651);
 		}
 		return ifcStructuralResultGroupEClass;
 	}
@@ -30437,7 +31094,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralSurfaceAction() {
 		if (ifcStructuralSurfaceActionEClass == null) {
-			ifcStructuralSurfaceActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(652);
+			ifcStructuralSurfaceActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(652);
 		}
 		return ifcStructuralSurfaceActionEClass;
 	}
@@ -30467,7 +31125,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralSurfaceConnection() {
 		if (ifcStructuralSurfaceConnectionEClass == null) {
-			ifcStructuralSurfaceConnectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(653);
+			ifcStructuralSurfaceConnectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(653);
 		}
 		return ifcStructuralSurfaceConnectionEClass;
 	}
@@ -30479,7 +31138,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralSurfaceMember() {
 		if (ifcStructuralSurfaceMemberEClass == null) {
-			ifcStructuralSurfaceMemberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(654);
+			ifcStructuralSurfaceMemberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(654);
 		}
 		return ifcStructuralSurfaceMemberEClass;
 	}
@@ -30518,7 +31178,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralSurfaceMemberVarying() {
 		if (ifcStructuralSurfaceMemberVaryingEClass == null) {
-			ifcStructuralSurfaceMemberVaryingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(655);
+			ifcStructuralSurfaceMemberVaryingEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(655);
 		}
 		return ifcStructuralSurfaceMemberVaryingEClass;
 	}
@@ -30530,7 +31191,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralSurfaceReaction() {
 		if (ifcStructuralSurfaceReactionEClass == null) {
-			ifcStructuralSurfaceReactionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(656);
+			ifcStructuralSurfaceReactionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(656);
 		}
 		return ifcStructuralSurfaceReactionEClass;
 	}
@@ -30551,7 +31213,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStyleModel() {
 		if (ifcStyleModelEClass == null) {
-			ifcStyleModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(657);
+			ifcStyleModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(657);
 		}
 		return ifcStyleModelEClass;
 	}
@@ -30563,7 +31226,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStyledItem() {
 		if (ifcStyledItemEClass == null) {
-			ifcStyledItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(658);
+			ifcStyledItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(658);
 		}
 		return ifcStyledItemEClass;
 	}
@@ -30602,7 +31266,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStyledRepresentation() {
 		if (ifcStyledRepresentationEClass == null) {
-			ifcStyledRepresentationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(659);
+			ifcStyledRepresentationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(659);
 		}
 		return ifcStyledRepresentationEClass;
 	}
@@ -30614,7 +31279,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSubContractResource() {
 		if (ifcSubContractResourceEClass == null) {
-			ifcSubContractResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(660);
+			ifcSubContractResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(660);
 		}
 		return ifcSubContractResourceEClass;
 	}
@@ -30635,7 +31301,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSubContractResourceType() {
 		if (ifcSubContractResourceTypeEClass == null) {
-			ifcSubContractResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(661);
+			ifcSubContractResourceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(661);
 		}
 		return ifcSubContractResourceTypeEClass;
 	}
@@ -30656,7 +31323,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSubedge() {
 		if (ifcSubedgeEClass == null) {
-			ifcSubedgeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(662);
+			ifcSubedgeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(662);
 		}
 		return ifcSubedgeEClass;
 	}
@@ -30677,7 +31345,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurface() {
 		if (ifcSurfaceEClass == null) {
-			ifcSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(663);
+			ifcSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(663);
 		}
 		return ifcSurfaceEClass;
 	}
@@ -30698,7 +31367,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceCurveSweptAreaSolid() {
 		if (ifcSurfaceCurveSweptAreaSolidEClass == null) {
-			ifcSurfaceCurveSweptAreaSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(664);
+			ifcSurfaceCurveSweptAreaSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(664);
 		}
 		return ifcSurfaceCurveSweptAreaSolidEClass;
 	}
@@ -30764,7 +31434,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceFeature() {
 		if (ifcSurfaceFeatureEClass == null) {
-			ifcSurfaceFeatureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(665);
+			ifcSurfaceFeatureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(665);
 		}
 		return ifcSurfaceFeatureEClass;
 	}
@@ -30785,7 +31456,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceOfLinearExtrusion() {
 		if (ifcSurfaceOfLinearExtrusionEClass == null) {
-			ifcSurfaceOfLinearExtrusionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(666);
+			ifcSurfaceOfLinearExtrusionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(666);
 		}
 		return ifcSurfaceOfLinearExtrusionEClass;
 	}
@@ -30824,7 +31496,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceOfRevolution() {
 		if (ifcSurfaceOfRevolutionEClass == null) {
-			ifcSurfaceOfRevolutionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(667);
+			ifcSurfaceOfRevolutionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(667);
 		}
 		return ifcSurfaceOfRevolutionEClass;
 	}
@@ -30845,7 +31518,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceReinforcementArea() {
 		if (ifcSurfaceReinforcementAreaEClass == null) {
-			ifcSurfaceReinforcementAreaEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(668);
+			ifcSurfaceReinforcementAreaEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(668);
 		}
 		return ifcSurfaceReinforcementAreaEClass;
 	}
@@ -30911,7 +31585,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceStyle() {
 		if (ifcSurfaceStyleEClass == null) {
-			ifcSurfaceStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(669);
+			ifcSurfaceStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(669);
 		}
 		return ifcSurfaceStyleEClass;
 	}
@@ -30941,7 +31616,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceStyleLighting() {
 		if (ifcSurfaceStyleLightingEClass == null) {
-			ifcSurfaceStyleLightingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(670);
+			ifcSurfaceStyleLightingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(670);
 		}
 		return ifcSurfaceStyleLightingEClass;
 	}
@@ -30989,7 +31665,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceStyleRefraction() {
 		if (ifcSurfaceStyleRefractionEClass == null) {
-			ifcSurfaceStyleRefractionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(671);
+			ifcSurfaceStyleRefractionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(671);
 		}
 		return ifcSurfaceStyleRefractionEClass;
 	}
@@ -31037,7 +31714,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceStyleRendering() {
 		if (ifcSurfaceStyleRenderingEClass == null) {
-			ifcSurfaceStyleRenderingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(672);
+			ifcSurfaceStyleRenderingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(672);
 		}
 		return ifcSurfaceStyleRenderingEClass;
 	}
@@ -31130,7 +31808,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceStyleShading() {
 		if (ifcSurfaceStyleShadingEClass == null) {
-			ifcSurfaceStyleShadingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(673);
+			ifcSurfaceStyleShadingEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(673);
 		}
 		return ifcSurfaceStyleShadingEClass;
 	}
@@ -31151,7 +31830,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceStyleWithTextures() {
 		if (ifcSurfaceStyleWithTexturesEClass == null) {
-			ifcSurfaceStyleWithTexturesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(674);
+			ifcSurfaceStyleWithTexturesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(674);
 		}
 		return ifcSurfaceStyleWithTexturesEClass;
 	}
@@ -31172,7 +31852,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceTexture() {
 		if (ifcSurfaceTextureEClass == null) {
-			ifcSurfaceTextureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(675);
+			ifcSurfaceTextureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(675);
 		}
 		return ifcSurfaceTextureEClass;
 	}
@@ -31247,7 +31928,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSweptAreaSolid() {
 		if (ifcSweptAreaSolidEClass == null) {
-			ifcSweptAreaSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(676);
+			ifcSweptAreaSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(676);
 		}
 		return ifcSweptAreaSolidEClass;
 	}
@@ -31277,7 +31959,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSweptDiskSolid() {
 		if (ifcSweptDiskSolidEClass == null) {
-			ifcSweptDiskSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(677);
+			ifcSweptDiskSolidEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(677);
 		}
 		return ifcSweptDiskSolidEClass;
 	}
@@ -31370,7 +32053,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSweptDiskSolidPolygonal() {
 		if (ifcSweptDiskSolidPolygonalEClass == null) {
-			ifcSweptDiskSolidPolygonalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(678);
+			ifcSweptDiskSolidPolygonalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(678);
 		}
 		return ifcSweptDiskSolidPolygonalEClass;
 	}
@@ -31400,7 +32084,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSweptSurface() {
 		if (ifcSweptSurfaceEClass == null) {
-			ifcSweptSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(679);
+			ifcSweptSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(679);
 		}
 		return ifcSweptSurfaceEClass;
 	}
@@ -31430,7 +32115,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSwitchingDevice() {
 		if (ifcSwitchingDeviceEClass == null) {
-			ifcSwitchingDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(680);
+			ifcSwitchingDeviceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(680);
 		}
 		return ifcSwitchingDeviceEClass;
 	}
@@ -31451,7 +32137,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSwitchingDeviceType() {
 		if (ifcSwitchingDeviceTypeEClass == null) {
-			ifcSwitchingDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(681);
+			ifcSwitchingDeviceTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(681);
 		}
 		return ifcSwitchingDeviceTypeEClass;
 	}
@@ -31472,7 +32159,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSystem() {
 		if (ifcSystemEClass == null) {
-			ifcSystemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(682);
+			ifcSystemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(682);
 		}
 		return ifcSystemEClass;
 	}
@@ -31493,7 +32181,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSystemFurnitureElement() {
 		if (ifcSystemFurnitureElementEClass == null) {
-			ifcSystemFurnitureElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(683);
+			ifcSystemFurnitureElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(683);
 		}
 		return ifcSystemFurnitureElementEClass;
 	}
@@ -31514,7 +32203,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSystemFurnitureElementType() {
 		if (ifcSystemFurnitureElementTypeEClass == null) {
-			ifcSystemFurnitureElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(684);
+			ifcSystemFurnitureElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(684);
 		}
 		return ifcSystemFurnitureElementTypeEClass;
 	}
@@ -31535,7 +32225,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTShapeProfileDef() {
 		if (ifcTShapeProfileDefEClass == null) {
-			ifcTShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(685);
+			ifcTShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(685);
 		}
 		return ifcTShapeProfileDefEClass;
 	}
@@ -31709,7 +32400,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTable() {
 		if (ifcTableEClass == null) {
-			ifcTableEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(686);
+			ifcTableEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(686);
 		}
 		return ifcTableEClass;
 	}
@@ -31748,7 +32440,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTableColumn() {
 		if (ifcTableColumnEClass == null) {
-			ifcTableColumnEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(687);
+			ifcTableColumnEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(687);
 		}
 		return ifcTableColumnEClass;
 	}
@@ -31805,7 +32498,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTableRow() {
 		if (ifcTableRowEClass == null) {
-			ifcTableRowEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(688);
+			ifcTableRowEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(688);
 		}
 		return ifcTableRowEClass;
 	}
@@ -31844,7 +32538,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTank() {
 		if (ifcTankEClass == null) {
-			ifcTankEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(689);
+			ifcTankEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(689);
 		}
 		return ifcTankEClass;
 	}
@@ -31865,7 +32560,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTankType() {
 		if (ifcTankTypeEClass == null) {
-			ifcTankTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(690);
+			ifcTankTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(690);
 		}
 		return ifcTankTypeEClass;
 	}
@@ -31886,7 +32582,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTask() {
 		if (ifcTaskEClass == null) {
-			ifcTaskEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(691);
+			ifcTaskEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(691);
 		}
 		return ifcTaskEClass;
 	}
@@ -31952,7 +32649,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTaskTime() {
 		if (ifcTaskTimeEClass == null) {
-			ifcTaskTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(692);
+			ifcTaskTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(692);
 		}
 		return ifcTaskTimeEClass;
 	}
@@ -32126,7 +32824,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTaskTimeRecurring() {
 		if (ifcTaskTimeRecurringEClass == null) {
-			ifcTaskTimeRecurringEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(693);
+			ifcTaskTimeRecurringEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(693);
 		}
 		return ifcTaskTimeRecurringEClass;
 	}
@@ -32147,7 +32846,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTaskType() {
 		if (ifcTaskTypeEClass == null) {
-			ifcTaskTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(694);
+			ifcTaskTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(694);
 		}
 		return ifcTaskTypeEClass;
 	}
@@ -32177,7 +32877,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTelecomAddress() {
 		if (ifcTelecomAddressEClass == null) {
-			ifcTelecomAddressEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(695);
+			ifcTelecomAddressEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(695);
 		}
 		return ifcTelecomAddressEClass;
 	}
@@ -32243,7 +32944,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTendon() {
 		if (ifcTendonEClass == null) {
-			ifcTendonEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(696);
+			ifcTendonEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(696);
 		}
 		return ifcTendonEClass;
 	}
@@ -32390,7 +33092,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTendonAnchor() {
 		if (ifcTendonAnchorEClass == null) {
-			ifcTendonAnchorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(697);
+			ifcTendonAnchorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(697);
 		}
 		return ifcTendonAnchorEClass;
 	}
@@ -32411,7 +33114,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTendonAnchorType() {
 		if (ifcTendonAnchorTypeEClass == null) {
-			ifcTendonAnchorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(698);
+			ifcTendonAnchorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(698);
 		}
 		return ifcTendonAnchorTypeEClass;
 	}
@@ -32432,7 +33136,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTendonType() {
 		if (ifcTendonTypeEClass == null) {
-			ifcTendonTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(699);
+			ifcTendonTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(699);
 		}
 		return ifcTendonTypeEClass;
 	}
@@ -32507,7 +33212,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTessellatedFaceSet() {
 		if (ifcTessellatedFaceSetEClass == null) {
-			ifcTessellatedFaceSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(700);
+			ifcTessellatedFaceSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(700);
 		}
 		return ifcTessellatedFaceSetEClass;
 	}
@@ -32564,7 +33270,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTessellatedItem() {
 		if (ifcTessellatedItemEClass == null) {
-			ifcTessellatedItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(701);
+			ifcTessellatedItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(701);
 		}
 		return ifcTessellatedItemEClass;
 	}
@@ -32576,7 +33283,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextLiteral() {
 		if (ifcTextLiteralEClass == null) {
-			ifcTextLiteralEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(702);
+			ifcTextLiteralEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(702);
 		}
 		return ifcTextLiteralEClass;
 	}
@@ -32615,7 +33323,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextLiteralWithExtent() {
 		if (ifcTextLiteralWithExtentEClass == null) {
-			ifcTextLiteralWithExtentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(703);
+			ifcTextLiteralWithExtentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(703);
 		}
 		return ifcTextLiteralWithExtentEClass;
 	}
@@ -32645,7 +33354,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextStyle() {
 		if (ifcTextStyleEClass == null) {
-			ifcTextStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(704);
+			ifcTextStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(704);
 		}
 		return ifcTextStyleEClass;
 	}
@@ -32693,7 +33403,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextStyleFontModel() {
 		if (ifcTextStyleFontModelEClass == null) {
-			ifcTextStyleFontModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(705);
+			ifcTextStyleFontModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(705);
 		}
 		return ifcTextStyleFontModelEClass;
 	}
@@ -32750,7 +33461,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextStyleForDefinedFont() {
 		if (ifcTextStyleForDefinedFontEClass == null) {
-			ifcTextStyleForDefinedFontEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(706);
+			ifcTextStyleForDefinedFontEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(706);
 		}
 		return ifcTextStyleForDefinedFontEClass;
 	}
@@ -32780,7 +33492,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextStyleTextModel() {
 		if (ifcTextStyleTextModelEClass == null) {
-			ifcTextStyleTextModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(707);
+			ifcTextStyleTextModelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(707);
 		}
 		return ifcTextStyleTextModelEClass;
 	}
@@ -32855,7 +33568,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextureCoordinate() {
 		if (ifcTextureCoordinateEClass == null) {
-			ifcTextureCoordinateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(708);
+			ifcTextureCoordinateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(708);
 		}
 		return ifcTextureCoordinateEClass;
 	}
@@ -32876,7 +33590,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextureCoordinateGenerator() {
 		if (ifcTextureCoordinateGeneratorEClass == null) {
-			ifcTextureCoordinateGeneratorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(709);
+			ifcTextureCoordinateGeneratorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(709);
 		}
 		return ifcTextureCoordinateGeneratorEClass;
 	}
@@ -32915,7 +33630,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextureMap() {
 		if (ifcTextureMapEClass == null) {
-			ifcTextureMapEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(710);
+			ifcTextureMapEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(710);
 		}
 		return ifcTextureMapEClass;
 	}
@@ -32945,7 +33661,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextureVertex() {
 		if (ifcTextureVertexEClass == null) {
-			ifcTextureVertexEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(711);
+			ifcTextureVertexEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(711);
 		}
 		return ifcTextureVertexEClass;
 	}
@@ -32975,7 +33692,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextureVertexList() {
 		if (ifcTextureVertexListEClass == null) {
-			ifcTextureVertexListEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(712);
+			ifcTextureVertexListEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(712);
 		}
 		return ifcTextureVertexListEClass;
 	}
@@ -32996,7 +33714,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTimePeriod() {
 		if (ifcTimePeriodEClass == null) {
-			ifcTimePeriodEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(713);
+			ifcTimePeriodEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(713);
 		}
 		return ifcTimePeriodEClass;
 	}
@@ -33026,7 +33745,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTimeSeries() {
 		if (ifcTimeSeriesEClass == null) {
-			ifcTimeSeriesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(714);
+			ifcTimeSeriesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(714);
 		}
 		return ifcTimeSeriesEClass;
 	}
@@ -33119,7 +33839,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTimeSeriesValue() {
 		if (ifcTimeSeriesValueEClass == null) {
-			ifcTimeSeriesValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(715);
+			ifcTimeSeriesValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(715);
 		}
 		return ifcTimeSeriesValueEClass;
 	}
@@ -33140,7 +33861,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTopologicalRepresentationItem() {
 		if (ifcTopologicalRepresentationItemEClass == null) {
-			ifcTopologicalRepresentationItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(716);
+			ifcTopologicalRepresentationItemEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(716);
 		}
 		return ifcTopologicalRepresentationItemEClass;
 	}
@@ -33152,7 +33874,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTopologyRepresentation() {
 		if (ifcTopologyRepresentationEClass == null) {
-			ifcTopologyRepresentationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(717);
+			ifcTopologyRepresentationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(717);
 		}
 		return ifcTopologyRepresentationEClass;
 	}
@@ -33164,7 +33887,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTransformer() {
 		if (ifcTransformerEClass == null) {
-			ifcTransformerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(718);
+			ifcTransformerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(718);
 		}
 		return ifcTransformerEClass;
 	}
@@ -33185,7 +33909,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTransformerType() {
 		if (ifcTransformerTypeEClass == null) {
-			ifcTransformerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(719);
+			ifcTransformerTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(719);
 		}
 		return ifcTransformerTypeEClass;
 	}
@@ -33206,7 +33931,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTransportElement() {
 		if (ifcTransportElementEClass == null) {
-			ifcTransportElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(720);
+			ifcTransportElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(720);
 		}
 		return ifcTransportElementEClass;
 	}
@@ -33227,7 +33953,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTransportElementType() {
 		if (ifcTransportElementTypeEClass == null) {
-			ifcTransportElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(721);
+			ifcTransportElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(721);
 		}
 		return ifcTransportElementTypeEClass;
 	}
@@ -33248,7 +33975,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTrapeziumProfileDef() {
 		if (ifcTrapeziumProfileDefEClass == null) {
-			ifcTrapeziumProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(722);
+			ifcTrapeziumProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(722);
 		}
 		return ifcTrapeziumProfileDefEClass;
 	}
@@ -33332,7 +34060,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTriangulatedFaceSet() {
 		if (ifcTriangulatedFaceSetEClass == null) {
-			ifcTriangulatedFaceSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(723);
+			ifcTriangulatedFaceSetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(723);
 		}
 		return ifcTriangulatedFaceSetEClass;
 	}
@@ -33362,7 +34091,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTrimmedCurve() {
 		if (ifcTrimmedCurveEClass == null) {
-			ifcTrimmedCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(724);
+			ifcTrimmedCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(724);
 		}
 		return ifcTrimmedCurveEClass;
 	}
@@ -33419,7 +34149,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTubeBundle() {
 		if (ifcTubeBundleEClass == null) {
-			ifcTubeBundleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(725);
+			ifcTubeBundleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(725);
 		}
 		return ifcTubeBundleEClass;
 	}
@@ -33440,7 +34171,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTubeBundleType() {
 		if (ifcTubeBundleTypeEClass == null) {
-			ifcTubeBundleTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(726);
+			ifcTubeBundleTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(726);
 		}
 		return ifcTubeBundleTypeEClass;
 	}
@@ -33461,7 +34193,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTypeObject() {
 		if (ifcTypeObjectEClass == null) {
-			ifcTypeObjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(727);
+			ifcTypeObjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(727);
 		}
 		return ifcTypeObjectEClass;
 	}
@@ -33500,7 +34233,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTypeProcess() {
 		if (ifcTypeProcessEClass == null) {
-			ifcTypeProcessEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(728);
+			ifcTypeProcessEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(728);
 		}
 		return ifcTypeProcessEClass;
 	}
@@ -33548,7 +34282,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTypeProduct() {
 		if (ifcTypeProductEClass == null) {
-			ifcTypeProductEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(729);
+			ifcTypeProductEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(729);
 		}
 		return ifcTypeProductEClass;
 	}
@@ -33587,7 +34322,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTypeResource() {
 		if (ifcTypeResourceEClass == null) {
-			ifcTypeResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(730);
+			ifcTypeResourceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(730);
 		}
 		return ifcTypeResourceEClass;
 	}
@@ -33635,7 +34371,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcUShapeProfileDef() {
 		if (ifcUShapeProfileDefEClass == null) {
-			ifcUShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(731);
+			ifcUShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(731);
 		}
 		return ifcUShapeProfileDefEClass;
 	}
@@ -33773,7 +34510,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcUnitAssignment() {
 		if (ifcUnitAssignmentEClass == null) {
-			ifcUnitAssignmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(732);
+			ifcUnitAssignmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(732);
 		}
 		return ifcUnitAssignmentEClass;
 	}
@@ -33794,7 +34532,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcUnitaryControlElement() {
 		if (ifcUnitaryControlElementEClass == null) {
-			ifcUnitaryControlElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(733);
+			ifcUnitaryControlElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(733);
 		}
 		return ifcUnitaryControlElementEClass;
 	}
@@ -33815,7 +34554,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcUnitaryControlElementType() {
 		if (ifcUnitaryControlElementTypeEClass == null) {
-			ifcUnitaryControlElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(734);
+			ifcUnitaryControlElementTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(734);
 		}
 		return ifcUnitaryControlElementTypeEClass;
 	}
@@ -33836,7 +34576,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcUnitaryEquipment() {
 		if (ifcUnitaryEquipmentEClass == null) {
-			ifcUnitaryEquipmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(735);
+			ifcUnitaryEquipmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(735);
 		}
 		return ifcUnitaryEquipmentEClass;
 	}
@@ -33857,7 +34598,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcUnitaryEquipmentType() {
 		if (ifcUnitaryEquipmentTypeEClass == null) {
-			ifcUnitaryEquipmentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(736);
+			ifcUnitaryEquipmentTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(736);
 		}
 		return ifcUnitaryEquipmentTypeEClass;
 	}
@@ -33878,7 +34620,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcValve() {
 		if (ifcValveEClass == null) {
-			ifcValveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(737);
+			ifcValveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(737);
 		}
 		return ifcValveEClass;
 	}
@@ -33899,7 +34642,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcValveType() {
 		if (ifcValveTypeEClass == null) {
-			ifcValveTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(738);
+			ifcValveTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(738);
 		}
 		return ifcValveTypeEClass;
 	}
@@ -33920,7 +34664,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVector() {
 		if (ifcVectorEClass == null) {
-			ifcVectorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(739);
+			ifcVectorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(739);
 		}
 		return ifcVectorEClass;
 	}
@@ -33968,7 +34713,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVertex() {
 		if (ifcVertexEClass == null) {
-			ifcVertexEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(740);
+			ifcVertexEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(740);
 		}
 		return ifcVertexEClass;
 	}
@@ -33980,7 +34726,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVertexLoop() {
 		if (ifcVertexLoopEClass == null) {
-			ifcVertexLoopEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(741);
+			ifcVertexLoopEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(741);
 		}
 		return ifcVertexLoopEClass;
 	}
@@ -34001,7 +34748,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVertexPoint() {
 		if (ifcVertexPointEClass == null) {
-			ifcVertexPointEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(742);
+			ifcVertexPointEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(742);
 		}
 		return ifcVertexPointEClass;
 	}
@@ -34022,7 +34770,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVibrationIsolator() {
 		if (ifcVibrationIsolatorEClass == null) {
-			ifcVibrationIsolatorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(743);
+			ifcVibrationIsolatorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(743);
 		}
 		return ifcVibrationIsolatorEClass;
 	}
@@ -34043,7 +34792,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVibrationIsolatorType() {
 		if (ifcVibrationIsolatorTypeEClass == null) {
-			ifcVibrationIsolatorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(744);
+			ifcVibrationIsolatorTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(744);
 		}
 		return ifcVibrationIsolatorTypeEClass;
 	}
@@ -34064,7 +34814,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVirtualElement() {
 		if (ifcVirtualElementEClass == null) {
-			ifcVirtualElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(745);
+			ifcVirtualElementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(745);
 		}
 		return ifcVirtualElementEClass;
 	}
@@ -34076,7 +34827,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVirtualGridIntersection() {
 		if (ifcVirtualGridIntersectionEClass == null) {
-			ifcVirtualGridIntersectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(746);
+			ifcVirtualGridIntersectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(746);
 		}
 		return ifcVirtualGridIntersectionEClass;
 	}
@@ -34115,7 +34867,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVoidingFeature() {
 		if (ifcVoidingFeatureEClass == null) {
-			ifcVoidingFeatureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(747);
+			ifcVoidingFeatureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(747);
 		}
 		return ifcVoidingFeatureEClass;
 	}
@@ -34136,7 +34889,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWall() {
 		if (ifcWallEClass == null) {
-			ifcWallEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(748);
+			ifcWallEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(748);
 		}
 		return ifcWallEClass;
 	}
@@ -34157,7 +34911,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWallElementedCase() {
 		if (ifcWallElementedCaseEClass == null) {
-			ifcWallElementedCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(749);
+			ifcWallElementedCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(749);
 		}
 		return ifcWallElementedCaseEClass;
 	}
@@ -34169,7 +34924,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWallStandardCase() {
 		if (ifcWallStandardCaseEClass == null) {
-			ifcWallStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(750);
+			ifcWallStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(750);
 		}
 		return ifcWallStandardCaseEClass;
 	}
@@ -34181,7 +34937,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWallType() {
 		if (ifcWallTypeEClass == null) {
-			ifcWallTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(751);
+			ifcWallTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(751);
 		}
 		return ifcWallTypeEClass;
 	}
@@ -34202,7 +34959,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWasteTerminal() {
 		if (ifcWasteTerminalEClass == null) {
-			ifcWasteTerminalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(752);
+			ifcWasteTerminalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(752);
 		}
 		return ifcWasteTerminalEClass;
 	}
@@ -34223,7 +34981,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWasteTerminalType() {
 		if (ifcWasteTerminalTypeEClass == null) {
-			ifcWasteTerminalTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(753);
+			ifcWasteTerminalTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(753);
 		}
 		return ifcWasteTerminalTypeEClass;
 	}
@@ -34244,7 +35003,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWindow() {
 		if (ifcWindowEClass == null) {
-			ifcWindowEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(754);
+			ifcWindowEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(754);
 		}
 		return ifcWindowEClass;
 	}
@@ -34319,7 +35079,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWindowLiningProperties() {
 		if (ifcWindowLiningPropertiesEClass == null) {
-			ifcWindowLiningPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(755);
+			ifcWindowLiningPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(755);
 		}
 		return ifcWindowLiningPropertiesEClass;
 	}
@@ -34538,7 +35299,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWindowPanelProperties() {
 		if (ifcWindowPanelPropertiesEClass == null) {
-			ifcWindowPanelPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(756);
+			ifcWindowPanelPropertiesEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(756);
 		}
 		return ifcWindowPanelPropertiesEClass;
 	}
@@ -34613,7 +35375,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWindowStandardCase() {
 		if (ifcWindowStandardCaseEClass == null) {
-			ifcWindowStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(757);
+			ifcWindowStandardCaseEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(757);
 		}
 		return ifcWindowStandardCaseEClass;
 	}
@@ -34625,7 +35388,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWindowStyle() {
 		if (ifcWindowStyleEClass == null) {
-			ifcWindowStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(758);
+			ifcWindowStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(758);
 		}
 		return ifcWindowStyleEClass;
 	}
@@ -34673,7 +35437,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWindowType() {
 		if (ifcWindowTypeEClass == null) {
-			ifcWindowTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(759);
+			ifcWindowTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(759);
 		}
 		return ifcWindowTypeEClass;
 	}
@@ -34721,7 +35486,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWorkCalendar() {
 		if (ifcWorkCalendarEClass == null) {
-			ifcWorkCalendarEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(760);
+			ifcWorkCalendarEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(760);
 		}
 		return ifcWorkCalendarEClass;
 	}
@@ -34760,7 +35526,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWorkControl() {
 		if (ifcWorkControlEClass == null) {
-			ifcWorkControlEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(761);
+			ifcWorkControlEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(761);
 		}
 		return ifcWorkControlEClass;
 	}
@@ -34835,7 +35602,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWorkPlan() {
 		if (ifcWorkPlanEClass == null) {
-			ifcWorkPlanEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(762);
+			ifcWorkPlanEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(762);
 		}
 		return ifcWorkPlanEClass;
 	}
@@ -34856,7 +35624,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWorkSchedule() {
 		if (ifcWorkScheduleEClass == null) {
-			ifcWorkScheduleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(763);
+			ifcWorkScheduleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(763);
 		}
 		return ifcWorkScheduleEClass;
 	}
@@ -34877,7 +35646,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWorkTime() {
 		if (ifcWorkTimeEClass == null) {
-			ifcWorkTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(764);
+			ifcWorkTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(764);
 		}
 		return ifcWorkTimeEClass;
 	}
@@ -34916,7 +35686,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcZShapeProfileDef() {
 		if (ifcZShapeProfileDefEClass == null) {
-			ifcZShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(765);
+			ifcZShapeProfileDefEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(765);
 		}
 		return ifcZShapeProfileDefEClass;
 	}
@@ -35036,7 +35807,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcZone() {
 		if (ifcZoneEClass == null) {
-			ifcZoneEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(766);
+			ifcZoneEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(766);
 		}
 		return ifcZoneEClass;
 	}
@@ -35057,7 +35829,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAbsorbedDoseMeasure() {
 		if (ifcAbsorbedDoseMeasureEClass == null) {
-			ifcAbsorbedDoseMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(767);
+			ifcAbsorbedDoseMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(767);
 		}
 		return ifcAbsorbedDoseMeasureEClass;
 	}
@@ -35087,7 +35860,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAccelerationMeasure() {
 		if (ifcAccelerationMeasureEClass == null) {
-			ifcAccelerationMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(768);
+			ifcAccelerationMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(768);
 		}
 		return ifcAccelerationMeasureEClass;
 	}
@@ -35117,7 +35891,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAmountOfSubstanceMeasure() {
 		if (ifcAmountOfSubstanceMeasureEClass == null) {
-			ifcAmountOfSubstanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(769);
+			ifcAmountOfSubstanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(769);
 		}
 		return ifcAmountOfSubstanceMeasureEClass;
 	}
@@ -35147,7 +35922,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAngularVelocityMeasure() {
 		if (ifcAngularVelocityMeasureEClass == null) {
-			ifcAngularVelocityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(770);
+			ifcAngularVelocityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(770);
 		}
 		return ifcAngularVelocityMeasureEClass;
 	}
@@ -35177,7 +35953,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAreaDensityMeasure() {
 		if (ifcAreaDensityMeasureEClass == null) {
-			ifcAreaDensityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(771);
+			ifcAreaDensityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(771);
 		}
 		return ifcAreaDensityMeasureEClass;
 	}
@@ -35207,7 +35984,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAreaMeasure() {
 		if (ifcAreaMeasureEClass == null) {
-			ifcAreaMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(772);
+			ifcAreaMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(772);
 		}
 		return ifcAreaMeasureEClass;
 	}
@@ -35237,7 +36015,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoolean() {
 		if (ifcBooleanEClass == null) {
-			ifcBooleanEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(773);
+			ifcBooleanEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(773);
 		}
 		return ifcBooleanEClass;
 	}
@@ -35258,7 +36037,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCardinalPointReference() {
 		if (ifcCardinalPointReferenceEClass == null) {
-			ifcCardinalPointReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(774);
+			ifcCardinalPointReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(774);
 		}
 		return ifcCardinalPointReferenceEClass;
 	}
@@ -35279,7 +36059,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcContextDependentMeasure() {
 		if (ifcContextDependentMeasureEClass == null) {
-			ifcContextDependentMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(775);
+			ifcContextDependentMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(775);
 		}
 		return ifcContextDependentMeasureEClass;
 	}
@@ -35309,7 +36090,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCountMeasure() {
 		if (ifcCountMeasureEClass == null) {
-			ifcCountMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(776);
+			ifcCountMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(776);
 		}
 		return ifcCountMeasureEClass;
 	}
@@ -35339,7 +36121,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurvatureMeasure() {
 		if (ifcCurvatureMeasureEClass == null) {
-			ifcCurvatureMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(777);
+			ifcCurvatureMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(777);
 		}
 		return ifcCurvatureMeasureEClass;
 	}
@@ -35369,7 +36152,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDate() {
 		if (ifcDateEClass == null) {
-			ifcDateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(778);
+			ifcDateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(778);
 		}
 		return ifcDateEClass;
 	}
@@ -35390,7 +36174,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDateTime() {
 		if (ifcDateTimeEClass == null) {
-			ifcDateTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(779);
+			ifcDateTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(779);
 		}
 		return ifcDateTimeEClass;
 	}
@@ -35411,7 +36196,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDayInMonthNumber() {
 		if (ifcDayInMonthNumberEClass == null) {
-			ifcDayInMonthNumberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(780);
+			ifcDayInMonthNumberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(780);
 		}
 		return ifcDayInMonthNumberEClass;
 	}
@@ -35432,7 +36218,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDayInWeekNumber() {
 		if (ifcDayInWeekNumberEClass == null) {
-			ifcDayInWeekNumberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(781);
+			ifcDayInWeekNumberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(781);
 		}
 		return ifcDayInWeekNumberEClass;
 	}
@@ -35453,7 +36240,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDescriptiveMeasure() {
 		if (ifcDescriptiveMeasureEClass == null) {
-			ifcDescriptiveMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(782);
+			ifcDescriptiveMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(782);
 		}
 		return ifcDescriptiveMeasureEClass;
 	}
@@ -35474,7 +36262,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDimensionCount() {
 		if (ifcDimensionCountEClass == null) {
-			ifcDimensionCountEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(783);
+			ifcDimensionCountEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(783);
 		}
 		return ifcDimensionCountEClass;
 	}
@@ -35495,7 +36284,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDoseEquivalentMeasure() {
 		if (ifcDoseEquivalentMeasureEClass == null) {
-			ifcDoseEquivalentMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(784);
+			ifcDoseEquivalentMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(784);
 		}
 		return ifcDoseEquivalentMeasureEClass;
 	}
@@ -35525,7 +36315,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDuration() {
 		if (ifcDurationEClass == null) {
-			ifcDurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(785);
+			ifcDurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(785);
 		}
 		return ifcDurationEClass;
 	}
@@ -35546,7 +36337,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDynamicViscosityMeasure() {
 		if (ifcDynamicViscosityMeasureEClass == null) {
-			ifcDynamicViscosityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(786);
+			ifcDynamicViscosityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(786);
 		}
 		return ifcDynamicViscosityMeasureEClass;
 	}
@@ -35576,7 +36368,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricCapacitanceMeasure() {
 		if (ifcElectricCapacitanceMeasureEClass == null) {
-			ifcElectricCapacitanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(787);
+			ifcElectricCapacitanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(787);
 		}
 		return ifcElectricCapacitanceMeasureEClass;
 	}
@@ -35606,7 +36399,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricChargeMeasure() {
 		if (ifcElectricChargeMeasureEClass == null) {
-			ifcElectricChargeMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(788);
+			ifcElectricChargeMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(788);
 		}
 		return ifcElectricChargeMeasureEClass;
 	}
@@ -35636,7 +36430,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricConductanceMeasure() {
 		if (ifcElectricConductanceMeasureEClass == null) {
-			ifcElectricConductanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(789);
+			ifcElectricConductanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(789);
 		}
 		return ifcElectricConductanceMeasureEClass;
 	}
@@ -35666,7 +36461,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricCurrentMeasure() {
 		if (ifcElectricCurrentMeasureEClass == null) {
-			ifcElectricCurrentMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(790);
+			ifcElectricCurrentMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(790);
 		}
 		return ifcElectricCurrentMeasureEClass;
 	}
@@ -35696,7 +36492,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricResistanceMeasure() {
 		if (ifcElectricResistanceMeasureEClass == null) {
-			ifcElectricResistanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(791);
+			ifcElectricResistanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(791);
 		}
 		return ifcElectricResistanceMeasureEClass;
 	}
@@ -35726,7 +36523,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcElectricVoltageMeasure() {
 		if (ifcElectricVoltageMeasureEClass == null) {
-			ifcElectricVoltageMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(792);
+			ifcElectricVoltageMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(792);
 		}
 		return ifcElectricVoltageMeasureEClass;
 	}
@@ -35756,7 +36554,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcEnergyMeasure() {
 		if (ifcEnergyMeasureEClass == null) {
-			ifcEnergyMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(793);
+			ifcEnergyMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(793);
 		}
 		return ifcEnergyMeasureEClass;
 	}
@@ -35786,7 +36585,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFontStyle() {
 		if (ifcFontStyleEClass == null) {
-			ifcFontStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(794);
+			ifcFontStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(794);
 		}
 		return ifcFontStyleEClass;
 	}
@@ -35807,7 +36607,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFontVariant() {
 		if (ifcFontVariantEClass == null) {
-			ifcFontVariantEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(795);
+			ifcFontVariantEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(795);
 		}
 		return ifcFontVariantEClass;
 	}
@@ -35828,7 +36629,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFontWeight() {
 		if (ifcFontWeightEClass == null) {
-			ifcFontWeightEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(796);
+			ifcFontWeightEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(796);
 		}
 		return ifcFontWeightEClass;
 	}
@@ -35849,7 +36651,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcForceMeasure() {
 		if (ifcForceMeasureEClass == null) {
-			ifcForceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(797);
+			ifcForceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(797);
 		}
 		return ifcForceMeasureEClass;
 	}
@@ -35879,7 +36682,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFrequencyMeasure() {
 		if (ifcFrequencyMeasureEClass == null) {
-			ifcFrequencyMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(798);
+			ifcFrequencyMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(798);
 		}
 		return ifcFrequencyMeasureEClass;
 	}
@@ -35909,7 +36713,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGloballyUniqueId() {
 		if (ifcGloballyUniqueIdEClass == null) {
-			ifcGloballyUniqueIdEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(799);
+			ifcGloballyUniqueIdEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(799);
 		}
 		return ifcGloballyUniqueIdEClass;
 	}
@@ -35930,7 +36735,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcHeatFluxDensityMeasure() {
 		if (ifcHeatFluxDensityMeasureEClass == null) {
-			ifcHeatFluxDensityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(800);
+			ifcHeatFluxDensityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(800);
 		}
 		return ifcHeatFluxDensityMeasureEClass;
 	}
@@ -35960,7 +36766,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcHeatingValueMeasure() {
 		if (ifcHeatingValueMeasureEClass == null) {
-			ifcHeatingValueMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(801);
+			ifcHeatingValueMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(801);
 		}
 		return ifcHeatingValueMeasureEClass;
 	}
@@ -35990,7 +36797,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcIdentifier() {
 		if (ifcIdentifierEClass == null) {
-			ifcIdentifierEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(802);
+			ifcIdentifierEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(802);
 		}
 		return ifcIdentifierEClass;
 	}
@@ -36011,7 +36819,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcIlluminanceMeasure() {
 		if (ifcIlluminanceMeasureEClass == null) {
-			ifcIlluminanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(803);
+			ifcIlluminanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(803);
 		}
 		return ifcIlluminanceMeasureEClass;
 	}
@@ -36041,7 +36850,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcInductanceMeasure() {
 		if (ifcInductanceMeasureEClass == null) {
-			ifcInductanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(804);
+			ifcInductanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(804);
 		}
 		return ifcInductanceMeasureEClass;
 	}
@@ -36071,7 +36881,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcInteger() {
 		if (ifcIntegerEClass == null) {
-			ifcIntegerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(805);
+			ifcIntegerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(805);
 		}
 		return ifcIntegerEClass;
 	}
@@ -36092,7 +36903,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcIntegerCountRateMeasure() {
 		if (ifcIntegerCountRateMeasureEClass == null) {
-			ifcIntegerCountRateMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(806);
+			ifcIntegerCountRateMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(806);
 		}
 		return ifcIntegerCountRateMeasureEClass;
 	}
@@ -36113,7 +36925,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcIonConcentrationMeasure() {
 		if (ifcIonConcentrationMeasureEClass == null) {
-			ifcIonConcentrationMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(807);
+			ifcIonConcentrationMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(807);
 		}
 		return ifcIonConcentrationMeasureEClass;
 	}
@@ -36143,7 +36956,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcIsothermalMoistureCapacityMeasure() {
 		if (ifcIsothermalMoistureCapacityMeasureEClass == null) {
-			ifcIsothermalMoistureCapacityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(808);
+			ifcIsothermalMoistureCapacityMeasureEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(808);
 		}
 		return ifcIsothermalMoistureCapacityMeasureEClass;
 	}
@@ -36173,7 +36987,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcKinematicViscosityMeasure() {
 		if (ifcKinematicViscosityMeasureEClass == null) {
-			ifcKinematicViscosityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(809);
+			ifcKinematicViscosityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(809);
 		}
 		return ifcKinematicViscosityMeasureEClass;
 	}
@@ -36203,7 +37018,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLabel() {
 		if (ifcLabelEClass == null) {
-			ifcLabelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(810);
+			ifcLabelEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(810);
 		}
 		return ifcLabelEClass;
 	}
@@ -36224,7 +37040,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLengthMeasure() {
 		if (ifcLengthMeasureEClass == null) {
-			ifcLengthMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(811);
+			ifcLengthMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(811);
 		}
 		return ifcLengthMeasureEClass;
 	}
@@ -36254,7 +37071,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLinearForceMeasure() {
 		if (ifcLinearForceMeasureEClass == null) {
-			ifcLinearForceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(812);
+			ifcLinearForceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(812);
 		}
 		return ifcLinearForceMeasureEClass;
 	}
@@ -36284,7 +37102,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLinearMomentMeasure() {
 		if (ifcLinearMomentMeasureEClass == null) {
-			ifcLinearMomentMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(813);
+			ifcLinearMomentMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(813);
 		}
 		return ifcLinearMomentMeasureEClass;
 	}
@@ -36314,7 +37133,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLinearStiffnessMeasure() {
 		if (ifcLinearStiffnessMeasureEClass == null) {
-			ifcLinearStiffnessMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(814);
+			ifcLinearStiffnessMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(814);
 		}
 		return ifcLinearStiffnessMeasureEClass;
 	}
@@ -36344,7 +37164,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLinearVelocityMeasure() {
 		if (ifcLinearVelocityMeasureEClass == null) {
-			ifcLinearVelocityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(815);
+			ifcLinearVelocityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(815);
 		}
 		return ifcLinearVelocityMeasureEClass;
 	}
@@ -36374,7 +37195,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLogical() {
 		if (ifcLogicalEClass == null) {
-			ifcLogicalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(816);
+			ifcLogicalEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(816);
 		}
 		return ifcLogicalEClass;
 	}
@@ -36395,7 +37217,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLuminousFluxMeasure() {
 		if (ifcLuminousFluxMeasureEClass == null) {
-			ifcLuminousFluxMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(817);
+			ifcLuminousFluxMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(817);
 		}
 		return ifcLuminousFluxMeasureEClass;
 	}
@@ -36425,7 +37248,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLuminousIntensityDistributionMeasure() {
 		if (ifcLuminousIntensityDistributionMeasureEClass == null) {
-			ifcLuminousIntensityDistributionMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(818);
+			ifcLuminousIntensityDistributionMeasureEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(818);
 		}
 		return ifcLuminousIntensityDistributionMeasureEClass;
 	}
@@ -36455,7 +37279,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLuminousIntensityMeasure() {
 		if (ifcLuminousIntensityMeasureEClass == null) {
-			ifcLuminousIntensityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(819);
+			ifcLuminousIntensityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(819);
 		}
 		return ifcLuminousIntensityMeasureEClass;
 	}
@@ -36485,7 +37310,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMagneticFluxDensityMeasure() {
 		if (ifcMagneticFluxDensityMeasureEClass == null) {
-			ifcMagneticFluxDensityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(820);
+			ifcMagneticFluxDensityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(820);
 		}
 		return ifcMagneticFluxDensityMeasureEClass;
 	}
@@ -36515,7 +37341,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMagneticFluxMeasure() {
 		if (ifcMagneticFluxMeasureEClass == null) {
-			ifcMagneticFluxMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(821);
+			ifcMagneticFluxMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(821);
 		}
 		return ifcMagneticFluxMeasureEClass;
 	}
@@ -36545,7 +37372,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMassDensityMeasure() {
 		if (ifcMassDensityMeasureEClass == null) {
-			ifcMassDensityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(822);
+			ifcMassDensityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(822);
 		}
 		return ifcMassDensityMeasureEClass;
 	}
@@ -36575,7 +37403,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMassFlowRateMeasure() {
 		if (ifcMassFlowRateMeasureEClass == null) {
-			ifcMassFlowRateMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(823);
+			ifcMassFlowRateMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(823);
 		}
 		return ifcMassFlowRateMeasureEClass;
 	}
@@ -36605,7 +37434,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMassMeasure() {
 		if (ifcMassMeasureEClass == null) {
-			ifcMassMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(824);
+			ifcMassMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(824);
 		}
 		return ifcMassMeasureEClass;
 	}
@@ -36635,7 +37465,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMassPerLengthMeasure() {
 		if (ifcMassPerLengthMeasureEClass == null) {
-			ifcMassPerLengthMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(825);
+			ifcMassPerLengthMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(825);
 		}
 		return ifcMassPerLengthMeasureEClass;
 	}
@@ -36665,7 +37496,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcModulusOfElasticityMeasure() {
 		if (ifcModulusOfElasticityMeasureEClass == null) {
-			ifcModulusOfElasticityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(826);
+			ifcModulusOfElasticityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(826);
 		}
 		return ifcModulusOfElasticityMeasureEClass;
 	}
@@ -36695,7 +37527,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcModulusOfLinearSubgradeReactionMeasure() {
 		if (ifcModulusOfLinearSubgradeReactionMeasureEClass == null) {
-			ifcModulusOfLinearSubgradeReactionMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(827);
+			ifcModulusOfLinearSubgradeReactionMeasureEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(827);
 		}
 		return ifcModulusOfLinearSubgradeReactionMeasureEClass;
 	}
@@ -36725,7 +37558,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcModulusOfRotationalSubgradeReactionMeasure() {
 		if (ifcModulusOfRotationalSubgradeReactionMeasureEClass == null) {
-			ifcModulusOfRotationalSubgradeReactionMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(828);
+			ifcModulusOfRotationalSubgradeReactionMeasureEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(828);
 		}
 		return ifcModulusOfRotationalSubgradeReactionMeasureEClass;
 	}
@@ -36755,7 +37589,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcModulusOfSubgradeReactionMeasure() {
 		if (ifcModulusOfSubgradeReactionMeasureEClass == null) {
-			ifcModulusOfSubgradeReactionMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(829);
+			ifcModulusOfSubgradeReactionMeasureEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(829);
 		}
 		return ifcModulusOfSubgradeReactionMeasureEClass;
 	}
@@ -36785,7 +37620,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMoistureDiffusivityMeasure() {
 		if (ifcMoistureDiffusivityMeasureEClass == null) {
-			ifcMoistureDiffusivityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(830);
+			ifcMoistureDiffusivityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(830);
 		}
 		return ifcMoistureDiffusivityMeasureEClass;
 	}
@@ -36815,7 +37651,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMolecularWeightMeasure() {
 		if (ifcMolecularWeightMeasureEClass == null) {
-			ifcMolecularWeightMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(831);
+			ifcMolecularWeightMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(831);
 		}
 		return ifcMolecularWeightMeasureEClass;
 	}
@@ -36845,7 +37682,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMomentOfInertiaMeasure() {
 		if (ifcMomentOfInertiaMeasureEClass == null) {
-			ifcMomentOfInertiaMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(832);
+			ifcMomentOfInertiaMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(832);
 		}
 		return ifcMomentOfInertiaMeasureEClass;
 	}
@@ -36875,7 +37713,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMonetaryMeasure() {
 		if (ifcMonetaryMeasureEClass == null) {
-			ifcMonetaryMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(833);
+			ifcMonetaryMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(833);
 		}
 		return ifcMonetaryMeasureEClass;
 	}
@@ -36905,7 +37744,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMonthInYearNumber() {
 		if (ifcMonthInYearNumberEClass == null) {
-			ifcMonthInYearNumberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(834);
+			ifcMonthInYearNumberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(834);
 		}
 		return ifcMonthInYearNumberEClass;
 	}
@@ -36926,7 +37766,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcNumericMeasure() {
 		if (ifcNumericMeasureEClass == null) {
-			ifcNumericMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(835);
+			ifcNumericMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(835);
 		}
 		return ifcNumericMeasureEClass;
 	}
@@ -36956,7 +37797,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPHMeasure() {
 		if (ifcPHMeasureEClass == null) {
-			ifcPHMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(836);
+			ifcPHMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(836);
 		}
 		return ifcPHMeasureEClass;
 	}
@@ -36986,7 +37828,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcParameterValue() {
 		if (ifcParameterValueEClass == null) {
-			ifcParameterValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(837);
+			ifcParameterValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(837);
 		}
 		return ifcParameterValueEClass;
 	}
@@ -37016,7 +37859,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPlanarForceMeasure() {
 		if (ifcPlanarForceMeasureEClass == null) {
-			ifcPlanarForceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(838);
+			ifcPlanarForceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(838);
 		}
 		return ifcPlanarForceMeasureEClass;
 	}
@@ -37046,7 +37890,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPlaneAngleMeasure() {
 		if (ifcPlaneAngleMeasureEClass == null) {
-			ifcPlaneAngleMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(839);
+			ifcPlaneAngleMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(839);
 		}
 		return ifcPlaneAngleMeasureEClass;
 	}
@@ -37076,7 +37921,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPowerMeasure() {
 		if (ifcPowerMeasureEClass == null) {
-			ifcPowerMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(840);
+			ifcPowerMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(840);
 		}
 		return ifcPowerMeasureEClass;
 	}
@@ -37106,7 +37952,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPresentableText() {
 		if (ifcPresentableTextEClass == null) {
-			ifcPresentableTextEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(841);
+			ifcPresentableTextEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(841);
 		}
 		return ifcPresentableTextEClass;
 	}
@@ -37127,7 +37974,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPressureMeasure() {
 		if (ifcPressureMeasureEClass == null) {
-			ifcPressureMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(842);
+			ifcPressureMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(842);
 		}
 		return ifcPressureMeasureEClass;
 	}
@@ -37157,7 +38005,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRadioActivityMeasure() {
 		if (ifcRadioActivityMeasureEClass == null) {
-			ifcRadioActivityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(843);
+			ifcRadioActivityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(843);
 		}
 		return ifcRadioActivityMeasureEClass;
 	}
@@ -37187,7 +38036,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRatioMeasure() {
 		if (ifcRatioMeasureEClass == null) {
-			ifcRatioMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(844);
+			ifcRatioMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(844);
 		}
 		return ifcRatioMeasureEClass;
 	}
@@ -37217,7 +38067,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcReal() {
 		if (ifcRealEClass == null) {
-			ifcRealEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(845);
+			ifcRealEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(845);
 		}
 		return ifcRealEClass;
 	}
@@ -37247,7 +38098,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRotationalFrequencyMeasure() {
 		if (ifcRotationalFrequencyMeasureEClass == null) {
-			ifcRotationalFrequencyMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(846);
+			ifcRotationalFrequencyMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(846);
 		}
 		return ifcRotationalFrequencyMeasureEClass;
 	}
@@ -37277,7 +38129,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRotationalMassMeasure() {
 		if (ifcRotationalMassMeasureEClass == null) {
-			ifcRotationalMassMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(847);
+			ifcRotationalMassMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(847);
 		}
 		return ifcRotationalMassMeasureEClass;
 	}
@@ -37307,7 +38160,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRotationalStiffnessMeasure() {
 		if (ifcRotationalStiffnessMeasureEClass == null) {
-			ifcRotationalStiffnessMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(848);
+			ifcRotationalStiffnessMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(848);
 		}
 		return ifcRotationalStiffnessMeasureEClass;
 	}
@@ -37337,7 +38191,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSectionModulusMeasure() {
 		if (ifcSectionModulusMeasureEClass == null) {
-			ifcSectionModulusMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(849);
+			ifcSectionModulusMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(849);
 		}
 		return ifcSectionModulusMeasureEClass;
 	}
@@ -37367,7 +38222,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSectionalAreaIntegralMeasure() {
 		if (ifcSectionalAreaIntegralMeasureEClass == null) {
-			ifcSectionalAreaIntegralMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(850);
+			ifcSectionalAreaIntegralMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(850);
 		}
 		return ifcSectionalAreaIntegralMeasureEClass;
 	}
@@ -37397,7 +38253,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcShearModulusMeasure() {
 		if (ifcShearModulusMeasureEClass == null) {
-			ifcShearModulusMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(851);
+			ifcShearModulusMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(851);
 		}
 		return ifcShearModulusMeasureEClass;
 	}
@@ -37427,7 +38284,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSolidAngleMeasure() {
 		if (ifcSolidAngleMeasureEClass == null) {
-			ifcSolidAngleMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(852);
+			ifcSolidAngleMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(852);
 		}
 		return ifcSolidAngleMeasureEClass;
 	}
@@ -37457,7 +38315,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSoundPowerLevelMeasure() {
 		if (ifcSoundPowerLevelMeasureEClass == null) {
-			ifcSoundPowerLevelMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(853);
+			ifcSoundPowerLevelMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(853);
 		}
 		return ifcSoundPowerLevelMeasureEClass;
 	}
@@ -37487,7 +38346,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSoundPowerMeasure() {
 		if (ifcSoundPowerMeasureEClass == null) {
-			ifcSoundPowerMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(854);
+			ifcSoundPowerMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(854);
 		}
 		return ifcSoundPowerMeasureEClass;
 	}
@@ -37517,7 +38377,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSoundPressureLevelMeasure() {
 		if (ifcSoundPressureLevelMeasureEClass == null) {
-			ifcSoundPressureLevelMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(855);
+			ifcSoundPressureLevelMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(855);
 		}
 		return ifcSoundPressureLevelMeasureEClass;
 	}
@@ -37547,7 +38408,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSoundPressureMeasure() {
 		if (ifcSoundPressureMeasureEClass == null) {
-			ifcSoundPressureMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(856);
+			ifcSoundPressureMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(856);
 		}
 		return ifcSoundPressureMeasureEClass;
 	}
@@ -37577,7 +38439,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpecificHeatCapacityMeasure() {
 		if (ifcSpecificHeatCapacityMeasureEClass == null) {
-			ifcSpecificHeatCapacityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(857);
+			ifcSpecificHeatCapacityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(857);
 		}
 		return ifcSpecificHeatCapacityMeasureEClass;
 	}
@@ -37607,7 +38470,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpecularExponent() {
 		if (ifcSpecularExponentEClass == null) {
-			ifcSpecularExponentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(858);
+			ifcSpecularExponentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(858);
 		}
 		return ifcSpecularExponentEClass;
 	}
@@ -37637,7 +38501,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpecularRoughness() {
 		if (ifcSpecularRoughnessEClass == null) {
-			ifcSpecularRoughnessEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(859);
+			ifcSpecularRoughnessEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(859);
 		}
 		return ifcSpecularRoughnessEClass;
 	}
@@ -37667,7 +38532,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTemperatureGradientMeasure() {
 		if (ifcTemperatureGradientMeasureEClass == null) {
-			ifcTemperatureGradientMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(860);
+			ifcTemperatureGradientMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(860);
 		}
 		return ifcTemperatureGradientMeasureEClass;
 	}
@@ -37697,7 +38563,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTemperatureRateOfChangeMeasure() {
 		if (ifcTemperatureRateOfChangeMeasureEClass == null) {
-			ifcTemperatureRateOfChangeMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(861);
+			ifcTemperatureRateOfChangeMeasureEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(861);
 		}
 		return ifcTemperatureRateOfChangeMeasureEClass;
 	}
@@ -37727,7 +38594,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcText() {
 		if (ifcTextEClass == null) {
-			ifcTextEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(862);
+			ifcTextEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(862);
 		}
 		return ifcTextEClass;
 	}
@@ -37748,7 +38616,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextAlignment() {
 		if (ifcTextAlignmentEClass == null) {
-			ifcTextAlignmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(863);
+			ifcTextAlignmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(863);
 		}
 		return ifcTextAlignmentEClass;
 	}
@@ -37769,7 +38638,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextDecoration() {
 		if (ifcTextDecorationEClass == null) {
-			ifcTextDecorationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(864);
+			ifcTextDecorationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(864);
 		}
 		return ifcTextDecorationEClass;
 	}
@@ -37790,7 +38660,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextFontName() {
 		if (ifcTextFontNameEClass == null) {
-			ifcTextFontNameEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(865);
+			ifcTextFontNameEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(865);
 		}
 		return ifcTextFontNameEClass;
 	}
@@ -37811,7 +38682,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextTransformation() {
 		if (ifcTextTransformationEClass == null) {
-			ifcTextTransformationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(866);
+			ifcTextTransformationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(866);
 		}
 		return ifcTextTransformationEClass;
 	}
@@ -37832,7 +38704,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcThermalAdmittanceMeasure() {
 		if (ifcThermalAdmittanceMeasureEClass == null) {
-			ifcThermalAdmittanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(867);
+			ifcThermalAdmittanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(867);
 		}
 		return ifcThermalAdmittanceMeasureEClass;
 	}
@@ -37862,7 +38735,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcThermalConductivityMeasure() {
 		if (ifcThermalConductivityMeasureEClass == null) {
-			ifcThermalConductivityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(868);
+			ifcThermalConductivityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(868);
 		}
 		return ifcThermalConductivityMeasureEClass;
 	}
@@ -37892,7 +38766,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcThermalExpansionCoefficientMeasure() {
 		if (ifcThermalExpansionCoefficientMeasureEClass == null) {
-			ifcThermalExpansionCoefficientMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(869);
+			ifcThermalExpansionCoefficientMeasureEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(869);
 		}
 		return ifcThermalExpansionCoefficientMeasureEClass;
 	}
@@ -37922,7 +38797,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcThermalResistanceMeasure() {
 		if (ifcThermalResistanceMeasureEClass == null) {
-			ifcThermalResistanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(870);
+			ifcThermalResistanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(870);
 		}
 		return ifcThermalResistanceMeasureEClass;
 	}
@@ -37952,7 +38828,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcThermalTransmittanceMeasure() {
 		if (ifcThermalTransmittanceMeasureEClass == null) {
-			ifcThermalTransmittanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(871);
+			ifcThermalTransmittanceMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(871);
 		}
 		return ifcThermalTransmittanceMeasureEClass;
 	}
@@ -37982,7 +38859,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcThermodynamicTemperatureMeasure() {
 		if (ifcThermodynamicTemperatureMeasureEClass == null) {
-			ifcThermodynamicTemperatureMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(872);
+			ifcThermodynamicTemperatureMeasureEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(872);
 		}
 		return ifcThermodynamicTemperatureMeasureEClass;
 	}
@@ -38012,7 +38890,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTime() {
 		if (ifcTimeEClass == null) {
-			ifcTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(873);
+			ifcTimeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(873);
 		}
 		return ifcTimeEClass;
 	}
@@ -38033,7 +38912,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTimeMeasure() {
 		if (ifcTimeMeasureEClass == null) {
-			ifcTimeMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(874);
+			ifcTimeMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(874);
 		}
 		return ifcTimeMeasureEClass;
 	}
@@ -38063,7 +38943,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTimeStamp() {
 		if (ifcTimeStampEClass == null) {
-			ifcTimeStampEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(875);
+			ifcTimeStampEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(875);
 		}
 		return ifcTimeStampEClass;
 	}
@@ -38084,7 +38965,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTorqueMeasure() {
 		if (ifcTorqueMeasureEClass == null) {
-			ifcTorqueMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(876);
+			ifcTorqueMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(876);
 		}
 		return ifcTorqueMeasureEClass;
 	}
@@ -38114,7 +38996,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcURIReference() {
 		if (ifcURIReferenceEClass == null) {
-			ifcURIReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(877);
+			ifcURIReferenceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(877);
 		}
 		return ifcURIReferenceEClass;
 	}
@@ -38135,7 +39018,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVaporPermeabilityMeasure() {
 		if (ifcVaporPermeabilityMeasureEClass == null) {
-			ifcVaporPermeabilityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(878);
+			ifcVaporPermeabilityMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(878);
 		}
 		return ifcVaporPermeabilityMeasureEClass;
 	}
@@ -38165,7 +39049,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVolumeMeasure() {
 		if (ifcVolumeMeasureEClass == null) {
-			ifcVolumeMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(879);
+			ifcVolumeMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(879);
 		}
 		return ifcVolumeMeasureEClass;
 	}
@@ -38195,7 +39080,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVolumetricFlowRateMeasure() {
 		if (ifcVolumetricFlowRateMeasureEClass == null) {
-			ifcVolumetricFlowRateMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(880);
+			ifcVolumetricFlowRateMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(880);
 		}
 		return ifcVolumetricFlowRateMeasureEClass;
 	}
@@ -38225,7 +39111,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWarpingConstantMeasure() {
 		if (ifcWarpingConstantMeasureEClass == null) {
-			ifcWarpingConstantMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(881);
+			ifcWarpingConstantMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(881);
 		}
 		return ifcWarpingConstantMeasureEClass;
 	}
@@ -38255,7 +39142,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWarpingMomentMeasure() {
 		if (ifcWarpingMomentMeasureEClass == null) {
-			ifcWarpingMomentMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(882);
+			ifcWarpingMomentMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(882);
 		}
 		return ifcWarpingMomentMeasureEClass;
 	}
@@ -38285,7 +39173,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBoxAlignment() {
 		if (ifcBoxAlignmentEClass == null) {
-			ifcBoxAlignmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(883);
+			ifcBoxAlignmentEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(883);
 		}
 		return ifcBoxAlignmentEClass;
 	}
@@ -38297,7 +39186,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCompoundPlaneAngleMeasure() {
 		if (ifcCompoundPlaneAngleMeasureEClass == null) {
-			ifcCompoundPlaneAngleMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(884);
+			ifcCompoundPlaneAngleMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(884);
 		}
 		return ifcCompoundPlaneAngleMeasureEClass;
 	}
@@ -38318,7 +39208,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLanguageId() {
 		if (ifcLanguageIdEClass == null) {
-			ifcLanguageIdEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(885);
+			ifcLanguageIdEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(885);
 		}
 		return ifcLanguageIdEClass;
 	}
@@ -38330,7 +39221,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcNonNegativeLengthMeasure() {
 		if (ifcNonNegativeLengthMeasureEClass == null) {
-			ifcNonNegativeLengthMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(886);
+			ifcNonNegativeLengthMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(886);
 		}
 		return ifcNonNegativeLengthMeasureEClass;
 	}
@@ -38342,7 +39234,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcNormalisedRatioMeasure() {
 		if (ifcNormalisedRatioMeasureEClass == null) {
-			ifcNormalisedRatioMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(887);
+			ifcNormalisedRatioMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(887);
 		}
 		return ifcNormalisedRatioMeasureEClass;
 	}
@@ -38354,7 +39247,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPositiveLengthMeasure() {
 		if (ifcPositiveLengthMeasureEClass == null) {
-			ifcPositiveLengthMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(888);
+			ifcPositiveLengthMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(888);
 		}
 		return ifcPositiveLengthMeasureEClass;
 	}
@@ -38366,7 +39260,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPositivePlaneAngleMeasure() {
 		if (ifcPositivePlaneAngleMeasureEClass == null) {
-			ifcPositivePlaneAngleMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(889);
+			ifcPositivePlaneAngleMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(889);
 		}
 		return ifcPositivePlaneAngleMeasureEClass;
 	}
@@ -38378,7 +39273,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPositiveRatioMeasure() {
 		if (ifcPositiveRatioMeasureEClass == null) {
-			ifcPositiveRatioMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(890);
+			ifcPositiveRatioMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(890);
 		}
 		return ifcPositiveRatioMeasureEClass;
 	}
@@ -38390,7 +39286,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcComplexNumber() {
 		if (ifcComplexNumberEClass == null) {
-			ifcComplexNumberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1097);
+			ifcComplexNumberEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1097);
 		}
 		return ifcComplexNumberEClass;
 	}
@@ -38420,7 +39317,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcNullStyle() {
 		if (ifcNullStyleEClass == null) {
-			ifcNullStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1098);
+			ifcNullStyleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1098);
 		}
 		return ifcNullStyleEClass;
 	}
@@ -38441,7 +39339,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcActorSelect() {
 		if (ifcActorSelectEClass == null) {
-			ifcActorSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1099);
+			ifcActorSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1099);
 		}
 		return ifcActorSelectEClass;
 	}
@@ -38453,7 +39352,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAppliedValueSelect() {
 		if (ifcAppliedValueSelectEClass == null) {
-			ifcAppliedValueSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1100);
+			ifcAppliedValueSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1100);
 		}
 		return ifcAppliedValueSelectEClass;
 	}
@@ -38465,7 +39365,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcAxis2Placement() {
 		if (ifcAxis2PlacementEClass == null) {
-			ifcAxis2PlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1101);
+			ifcAxis2PlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1101);
 		}
 		return ifcAxis2PlacementEClass;
 	}
@@ -38477,7 +39378,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBendingParameterSelect() {
 		if (ifcBendingParameterSelectEClass == null) {
-			ifcBendingParameterSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1102);
+			ifcBendingParameterSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1102);
 		}
 		return ifcBendingParameterSelectEClass;
 	}
@@ -38489,7 +39391,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcBooleanOperand() {
 		if (ifcBooleanOperandEClass == null) {
-			ifcBooleanOperandEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1103);
+			ifcBooleanOperandEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1103);
 		}
 		return ifcBooleanOperandEClass;
 	}
@@ -38501,7 +39404,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcClassificationReferenceSelect() {
 		if (ifcClassificationReferenceSelectEClass == null) {
-			ifcClassificationReferenceSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1104);
+			ifcClassificationReferenceSelectEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1104);
 		}
 		return ifcClassificationReferenceSelectEClass;
 	}
@@ -38513,7 +39417,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcClassificationSelect() {
 		if (ifcClassificationSelectEClass == null) {
-			ifcClassificationSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1105);
+			ifcClassificationSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1105);
 		}
 		return ifcClassificationSelectEClass;
 	}
@@ -38525,7 +39430,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcColour() {
 		if (ifcColourEClass == null) {
-			ifcColourEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1106);
+			ifcColourEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1106);
 		}
 		return ifcColourEClass;
 	}
@@ -38537,7 +39443,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcColourOrFactor() {
 		if (ifcColourOrFactorEClass == null) {
-			ifcColourOrFactorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1107);
+			ifcColourOrFactorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1107);
 		}
 		return ifcColourOrFactorEClass;
 	}
@@ -38549,7 +39456,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCoordinateReferenceSystemSelect() {
 		if (ifcCoordinateReferenceSystemSelectEClass == null) {
-			ifcCoordinateReferenceSystemSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1108);
+			ifcCoordinateReferenceSystemSelectEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1108);
 		}
 		return ifcCoordinateReferenceSystemSelectEClass;
 	}
@@ -38561,7 +39469,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCsgSelect() {
 		if (ifcCsgSelectEClass == null) {
-			ifcCsgSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1109);
+			ifcCsgSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1109);
 		}
 		return ifcCsgSelectEClass;
 	}
@@ -38573,7 +39482,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurveFontOrScaledCurveFontSelect() {
 		if (ifcCurveFontOrScaledCurveFontSelectEClass == null) {
-			ifcCurveFontOrScaledCurveFontSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1110);
+			ifcCurveFontOrScaledCurveFontSelectEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1110);
 		}
 		return ifcCurveFontOrScaledCurveFontSelectEClass;
 	}
@@ -38585,7 +39495,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurveOnSurface() {
 		if (ifcCurveOnSurfaceEClass == null) {
-			ifcCurveOnSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1111);
+			ifcCurveOnSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1111);
 		}
 		return ifcCurveOnSurfaceEClass;
 	}
@@ -38597,7 +39508,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurveOrEdgeCurve() {
 		if (ifcCurveOrEdgeCurveEClass == null) {
-			ifcCurveOrEdgeCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1112);
+			ifcCurveOrEdgeCurveEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1112);
 		}
 		return ifcCurveOrEdgeCurveEClass;
 	}
@@ -38609,7 +39521,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcCurveStyleFontSelect() {
 		if (ifcCurveStyleFontSelectEClass == null) {
-			ifcCurveStyleFontSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1113);
+			ifcCurveStyleFontSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1113);
 		}
 		return ifcCurveStyleFontSelectEClass;
 	}
@@ -38621,7 +39534,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDefinitionSelect() {
 		if (ifcDefinitionSelectEClass == null) {
-			ifcDefinitionSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1114);
+			ifcDefinitionSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1114);
 		}
 		return ifcDefinitionSelectEClass;
 	}
@@ -38633,7 +39547,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDerivedMeasureValue() {
 		if (ifcDerivedMeasureValueEClass == null) {
-			ifcDerivedMeasureValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1115);
+			ifcDerivedMeasureValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1115);
 		}
 		return ifcDerivedMeasureValueEClass;
 	}
@@ -38645,7 +39560,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcDocumentSelect() {
 		if (ifcDocumentSelectEClass == null) {
-			ifcDocumentSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1116);
+			ifcDocumentSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1116);
 		}
 		return ifcDocumentSelectEClass;
 	}
@@ -38657,7 +39573,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcFillStyleSelect() {
 		if (ifcFillStyleSelectEClass == null) {
-			ifcFillStyleSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1117);
+			ifcFillStyleSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1117);
 		}
 		return ifcFillStyleSelectEClass;
 	}
@@ -38669,7 +39586,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGeometricSetSelect() {
 		if (ifcGeometricSetSelectEClass == null) {
-			ifcGeometricSetSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1118);
+			ifcGeometricSetSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1118);
 		}
 		return ifcGeometricSetSelectEClass;
 	}
@@ -38681,7 +39599,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcGridPlacementDirectionSelect() {
 		if (ifcGridPlacementDirectionSelectEClass == null) {
-			ifcGridPlacementDirectionSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1119);
+			ifcGridPlacementDirectionSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1119);
 		}
 		return ifcGridPlacementDirectionSelectEClass;
 	}
@@ -38693,7 +39612,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcHatchLineDistanceSelect() {
 		if (ifcHatchLineDistanceSelectEClass == null) {
-			ifcHatchLineDistanceSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1120);
+			ifcHatchLineDistanceSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1120);
 		}
 		return ifcHatchLineDistanceSelectEClass;
 	}
@@ -38705,7 +39625,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLayeredItem() {
 		if (ifcLayeredItemEClass == null) {
-			ifcLayeredItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1121);
+			ifcLayeredItemEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1121);
 		}
 		return ifcLayeredItemEClass;
 	}
@@ -38717,7 +39638,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLibrarySelect() {
 		if (ifcLibrarySelectEClass == null) {
-			ifcLibrarySelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1122);
+			ifcLibrarySelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1122);
 		}
 		return ifcLibrarySelectEClass;
 	}
@@ -38729,7 +39651,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcLightDistributionDataSourceSelect() {
 		if (ifcLightDistributionDataSourceSelectEClass == null) {
-			ifcLightDistributionDataSourceSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1123);
+			ifcLightDistributionDataSourceSelectEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1123);
 		}
 		return ifcLightDistributionDataSourceSelectEClass;
 	}
@@ -38741,7 +39664,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMaterialSelect() {
 		if (ifcMaterialSelectEClass == null) {
-			ifcMaterialSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1124);
+			ifcMaterialSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1124);
 		}
 		return ifcMaterialSelectEClass;
 	}
@@ -38753,7 +39677,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMeasureValue() {
 		if (ifcMeasureValueEClass == null) {
-			ifcMeasureValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1125);
+			ifcMeasureValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1125);
 		}
 		return ifcMeasureValueEClass;
 	}
@@ -38765,7 +39690,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcMetricValueSelect() {
 		if (ifcMetricValueSelectEClass == null) {
-			ifcMetricValueSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1126);
+			ifcMetricValueSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1126);
 		}
 		return ifcMetricValueSelectEClass;
 	}
@@ -38777,7 +39703,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcModulusOfRotationalSubgradeReactionSelect() {
 		if (ifcModulusOfRotationalSubgradeReactionSelectEClass == null) {
-			ifcModulusOfRotationalSubgradeReactionSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1127);
+			ifcModulusOfRotationalSubgradeReactionSelectEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1127);
 		}
 		return ifcModulusOfRotationalSubgradeReactionSelectEClass;
 	}
@@ -38789,7 +39716,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcModulusOfSubgradeReactionSelect() {
 		if (ifcModulusOfSubgradeReactionSelectEClass == null) {
-			ifcModulusOfSubgradeReactionSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1128);
+			ifcModulusOfSubgradeReactionSelectEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1128);
 		}
 		return ifcModulusOfSubgradeReactionSelectEClass;
 	}
@@ -38801,7 +39729,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcModulusOfTranslationalSubgradeReactionSelect() {
 		if (ifcModulusOfTranslationalSubgradeReactionSelectEClass == null) {
-			ifcModulusOfTranslationalSubgradeReactionSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1129);
+			ifcModulusOfTranslationalSubgradeReactionSelectEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1129);
 		}
 		return ifcModulusOfTranslationalSubgradeReactionSelectEClass;
 	}
@@ -38813,7 +39742,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcObjectReferenceSelect() {
 		if (ifcObjectReferenceSelectEClass == null) {
-			ifcObjectReferenceSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1130);
+			ifcObjectReferenceSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1130);
 		}
 		return ifcObjectReferenceSelectEClass;
 	}
@@ -38825,7 +39755,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPointOrVertexPoint() {
 		if (ifcPointOrVertexPointEClass == null) {
-			ifcPointOrVertexPointEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1131);
+			ifcPointOrVertexPointEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1131);
 		}
 		return ifcPointOrVertexPointEClass;
 	}
@@ -38837,7 +39768,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPresentationStyleSelect() {
 		if (ifcPresentationStyleSelectEClass == null) {
-			ifcPresentationStyleSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1132);
+			ifcPresentationStyleSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1132);
 		}
 		return ifcPresentationStyleSelectEClass;
 	}
@@ -38849,7 +39781,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProcessSelect() {
 		if (ifcProcessSelectEClass == null) {
-			ifcProcessSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1133);
+			ifcProcessSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1133);
 		}
 		return ifcProcessSelectEClass;
 	}
@@ -38861,7 +39794,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProductRepresentationSelect() {
 		if (ifcProductRepresentationSelectEClass == null) {
-			ifcProductRepresentationSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1134);
+			ifcProductRepresentationSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1134);
 		}
 		return ifcProductRepresentationSelectEClass;
 	}
@@ -38873,7 +39807,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcProductSelect() {
 		if (ifcProductSelectEClass == null) {
-			ifcProductSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1135);
+			ifcProductSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1135);
 		}
 		return ifcProductSelectEClass;
 	}
@@ -38885,7 +39820,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcPropertySetDefinitionSelect() {
 		if (ifcPropertySetDefinitionSelectEClass == null) {
-			ifcPropertySetDefinitionSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1136);
+			ifcPropertySetDefinitionSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1136);
 		}
 		return ifcPropertySetDefinitionSelectEClass;
 	}
@@ -38897,7 +39833,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcResourceObjectSelect() {
 		if (ifcResourceObjectSelectEClass == null) {
-			ifcResourceObjectSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1137);
+			ifcResourceObjectSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1137);
 		}
 		return ifcResourceObjectSelectEClass;
 	}
@@ -38909,7 +39846,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcResourceSelect() {
 		if (ifcResourceSelectEClass == null) {
-			ifcResourceSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1138);
+			ifcResourceSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1138);
 		}
 		return ifcResourceSelectEClass;
 	}
@@ -38921,7 +39859,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcRotationalStiffnessSelect() {
 		if (ifcRotationalStiffnessSelectEClass == null) {
-			ifcRotationalStiffnessSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1139);
+			ifcRotationalStiffnessSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1139);
 		}
 		return ifcRotationalStiffnessSelectEClass;
 	}
@@ -38933,7 +39872,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcShell() {
 		if (ifcShellEClass == null) {
-			ifcShellEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1140);
+			ifcShellEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1140);
 		}
 		return ifcShellEClass;
 	}
@@ -38945,7 +39885,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSimpleValue() {
 		if (ifcSimpleValueEClass == null) {
-			ifcSimpleValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1141);
+			ifcSimpleValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1141);
 		}
 		return ifcSimpleValueEClass;
 	}
@@ -38957,7 +39898,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSizeSelect() {
 		if (ifcSizeSelectEClass == null) {
-			ifcSizeSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1142);
+			ifcSizeSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1142);
 		}
 		return ifcSizeSelectEClass;
 	}
@@ -38969,7 +39911,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSolidOrShell() {
 		if (ifcSolidOrShellEClass == null) {
-			ifcSolidOrShellEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1143);
+			ifcSolidOrShellEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1143);
 		}
 		return ifcSolidOrShellEClass;
 	}
@@ -38981,7 +39924,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpaceBoundarySelect() {
 		if (ifcSpaceBoundarySelectEClass == null) {
-			ifcSpaceBoundarySelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1144);
+			ifcSpaceBoundarySelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1144);
 		}
 		return ifcSpaceBoundarySelectEClass;
 	}
@@ -38993,7 +39937,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSpecularHighlightSelect() {
 		if (ifcSpecularHighlightSelectEClass == null) {
-			ifcSpecularHighlightSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1145);
+			ifcSpecularHighlightSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1145);
 		}
 		return ifcSpecularHighlightSelectEClass;
 	}
@@ -39005,7 +39950,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStructuralActivityAssignmentSelect() {
 		if (ifcStructuralActivityAssignmentSelectEClass == null) {
-			ifcStructuralActivityAssignmentSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1146);
+			ifcStructuralActivityAssignmentSelectEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1146);
 		}
 		return ifcStructuralActivityAssignmentSelectEClass;
 	}
@@ -39017,7 +39963,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcStyleAssignmentSelect() {
 		if (ifcStyleAssignmentSelectEClass == null) {
-			ifcStyleAssignmentSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1147);
+			ifcStyleAssignmentSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1147);
 		}
 		return ifcStyleAssignmentSelectEClass;
 	}
@@ -39029,7 +39976,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceOrFaceSurface() {
 		if (ifcSurfaceOrFaceSurfaceEClass == null) {
-			ifcSurfaceOrFaceSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1148);
+			ifcSurfaceOrFaceSurfaceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1148);
 		}
 		return ifcSurfaceOrFaceSurfaceEClass;
 	}
@@ -39041,7 +39989,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcSurfaceStyleElementSelect() {
 		if (ifcSurfaceStyleElementSelectEClass == null) {
-			ifcSurfaceStyleElementSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1149);
+			ifcSurfaceStyleElementSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1149);
 		}
 		return ifcSurfaceStyleElementSelectEClass;
 	}
@@ -39053,7 +40002,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTextFontSelect() {
 		if (ifcTextFontSelectEClass == null) {
-			ifcTextFontSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1150);
+			ifcTextFontSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1150);
 		}
 		return ifcTextFontSelectEClass;
 	}
@@ -39065,7 +40015,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTimeOrRatioSelect() {
 		if (ifcTimeOrRatioSelectEClass == null) {
-			ifcTimeOrRatioSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1151);
+			ifcTimeOrRatioSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1151);
 		}
 		return ifcTimeOrRatioSelectEClass;
 	}
@@ -39077,7 +40028,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTranslationalStiffnessSelect() {
 		if (ifcTranslationalStiffnessSelectEClass == null) {
-			ifcTranslationalStiffnessSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1152);
+			ifcTranslationalStiffnessSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1152);
 		}
 		return ifcTranslationalStiffnessSelectEClass;
 	}
@@ -39089,7 +40041,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcTrimmingSelect() {
 		if (ifcTrimmingSelectEClass == null) {
-			ifcTrimmingSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1153);
+			ifcTrimmingSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1153);
 		}
 		return ifcTrimmingSelectEClass;
 	}
@@ -39101,7 +40054,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcUnit() {
 		if (ifcUnitEClass == null) {
-			ifcUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1154);
+			ifcUnitEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1154);
 		}
 		return ifcUnitEClass;
 	}
@@ -39113,7 +40067,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcValue() {
 		if (ifcValueEClass == null) {
-			ifcValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1155);
+			ifcValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1155);
 		}
 		return ifcValueEClass;
 	}
@@ -39125,7 +40080,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcVectorOrDirection() {
 		if (ifcVectorOrDirectionEClass == null) {
-			ifcVectorOrDirectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1156);
+			ifcVectorOrDirectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1156);
 		}
 		return ifcVectorOrDirectionEClass;
 	}
@@ -39137,7 +40093,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getIfcWarpingStiffnessSelect() {
 		if (ifcWarpingStiffnessSelectEClass == null) {
-			ifcWarpingStiffnessSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1157);
+			ifcWarpingStiffnessSelectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1157);
 		}
 		return ifcWarpingStiffnessSelectEClass;
 	}
@@ -39149,7 +40106,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getListOfIfcCartesianPoint() {
 		if (listOfIfcCartesianPointEClass == null) {
-			listOfIfcCartesianPointEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1158);
+			listOfIfcCartesianPointEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1158);
 		}
 		return listOfIfcCartesianPointEClass;
 	}
@@ -39170,7 +40128,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getListOfIfcLengthMeasure() {
 		if (listOfIfcLengthMeasureEClass == null) {
-			listOfIfcLengthMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1159);
+			listOfIfcLengthMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1159);
 		}
 		return listOfIfcLengthMeasureEClass;
 	}
@@ -39191,7 +40150,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getListOfIfcNormalisedRatioMeasure() {
 		if (listOfIfcNormalisedRatioMeasureEClass == null) {
-			listOfIfcNormalisedRatioMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1160);
+			listOfIfcNormalisedRatioMeasureEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1160);
 		}
 		return listOfIfcNormalisedRatioMeasureEClass;
 	}
@@ -39212,7 +40172,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getListOfEInt() {
 		if (listOfEIntEClass == null) {
-			listOfEIntEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1161);
+			listOfEIntEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1161);
 		}
 		return listOfEIntEClass;
 	}
@@ -39233,7 +40194,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getListOfEDouble() {
 		if (listOfEDoubleEClass == null) {
-			listOfEDoubleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1162);
+			listOfEDoubleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1162);
 		}
 		return listOfEDoubleEClass;
 	}
@@ -39254,7 +40216,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EClass getListOfIfcParameterValue() {
 		if (listOfIfcParameterValueEClass == null) {
-			listOfIfcParameterValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1163);
+			listOfIfcParameterValueEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1163);
 		}
 		return listOfIfcParameterValueEClass;
 	}
@@ -39275,7 +40238,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getTristate() {
 		if (tristateEEnum == null) {
-			tristateEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(0);
+			tristateEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(0);
 		}
 		return tristateEEnum;
 	}
@@ -39287,7 +40251,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcActionRequestTypeEnum() {
 		if (ifcActionRequestTypeEnumEEnum == null) {
-			ifcActionRequestTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(891);
+			ifcActionRequestTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(891);
 		}
 		return ifcActionRequestTypeEnumEEnum;
 	}
@@ -39299,7 +40264,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcActionSourceTypeEnum() {
 		if (ifcActionSourceTypeEnumEEnum == null) {
-			ifcActionSourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(892);
+			ifcActionSourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(892);
 		}
 		return ifcActionSourceTypeEnumEEnum;
 	}
@@ -39311,7 +40277,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcActionTypeEnum() {
 		if (ifcActionTypeEnumEEnum == null) {
-			ifcActionTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(893);
+			ifcActionTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(893);
 		}
 		return ifcActionTypeEnumEEnum;
 	}
@@ -39323,7 +40290,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcActuatorTypeEnum() {
 		if (ifcActuatorTypeEnumEEnum == null) {
-			ifcActuatorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(894);
+			ifcActuatorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(894);
 		}
 		return ifcActuatorTypeEnumEEnum;
 	}
@@ -39335,7 +40303,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcAddressTypeEnum() {
 		if (ifcAddressTypeEnumEEnum == null) {
-			ifcAddressTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(895);
+			ifcAddressTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(895);
 		}
 		return ifcAddressTypeEnumEEnum;
 	}
@@ -39347,7 +40316,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcAirTerminalBoxTypeEnum() {
 		if (ifcAirTerminalBoxTypeEnumEEnum == null) {
-			ifcAirTerminalBoxTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(896);
+			ifcAirTerminalBoxTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(896);
 		}
 		return ifcAirTerminalBoxTypeEnumEEnum;
 	}
@@ -39359,7 +40329,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcAirTerminalTypeEnum() {
 		if (ifcAirTerminalTypeEnumEEnum == null) {
-			ifcAirTerminalTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(897);
+			ifcAirTerminalTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(897);
 		}
 		return ifcAirTerminalTypeEnumEEnum;
 	}
@@ -39371,7 +40342,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcAirToAirHeatRecoveryTypeEnum() {
 		if (ifcAirToAirHeatRecoveryTypeEnumEEnum == null) {
-			ifcAirToAirHeatRecoveryTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(898);
+			ifcAirToAirHeatRecoveryTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(898);
 		}
 		return ifcAirToAirHeatRecoveryTypeEnumEEnum;
 	}
@@ -39383,7 +40355,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcAlarmTypeEnum() {
 		if (ifcAlarmTypeEnumEEnum == null) {
-			ifcAlarmTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(899);
+			ifcAlarmTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(899);
 		}
 		return ifcAlarmTypeEnumEEnum;
 	}
@@ -39395,7 +40368,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcAnalysisModelTypeEnum() {
 		if (ifcAnalysisModelTypeEnumEEnum == null) {
-			ifcAnalysisModelTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(900);
+			ifcAnalysisModelTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(900);
 		}
 		return ifcAnalysisModelTypeEnumEEnum;
 	}
@@ -39407,7 +40381,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcAnalysisTheoryTypeEnum() {
 		if (ifcAnalysisTheoryTypeEnumEEnum == null) {
-			ifcAnalysisTheoryTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(901);
+			ifcAnalysisTheoryTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(901);
 		}
 		return ifcAnalysisTheoryTypeEnumEEnum;
 	}
@@ -39419,7 +40394,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcArithmeticOperatorEnum() {
 		if (ifcArithmeticOperatorEnumEEnum == null) {
-			ifcArithmeticOperatorEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(902);
+			ifcArithmeticOperatorEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(902);
 		}
 		return ifcArithmeticOperatorEnumEEnum;
 	}
@@ -39431,7 +40407,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcAssemblyPlaceEnum() {
 		if (ifcAssemblyPlaceEnumEEnum == null) {
-			ifcAssemblyPlaceEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(903);
+			ifcAssemblyPlaceEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(903);
 		}
 		return ifcAssemblyPlaceEnumEEnum;
 	}
@@ -39443,7 +40420,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcAudioVisualApplianceTypeEnum() {
 		if (ifcAudioVisualApplianceTypeEnumEEnum == null) {
-			ifcAudioVisualApplianceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(904);
+			ifcAudioVisualApplianceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(904);
 		}
 		return ifcAudioVisualApplianceTypeEnumEEnum;
 	}
@@ -39455,7 +40433,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcBSplineCurveForm() {
 		if (ifcBSplineCurveFormEEnum == null) {
-			ifcBSplineCurveFormEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(905);
+			ifcBSplineCurveFormEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(905);
 		}
 		return ifcBSplineCurveFormEEnum;
 	}
@@ -39467,7 +40446,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcBSplineSurfaceForm() {
 		if (ifcBSplineSurfaceFormEEnum == null) {
-			ifcBSplineSurfaceFormEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(906);
+			ifcBSplineSurfaceFormEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(906);
 		}
 		return ifcBSplineSurfaceFormEEnum;
 	}
@@ -39479,7 +40459,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcBeamTypeEnum() {
 		if (ifcBeamTypeEnumEEnum == null) {
-			ifcBeamTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(907);
+			ifcBeamTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(907);
 		}
 		return ifcBeamTypeEnumEEnum;
 	}
@@ -39491,7 +40472,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcBenchmarkEnum() {
 		if (ifcBenchmarkEnumEEnum == null) {
-			ifcBenchmarkEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(908);
+			ifcBenchmarkEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(908);
 		}
 		return ifcBenchmarkEnumEEnum;
 	}
@@ -39503,7 +40485,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcBoilerTypeEnum() {
 		if (ifcBoilerTypeEnumEEnum == null) {
-			ifcBoilerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(909);
+			ifcBoilerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(909);
 		}
 		return ifcBoilerTypeEnumEEnum;
 	}
@@ -39515,7 +40498,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcBooleanOperator() {
 		if (ifcBooleanOperatorEEnum == null) {
-			ifcBooleanOperatorEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(910);
+			ifcBooleanOperatorEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(910);
 		}
 		return ifcBooleanOperatorEEnum;
 	}
@@ -39527,7 +40511,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcBuildingElementPartTypeEnum() {
 		if (ifcBuildingElementPartTypeEnumEEnum == null) {
-			ifcBuildingElementPartTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(911);
+			ifcBuildingElementPartTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(911);
 		}
 		return ifcBuildingElementPartTypeEnumEEnum;
 	}
@@ -39539,7 +40524,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcBuildingElementProxyTypeEnum() {
 		if (ifcBuildingElementProxyTypeEnumEEnum == null) {
-			ifcBuildingElementProxyTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(912);
+			ifcBuildingElementProxyTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(912);
 		}
 		return ifcBuildingElementProxyTypeEnumEEnum;
 	}
@@ -39551,7 +40537,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcBuildingSystemTypeEnum() {
 		if (ifcBuildingSystemTypeEnumEEnum == null) {
-			ifcBuildingSystemTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(913);
+			ifcBuildingSystemTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(913);
 		}
 		return ifcBuildingSystemTypeEnumEEnum;
 	}
@@ -39563,7 +40550,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcBurnerTypeEnum() {
 		if (ifcBurnerTypeEnumEEnum == null) {
-			ifcBurnerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(914);
+			ifcBurnerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(914);
 		}
 		return ifcBurnerTypeEnumEEnum;
 	}
@@ -39575,7 +40563,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCableCarrierFittingTypeEnum() {
 		if (ifcCableCarrierFittingTypeEnumEEnum == null) {
-			ifcCableCarrierFittingTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(915);
+			ifcCableCarrierFittingTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(915);
 		}
 		return ifcCableCarrierFittingTypeEnumEEnum;
 	}
@@ -39587,7 +40576,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCableCarrierSegmentTypeEnum() {
 		if (ifcCableCarrierSegmentTypeEnumEEnum == null) {
-			ifcCableCarrierSegmentTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(916);
+			ifcCableCarrierSegmentTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(916);
 		}
 		return ifcCableCarrierSegmentTypeEnumEEnum;
 	}
@@ -39599,7 +40589,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCableFittingTypeEnum() {
 		if (ifcCableFittingTypeEnumEEnum == null) {
-			ifcCableFittingTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(917);
+			ifcCableFittingTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(917);
 		}
 		return ifcCableFittingTypeEnumEEnum;
 	}
@@ -39611,7 +40602,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCableSegmentTypeEnum() {
 		if (ifcCableSegmentTypeEnumEEnum == null) {
-			ifcCableSegmentTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(918);
+			ifcCableSegmentTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(918);
 		}
 		return ifcCableSegmentTypeEnumEEnum;
 	}
@@ -39623,7 +40615,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcChangeActionEnum() {
 		if (ifcChangeActionEnumEEnum == null) {
-			ifcChangeActionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(919);
+			ifcChangeActionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(919);
 		}
 		return ifcChangeActionEnumEEnum;
 	}
@@ -39635,7 +40628,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcChillerTypeEnum() {
 		if (ifcChillerTypeEnumEEnum == null) {
-			ifcChillerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(920);
+			ifcChillerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(920);
 		}
 		return ifcChillerTypeEnumEEnum;
 	}
@@ -39647,7 +40641,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcChimneyTypeEnum() {
 		if (ifcChimneyTypeEnumEEnum == null) {
-			ifcChimneyTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(921);
+			ifcChimneyTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(921);
 		}
 		return ifcChimneyTypeEnumEEnum;
 	}
@@ -39659,7 +40654,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCoilTypeEnum() {
 		if (ifcCoilTypeEnumEEnum == null) {
-			ifcCoilTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(922);
+			ifcCoilTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(922);
 		}
 		return ifcCoilTypeEnumEEnum;
 	}
@@ -39671,7 +40667,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcColumnTypeEnum() {
 		if (ifcColumnTypeEnumEEnum == null) {
-			ifcColumnTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(923);
+			ifcColumnTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(923);
 		}
 		return ifcColumnTypeEnumEEnum;
 	}
@@ -39683,7 +40680,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCommunicationsApplianceTypeEnum() {
 		if (ifcCommunicationsApplianceTypeEnumEEnum == null) {
-			ifcCommunicationsApplianceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(924);
+			ifcCommunicationsApplianceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(924);
 		}
 		return ifcCommunicationsApplianceTypeEnumEEnum;
 	}
@@ -39695,7 +40693,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcComplexPropertyTemplateTypeEnum() {
 		if (ifcComplexPropertyTemplateTypeEnumEEnum == null) {
-			ifcComplexPropertyTemplateTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(925);
+			ifcComplexPropertyTemplateTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(925);
 		}
 		return ifcComplexPropertyTemplateTypeEnumEEnum;
 	}
@@ -39707,7 +40706,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCompressorTypeEnum() {
 		if (ifcCompressorTypeEnumEEnum == null) {
-			ifcCompressorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(926);
+			ifcCompressorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(926);
 		}
 		return ifcCompressorTypeEnumEEnum;
 	}
@@ -39719,7 +40719,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCondenserTypeEnum() {
 		if (ifcCondenserTypeEnumEEnum == null) {
-			ifcCondenserTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(927);
+			ifcCondenserTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(927);
 		}
 		return ifcCondenserTypeEnumEEnum;
 	}
@@ -39731,7 +40732,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcConnectionTypeEnum() {
 		if (ifcConnectionTypeEnumEEnum == null) {
-			ifcConnectionTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(928);
+			ifcConnectionTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(928);
 		}
 		return ifcConnectionTypeEnumEEnum;
 	}
@@ -39743,7 +40745,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcConstraintEnum() {
 		if (ifcConstraintEnumEEnum == null) {
-			ifcConstraintEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(929);
+			ifcConstraintEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(929);
 		}
 		return ifcConstraintEnumEEnum;
 	}
@@ -39755,7 +40758,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcConstructionEquipmentResourceTypeEnum() {
 		if (ifcConstructionEquipmentResourceTypeEnumEEnum == null) {
-			ifcConstructionEquipmentResourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(930);
+			ifcConstructionEquipmentResourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(930);
 		}
 		return ifcConstructionEquipmentResourceTypeEnumEEnum;
 	}
@@ -39767,7 +40771,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcConstructionMaterialResourceTypeEnum() {
 		if (ifcConstructionMaterialResourceTypeEnumEEnum == null) {
-			ifcConstructionMaterialResourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(931);
+			ifcConstructionMaterialResourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(931);
 		}
 		return ifcConstructionMaterialResourceTypeEnumEEnum;
 	}
@@ -39779,7 +40784,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcConstructionProductResourceTypeEnum() {
 		if (ifcConstructionProductResourceTypeEnumEEnum == null) {
-			ifcConstructionProductResourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(932);
+			ifcConstructionProductResourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(932);
 		}
 		return ifcConstructionProductResourceTypeEnumEEnum;
 	}
@@ -39791,7 +40797,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcControllerTypeEnum() {
 		if (ifcControllerTypeEnumEEnum == null) {
-			ifcControllerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(933);
+			ifcControllerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(933);
 		}
 		return ifcControllerTypeEnumEEnum;
 	}
@@ -39803,7 +40810,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCooledBeamTypeEnum() {
 		if (ifcCooledBeamTypeEnumEEnum == null) {
-			ifcCooledBeamTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(934);
+			ifcCooledBeamTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(934);
 		}
 		return ifcCooledBeamTypeEnumEEnum;
 	}
@@ -39815,7 +40823,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCoolingTowerTypeEnum() {
 		if (ifcCoolingTowerTypeEnumEEnum == null) {
-			ifcCoolingTowerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(935);
+			ifcCoolingTowerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(935);
 		}
 		return ifcCoolingTowerTypeEnumEEnum;
 	}
@@ -39827,7 +40836,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCostItemTypeEnum() {
 		if (ifcCostItemTypeEnumEEnum == null) {
-			ifcCostItemTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(936);
+			ifcCostItemTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(936);
 		}
 		return ifcCostItemTypeEnumEEnum;
 	}
@@ -39839,7 +40849,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCostScheduleTypeEnum() {
 		if (ifcCostScheduleTypeEnumEEnum == null) {
-			ifcCostScheduleTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(937);
+			ifcCostScheduleTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(937);
 		}
 		return ifcCostScheduleTypeEnumEEnum;
 	}
@@ -39851,7 +40862,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCoveringTypeEnum() {
 		if (ifcCoveringTypeEnumEEnum == null) {
-			ifcCoveringTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(938);
+			ifcCoveringTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(938);
 		}
 		return ifcCoveringTypeEnumEEnum;
 	}
@@ -39863,7 +40875,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCrewResourceTypeEnum() {
 		if (ifcCrewResourceTypeEnumEEnum == null) {
-			ifcCrewResourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(939);
+			ifcCrewResourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(939);
 		}
 		return ifcCrewResourceTypeEnumEEnum;
 	}
@@ -39875,7 +40888,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCurtainWallTypeEnum() {
 		if (ifcCurtainWallTypeEnumEEnum == null) {
-			ifcCurtainWallTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(940);
+			ifcCurtainWallTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(940);
 		}
 		return ifcCurtainWallTypeEnumEEnum;
 	}
@@ -39887,7 +40901,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcCurveInterpolationEnum() {
 		if (ifcCurveInterpolationEnumEEnum == null) {
-			ifcCurveInterpolationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(941);
+			ifcCurveInterpolationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(941);
 		}
 		return ifcCurveInterpolationEnumEEnum;
 	}
@@ -39899,7 +40914,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDamperTypeEnum() {
 		if (ifcDamperTypeEnumEEnum == null) {
-			ifcDamperTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(942);
+			ifcDamperTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(942);
 		}
 		return ifcDamperTypeEnumEEnum;
 	}
@@ -39911,7 +40927,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDataOriginEnum() {
 		if (ifcDataOriginEnumEEnum == null) {
-			ifcDataOriginEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(943);
+			ifcDataOriginEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(943);
 		}
 		return ifcDataOriginEnumEEnum;
 	}
@@ -39923,7 +40940,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDerivedUnitEnum() {
 		if (ifcDerivedUnitEnumEEnum == null) {
-			ifcDerivedUnitEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(944);
+			ifcDerivedUnitEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(944);
 		}
 		return ifcDerivedUnitEnumEEnum;
 	}
@@ -39935,7 +40953,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDirectionSenseEnum() {
 		if (ifcDirectionSenseEnumEEnum == null) {
-			ifcDirectionSenseEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(945);
+			ifcDirectionSenseEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(945);
 		}
 		return ifcDirectionSenseEnumEEnum;
 	}
@@ -39947,7 +40966,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDiscreteAccessoryTypeEnum() {
 		if (ifcDiscreteAccessoryTypeEnumEEnum == null) {
-			ifcDiscreteAccessoryTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(946);
+			ifcDiscreteAccessoryTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(946);
 		}
 		return ifcDiscreteAccessoryTypeEnumEEnum;
 	}
@@ -39959,7 +40979,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDistributionChamberElementTypeEnum() {
 		if (ifcDistributionChamberElementTypeEnumEEnum == null) {
-			ifcDistributionChamberElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(947);
+			ifcDistributionChamberElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(947);
 		}
 		return ifcDistributionChamberElementTypeEnumEEnum;
 	}
@@ -39971,7 +40992,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDistributionPortTypeEnum() {
 		if (ifcDistributionPortTypeEnumEEnum == null) {
-			ifcDistributionPortTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(948);
+			ifcDistributionPortTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(948);
 		}
 		return ifcDistributionPortTypeEnumEEnum;
 	}
@@ -39983,7 +41005,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDistributionSystemEnum() {
 		if (ifcDistributionSystemEnumEEnum == null) {
-			ifcDistributionSystemEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(949);
+			ifcDistributionSystemEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(949);
 		}
 		return ifcDistributionSystemEnumEEnum;
 	}
@@ -39995,7 +41018,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDocumentConfidentialityEnum() {
 		if (ifcDocumentConfidentialityEnumEEnum == null) {
-			ifcDocumentConfidentialityEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(950);
+			ifcDocumentConfidentialityEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(950);
 		}
 		return ifcDocumentConfidentialityEnumEEnum;
 	}
@@ -40007,7 +41031,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDocumentStatusEnum() {
 		if (ifcDocumentStatusEnumEEnum == null) {
-			ifcDocumentStatusEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(951);
+			ifcDocumentStatusEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(951);
 		}
 		return ifcDocumentStatusEnumEEnum;
 	}
@@ -40019,7 +41044,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDoorPanelOperationEnum() {
 		if (ifcDoorPanelOperationEnumEEnum == null) {
-			ifcDoorPanelOperationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(952);
+			ifcDoorPanelOperationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(952);
 		}
 		return ifcDoorPanelOperationEnumEEnum;
 	}
@@ -40031,7 +41057,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDoorPanelPositionEnum() {
 		if (ifcDoorPanelPositionEnumEEnum == null) {
-			ifcDoorPanelPositionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(953);
+			ifcDoorPanelPositionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(953);
 		}
 		return ifcDoorPanelPositionEnumEEnum;
 	}
@@ -40043,7 +41070,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDoorStyleConstructionEnum() {
 		if (ifcDoorStyleConstructionEnumEEnum == null) {
-			ifcDoorStyleConstructionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(954);
+			ifcDoorStyleConstructionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(954);
 		}
 		return ifcDoorStyleConstructionEnumEEnum;
 	}
@@ -40055,7 +41083,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDoorStyleOperationEnum() {
 		if (ifcDoorStyleOperationEnumEEnum == null) {
-			ifcDoorStyleOperationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(955);
+			ifcDoorStyleOperationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(955);
 		}
 		return ifcDoorStyleOperationEnumEEnum;
 	}
@@ -40067,7 +41096,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDoorTypeEnum() {
 		if (ifcDoorTypeEnumEEnum == null) {
-			ifcDoorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(956);
+			ifcDoorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(956);
 		}
 		return ifcDoorTypeEnumEEnum;
 	}
@@ -40079,7 +41109,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDoorTypeOperationEnum() {
 		if (ifcDoorTypeOperationEnumEEnum == null) {
-			ifcDoorTypeOperationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(957);
+			ifcDoorTypeOperationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(957);
 		}
 		return ifcDoorTypeOperationEnumEEnum;
 	}
@@ -40091,7 +41122,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDuctFittingTypeEnum() {
 		if (ifcDuctFittingTypeEnumEEnum == null) {
-			ifcDuctFittingTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(958);
+			ifcDuctFittingTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(958);
 		}
 		return ifcDuctFittingTypeEnumEEnum;
 	}
@@ -40103,7 +41135,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDuctSegmentTypeEnum() {
 		if (ifcDuctSegmentTypeEnumEEnum == null) {
-			ifcDuctSegmentTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(959);
+			ifcDuctSegmentTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(959);
 		}
 		return ifcDuctSegmentTypeEnumEEnum;
 	}
@@ -40115,7 +41148,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcDuctSilencerTypeEnum() {
 		if (ifcDuctSilencerTypeEnumEEnum == null) {
-			ifcDuctSilencerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(960);
+			ifcDuctSilencerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(960);
 		}
 		return ifcDuctSilencerTypeEnumEEnum;
 	}
@@ -40127,7 +41161,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcElectricApplianceTypeEnum() {
 		if (ifcElectricApplianceTypeEnumEEnum == null) {
-			ifcElectricApplianceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(961);
+			ifcElectricApplianceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(961);
 		}
 		return ifcElectricApplianceTypeEnumEEnum;
 	}
@@ -40139,7 +41174,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcElectricDistributionBoardTypeEnum() {
 		if (ifcElectricDistributionBoardTypeEnumEEnum == null) {
-			ifcElectricDistributionBoardTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(962);
+			ifcElectricDistributionBoardTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(962);
 		}
 		return ifcElectricDistributionBoardTypeEnumEEnum;
 	}
@@ -40151,7 +41187,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcElectricFlowStorageDeviceTypeEnum() {
 		if (ifcElectricFlowStorageDeviceTypeEnumEEnum == null) {
-			ifcElectricFlowStorageDeviceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(963);
+			ifcElectricFlowStorageDeviceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(963);
 		}
 		return ifcElectricFlowStorageDeviceTypeEnumEEnum;
 	}
@@ -40163,7 +41200,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcElectricGeneratorTypeEnum() {
 		if (ifcElectricGeneratorTypeEnumEEnum == null) {
-			ifcElectricGeneratorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(964);
+			ifcElectricGeneratorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(964);
 		}
 		return ifcElectricGeneratorTypeEnumEEnum;
 	}
@@ -40175,7 +41213,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcElectricMotorTypeEnum() {
 		if (ifcElectricMotorTypeEnumEEnum == null) {
-			ifcElectricMotorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(965);
+			ifcElectricMotorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(965);
 		}
 		return ifcElectricMotorTypeEnumEEnum;
 	}
@@ -40187,7 +41226,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcElectricTimeControlTypeEnum() {
 		if (ifcElectricTimeControlTypeEnumEEnum == null) {
-			ifcElectricTimeControlTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(966);
+			ifcElectricTimeControlTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(966);
 		}
 		return ifcElectricTimeControlTypeEnumEEnum;
 	}
@@ -40199,7 +41239,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcElementAssemblyTypeEnum() {
 		if (ifcElementAssemblyTypeEnumEEnum == null) {
-			ifcElementAssemblyTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(967);
+			ifcElementAssemblyTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(967);
 		}
 		return ifcElementAssemblyTypeEnumEEnum;
 	}
@@ -40211,7 +41252,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcElementCompositionEnum() {
 		if (ifcElementCompositionEnumEEnum == null) {
-			ifcElementCompositionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(968);
+			ifcElementCompositionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(968);
 		}
 		return ifcElementCompositionEnumEEnum;
 	}
@@ -40223,7 +41265,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcEngineTypeEnum() {
 		if (ifcEngineTypeEnumEEnum == null) {
-			ifcEngineTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(969);
+			ifcEngineTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(969);
 		}
 		return ifcEngineTypeEnumEEnum;
 	}
@@ -40235,7 +41278,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcEvaporativeCoolerTypeEnum() {
 		if (ifcEvaporativeCoolerTypeEnumEEnum == null) {
-			ifcEvaporativeCoolerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(970);
+			ifcEvaporativeCoolerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(970);
 		}
 		return ifcEvaporativeCoolerTypeEnumEEnum;
 	}
@@ -40247,7 +41291,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcEvaporatorTypeEnum() {
 		if (ifcEvaporatorTypeEnumEEnum == null) {
-			ifcEvaporatorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(971);
+			ifcEvaporatorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(971);
 		}
 		return ifcEvaporatorTypeEnumEEnum;
 	}
@@ -40259,7 +41304,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcEventTriggerTypeEnum() {
 		if (ifcEventTriggerTypeEnumEEnum == null) {
-			ifcEventTriggerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(972);
+			ifcEventTriggerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(972);
 		}
 		return ifcEventTriggerTypeEnumEEnum;
 	}
@@ -40271,7 +41317,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcEventTypeEnum() {
 		if (ifcEventTypeEnumEEnum == null) {
-			ifcEventTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(973);
+			ifcEventTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(973);
 		}
 		return ifcEventTypeEnumEEnum;
 	}
@@ -40283,7 +41330,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcExternalSpatialElementTypeEnum() {
 		if (ifcExternalSpatialElementTypeEnumEEnum == null) {
-			ifcExternalSpatialElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(974);
+			ifcExternalSpatialElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(974);
 		}
 		return ifcExternalSpatialElementTypeEnumEEnum;
 	}
@@ -40295,7 +41343,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcFanTypeEnum() {
 		if (ifcFanTypeEnumEEnum == null) {
-			ifcFanTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(975);
+			ifcFanTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(975);
 		}
 		return ifcFanTypeEnumEEnum;
 	}
@@ -40307,7 +41356,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcFastenerTypeEnum() {
 		if (ifcFastenerTypeEnumEEnum == null) {
-			ifcFastenerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(976);
+			ifcFastenerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(976);
 		}
 		return ifcFastenerTypeEnumEEnum;
 	}
@@ -40319,7 +41369,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcFilterTypeEnum() {
 		if (ifcFilterTypeEnumEEnum == null) {
-			ifcFilterTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(977);
+			ifcFilterTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(977);
 		}
 		return ifcFilterTypeEnumEEnum;
 	}
@@ -40331,7 +41382,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcFireSuppressionTerminalTypeEnum() {
 		if (ifcFireSuppressionTerminalTypeEnumEEnum == null) {
-			ifcFireSuppressionTerminalTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(978);
+			ifcFireSuppressionTerminalTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(978);
 		}
 		return ifcFireSuppressionTerminalTypeEnumEEnum;
 	}
@@ -40343,7 +41395,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcFlowDirectionEnum() {
 		if (ifcFlowDirectionEnumEEnum == null) {
-			ifcFlowDirectionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(979);
+			ifcFlowDirectionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(979);
 		}
 		return ifcFlowDirectionEnumEEnum;
 	}
@@ -40355,7 +41408,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcFlowInstrumentTypeEnum() {
 		if (ifcFlowInstrumentTypeEnumEEnum == null) {
-			ifcFlowInstrumentTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(980);
+			ifcFlowInstrumentTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(980);
 		}
 		return ifcFlowInstrumentTypeEnumEEnum;
 	}
@@ -40367,7 +41421,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcFlowMeterTypeEnum() {
 		if (ifcFlowMeterTypeEnumEEnum == null) {
-			ifcFlowMeterTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(981);
+			ifcFlowMeterTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(981);
 		}
 		return ifcFlowMeterTypeEnumEEnum;
 	}
@@ -40379,7 +41434,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcFootingTypeEnum() {
 		if (ifcFootingTypeEnumEEnum == null) {
-			ifcFootingTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(982);
+			ifcFootingTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(982);
 		}
 		return ifcFootingTypeEnumEEnum;
 	}
@@ -40391,7 +41447,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcFurnitureTypeEnum() {
 		if (ifcFurnitureTypeEnumEEnum == null) {
-			ifcFurnitureTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(983);
+			ifcFurnitureTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(983);
 		}
 		return ifcFurnitureTypeEnumEEnum;
 	}
@@ -40403,7 +41460,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcGeographicElementTypeEnum() {
 		if (ifcGeographicElementTypeEnumEEnum == null) {
-			ifcGeographicElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(984);
+			ifcGeographicElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(984);
 		}
 		return ifcGeographicElementTypeEnumEEnum;
 	}
@@ -40415,7 +41473,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcGeometricProjectionEnum() {
 		if (ifcGeometricProjectionEnumEEnum == null) {
-			ifcGeometricProjectionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(985);
+			ifcGeometricProjectionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(985);
 		}
 		return ifcGeometricProjectionEnumEEnum;
 	}
@@ -40427,7 +41486,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcGlobalOrLocalEnum() {
 		if (ifcGlobalOrLocalEnumEEnum == null) {
-			ifcGlobalOrLocalEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(986);
+			ifcGlobalOrLocalEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(986);
 		}
 		return ifcGlobalOrLocalEnumEEnum;
 	}
@@ -40439,7 +41499,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcGridTypeEnum() {
 		if (ifcGridTypeEnumEEnum == null) {
-			ifcGridTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(987);
+			ifcGridTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(987);
 		}
 		return ifcGridTypeEnumEEnum;
 	}
@@ -40451,7 +41512,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcHeatExchangerTypeEnum() {
 		if (ifcHeatExchangerTypeEnumEEnum == null) {
-			ifcHeatExchangerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(988);
+			ifcHeatExchangerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(988);
 		}
 		return ifcHeatExchangerTypeEnumEEnum;
 	}
@@ -40463,7 +41525,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcHumidifierTypeEnum() {
 		if (ifcHumidifierTypeEnumEEnum == null) {
-			ifcHumidifierTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(989);
+			ifcHumidifierTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(989);
 		}
 		return ifcHumidifierTypeEnumEEnum;
 	}
@@ -40475,7 +41538,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcInterceptorTypeEnum() {
 		if (ifcInterceptorTypeEnumEEnum == null) {
-			ifcInterceptorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(990);
+			ifcInterceptorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(990);
 		}
 		return ifcInterceptorTypeEnumEEnum;
 	}
@@ -40487,7 +41551,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcInternalOrExternalEnum() {
 		if (ifcInternalOrExternalEnumEEnum == null) {
-			ifcInternalOrExternalEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(991);
+			ifcInternalOrExternalEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(991);
 		}
 		return ifcInternalOrExternalEnumEEnum;
 	}
@@ -40499,7 +41564,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcInventoryTypeEnum() {
 		if (ifcInventoryTypeEnumEEnum == null) {
-			ifcInventoryTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(992);
+			ifcInventoryTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(992);
 		}
 		return ifcInventoryTypeEnumEEnum;
 	}
@@ -40511,7 +41577,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcJunctionBoxTypeEnum() {
 		if (ifcJunctionBoxTypeEnumEEnum == null) {
-			ifcJunctionBoxTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(993);
+			ifcJunctionBoxTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(993);
 		}
 		return ifcJunctionBoxTypeEnumEEnum;
 	}
@@ -40523,7 +41590,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcKnotType() {
 		if (ifcKnotTypeEEnum == null) {
-			ifcKnotTypeEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(994);
+			ifcKnotTypeEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(994);
 		}
 		return ifcKnotTypeEEnum;
 	}
@@ -40535,7 +41603,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcLaborResourceTypeEnum() {
 		if (ifcLaborResourceTypeEnumEEnum == null) {
-			ifcLaborResourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(995);
+			ifcLaborResourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(995);
 		}
 		return ifcLaborResourceTypeEnumEEnum;
 	}
@@ -40547,7 +41616,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcLampTypeEnum() {
 		if (ifcLampTypeEnumEEnum == null) {
-			ifcLampTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(996);
+			ifcLampTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(996);
 		}
 		return ifcLampTypeEnumEEnum;
 	}
@@ -40559,7 +41629,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcLayerSetDirectionEnum() {
 		if (ifcLayerSetDirectionEnumEEnum == null) {
-			ifcLayerSetDirectionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(997);
+			ifcLayerSetDirectionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(997);
 		}
 		return ifcLayerSetDirectionEnumEEnum;
 	}
@@ -40571,7 +41642,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcLightDistributionCurveEnum() {
 		if (ifcLightDistributionCurveEnumEEnum == null) {
-			ifcLightDistributionCurveEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(998);
+			ifcLightDistributionCurveEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(998);
 		}
 		return ifcLightDistributionCurveEnumEEnum;
 	}
@@ -40583,7 +41655,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcLightEmissionSourceEnum() {
 		if (ifcLightEmissionSourceEnumEEnum == null) {
-			ifcLightEmissionSourceEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(999);
+			ifcLightEmissionSourceEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(999);
 		}
 		return ifcLightEmissionSourceEnumEEnum;
 	}
@@ -40595,7 +41668,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcLightFixtureTypeEnum() {
 		if (ifcLightFixtureTypeEnumEEnum == null) {
-			ifcLightFixtureTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1000);
+			ifcLightFixtureTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1000);
 		}
 		return ifcLightFixtureTypeEnumEEnum;
 	}
@@ -40607,7 +41681,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcLoadGroupTypeEnum() {
 		if (ifcLoadGroupTypeEnumEEnum == null) {
-			ifcLoadGroupTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1001);
+			ifcLoadGroupTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1001);
 		}
 		return ifcLoadGroupTypeEnumEEnum;
 	}
@@ -40619,7 +41694,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcLogicalOperatorEnum() {
 		if (ifcLogicalOperatorEnumEEnum == null) {
-			ifcLogicalOperatorEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1002);
+			ifcLogicalOperatorEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1002);
 		}
 		return ifcLogicalOperatorEnumEEnum;
 	}
@@ -40631,7 +41707,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcMechanicalFastenerTypeEnum() {
 		if (ifcMechanicalFastenerTypeEnumEEnum == null) {
-			ifcMechanicalFastenerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1003);
+			ifcMechanicalFastenerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1003);
 		}
 		return ifcMechanicalFastenerTypeEnumEEnum;
 	}
@@ -40643,7 +41720,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcMedicalDeviceTypeEnum() {
 		if (ifcMedicalDeviceTypeEnumEEnum == null) {
-			ifcMedicalDeviceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1004);
+			ifcMedicalDeviceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1004);
 		}
 		return ifcMedicalDeviceTypeEnumEEnum;
 	}
@@ -40655,7 +41733,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcMemberTypeEnum() {
 		if (ifcMemberTypeEnumEEnum == null) {
-			ifcMemberTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1005);
+			ifcMemberTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1005);
 		}
 		return ifcMemberTypeEnumEEnum;
 	}
@@ -40667,7 +41746,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcMotorConnectionTypeEnum() {
 		if (ifcMotorConnectionTypeEnumEEnum == null) {
-			ifcMotorConnectionTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1006);
+			ifcMotorConnectionTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1006);
 		}
 		return ifcMotorConnectionTypeEnumEEnum;
 	}
@@ -40679,7 +41759,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcNullStyleEnum() {
 		if (ifcNullStyleEnumEEnum == null) {
-			ifcNullStyleEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1007);
+			ifcNullStyleEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1007);
 		}
 		return ifcNullStyleEnumEEnum;
 	}
@@ -40691,7 +41772,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcObjectTypeEnum() {
 		if (ifcObjectTypeEnumEEnum == null) {
-			ifcObjectTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1008);
+			ifcObjectTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1008);
 		}
 		return ifcObjectTypeEnumEEnum;
 	}
@@ -40703,7 +41785,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcObjectiveEnum() {
 		if (ifcObjectiveEnumEEnum == null) {
-			ifcObjectiveEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1009);
+			ifcObjectiveEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1009);
 		}
 		return ifcObjectiveEnumEEnum;
 	}
@@ -40715,7 +41798,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcOccupantTypeEnum() {
 		if (ifcOccupantTypeEnumEEnum == null) {
-			ifcOccupantTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1010);
+			ifcOccupantTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1010);
 		}
 		return ifcOccupantTypeEnumEEnum;
 	}
@@ -40727,7 +41811,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcOpeningElementTypeEnum() {
 		if (ifcOpeningElementTypeEnumEEnum == null) {
-			ifcOpeningElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1011);
+			ifcOpeningElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1011);
 		}
 		return ifcOpeningElementTypeEnumEEnum;
 	}
@@ -40739,7 +41824,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcOutletTypeEnum() {
 		if (ifcOutletTypeEnumEEnum == null) {
-			ifcOutletTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1012);
+			ifcOutletTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1012);
 		}
 		return ifcOutletTypeEnumEEnum;
 	}
@@ -40751,7 +41837,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcPerformanceHistoryTypeEnum() {
 		if (ifcPerformanceHistoryTypeEnumEEnum == null) {
-			ifcPerformanceHistoryTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1013);
+			ifcPerformanceHistoryTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1013);
 		}
 		return ifcPerformanceHistoryTypeEnumEEnum;
 	}
@@ -40763,7 +41850,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcPermeableCoveringOperationEnum() {
 		if (ifcPermeableCoveringOperationEnumEEnum == null) {
-			ifcPermeableCoveringOperationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1014);
+			ifcPermeableCoveringOperationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1014);
 		}
 		return ifcPermeableCoveringOperationEnumEEnum;
 	}
@@ -40775,7 +41863,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcPermitTypeEnum() {
 		if (ifcPermitTypeEnumEEnum == null) {
-			ifcPermitTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1015);
+			ifcPermitTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1015);
 		}
 		return ifcPermitTypeEnumEEnum;
 	}
@@ -40787,7 +41876,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcPhysicalOrVirtualEnum() {
 		if (ifcPhysicalOrVirtualEnumEEnum == null) {
-			ifcPhysicalOrVirtualEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1016);
+			ifcPhysicalOrVirtualEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1016);
 		}
 		return ifcPhysicalOrVirtualEnumEEnum;
 	}
@@ -40799,7 +41889,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcPileConstructionEnum() {
 		if (ifcPileConstructionEnumEEnum == null) {
-			ifcPileConstructionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1017);
+			ifcPileConstructionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1017);
 		}
 		return ifcPileConstructionEnumEEnum;
 	}
@@ -40811,7 +41902,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcPileTypeEnum() {
 		if (ifcPileTypeEnumEEnum == null) {
-			ifcPileTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1018);
+			ifcPileTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1018);
 		}
 		return ifcPileTypeEnumEEnum;
 	}
@@ -40823,7 +41915,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcPipeFittingTypeEnum() {
 		if (ifcPipeFittingTypeEnumEEnum == null) {
-			ifcPipeFittingTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1019);
+			ifcPipeFittingTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1019);
 		}
 		return ifcPipeFittingTypeEnumEEnum;
 	}
@@ -40835,7 +41928,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcPipeSegmentTypeEnum() {
 		if (ifcPipeSegmentTypeEnumEEnum == null) {
-			ifcPipeSegmentTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1020);
+			ifcPipeSegmentTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1020);
 		}
 		return ifcPipeSegmentTypeEnumEEnum;
 	}
@@ -40847,7 +41941,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcPlateTypeEnum() {
 		if (ifcPlateTypeEnumEEnum == null) {
-			ifcPlateTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1021);
+			ifcPlateTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1021);
 		}
 		return ifcPlateTypeEnumEEnum;
 	}
@@ -40859,7 +41954,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcProcedureTypeEnum() {
 		if (ifcProcedureTypeEnumEEnum == null) {
-			ifcProcedureTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1022);
+			ifcProcedureTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1022);
 		}
 		return ifcProcedureTypeEnumEEnum;
 	}
@@ -40871,7 +41967,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcProfileTypeEnum() {
 		if (ifcProfileTypeEnumEEnum == null) {
-			ifcProfileTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1023);
+			ifcProfileTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1023);
 		}
 		return ifcProfileTypeEnumEEnum;
 	}
@@ -40883,7 +41980,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcProjectOrderTypeEnum() {
 		if (ifcProjectOrderTypeEnumEEnum == null) {
-			ifcProjectOrderTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1024);
+			ifcProjectOrderTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1024);
 		}
 		return ifcProjectOrderTypeEnumEEnum;
 	}
@@ -40895,7 +41993,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcProjectedOrTrueLengthEnum() {
 		if (ifcProjectedOrTrueLengthEnumEEnum == null) {
-			ifcProjectedOrTrueLengthEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1025);
+			ifcProjectedOrTrueLengthEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1025);
 		}
 		return ifcProjectedOrTrueLengthEnumEEnum;
 	}
@@ -40907,7 +42006,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcProjectionElementTypeEnum() {
 		if (ifcProjectionElementTypeEnumEEnum == null) {
-			ifcProjectionElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1026);
+			ifcProjectionElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1026);
 		}
 		return ifcProjectionElementTypeEnumEEnum;
 	}
@@ -40919,7 +42019,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcPropertySetTemplateTypeEnum() {
 		if (ifcPropertySetTemplateTypeEnumEEnum == null) {
-			ifcPropertySetTemplateTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1027);
+			ifcPropertySetTemplateTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1027);
 		}
 		return ifcPropertySetTemplateTypeEnumEEnum;
 	}
@@ -40931,7 +42032,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcProtectiveDeviceTrippingUnitTypeEnum() {
 		if (ifcProtectiveDeviceTrippingUnitTypeEnumEEnum == null) {
-			ifcProtectiveDeviceTrippingUnitTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1028);
+			ifcProtectiveDeviceTrippingUnitTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1028);
 		}
 		return ifcProtectiveDeviceTrippingUnitTypeEnumEEnum;
 	}
@@ -40943,7 +42045,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcProtectiveDeviceTypeEnum() {
 		if (ifcProtectiveDeviceTypeEnumEEnum == null) {
-			ifcProtectiveDeviceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1029);
+			ifcProtectiveDeviceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1029);
 		}
 		return ifcProtectiveDeviceTypeEnumEEnum;
 	}
@@ -40955,7 +42058,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcPumpTypeEnum() {
 		if (ifcPumpTypeEnumEEnum == null) {
-			ifcPumpTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1030);
+			ifcPumpTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1030);
 		}
 		return ifcPumpTypeEnumEEnum;
 	}
@@ -40967,7 +42071,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcRailingTypeEnum() {
 		if (ifcRailingTypeEnumEEnum == null) {
-			ifcRailingTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1031);
+			ifcRailingTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1031);
 		}
 		return ifcRailingTypeEnumEEnum;
 	}
@@ -40979,7 +42084,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcRampFlightTypeEnum() {
 		if (ifcRampFlightTypeEnumEEnum == null) {
-			ifcRampFlightTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1032);
+			ifcRampFlightTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1032);
 		}
 		return ifcRampFlightTypeEnumEEnum;
 	}
@@ -40991,7 +42097,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcRampTypeEnum() {
 		if (ifcRampTypeEnumEEnum == null) {
-			ifcRampTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1033);
+			ifcRampTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1033);
 		}
 		return ifcRampTypeEnumEEnum;
 	}
@@ -41003,7 +42110,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcRecurrenceTypeEnum() {
 		if (ifcRecurrenceTypeEnumEEnum == null) {
-			ifcRecurrenceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1034);
+			ifcRecurrenceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1034);
 		}
 		return ifcRecurrenceTypeEnumEEnum;
 	}
@@ -41015,7 +42123,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcReflectanceMethodEnum() {
 		if (ifcReflectanceMethodEnumEEnum == null) {
-			ifcReflectanceMethodEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1035);
+			ifcReflectanceMethodEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1035);
 		}
 		return ifcReflectanceMethodEnumEEnum;
 	}
@@ -41027,7 +42136,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcReinforcingBarRoleEnum() {
 		if (ifcReinforcingBarRoleEnumEEnum == null) {
-			ifcReinforcingBarRoleEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1036);
+			ifcReinforcingBarRoleEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1036);
 		}
 		return ifcReinforcingBarRoleEnumEEnum;
 	}
@@ -41039,7 +42149,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcReinforcingBarSurfaceEnum() {
 		if (ifcReinforcingBarSurfaceEnumEEnum == null) {
-			ifcReinforcingBarSurfaceEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1037);
+			ifcReinforcingBarSurfaceEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1037);
 		}
 		return ifcReinforcingBarSurfaceEnumEEnum;
 	}
@@ -41051,7 +42162,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcReinforcingBarTypeEnum() {
 		if (ifcReinforcingBarTypeEnumEEnum == null) {
-			ifcReinforcingBarTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1038);
+			ifcReinforcingBarTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1038);
 		}
 		return ifcReinforcingBarTypeEnumEEnum;
 	}
@@ -41063,7 +42175,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcReinforcingMeshTypeEnum() {
 		if (ifcReinforcingMeshTypeEnumEEnum == null) {
-			ifcReinforcingMeshTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1039);
+			ifcReinforcingMeshTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1039);
 		}
 		return ifcReinforcingMeshTypeEnumEEnum;
 	}
@@ -41075,7 +42188,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcRoleEnum() {
 		if (ifcRoleEnumEEnum == null) {
-			ifcRoleEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1040);
+			ifcRoleEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1040);
 		}
 		return ifcRoleEnumEEnum;
 	}
@@ -41087,7 +42201,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcRoofTypeEnum() {
 		if (ifcRoofTypeEnumEEnum == null) {
-			ifcRoofTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1041);
+			ifcRoofTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1041);
 		}
 		return ifcRoofTypeEnumEEnum;
 	}
@@ -41099,7 +42214,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSIPrefix() {
 		if (ifcSIPrefixEEnum == null) {
-			ifcSIPrefixEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1042);
+			ifcSIPrefixEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1042);
 		}
 		return ifcSIPrefixEEnum;
 	}
@@ -41111,7 +42227,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSIUnitName() {
 		if (ifcSIUnitNameEEnum == null) {
-			ifcSIUnitNameEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1043);
+			ifcSIUnitNameEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1043);
 		}
 		return ifcSIUnitNameEEnum;
 	}
@@ -41123,7 +42240,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSanitaryTerminalTypeEnum() {
 		if (ifcSanitaryTerminalTypeEnumEEnum == null) {
-			ifcSanitaryTerminalTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1044);
+			ifcSanitaryTerminalTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1044);
 		}
 		return ifcSanitaryTerminalTypeEnumEEnum;
 	}
@@ -41135,7 +42253,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSectionTypeEnum() {
 		if (ifcSectionTypeEnumEEnum == null) {
-			ifcSectionTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1045);
+			ifcSectionTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1045);
 		}
 		return ifcSectionTypeEnumEEnum;
 	}
@@ -41147,7 +42266,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSensorTypeEnum() {
 		if (ifcSensorTypeEnumEEnum == null) {
-			ifcSensorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1046);
+			ifcSensorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1046);
 		}
 		return ifcSensorTypeEnumEEnum;
 	}
@@ -41159,7 +42279,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSequenceEnum() {
 		if (ifcSequenceEnumEEnum == null) {
-			ifcSequenceEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1047);
+			ifcSequenceEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1047);
 		}
 		return ifcSequenceEnumEEnum;
 	}
@@ -41171,7 +42292,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcShadingDeviceTypeEnum() {
 		if (ifcShadingDeviceTypeEnumEEnum == null) {
-			ifcShadingDeviceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1048);
+			ifcShadingDeviceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1048);
 		}
 		return ifcShadingDeviceTypeEnumEEnum;
 	}
@@ -41183,7 +42305,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSimplePropertyTemplateTypeEnum() {
 		if (ifcSimplePropertyTemplateTypeEnumEEnum == null) {
-			ifcSimplePropertyTemplateTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1049);
+			ifcSimplePropertyTemplateTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1049);
 		}
 		return ifcSimplePropertyTemplateTypeEnumEEnum;
 	}
@@ -41195,7 +42318,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSlabTypeEnum() {
 		if (ifcSlabTypeEnumEEnum == null) {
-			ifcSlabTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1050);
+			ifcSlabTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1050);
 		}
 		return ifcSlabTypeEnumEEnum;
 	}
@@ -41207,7 +42331,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSolarDeviceTypeEnum() {
 		if (ifcSolarDeviceTypeEnumEEnum == null) {
-			ifcSolarDeviceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1051);
+			ifcSolarDeviceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1051);
 		}
 		return ifcSolarDeviceTypeEnumEEnum;
 	}
@@ -41219,7 +42344,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSpaceHeaterTypeEnum() {
 		if (ifcSpaceHeaterTypeEnumEEnum == null) {
-			ifcSpaceHeaterTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1052);
+			ifcSpaceHeaterTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1052);
 		}
 		return ifcSpaceHeaterTypeEnumEEnum;
 	}
@@ -41231,7 +42357,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSpaceTypeEnum() {
 		if (ifcSpaceTypeEnumEEnum == null) {
-			ifcSpaceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1053);
+			ifcSpaceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1053);
 		}
 		return ifcSpaceTypeEnumEEnum;
 	}
@@ -41243,7 +42370,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSpatialZoneTypeEnum() {
 		if (ifcSpatialZoneTypeEnumEEnum == null) {
-			ifcSpatialZoneTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1054);
+			ifcSpatialZoneTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1054);
 		}
 		return ifcSpatialZoneTypeEnumEEnum;
 	}
@@ -41255,7 +42383,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcStackTerminalTypeEnum() {
 		if (ifcStackTerminalTypeEnumEEnum == null) {
-			ifcStackTerminalTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1055);
+			ifcStackTerminalTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1055);
 		}
 		return ifcStackTerminalTypeEnumEEnum;
 	}
@@ -41267,7 +42396,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcStairFlightTypeEnum() {
 		if (ifcStairFlightTypeEnumEEnum == null) {
-			ifcStairFlightTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1056);
+			ifcStairFlightTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1056);
 		}
 		return ifcStairFlightTypeEnumEEnum;
 	}
@@ -41279,7 +42409,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcStairTypeEnum() {
 		if (ifcStairTypeEnumEEnum == null) {
-			ifcStairTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1057);
+			ifcStairTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1057);
 		}
 		return ifcStairTypeEnumEEnum;
 	}
@@ -41291,7 +42422,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcStateEnum() {
 		if (ifcStateEnumEEnum == null) {
-			ifcStateEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1058);
+			ifcStateEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1058);
 		}
 		return ifcStateEnumEEnum;
 	}
@@ -41303,7 +42435,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcStructuralCurveActivityTypeEnum() {
 		if (ifcStructuralCurveActivityTypeEnumEEnum == null) {
-			ifcStructuralCurveActivityTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1059);
+			ifcStructuralCurveActivityTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1059);
 		}
 		return ifcStructuralCurveActivityTypeEnumEEnum;
 	}
@@ -41315,7 +42448,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcStructuralCurveMemberTypeEnum() {
 		if (ifcStructuralCurveMemberTypeEnumEEnum == null) {
-			ifcStructuralCurveMemberTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1060);
+			ifcStructuralCurveMemberTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1060);
 		}
 		return ifcStructuralCurveMemberTypeEnumEEnum;
 	}
@@ -41327,7 +42461,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcStructuralSurfaceActivityTypeEnum() {
 		if (ifcStructuralSurfaceActivityTypeEnumEEnum == null) {
-			ifcStructuralSurfaceActivityTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1061);
+			ifcStructuralSurfaceActivityTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1061);
 		}
 		return ifcStructuralSurfaceActivityTypeEnumEEnum;
 	}
@@ -41339,7 +42474,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcStructuralSurfaceMemberTypeEnum() {
 		if (ifcStructuralSurfaceMemberTypeEnumEEnum == null) {
-			ifcStructuralSurfaceMemberTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1062);
+			ifcStructuralSurfaceMemberTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1062);
 		}
 		return ifcStructuralSurfaceMemberTypeEnumEEnum;
 	}
@@ -41351,7 +42487,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSubContractResourceTypeEnum() {
 		if (ifcSubContractResourceTypeEnumEEnum == null) {
-			ifcSubContractResourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1063);
+			ifcSubContractResourceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1063);
 		}
 		return ifcSubContractResourceTypeEnumEEnum;
 	}
@@ -41363,7 +42500,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSurfaceFeatureTypeEnum() {
 		if (ifcSurfaceFeatureTypeEnumEEnum == null) {
-			ifcSurfaceFeatureTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1064);
+			ifcSurfaceFeatureTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1064);
 		}
 		return ifcSurfaceFeatureTypeEnumEEnum;
 	}
@@ -41375,7 +42513,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSurfaceSide() {
 		if (ifcSurfaceSideEEnum == null) {
-			ifcSurfaceSideEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1065);
+			ifcSurfaceSideEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1065);
 		}
 		return ifcSurfaceSideEEnum;
 	}
@@ -41387,7 +42526,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSwitchingDeviceTypeEnum() {
 		if (ifcSwitchingDeviceTypeEnumEEnum == null) {
-			ifcSwitchingDeviceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1066);
+			ifcSwitchingDeviceTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1066);
 		}
 		return ifcSwitchingDeviceTypeEnumEEnum;
 	}
@@ -41399,7 +42539,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcSystemFurnitureElementTypeEnum() {
 		if (ifcSystemFurnitureElementTypeEnumEEnum == null) {
-			ifcSystemFurnitureElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1067);
+			ifcSystemFurnitureElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1067);
 		}
 		return ifcSystemFurnitureElementTypeEnumEEnum;
 	}
@@ -41411,7 +42552,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcTankTypeEnum() {
 		if (ifcTankTypeEnumEEnum == null) {
-			ifcTankTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1068);
+			ifcTankTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1068);
 		}
 		return ifcTankTypeEnumEEnum;
 	}
@@ -41423,7 +42565,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcTaskDurationEnum() {
 		if (ifcTaskDurationEnumEEnum == null) {
-			ifcTaskDurationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1069);
+			ifcTaskDurationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1069);
 		}
 		return ifcTaskDurationEnumEEnum;
 	}
@@ -41435,7 +42578,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcTaskTypeEnum() {
 		if (ifcTaskTypeEnumEEnum == null) {
-			ifcTaskTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1070);
+			ifcTaskTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1070);
 		}
 		return ifcTaskTypeEnumEEnum;
 	}
@@ -41447,7 +42591,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcTendonAnchorTypeEnum() {
 		if (ifcTendonAnchorTypeEnumEEnum == null) {
-			ifcTendonAnchorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1071);
+			ifcTendonAnchorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1071);
 		}
 		return ifcTendonAnchorTypeEnumEEnum;
 	}
@@ -41459,7 +42604,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcTendonTypeEnum() {
 		if (ifcTendonTypeEnumEEnum == null) {
-			ifcTendonTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1072);
+			ifcTendonTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1072);
 		}
 		return ifcTendonTypeEnumEEnum;
 	}
@@ -41471,7 +42617,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcTextPath() {
 		if (ifcTextPathEEnum == null) {
-			ifcTextPathEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1073);
+			ifcTextPathEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1073);
 		}
 		return ifcTextPathEEnum;
 	}
@@ -41483,7 +42630,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcTimeSeriesDataTypeEnum() {
 		if (ifcTimeSeriesDataTypeEnumEEnum == null) {
-			ifcTimeSeriesDataTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1074);
+			ifcTimeSeriesDataTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1074);
 		}
 		return ifcTimeSeriesDataTypeEnumEEnum;
 	}
@@ -41495,7 +42643,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcTransformerTypeEnum() {
 		if (ifcTransformerTypeEnumEEnum == null) {
-			ifcTransformerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1075);
+			ifcTransformerTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1075);
 		}
 		return ifcTransformerTypeEnumEEnum;
 	}
@@ -41507,7 +42656,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcTransitionCode() {
 		if (ifcTransitionCodeEEnum == null) {
-			ifcTransitionCodeEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1076);
+			ifcTransitionCodeEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1076);
 		}
 		return ifcTransitionCodeEEnum;
 	}
@@ -41519,7 +42669,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcTransportElementTypeEnum() {
 		if (ifcTransportElementTypeEnumEEnum == null) {
-			ifcTransportElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1077);
+			ifcTransportElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1077);
 		}
 		return ifcTransportElementTypeEnumEEnum;
 	}
@@ -41531,7 +42682,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcTrimmingPreference() {
 		if (ifcTrimmingPreferenceEEnum == null) {
-			ifcTrimmingPreferenceEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1078);
+			ifcTrimmingPreferenceEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1078);
 		}
 		return ifcTrimmingPreferenceEEnum;
 	}
@@ -41543,7 +42695,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcTubeBundleTypeEnum() {
 		if (ifcTubeBundleTypeEnumEEnum == null) {
-			ifcTubeBundleTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1079);
+			ifcTubeBundleTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1079);
 		}
 		return ifcTubeBundleTypeEnumEEnum;
 	}
@@ -41555,7 +42708,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcUnitEnum() {
 		if (ifcUnitEnumEEnum == null) {
-			ifcUnitEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1080);
+			ifcUnitEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1080);
 		}
 		return ifcUnitEnumEEnum;
 	}
@@ -41567,7 +42721,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcUnitaryControlElementTypeEnum() {
 		if (ifcUnitaryControlElementTypeEnumEEnum == null) {
-			ifcUnitaryControlElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1081);
+			ifcUnitaryControlElementTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1081);
 		}
 		return ifcUnitaryControlElementTypeEnumEEnum;
 	}
@@ -41579,7 +42734,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcUnitaryEquipmentTypeEnum() {
 		if (ifcUnitaryEquipmentTypeEnumEEnum == null) {
-			ifcUnitaryEquipmentTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1082);
+			ifcUnitaryEquipmentTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1082);
 		}
 		return ifcUnitaryEquipmentTypeEnumEEnum;
 	}
@@ -41591,7 +42747,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcValveTypeEnum() {
 		if (ifcValveTypeEnumEEnum == null) {
-			ifcValveTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1083);
+			ifcValveTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1083);
 		}
 		return ifcValveTypeEnumEEnum;
 	}
@@ -41603,7 +42760,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcVibrationIsolatorTypeEnum() {
 		if (ifcVibrationIsolatorTypeEnumEEnum == null) {
-			ifcVibrationIsolatorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1084);
+			ifcVibrationIsolatorTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1084);
 		}
 		return ifcVibrationIsolatorTypeEnumEEnum;
 	}
@@ -41615,7 +42773,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcVoidingFeatureTypeEnum() {
 		if (ifcVoidingFeatureTypeEnumEEnum == null) {
-			ifcVoidingFeatureTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1085);
+			ifcVoidingFeatureTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1085);
 		}
 		return ifcVoidingFeatureTypeEnumEEnum;
 	}
@@ -41627,7 +42786,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcWallTypeEnum() {
 		if (ifcWallTypeEnumEEnum == null) {
-			ifcWallTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1086);
+			ifcWallTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()
+					.get(1086);
 		}
 		return ifcWallTypeEnumEEnum;
 	}
@@ -41639,7 +42799,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcWasteTerminalTypeEnum() {
 		if (ifcWasteTerminalTypeEnumEEnum == null) {
-			ifcWasteTerminalTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1087);
+			ifcWasteTerminalTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1087);
 		}
 		return ifcWasteTerminalTypeEnumEEnum;
 	}
@@ -41651,7 +42812,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcWindowPanelOperationEnum() {
 		if (ifcWindowPanelOperationEnumEEnum == null) {
-			ifcWindowPanelOperationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1088);
+			ifcWindowPanelOperationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1088);
 		}
 		return ifcWindowPanelOperationEnumEEnum;
 	}
@@ -41663,7 +42825,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcWindowPanelPositionEnum() {
 		if (ifcWindowPanelPositionEnumEEnum == null) {
-			ifcWindowPanelPositionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1089);
+			ifcWindowPanelPositionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1089);
 		}
 		return ifcWindowPanelPositionEnumEEnum;
 	}
@@ -41675,7 +42838,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcWindowStyleConstructionEnum() {
 		if (ifcWindowStyleConstructionEnumEEnum == null) {
-			ifcWindowStyleConstructionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1090);
+			ifcWindowStyleConstructionEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1090);
 		}
 		return ifcWindowStyleConstructionEnumEEnum;
 	}
@@ -41687,7 +42851,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcWindowStyleOperationEnum() {
 		if (ifcWindowStyleOperationEnumEEnum == null) {
-			ifcWindowStyleOperationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1091);
+			ifcWindowStyleOperationEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1091);
 		}
 		return ifcWindowStyleOperationEnumEEnum;
 	}
@@ -41699,7 +42864,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcWindowTypeEnum() {
 		if (ifcWindowTypeEnumEEnum == null) {
-			ifcWindowTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1092);
+			ifcWindowTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1092);
 		}
 		return ifcWindowTypeEnumEEnum;
 	}
@@ -41711,7 +42877,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcWindowTypePartitioningEnum() {
 		if (ifcWindowTypePartitioningEnumEEnum == null) {
-			ifcWindowTypePartitioningEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1093);
+			ifcWindowTypePartitioningEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1093);
 		}
 		return ifcWindowTypePartitioningEnumEEnum;
 	}
@@ -41723,7 +42890,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcWorkCalendarTypeEnum() {
 		if (ifcWorkCalendarTypeEnumEEnum == null) {
-			ifcWorkCalendarTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1094);
+			ifcWorkCalendarTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1094);
 		}
 		return ifcWorkCalendarTypeEnumEEnum;
 	}
@@ -41735,7 +42903,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcWorkPlanTypeEnum() {
 		if (ifcWorkPlanTypeEnumEEnum == null) {
-			ifcWorkPlanTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1095);
+			ifcWorkPlanTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1095);
 		}
 		return ifcWorkPlanTypeEnumEEnum;
 	}
@@ -41747,7 +42916,8 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 */
 	public EEnum getIfcWorkScheduleTypeEnum() {
 		if (ifcWorkScheduleTypeEnumEEnum == null) {
-			ifcWorkScheduleTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers().get(1096);
+			ifcWorkScheduleTypeEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI)
+					.getEClassifiers().get(1096);
 		}
 		return ifcWorkScheduleTypeEnumEEnum;
 	}

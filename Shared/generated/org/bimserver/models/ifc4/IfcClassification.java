@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcClassification#getSource <em>Source</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcClassification#getEdition <em>Edition</em>}</li>
@@ -36,13 +37,13 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcClassification#getClassificationForObjects <em>Classification For Objects</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcClassification#getHasReferences <em>Has References</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcClassification()
  * @model
  * @generated
  */
-public interface IfcClassification extends IfcExternalInformation, IfcClassificationReferenceSelect, IfcClassificationSelect {
+public interface IfcClassification
+		extends IfcExternalInformation, IfcClassificationReferenceSelect, IfcClassificationSelect {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' attribute.
 	 * <!-- begin-user-doc -->

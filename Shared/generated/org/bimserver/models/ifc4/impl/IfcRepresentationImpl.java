@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRepresentationImpl#getContextOfItems <em>Context Of Items</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRepresentationImpl#getRepresentationIdentifier <em>Representation Identifier</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRepresentationImpl#getLayerAssignments <em>Layer Assignments</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRepresentationImpl#getOfProductRepresentation <em>Of Product Representation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -211,7 +211,8 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationLayerAssignment> getLayerAssignments() {
-		return (EList<IfcPresentationLayerAssignment>) eGet(Ifc4Package.Literals.IFC_REPRESENTATION__LAYER_ASSIGNMENTS, true);
+		return (EList<IfcPresentationLayerAssignment>) eGet(Ifc4Package.Literals.IFC_REPRESENTATION__LAYER_ASSIGNMENTS,
+				true);
 	}
 
 	/**
@@ -239,7 +240,8 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProductRepresentation> getOfProductRepresentation() {
-		return (EList<IfcProductRepresentation>) eGet(Ifc4Package.Literals.IFC_REPRESENTATION__OF_PRODUCT_REPRESENTATION, true);
+		return (EList<IfcProductRepresentation>) eGet(
+				Ifc4Package.Literals.IFC_REPRESENTATION__OF_PRODUCT_REPRESENTATION, true);
 	}
 
 	/**

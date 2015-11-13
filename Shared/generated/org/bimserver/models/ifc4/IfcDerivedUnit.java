@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcDerivedUnit#getElements <em>Elements</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDerivedUnit#getUnitType <em>Unit Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDerivedUnit#getUserDefinedType <em>User Defined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDerivedUnit()
  * @model

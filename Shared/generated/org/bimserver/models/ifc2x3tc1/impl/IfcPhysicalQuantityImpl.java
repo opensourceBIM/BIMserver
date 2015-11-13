@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPhysicalQuantityImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPhysicalQuantityImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPhysicalQuantityImpl#getPartOfComplex <em>Part Of Complex</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -129,7 +129,8 @@ public class IfcPhysicalQuantityImpl extends IdEObjectImpl implements IfcPhysica
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPhysicalComplexQuantity> getPartOfComplex() {
-		return (EList<IfcPhysicalComplexQuantity>) eGet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_QUANTITY__PART_OF_COMPLEX, true);
+		return (EList<IfcPhysicalComplexQuantity>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PHYSICAL_QUANTITY__PART_OF_COMPLEX, true);
 	}
 
 	/**

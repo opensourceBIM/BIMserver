@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGrid#getUAxes <em>UAxes</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGrid#getVAxes <em>VAxes</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGrid#getWAxes <em>WAxes</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGrid#getContainedInStructure <em>Contained In Structure</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcGrid()
  * @model

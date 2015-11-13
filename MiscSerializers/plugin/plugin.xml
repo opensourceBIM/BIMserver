@@ -20,4 +20,9 @@
 		<implementationClass>org.bimserver.serializers.binarygeometry.BinaryGeometryMessagingSerializerPlugin</implementationClass>
 		<enabled>true</enabled>
 	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.MessagingStreamingSerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.serializers.binarygeometry.BinaryGeometryMessagingStreamingSerializerPlugin</implementationClass>
+		<enabled>true</enabled>
+	</PluginImplementation>
 </PluginDescriptor>

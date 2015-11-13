@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcWindow#getOverallHeight <em>Overall Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcWindow#getOverallHeightAsString <em>Overall Height As String</em>}</li>
@@ -32,7 +33,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcWindow#getPartitioningType <em>Partitioning Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcWindow#getUserDefinedPartitioningType <em>User Defined Partitioning Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcWindow()
  * @model

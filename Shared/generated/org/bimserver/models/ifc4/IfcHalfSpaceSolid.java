@@ -23,12 +23,12 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcHalfSpaceSolid#getBaseSurface <em>Base Surface</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcHalfSpaceSolid#getAgreementFlag <em>Agreement Flag</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcHalfSpaceSolid#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcHalfSpaceSolid()
  * @model

@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcWorkControl#getCreationDate <em>Creation Date</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcWorkControl#getCreators <em>Creators</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcWorkControl#getStartTime <em>Start Time</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcWorkControl#getFinishTime <em>Finish Time</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcWorkControl()
  * @model

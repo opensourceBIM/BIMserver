@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcOrganizationImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcOrganizationImpl#getName <em>Name</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcOrganizationImpl#getRelates <em>Relates</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcOrganizationImpl#getEngages <em>Engages</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -229,7 +229,8 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements IfcOrganizatio
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganizationRelationship> getIsRelatedBy() {
-		return (EList<IfcOrganizationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION__IS_RELATED_BY, true);
+		return (EList<IfcOrganizationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION__IS_RELATED_BY,
+				true);
 	}
 
 	/**

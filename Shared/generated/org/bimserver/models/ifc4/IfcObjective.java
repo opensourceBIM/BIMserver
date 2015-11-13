@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcObjective#getBenchmarkValues <em>Benchmark Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcObjective#getLogicalAggregator <em>Logical Aggregator</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcObjective#getObjectiveQualifier <em>Objective Qualifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcObjective#getUserDefinedQualifier <em>User Defined Qualifier</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcObjective()
  * @model

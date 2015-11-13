@@ -238,8 +238,8 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcControllerTypeEnum[] VALUES_ARRAY = new IfcControllerTypeEnum[] { NULL, MULTIPOSITION, TWOPOSITION, PROGRAMMABLE, NOTDEFINED, FLOATING, PROPORTIONAL,
-			USERDEFINED, };
+	private static final IfcControllerTypeEnum[] VALUES_ARRAY = new IfcControllerTypeEnum[] { NULL, MULTIPOSITION,
+			TWOPOSITION, PROGRAMMABLE, NOTDEFINED, FLOATING, PROPORTIONAL, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Controller Type Enum</b></em>' enumerators.
@@ -253,6 +253,8 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Controller Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcControllerTypeEnum get(String literal) {
@@ -269,6 +271,8 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Controller Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcControllerTypeEnum getByName(String name) {
@@ -285,6 +289,8 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Controller Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcControllerTypeEnum get(int value) {

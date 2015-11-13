@@ -25,11 +25,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelNests#getRelatingObject <em>Relating Object</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelNests#getRelatedObjects <em>Related Objects</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelNests()
  * @model

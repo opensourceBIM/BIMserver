@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcResourceTime#getScheduleWork <em>Schedule Work</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcResourceTime#getScheduleUsage <em>Schedule Usage</em>}</li>
@@ -44,7 +45,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcResourceTime#getCompletion <em>Completion</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcResourceTime#getCompletionAsString <em>Completion As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcResourceTime()
  * @model

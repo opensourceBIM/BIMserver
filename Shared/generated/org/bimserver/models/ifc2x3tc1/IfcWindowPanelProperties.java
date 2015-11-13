@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcWindowPanelProperties#getOperationType <em>Operation Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcWindowPanelProperties#getPanelPosition <em>Panel Position</em>}</li>
@@ -32,7 +33,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcWindowPanelProperties#getFrameThicknessAsString <em>Frame Thickness As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcWindowPanelProperties#getShapeAspectStyle <em>Shape Aspect Style</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcWindowPanelProperties()
  * @model

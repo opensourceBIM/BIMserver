@@ -338,8 +338,9 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWindowStyleOperationEnum[] VALUES_ARRAY = new IfcWindowStyleOperationEnum[] { NULL, TRIPLE_PANEL_RIGHT, TRIPLE_PANEL_VERTICAL,
-			TRIPLE_PANEL_LEFT, NOTDEFINED, TRIPLE_PANEL_BOTTOM, TRIPLE_PANEL_HORIZONTAL, TRIPLE_PANEL_TOP, DOUBLE_PANEL_VERTICAL, SINGLE_PANEL, USERDEFINED,
+	private static final IfcWindowStyleOperationEnum[] VALUES_ARRAY = new IfcWindowStyleOperationEnum[] { NULL,
+			TRIPLE_PANEL_RIGHT, TRIPLE_PANEL_VERTICAL, TRIPLE_PANEL_LEFT, NOTDEFINED, TRIPLE_PANEL_BOTTOM,
+			TRIPLE_PANEL_HORIZONTAL, TRIPLE_PANEL_TOP, DOUBLE_PANEL_VERTICAL, SINGLE_PANEL, USERDEFINED,
 			DOUBLE_PANEL_HORIZONTAL, };
 
 	/**
@@ -348,12 +349,15 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWindowStyleOperationEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWindowStyleOperationEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Window Style Operation Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcWindowStyleOperationEnum get(String literal) {
@@ -370,6 +374,8 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Window Style Operation Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcWindowStyleOperationEnum getByName(String name) {
@@ -386,6 +392,8 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Window Style Operation Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcWindowStyleOperationEnum get(int value) {

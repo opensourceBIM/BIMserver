@@ -51,7 +51,9 @@ import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
 import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
+import org.bimserver.plugins.serializers.MessagingStreamingSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewExtendedDataOnProjectHandler;
 import org.bimserver.plugins.services.NewExtendedDataOnRevisionHandler;
@@ -310,12 +312,20 @@ public class PluginManager {
 		return getPlugins(MessagingSerializerPlugin.class, onlyEnabled);
 	}
 
+	public Collection<MessagingStreamingSerializerPlugin> getAllMessagingStreamingSerializerPlugins(boolean onlyEnabled) {
+		return getPlugins(MessagingStreamingSerializerPlugin.class, onlyEnabled);
+	}
+
 	public Collection<DeserializerPlugin> getAllDeserializerPlugins(boolean onlyEnabled) {
 		return getPlugins(DeserializerPlugin.class, onlyEnabled);
 	}
 
 	public Collection<StreamingDeserializerPlugin> getAllStreamingDeserializerPlugins(boolean onlyEnabled) {
 		return getPlugins(StreamingDeserializerPlugin.class, onlyEnabled);
+	}
+	
+	public Collection<StreamingSerializerPlugin> getAllStreamingSeserializerPlugins(boolean onlyEnabled) {
+		return getPlugins(StreamingSerializerPlugin.class, onlyEnabled);
 	}
 
 	public Collection<Plugin> getAllPlugins(boolean onlyEnabled) {
@@ -729,6 +739,10 @@ public class PluginManager {
 		return getPluginByClassName(StreamingDeserializerPlugin.class, pluginClassName, onlyEnabled);
 	}
 
+	public StreamingSerializerPlugin getStreamingSerializerPlugin(String pluginClassName, boolean onlyEnabled) {
+		return getPluginByClassName(StreamingSerializerPlugin.class, pluginClassName, onlyEnabled);
+	}
+	
 	public MetaDataManager getMetaDataManager() {
 		return metaDataManager;
 	}
@@ -748,5 +762,9 @@ public class PluginManager {
 			LOGGER.debug("Created VFS for " + uri);
 		}
 		return fileSystem;
+	}
+
+	public MessagingStreamingSerializerPlugin getMessagingStreamingSerializerPlugin(String className, boolean onlyEnabled) {
+		return (MessagingStreamingSerializerPlugin) getPlugin(className, onlyEnabled);
 	}
 }

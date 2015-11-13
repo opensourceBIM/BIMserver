@@ -28,6 +28,17 @@
 	</PluginImplementation>
 
 	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.StreamingSerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.step.serializer.Ifc2x3tc1StepStreamingSerializerPlugin</implementationClass>
+		<enabled>true</enabled>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.StreamingSerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.step.serializer.Ifc4StepStreamingSerializerPlugin</implementationClass>
+		<enabled>true</enabled>
+	</PluginImplementation>
+
+	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.ifc.xml.serializer.IfcXml2x3tc1SerializerPlugin</implementationClass>
 		<enabled>true</enabled>

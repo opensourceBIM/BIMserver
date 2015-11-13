@@ -23,12 +23,12 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcActionRequest#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcActionRequest#getStatus <em>Status</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcActionRequest#getLongDescription <em>Long Description</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcActionRequest()
  * @model

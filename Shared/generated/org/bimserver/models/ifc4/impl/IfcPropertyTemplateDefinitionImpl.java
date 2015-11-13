@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Property Template Definition</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcPropertyTemplateDefinitionImpl extends IfcPropertyDefinitionImpl implements IfcPropertyTemplateDefinition {
+public class IfcPropertyTemplateDefinitionImpl extends IfcPropertyDefinitionImpl
+		implements IfcPropertyTemplateDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

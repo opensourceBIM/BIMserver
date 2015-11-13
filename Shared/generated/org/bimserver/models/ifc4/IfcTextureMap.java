@@ -25,11 +25,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTextureMap#getVertices <em>Vertices</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTextureMap#getMappedTo <em>Mapped To</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTextureMap()
  * @model

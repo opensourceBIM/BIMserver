@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSourceGoniometric#getPosition <em>Position</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSourceGoniometric#getColourAppearance <em>Colour Appearance</em>}</li>
@@ -33,7 +34,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSourceGoniometric#getLightEmissionSource <em>Light Emission Source</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSourceGoniometric#getLightDistributionDataSource <em>Light Distribution Data Source</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSourceGoniometric()
  * @model

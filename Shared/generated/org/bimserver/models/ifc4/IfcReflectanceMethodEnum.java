@@ -313,8 +313,8 @@ public enum IfcReflectanceMethodEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcReflectanceMethodEnum[] VALUES_ARRAY = new IfcReflectanceMethodEnum[] { NULL, METAL, MATT, MIRROR, NOTDEFINED, FLAT, STRAUSS, BLINN, PLASTIC, GLASS,
-			PHONG, };
+	private static final IfcReflectanceMethodEnum[] VALUES_ARRAY = new IfcReflectanceMethodEnum[] { NULL, METAL, MATT,
+			MIRROR, NOTDEFINED, FLAT, STRAUSS, BLINN, PLASTIC, GLASS, PHONG, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Reflectance Method Enum</b></em>' enumerators.
@@ -322,12 +322,15 @@ public enum IfcReflectanceMethodEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcReflectanceMethodEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcReflectanceMethodEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Reflectance Method Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcReflectanceMethodEnum get(String literal) {
@@ -344,6 +347,8 @@ public enum IfcReflectanceMethodEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Reflectance Method Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcReflectanceMethodEnum getByName(String name) {
@@ -360,6 +365,8 @@ public enum IfcReflectanceMethodEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Reflectance Method Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcReflectanceMethodEnum get(int value) {

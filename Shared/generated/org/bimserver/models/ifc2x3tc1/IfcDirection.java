@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDirection#getDirectionRatios <em>Direction Ratios</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDirection#getDirectionRatiosAsString <em>Direction Ratios As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDirection#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcDirection()
  * @model

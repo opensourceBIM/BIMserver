@@ -23,13 +23,13 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcBooleanResult#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcBooleanResult#getFirstOperand <em>First Operand</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcBooleanResult#getSecondOperand <em>Second Operand</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcBooleanResult#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcBooleanResult()
  * @model

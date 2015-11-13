@@ -26,13 +26,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOrganizationRelationship#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOrganizationRelationship#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOrganizationRelationship#getRelatingOrganization <em>Relating Organization</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOrganizationRelationship#getRelatedOrganizations <em>Related Organizations</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcOrganizationRelationship()
  * @model

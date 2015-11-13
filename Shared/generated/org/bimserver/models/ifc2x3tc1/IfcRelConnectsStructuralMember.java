@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralMember#getRelatingStructuralMember <em>Relating Structural Member</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralMember#getRelatedStructuralConnection <em>Related Structural Connection</em>}</li>
@@ -32,7 +33,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralMember#getSupportedLengthAsString <em>Supported Length As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralMember#getConditionCoordinateSystem <em>Condition Coordinate System</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRelConnectsStructuralMember()
  * @model

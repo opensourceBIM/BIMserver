@@ -25,6 +25,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getVertices <em>Vertices</em>}</li>
@@ -32,7 +33,6 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getMaterials <em>Materials</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getMaterialIndices <em>Material Indices</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
  * @model

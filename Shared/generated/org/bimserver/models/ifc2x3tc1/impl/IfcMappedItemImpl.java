@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcMappedItemImpl#getMappingSource <em>Mapping Source</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcMappedItemImpl#getMappingTarget <em>Mapping Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,7 +80,8 @@ public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements IfcM
 	 * @generated
 	 */
 	public IfcCartesianTransformationOperator getMappingTarget() {
-		return (IfcCartesianTransformationOperator) eGet(Ifc2x3tc1Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET, true);
+		return (IfcCartesianTransformationOperator) eGet(Ifc2x3tc1Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET,
+				true);
 	}
 
 	/**

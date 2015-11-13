@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSpaceImpl#getInteriorOrExteriorSpace <em>Interior Or Exterior Space</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSpaceImpl#getElevationWithFlooring <em>Elevation With Flooring</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSpaceImpl#getHasCoverings <em>Has Coverings</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSpaceImpl#getBoundedBy <em>Bounded By</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

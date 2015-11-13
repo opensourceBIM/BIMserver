@@ -23,13 +23,13 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcObjective#getBenchmarkValues <em>Benchmark Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcObjective#getResultValues <em>Result Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcObjective#getObjectiveQualifier <em>Objective Qualifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcObjective#getUserDefinedQualifier <em>User Defined Qualifier</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcObjective()
  * @model

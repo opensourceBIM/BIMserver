@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCompositeCurveSegmentImpl#getTransition <em>Transition</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCompositeCurveSegmentImpl#getSameSense <em>Same Sense</em>}</li>
@@ -38,11 +39,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCompositeCurveSegmentImpl#getUsingCurves <em>Using Curves</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCompositeCurveSegmentImpl#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItemImpl implements IfcCompositeCurveSegment {
+public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcCompositeCurveSegment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123,7 +124,8 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCompositeCurve> getUsingCurves() {
-		return (EList<IfcCompositeCurve>) eGet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__USING_CURVES, true);
+		return (EList<IfcCompositeCurve>) eGet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__USING_CURVES,
+				true);
 	}
 
 	/**

@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPropertyTableValue#getDefiningValues <em>Defining Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPropertyTableValue#getDefinedValues <em>Defined Values</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPropertyTableValue#getDefiningUnit <em>Defining Unit</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPropertyTableValue#getDefinedUnit <em>Defined Unit</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcPropertyTableValue()
  * @model

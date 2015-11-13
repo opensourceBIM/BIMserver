@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertyTableValue#getDefiningValues <em>Defining Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertyTableValue#getDefinedValues <em>Defined Values</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertyTableValue#getDefinedUnit <em>Defined Unit</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertyTableValue#getCurveInterpolation <em>Curve Interpolation</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertyTableValue()
  * @model

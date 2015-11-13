@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRegularTimeSeries#getTimeStep <em>Time Step</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRegularTimeSeries#getTimeStepAsString <em>Time Step As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRegularTimeSeries#getValues <em>Values</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRegularTimeSeries()
  * @model

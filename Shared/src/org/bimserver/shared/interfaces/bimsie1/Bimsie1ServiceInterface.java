@@ -185,6 +185,23 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 		@WebParam(name = "jsonQuery", partName = "downloadByTypes.jsonQuery") String jsonQuery,
 		@WebParam(name = "serializerOid", partName = "downloadByTypes.serializerOid") Long serializerOid,
 		@WebParam(name = "sync", partName = "downloadByTypes.sync") Boolean sync) throws ServerException, UserException;
+
+	/**
+	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
+	 * @param roids A set of Revision ObjectIDs
+	 * @param classNames A set of class names to filter on (e.g. "IfcWindow")
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param includeAllSubtypes Whether to query all (recursive) subtypes of each gives class
+	 * @param sync Whether to return immediately (async) or wait for completion (sync)
+	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "downloadByNewJsonQuery")
+	Long downloadByNewJsonQuery(
+		@WebParam(name = "roids", partName = "downloadByNewJsonQuery.roids") Set<Long> roids,
+		@WebParam(name = "query", partName = "downloadByNewJsonQuery.query") String query,
+		@WebParam(name = "serializerOid", partName = "downloadByNewJsonQuery.serializerOid") Long serializerOid,
+		@WebParam(name = "sync", partName = "downloadByNewJsonQuery.sync") Boolean sync) throws ServerException, UserException;
 	
 	/**
 	 * Download a model in a serialized format by giving a set of revisions and a set of guids to filter on

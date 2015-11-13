@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCurveBoundedSurfaceImpl#getBasisSurface <em>Basis Surface</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCurveBoundedSurfaceImpl#getBoundaries <em>Boundaries</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCurveBoundedSurfaceImpl#getImplicitOuter <em>Implicit Outer</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

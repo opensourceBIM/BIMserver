@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcResourceTimeImpl#getScheduleWork <em>Schedule Work</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcResourceTimeImpl#getScheduleUsage <em>Schedule Usage</em>}</li>
@@ -48,7 +49,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcResourceTimeImpl#getCompletion <em>Completion</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcResourceTimeImpl#getCompletionAsString <em>Completion As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

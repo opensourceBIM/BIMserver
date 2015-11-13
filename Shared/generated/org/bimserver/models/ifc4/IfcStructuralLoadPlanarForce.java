@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadPlanarForce#getPlanarForceX <em>Planar Force X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadPlanarForce#getPlanarForceXAsString <em>Planar Force XAs String</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadPlanarForce#getPlanarForceZ <em>Planar Force Z</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadPlanarForce#getPlanarForceZAsString <em>Planar Force ZAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadPlanarForce()
  * @model

@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getDisplacementX <em>Displacement X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getDisplacementXAsString <em>Displacement XAs String</em>}</li>
@@ -37,7 +38,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRZ <em>Rotational Displacement RZ</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRZAsString <em>Rotational Displacement RZ As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadSingleDisplacement()
  * @model

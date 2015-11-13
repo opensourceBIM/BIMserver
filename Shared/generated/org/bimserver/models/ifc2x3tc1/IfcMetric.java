@@ -23,12 +23,12 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMetric#getBenchmark <em>Benchmark</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMetric#getValueSource <em>Value Source</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMetric#getDataValue <em>Data Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcMetric()
  * @model

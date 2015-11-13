@@ -213,8 +213,8 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCableCarrierSegmentTypeEnum[] VALUES_ARRAY = new IfcCableCarrierSegmentTypeEnum[] { NULL, NOTDEFINED, CABLETRUNKINGSEGMENT,
-			CABLETRAYSEGMENT, USERDEFINED, CABLELADDERSEGMENT, CONDUITSEGMENT, };
+	private static final IfcCableCarrierSegmentTypeEnum[] VALUES_ARRAY = new IfcCableCarrierSegmentTypeEnum[] { NULL,
+			NOTDEFINED, CABLETRUNKINGSEGMENT, CABLETRAYSEGMENT, USERDEFINED, CABLELADDERSEGMENT, CONDUITSEGMENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cable Carrier Segment Type Enum</b></em>' enumerators.
@@ -222,12 +222,15 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCableCarrierSegmentTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCableCarrierSegmentTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Cable Carrier Segment Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCableCarrierSegmentTypeEnum get(String literal) {
@@ -244,6 +247,8 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Cable Carrier Segment Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCableCarrierSegmentTypeEnum getByName(String name) {
@@ -260,6 +265,8 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Cable Carrier Segment Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCableCarrierSegmentTypeEnum get(int value) {

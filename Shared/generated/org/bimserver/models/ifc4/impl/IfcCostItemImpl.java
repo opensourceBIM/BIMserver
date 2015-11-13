@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCostItemImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCostItemImpl#getCostValues <em>Cost Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCostItemImpl#getCostQuantities <em>Cost Quantities</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

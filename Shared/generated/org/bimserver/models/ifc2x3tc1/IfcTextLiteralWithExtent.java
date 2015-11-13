@@ -23,11 +23,11 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextLiteralWithExtent#getExtent <em>Extent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextLiteralWithExtent#getBoxAlignment <em>Box Alignment</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTextLiteralWithExtent()
  * @model

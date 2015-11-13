@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsPathElements#getRelatingPriorities <em>Relating Priorities</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsPathElements#getRelatedPriorities <em>Related Priorities</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsPathElements#getRelatedConnectionType <em>Related Connection Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsPathElements#getRelatingConnectionType <em>Relating Connection Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRelConnectsPathElements()
  * @model

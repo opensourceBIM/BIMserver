@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSanitaryTerminalTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcSanitaryTerminalTypeImpl extends IfcFlowTerminalTypeImpl impleme
 	 * @generated
 	 */
 	public IfcSanitaryTerminalTypeEnum getPredefinedType() {
-		return (IfcSanitaryTerminalTypeEnum) eGet(Ifc4Package.Literals.IFC_SANITARY_TERMINAL_TYPE__PREDEFINED_TYPE, true);
+		return (IfcSanitaryTerminalTypeEnum) eGet(Ifc4Package.Literals.IFC_SANITARY_TERMINAL_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

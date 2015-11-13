@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcMetric#getBenchmark <em>Benchmark</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMetric#getValueSource <em>Value Source</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMetric#getDataValue <em>Data Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMetric#getReferencePath <em>Reference Path</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMetric()
  * @model

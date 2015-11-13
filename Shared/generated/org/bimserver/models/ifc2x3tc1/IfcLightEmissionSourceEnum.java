@@ -338,9 +338,9 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLightEmissionSourceEnum[] VALUES_ARRAY = new IfcLightEmissionSourceEnum[] { NULL, LOWVOLTAGEHALOGEN, MAINVOLTAGEHALOGEN,
-			HIGHPRESSUREMERCURY, COMPACTFLUORESCENT, NOTDEFINED, TUNGSTENFILAMENT, METALHALIDE, LOWPRESSURESODIUM, HIGHPRESSURESODIUM, LIGHTEMITTINGDIODE,
-			FLUORESCENT, };
+	private static final IfcLightEmissionSourceEnum[] VALUES_ARRAY = new IfcLightEmissionSourceEnum[] { NULL,
+			LOWVOLTAGEHALOGEN, MAINVOLTAGEHALOGEN, HIGHPRESSUREMERCURY, COMPACTFLUORESCENT, NOTDEFINED,
+			TUNGSTENFILAMENT, METALHALIDE, LOWPRESSURESODIUM, HIGHPRESSURESODIUM, LIGHTEMITTINGDIODE, FLUORESCENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Light Emission Source Enum</b></em>' enumerators.
@@ -348,12 +348,15 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcLightEmissionSourceEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcLightEmissionSourceEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Light Emission Source Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcLightEmissionSourceEnum get(String literal) {
@@ -370,6 +373,8 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Light Emission Source Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcLightEmissionSourceEnum getByName(String name) {
@@ -386,6 +391,8 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Light Emission Source Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcLightEmissionSourceEnum get(int value) {

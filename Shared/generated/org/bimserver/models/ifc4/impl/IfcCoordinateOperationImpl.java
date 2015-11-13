@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCoordinateOperationImpl#getSourceCRS <em>Source CRS</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCoordinateOperationImpl#getTargetCRS <em>Target CRS</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -73,7 +73,8 @@ public class IfcCoordinateOperationImpl extends IdEObjectImpl implements IfcCoor
 	 * @generated
 	 */
 	public IfcCoordinateReferenceSystemSelect getSourceCRS() {
-		return (IfcCoordinateReferenceSystemSelect) eGet(Ifc4Package.Literals.IFC_COORDINATE_OPERATION__SOURCE_CRS, true);
+		return (IfcCoordinateReferenceSystemSelect) eGet(Ifc4Package.Literals.IFC_COORDINATE_OPERATION__SOURCE_CRS,
+				true);
 	}
 
 	/**

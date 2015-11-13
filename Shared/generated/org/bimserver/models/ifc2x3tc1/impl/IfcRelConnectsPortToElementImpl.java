@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRelConnectsPortToElementImpl#getRelatingPort <em>Relating Port</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRelConnectsPortToElementImpl#getRelatedElement <em>Related Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

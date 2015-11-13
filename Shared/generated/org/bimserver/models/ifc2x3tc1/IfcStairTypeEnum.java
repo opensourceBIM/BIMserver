@@ -463,9 +463,11 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStairTypeEnum[] VALUES_ARRAY = new IfcStairTypeEnum[] { NULL, SPIRAL_STAIR, NOTDEFINED, QUARTER_WINDING_STAIR, HALF_WINDING_STAIR,
-			STRAIGHT_RUN_STAIR, TWO_CURVED_RUN_STAIR, HALF_TURN_STAIR, CURVED_RUN_STAIR, DOUBLE_RETURN_STAIR, QUARTER_TURN_STAIR, TWO_QUARTER_WINDING_STAIR,
-			TWO_QUARTER_TURN_STAIR, THREE_QUARTER_TURN_STAIR, TWO_STRAIGHT_RUN_STAIR, THREE_QUARTER_WINDING_STAIR, USERDEFINED, };
+	private static final IfcStairTypeEnum[] VALUES_ARRAY = new IfcStairTypeEnum[] { NULL, SPIRAL_STAIR, NOTDEFINED,
+			QUARTER_WINDING_STAIR, HALF_WINDING_STAIR, STRAIGHT_RUN_STAIR, TWO_CURVED_RUN_STAIR, HALF_TURN_STAIR,
+			CURVED_RUN_STAIR, DOUBLE_RETURN_STAIR, QUARTER_TURN_STAIR, TWO_QUARTER_WINDING_STAIR,
+			TWO_QUARTER_TURN_STAIR, THREE_QUARTER_TURN_STAIR, TWO_STRAIGHT_RUN_STAIR, THREE_QUARTER_WINDING_STAIR,
+			USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Stair Type Enum</b></em>' enumerators.
@@ -479,6 +481,8 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Stair Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStairTypeEnum get(String literal) {
@@ -495,6 +499,8 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Stair Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStairTypeEnum getByName(String name) {
@@ -511,6 +517,8 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Stair Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStairTypeEnum get(int value) {

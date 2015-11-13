@@ -263,8 +263,8 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcObjectiveEnum[] VALUES_ARRAY = new IfcObjectiveEnum[] { NULL, DESIGNINTENT, NOTDEFINED, TRIGGERCONDITION, CODECOMPLIANCE,
-			HEALTHANDSAFETY, SPECIFICATION, USERDEFINED, REQUIREMENT, };
+	private static final IfcObjectiveEnum[] VALUES_ARRAY = new IfcObjectiveEnum[] { NULL, DESIGNINTENT, NOTDEFINED,
+			TRIGGERCONDITION, CODECOMPLIANCE, HEALTHANDSAFETY, SPECIFICATION, USERDEFINED, REQUIREMENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Objective Enum</b></em>' enumerators.
@@ -278,6 +278,8 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Objective Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcObjectiveEnum get(String literal) {
@@ -294,6 +296,8 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Objective Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcObjectiveEnum getByName(String name) {
@@ -310,6 +314,8 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Objective Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcObjectiveEnum get(int value) {

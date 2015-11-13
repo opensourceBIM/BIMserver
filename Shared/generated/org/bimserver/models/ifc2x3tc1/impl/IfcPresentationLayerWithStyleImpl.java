@@ -28,17 +28,18 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPresentationLayerWithStyleImpl#isLayerOn <em>Layer On</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPresentationLayerWithStyleImpl#isLayerFrozen <em>Layer Frozen</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPresentationLayerWithStyleImpl#isLayerBlocked <em>Layer Blocked</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPresentationLayerWithStyleImpl#getLayerStyles <em>Layer Styles</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssignmentImpl implements IfcPresentationLayerWithStyle {
+public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssignmentImpl
+		implements IfcPresentationLayerWithStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -119,7 +120,8 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationStyleSelect> getLayerStyles() {
-		return (EList<IfcPresentationStyleSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_STYLES, true);
+		return (EList<IfcPresentationStyleSelect>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_STYLES, true);
 	}
 
 } //IfcPresentationLayerWithStyleImpl

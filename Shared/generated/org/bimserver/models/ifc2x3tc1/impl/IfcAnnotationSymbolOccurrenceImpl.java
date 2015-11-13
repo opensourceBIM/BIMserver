@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Annotation Symbol Occurrence</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcAnnotationSymbolOccurrenceImpl extends IfcAnnotationOccurrenceImpl implements IfcAnnotationSymbolOccurrence {
+public class IfcAnnotationSymbolOccurrenceImpl extends IfcAnnotationOccurrenceImpl
+		implements IfcAnnotationSymbolOccurrence {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

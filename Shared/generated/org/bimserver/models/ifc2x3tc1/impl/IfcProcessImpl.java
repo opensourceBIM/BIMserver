@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProcessImpl#getOperatesOn <em>Operates On</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProcessImpl#getIsSuccessorFrom <em>Is Successor From</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProcessImpl#getIsPredecessorTo <em>Is Predecessor To</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

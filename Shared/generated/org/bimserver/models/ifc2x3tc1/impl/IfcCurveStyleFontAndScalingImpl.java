@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCurveStyleFontAndScalingImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCurveStyleFontAndScalingImpl#getCurveFont <em>Curve Font</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCurveStyleFontAndScalingImpl#getCurveFontScaling <em>Curve Font Scaling</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCurveStyleFontAndScalingImpl#getCurveFontScalingAsString <em>Curve Font Scaling As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -110,7 +110,8 @@ public class IfcCurveStyleFontAndScalingImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public IfcCurveStyleFontSelect getCurveFont() {
-		return (IfcCurveStyleFontSelect) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT, true);
+		return (IfcCurveStyleFontSelect) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT,
+				true);
 	}
 
 	/**
@@ -146,7 +147,8 @@ public class IfcCurveStyleFontAndScalingImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public String getCurveFontScalingAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING_AS_STRING,
+				true);
 	}
 
 	/**
@@ -155,7 +157,8 @@ public class IfcCurveStyleFontAndScalingImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public void setCurveFontScalingAsString(String newCurveFontScalingAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING_AS_STRING, newCurveFontScalingAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING_AS_STRING,
+				newCurveFontScalingAsString);
 	}
 
 } //IfcCurveStyleFontAndScalingImpl

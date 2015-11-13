@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWaterPropertiesImpl#getIsPotable <em>Is Potable</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWaterPropertiesImpl#getHardness <em>Hardness</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWaterPropertiesImpl#getDissolvedSolidsContent <em>Dissolved Solids Content</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWaterPropertiesImpl#getDissolvedSolidsContentAsString <em>Dissolved Solids Content As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -225,7 +225,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setAlkalinityConcentrationAsString(String newAlkalinityConcentrationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION_AS_STRING, newAlkalinityConcentrationAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ALKALINITY_CONCENTRATION_AS_STRING,
+				newAlkalinityConcentrationAsString);
 	}
 
 	/**
@@ -297,7 +298,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setAcidityConcentrationAsString(String newAcidityConcentrationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION_AS_STRING, newAcidityConcentrationAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__ACIDITY_CONCENTRATION_AS_STRING,
+				newAcidityConcentrationAsString);
 	}
 
 	/**
@@ -369,7 +371,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setImpuritiesContentAsString(String newImpuritiesContentAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT_AS_STRING, newImpuritiesContentAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__IMPURITIES_CONTENT_AS_STRING,
+				newImpuritiesContentAsString);
 	}
 
 	/**
@@ -513,7 +516,8 @@ public class IfcWaterPropertiesImpl extends IfcMaterialPropertiesImpl implements
 	 * @generated
 	 */
 	public void setDissolvedSolidsContentAsString(String newDissolvedSolidsContentAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT_AS_STRING, newDissolvedSolidsContentAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WATER_PROPERTIES__DISSOLVED_SOLIDS_CONTENT_AS_STRING,
+				newDissolvedSolidsContentAsString);
 	}
 
 	/**

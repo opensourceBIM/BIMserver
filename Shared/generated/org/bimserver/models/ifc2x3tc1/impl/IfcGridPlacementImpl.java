@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcGridPlacementImpl#getPlacementLocation <em>Placement Location</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcGridPlacementImpl#getPlacementRefDirection <em>Placement Ref Direction</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -61,7 +61,8 @@ public class IfcGridPlacementImpl extends IfcObjectPlacementImpl implements IfcG
 	 * @generated
 	 */
 	public IfcVirtualGridIntersection getPlacementLocation() {
-		return (IfcVirtualGridIntersection) eGet(Ifc2x3tc1Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_LOCATION, true);
+		return (IfcVirtualGridIntersection) eGet(Ifc2x3tc1Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_LOCATION,
+				true);
 	}
 
 	/**
@@ -79,7 +80,8 @@ public class IfcGridPlacementImpl extends IfcObjectPlacementImpl implements IfcG
 	 * @generated
 	 */
 	public IfcVirtualGridIntersection getPlacementRefDirection() {
-		return (IfcVirtualGridIntersection) eGet(Ifc2x3tc1Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_REF_DIRECTION, true);
+		return (IfcVirtualGridIntersection) eGet(Ifc2x3tc1Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_REF_DIRECTION,
+				true);
 	}
 
 	/**

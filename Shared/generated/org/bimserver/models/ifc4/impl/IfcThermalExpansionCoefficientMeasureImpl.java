@@ -27,15 +27,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcThermalExpansionCoefficientMeasureImpl#getWrappedValue <em>Wrapped Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcThermalExpansionCoefficientMeasureImpl#getWrappedValueAsString <em>Wrapped Value As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcThermalExpansionCoefficientMeasureImpl extends IdEObjectImpl implements IfcThermalExpansionCoefficientMeasure {
+public class IfcThermalExpansionCoefficientMeasureImpl extends IdEObjectImpl
+		implements IfcThermalExpansionCoefficientMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,7 +108,8 @@ public class IfcThermalExpansionCoefficientMeasureImpl extends IdEObjectImpl imp
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE__WRAPPED_VALUE_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE__WRAPPED_VALUE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -116,7 +118,8 @@ public class IfcThermalExpansionCoefficientMeasureImpl extends IdEObjectImpl imp
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc4Package.Literals.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc4Package.Literals.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**

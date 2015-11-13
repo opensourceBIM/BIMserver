@@ -263,8 +263,8 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRampTypeEnum[] VALUES_ARRAY = new IfcRampTypeEnum[] { NULL, QUARTER_TURN_RAMP, SPIRAL_RAMP, NOTDEFINED, STRAIGHT_RUN_RAMP,
-			TWO_STRAIGHT_RUN_RAMP, HALF_TURN_RAMP, USERDEFINED, TWO_QUARTER_TURN_RAMP, };
+	private static final IfcRampTypeEnum[] VALUES_ARRAY = new IfcRampTypeEnum[] { NULL, QUARTER_TURN_RAMP, SPIRAL_RAMP,
+			NOTDEFINED, STRAIGHT_RUN_RAMP, TWO_STRAIGHT_RUN_RAMP, HALF_TURN_RAMP, USERDEFINED, TWO_QUARTER_TURN_RAMP, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Ramp Type Enum</b></em>' enumerators.
@@ -278,6 +278,8 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Ramp Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRampTypeEnum get(String literal) {
@@ -294,6 +296,8 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Ramp Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRampTypeEnum getByName(String name) {
@@ -310,6 +314,8 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Ramp Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRampTypeEnum get(int value) {

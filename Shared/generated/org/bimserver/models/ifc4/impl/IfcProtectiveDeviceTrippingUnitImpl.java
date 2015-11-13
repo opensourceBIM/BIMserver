@@ -27,14 +27,15 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProtectiveDeviceTrippingUnitImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcProtectiveDeviceTrippingUnitImpl extends IfcDistributionControlElementImpl implements IfcProtectiveDeviceTrippingUnit {
+public class IfcProtectiveDeviceTrippingUnitImpl extends IfcDistributionControlElementImpl
+		implements IfcProtectiveDeviceTrippingUnit {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcProtectiveDeviceTrippingUnitImpl extends IfcDistributionControlE
 	 * @generated
 	 */
 	public IfcProtectiveDeviceTrippingUnitTypeEnum getPredefinedType() {
-		return (IfcProtectiveDeviceTrippingUnitTypeEnum) eGet(Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT__PREDEFINED_TYPE, true);
+		return (IfcProtectiveDeviceTrippingUnitTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT__PREDEFINED_TYPE, true);
 	}
 
 	/**

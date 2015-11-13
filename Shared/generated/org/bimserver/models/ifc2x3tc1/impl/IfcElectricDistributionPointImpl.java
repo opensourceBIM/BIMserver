@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcElectricDistributionPointImpl#getDistributionPointFunction <em>Distribution Point Function</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcElectricDistributionPointImpl#getUserDefinedFunction <em>User Defined Function</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -61,7 +61,8 @@ public class IfcElectricDistributionPointImpl extends IfcFlowControllerImpl impl
 	 * @generated
 	 */
 	public IfcElectricDistributionPointFunctionEnum getDistributionPointFunction() {
-		return (IfcElectricDistributionPointFunctionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__DISTRIBUTION_POINT_FUNCTION, true);
+		return (IfcElectricDistributionPointFunctionEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__DISTRIBUTION_POINT_FUNCTION, true);
 	}
 
 	/**
@@ -70,7 +71,8 @@ public class IfcElectricDistributionPointImpl extends IfcFlowControllerImpl impl
 	 * @generated
 	 */
 	public void setDistributionPointFunction(IfcElectricDistributionPointFunctionEnum newDistributionPointFunction) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__DISTRIBUTION_POINT_FUNCTION, newDistributionPointFunction);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_DISTRIBUTION_POINT__DISTRIBUTION_POINT_FUNCTION,
+				newDistributionPointFunction);
 	}
 
 	/**

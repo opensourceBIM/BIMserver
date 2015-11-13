@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTransportElementImpl#getOperationType <em>Operation Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTransportElementImpl#getCapacityByWeight <em>Capacity By Weight</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTransportElementImpl#getCapacityByNumber <em>Capacity By Number</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTransportElementImpl#getCapacityByNumberAsString <em>Capacity By Number As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -64,7 +64,8 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public IfcTransportElementTypeEnum getOperationType() {
-		return (IfcTransportElementTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__OPERATION_TYPE, true);
+		return (IfcTransportElementTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__OPERATION_TYPE,
+				true);
 	}
 
 	/**
@@ -145,7 +146,8 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public void setCapacityByWeightAsString(String newCapacityByWeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT_AS_STRING, newCapacityByWeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_WEIGHT_AS_STRING,
+				newCapacityByWeightAsString);
 	}
 
 	/**
@@ -217,7 +219,8 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * @generated
 	 */
 	public void setCapacityByNumberAsString(String newCapacityByNumberAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER_AS_STRING, newCapacityByNumberAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT__CAPACITY_BY_NUMBER_AS_STRING,
+				newCapacityByNumberAsString);
 	}
 
 	/**

@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileImpl#getDescription <em>Description</em>}</li>
@@ -39,7 +40,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileImpl#getToMaterialProfileSet <em>To Material Profile Set</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

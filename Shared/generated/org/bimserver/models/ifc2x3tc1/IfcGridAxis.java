@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGridAxis#getAxisTag <em>Axis Tag</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGridAxis#getAxisCurve <em>Axis Curve</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGridAxis#getPartOfU <em>Part Of U</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGridAxis#getHasIntersections <em>Has Intersections</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcGridAxis()
  * @model

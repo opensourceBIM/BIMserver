@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcGeometricRepresentationSubContext#getParentContext <em>Parent Context</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcGeometricRepresentationSubContext#getTargetScale <em>Target Scale</em>}</li>
@@ -30,7 +31,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcGeometricRepresentationSubContext#getTargetView <em>Target View</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcGeometricRepresentationSubContext#getUserDefinedTargetView <em>User Defined Target View</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcGeometricRepresentationSubContext()
  * @model

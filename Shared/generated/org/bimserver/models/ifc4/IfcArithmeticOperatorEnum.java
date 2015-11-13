@@ -163,7 +163,8 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcArithmeticOperatorEnum[] VALUES_ARRAY = new IfcArithmeticOperatorEnum[] { NULL, MULTIPLY, SUBTRACT, DIVIDE, ADD, };
+	private static final IfcArithmeticOperatorEnum[] VALUES_ARRAY = new IfcArithmeticOperatorEnum[] { NULL, MULTIPLY,
+			SUBTRACT, DIVIDE, ADD, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Arithmetic Operator Enum</b></em>' enumerators.
@@ -171,12 +172,15 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcArithmeticOperatorEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcArithmeticOperatorEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Arithmetic Operator Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcArithmeticOperatorEnum get(String literal) {
@@ -193,6 +197,8 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Arithmetic Operator Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcArithmeticOperatorEnum getByName(String name) {
@@ -209,6 +215,8 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Arithmetic Operator Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcArithmeticOperatorEnum get(int value) {

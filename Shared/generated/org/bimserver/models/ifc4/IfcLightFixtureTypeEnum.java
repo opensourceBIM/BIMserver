@@ -188,7 +188,8 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLightFixtureTypeEnum[] VALUES_ARRAY = new IfcLightFixtureTypeEnum[] { NULL, NOTDEFINED, DIRECTIONSOURCE, POINTSOURCE, SECURITYLIGHTING, USERDEFINED, };
+	private static final IfcLightFixtureTypeEnum[] VALUES_ARRAY = new IfcLightFixtureTypeEnum[] { NULL, NOTDEFINED,
+			DIRECTIONSOURCE, POINTSOURCE, SECURITYLIGHTING, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Light Fixture Type Enum</b></em>' enumerators.
@@ -196,12 +197,15 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcLightFixtureTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcLightFixtureTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Light Fixture Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcLightFixtureTypeEnum get(String literal) {
@@ -218,6 +222,8 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Light Fixture Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcLightFixtureTypeEnum getByName(String name) {
@@ -234,6 +240,8 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Light Fixture Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcLightFixtureTypeEnum get(int value) {

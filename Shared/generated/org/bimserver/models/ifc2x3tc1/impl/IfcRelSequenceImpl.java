@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRelSequenceImpl#getRelatingProcess <em>Relating Process</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRelSequenceImpl#getRelatedProcess <em>Related Process</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRelSequenceImpl#getTimeLagAsString <em>Time Lag As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRelSequenceImpl#getSequenceType <em>Sequence Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelAssociatesClassificationImpl#getRelatingClassification <em>Relating Classification</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcRelAssociatesClassificationImpl extends IfcRelAssociatesImpl imp
 	 * @generated
 	 */
 	public IfcClassificationSelect getRelatingClassification() {
-		return (IfcClassificationSelect) eGet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION, true);
+		return (IfcClassificationSelect) eGet(
+				Ifc4Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION, true);
 	}
 
 	/**
@@ -69,7 +70,8 @@ public class IfcRelAssociatesClassificationImpl extends IfcRelAssociatesImpl imp
 	 * @generated
 	 */
 	public void setRelatingClassification(IfcClassificationSelect newRelatingClassification) {
-		eSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION, newRelatingClassification);
+		eSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION,
+				newRelatingClassification);
 	}
 
 } //IfcRelAssociatesClassificationImpl

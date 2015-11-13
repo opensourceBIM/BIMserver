@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDoorLiningPropertiesImpl#getLiningDepth <em>Lining Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDoorLiningPropertiesImpl#getLiningDepthAsString <em>Lining Depth As String</em>}</li>
@@ -54,7 +55,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDoorLiningPropertiesImpl#getLiningToPanelOffsetY <em>Lining To Panel Offset Y</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDoorLiningPropertiesImpl#getLiningToPanelOffsetYAsString <em>Lining To Panel Offset YAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -345,7 +345,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPreDefinedPropertySetImpl im
 	 * @generated
 	 */
 	public void setThresholdThicknessAsString(String newThresholdThicknessAsString) {
-		eSet(Ifc4Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_THICKNESS_AS_STRING, newThresholdThicknessAsString);
+		eSet(Ifc4Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_THICKNESS_AS_STRING,
+				newThresholdThicknessAsString);
 	}
 
 	/**
@@ -885,7 +886,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPreDefinedPropertySetImpl im
 	 * @generated
 	 */
 	public void setLiningToPanelOffsetXAsString(String newLiningToPanelOffsetXAsString) {
-		eSet(Ifc4Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_TO_PANEL_OFFSET_XAS_STRING, newLiningToPanelOffsetXAsString);
+		eSet(Ifc4Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_TO_PANEL_OFFSET_XAS_STRING,
+				newLiningToPanelOffsetXAsString);
 	}
 
 	/**
@@ -957,7 +959,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPreDefinedPropertySetImpl im
 	 * @generated
 	 */
 	public void setLiningToPanelOffsetYAsString(String newLiningToPanelOffsetYAsString) {
-		eSet(Ifc4Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_TO_PANEL_OFFSET_YAS_STRING, newLiningToPanelOffsetYAsString);
+		eSet(Ifc4Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_TO_PANEL_OFFSET_YAS_STRING,
+				newLiningToPanelOffsetYAsString);
 	}
 
 	/**

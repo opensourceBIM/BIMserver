@@ -263,8 +263,8 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcResourceConsumptionEnum[] VALUES_ARRAY = new IfcResourceConsumptionEnum[] { NULL, CONSUMED, NOTCONSUMED, NOTDEFINED,
-			PARTIALLYCONSUMED, OCCUPIED, USERDEFINED, NOTOCCUPIED, PARTIALLYOCCUPIED, };
+	private static final IfcResourceConsumptionEnum[] VALUES_ARRAY = new IfcResourceConsumptionEnum[] { NULL, CONSUMED,
+			NOTCONSUMED, NOTDEFINED, PARTIALLYCONSUMED, OCCUPIED, USERDEFINED, NOTOCCUPIED, PARTIALLYOCCUPIED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Resource Consumption Enum</b></em>' enumerators.
@@ -272,12 +272,15 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcResourceConsumptionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcResourceConsumptionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Resource Consumption Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcResourceConsumptionEnum get(String literal) {
@@ -294,6 +297,8 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Resource Consumption Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcResourceConsumptionEnum getByName(String name) {
@@ -310,6 +315,8 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Resource Consumption Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcResourceConsumptionEnum get(int value) {

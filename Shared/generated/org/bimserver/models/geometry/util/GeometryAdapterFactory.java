@@ -18,7 +18,6 @@ package org.bimserver.models.geometry.util;
 
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryInfo;
-import org.bimserver.models.geometry.GeometryInstance;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
 import org.eclipse.emf.common.notify.Adapter;
@@ -97,11 +96,6 @@ public class GeometryAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseGeometryInstance(GeometryInstance object) {
-			return createGeometryInstanceAdapter();
-		}
-
-		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -159,20 +153,6 @@ public class GeometryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGeometryDataAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.geometry.GeometryInstance <em>Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.geometry.GeometryInstance
-	 * @generated
-	 */
-	public Adapter createGeometryInstanceAdapter() {
 		return null;
 	}
 

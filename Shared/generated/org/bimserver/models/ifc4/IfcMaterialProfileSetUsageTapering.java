@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialProfileSetUsageTapering#getForProfileEndSet <em>For Profile End Set</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialProfileSetUsageTapering#getCardinalEndPoint <em>Cardinal End Point</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialProfileSetUsageTapering()
  * @model

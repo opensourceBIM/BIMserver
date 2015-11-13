@@ -23,12 +23,12 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcBoundaryFaceCondition#getTranslationalStiffnessByAreaX <em>Translational Stiffness By Area X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBoundaryFaceCondition#getTranslationalStiffnessByAreaY <em>Translational Stiffness By Area Y</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBoundaryFaceCondition#getTranslationalStiffnessByAreaZ <em>Translational Stiffness By Area Z</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBoundaryFaceCondition()
  * @model

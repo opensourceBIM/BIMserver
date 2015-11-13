@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSectionedSpineImpl#getSpineCurve <em>Spine Curve</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSectionedSpineImpl#getCrossSections <em>Cross Sections</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSectionedSpineImpl#getCrossSectionPositions <em>Cross Section Positions</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSectionedSpineImpl#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -95,7 +95,8 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAxis2Placement3D> getCrossSectionPositions() {
-		return (EList<IfcAxis2Placement3D>) eGet(Ifc2x3tc1Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTION_POSITIONS, true);
+		return (EList<IfcAxis2Placement3D>) eGet(Ifc2x3tc1Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTION_POSITIONS,
+				true);
 	}
 
 	/**

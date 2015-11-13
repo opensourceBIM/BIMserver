@@ -25,6 +25,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getMinBounds <em>Min Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getMaxBounds <em>Max Bounds</em>}</li>
@@ -32,12 +33,10 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getPrimitiveCount <em>Primitive Count</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getData <em>Data</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getInstance <em>Instance</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getTransformation <em>Transformation</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getArea <em>Area</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getVolume <em>Volume</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo()
  * @model
@@ -200,32 +199,6 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setData(GeometryData value);
-
-	/**
-	 * Returns the value of the '<em><b>Instance</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Instance</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Instance</em>' reference.
-	 * @see #setInstance(GeometryInstance)
-	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_Instance()
-	 * @model
-	 * @generated
-	 */
-	GeometryInstance getInstance();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getInstance <em>Instance</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Instance</em>' reference.
-	 * @see #getInstance()
-	 * @generated
-	 */
-	void setInstance(GeometryInstance value);
 
 	/**
 	 * Returns the value of the '<em><b>Transformation</b></em>' attribute.

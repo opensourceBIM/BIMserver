@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcStructuralActivityImpl#getAppliedLoad <em>Applied Load</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcStructuralActivityImpl#getGlobalOrLocal <em>Global Or Local</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcStructuralActivityImpl#getAssignedToStructuralItem <em>Assigned To Structural Item</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -100,7 +100,8 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 * @generated
 	 */
 	public IfcRelConnectsStructuralActivity getAssignedToStructuralItem() {
-		return (IfcRelConnectsStructuralActivity) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM, true);
+		return (IfcRelConnectsStructuralActivity) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM, true);
 	}
 
 	/**
@@ -109,7 +110,8 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 * @generated
 	 */
 	public void setAssignedToStructuralItem(IfcRelConnectsStructuralActivity newAssignedToStructuralItem) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM, newAssignedToStructuralItem);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM,
+				newAssignedToStructuralItem);
 	}
 
 	/**

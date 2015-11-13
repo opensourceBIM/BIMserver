@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralLoadLinearForceImpl#getLinearForceX <em>Linear Force X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralLoadLinearForceImpl#getLinearForceXAsString <em>Linear Force XAs String</em>}</li>
@@ -40,11 +41,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralLoadLinearForceImpl#getLinearMomentZ <em>Linear Moment Z</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralLoadLinearForceImpl#getLinearMomentZAsString <em>Linear Moment ZAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImpl implements IfcStructuralLoadLinearForce {
+public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImpl
+		implements IfcStructuralLoadLinearForce {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

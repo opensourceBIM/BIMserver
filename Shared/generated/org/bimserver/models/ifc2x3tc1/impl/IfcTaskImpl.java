@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTaskImpl#getTaskId <em>Task Id</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTaskImpl#getStatus <em>Status</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTaskImpl#getIsMilestone <em>Is Milestone</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTaskImpl#getPriority <em>Priority</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

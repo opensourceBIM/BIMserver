@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStyledItem#getItem <em>Item</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStyledItem#getStyles <em>Styles</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStyledItem#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcStyledItem()
  * @model

@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcSlippageConnectionCondition#getSlippageX <em>Slippage X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSlippageConnectionCondition#getSlippageXAsString <em>Slippage XAs String</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcSlippageConnectionCondition#getSlippageZ <em>Slippage Z</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSlippageConnectionCondition#getSlippageZAsString <em>Slippage ZAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSlippageConnectionCondition()
  * @model

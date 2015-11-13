@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCurveStyleFontPatternImpl#getVisibleSegmentLength <em>Visible Segment Length</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCurveStyleFontPatternImpl#getVisibleSegmentLengthAsString <em>Visible Segment Length As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCurveStyleFontPatternImpl#getInvisibleSegmentLength <em>Invisible Segment Length</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCurveStyleFontPatternImpl#getInvisibleSegmentLengthAsString <em>Invisible Segment Length As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -89,7 +89,8 @@ public class IfcCurveStyleFontPatternImpl extends IfcPresentationItemImpl implem
 	 * @generated
 	 */
 	public void setVisibleSegmentLengthAsString(String newVisibleSegmentLengthAsString) {
-		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH_AS_STRING, newVisibleSegmentLengthAsString);
+		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH_AS_STRING,
+				newVisibleSegmentLengthAsString);
 	}
 
 	/**
@@ -116,7 +117,8 @@ public class IfcCurveStyleFontPatternImpl extends IfcPresentationItemImpl implem
 	 * @generated
 	 */
 	public String getInvisibleSegmentLengthAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH_AS_STRING,
+				true);
 	}
 
 	/**
@@ -125,7 +127,8 @@ public class IfcCurveStyleFontPatternImpl extends IfcPresentationItemImpl implem
 	 * @generated
 	 */
 	public void setInvisibleSegmentLengthAsString(String newInvisibleSegmentLengthAsString) {
-		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH_AS_STRING, newInvisibleSegmentLengthAsString);
+		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH_AS_STRING,
+				newInvisibleSegmentLengthAsString);
 	}
 
 } //IfcCurveStyleFontPatternImpl

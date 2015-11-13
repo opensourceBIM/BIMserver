@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPortImpl#getContainedIn <em>Contained In</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPortImpl#getConnectedFrom <em>Connected From</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPortImpl#getConnectedTo <em>Connected To</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

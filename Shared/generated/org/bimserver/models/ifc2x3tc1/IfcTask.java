@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTask#getTaskId <em>Task Id</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTask#getStatus <em>Status</em>}</li>
@@ -30,7 +31,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTask#getIsMilestone <em>Is Milestone</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTask#getPriority <em>Priority</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTask()
  * @model

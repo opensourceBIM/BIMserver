@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRectangleHollowProfileDefImpl#getWallThickness <em>Wall Thickness</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRectangleHollowProfileDefImpl#getWallThicknessAsString <em>Wall Thickness As String</em>}</li>
@@ -34,11 +35,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRectangleHollowProfileDefImpl#getOuterFilletRadius <em>Outer Fillet Radius</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRectangleHollowProfileDefImpl#getOuterFilletRadiusAsString <em>Outer Fillet Radius As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcRectangleHollowProfileDefImpl extends IfcRectangleProfileDefImpl implements IfcRectangleHollowProfileDef {
+public class IfcRectangleHollowProfileDefImpl extends IfcRectangleProfileDefImpl
+		implements IfcRectangleHollowProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -136,7 +137,8 @@ public class IfcRectangleHollowProfileDefImpl extends IfcRectangleProfileDefImpl
 	 * @generated
 	 */
 	public String getInnerFilletRadiusAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__INNER_FILLET_RADIUS_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__INNER_FILLET_RADIUS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -145,7 +147,8 @@ public class IfcRectangleHollowProfileDefImpl extends IfcRectangleProfileDefImpl
 	 * @generated
 	 */
 	public void setInnerFilletRadiusAsString(String newInnerFilletRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__INNER_FILLET_RADIUS_AS_STRING, newInnerFilletRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__INNER_FILLET_RADIUS_AS_STRING,
+				newInnerFilletRadiusAsString);
 	}
 
 	/**
@@ -208,7 +211,8 @@ public class IfcRectangleHollowProfileDefImpl extends IfcRectangleProfileDefImpl
 	 * @generated
 	 */
 	public String getOuterFilletRadiusAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__OUTER_FILLET_RADIUS_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__OUTER_FILLET_RADIUS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -217,7 +221,8 @@ public class IfcRectangleHollowProfileDefImpl extends IfcRectangleProfileDefImpl
 	 * @generated
 	 */
 	public void setOuterFilletRadiusAsString(String newOuterFilletRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__OUTER_FILLET_RADIUS_AS_STRING, newOuterFilletRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_RECTANGLE_HOLLOW_PROFILE_DEF__OUTER_FILLET_RADIUS_AS_STRING,
+				newOuterFilletRadiusAsString);
 	}
 
 	/**

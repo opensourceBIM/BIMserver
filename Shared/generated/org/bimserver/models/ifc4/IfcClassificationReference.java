@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcClassificationReference#getReferencedSource <em>Referenced Source</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcClassificationReference#getDescription <em>Description</em>}</li>
@@ -32,13 +33,13 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcClassificationReference#getClassificationRefForObjects <em>Classification Ref For Objects</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcClassificationReference#getHasReferences <em>Has References</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcClassificationReference()
  * @model
  * @generated
  */
-public interface IfcClassificationReference extends IfcExternalReference, IfcClassificationReferenceSelect, IfcClassificationSelect {
+public interface IfcClassificationReference
+		extends IfcExternalReference, IfcClassificationReferenceSelect, IfcClassificationSelect {
 	/**
 	 * Returns the value of the '<em><b>Referenced Source</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadLinearForce#getLinearForceX <em>Linear Force X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadLinearForce#getLinearForceXAsString <em>Linear Force XAs String</em>}</li>
@@ -37,7 +38,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadLinearForce#getLinearMomentZ <em>Linear Moment Z</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadLinearForce#getLinearMomentZAsString <em>Linear Moment ZAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadLinearForce()
  * @model

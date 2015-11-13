@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getMappedTo <em>Mapped To</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOverrides <em>Overrides</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getColours <em>Colours</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getColourIndex <em>Colour Index</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIndexedColourMap()
  * @model

@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialConstituent#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialConstituent#getDescription <em>Description</em>}</li>
@@ -32,7 +33,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialConstituent#getCategory <em>Category</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialConstituent#getToMaterialConstituentSet <em>To Material Constituent Set</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialConstituent()
  * @model

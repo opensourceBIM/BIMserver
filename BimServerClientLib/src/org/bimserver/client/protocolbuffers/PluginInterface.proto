@@ -307,7 +307,8 @@ message SSerializerPluginConfiguration {
 	optional int64 renderEngineId = 7;
 	optional int32 rid = 8;
 	optional int64 settingsId = 9;
-	optional int64 userSettingsId = 10;
+	optional bool streaming = 10;
+	optional int64 userSettingsId = 11;
 }
 
 message AddSerializerRequest {

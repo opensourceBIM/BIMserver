@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPostalAddress#getInternalLocation <em>Internal Location</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPostalAddress#getAddressLines <em>Address Lines</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcPostalAddress#getPostalCode <em>Postal Code</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPostalAddress#getCountry <em>Country</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPostalAddress()
  * @model

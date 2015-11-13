@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc System Furniture Element Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcSystemFurnitureElementTypeImpl extends IfcFurnishingElementTypeImpl implements IfcSystemFurnitureElementType {
+public class IfcSystemFurnitureElementTypeImpl extends IfcFurnishingElementTypeImpl
+		implements IfcSystemFurnitureElementType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

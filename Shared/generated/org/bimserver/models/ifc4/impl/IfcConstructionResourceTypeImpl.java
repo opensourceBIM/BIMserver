@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcConstructionResourceTypeImpl#getBaseCosts <em>Base Costs</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcConstructionResourceTypeImpl#getBaseQuantity <em>Base Quantity</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -27,14 +27,15 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralCurveConnectionImpl#getAxis <em>Axis</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcStructuralCurveConnectionImpl extends IfcStructuralConnectionImpl implements IfcStructuralCurveConnection {
+public class IfcStructuralCurveConnectionImpl extends IfcStructuralConnectionImpl
+		implements IfcStructuralCurveConnection {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

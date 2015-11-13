@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFixedReferenceSweptAreaSolidImpl#getDirectrix <em>Directrix</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFixedReferenceSweptAreaSolidImpl#getStartParam <em>Start Param</em>}</li>
@@ -36,11 +37,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFixedReferenceSweptAreaSolidImpl#getEndParamAsString <em>End Param As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFixedReferenceSweptAreaSolidImpl#getFixedReference <em>Fixed Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcFixedReferenceSweptAreaSolidImpl extends IfcSweptAreaSolidImpl implements IfcFixedReferenceSweptAreaSolid {
+public class IfcFixedReferenceSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
+		implements IfcFixedReferenceSweptAreaSolid {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

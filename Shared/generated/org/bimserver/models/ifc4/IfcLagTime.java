@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcLagTime#getLagValue <em>Lag Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLagTime#getDurationType <em>Duration Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLagTime()
  * @model

@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getUDegree <em>UDegree</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getVDegree <em>VDegree</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#isVClosed <em>VClosed</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#isSelfIntersect <em>Self Intersect</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurface()
  * @model

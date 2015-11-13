@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCurveStyleFontImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCurveStyleFontImpl#getPatternList <em>Pattern List</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -110,7 +110,8 @@ public class IfcCurveStyleFontImpl extends IdEObjectImpl implements IfcCurveStyl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCurveStyleFontPattern> getPatternList() {
-		return (EList<IfcCurveStyleFontPattern>) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT__PATTERN_LIST, true);
+		return (EList<IfcCurveStyleFontPattern>) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT__PATTERN_LIST,
+				true);
 	}
 
 } //IfcCurveStyleFontImpl

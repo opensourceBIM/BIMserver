@@ -238,7 +238,8 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcActionRequestTypeEnum[] VALUES_ARRAY = new IfcActionRequestTypeEnum[] { NULL, PHONE, POST, NOTDEFINED, EMAIL, USERDEFINED, VERBAL, FAX, };
+	private static final IfcActionRequestTypeEnum[] VALUES_ARRAY = new IfcActionRequestTypeEnum[] { NULL, PHONE, POST,
+			NOTDEFINED, EMAIL, USERDEFINED, VERBAL, FAX, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Action Request Type Enum</b></em>' enumerators.
@@ -246,12 +247,15 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcActionRequestTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcActionRequestTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Action Request Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcActionRequestTypeEnum get(String literal) {
@@ -268,6 +272,8 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Action Request Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcActionRequestTypeEnum getByName(String name) {
@@ -284,6 +290,8 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Action Request Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcActionRequestTypeEnum get(int value) {

@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductDefinitionShapeImpl#getShapeOfProduct <em>Shape Of Product</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductDefinitionShapeImpl#getHasShapeAspects <em>Has Shape Aspects</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -92,7 +92,8 @@ public class IfcProductDefinitionShapeImpl extends IfcProductRepresentationImpl 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcShapeAspect> getHasShapeAspects() {
-		return (EList<IfcShapeAspect>) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__HAS_SHAPE_ASPECTS, true);
+		return (EList<IfcShapeAspect>) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__HAS_SHAPE_ASPECTS,
+				true);
 	}
 
 	/**

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPostalAddressImpl#getInternalLocation <em>Internal Location</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPostalAddressImpl#getAddressLines <em>Address Lines</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPostalAddressImpl#getPostalCode <em>Postal Code</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPostalAddressImpl#getCountry <em>Country</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

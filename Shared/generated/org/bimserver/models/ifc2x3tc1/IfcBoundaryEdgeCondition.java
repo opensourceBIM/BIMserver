@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcBoundaryEdgeCondition#getLinearStiffnessByLengthX <em>Linear Stiffness By Length X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcBoundaryEdgeCondition#getLinearStiffnessByLengthXAsString <em>Linear Stiffness By Length XAs String</em>}</li>
@@ -37,7 +38,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcBoundaryEdgeCondition#getRotationalStiffnessByLengthZ <em>Rotational Stiffness By Length Z</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcBoundaryEdgeCondition#getRotationalStiffnessByLengthZAsString <em>Rotational Stiffness By Length ZAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcBoundaryEdgeCondition()
  * @model

@@ -26,12 +26,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPixelTextureImpl#getWidth <em>Width</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPixelTextureImpl#getHeight <em>Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPixelTextureImpl#getColourComponents <em>Colour Components</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

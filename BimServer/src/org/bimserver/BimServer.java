@@ -119,7 +119,9 @@ import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
+import org.bimserver.plugins.serializers.MessagingStreamingSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.schemaconverter.Ifc2x3tc1ToIfc4SchemaConverterFactory;
@@ -621,6 +623,14 @@ public class BimServer {
 				genericPluginConversion(session, serializerPlugin, serializerPluginConfiguration, getPluginDescriptor(session, serializerPlugin.getClass().getName()));
 			}
 		}
+		for (MessagingStreamingSerializerPlugin serializerPlugin : pluginManager.getAllMessagingStreamingSerializerPlugins(true)) {
+			MessagingSerializerPluginConfiguration serializerPluginConfiguration = find(userSettings.getMessagingSerializerPlugins(), serializerPlugin.getClass().getName());
+			if (serializerPluginConfiguration == null) {
+				serializerPluginConfiguration = session.create(MessagingSerializerPluginConfiguration.class);
+				userSettings.getMessagingSerializerPlugins().add(serializerPluginConfiguration);
+				genericPluginConversion(session, serializerPlugin, serializerPluginConfiguration, getPluginDescriptor(session, serializerPlugin.getClass().getName()));
+			}
+		}
 		if (userSettings.getDefaultSerializer() == null && !userSettings.getSerializers().isEmpty()) {
 			userSettings.setDefaultSerializer(userSettings.getSerializers().get(0));
 		}
@@ -649,6 +659,15 @@ public class BimServer {
 				streamingDeserializerPluginConfiguration = session.create(DeserializerPluginConfiguration.class);
 				userSettings.getDeserializers().add(streamingDeserializerPluginConfiguration);
 				genericPluginConversion(session, streamingDeserializerPlugin, streamingDeserializerPluginConfiguration, getPluginDescriptor(session, streamingDeserializerPlugin.getClass().getName()));
+			}
+		}
+		for (StreamingSerializerPlugin streamingSerializerPlugin : pluginManager.getAllStreamingSeserializerPlugins(true)) {
+			SerializerPluginConfiguration streamingSerializerPluginConfiguration = find(userSettings.getSerializers(), streamingSerializerPlugin.getClass().getName());
+			if (streamingSerializerPluginConfiguration == null) {
+				streamingSerializerPluginConfiguration = session.create(SerializerPluginConfiguration.class);
+				streamingSerializerPluginConfiguration.setStreaming(true);
+				userSettings.getSerializers().add(streamingSerializerPluginConfiguration);
+				genericPluginConversion(session, streamingSerializerPlugin, streamingSerializerPluginConfiguration, getPluginDescriptor(session, streamingSerializerPlugin.getClass().getName()));
 			}
 		}
 		session.store(userSettings);

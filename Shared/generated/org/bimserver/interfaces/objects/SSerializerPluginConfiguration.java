@@ -32,6 +32,7 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 	private long objectIDMId = -1;
 	private long userSettingsId = -1;
 	private long renderEngineId = -1;
+	private boolean streaming;
 
 	public long getOid() {
 		return this.oid;
@@ -83,6 +84,9 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 		if (sField.getName().equals("renderEngineId")) {
 			return getRenderEngineId();
 		}
+		if (sField.getName().equals("streaming")) {
+			return isStreaming();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -125,6 +129,10 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 			setRenderEngineId((Long)val);
 			return;
 		}
+		if (sField.getName().equals("streaming")) {
+			setStreaming((Boolean)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -158,6 +166,14 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 
 	public void setRenderEngineId(long renderEngineId) {
 		this.renderEngineId = renderEngineId;
+	}
+	
+	public boolean isStreaming() {
+		return streaming;
+	}
+
+	public void setStreaming(boolean streaming) {
+		this.streaming = streaming;
 	}
 	
 	@Override

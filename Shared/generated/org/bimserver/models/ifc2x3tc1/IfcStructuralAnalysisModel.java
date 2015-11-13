@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralAnalysisModel#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralAnalysisModel#getOrientationOf2DPlane <em>Orientation Of2 DPlane</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralAnalysisModel#getLoadedBy <em>Loaded By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralAnalysisModel#getHasResults <em>Has Results</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcStructuralAnalysisModel()
  * @model

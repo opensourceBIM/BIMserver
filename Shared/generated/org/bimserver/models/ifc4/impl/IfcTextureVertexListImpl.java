@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTextureVertexListImpl#getTexCoordsList <em>Tex Coords List</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,8 @@ public class IfcTextureVertexListImpl extends IfcPresentationItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ListOfIfcParameterValue> getTexCoordsList() {
-		return (EList<ListOfIfcParameterValue>) eGet(Ifc4Package.Literals.IFC_TEXTURE_VERTEX_LIST__TEX_COORDS_LIST, true);
+		return (EList<ListOfIfcParameterValue>) eGet(Ifc4Package.Literals.IFC_TEXTURE_VERTEX_LIST__TEX_COORDS_LIST,
+				true);
 	}
 
 } //IfcTextureVertexListImpl

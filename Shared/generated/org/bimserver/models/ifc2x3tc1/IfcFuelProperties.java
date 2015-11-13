@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFuelProperties#getCombustionTemperature <em>Combustion Temperature</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFuelProperties#getCombustionTemperatureAsString <em>Combustion Temperature As String</em>}</li>
@@ -33,7 +34,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFuelProperties#getHigherHeatingValue <em>Higher Heating Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFuelProperties#getHigherHeatingValueAsString <em>Higher Heating Value As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcFuelProperties()
  * @model

@@ -113,7 +113,8 @@ public enum IfcGlobalOrLocalEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcGlobalOrLocalEnum[] VALUES_ARRAY = new IfcGlobalOrLocalEnum[] { NULL, LOCAL_COORDS, GLOBAL_COORDS, };
+	private static final IfcGlobalOrLocalEnum[] VALUES_ARRAY = new IfcGlobalOrLocalEnum[] { NULL, LOCAL_COORDS,
+			GLOBAL_COORDS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Global Or Local Enum</b></em>' enumerators.
@@ -127,6 +128,8 @@ public enum IfcGlobalOrLocalEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Global Or Local Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcGlobalOrLocalEnum get(String literal) {
@@ -143,6 +146,8 @@ public enum IfcGlobalOrLocalEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Global Or Local Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcGlobalOrLocalEnum getByName(String name) {
@@ -159,6 +164,8 @@ public enum IfcGlobalOrLocalEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Global Or Local Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcGlobalOrLocalEnum get(int value) {

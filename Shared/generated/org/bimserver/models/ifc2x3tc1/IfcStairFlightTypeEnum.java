@@ -238,8 +238,8 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStairFlightTypeEnum[] VALUES_ARRAY = new IfcStairFlightTypeEnum[] { NULL, SPIRAL, WINDER, FREEFORM, NOTDEFINED, CURVED, STRAIGHT,
-			USERDEFINED, };
+	private static final IfcStairFlightTypeEnum[] VALUES_ARRAY = new IfcStairFlightTypeEnum[] { NULL, SPIRAL, WINDER,
+			FREEFORM, NOTDEFINED, CURVED, STRAIGHT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Stair Flight Type Enum</b></em>' enumerators.
@@ -253,6 +253,8 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Stair Flight Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStairFlightTypeEnum get(String literal) {
@@ -269,6 +271,8 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Stair Flight Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStairFlightTypeEnum getByName(String name) {
@@ -285,6 +289,8 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Stair Flight Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStairFlightTypeEnum get(int value) {

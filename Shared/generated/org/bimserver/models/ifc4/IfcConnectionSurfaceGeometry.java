@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcConnectionSurfaceGeometry#getSurfaceOnRelatingElement <em>Surface On Relating Element</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcConnectionSurfaceGeometry#getSurfaceOnRelatedElement <em>Surface On Related Element</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcConnectionSurfaceGeometry()
  * @model

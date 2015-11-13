@@ -288,8 +288,8 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSurfaceTextureEnum[] VALUES_ARRAY = new IfcSurfaceTextureEnum[] { NULL, OPACITY, NOTDEFINED, SELFILLUMINATION, REFLECTION, TEXTURE,
-			SPECULAR, BUMP, TRANSPARENCYMAP, SHININESS, };
+	private static final IfcSurfaceTextureEnum[] VALUES_ARRAY = new IfcSurfaceTextureEnum[] { NULL, OPACITY, NOTDEFINED,
+			SELFILLUMINATION, REFLECTION, TEXTURE, SPECULAR, BUMP, TRANSPARENCYMAP, SHININESS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Surface Texture Enum</b></em>' enumerators.
@@ -303,6 +303,8 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Surface Texture Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSurfaceTextureEnum get(String literal) {
@@ -319,6 +321,8 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Surface Texture Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSurfaceTextureEnum getByName(String name) {
@@ -335,6 +339,8 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Surface Texture Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSurfaceTextureEnum get(int value) {

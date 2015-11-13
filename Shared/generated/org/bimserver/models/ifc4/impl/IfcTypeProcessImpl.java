@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTypeProcessImpl#getIdentification <em>Identification</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTypeProcessImpl#getLongDescription <em>Long Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTypeProcessImpl#getProcessType <em>Process Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTypeProcessImpl#getOperatesOn <em>Operates On</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

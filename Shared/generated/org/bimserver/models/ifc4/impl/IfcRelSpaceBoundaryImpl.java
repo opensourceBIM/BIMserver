@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelSpaceBoundaryImpl#getRelatingSpace <em>Relating Space</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelSpaceBoundaryImpl#getRelatedBuildingElement <em>Related Building Element</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelSpaceBoundaryImpl#getPhysicalOrVirtualBoundary <em>Physical Or Virtual Boundary</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelSpaceBoundaryImpl#getInternalOrExternalBoundary <em>Internal Or External Boundary</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -140,7 +140,8 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * @generated
 	 */
 	public IfcPhysicalOrVirtualEnum getPhysicalOrVirtualBoundary() {
-		return (IfcPhysicalOrVirtualEnum) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY__PHYSICAL_OR_VIRTUAL_BOUNDARY, true);
+		return (IfcPhysicalOrVirtualEnum) eGet(
+				Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY__PHYSICAL_OR_VIRTUAL_BOUNDARY, true);
 	}
 
 	/**
@@ -158,7 +159,8 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * @generated
 	 */
 	public IfcInternalOrExternalEnum getInternalOrExternalBoundary() {
-		return (IfcInternalOrExternalEnum) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY__INTERNAL_OR_EXTERNAL_BOUNDARY, true);
+		return (IfcInternalOrExternalEnum) eGet(
+				Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY__INTERNAL_OR_EXTERNAL_BOUNDARY, true);
 	}
 
 	/**

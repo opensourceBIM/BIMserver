@@ -313,8 +313,9 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcUnitaryControlElementTypeEnum[] VALUES_ARRAY = new IfcUnitaryControlElementTypeEnum[] { NULL, THERMOSTAT, NOTDEFINED, WEATHERSTATION, HUMIDISTAT,
-			GASDETECTIONPANEL, MIMICPANEL, CONTROLPANEL, USERDEFINED, INDICATORPANEL, ALARMPANEL, };
+	private static final IfcUnitaryControlElementTypeEnum[] VALUES_ARRAY = new IfcUnitaryControlElementTypeEnum[] {
+			NULL, THERMOSTAT, NOTDEFINED, WEATHERSTATION, HUMIDISTAT, GASDETECTIONPANEL, MIMICPANEL, CONTROLPANEL,
+			USERDEFINED, INDICATORPANEL, ALARMPANEL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Unitary Control Element Type Enum</b></em>' enumerators.
@@ -322,12 +323,15 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcUnitaryControlElementTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcUnitaryControlElementTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Unitary Control Element Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcUnitaryControlElementTypeEnum get(String literal) {
@@ -344,6 +348,8 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Unitary Control Element Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcUnitaryControlElementTypeEnum getByName(String name) {
@@ -360,6 +366,8 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Unitary Control Element Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcUnitaryControlElementTypeEnum get(int value) {

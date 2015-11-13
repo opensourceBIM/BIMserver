@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyImpl#getDescription <em>Description</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyImpl#getPropertyDependsOn <em>Property Depends On</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyImpl#getPartOfComplex <em>Part Of Complex</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -151,7 +151,8 @@ public class IfcPropertyImpl extends IfcPropertyAbstractionImpl implements IfcPr
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyDependencyRelationship> getPropertyForDependance() {
-		return (EList<IfcPropertyDependencyRelationship>) eGet(Ifc4Package.Literals.IFC_PROPERTY__PROPERTY_FOR_DEPENDANCE, true);
+		return (EList<IfcPropertyDependencyRelationship>) eGet(
+				Ifc4Package.Literals.IFC_PROPERTY__PROPERTY_FOR_DEPENDANCE, true);
 	}
 
 	/**
@@ -179,7 +180,8 @@ public class IfcPropertyImpl extends IfcPropertyAbstractionImpl implements IfcPr
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyDependencyRelationship> getPropertyDependsOn() {
-		return (EList<IfcPropertyDependencyRelationship>) eGet(Ifc4Package.Literals.IFC_PROPERTY__PROPERTY_DEPENDS_ON, true);
+		return (EList<IfcPropertyDependencyRelationship>) eGet(Ifc4Package.Literals.IFC_PROPERTY__PROPERTY_DEPENDS_ON,
+				true);
 	}
 
 	/**

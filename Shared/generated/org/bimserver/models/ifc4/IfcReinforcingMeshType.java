@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMeshType#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMeshType#getMeshLength <em>Mesh Length</em>}</li>
@@ -46,7 +47,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMeshType#getBendingShapeCode <em>Bending Shape Code</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMeshType#getBendingParameters <em>Bending Parameters</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcReinforcingMeshType()
  * @model

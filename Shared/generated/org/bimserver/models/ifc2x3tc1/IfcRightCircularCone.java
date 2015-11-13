@@ -23,13 +23,13 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRightCircularCone#getHeight <em>Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRightCircularCone#getHeightAsString <em>Height As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRightCircularCone#getBottomRadius <em>Bottom Radius</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRightCircularCone#getBottomRadiusAsString <em>Bottom Radius As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRightCircularCone()
  * @model

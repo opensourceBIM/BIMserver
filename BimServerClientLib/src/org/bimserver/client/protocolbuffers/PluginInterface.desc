@@ -1,5 +1,5 @@
 
-¨·
+»·
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"¸
  SDeserializerPluginConfiguration
 description (	
@@ -89,7 +89,7 @@ settingsId (
 settingsId (
 userSettingsId	 ("b
 AddRenderEngineRequestH
-renderEngine (22.org.bimserver.pb.SRenderEnginePluginConfiguration"ã
+renderEngine (22.org.bimserver.pb.SRenderEnginePluginConfiguration"ö
 SSerializerPluginConfiguration
 description (	
 enabled (
@@ -100,9 +100,10 @@ settingsId (
 renderEngineId (
 rid (
 
-settingsId	 (
-userSettingsId
- ("\
+settingsId	 (
+	streaming
+ (
+userSettingsId ("\
 AddSerializerRequestD
 
 serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(

@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralCurveMemberImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralCurveMemberImpl#getAxis <em>Axis</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,8 @@ public class IfcStructuralCurveMemberImpl extends IfcStructuralMemberImpl implem
 	 * @generated
 	 */
 	public IfcStructuralCurveMemberTypeEnum getPredefinedType() {
-		return (IfcStructuralCurveMemberTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE, true);
+		return (IfcStructuralCurveMemberTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE, true);
 	}
 
 	/**

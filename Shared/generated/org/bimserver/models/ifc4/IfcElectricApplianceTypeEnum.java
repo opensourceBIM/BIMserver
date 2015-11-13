@@ -513,9 +513,10 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY = new IfcElectricApplianceTypeEnum[] { NULL, FRIDGE_FREEZER, MICROWAVE, REFRIGERATOR, NOTDEFINED,
-			FREESTANDINGFAN, WASHINGMACHINE, KITCHENMACHINE, FREEZER, TUMBLEDRYER, FREESTANDINGWATERCOOLER, FREESTANDINGWATERHEATER, PHOTOCOPIER, VENDINGMACHINE, DISHWASHER,
-			HANDDRYER, USERDEFINED, FREESTANDINGELECTRICHEATER, ELECTRICCOOKER, };
+	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY = new IfcElectricApplianceTypeEnum[] { NULL,
+			FRIDGE_FREEZER, MICROWAVE, REFRIGERATOR, NOTDEFINED, FREESTANDINGFAN, WASHINGMACHINE, KITCHENMACHINE,
+			FREEZER, TUMBLEDRYER, FREESTANDINGWATERCOOLER, FREESTANDINGWATERHEATER, PHOTOCOPIER, VENDINGMACHINE,
+			DISHWASHER, HANDDRYER, USERDEFINED, FREESTANDINGELECTRICHEATER, ELECTRICCOOKER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Appliance Type Enum</b></em>' enumerators.
@@ -523,12 +524,15 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricApplianceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricApplianceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Appliance Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElectricApplianceTypeEnum get(String literal) {
@@ -545,6 +549,8 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Electric Appliance Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElectricApplianceTypeEnum getByName(String name) {
@@ -561,6 +567,8 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Electric Appliance Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElectricApplianceTypeEnum get(int value) {

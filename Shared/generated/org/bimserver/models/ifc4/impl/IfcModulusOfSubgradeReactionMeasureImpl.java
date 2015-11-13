@@ -27,15 +27,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcModulusOfSubgradeReactionMeasureImpl#getWrappedValue <em>Wrapped Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcModulusOfSubgradeReactionMeasureImpl#getWrappedValueAsString <em>Wrapped Value As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcModulusOfSubgradeReactionMeasureImpl extends IdEObjectImpl implements IfcModulusOfSubgradeReactionMeasure {
+public class IfcModulusOfSubgradeReactionMeasureImpl extends IdEObjectImpl
+		implements IfcModulusOfSubgradeReactionMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,7 +108,8 @@ public class IfcModulusOfSubgradeReactionMeasureImpl extends IdEObjectImpl imple
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -116,7 +118,8 @@ public class IfcModulusOfSubgradeReactionMeasureImpl extends IdEObjectImpl imple
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc4Package.Literals.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc4Package.Literals.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**

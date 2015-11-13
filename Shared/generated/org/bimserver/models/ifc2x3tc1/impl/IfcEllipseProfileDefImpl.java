@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcEllipseProfileDefImpl#getSemiAxis1 <em>Semi Axis1</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcEllipseProfileDefImpl#getSemiAxis1AsString <em>Semi Axis1 As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcEllipseProfileDefImpl#getSemiAxis2 <em>Semi Axis2</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcEllipseProfileDefImpl#getSemiAxis2AsString <em>Semi Axis2 As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

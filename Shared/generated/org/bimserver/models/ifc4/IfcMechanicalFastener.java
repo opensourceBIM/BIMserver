@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcMechanicalFastener#getNominalDiameter <em>Nominal Diameter</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMechanicalFastener#getNominalDiameterAsString <em>Nominal Diameter As String</em>}</li>
@@ -30,7 +31,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcMechanicalFastener#getNominalLengthAsString <em>Nominal Length As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMechanicalFastener#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMechanicalFastener()
  * @model

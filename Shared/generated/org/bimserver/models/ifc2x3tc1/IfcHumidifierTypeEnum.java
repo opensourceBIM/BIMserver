@@ -438,9 +438,10 @@ public enum IfcHumidifierTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcHumidifierTypeEnum[] VALUES_ARRAY = new IfcHumidifierTypeEnum[] { NULL, NOTDEFINED, ADIABATICULTRASONIC, STEAMINJECTION,
-			ADIABATICWETTEDELEMENT, ASSISTEDSTEAM, ADIABATICATOMIZING, ADIABATICPAN, ASSISTEDELECTRIC, ASSISTEDBUTANE, ASSISTEDPROPANE, ADIABATICRIGIDMEDIA,
-			USERDEFINED, ADIABATICCOMPRESSEDAIRNOZZLE, ADIABATICAIRWASHER, ASSISTEDNATURALGAS, };
+	private static final IfcHumidifierTypeEnum[] VALUES_ARRAY = new IfcHumidifierTypeEnum[] { NULL, NOTDEFINED,
+			ADIABATICULTRASONIC, STEAMINJECTION, ADIABATICWETTEDELEMENT, ASSISTEDSTEAM, ADIABATICATOMIZING,
+			ADIABATICPAN, ASSISTEDELECTRIC, ASSISTEDBUTANE, ASSISTEDPROPANE, ADIABATICRIGIDMEDIA, USERDEFINED,
+			ADIABATICCOMPRESSEDAIRNOZZLE, ADIABATICAIRWASHER, ASSISTEDNATURALGAS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Humidifier Type Enum</b></em>' enumerators.
@@ -454,6 +455,8 @@ public enum IfcHumidifierTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Humidifier Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcHumidifierTypeEnum get(String literal) {
@@ -470,6 +473,8 @@ public enum IfcHumidifierTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Humidifier Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcHumidifierTypeEnum getByName(String name) {
@@ -486,6 +491,8 @@ public enum IfcHumidifierTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Humidifier Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcHumidifierTypeEnum get(int value) {

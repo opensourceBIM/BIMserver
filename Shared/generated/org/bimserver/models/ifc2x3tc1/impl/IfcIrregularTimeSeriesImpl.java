@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcIrregularTimeSeriesImpl#getValues <em>Values</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,8 @@ public class IfcIrregularTimeSeriesImpl extends IfcTimeSeriesImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcIrregularTimeSeriesValue> getValues() {
-		return (EList<IfcIrregularTimeSeriesValue>) eGet(Ifc2x3tc1Package.Literals.IFC_IRREGULAR_TIME_SERIES__VALUES, true);
+		return (EList<IfcIrregularTimeSeriesValue>) eGet(Ifc2x3tc1Package.Literals.IFC_IRREGULAR_TIME_SERIES__VALUES,
+				true);
 	}
 
 } //IfcIrregularTimeSeriesImpl

@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcEdge#getEdgeStart <em>Edge Start</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcEdge#getEdgeEnd <em>Edge End</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcEdge()
  * @model

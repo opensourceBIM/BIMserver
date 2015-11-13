@@ -263,8 +263,9 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPropertySetTemplateTypeEnum[] VALUES_ARRAY = new IfcPropertySetTemplateTypeEnum[] { NULL, QTO_OCCURRENCEDRIVEN, QTO_TYPEDRIVENONLY,
-			PSET_TYPEDRIVENONLY, NOTDEFINED, PSET_TYPEDRIVENOVERRIDE, QTO_TYPEDRIVENOVERRIDE, PSET_OCCURRENCEDRIVEN, PSET_PERFORMANCEDRIVEN, };
+	private static final IfcPropertySetTemplateTypeEnum[] VALUES_ARRAY = new IfcPropertySetTemplateTypeEnum[] { NULL,
+			QTO_OCCURRENCEDRIVEN, QTO_TYPEDRIVENONLY, PSET_TYPEDRIVENONLY, NOTDEFINED, PSET_TYPEDRIVENOVERRIDE,
+			QTO_TYPEDRIVENOVERRIDE, PSET_OCCURRENCEDRIVEN, PSET_PERFORMANCEDRIVEN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Property Set Template Type Enum</b></em>' enumerators.
@@ -272,12 +273,15 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPropertySetTemplateTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPropertySetTemplateTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Property Set Template Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcPropertySetTemplateTypeEnum get(String literal) {
@@ -294,6 +298,8 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Property Set Template Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcPropertySetTemplateTypeEnum getByName(String name) {
@@ -310,6 +316,8 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Property Set Template Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcPropertySetTemplateTypeEnum get(int value) {

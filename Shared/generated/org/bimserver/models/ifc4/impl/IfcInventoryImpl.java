@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcInventoryImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcInventoryImpl#getJurisdiction <em>Jurisdiction</em>}</li>
@@ -39,7 +40,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcInventoryImpl#getCurrentValue <em>Current Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcInventoryImpl#getOriginalValue <em>Original Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

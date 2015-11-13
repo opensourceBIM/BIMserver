@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTimePeriodImpl#getStartTime <em>Start Time</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTimePeriodImpl#getEndTime <em>End Time</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

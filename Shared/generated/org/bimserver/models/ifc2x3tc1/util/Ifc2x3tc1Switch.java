@@ -59,7 +59,7 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -1147,7 +1147,8 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 		}
 		case Ifc2x3tc1Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM: {
 			IfcCartesianTransformationOperator2DnonUniform ifcCartesianTransformationOperator2DnonUniform = (IfcCartesianTransformationOperator2DnonUniform) theEObject;
-			T result = caseIfcCartesianTransformationOperator2DnonUniform(ifcCartesianTransformationOperator2DnonUniform);
+			T result = caseIfcCartesianTransformationOperator2DnonUniform(
+					ifcCartesianTransformationOperator2DnonUniform);
 			if (result == null)
 				result = caseIfcCartesianTransformationOperator2D(ifcCartesianTransformationOperator2DnonUniform);
 			if (result == null)
@@ -1179,7 +1180,8 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 		}
 		case Ifc2x3tc1Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM: {
 			IfcCartesianTransformationOperator3DnonUniform ifcCartesianTransformationOperator3DnonUniform = (IfcCartesianTransformationOperator3DnonUniform) theEObject;
-			T result = caseIfcCartesianTransformationOperator3DnonUniform(ifcCartesianTransformationOperator3DnonUniform);
+			T result = caseIfcCartesianTransformationOperator3DnonUniform(
+					ifcCartesianTransformationOperator3DnonUniform);
 			if (result == null)
 				result = caseIfcCartesianTransformationOperator3D(ifcCartesianTransformationOperator3DnonUniform);
 			if (result == null)

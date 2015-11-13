@@ -238,8 +238,9 @@ public enum IfcStructuralCurveMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStructuralCurveMemberTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveMemberTypeEnum[] { NULL, NOTDEFINED, CABLE, TENSION_MEMBER, COMPRESSION_MEMBER,
-			PIN_JOINED_MEMBER, USERDEFINED, RIGID_JOINED_MEMBER, };
+	private static final IfcStructuralCurveMemberTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveMemberTypeEnum[] {
+			NULL, NOTDEFINED, CABLE, TENSION_MEMBER, COMPRESSION_MEMBER, PIN_JOINED_MEMBER, USERDEFINED,
+			RIGID_JOINED_MEMBER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Structural Curve Member Type Enum</b></em>' enumerators.
@@ -247,12 +248,15 @@ public enum IfcStructuralCurveMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcStructuralCurveMemberTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcStructuralCurveMemberTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Structural Curve Member Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStructuralCurveMemberTypeEnum get(String literal) {
@@ -269,6 +273,8 @@ public enum IfcStructuralCurveMemberTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Structural Curve Member Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStructuralCurveMemberTypeEnum getByName(String name) {
@@ -285,6 +291,8 @@ public enum IfcStructuralCurveMemberTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Structural Curve Member Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStructuralCurveMemberTypeEnum get(int value) {

@@ -28,15 +28,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcReinforcementDefinitionPropertiesImpl#getDefinitionType <em>Definition Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcReinforcementDefinitionPropertiesImpl#getReinforcementSectionDefinitions <em>Reinforcement Section Definitions</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcReinforcementDefinitionPropertiesImpl extends IfcPropertySetDefinitionImpl implements IfcReinforcementDefinitionProperties {
+public class IfcReinforcementDefinitionPropertiesImpl extends IfcPropertySetDefinitionImpl
+		implements IfcReinforcementDefinitionProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +101,8 @@ public class IfcReinforcementDefinitionPropertiesImpl extends IfcPropertySetDefi
 	@SuppressWarnings("unchecked")
 	public EList<IfcSectionReinforcementProperties> getReinforcementSectionDefinitions() {
 		return (EList<IfcSectionReinforcementProperties>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__REINFORCEMENT_SECTION_DEFINITIONS, true);
+				Ifc2x3tc1Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__REINFORCEMENT_SECTION_DEFINITIONS,
+				true);
 	}
 
 } //IfcReinforcementDefinitionPropertiesImpl

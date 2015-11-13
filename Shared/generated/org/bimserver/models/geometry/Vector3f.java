@@ -25,12 +25,12 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.geometry.Vector3f#getX <em>X</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.Vector3f#getY <em>Y</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.Vector3f#getZ <em>Z</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getVector3f()
  * @model

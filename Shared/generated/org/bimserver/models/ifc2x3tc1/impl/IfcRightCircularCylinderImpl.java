@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRightCircularCylinderImpl#getHeight <em>Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRightCircularCylinderImpl#getHeightAsString <em>Height As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRightCircularCylinderImpl#getRadius <em>Radius</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRightCircularCylinderImpl#getRadiusAsString <em>Radius As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

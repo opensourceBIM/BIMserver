@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWindowStyleImpl#getConstructionType <em>Construction Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWindowStyleImpl#getOperationType <em>Operation Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWindowStyleImpl#getParameterTakesPrecedence <em>Parameter Takes Precedence</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWindowStyleImpl#getSizeable <em>Sizeable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -65,7 +65,8 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 * @generated
 	 */
 	public IfcWindowStyleConstructionEnum getConstructionType() {
-		return (IfcWindowStyleConstructionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__CONSTRUCTION_TYPE, true);
+		return (IfcWindowStyleConstructionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__CONSTRUCTION_TYPE,
+				true);
 	}
 
 	/**

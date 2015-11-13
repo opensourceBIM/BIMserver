@@ -23,17 +23,18 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcModulusOfRotationalSubgradeReactionMeasure#getWrappedValue <em>Wrapped Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcModulusOfRotationalSubgradeReactionMeasure#getWrappedValueAsString <em>Wrapped Value As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcModulusOfRotationalSubgradeReactionMeasure()
  * @model
  * @generated
  */
-public interface IfcModulusOfRotationalSubgradeReactionMeasure extends IfcDerivedMeasureValue, IfcModulusOfRotationalSubgradeReactionSelect {
+public interface IfcModulusOfRotationalSubgradeReactionMeasure
+		extends IfcDerivedMeasureValue, IfcModulusOfRotationalSubgradeReactionSelect {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

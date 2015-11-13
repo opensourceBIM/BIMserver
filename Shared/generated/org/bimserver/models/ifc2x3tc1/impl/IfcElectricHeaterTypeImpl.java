@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcElectricHeaterTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcElectricHeaterTypeImpl extends IfcFlowTerminalTypeImpl implement
 	 * @generated
 	 */
 	public IfcElectricHeaterTypeEnum getPredefinedType() {
-		return (IfcElectricHeaterTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_HEATER_TYPE__PREDEFINED_TYPE, true);
+		return (IfcElectricHeaterTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRIC_HEATER_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

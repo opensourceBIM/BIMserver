@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTypeObject#getApplicableOccurrence <em>Applicable Occurrence</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTypeObject#getHasPropertySets <em>Has Property Sets</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTypeObject#getTypes <em>Types</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTypeObject()
  * @model

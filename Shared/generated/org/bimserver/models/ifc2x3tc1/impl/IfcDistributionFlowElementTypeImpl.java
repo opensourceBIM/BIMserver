@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Distribution Flow Element Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcDistributionFlowElementTypeImpl extends IfcDistributionElementTypeImpl implements IfcDistributionFlowElementType {
+public class IfcDistributionFlowElementTypeImpl extends IfcDistributionElementTypeImpl
+		implements IfcDistributionFlowElementType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

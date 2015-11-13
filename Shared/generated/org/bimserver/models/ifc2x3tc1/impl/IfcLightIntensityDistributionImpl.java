@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLightIntensityDistributionImpl#getLightDistributionCurve <em>Light Distribution Curve</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLightIntensityDistributionImpl#getDistributionData <em>Distribution Data</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -74,7 +74,8 @@ public class IfcLightIntensityDistributionImpl extends IdEObjectImpl implements 
 	 * @generated
 	 */
 	public IfcLightDistributionCurveEnum getLightDistributionCurve() {
-		return (IfcLightDistributionCurveEnum) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__LIGHT_DISTRIBUTION_CURVE, true);
+		return (IfcLightDistributionCurveEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__LIGHT_DISTRIBUTION_CURVE, true);
 	}
 
 	/**
@@ -83,7 +84,8 @@ public class IfcLightIntensityDistributionImpl extends IdEObjectImpl implements 
 	 * @generated
 	 */
 	public void setLightDistributionCurve(IfcLightDistributionCurveEnum newLightDistributionCurve) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__LIGHT_DISTRIBUTION_CURVE, newLightDistributionCurve);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__LIGHT_DISTRIBUTION_CURVE,
+				newLightDistributionCurve);
 	}
 
 	/**
@@ -93,7 +95,8 @@ public class IfcLightIntensityDistributionImpl extends IdEObjectImpl implements 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLightDistributionData> getDistributionData() {
-		return (EList<IfcLightDistributionData>) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__DISTRIBUTION_DATA, true);
+		return (EList<IfcLightDistributionData>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__DISTRIBUTION_DATA, true);
 	}
 
 } //IfcLightIntensityDistributionImpl

@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRectangleHollowProfileDef#getWallThickness <em>Wall Thickness</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRectangleHollowProfileDef#getWallThicknessAsString <em>Wall Thickness As String</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcRectangleHollowProfileDef#getOuterFilletRadius <em>Outer Fillet Radius</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRectangleHollowProfileDef#getOuterFilletRadiusAsString <em>Outer Fillet Radius As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRectangleHollowProfileDef()
  * @model

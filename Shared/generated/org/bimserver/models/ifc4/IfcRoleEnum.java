@@ -638,9 +638,11 @@ public enum IfcRoleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRoleEnum[] VALUES_ARRAY = new IfcRoleEnum[] { NULL, COSTENGINEER, BUILDINGOPERATOR, RESELLER, ENGINEER, ARCHITECT, PROJECTMANAGER, CLIENT,
-			ELECTRICALENGINEER, CIVILENGINEER, SUPPLIER, CONTRACTOR, FIELDCONSTRUCTIONMANAGER, FACILITIESMANAGER, OWNER, CONSTRUCTIONMANAGER, STRUCTURALENGINEER,
-			MECHANICALENGINEER, COMMISSIONINGENGINEER, USERDEFINED, CONSULTANT, MANUFACTURER, SUBCONTRACTOR, BUILDINGOWNER, };
+	private static final IfcRoleEnum[] VALUES_ARRAY = new IfcRoleEnum[] { NULL, COSTENGINEER, BUILDINGOPERATOR,
+			RESELLER, ENGINEER, ARCHITECT, PROJECTMANAGER, CLIENT, ELECTRICALENGINEER, CIVILENGINEER, SUPPLIER,
+			CONTRACTOR, FIELDCONSTRUCTIONMANAGER, FACILITIESMANAGER, OWNER, CONSTRUCTIONMANAGER, STRUCTURALENGINEER,
+			MECHANICALENGINEER, COMMISSIONINGENGINEER, USERDEFINED, CONSULTANT, MANUFACTURER, SUBCONTRACTOR,
+			BUILDINGOWNER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Role Enum</b></em>' enumerators.
@@ -654,6 +656,8 @@ public enum IfcRoleEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Role Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRoleEnum get(String literal) {
@@ -670,6 +674,8 @@ public enum IfcRoleEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Role Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRoleEnum getByName(String name) {
@@ -686,6 +692,8 @@ public enum IfcRoleEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Role Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRoleEnum get(int value) {

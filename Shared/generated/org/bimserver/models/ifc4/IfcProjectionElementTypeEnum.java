@@ -113,7 +113,8 @@ public enum IfcProjectionElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProjectionElementTypeEnum[] VALUES_ARRAY = new IfcProjectionElementTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, };
+	private static final IfcProjectionElementTypeEnum[] VALUES_ARRAY = new IfcProjectionElementTypeEnum[] { NULL,
+			NOTDEFINED, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Projection Element Type Enum</b></em>' enumerators.
@@ -121,12 +122,15 @@ public enum IfcProjectionElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProjectionElementTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProjectionElementTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Projection Element Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProjectionElementTypeEnum get(String literal) {
@@ -143,6 +147,8 @@ public enum IfcProjectionElementTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Projection Element Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProjectionElementTypeEnum getByName(String name) {
@@ -159,6 +165,8 @@ public enum IfcProjectionElementTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Projection Element Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProjectionElementTypeEnum get(int value) {

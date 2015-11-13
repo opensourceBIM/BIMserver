@@ -238,8 +238,8 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcMedicalDeviceTypeEnum[] VALUES_ARRAY = new IfcMedicalDeviceTypeEnum[] { NULL, OXYGENGENERATOR, NOTDEFINED, FEEDAIRUNIT, OXYGENPLANT, VACUUMSTATION,
-			USERDEFINED, AIRSTATION, };
+	private static final IfcMedicalDeviceTypeEnum[] VALUES_ARRAY = new IfcMedicalDeviceTypeEnum[] { NULL,
+			OXYGENGENERATOR, NOTDEFINED, FEEDAIRUNIT, OXYGENPLANT, VACUUMSTATION, USERDEFINED, AIRSTATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Medical Device Type Enum</b></em>' enumerators.
@@ -247,12 +247,15 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcMedicalDeviceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcMedicalDeviceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Medical Device Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcMedicalDeviceTypeEnum get(String literal) {
@@ -269,6 +272,8 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Medical Device Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcMedicalDeviceTypeEnum getByName(String name) {
@@ -285,6 +290,8 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Medical Device Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcMedicalDeviceTypeEnum get(int value) {

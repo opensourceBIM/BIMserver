@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcGridAxisImpl#getAxisTag <em>Axis Tag</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcGridAxisImpl#getAxisCurve <em>Axis Curve</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcGridAxisImpl#getPartOfU <em>Part Of U</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcGridAxisImpl#getHasIntersections <em>Has Intersections</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -238,7 +238,8 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcVirtualGridIntersection> getHasIntersections() {
-		return (EList<IfcVirtualGridIntersection>) eGet(Ifc2x3tc1Package.Literals.IFC_GRID_AXIS__HAS_INTERSECTIONS, true);
+		return (EList<IfcVirtualGridIntersection>) eGet(Ifc2x3tc1Package.Literals.IFC_GRID_AXIS__HAS_INTERSECTIONS,
+				true);
 	}
 
 	/**

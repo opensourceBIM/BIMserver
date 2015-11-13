@@ -288,8 +288,9 @@ public enum IfcCostScheduleTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCostScheduleTypeEnum[] VALUES_ARRAY = new IfcCostScheduleTypeEnum[] { NULL, TENDER, BUDGET, COSTPLAN, PRICEDBILLOFQUANTITIES, NOTDEFINED, USERDEFINED,
-			UNPRICEDBILLOFQUANTITIES, SCHEDULEOFRATES, ESTIMATE, };
+	private static final IfcCostScheduleTypeEnum[] VALUES_ARRAY = new IfcCostScheduleTypeEnum[] { NULL, TENDER, BUDGET,
+			COSTPLAN, PRICEDBILLOFQUANTITIES, NOTDEFINED, USERDEFINED, UNPRICEDBILLOFQUANTITIES, SCHEDULEOFRATES,
+			ESTIMATE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cost Schedule Type Enum</b></em>' enumerators.
@@ -297,12 +298,15 @@ public enum IfcCostScheduleTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCostScheduleTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCostScheduleTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Cost Schedule Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCostScheduleTypeEnum get(String literal) {
@@ -319,6 +323,8 @@ public enum IfcCostScheduleTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Cost Schedule Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCostScheduleTypeEnum getByName(String name) {
@@ -335,6 +341,8 @@ public enum IfcCostScheduleTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Cost Schedule Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCostScheduleTypeEnum get(int value) {

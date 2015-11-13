@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelSpaceBoundary1stLevelImpl#getParentBoundary <em>Parent Boundary</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelSpaceBoundary1stLevelImpl#getInnerBoundaries <em>Inner Boundaries</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -61,7 +61,8 @@ public class IfcRelSpaceBoundary1stLevelImpl extends IfcRelSpaceBoundaryImpl imp
 	 * @generated
 	 */
 	public IfcRelSpaceBoundary1stLevel getParentBoundary() {
-		return (IfcRelSpaceBoundary1stLevel) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY1ST_LEVEL__PARENT_BOUNDARY, true);
+		return (IfcRelSpaceBoundary1stLevel) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY1ST_LEVEL__PARENT_BOUNDARY,
+				true);
 	}
 
 	/**
@@ -98,7 +99,8 @@ public class IfcRelSpaceBoundary1stLevelImpl extends IfcRelSpaceBoundaryImpl imp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelSpaceBoundary1stLevel> getInnerBoundaries() {
-		return (EList<IfcRelSpaceBoundary1stLevel>) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY1ST_LEVEL__INNER_BOUNDARIES, true);
+		return (EList<IfcRelSpaceBoundary1stLevel>) eGet(
+				Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY1ST_LEVEL__INNER_BOUNDARIES, true);
 	}
 
 	/**

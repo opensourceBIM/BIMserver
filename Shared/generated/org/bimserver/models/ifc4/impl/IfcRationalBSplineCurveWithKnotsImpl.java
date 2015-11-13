@@ -27,15 +27,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRationalBSplineCurveWithKnotsImpl#getWeightsData <em>Weights Data</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRationalBSplineCurveWithKnotsImpl#getWeightsDataAsString <em>Weights Data As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcRationalBSplineCurveWithKnotsImpl extends IfcBSplineCurveWithKnotsImpl implements IfcRationalBSplineCurveWithKnots {
+public class IfcRationalBSplineCurveWithKnotsImpl extends IfcBSplineCurveWithKnotsImpl
+		implements IfcRationalBSplineCurveWithKnots {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,7 +73,8 @@ public class IfcRationalBSplineCurveWithKnotsImpl extends IfcBSplineCurveWithKno
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getWeightsDataAsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS_DATA_AS_STRING, true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS_DATA_AS_STRING,
+				true);
 	}
 
 } //IfcRationalBSplineCurveWithKnotsImpl

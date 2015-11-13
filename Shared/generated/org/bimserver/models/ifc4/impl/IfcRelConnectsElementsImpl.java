@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelConnectsElementsImpl#getConnectionGeometry <em>Connection Geometry</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelConnectsElementsImpl#getRelatingElement <em>Relating Element</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelConnectsElementsImpl#getRelatedElement <em>Related Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

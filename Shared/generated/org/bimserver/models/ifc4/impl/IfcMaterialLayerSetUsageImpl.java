@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerSetUsageImpl#getForLayerSet <em>For Layer Set</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerSetUsageImpl#getLayerSetDirection <em>Layer Set Direction</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerSetUsageImpl#getReferenceExtent <em>Reference Extent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerSetUsageImpl#getReferenceExtentAsString <em>Reference Extent As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -86,7 +86,8 @@ public class IfcMaterialLayerSetUsageImpl extends IfcMaterialUsageDefinitionImpl
 	 * @generated
 	 */
 	public IfcLayerSetDirectionEnum getLayerSetDirection() {
-		return (IfcLayerSetDirectionEnum) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__LAYER_SET_DIRECTION, true);
+		return (IfcLayerSetDirectionEnum) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__LAYER_SET_DIRECTION,
+				true);
 	}
 
 	/**
@@ -140,7 +141,8 @@ public class IfcMaterialLayerSetUsageImpl extends IfcMaterialUsageDefinitionImpl
 	 * @generated
 	 */
 	public String getOffsetFromReferenceLineAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -149,7 +151,8 @@ public class IfcMaterialLayerSetUsageImpl extends IfcMaterialUsageDefinitionImpl
 	 * @generated
 	 */
 	public void setOffsetFromReferenceLineAsString(String newOffsetFromReferenceLineAsString) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE_AS_STRING, newOffsetFromReferenceLineAsString);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE_AS_STRING,
+				newOffsetFromReferenceLineAsString);
 	}
 
 	/**

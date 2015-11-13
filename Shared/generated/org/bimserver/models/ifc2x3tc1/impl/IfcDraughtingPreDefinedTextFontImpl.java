@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Draughting Pre Defined Text Font</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcDraughtingPreDefinedTextFontImpl extends IfcPreDefinedTextFontImpl implements IfcDraughtingPreDefinedTextFont {
+public class IfcDraughtingPreDefinedTextFontImpl extends IfcPreDefinedTextFontImpl
+		implements IfcDraughtingPreDefinedTextFont {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

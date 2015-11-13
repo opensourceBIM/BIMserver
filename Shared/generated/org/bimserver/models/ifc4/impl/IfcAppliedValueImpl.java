@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAppliedValueImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAppliedValueImpl#getDescription <em>Description</em>}</li>
@@ -45,7 +46,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAppliedValueImpl#getComponents <em>Components</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAppliedValueImpl#getHasExternalReference <em>Has External Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -438,7 +438,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__HAS_EXTERNAL_REFERENCE, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(
+				Ifc4Package.Literals.IFC_APPLIED_VALUE__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**

@@ -25,11 +25,11 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcResourceLevelRelationship#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcResourceLevelRelationship#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcResourceLevelRelationship()
  * @model

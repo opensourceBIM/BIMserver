@@ -23,13 +23,13 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcEllipseProfileDef#getSemiAxis1 <em>Semi Axis1</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcEllipseProfileDef#getSemiAxis1AsString <em>Semi Axis1 As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcEllipseProfileDef#getSemiAxis2 <em>Semi Axis2</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcEllipseProfileDef#getSemiAxis2AsString <em>Semi Axis2 As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcEllipseProfileDef()
  * @model

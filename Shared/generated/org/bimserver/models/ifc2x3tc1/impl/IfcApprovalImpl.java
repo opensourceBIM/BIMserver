@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalImpl#getApprovalDateTime <em>Approval Date Time</em>}</li>
@@ -43,7 +44,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalImpl#getIsRelatedWith <em>Is Related With</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalImpl#getRelates <em>Relates</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

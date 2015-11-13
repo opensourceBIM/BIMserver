@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcGridAxisImpl#getAxisTag <em>Axis Tag</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcGridAxisImpl#getAxisCurve <em>Axis Curve</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcGridAxisImpl#getPartOfU <em>Part Of U</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcGridAxisImpl#getHasIntersections <em>Has Intersections</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

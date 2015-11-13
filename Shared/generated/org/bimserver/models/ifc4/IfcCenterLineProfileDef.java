@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCenterLineProfileDef#getThickness <em>Thickness</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCenterLineProfileDef#getThicknessAsString <em>Thickness As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCenterLineProfileDef()
  * @model

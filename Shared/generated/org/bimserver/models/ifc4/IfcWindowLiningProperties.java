@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningDepth <em>Lining Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningDepthAsString <em>Lining Depth As String</em>}</li>
@@ -48,7 +49,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningToPanelOffsetY <em>Lining To Panel Offset Y</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningToPanelOffsetYAsString <em>Lining To Panel Offset YAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcWindowLiningProperties()
  * @model

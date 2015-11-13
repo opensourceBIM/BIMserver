@@ -27,13 +27,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCostScheduleImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCostScheduleImpl#getStatus <em>Status</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCostScheduleImpl#getSubmittedOn <em>Submitted On</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCostScheduleImpl#getUpdateDate <em>Update Date</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

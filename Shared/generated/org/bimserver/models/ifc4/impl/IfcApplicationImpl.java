@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcApplicationImpl#getApplicationDeveloper <em>Application Developer</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcApplicationImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcApplicationImpl#getApplicationFullName <em>Application Full Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcApplicationImpl#getApplicationIdentifier <em>Application Identifier</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -638,9 +638,10 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcValveTypeEnum[] VALUES_ARRAY = new IfcValveTypeEnum[] { NULL, FAUCET, NOTDEFINED, ISOLATING, COMMISSIONING, DOUBLECHECK, STOPCOCK, PRESSUREREDUCING,
-			STEAMTRAP, GASTAP, DOUBLEREGULATING, ANTIVACUUM, SAFETYCUTOFF, REGULATING, CHANGEOVER, CHECK, DIVERTING, DRAWOFFCOCK, PRESSURERELIEF, MIXING, FLUSHING, USERDEFINED,
-			GASCOCK, AIRRELEASE, };
+	private static final IfcValveTypeEnum[] VALUES_ARRAY = new IfcValveTypeEnum[] { NULL, FAUCET, NOTDEFINED, ISOLATING,
+			COMMISSIONING, DOUBLECHECK, STOPCOCK, PRESSUREREDUCING, STEAMTRAP, GASTAP, DOUBLEREGULATING, ANTIVACUUM,
+			SAFETYCUTOFF, REGULATING, CHANGEOVER, CHECK, DIVERTING, DRAWOFFCOCK, PRESSURERELIEF, MIXING, FLUSHING,
+			USERDEFINED, GASCOCK, AIRRELEASE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Valve Type Enum</b></em>' enumerators.
@@ -654,6 +655,8 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Valve Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcValveTypeEnum get(String literal) {
@@ -670,6 +673,8 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Valve Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcValveTypeEnum getByName(String name) {
@@ -686,6 +691,8 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Valve Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcValveTypeEnum get(int value) {

@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRepresentation#getContextOfItems <em>Context Of Items</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRepresentation#getRepresentationIdentifier <em>Representation Identifier</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRepresentation#getLayerAssignments <em>Layer Assignments</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRepresentation#getOfProductRepresentation <em>Of Product Representation</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRepresentation()
  * @model

@@ -23,12 +23,12 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCalendarDate#getDayComponent <em>Day Component</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCalendarDate#getMonthComponent <em>Month Component</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCalendarDate#getYearComponent <em>Year Component</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCalendarDate()
  * @model

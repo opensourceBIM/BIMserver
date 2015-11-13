@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator3DnonUniform#getScale2 <em>Scale2</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator3DnonUniform#getScale2AsString <em>Scale2 As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator3DnonUniform#getScale3 <em>Scale3</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator3DnonUniform#getScale3AsString <em>Scale3 As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianTransformationOperator3DnonUniform()
  * @model

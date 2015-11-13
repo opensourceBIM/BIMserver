@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRelServicesBuildingsImpl#getRelatingSystem <em>Relating System</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRelServicesBuildingsImpl#getRelatedBuildings <em>Related Buildings</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -82,7 +82,8 @@ public class IfcRelServicesBuildingsImpl extends IfcRelConnectsImpl implements I
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSpatialStructureElement> getRelatedBuildings() {
-		return (EList<IfcSpatialStructureElement>) eGet(Ifc2x3tc1Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATED_BUILDINGS, true);
+		return (EList<IfcSpatialStructureElement>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATED_BUILDINGS, true);
 	}
 
 } //IfcRelServicesBuildingsImpl

@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralSurfaceMemberImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralSurfaceMemberImpl#getThickness <em>Thickness</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralSurfaceMemberImpl#getThicknessAsString <em>Thickness As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,8 @@ public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl impl
 	 * @generated
 	 */
 	public IfcStructuralSurfaceMemberTypeEnum getPredefinedType() {
-		return (IfcStructuralSurfaceMemberTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__PREDEFINED_TYPE, true);
+		return (IfcStructuralSurfaceMemberTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__PREDEFINED_TYPE, true);
 	}
 
 	/**

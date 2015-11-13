@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcBoundingBox#getCorner <em>Corner</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBoundingBox#getXDim <em>XDim</em>}</li>
@@ -33,7 +34,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcBoundingBox#getZDimAsString <em>ZDim As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBoundingBox#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBoundingBox()
  * @model

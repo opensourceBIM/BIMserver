@@ -113,7 +113,8 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLogicalOperatorEnum[] VALUES_ARRAY = new IfcLogicalOperatorEnum[] { NULL, LOGICALOR, LOGICALAND, };
+	private static final IfcLogicalOperatorEnum[] VALUES_ARRAY = new IfcLogicalOperatorEnum[] { NULL, LOGICALOR,
+			LOGICALAND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Logical Operator Enum</b></em>' enumerators.
@@ -127,6 +128,8 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Logical Operator Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcLogicalOperatorEnum get(String literal) {
@@ -143,6 +146,8 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Logical Operator Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcLogicalOperatorEnum getByName(String name) {
@@ -159,6 +164,8 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Logical Operator Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcLogicalOperatorEnum get(int value) {

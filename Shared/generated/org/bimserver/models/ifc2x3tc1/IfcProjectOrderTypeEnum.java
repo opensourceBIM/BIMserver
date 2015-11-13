@@ -238,8 +238,8 @@ public enum IfcProjectOrderTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProjectOrderTypeEnum[] VALUES_ARRAY = new IfcProjectOrderTypeEnum[] { NULL, PURCHASEORDER, NOTDEFINED, MOVEORDER,
-			MAINTENANCEWORKORDER, WORKORDER, USERDEFINED, CHANGEORDER, };
+	private static final IfcProjectOrderTypeEnum[] VALUES_ARRAY = new IfcProjectOrderTypeEnum[] { NULL, PURCHASEORDER,
+			NOTDEFINED, MOVEORDER, MAINTENANCEWORKORDER, WORKORDER, USERDEFINED, CHANGEORDER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Project Order Type Enum</b></em>' enumerators.
@@ -247,12 +247,15 @@ public enum IfcProjectOrderTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProjectOrderTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProjectOrderTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Project Order Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProjectOrderTypeEnum get(String literal) {
@@ -269,6 +272,8 @@ public enum IfcProjectOrderTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Project Order Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProjectOrderTypeEnum getByName(String name) {
@@ -285,6 +290,8 @@ public enum IfcProjectOrderTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Project Order Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProjectOrderTypeEnum get(int value) {

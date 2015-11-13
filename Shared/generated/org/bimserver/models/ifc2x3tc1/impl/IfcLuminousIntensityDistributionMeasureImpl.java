@@ -27,15 +27,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLuminousIntensityDistributionMeasureImpl#getWrappedValue <em>Wrapped Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLuminousIntensityDistributionMeasureImpl#getWrappedValueAsString <em>Wrapped Value As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcLuminousIntensityDistributionMeasureImpl extends IdEObjectImpl implements IfcLuminousIntensityDistributionMeasure {
+public class IfcLuminousIntensityDistributionMeasureImpl extends IdEObjectImpl
+		implements IfcLuminousIntensityDistributionMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +72,8 @@ public class IfcLuminousIntensityDistributionMeasureImpl extends IdEObjectImpl i
 	 * @generated
 	 */
 	public double getWrappedValue() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_LUMINOUS_INTENSITY_DISTRIBUTION_MEASURE__WRAPPED_VALUE, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_LUMINOUS_INTENSITY_DISTRIBUTION_MEASURE__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -107,7 +109,8 @@ public class IfcLuminousIntensityDistributionMeasureImpl extends IdEObjectImpl i
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LUMINOUS_INTENSITY_DISTRIBUTION_MEASURE__WRAPPED_VALUE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LUMINOUS_INTENSITY_DISTRIBUTION_MEASURE__WRAPPED_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -116,7 +119,8 @@ public class IfcLuminousIntensityDistributionMeasureImpl extends IdEObjectImpl i
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LUMINOUS_INTENSITY_DISTRIBUTION_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LUMINOUS_INTENSITY_DISTRIBUTION_MEASURE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**

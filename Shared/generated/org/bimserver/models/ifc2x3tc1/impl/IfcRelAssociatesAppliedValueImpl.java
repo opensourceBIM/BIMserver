@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRelAssociatesAppliedValueImpl#getRelatingAppliedValue <em>Relating Applied Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcRelAssociatesAppliedValueImpl extends IfcRelAssociatesImpl imple
 	 * @generated
 	 */
 	public IfcAppliedValue getRelatingAppliedValue() {
-		return (IfcAppliedValue) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE, true);
+		return (IfcAppliedValue) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE, true);
 	}
 
 	/**
@@ -69,7 +70,8 @@ public class IfcRelAssociatesAppliedValueImpl extends IfcRelAssociatesImpl imple
 	 * @generated
 	 */
 	public void setRelatingAppliedValue(IfcAppliedValue newRelatingAppliedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE, newRelatingAppliedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE,
+				newRelatingAppliedValue);
 	}
 
 } //IfcRelAssociatesAppliedValueImpl

@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTaskTimeImpl#getDurationType <em>Duration Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTaskTimeImpl#getScheduleDuration <em>Schedule Duration</em>}</li>
@@ -48,7 +49,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTaskTimeImpl#getCompletion <em>Completion</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTaskTimeImpl#getCompletionAsString <em>Completion As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

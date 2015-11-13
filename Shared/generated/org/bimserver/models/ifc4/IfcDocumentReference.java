@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcDocumentReference#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDocumentReference#getReferencedDocument <em>Referenced Document</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDocumentReference#getDocumentRefForObjects <em>Document Ref For Objects</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDocumentReference()
  * @model

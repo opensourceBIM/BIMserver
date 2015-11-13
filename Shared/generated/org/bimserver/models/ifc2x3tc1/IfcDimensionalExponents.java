@@ -25,6 +25,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDimensionalExponents#getLengthExponent <em>Length Exponent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDimensionalExponents#getMassExponent <em>Mass Exponent</em>}</li>
@@ -34,7 +35,6 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDimensionalExponents#getAmountOfSubstanceExponent <em>Amount Of Substance Exponent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDimensionalExponents#getLuminousIntensityExponent <em>Luminous Intensity Exponent</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcDimensionalExponents()
  * @model

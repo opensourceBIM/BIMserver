@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelAssignsImpl#getRelatedObjects <em>Related Objects</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelAssignsImpl#getRelatedObjectsType <em>Related Objects Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

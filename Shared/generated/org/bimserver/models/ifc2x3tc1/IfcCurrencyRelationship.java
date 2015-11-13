@@ -25,6 +25,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCurrencyRelationship#getRelatingMonetaryUnit <em>Relating Monetary Unit</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCurrencyRelationship#getRelatedMonetaryUnit <em>Related Monetary Unit</em>}</li>
@@ -33,7 +34,6 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCurrencyRelationship#getRateDateTime <em>Rate Date Time</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCurrencyRelationship#getRateSource <em>Rate Source</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCurrencyRelationship()
  * @model

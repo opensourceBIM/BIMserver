@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDimensionalExponentsImpl#getLengthExponent <em>Length Exponent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDimensionalExponentsImpl#getMassExponent <em>Mass Exponent</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDimensionalExponentsImpl#getAmountOfSubstanceExponent <em>Amount Of Substance Exponent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDimensionalExponentsImpl#getLuminousIntensityExponent <em>Luminous Intensity Exponent</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -139,7 +139,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * @generated
 	 */
 	public void setElectricCurrentExponent(int newElectricCurrentExponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__ELECTRIC_CURRENT_EXPONENT, newElectricCurrentExponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__ELECTRIC_CURRENT_EXPONENT,
+				newElectricCurrentExponent);
 	}
 
 	/**
@@ -148,7 +149,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * @generated
 	 */
 	public int getThermodynamicTemperatureExponent() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT, true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT,
+				true);
 	}
 
 	/**
@@ -157,7 +159,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * @generated
 	 */
 	public void setThermodynamicTemperatureExponent(int newThermodynamicTemperatureExponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT, newThermodynamicTemperatureExponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT,
+				newThermodynamicTemperatureExponent);
 	}
 
 	/**
@@ -175,7 +178,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * @generated
 	 */
 	public void setAmountOfSubstanceExponent(int newAmountOfSubstanceExponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT, newAmountOfSubstanceExponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT,
+				newAmountOfSubstanceExponent);
 	}
 
 	/**
@@ -193,7 +197,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * @generated
 	 */
 	public void setLuminousIntensityExponent(int newLuminousIntensityExponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LUMINOUS_INTENSITY_EXPONENT, newLuminousIntensityExponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LUMINOUS_INTENSITY_EXPONENT,
+				newLuminousIntensityExponent);
 	}
 
 } //IfcDimensionalExponentsImpl

@@ -29,10 +29,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcClassificationNotationImpl#getNotationFacets <em>Notation Facets</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -73,7 +73,8 @@ public class IfcClassificationNotationImpl extends IdEObjectImpl implements IfcC
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationNotationFacet> getNotationFacets() {
-		return (EList<IfcClassificationNotationFacet>) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_NOTATION__NOTATION_FACETS, true);
+		return (EList<IfcClassificationNotationFacet>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_NOTATION__NOTATION_FACETS, true);
 	}
 
 } //IfcClassificationNotationImpl

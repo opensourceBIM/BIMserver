@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcFixedReferenceSweptAreaSolid#getDirectrix <em>Directrix</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcFixedReferenceSweptAreaSolid#getStartParam <em>Start Param</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcFixedReferenceSweptAreaSolid#getEndParamAsString <em>End Param As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcFixedReferenceSweptAreaSolid#getFixedReference <em>Fixed Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFixedReferenceSweptAreaSolid()
  * @model

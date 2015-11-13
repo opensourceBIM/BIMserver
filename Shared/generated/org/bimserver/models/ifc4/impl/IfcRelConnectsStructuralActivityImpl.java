@@ -28,15 +28,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelConnectsStructuralActivityImpl#getRelatingElement <em>Relating Element</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelConnectsStructuralActivityImpl#getRelatedStructuralActivity <em>Related Structural Activity</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl implements IfcRelConnectsStructuralActivity {
+public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl
+		implements IfcRelConnectsStructuralActivity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,8 @@ public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl imp
 	 * @generated
 	 */
 	public IfcStructuralActivityAssignmentSelect getRelatingElement() {
-		return (IfcStructuralActivityAssignmentSelect) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATING_ELEMENT, true);
+		return (IfcStructuralActivityAssignmentSelect) eGet(
+				Ifc4Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATING_ELEMENT, true);
 	}
 
 	/**
@@ -80,7 +82,8 @@ public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl imp
 	 * @generated
 	 */
 	public IfcStructuralActivity getRelatedStructuralActivity() {
-		return (IfcStructuralActivity) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATED_STRUCTURAL_ACTIVITY, true);
+		return (IfcStructuralActivity) eGet(
+				Ifc4Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATED_STRUCTURAL_ACTIVITY, true);
 	}
 
 	/**
@@ -89,7 +92,8 @@ public class IfcRelConnectsStructuralActivityImpl extends IfcRelConnectsImpl imp
 	 * @generated
 	 */
 	public void setRelatedStructuralActivity(IfcStructuralActivity newRelatedStructuralActivity) {
-		eSet(Ifc4Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATED_STRUCTURAL_ACTIVITY, newRelatedStructuralActivity);
+		eSet(Ifc4Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY__RELATED_STRUCTURAL_ACTIVITY,
+				newRelatedStructuralActivity);
 	}
 
 } //IfcRelConnectsStructuralActivityImpl

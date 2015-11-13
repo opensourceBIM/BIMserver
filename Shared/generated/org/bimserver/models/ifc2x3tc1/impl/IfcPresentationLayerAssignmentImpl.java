@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPresentationLayerAssignmentImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPresentationLayerAssignmentImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPresentationLayerAssignmentImpl#getAssignedItems <em>Assigned Items</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPresentationLayerAssignmentImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -130,7 +130,8 @@ public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLayeredItem> getAssignedItems() {
-		return (EList<IfcLayeredItem>) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__ASSIGNED_ITEMS, true);
+		return (EList<IfcLayeredItem>) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__ASSIGNED_ITEMS,
+				true);
 	}
 
 	/**

@@ -738,9 +738,10 @@ public enum IfcActionSourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcActionSourceTypeEnum[] VALUES_ARRAY = new IfcActionSourceTypeEnum[] { NULL, NOTDEFINED, PRESTRESSING_P, SNOW_S, ERECTION, SETTLEMENT_U, IMPACT,
-			LIVE_LOAD_Q, COMPLETION_G1, BUOYANCY, EARTHQUAKE_E, CURRENT, FIRE, WAVE, TEMPERATURE_T, ICE, CREEP, RAIN, PROPPING, SYSTEM_IMPERFECTION, TRANSPORT, IMPULSE, BRAKES,
-			USERDEFINED, SHRINKAGE, DEAD_LOAD_G, WIND_W, LACK_OF_FIT, };
+	private static final IfcActionSourceTypeEnum[] VALUES_ARRAY = new IfcActionSourceTypeEnum[] { NULL, NOTDEFINED,
+			PRESTRESSING_P, SNOW_S, ERECTION, SETTLEMENT_U, IMPACT, LIVE_LOAD_Q, COMPLETION_G1, BUOYANCY, EARTHQUAKE_E,
+			CURRENT, FIRE, WAVE, TEMPERATURE_T, ICE, CREEP, RAIN, PROPPING, SYSTEM_IMPERFECTION, TRANSPORT, IMPULSE,
+			BRAKES, USERDEFINED, SHRINKAGE, DEAD_LOAD_G, WIND_W, LACK_OF_FIT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Action Source Type Enum</b></em>' enumerators.
@@ -748,12 +749,15 @@ public enum IfcActionSourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcActionSourceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcActionSourceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Action Source Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcActionSourceTypeEnum get(String literal) {
@@ -770,6 +774,8 @@ public enum IfcActionSourceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Action Source Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcActionSourceTypeEnum getByName(String name) {
@@ -786,6 +792,8 @@ public enum IfcActionSourceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Action Source Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcActionSourceTypeEnum get(int value) {

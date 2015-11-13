@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcActorRoleImpl#getRole <em>Role</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcActorRoleImpl#getUserDefinedRole <em>User Defined Role</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcActorRoleImpl#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

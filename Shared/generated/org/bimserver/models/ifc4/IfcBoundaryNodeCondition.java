@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcBoundaryNodeCondition#getTranslationalStiffnessX <em>Translational Stiffness X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBoundaryNodeCondition#getTranslationalStiffnessY <em>Translational Stiffness Y</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcBoundaryNodeCondition#getRotationalStiffnessY <em>Rotational Stiffness Y</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBoundaryNodeCondition#getRotationalStiffnessZ <em>Rotational Stiffness Z</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBoundaryNodeCondition()
  * @model

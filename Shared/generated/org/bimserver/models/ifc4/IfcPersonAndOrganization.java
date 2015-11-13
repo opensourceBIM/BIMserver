@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPersonAndOrganization#getThePerson <em>The Person</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPersonAndOrganization#getTheOrganization <em>The Organization</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPersonAndOrganization#getRoles <em>Roles</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPersonAndOrganization()
  * @model

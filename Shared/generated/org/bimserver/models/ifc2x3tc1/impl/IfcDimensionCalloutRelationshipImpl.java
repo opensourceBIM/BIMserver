@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Dimension Callout Relationship</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcDimensionCalloutRelationshipImpl extends IfcDraughtingCalloutRelationshipImpl implements IfcDimensionCalloutRelationship {
+public class IfcDimensionCalloutRelationshipImpl extends IfcDraughtingCalloutRelationshipImpl
+		implements IfcDimensionCalloutRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

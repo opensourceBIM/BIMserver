@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Externally Defined Hatch Style</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcExternallyDefinedHatchStyleImpl extends IfcExternalReferenceImpl implements IfcExternallyDefinedHatchStyle {
+public class IfcExternallyDefinedHatchStyleImpl extends IfcExternalReferenceImpl
+		implements IfcExternallyDefinedHatchStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

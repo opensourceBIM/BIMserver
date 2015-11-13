@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#isLayerOn <em>Layer On</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#isLayerFrozen <em>Layer Frozen</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#isLayerBlocked <em>Layer Blocked</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#getLayerStyles <em>Layer Styles</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPresentationLayerWithStyle()
  * @model

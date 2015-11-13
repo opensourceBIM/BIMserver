@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getUMultiplicities <em>UMultiplicities</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getVMultiplicities <em>VMultiplicities</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getVKnotsAsString <em>VKnots As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getKnotSpec <em>Knot Spec</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurfaceWithKnots()
  * @model

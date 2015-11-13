@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getTotalCrossSectionArea <em>Total Cross Section Area</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getTotalCrossSectionAreaAsString <em>Total Cross Section Area As String</em>}</li>
@@ -35,7 +36,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getBarCount <em>Bar Count</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getBarCountAsString <em>Bar Count As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcReinforcementBarProperties()
  * @model

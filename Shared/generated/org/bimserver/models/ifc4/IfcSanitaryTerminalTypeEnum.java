@@ -363,8 +363,9 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSanitaryTerminalTypeEnum[] VALUES_ARRAY = new IfcSanitaryTerminalTypeEnum[] { NULL, TOILETPAN, BATH, CISTERN, BIDET, NOTDEFINED, WASHHANDBASIN,
-			SANITARYFOUNTAIN, URINAL, SINK, USERDEFINED, WCSEAT, SHOWER, };
+	private static final IfcSanitaryTerminalTypeEnum[] VALUES_ARRAY = new IfcSanitaryTerminalTypeEnum[] { NULL,
+			TOILETPAN, BATH, CISTERN, BIDET, NOTDEFINED, WASHHANDBASIN, SANITARYFOUNTAIN, URINAL, SINK, USERDEFINED,
+			WCSEAT, SHOWER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sanitary Terminal Type Enum</b></em>' enumerators.
@@ -372,12 +373,15 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSanitaryTerminalTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSanitaryTerminalTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Sanitary Terminal Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSanitaryTerminalTypeEnum get(String literal) {
@@ -394,6 +398,8 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Sanitary Terminal Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSanitaryTerminalTypeEnum getByName(String name) {
@@ -410,6 +416,8 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Sanitary Terminal Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSanitaryTerminalTypeEnum get(int value) {

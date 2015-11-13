@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcObjectDefinitionImpl#getHasAssignments <em>Has Assignments</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcObjectDefinitionImpl#getNests <em>Nests</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcObjectDefinitionImpl#getDecomposes <em>Decomposes</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcObjectDefinitionImpl#getHasAssociations <em>Has Associations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

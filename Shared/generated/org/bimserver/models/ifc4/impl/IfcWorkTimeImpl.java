@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWorkTimeImpl#getRecurrencePattern <em>Recurrence Pattern</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWorkTimeImpl#getStart <em>Start</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWorkTimeImpl#getFinish <em>Finish</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

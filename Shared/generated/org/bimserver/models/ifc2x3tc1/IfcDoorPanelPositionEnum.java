@@ -163,7 +163,8 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorPanelPositionEnum[] VALUES_ARRAY = new IfcDoorPanelPositionEnum[] { NULL, RIGHT, NOTDEFINED, LEFT, MIDDLE, };
+	private static final IfcDoorPanelPositionEnum[] VALUES_ARRAY = new IfcDoorPanelPositionEnum[] { NULL, RIGHT,
+			NOTDEFINED, LEFT, MIDDLE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Panel Position Enum</b></em>' enumerators.
@@ -171,12 +172,15 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDoorPanelPositionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDoorPanelPositionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Door Panel Position Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDoorPanelPositionEnum get(String literal) {
@@ -193,6 +197,8 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Door Panel Position Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDoorPanelPositionEnum getByName(String name) {
@@ -209,6 +215,8 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Door Panel Position Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDoorPanelPositionEnum get(int value) {

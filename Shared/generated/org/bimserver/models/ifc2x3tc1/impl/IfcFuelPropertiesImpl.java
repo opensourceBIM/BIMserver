@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcFuelPropertiesImpl#getCombustionTemperature <em>Combustion Temperature</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcFuelPropertiesImpl#getCombustionTemperatureAsString <em>Combustion Temperature As String</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcFuelPropertiesImpl#getHigherHeatingValue <em>Higher Heating Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcFuelPropertiesImpl#getHigherHeatingValueAsString <em>Higher Heating Value As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -111,7 +111,8 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 * @generated
 	 */
 	public void setCombustionTemperatureAsString(String newCombustionTemperatureAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FUEL_PROPERTIES__COMBUSTION_TEMPERATURE_AS_STRING, newCombustionTemperatureAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FUEL_PROPERTIES__COMBUSTION_TEMPERATURE_AS_STRING,
+				newCombustionTemperatureAsString);
 	}
 
 	/**
@@ -255,7 +256,8 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 * @generated
 	 */
 	public void setLowerHeatingValueAsString(String newLowerHeatingValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FUEL_PROPERTIES__LOWER_HEATING_VALUE_AS_STRING, newLowerHeatingValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FUEL_PROPERTIES__LOWER_HEATING_VALUE_AS_STRING,
+				newLowerHeatingValueAsString);
 	}
 
 	/**
@@ -327,7 +329,8 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 * @generated
 	 */
 	public void setHigherHeatingValueAsString(String newHigherHeatingValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_FUEL_PROPERTIES__HIGHER_HEATING_VALUE_AS_STRING, newHigherHeatingValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_FUEL_PROPERTIES__HIGHER_HEATING_VALUE_AS_STRING,
+				newHigherHeatingValueAsString);
 	}
 
 	/**

@@ -288,8 +288,8 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProcedureTypeEnum[] VALUES_ARRAY = new IfcProcedureTypeEnum[] { NULL, ADVICE_NOTE, NOTDEFINED, SHUTDOWN, ADVICE_CAUTION,
-			CALIBRATION, USERDEFINED, STARTUP, ADVICE_WARNING, DIAGNOSTIC, };
+	private static final IfcProcedureTypeEnum[] VALUES_ARRAY = new IfcProcedureTypeEnum[] { NULL, ADVICE_NOTE,
+			NOTDEFINED, SHUTDOWN, ADVICE_CAUTION, CALIBRATION, USERDEFINED, STARTUP, ADVICE_WARNING, DIAGNOSTIC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Procedure Type Enum</b></em>' enumerators.
@@ -303,6 +303,8 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Procedure Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProcedureTypeEnum get(String literal) {
@@ -319,6 +321,8 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Procedure Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProcedureTypeEnum getByName(String name) {
@@ -335,6 +339,8 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Procedure Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProcedureTypeEnum get(int value) {

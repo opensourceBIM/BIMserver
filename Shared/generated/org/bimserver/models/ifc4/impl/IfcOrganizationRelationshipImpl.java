@@ -28,15 +28,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcOrganizationRelationshipImpl#getRelatingOrganization <em>Relating Organization</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcOrganizationRelationshipImpl#getRelatedOrganizations <em>Related Organizations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcOrganizationRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcOrganizationRelationship {
+public class IfcOrganizationRelationshipImpl extends IfcResourceLevelRelationshipImpl
+		implements IfcOrganizationRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,7 +82,8 @@ public class IfcOrganizationRelationshipImpl extends IfcResourceLevelRelationshi
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganization> getRelatedOrganizations() {
-		return (EList<IfcOrganization>) eGet(Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS, true);
+		return (EList<IfcOrganization>) eGet(Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS,
+				true);
 	}
 
 } //IfcOrganizationRelationshipImpl

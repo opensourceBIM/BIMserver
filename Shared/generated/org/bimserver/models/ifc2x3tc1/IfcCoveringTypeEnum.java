@@ -313,8 +313,8 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCoveringTypeEnum[] VALUES_ARRAY = new IfcCoveringTypeEnum[] { NULL, NOTDEFINED, CEILING, MEMBRANE, ROOFING, CLADDING, USERDEFINED,
-			WRAPPING, FLOORING, SLEEVING, INSULATION, };
+	private static final IfcCoveringTypeEnum[] VALUES_ARRAY = new IfcCoveringTypeEnum[] { NULL, NOTDEFINED, CEILING,
+			MEMBRANE, ROOFING, CLADDING, USERDEFINED, WRAPPING, FLOORING, SLEEVING, INSULATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Covering Type Enum</b></em>' enumerators.
@@ -328,6 +328,8 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Covering Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCoveringTypeEnum get(String literal) {
@@ -344,6 +346,8 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Covering Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCoveringTypeEnum getByName(String name) {
@@ -360,6 +364,8 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Covering Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCoveringTypeEnum get(int value) {

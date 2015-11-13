@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcBlock#getXLength <em>XLength</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBlock#getXLengthAsString <em>XLength As String</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcBlock#getZLength <em>ZLength</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBlock#getZLengthAsString <em>ZLength As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBlock()
  * @model

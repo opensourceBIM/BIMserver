@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTrapeziumProfileDef#getBottomXDim <em>Bottom XDim</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTrapeziumProfileDef#getBottomXDimAsString <em>Bottom XDim As String</em>}</li>
@@ -33,7 +34,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcTrapeziumProfileDef#getTopXOffset <em>Top XOffset</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTrapeziumProfileDef#getTopXOffsetAsString <em>Top XOffset As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTrapeziumProfileDef()
  * @model

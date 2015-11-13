@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSteelProfileProperties#getShearAreaZ <em>Shear Area Z</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSteelProfileProperties#getShearAreaZAsString <em>Shear Area ZAs String</em>}</li>
@@ -33,7 +34,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSteelProfileProperties#getPlasticShapeFactorZ <em>Plastic Shape Factor Z</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSteelProfileProperties#getPlasticShapeFactorZAsString <em>Plastic Shape Factor ZAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcStructuralSteelProfileProperties()
  * @model

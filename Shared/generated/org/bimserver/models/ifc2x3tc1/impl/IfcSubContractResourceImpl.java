@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSubContractResourceImpl#getSubContractor <em>Sub Contractor</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSubContractResourceImpl#getJobDescription <em>Job Description</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

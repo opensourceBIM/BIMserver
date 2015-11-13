@@ -25,11 +25,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLinearActionVarying#getVaryingAppliedLoadLocation <em>Varying Applied Load Location</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLinearActionVarying#getSubsequentAppliedLoads <em>Subsequent Applied Loads</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcStructuralLinearActionVarying()
  * @model

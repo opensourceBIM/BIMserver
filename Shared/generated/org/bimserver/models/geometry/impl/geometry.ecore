@@ -4,10 +4,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="GeometryInfo">
     <eAnnotations source="hidden"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="minBounds" eType="#//Vector3f">
+      <eAnnotations source="dbembed"/>
       <eAnnotations source="embedsreference"/>
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="maxBounds" eType="#//Vector3f">
+      <eAnnotations source="dbembed"/>
       <eAnnotations source="embedsreference"/>
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
@@ -17,7 +19,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#//GeometryData">
       <eAnnotations source="nolazyload"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="#//GeometryInstance"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="area" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="volume" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
@@ -36,10 +37,5 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="normals" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="materials" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="materialIndices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GeometryInstance">
-    <eAnnotations source="hidden"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#//GeometryData"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
   </eClassifiers>
 </ecore:EPackage>

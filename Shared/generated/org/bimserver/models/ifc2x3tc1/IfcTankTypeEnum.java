@@ -213,8 +213,8 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTankTypeEnum[] VALUES_ARRAY = new IfcTankTypeEnum[] { NULL, PREFORMED, NOTDEFINED, PRESSUREVESSEL, SECTIONAL, USERDEFINED,
-			EXPANSION, };
+	private static final IfcTankTypeEnum[] VALUES_ARRAY = new IfcTankTypeEnum[] { NULL, PREFORMED, NOTDEFINED,
+			PRESSUREVESSEL, SECTIONAL, USERDEFINED, EXPANSION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Tank Type Enum</b></em>' enumerators.
@@ -228,6 +228,8 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Tank Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcTankTypeEnum get(String literal) {
@@ -244,6 +246,8 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Tank Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcTankTypeEnum getByName(String name) {
@@ -260,6 +264,8 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Tank Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcTankTypeEnum get(int value) {

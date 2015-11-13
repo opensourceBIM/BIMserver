@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcGeneralMaterialPropertiesImpl#getMolecularWeight <em>Molecular Weight</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcGeneralMaterialPropertiesImpl#getMolecularWeightAsString <em>Molecular Weight As String</em>}</li>
@@ -34,11 +35,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcGeneralMaterialPropertiesImpl#getMassDensity <em>Mass Density</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcGeneralMaterialPropertiesImpl#getMassDensityAsString <em>Mass Density As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl implements IfcGeneralMaterialProperties {
+public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
+		implements IfcGeneralMaterialProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +101,8 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * @generated
 	 */
 	public String getMolecularWeightAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -109,7 +111,8 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * @generated
 	 */
 	public void setMolecularWeightAsString(String newMolecularWeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT_AS_STRING, newMolecularWeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT_AS_STRING,
+				newMolecularWeightAsString);
 	}
 
 	/**

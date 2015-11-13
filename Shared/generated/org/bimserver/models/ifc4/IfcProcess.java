@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcProcess#getIdentification <em>Identification</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProcess#getLongDescription <em>Long Description</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcProcess#getIsSuccessorFrom <em>Is Successor From</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProcess#getOperatesOn <em>Operates On</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProcess()
  * @model

@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralLoadTemperatureImpl#getDeltaTConstant <em>Delta TConstant</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralLoadTemperatureImpl#getDeltaTConstantAsString <em>Delta TConstant As String</em>}</li>
@@ -34,11 +35,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralLoadTemperatureImpl#getDeltaTZ <em>Delta TZ</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralLoadTemperatureImpl#getDeltaTZAsString <em>Delta TZ As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImpl implements IfcStructuralLoadTemperature {
+public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImpl
+		implements IfcStructuralLoadTemperature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -109,7 +110,8 @@ public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImp
 	 * @generated
 	 */
 	public void setDeltaTConstantAsString(String newDeltaTConstantAsString) {
-		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TCONSTANT_AS_STRING, newDeltaTConstantAsString);
+		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TCONSTANT_AS_STRING,
+				newDeltaTConstantAsString);
 	}
 
 	/**

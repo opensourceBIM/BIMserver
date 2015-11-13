@@ -263,8 +263,8 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFilterTypeEnum[] VALUES_ARRAY = new IfcFilterTypeEnum[] { NULL, STRAINER, NOTDEFINED, WATERFILTER, COMPRESSEDAIRFILTER, ODORFILTER, OILFILTER,
-			AIRPARTICLEFILTER, USERDEFINED, };
+	private static final IfcFilterTypeEnum[] VALUES_ARRAY = new IfcFilterTypeEnum[] { NULL, STRAINER, NOTDEFINED,
+			WATERFILTER, COMPRESSEDAIRFILTER, ODORFILTER, OILFILTER, AIRPARTICLEFILTER, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Filter Type Enum</b></em>' enumerators.
@@ -278,6 +278,8 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Filter Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFilterTypeEnum get(String literal) {
@@ -294,6 +296,8 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Filter Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFilterTypeEnum getByName(String name) {
@@ -310,6 +314,8 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Filter Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFilterTypeEnum get(int value) {

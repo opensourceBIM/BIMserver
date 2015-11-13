@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceReinforcementArea#getSurfaceReinforcement1 <em>Surface Reinforcement1</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceReinforcementArea#getSurfaceReinforcement1AsString <em>Surface Reinforcement1 As String</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceReinforcementArea#getShearReinforcement <em>Shear Reinforcement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceReinforcementArea#getShearReinforcementAsString <em>Shear Reinforcement As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSurfaceReinforcementArea()
  * @model

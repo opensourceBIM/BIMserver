@@ -31,6 +31,7 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.notifications.ProgressNotification;
 import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.plugins.Reporter;
+import org.bimserver.plugins.serializers.Writer;
 import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

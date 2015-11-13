@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMapConversionImpl#getEastings <em>Eastings</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMapConversionImpl#getEastingsAsString <em>Eastings As String</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMapConversionImpl#getScale <em>Scale</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMapConversionImpl#getScaleAsString <em>Scale As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

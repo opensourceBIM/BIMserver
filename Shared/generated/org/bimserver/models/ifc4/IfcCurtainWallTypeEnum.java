@@ -113,7 +113,8 @@ public enum IfcCurtainWallTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCurtainWallTypeEnum[] VALUES_ARRAY = new IfcCurtainWallTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, };
+	private static final IfcCurtainWallTypeEnum[] VALUES_ARRAY = new IfcCurtainWallTypeEnum[] { NULL, NOTDEFINED,
+			USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Curtain Wall Type Enum</b></em>' enumerators.
@@ -127,6 +128,8 @@ public enum IfcCurtainWallTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Curtain Wall Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCurtainWallTypeEnum get(String literal) {
@@ -143,6 +146,8 @@ public enum IfcCurtainWallTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Curtain Wall Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCurtainWallTypeEnum getByName(String name) {
@@ -159,6 +164,8 @@ public enum IfcCurtainWallTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Curtain Wall Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCurtainWallTypeEnum get(int value) {

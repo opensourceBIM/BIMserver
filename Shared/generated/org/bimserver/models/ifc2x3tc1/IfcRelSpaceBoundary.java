@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelSpaceBoundary#getRelatingSpace <em>Relating Space</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelSpaceBoundary#getRelatedBuildingElement <em>Related Building Element</em>}</li>
@@ -30,7 +31,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelSpaceBoundary#getPhysicalOrVirtualBoundary <em>Physical Or Virtual Boundary</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelSpaceBoundary#getInternalOrExternalBoundary <em>Internal Or External Boundary</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRelSpaceBoundary()
  * @model

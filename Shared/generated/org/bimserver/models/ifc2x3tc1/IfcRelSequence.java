@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelSequence#getRelatingProcess <em>Relating Process</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelSequence#getRelatedProcess <em>Related Process</em>}</li>
@@ -30,7 +31,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelSequence#getTimeLagAsString <em>Time Lag As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelSequence#getSequenceType <em>Sequence Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRelSequence()
  * @model

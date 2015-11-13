@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDiscreteAccessoryTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcDiscreteAccessoryTypeImpl extends IfcElementComponentTypeImpl im
 	 * @generated
 	 */
 	public IfcDiscreteAccessoryTypeEnum getPredefinedType() {
-		return (IfcDiscreteAccessoryTypeEnum) eGet(Ifc4Package.Literals.IFC_DISCRETE_ACCESSORY_TYPE__PREDEFINED_TYPE, true);
+		return (IfcDiscreteAccessoryTypeEnum) eGet(Ifc4Package.Literals.IFC_DISCRETE_ACCESSORY_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

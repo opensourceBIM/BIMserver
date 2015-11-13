@@ -113,7 +113,8 @@ public enum IfcDirectionSenseEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDirectionSenseEnum[] VALUES_ARRAY = new IfcDirectionSenseEnum[] { NULL, POSITIVE, NEGATIVE, };
+	private static final IfcDirectionSenseEnum[] VALUES_ARRAY = new IfcDirectionSenseEnum[] { NULL, POSITIVE,
+			NEGATIVE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Direction Sense Enum</b></em>' enumerators.
@@ -127,6 +128,8 @@ public enum IfcDirectionSenseEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Direction Sense Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDirectionSenseEnum get(String literal) {
@@ -143,6 +146,8 @@ public enum IfcDirectionSenseEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Direction Sense Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDirectionSenseEnum getByName(String name) {
@@ -159,6 +164,8 @@ public enum IfcDirectionSenseEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Direction Sense Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDirectionSenseEnum get(int value) {

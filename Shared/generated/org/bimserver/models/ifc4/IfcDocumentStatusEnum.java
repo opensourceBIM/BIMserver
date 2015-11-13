@@ -188,7 +188,8 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDocumentStatusEnum[] VALUES_ARRAY = new IfcDocumentStatusEnum[] { NULL, FINAL, NOTDEFINED, REVISION, DRAFT, FINALDRAFT, };
+	private static final IfcDocumentStatusEnum[] VALUES_ARRAY = new IfcDocumentStatusEnum[] { NULL, FINAL, NOTDEFINED,
+			REVISION, DRAFT, FINALDRAFT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Document Status Enum</b></em>' enumerators.
@@ -202,6 +203,8 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Document Status Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDocumentStatusEnum get(String literal) {
@@ -218,6 +221,8 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Document Status Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDocumentStatusEnum getByName(String name) {
@@ -234,6 +239,8 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Document Status Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDocumentStatusEnum get(int value) {

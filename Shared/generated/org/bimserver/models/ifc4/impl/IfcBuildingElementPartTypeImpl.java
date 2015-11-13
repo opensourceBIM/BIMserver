@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBuildingElementPartTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcBuildingElementPartTypeImpl extends IfcElementComponentTypeImpl 
 	 * @generated
 	 */
 	public IfcBuildingElementPartTypeEnum getPredefinedType() {
-		return (IfcBuildingElementPartTypeEnum) eGet(Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PART_TYPE__PREDEFINED_TYPE, true);
+		return (IfcBuildingElementPartTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PART_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

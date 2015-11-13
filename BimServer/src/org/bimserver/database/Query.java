@@ -129,7 +129,8 @@ public class Query implements QueryInterface {
 			for (int i=0; i<buffer.capacity() / 10; i++) {
 				short cid = buffer.getShort();
 				long oid = buffer.getLong();
-				oidCounters.put(databaseSession.getEClass(cid), oid);
+				EClass eClass = databaseSession.getEClass(cid);
+				oidCounters.put(eClass, oid);
 			}
 			setOidCounters(oidCounters);
 		}

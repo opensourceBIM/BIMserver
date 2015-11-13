@@ -25,11 +25,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsWithRealizingElements#getRealizingElements <em>Realizing Elements</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsWithRealizingElements#getConnectionType <em>Connection Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRelConnectsWithRealizingElements()
  * @model

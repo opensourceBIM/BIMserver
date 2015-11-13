@@ -27,14 +27,15 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBoundaryNodeConditionWarpingImpl#getWarpingStiffness <em>Warping Stiffness</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditionImpl implements IfcBoundaryNodeConditionWarping {
+public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditionImpl
+		implements IfcBoundaryNodeConditionWarping {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 * @generated
 	 */
 	public IfcWarpingStiffnessSelect getWarpingStiffness() {
-		return (IfcWarpingStiffnessSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS, true);
+		return (IfcWarpingStiffnessSelect) eGet(
+				Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS, true);
 	}
 
 	/**

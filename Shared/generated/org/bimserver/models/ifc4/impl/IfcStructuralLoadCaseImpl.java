@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralLoadCaseImpl#getSelfWeightCoefficients <em>Self Weight Coefficients</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralLoadCaseImpl#getSelfWeightCoefficientsAsString <em>Self Weight Coefficients As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -90,7 +90,8 @@ public class IfcStructuralLoadCaseImpl extends IfcStructuralLoadGroupImpl implem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getSelfWeightCoefficientsAsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CASE__SELF_WEIGHT_COEFFICIENTS_AS_STRING, true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CASE__SELF_WEIGHT_COEFFICIENTS_AS_STRING,
+				true);
 	}
 
 	/**

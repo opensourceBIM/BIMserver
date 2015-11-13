@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcActorRole#getRole <em>Role</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcActorRole#getUserDefinedRole <em>User Defined Role</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcActorRole#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcActorRole#getHasExternalReference <em>Has External Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcActorRole()
  * @model

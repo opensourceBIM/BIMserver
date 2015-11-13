@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWindowPanelPropertiesImpl#getOperationType <em>Operation Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWindowPanelPropertiesImpl#getPanelPosition <em>Panel Position</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWindowPanelPropertiesImpl#getFrameThicknessAsString <em>Frame Thickness As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWindowPanelPropertiesImpl#getShapeAspectStyle <em>Shape Aspect Style</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -68,7 +68,8 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 * @generated
 	 */
 	public IfcWindowPanelOperationEnum getOperationType() {
-		return (IfcWindowPanelOperationEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__OPERATION_TYPE, true);
+		return (IfcWindowPanelOperationEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__OPERATION_TYPE,
+				true);
 	}
 
 	/**
@@ -86,7 +87,8 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 * @generated
 	 */
 	public IfcWindowPanelPositionEnum getPanelPosition() {
-		return (IfcWindowPanelPositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__PANEL_POSITION, true);
+		return (IfcWindowPanelPositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__PANEL_POSITION,
+				true);
 	}
 
 	/**
@@ -221,7 +223,8 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 * @generated
 	 */
 	public void setFrameThicknessAsString(String newFrameThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_THICKNESS_AS_STRING, newFrameThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_THICKNESS_AS_STRING,
+				newFrameThicknessAsString);
 	}
 
 	/**

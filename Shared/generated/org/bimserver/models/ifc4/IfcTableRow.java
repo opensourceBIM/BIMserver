@@ -26,12 +26,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTableRow#getRowCells <em>Row Cells</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTableRow#getIsHeading <em>Is Heading</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTableRow#getOfTable <em>Of Table</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTableRow()
  * @model

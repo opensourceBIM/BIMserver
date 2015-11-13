@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc External Spatial Structure Element</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcExternalSpatialStructureElementImpl extends IfcSpatialElementImpl implements IfcExternalSpatialStructureElement {
+public class IfcExternalSpatialStructureElementImpl extends IfcSpatialElementImpl
+		implements IfcExternalSpatialStructureElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

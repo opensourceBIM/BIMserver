@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcVirtualGridIntersectionImpl#getIntersectingAxes <em>Intersecting Axes</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcVirtualGridIntersectionImpl#getOffsetDistances <em>Offset Distances</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcVirtualGridIntersectionImpl#getOffsetDistancesAsString <em>Offset Distances As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -75,7 +75,8 @@ public class IfcVirtualGridIntersectionImpl extends IdEObjectImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGridAxis> getIntersectingAxes() {
-		return (EList<IfcGridAxis>) eGet(Ifc2x3tc1Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__INTERSECTING_AXES, true);
+		return (EList<IfcGridAxis>) eGet(Ifc2x3tc1Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__INTERSECTING_AXES,
+				true);
 	}
 
 	/**
@@ -95,7 +96,8 @@ public class IfcVirtualGridIntersectionImpl extends IdEObjectImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getOffsetDistancesAsString() {
-		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES_AS_STRING, true);
+		return (EList<String>) eGet(Ifc2x3tc1Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES_AS_STRING,
+				true);
 	}
 
 } //IfcVirtualGridIntersectionImpl

@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDerivedUnitImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDerivedUnitImpl#getUnitType <em>Unit Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDerivedUnitImpl#getUserDefinedType <em>User Defined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getRecurrenceType <em>Recurrence Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getDayComponent <em>Day Component</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getOccurrences <em>Occurrences</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getTimePeriods <em>Time Periods</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRecurrencePattern()
  * @model

@@ -388,9 +388,9 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcThermalLoadSourceEnum[] VALUES_ARRAY = new IfcThermalLoadSourceEnum[] { NULL, DRYBULBTEMPERATURE, VENTILATIONINDOORAIR,
-			RECIRCULATEDAIR, NOTDEFINED, RELATIVEHUMIDITY, EXHAUSTAIR, VENTILATIONOUTSIDEAIR, PEOPLE, INFILTRATION, USERDEFINED, EQUIPMENT, AIREXCHANGERATE,
-			LIGHTING, };
+	private static final IfcThermalLoadSourceEnum[] VALUES_ARRAY = new IfcThermalLoadSourceEnum[] { NULL,
+			DRYBULBTEMPERATURE, VENTILATIONINDOORAIR, RECIRCULATEDAIR, NOTDEFINED, RELATIVEHUMIDITY, EXHAUSTAIR,
+			VENTILATIONOUTSIDEAIR, PEOPLE, INFILTRATION, USERDEFINED, EQUIPMENT, AIREXCHANGERATE, LIGHTING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Thermal Load Source Enum</b></em>' enumerators.
@@ -398,12 +398,15 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcThermalLoadSourceEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcThermalLoadSourceEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Thermal Load Source Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcThermalLoadSourceEnum get(String literal) {
@@ -420,6 +423,8 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Thermal Load Source Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcThermalLoadSourceEnum getByName(String name) {
@@ -436,6 +441,8 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Thermal Load Source Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcThermalLoadSourceEnum get(int value) {

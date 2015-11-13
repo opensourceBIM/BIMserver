@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGeometricRepresentationContext#getCoordinateSpaceDimension <em>Coordinate Space Dimension</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGeometricRepresentationContext#getPrecision <em>Precision</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGeometricRepresentationContext#getTrueNorth <em>True North</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGeometricRepresentationContext#getHasSubContexts <em>Has Sub Contexts</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcGeometricRepresentationContext()
  * @model

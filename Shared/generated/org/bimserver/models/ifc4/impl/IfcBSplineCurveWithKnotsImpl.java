@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineCurveWithKnotsImpl#getKnotMultiplicities <em>Knot Multiplicities</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineCurveWithKnotsImpl#getKnots <em>Knots</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineCurveWithKnotsImpl#getKnotsAsString <em>Knots As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineCurveWithKnotsImpl#getKnotSpec <em>Knot Spec</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

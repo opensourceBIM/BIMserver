@@ -23,12 +23,12 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDerivedProfileDef#getParentProfile <em>Parent Profile</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDerivedProfileDef#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDerivedProfileDef#getLabel <em>Label</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcDerivedProfileDef()
  * @model

@@ -27,16 +27,17 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyDependencyRelationshipImpl#getDependingProperty <em>Depending Property</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyDependencyRelationshipImpl#getDependantProperty <em>Dependant Property</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyDependencyRelationshipImpl#getExpression <em>Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcPropertyDependencyRelationship {
+public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelationshipImpl
+		implements IfcPropertyDependencyRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

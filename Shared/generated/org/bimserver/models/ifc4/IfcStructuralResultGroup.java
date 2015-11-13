@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralResultGroup#getTheoryType <em>Theory Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralResultGroup#getResultForLoadGroup <em>Result For Load Group</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralResultGroup#getIsLinear <em>Is Linear</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralResultGroup#getResultGroupFor <em>Result Group For</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralResultGroup()
  * @model

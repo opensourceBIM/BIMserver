@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstraintImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstraintImpl#getDescription <em>Description</em>}</li>
@@ -50,7 +51,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstraintImpl#getAggregates <em>Aggregates</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstraintImpl#getIsAggregatedIn <em>Is Aggregated In</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -307,7 +307,8 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintClassificationRelationship> getClassifiedAs() {
-		return (EList<IfcConstraintClassificationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__CLASSIFIED_AS, true);
+		return (EList<IfcConstraintClassificationRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__CLASSIFIED_AS, true);
 	}
 
 	/**
@@ -335,7 +336,8 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintRelationship> getRelatesConstraints() {
-		return (EList<IfcConstraintRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__RELATES_CONSTRAINTS, true);
+		return (EList<IfcConstraintRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__RELATES_CONSTRAINTS,
+				true);
 	}
 
 	/**
@@ -391,7 +393,8 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyConstraintRelationship> getPropertiesForConstraint() {
-		return (EList<IfcPropertyConstraintRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__PROPERTIES_FOR_CONSTRAINT, true);
+		return (EList<IfcPropertyConstraintRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__PROPERTIES_FOR_CONSTRAINT, true);
 	}
 
 	/**
@@ -419,7 +422,8 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintAggregationRelationship> getAggregates() {
-		return (EList<IfcConstraintAggregationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__AGGREGATES, true);
+		return (EList<IfcConstraintAggregationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__AGGREGATES,
+				true);
 	}
 
 	/**
@@ -447,7 +451,8 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintAggregationRelationship> getIsAggregatedIn() {
-		return (EList<IfcConstraintAggregationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__IS_AGGREGATED_IN, true);
+		return (EList<IfcConstraintAggregationRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__IS_AGGREGATED_IN, true);
 	}
 
 	/**

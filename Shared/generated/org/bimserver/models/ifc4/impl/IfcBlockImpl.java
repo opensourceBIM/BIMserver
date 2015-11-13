@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBlockImpl#getXLength <em>XLength</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBlockImpl#getXLengthAsString <em>XLength As String</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBlockImpl#getZLength <em>ZLength</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBlockImpl#getZLengthAsString <em>ZLength As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

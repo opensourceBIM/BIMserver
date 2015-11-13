@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelAssociatesConstraintImpl#getIntent <em>Intent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelAssociatesConstraintImpl#getRelatingConstraint <em>Relating Constraint</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

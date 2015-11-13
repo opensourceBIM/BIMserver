@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWindowImpl#getOverallHeight <em>Overall Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWindowImpl#getOverallHeightAsString <em>Overall Height As String</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWindowImpl#getPartitioningType <em>Partitioning Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWindowImpl#getUserDefinedPartitioningType <em>User Defined Partitioning Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

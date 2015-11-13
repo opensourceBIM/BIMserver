@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyBoundedValueImpl#getUpperBoundValue <em>Upper Bound Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyBoundedValueImpl#getLowerBoundValue <em>Lower Bound Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyBoundedValueImpl#getUnit <em>Unit</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyBoundedValueImpl#getSetPointValue <em>Set Point Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

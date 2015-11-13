@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileSetImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileSetImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileSetImpl#getMaterialProfiles <em>Material Profiles</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileSetImpl#getCompositeProfile <em>Composite Profile</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

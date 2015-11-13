@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralActivityImpl#getAppliedLoad <em>Applied Load</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralActivityImpl#getGlobalOrLocal <em>Global Or Local</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralActivityImpl#getAssignedToStructuralItem <em>Assigned To Structural Item</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -102,7 +102,8 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralActivity> getAssignedToStructuralItem() {
-		return (EList<IfcRelConnectsStructuralActivity>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM, true);
+		return (EList<IfcRelConnectsStructuralActivity>) eGet(
+				Ifc4Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM, true);
 	}
 
 	/**

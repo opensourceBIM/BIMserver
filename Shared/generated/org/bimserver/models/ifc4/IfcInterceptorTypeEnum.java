@@ -213,7 +213,8 @@ public enum IfcInterceptorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcInterceptorTypeEnum[] VALUES_ARRAY = new IfcInterceptorTypeEnum[] { NULL, GREASE, NOTDEFINED, OIL, PETROL, CYCLONIC, USERDEFINED, };
+	private static final IfcInterceptorTypeEnum[] VALUES_ARRAY = new IfcInterceptorTypeEnum[] { NULL, GREASE,
+			NOTDEFINED, OIL, PETROL, CYCLONIC, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Interceptor Type Enum</b></em>' enumerators.
@@ -227,6 +228,8 @@ public enum IfcInterceptorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Interceptor Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcInterceptorTypeEnum get(String literal) {
@@ -243,6 +246,8 @@ public enum IfcInterceptorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Interceptor Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcInterceptorTypeEnum getByName(String name) {
@@ -259,6 +264,8 @@ public enum IfcInterceptorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Interceptor Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcInterceptorTypeEnum get(int value) {

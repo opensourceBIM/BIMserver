@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPhysicalQuantity#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPhysicalQuantity#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPhysicalQuantity#getHasExternalReferences <em>Has External References</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPhysicalQuantity#getPartOfComplex <em>Part Of Complex</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPhysicalQuantity()
  * @model

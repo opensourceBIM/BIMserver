@@ -127,6 +127,8 @@ public enum IfcBurnerTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Burner Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBurnerTypeEnum get(String literal) {
@@ -143,6 +145,8 @@ public enum IfcBurnerTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Burner Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBurnerTypeEnum getByName(String name) {
@@ -159,6 +163,8 @@ public enum IfcBurnerTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Burner Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBurnerTypeEnum get(int value) {

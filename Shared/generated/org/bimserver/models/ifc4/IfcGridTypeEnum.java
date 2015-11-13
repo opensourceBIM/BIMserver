@@ -213,7 +213,8 @@ public enum IfcGridTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcGridTypeEnum[] VALUES_ARRAY = new IfcGridTypeEnum[] { NULL, TRIANGULAR, NOTDEFINED, RADIAL, USERDEFINED, IRREGULAR, RECTANGULAR, };
+	private static final IfcGridTypeEnum[] VALUES_ARRAY = new IfcGridTypeEnum[] { NULL, TRIANGULAR, NOTDEFINED, RADIAL,
+			USERDEFINED, IRREGULAR, RECTANGULAR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Grid Type Enum</b></em>' enumerators.
@@ -227,6 +228,8 @@ public enum IfcGridTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Grid Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcGridTypeEnum get(String literal) {
@@ -243,6 +246,8 @@ public enum IfcGridTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Grid Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcGridTypeEnum getByName(String name) {
@@ -259,6 +264,8 @@ public enum IfcGridTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Grid Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcGridTypeEnum get(int value) {

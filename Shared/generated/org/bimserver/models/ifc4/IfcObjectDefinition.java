@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcObjectDefinition#getHasAssignments <em>Has Assignments</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcObjectDefinition#getNests <em>Nests</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcObjectDefinition#getDecomposes <em>Decomposes</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcObjectDefinition#getHasAssociations <em>Has Associations</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcObjectDefinition()
  * @model

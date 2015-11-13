@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcStructuralConnectionImpl#getAppliedCondition <em>Applied Condition</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcStructuralConnectionImpl#getConnectsStructuralMembers <em>Connects Structural Members</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -63,7 +63,8 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 	 * @generated
 	 */
 	public IfcBoundaryCondition getAppliedCondition() {
-		return (IfcBoundaryCondition) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__APPLIED_CONDITION, true);
+		return (IfcBoundaryCondition) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__APPLIED_CONDITION,
+				true);
 	}
 
 	/**
@@ -100,7 +101,8 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralMember> getConnectsStructuralMembers() {
-		return (EList<IfcRelConnectsStructuralMember>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__CONNECTS_STRUCTURAL_MEMBERS, true);
+		return (EList<IfcRelConnectsStructuralMember>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__CONNECTS_STRUCTURAL_MEMBERS, true);
 	}
 
 	/**

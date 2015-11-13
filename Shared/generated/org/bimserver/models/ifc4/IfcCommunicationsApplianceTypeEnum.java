@@ -413,8 +413,9 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCommunicationsApplianceTypeEnum[] VALUES_ARRAY = new IfcCommunicationsApplianceTypeEnum[] { NULL, NOTDEFINED, PRINTER, ROUTER, ANTENNA, SCANNER,
-			NETWORKHUB, REPEATER, GATEWAY, MODEM, COMPUTER, USERDEFINED, NETWORKBRIDGE, FAX, NETWORKAPPLIANCE, };
+	private static final IfcCommunicationsApplianceTypeEnum[] VALUES_ARRAY = new IfcCommunicationsApplianceTypeEnum[] {
+			NULL, NOTDEFINED, PRINTER, ROUTER, ANTENNA, SCANNER, NETWORKHUB, REPEATER, GATEWAY, MODEM, COMPUTER,
+			USERDEFINED, NETWORKBRIDGE, FAX, NETWORKAPPLIANCE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Communications Appliance Type Enum</b></em>' enumerators.
@@ -422,12 +423,15 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCommunicationsApplianceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCommunicationsApplianceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Communications Appliance Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCommunicationsApplianceTypeEnum get(String literal) {
@@ -444,6 +448,8 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Communications Appliance Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCommunicationsApplianceTypeEnum getByName(String name) {
@@ -460,6 +466,8 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Communications Appliance Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCommunicationsApplianceTypeEnum get(int value) {

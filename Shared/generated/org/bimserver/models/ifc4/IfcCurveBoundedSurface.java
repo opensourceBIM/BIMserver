@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurveBoundedSurface#getBasisSurface <em>Basis Surface</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurveBoundedSurface#getBoundaries <em>Boundaries</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurveBoundedSurface#getImplicitOuter <em>Implicit Outer</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCurveBoundedSurface()
  * @model

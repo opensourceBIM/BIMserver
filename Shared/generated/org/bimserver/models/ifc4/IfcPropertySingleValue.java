@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertySingleValue#getNominalValue <em>Nominal Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertySingleValue#getUnit <em>Unit</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertySingleValue()
  * @model

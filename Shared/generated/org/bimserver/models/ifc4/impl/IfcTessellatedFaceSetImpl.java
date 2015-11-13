@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getCoordinates <em>Coordinates</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getNormals <em>Normals</em>}</li>
@@ -39,7 +40,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getHasColours <em>Has Colours</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getHasTextures <em>Has Textures</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

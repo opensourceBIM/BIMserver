@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRectangularPyramid#getXLength <em>XLength</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRectangularPyramid#getXLengthAsString <em>XLength As String</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRectangularPyramid#getHeight <em>Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRectangularPyramid#getHeightAsString <em>Height As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRectangularPyramid()
  * @model

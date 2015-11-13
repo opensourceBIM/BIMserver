@@ -288,8 +288,8 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStructuralCurveActivityTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveActivityTypeEnum[] { NULL, PARABOLA, EQUIDISTANT, LINEAR, NOTDEFINED, DISCRETE,
-			USERDEFINED, CONST, SINUS, POLYGONAL, };
+	private static final IfcStructuralCurveActivityTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveActivityTypeEnum[] {
+			NULL, PARABOLA, EQUIDISTANT, LINEAR, NOTDEFINED, DISCRETE, USERDEFINED, CONST, SINUS, POLYGONAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Structural Curve Activity Type Enum</b></em>' enumerators.
@@ -297,12 +297,15 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcStructuralCurveActivityTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcStructuralCurveActivityTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Structural Curve Activity Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStructuralCurveActivityTypeEnum get(String literal) {
@@ -319,6 +322,8 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Structural Curve Activity Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStructuralCurveActivityTypeEnum getByName(String name) {
@@ -335,6 +340,8 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Structural Curve Activity Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStructuralCurveActivityTypeEnum get(int value) {

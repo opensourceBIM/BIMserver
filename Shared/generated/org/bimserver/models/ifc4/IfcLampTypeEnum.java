@@ -338,8 +338,9 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLampTypeEnum[] VALUES_ARRAY = new IfcLampTypeEnum[] { NULL, OLED, HIGHPRESSUREMERCURY, COMPACTFLUORESCENT, NOTDEFINED, TUNGSTENFILAMENT, METALHALIDE,
-			USERDEFINED, LED, HIGHPRESSURESODIUM, HALOGEN, FLUORESCENT, };
+	private static final IfcLampTypeEnum[] VALUES_ARRAY = new IfcLampTypeEnum[] { NULL, OLED, HIGHPRESSUREMERCURY,
+			COMPACTFLUORESCENT, NOTDEFINED, TUNGSTENFILAMENT, METALHALIDE, USERDEFINED, LED, HIGHPRESSURESODIUM,
+			HALOGEN, FLUORESCENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Lamp Type Enum</b></em>' enumerators.
@@ -353,6 +354,8 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Lamp Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcLampTypeEnum get(String literal) {
@@ -369,6 +372,8 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Lamp Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcLampTypeEnum getByName(String name) {
@@ -385,6 +390,8 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Lamp Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcLampTypeEnum get(int value) {

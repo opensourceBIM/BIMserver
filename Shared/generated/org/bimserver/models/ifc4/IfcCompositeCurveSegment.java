@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCompositeCurveSegment#getTransition <em>Transition</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCompositeCurveSegment#getSameSense <em>Same Sense</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcCompositeCurveSegment#getUsingCurves <em>Using Curves</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCompositeCurveSegment#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCompositeCurveSegment()
  * @model

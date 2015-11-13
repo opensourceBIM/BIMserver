@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProject#getLongName <em>Long Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProject#getPhase <em>Phase</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProject#getRepresentationContexts <em>Representation Contexts</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProject#getUnitsInContext <em>Units In Context</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcProject()
  * @model

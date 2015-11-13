@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcLShapeProfileDef#getDepth <em>Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLShapeProfileDef#getDepthAsString <em>Depth As String</em>}</li>
@@ -37,7 +38,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcLShapeProfileDef#getLegSlope <em>Leg Slope</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLShapeProfileDef#getLegSlopeAsString <em>Leg Slope As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLShapeProfileDef()
  * @model

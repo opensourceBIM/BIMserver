@@ -438,8 +438,9 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRoofTypeEnum[] VALUES_ARRAY = new IfcRoofTypeEnum[] { NULL, HIPPED_GABLE_ROOF, NOTDEFINED, SHED_ROOF, HIP_ROOF, DOME_ROOF, PAVILION_ROOF, FREEFORM,
-			GABLE_ROOF, BARREL_ROOF, MANSARD_ROOF, USERDEFINED, FLAT_ROOF, RAINBOW_ROOF, GAMBREL_ROOF, BUTTERFLY_ROOF, };
+	private static final IfcRoofTypeEnum[] VALUES_ARRAY = new IfcRoofTypeEnum[] { NULL, HIPPED_GABLE_ROOF, NOTDEFINED,
+			SHED_ROOF, HIP_ROOF, DOME_ROOF, PAVILION_ROOF, FREEFORM, GABLE_ROOF, BARREL_ROOF, MANSARD_ROOF, USERDEFINED,
+			FLAT_ROOF, RAINBOW_ROOF, GAMBREL_ROOF, BUTTERFLY_ROOF, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Roof Type Enum</b></em>' enumerators.
@@ -453,6 +454,8 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Roof Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRoofTypeEnum get(String literal) {
@@ -469,6 +472,8 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Roof Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRoofTypeEnum getByName(String name) {
@@ -485,6 +490,8 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Roof Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRoofTypeEnum get(int value) {

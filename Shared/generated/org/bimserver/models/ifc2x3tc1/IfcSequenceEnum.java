@@ -188,7 +188,8 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSequenceEnum[] VALUES_ARRAY = new IfcSequenceEnum[] { NULL, FINISH_START, NOTDEFINED, FINISH_FINISH, START_START, START_FINISH, };
+	private static final IfcSequenceEnum[] VALUES_ARRAY = new IfcSequenceEnum[] { NULL, FINISH_START, NOTDEFINED,
+			FINISH_FINISH, START_START, START_FINISH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sequence Enum</b></em>' enumerators.
@@ -202,6 +203,8 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Sequence Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSequenceEnum get(String literal) {
@@ -218,6 +221,8 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Sequence Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSequenceEnum getByName(String name) {
@@ -234,6 +239,8 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Sequence Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSequenceEnum get(int value) {

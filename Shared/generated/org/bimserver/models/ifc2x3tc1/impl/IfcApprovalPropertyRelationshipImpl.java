@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalPropertyRelationshipImpl#getApprovedProperties <em>Approved Properties</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalPropertyRelationshipImpl#getApproval <em>Approval</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -75,7 +75,8 @@ public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl implement
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getApprovedProperties() {
-		return (EList<IfcProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVED_PROPERTIES, true);
+		return (EList<IfcProperty>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVED_PROPERTIES, true);
 	}
 
 	/**

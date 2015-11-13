@@ -6,7 +6,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public interface VirtualObject {
+public interface VirtualObject extends MinimalVirtualObject {
 
 	EClass eClass();
 	Object eGet(EStructuralFeature feature);

@@ -163,7 +163,8 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCurveInterpolationEnum[] VALUES_ARRAY = new IfcCurveInterpolationEnum[] { NULL, LOG_LOG, LINEAR, NOTDEFINED, LOG_LINEAR, };
+	private static final IfcCurveInterpolationEnum[] VALUES_ARRAY = new IfcCurveInterpolationEnum[] { NULL, LOG_LOG,
+			LINEAR, NOTDEFINED, LOG_LINEAR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Curve Interpolation Enum</b></em>' enumerators.
@@ -171,12 +172,15 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCurveInterpolationEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCurveInterpolationEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Curve Interpolation Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCurveInterpolationEnum get(String literal) {
@@ -193,6 +197,8 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Curve Interpolation Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCurveInterpolationEnum getByName(String name) {
@@ -209,6 +215,8 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Curve Interpolation Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCurveInterpolationEnum get(int value) {

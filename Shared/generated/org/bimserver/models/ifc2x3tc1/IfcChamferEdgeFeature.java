@@ -23,13 +23,13 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcChamferEdgeFeature#getWidth <em>Width</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcChamferEdgeFeature#getWidthAsString <em>Width As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcChamferEdgeFeature#getHeight <em>Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcChamferEdgeFeature#getHeightAsString <em>Height As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcChamferEdgeFeature()
  * @model

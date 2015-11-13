@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcReferencesValueDocumentImpl#getReferencedDocument <em>Referenced Document</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcReferencesValueDocumentImpl#getReferencingValues <em>Referencing Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcReferencesValueDocumentImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcReferencesValueDocumentImpl#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -76,7 +76,8 @@ public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements Ifc
 	 * @generated
 	 */
 	public IfcDocumentSelect getReferencedDocument() {
-		return (IfcDocumentSelect) eGet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCED_DOCUMENT, true);
+		return (IfcDocumentSelect) eGet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCED_DOCUMENT,
+				true);
 	}
 
 	/**
@@ -95,7 +96,8 @@ public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValue> getReferencingValues() {
-		return (EList<IfcAppliedValue>) eGet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCING_VALUES, true);
+		return (EList<IfcAppliedValue>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCING_VALUES, true);
 	}
 
 	/**

@@ -188,8 +188,8 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcGasTerminalTypeEnum[] VALUES_ARRAY = new IfcGasTerminalTypeEnum[] { NULL, GASBURNER, NOTDEFINED, GASBOOSTER, GASAPPLIANCE,
-			USERDEFINED, };
+	private static final IfcGasTerminalTypeEnum[] VALUES_ARRAY = new IfcGasTerminalTypeEnum[] { NULL, GASBURNER,
+			NOTDEFINED, GASBOOSTER, GASAPPLIANCE, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Gas Terminal Type Enum</b></em>' enumerators.
@@ -203,6 +203,8 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Gas Terminal Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcGasTerminalTypeEnum get(String literal) {
@@ -219,6 +221,8 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Gas Terminal Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcGasTerminalTypeEnum getByName(String name) {
@@ -235,6 +239,8 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Gas Terminal Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcGasTerminalTypeEnum get(int value) {

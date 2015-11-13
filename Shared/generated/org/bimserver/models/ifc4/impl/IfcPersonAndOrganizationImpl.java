@@ -31,12 +31,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPersonAndOrganizationImpl#getThePerson <em>The Person</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPersonAndOrganizationImpl#getTheOrganization <em>The Organization</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPersonAndOrganizationImpl#getRoles <em>Roles</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -5,10 +5,12 @@
     <eClassifiers xsi:type="ecore:EClass" name="GeometryInfo">
       <eAnnotations source="hidden"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="minBounds" eType="#/0/Vector3f">
+        <eAnnotations source="dbembed"/>
         <eAnnotations source="embedsreference"/>
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="maxBounds" eType="#/0/Vector3f">
+        <eAnnotations source="dbembed"/>
         <eAnnotations source="embedsreference"/>
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
@@ -18,7 +20,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#/0/GeometryData">
         <eAnnotations source="nolazyload"/>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="#/0/GeometryInstance"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="area" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="volume" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
@@ -37,11 +38,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="normals" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="materials" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="materialIndices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GeometryInstance">
-      <eAnnotations source="hidden"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#/0/GeometryData"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="ifc2x3tc1" nsURI="http://buildingsmart.ifc2x3tc1.ecore" nsPrefix="iai">
@@ -3430,7 +3426,8 @@
           eType="#/1/IfcRelAssignsToProduct" unsettable="true" eOpposite="#/1/IfcRelAssignsToProduct/RelatingProduct">
         <eAnnotations source="inverse"/>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="#/0/GeometryInfo">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="#/0/GeometryInfo"
+          unsettable="true">
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
     </eClassifiers>
@@ -12847,7 +12844,8 @@
           eType="#/2/IfcRelAssignsToProduct" unsettable="true">
         <eAnnotations source="inverse"/>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="#/0/GeometryInfo">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="#/0/GeometryInfo"
+          unsettable="true">
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
     </eClassifiers>
@@ -19916,6 +19914,7 @@
           eOpposite="#/4/UserSettings/serializers"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="renderEngine" eType="#/4/RenderEnginePluginConfiguration"
           eOpposite="#/4/RenderEnginePluginConfiguration/serializers"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="streaming" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ObjectIDMPluginConfiguration" eSuperTypes="#/4/PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"

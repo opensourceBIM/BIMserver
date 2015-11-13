@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Annotation Curve Occurrence</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcAnnotationCurveOccurrenceImpl extends IfcAnnotationOccurrenceImpl implements IfcAnnotationCurveOccurrence {
+public class IfcAnnotationCurveOccurrenceImpl extends IfcAnnotationOccurrenceImpl
+		implements IfcAnnotationCurveOccurrence {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

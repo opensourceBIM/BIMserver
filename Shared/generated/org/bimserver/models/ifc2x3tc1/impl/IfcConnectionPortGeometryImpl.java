@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConnectionPortGeometryImpl#getLocationAtRelatingElement <em>Location At Relating Element</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConnectionPortGeometryImpl#getLocationAtRelatedElement <em>Location At Related Element</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConnectionPortGeometryImpl#getProfileOfPort <em>Profile Of Port</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -63,7 +63,8 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 * @generated
 	 */
 	public IfcAxis2Placement getLocationAtRelatingElement() {
-		return (IfcAxis2Placement) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATING_ELEMENT, true);
+		return (IfcAxis2Placement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATING_ELEMENT, true);
 	}
 
 	/**
@@ -72,7 +73,8 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 * @generated
 	 */
 	public void setLocationAtRelatingElement(IfcAxis2Placement newLocationAtRelatingElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATING_ELEMENT, newLocationAtRelatingElement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATING_ELEMENT,
+				newLocationAtRelatingElement);
 	}
 
 	/**
@@ -81,7 +83,8 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 * @generated
 	 */
 	public IfcAxis2Placement getLocationAtRelatedElement() {
-		return (IfcAxis2Placement) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATED_ELEMENT, true);
+		return (IfcAxis2Placement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATED_ELEMENT, true);
 	}
 
 	/**
@@ -90,7 +93,8 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 * @generated
 	 */
 	public void setLocationAtRelatedElement(IfcAxis2Placement newLocationAtRelatedElement) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATED_ELEMENT, newLocationAtRelatedElement);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATED_ELEMENT,
+				newLocationAtRelatedElement);
 	}
 
 	/**

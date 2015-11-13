@@ -26,15 +26,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRoundedRectangleProfileDefImpl#getRoundingRadius <em>Rounding Radius</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRoundedRectangleProfileDefImpl#getRoundingRadiusAsString <em>Rounding Radius As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImpl implements IfcRoundedRectangleProfileDef {
+public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImpl
+		implements IfcRoundedRectangleProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,7 +79,8 @@ public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImp
 	 * @generated
 	 */
 	public String getRoundingRadiusAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -87,7 +89,8 @@ public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImp
 	 * @generated
 	 */
 	public void setRoundingRadiusAsString(String newRoundingRadiusAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING, newRoundingRadiusAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING,
+				newRoundingRadiusAsString);
 	}
 
 } //IfcRoundedRectangleProfileDefImpl

@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProjectedCRSImpl#getMapProjection <em>Map Projection</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProjectedCRSImpl#getMapZone <em>Map Zone</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProjectedCRSImpl#getMapUnit <em>Map Unit</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

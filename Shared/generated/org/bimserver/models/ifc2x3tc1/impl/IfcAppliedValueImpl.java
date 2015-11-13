@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcAppliedValueImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcAppliedValueImpl#getDescription <em>Description</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcAppliedValueImpl#getValueOfComponents <em>Value Of Components</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcAppliedValueImpl#getIsComponentIn <em>Is Component In</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -301,7 +301,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcReferencesValueDocument> getValuesReferenced() {
-		return (EList<IfcReferencesValueDocument>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__VALUES_REFERENCED, true);
+		return (EList<IfcReferencesValueDocument>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__VALUES_REFERENCED,
+				true);
 	}
 
 	/**
@@ -329,7 +330,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValueRelationship> getValueOfComponents() {
-		return (EList<IfcAppliedValueRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__VALUE_OF_COMPONENTS, true);
+		return (EList<IfcAppliedValueRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__VALUE_OF_COMPONENTS, true);
 	}
 
 	/**
@@ -357,7 +359,8 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValueRelationship> getIsComponentIn() {
-		return (EList<IfcAppliedValueRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__IS_COMPONENT_IN, true);
+		return (EList<IfcAppliedValueRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__IS_COMPONENT_IN,
+				true);
 	}
 
 	/**

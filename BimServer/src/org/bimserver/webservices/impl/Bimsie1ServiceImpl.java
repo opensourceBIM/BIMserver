@@ -65,10 +65,12 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.longaction.DownloadParameters.DownloadType;
+import org.bimserver.longaction.LongAction;
 import org.bimserver.longaction.LongBranchAction;
 import org.bimserver.longaction.LongCheckoutAction;
 import org.bimserver.longaction.LongDownloadAction;
 import org.bimserver.longaction.LongDownloadOrCheckoutAction;
+import org.bimserver.longaction.LongStreamingDownloadAction;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Project;
@@ -144,7 +146,7 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 	
 	@Override
 	public void terminateLongRunningAction(Long actionId) throws ServerException, UserException {
-		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) getBimServer().getLongActionManager().getLongAction(actionId);
+		LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(actionId);
 		if (longAction != null) {
 			longAction.terminate();
 		} else {
@@ -154,23 +156,35 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 	
 	@Override
 	public SDownloadResult getDownloadData(final Long actionId) throws ServerException, UserException {
-		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) getBimServer().getLongActionManager().getLongAction(actionId);
-		if (longAction != null) {
-			try {
-				longAction.waitForCompletion();
-				if (longAction.getErrors().isEmpty()) {
-					SCheckoutResult result = longAction.getCheckoutResult();
-					return result;
-				} else {
-					LOGGER.error(longAction.getErrors().get(0));
-					throw new ServerException(longAction.getErrors().get(0));
-				}
-			} catch (Exception e) {
-				LOGGER.error("", e);
-				throw new ServerException(e);
+		LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(actionId);
+		if (longAction instanceof LongStreamingDownloadAction) {
+			LongStreamingDownloadAction longStreamingDownloadAction = (LongStreamingDownloadAction)longAction;
+			if (longStreamingDownloadAction.getErrors().isEmpty()) {
+				SCheckoutResult result = longStreamingDownloadAction.getCheckoutResult();
+				return result;
+			} else {
+				LOGGER.error(longStreamingDownloadAction.getErrors().get(0));
+				throw new ServerException(longStreamingDownloadAction.getErrors().get(0));
 			}
 		} else {
-			throw new UserException("No data found for laid " + actionId);
+			LongDownloadOrCheckoutAction longDownloadAction = (LongDownloadOrCheckoutAction) longAction;
+			if (longDownloadAction != null) {
+				try {
+					longDownloadAction.waitForCompletion();
+					if (longDownloadAction.getErrors().isEmpty()) {
+						SCheckoutResult result = longDownloadAction.getCheckoutResult();
+						return result;
+					} else {
+						LOGGER.error(longDownloadAction.getErrors().get(0));
+						throw new ServerException(longDownloadAction.getErrors().get(0));
+					}
+				} catch (Exception e) {
+					LOGGER.error("", e);
+					throw new ServerException(e);
+				}
+			} else {
+				throw new UserException("No data found for laid " + actionId);
+			}
 		}
 	}
 	
@@ -239,6 +253,29 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 		downloadParameters.setJsonQuery(jsonQuery);
 		downloadParameters.setSerializerOid(serializerOid);
 		return download(downloadParameters, sync);
+	}
+
+	@Override
+	public Long downloadByNewJsonQuery(Set<Long> roids, String jsonQuery, Long serializerOid, Boolean sync) throws ServerException, UserException {
+		User user = null;
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
+		} catch (BimserverDatabaseException e) {
+			throw new UserException(e);
+		} finally {
+			session.close();
+		}
+		LongStreamingDownloadAction longDownloadAction = new LongStreamingDownloadAction(getBimServer(), user == null ? "Unknown" : user.getName(), user == null ? "Unknown" : user.getUsername(), getAuthorization(), serializerOid, jsonQuery, roids);
+		try {
+			getBimServer().getLongActionManager().start(longDownloadAction);
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		}
+		if (sync) {
+			longDownloadAction.waitForCompletion();
+		}
+		return longDownloadAction.getProgressTopic().getKey().getId();
 	}
 
 	@Override

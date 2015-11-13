@@ -23,12 +23,12 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPixelTexture#getWidth <em>Width</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPixelTexture#getHeight <em>Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPixelTexture#getColourComponents <em>Colour Components</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPixelTexture()
  * @model

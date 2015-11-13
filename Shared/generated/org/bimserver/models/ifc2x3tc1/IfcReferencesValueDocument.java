@@ -26,13 +26,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcReferencesValueDocument#getReferencedDocument <em>Referenced Document</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcReferencesValueDocument#getReferencingValues <em>Referencing Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcReferencesValueDocument#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcReferencesValueDocument#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcReferencesValueDocument()
  * @model

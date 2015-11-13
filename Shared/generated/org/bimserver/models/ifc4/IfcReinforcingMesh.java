@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getMeshLength <em>Mesh Length</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getMeshLengthAsString <em>Mesh Length As String</em>}</li>
@@ -42,7 +43,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getTransverseBarSpacingAsString <em>Transverse Bar Spacing As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcReinforcingMesh()
  * @model

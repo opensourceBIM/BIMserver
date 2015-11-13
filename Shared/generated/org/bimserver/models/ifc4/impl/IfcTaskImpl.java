@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTaskImpl#getStatus <em>Status</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTaskImpl#getWorkMethod <em>Work Method</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTaskImpl#getTaskTime <em>Task Time</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTaskImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

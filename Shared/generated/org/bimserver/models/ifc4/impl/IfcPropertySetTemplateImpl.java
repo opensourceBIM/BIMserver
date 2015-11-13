@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertySetTemplateImpl#getTemplateType <em>Template Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertySetTemplateImpl#getApplicableEntity <em>Applicable Entity</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertySetTemplateImpl#getHasPropertyTemplates <em>Has Property Templates</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertySetTemplateImpl#getDefines <em>Defines</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,7 +66,8 @@ public class IfcPropertySetTemplateImpl extends IfcPropertyTemplateDefinitionImp
 	 * @generated
 	 */
 	public IfcPropertySetTemplateTypeEnum getTemplateType() {
-		return (IfcPropertySetTemplateTypeEnum) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_TEMPLATE__TEMPLATE_TYPE, true);
+		return (IfcPropertySetTemplateTypeEnum) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_TEMPLATE__TEMPLATE_TYPE,
+				true);
 	}
 
 	/**
@@ -139,7 +140,8 @@ public class IfcPropertySetTemplateImpl extends IfcPropertyTemplateDefinitionImp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyTemplate> getHasPropertyTemplates() {
-		return (EList<IfcPropertyTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_TEMPLATE__HAS_PROPERTY_TEMPLATES, true);
+		return (EList<IfcPropertyTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_TEMPLATE__HAS_PROPERTY_TEMPLATES,
+				true);
 	}
 
 	/**

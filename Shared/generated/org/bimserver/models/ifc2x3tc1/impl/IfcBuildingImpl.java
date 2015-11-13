@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcBuildingImpl#getElevationOfRefHeight <em>Elevation Of Ref Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcBuildingImpl#getElevationOfRefHeightAsString <em>Elevation Of Ref Height As String</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcBuildingImpl#getElevationOfTerrainAsString <em>Elevation Of Terrain As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcBuildingImpl#getBuildingAddress <em>Building Address</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -109,7 +109,8 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * @generated
 	 */
 	public void setElevationOfRefHeightAsString(String newElevationOfRefHeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING, newElevationOfRefHeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING,
+				newElevationOfRefHeightAsString);
 	}
 
 	/**

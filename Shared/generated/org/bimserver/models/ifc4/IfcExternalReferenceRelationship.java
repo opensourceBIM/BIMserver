@@ -25,11 +25,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcExternalReferenceRelationship#getRelatingReference <em>Relating Reference</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcExternalReferenceRelationship#getRelatedResourceObjects <em>Related Resource Objects</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcExternalReferenceRelationship()
  * @model

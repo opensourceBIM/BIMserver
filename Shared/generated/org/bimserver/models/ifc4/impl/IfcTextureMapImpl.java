@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTextureMapImpl#getVertices <em>Vertices</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTextureMapImpl#getMappedTo <em>Mapped To</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

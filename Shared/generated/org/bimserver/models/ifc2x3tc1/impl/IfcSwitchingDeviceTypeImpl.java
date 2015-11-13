@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSwitchingDeviceTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcSwitchingDeviceTypeImpl extends IfcFlowControllerTypeImpl implem
 	 * @generated
 	 */
 	public IfcSwitchingDeviceTypeEnum getPredefinedType() {
-		return (IfcSwitchingDeviceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SWITCHING_DEVICE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcSwitchingDeviceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SWITCHING_DEVICE_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

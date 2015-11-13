@@ -23,12 +23,12 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSurfaceMember#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSurfaceMember#getThickness <em>Thickness</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSurfaceMember#getThicknessAsString <em>Thickness As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcStructuralSurfaceMember()
  * @model

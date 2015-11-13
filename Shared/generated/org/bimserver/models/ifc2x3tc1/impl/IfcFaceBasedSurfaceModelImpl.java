@@ -28,15 +28,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcFaceBasedSurfaceModelImpl#getFbsmFaces <em>Fbsm Faces</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcFaceBasedSurfaceModelImpl#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItemImpl implements IfcFaceBasedSurfaceModel {
+public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcFaceBasedSurfaceModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,7 +64,8 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConnectedFaceSet> getFbsmFaces() {
-		return (EList<IfcConnectedFaceSet>) eGet(Ifc2x3tc1Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__FBSM_FACES, true);
+		return (EList<IfcConnectedFaceSet>) eGet(Ifc2x3tc1Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__FBSM_FACES,
+				true);
 	}
 
 	/**

@@ -29,15 +29,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelContainedInSpatialStructureImpl#getRelatedElements <em>Related Elements</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelContainedInSpatialStructureImpl#getRelatingStructure <em>Relating Structure</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcRelContainedInSpatialStructureImpl extends IfcRelConnectsImpl implements IfcRelContainedInSpatialStructure {
+public class IfcRelContainedInSpatialStructureImpl extends IfcRelConnectsImpl
+		implements IfcRelContainedInSpatialStructure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,8 @@ public class IfcRelContainedInSpatialStructureImpl extends IfcRelConnectsImpl im
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProduct> getRelatedElements() {
-		return (EList<IfcProduct>) eGet(Ifc4Package.Literals.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE__RELATED_ELEMENTS, true);
+		return (EList<IfcProduct>) eGet(Ifc4Package.Literals.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE__RELATED_ELEMENTS,
+				true);
 	}
 
 	/**
@@ -73,7 +75,8 @@ public class IfcRelContainedInSpatialStructureImpl extends IfcRelConnectsImpl im
 	 * @generated
 	 */
 	public IfcSpatialElement getRelatingStructure() {
-		return (IfcSpatialElement) eGet(Ifc4Package.Literals.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE, true);
+		return (IfcSpatialElement) eGet(Ifc4Package.Literals.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE,
+				true);
 	}
 
 	/**

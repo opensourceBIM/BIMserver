@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcEnvironmentalImpactValueImpl#getImpactType <em>Impact Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcEnvironmentalImpactValueImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcEnvironmentalImpactValueImpl#getUserDefinedCategory <em>User Defined Category</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,7 +80,8 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 * @generated
 	 */
 	public IfcEnvironmentalImpactCategoryEnum getCategory() {
-		return (IfcEnvironmentalImpactCategoryEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__CATEGORY, true);
+		return (IfcEnvironmentalImpactCategoryEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__CATEGORY, true);
 	}
 
 	/**

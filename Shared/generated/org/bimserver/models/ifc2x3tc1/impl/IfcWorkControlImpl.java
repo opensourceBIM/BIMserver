@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWorkControlImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWorkControlImpl#getCreationDate <em>Creation Date</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWorkControlImpl#getWorkControlType <em>Work Control Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWorkControlImpl#getUserDefinedControlType <em>User Defined Control Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

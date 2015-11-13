@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getBottomFlangeWidth <em>Bottom Flange Width</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getBottomFlangeWidthAsString <em>Bottom Flange Width As String</em>}</li>
@@ -49,7 +50,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getTopFlangeSlope <em>Top Flange Slope</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getTopFlangeSlopeAsString <em>Top Flange Slope As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef()
  * @model

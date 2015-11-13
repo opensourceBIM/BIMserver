@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement#getLongName <em>Long Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement#getCompositionType <em>Composition Type</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement#getServicedBySystems <em>Serviced By Systems</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement#getContainsElements <em>Contains Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcSpatialStructureElement()
  * @model

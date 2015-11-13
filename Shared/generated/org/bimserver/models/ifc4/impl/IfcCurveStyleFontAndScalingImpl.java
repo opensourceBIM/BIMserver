@@ -27,13 +27,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCurveStyleFontAndScalingImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCurveStyleFontAndScalingImpl#getCurveFont <em>Curve Font</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCurveStyleFontAndScalingImpl#getCurveFontScaling <em>Curve Font Scaling</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCurveStyleFontAndScalingImpl#getCurveFontScalingAsString <em>Curve Font Scaling As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -144,7 +144,8 @@ public class IfcCurveStyleFontAndScalingImpl extends IfcPresentationItemImpl imp
 	 * @generated
 	 */
 	public void setCurveFontScalingAsString(String newCurveFontScalingAsString) {
-		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING_AS_STRING, newCurveFontScalingAsString);
+		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING_AS_STRING,
+				newCurveFontScalingAsString);
 	}
 
 } //IfcCurveStyleFontAndScalingImpl

@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTextLiteralImpl#getLiteral <em>Literal</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTextLiteralImpl#getPlacement <em>Placement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTextLiteralImpl#getPath <em>Path</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

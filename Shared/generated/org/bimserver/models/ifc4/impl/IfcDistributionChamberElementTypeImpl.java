@@ -27,14 +27,15 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDistributionChamberElementTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcDistributionChamberElementTypeImpl extends IfcDistributionFlowElementTypeImpl implements IfcDistributionChamberElementType {
+public class IfcDistributionChamberElementTypeImpl extends IfcDistributionFlowElementTypeImpl
+		implements IfcDistributionChamberElementType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcDistributionChamberElementTypeImpl extends IfcDistributionFlowEl
 	 * @generated
 	 */
 	public IfcDistributionChamberElementTypeEnum getPredefinedType() {
-		return (IfcDistributionChamberElementTypeEnum) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_CHAMBER_ELEMENT_TYPE__PREDEFINED_TYPE, true);
+		return (IfcDistributionChamberElementTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_DISTRIBUTION_CHAMBER_ELEMENT_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

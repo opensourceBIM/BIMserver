@@ -313,8 +313,8 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpatialZoneTypeEnum[] VALUES_ARRAY = new IfcSpatialZoneTypeEnum[] { NULL, THERMAL, OCCUPANCY, TRANSPORT, CONSTRUCTION, NOTDEFINED, VENTILATION,
-			FIRESAFETY, USERDEFINED, SECURITY, LIGHTING, };
+	private static final IfcSpatialZoneTypeEnum[] VALUES_ARRAY = new IfcSpatialZoneTypeEnum[] { NULL, THERMAL,
+			OCCUPANCY, TRANSPORT, CONSTRUCTION, NOTDEFINED, VENTILATION, FIRESAFETY, USERDEFINED, SECURITY, LIGHTING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Spatial Zone Type Enum</b></em>' enumerators.
@@ -328,6 +328,8 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Spatial Zone Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSpatialZoneTypeEnum get(String literal) {
@@ -344,6 +346,8 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Spatial Zone Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSpatialZoneTypeEnum getByName(String name) {
@@ -360,6 +364,8 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Spatial Zone Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSpatialZoneTypeEnum get(int value) {

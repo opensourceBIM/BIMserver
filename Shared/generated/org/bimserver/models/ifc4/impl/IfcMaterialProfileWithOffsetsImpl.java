@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileWithOffsetsImpl#getOffsetValues <em>Offset Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileWithOffsetsImpl#getOffsetValuesAsString <em>Offset Values As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -72,7 +72,8 @@ public class IfcMaterialProfileWithOffsetsImpl extends IfcMaterialProfileImpl im
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getOffsetValuesAsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_WITH_OFFSETS__OFFSET_VALUES_AS_STRING, true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_WITH_OFFSETS__OFFSET_VALUES_AS_STRING,
+				true);
 	}
 
 } //IfcMaterialProfileWithOffsetsImpl

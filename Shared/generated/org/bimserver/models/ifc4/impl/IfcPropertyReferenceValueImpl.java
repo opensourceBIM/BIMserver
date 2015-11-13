@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyReferenceValueImpl#getUsageName <em>Usage Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyReferenceValueImpl#getPropertyReference <em>Property Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -97,7 +97,8 @@ public class IfcPropertyReferenceValueImpl extends IfcSimplePropertyImpl impleme
 	 * @generated
 	 */
 	public IfcObjectReferenceSelect getPropertyReference() {
-		return (IfcObjectReferenceSelect) eGet(Ifc4Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE, true);
+		return (IfcObjectReferenceSelect) eGet(Ifc4Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE,
+				true);
 	}
 
 	/**

@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSchedulingTimeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSchedulingTimeImpl#getDataOrigin <em>Data Origin</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSchedulingTimeImpl#getUserDefinedDataOrigin <em>User Defined Data Origin</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

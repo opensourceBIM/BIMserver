@@ -23,12 +23,12 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelConnectsPorts#getRelatingPort <em>Relating Port</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelConnectsPorts#getRelatedPort <em>Related Port</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelConnectsPorts#getRealizingElement <em>Realizing Element</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelConnectsPorts()
  * @model

@@ -23,12 +23,12 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcQuantityTime#getTimeValue <em>Time Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcQuantityTime#getTimeValueAsString <em>Time Value As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcQuantityTime#getFormula <em>Formula</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcQuantityTime()
  * @model

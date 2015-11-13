@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcClassificationReferenceImpl#getReferencedSource <em>Referenced Source</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcClassificationReferenceImpl#getDescription <em>Description</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcClassificationReferenceImpl#getClassificationRefForObjects <em>Classification Ref For Objects</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcClassificationReferenceImpl#getHasReferences <em>Has References</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,7 +66,8 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl imp
 	 * @generated
 	 */
 	public IfcClassificationReferenceSelect getReferencedSource() {
-		return (IfcClassificationReferenceSelect) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE, true);
+		return (IfcClassificationReferenceSelect) eGet(
+				Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE, true);
 	}
 
 	/**
@@ -175,7 +176,8 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl imp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesClassification> getClassificationRefForObjects() {
-		return (EList<IfcRelAssociatesClassification>) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__CLASSIFICATION_REF_FOR_OBJECTS, true);
+		return (EList<IfcRelAssociatesClassification>) eGet(
+				Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__CLASSIFICATION_REF_FOR_OBJECTS, true);
 	}
 
 	/**
@@ -203,7 +205,8 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl imp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationReference> getHasReferences() {
-		return (EList<IfcClassificationReference>) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__HAS_REFERENCES, true);
+		return (EList<IfcClassificationReference>) eGet(
+				Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__HAS_REFERENCES, true);
 	}
 
 	/**

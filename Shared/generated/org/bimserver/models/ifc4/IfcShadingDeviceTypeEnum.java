@@ -188,7 +188,8 @@ public enum IfcShadingDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcShadingDeviceTypeEnum[] VALUES_ARRAY = new IfcShadingDeviceTypeEnum[] { NULL, NOTDEFINED, AWNING, JALOUSIE, SHUTTER, USERDEFINED, };
+	private static final IfcShadingDeviceTypeEnum[] VALUES_ARRAY = new IfcShadingDeviceTypeEnum[] { NULL, NOTDEFINED,
+			AWNING, JALOUSIE, SHUTTER, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Shading Device Type Enum</b></em>' enumerators.
@@ -196,12 +197,15 @@ public enum IfcShadingDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcShadingDeviceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcShadingDeviceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Shading Device Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcShadingDeviceTypeEnum get(String literal) {
@@ -218,6 +222,8 @@ public enum IfcShadingDeviceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Shading Device Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcShadingDeviceTypeEnum getByName(String name) {
@@ -234,6 +240,8 @@ public enum IfcShadingDeviceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Shading Device Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcShadingDeviceTypeEnum get(int value) {

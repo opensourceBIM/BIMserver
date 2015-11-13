@@ -813,9 +813,11 @@ public enum IfcUnitEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcUnitEnum[] VALUES_ARRAY = new IfcUnitEnum[] { NULL, ELECTRICRESISTANCEUNIT, ELECTRICCURRENTUNIT, ILLUMINANCEUNIT, AREAUNIT, FREQUENCYUNIT, TIMEUNIT,
-			ELECTRICCHARGEUNIT, FORCEUNIT, RADIOACTIVITYUNIT, LENGTHUNIT, DOSEEQUIVALENTUNIT, INDUCTANCEUNIT, MAGNETICFLUXDENSITYUNIT, LUMINOUSINTENSITYUNIT, LUMINOUSFLUXUNIT,
-			VOLUMEUNIT, ELECTRICCONDUCTANCEUNIT, AMOUNTOFSUBSTANCEUNIT, ENERGYUNIT, POWERUNIT, SOLIDANGLEUNIT, ELECTRICVOLTAGEUNIT, ELECTRICCAPACITANCEUNIT, PRESSUREUNIT,
+	private static final IfcUnitEnum[] VALUES_ARRAY = new IfcUnitEnum[] { NULL, ELECTRICRESISTANCEUNIT,
+			ELECTRICCURRENTUNIT, ILLUMINANCEUNIT, AREAUNIT, FREQUENCYUNIT, TIMEUNIT, ELECTRICCHARGEUNIT, FORCEUNIT,
+			RADIOACTIVITYUNIT, LENGTHUNIT, DOSEEQUIVALENTUNIT, INDUCTANCEUNIT, MAGNETICFLUXDENSITYUNIT,
+			LUMINOUSINTENSITYUNIT, LUMINOUSFLUXUNIT, VOLUMEUNIT, ELECTRICCONDUCTANCEUNIT, AMOUNTOFSUBSTANCEUNIT,
+			ENERGYUNIT, POWERUNIT, SOLIDANGLEUNIT, ELECTRICVOLTAGEUNIT, ELECTRICCAPACITANCEUNIT, PRESSUREUNIT,
 			THERMODYNAMICTEMPERATUREUNIT, MASSUNIT, USERDEFINED, ABSORBEDDOSEUNIT, MAGNETICFLUXUNIT, PLANEANGLEUNIT, };
 
 	/**
@@ -830,6 +832,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Unit Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcUnitEnum get(String literal) {
@@ -846,6 +850,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Unit Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcUnitEnum getByName(String name) {
@@ -862,6 +868,8 @@ public enum IfcUnitEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Unit Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcUnitEnum get(int value) {

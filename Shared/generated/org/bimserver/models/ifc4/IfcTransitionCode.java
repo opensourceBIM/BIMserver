@@ -163,7 +163,8 @@ public enum IfcTransitionCode implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTransitionCode[] VALUES_ARRAY = new IfcTransitionCode[] { NULL, CONTSAMEGRADIENT, CONTSAMEGRADIENTSAMECURVATURE, CONTINUOUS, DISCONTINUOUS, };
+	private static final IfcTransitionCode[] VALUES_ARRAY = new IfcTransitionCode[] { NULL, CONTSAMEGRADIENT,
+			CONTSAMEGRADIENTSAMECURVATURE, CONTINUOUS, DISCONTINUOUS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Transition Code</b></em>' enumerators.
@@ -177,6 +178,8 @@ public enum IfcTransitionCode implements Enumerator {
 	 * Returns the '<em><b>Ifc Transition Code</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcTransitionCode get(String literal) {
@@ -193,6 +196,8 @@ public enum IfcTransitionCode implements Enumerator {
 	 * Returns the '<em><b>Ifc Transition Code</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcTransitionCode getByName(String name) {
@@ -209,6 +214,8 @@ public enum IfcTransitionCode implements Enumerator {
 	 * Returns the '<em><b>Ifc Transition Code</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcTransitionCode get(int value) {

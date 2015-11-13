@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRootImpl#getGlobalId <em>Global Id</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRootImpl#getOwnerHistory <em>Owner History</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRootImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRootImpl#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

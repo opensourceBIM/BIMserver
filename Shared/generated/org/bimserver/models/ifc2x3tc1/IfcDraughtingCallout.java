@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDraughtingCallout#getContents <em>Contents</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDraughtingCallout#getIsRelatedFromCallout <em>Is Related From Callout</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDraughtingCallout#getIsRelatedToCallout <em>Is Related To Callout</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcDraughtingCallout()
  * @model

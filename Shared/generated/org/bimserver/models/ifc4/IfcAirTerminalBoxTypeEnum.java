@@ -188,8 +188,8 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAirTerminalBoxTypeEnum[] VALUES_ARRAY = new IfcAirTerminalBoxTypeEnum[] { NULL, NOTDEFINED, VARIABLEFLOWPRESSUREINDEPENDANT, CONSTANTFLOW, USERDEFINED,
-			VARIABLEFLOWPRESSUREDEPENDANT, };
+	private static final IfcAirTerminalBoxTypeEnum[] VALUES_ARRAY = new IfcAirTerminalBoxTypeEnum[] { NULL, NOTDEFINED,
+			VARIABLEFLOWPRESSUREINDEPENDANT, CONSTANTFLOW, USERDEFINED, VARIABLEFLOWPRESSUREDEPENDANT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Air Terminal Box Type Enum</b></em>' enumerators.
@@ -197,12 +197,15 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAirTerminalBoxTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAirTerminalBoxTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Air Terminal Box Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcAirTerminalBoxTypeEnum get(String literal) {
@@ -219,6 +222,8 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Air Terminal Box Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcAirTerminalBoxTypeEnum getByName(String name) {
@@ -235,6 +240,8 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Air Terminal Box Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcAirTerminalBoxTypeEnum get(int value) {

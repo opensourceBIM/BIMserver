@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelDefinesByTemplateImpl#getRelatedPropertySets <em>Related Property Sets</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelDefinesByTemplateImpl#getRelatingTemplate <em>Relating Template</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -64,7 +64,8 @@ public class IfcRelDefinesByTemplateImpl extends IfcRelDefinesImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertySetDefinition> getRelatedPropertySets() {
-		return (EList<IfcPropertySetDefinition>) eGet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_TEMPLATE__RELATED_PROPERTY_SETS, true);
+		return (EList<IfcPropertySetDefinition>) eGet(
+				Ifc4Package.Literals.IFC_REL_DEFINES_BY_TEMPLATE__RELATED_PROPERTY_SETS, true);
 	}
 
 	/**

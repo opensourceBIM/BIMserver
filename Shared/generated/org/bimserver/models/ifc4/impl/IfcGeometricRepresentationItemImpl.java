@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Geometric Representation Item</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcGeometricRepresentationItemImpl extends IfcRepresentationItemImpl implements IfcGeometricRepresentationItem {
+public class IfcGeometricRepresentationItemImpl extends IfcRepresentationItemImpl
+		implements IfcGeometricRepresentationItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDimensionalExponentsImpl#getLengthExponent <em>Length Exponent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDimensionalExponentsImpl#getMassExponent <em>Mass Exponent</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDimensionalExponentsImpl#getAmountOfSubstanceExponent <em>Amount Of Substance Exponent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDimensionalExponentsImpl#getLuminousIntensityExponent <em>Luminous Intensity Exponent</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -157,7 +157,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * @generated
 	 */
 	public void setThermodynamicTemperatureExponent(int newThermodynamicTemperatureExponent) {
-		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT, newThermodynamicTemperatureExponent);
+		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT,
+				newThermodynamicTemperatureExponent);
 	}
 
 	/**
@@ -175,7 +176,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * @generated
 	 */
 	public void setAmountOfSubstanceExponent(int newAmountOfSubstanceExponent) {
-		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT, newAmountOfSubstanceExponent);
+		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT,
+				newAmountOfSubstanceExponent);
 	}
 
 	/**

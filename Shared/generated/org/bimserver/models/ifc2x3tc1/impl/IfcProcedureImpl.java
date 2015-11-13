@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProcedureImpl#getProcedureID <em>Procedure ID</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProcedureImpl#getProcedureType <em>Procedure Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProcedureImpl#getUserDefinedProcedureType <em>User Defined Procedure Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

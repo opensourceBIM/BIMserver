@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWindowImpl#getOverallHeight <em>Overall Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWindowImpl#getOverallHeightAsString <em>Overall Height As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWindowImpl#getOverallWidth <em>Overall Width</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcWindowImpl#getOverallWidthAsString <em>Overall Width As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

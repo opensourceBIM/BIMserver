@@ -25,13 +25,13 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcApprovalRelationship#getRelatedApproval <em>Related Approval</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcApprovalRelationship#getRelatingApproval <em>Relating Approval</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcApprovalRelationship#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcApprovalRelationship#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcApprovalRelationship()
  * @model

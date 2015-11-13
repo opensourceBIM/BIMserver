@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProcess#getOperatesOn <em>Operates On</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProcess#getIsSuccessorFrom <em>Is Successor From</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProcess#getIsPredecessorTo <em>Is Predecessor To</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcProcess()
  * @model

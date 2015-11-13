@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDoorImpl#getOverallHeight <em>Overall Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDoorImpl#getOverallHeightAsString <em>Overall Height As String</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDoorImpl#getOperationType <em>Operation Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDoorImpl#getUserDefinedOperationType <em>User Defined Operation Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

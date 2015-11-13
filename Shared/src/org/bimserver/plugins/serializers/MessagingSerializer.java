@@ -25,7 +25,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 
-public interface MessagingSerializer {
+public interface MessagingSerializer extends Writer {
 	void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException;
 	/**
 	 * @param streamingSocketInterface This is where you write your messages to

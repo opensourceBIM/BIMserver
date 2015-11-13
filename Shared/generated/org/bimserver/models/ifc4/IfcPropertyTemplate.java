@@ -25,11 +25,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertyTemplate#getPartOfComplexTemplate <em>Part Of Complex Template</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertyTemplate#getPartOfPsetTemplate <em>Part Of Pset Template</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertyTemplate()
  * @model

@@ -26,15 +26,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcBoundaryNodeConditionWarpingImpl#getWarpingStiffness <em>Warping Stiffness</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcBoundaryNodeConditionWarpingImpl#getWarpingStiffnessAsString <em>Warping Stiffness As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditionImpl implements IfcBoundaryNodeConditionWarping {
+public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditionImpl
+		implements IfcBoundaryNodeConditionWarping {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,7 +97,8 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 * @generated
 	 */
 	public String getWarpingStiffnessAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -105,7 +107,8 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 * @generated
 	 */
 	public void setWarpingStiffnessAsString(String newWarpingStiffnessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS_AS_STRING, newWarpingStiffnessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS_AS_STRING,
+				newWarpingStiffnessAsString);
 	}
 
 	/**

@@ -238,8 +238,8 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProjectOrderRecordTypeEnum[] VALUES_ARRAY = new IfcProjectOrderRecordTypeEnum[] { NULL, NOTDEFINED, MAINTENANCE, PURCHASE, WORK,
-			MOVE, USERDEFINED, CHANGE, };
+	private static final IfcProjectOrderRecordTypeEnum[] VALUES_ARRAY = new IfcProjectOrderRecordTypeEnum[] { NULL,
+			NOTDEFINED, MAINTENANCE, PURCHASE, WORK, MOVE, USERDEFINED, CHANGE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Project Order Record Type Enum</b></em>' enumerators.
@@ -247,12 +247,15 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProjectOrderRecordTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProjectOrderRecordTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Project Order Record Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProjectOrderRecordTypeEnum get(String literal) {
@@ -269,6 +272,8 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Project Order Record Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProjectOrderRecordTypeEnum getByName(String name) {
@@ -285,6 +290,8 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Project Order Record Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProjectOrderRecordTypeEnum get(int value) {

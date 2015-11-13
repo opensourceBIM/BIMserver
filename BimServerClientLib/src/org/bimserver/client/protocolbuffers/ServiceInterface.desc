@@ -1,5 +1,5 @@
 
-ìé
+Ûç
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -906,7 +906,7 @@ executorId (
 GetUserRelatedLogsResponse
 errorMessage (	+
 value (2.org.bimserver.pb.SLogAction"
-GetUserSettingsRequest"Ã
+GetUserSettingsRequest"¨
 SUserSettings
 defaultModelCompareId (
 defaultModelMergerId (
@@ -926,8 +926,7 @@ objectIDMs (
 renderEngines (
 rid (
 serializers (
-services (
-streamingDeserializers ("_
+services ("_
 GetUserSettingsResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SUserSettings"'

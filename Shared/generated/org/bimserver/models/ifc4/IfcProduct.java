@@ -26,13 +26,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcProduct#getObjectPlacement <em>Object Placement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProduct#getRepresentation <em>Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProduct#getReferencedBy <em>Referenced By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProduct#getGeometry <em>Geometry</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProduct()
  * @model
@@ -195,9 +195,11 @@ public interface IfcProduct extends IfcObject, IfcProductSelect {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Geometry</em>' reference.
+	 * @see #isSetGeometry()
+	 * @see #unsetGeometry()
 	 * @see #setGeometry(GeometryInfo)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProduct_Geometry()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	GeometryInfo getGeometry();
@@ -207,9 +209,34 @@ public interface IfcProduct extends IfcObject, IfcProductSelect {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Geometry</em>' reference.
+	 * @see #isSetGeometry()
+	 * @see #unsetGeometry()
 	 * @see #getGeometry()
 	 * @generated
 	 */
 	void setGeometry(GeometryInfo value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcProduct#getGeometry <em>Geometry</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetGeometry()
+	 * @see #getGeometry()
+	 * @see #setGeometry(GeometryInfo)
+	 * @generated
+	 */
+	void unsetGeometry();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcProduct#getGeometry <em>Geometry</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Geometry</em>' reference is set.
+	 * @see #unsetGeometry()
+	 * @see #getGeometry()
+	 * @see #setGeometry(GeometryInfo)
+	 * @generated
+	 */
+	boolean isSetGeometry();
 
 } // IfcProduct

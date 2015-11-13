@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcExternalReferenceImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcExternalReferenceImpl#getIdentification <em>Identification</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcExternalReferenceImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcExternalReferenceImpl#getExternalReferenceForResources <em>External Reference For Resources</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -184,7 +184,8 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getExternalReferenceForResources() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__EXTERNAL_REFERENCE_FOR_RESOURCES, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(
+				Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__EXTERNAL_REFERENCE_FOR_RESOURCES, true);
 	}
 
 	/**

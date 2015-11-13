@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpace#getInteriorOrExteriorSpace <em>Interior Or Exterior Space</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpace#getElevationWithFlooring <em>Elevation With Flooring</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpace#getHasCoverings <em>Has Coverings</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpace#getBoundedBy <em>Bounded By</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcSpace()
  * @model

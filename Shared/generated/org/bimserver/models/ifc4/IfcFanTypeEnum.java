@@ -288,8 +288,9 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFanTypeEnum[] VALUES_ARRAY = new IfcFanTypeEnum[] { NULL, CENTRIFUGALAIRFOIL, NOTDEFINED, CENTRIFUGALRADIAL, CENTRIFUGALBACKWARDINCLINEDCURVED,
-			TUBEAXIAL, USERDEFINED, CENTRIFUGALFORWARDCURVED, PROPELLORAXIAL, VANEAXIAL, };
+	private static final IfcFanTypeEnum[] VALUES_ARRAY = new IfcFanTypeEnum[] { NULL, CENTRIFUGALAIRFOIL, NOTDEFINED,
+			CENTRIFUGALRADIAL, CENTRIFUGALBACKWARDINCLINEDCURVED, TUBEAXIAL, USERDEFINED, CENTRIFUGALFORWARDCURVED,
+			PROPELLORAXIAL, VANEAXIAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Fan Type Enum</b></em>' enumerators.
@@ -303,6 +304,8 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Fan Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFanTypeEnum get(String literal) {
@@ -319,6 +322,8 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Fan Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFanTypeEnum getByName(String name) {
@@ -335,6 +340,8 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Fan Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFanTypeEnum get(int value) {

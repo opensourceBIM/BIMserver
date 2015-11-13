@@ -29,15 +29,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcResourceConstraintRelationshipImpl#getRelatingConstraint <em>Relating Constraint</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcResourceConstraintRelationshipImpl#getRelatedResourceObjects <em>Related Resource Objects</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcResourceConstraintRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcResourceConstraintRelationship {
+public class IfcResourceConstraintRelationshipImpl extends IfcResourceLevelRelationshipImpl
+		implements IfcResourceConstraintRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,7 +64,8 @@ public class IfcResourceConstraintRelationshipImpl extends IfcResourceLevelRelat
 	 * @generated
 	 */
 	public IfcConstraint getRelatingConstraint() {
-		return (IfcConstraint) eGet(Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT, true);
+		return (IfcConstraint) eGet(Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT,
+				true);
 	}
 
 	/**
@@ -82,7 +84,8 @@ public class IfcResourceConstraintRelationshipImpl extends IfcResourceLevelRelat
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcResourceObjectSelect> getRelatedResourceObjects() {
-		return (EList<IfcResourceObjectSelect>) eGet(Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
+		return (EList<IfcResourceObjectSelect>) eGet(
+				Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
 	}
 
 } //IfcResourceConstraintRelationshipImpl

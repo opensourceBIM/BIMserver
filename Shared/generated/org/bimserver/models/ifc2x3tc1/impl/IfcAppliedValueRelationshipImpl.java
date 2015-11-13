@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcAppliedValueRelationshipImpl#getComponentOfTotal <em>Component Of Total</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcAppliedValueRelationshipImpl#getComponents <em>Components</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcAppliedValueRelationshipImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcAppliedValueRelationshipImpl#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -77,7 +77,8 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public IfcAppliedValue getComponentOfTotal() {
-		return (IfcAppliedValue) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENT_OF_TOTAL, true);
+		return (IfcAppliedValue) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENT_OF_TOTAL,
+				true);
 	}
 
 	/**
@@ -96,7 +97,8 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValue> getComponents() {
-		return (EList<IfcAppliedValue>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENTS, true);
+		return (EList<IfcAppliedValue>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENTS,
+				true);
 	}
 
 	/**
@@ -105,7 +107,8 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public IfcArithmeticOperatorEnum getArithmeticOperator() {
-		return (IfcArithmeticOperatorEnum) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__ARITHMETIC_OPERATOR, true);
+		return (IfcArithmeticOperatorEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__ARITHMETIC_OPERATOR, true);
 	}
 
 	/**

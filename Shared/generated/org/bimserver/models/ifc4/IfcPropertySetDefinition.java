@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertySetDefinition#getDefinesType <em>Defines Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertySetDefinition#getIsDefinedBy <em>Is Defined By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertySetDefinition#getDefinesOccurrence <em>Defines Occurrence</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertySetDefinition()
  * @model

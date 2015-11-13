@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialLayer#getMaterial <em>Material</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialLayer#getLayerThickness <em>Layer Thickness</em>}</li>
@@ -35,7 +36,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialLayer#getPriorityAsString <em>Priority As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialLayer#getToMaterialLayerSet <em>To Material Layer Set</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialLayer()
  * @model

@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcShapeAspect#getShapeRepresentations <em>Shape Representations</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcShapeAspect#getName <em>Name</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcShapeAspect#isProductDefinitional <em>Product Definitional</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcShapeAspect#getPartOfProductDefinitionShape <em>Part Of Product Definition Shape</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcShapeAspect()
  * @model

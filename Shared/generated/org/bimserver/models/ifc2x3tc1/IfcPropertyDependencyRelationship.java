@@ -25,6 +25,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPropertyDependencyRelationship#getDependingProperty <em>Depending Property</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPropertyDependencyRelationship#getDependantProperty <em>Dependant Property</em>}</li>
@@ -32,7 +33,6 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPropertyDependencyRelationship#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPropertyDependencyRelationship#getExpression <em>Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcPropertyDependencyRelationship()
  * @model

@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFillAreaStyleTilesImpl#getTilingPattern <em>Tiling Pattern</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFillAreaStyleTilesImpl#getTiles <em>Tiles</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFillAreaStyleTilesImpl#getTilingScale <em>Tiling Scale</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFillAreaStyleTilesImpl#getTilingScaleAsString <em>Tiling Scale As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

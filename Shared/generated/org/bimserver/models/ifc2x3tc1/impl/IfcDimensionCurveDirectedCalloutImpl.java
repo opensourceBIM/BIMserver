@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Dimension Curve Directed Callout</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcDimensionCurveDirectedCalloutImpl extends IfcDraughtingCalloutImpl implements IfcDimensionCurveDirectedCallout {
+public class IfcDimensionCurveDirectedCalloutImpl extends IfcDraughtingCalloutImpl
+		implements IfcDimensionCurveDirectedCallout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
