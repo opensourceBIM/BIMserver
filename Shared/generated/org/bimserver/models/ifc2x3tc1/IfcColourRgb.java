@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcColourRgb#getRed <em>Red</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcColourRgb#getRedAsString <em>Red As String</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcColourRgb#getBlue <em>Blue</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcColourRgb#getBlueAsString <em>Blue As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcColourRgb()
  * @model

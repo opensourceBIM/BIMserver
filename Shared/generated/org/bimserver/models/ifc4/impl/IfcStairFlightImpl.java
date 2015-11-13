@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStairFlightImpl#getNumberOfRiser <em>Number Of Riser</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStairFlightImpl#getNumberOfTreads <em>Number Of Treads</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStairFlightImpl#getTreadLengthAsString <em>Tread Length As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStairFlightImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

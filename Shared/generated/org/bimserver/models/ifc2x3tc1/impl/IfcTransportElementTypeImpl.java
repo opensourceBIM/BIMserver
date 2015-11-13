@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTransportElementTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcTransportElementTypeImpl extends IfcElementTypeImpl implements I
 	 * @generated
 	 */
 	public IfcTransportElementTypeEnum getPredefinedType() {
-		return (IfcTransportElementTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT_TYPE__PREDEFINED_TYPE, true);
+		return (IfcTransportElementTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_TRANSPORT_ELEMENT_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

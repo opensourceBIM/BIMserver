@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcAngularVelocityMeasureImpl#getWrappedValue <em>Wrapped Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcAngularVelocityMeasureImpl#getWrappedValueAsString <em>Wrapped Value As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

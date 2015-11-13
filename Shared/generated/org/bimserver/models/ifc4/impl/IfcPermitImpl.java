@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPermitImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPermitImpl#getStatus <em>Status</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPermitImpl#getLongDescription <em>Long Description</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

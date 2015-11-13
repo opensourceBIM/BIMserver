@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSweptAreaSolidImpl#getSweptArea <em>Swept Area</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSweptAreaSolidImpl#getPosition <em>Position</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

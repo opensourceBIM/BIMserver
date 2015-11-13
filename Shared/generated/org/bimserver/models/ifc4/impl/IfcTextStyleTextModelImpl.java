@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTextStyleTextModelImpl#getTextIndent <em>Text Indent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTextStyleTextModelImpl#getTextAlign <em>Text Align</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTextStyleTextModelImpl#getTextTransform <em>Text Transform</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTextStyleTextModelImpl#getLineHeight <em>Line Height</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

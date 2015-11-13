@@ -238,8 +238,8 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPumpTypeEnum[] VALUES_ARRAY = new IfcPumpTypeEnum[] { NULL, VERTICALTURBINE, ENDSUCTION, NOTDEFINED, SPLITCASE, VERTICALINLINE,
-			USERDEFINED, CIRCULATOR, };
+	private static final IfcPumpTypeEnum[] VALUES_ARRAY = new IfcPumpTypeEnum[] { NULL, VERTICALTURBINE, ENDSUCTION,
+			NOTDEFINED, SPLITCASE, VERTICALINLINE, USERDEFINED, CIRCULATOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pump Type Enum</b></em>' enumerators.
@@ -253,6 +253,8 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Pump Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcPumpTypeEnum get(String literal) {
@@ -269,6 +271,8 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Pump Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcPumpTypeEnum getByName(String name) {
@@ -285,6 +289,8 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Pump Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcPumpTypeEnum get(int value) {

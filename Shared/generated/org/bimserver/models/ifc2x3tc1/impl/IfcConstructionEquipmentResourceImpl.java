@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Construction Equipment Resource</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcConstructionEquipmentResourceImpl extends IfcConstructionResourceImpl implements IfcConstructionEquipmentResource {
+public class IfcConstructionEquipmentResourceImpl extends IfcConstructionResourceImpl
+		implements IfcConstructionEquipmentResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

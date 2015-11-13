@@ -263,7 +263,8 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBeamTypeEnum[] VALUES_ARRAY = new IfcBeamTypeEnum[] { NULL, SPANDREL, LINTEL, NOTDEFINED, TBEAM, HOLLOWCORE, USERDEFINED, JOIST, BEAM, };
+	private static final IfcBeamTypeEnum[] VALUES_ARRAY = new IfcBeamTypeEnum[] { NULL, SPANDREL, LINTEL, NOTDEFINED,
+			TBEAM, HOLLOWCORE, USERDEFINED, JOIST, BEAM, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Beam Type Enum</b></em>' enumerators.
@@ -277,6 +278,8 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Beam Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBeamTypeEnum get(String literal) {
@@ -293,6 +296,8 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Beam Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBeamTypeEnum getByName(String name) {
@@ -309,6 +314,8 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Beam Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBeamTypeEnum get(int value) {

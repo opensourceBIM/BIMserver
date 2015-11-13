@@ -113,7 +113,8 @@ public enum IfcDimensionExtentUsage implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDimensionExtentUsage[] VALUES_ARRAY = new IfcDimensionExtentUsage[] { NULL, TARGET, ORIGIN, };
+	private static final IfcDimensionExtentUsage[] VALUES_ARRAY = new IfcDimensionExtentUsage[] { NULL, TARGET,
+			ORIGIN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Dimension Extent Usage</b></em>' enumerators.
@@ -121,12 +122,15 @@ public enum IfcDimensionExtentUsage implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDimensionExtentUsage> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDimensionExtentUsage> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Dimension Extent Usage</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDimensionExtentUsage get(String literal) {
@@ -143,6 +147,8 @@ public enum IfcDimensionExtentUsage implements Enumerator {
 	 * Returns the '<em><b>Ifc Dimension Extent Usage</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDimensionExtentUsage getByName(String name) {
@@ -159,6 +165,8 @@ public enum IfcDimensionExtentUsage implements Enumerator {
 	 * Returns the '<em><b>Ifc Dimension Extent Usage</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDimensionExtentUsage get(int value) {

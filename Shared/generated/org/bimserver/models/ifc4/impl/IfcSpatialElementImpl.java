@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSpatialElementImpl#getLongName <em>Long Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSpatialElementImpl#getContainsElements <em>Contains Elements</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSpatialElementImpl#getServicedBySystems <em>Serviced By Systems</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSpatialElementImpl#getReferencesElements <em>References Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -103,7 +103,8 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelContainedInSpatialStructure> getContainsElements() {
-		return (EList<IfcRelContainedInSpatialStructure>) eGet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__CONTAINS_ELEMENTS, true);
+		return (EList<IfcRelContainedInSpatialStructure>) eGet(
+				Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__CONTAINS_ELEMENTS, true);
 	}
 
 	/**
@@ -131,7 +132,8 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelServicesBuildings> getServicedBySystems() {
-		return (EList<IfcRelServicesBuildings>) eGet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__SERVICED_BY_SYSTEMS, true);
+		return (EList<IfcRelServicesBuildings>) eGet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__SERVICED_BY_SYSTEMS,
+				true);
 	}
 
 	/**
@@ -159,7 +161,8 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelReferencedInSpatialStructure> getReferencesElements() {
-		return (EList<IfcRelReferencedInSpatialStructure>) eGet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__REFERENCES_ELEMENTS, true);
+		return (EList<IfcRelReferencedInSpatialStructure>) eGet(
+				Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__REFERENCES_ELEMENTS, true);
 	}
 
 	/**

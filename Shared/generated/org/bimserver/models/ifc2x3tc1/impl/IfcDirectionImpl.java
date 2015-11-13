@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDirectionImpl#getDirectionRatios <em>Direction Ratios</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDirectionImpl#getDirectionRatiosAsString <em>Direction Ratios As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDirectionImpl#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCableCarrierFittingTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcCableCarrierFittingTypeImpl extends IfcFlowFittingTypeImpl imple
 	 * @generated
 	 */
 	public IfcCableCarrierFittingTypeEnum getPredefinedType() {
-		return (IfcCableCarrierFittingTypeEnum) eGet(Ifc4Package.Literals.IFC_CABLE_CARRIER_FITTING_TYPE__PREDEFINED_TYPE, true);
+		return (IfcCableCarrierFittingTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_CABLE_CARRIER_FITTING_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

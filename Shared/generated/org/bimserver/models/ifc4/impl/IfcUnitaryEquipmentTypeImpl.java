@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcUnitaryEquipmentTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcUnitaryEquipmentTypeImpl extends IfcEnergyConversionDeviceTypeIm
 	 * @generated
 	 */
 	public IfcUnitaryEquipmentTypeEnum getPredefinedType() {
-		return (IfcUnitaryEquipmentTypeEnum) eGet(Ifc4Package.Literals.IFC_UNITARY_EQUIPMENT_TYPE__PREDEFINED_TYPE, true);
+		return (IfcUnitaryEquipmentTypeEnum) eGet(Ifc4Package.Literals.IFC_UNITARY_EQUIPMENT_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

@@ -1,5 +1,5 @@
 
-íT
+•W
 Bimsie1ServiceInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.proto"g
  AddExtendedDataToRevisionRequest
 roid (5
@@ -78,6 +78,14 @@ parentPoid (
 deep (
 sync (">
 DownloadByNamesResponse
+errorMessage (	
+value ("b
+DownloadByNewJsonQueryRequest
+roids (
+query (	
+serializerOid (
+sync ("E
+DownloadByNewJsonQueryResponse
 errorMessage (	
 value ("g
 DownloadByOidsRequest
@@ -247,7 +255,7 @@ revisionNr (
 poid (">
 UndeleteProjectResponse
 errorMessage (	
-value (2¨#
+value (2¥$
 Bimsie1ServiceInterfaceo
 addExtendedDataToRevision2.org.bimserver.pb.AddExtendedDataToRevisionRequest.org.bimserver.pb.VoidResponseW
 
@@ -262,7 +270,8 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 download!.org.bimserver.pb.DownloadRequest".org.bimserver.pb.DownloadResponsef
 downloadByGuids(.org.bimserver.pb.DownloadByGuidsRequest).org.bimserver.pb.DownloadByGuidsResponser
 downloadByJsonQuery,.org.bimserver.pb.DownloadByJsonQueryRequest-.org.bimserver.pb.DownloadByJsonQueryResponsef
-downloadByNames(.org.bimserver.pb.DownloadByNamesRequest).org.bimserver.pb.DownloadByNamesResponsec
+downloadByNames(.org.bimserver.pb.DownloadByNamesRequest).org.bimserver.pb.DownloadByNamesResponse{
+downloadByNewJsonQuery/.org.bimserver.pb.DownloadByNewJsonQueryRequest0.org.bimserver.pb.DownloadByNewJsonQueryResponsec
 downloadByOids'.org.bimserver.pb.DownloadByOidsRequest(.org.bimserver.pb.DownloadByOidsResponsef
 downloadByTypes(.org.bimserver.pb.DownloadByTypesRequest).org.bimserver.pb.DownloadByTypesResponse`
 downloadQuery&.org.bimserver.pb.DownloadQueryRequest'.org.bimserver.pb.DownloadQueryResponsel

@@ -213,8 +213,9 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAnalysisTheoryTypeEnum[] VALUES_ARRAY = new IfcAnalysisTheoryTypeEnum[] { NULL, FULL_NONLINEAR_THEORY, NOTDEFINED, THIRD_ORDER_THEORY,
-			FIRST_ORDER_THEORY, SECOND_ORDER_THEORY, USERDEFINED, };
+	private static final IfcAnalysisTheoryTypeEnum[] VALUES_ARRAY = new IfcAnalysisTheoryTypeEnum[] { NULL,
+			FULL_NONLINEAR_THEORY, NOTDEFINED, THIRD_ORDER_THEORY, FIRST_ORDER_THEORY, SECOND_ORDER_THEORY,
+			USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Analysis Theory Type Enum</b></em>' enumerators.
@@ -222,12 +223,15 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAnalysisTheoryTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAnalysisTheoryTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Analysis Theory Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcAnalysisTheoryTypeEnum get(String literal) {
@@ -244,6 +248,8 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Analysis Theory Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcAnalysisTheoryTypeEnum getByName(String name) {
@@ -260,6 +266,8 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Analysis Theory Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcAnalysisTheoryTypeEnum get(int value) {

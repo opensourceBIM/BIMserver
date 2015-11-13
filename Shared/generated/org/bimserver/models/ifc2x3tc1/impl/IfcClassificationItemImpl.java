@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcClassificationItemImpl#getNotation <em>Notation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcClassificationItemImpl#getItemOf <em>Item Of</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcClassificationItemImpl#getIsClassifiedItemIn <em>Is Classified Item In</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcClassificationItemImpl#getIsClassifyingItemIn <em>Is Classifying Item In</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -151,7 +151,8 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItemRelationship> getIsClassifiedItemIn() {
-		return (EList<IfcClassificationItemRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFIED_ITEM_IN, true);
+		return (EList<IfcClassificationItemRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFIED_ITEM_IN, true);
 	}
 
 	/**
@@ -179,7 +180,8 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItemRelationship> getIsClassifyingItemIn() {
-		return (EList<IfcClassificationItemRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFYING_ITEM_IN, true);
+		return (EList<IfcClassificationItemRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFYING_ITEM_IN, true);
 	}
 
 	/**

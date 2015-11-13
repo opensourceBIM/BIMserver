@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDoorLiningPropertiesImpl#getLiningDepth <em>Lining Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDoorLiningPropertiesImpl#getLiningDepthAsString <em>Lining Depth As String</em>}</li>
@@ -50,7 +51,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDoorLiningPropertiesImpl#getCasingDepthAsString <em>Casing Depth As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDoorLiningPropertiesImpl#getShapeAspectStyle <em>Shape Aspect Style</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -197,7 +197,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * @generated
 	 */
 	public void setLiningThicknessAsString(String newLiningThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_THICKNESS_AS_STRING, newLiningThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_THICKNESS_AS_STRING,
+				newLiningThicknessAsString);
 	}
 
 	/**
@@ -269,7 +270,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * @generated
 	 */
 	public void setThresholdDepthAsString(String newThresholdDepthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_DEPTH_AS_STRING, newThresholdDepthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_DEPTH_AS_STRING,
+				newThresholdDepthAsString);
 	}
 
 	/**
@@ -341,7 +343,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * @generated
 	 */
 	public void setThresholdThicknessAsString(String newThresholdThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_THICKNESS_AS_STRING, newThresholdThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_THICKNESS_AS_STRING,
+				newThresholdThicknessAsString);
 	}
 
 	/**
@@ -413,7 +416,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * @generated
 	 */
 	public void setTransomThicknessAsString(String newTransomThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_LINING_PROPERTIES__TRANSOM_THICKNESS_AS_STRING, newTransomThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_LINING_PROPERTIES__TRANSOM_THICKNESS_AS_STRING,
+				newTransomThicknessAsString);
 	}
 
 	/**
@@ -629,7 +633,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * @generated
 	 */
 	public void setThresholdOffsetAsString(String newThresholdOffsetAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_OFFSET_AS_STRING, newThresholdOffsetAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_OFFSET_AS_STRING,
+				newThresholdOffsetAsString);
 	}
 
 	/**
@@ -701,7 +706,8 @@ public class IfcDoorLiningPropertiesImpl extends IfcPropertySetDefinitionImpl im
 	 * @generated
 	 */
 	public void setCasingThicknessAsString(String newCasingThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_LINING_PROPERTIES__CASING_THICKNESS_AS_STRING, newCasingThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DOOR_LINING_PROPERTIES__CASING_THICKNESS_AS_STRING,
+				newCasingThicknessAsString);
 	}
 
 	/**

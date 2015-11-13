@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTimeSeriesSchedule#getApplicableDates <em>Applicable Dates</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTimeSeriesSchedule#getTimeSeriesScheduleType <em>Time Series Schedule Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTimeSeriesSchedule#getTimeSeries <em>Time Series</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTimeSeriesSchedule()
  * @model

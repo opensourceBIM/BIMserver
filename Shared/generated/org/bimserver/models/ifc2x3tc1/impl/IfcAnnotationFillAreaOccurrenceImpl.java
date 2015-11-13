@@ -28,15 +28,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcAnnotationFillAreaOccurrenceImpl#getFillStyleTarget <em>Fill Style Target</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcAnnotationFillAreaOccurrenceImpl#getGlobalOrLocal <em>Global Or Local</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcAnnotationFillAreaOccurrenceImpl extends IfcAnnotationOccurrenceImpl implements IfcAnnotationFillAreaOccurrence {
+public class IfcAnnotationFillAreaOccurrenceImpl extends IfcAnnotationOccurrenceImpl
+		implements IfcAnnotationFillAreaOccurrence {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -98,7 +99,8 @@ public class IfcAnnotationFillAreaOccurrenceImpl extends IfcAnnotationOccurrence
 	 * @generated
 	 */
 	public IfcGlobalOrLocalEnum getGlobalOrLocal() {
-		return (IfcGlobalOrLocalEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__GLOBAL_OR_LOCAL, true);
+		return (IfcGlobalOrLocalEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ANNOTATION_FILL_AREA_OCCURRENCE__GLOBAL_OR_LOCAL, true);
 	}
 
 	/**

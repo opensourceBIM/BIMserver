@@ -25,13 +25,13 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelaxation#getRelaxationValue <em>Relaxation Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelaxation#getRelaxationValueAsString <em>Relaxation Value As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelaxation#getInitialStress <em>Initial Stress</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelaxation#getInitialStressAsString <em>Initial Stress As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRelaxation()
  * @model

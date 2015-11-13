@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTextStyle#getTextCharacterAppearance <em>Text Character Appearance</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTextStyle#getTextStyle <em>Text Style</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTextStyle#getTextFontStyle <em>Text Font Style</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTextStyle#getModelOrDraughting <em>Model Or Draughting</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTextStyle()
  * @model

@@ -26,11 +26,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextureVertex#getCoordinates <em>Coordinates</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextureVertex#getCoordinatesAsString <em>Coordinates As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTextureVertex()
  * @model

@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSourceSpot#getOrientation <em>Orientation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSourceSpot#getConcentrationExponent <em>Concentration Exponent</em>}</li>
@@ -32,7 +33,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSourceSpot#getBeamWidthAngle <em>Beam Width Angle</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSourceSpot#getBeamWidthAngleAsString <em>Beam Width Angle As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSourceSpot()
  * @model

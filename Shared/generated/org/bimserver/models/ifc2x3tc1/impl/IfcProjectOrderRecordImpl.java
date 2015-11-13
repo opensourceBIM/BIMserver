@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProjectOrderRecordImpl#getRecords <em>Records</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProjectOrderRecordImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -64,7 +64,8 @@ public class IfcProjectOrderRecordImpl extends IfcControlImpl implements IfcProj
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssignsToProjectOrder> getRecords() {
-		return (EList<IfcRelAssignsToProjectOrder>) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER_RECORD__RECORDS, true);
+		return (EList<IfcRelAssignsToProjectOrder>) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER_RECORD__RECORDS,
+				true);
 	}
 
 	/**
@@ -73,7 +74,8 @@ public class IfcProjectOrderRecordImpl extends IfcControlImpl implements IfcProj
 	 * @generated
 	 */
 	public IfcProjectOrderRecordTypeEnum getPredefinedType() {
-		return (IfcProjectOrderRecordTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER_RECORD__PREDEFINED_TYPE, true);
+		return (IfcProjectOrderRecordTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT_ORDER_RECORD__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

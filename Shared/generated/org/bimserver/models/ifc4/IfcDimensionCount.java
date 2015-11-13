@@ -25,10 +25,10 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcDimensionCount#getWrappedValue <em>Wrapped Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDimensionCount()
  * @model

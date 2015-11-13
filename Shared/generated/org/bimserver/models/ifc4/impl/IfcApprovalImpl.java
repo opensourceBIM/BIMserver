@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcApprovalImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcApprovalImpl#getName <em>Name</em>}</li>
@@ -49,7 +50,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcApprovalImpl#getIsRelatedWith <em>Is Related With</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcApprovalImpl#getRelates <em>Relates</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -414,7 +414,8 @@ public class IfcApprovalImpl extends IdEObjectImpl implements IfcApproval {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReferences() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_APPROVAL__HAS_EXTERNAL_REFERENCES, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(
+				Ifc4Package.Literals.IFC_APPROVAL__HAS_EXTERNAL_REFERENCES, true);
 	}
 
 	/**
@@ -470,7 +471,8 @@ public class IfcApprovalImpl extends IdEObjectImpl implements IfcApproval {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcResourceApprovalRelationship> getApprovedResources() {
-		return (EList<IfcResourceApprovalRelationship>) eGet(Ifc4Package.Literals.IFC_APPROVAL__APPROVED_RESOURCES, true);
+		return (EList<IfcResourceApprovalRelationship>) eGet(Ifc4Package.Literals.IFC_APPROVAL__APPROVED_RESOURCES,
+				true);
 	}
 
 	/**

@@ -288,8 +288,8 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcOccupantTypeEnum[] VALUES_ARRAY = new IfcOccupantTypeEnum[] { NULL, NOTDEFINED, LESSEE, ASSIGNOR, USERDEFINED, OWNER, LETTINGAGENT, TENANT, LESSOR,
-			ASSIGNEE, };
+	private static final IfcOccupantTypeEnum[] VALUES_ARRAY = new IfcOccupantTypeEnum[] { NULL, NOTDEFINED, LESSEE,
+			ASSIGNOR, USERDEFINED, OWNER, LETTINGAGENT, TENANT, LESSOR, ASSIGNEE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Occupant Type Enum</b></em>' enumerators.
@@ -303,6 +303,8 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Occupant Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcOccupantTypeEnum get(String literal) {
@@ -319,6 +321,8 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Occupant Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcOccupantTypeEnum getByName(String name) {
@@ -335,6 +339,8 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Occupant Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcOccupantTypeEnum get(int value) {

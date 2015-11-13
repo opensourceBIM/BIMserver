@@ -50,7 +50,8 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER(1, "DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER", "DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER"),
+	DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER(1, "DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER",
+			"DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
@@ -80,7 +81,8 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER(4, "DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER", "DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER"),
+	DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER(4, "DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER",
+			"DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER"),
 
 	/**
 	 * The '<em><b>DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER</b></em>' literal object.
@@ -90,7 +92,8 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER(5, "DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER", "DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER"),
+	DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER(5, "DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER",
+			"DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -110,7 +113,8 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INDIRECTEVAPORATIVEPACKAGEAIRCOOLER(7, "INDIRECTEVAPORATIVEPACKAGEAIRCOOLER", "INDIRECTEVAPORATIVEPACKAGEAIRCOOLER"),
+	INDIRECTEVAPORATIVEPACKAGEAIRCOOLER(7, "INDIRECTEVAPORATIVEPACKAGEAIRCOOLER",
+			"INDIRECTEVAPORATIVEPACKAGEAIRCOOLER"),
 
 	/**
 	 * The '<em><b>INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER</b></em>' literal object.
@@ -120,7 +124,8 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER(8, "INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER", "INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER"),
+	INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER(8, "INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER",
+			"INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER"),
 
 	/**
 	 * The '<em><b>INDIRECTEVAPORATIVEWETCOIL</b></em>' literal object.
@@ -150,7 +155,8 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER(11, "DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER", "DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER");
+	DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER(11, "DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER",
+			"DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -338,10 +344,11 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEvaporativeCoolerTypeEnum[] VALUES_ARRAY = new IfcEvaporativeCoolerTypeEnum[] { NULL, DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER,
-			NOTDEFINED, INDIRECTDIRECTCOMBINATION, DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER, DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER, USERDEFINED,
-			INDIRECTEVAPORATIVEPACKAGEAIRCOOLER, INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER, INDIRECTEVAPORATIVEWETCOIL, DIRECTEVAPORATIVEAIRWASHER,
-			DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER, };
+	private static final IfcEvaporativeCoolerTypeEnum[] VALUES_ARRAY = new IfcEvaporativeCoolerTypeEnum[] { NULL,
+			DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER, NOTDEFINED, INDIRECTDIRECTCOMBINATION,
+			DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER, DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER, USERDEFINED,
+			INDIRECTEVAPORATIVEPACKAGEAIRCOOLER, INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER,
+			INDIRECTEVAPORATIVEWETCOIL, DIRECTEVAPORATIVEAIRWASHER, DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Evaporative Cooler Type Enum</b></em>' enumerators.
@@ -349,12 +356,15 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcEvaporativeCoolerTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcEvaporativeCoolerTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Evaporative Cooler Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcEvaporativeCoolerTypeEnum get(String literal) {
@@ -371,6 +381,8 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Evaporative Cooler Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcEvaporativeCoolerTypeEnum getByName(String name) {
@@ -387,6 +399,8 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Evaporative Cooler Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcEvaporativeCoolerTypeEnum get(int value) {

@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLibraryInformationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLibraryInformationImpl#getVersion <em>Version</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLibraryInformationImpl#getLibraryInfoForObjects <em>Library Info For Objects</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLibraryInformationImpl#getHasLibraryReferences <em>Has Library References</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -269,7 +269,8 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl implem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesLibrary> getLibraryInfoForObjects() {
-		return (EList<IfcRelAssociatesLibrary>) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__LIBRARY_INFO_FOR_OBJECTS, true);
+		return (EList<IfcRelAssociatesLibrary>) eGet(
+				Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__LIBRARY_INFO_FOR_OBJECTS, true);
 	}
 
 	/**
@@ -297,7 +298,8 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl implem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLibraryReference> getHasLibraryReferences() {
-		return (EList<IfcLibraryReference>) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__HAS_LIBRARY_REFERENCES, true);
+		return (EList<IfcLibraryReference>) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__HAS_LIBRARY_REFERENCES,
+				true);
 	}
 
 	/**

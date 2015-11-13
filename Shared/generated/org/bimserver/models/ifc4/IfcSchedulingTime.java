@@ -25,12 +25,12 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcSchedulingTime#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSchedulingTime#getDataOrigin <em>Data Origin</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSchedulingTime#getUserDefinedDataOrigin <em>User Defined Data Origin</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSchedulingTime()
  * @model

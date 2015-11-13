@@ -116,6 +116,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.schemaconverter.SchemaConverterFactory;
 import org.bimserver.shared.exceptions.ServerException;
@@ -971,9 +972,20 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			UserSettings userSettings = getUserSettings(session);
 			List<SSerializerPluginConfiguration> sSerializers = new ArrayList<SSerializerPluginConfiguration>();
 			for (SerializerPluginConfiguration serializerPluginConfiguration : userSettings.getSerializers()) {
-				SerializerPlugin plugin = getBimServer().getPluginManager().getSerializerPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-				if (plugin != null) {
-					for (Schema schema : plugin.getSupportedSchemas()) {
+				Plugin plugin = getBimServer().getPluginManager().getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+				if (plugin instanceof SerializerPlugin) {
+					SerializerPlugin serializerPlugin = getBimServer().getPluginManager().getSerializerPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+					for (Schema schema : serializerPlugin.getSupportedSchemas()) {
+						if (schemaOr.contains(schema)) {
+							if (!onlyEnabled || (serializerPluginConfiguration.getEnabled() && serializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
+								sSerializers.add(getBimServer().getSConverter().convertToSObject(serializerPluginConfiguration));
+								break;
+							}
+						}
+					}
+				} else if (plugin instanceof StreamingSerializerPlugin) {
+					StreamingSerializerPlugin streamingSerializerPlugin = (StreamingSerializerPlugin)plugin;
+					for (Schema schema : streamingSerializerPlugin.getSupportedSchemas()) {
 						if (schemaOr.contains(schema)) {
 							if (!onlyEnabled || (serializerPluginConfiguration.getEnabled() && serializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
 								sSerializers.add(getBimServer().getSConverter().convertToSObject(serializerPluginConfiguration));

@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcGridImpl#getUAxes <em>UAxes</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcGridImpl#getVAxes <em>VAxes</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcGridImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcGridImpl#getContainedInStructure <em>Contained In Structure</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -152,7 +152,8 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelContainedInSpatialStructure> getContainedInStructure() {
-		return (EList<IfcRelContainedInSpatialStructure>) eGet(Ifc4Package.Literals.IFC_GRID__CONTAINED_IN_STRUCTURE, true);
+		return (EList<IfcRelContainedInSpatialStructure>) eGet(Ifc4Package.Literals.IFC_GRID__CONTAINED_IN_STRUCTURE,
+				true);
 	}
 
 	/**

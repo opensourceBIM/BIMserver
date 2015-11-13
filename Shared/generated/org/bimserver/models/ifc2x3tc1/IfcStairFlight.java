@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStairFlight#getNumberOfRiser <em>Number Of Riser</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStairFlight#getNumberOfTreads <em>Number Of Treads</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStairFlight#getTreadLength <em>Tread Length</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStairFlight#getTreadLengthAsString <em>Tread Length As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcStairFlight()
  * @model

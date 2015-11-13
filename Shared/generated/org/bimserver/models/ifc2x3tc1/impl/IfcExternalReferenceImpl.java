@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcExternalReferenceImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcExternalReferenceImpl#getItemReference <em>Item Reference</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcExternalReferenceImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

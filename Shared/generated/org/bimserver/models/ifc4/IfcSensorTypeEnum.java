@@ -613,9 +613,10 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSensorTypeEnum[] VALUES_ARRAY = new IfcSensorTypeEnum[] { NULL, RADIATIONSENSOR, PHSENSOR, LEVELSENSOR, FIRESENSOR, NOTDEFINED, IONCONCENTRATIONSENSOR,
-			HEATSENSOR, MOVEMENTSENSOR, FLOWSENSOR, CONDUCTANCESENSOR, MOISTURESENSOR, LIGHTSENSOR, SMOKESENSOR, TEMPERATURESENSOR, GASSENSOR, WINDSENSOR, RADIOACTIVITYSENSOR,
-			PRESSURESENSOR, CONTACTSENSOR, USERDEFINED, HUMIDITYSENSOR, SOUNDSENSOR, };
+	private static final IfcSensorTypeEnum[] VALUES_ARRAY = new IfcSensorTypeEnum[] { NULL, RADIATIONSENSOR, PHSENSOR,
+			LEVELSENSOR, FIRESENSOR, NOTDEFINED, IONCONCENTRATIONSENSOR, HEATSENSOR, MOVEMENTSENSOR, FLOWSENSOR,
+			CONDUCTANCESENSOR, MOISTURESENSOR, LIGHTSENSOR, SMOKESENSOR, TEMPERATURESENSOR, GASSENSOR, WINDSENSOR,
+			RADIOACTIVITYSENSOR, PRESSURESENSOR, CONTACTSENSOR, USERDEFINED, HUMIDITYSENSOR, SOUNDSENSOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sensor Type Enum</b></em>' enumerators.
@@ -629,6 +630,8 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Sensor Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSensorTypeEnum get(String literal) {
@@ -645,6 +648,8 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Sensor Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSensorTypeEnum getByName(String name) {
@@ -661,6 +666,8 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Sensor Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSensorTypeEnum get(int value) {

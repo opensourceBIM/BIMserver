@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcAxis2Placement3D#getAxis <em>Axis</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcAxis2Placement3D#getRefDirection <em>Ref Direction</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAxis2Placement3D()
  * @model

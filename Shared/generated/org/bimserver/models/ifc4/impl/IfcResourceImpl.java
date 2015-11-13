@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcResourceImpl#getIdentification <em>Identification</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcResourceImpl#getLongDescription <em>Long Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcResourceImpl#getResourceOf <em>Resource Of</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRationalBezierCurveImpl#getWeightsData <em>Weights Data</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRationalBezierCurveImpl#getWeightsDataAsString <em>Weights Data As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

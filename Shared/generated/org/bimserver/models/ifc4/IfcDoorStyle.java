@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcDoorStyle#getOperationType <em>Operation Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDoorStyle#getConstructionType <em>Construction Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDoorStyle#getParameterTakesPrecedence <em>Parameter Takes Precedence</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDoorStyle#getSizeable <em>Sizeable</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorStyle()
  * @model

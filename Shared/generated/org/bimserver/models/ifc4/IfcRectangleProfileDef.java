@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRectangleProfileDef#getXDim <em>XDim</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRectangleProfileDef#getXDimAsString <em>XDim As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRectangleProfileDef#getYDim <em>YDim</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRectangleProfileDef#getYDimAsString <em>YDim As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRectangleProfileDef()
  * @model

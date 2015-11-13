@@ -288,8 +288,9 @@ public enum IfcCondenserTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCondenserTypeEnum[] VALUES_ARRAY = new IfcCondenserTypeEnum[] { NULL, EVAPORATIVECOOLED, NOTDEFINED, USERDEFINED, WATERCOOLED, WATERCOOLEDSHELLTUBE,
-			WATERCOOLEDTUBEINTUBE, WATERCOOLEDSHELLCOIL, WATERCOOLEDBRAZEDPLATE, AIRCOOLED, };
+	private static final IfcCondenserTypeEnum[] VALUES_ARRAY = new IfcCondenserTypeEnum[] { NULL, EVAPORATIVECOOLED,
+			NOTDEFINED, USERDEFINED, WATERCOOLED, WATERCOOLEDSHELLTUBE, WATERCOOLEDTUBEINTUBE, WATERCOOLEDSHELLCOIL,
+			WATERCOOLEDBRAZEDPLATE, AIRCOOLED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Condenser Type Enum</b></em>' enumerators.
@@ -303,6 +304,8 @@ public enum IfcCondenserTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Condenser Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCondenserTypeEnum get(String literal) {
@@ -319,6 +322,8 @@ public enum IfcCondenserTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Condenser Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCondenserTypeEnum getByName(String name) {
@@ -335,6 +340,8 @@ public enum IfcCondenserTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Condenser Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCondenserTypeEnum get(int value) {

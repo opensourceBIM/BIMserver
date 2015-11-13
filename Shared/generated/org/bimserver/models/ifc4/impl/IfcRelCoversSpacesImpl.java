@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelCoversSpacesImpl#getRelatingSpace <em>Relating Space</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelCoversSpacesImpl#getRelatedCoverings <em>Related Coverings</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

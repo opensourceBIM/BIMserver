@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcStructuralLoadGroupImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcStructuralLoadGroupImpl#getActionType <em>Action Type</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcStructuralLoadGroupImpl#getSourceOfResultGroup <em>Source Of Result Group</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcStructuralLoadGroupImpl#getLoadGroupFor <em>Load Group For</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -235,7 +235,8 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements IfcStruc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralResultGroup> getSourceOfResultGroup() {
-		return (EList<IfcStructuralResultGroup>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__SOURCE_OF_RESULT_GROUP, true);
+		return (EList<IfcStructuralResultGroup>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__SOURCE_OF_RESULT_GROUP, true);
 	}
 
 	/**
@@ -263,7 +264,8 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements IfcStruc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralAnalysisModel> getLoadGroupFor() {
-		return (EList<IfcStructuralAnalysisModel>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__LOAD_GROUP_FOR, true);
+		return (EList<IfcStructuralAnalysisModel>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__LOAD_GROUP_FOR, true);
 	}
 
 	/**

@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcVector#getOrientation <em>Orientation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcVector#getMagnitude <em>Magnitude</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcVector#getMagnitudeAsString <em>Magnitude As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcVector#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcVector()
  * @model

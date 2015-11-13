@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcReinforcingMesh#getMeshLength <em>Mesh Length</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcReinforcingMesh#getMeshLengthAsString <em>Mesh Length As String</em>}</li>
@@ -41,7 +42,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcReinforcingMesh#getTransverseBarSpacing <em>Transverse Bar Spacing</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcReinforcingMesh#getTransverseBarSpacingAsString <em>Transverse Bar Spacing As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcReinforcingMesh()
  * @model

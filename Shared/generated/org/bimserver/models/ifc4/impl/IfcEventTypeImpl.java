@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcEventTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcEventTypeImpl#getEventTriggerType <em>Event Trigger Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcEventTypeImpl#getUserDefinedEventTriggerType <em>User Defined Event Trigger Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelConnectsStructuralActivity#getRelatingElement <em>Relating Element</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelConnectsStructuralActivity#getRelatedStructuralActivity <em>Related Structural Activity</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelConnectsStructuralActivity()
  * @model

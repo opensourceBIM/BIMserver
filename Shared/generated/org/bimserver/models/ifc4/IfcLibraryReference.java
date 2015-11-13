@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcLibraryReference#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLibraryReference#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLibraryReference#getReferencedLibrary <em>Referenced Library</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLibraryReference#getLibraryRefForObjects <em>Library Ref For Objects</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLibraryReference()
  * @model

@@ -238,8 +238,8 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricMotorTypeEnum[] VALUES_ARRAY = new IfcElectricMotorTypeEnum[] { NULL, RELUCTANCESYNCHRONOUS, NOTDEFINED, SYNCHRONOUS, INDUCTION, POLYPHASE, DC,
-			USERDEFINED, };
+	private static final IfcElectricMotorTypeEnum[] VALUES_ARRAY = new IfcElectricMotorTypeEnum[] { NULL,
+			RELUCTANCESYNCHRONOUS, NOTDEFINED, SYNCHRONOUS, INDUCTION, POLYPHASE, DC, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Motor Type Enum</b></em>' enumerators.
@@ -247,12 +247,15 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricMotorTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricMotorTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Motor Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElectricMotorTypeEnum get(String literal) {
@@ -269,6 +272,8 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Electric Motor Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElectricMotorTypeEnum getByName(String name) {
@@ -285,6 +290,8 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Electric Motor Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElectricMotorTypeEnum get(int value) {

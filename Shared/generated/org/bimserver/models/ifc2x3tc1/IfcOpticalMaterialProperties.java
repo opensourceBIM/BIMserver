@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getVisibleTransmittance <em>Visible Transmittance</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getVisibleTransmittanceAsString <em>Visible Transmittance As String</em>}</li>
@@ -43,7 +44,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getSolarReflectanceBack <em>Solar Reflectance Back</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getSolarReflectanceBackAsString <em>Solar Reflectance Back As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcOpticalMaterialProperties()
  * @model

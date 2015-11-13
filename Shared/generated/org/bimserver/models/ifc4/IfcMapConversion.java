@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcMapConversion#getEastings <em>Eastings</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMapConversion#getEastingsAsString <em>Eastings As String</em>}</li>
@@ -37,7 +38,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcMapConversion#getScale <em>Scale</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMapConversion#getScaleAsString <em>Scale As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMapConversion()
  * @model

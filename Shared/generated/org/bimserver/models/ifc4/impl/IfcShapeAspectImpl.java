@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcShapeAspectImpl#getShapeRepresentations <em>Shape Representations</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcShapeAspectImpl#getName <em>Name</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcShapeAspectImpl#isProductDefinitional <em>Product Definitional</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcShapeAspectImpl#getPartOfProductDefinitionShape <em>Part Of Product Definition Shape</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -177,7 +177,8 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * @generated
 	 */
 	public IfcProductRepresentationSelect getPartOfProductDefinitionShape() {
-		return (IfcProductRepresentationSelect) eGet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, true);
+		return (IfcProductRepresentationSelect) eGet(
+				Ifc4Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, true);
 	}
 
 	/**

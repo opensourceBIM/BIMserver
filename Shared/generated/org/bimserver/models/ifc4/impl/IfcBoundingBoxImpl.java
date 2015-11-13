@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBoundingBoxImpl#getCorner <em>Corner</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBoundingBoxImpl#getXDim <em>XDim</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBoundingBoxImpl#getZDimAsString <em>ZDim As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBoundingBoxImpl#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

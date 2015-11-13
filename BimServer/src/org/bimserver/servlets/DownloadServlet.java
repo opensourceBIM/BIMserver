@@ -53,6 +53,7 @@ import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.plugins.serializers.StreamingSerializerDataSource;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -304,6 +305,8 @@ public class DownloadServlet extends SubServlet {
 								InputStream inputStream = fileInputStreamDataSource.getInputStream();
 								copy(inputStream, outputStream, progressReporter, fileInputStreamDataSource.size());
 								inputStream.close();
+							} else if (dataSource instanceof StreamingSerializerDataSource){
+								((StreamingSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
 							} else {
 								((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
 							}

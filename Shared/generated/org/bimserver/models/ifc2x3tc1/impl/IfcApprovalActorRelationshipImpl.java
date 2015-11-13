@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalActorRelationshipImpl#getActor <em>Actor</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalActorRelationshipImpl#getApproval <em>Approval</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcApprovalActorRelationshipImpl#getRole <em>Role</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

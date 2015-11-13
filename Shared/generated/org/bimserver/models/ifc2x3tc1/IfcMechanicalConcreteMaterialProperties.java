@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMechanicalConcreteMaterialProperties#getCompressiveStrength <em>Compressive Strength</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMechanicalConcreteMaterialProperties#getCompressiveStrengthAsString <em>Compressive Strength As String</em>}</li>
@@ -34,7 +35,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMechanicalConcreteMaterialProperties#getProtectivePoreRatioAsString <em>Protective Pore Ratio As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMechanicalConcreteMaterialProperties#getWaterImpermeability <em>Water Impermeability</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcMechanicalConcreteMaterialProperties()
  * @model

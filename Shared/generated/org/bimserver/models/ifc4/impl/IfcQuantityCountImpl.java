@@ -26,12 +26,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcQuantityCountImpl#getCountValue <em>Count Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcQuantityCountImpl#getCountValueAsString <em>Count Value As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcQuantityCountImpl#getFormula <em>Formula</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

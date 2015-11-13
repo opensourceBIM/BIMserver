@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSoundPropertiesImpl#getIsAttenuating <em>Is Attenuating</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSoundPropertiesImpl#getSoundScale <em>Sound Scale</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSoundPropertiesImpl#getSoundValues <em>Sound Values</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

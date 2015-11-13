@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getGeodeticDatum <em>Geodetic Datum</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getVerticalDatum <em>Vertical Datum</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCoordinateReferenceSystem()
  * @model

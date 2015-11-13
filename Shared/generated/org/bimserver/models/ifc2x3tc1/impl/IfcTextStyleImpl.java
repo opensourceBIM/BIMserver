@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTextStyleImpl#getTextCharacterAppearance <em>Text Character Appearance</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTextStyleImpl#getTextStyle <em>Text Style</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTextStyleImpl#getTextFontStyle <em>Text Font Style</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -64,7 +64,8 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 * @generated
 	 */
 	public IfcCharacterStyleSelect getTextCharacterAppearance() {
-		return (IfcCharacterStyleSelect) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE, true);
+		return (IfcCharacterStyleSelect) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE,
+				true);
 	}
 
 	/**

@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcGrid#getUAxes <em>UAxes</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcGrid#getVAxes <em>VAxes</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcGrid#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcGrid#getContainedInStructure <em>Contained In Structure</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcGrid()
  * @model

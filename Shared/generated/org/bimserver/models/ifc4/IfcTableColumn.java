@@ -25,6 +25,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTableColumn#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTableColumn#getName <em>Name</em>}</li>
@@ -32,7 +33,6 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.ifc4.IfcTableColumn#getUnit <em>Unit</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTableColumn#getReferencePath <em>Reference Path</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTableColumn()
  * @model

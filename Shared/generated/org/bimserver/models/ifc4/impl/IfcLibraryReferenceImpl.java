@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLibraryReferenceImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLibraryReferenceImpl#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLibraryReferenceImpl#getReferencedLibrary <em>Referenced Library</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcLibraryReferenceImpl#getLibraryRefForObjects <em>Library Ref For Objects</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -174,7 +174,8 @@ public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesLibrary> getLibraryRefForObjects() {
-		return (EList<IfcRelAssociatesLibrary>) eGet(Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__LIBRARY_REF_FOR_OBJECTS, true);
+		return (EList<IfcRelAssociatesLibrary>) eGet(
+				Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__LIBRARY_REF_FOR_OBJECTS, true);
 	}
 
 	/**

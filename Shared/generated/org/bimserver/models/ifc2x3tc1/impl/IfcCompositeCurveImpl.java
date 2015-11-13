@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCompositeCurveImpl#getSegments <em>Segments</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCompositeCurveImpl#isSelfIntersect <em>Self Intersect</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

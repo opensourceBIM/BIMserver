@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCShapeProfileDefImpl#getDepth <em>Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCShapeProfileDefImpl#getDepthAsString <em>Depth As String</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCShapeProfileDefImpl#getInternalFilletRadius <em>Internal Fillet Radius</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCShapeProfileDefImpl#getInternalFilletRadiusAsString <em>Internal Fillet Radius As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -257,7 +257,8 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setInternalFilletRadiusAsString(String newInternalFilletRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS_AS_STRING, newInternalFilletRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS_AS_STRING,
+				newInternalFilletRadiusAsString);
 	}
 
 	/**

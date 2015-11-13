@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcEventTimeImpl#getActualDate <em>Actual Date</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcEventTimeImpl#getEarlyDate <em>Early Date</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcEventTimeImpl#getLateDate <em>Late Date</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcEventTimeImpl#getScheduleDate <em>Schedule Date</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

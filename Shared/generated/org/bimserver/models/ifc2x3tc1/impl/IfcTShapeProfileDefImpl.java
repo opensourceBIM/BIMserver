@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTShapeProfileDefImpl#getDepth <em>Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTShapeProfileDefImpl#getDepthAsString <em>Depth As String</em>}</li>
@@ -48,7 +49,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTShapeProfileDefImpl#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTShapeProfileDefImpl#getCentreOfGravityInYAsString <em>Centre Of Gravity In YAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -339,7 +339,8 @@ public class IfcTShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setFlangeEdgeRadiusAsString(String newFlangeEdgeRadiusAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TSHAPE_PROFILE_DEF__FLANGE_EDGE_RADIUS_AS_STRING, newFlangeEdgeRadiusAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TSHAPE_PROFILE_DEF__FLANGE_EDGE_RADIUS_AS_STRING,
+				newFlangeEdgeRadiusAsString);
 	}
 
 	/**
@@ -627,7 +628,8 @@ public class IfcTShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setCentreOfGravityInYAsString(String newCentreOfGravityInYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TSHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING, newCentreOfGravityInYAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TSHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING,
+				newCentreOfGravityInYAsString);
 	}
 
 	/**

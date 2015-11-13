@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMechanicalFastenerImpl#getNominalDiameter <em>Nominal Diameter</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMechanicalFastenerImpl#getNominalDiameterAsString <em>Nominal Diameter As String</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMechanicalFastenerImpl#getNominalLengthAsString <em>Nominal Length As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMechanicalFastenerImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -208,7 +208,8 @@ public class IfcMechanicalFastenerImpl extends IfcElementComponentImpl implement
 	 * @generated
 	 */
 	public IfcMechanicalFastenerTypeEnum getPredefinedType() {
-		return (IfcMechanicalFastenerTypeEnum) eGet(Ifc4Package.Literals.IFC_MECHANICAL_FASTENER__PREDEFINED_TYPE, true);
+		return (IfcMechanicalFastenerTypeEnum) eGet(Ifc4Package.Literals.IFC_MECHANICAL_FASTENER__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

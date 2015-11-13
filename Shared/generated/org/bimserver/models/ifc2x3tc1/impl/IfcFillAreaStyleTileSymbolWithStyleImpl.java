@@ -27,14 +27,15 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcFillAreaStyleTileSymbolWithStyleImpl#getSymbol <em>Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcFillAreaStyleTileSymbolWithStyleImpl extends IfcGeometricRepresentationItemImpl implements IfcFillAreaStyleTileSymbolWithStyle {
+public class IfcFillAreaStyleTileSymbolWithStyleImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcFillAreaStyleTileSymbolWithStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcFillAreaStyleTileSymbolWithStyleImpl extends IfcGeometricReprese
 	 * @generated
 	 */
 	public IfcAnnotationSymbolOccurrence getSymbol() {
-		return (IfcAnnotationSymbolOccurrence) eGet(Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE__SYMBOL, true);
+		return (IfcAnnotationSymbolOccurrence) eGet(
+				Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE__SYMBOL, true);
 	}
 
 	/**

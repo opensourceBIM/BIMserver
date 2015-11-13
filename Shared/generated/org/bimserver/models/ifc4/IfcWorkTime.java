@@ -23,12 +23,12 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcWorkTime#getRecurrencePattern <em>Recurrence Pattern</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcWorkTime#getStart <em>Start</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcWorkTime#getFinish <em>Finish</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcWorkTime()
  * @model

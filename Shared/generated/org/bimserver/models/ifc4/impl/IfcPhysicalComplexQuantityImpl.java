@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPhysicalComplexQuantityImpl#getHasQuantities <em>Has Quantities</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPhysicalComplexQuantityImpl#getDiscrimination <em>Discrimination</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPhysicalComplexQuantityImpl#getQuality <em>Quality</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPhysicalComplexQuantityImpl#getUsage <em>Usage</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -65,7 +65,8 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPhysicalQuantity> getHasQuantities() {
-		return (EList<IfcPhysicalQuantity>) eGet(Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__HAS_QUANTITIES, true);
+		return (EList<IfcPhysicalQuantity>) eGet(Ifc4Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__HAS_QUANTITIES,
+				true);
 	}
 
 	/**

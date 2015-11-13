@@ -25,6 +25,7 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOwnerHistory#getOwningUser <em>Owning User</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOwnerHistory#getOwningApplication <em>Owning Application</em>}</li>
@@ -35,7 +36,6 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOwnerHistory#getLastModifyingApplication <em>Last Modifying Application</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOwnerHistory#getCreationDate <em>Creation Date</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcOwnerHistory()
  * @model

@@ -2253,6 +2253,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSerializerPluginConfiguration_Streaming() {
+		return (EAttribute) getSerializerPluginConfiguration().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getObjectIDMPluginConfiguration() {
 		if (objectIDMPluginConfigurationEClass == null) {
 			objectIDMPluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI)

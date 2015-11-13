@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPolygonalBoundedHalfSpaceImpl#getPosition <em>Position</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPolygonalBoundedHalfSpaceImpl#getPolygonalBoundary <em>Polygonal Boundary</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,7 +80,8 @@ public class IfcPolygonalBoundedHalfSpaceImpl extends IfcHalfSpaceSolidImpl impl
 	 * @generated
 	 */
 	public IfcBoundedCurve getPolygonalBoundary() {
-		return (IfcBoundedCurve) eGet(Ifc2x3tc1Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POLYGONAL_BOUNDARY, true);
+		return (IfcBoundedCurve) eGet(Ifc2x3tc1Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POLYGONAL_BOUNDARY,
+				true);
 	}
 
 	/**

@@ -27,17 +27,18 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileSetUsageImpl#getForProfileSet <em>For Profile Set</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileSetUsageImpl#getCardinalPoint <em>Cardinal Point</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileSetUsageImpl#getReferenceExtent <em>Reference Extent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialProfileSetUsageImpl#getReferenceExtentAsString <em>Reference Extent As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcMaterialProfileSetUsageImpl extends IfcMaterialUsageDefinitionImpl implements IfcMaterialProfileSetUsage {
+public class IfcMaterialProfileSetUsageImpl extends IfcMaterialUsageDefinitionImpl
+		implements IfcMaterialProfileSetUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,7 +163,8 @@ public class IfcMaterialProfileSetUsageImpl extends IfcMaterialUsageDefinitionIm
 	 * @generated
 	 */
 	public void setReferenceExtentAsString(String newReferenceExtentAsString) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT_AS_STRING, newReferenceExtentAsString);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT_AS_STRING,
+				newReferenceExtentAsString);
 	}
 
 	/**

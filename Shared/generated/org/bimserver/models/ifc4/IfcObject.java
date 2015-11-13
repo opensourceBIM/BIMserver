@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcObject#getObjectType <em>Object Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcObject#getIsDeclaredBy <em>Is Declared By</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcObject#getIsTypedBy <em>Is Typed By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcObject#getIsDefinedBy <em>Is Defined By</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcObject()
  * @model

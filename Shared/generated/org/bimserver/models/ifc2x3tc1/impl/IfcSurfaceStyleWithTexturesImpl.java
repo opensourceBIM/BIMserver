@@ -29,10 +29,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSurfaceStyleWithTexturesImpl#getTextures <em>Textures</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -73,7 +73,8 @@ public class IfcSurfaceStyleWithTexturesImpl extends IdEObjectImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSurfaceTexture> getTextures() {
-		return (EList<IfcSurfaceTexture>) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_WITH_TEXTURES__TEXTURES, true);
+		return (EList<IfcSurfaceTexture>) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_WITH_TEXTURES__TEXTURES,
+				true);
 	}
 
 } //IfcSurfaceStyleWithTexturesImpl

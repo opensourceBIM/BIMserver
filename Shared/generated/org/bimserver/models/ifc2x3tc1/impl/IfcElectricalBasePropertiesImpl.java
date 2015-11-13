@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcElectricalBasePropertiesImpl#getElectricCurrentType <em>Electric Current Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcElectricalBasePropertiesImpl#getInputVoltage <em>Input Voltage</em>}</li>
@@ -43,7 +44,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcElectricalBasePropertiesImpl#getRatedPowerInputAsString <em>Rated Power Input As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcElectricalBasePropertiesImpl#getInputPhase <em>Input Phase</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -73,7 +73,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * @generated
 	 */
 	public IfcElectricCurrentEnum getElectricCurrentType() {
-		return (IfcElectricCurrentEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__ELECTRIC_CURRENT_TYPE, true);
+		return (IfcElectricCurrentEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__ELECTRIC_CURRENT_TYPE, true);
 	}
 
 	/**
@@ -136,7 +137,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * @generated
 	 */
 	public void setInputVoltageAsString(String newInputVoltageAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_VOLTAGE_AS_STRING, newInputVoltageAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_VOLTAGE_AS_STRING,
+				newInputVoltageAsString);
 	}
 
 	/**
@@ -172,7 +174,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * @generated
 	 */
 	public void setInputFrequencyAsString(String newInputFrequencyAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_FREQUENCY_AS_STRING, newInputFrequencyAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_FREQUENCY_AS_STRING,
+				newInputFrequencyAsString);
 	}
 
 	/**
@@ -217,7 +220,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * @generated
 	 */
 	public String getFullLoadCurrentAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__FULL_LOAD_CURRENT_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__FULL_LOAD_CURRENT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -226,7 +230,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * @generated
 	 */
 	public void setFullLoadCurrentAsString(String newFullLoadCurrentAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__FULL_LOAD_CURRENT_AS_STRING, newFullLoadCurrentAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__FULL_LOAD_CURRENT_AS_STRING,
+				newFullLoadCurrentAsString);
 	}
 
 	/**
@@ -262,7 +267,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * @generated
 	 */
 	public void setMinimumCircuitCurrent(double newMinimumCircuitCurrent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__MINIMUM_CIRCUIT_CURRENT, newMinimumCircuitCurrent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__MINIMUM_CIRCUIT_CURRENT,
+				newMinimumCircuitCurrent);
 	}
 
 	/**
@@ -289,7 +295,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * @generated
 	 */
 	public String getMinimumCircuitCurrentAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__MINIMUM_CIRCUIT_CURRENT_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__MINIMUM_CIRCUIT_CURRENT_AS_STRING, true);
 	}
 
 	/**
@@ -298,7 +305,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * @generated
 	 */
 	public void setMinimumCircuitCurrentAsString(String newMinimumCircuitCurrentAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__MINIMUM_CIRCUIT_CURRENT_AS_STRING, newMinimumCircuitCurrentAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__MINIMUM_CIRCUIT_CURRENT_AS_STRING,
+				newMinimumCircuitCurrentAsString);
 	}
 
 	/**
@@ -361,7 +369,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * @generated
 	 */
 	public String getMaximumPowerInputAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__MAXIMUM_POWER_INPUT_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__MAXIMUM_POWER_INPUT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -370,7 +379,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * @generated
 	 */
 	public void setMaximumPowerInputAsString(String newMaximumPowerInputAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__MAXIMUM_POWER_INPUT_AS_STRING, newMaximumPowerInputAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__MAXIMUM_POWER_INPUT_AS_STRING,
+				newMaximumPowerInputAsString);
 	}
 
 	/**
@@ -433,7 +443,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * @generated
 	 */
 	public String getRatedPowerInputAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__RATED_POWER_INPUT_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__RATED_POWER_INPUT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -442,7 +453,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * @generated
 	 */
 	public void setRatedPowerInputAsString(String newRatedPowerInputAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__RATED_POWER_INPUT_AS_STRING, newRatedPowerInputAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__RATED_POWER_INPUT_AS_STRING,
+				newRatedPowerInputAsString);
 	}
 
 	/**

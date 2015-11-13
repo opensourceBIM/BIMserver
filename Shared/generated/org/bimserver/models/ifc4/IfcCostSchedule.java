@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCostSchedule#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCostSchedule#getStatus <em>Status</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCostSchedule#getSubmittedOn <em>Submitted On</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCostSchedule#getUpdateDate <em>Update Date</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCostSchedule()
  * @model

@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWorkControlImpl#getCreationDate <em>Creation Date</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWorkControlImpl#getCreators <em>Creators</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWorkControlImpl#getStartTime <em>Start Time</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWorkControlImpl#getFinishTime <em>Finish Time</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

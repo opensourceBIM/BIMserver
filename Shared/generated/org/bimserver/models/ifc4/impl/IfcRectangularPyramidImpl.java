@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRectangularPyramidImpl#getXLength <em>XLength</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRectangularPyramidImpl#getXLengthAsString <em>XLength As String</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRectangularPyramidImpl#getHeight <em>Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRectangularPyramidImpl#getHeightAsString <em>Height As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

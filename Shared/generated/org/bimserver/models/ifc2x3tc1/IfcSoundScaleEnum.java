@@ -238,7 +238,8 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSoundScaleEnum[] VALUES_ARRAY = new IfcSoundScaleEnum[] { NULL, DBB, DBC, NOTDEFINED, DBA, USERDEFINED, NR, NC, };
+	private static final IfcSoundScaleEnum[] VALUES_ARRAY = new IfcSoundScaleEnum[] { NULL, DBB, DBC, NOTDEFINED, DBA,
+			USERDEFINED, NR, NC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sound Scale Enum</b></em>' enumerators.
@@ -252,6 +253,8 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Sound Scale Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSoundScaleEnum get(String literal) {
@@ -268,6 +271,8 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Sound Scale Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSoundScaleEnum getByName(String name) {
@@ -284,6 +289,8 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Sound Scale Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSoundScaleEnum get(int value) {

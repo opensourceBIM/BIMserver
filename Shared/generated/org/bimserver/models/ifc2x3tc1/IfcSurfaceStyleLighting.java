@@ -23,13 +23,13 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleLighting#getDiffuseTransmissionColour <em>Diffuse Transmission Colour</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleLighting#getDiffuseReflectionColour <em>Diffuse Reflection Colour</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleLighting#getTransmissionColour <em>Transmission Colour</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleLighting#getReflectanceColour <em>Reflectance Colour</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcSurfaceStyleLighting()
  * @model

@@ -27,13 +27,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcOffsetCurve2DImpl#getBasisCurve <em>Basis Curve</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcOffsetCurve2DImpl#getDistance <em>Distance</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcOffsetCurve2DImpl#getDistanceAsString <em>Distance As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcOffsetCurve2DImpl#isSelfIntersect <em>Self Intersect</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

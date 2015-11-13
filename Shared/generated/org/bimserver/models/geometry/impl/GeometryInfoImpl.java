@@ -19,7 +19,6 @@ package org.bimserver.models.geometry.impl;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryInfo;
-import org.bimserver.models.geometry.GeometryInstance;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
 import org.eclipse.emf.ecore.EClass;
@@ -30,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMinBounds <em>Min Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMaxBounds <em>Max Bounds</em>}</li>
@@ -37,12 +37,10 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getPrimitiveCount <em>Primitive Count</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getData <em>Data</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getInstance <em>Instance</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getTransformation <em>Transformation</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getArea <em>Area</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getVolume <em>Volume</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -182,24 +180,6 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 */
 	public void setData(GeometryData newData) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__DATA, newData);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GeometryInstance getInstance() {
-		return (GeometryInstance) eGet(GeometryPackage.Literals.GEOMETRY_INFO__INSTANCE, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInstance(GeometryInstance newInstance) {
-		eSet(GeometryPackage.Literals.GEOMETRY_INFO__INSTANCE, newInstance);
 	}
 
 	/**

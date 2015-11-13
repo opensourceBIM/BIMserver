@@ -213,8 +213,8 @@ public enum IfcElectricDistributionBoardTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricDistributionBoardTypeEnum[] VALUES_ARRAY = new IfcElectricDistributionBoardTypeEnum[] { NULL, CONSUMERUNIT, NOTDEFINED, SWITCHBOARD,
-			MOTORCONTROLCENTRE, USERDEFINED, DISTRIBUTIONBOARD, };
+	private static final IfcElectricDistributionBoardTypeEnum[] VALUES_ARRAY = new IfcElectricDistributionBoardTypeEnum[] {
+			NULL, CONSUMERUNIT, NOTDEFINED, SWITCHBOARD, MOTORCONTROLCENTRE, USERDEFINED, DISTRIBUTIONBOARD, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Distribution Board Type Enum</b></em>' enumerators.
@@ -222,12 +222,15 @@ public enum IfcElectricDistributionBoardTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricDistributionBoardTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricDistributionBoardTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Distribution Board Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElectricDistributionBoardTypeEnum get(String literal) {
@@ -244,6 +247,8 @@ public enum IfcElectricDistributionBoardTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Electric Distribution Board Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElectricDistributionBoardTypeEnum getByName(String name) {
@@ -260,6 +265,8 @@ public enum IfcElectricDistributionBoardTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Electric Distribution Board Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElectricDistributionBoardTypeEnum get(int value) {

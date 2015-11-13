@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCylindricalSurface#getRadius <em>Radius</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCylindricalSurface#getRadiusAsString <em>Radius As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCylindricalSurface()
  * @model

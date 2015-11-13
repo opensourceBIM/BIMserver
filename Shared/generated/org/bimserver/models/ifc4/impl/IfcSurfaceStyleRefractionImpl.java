@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleRefractionImpl#getRefractionIndex <em>Refraction Index</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleRefractionImpl#getRefractionIndexAsString <em>Refraction Index As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleRefractionImpl#getDispersionFactor <em>Dispersion Factor</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleRefractionImpl#getDispersionFactorAsString <em>Dispersion Factor As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -179,7 +179,8 @@ public class IfcSurfaceStyleRefractionImpl extends IfcPresentationItemImpl imple
 	 * @generated
 	 */
 	public void setDispersionFactorAsString(String newDispersionFactorAsString) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING, newDispersionFactorAsString);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING,
+				newDispersionFactorAsString);
 	}
 
 	/**

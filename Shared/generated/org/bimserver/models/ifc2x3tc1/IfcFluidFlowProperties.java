@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getPropertySource <em>Property Source</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getFlowConditionTimeSeries <em>Flow Condition Time Series</em>}</li>
@@ -45,7 +46,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getPressureSingleValue <em>Pressure Single Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getPressureSingleValueAsString <em>Pressure Single Value As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcFluidFlowProperties()
  * @model

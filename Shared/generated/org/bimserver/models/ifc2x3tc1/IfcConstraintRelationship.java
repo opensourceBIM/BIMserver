@@ -26,13 +26,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcConstraintRelationship#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcConstraintRelationship#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcConstraintRelationship#getRelatingConstraint <em>Relating Constraint</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcConstraintRelationship#getRelatedConstraints <em>Related Constraints</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcConstraintRelationship()
  * @model

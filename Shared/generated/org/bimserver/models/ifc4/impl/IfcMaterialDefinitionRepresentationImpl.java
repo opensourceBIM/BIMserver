@@ -27,14 +27,15 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialDefinitionRepresentationImpl#getRepresentedMaterial <em>Represented Material</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcMaterialDefinitionRepresentationImpl extends IfcProductRepresentationImpl implements IfcMaterialDefinitionRepresentation {
+public class IfcMaterialDefinitionRepresentationImpl extends IfcProductRepresentationImpl
+		implements IfcMaterialDefinitionRepresentation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcMaterialDefinitionRepresentationImpl extends IfcProductRepresent
 	 * @generated
 	 */
 	public IfcMaterial getRepresentedMaterial() {
-		return (IfcMaterial) eGet(Ifc4Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL, true);
+		return (IfcMaterial) eGet(Ifc4Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL,
+				true);
 	}
 
 	/**

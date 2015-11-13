@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialImpl#getDescription <em>Description</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialImpl#getIsRelatedWith <em>Is Related With</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialImpl#getRelatesTo <em>Relates To</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -158,7 +158,8 @@ public class IfcMaterialImpl extends IfcMaterialDefinitionImpl implements IfcMat
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialDefinitionRepresentation> getHasRepresentation() {
-		return (EList<IfcMaterialDefinitionRepresentation>) eGet(Ifc4Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION, true);
+		return (EList<IfcMaterialDefinitionRepresentation>) eGet(Ifc4Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION,
+				true);
 	}
 
 	/**

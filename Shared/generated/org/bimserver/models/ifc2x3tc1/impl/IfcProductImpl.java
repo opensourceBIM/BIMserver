@@ -31,13 +31,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductImpl#getObjectPlacement <em>Object Placement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductImpl#getRepresentation <em>Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductImpl#getReferencedBy <em>Referenced By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductImpl#getGeometry <em>Geometry</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -177,6 +177,24 @@ public class IfcProductImpl extends IfcObjectImpl implements IfcProduct {
 	 */
 	public void setGeometry(GeometryInfo newGeometry) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__GEOMETRY, newGeometry);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetGeometry() {
+		eUnset(Ifc2x3tc1Package.Literals.IFC_PRODUCT__GEOMETRY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetGeometry() {
+		return eIsSet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__GEOMETRY);
 	}
 
 } //IfcProductImpl

@@ -23,12 +23,12 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProcedure#getProcedureID <em>Procedure ID</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProcedure#getProcedureType <em>Procedure Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProcedure#getUserDefinedProcedureType <em>User Defined Procedure Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcProcedure()
  * @model

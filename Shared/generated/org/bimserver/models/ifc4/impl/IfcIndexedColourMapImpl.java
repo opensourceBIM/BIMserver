@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedColourMapImpl#getMappedTo <em>Mapped To</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedColourMapImpl#getOverrides <em>Overrides</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedColourMapImpl#getColours <em>Colours</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedColourMapImpl#getColourIndex <em>Colour Index</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

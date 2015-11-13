@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcDoorPanelProperties#getPanelDepth <em>Panel Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDoorPanelProperties#getPanelDepthAsString <em>Panel Depth As String</em>}</li>
@@ -32,7 +33,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcDoorPanelProperties#getPanelPosition <em>Panel Position</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDoorPanelProperties#getShapeAspectStyle <em>Shape Aspect Style</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorPanelProperties()
  * @model

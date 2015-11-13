@@ -28,9 +28,12 @@ import java.util.GregorianCalendar;
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
 import org.bimserver.endpoints.EndPoint;
+import org.bimserver.longaction.LongAction;
 import org.bimserver.longaction.LongDownloadOrCheckoutAction;
+import org.bimserver.longaction.LongStreamingDownloadAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.serializers.MessagingSerializer;
+import org.bimserver.plugins.serializers.Writer;
 import org.bimserver.shared.StreamingSocketInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -83,8 +86,16 @@ public class Streamer implements EndPoint {
 						@Override
 						public void run() {
 							try {
-								LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(downloadId);
-								MessagingSerializer messagingSerializer = longAction.getMessagingSerializer();
+								LongAction<?> longAction = bimServer.getLongActionManager().getLongAction(downloadId);
+								Writer writer = null;
+								if (longAction instanceof LongStreamingDownloadAction) {
+									LongStreamingDownloadAction longStreamingDownloadAction = (LongStreamingDownloadAction)longAction;
+									writer = longStreamingDownloadAction.getMessagingStreamingSerializer();
+								} else {
+									
+									LongDownloadOrCheckoutAction longDownloadAction = (LongDownloadOrCheckoutAction) longAction;
+									writer = longDownloadAction.getMessagingSerializer();
+								}
 								boolean writeMessage = true;
 								int counter = 0;
 								long bytes = 0;
@@ -93,11 +104,11 @@ public class Streamer implements EndPoint {
 									DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
 									dataOutputStream.writeInt(topicId);
 									dataOutputStream.writeInt(0); // fake nr messages, to be replaced later
-									writeMessage = messagingSerializer.writeMessage(byteArrayOutputStream, null);
+									writeMessage = writer.writeMessage(byteArrayOutputStream, null);
 									int messages = 1;
 									while (byteArrayOutputStream.size() < BUFFER_SIZE && writeMessage) {
 										messages++;
-										writeMessage = messagingSerializer.writeMessage(byteArrayOutputStream, null);
+										writeMessage = writer.writeMessage(byteArrayOutputStream, null);
 									}
 									byte[] byteArray = byteArrayOutputStream.toByteArray();
 									ByteBuffer byteBuffer = ByteBuffer.wrap(byteArray);

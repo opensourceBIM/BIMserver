@@ -23,11 +23,11 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCostValue#getCostType <em>Cost Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCostValue#getCondition <em>Condition</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCostValue()
  * @model

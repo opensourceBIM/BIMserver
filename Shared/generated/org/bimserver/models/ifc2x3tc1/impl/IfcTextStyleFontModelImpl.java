@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTextStyleFontModelImpl#getFontFamily <em>Font Family</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTextStyleFontModelImpl#getFontStyle <em>Font Style</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTextStyleFontModelImpl#getFontWeight <em>Font Weight</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTextStyleFontModelImpl#getFontSize <em>Font Size</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

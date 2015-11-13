@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelSequenceImpl#getRelatingProcess <em>Relating Process</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelSequenceImpl#getRelatedProcess <em>Related Process</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelSequenceImpl#getSequenceType <em>Sequence Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelSequenceImpl#getUserDefinedSequenceType <em>User Defined Sequence Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -1486,13 +1486,22 @@ public interface StorePackage extends EPackage {
 	int SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE = PLUGIN_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Streaming</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_CONFIGURATION__STREAMING = PLUGIN_CONFIGURATION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Serializer Plugin Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 3;
+	int SERIALIZER_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ObjectIDMPluginConfigurationImpl <em>Object IDM Plugin Configuration</em>}' class.
@@ -8532,6 +8541,17 @@ public interface StorePackage extends EPackage {
 	EReference getSerializerPluginConfiguration_RenderEngine();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SerializerPluginConfiguration#isStreaming <em>Streaming</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Streaming</em>'.
+	 * @see org.bimserver.models.store.SerializerPluginConfiguration#isStreaming()
+	 * @see #getSerializerPluginConfiguration()
+	 * @generated
+	 */
+	EAttribute getSerializerPluginConfiguration_Streaming();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ObjectIDMPluginConfiguration <em>Object IDM Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13837,6 +13857,14 @@ public interface StorePackage extends EPackage {
 		 */
 		EReference SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE = eINSTANCE
 				.getSerializerPluginConfiguration_RenderEngine();
+
+		/**
+		 * The meta object literal for the '<em><b>Streaming</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER_PLUGIN_CONFIGURATION__STREAMING = eINSTANCE.getSerializerPluginConfiguration_Streaming();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ObjectIDMPluginConfigurationImpl <em>Object IDM Plugin Configuration</em>}' class.

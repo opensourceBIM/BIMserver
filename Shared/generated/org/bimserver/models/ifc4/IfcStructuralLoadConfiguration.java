@@ -25,11 +25,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadConfiguration#getValues <em>Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadConfiguration#getLocations <em>Locations</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadConfiguration()
  * @model

@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMaterial#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMaterial#getHasRepresentation <em>Has Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMaterial#getClassifiedAs <em>Classified As</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcMaterial()
  * @model

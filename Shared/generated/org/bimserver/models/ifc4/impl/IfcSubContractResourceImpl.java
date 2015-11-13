@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSubContractResourceImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcSubContractResourceImpl extends IfcConstructionResourceImpl impl
 	 * @generated
 	 */
 	public IfcSubContractResourceTypeEnum getPredefinedType() {
-		return (IfcSubContractResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_SUB_CONTRACT_RESOURCE__PREDEFINED_TYPE, true);
+		return (IfcSubContractResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_SUB_CONTRACT_RESOURCE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

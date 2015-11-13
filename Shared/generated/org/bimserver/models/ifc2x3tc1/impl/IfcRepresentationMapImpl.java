@@ -31,12 +31,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRepresentationMapImpl#getMappingOrigin <em>Mapping Origin</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRepresentationMapImpl#getMappedRepresentation <em>Mapped Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRepresentationMapImpl#getMapUsage <em>Map Usage</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

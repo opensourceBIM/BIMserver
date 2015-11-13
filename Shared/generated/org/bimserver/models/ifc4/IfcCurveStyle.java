@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurveStyle#getCurveFont <em>Curve Font</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurveStyle#getCurveWidth <em>Curve Width</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurveStyle#getCurveColour <em>Curve Colour</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurveStyle#getModelOrDraughting <em>Model Or Draughting</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCurveStyle()
  * @model

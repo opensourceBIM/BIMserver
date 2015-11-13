@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFillAreaStyleHatchingImpl#getHatchLineAppearance <em>Hatch Line Appearance</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFillAreaStyleHatchingImpl#getStartOfNextHatchLine <em>Start Of Next Hatch Line</em>}</li>
@@ -37,11 +38,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFillAreaStyleHatchingImpl#getHatchLineAngle <em>Hatch Line Angle</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFillAreaStyleHatchingImpl#getHatchLineAngleAsString <em>Hatch Line Angle As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcFillAreaStyleHatchingImpl extends IfcGeometricRepresentationItemImpl implements IfcFillAreaStyleHatching {
+public class IfcFillAreaStyleHatchingImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcFillAreaStyleHatching {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -85,7 +86,8 @@ public class IfcFillAreaStyleHatchingImpl extends IfcGeometricRepresentationItem
 	 * @generated
 	 */
 	public IfcHatchLineDistanceSelect getStartOfNextHatchLine() {
-		return (IfcHatchLineDistanceSelect) eGet(Ifc4Package.Literals.IFC_FILL_AREA_STYLE_HATCHING__START_OF_NEXT_HATCH_LINE, true);
+		return (IfcHatchLineDistanceSelect) eGet(
+				Ifc4Package.Literals.IFC_FILL_AREA_STYLE_HATCHING__START_OF_NEXT_HATCH_LINE, true);
 	}
 
 	/**
@@ -103,7 +105,8 @@ public class IfcFillAreaStyleHatchingImpl extends IfcGeometricRepresentationItem
 	 * @generated
 	 */
 	public IfcCartesianPoint getPointOfReferenceHatchLine() {
-		return (IfcCartesianPoint) eGet(Ifc4Package.Literals.IFC_FILL_AREA_STYLE_HATCHING__POINT_OF_REFERENCE_HATCH_LINE, true);
+		return (IfcCartesianPoint) eGet(
+				Ifc4Package.Literals.IFC_FILL_AREA_STYLE_HATCHING__POINT_OF_REFERENCE_HATCH_LINE, true);
 	}
 
 	/**
@@ -112,7 +115,8 @@ public class IfcFillAreaStyleHatchingImpl extends IfcGeometricRepresentationItem
 	 * @generated
 	 */
 	public void setPointOfReferenceHatchLine(IfcCartesianPoint newPointOfReferenceHatchLine) {
-		eSet(Ifc4Package.Literals.IFC_FILL_AREA_STYLE_HATCHING__POINT_OF_REFERENCE_HATCH_LINE, newPointOfReferenceHatchLine);
+		eSet(Ifc4Package.Literals.IFC_FILL_AREA_STYLE_HATCHING__POINT_OF_REFERENCE_HATCH_LINE,
+				newPointOfReferenceHatchLine);
 	}
 
 	/**

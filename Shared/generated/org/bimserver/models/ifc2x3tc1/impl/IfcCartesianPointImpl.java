@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCartesianPointImpl#getCoordinates <em>Coordinates</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCartesianPointImpl#getCoordinatesAsString <em>Coordinates As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCartesianPointImpl#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

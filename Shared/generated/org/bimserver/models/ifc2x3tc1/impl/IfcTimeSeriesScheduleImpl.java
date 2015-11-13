@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTimeSeriesScheduleImpl#getApplicableDates <em>Applicable Dates</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTimeSeriesScheduleImpl#getTimeSeriesScheduleType <em>Time Series Schedule Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTimeSeriesScheduleImpl#getTimeSeries <em>Time Series</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,7 +66,8 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDateTimeSelect> getApplicableDates() {
-		return (EList<IfcDateTimeSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_SCHEDULE__APPLICABLE_DATES, true);
+		return (EList<IfcDateTimeSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_SCHEDULE__APPLICABLE_DATES,
+				true);
 	}
 
 	/**
@@ -93,7 +94,8 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 * @generated
 	 */
 	public IfcTimeSeriesScheduleTypeEnum getTimeSeriesScheduleType() {
-		return (IfcTimeSeriesScheduleTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES_SCHEDULE_TYPE, true);
+		return (IfcTimeSeriesScheduleTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES_SCHEDULE_TYPE, true);
 	}
 
 	/**

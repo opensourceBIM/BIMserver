@@ -29,10 +29,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPresentationStyleAssignmentImpl#getStyles <em>Styles</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -73,7 +73,8 @@ public class IfcPresentationStyleAssignmentImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationStyleSelect> getStyles() {
-		return (EList<IfcPresentationStyleSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_STYLE_ASSIGNMENT__STYLES, true);
+		return (EList<IfcPresentationStyleSelect>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PRESENTATION_STYLE_ASSIGNMENT__STYLES, true);
 	}
 
 } //IfcPresentationStyleAssignmentImpl

@@ -28,14 +28,15 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRationalBSplineSurfaceWithKnotsImpl#getWeightsData <em>Weights Data</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcRationalBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceWithKnotsImpl implements IfcRationalBSplineSurfaceWithKnots {
+public class IfcRationalBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceWithKnotsImpl
+		implements IfcRationalBSplineSurfaceWithKnots {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,8 @@ public class IfcRationalBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceWit
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ListOfEDouble> getWeightsData() {
-		return (EList<ListOfEDouble>) eGet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_SURFACE_WITH_KNOTS__WEIGHTS_DATA, true);
+		return (EList<ListOfEDouble>) eGet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_SURFACE_WITH_KNOTS__WEIGHTS_DATA,
+				true);
 	}
 
 } //IfcRationalBSplineSurfaceWithKnotsImpl

@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcClassificationImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcClassificationImpl#getEdition <em>Edition</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcClassificationImpl#getClassificationForObjects <em>Classification For Objects</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcClassificationImpl#getHasReferences <em>Has References</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -297,7 +297,8 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesClassification> getClassificationForObjects() {
-		return (EList<IfcRelAssociatesClassification>) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__CLASSIFICATION_FOR_OBJECTS, true);
+		return (EList<IfcRelAssociatesClassification>) eGet(
+				Ifc4Package.Literals.IFC_CLASSIFICATION__CLASSIFICATION_FOR_OBJECTS, true);
 	}
 
 	/**

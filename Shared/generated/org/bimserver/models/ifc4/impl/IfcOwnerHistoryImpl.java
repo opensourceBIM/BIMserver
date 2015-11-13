@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcOwnerHistoryImpl#getOwningUser <em>Owning User</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcOwnerHistoryImpl#getOwningApplication <em>Owning Application</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcOwnerHistoryImpl#getLastModifyingApplication <em>Last Modifying Application</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcOwnerHistoryImpl#getCreationDate <em>Creation Date</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

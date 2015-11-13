@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcObjectImpl#getObjectType <em>Object Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcObjectImpl#getIsDefinedBy <em>Is Defined By</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

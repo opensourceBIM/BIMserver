@@ -23,11 +23,11 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleForDefinedFont#getColour <em>Colour</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleForDefinedFont#getBackgroundColour <em>Background Colour</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTextStyleForDefinedFont()
  * @model

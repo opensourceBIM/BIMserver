@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLineImpl#getPnt <em>Pnt</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLineImpl#getDir <em>Dir</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAddressImpl#getPurpose <em>Purpose</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAddressImpl#getDescription <em>Description</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAddressImpl#getOfPerson <em>Of Person</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAddressImpl#getOfOrganization <em>Of Organization</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

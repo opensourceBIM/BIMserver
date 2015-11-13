@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCableCarrierSegmentImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcCableCarrierSegmentImpl extends IfcFlowSegmentImpl implements If
 	 * @generated
 	 */
 	public IfcCableCarrierSegmentTypeEnum getPredefinedType() {
-		return (IfcCableCarrierSegmentTypeEnum) eGet(Ifc4Package.Literals.IFC_CABLE_CARRIER_SEGMENT__PREDEFINED_TYPE, true);
+		return (IfcCableCarrierSegmentTypeEnum) eGet(Ifc4Package.Literals.IFC_CABLE_CARRIER_SEGMENT__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

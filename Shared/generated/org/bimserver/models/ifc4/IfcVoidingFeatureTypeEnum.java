@@ -263,7 +263,8 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcVoidingFeatureTypeEnum[] VALUES_ARRAY = new IfcVoidingFeatureTypeEnum[] { NULL, NOTDEFINED, NOTCH, CUTOUT, USERDEFINED, HOLE, EDGE, CHAMFER, MITER, };
+	private static final IfcVoidingFeatureTypeEnum[] VALUES_ARRAY = new IfcVoidingFeatureTypeEnum[] { NULL, NOTDEFINED,
+			NOTCH, CUTOUT, USERDEFINED, HOLE, EDGE, CHAMFER, MITER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Voiding Feature Type Enum</b></em>' enumerators.
@@ -271,12 +272,15 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcVoidingFeatureTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcVoidingFeatureTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Voiding Feature Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcVoidingFeatureTypeEnum get(String literal) {
@@ -293,6 +297,8 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Voiding Feature Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcVoidingFeatureTypeEnum getByName(String name) {
@@ -309,6 +315,8 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Voiding Feature Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcVoidingFeatureTypeEnum get(int value) {

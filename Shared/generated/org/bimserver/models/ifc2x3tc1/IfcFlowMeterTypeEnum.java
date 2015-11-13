@@ -263,8 +263,8 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFlowMeterTypeEnum[] VALUES_ARRAY = new IfcFlowMeterTypeEnum[] { NULL, WATERMETER, NOTDEFINED, GASMETER, ELECTRICMETER, USERDEFINED,
-			FLOWMETER, ENERGYMETER, OILMETER, };
+	private static final IfcFlowMeterTypeEnum[] VALUES_ARRAY = new IfcFlowMeterTypeEnum[] { NULL, WATERMETER,
+			NOTDEFINED, GASMETER, ELECTRICMETER, USERDEFINED, FLOWMETER, ENERGYMETER, OILMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Flow Meter Type Enum</b></em>' enumerators.
@@ -278,6 +278,8 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Flow Meter Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFlowMeterTypeEnum get(String literal) {
@@ -294,6 +296,8 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Flow Meter Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFlowMeterTypeEnum getByName(String name) {
@@ -310,6 +314,8 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Flow Meter Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFlowMeterTypeEnum get(int value) {

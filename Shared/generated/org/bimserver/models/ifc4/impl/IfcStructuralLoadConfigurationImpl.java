@@ -29,15 +29,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralLoadConfigurationImpl#getValues <em>Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralLoadConfigurationImpl#getLocations <em>Locations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcStructuralLoadConfigurationImpl extends IfcStructuralLoadImpl implements IfcStructuralLoadConfiguration {
+public class IfcStructuralLoadConfigurationImpl extends IfcStructuralLoadImpl
+		implements IfcStructuralLoadConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,8 @@ public class IfcStructuralLoadConfigurationImpl extends IfcStructuralLoadImpl im
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralLoadOrResult> getValues() {
-		return (EList<IfcStructuralLoadOrResult>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CONFIGURATION__VALUES, true);
+		return (EList<IfcStructuralLoadOrResult>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CONFIGURATION__VALUES,
+				true);
 	}
 
 	/**
@@ -74,7 +76,8 @@ public class IfcStructuralLoadConfigurationImpl extends IfcStructuralLoadImpl im
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ListOfIfcLengthMeasure> getLocations() {
-		return (EList<ListOfIfcLengthMeasure>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CONFIGURATION__LOCATIONS, true);
+		return (EList<ListOfIfcLengthMeasure>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CONFIGURATION__LOCATIONS,
+				true);
 	}
 
 } //IfcStructuralLoadConfigurationImpl

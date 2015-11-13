@@ -25,18 +25,19 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcDirection#getDirectionRatios <em>Direction Ratios</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDirection#getDirectionRatiosAsString <em>Direction Ratios As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDirection#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDirection()
  * @model
  * @generated
  */
-public interface IfcDirection extends IfcGeometricRepresentationItem, IfcGridPlacementDirectionSelect, IfcVectorOrDirection {
+public interface IfcDirection
+		extends IfcGeometricRepresentationItem, IfcGridPlacementDirectionSelect, IfcVectorOrDirection {
 	/**
 	 * Returns the value of the '<em><b>Direction Ratios</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.Double}.

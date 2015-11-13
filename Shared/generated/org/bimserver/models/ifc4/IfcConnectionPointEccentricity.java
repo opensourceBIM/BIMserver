@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcConnectionPointEccentricity#getEccentricityInX <em>Eccentricity In X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcConnectionPointEccentricity#getEccentricityInXAsString <em>Eccentricity In XAs String</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcConnectionPointEccentricity#getEccentricityInZ <em>Eccentricity In Z</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcConnectionPointEccentricity#getEccentricityInZAsString <em>Eccentricity In ZAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcConnectionPointEccentricity()
  * @model

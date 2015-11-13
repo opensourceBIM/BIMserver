@@ -138,7 +138,8 @@ public enum IfcBooleanOperator implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBooleanOperator[] VALUES_ARRAY = new IfcBooleanOperator[] { NULL, DIFFERENCE, INTERSECTION, UNION, };
+	private static final IfcBooleanOperator[] VALUES_ARRAY = new IfcBooleanOperator[] { NULL, DIFFERENCE, INTERSECTION,
+			UNION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Boolean Operator</b></em>' enumerators.
@@ -152,6 +153,8 @@ public enum IfcBooleanOperator implements Enumerator {
 	 * Returns the '<em><b>Ifc Boolean Operator</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBooleanOperator get(String literal) {
@@ -168,6 +171,8 @@ public enum IfcBooleanOperator implements Enumerator {
 	 * Returns the '<em><b>Ifc Boolean Operator</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBooleanOperator getByName(String name) {
@@ -184,6 +189,8 @@ public enum IfcBooleanOperator implements Enumerator {
 	 * Returns the '<em><b>Ifc Boolean Operator</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBooleanOperator get(int value) {

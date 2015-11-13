@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcSectionedSpine#getSpineCurve <em>Spine Curve</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSectionedSpine#getCrossSections <em>Cross Sections</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSectionedSpine#getCrossSectionPositions <em>Cross Section Positions</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSectionedSpine#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSectionedSpine()
  * @model

@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcAsset#getIdentification <em>Identification</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcAsset#getOriginalValue <em>Original Value</em>}</li>
@@ -34,7 +35,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcAsset#getIncorporationDate <em>Incorporation Date</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcAsset#getDepreciatedValue <em>Depreciated Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsset()
  * @model

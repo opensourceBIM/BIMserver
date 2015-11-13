@@ -23,12 +23,12 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcQuantityCount#getCountValue <em>Count Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcQuantityCount#getCountValueAsString <em>Count Value As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcQuantityCount#getFormula <em>Formula</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcQuantityCount()
  * @model

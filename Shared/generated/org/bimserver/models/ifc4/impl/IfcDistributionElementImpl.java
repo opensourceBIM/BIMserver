@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDistributionElementImpl#getHasPorts <em>Has Ports</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,8 @@ public class IfcDistributionElementImpl extends IfcElementImpl implements IfcDis
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsPortToElement> getHasPorts() {
-		return (EList<IfcRelConnectsPortToElement>) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_ELEMENT__HAS_PORTS, true);
+		return (EList<IfcRelConnectsPortToElement>) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_ELEMENT__HAS_PORTS,
+				true);
 	}
 
 	/**

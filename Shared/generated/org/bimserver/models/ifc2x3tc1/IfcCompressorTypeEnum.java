@@ -488,9 +488,9 @@ public enum IfcCompressorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCompressorTypeEnum[] VALUES_ARRAY = new IfcCompressorTypeEnum[] { NULL, BOOSTER, NOTDEFINED, SINGLESCREW, ROTARYVANE, OPENTYPE,
-			SINGLESTAGE, HERMETIC, SEMIHERMETIC, TWINSCREW, ROTARY, SCROLL, USERDEFINED, ROLLINGPISTON, WELDEDSHELLHERMETIC, DYNAMIC, RECIPROCATING,
-			TROCHOIDAL, };
+	private static final IfcCompressorTypeEnum[] VALUES_ARRAY = new IfcCompressorTypeEnum[] { NULL, BOOSTER, NOTDEFINED,
+			SINGLESCREW, ROTARYVANE, OPENTYPE, SINGLESTAGE, HERMETIC, SEMIHERMETIC, TWINSCREW, ROTARY, SCROLL,
+			USERDEFINED, ROLLINGPISTON, WELDEDSHELLHERMETIC, DYNAMIC, RECIPROCATING, TROCHOIDAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Compressor Type Enum</b></em>' enumerators.
@@ -504,6 +504,8 @@ public enum IfcCompressorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Compressor Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCompressorTypeEnum get(String literal) {
@@ -520,6 +522,8 @@ public enum IfcCompressorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Compressor Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCompressorTypeEnum getByName(String name) {
@@ -536,6 +540,8 @@ public enum IfcCompressorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Compressor Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcCompressorTypeEnum get(int value) {

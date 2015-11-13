@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstraintRelationshipImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstraintRelationshipImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstraintRelationshipImpl#getRelatingConstraint <em>Relating Constraint</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstraintRelationshipImpl#getRelatedConstraints <em>Related Constraints</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -166,7 +166,8 @@ public class IfcConstraintRelationshipImpl extends IdEObjectImpl implements IfcC
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraint> getRelatedConstraints() {
-		return (EList<IfcConstraint>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_RELATIONSHIP__RELATED_CONSTRAINTS, true);
+		return (EList<IfcConstraint>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_RELATIONSHIP__RELATED_CONSTRAINTS,
+				true);
 	}
 
 } //IfcConstraintRelationshipImpl

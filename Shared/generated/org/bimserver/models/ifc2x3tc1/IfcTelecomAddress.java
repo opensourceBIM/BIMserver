@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTelecomAddress#getTelephoneNumbers <em>Telephone Numbers</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTelecomAddress#getFacsimileNumbers <em>Facsimile Numbers</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTelecomAddress#getElectronicMailAddresses <em>Electronic Mail Addresses</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTelecomAddress#getWWWHomePageURL <em>WWW Home Page URL</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTelecomAddress()
  * @model

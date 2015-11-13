@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBooleanResultImpl#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBooleanResultImpl#getFirstOperand <em>First Operand</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBooleanResultImpl#getSecondOperand <em>Second Operand</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBooleanResultImpl#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

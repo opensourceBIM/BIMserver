@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcEvent#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcEvent#getEventTriggerType <em>Event Trigger Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcEvent#getUserDefinedEventTriggerType <em>User Defined Event Trigger Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcEvent#getEventOccurenceTime <em>Event Occurence Time</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcEvent()
  * @model

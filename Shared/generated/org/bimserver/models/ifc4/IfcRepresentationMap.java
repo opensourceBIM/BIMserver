@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRepresentationMap#getMappingOrigin <em>Mapping Origin</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRepresentationMap#getMappedRepresentation <em>Mapped Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRepresentationMap#getHasShapeAspects <em>Has Shape Aspects</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRepresentationMap#getMapUsage <em>Map Usage</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRepresentationMap()
  * @model

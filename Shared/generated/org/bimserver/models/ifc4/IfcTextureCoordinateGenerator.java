@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTextureCoordinateGenerator#getMode <em>Mode</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTextureCoordinateGenerator#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTextureCoordinateGenerator#getParameterAsString <em>Parameter As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTextureCoordinateGenerator()
  * @model

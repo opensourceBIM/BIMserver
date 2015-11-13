@@ -413,8 +413,9 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTaskTypeEnum[] VALUES_ARRAY = new IfcTaskTypeEnum[] { NULL, CONSTRUCTION, NOTDEFINED, MAINTENANCE, LOGISTIC, MOVE, REMOVAL, DISMANTLE, DEMOLITION,
-			INSTALLATION, ATTENDANCE, OPERATION, DISPOSAL, USERDEFINED, RENOVATION, };
+	private static final IfcTaskTypeEnum[] VALUES_ARRAY = new IfcTaskTypeEnum[] { NULL, CONSTRUCTION, NOTDEFINED,
+			MAINTENANCE, LOGISTIC, MOVE, REMOVAL, DISMANTLE, DEMOLITION, INSTALLATION, ATTENDANCE, OPERATION, DISPOSAL,
+			USERDEFINED, RENOVATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Task Type Enum</b></em>' enumerators.
@@ -428,6 +429,8 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Task Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcTaskTypeEnum get(String literal) {
@@ -444,6 +447,8 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Task Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcTaskTypeEnum getByName(String name) {
@@ -460,6 +465,8 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Task Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcTaskTypeEnum get(int value) {

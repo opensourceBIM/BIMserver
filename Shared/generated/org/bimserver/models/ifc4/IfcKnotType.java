@@ -163,7 +163,8 @@ public enum IfcKnotType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcKnotType[] VALUES_ARRAY = new IfcKnotType[] { NULL, PIECEWISE_BEZIER_KNOTS, UNIFORM_KNOTS, UNSPECIFIED, QUASI_UNIFORM_KNOTS, };
+	private static final IfcKnotType[] VALUES_ARRAY = new IfcKnotType[] { NULL, PIECEWISE_BEZIER_KNOTS, UNIFORM_KNOTS,
+			UNSPECIFIED, QUASI_UNIFORM_KNOTS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Knot Type</b></em>' enumerators.
@@ -177,6 +178,8 @@ public enum IfcKnotType implements Enumerator {
 	 * Returns the '<em><b>Ifc Knot Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcKnotType get(String literal) {
@@ -193,6 +196,8 @@ public enum IfcKnotType implements Enumerator {
 	 * Returns the '<em><b>Ifc Knot Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcKnotType getByName(String name) {
@@ -209,6 +214,8 @@ public enum IfcKnotType implements Enumerator {
 	 * Returns the '<em><b>Ifc Knot Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcKnotType get(int value) {

@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralItemImpl#getAssignedStructuralActivity <em>Assigned Structural Activity</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,8 @@ public class IfcStructuralItemImpl extends IfcProductImpl implements IfcStructur
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralActivity> getAssignedStructuralActivity() {
-		return (EList<IfcRelConnectsStructuralActivity>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_ITEM__ASSIGNED_STRUCTURAL_ACTIVITY, true);
+		return (EList<IfcRelConnectsStructuralActivity>) eGet(
+				Ifc4Package.Literals.IFC_STRUCTURAL_ITEM__ASSIGNED_STRUCTURAL_ACTIVITY, true);
 	}
 
 	/**

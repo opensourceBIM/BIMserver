@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getDepth <em>Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getDepthAsString <em>Depth As String</em>}</li>
@@ -41,7 +42,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getCentreOfGravityInYAsString <em>Centre Of Gravity In YAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcLShapeProfileDef()
  * @model

@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCostItem#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCostItem#getCostValues <em>Cost Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCostItem#getCostQuantities <em>Cost Quantities</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCostItem()
  * @model

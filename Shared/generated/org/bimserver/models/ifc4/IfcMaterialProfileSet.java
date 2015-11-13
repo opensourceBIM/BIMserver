@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialProfileSet#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialProfileSet#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialProfileSet#getMaterialProfiles <em>Material Profiles</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialProfileSet#getCompositeProfile <em>Composite Profile</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialProfileSet()
  * @model

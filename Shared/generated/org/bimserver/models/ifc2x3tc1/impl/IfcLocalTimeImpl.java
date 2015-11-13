@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLocalTimeImpl#getHourComponent <em>Hour Component</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLocalTimeImpl#getMinuteComponent <em>Minute Component</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLocalTimeImpl#getZone <em>Zone</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLocalTimeImpl#getDaylightSavingOffset <em>Daylight Saving Offset</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

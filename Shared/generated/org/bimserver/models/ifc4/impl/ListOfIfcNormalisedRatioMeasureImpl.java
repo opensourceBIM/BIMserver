@@ -32,10 +32,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.ListOfIfcNormalisedRatioMeasureImpl#getList <em>List</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -76,7 +76,8 @@ public class ListOfIfcNormalisedRatioMeasureImpl extends IdEObjectImpl implement
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcNormalisedRatioMeasure> getList() {
-		return (EList<IfcNormalisedRatioMeasure>) eGet(Ifc4Package.Literals.LIST_OF_IFC_NORMALISED_RATIO_MEASURE__LIST, true);
+		return (EList<IfcNormalisedRatioMeasure>) eGet(Ifc4Package.Literals.LIST_OF_IFC_NORMALISED_RATIO_MEASURE__LIST,
+				true);
 	}
 
 } //ListOfIfcNormalisedRatioMeasureImpl

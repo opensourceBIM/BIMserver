@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcColourRgbListImpl#getColourList <em>Colour List</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,8 @@ public class IfcColourRgbListImpl extends IfcPresentationItemImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ListOfIfcNormalisedRatioMeasure> getColourList() {
-		return (EList<ListOfIfcNormalisedRatioMeasure>) eGet(Ifc4Package.Literals.IFC_COLOUR_RGB_LIST__COLOUR_LIST, true);
+		return (EList<ListOfIfcNormalisedRatioMeasure>) eGet(Ifc4Package.Literals.IFC_COLOUR_RGB_LIST__COLOUR_LIST,
+				true);
 	}
 
 } //IfcColourRgbListImpl

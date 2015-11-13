@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDocumentElectronicFormatImpl#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDocumentElectronicFormatImpl#getMimeContentType <em>Mime Content Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDocumentElectronicFormatImpl#getMimeSubtype <em>Mime Subtype</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

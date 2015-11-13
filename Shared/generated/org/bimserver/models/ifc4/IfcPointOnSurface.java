@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPointOnSurface#getBasisSurface <em>Basis Surface</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPointOnSurface#getPointParameterU <em>Point Parameter U</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcPointOnSurface#getPointParameterVAsString <em>Point Parameter VAs String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPointOnSurface#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPointOnSurface()
  * @model

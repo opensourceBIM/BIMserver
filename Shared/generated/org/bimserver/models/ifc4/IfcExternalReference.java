@@ -25,19 +25,20 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcExternalReference#getLocation <em>Location</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcExternalReference#getIdentification <em>Identification</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcExternalReference#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcExternalReference#getExternalReferenceForResources <em>External Reference For Resources</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcExternalReference()
  * @model
  * @generated
  */
-public interface IfcExternalReference extends IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect {
+public interface IfcExternalReference
+		extends IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect {
 	/**
 	 * Returns the value of the '<em><b>Location</b></em>' attribute.
 	 * <!-- begin-user-doc -->

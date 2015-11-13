@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcApproval#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcApproval#getName <em>Name</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcApproval#getIsRelatedWith <em>Is Related With</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcApproval#getRelates <em>Relates</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcApproval()
  * @model

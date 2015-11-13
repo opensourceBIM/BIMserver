@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcBuildingElementProxyImpl#getCompositionType <em>Composition Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcBuildingElementProxyImpl extends IfcBuildingElementImpl implemen
 	 * @generated
 	 */
 	public IfcElementCompositionEnum getCompositionType() {
-		return (IfcElementCompositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING_ELEMENT_PROXY__COMPOSITION_TYPE, true);
+		return (IfcElementCompositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING_ELEMENT_PROXY__COMPOSITION_TYPE,
+				true);
 	}
 
 	/**

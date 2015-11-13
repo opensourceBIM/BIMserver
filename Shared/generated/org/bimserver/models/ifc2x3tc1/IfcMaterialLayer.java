@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMaterialLayer#getMaterial <em>Material</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMaterialLayer#getLayerThickness <em>Layer Thickness</em>}</li>
@@ -30,7 +31,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMaterialLayer#getIsVentilated <em>Is Ventilated</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMaterialLayer#getToMaterialLayerSet <em>To Material Layer Set</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcMaterialLayer()
  * @model

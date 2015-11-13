@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcElectricTimeControlTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcElectricTimeControlTypeImpl extends IfcFlowControllerTypeImpl im
 	 * @generated
 	 */
 	public IfcElectricTimeControlTypeEnum getPredefinedType() {
-		return (IfcElectricTimeControlTypeEnum) eGet(Ifc4Package.Literals.IFC_ELECTRIC_TIME_CONTROL_TYPE__PREDEFINED_TYPE, true);
+		return (IfcElectricTimeControlTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_ELECTRIC_TIME_CONTROL_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

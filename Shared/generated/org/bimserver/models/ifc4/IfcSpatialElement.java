@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcSpatialElement#getLongName <em>Long Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSpatialElement#getContainsElements <em>Contains Elements</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSpatialElement#getServicedBySystems <em>Serviced By Systems</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSpatialElement#getReferencesElements <em>References Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSpatialElement()
  * @model

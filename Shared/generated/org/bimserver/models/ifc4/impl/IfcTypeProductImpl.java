@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTypeProductImpl#getRepresentationMaps <em>Representation Maps</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTypeProductImpl#getTag <em>Tag</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTypeProductImpl#getReferencedBy <em>Referenced By</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertyReferenceValue#getUsageName <em>Usage Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertyReferenceValue#getPropertyReference <em>Property Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertyReferenceValue()
  * @model

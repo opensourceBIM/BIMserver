@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRepresentationItemImpl#getLayerAssignments <em>Layer Assignments</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRepresentationItemImpl#getStyledByItem <em>Styled By Item</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -75,7 +75,8 @@ public class IfcRepresentationItemImpl extends IdEObjectImpl implements IfcRepre
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationLayerAssignment> getLayerAssignments() {
-		return (EList<IfcPresentationLayerAssignment>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_ITEM__LAYER_ASSIGNMENTS, true);
+		return (EList<IfcPresentationLayerAssignment>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_ITEM__LAYER_ASSIGNMENTS, true);
 	}
 
 	/**

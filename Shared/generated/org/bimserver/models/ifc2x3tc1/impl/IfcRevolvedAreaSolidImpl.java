@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRevolvedAreaSolidImpl#getAxis <em>Axis</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRevolvedAreaSolidImpl#getAngle <em>Angle</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRevolvedAreaSolidImpl#getAngleAsString <em>Angle As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

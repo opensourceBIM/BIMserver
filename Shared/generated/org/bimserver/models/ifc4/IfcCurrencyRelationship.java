@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurrencyRelationship#getRelatingMonetaryUnit <em>Relating Monetary Unit</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurrencyRelationship#getRelatedMonetaryUnit <em>Related Monetary Unit</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcCurrencyRelationship#getRateDateTime <em>Rate Date Time</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurrencyRelationship#getRateSource <em>Rate Source</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCurrencyRelationship()
  * @model

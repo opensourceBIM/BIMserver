@@ -27,13 +27,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleLightingImpl#getDiffuseTransmissionColour <em>Diffuse Transmission Colour</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleLightingImpl#getDiffuseReflectionColour <em>Diffuse Reflection Colour</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleLightingImpl#getTransmissionColour <em>Transmission Colour</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleLightingImpl#getReflectanceColour <em>Reflectance Colour</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -72,7 +72,8 @@ public class IfcSurfaceStyleLightingImpl extends IfcPresentationItemImpl impleme
 	 * @generated
 	 */
 	public void setDiffuseTransmissionColour(IfcColourRgb newDiffuseTransmissionColour) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_LIGHTING__DIFFUSE_TRANSMISSION_COLOUR, newDiffuseTransmissionColour);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_LIGHTING__DIFFUSE_TRANSMISSION_COLOUR,
+				newDiffuseTransmissionColour);
 	}
 
 	/**

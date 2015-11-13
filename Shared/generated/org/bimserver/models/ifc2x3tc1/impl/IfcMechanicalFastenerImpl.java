@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcMechanicalFastenerImpl#getNominalDiameter <em>Nominal Diameter</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcMechanicalFastenerImpl#getNominalDiameterAsString <em>Nominal Diameter As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcMechanicalFastenerImpl#getNominalLength <em>Nominal Length</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcMechanicalFastenerImpl#getNominalLengthAsString <em>Nominal Length As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

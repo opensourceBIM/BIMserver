@@ -238,8 +238,8 @@ public enum IfcFootingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFootingTypeEnum[] VALUES_ARRAY = new IfcFootingTypeEnum[] { NULL, STRIP_FOOTING, NOTDEFINED, FOOTING_BEAM, USERDEFINED, PILE_CAP, PAD_FOOTING,
-			CAISSON_FOUNDATION, };
+	private static final IfcFootingTypeEnum[] VALUES_ARRAY = new IfcFootingTypeEnum[] { NULL, STRIP_FOOTING, NOTDEFINED,
+			FOOTING_BEAM, USERDEFINED, PILE_CAP, PAD_FOOTING, CAISSON_FOUNDATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Footing Type Enum</b></em>' enumerators.
@@ -253,6 +253,8 @@ public enum IfcFootingTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Footing Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFootingTypeEnum get(String literal) {
@@ -269,6 +271,8 @@ public enum IfcFootingTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Footing Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFootingTypeEnum getByName(String name) {
@@ -285,6 +289,8 @@ public enum IfcFootingTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Footing Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFootingTypeEnum get(int value) {

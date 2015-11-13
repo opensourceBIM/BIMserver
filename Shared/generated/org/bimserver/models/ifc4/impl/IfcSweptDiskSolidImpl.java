@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSweptDiskSolidImpl#getDirectrix <em>Directrix</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSweptDiskSolidImpl#getRadius <em>Radius</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSweptDiskSolidImpl#getEndParam <em>End Param</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSweptDiskSolidImpl#getEndParamAsString <em>End Param As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

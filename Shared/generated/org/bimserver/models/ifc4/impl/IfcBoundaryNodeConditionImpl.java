@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBoundaryNodeConditionImpl#getTranslationalStiffnessX <em>Translational Stiffness X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBoundaryNodeConditionImpl#getTranslationalStiffnessY <em>Translational Stiffness Y</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBoundaryNodeConditionImpl#getRotationalStiffnessY <em>Rotational Stiffness Y</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBoundaryNodeConditionImpl#getRotationalStiffnessZ <em>Rotational Stiffness Z</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,7 +66,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public IfcTranslationalStiffnessSelect getTranslationalStiffnessX() {
-		return (IfcTranslationalStiffnessSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION__TRANSLATIONAL_STIFFNESS_X, true);
+		return (IfcTranslationalStiffnessSelect) eGet(
+				Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION__TRANSLATIONAL_STIFFNESS_X, true);
 	}
 
 	/**
@@ -102,7 +103,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public IfcTranslationalStiffnessSelect getTranslationalStiffnessY() {
-		return (IfcTranslationalStiffnessSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION__TRANSLATIONAL_STIFFNESS_Y, true);
+		return (IfcTranslationalStiffnessSelect) eGet(
+				Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION__TRANSLATIONAL_STIFFNESS_Y, true);
 	}
 
 	/**
@@ -138,7 +140,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public IfcTranslationalStiffnessSelect getTranslationalStiffnessZ() {
-		return (IfcTranslationalStiffnessSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION__TRANSLATIONAL_STIFFNESS_Z, true);
+		return (IfcTranslationalStiffnessSelect) eGet(
+				Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION__TRANSLATIONAL_STIFFNESS_Z, true);
 	}
 
 	/**
@@ -174,7 +177,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public IfcRotationalStiffnessSelect getRotationalStiffnessX() {
-		return (IfcRotationalStiffnessSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_X, true);
+		return (IfcRotationalStiffnessSelect) eGet(
+				Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_X, true);
 	}
 
 	/**
@@ -210,7 +214,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public IfcRotationalStiffnessSelect getRotationalStiffnessY() {
-		return (IfcRotationalStiffnessSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_Y, true);
+		return (IfcRotationalStiffnessSelect) eGet(
+				Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_Y, true);
 	}
 
 	/**
@@ -246,7 +251,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public IfcRotationalStiffnessSelect getRotationalStiffnessZ() {
-		return (IfcRotationalStiffnessSelect) eGet(Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_Z, true);
+		return (IfcRotationalStiffnessSelect) eGet(
+				Ifc4Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_Z, true);
 	}
 
 	/**

@@ -288,8 +288,9 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcGeometricProjectionEnum[] VALUES_ARRAY = new IfcGeometricProjectionEnum[] { NULL, ELEVATION_VIEW, SKETCH_VIEW, REFLECTED_PLAN_VIEW,
-			PLAN_VIEW, NOTDEFINED, GRAPH_VIEW, USERDEFINED, SECTION_VIEW, MODEL_VIEW, };
+	private static final IfcGeometricProjectionEnum[] VALUES_ARRAY = new IfcGeometricProjectionEnum[] { NULL,
+			ELEVATION_VIEW, SKETCH_VIEW, REFLECTED_PLAN_VIEW, PLAN_VIEW, NOTDEFINED, GRAPH_VIEW, USERDEFINED,
+			SECTION_VIEW, MODEL_VIEW, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Geometric Projection Enum</b></em>' enumerators.
@@ -297,12 +298,15 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcGeometricProjectionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcGeometricProjectionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Geometric Projection Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcGeometricProjectionEnum get(String literal) {
@@ -319,6 +323,8 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Geometric Projection Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcGeometricProjectionEnum getByName(String name) {
@@ -335,6 +341,8 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Geometric Projection Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcGeometricProjectionEnum get(int value) {

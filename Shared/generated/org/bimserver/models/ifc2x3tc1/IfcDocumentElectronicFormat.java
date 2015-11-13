@@ -25,12 +25,12 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDocumentElectronicFormat#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDocumentElectronicFormat#getMimeContentType <em>Mime Content Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDocumentElectronicFormat#getMimeSubtype <em>Mime Subtype</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcDocumentElectronicFormat()
  * @model

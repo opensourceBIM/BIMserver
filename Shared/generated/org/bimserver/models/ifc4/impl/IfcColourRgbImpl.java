@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcColourRgbImpl#getRed <em>Red</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcColourRgbImpl#getRedAsString <em>Red As String</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcColourRgbImpl#getBlue <em>Blue</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcColourRgbImpl#getBlueAsString <em>Blue As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

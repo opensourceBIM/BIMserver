@@ -238,7 +238,8 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpaceTypeEnum[] VALUES_ARRAY = new IfcSpaceTypeEnum[] { NULL, GFA, INTERNAL, EXTERNAL, NOTDEFINED, PARKING, SPACE, USERDEFINED, };
+	private static final IfcSpaceTypeEnum[] VALUES_ARRAY = new IfcSpaceTypeEnum[] { NULL, GFA, INTERNAL, EXTERNAL,
+			NOTDEFINED, PARKING, SPACE, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Space Type Enum</b></em>' enumerators.
@@ -252,6 +253,8 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Space Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSpaceTypeEnum get(String literal) {
@@ -268,6 +271,8 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Space Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSpaceTypeEnum getByName(String name) {
@@ -284,6 +289,8 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Space Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSpaceTypeEnum get(int value) {

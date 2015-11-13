@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcProfileDef#getProfileType <em>Profile Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProfileDef#getProfileName <em>Profile Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProfileDef#getHasExternalReference <em>Has External Reference</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProfileDef#getHasProperties <em>Has Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProfileDef()
  * @model

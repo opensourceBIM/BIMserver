@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstructionResourceImpl#getResourceIdentifier <em>Resource Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstructionResourceImpl#getResourceGroup <em>Resource Group</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstructionResourceImpl#getResourceConsumption <em>Resource Consumption</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstructionResourceImpl#getBaseQuantity <em>Base Quantity</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -136,7 +136,8 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcC
 	 * @generated
 	 */
 	public IfcResourceConsumptionEnum getResourceConsumption() {
-		return (IfcResourceConsumptionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_CONSUMPTION, true);
+		return (IfcResourceConsumptionEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_CONSUMPTION, true);
 	}
 
 	/**

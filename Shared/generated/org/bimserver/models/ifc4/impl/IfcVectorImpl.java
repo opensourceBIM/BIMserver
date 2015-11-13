@@ -27,13 +27,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcVectorImpl#getOrientation <em>Orientation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcVectorImpl#getMagnitude <em>Magnitude</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcVectorImpl#getMagnitudeAsString <em>Magnitude As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcVectorImpl#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

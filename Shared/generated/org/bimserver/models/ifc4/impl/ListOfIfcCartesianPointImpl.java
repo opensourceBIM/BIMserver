@@ -32,10 +32,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.ListOfIfcCartesianPointImpl#getList <em>List</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

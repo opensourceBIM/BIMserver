@@ -263,8 +263,8 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBuildingSystemTypeEnum[] VALUES_ARRAY = new IfcBuildingSystemTypeEnum[] { NULL, FOUNDATION, TRANSPORT, OUTERSHELL, FENESTRATION, NOTDEFINED,
-			USERDEFINED, SHADING, LOADBEARING, };
+	private static final IfcBuildingSystemTypeEnum[] VALUES_ARRAY = new IfcBuildingSystemTypeEnum[] { NULL, FOUNDATION,
+			TRANSPORT, OUTERSHELL, FENESTRATION, NOTDEFINED, USERDEFINED, SHADING, LOADBEARING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Building System Type Enum</b></em>' enumerators.
@@ -272,12 +272,15 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcBuildingSystemTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcBuildingSystemTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Building System Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBuildingSystemTypeEnum get(String literal) {
@@ -294,6 +297,8 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Building System Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBuildingSystemTypeEnum getByName(String name) {
@@ -310,6 +315,8 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Building System Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBuildingSystemTypeEnum get(int value) {

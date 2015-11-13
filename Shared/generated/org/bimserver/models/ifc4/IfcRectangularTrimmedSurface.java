@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRectangularTrimmedSurface#getBasisSurface <em>Basis Surface</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRectangularTrimmedSurface#getU1 <em>U1</em>}</li>
@@ -36,7 +37,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcRectangularTrimmedSurface#getUsense <em>Usense</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRectangularTrimmedSurface#getVsense <em>Vsense</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRectangularTrimmedSurface()
  * @model

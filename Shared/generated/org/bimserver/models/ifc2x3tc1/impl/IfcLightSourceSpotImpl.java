@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLightSourceSpotImpl#getOrientation <em>Orientation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLightSourceSpotImpl#getConcentrationExponent <em>Concentration Exponent</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLightSourceSpotImpl#getBeamWidthAngle <em>Beam Width Angle</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLightSourceSpotImpl#getBeamWidthAngleAsString <em>Beam Width Angle As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -129,7 +129,8 @@ public class IfcLightSourceSpotImpl extends IfcLightSourcePositionalImpl impleme
 	 * @generated
 	 */
 	public void setConcentrationExponentAsString(String newConcentrationExponentAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_SPOT__CONCENTRATION_EXPONENT_AS_STRING, newConcentrationExponentAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_SPOT__CONCENTRATION_EXPONENT_AS_STRING,
+				newConcentrationExponentAsString);
 	}
 
 	/**

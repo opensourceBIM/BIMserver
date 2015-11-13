@@ -25,11 +25,11 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDerivedUnitElement#getUnit <em>Unit</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcDerivedUnitElement#getExponent <em>Exponent</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcDerivedUnitElement()
  * @model

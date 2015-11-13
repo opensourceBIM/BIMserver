@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getUDegree <em>UDegree</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getVDegree <em>VDegree</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#isVClosed <em>VClosed</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#isSelfIntersect <em>Self Intersect</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -105,7 +105,8 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements IfcB
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ListOfIfcCartesianPoint> getControlPointsList() {
-		return (EList<ListOfIfcCartesianPoint>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__CONTROL_POINTS_LIST, true);
+		return (EList<ListOfIfcCartesianPoint>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__CONTROL_POINTS_LIST,
+				true);
 	}
 
 	/**

@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurveStyleFontAndScaling#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurveStyleFontAndScaling#getCurveFont <em>Curve Font</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurveStyleFontAndScaling#getCurveFontScaling <em>Curve Font Scaling</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCurveStyleFontAndScaling#getCurveFontScalingAsString <em>Curve Font Scaling As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCurveStyleFontAndScaling()
  * @model

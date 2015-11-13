@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTable#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTable#getRows <em>Rows</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTable#getColumns <em>Columns</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTable()
  * @model

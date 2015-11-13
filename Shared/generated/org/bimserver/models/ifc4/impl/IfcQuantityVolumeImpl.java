@@ -26,12 +26,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcQuantityVolumeImpl#getVolumeValue <em>Volume Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcQuantityVolumeImpl#getVolumeValueAsString <em>Volume Value As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcQuantityVolumeImpl#getFormula <em>Formula</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -193,6 +193,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
 			int s = 0;
 			for (EClass eClass : eClasses) {
+				System.out.println(eClass.getName());
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
 					s++;
 				}

@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcShapeAspectImpl#getShapeRepresentations <em>Shape Representations</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcShapeAspectImpl#getName <em>Name</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcShapeAspectImpl#isProductDefinitional <em>Product Definitional</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcShapeAspectImpl#getPartOfProductDefinitionShape <em>Part Of Product Definition Shape</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -177,7 +177,8 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * @generated
 	 */
 	public IfcProductDefinitionShape getPartOfProductDefinitionShape() {
-		return (IfcProductDefinitionShape) eGet(Ifc2x3tc1Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, true);
+		return (IfcProductDefinitionShape) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, true);
 	}
 
 	/**
@@ -186,7 +187,8 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * @generated
 	 */
 	public void setPartOfProductDefinitionShape(IfcProductDefinitionShape newPartOfProductDefinitionShape) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, newPartOfProductDefinitionShape);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE,
+				newPartOfProductDefinitionShape);
 	}
 
 } //IfcShapeAspectImpl

@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTrimmedCurve#getBasisCurve <em>Basis Curve</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTrimmedCurve#getTrim1 <em>Trim1</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTrimmedCurve#getSenseAgreement <em>Sense Agreement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTrimmedCurve#getMasterRepresentation <em>Master Representation</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTrimmedCurve()
  * @model

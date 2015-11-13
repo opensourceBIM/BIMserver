@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConditionCriterionImpl#getCriterion <em>Criterion</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConditionCriterionImpl#getCriterionDateTime <em>Criterion Date Time</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

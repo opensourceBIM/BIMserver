@@ -313,8 +313,9 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBenchmarkEnum[] VALUES_ARRAY = new IfcBenchmarkEnum[] { NULL, INCLUDES, LESSTHAN, GREATERTHANOREQUALTO, NOTINCLUDES, EQUALTO, LESSTHANOREQUALTO,
-			NOTINCLUDEDIN, NOTEQUALTO, INCLUDEDIN, GREATERTHAN, };
+	private static final IfcBenchmarkEnum[] VALUES_ARRAY = new IfcBenchmarkEnum[] { NULL, INCLUDES, LESSTHAN,
+			GREATERTHANOREQUALTO, NOTINCLUDES, EQUALTO, LESSTHANOREQUALTO, NOTINCLUDEDIN, NOTEQUALTO, INCLUDEDIN,
+			GREATERTHAN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Benchmark Enum</b></em>' enumerators.
@@ -328,6 +329,8 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Benchmark Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBenchmarkEnum get(String literal) {
@@ -344,6 +347,8 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Benchmark Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBenchmarkEnum getByName(String name) {
@@ -360,6 +365,8 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Benchmark Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBenchmarkEnum get(int value) {

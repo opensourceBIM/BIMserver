@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Externally Defined Surface Style</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcExternallyDefinedSurfaceStyleImpl extends IfcExternalReferenceImpl implements IfcExternallyDefinedSurfaceStyle {
+public class IfcExternallyDefinedSurfaceStyleImpl extends IfcExternalReferenceImpl
+		implements IfcExternallyDefinedSurfaceStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

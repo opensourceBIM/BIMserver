@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcSweptDiskSolid#getDirectrix <em>Directrix</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSweptDiskSolid#getRadius <em>Radius</em>}</li>
@@ -34,7 +35,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcSweptDiskSolid#getEndParam <em>End Param</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSweptDiskSolid#getEndParamAsString <em>End Param As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSweptDiskSolid()
  * @model

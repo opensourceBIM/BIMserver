@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcReinforcingBarImpl#getNominalDiameter <em>Nominal Diameter</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcReinforcingBarImpl#getNominalDiameterAsString <em>Nominal Diameter As String</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcReinforcingBarImpl#getBarRole <em>Bar Role</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcReinforcingBarImpl#getBarSurface <em>Bar Surface</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

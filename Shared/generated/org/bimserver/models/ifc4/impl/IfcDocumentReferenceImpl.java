@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDocumentReferenceImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDocumentReferenceImpl#getReferencedDocument <em>Referenced Document</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDocumentReferenceImpl#getDocumentRefForObjects <em>Document Ref For Objects</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -137,7 +137,8 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesDocument> getDocumentRefForObjects() {
-		return (EList<IfcRelAssociatesDocument>) eGet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DOCUMENT_REF_FOR_OBJECTS, true);
+		return (EList<IfcRelAssociatesDocument>) eGet(
+				Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DOCUMENT_REF_FOR_OBJECTS, true);
 	}
 
 	/**

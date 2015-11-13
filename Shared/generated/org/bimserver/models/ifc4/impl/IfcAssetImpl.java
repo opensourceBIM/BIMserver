@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAssetImpl#getIdentification <em>Identification</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAssetImpl#getOriginalValue <em>Original Value</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAssetImpl#getIncorporationDate <em>Incorporation Date</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAssetImpl#getDepreciatedValue <em>Depreciated Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelSequence#getRelatingProcess <em>Relating Process</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelSequence#getRelatedProcess <em>Related Process</em>}</li>
@@ -30,7 +31,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcRelSequence#getSequenceType <em>Sequence Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelSequence#getUserDefinedSequenceType <em>User Defined Sequence Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelSequence()
  * @model

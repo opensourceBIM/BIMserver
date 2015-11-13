@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve3D#getBasisCurve <em>Basis Curve</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve3D#getDistance <em>Distance</em>}</li>
@@ -30,7 +31,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve3D#isSelfIntersect <em>Self Intersect</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve3D#getRefDirection <em>Ref Direction</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcOffsetCurve3D()
  * @model

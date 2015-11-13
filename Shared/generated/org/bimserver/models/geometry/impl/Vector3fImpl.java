@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.geometry.impl.Vector3fImpl#getX <em>X</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.Vector3fImpl#getY <em>Y</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.Vector3fImpl#getZ <em>Z</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

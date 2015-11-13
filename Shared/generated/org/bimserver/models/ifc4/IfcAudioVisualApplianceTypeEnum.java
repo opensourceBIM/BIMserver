@@ -388,8 +388,9 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAudioVisualApplianceTypeEnum[] VALUES_ARRAY = new IfcAudioVisualApplianceTypeEnum[] { NULL, PROJECTOR, PLAYER, NOTDEFINED, RECEIVER, MICROPHONE,
-			CAMERA, USERDEFINED, AMPLIFIER, TELEPHONE, DISPLAY, TUNER, SWITCHER, SPEAKER, };
+	private static final IfcAudioVisualApplianceTypeEnum[] VALUES_ARRAY = new IfcAudioVisualApplianceTypeEnum[] { NULL,
+			PROJECTOR, PLAYER, NOTDEFINED, RECEIVER, MICROPHONE, CAMERA, USERDEFINED, AMPLIFIER, TELEPHONE, DISPLAY,
+			TUNER, SWITCHER, SPEAKER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Audio Visual Appliance Type Enum</b></em>' enumerators.
@@ -397,12 +398,15 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAudioVisualApplianceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAudioVisualApplianceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Audio Visual Appliance Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcAudioVisualApplianceTypeEnum get(String literal) {
@@ -419,6 +423,8 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Audio Visual Appliance Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcAudioVisualApplianceTypeEnum getByName(String name) {
@@ -435,6 +441,8 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Audio Visual Appliance Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcAudioVisualApplianceTypeEnum get(int value) {

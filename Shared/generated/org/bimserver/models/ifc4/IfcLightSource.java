@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSource#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSource#getLightColour <em>Light Colour</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSource#getIntensity <em>Intensity</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSource#getIntensityAsString <em>Intensity As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSource()
  * @model

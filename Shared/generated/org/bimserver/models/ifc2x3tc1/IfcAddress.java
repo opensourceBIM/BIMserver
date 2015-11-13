@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcAddress#getPurpose <em>Purpose</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcAddress#getDescription <em>Description</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcAddress#getOfPerson <em>Of Person</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcAddress#getOfOrganization <em>Of Organization</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcAddress()
  * @model

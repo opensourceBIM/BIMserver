@@ -25,13 +25,13 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRoot#getGlobalId <em>Global Id</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRoot#getOwnerHistory <em>Owner History</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRoot#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRoot#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRoot()
  * @model

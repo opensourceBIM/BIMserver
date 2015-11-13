@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcEnergyPropertiesImpl#getEnergySequence <em>Energy Sequence</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcEnergyPropertiesImpl#getUserDefinedEnergySequence <em>User Defined Energy Sequence</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -106,7 +106,8 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 * @generated
 	 */
 	public void setUserDefinedEnergySequence(String newUserDefinedEnergySequence) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE, newUserDefinedEnergySequence);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE,
+				newUserDefinedEnergySequence);
 	}
 
 	/**

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceReinforcementAreaImpl#getSurfaceReinforcement1 <em>Surface Reinforcement1</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceReinforcementAreaImpl#getSurfaceReinforcement1AsString <em>Surface Reinforcement1 As String</em>}</li>
@@ -35,11 +36,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceReinforcementAreaImpl#getShearReinforcement <em>Shear Reinforcement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceReinforcementAreaImpl#getShearReinforcementAsString <em>Shear Reinforcement As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcSurfaceReinforcementAreaImpl extends IfcStructuralLoadOrResultImpl implements IfcSurfaceReinforcementArea {
+public class IfcSurfaceReinforcementAreaImpl extends IfcStructuralLoadOrResultImpl
+		implements IfcSurfaceReinforcementArea {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,7 +95,8 @@ public class IfcSurfaceReinforcementAreaImpl extends IfcStructuralLoadOrResultIm
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getSurfaceReinforcement1AsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SURFACE_REINFORCEMENT1_AS_STRING, true);
+		return (EList<String>) eGet(
+				Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SURFACE_REINFORCEMENT1_AS_STRING, true);
 	}
 
 	/**
@@ -150,7 +152,8 @@ public class IfcSurfaceReinforcementAreaImpl extends IfcStructuralLoadOrResultIm
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getSurfaceReinforcement2AsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SURFACE_REINFORCEMENT2_AS_STRING, true);
+		return (EList<String>) eGet(
+				Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SURFACE_REINFORCEMENT2_AS_STRING, true);
 	}
 
 	/**
@@ -222,7 +225,8 @@ public class IfcSurfaceReinforcementAreaImpl extends IfcStructuralLoadOrResultIm
 	 * @generated
 	 */
 	public void setShearReinforcementAsString(String newShearReinforcementAsString) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SHEAR_REINFORCEMENT_AS_STRING, newShearReinforcementAsString);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_REINFORCEMENT_AREA__SHEAR_REINFORCEMENT_AS_STRING,
+				newShearReinforcementAsString);
 	}
 
 	/**

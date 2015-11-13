@@ -23,12 +23,12 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelAssociatesProfileProperties#getRelatingProfileProperties <em>Relating Profile Properties</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelAssociatesProfileProperties#getProfileSectionLocation <em>Profile Section Location</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelAssociatesProfileProperties#getProfileOrientation <em>Profile Orientation</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRelAssociatesProfileProperties()
  * @model

@@ -27,14 +27,15 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcFireSuppressionTerminalTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcFireSuppressionTerminalTypeImpl extends IfcFlowTerminalTypeImpl implements IfcFireSuppressionTerminalType {
+public class IfcFireSuppressionTerminalTypeImpl extends IfcFlowTerminalTypeImpl
+		implements IfcFireSuppressionTerminalType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcFireSuppressionTerminalTypeImpl extends IfcFlowTerminalTypeImpl 
 	 * @generated
 	 */
 	public IfcFireSuppressionTerminalTypeEnum getPredefinedType() {
-		return (IfcFireSuppressionTerminalTypeEnum) eGet(Ifc4Package.Literals.IFC_FIRE_SUPPRESSION_TERMINAL_TYPE__PREDEFINED_TYPE, true);
+		return (IfcFireSuppressionTerminalTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_FIRE_SUPPRESSION_TERMINAL_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

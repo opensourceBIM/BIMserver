@@ -51,7 +51,7 @@ public class HashMapVirtualObject implements VirtualObject {
 		return map.get(feature);
 	}
 	
-	private boolean eIsSet(EStructuralFeature feature) {
+	public boolean eIsSet(EStructuralFeature feature) {
 		return map.containsKey(feature);
 	}
 	
@@ -449,5 +449,9 @@ public class HashMapVirtualObject implements VirtualObject {
 	@Override
 	public void endList() {
 		// Not relevant for HashMap based implementation		
+	}
+
+	public long getRoid() {
+		return reusable.getRoid();
 	}
 }

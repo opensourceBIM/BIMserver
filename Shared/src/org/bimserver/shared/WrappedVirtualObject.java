@@ -6,7 +6,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public interface WrappedVirtualObject {
+public interface WrappedVirtualObject extends MinimalVirtualObject {
 
 	EClass eClass();
 	void setAttribute(EStructuralFeature eStructuralFeature, Object value) throws BimserverDatabaseException;

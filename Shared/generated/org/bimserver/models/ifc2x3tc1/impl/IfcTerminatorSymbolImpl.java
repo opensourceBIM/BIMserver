@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTerminatorSymbolImpl#getAnnotatedCurve <em>Annotated Curve</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcTerminatorSymbolImpl extends IfcAnnotationSymbolOccurrenceImpl i
 	 * @generated
 	 */
 	public IfcAnnotationCurveOccurrence getAnnotatedCurve() {
-		return (IfcAnnotationCurveOccurrence) eGet(Ifc2x3tc1Package.Literals.IFC_TERMINATOR_SYMBOL__ANNOTATED_CURVE, true);
+		return (IfcAnnotationCurveOccurrence) eGet(Ifc2x3tc1Package.Literals.IFC_TERMINATOR_SYMBOL__ANNOTATED_CURVE,
+				true);
 	}
 
 	/**

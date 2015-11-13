@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyTemplateImpl#getPartOfComplexTemplate <em>Part Of Complex Template</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyTemplateImpl#getPartOfPsetTemplate <em>Part Of Pset Template</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -64,7 +64,8 @@ public class IfcPropertyTemplateImpl extends IfcPropertyTemplateDefinitionImpl i
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcComplexPropertyTemplate> getPartOfComplexTemplate() {
-		return (EList<IfcComplexPropertyTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_COMPLEX_TEMPLATE, true);
+		return (EList<IfcComplexPropertyTemplate>) eGet(
+				Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_COMPLEX_TEMPLATE, true);
 	}
 
 	/**
@@ -92,7 +93,8 @@ public class IfcPropertyTemplateImpl extends IfcPropertyTemplateDefinitionImpl i
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertySetTemplate> getPartOfPsetTemplate() {
-		return (EList<IfcPropertySetTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_PSET_TEMPLATE, true);
+		return (EList<IfcPropertySetTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_PSET_TEMPLATE,
+				true);
 	}
 
 	/**

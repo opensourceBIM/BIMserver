@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperatorImpl#getAxis1 <em>Axis1</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperatorImpl#getAxis2 <em>Axis2</em>}</li>
@@ -36,11 +37,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperatorImpl#getScaleAsString <em>Scale As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperatorImpl#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcCartesianTransformationOperatorImpl extends IfcGeometricRepresentationItemImpl implements IfcCartesianTransformationOperator {
+public class IfcCartesianTransformationOperatorImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcCartesianTransformationOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

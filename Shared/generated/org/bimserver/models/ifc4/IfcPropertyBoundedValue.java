@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertyBoundedValue#getUpperBoundValue <em>Upper Bound Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertyBoundedValue#getLowerBoundValue <em>Lower Bound Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertyBoundedValue#getUnit <em>Unit</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertyBoundedValue#getSetPointValue <em>Set Point Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertyBoundedValue()
  * @model

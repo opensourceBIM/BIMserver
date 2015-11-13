@@ -25,13 +25,13 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcApplication#getApplicationDeveloper <em>Application Developer</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcApplication#getVersion <em>Version</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcApplication#getApplicationFullName <em>Application Full Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcApplication#getApplicationIdentifier <em>Application Identifier</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcApplication()
  * @model

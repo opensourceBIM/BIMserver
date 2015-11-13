@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCostScheduleImpl#getSubmittedBy <em>Submitted By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCostScheduleImpl#getPreparedBy <em>Prepared By</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCostScheduleImpl#getID <em>ID</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCostScheduleImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

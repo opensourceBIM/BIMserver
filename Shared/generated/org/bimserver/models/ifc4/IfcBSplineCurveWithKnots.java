@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurveWithKnots#getKnotMultiplicities <em>Knot Multiplicities</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurveWithKnots#getKnots <em>Knots</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurveWithKnots#getKnotsAsString <em>Knots As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurveWithKnots#getKnotSpec <em>Knot Spec</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineCurveWithKnots()
  * @model

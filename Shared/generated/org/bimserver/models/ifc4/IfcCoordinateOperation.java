@@ -25,11 +25,11 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCoordinateOperation#getSourceCRS <em>Source CRS</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCoordinateOperation#getTargetCRS <em>Target CRS</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCoordinateOperation()
  * @model

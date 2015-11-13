@@ -288,8 +288,8 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDuctFittingTypeEnum[] VALUES_ARRAY = new IfcDuctFittingTypeEnum[] { NULL, EXIT, NOTDEFINED, TRANSITION, OBSTRUCTION, ENTRY, JUNCTION, USERDEFINED,
-			CONNECTOR, BEND, };
+	private static final IfcDuctFittingTypeEnum[] VALUES_ARRAY = new IfcDuctFittingTypeEnum[] { NULL, EXIT, NOTDEFINED,
+			TRANSITION, OBSTRUCTION, ENTRY, JUNCTION, USERDEFINED, CONNECTOR, BEND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Duct Fitting Type Enum</b></em>' enumerators.
@@ -303,6 +303,8 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Duct Fitting Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDuctFittingTypeEnum get(String literal) {
@@ -319,6 +321,8 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Duct Fitting Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDuctFittingTypeEnum getByName(String name) {
@@ -335,6 +339,8 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Duct Fitting Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcDuctFittingTypeEnum get(int value) {

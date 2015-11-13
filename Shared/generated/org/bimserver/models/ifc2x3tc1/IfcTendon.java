@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTendon#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTendon#getNominalDiameter <em>Nominal Diameter</em>}</li>
@@ -40,7 +41,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTendon#getMinCurvatureRadius <em>Min Curvature Radius</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTendon#getMinCurvatureRadiusAsString <em>Min Curvature Radius As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTendon()
  * @model

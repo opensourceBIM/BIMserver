@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcProxy#getProxyType <em>Proxy Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProxy#getTag <em>Tag</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProxy()
  * @model

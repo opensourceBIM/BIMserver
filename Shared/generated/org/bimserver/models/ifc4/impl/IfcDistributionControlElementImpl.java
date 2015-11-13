@@ -28,14 +28,15 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcDistributionControlElementImpl#getAssignedToFlowElement <em>Assigned To Flow Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcDistributionControlElementImpl extends IfcDistributionElementImpl implements IfcDistributionControlElement {
+public class IfcDistributionControlElementImpl extends IfcDistributionElementImpl
+		implements IfcDistributionControlElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,8 @@ public class IfcDistributionControlElementImpl extends IfcDistributionElementImp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelFlowControlElements> getAssignedToFlowElement() {
-		return (EList<IfcRelFlowControlElements>) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__ASSIGNED_TO_FLOW_ELEMENT, true);
+		return (EList<IfcRelFlowControlElements>) eGet(
+				Ifc4Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__ASSIGNED_TO_FLOW_ELEMENT, true);
 	}
 
 	/**

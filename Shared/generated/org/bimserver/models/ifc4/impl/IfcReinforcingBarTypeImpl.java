@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcReinforcingBarTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcReinforcingBarTypeImpl#getNominalDiameter <em>Nominal Diameter</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcReinforcingBarTypeImpl#getBendingShapeCode <em>Bending Shape Code</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcReinforcingBarTypeImpl#getBendingParameters <em>Bending Parameters</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -379,7 +379,8 @@ public class IfcReinforcingBarTypeImpl extends IfcReinforcingElementTypeImpl imp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcBendingParameterSelect> getBendingParameters() {
-		return (EList<IfcBendingParameterSelect>) eGet(Ifc4Package.Literals.IFC_REINFORCING_BAR_TYPE__BENDING_PARAMETERS, true);
+		return (EList<IfcBendingParameterSelect>) eGet(
+				Ifc4Package.Literals.IFC_REINFORCING_BAR_TYPE__BENDING_PARAMETERS, true);
 	}
 
 	/**

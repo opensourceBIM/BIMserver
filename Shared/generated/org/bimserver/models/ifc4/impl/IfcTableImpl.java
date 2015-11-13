@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableImpl#getRows <em>Rows</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableImpl#getColumns <em>Columns</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

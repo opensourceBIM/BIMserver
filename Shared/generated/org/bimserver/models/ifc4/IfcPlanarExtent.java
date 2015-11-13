@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPlanarExtent#getSizeInX <em>Size In X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPlanarExtent#getSizeInXAsString <em>Size In XAs String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPlanarExtent#getSizeInY <em>Size In Y</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPlanarExtent#getSizeInYAsString <em>Size In YAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPlanarExtent()
  * @model

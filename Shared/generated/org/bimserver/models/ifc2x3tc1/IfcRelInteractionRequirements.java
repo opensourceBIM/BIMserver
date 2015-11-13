@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelInteractionRequirements#getDailyInteraction <em>Daily Interaction</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelInteractionRequirements#getDailyInteractionAsString <em>Daily Interaction As String</em>}</li>
@@ -32,7 +33,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelInteractionRequirements#getRelatedSpaceProgram <em>Related Space Program</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelInteractionRequirements#getRelatingSpaceProgram <em>Relating Space Program</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRelInteractionRequirements()
  * @model

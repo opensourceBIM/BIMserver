@@ -23,13 +23,13 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcVector#getOrientation <em>Orientation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcVector#getMagnitude <em>Magnitude</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcVector#getMagnitudeAsString <em>Magnitude As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcVector#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcVector()
  * @model

@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcMetricImpl#getBenchmark <em>Benchmark</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcMetricImpl#getValueSource <em>Value Source</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcMetricImpl#getDataValue <em>Data Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

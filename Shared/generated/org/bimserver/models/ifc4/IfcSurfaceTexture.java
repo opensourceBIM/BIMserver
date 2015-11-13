@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceTexture#getRepeatS <em>Repeat S</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceTexture#getRepeatT <em>Repeat T</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceTexture#getIsMappedBy <em>Is Mapped By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceTexture#getUsedInStyles <em>Used In Styles</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSurfaceTexture()
  * @model

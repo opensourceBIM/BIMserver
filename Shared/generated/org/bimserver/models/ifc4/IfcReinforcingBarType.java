@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingBarType#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingBarType#getNominalDiameter <em>Nominal Diameter</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingBarType#getBendingShapeCode <em>Bending Shape Code</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingBarType#getBendingParameters <em>Bending Parameters</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcReinforcingBarType()
  * @model

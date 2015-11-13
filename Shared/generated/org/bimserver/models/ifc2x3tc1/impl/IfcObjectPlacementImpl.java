@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcObjectPlacementImpl#getPlacesObject <em>Places Object</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcObjectPlacementImpl#getReferencedByPlacements <em>Referenced By Placements</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -103,7 +103,8 @@ public class IfcObjectPlacementImpl extends IdEObjectImpl implements IfcObjectPl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLocalPlacement> getReferencedByPlacements() {
-		return (EList<IfcLocalPlacement>) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT_PLACEMENT__REFERENCED_BY_PLACEMENTS, true);
+		return (EList<IfcLocalPlacement>) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT_PLACEMENT__REFERENCED_BY_PLACEMENTS,
+				true);
 	}
 
 	/**

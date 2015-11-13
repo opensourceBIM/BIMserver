@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcLocalPlacement#getPlacementRelTo <em>Placement Rel To</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLocalPlacement#getRelativePlacement <em>Relative Placement</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLocalPlacement()
  * @model

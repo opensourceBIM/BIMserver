@@ -263,8 +263,9 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRecurrenceTypeEnum[] VALUES_ARRAY = new IfcRecurrenceTypeEnum[] { NULL, MONTHLY_BY_POSITION, BY_DAY_COUNT, YEARLY_BY_POSITION, YEARLY_BY_DAY_OF_MONTH,
-			WEEKLY, MONTHLY_BY_DAY_OF_MONTH, DAILY, BY_WEEKDAY_COUNT, };
+	private static final IfcRecurrenceTypeEnum[] VALUES_ARRAY = new IfcRecurrenceTypeEnum[] { NULL, MONTHLY_BY_POSITION,
+			BY_DAY_COUNT, YEARLY_BY_POSITION, YEARLY_BY_DAY_OF_MONTH, WEEKLY, MONTHLY_BY_DAY_OF_MONTH, DAILY,
+			BY_WEEKDAY_COUNT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Recurrence Type Enum</b></em>' enumerators.
@@ -278,6 +279,8 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Recurrence Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRecurrenceTypeEnum get(String literal) {
@@ -294,6 +297,8 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Recurrence Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRecurrenceTypeEnum getByName(String name) {
@@ -310,6 +315,8 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Recurrence Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRecurrenceTypeEnum get(int value) {

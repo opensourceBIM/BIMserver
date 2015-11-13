@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPerformanceHistoryImpl#getLifeCyclePhase <em>Life Cycle Phase</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPerformanceHistoryImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -79,7 +79,8 @@ public class IfcPerformanceHistoryImpl extends IfcControlImpl implements IfcPerf
 	 * @generated
 	 */
 	public IfcPerformanceHistoryTypeEnum getPredefinedType() {
-		return (IfcPerformanceHistoryTypeEnum) eGet(Ifc4Package.Literals.IFC_PERFORMANCE_HISTORY__PREDEFINED_TYPE, true);
+		return (IfcPerformanceHistoryTypeEnum) eGet(Ifc4Package.Literals.IFC_PERFORMANCE_HISTORY__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

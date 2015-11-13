@@ -27,14 +27,15 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcConstructionProductResourceTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcConstructionProductResourceTypeImpl extends IfcConstructionResourceTypeImpl implements IfcConstructionProductResourceType {
+public class IfcConstructionProductResourceTypeImpl extends IfcConstructionResourceTypeImpl
+		implements IfcConstructionProductResourceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcConstructionProductResourceTypeImpl extends IfcConstructionResou
 	 * @generated
 	 */
 	public IfcConstructionProductResourceTypeEnum getPredefinedType() {
-		return (IfcConstructionProductResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_CONSTRUCTION_PRODUCT_RESOURCE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcConstructionProductResourceTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_CONSTRUCTION_PRODUCT_RESOURCE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

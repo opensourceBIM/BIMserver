@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTransportElement#getOperationType <em>Operation Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTransportElement#getCapacityByWeight <em>Capacity By Weight</em>}</li>
@@ -30,7 +31,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTransportElement#getCapacityByNumber <em>Capacity By Number</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTransportElement#getCapacityByNumberAsString <em>Capacity By Number As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTransportElement()
  * @model

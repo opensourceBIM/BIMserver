@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPerson#getIdentification <em>Identification</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPerson#getFamilyName <em>Family Name</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcPerson#getAddresses <em>Addresses</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPerson#getEngagedIn <em>Engaged In</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPerson()
  * @model

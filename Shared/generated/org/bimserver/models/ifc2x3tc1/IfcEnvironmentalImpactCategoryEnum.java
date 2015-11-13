@@ -263,8 +263,9 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEnvironmentalImpactCategoryEnum[] VALUES_ARRAY = new IfcEnvironmentalImpactCategoryEnum[] { NULL, COMBINEDVALUE, NOTDEFINED,
-			MANUFACTURE, INSTALLATION, EXTRACTION, DISPOSAL, USERDEFINED, TRANSPORTATION, };
+	private static final IfcEnvironmentalImpactCategoryEnum[] VALUES_ARRAY = new IfcEnvironmentalImpactCategoryEnum[] {
+			NULL, COMBINEDVALUE, NOTDEFINED, MANUFACTURE, INSTALLATION, EXTRACTION, DISPOSAL, USERDEFINED,
+			TRANSPORTATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Environmental Impact Category Enum</b></em>' enumerators.
@@ -272,12 +273,15 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcEnvironmentalImpactCategoryEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcEnvironmentalImpactCategoryEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Environmental Impact Category Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcEnvironmentalImpactCategoryEnum get(String literal) {
@@ -294,6 +298,8 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Environmental Impact Category Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcEnvironmentalImpactCategoryEnum getByName(String name) {
@@ -310,6 +316,8 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Environmental Impact Category Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcEnvironmentalImpactCategoryEnum get(int value) {

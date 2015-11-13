@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcBSplineCurve#getDegree <em>Degree</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcBSplineCurve#getControlPointsList <em>Control Points List</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcBSplineCurve#isClosedCurve <em>Closed Curve</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcBSplineCurve#isSelfIntersect <em>Self Intersect</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcBSplineCurve()
  * @model

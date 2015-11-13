@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialConstituentSetImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialConstituentSetImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialConstituentSetImpl#getMaterialConstituents <em>Material Constituents</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -136,7 +136,8 @@ public class IfcMaterialConstituentSetImpl extends IfcMaterialDefinitionImpl imp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialConstituent> getMaterialConstituents() {
-		return (EList<IfcMaterialConstituent>) eGet(Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT_SET__MATERIAL_CONSTITUENTS, true);
+		return (EList<IfcMaterialConstituent>) eGet(
+				Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT_SET__MATERIAL_CONSTITUENTS, true);
 	}
 
 	/**

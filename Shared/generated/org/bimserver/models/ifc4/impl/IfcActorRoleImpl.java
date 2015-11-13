@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcActorRoleImpl#getRole <em>Role</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcActorRoleImpl#getUserDefinedRole <em>User Defined Role</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcActorRoleImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcActorRoleImpl#getHasExternalReference <em>Has External Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -167,7 +167,8 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_ACTOR_ROLE__HAS_EXTERNAL_REFERENCE, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(
+				Ifc4Package.Literals.IFC_ACTOR_ROLE__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**

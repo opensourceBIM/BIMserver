@@ -288,7 +288,8 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFurnitureTypeEnum[] VALUES_ARRAY = new IfcFurnitureTypeEnum[] { NULL, SOFA, TABLE, NOTDEFINED, BED, FILECABINET, SHELF, CHAIR, USERDEFINED, DESK, };
+	private static final IfcFurnitureTypeEnum[] VALUES_ARRAY = new IfcFurnitureTypeEnum[] { NULL, SOFA, TABLE,
+			NOTDEFINED, BED, FILECABINET, SHELF, CHAIR, USERDEFINED, DESK, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Furniture Type Enum</b></em>' enumerators.
@@ -302,6 +303,8 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Furniture Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFurnitureTypeEnum get(String literal) {
@@ -318,6 +321,8 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Furniture Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFurnitureTypeEnum getByName(String name) {
@@ -334,6 +339,8 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Furniture Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcFurnitureTypeEnum get(int value) {

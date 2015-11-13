@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTimeSeriesImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTimeSeriesImpl#getDescription <em>Description</em>}</li>
@@ -43,7 +44,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTimeSeriesImpl#getUnit <em>Unit</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTimeSeriesImpl#getHasExternalReference <em>Has External Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -282,7 +282,8 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_TIME_SERIES__HAS_EXTERNAL_REFERENCE, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(
+				Ifc4Package.Literals.IFC_TIME_SERIES__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**

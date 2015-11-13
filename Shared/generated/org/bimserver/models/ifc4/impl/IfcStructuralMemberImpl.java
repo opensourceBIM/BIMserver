@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralMemberImpl#getConnectedBy <em>Connected By</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,8 @@ public class IfcStructuralMemberImpl extends IfcStructuralItemImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralMember> getConnectedBy() {
-		return (EList<IfcRelConnectsStructuralMember>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_MEMBER__CONNECTED_BY, true);
+		return (EList<IfcRelConnectsStructuralMember>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_MEMBER__CONNECTED_BY,
+				true);
 	}
 
 	/**

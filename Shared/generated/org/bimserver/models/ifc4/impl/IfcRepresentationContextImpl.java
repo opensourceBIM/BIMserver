@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRepresentationContextImpl#getContextIdentifier <em>Context Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRepresentationContextImpl#getContextType <em>Context Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRepresentationContextImpl#getRepresentationsInContext <em>Representations In Context</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -147,7 +147,8 @@ public class IfcRepresentationContextImpl extends IdEObjectImpl implements IfcRe
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentation> getRepresentationsInContext() {
-		return (EList<IfcRepresentation>) eGet(Ifc4Package.Literals.IFC_REPRESENTATION_CONTEXT__REPRESENTATIONS_IN_CONTEXT, true);
+		return (EList<IfcRepresentation>) eGet(
+				Ifc4Package.Literals.IFC_REPRESENTATION_CONTEXT__REPRESENTATIONS_IN_CONTEXT, true);
 	}
 
 	/**

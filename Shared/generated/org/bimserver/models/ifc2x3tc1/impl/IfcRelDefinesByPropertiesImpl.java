@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRelDefinesByPropertiesImpl#getRelatingPropertyDefinition <em>Relating Property Definition</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcRelDefinesByPropertiesImpl extends IfcRelDefinesImpl implements 
 	 * @generated
 	 */
 	public IfcPropertySetDefinition getRelatingPropertyDefinition() {
-		return (IfcPropertySetDefinition) eGet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION, true);
+		return (IfcPropertySetDefinition) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION, true);
 	}
 
 	/**
@@ -69,7 +70,8 @@ public class IfcRelDefinesByPropertiesImpl extends IfcRelDefinesImpl implements 
 	 * @generated
 	 */
 	public void setRelatingPropertyDefinition(IfcPropertySetDefinition newRelatingPropertyDefinition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION, newRelatingPropertyDefinition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION,
+				newRelatingPropertyDefinition);
 	}
 
 } //IfcRelDefinesByPropertiesImpl

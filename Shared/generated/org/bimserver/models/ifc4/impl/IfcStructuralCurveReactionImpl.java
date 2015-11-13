@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralCurveReactionImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcStructuralCurveReactionImpl extends IfcStructuralReactionImpl im
 	 * @generated
 	 */
 	public IfcStructuralCurveActivityTypeEnum getPredefinedType() {
-		return (IfcStructuralCurveActivityTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_REACTION__PREDEFINED_TYPE, true);
+		return (IfcStructuralCurveActivityTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_REACTION__PREDEFINED_TYPE, true);
 	}
 
 	/**

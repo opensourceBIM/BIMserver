@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSectionPropertiesImpl#getSectionType <em>Section Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSectionPropertiesImpl#getStartProfile <em>Start Profile</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSectionPropertiesImpl#getEndProfile <em>End Profile</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

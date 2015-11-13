@@ -23,12 +23,12 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCurveStyle#getCurveFont <em>Curve Font</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCurveStyle#getCurveWidth <em>Curve Width</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCurveStyle#getCurveColour <em>Curve Colour</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCurveStyle()
  * @model

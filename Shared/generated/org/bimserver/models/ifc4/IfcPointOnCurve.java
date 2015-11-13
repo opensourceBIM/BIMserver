@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPointOnCurve#getBasisCurve <em>Basis Curve</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPointOnCurve#getPointParameter <em>Point Parameter</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPointOnCurve#getPointParameterAsString <em>Point Parameter As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPointOnCurve#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPointOnCurve()
  * @model

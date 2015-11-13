@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSoundValueImpl#getSoundLevelTimeSeries <em>Sound Level Time Series</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSoundValueImpl#getFrequency <em>Frequency</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSoundValueImpl#getFrequencyAsString <em>Frequency As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSoundValueImpl#getSoundLevelSingleValue <em>Sound Level Single Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

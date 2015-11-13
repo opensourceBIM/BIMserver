@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedTextureMapImpl#getMappedTo <em>Mapped To</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedTextureMapImpl#getTexCoords <em>Tex Coords</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

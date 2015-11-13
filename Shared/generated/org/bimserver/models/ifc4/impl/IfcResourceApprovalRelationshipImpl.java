@@ -29,15 +29,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcResourceApprovalRelationshipImpl#getRelatedResourceObjects <em>Related Resource Objects</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcResourceApprovalRelationshipImpl#getRelatingApproval <em>Relating Approval</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcResourceApprovalRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcResourceApprovalRelationship {
+public class IfcResourceApprovalRelationshipImpl extends IfcResourceLevelRelationshipImpl
+		implements IfcResourceApprovalRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,8 @@ public class IfcResourceApprovalRelationshipImpl extends IfcResourceLevelRelatio
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcResourceObjectSelect> getRelatedResourceObjects() {
-		return (EList<IfcResourceObjectSelect>) eGet(Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
+		return (EList<IfcResourceObjectSelect>) eGet(
+				Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
 	}
 
 	/**

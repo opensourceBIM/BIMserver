@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableColumnImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableColumnImpl#getName <em>Name</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableColumnImpl#getUnit <em>Unit</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableColumnImpl#getReferencePath <em>Reference Path</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

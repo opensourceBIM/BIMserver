@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLibraryInformationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLibraryInformationImpl#getVersion <em>Version</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLibraryInformationImpl#getVersionDate <em>Version Date</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLibraryInformationImpl#getLibraryReference <em>Library Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -205,7 +205,8 @@ public class IfcLibraryInformationImpl extends IdEObjectImpl implements IfcLibra
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLibraryReference> getLibraryReference() {
-		return (EList<IfcLibraryReference>) eGet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__LIBRARY_REFERENCE, true);
+		return (EList<IfcLibraryReference>) eGet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__LIBRARY_REFERENCE,
+				true);
 	}
 
 	/**

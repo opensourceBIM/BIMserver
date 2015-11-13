@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceProgram#getSpaceProgramIdentifier <em>Space Program Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceProgram#getMaxRequiredArea <em>Max Required Area</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceProgram#getHasInteractionReqsFrom <em>Has Interaction Reqs From</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceProgram#getHasInteractionReqsTo <em>Has Interaction Reqs To</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcSpaceProgram()
  * @model

@@ -238,8 +238,9 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEvaporatorTypeEnum[] VALUES_ARRAY = new IfcEvaporatorTypeEnum[] { NULL, NOTDEFINED, FLOODEDSHELLANDTUBE, DIRECTEXPANSIONTUBEINTUBE,
-			DIRECTEXPANSIONBRAZEDPLATE, USERDEFINED, DIRECTEXPANSIONSHELLANDTUBE, SHELLANDCOIL, };
+	private static final IfcEvaporatorTypeEnum[] VALUES_ARRAY = new IfcEvaporatorTypeEnum[] { NULL, NOTDEFINED,
+			FLOODEDSHELLANDTUBE, DIRECTEXPANSIONTUBEINTUBE, DIRECTEXPANSIONBRAZEDPLATE, USERDEFINED,
+			DIRECTEXPANSIONSHELLANDTUBE, SHELLANDCOIL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Evaporator Type Enum</b></em>' enumerators.
@@ -253,6 +254,8 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Evaporator Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcEvaporatorTypeEnum get(String literal) {
@@ -269,6 +272,8 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Evaporator Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcEvaporatorTypeEnum getByName(String name) {
@@ -285,6 +290,8 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Evaporator Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcEvaporatorTypeEnum get(int value) {

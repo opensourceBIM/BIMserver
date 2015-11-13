@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTypeObjectImpl#getApplicableOccurrence <em>Applicable Occurrence</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTypeObjectImpl#getHasPropertySets <em>Has Property Sets</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTypeObjectImpl#getObjectTypeOf <em>Object Type Of</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -101,7 +101,8 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertySetDefinition> getHasPropertySets() {
-		return (EList<IfcPropertySetDefinition>) eGet(Ifc2x3tc1Package.Literals.IFC_TYPE_OBJECT__HAS_PROPERTY_SETS, true);
+		return (EList<IfcPropertySetDefinition>) eGet(Ifc2x3tc1Package.Literals.IFC_TYPE_OBJECT__HAS_PROPERTY_SETS,
+				true);
 	}
 
 	/**

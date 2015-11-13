@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOrganization#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOrganization#getName <em>Name</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOrganization#getRelates <em>Relates</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOrganization#getEngages <em>Engages</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcOrganization()
  * @model

@@ -31,13 +31,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralResultGroupImpl#getTheoryType <em>Theory Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralResultGroupImpl#getResultForLoadGroup <em>Result For Load Group</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralResultGroupImpl#getIsLinear <em>Is Linear</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStructuralResultGroupImpl#getResultGroupFor <em>Result Group For</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -85,7 +85,8 @@ public class IfcStructuralResultGroupImpl extends IfcGroupImpl implements IfcStr
 	 * @generated
 	 */
 	public IfcStructuralLoadGroup getResultForLoadGroup() {
-		return (IfcStructuralLoadGroup) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_FOR_LOAD_GROUP, true);
+		return (IfcStructuralLoadGroup) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_FOR_LOAD_GROUP,
+				true);
 	}
 
 	/**
@@ -140,7 +141,8 @@ public class IfcStructuralResultGroupImpl extends IfcGroupImpl implements IfcStr
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralAnalysisModel> getResultGroupFor() {
-		return (EList<IfcStructuralAnalysisModel>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_GROUP_FOR, true);
+		return (EList<IfcStructuralAnalysisModel>) eGet(
+				Ifc4Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_GROUP_FOR, true);
 	}
 
 	/**

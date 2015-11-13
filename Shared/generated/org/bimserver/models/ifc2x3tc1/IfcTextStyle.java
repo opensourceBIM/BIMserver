@@ -23,12 +23,12 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyle#getTextCharacterAppearance <em>Text Character Appearance</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyle#getTextStyle <em>Text Style</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyle#getTextFontStyle <em>Text Font Style</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTextStyle()
  * @model

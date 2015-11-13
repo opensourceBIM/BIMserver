@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcServiceLifeImpl#getServiceLifeType <em>Service Life Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcServiceLifeImpl#getServiceLifeDuration <em>Service Life Duration</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcServiceLifeImpl#getServiceLifeDurationAsString <em>Service Life Duration As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -107,7 +107,8 @@ public class IfcServiceLifeImpl extends IfcControlImpl implements IfcServiceLife
 	 * @generated
 	 */
 	public void setServiceLifeDurationAsString(String newServiceLifeDurationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION_AS_STRING, newServiceLifeDurationAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION_AS_STRING,
+				newServiceLifeDurationAsString);
 	}
 
 } //IfcServiceLifeImpl

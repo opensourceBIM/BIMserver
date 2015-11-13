@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductRepresentationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductRepresentationImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductRepresentationImpl#getRepresentations <em>Representations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -147,7 +147,8 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentation> getRepresentations() {
-		return (EList<IfcRepresentation>) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT_REPRESENTATION__REPRESENTATIONS, true);
+		return (EList<IfcRepresentation>) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT_REPRESENTATION__REPRESENTATIONS,
+				true);
 	}
 
 } //IfcProductRepresentationImpl

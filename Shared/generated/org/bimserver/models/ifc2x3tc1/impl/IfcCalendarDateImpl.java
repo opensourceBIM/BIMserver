@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCalendarDateImpl#getDayComponent <em>Day Component</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCalendarDateImpl#getMonthComponent <em>Month Component</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCalendarDateImpl#getYearComponent <em>Year Component</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

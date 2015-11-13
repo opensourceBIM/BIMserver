@@ -31,12 +31,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableRowImpl#getRowCells <em>Row Cells</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableRowImpl#getIsHeading <em>Is Heading</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableRowImpl#getOfTable <em>Of Table</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

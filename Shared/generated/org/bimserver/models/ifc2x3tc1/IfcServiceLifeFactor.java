@@ -23,13 +23,13 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcServiceLifeFactor#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcServiceLifeFactor#getUpperValue <em>Upper Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcServiceLifeFactor#getMostUsedValue <em>Most Used Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcServiceLifeFactor#getLowerValue <em>Lower Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcServiceLifeFactor()
  * @model

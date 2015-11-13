@@ -113,7 +113,8 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcReinforcingBarSurfaceEnum[] VALUES_ARRAY = new IfcReinforcingBarSurfaceEnum[] { NULL, TEXTURED, PLAIN, };
+	private static final IfcReinforcingBarSurfaceEnum[] VALUES_ARRAY = new IfcReinforcingBarSurfaceEnum[] { NULL,
+			TEXTURED, PLAIN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Reinforcing Bar Surface Enum</b></em>' enumerators.
@@ -121,12 +122,15 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcReinforcingBarSurfaceEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcReinforcingBarSurfaceEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Reinforcing Bar Surface Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcReinforcingBarSurfaceEnum get(String literal) {
@@ -143,6 +147,8 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Reinforcing Bar Surface Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcReinforcingBarSurfaceEnum getByName(String name) {
@@ -159,6 +165,8 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Reinforcing Bar Surface Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcReinforcingBarSurfaceEnum get(int value) {

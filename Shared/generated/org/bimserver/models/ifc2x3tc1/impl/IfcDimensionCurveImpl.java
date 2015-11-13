@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDimensionCurveImpl#getAnnotatedBySymbols <em>Annotated By Symbols</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,8 @@ public class IfcDimensionCurveImpl extends IfcAnnotationCurveOccurrenceImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTerminatorSymbol> getAnnotatedBySymbols() {
-		return (EList<IfcTerminatorSymbol>) eGet(Ifc2x3tc1Package.Literals.IFC_DIMENSION_CURVE__ANNOTATED_BY_SYMBOLS, true);
+		return (EList<IfcTerminatorSymbol>) eGet(Ifc2x3tc1Package.Literals.IFC_DIMENSION_CURVE__ANNOTATED_BY_SYMBOLS,
+				true);
 	}
 
 	/**

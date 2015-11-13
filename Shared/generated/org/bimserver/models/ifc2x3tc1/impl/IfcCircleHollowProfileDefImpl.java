@@ -26,11 +26,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCircleHollowProfileDefImpl#getWallThickness <em>Wall Thickness</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcCircleHollowProfileDefImpl#getWallThicknessAsString <em>Wall Thickness As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -87,7 +87,8 @@ public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl imple
 	 * @generated
 	 */
 	public void setWallThicknessAsString(String newWallThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING, newWallThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING,
+				newWallThicknessAsString);
 	}
 
 } //IfcCircleHollowProfileDefImpl

@@ -29,4 +29,9 @@ public class ByteBufferWrappedVirtualObject extends AbstractByteBufferVirtualObj
 	public ByteBuffer write() throws BimserverDatabaseException {
 		return buffer;
 	}
+
+	@Override
+	public Object eGet(EStructuralFeature feature) {
+		throw new UnsupportedOperationException();
+	}
 }

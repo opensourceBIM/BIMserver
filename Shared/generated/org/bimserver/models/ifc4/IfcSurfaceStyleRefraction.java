@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceStyleRefraction#getRefractionIndex <em>Refraction Index</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceStyleRefraction#getRefractionIndexAsString <em>Refraction Index As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceStyleRefraction#getDispersionFactor <em>Dispersion Factor</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceStyleRefraction#getDispersionFactorAsString <em>Dispersion Factor As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSurfaceStyleRefraction()
  * @model

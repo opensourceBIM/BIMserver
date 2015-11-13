@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcActorImpl#getTheActor <em>The Actor</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcActorImpl#getIsActingUpon <em>Is Acting Upon</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

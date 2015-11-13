@@ -29,15 +29,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcExternalReferenceRelationshipImpl#getRelatingReference <em>Relating Reference</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcExternalReferenceRelationshipImpl#getRelatedResourceObjects <em>Related Resource Objects</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcExternalReferenceRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcExternalReferenceRelationship {
+public class IfcExternalReferenceRelationshipImpl extends IfcResourceLevelRelationshipImpl
+		implements IfcExternalReferenceRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,7 +64,8 @@ public class IfcExternalReferenceRelationshipImpl extends IfcResourceLevelRelati
 	 * @generated
 	 */
 	public IfcExternalReference getRelatingReference() {
-		return (IfcExternalReference) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE_RELATIONSHIP__RELATING_REFERENCE, true);
+		return (IfcExternalReference) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE_RELATIONSHIP__RELATING_REFERENCE,
+				true);
 	}
 
 	/**
@@ -82,7 +84,8 @@ public class IfcExternalReferenceRelationshipImpl extends IfcResourceLevelRelati
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcResourceObjectSelect> getRelatedResourceObjects() {
-		return (EList<IfcResourceObjectSelect>) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
+		return (EList<IfcResourceObjectSelect>) eGet(
+				Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
 	}
 
 } //IfcExternalReferenceRelationshipImpl

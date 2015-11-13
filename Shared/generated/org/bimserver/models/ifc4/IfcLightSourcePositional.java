@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSourcePositional#getPosition <em>Position</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSourcePositional#getRadius <em>Radius</em>}</li>
@@ -34,7 +35,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSourcePositional#getQuadricAttenuation <em>Quadric Attenuation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightSourcePositional#getQuadricAttenuationAsString <em>Quadric Attenuation As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSourcePositional()
  * @model

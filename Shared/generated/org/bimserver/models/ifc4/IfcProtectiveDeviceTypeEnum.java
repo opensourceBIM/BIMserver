@@ -288,8 +288,9 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProtectiveDeviceTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTypeEnum[] { NULL, CIRCUITBREAKER, VARISTOR, NOTDEFINED, FUSEDISCONNECTOR,
-			RESIDUALCURRENTCIRCUITBREAKER, EARTHLEAKAGECIRCUITBREAKER, USERDEFINED, RESIDUALCURRENTSWITCH, EARTHINGSWITCH, };
+	private static final IfcProtectiveDeviceTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTypeEnum[] { NULL,
+			CIRCUITBREAKER, VARISTOR, NOTDEFINED, FUSEDISCONNECTOR, RESIDUALCURRENTCIRCUITBREAKER,
+			EARTHLEAKAGECIRCUITBREAKER, USERDEFINED, RESIDUALCURRENTSWITCH, EARTHINGSWITCH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Protective Device Type Enum</b></em>' enumerators.
@@ -297,12 +298,15 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProtectiveDeviceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProtectiveDeviceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Protective Device Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProtectiveDeviceTypeEnum get(String literal) {
@@ -319,6 +323,8 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Protective Device Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProtectiveDeviceTypeEnum getByName(String name) {
@@ -335,6 +341,8 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Protective Device Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcProtectiveDeviceTypeEnum get(int value) {

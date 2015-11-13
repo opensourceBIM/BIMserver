@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLocalTime#getHourComponent <em>Hour Component</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLocalTime#getMinuteComponent <em>Minute Component</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLocalTime#getZone <em>Zone</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLocalTime#getDaylightSavingOffset <em>Daylight Saving Offset</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcLocalTime()
  * @model

@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFillAreaStyleTiles#getTilingPattern <em>Tiling Pattern</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFillAreaStyleTiles#getTiles <em>Tiles</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFillAreaStyleTiles#getTilingScale <em>Tiling Scale</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFillAreaStyleTiles#getTilingScaleAsString <em>Tiling Scale As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcFillAreaStyleTiles()
  * @model

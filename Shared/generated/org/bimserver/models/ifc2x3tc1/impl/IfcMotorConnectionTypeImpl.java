@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcMotorConnectionTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcMotorConnectionTypeImpl extends IfcEnergyConversionDeviceTypeImp
 	 * @generated
 	 */
 	public IfcMotorConnectionTypeEnum getPredefinedType() {
-		return (IfcMotorConnectionTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_MOTOR_CONNECTION_TYPE__PREDEFINED_TYPE, true);
+		return (IfcMotorConnectionTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_MOTOR_CONNECTION_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

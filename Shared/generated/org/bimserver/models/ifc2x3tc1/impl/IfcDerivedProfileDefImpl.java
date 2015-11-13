@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDerivedProfileDefImpl#getParentProfile <em>Parent Profile</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDerivedProfileDefImpl#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDerivedProfileDefImpl#getLabel <em>Label</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -81,7 +81,8 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 * @generated
 	 */
 	public IfcCartesianTransformationOperator2D getOperator() {
-		return (IfcCartesianTransformationOperator2D) eGet(Ifc2x3tc1Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR, true);
+		return (IfcCartesianTransformationOperator2D) eGet(Ifc2x3tc1Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR,
+				true);
 	}
 
 	/**

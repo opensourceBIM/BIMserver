@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcObjectDefinitionImpl#getHasAssignments <em>Has Assignments</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcObjectDefinitionImpl#getIsDecomposedBy <em>Is Decomposed By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcObjectDefinitionImpl#getDecomposes <em>Decomposes</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcObjectDefinitionImpl#getHasAssociations <em>Has Associations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPhysicalQuantityImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPhysicalQuantityImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPhysicalQuantityImpl#getHasExternalReferences <em>Has External References</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPhysicalQuantityImpl#getPartOfComplex <em>Part Of Complex</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -131,7 +131,8 @@ public class IfcPhysicalQuantityImpl extends IdEObjectImpl implements IfcPhysica
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReferences() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_PHYSICAL_QUANTITY__HAS_EXTERNAL_REFERENCES, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(
+				Ifc4Package.Literals.IFC_PHYSICAL_QUANTITY__HAS_EXTERNAL_REFERENCES, true);
 	}
 
 	/**
@@ -159,7 +160,8 @@ public class IfcPhysicalQuantityImpl extends IdEObjectImpl implements IfcPhysica
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPhysicalComplexQuantity> getPartOfComplex() {
-		return (EList<IfcPhysicalComplexQuantity>) eGet(Ifc4Package.Literals.IFC_PHYSICAL_QUANTITY__PART_OF_COMPLEX, true);
+		return (EList<IfcPhysicalComplexQuantity>) eGet(Ifc4Package.Literals.IFC_PHYSICAL_QUANTITY__PART_OF_COMPLEX,
+				true);
 	}
 
 	/**

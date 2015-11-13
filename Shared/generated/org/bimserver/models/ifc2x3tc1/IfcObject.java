@@ -25,11 +25,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcObject#getObjectType <em>Object Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcObject#getIsDefinedBy <em>Is Defined By</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcObject()
  * @model

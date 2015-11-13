@@ -25,11 +25,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelSpaceBoundary2ndLevel#getCorrespondingBoundary <em>Corresponding Boundary</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelSpaceBoundary2ndLevel#getCorresponds <em>Corresponds</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelSpaceBoundary2ndLevel()
  * @model

@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcElectricConductanceMeasure#getWrappedValue <em>Wrapped Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcElectricConductanceMeasure#getWrappedValueAsString <em>Wrapped Value As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcElectricConductanceMeasure()
  * @model

@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcFillAreaStyleHatching#getHatchLineAppearance <em>Hatch Line Appearance</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcFillAreaStyleHatching#getStartOfNextHatchLine <em>Start Of Next Hatch Line</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcFillAreaStyleHatching#getHatchLineAngle <em>Hatch Line Angle</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcFillAreaStyleHatching#getHatchLineAngleAsString <em>Hatch Line Angle As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFillAreaStyleHatching()
  * @model

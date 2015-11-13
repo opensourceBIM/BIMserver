@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIShapeProfileDefImpl#getOverallWidth <em>Overall Width</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIShapeProfileDefImpl#getOverallWidthAsString <em>Overall Width As String</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIShapeProfileDefImpl#getFlangeSlope <em>Flange Slope</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIShapeProfileDefImpl#getFlangeSlopeAsString <em>Flange Slope As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

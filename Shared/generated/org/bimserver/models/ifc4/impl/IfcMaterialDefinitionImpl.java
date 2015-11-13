@@ -31,12 +31,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialDefinitionImpl#getAssociatedTo <em>Associated To</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialDefinitionImpl#getHasExternalReferences <em>Has External References</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialDefinitionImpl#getHasProperties <em>Has Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -77,7 +77,8 @@ public class IfcMaterialDefinitionImpl extends IdEObjectImpl implements IfcMater
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesMaterial> getAssociatedTo() {
-		return (EList<IfcRelAssociatesMaterial>) eGet(Ifc4Package.Literals.IFC_MATERIAL_DEFINITION__ASSOCIATED_TO, true);
+		return (EList<IfcRelAssociatesMaterial>) eGet(Ifc4Package.Literals.IFC_MATERIAL_DEFINITION__ASSOCIATED_TO,
+				true);
 	}
 
 	/**
@@ -105,7 +106,8 @@ public class IfcMaterialDefinitionImpl extends IdEObjectImpl implements IfcMater
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReferences() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_MATERIAL_DEFINITION__HAS_EXTERNAL_REFERENCES, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(
+				Ifc4Package.Literals.IFC_MATERIAL_DEFINITION__HAS_EXTERNAL_REFERENCES, true);
 	}
 
 	/**

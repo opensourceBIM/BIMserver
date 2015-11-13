@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcConnectionPointGeometryImpl#getPointOnRelatingElement <em>Point On Relating Element</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcConnectionPointGeometryImpl#getPointOnRelatedElement <em>Point On Related Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -61,7 +61,8 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * @generated
 	 */
 	public IfcPointOrVertexPoint getPointOnRelatingElement() {
-		return (IfcPointOrVertexPoint) eGet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT, true);
+		return (IfcPointOrVertexPoint) eGet(
+				Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT, true);
 	}
 
 	/**
@@ -79,7 +80,8 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * @generated
 	 */
 	public IfcPointOrVertexPoint getPointOnRelatedElement() {
-		return (IfcPointOrVertexPoint) eGet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT, true);
+		return (IfcPointOrVertexPoint) eGet(
+				Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT, true);
 	}
 
 	/**

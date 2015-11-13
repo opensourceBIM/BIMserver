@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMechanicalMaterialProperties#getDynamicViscosity <em>Dynamic Viscosity</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMechanicalMaterialProperties#getDynamicViscosityAsString <em>Dynamic Viscosity As String</em>}</li>
@@ -35,7 +36,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMechanicalMaterialProperties#getThermalExpansionCoefficient <em>Thermal Expansion Coefficient</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMechanicalMaterialProperties#getThermalExpansionCoefficientAsString <em>Thermal Expansion Coefficient As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcMechanicalMaterialProperties()
  * @model

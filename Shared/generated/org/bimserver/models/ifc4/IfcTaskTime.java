@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getDurationType <em>Duration Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getScheduleDuration <em>Schedule Duration</em>}</li>
@@ -43,7 +44,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getCompletion <em>Completion</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getCompletionAsString <em>Completion As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTaskTime()
  * @model

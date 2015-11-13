@@ -1464,7 +1464,6 @@ message SUserSettings {
 	optional int32 rid = 15;
 	repeated int64 serializers = 16;
 	repeated int64 services = 17;
-	repeated int64 streamingDeserializers = 18;
 }
 
 message GetUserSettingsResponse {

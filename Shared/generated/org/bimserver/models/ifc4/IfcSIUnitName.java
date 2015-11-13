@@ -813,8 +813,9 @@ public enum IfcSIUnitName implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSIUnitName[] VALUES_ARRAY = new IfcSIUnitName[] { NULL, TESLA, HENRY, METRE, SECOND, AMPERE, JOULE, GRAM, KELVIN, LUMEN, FARAD, STERADIAN, LUX,
-			DEGREE_CELSIUS, SIEVERT, CUBIC_METRE, NEWTON, WATT, CANDELA, RADIAN, PASCAL, VOLT, WEBER, COULOMB, SQUARE_METRE, HERTZ, SIEMENS, BECQUEREL, MOLE, OHM, GRAY, };
+	private static final IfcSIUnitName[] VALUES_ARRAY = new IfcSIUnitName[] { NULL, TESLA, HENRY, METRE, SECOND, AMPERE,
+			JOULE, GRAM, KELVIN, LUMEN, FARAD, STERADIAN, LUX, DEGREE_CELSIUS, SIEVERT, CUBIC_METRE, NEWTON, WATT,
+			CANDELA, RADIAN, PASCAL, VOLT, WEBER, COULOMB, SQUARE_METRE, HERTZ, SIEMENS, BECQUEREL, MOLE, OHM, GRAY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc SI Unit Name</b></em>' enumerators.
@@ -828,6 +829,8 @@ public enum IfcSIUnitName implements Enumerator {
 	 * Returns the '<em><b>Ifc SI Unit Name</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSIUnitName get(String literal) {
@@ -844,6 +847,8 @@ public enum IfcSIUnitName implements Enumerator {
 	 * Returns the '<em><b>Ifc SI Unit Name</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSIUnitName getByName(String name) {
@@ -860,6 +865,8 @@ public enum IfcSIUnitName implements Enumerator {
 	 * Returns the '<em><b>Ifc SI Unit Name</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcSIUnitName get(int value) {

@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLShapeProfileDefImpl#getDepth <em>Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLShapeProfileDefImpl#getDepthAsString <em>Depth As String</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLShapeProfileDefImpl#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLShapeProfileDefImpl#getCentreOfGravityInYAsString <em>Centre Of Gravity In YAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -479,7 +479,8 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setCentreOfGravityInXAsString(String newCentreOfGravityInXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LSHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_XAS_STRING, newCentreOfGravityInXAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LSHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_XAS_STRING,
+				newCentreOfGravityInXAsString);
 	}
 
 	/**
@@ -551,7 +552,8 @@ public class IfcLShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setCentreOfGravityInYAsString(String newCentreOfGravityInYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LSHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING, newCentreOfGravityInYAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LSHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING,
+				newCentreOfGravityInYAsString);
 	}
 
 	/**

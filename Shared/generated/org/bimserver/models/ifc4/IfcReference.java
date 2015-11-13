@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcReference#getTypeIdentifier <em>Type Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcReference#getAttributeIdentifier <em>Attribute Identifier</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcReference#getListPositions <em>List Positions</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcReference#getInnerReference <em>Inner Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcReference()
  * @model

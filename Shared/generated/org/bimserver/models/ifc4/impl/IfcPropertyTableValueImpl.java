@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyTableValueImpl#getDefiningValues <em>Defining Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyTableValueImpl#getDefinedValues <em>Defined Values</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyTableValueImpl#getDefinedUnit <em>Defined Unit</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertyTableValueImpl#getCurveInterpolation <em>Curve Interpolation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -232,7 +232,8 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 * @generated
 	 */
 	public IfcCurveInterpolationEnum getCurveInterpolation() {
-		return (IfcCurveInterpolationEnum) eGet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__CURVE_INTERPOLATION, true);
+		return (IfcCurveInterpolationEnum) eGet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__CURVE_INTERPOLATION,
+				true);
 	}
 
 	/**

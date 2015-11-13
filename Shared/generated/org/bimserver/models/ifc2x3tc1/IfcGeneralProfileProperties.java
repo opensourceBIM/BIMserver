@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGeneralProfileProperties#getPhysicalWeight <em>Physical Weight</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGeneralProfileProperties#getPhysicalWeightAsString <em>Physical Weight As String</em>}</li>
@@ -35,7 +36,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGeneralProfileProperties#getCrossSectionArea <em>Cross Section Area</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGeneralProfileProperties#getCrossSectionAreaAsString <em>Cross Section Area As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcGeneralProfileProperties()
  * @model

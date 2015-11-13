@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIrregularTimeSeriesValueImpl#getTimeStamp <em>Time Stamp</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIrregularTimeSeriesValueImpl#getListValues <em>List Values</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

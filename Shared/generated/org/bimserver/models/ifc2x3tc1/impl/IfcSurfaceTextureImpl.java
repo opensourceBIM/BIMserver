@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSurfaceTextureImpl#getRepeatS <em>Repeat S</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSurfaceTextureImpl#getRepeatT <em>Repeat T</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSurfaceTextureImpl#getTextureType <em>Texture Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcSurfaceTextureImpl#getTextureTransform <em>Texture Transform</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -130,7 +130,8 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 * @generated
 	 */
 	public IfcCartesianTransformationOperator2D getTextureTransform() {
-		return (IfcCartesianTransformationOperator2D) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM, true);
+		return (IfcCartesianTransformationOperator2D) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM, true);
 	}
 
 	/**

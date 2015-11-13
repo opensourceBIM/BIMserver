@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineCurveImpl#getDegree <em>Degree</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineCurveImpl#getControlPointsList <em>Control Points List</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineCurveImpl#isClosedCurve <em>Closed Curve</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineCurveImpl#isSelfIntersect <em>Self Intersect</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

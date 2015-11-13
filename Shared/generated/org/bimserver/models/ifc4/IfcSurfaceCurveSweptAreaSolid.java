@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceCurveSweptAreaSolid#getDirectrix <em>Directrix</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceCurveSweptAreaSolid#getStartParam <em>Start Param</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceCurveSweptAreaSolid#getEndParamAsString <em>End Param As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceCurveSweptAreaSolid#getReferenceSurface <em>Reference Surface</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSurfaceCurveSweptAreaSolid()
  * @model

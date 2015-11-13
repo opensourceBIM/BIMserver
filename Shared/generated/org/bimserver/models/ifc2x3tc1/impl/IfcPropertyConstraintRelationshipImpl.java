@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPropertyConstraintRelationshipImpl#getRelatingConstraint <em>Relating Constraint</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPropertyConstraintRelationshipImpl#getRelatedProperties <em>Related Properties</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPropertyConstraintRelationshipImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcPropertyConstraintRelationshipImpl#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -76,7 +76,8 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public IfcConstraint getRelatingConstraint() {
-		return (IfcConstraint) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT, true);
+		return (IfcConstraint) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT,
+				true);
 	}
 
 	/**
@@ -85,7 +86,8 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public void setRelatingConstraint(IfcConstraint newRelatingConstraint) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT, newRelatingConstraint);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT,
+				newRelatingConstraint);
 	}
 
 	/**
@@ -95,7 +97,8 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getRelatedProperties() {
-		return (EList<IfcProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATED_PROPERTIES, true);
+		return (EList<IfcProperty>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATED_PROPERTIES, true);
 	}
 
 	/**

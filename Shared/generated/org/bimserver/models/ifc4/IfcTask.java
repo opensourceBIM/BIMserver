@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTask#getStatus <em>Status</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTask#getWorkMethod <em>Work Method</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcTask#getTaskTime <em>Task Time</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTask#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTask()
  * @model

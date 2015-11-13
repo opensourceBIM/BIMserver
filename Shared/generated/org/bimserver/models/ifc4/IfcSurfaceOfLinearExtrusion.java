@@ -23,12 +23,12 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceOfLinearExtrusion#getExtrudedDirection <em>Extruded Direction</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceOfLinearExtrusion#getDepth <em>Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceOfLinearExtrusion#getDepthAsString <em>Depth As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSurfaceOfLinearExtrusion()
  * @model

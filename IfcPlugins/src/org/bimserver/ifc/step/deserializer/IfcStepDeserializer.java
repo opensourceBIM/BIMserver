@@ -53,6 +53,7 @@ import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.ExplicitAttribute;
+import org.bimserver.plugins.schema.InverseAttribute;
 import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.SingleWaitingObject;
 import org.bimserver.shared.WaitingList;
@@ -66,6 +67,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EClassImpl;
@@ -355,9 +357,9 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 		}
 		int recordNumber = Integer.parseInt(line.substring(1, equalSignLocation).trim());
 		String name = line.substring(equalSignLocation + 1, indexOfFirstParen).trim();
-		EClass classifier = (EClass) getPackageMetaData().getEClassifierCaseInsensitive(name);
-		if (classifier != null) {
-			IdEObject object = (IdEObject) getPackageMetaData().create(classifier);
+		EClass eClass = (EClass) getPackageMetaData().getEClassifierCaseInsensitive(name);
+		if (eClass != null) {
+			IdEObject object = (IdEObject) getPackageMetaData().create(eClass);
 			try {
 				model.add(recordNumber, object);
 			} catch (IfcModelInterfaceException e) {
@@ -371,60 +373,72 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 				throw new DeserializeException(lineNumber, "Unknown entity " + name);
 			}
 			for (Attribute attribute : entityBN.getAttributesCached(true)) {
-				if (attribute instanceof ExplicitAttribute) {
+				EStructuralFeature structuralFeature = eClass.getEStructuralFeature(attribute.getName());
+				if (structuralFeature == null) {
+					throw new DeserializeException(lineNumber, "Unknown feature " + eClass.getName() + "." + attribute.getName());
+				}
+				if (getPackageMetaData().useForSerialization(eClass, structuralFeature)) {
 					if (!entityBN.isDerived(attribute.getName())) {
-						EStructuralFeature structuralFeature = classifier.getEStructuralFeature(attribute.getName());
-						if (structuralFeature == null) {
-							throw new DeserializeException(lineNumber, "Unknown feature " + classifier.getName() + "." + attribute.getName());
-						}
-						int nextIndex = StringUtils.nextString(realData, lastIndex);
-						String val = null;
-						try {
-							val = realData.substring(lastIndex, nextIndex - 1).trim();
-						} catch (Exception e) {
-							int expected = 0;
-							for (Attribute attribute2 : entityBN.getAttributesCached(true)) {
-								if (attribute2 instanceof ExplicitAttribute) {
-									expected++;
-								}
-							}
-							throw new DeserializeException(lineNumber, classifier.getName() + " expects " + expected + " fields, but less found");
-						}
-						lastIndex = nextIndex;
-						char firstChar = val.charAt(0);
-						if (firstChar == '$') {
-							object.eUnset(structuralFeature);
-							if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-								EStructuralFeature doubleStringFeature = classifier.getEStructuralFeature(attribute.getName() + "AsString");
-								object.eSet(doubleStringFeature, val);
-							}
-						} else if (firstChar == '#') {
-							readReference(val, object, structuralFeature);
-						} else if (firstChar == '.') {
-							readEnum(val, object, structuralFeature);
-						} else if (firstChar == '(') {
-							readList(val, object, structuralFeature);
-						} else if (firstChar == '*') {
-						} else {
-							if (!structuralFeature.isMany()) {
-								object.eSet(structuralFeature, convert(structuralFeature.getEType(), val));
-								if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-									EStructuralFeature doubleStringFeature = classifier.getEStructuralFeature(attribute.getName() + "AsString");
-									object.eSet(doubleStringFeature, val);
+						if (attribute instanceof InverseAttribute) {
+							if (structuralFeature instanceof EReference) {
+								EReference eReference = (EReference)structuralFeature;
+								if (eReference.isMany()) {
+								} else {
+									object.eUnset(structuralFeature);
 								}
 							} else {
-								// It's not a list in the file, but it is in the
-								// schema??
+								throw new DeserializeException("Inverse should be a reference");
+							}
+						} else {
+							int nextIndex = StringUtils.nextString(realData, lastIndex);
+							String val = null;
+							try {
+								val = realData.substring(lastIndex, nextIndex - 1).trim();
+							} catch (Exception e) {
+								int expected = 0;
+								for (Attribute attribute2 : entityBN.getAttributesCached(true)) {
+									if (attribute2 instanceof ExplicitAttribute) {
+										expected++;
+									}
+								}
+								throw new DeserializeException(lineNumber, eClass.getName() + " expects " + expected + " fields, but less found");
+							}
+							lastIndex = nextIndex;
+							char firstChar = val.charAt(0);
+							if (firstChar == '$') {
+								object.eUnset(structuralFeature);
+								if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+									EStructuralFeature doubleStringFeature = eClass.getEStructuralFeature(attribute.getName() + "AsString");
+									object.eUnset(doubleStringFeature);
+								}
+							} else if (firstChar == '#') {
+								readReference(val, object, structuralFeature);
+							} else if (firstChar == '.') {
+								readEnum(val, object, structuralFeature);
+							} else if (firstChar == '(') {
+								readList(val, object, structuralFeature);
+							} else if (firstChar == '*') {
+							} else {
+								if (!structuralFeature.isMany()) {
+									object.eSet(structuralFeature, convert(structuralFeature.getEType(), val));
+									if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+										EStructuralFeature doubleStringFeature = eClass.getEStructuralFeature(attribute.getName() + "AsString");
+										object.eSet(doubleStringFeature, val);
+									}
+								} else {
+									// It's not a list in the file, but it is in the
+									// schema??
+								}
 							}
 						}
-					} else {
-						int nextIndex = StringUtils.nextString(realData, lastIndex);
-						lastIndex = nextIndex;
 					}
+				} else {
+					int nextIndex = StringUtils.nextString(realData, lastIndex);
+					lastIndex = nextIndex;
 				}
 			}
 			if (waitingList.containsKey(recordNumber)) {
-				waitingList.updateNode(recordNumber, classifier, object);
+				waitingList.updateNode(recordNumber, eClass, object);
 			}
 		} else {
 			throw new DeserializeException(lineNumber, name + " is not a known entity");

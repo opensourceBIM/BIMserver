@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDoorPanelPropertiesImpl#getPanelDepth <em>Panel Depth</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDoorPanelPropertiesImpl#getPanelDepthAsString <em>Panel Depth As String</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDoorPanelPropertiesImpl#getPanelPosition <em>Panel Position</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDoorPanelPropertiesImpl#getShapeAspectStyle <em>Shape Aspect Style</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -140,7 +140,8 @@ public class IfcDoorPanelPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * @generated
 	 */
 	public IfcDoorPanelOperationEnum getPanelOperation() {
-		return (IfcDoorPanelOperationEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_OPERATION, true);
+		return (IfcDoorPanelOperationEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_OPERATION,
+				true);
 	}
 
 	/**
@@ -230,7 +231,8 @@ public class IfcDoorPanelPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * @generated
 	 */
 	public IfcDoorPanelPositionEnum getPanelPosition() {
-		return (IfcDoorPanelPositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_POSITION, true);
+		return (IfcDoorPanelPositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_POSITION,
+				true);
 	}
 
 	/**

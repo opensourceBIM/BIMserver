@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelVoidsElement#getRelatingBuildingElement <em>Relating Building Element</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelVoidsElement#getRelatedOpeningElement <em>Related Opening Element</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelVoidsElement()
  * @model

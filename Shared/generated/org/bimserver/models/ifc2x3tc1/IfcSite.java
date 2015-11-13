@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSite#getRefLatitude <em>Ref Latitude</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSite#getRefLongitude <em>Ref Longitude</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSite#getLandTitleNumber <em>Land Title Number</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSite#getSiteAddress <em>Site Address</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcSite()
  * @model

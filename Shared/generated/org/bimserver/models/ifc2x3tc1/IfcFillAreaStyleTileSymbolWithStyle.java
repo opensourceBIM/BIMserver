@@ -23,16 +23,17 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFillAreaStyleTileSymbolWithStyle#getSymbol <em>Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcFillAreaStyleTileSymbolWithStyle()
  * @model
  * @generated
  */
-public interface IfcFillAreaStyleTileSymbolWithStyle extends IfcGeometricRepresentationItem, IfcFillAreaStyleTileShapeSelect {
+public interface IfcFillAreaStyleTileSymbolWithStyle
+		extends IfcGeometricRepresentationItem, IfcFillAreaStyleTileShapeSelect {
 	/**
 	 * Returns the value of the '<em><b>Symbol</b></em>' reference.
 	 * <!-- begin-user-doc -->

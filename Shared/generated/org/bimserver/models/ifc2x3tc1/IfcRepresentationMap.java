@@ -26,12 +26,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRepresentationMap#getMappingOrigin <em>Mapping Origin</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRepresentationMap#getMappedRepresentation <em>Mapped Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRepresentationMap#getMapUsage <em>Map Usage</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRepresentationMap()
  * @model

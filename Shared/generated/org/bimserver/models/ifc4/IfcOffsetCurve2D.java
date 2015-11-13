@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve2D#getBasisCurve <em>Basis Curve</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve2D#getDistance <em>Distance</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve2D#getDistanceAsString <em>Distance As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve2D#isSelfIntersect <em>Self Intersect</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcOffsetCurve2D()
  * @model

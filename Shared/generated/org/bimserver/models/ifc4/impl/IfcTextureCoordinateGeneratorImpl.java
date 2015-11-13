@@ -27,16 +27,17 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTextureCoordinateGeneratorImpl#getMode <em>Mode</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTextureCoordinateGeneratorImpl#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTextureCoordinateGeneratorImpl#getParameterAsString <em>Parameter As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl implements IfcTextureCoordinateGenerator {
+public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl
+		implements IfcTextureCoordinateGenerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

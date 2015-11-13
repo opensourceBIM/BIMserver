@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcFaceBound#getBound <em>Bound</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcFaceBound#getOrientation <em>Orientation</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFaceBound()
  * @model

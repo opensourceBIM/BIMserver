@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcAudioVisualApplianceTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcAudioVisualApplianceTypeImpl extends IfcFlowTerminalTypeImpl imp
 	 * @generated
 	 */
 	public IfcAudioVisualApplianceTypeEnum getPredefinedType() {
-		return (IfcAudioVisualApplianceTypeEnum) eGet(Ifc4Package.Literals.IFC_AUDIO_VISUAL_APPLIANCE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcAudioVisualApplianceTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_AUDIO_VISUAL_APPLIANCE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

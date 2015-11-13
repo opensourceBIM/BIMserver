@@ -121,7 +121,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			
 			CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), -1, project, user, comment.trim());
 			
-			Reusable reusable = new Reusable(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId());
+			Reusable reusable = new Reusable(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId(), result.getRevisions().get(0).getOid()); // TODO check
 			long size = deserializer.read(inputStream, fileName, fileSize, reusable);
 			
 			result.getConcreteRevision().setSize(size);
@@ -185,11 +185,14 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			Set<EClass> eClasses = deserializer.getSummaryMap().keySet();
 			Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
 			int s = 0;
+			int q = 0;
 			for (EClass eClass : eClasses) {
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
+					q += deserializer.getSummaryMap().get(eClass);
 					s++;
 				}
 			}
+			System.out.println("q: " + q);
 			ByteBuffer buffer = ByteBuffer.allocate(10 * s);
 			for (EClass eClass : eClasses) {
 				long oid = startOids.get(eClass);

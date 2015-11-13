@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPort#getContainedIn <em>Contained In</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPort#getConnectedFrom <em>Connected From</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPort#getConnectedTo <em>Connected To</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcPort()
  * @model

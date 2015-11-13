@@ -338,8 +338,9 @@ public enum IfcBSplineSurfaceForm implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBSplineSurfaceForm[] VALUES_ARRAY = new IfcBSplineSurfaceForm[] { NULL, RULED_SURF, SPHERICAL_SURF, TOROIDAL_SURF, PLANE_SURF, SURF_OF_REVOLUTION,
-			GENERALISED_CONE, CYLINDRICAL_SURF, UNSPECIFIED, QUADRIC_SURF, SURF_OF_LINEAR_EXTRUSION, CONICAL_SURF, };
+	private static final IfcBSplineSurfaceForm[] VALUES_ARRAY = new IfcBSplineSurfaceForm[] { NULL, RULED_SURF,
+			SPHERICAL_SURF, TOROIDAL_SURF, PLANE_SURF, SURF_OF_REVOLUTION, GENERALISED_CONE, CYLINDRICAL_SURF,
+			UNSPECIFIED, QUADRIC_SURF, SURF_OF_LINEAR_EXTRUSION, CONICAL_SURF, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc BSpline Surface Form</b></em>' enumerators.
@@ -353,6 +354,8 @@ public enum IfcBSplineSurfaceForm implements Enumerator {
 	 * Returns the '<em><b>Ifc BSpline Surface Form</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBSplineSurfaceForm get(String literal) {
@@ -369,6 +372,8 @@ public enum IfcBSplineSurfaceForm implements Enumerator {
 	 * Returns the '<em><b>Ifc BSpline Surface Form</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBSplineSurfaceForm getByName(String name) {
@@ -385,6 +390,8 @@ public enum IfcBSplineSurfaceForm implements Enumerator {
 	 * Returns the '<em><b>Ifc BSpline Surface Form</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcBSplineSurfaceForm get(int value) {

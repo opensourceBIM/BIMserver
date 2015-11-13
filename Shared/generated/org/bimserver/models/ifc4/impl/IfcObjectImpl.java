@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcObjectImpl#getObjectType <em>Object Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcObjectImpl#getIsDeclaredBy <em>Is Declared By</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcObjectImpl#getIsTypedBy <em>Is Typed By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcObjectImpl#getIsDefinedBy <em>Is Defined By</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

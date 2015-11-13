@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCartesianTransformationOperator#getAxis1 <em>Axis1</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCartesianTransformationOperator#getAxis2 <em>Axis2</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCartesianTransformationOperator#getScaleAsString <em>Scale As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCartesianTransformationOperator#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCartesianTransformationOperator()
  * @model

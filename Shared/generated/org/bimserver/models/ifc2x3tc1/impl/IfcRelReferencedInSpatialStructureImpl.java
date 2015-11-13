@@ -29,15 +29,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRelReferencedInSpatialStructureImpl#getRelatedElements <em>Related Elements</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcRelReferencedInSpatialStructureImpl#getRelatingStructure <em>Relating Structure</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcRelReferencedInSpatialStructureImpl extends IfcRelConnectsImpl implements IfcRelReferencedInSpatialStructure {
+public class IfcRelReferencedInSpatialStructureImpl extends IfcRelConnectsImpl
+		implements IfcRelReferencedInSpatialStructure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,8 @@ public class IfcRelReferencedInSpatialStructureImpl extends IfcRelConnectsImpl i
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProduct> getRelatedElements() {
-		return (EList<IfcProduct>) eGet(Ifc2x3tc1Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATED_ELEMENTS, true);
+		return (EList<IfcProduct>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATED_ELEMENTS, true);
 	}
 
 	/**
@@ -73,7 +75,8 @@ public class IfcRelReferencedInSpatialStructureImpl extends IfcRelConnectsImpl i
 	 * @generated
 	 */
 	public IfcSpatialStructureElement getRelatingStructure() {
-		return (IfcSpatialStructureElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE, true);
+		return (IfcSpatialStructureElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE, true);
 	}
 
 	/**
@@ -82,7 +85,8 @@ public class IfcRelReferencedInSpatialStructureImpl extends IfcRelConnectsImpl i
 	 * @generated
 	 */
 	public void setRelatingStructure(IfcSpatialStructureElement newRelatingStructure) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE, newRelatingStructure);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE__RELATING_STRUCTURE,
+				newRelatingStructure);
 	}
 
 } //IfcRelReferencedInSpatialStructureImpl

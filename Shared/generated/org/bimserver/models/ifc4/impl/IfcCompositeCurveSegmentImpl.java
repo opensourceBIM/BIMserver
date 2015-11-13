@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCompositeCurveSegmentImpl#getTransition <em>Transition</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCompositeCurveSegmentImpl#getSameSense <em>Same Sense</em>}</li>
@@ -38,11 +39,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCompositeCurveSegmentImpl#getUsingCurves <em>Using Curves</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCompositeCurveSegmentImpl#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItemImpl implements IfcCompositeCurveSegment {
+public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcCompositeCurveSegment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

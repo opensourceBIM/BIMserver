@@ -23,13 +23,13 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRefraction#getRefractionIndex <em>Refraction Index</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRefraction#getRefractionIndexAsString <em>Refraction Index As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRefraction#getDispersionFactor <em>Dispersion Factor</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRefraction#getDispersionFactorAsString <em>Dispersion Factor As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcSurfaceStyleRefraction()
  * @model

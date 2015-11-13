@@ -213,7 +213,8 @@ public enum IfcEventTriggerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEventTriggerTypeEnum[] VALUES_ARRAY = new IfcEventTriggerTypeEnum[] { NULL, EVENTRULE, NOTDEFINED, EVENTTIME, EVENTMESSAGE, EVENTCOMPLEX, USERDEFINED, };
+	private static final IfcEventTriggerTypeEnum[] VALUES_ARRAY = new IfcEventTriggerTypeEnum[] { NULL, EVENTRULE,
+			NOTDEFINED, EVENTTIME, EVENTMESSAGE, EVENTCOMPLEX, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Event Trigger Type Enum</b></em>' enumerators.
@@ -221,12 +222,15 @@ public enum IfcEventTriggerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcEventTriggerTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcEventTriggerTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Event Trigger Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcEventTriggerTypeEnum get(String literal) {
@@ -243,6 +247,8 @@ public enum IfcEventTriggerTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Event Trigger Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcEventTriggerTypeEnum getByName(String name) {
@@ -259,6 +265,8 @@ public enum IfcEventTriggerTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Event Trigger Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcEventTriggerTypeEnum get(int value) {

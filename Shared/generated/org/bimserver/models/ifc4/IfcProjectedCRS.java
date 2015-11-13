@@ -23,12 +23,12 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcProjectedCRS#getMapProjection <em>Map Projection</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProjectedCRS#getMapZone <em>Map Zone</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProjectedCRS#getMapUnit <em>Map Unit</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProjectedCRS()
  * @model

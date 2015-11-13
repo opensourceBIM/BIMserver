@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertySetDefinitionImpl#getDefinesType <em>Defines Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertySetDefinitionImpl#getIsDefinedBy <em>Is Defined By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPropertySetDefinitionImpl#getDefinesOccurrence <em>Defines Occurrence</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -94,7 +94,8 @@ public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByTemplate> getIsDefinedBy() {
-		return (EList<IfcRelDefinesByTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__IS_DEFINED_BY, true);
+		return (EList<IfcRelDefinesByTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__IS_DEFINED_BY,
+				true);
 	}
 
 	/**
@@ -122,7 +123,8 @@ public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByProperties> getDefinesOccurrence() {
-		return (EList<IfcRelDefinesByProperties>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_OCCURRENCE, true);
+		return (EList<IfcRelDefinesByProperties>) eGet(
+				Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_OCCURRENCE, true);
 	}
 
 	/**

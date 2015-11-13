@@ -23,12 +23,12 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcHalfSpaceSolid#getBaseSurface <em>Base Surface</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcHalfSpaceSolid#getAgreementFlag <em>Agreement Flag</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcHalfSpaceSolid#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcHalfSpaceSolid()
  * @model

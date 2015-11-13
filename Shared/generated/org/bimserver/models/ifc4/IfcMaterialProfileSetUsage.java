@@ -23,13 +23,13 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialProfileSetUsage#getForProfileSet <em>For Profile Set</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialProfileSetUsage#getCardinalPoint <em>Cardinal Point</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialProfileSetUsage#getReferenceExtent <em>Reference Extent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialProfileSetUsage#getReferenceExtentAsString <em>Reference Extent As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialProfileSetUsage()
  * @model

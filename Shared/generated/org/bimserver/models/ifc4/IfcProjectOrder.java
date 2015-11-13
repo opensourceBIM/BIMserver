@@ -23,12 +23,12 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcProjectOrder#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProjectOrder#getStatus <em>Status</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProjectOrder#getLongDescription <em>Long Description</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProjectOrder()
  * @model

@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCartesianPoint#getCoordinates <em>Coordinates</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCartesianPoint#getCoordinatesAsString <em>Coordinates As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCartesianPoint#getDim <em>Dim</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianPoint()
  * @model

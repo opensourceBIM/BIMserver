@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcElement#getTag <em>Tag</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcElement#getHasStructuralMember <em>Has Structural Member</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcElement#getConnectedFrom <em>Connected From</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcElement#getContainedInStructure <em>Contained In Structure</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcElement()
  * @model

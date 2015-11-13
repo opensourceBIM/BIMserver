@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPhysicalComplexQuantity#getHasQuantities <em>Has Quantities</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPhysicalComplexQuantity#getDiscrimination <em>Discrimination</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPhysicalComplexQuantity#getQuality <em>Quality</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPhysicalComplexQuantity#getUsage <em>Usage</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcPhysicalComplexQuantity()
  * @model

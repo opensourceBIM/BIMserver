@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLocalPlacementImpl#getPlacementRelTo <em>Placement Rel To</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcLocalPlacementImpl#getRelativePlacement <em>Relative Placement</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

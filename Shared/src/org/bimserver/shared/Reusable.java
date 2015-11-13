@@ -6,14 +6,16 @@ import org.bimserver.plugins.deserializers.DatabaseInterface;
 public class Reusable {
 	private int pid;
 	private int rid;
+	private long roid;
 	private PackageMetaData packageMetaData;
 	private DatabaseInterface databaseInterface;
 	
-	public Reusable(DatabaseInterface databaseInterface, PackageMetaData packageMetaData, int pid, int rid) {
+	public Reusable(DatabaseInterface databaseInterface, PackageMetaData packageMetaData, int pid, int rid, long roid) {
 		this.databaseInterface = databaseInterface;
 		this.packageMetaData = packageMetaData;
 		this.pid = pid;
 		this.rid = rid;
+		this.roid = roid;
 	}
 	
 	public PackageMetaData getPackageMetaData() {
@@ -22,6 +24,10 @@ public class Reusable {
 	
 	public int getPid() {
 		return pid;
+	}
+	
+	public long getRoid() {
+		return roid;
 	}
 	
 	public int getRid() {

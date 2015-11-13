@@ -26,12 +26,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcVirtualGridIntersection#getIntersectingAxes <em>Intersecting Axes</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcVirtualGridIntersection#getOffsetDistances <em>Offset Distances</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcVirtualGridIntersection#getOffsetDistancesAsString <em>Offset Distances As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcVirtualGridIntersection()
  * @model

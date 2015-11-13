@@ -25,13 +25,13 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCurveStyleFontPattern#getVisibleSegmentLength <em>Visible Segment Length</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCurveStyleFontPattern#getVisibleSegmentLengthAsString <em>Visible Segment Length As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCurveStyleFontPattern#getInvisibleSegmentLength <em>Invisible Segment Length</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCurveStyleFontPattern#getInvisibleSegmentLengthAsString <em>Invisible Segment Length As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCurveStyleFontPattern()
  * @model

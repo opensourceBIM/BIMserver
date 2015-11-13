@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSystemFurnitureElementImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcSystemFurnitureElementImpl extends IfcFurnishingElementImpl impl
 	 * @generated
 	 */
 	public IfcSystemFurnitureElementTypeEnum getPredefinedType() {
-		return (IfcSystemFurnitureElementTypeEnum) eGet(Ifc4Package.Literals.IFC_SYSTEM_FURNITURE_ELEMENT__PREDEFINED_TYPE, true);
+		return (IfcSystemFurnitureElementTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_SYSTEM_FURNITURE_ELEMENT__PREDEFINED_TYPE, true);
 	}
 
 	/**

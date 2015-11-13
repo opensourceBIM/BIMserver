@@ -30,15 +30,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcMaterialClassificationRelationshipImpl#getMaterialClassifications <em>Material Classifications</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcMaterialClassificationRelationshipImpl#getClassifiedMaterial <em>Classified Material</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcMaterialClassificationRelationshipImpl extends IdEObjectImpl implements IfcMaterialClassificationRelationship {
+public class IfcMaterialClassificationRelationshipImpl extends IdEObjectImpl
+		implements IfcMaterialClassificationRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,7 +76,8 @@ public class IfcMaterialClassificationRelationshipImpl extends IdEObjectImpl imp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationNotationSelect> getMaterialClassifications() {
-		return (EList<IfcClassificationNotationSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__MATERIAL_CLASSIFICATIONS, true);
+		return (EList<IfcClassificationNotationSelect>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__MATERIAL_CLASSIFICATIONS, true);
 	}
 
 	/**
@@ -84,7 +86,8 @@ public class IfcMaterialClassificationRelationshipImpl extends IdEObjectImpl imp
 	 * @generated
 	 */
 	public IfcMaterial getClassifiedMaterial() {
-		return (IfcMaterial) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_MATERIAL, true);
+		return (IfcMaterial) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_MATERIAL, true);
 	}
 
 	/**
@@ -93,7 +96,8 @@ public class IfcMaterialClassificationRelationshipImpl extends IdEObjectImpl imp
 	 * @generated
 	 */
 	public void setClassifiedMaterial(IfcMaterial newClassifiedMaterial) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_MATERIAL, newClassifiedMaterial);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_MATERIAL,
+				newClassifiedMaterial);
 	}
 
 } //IfcMaterialClassificationRelationshipImpl

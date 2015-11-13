@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcStructuralLinearActionImpl#getProjectedOrTrue <em>Projected Or True</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcStructuralLinearActionImpl extends IfcStructuralActionImpl imple
 	 * @generated
 	 */
 	public IfcProjectedOrTrueLengthEnum getProjectedOrTrue() {
-		return (IfcProjectedOrTrueLengthEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION__PROJECTED_OR_TRUE, true);
+		return (IfcProjectedOrTrueLengthEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LINEAR_ACTION__PROJECTED_OR_TRUE, true);
 	}
 
 	/**

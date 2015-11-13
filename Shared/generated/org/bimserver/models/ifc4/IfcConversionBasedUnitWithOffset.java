@@ -23,11 +23,11 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcConversionBasedUnitWithOffset#getConversionOffset <em>Conversion Offset</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcConversionBasedUnitWithOffset#getConversionOffsetAsString <em>Conversion Offset As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcConversionBasedUnitWithOffset()
  * @model

@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelInterferesElementsImpl#getRelatingElement <em>Relating Element</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelInterferesElementsImpl#getRelatedElement <em>Related Element</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelInterferesElementsImpl#getInterferenceType <em>Interference Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelInterferesElementsImpl#isImpliedOrder <em>Implied Order</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -101,7 +101,8 @@ public class IfcRelInterferesElementsImpl extends IfcRelConnectsImpl implements 
 	 * @generated
 	 */
 	public IfcConnectionGeometry getInterferenceGeometry() {
-		return (IfcConnectionGeometry) eGet(Ifc4Package.Literals.IFC_REL_INTERFERES_ELEMENTS__INTERFERENCE_GEOMETRY, true);
+		return (IfcConnectionGeometry) eGet(Ifc4Package.Literals.IFC_REL_INTERFERES_ELEMENTS__INTERFERENCE_GEOMETRY,
+				true);
 	}
 
 	/**

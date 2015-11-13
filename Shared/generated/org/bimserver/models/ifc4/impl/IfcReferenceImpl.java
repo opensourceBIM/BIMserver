@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcReferenceImpl#getTypeIdentifier <em>Type Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcReferenceImpl#getAttributeIdentifier <em>Attribute Identifier</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcReferenceImpl#getListPositions <em>List Positions</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcReferenceImpl#getInnerReference <em>Inner Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

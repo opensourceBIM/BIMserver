@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDraughtingCalloutRelationshipImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDraughtingCalloutRelationshipImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDraughtingCalloutRelationshipImpl#getRelatingDraughtingCallout <em>Relating Draughting Callout</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcDraughtingCalloutRelationshipImpl#getRelatedDraughtingCallout <em>Related Draughting Callout</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -146,7 +146,8 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * @generated
 	 */
 	public IfcDraughtingCallout getRelatingDraughtingCallout() {
-		return (IfcDraughtingCallout) eGet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATING_DRAUGHTING_CALLOUT, true);
+		return (IfcDraughtingCallout) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATING_DRAUGHTING_CALLOUT, true);
 	}
 
 	/**
@@ -155,7 +156,8 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * @generated
 	 */
 	public void setRelatingDraughtingCallout(IfcDraughtingCallout newRelatingDraughtingCallout) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATING_DRAUGHTING_CALLOUT, newRelatingDraughtingCallout);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATING_DRAUGHTING_CALLOUT,
+				newRelatingDraughtingCallout);
 	}
 
 	/**
@@ -164,7 +166,8 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * @generated
 	 */
 	public IfcDraughtingCallout getRelatedDraughtingCallout() {
-		return (IfcDraughtingCallout) eGet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATED_DRAUGHTING_CALLOUT, true);
+		return (IfcDraughtingCallout) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATED_DRAUGHTING_CALLOUT, true);
 	}
 
 	/**
@@ -173,7 +176,8 @@ public class IfcDraughtingCalloutRelationshipImpl extends IdEObjectImpl implemen
 	 * @generated
 	 */
 	public void setRelatedDraughtingCallout(IfcDraughtingCallout newRelatedDraughtingCallout) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATED_DRAUGHTING_CALLOUT, newRelatedDraughtingCallout);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP__RELATED_DRAUGHTING_CALLOUT,
+				newRelatedDraughtingCallout);
 	}
 
 } //IfcDraughtingCalloutRelationshipImpl

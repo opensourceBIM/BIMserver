@@ -60,6 +60,9 @@ public class PackageMetaData implements ObjectFactory {
 	private final Set<PackageMetaData> dependencies = new HashSet<>();
 	private SchemaDefinition schemaDefinition;
 	private final Map<EClass, Set<EStructuralFeature>> useForSerialization = new HashMap<>();
+	private final Map<EClass, Set<EStructuralFeature>> useForDatabaseStorage = new HashMap<>();
+	private final Map<EClass, OppositeInfo> oppositeInfos = new HashMap<>();
+	private final Map<EClass, Integer> unsettedLengths = new HashMap<EClass, Integer>();
 
 	public PackageMetaData(MetaDataManager metaDataManager, EPackage ePackage, Schema schema) {
 		this.ePackage = ePackage;
@@ -92,14 +95,60 @@ public class PackageMetaData implements ObjectFactory {
 		initUpperCases();
 		initEClassClassMap();
 		if (ePackage == Ifc2x3tc1Package.eINSTANCE || ePackage == Ifc4Package.eINSTANCE) {
+			initOppositeInfo();
 			try {
 				schemaDefinition = metaDataManager.getPluginManager().requireSchemaDefinition(ePackage.getName().toLowerCase());
 			} catch (PluginException e) {
 				LOGGER.error("", e);
 			}
 		}
+		initUnsettedLengths();
 	}
 	
+	private void initUnsettedLengths() {
+		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				calculateUnsettedLength(eClass);
+			}
+		}
+	}
+
+	private int calculateUnsettedLength(EClass eClass) {
+		int fieldCounter = 0;
+		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
+			if (this.useForDatabaseStorage(eClass, feature)) {
+				fieldCounter++;
+			}
+		}
+		int unsettedLength = (int) Math.ceil(fieldCounter / 8.0);
+		unsettedLengths.put(eClass, unsettedLength);
+		return unsettedLength;
+	}
+
+	private void initOppositeInfo() {
+		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				boolean hasOpposites = false;
+				boolean hasManyOpposites = false;
+				for (EReference eReference : eClass.getEAllReferences()) {
+					if (eReference.getEOpposite() != null) {
+						hasOpposites = true;
+						if (eReference.isMany()) {
+							hasManyOpposites = true;
+						}
+					}
+				}
+				oppositeInfos.put(eClass, new OppositeInfo(hasOpposites, hasManyOpposites));
+			}
+		}
+	}
+	
+	public OppositeInfo getOppositeInfo(EClass eClass) {
+		return oppositeInfos.get(eClass);
+	}
+
 	public EClass getEClass(Class<?> clazz) {
 		return eClassClassMap.inverse().get(clazz);
 	}
@@ -160,6 +209,17 @@ public class PackageMetaData implements ObjectFactory {
 		Set<EStructuralFeature> set = useForSerialization.get(eClass);
 		if (set == null) {
 			set = buildUseForSerializationSet(eClass);
+		}
+		return set.contains(eStructuralFeature);
+	}
+
+	public boolean useForDatabaseStorage(EClass eClass, EStructuralFeature eStructuralFeature) {
+		if (this.getSchemaDefinition() == null) {
+			return true;
+		}
+		Set<EStructuralFeature> set = useForDatabaseStorage.get(eClass);
+		if (set == null) {
+			set = buildUseForDatabaseStorage(eClass);
 		}
 		return set.contains(eStructuralFeature);
 	}
@@ -320,5 +380,53 @@ public class PackageMetaData implements ObjectFactory {
 			}
 		}
 		return null;
+	}
+
+	private synchronized Set<EStructuralFeature> buildUseForDatabaseStorage(EClass eClass) {
+		if (this.getSchemaDefinition() != null) {
+			if (!useForDatabaseStorage.containsKey(eClass)) {
+				HashSet<EStructuralFeature> set = new HashSet<>();
+				for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+					EntityDefinition entityBN = this.getSchemaDefinition().getEntityBN(eClass.getName());
+					if (entityBN == null) {
+						set.add(eStructuralFeature);
+					} else {
+						if (!entityBN.isDerived(eStructuralFeature.getName())) {
+							if (eStructuralFeature.getEAnnotation("hidden") != null) {
+								if (eStructuralFeature.getEAnnotation("asstring") == null) {
+								} else {
+									if (entityBN.isDerived(eStructuralFeature.getName().substring(0, eStructuralFeature.getName().length() - 8))) {
+									} else {
+										set.add(eStructuralFeature);
+									}
+								}
+							}
+							Attribute attribute = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
+							if (attribute == null) {
+								// geometry, *AsString
+								set.add(eStructuralFeature);
+							} else {
+								if (attribute instanceof ExplicitAttribute || attribute instanceof InverseAttribute) {
+									if (!entityBN.isDerived(attribute.getName())) {
+										set.add(eStructuralFeature);
+									}
+								}
+							}
+						}
+					}
+				}
+				useForDatabaseStorage.put(eClass, set);
+				return set;
+			}
+		}
+		return null;
+	}
+
+	public int getUnsettedLength(EClass eClass) {
+		Integer integer = unsettedLengths.get(eClass);
+		if (integer == null) {
+			return calculateUnsettedLength(eClass);
+		}
+		return integer;
 	}
 }

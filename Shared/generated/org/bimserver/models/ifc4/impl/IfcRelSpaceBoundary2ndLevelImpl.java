@@ -27,15 +27,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelSpaceBoundary2ndLevelImpl#getCorrespondingBoundary <em>Corresponding Boundary</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRelSpaceBoundary2ndLevelImpl#getCorresponds <em>Corresponds</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcRelSpaceBoundary2ndLevelImpl extends IfcRelSpaceBoundary1stLevelImpl implements IfcRelSpaceBoundary2ndLevel {
+public class IfcRelSpaceBoundary2ndLevelImpl extends IfcRelSpaceBoundary1stLevelImpl
+		implements IfcRelSpaceBoundary2ndLevel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,7 +62,8 @@ public class IfcRelSpaceBoundary2ndLevelImpl extends IfcRelSpaceBoundary1stLevel
 	 * @generated
 	 */
 	public IfcRelSpaceBoundary2ndLevel getCorrespondingBoundary() {
-		return (IfcRelSpaceBoundary2ndLevel) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDING_BOUNDARY, true);
+		return (IfcRelSpaceBoundary2ndLevel) eGet(
+				Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDING_BOUNDARY, true);
 	}
 
 	/**
@@ -98,7 +100,8 @@ public class IfcRelSpaceBoundary2ndLevelImpl extends IfcRelSpaceBoundary1stLevel
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelSpaceBoundary2ndLevel> getCorresponds() {
-		return (EList<IfcRelSpaceBoundary2ndLevel>) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDS, true);
+		return (EList<IfcRelSpaceBoundary2ndLevel>) eGet(
+				Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDS, true);
 	}
 
 	/**

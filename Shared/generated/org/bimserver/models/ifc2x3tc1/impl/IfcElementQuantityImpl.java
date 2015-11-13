@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcElementQuantityImpl#getMethodOfMeasurement <em>Method Of Measurement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcElementQuantityImpl#getQuantities <em>Quantities</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

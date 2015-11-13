@@ -23,11 +23,11 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadSingleDisplacementDistortion#getDistortion <em>Distortion</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadSingleDisplacementDistortion#getDistortionAsString <em>Distortion As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcStructuralLoadSingleDisplacementDistortion()
  * @model

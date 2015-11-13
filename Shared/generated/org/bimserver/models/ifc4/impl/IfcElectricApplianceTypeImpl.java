@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcElectricApplianceTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,7 +60,8 @@ public class IfcElectricApplianceTypeImpl extends IfcFlowTerminalTypeImpl implem
 	 * @generated
 	 */
 	public IfcElectricApplianceTypeEnum getPredefinedType() {
-		return (IfcElectricApplianceTypeEnum) eGet(Ifc4Package.Literals.IFC_ELECTRIC_APPLIANCE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcElectricApplianceTypeEnum) eGet(Ifc4Package.Literals.IFC_ELECTRIC_APPLIANCE_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

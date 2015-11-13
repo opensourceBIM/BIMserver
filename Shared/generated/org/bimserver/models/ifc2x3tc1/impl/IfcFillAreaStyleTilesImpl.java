@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcFillAreaStyleTilesImpl#getTilingPattern <em>Tiling Pattern</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcFillAreaStyleTilesImpl#getTiles <em>Tiles</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcFillAreaStyleTilesImpl#getTilingScale <em>Tiling Scale</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcFillAreaStyleTilesImpl#getTilingScaleAsString <em>Tiling Scale As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -65,7 +65,8 @@ public class IfcFillAreaStyleTilesImpl extends IfcGeometricRepresentationItemImp
 	 * @generated
 	 */
 	public IfcOneDirectionRepeatFactor getTilingPattern() {
-		return (IfcOneDirectionRepeatFactor) eGet(Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE_TILES__TILING_PATTERN, true);
+		return (IfcOneDirectionRepeatFactor) eGet(Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE_TILES__TILING_PATTERN,
+				true);
 	}
 
 	/**
@@ -84,7 +85,8 @@ public class IfcFillAreaStyleTilesImpl extends IfcGeometricRepresentationItemImp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcFillAreaStyleTileShapeSelect> getTiles() {
-		return (EList<IfcFillAreaStyleTileShapeSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE_TILES__TILES, true);
+		return (EList<IfcFillAreaStyleTileShapeSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE_TILES__TILES,
+				true);
 	}
 
 	/**

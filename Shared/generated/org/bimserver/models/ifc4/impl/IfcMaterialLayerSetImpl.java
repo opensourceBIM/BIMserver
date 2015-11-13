@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerSetImpl#getMaterialLayers <em>Material Layers</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerSetImpl#getLayerSetName <em>Layer Set Name</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerSetImpl#getTotalThickness <em>Total Thickness</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerSetImpl#getTotalThicknessAsString <em>Total Thickness As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

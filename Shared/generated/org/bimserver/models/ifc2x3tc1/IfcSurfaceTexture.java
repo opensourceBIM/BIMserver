@@ -25,13 +25,13 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSurfaceTexture#getRepeatS <em>Repeat S</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSurfaceTexture#getRepeatT <em>Repeat T</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSurfaceTexture#getTextureType <em>Texture Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSurfaceTexture#getTextureTransform <em>Texture Transform</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcSurfaceTexture()
  * @model

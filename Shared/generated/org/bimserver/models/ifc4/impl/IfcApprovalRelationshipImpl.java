@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcApprovalRelationshipImpl#getRelatingApproval <em>Relating Approval</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcApprovalRelationshipImpl#getRelatedApprovals <em>Related Approvals</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

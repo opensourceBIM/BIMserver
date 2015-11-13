@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConnectionPointEccentricityImpl#getEccentricityInX <em>Eccentricity In X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConnectionPointEccentricityImpl#getEccentricityInXAsString <em>Eccentricity In XAs String</em>}</li>
@@ -34,11 +35,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConnectionPointEccentricityImpl#getEccentricityInZ <em>Eccentricity In Z</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConnectionPointEccentricityImpl#getEccentricityInZAsString <em>Eccentricity In ZAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeometryImpl implements IfcConnectionPointEccentricity {
+public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeometryImpl
+		implements IfcConnectionPointEccentricity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +101,8 @@ public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeomet
 	 * @generated
 	 */
 	public String getEccentricityInXAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_XAS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_XAS_STRING,
+				true);
 	}
 
 	/**
@@ -109,7 +111,8 @@ public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeomet
 	 * @generated
 	 */
 	public void setEccentricityInXAsString(String newEccentricityInXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_XAS_STRING, newEccentricityInXAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_XAS_STRING,
+				newEccentricityInXAsString);
 	}
 
 	/**
@@ -172,7 +175,8 @@ public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeomet
 	 * @generated
 	 */
 	public String getEccentricityInYAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_YAS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_YAS_STRING,
+				true);
 	}
 
 	/**
@@ -181,7 +185,8 @@ public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeomet
 	 * @generated
 	 */
 	public void setEccentricityInYAsString(String newEccentricityInYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_YAS_STRING, newEccentricityInYAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_YAS_STRING,
+				newEccentricityInYAsString);
 	}
 
 	/**
@@ -244,7 +249,8 @@ public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeomet
 	 * @generated
 	 */
 	public String getEccentricityInZAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_ZAS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_ZAS_STRING,
+				true);
 	}
 
 	/**
@@ -253,7 +259,8 @@ public class IfcConnectionPointEccentricityImpl extends IfcConnectionPointGeomet
 	 * @generated
 	 */
 	public void setEccentricityInZAsString(String newEccentricityInZAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_ZAS_STRING, newEccentricityInZAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONNECTION_POINT_ECCENTRICITY__ECCENTRICITY_IN_ZAS_STRING,
+				newEccentricityInZAsString);
 	}
 
 	/**

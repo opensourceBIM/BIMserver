@@ -28,16 +28,17 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstructionMaterialResourceImpl#getSuppliers <em>Suppliers</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstructionMaterialResourceImpl#getUsageRatio <em>Usage Ratio</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcConstructionMaterialResourceImpl#getUsageRatioAsString <em>Usage Ratio As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcConstructionMaterialResourceImpl extends IfcConstructionResourceImpl implements IfcConstructionMaterialResource {
+public class IfcConstructionMaterialResourceImpl extends IfcConstructionResourceImpl
+		implements IfcConstructionMaterialResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,8 @@ public class IfcConstructionMaterialResourceImpl extends IfcConstructionResource
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcActorSelect> getSuppliers() {
-		return (EList<IfcActorSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__SUPPLIERS, true);
+		return (EList<IfcActorSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__SUPPLIERS,
+				true);
 	}
 
 	/**
@@ -136,7 +138,8 @@ public class IfcConstructionMaterialResourceImpl extends IfcConstructionResource
 	 * @generated
 	 */
 	public void setUsageRatioAsString(String newUsageRatioAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO_AS_STRING, newUsageRatioAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO_AS_STRING,
+				newUsageRatioAsString);
 	}
 
 	/**

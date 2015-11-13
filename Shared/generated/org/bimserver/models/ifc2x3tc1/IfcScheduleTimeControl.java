@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getActualStart <em>Actual Start</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getEarlyStart <em>Early Start</em>}</li>
@@ -52,7 +53,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getCompletionAsString <em>Completion As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getScheduleTimeControlAssigned <em>Schedule Time Control Assigned</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcScheduleTimeControl()
  * @model

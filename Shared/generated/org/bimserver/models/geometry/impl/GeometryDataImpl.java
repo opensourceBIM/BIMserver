@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getVertices <em>Vertices</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMaterials <em>Materials</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMaterialIndices <em>Material Indices</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

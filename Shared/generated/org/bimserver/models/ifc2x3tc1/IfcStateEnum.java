@@ -188,7 +188,8 @@ public enum IfcStateEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStateEnum[] VALUES_ARRAY = new IfcStateEnum[] { NULL, READONLYLOCKED, READWRITELOCKED, READONLY, READWRITE, LOCKED, };
+	private static final IfcStateEnum[] VALUES_ARRAY = new IfcStateEnum[] { NULL, READONLYLOCKED, READWRITELOCKED,
+			READONLY, READWRITE, LOCKED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc State Enum</b></em>' enumerators.
@@ -202,6 +203,8 @@ public enum IfcStateEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc State Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStateEnum get(String literal) {
@@ -218,6 +221,8 @@ public enum IfcStateEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc State Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStateEnum getByName(String name) {
@@ -234,6 +239,8 @@ public enum IfcStateEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc State Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcStateEnum get(int value) {

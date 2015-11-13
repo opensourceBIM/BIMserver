@@ -28,6 +28,7 @@ package org.bimserver.models.store;
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getUserSettings <em>User Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getRenderEngine <em>Render Engine</em>}</li>
+ *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#isStreaming <em>Streaming</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getSerializerPluginConfiguration()
@@ -118,5 +119,31 @@ public interface SerializerPluginConfiguration extends PluginConfiguration {
 	 * @generated
 	 */
 	void setRenderEngine(RenderEnginePluginConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Streaming</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Streaming</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Streaming</em>' attribute.
+	 * @see #setStreaming(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getSerializerPluginConfiguration_Streaming()
+	 * @model
+	 * @generated
+	 */
+	boolean isStreaming();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.SerializerPluginConfiguration#isStreaming <em>Streaming</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Streaming</em>' attribute.
+	 * @see #isStreaming()
+	 * @generated
+	 */
+	void setStreaming(boolean value);
 
 } // SerializerPluginConfiguration

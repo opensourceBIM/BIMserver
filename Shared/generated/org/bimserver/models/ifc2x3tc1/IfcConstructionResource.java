@@ -23,13 +23,13 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcConstructionResource#getResourceIdentifier <em>Resource Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcConstructionResource#getResourceGroup <em>Resource Group</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcConstructionResource#getResourceConsumption <em>Resource Consumption</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcConstructionResource#getBaseQuantity <em>Base Quantity</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcConstructionResource()
  * @model

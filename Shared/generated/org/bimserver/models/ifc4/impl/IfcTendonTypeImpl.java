@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTendonTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTendonTypeImpl#getNominalDiameter <em>Nominal Diameter</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTendonTypeImpl#getSheethDiameter <em>Sheeth Diameter</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTendonTypeImpl#getSheethDiameterAsString <em>Sheeth Diameter As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

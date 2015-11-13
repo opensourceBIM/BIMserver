@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleFontModel#getFontFamily <em>Font Family</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleFontModel#getFontStyle <em>Font Style</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleFontModel#getFontWeight <em>Font Weight</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleFontModel#getFontSize <em>Font Size</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTextStyleFontModel()
  * @model

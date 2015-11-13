@@ -26,11 +26,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcQuantityAreaImpl#getAreaValue <em>Area Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcQuantityAreaImpl#getAreaValueAsString <em>Area Value As String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

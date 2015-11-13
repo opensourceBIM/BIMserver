@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceTextureImpl#getRepeatS <em>Repeat S</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceTextureImpl#getRepeatT <em>Repeat T</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceTextureImpl#getIsMappedBy <em>Is Mapped By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceTextureImpl#getUsedInStyles <em>Used In Styles</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -142,7 +142,8 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * @generated
 	 */
 	public IfcCartesianTransformationOperator2D getTextureTransform() {
-		return (IfcCartesianTransformationOperator2D) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM, true);
+		return (IfcCartesianTransformationOperator2D) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM,
+				true);
 	}
 
 	/**
@@ -235,7 +236,8 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSurfaceStyleWithTextures> getUsedInStyles() {
-		return (EList<IfcSurfaceStyleWithTextures>) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__USED_IN_STYLES, true);
+		return (EList<IfcSurfaceStyleWithTextures>) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__USED_IN_STYLES,
+				true);
 	}
 
 	/**

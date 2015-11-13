@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTextStyleTextModel#getTextIndent <em>Text Indent</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTextStyleTextModel#getTextAlign <em>Text Align</em>}</li>
@@ -32,7 +33,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcTextStyleTextModel#getTextTransform <em>Text Transform</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTextStyleTextModel#getLineHeight <em>Line Height</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTextStyleTextModel()
  * @model

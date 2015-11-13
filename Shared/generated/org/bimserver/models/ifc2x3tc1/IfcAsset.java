@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcAsset#getAssetID <em>Asset ID</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcAsset#getOriginalValue <em>Original Value</em>}</li>
@@ -34,7 +35,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcAsset#getIncorporationDate <em>Incorporation Date</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcAsset#getDepreciatedValue <em>Depreciated Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcAsset()
  * @model

@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWindowTypeImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWindowTypeImpl#getPartitioningType <em>Partitioning Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWindowTypeImpl#getParameterTakesPrecedence <em>Parameter Takes Precedence</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWindowTypeImpl#getUserDefinedPartitioningType <em>User Defined Partitioning Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

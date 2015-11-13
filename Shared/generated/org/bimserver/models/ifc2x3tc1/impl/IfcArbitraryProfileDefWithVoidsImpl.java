@@ -28,14 +28,15 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcArbitraryProfileDefWithVoidsImpl#getInnerCurves <em>Inner Curves</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IfcArbitraryProfileDefWithVoidsImpl extends IfcArbitraryClosedProfileDefImpl implements IfcArbitraryProfileDefWithVoids {
+public class IfcArbitraryProfileDefWithVoidsImpl extends IfcArbitraryClosedProfileDefImpl
+		implements IfcArbitraryProfileDefWithVoids {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +63,8 @@ public class IfcArbitraryProfileDefWithVoidsImpl extends IfcArbitraryClosedProfi
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCurve> getInnerCurves() {
-		return (EList<IfcCurve>) eGet(Ifc2x3tc1Package.Literals.IFC_ARBITRARY_PROFILE_DEF_WITH_VOIDS__INNER_CURVES, true);
+		return (EList<IfcCurve>) eGet(Ifc2x3tc1Package.Literals.IFC_ARBITRARY_PROFILE_DEF_WITH_VOIDS__INNER_CURVES,
+				true);
 	}
 
 } //IfcArbitraryProfileDefWithVoidsImpl

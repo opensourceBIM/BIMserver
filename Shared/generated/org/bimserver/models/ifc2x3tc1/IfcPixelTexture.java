@@ -23,12 +23,12 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPixelTexture#getWidth <em>Width</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPixelTexture#getHeight <em>Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcPixelTexture#getColourComponents <em>Colour Components</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcPixelTexture()
  * @model

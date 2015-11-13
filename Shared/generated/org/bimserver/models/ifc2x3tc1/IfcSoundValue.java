@@ -23,13 +23,13 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSoundValue#getSoundLevelTimeSeries <em>Sound Level Time Series</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSoundValue#getFrequency <em>Frequency</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSoundValue#getFrequencyAsString <em>Frequency As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSoundValue#getSoundLevelSingleValue <em>Sound Level Single Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcSoundValue()
  * @model

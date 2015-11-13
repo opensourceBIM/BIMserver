@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWindowStyleImpl#getConstructionType <em>Construction Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWindowStyleImpl#getOperationType <em>Operation Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWindowStyleImpl#getParameterTakesPrecedence <em>Parameter Takes Precedence</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcWindowStyleImpl#getSizeable <em>Sizeable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

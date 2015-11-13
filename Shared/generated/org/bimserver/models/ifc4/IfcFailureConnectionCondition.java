@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcFailureConnectionCondition#getTensionFailureX <em>Tension Failure X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcFailureConnectionCondition#getTensionFailureXAsString <em>Tension Failure XAs String</em>}</li>
@@ -37,7 +38,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcFailureConnectionCondition#getCompressionFailureZ <em>Compression Failure Z</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcFailureConnectionCondition#getCompressionFailureZAsString <em>Compression Failure ZAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFailureConnectionCondition()
  * @model

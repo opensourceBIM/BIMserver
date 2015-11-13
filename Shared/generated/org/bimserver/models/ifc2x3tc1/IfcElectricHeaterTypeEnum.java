@@ -188,8 +188,8 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricHeaterTypeEnum[] VALUES_ARRAY = new IfcElectricHeaterTypeEnum[] { NULL, ELECTRICMATHEATER, NOTDEFINED, ELECTRICCABLEHEATER,
-			ELECTRICPOINTHEATER, USERDEFINED, };
+	private static final IfcElectricHeaterTypeEnum[] VALUES_ARRAY = new IfcElectricHeaterTypeEnum[] { NULL,
+			ELECTRICMATHEATER, NOTDEFINED, ELECTRICCABLEHEATER, ELECTRICPOINTHEATER, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Heater Type Enum</b></em>' enumerators.
@@ -197,12 +197,15 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricHeaterTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricHeaterTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Heater Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElectricHeaterTypeEnum get(String literal) {
@@ -219,6 +222,8 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Electric Heater Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElectricHeaterTypeEnum getByName(String name) {
@@ -235,6 +240,8 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Electric Heater Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElectricHeaterTypeEnum get(int value) {

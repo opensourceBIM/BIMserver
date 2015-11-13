@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcBuilding#getElevationOfRefHeight <em>Elevation Of Ref Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBuilding#getElevationOfRefHeightAsString <em>Elevation Of Ref Height As String</em>}</li>
@@ -30,7 +31,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcBuilding#getElevationOfTerrainAsString <em>Elevation Of Terrain As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBuilding#getBuildingAddress <em>Building Address</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBuilding()
  * @model

@@ -25,13 +25,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertySetTemplate#getTemplateType <em>Template Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertySetTemplate#getApplicableEntity <em>Applicable Entity</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertySetTemplate#getHasPropertyTemplates <em>Has Property Templates</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPropertySetTemplate#getDefines <em>Defines</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertySetTemplate()
  * @model

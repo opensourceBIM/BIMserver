@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcThermalMaterialProperties#getSpecificHeatCapacity <em>Specific Heat Capacity</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcThermalMaterialProperties#getSpecificHeatCapacityAsString <em>Specific Heat Capacity As String</em>}</li>
@@ -33,7 +34,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcThermalMaterialProperties#getThermalConductivity <em>Thermal Conductivity</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcThermalMaterialProperties#getThermalConductivityAsString <em>Thermal Conductivity As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcThermalMaterialProperties()
  * @model

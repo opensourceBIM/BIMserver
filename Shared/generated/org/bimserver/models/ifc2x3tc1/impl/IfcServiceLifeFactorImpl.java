@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcServiceLifeFactorImpl#getPredefinedType <em>Predefined Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcServiceLifeFactorImpl#getUpperValue <em>Upper Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcServiceLifeFactorImpl#getMostUsedValue <em>Most Used Value</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcServiceLifeFactorImpl#getLowerValue <em>Lower Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -64,7 +64,8 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 * @generated
 	 */
 	public IfcServiceLifeFactorTypeEnum getPredefinedType() {
-		return (IfcServiceLifeFactorTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__PREDEFINED_TYPE, true);
+		return (IfcServiceLifeFactorTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

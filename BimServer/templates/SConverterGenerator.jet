@@ -27,7 +27,7 @@ import java.util.*;
 import org.bimserver.models.log.*;
 import org.bimserver.models.store.*;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Query;
 
 public class SConverter {

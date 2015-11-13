@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Energy Conversion Device Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcEnergyConversionDeviceTypeImpl extends IfcDistributionFlowElementTypeImpl implements IfcEnergyConversionDeviceType {
+public class IfcEnergyConversionDeviceTypeImpl extends IfcDistributionFlowElementTypeImpl
+		implements IfcEnergyConversionDeviceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

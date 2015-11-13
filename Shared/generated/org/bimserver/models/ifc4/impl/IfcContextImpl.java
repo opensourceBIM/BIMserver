@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcContextImpl#getObjectType <em>Object Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcContextImpl#getLongName <em>Long Name</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcContextImpl#getIsDefinedBy <em>Is Defined By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcContextImpl#getDeclares <em>Declares</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

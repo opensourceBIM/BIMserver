@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Structured Dimension Callout</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcStructuredDimensionCalloutImpl extends IfcDraughtingCalloutImpl implements IfcStructuredDimensionCallout {
+public class IfcStructuredDimensionCalloutImpl extends IfcDraughtingCalloutImpl
+		implements IfcStructuredDimensionCallout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

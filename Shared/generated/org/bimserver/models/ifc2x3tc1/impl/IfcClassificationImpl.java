@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcClassificationImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcClassificationImpl#getEdition <em>Edition</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcClassificationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcClassificationImpl#getContains <em>Contains</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -213,8 +213,8 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcExternalSpatialElementTypeEnum[] VALUES_ARRAY = new IfcExternalSpatialElementTypeEnum[] { NULL, EXTERNAL, EXTERNAL_FIRE, EXTERNAL_EARTH, USERDEFINED,
-			EXTERNAL_WATER, NOTDEFIEND, };
+	private static final IfcExternalSpatialElementTypeEnum[] VALUES_ARRAY = new IfcExternalSpatialElementTypeEnum[] {
+			NULL, EXTERNAL, EXTERNAL_FIRE, EXTERNAL_EARTH, USERDEFINED, EXTERNAL_WATER, NOTDEFIEND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc External Spatial Element Type Enum</b></em>' enumerators.
@@ -222,12 +222,15 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcExternalSpatialElementTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcExternalSpatialElementTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc External Spatial Element Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcExternalSpatialElementTypeEnum get(String literal) {
@@ -244,6 +247,8 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc External Spatial Element Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcExternalSpatialElementTypeEnum getByName(String name) {
@@ -260,6 +265,8 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc External Spatial Element Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcExternalSpatialElementTypeEnum get(int value) {

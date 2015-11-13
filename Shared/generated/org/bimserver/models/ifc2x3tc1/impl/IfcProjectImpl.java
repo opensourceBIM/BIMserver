@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProjectImpl#getLongName <em>Long Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProjectImpl#getPhase <em>Phase</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProjectImpl#getRepresentationContexts <em>Representation Contexts</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProjectImpl#getUnitsInContext <em>Units In Context</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -138,7 +138,8 @@ public class IfcProjectImpl extends IfcObjectImpl implements IfcProject {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentationContext> getRepresentationContexts() {
-		return (EList<IfcRepresentationContext>) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT__REPRESENTATION_CONTEXTS, true);
+		return (EList<IfcRepresentationContext>) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT__REPRESENTATION_CONTEXTS,
+				true);
 	}
 
 	/**

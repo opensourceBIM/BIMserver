@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelInterferesElements#getRelatingElement <em>Relating Element</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelInterferesElements#getRelatedElement <em>Related Element</em>}</li>
@@ -30,7 +31,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcRelInterferesElements#getInterferenceType <em>Interference Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcRelInterferesElements#isImpliedOrder <em>Implied Order</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelInterferesElements()
  * @model

@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCostSchedule#getSubmittedBy <em>Submitted By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCostSchedule#getPreparedBy <em>Prepared By</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCostSchedule#getID <em>ID</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCostSchedule#getPredefinedType <em>Predefined Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCostSchedule()
  * @model

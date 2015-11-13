@@ -134,22 +134,13 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO__DATA = 5;
 
 	/**
-	 * The feature id for the '<em><b>Instance</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOMETRY_INFO__INSTANCE = 6;
-
-	/**
 	 * The feature id for the '<em><b>Transformation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__TRANSFORMATION = 7;
+	int GEOMETRY_INFO__TRANSFORMATION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Area</b></em>' attribute.
@@ -158,7 +149,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__AREA = 8;
+	int GEOMETRY_INFO__AREA = 7;
 
 	/**
 	 * The feature id for the '<em><b>Volume</b></em>' attribute.
@@ -167,7 +158,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__VOLUME = 9;
+	int GEOMETRY_INFO__VOLUME = 8;
 
 	/**
 	 * The number of structural features of the '<em>Info</em>' class.
@@ -176,7 +167,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO_FEATURE_COUNT = 10;
+	int GEOMETRY_INFO_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
@@ -289,43 +280,6 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_DATA_FEATURE_COUNT = 5;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.GeometryInstanceImpl <em>Instance</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.geometry.impl.GeometryInstanceImpl
-	 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getGeometryInstance()
-	 * @generated
-	 */
-	int GEOMETRY_INSTANCE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Data</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOMETRY_INSTANCE__DATA = 0;
-
-	/**
-	 * The feature id for the '<em><b>Transformation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOMETRY_INSTANCE__TRANSFORMATION = 1;
-
-	/**
-	 * The number of structural features of the '<em>Instance</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOMETRY_INSTANCE_FEATURE_COUNT = 2;
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.GeometryInfo <em>Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -400,17 +354,6 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGeometryInfo_Data();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getInstance <em>Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Instance</em>'.
-	 * @see org.bimserver.models.geometry.GeometryInfo#getInstance()
-	 * @see #getGeometryInfo()
-	 * @generated
-	 */
-	EReference getGeometryInfo_Instance();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getTransformation <em>Transformation</em>}'.
@@ -554,38 +497,6 @@ public interface GeometryPackage extends EPackage {
 	EAttribute getGeometryData_MaterialIndices();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.geometry.GeometryInstance <em>Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Instance</em>'.
-	 * @see org.bimserver.models.geometry.GeometryInstance
-	 * @generated
-	 */
-	EClass getGeometryInstance();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInstance#getData <em>Data</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Data</em>'.
-	 * @see org.bimserver.models.geometry.GeometryInstance#getData()
-	 * @see #getGeometryInstance()
-	 * @generated
-	 */
-	EReference getGeometryInstance_Data();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInstance#getTransformation <em>Transformation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Transformation</em>'.
-	 * @see org.bimserver.models.geometry.GeometryInstance#getTransformation()
-	 * @see #getGeometryInstance()
-	 * @generated
-	 */
-	EAttribute getGeometryInstance_Transformation();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -664,14 +575,6 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GEOMETRY_INFO__DATA = eINSTANCE.getGeometryInfo_Data();
-
-		/**
-		 * The meta object literal for the '<em><b>Instance</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GEOMETRY_INFO__INSTANCE = eINSTANCE.getGeometryInfo_Instance();
 
 		/**
 		 * The meta object literal for the '<em><b>Transformation</b></em>' attribute feature.
@@ -780,32 +683,6 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GEOMETRY_DATA__MATERIAL_INDICES = eINSTANCE.getGeometryData_MaterialIndices();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.GeometryInstanceImpl <em>Instance</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.geometry.impl.GeometryInstanceImpl
-		 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getGeometryInstance()
-		 * @generated
-		 */
-		EClass GEOMETRY_INSTANCE = eINSTANCE.getGeometryInstance();
-
-		/**
-		 * The meta object literal for the '<em><b>Data</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GEOMETRY_INSTANCE__DATA = eINSTANCE.getGeometryInstance_Data();
-
-		/**
-		 * The meta object literal for the '<em><b>Transformation</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GEOMETRY_INSTANCE__TRANSFORMATION = eINSTANCE.getGeometryInstance_Transformation();
 
 	}
 

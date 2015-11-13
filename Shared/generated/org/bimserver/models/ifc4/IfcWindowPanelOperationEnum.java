@@ -413,9 +413,10 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWindowPanelOperationEnum[] VALUES_ARRAY = new IfcWindowPanelOperationEnum[] { NULL, SIDEHUNGLEFTHAND, NOTDEFINED, TOPHUNG, TILTANDTURNRIGHTHAND,
-			PIVOTHORIZONTAL, SLIDINGHORIZONTAL, PIVOTVERTICAL, REMOVABLECASEMENT, OTHEROPERATION, SIDEHUNGRIGHTHAND, BOTTOMHUNG, SLIDINGVERTICAL, FIXEDCASEMENT,
-			TILTANDTURNLEFTHAND, };
+	private static final IfcWindowPanelOperationEnum[] VALUES_ARRAY = new IfcWindowPanelOperationEnum[] { NULL,
+			SIDEHUNGLEFTHAND, NOTDEFINED, TOPHUNG, TILTANDTURNRIGHTHAND, PIVOTHORIZONTAL, SLIDINGHORIZONTAL,
+			PIVOTVERTICAL, REMOVABLECASEMENT, OTHEROPERATION, SIDEHUNGRIGHTHAND, BOTTOMHUNG, SLIDINGVERTICAL,
+			FIXEDCASEMENT, TILTANDTURNLEFTHAND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Window Panel Operation Enum</b></em>' enumerators.
@@ -423,12 +424,15 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWindowPanelOperationEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWindowPanelOperationEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Window Panel Operation Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcWindowPanelOperationEnum get(String literal) {
@@ -445,6 +449,8 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Window Panel Operation Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcWindowPanelOperationEnum getByName(String name) {
@@ -461,6 +467,8 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Window Panel Operation Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcWindowPanelOperationEnum get(int value) {

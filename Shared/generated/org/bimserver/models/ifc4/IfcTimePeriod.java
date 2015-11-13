@@ -25,11 +25,11 @@ import org.bimserver.emf.IdEObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTimePeriod#getStartTime <em>Start Time</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTimePeriod#getEndTime <em>End Time</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTimePeriod()
  * @model

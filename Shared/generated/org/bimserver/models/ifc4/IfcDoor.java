@@ -23,6 +23,7 @@ package org.bimserver.models.ifc4;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcDoor#getOverallHeight <em>Overall Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDoor#getOverallHeightAsString <em>Overall Height As String</em>}</li>
@@ -32,7 +33,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcDoor#getOperationType <em>Operation Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDoor#getUserDefinedOperationType <em>User Defined Operation Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoor()
  * @model

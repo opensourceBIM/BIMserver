@@ -25,12 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcDocumentInformationRelationship#getRelatingDocument <em>Relating Document</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDocumentInformationRelationship#getRelatedDocuments <em>Related Documents</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcDocumentInformationRelationship#getRelationshipType <em>Relationship Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDocumentInformationRelationship()
  * @model

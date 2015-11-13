@@ -113,7 +113,8 @@ public enum IfcRibPlateDirectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRibPlateDirectionEnum[] VALUES_ARRAY = new IfcRibPlateDirectionEnum[] { NULL, DIRECTION_Y, DIRECTION_X, };
+	private static final IfcRibPlateDirectionEnum[] VALUES_ARRAY = new IfcRibPlateDirectionEnum[] { NULL, DIRECTION_Y,
+			DIRECTION_X, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Rib Plate Direction Enum</b></em>' enumerators.
@@ -121,12 +122,15 @@ public enum IfcRibPlateDirectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcRibPlateDirectionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcRibPlateDirectionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Rib Plate Direction Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRibPlateDirectionEnum get(String literal) {
@@ -143,6 +147,8 @@ public enum IfcRibPlateDirectionEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Rib Plate Direction Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRibPlateDirectionEnum getByName(String name) {
@@ -159,6 +165,8 @@ public enum IfcRibPlateDirectionEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Rib Plate Direction Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcRibPlateDirectionEnum get(int value) {

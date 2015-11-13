@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGeneralMaterialProperties#getMolecularWeight <em>Molecular Weight</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGeneralMaterialProperties#getMolecularWeightAsString <em>Molecular Weight As String</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGeneralMaterialProperties#getMassDensity <em>Mass Density</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcGeneralMaterialProperties#getMassDensityAsString <em>Mass Density As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcGeneralMaterialProperties()
  * @model

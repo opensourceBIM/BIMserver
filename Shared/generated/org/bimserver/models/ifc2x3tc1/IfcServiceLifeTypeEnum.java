@@ -188,8 +188,9 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcServiceLifeTypeEnum[] VALUES_ARRAY = new IfcServiceLifeTypeEnum[] { NULL, PESSIMISTICREFERENCESERVICELIFE, EXPECTEDSERVICELIFE,
-			REFERENCESERVICELIFE, OPTIMISTICREFERENCESERVICELIFE, ACTUALSERVICELIFE, };
+	private static final IfcServiceLifeTypeEnum[] VALUES_ARRAY = new IfcServiceLifeTypeEnum[] { NULL,
+			PESSIMISTICREFERENCESERVICELIFE, EXPECTEDSERVICELIFE, REFERENCESERVICELIFE, OPTIMISTICREFERENCESERVICELIFE,
+			ACTUALSERVICELIFE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Service Life Type Enum</b></em>' enumerators.
@@ -203,6 +204,8 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Service Life Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcServiceLifeTypeEnum get(String literal) {
@@ -219,6 +222,8 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Service Life Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcServiceLifeTypeEnum getByName(String name) {
@@ -235,6 +240,8 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Service Life Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcServiceLifeTypeEnum get(int value) {

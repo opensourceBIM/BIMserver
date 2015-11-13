@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTypeObjectImpl#getApplicableOccurrence <em>Applicable Occurrence</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTypeObjectImpl#getHasPropertySets <em>Has Property Sets</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTypeObjectImpl#getTypes <em>Types</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

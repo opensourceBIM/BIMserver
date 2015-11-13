@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProcessImpl#getIdentification <em>Identification</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProcessImpl#getLongDescription <em>Long Description</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProcessImpl#getIsSuccessorFrom <em>Is Successor From</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProcessImpl#getOperatesOn <em>Operates On</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

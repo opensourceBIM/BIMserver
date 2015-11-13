@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMechanicalSteelMaterialProperties#getYieldStress <em>Yield Stress</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMechanicalSteelMaterialProperties#getYieldStressAsString <em>Yield Stress As String</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMechanicalSteelMaterialProperties#getPlasticStrainAsString <em>Plastic Strain As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcMechanicalSteelMaterialProperties#getRelaxations <em>Relaxations</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcMechanicalSteelMaterialProperties()
  * @model

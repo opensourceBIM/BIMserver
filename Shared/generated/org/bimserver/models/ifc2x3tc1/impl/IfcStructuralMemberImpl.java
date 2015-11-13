@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcStructuralMemberImpl#getReferencesElement <em>References Element</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcStructuralMemberImpl#getConnectedBy <em>Connected By</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -64,7 +64,8 @@ public class IfcStructuralMemberImpl extends IfcStructuralItemImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralElement> getReferencesElement() {
-		return (EList<IfcRelConnectsStructuralElement>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_MEMBER__REFERENCES_ELEMENT, true);
+		return (EList<IfcRelConnectsStructuralElement>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_MEMBER__REFERENCES_ELEMENT, true);
 	}
 
 	/**
@@ -92,7 +93,8 @@ public class IfcStructuralMemberImpl extends IfcStructuralItemImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralMember> getConnectedBy() {
-		return (EList<IfcRelConnectsStructuralMember>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_MEMBER__CONNECTED_BY, true);
+		return (EList<IfcRelConnectsStructuralMember>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_MEMBER__CONNECTED_BY, true);
 	}
 
 	/**

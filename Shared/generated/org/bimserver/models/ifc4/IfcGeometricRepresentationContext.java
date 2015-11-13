@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getCoordinateSpaceDimension <em>Coordinate Space Dimension</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getPrecision <em>Precision</em>}</li>
@@ -33,13 +34,13 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getTrueNorth <em>True North</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getHasSubContexts <em>Has Sub Contexts</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcGeometricRepresentationContext()
  * @model
  * @generated
  */
-public interface IfcGeometricRepresentationContext extends IfcRepresentationContext, IfcCoordinateReferenceSystemSelect {
+public interface IfcGeometricRepresentationContext
+		extends IfcRepresentationContext, IfcCoordinateReferenceSystemSelect {
 	/**
 	 * Returns the value of the '<em><b>Coordinate Space Dimension</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Structural Curve Connection</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class IfcStructuralCurveConnectionImpl extends IfcStructuralConnectionImpl implements IfcStructuralCurveConnection {
+public class IfcStructuralCurveConnectionImpl extends IfcStructuralConnectionImpl
+		implements IfcStructuralCurveConnection {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

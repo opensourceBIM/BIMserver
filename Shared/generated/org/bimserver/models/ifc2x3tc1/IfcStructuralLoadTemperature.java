@@ -23,6 +23,7 @@ package org.bimserver.models.ifc2x3tc1;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadTemperature#getDeltaT_Constant <em>Delta TConstant</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadTemperature#getDeltaT_ConstantAsString <em>Delta TConstant As String</em>}</li>
@@ -31,7 +32,6 @@ package org.bimserver.models.ifc2x3tc1;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadTemperature#getDeltaT_Z <em>Delta TZ</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadTemperature#getDeltaT_ZAsString <em>Delta TZAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcStructuralLoadTemperature()
  * @model

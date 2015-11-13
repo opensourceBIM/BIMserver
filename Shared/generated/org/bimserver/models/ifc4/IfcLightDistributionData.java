@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightDistributionData#getMainPlaneAngle <em>Main Plane Angle</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightDistributionData#getMainPlaneAngleAsString <em>Main Plane Angle As String</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcLightDistributionData#getLuminousIntensity <em>Luminous Intensity</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcLightDistributionData#getLuminousIntensityAsString <em>Luminous Intensity As String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightDistributionData()
  * @model

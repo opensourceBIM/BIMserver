@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPlanarExtentImpl#getSizeInX <em>Size In X</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPlanarExtentImpl#getSizeInXAsString <em>Size In XAs String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPlanarExtentImpl#getSizeInY <em>Size In Y</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPlanarExtentImpl#getSizeInYAsString <em>Size In YAs String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

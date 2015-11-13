@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLibraryInformation#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLibraryInformation#getVersion <em>Version</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLibraryInformation#getVersionDate <em>Version Date</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLibraryInformation#getLibraryReference <em>Library Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcLibraryInformation()
  * @model

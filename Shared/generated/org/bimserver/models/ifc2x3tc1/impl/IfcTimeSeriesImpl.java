@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTimeSeriesImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTimeSeriesImpl#getDescription <em>Description</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTimeSeriesImpl#getUnit <em>Unit</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcTimeSeriesImpl#getDocumentedBy <em>Documented By</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -283,7 +283,8 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTimeSeriesReferenceRelationship> getDocumentedBy() {
-		return (EList<IfcTimeSeriesReferenceRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES__DOCUMENTED_BY, true);
+		return (EList<IfcTimeSeriesReferenceRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TIME_SERIES__DOCUMENTED_BY, true);
 	}
 
 	/**

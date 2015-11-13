@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcObjectiveImpl#getBenchmarkValues <em>Benchmark Values</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcObjectiveImpl#getLogicalAggregator <em>Logical Aggregator</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcObjectiveImpl#getObjectiveQualifier <em>Objective Qualifier</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcObjectiveImpl#getUserDefinedQualifier <em>User Defined Qualifier</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

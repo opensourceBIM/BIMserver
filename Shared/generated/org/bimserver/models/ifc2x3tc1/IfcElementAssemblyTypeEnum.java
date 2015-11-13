@@ -338,8 +338,9 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElementAssemblyTypeEnum[] VALUES_ARRAY = new IfcElementAssemblyTypeEnum[] { NULL, SLAB_FIELD, BEAM_GRID, ARCH, NOTDEFINED,
-			REINFORCEMENT_UNIT, BRACED_FRAME, GIRDER, RIGID_FRAME, TRUSS, USERDEFINED, ACCESSORY_ASSEMBLY, };
+	private static final IfcElementAssemblyTypeEnum[] VALUES_ARRAY = new IfcElementAssemblyTypeEnum[] { NULL,
+			SLAB_FIELD, BEAM_GRID, ARCH, NOTDEFINED, REINFORCEMENT_UNIT, BRACED_FRAME, GIRDER, RIGID_FRAME, TRUSS,
+			USERDEFINED, ACCESSORY_ASSEMBLY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Element Assembly Type Enum</b></em>' enumerators.
@@ -347,12 +348,15 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElementAssemblyTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElementAssemblyTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Element Assembly Type Enum</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElementAssemblyTypeEnum get(String literal) {
@@ -369,6 +373,8 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Element Assembly Type Enum</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElementAssemblyTypeEnum getByName(String name) {
@@ -385,6 +391,8 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator {
 	 * Returns the '<em><b>Ifc Element Assembly Type Enum</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IfcElementAssemblyTypeEnum get(int value) {

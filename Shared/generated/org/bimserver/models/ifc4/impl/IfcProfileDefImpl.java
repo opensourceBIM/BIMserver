@@ -31,13 +31,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProfileDefImpl#getProfileType <em>Profile Type</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProfileDefImpl#getProfileName <em>Profile Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProfileDefImpl#getHasExternalReference <em>Has External Reference</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcProfileDefImpl#getHasProperties <em>Has Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -132,7 +132,8 @@ public class IfcProfileDefImpl extends IdEObjectImpl implements IfcProfileDef {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_PROFILE_DEF__HAS_EXTERNAL_REFERENCE, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(
+				Ifc4Package.Literals.IFC_PROFILE_DEF__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**
