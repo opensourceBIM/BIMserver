@@ -40,7 +40,7 @@ public class QueryObjectProvider implements ObjectProvider {
 					throw new BimserverDatabaseException("Query stack size > 1000, probably a bug, please report");
 				}
 				StackFrame stackFrame = stack.peek();
-				System.out.println(stackFrame);
+//				System.out.println(stackFrame);
 				StackFrame newStackFrame = stackFrame.process();
 				if (newStackFrame == null) {
 					stack.pop();

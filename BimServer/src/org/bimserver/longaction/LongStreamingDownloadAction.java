@@ -13,6 +13,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Revision;
@@ -20,6 +21,7 @@ import org.bimserver.plugins.serializers.DoneListener;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializer;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializerPlugin;
 import org.bimserver.plugins.serializers.ObjectProvider;
+import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.StreamingSerializer;
 import org.bimserver.plugins.serializers.StreamingSerializerDataSource;
@@ -55,8 +57,16 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 		DatabaseSession databaseSession = getBimServer().getDatabase().createSession();
 		try {
 			PackageMetaData packageMetaData = null;
+			ProjectInfo projectInfo = new ProjectInfo();
+			
+			// TODO projectinfo should contain info for multiple projects/revisions, not just one
+			
 			for (Long roid : roids) {
 				Revision revision = databaseSession.get(roid, Query.getDefault());
+				ConcreteRevision concreteRevision = revision.getConcreteRevisions().get(0);
+				projectInfo.setMinBounds(getBimServer().getSConverter().convertToSObject(concreteRevision.getMinBounds()));
+				projectInfo.setMaxBounds(getBimServer().getSConverter().convertToSObject(concreteRevision.getMaxBounds()));
+				projectInfo.setName("" + roids.iterator().next());
 				packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 				break;
 			}
@@ -71,7 +81,8 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 					// TODO passing a databasesession here, make sure it will be closed!!
 					ObjectProvider objectProvider = new QueryObjectProvider(databaseSession, getBimServer(), jsonQuery, roids);
 
-					createSerializer.init(objectProvider, null, getBimServer().getPluginManager(), packageMetaData);
+					
+					createSerializer.init(objectProvider, projectInfo, getBimServer().getPluginManager(), packageMetaData);
 
 					changeActionState(ActionState.STARTED, "Done preparing", -1);
 				} else {
@@ -81,7 +92,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 					// TODO passing a databasesession here, make sure it will be closed!!
 					ObjectProvider objectProvider = new QueryObjectProvider(databaseSession, getBimServer(), jsonQuery, roids);
 					
-					serializer.init(objectProvider, null, null, getBimServer().getPluginManager(), packageMetaData);
+					serializer.init(objectProvider, projectInfo, null, getBimServer().getPluginManager(), packageMetaData);
 					
 					changeActionState(ActionState.STARTED, "Done preparing", -1);
 				}

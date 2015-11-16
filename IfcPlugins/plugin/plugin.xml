@@ -6,6 +6,11 @@
 		<enabled>true</enabled>
 	</PluginImplementation>
 	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.StreamingSerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.serializers.JsonStreamingSerializerPlugin</implementationClass>
+		<enabled>true</enabled>
+	</PluginImplementation>
+	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.serializers.JsonSerializerPluginWithGeometry</implementationClass>
 		<enabled>true</enabled>

@@ -122,8 +122,9 @@ public class GeometryGenerator {
 		private int pid;
 		private int rid;
 		private Map<IdEObject, IdEObject> bigMap;
+		private GenerateGeometryResult generateGeometryResult;
 
-		public Runner(EClass eClass, RenderEnginePlugin renderEnginePlugin, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, boolean store, IfcModelInterface targetModel, SerializerPlugin ifcSerializerPlugin, IfcModelInterface model, int pid, int rid, Map<IdEObject, IdEObject> bigMap, RenderEngineFilter renderEngineFilter) {
+		public Runner(EClass eClass, RenderEnginePlugin renderEnginePlugin, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, boolean store, IfcModelInterface targetModel, SerializerPlugin ifcSerializerPlugin, IfcModelInterface model, int pid, int rid, Map<IdEObject, IdEObject> bigMap, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult) {
 			this.eClass = eClass;
 			this.renderEnginePlugin = renderEnginePlugin;
 			this.databaseSession = databaseSession;
@@ -136,6 +137,7 @@ public class GeometryGenerator {
 			this.rid = rid;
 			this.bigMap = bigMap;
 			this.renderEngineFilter = renderEngineFilter;
+			this.generateGeometryResult = generateGeometryResult;
 		}
 		
 		@Override
@@ -267,7 +269,7 @@ public class GeometryGenerator {
 									}
 
 									for (int i = 0; i < geometry.getIndices().length; i++) {
-										processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3);
+										processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3, generateGeometryResult);
 									}
 
 									geometryInfo.setData(geometryData);
@@ -342,8 +344,9 @@ public class GeometryGenerator {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void generateGeometry(long uoid, final PluginManager pluginManager, final DatabaseSession databaseSession, final IfcModelInterface model, final int pid, final int rid,
+	public GenerateGeometryResult generateGeometry(long uoid, final PluginManager pluginManager, final DatabaseSession databaseSession, final IfcModelInterface model, final int pid, final int rid,
 			final boolean store, GeometryCache geometryCache) throws BimserverDatabaseException, GeometryGeneratingException {
+		GenerateGeometryResult generateGeometryResult = new GenerateGeometryResult();
 		packageMetaData = model.getPackageMetaData();
 		productClass = packageMetaData.getEClass("IfcProduct");
 		productRepresentationClass = packageMetaData.getEClass("IfcProductRepresentation");
@@ -353,7 +356,7 @@ public class GeometryGenerator {
 
 		if (geometryCache != null && !geometryCache.isEmpty()) {
 			returnCachedData(model, geometryCache, databaseSession, pid, rid);
-			return;
+			return null;
 		}
 		long start = System.nanoTime();
 		String pluginName = "";
@@ -395,7 +398,7 @@ public class GeometryGenerator {
 			final RenderEngineFilter renderEngineFilter = new RenderEngineFilter();
 
 			if (maxSimultanousThreads == 1) {
-				Runner runner = new Runner(null, renderEnginePlugin, databaseSession, settings, store, model, ifcSerializerPlugin, model, pid, rid, null, renderEngineFilter);
+				Runner runner = new Runner(null, renderEnginePlugin, databaseSession, settings, store, model, ifcSerializerPlugin, model, pid, rid, null, renderEngineFilter, generateGeometryResult);
 				runner.run();
 			} else {
 				Set<EClass> classes = new HashSet<>();
@@ -407,7 +410,7 @@ public class GeometryGenerator {
 				}
 				
 				if (classes.size() == 0) {
-					return;
+					return null;
 				}
 				
 				classes.remove(packageMetaData.getEClass("IfcAnnotation"));
@@ -449,7 +452,7 @@ public class GeometryGenerator {
 						}
 					}
 
-					executor.submit(new Runner(eClass, renderEnginePlugin, databaseSession, settings, store, targetModel, ifcSerializerPlugin, model, pid, rid, bigMap, renderEngineFilter));
+					executor.submit(new Runner(eClass, renderEnginePlugin, databaseSession, settings, store, targetModel, ifcSerializerPlugin, model, pid, rid, bigMap, renderEngineFilter, generateGeometryResult));
 				}
 				executor.shutdown();
 				executor.awaitTermination(24, TimeUnit.HOURS);				
@@ -461,6 +464,7 @@ public class GeometryGenerator {
 			LOGGER.error("", e);
 			throw new GeometryGeneratingException(e);
 		}
+		return generateGeometryResult;
 	}
 	
 	private int hash(GeometryData geometryData) {
@@ -483,7 +487,7 @@ public class GeometryGenerator {
 		return hashCode;
 	}
 
-	private void processExtends(GeometryInfo geometryInfo, float[] transformationMatrix, float[] vertices, int index) {
+	private void processExtends(GeometryInfo geometryInfo, float[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) {
 		float x = vertices[index];
 		float y = vertices[index + 1];
 		float z = vertices[index + 2];
@@ -498,6 +502,13 @@ public class GeometryGenerator {
 		geometryInfo.getMaxBounds().setX(Math.max(x, geometryInfo.getMaxBounds().getX()));
 		geometryInfo.getMaxBounds().setY(Math.max(y, geometryInfo.getMaxBounds().getY()));
 		geometryInfo.getMaxBounds().setZ(Math.max(z, geometryInfo.getMaxBounds().getZ()));
+
+		generateGeometryResult.getMinBounds().setX(Math.min(x, generateGeometryResult.getMinBounds().getX()));
+		generateGeometryResult.getMinBounds().setY(Math.min(y, generateGeometryResult.getMinBounds().getY()));
+		generateGeometryResult.getMinBounds().setZ(Math.min(z, generateGeometryResult.getMinBounds().getZ()));
+		generateGeometryResult.getMaxBounds().setX(Math.max(x, generateGeometryResult.getMaxBounds().getX()));
+		generateGeometryResult.getMaxBounds().setY(Math.max(y, generateGeometryResult.getMaxBounds().getY()));
+		generateGeometryResult.getMaxBounds().setZ(Math.max(z, generateGeometryResult.getMaxBounds().getZ()));
 	}
 
 	private byte[] floatArrayToByteArray(float[] vertices) {

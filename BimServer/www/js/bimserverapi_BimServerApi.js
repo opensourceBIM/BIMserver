@@ -216,6 +216,10 @@ define(
 	    	this.getJsonSerializer = function(callback) {
 	    		othis.getSerializerByPluginClassName("org.bimserver.serializers.JsonSerializerPlugin", callback);
 	    	};
+
+	    	this.getJsonStreamingSerializer = function(callback) {
+	    		othis.getSerializerByPluginClassName("org.bimserver.serializers.JsonStreamingSerializerPlugin", callback);
+	    	};
 	    	
 	    	this.getSerializerByPluginClassName = function(pluginClassName, callback) {
 	    		if (othis.serializersByPluginClassName[pluginClassName] == null) {

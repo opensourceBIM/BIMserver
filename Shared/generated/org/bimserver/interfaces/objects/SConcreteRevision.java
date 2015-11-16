@@ -43,6 +43,8 @@ public class SConcreteRevision implements SDataBase
 	private long summaryId = -1;
 	private long userId = -1;
 	private long ifcHeaderId = -1;
+	private SVector3f minBounds;
+	private SVector3f maxBounds;
 	private byte[] oidCounters;
 
 	public long getOid() {
@@ -104,6 +106,12 @@ public class SConcreteRevision implements SDataBase
 		if (sField.getName().equals("ifcHeaderId")) {
 			return getIfcHeaderId();
 		}
+		if (sField.getName().equals("minBounds")) {
+			return getMinBounds();
+		}
+		if (sField.getName().equals("maxBounds")) {
+			return getMaxBounds();
+		}
 		if (sField.getName().equals("oidCounters")) {
 			return getOidCounters();
 		}
@@ -160,6 +168,14 @@ public class SConcreteRevision implements SDataBase
 		}
 		if (sField.getName().equals("ifcHeaderId")) {
 			setIfcHeaderId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("minBounds")) {
+			setMinBounds((SVector3f)val);
+			return;
+		}
+		if (sField.getName().equals("maxBounds")) {
+			setMaxBounds((SVector3f)val);
 			return;
 		}
 		if (sField.getName().equals("oidCounters")) {
@@ -264,6 +280,24 @@ public class SConcreteRevision implements SDataBase
 	public void setIfcHeaderId(long ifcHeaderId) {
 		this.ifcHeaderId = ifcHeaderId;
 	}
+	
+	public SVector3f getMinBounds() {
+		return minBounds;
+	}
+
+	public void setMinBounds(SVector3f minBounds) {
+		this.minBounds = minBounds;
+	}
+	
+	
+	public SVector3f getMaxBounds() {
+		return maxBounds;
+	}
+
+	public void setMaxBounds(SVector3f maxBounds) {
+		this.maxBounds = maxBounds;
+	}
+	
 	
 	public byte[] getOidCounters() {
 		return oidCounters;

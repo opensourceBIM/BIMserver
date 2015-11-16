@@ -19,6 +19,7 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.geometry.Vector3f;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -41,6 +42,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getIfcHeader <em>Ifc Header</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ConcreteRevision#getMinBounds <em>Min Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ConcreteRevision#getMaxBounds <em>Max Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getOidCounters <em>Oid Counters</em>}</li>
  * </ul>
  *
@@ -329,6 +332,58 @@ public interface ConcreteRevision extends IdEObject {
 	 * @generated
 	 */
 	void setIfcHeader(IfcHeader value);
+
+	/**
+	 * Returns the value of the '<em><b>Min Bounds</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Min Bounds</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Min Bounds</em>' reference.
+	 * @see #setMinBounds(Vector3f)
+	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_MinBounds()
+	 * @model
+	 * @generated
+	 */
+	Vector3f getMinBounds();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#getMinBounds <em>Min Bounds</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Min Bounds</em>' reference.
+	 * @see #getMinBounds()
+	 * @generated
+	 */
+	void setMinBounds(Vector3f value);
+
+	/**
+	 * Returns the value of the '<em><b>Max Bounds</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Max Bounds</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Max Bounds</em>' reference.
+	 * @see #setMaxBounds(Vector3f)
+	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_MaxBounds()
+	 * @model
+	 * @generated
+	 */
+	Vector3f getMaxBounds();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#getMaxBounds <em>Max Bounds</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Max Bounds</em>' reference.
+	 * @see #getMaxBounds()
+	 * @generated
+	 */
+	void setMaxBounds(Vector3f value);
 
 	/**
 	 * Returns the value of the '<em><b>Oid Counters</b></em>' attribute.

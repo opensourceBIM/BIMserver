@@ -1599,8 +1599,26 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getConcreteRevision_MinBounds() {
+		return (EReference) getConcreteRevision().getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConcreteRevision_MaxBounds() {
+		return (EReference) getConcreteRevision().getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getConcreteRevision_OidCounters() {
-		return (EAttribute) getConcreteRevision().getEStructuralFeatures().get(11);
+		return (EAttribute) getConcreteRevision().getEStructuralFeatures().get(13);
 	}
 
 	/**

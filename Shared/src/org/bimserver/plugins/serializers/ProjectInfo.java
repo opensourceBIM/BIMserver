@@ -1,5 +1,7 @@
 package org.bimserver.plugins.serializers;
 
+import org.bimserver.interfaces.objects.SVector3f;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -25,6 +27,8 @@ public class ProjectInfo {
 	private double z;
 	private double directionAngle;
 	private String authorName;
+	private SVector3f minBounds;
+	private SVector3f maxBounds;
 
 	public String getName() {
 		return name;
@@ -80,5 +84,21 @@ public class ProjectInfo {
 
 	public void setAuthorName(String authorName) {
 		this.authorName = authorName;
+	}
+
+	public SVector3f getMinBounds() {
+		return minBounds;
+	}
+
+	public void setMinBounds(SVector3f minBounds) {
+		this.minBounds = minBounds;
+	}
+
+	public SVector3f getMaxBounds() {
+		return maxBounds;
+	}
+
+	public void setMaxBounds(SVector3f maxBounds) {
+		this.maxBounds = maxBounds;
 	}
 }

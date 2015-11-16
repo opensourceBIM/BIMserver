@@ -39,19 +39,34 @@ public class Step0013 extends Migration {
 		
 		schema.createEPackage("geometry");
 		
+		EClass concreteRevisionClass = schema.getEClass("store", "ConcreteRevision");
+		
 		EClass geometryInfo = schema.createEClass("geometry", "GeometryInfo");
 		EClass vector3f = schema.createEClass("geometry", "Vector3f");
 		schema.createEAttribute(vector3f, "x", EcorePackage.eINSTANCE.getEFloat(), Multiplicity.SINGLE);
 		schema.createEAttribute(vector3f, "y", EcorePackage.eINSTANCE.getEFloat(), Multiplicity.SINGLE);
 		schema.createEAttribute(vector3f, "z", EcorePackage.eINSTANCE.getEFloat(), Multiplicity.SINGLE);
-		EReference min = schema.createEReference(geometryInfo, "minBounds", vector3f, Multiplicity.SINGLE);
-		min.getEAnnotations().add(createDbEmbedReferenceAnnotation());
-		min.getEAnnotations().add(createEmbedsReferenceAnnotation());
-		min.getEAnnotations().add(createHiddenAnnotation());
-		EReference max = schema.createEReference(geometryInfo, "maxBounds", vector3f, Multiplicity.SINGLE);
-		max.getEAnnotations().add(createDbEmbedReferenceAnnotation());
-		max.getEAnnotations().add(createEmbedsReferenceAnnotation());
-		max.getEAnnotations().add(createHiddenAnnotation());
+
+		EReference geometryInfoMinBounds = schema.createEReference(geometryInfo, "minBounds", vector3f, Multiplicity.SINGLE);
+		geometryInfoMinBounds.getEAnnotations().add(createDbEmbedReferenceAnnotation());
+		geometryInfoMinBounds.getEAnnotations().add(createEmbedsReferenceAnnotation());
+		geometryInfoMinBounds.getEAnnotations().add(createHiddenAnnotation());
+		
+		EReference geometryInfoMaxBounds = schema.createEReference(geometryInfo, "maxBounds", vector3f, Multiplicity.SINGLE);
+		geometryInfoMaxBounds.getEAnnotations().add(createDbEmbedReferenceAnnotation());
+		geometryInfoMaxBounds.getEAnnotations().add(createEmbedsReferenceAnnotation());
+		geometryInfoMaxBounds.getEAnnotations().add(createHiddenAnnotation());
+
+		EReference concreteRevisionMinBounds = schema.createEReference(concreteRevisionClass, "minBounds", vector3f, Multiplicity.SINGLE);
+		concreteRevisionMinBounds.getEAnnotations().add(createDbEmbedReferenceAnnotation());
+		concreteRevisionMinBounds.getEAnnotations().add(createEmbedsReferenceAnnotation());
+		concreteRevisionMinBounds.getEAnnotations().add(createHiddenAnnotation());
+
+		EReference concreteRevisionMaxBounds = schema.createEReference(concreteRevisionClass, "maxBounds", vector3f, Multiplicity.SINGLE);
+		concreteRevisionMaxBounds.getEAnnotations().add(createDbEmbedReferenceAnnotation());
+		concreteRevisionMaxBounds.getEAnnotations().add(createEmbedsReferenceAnnotation());
+		concreteRevisionMaxBounds.getEAnnotations().add(createHiddenAnnotation());
+		
 		vector3f.getEAnnotations().add(createHiddenAnnotation());
 		geometryInfo.getEAnnotations().add(createHiddenAnnotation());
 		schema.createEAttribute(geometryInfo, "startVertex", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);
