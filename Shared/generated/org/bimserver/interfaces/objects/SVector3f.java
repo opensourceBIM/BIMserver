@@ -16,23 +16,22 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import java.util.Date;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SUserDeleted.class, SPasswordChanged.class, SUserRemovedFromProject.class, SUserUndeleted.class, SUserChanged.class, SPasswordReset.class, SUserAddedToProject.class, SNewUserAdded.class})
-public class SUserRelated extends SLogAction implements SDataBase
+public class SVector3f implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private long userId = -1;
+	private float x;
+	private float y;
+	private float z;
 
 	public long getOid() {
 		return this.oid;
@@ -56,21 +55,18 @@ public class SUserRelated extends SLogAction implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SUserRelated.sClass = sClass;
+		SVector3f.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("date")) {
-			return getDate();
+		if (sField.getName().equals("x")) {
+			return getX();
 		}
-		if (sField.getName().equals("executorId")) {
-			return getExecutorId();
+		if (sField.getName().equals("y")) {
+			return getY();
 		}
-		if (sField.getName().equals("accessMethod")) {
-			return getAccessMethod();
-		}
-		if (sField.getName().equals("userId")) {
-			return getUserId();
+		if (sField.getName().equals("z")) {
+			return getZ();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -82,20 +78,16 @@ public class SUserRelated extends SLogAction implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("date")) {
-			setDate((Date)val);
+		if (sField.getName().equals("x")) {
+			setX((Float)val);
 			return;
 		}
-		if (sField.getName().equals("executorId")) {
-			setExecutorId((Long)val);
+		if (sField.getName().equals("y")) {
+			setY((Float)val);
 			return;
 		}
-		if (sField.getName().equals("accessMethod")) {
-			setAccessMethod((SAccessMethod)val);
-			return;
-		}
-		if (sField.getName().equals("userId")) {
-			setUserId((Long)val);
+		if (sField.getName().equals("z")) {
+			setZ((Float)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -109,12 +101,28 @@ public class SUserRelated extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public long getUserId() {
-		return userId;
+	public float getX() {
+		return x;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setX(float x) {
+		this.x = x;
+	}
+	
+	public float getY() {
+		return y;
+	}
+
+	public void setY(float y) {
+		this.y = y;
+	}
+	
+	public float getZ() {
+		return z;
+	}
+
+	public void setZ(float z) {
+		this.z = z;
 	}
 	
 	@Override
@@ -133,7 +141,7 @@ public class SUserRelated extends SLogAction implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SUserRelated other = (SUserRelated) obj;
+		SVector3f other = (SVector3f) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

@@ -24,6 +24,7 @@ import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.GenerateGeometryResult;
 import org.bimserver.GeometryCache;
 import org.bimserver.GeometryGenerator;
 import org.bimserver.SummaryMap;
@@ -179,7 +180,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
 			if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
 				setProgress("Generating Geometry...", -1);
-				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
+				GenerateGeometryResult generateGeometry = new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
+				concreteRevision.setMinBounds(generateGeometry.getMinBounds());
+				concreteRevision.setMaxBounds(generateGeometry.getMaxBounds());
 				for (Revision other : concreteRevision.getRevisions()) {
 					other.setHasGeometry(true);
 				}

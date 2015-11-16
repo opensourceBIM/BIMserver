@@ -12,6 +12,7 @@ import java.util.Map;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.interfaces.objects.SVector3f;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializer;
@@ -61,11 +62,12 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 	private long splitCounter = -1;
 	private ObjectProvider objectProvider;
 	private HashMapVirtualObject next;
-	private Bounds modelBounds;
+	private ProjectInfo projectInfo;
 	
 	@Override
 	public void init(ObjectProvider objectProvider, ProjectInfo projectInfo, PluginManager pluginManager, PackageMetaData packageMetaData) throws SerializerException {
 		this.objectProvider = objectProvider;
+		this.projectInfo = projectInfo;
 		this.packageMetaData = packageMetaData;
 	}
 
@@ -113,7 +115,15 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 			dataOutputStream.write(new byte[skip]);
 		}
 
-//		modelBounds.writeTo(dataOutputStream);
+		SVector3f minBounds = projectInfo.getMinBounds();
+		dataOutputStream.writeFloat(minBounds.getX());
+		dataOutputStream.writeFloat(minBounds.getY());
+		dataOutputStream.writeFloat(minBounds.getZ());
+		SVector3f maxBounds = projectInfo.getMaxBounds();
+		dataOutputStream.writeFloat(maxBounds.getX());
+		dataOutputStream.writeFloat(maxBounds.getY());
+		dataOutputStream.writeFloat(maxBounds.getZ());
+		
 //		dataOutputStream.writeInt(nrObjects);
 		
 //		concreteGeometrySent = new HashMap<Long, Object>();

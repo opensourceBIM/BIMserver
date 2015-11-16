@@ -99,6 +99,7 @@ public class Streamer implements EndPoint {
 								boolean writeMessage = true;
 								int counter = 0;
 								long bytes = 0;
+								long start = System.nanoTime();
 								do {
 									ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 									DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -120,7 +121,8 @@ public class Streamer implements EndPoint {
 										counter++;
 									}
 								} while (writeMessage);
-								LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes));
+								long end = System.nanoTime();
+								LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
 							} catch (IOException e) {
 								LOGGER.error("", e);
 							}

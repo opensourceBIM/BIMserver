@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -100,7 +100,7 @@ public class CodeMigrator {
 
 		LOGGER.info("Generating ServiceInterface objects...");
 		DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper();
-		Set<EPackage> ePackages = new HashSet<EPackage>();
+		Set<EPackage> ePackages = new LinkedHashSet<EPackage>();
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
 			
@@ -112,10 +112,11 @@ public class CodeMigrator {
 			pluginManager.initAllLoadedPlugins();
 			
 			for (EPackage ePackage : schema.getEPackages()) {
-				if (!ePackage.getName().equals("ifc2x3tc1") && !ePackage.getName().equals("ifc4") && !ePackage.getName().equals("geometry")) {
+				if (!ePackage.getName().equals("ifc2x3tc1") && !ePackage.getName().equals("ifc4")) {
 					ePackages.add(ePackage);
 				}
 			}
+			
 			serviceGenerator.generateDataObjects(ePackages);
 			LOGGER.info("ServiceInterface objects successfully generated");
 

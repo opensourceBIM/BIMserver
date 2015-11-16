@@ -751,13 +751,31 @@ public interface StorePackage extends EPackage {
 	int CONCRETE_REVISION__IFC_HEADER = 10;
 
 	/**
+	 * The feature id for the '<em><b>Min Bounds</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_REVISION__MIN_BOUNDS = 11;
+
+	/**
+	 * The feature id for the '<em><b>Max Bounds</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_REVISION__MAX_BOUNDS = 12;
+
+	/**
 	 * The feature id for the '<em><b>Oid Counters</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__OID_COUNTERS = 11;
+	int CONCRETE_REVISION__OID_COUNTERS = 13;
 
 	/**
 	 * The number of structural features of the '<em>Concrete Revision</em>' class.
@@ -766,7 +784,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION_FEATURE_COUNT = 12;
+	int CONCRETE_REVISION_FEATURE_COUNT = 14;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.GeoTagImpl <em>Geo Tag</em>}' class.
@@ -7777,6 +7795,28 @@ public interface StorePackage extends EPackage {
 	EReference getConcreteRevision_IfcHeader();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getMinBounds <em>Min Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Min Bounds</em>'.
+	 * @see org.bimserver.models.store.ConcreteRevision#getMinBounds()
+	 * @see #getConcreteRevision()
+	 * @generated
+	 */
+	EReference getConcreteRevision_MinBounds();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getMaxBounds <em>Max Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Max Bounds</em>'.
+	 * @see org.bimserver.models.store.ConcreteRevision#getMaxBounds()
+	 * @see #getConcreteRevision()
+	 * @generated
+	 */
+	EReference getConcreteRevision_MaxBounds();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ConcreteRevision#getOidCounters <em>Oid Counters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13278,6 +13318,22 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONCRETE_REVISION__IFC_HEADER = eINSTANCE.getConcreteRevision_IfcHeader();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Bounds</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONCRETE_REVISION__MIN_BOUNDS = eINSTANCE.getConcreteRevision_MinBounds();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Bounds</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONCRETE_REVISION__MAX_BOUNDS = eINSTANCE.getConcreteRevision_MaxBounds();
 
 		/**
 		 * The meta object literal for the '<em><b>Oid Counters</b></em>' attribute feature.

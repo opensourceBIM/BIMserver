@@ -110,6 +110,10 @@ define(["bimserverapi_BimServerApiPromise"], function(BimServerPromise){
 				othis.waiters.push(callback);
 			}
 		};
+		
+		this.reset = function(){
+			
+		};
 
 		this.commit = function(comment, callback){
 			var tid = othis.checkTransaction();
@@ -630,6 +634,73 @@ define(["bimserverapi_BimServerApiPromise"], function(BimServerPromise){
 						jsonQuery: JSON.stringify(query),
 						serializerOid: serializer.oid,
 						sync: true
+					}, function(laid){
+						var url = bimServerApi.generateRevisionDownloadUrl({
+							laid: laid,
+							topicId: laid,
+							serializerOid: serializer.oid
+						});
+						othis.bimServerApi.notifier.setInfo("Getting model data...", -1);
+						othis.bimServerApi.getJson(url, null, function(data){
+//							console.log("query", data.objects.length);
+							data.objects.forEach(function(object){
+								var wrapper = othis.objects[object._i];
+								if (wrapper == null) {
+									wrapper = othis.createWrapper(object, object._t);
+									othis.objects[object._i] = wrapper;
+									if (fullTypesLoading[object._t] != null) {
+										othis.loadedTypes[object._t][wrapper.oid] = wrapper;
+									}
+								} else {
+									if (object._s == 1) {
+										wrapper.object = object;
+									}
+								}
+//								if (othis.loadedTypes[wrapper.getType()] == null) {
+//									othis.loadedTypes[wrapper.getType()] = {};
+//								}
+//								othis.loadedTypes[wrapper.getType()][object._i] = wrapper;
+								if (object._s == 1) {
+									callback(wrapper);
+								}
+							});
+//							othis.dumpByType();
+							bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
+								promise.fire();
+								othis.bimServerApi.notifier.setSuccess("Model data successfully downloaded...");
+							});
+						}, function(error){
+							console.log(error);
+						});
+					});
+				});
+			});
+			return promise;
+		};
+		
+		this.queryNew = function(query, callback){
+			var promise = new BimServerPromise();
+			var fullTypesLoading = {};
+//			query.queries.forEach(function(subQuery){
+//				if (subQuery.type != null) {
+//					fullTypesLoading[subQuery.type] = true;
+//					othis.loadedTypes[subQuery.type] = {};
+//					if (subQuery.includeAllSubTypes) {
+//						var schema = othis.bimServerApi.schemas[othis.schema];
+//						othis.bimServerApi.getAllSubTypes(schema, subQuery.type, function(subTypeName){
+//							fullTypesLoading[subTypeName] = true;
+//							othis.loadedTypes[subTypeName] = {};
+//						});
+//					}
+//				}
+//			});
+			othis.waitForLoaded(function(){
+				othis.bimServerApi.getJsonStreamingSerializer(function(serializer){
+					bimServerApi.callWithFullIndication("Bimsie1ServiceInterface", "downloadByNewJsonQuery", {
+						roids: [othis.roid],
+						query: JSON.stringify(query),
+						serializerOid: serializer.oid,
+						sync: false
 					}, function(laid){
 						var url = bimServerApi.generateRevisionDownloadUrl({
 							laid: laid,

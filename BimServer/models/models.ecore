@@ -19798,6 +19798,16 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="summary" eType="#/4/RevisionSummary"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/4/User"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ifcHeader" eType="#/4/IfcHeader"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="minBounds" eType="#/0/Vector3f">
+        <eAnnotations source="dbembed"/>
+        <eAnnotations source="embedsreference"/>
+        <eAnnotations source="hidden"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="maxBounds" eType="#/0/Vector3f">
+        <eAnnotations source="dbembed"/>
+        <eAnnotations source="embedsreference"/>
+        <eAnnotations source="hidden"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="oidCounters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GeoTag">
