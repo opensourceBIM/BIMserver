@@ -138,8 +138,7 @@ public enum IfcTubeBundleTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTubeBundleTypeEnum[] VALUES_ARRAY = new IfcTubeBundleTypeEnum[] { NULL, FINNED, NOTDEFINED,
-			USERDEFINED, };
+	private static final IfcTubeBundleTypeEnum[] VALUES_ARRAY = new IfcTubeBundleTypeEnum[] { NULL, FINNED, NOTDEFINED, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Tube Bundle Type Enum</b></em>' enumerators.

@@ -92,8 +92,7 @@ public class IfcProductDefinitionShapeImpl extends IfcProductRepresentationImpl 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcShapeAspect> getHasShapeAspects() {
-		return (EList<IfcShapeAspect>) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__HAS_SHAPE_ASPECTS,
-				true);
+		return (EList<IfcShapeAspect>) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT_DEFINITION_SHAPE__HAS_SHAPE_ASPECTS, true);
 	}
 
 	/**

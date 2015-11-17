@@ -213,8 +213,7 @@ public enum IfcBSplineCurveForm implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBSplineCurveForm[] VALUES_ARRAY = new IfcBSplineCurveForm[] { NULL, PARABOLIC_ARC,
-			ELLIPTIC_ARC, HYPERBOLIC_ARC, UNSPECIFIED, POLYLINE_FORM, CIRCULAR_ARC, };
+	private static final IfcBSplineCurveForm[] VALUES_ARRAY = new IfcBSplineCurveForm[] { NULL, PARABOLIC_ARC, ELLIPTIC_ARC, HYPERBOLIC_ARC, UNSPECIFIED, POLYLINE_FORM, CIRCULAR_ARC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc BSpline Curve Form</b></em>' enumerators.

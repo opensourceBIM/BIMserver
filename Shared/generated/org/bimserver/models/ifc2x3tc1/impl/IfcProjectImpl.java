@@ -138,8 +138,7 @@ public class IfcProjectImpl extends IfcObjectImpl implements IfcProject {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentationContext> getRepresentationContexts() {
-		return (EList<IfcRepresentationContext>) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT__REPRESENTATION_CONTEXTS,
-				true);
+		return (EList<IfcRepresentationContext>) eGet(Ifc2x3tc1Package.Literals.IFC_PROJECT__REPRESENTATION_CONTEXTS, true);
 	}
 
 	/**

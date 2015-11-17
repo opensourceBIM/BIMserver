@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class MessagingSerializerPluginConfigurationImpl extends PluginConfigurationImpl
-		implements MessagingSerializerPluginConfiguration {
+public class MessagingSerializerPluginConfigurationImpl extends PluginConfigurationImpl implements MessagingSerializerPluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class MessagingSerializerPluginConfigurationImpl extends PluginConfigurat
 	 * @generated
 	 */
 	public UserSettings getUserSettings() {
-		return (UserSettings) eGet(StorePackage.Literals.MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS,
-				true);
+		return (UserSettings) eGet(StorePackage.Literals.MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
 
 	/**

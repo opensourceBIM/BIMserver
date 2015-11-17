@@ -1,6 +1,7 @@
 package org.bimserver.database.queries;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -15,6 +16,7 @@ import org.bimserver.shared.Reusable;
 import org.eclipse.emf.ecore.EClass;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class QueryPartStackFrame implements StackFrame {
@@ -26,6 +28,7 @@ public class QueryPartStackFrame implements StackFrame {
 	private Reusable reusable;
 	private JsonObject jsonQuery;
 	private final Map<EClass, List<Long>> oids;
+	private Set<String> guids;
 
 	public QueryPartStackFrame(QueryObjectProvider queryObjectProvider, PackageMetaData packageMetaData, Query query, JsonObject jsonQuery, Reusable reusable) throws BimserverDatabaseException {
 		this.queryObjectProvider = queryObjectProvider;
@@ -46,11 +49,31 @@ public class QueryPartStackFrame implements StackFrame {
 				}
 				typeIterator = eClasses.iterator();
 			}
+		} else if (jsonQuery.has("types")) {
+			JsonArray typesArray = jsonQuery.get("types").getAsJsonArray();
+			Set<EClass> eClasses = new HashSet<EClass>();
+			for (Iterator<JsonElement> iterator = typesArray.iterator(); iterator.hasNext();) {
+				JsonElement jsonElement = iterator.next();
+				EClass typeClass = packageMetaData.getEClassIncludingDependencies(jsonElement.getAsString());
+				eClasses.add(typeClass);
+				if (jsonQuery.has("includeAllSubtypes") && jsonQuery.get("includeAllSubtypes").getAsBoolean()) {
+					eClasses.addAll(packageMetaData.getAllSubClasses((EClass)typeClass));
+				}
+			}
+			typeIterator = eClasses.iterator();
+		} else {
+			typeIterator = null;
 		}
-		if (jsonQuery.has("oids")) {
+		if (jsonQuery.has("oid")) {
+			oids = new HashMap<EClass, List<Long>>();
+			long oid = jsonQuery.get("oid").getAsLong();
+			EClass eClass = queryObjectProvider.getDatabaseSession().getEClassForOid(oid);
+			List<Long> list = new ArrayList<Long>();
+			this.oids.put(eClass, list);
+			list.add(oid);
+		} else if (jsonQuery.has("oids")) {
 			oids = new HashMap<EClass, List<Long>>();
 			JsonArray oids = jsonQuery.getAsJsonArray("oids");
-			System.out.println(oids);
 			for (int i=0; i<oids.size(); i++) {
 				long oid = oids.get(i).getAsLong();
 				EClass eClass = queryObjectProvider.getDatabaseSession().getEClassForOid(oid);
@@ -64,19 +87,31 @@ public class QueryPartStackFrame implements StackFrame {
 		} else {
 			oids = null;
 		}
+		if (jsonQuery.has("guids")) {
+			this.guids = new HashSet<>();
+			JsonArray guidsArray = jsonQuery.get("guids").getAsJsonArray();
+			for (int i=0; i<guidsArray.size(); i++) {
+				String guid = guidsArray.get(i).getAsString();
+				this.guids.add(guid);
+			}
+		} else if (jsonQuery.has("guid")) {
+			
+		}
 	}
 
 	@Override
-	public StackFrame process() throws BimserverDatabaseException, QueryException {
+	public Set<StackFrame> process() throws BimserverDatabaseException, QueryException {
 		if (typeIterator == null) {
 			return null;
 		}
 		if (typeIterator.hasNext()) {
 			EClass eClass = typeIterator.next();
-			if (oids == null) {
-				return new QueryTypeStackFrame(queryObjectProvider, eClass, query, jsonQuery, packageMetaData, reusable);
+			if (oids != null) {
+				return Collections.<StackFrame>singleton(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, query, jsonQuery, packageMetaData, reusable, oids.get(eClass)));
+			} else if (guids != null) {
+				return Collections.<StackFrame>singleton(new QueryGuidsAndTypesStackFrame(queryObjectProvider, eClass, query, jsonQuery, packageMetaData, reusable, guids));
 			} else {
-				return new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, query, jsonQuery, packageMetaData, reusable, oids.get(eClass));
+				return Collections.<StackFrame>singleton(new QueryTypeStackFrame(queryObjectProvider, eClass, query, jsonQuery, packageMetaData, reusable));
 			}
 		}
 		return null;

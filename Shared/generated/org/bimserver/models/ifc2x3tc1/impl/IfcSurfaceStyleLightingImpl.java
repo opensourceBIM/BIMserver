@@ -74,8 +74,7 @@ public class IfcSurfaceStyleLightingImpl extends IdEObjectImpl implements IfcSur
 	 * @generated
 	 */
 	public IfcColourRgb getDiffuseTransmissionColour() {
-		return (IfcColourRgb) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_LIGHTING__DIFFUSE_TRANSMISSION_COLOUR,
-				true);
+		return (IfcColourRgb) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_LIGHTING__DIFFUSE_TRANSMISSION_COLOUR, true);
 	}
 
 	/**
@@ -84,8 +83,7 @@ public class IfcSurfaceStyleLightingImpl extends IdEObjectImpl implements IfcSur
 	 * @generated
 	 */
 	public void setDiffuseTransmissionColour(IfcColourRgb newDiffuseTransmissionColour) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_LIGHTING__DIFFUSE_TRANSMISSION_COLOUR,
-				newDiffuseTransmissionColour);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_LIGHTING__DIFFUSE_TRANSMISSION_COLOUR, newDiffuseTransmissionColour);
 	}
 
 	/**
@@ -94,8 +92,7 @@ public class IfcSurfaceStyleLightingImpl extends IdEObjectImpl implements IfcSur
 	 * @generated
 	 */
 	public IfcColourRgb getDiffuseReflectionColour() {
-		return (IfcColourRgb) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_LIGHTING__DIFFUSE_REFLECTION_COLOUR,
-				true);
+		return (IfcColourRgb) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_LIGHTING__DIFFUSE_REFLECTION_COLOUR, true);
 	}
 
 	/**
@@ -104,8 +101,7 @@ public class IfcSurfaceStyleLightingImpl extends IdEObjectImpl implements IfcSur
 	 * @generated
 	 */
 	public void setDiffuseReflectionColour(IfcColourRgb newDiffuseReflectionColour) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_LIGHTING__DIFFUSE_REFLECTION_COLOUR,
-				newDiffuseReflectionColour);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_STYLE_LIGHTING__DIFFUSE_REFLECTION_COLOUR, newDiffuseReflectionColour);
 	}
 
 	/**

@@ -1,5 +1,6 @@
 package org.bimserver.database.queries;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -16,9 +17,9 @@ public class StartFrame implements StackFrame {
 	}
 
 	@Override
-	public StackFrame process() throws BimserverDatabaseException {
+	public Set<StackFrame> process() throws BimserverDatabaseException {
 		if (this.roidsIterator.hasNext()) {
-			return new RevisionStackFrame(queryObjectProvider, this.roidsIterator.next());
+			return Collections.<StackFrame>singleton(new RevisionStackFrame(queryObjectProvider, this.roidsIterator.next()));
 		}
 		return null;
 	}

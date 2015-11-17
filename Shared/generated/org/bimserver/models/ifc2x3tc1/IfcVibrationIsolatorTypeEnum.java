@@ -163,8 +163,7 @@ public enum IfcVibrationIsolatorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcVibrationIsolatorTypeEnum[] VALUES_ARRAY = new IfcVibrationIsolatorTypeEnum[] { NULL,
-			NOTDEFINED, SPRING, USERDEFINED, COMPRESSION, };
+	private static final IfcVibrationIsolatorTypeEnum[] VALUES_ARRAY = new IfcVibrationIsolatorTypeEnum[] { NULL, NOTDEFINED, SPRING, USERDEFINED, COMPRESSION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Vibration Isolator Type Enum</b></em>' enumerators.
@@ -172,8 +171,7 @@ public enum IfcVibrationIsolatorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcVibrationIsolatorTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcVibrationIsolatorTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Vibration Isolator Type Enum</b></em>' literal with the specified literal value.

@@ -213,8 +213,7 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTankTypeEnum[] VALUES_ARRAY = new IfcTankTypeEnum[] { NULL, PREFORMED, NOTDEFINED,
-			PRESSUREVESSEL, SECTIONAL, USERDEFINED, EXPANSION, };
+	private static final IfcTankTypeEnum[] VALUES_ARRAY = new IfcTankTypeEnum[] { NULL, PREFORMED, NOTDEFINED, PRESSUREVESSEL, SECTIONAL, USERDEFINED, EXPANSION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Tank Type Enum</b></em>' enumerators.

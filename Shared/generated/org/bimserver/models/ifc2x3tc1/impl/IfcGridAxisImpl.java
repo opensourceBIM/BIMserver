@@ -238,8 +238,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcVirtualGridIntersection> getHasIntersections() {
-		return (EList<IfcVirtualGridIntersection>) eGet(Ifc2x3tc1Package.Literals.IFC_GRID_AXIS__HAS_INTERSECTIONS,
-				true);
+		return (EList<IfcVirtualGridIntersection>) eGet(Ifc2x3tc1Package.Literals.IFC_GRID_AXIS__HAS_INTERSECTIONS, true);
 	}
 
 	/**

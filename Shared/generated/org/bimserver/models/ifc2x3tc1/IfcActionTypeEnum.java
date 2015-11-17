@@ -188,8 +188,7 @@ public enum IfcActionTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcActionTypeEnum[] VALUES_ARRAY = new IfcActionTypeEnum[] { NULL, NOTDEFINED, EXTRAORDINARY_A,
-			PERMANENT_G, USERDEFINED, VARIABLE_Q, };
+	private static final IfcActionTypeEnum[] VALUES_ARRAY = new IfcActionTypeEnum[] { NULL, NOTDEFINED, EXTRAORDINARY_A, PERMANENT_G, USERDEFINED, VARIABLE_Q, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Action Type Enum</b></em>' enumerators.

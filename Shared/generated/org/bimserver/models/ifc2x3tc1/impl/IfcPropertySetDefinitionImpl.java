@@ -64,8 +64,7 @@ public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByProperties> getPropertyDefinitionOf() {
-		return (EList<IfcRelDefinesByProperties>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROPERTY_SET_DEFINITION__PROPERTY_DEFINITION_OF, true);
+		return (EList<IfcRelDefinesByProperties>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_SET_DEFINITION__PROPERTY_DEFINITION_OF, true);
 	}
 
 	/**

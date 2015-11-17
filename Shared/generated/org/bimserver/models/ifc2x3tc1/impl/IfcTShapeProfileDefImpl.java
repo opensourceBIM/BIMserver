@@ -339,8 +339,7 @@ public class IfcTShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setFlangeEdgeRadiusAsString(String newFlangeEdgeRadiusAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TSHAPE_PROFILE_DEF__FLANGE_EDGE_RADIUS_AS_STRING,
-				newFlangeEdgeRadiusAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TSHAPE_PROFILE_DEF__FLANGE_EDGE_RADIUS_AS_STRING, newFlangeEdgeRadiusAsString);
 	}
 
 	/**
@@ -628,8 +627,7 @@ public class IfcTShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setCentreOfGravityInYAsString(String newCentreOfGravityInYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TSHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING,
-				newCentreOfGravityInYAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TSHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING, newCentreOfGravityInYAsString);
 	}
 
 	/**

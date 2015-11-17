@@ -163,8 +163,7 @@ public enum IfcTransitionCode implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTransitionCode[] VALUES_ARRAY = new IfcTransitionCode[] { NULL, CONTSAMEGRADIENT,
-			CONTSAMEGRADIENTSAMECURVATURE, CONTINUOUS, DISCONTINUOUS, };
+	private static final IfcTransitionCode[] VALUES_ARRAY = new IfcTransitionCode[] { NULL, CONTSAMEGRADIENT, CONTSAMEGRADIENTSAMECURVATURE, CONTINUOUS, DISCONTINUOUS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Transition Code</b></em>' enumerators.

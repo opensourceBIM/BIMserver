@@ -1,6 +1,8 @@
 package org.bimserver.database.queries;
 
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Query;
@@ -36,10 +38,10 @@ public class QueryStackFrame implements StackFrame {
 	}
 	
 	@Override
-	public StackFrame process() throws BimserverDatabaseException {
+	public Set<StackFrame> process() throws BimserverDatabaseException {
 		if (queryIterator.hasNext()) {
 			JsonElement next = queryIterator.next();
-			return new QueryPartStackFrame(queryObjectProvider,packageMetaData, query, (JsonObject) next, reusable);
+			return Collections.<StackFrame>singleton(new QueryPartStackFrame(queryObjectProvider,packageMetaData, query, (JsonObject) next, reusable));
 		}
 		return null;
 	}

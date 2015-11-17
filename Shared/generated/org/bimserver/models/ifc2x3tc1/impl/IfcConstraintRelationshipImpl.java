@@ -166,8 +166,7 @@ public class IfcConstraintRelationshipImpl extends IdEObjectImpl implements IfcC
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraint> getRelatedConstraints() {
-		return (EList<IfcConstraint>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_RELATIONSHIP__RELATED_CONSTRAINTS,
-				true);
+		return (EList<IfcConstraint>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_RELATIONSHIP__RELATED_CONSTRAINTS, true);
 	}
 
 } //IfcConstraintRelationshipImpl

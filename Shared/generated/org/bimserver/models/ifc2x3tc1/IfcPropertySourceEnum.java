@@ -288,8 +288,7 @@ public enum IfcPropertySourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPropertySourceEnum[] VALUES_ARRAY = new IfcPropertySourceEnum[] { NULL, NOTKNOWN, DESIGN,
-			ASBUILT, MEASURED, DESIGNMINIMUM, COMMISSIONING, DESIGNMAXIMUM, USERDEFINED, SIMULATED, };
+	private static final IfcPropertySourceEnum[] VALUES_ARRAY = new IfcPropertySourceEnum[] { NULL, NOTKNOWN, DESIGN, ASBUILT, MEASURED, DESIGNMINIMUM, COMMISSIONING, DESIGNMAXIMUM, USERDEFINED, SIMULATED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Property Source Enum</b></em>' enumerators.

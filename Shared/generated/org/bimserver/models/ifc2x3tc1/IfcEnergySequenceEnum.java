@@ -213,8 +213,7 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEnergySequenceEnum[] VALUES_ARRAY = new IfcEnergySequenceEnum[] { NULL, SECONDARY,
-			NOTDEFINED, PRIMARY, TERTIARY, USERDEFINED, AUXILIARY, };
+	private static final IfcEnergySequenceEnum[] VALUES_ARRAY = new IfcEnergySequenceEnum[] { NULL, SECONDARY, NOTDEFINED, PRIMARY, TERTIARY, USERDEFINED, AUXILIARY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Energy Sequence Enum</b></em>' enumerators.

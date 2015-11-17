@@ -138,7 +138,6 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 	}
 	
 	private boolean writeData(OutputStream outputStream) throws IOException {
-		System.out.println(next.getOid());
 		LittleEndianDataOutputStream dataOutputStream = new LittleEndianDataOutputStream(outputStream);
 		if (next.eClass() == GeometryPackage.eINSTANCE.getGeometryInfo()) {
 			Object transformation = next.eGet(next.eClass().getEStructuralFeature("transformation"));
@@ -148,7 +147,7 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 			dataOutputStream.writeLong(next.getRoid());
 			dataOutputStream.writeLong(next.getOid());
 			HashMapWrappedVirtualObject minBounds = (HashMapWrappedVirtualObject) next.eGet(next.eClass().getEStructuralFeature("minBounds"));
-			HashMapWrappedVirtualObject maxBounds = (HashMapWrappedVirtualObject) next.eGet(next.eClass().getEStructuralFeature("minBounds"));
+			HashMapWrappedVirtualObject maxBounds = (HashMapWrappedVirtualObject) next.eGet(next.eClass().getEStructuralFeature("maxBounds"));
 			Float minX = (Float) minBounds.eGet("x");
 			Float minY = (Float) minBounds.eGet("y");
 			Float minZ = (Float) minBounds.eGet("z");
@@ -293,6 +292,7 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 				dataOutputStream.writeLong((Long)geometry);
 			}
 		} else {
+			System.out.println("Ignoring");
 			// Ignore
 		}
 //		GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));

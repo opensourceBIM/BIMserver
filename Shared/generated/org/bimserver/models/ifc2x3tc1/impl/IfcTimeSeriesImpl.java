@@ -283,8 +283,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTimeSeriesReferenceRelationship> getDocumentedBy() {
-		return (EList<IfcTimeSeriesReferenceRelationship>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TIME_SERIES__DOCUMENTED_BY, true);
+		return (EList<IfcTimeSeriesReferenceRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES__DOCUMENTED_BY, true);
 	}
 
 	/**

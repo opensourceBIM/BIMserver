@@ -238,8 +238,7 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStairFlightTypeEnum[] VALUES_ARRAY = new IfcStairFlightTypeEnum[] { NULL, SPIRAL, WINDER,
-			FREEFORM, NOTDEFINED, CURVED, STRAIGHT, USERDEFINED, };
+	private static final IfcStairFlightTypeEnum[] VALUES_ARRAY = new IfcStairFlightTypeEnum[] { NULL, SPIRAL, WINDER, FREEFORM, NOTDEFINED, CURVED, STRAIGHT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Stair Flight Type Enum</b></em>' enumerators.

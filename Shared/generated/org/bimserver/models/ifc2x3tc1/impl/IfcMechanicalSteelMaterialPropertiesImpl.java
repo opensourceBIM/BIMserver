@@ -47,8 +47,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMaterialPropertiesImpl
-		implements IfcMechanicalSteelMaterialProperties {
+public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMaterialPropertiesImpl implements IfcMechanicalSteelMaterialProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,8 +109,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public String getYieldStressAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__YIELD_STRESS_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__YIELD_STRESS_AS_STRING, true);
 	}
 
 	/**
@@ -120,8 +118,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public void setYieldStressAsString(String newYieldStressAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__YIELD_STRESS_AS_STRING,
-				newYieldStressAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__YIELD_STRESS_AS_STRING, newYieldStressAsString);
 	}
 
 	/**
@@ -184,8 +181,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public String getUltimateStressAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__ULTIMATE_STRESS_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__ULTIMATE_STRESS_AS_STRING, true);
 	}
 
 	/**
@@ -194,8 +190,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public void setUltimateStressAsString(String newUltimateStressAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__ULTIMATE_STRESS_AS_STRING,
-				newUltimateStressAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__ULTIMATE_STRESS_AS_STRING, newUltimateStressAsString);
 	}
 
 	/**
@@ -258,8 +253,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public String getUltimateStrainAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__ULTIMATE_STRAIN_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__ULTIMATE_STRAIN_AS_STRING, true);
 	}
 
 	/**
@@ -268,8 +262,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public void setUltimateStrainAsString(String newUltimateStrainAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__ULTIMATE_STRAIN_AS_STRING,
-				newUltimateStrainAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__ULTIMATE_STRAIN_AS_STRING, newUltimateStrainAsString);
 	}
 
 	/**
@@ -296,8 +289,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public double getHardeningModule() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__HARDENING_MODULE,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__HARDENING_MODULE, true);
 	}
 
 	/**
@@ -333,8 +325,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public String getHardeningModuleAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__HARDENING_MODULE_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__HARDENING_MODULE_AS_STRING, true);
 	}
 
 	/**
@@ -343,8 +334,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public void setHardeningModuleAsString(String newHardeningModuleAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__HARDENING_MODULE_AS_STRING,
-				newHardeningModuleAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__HARDENING_MODULE_AS_STRING, newHardeningModuleAsString);
 	}
 
 	/**
@@ -371,8 +361,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public double getProportionalStress() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PROPORTIONAL_STRESS,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PROPORTIONAL_STRESS, true);
 	}
 
 	/**
@@ -381,8 +370,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public void setProportionalStress(double newProportionalStress) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PROPORTIONAL_STRESS,
-				newProportionalStress);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PROPORTIONAL_STRESS, newProportionalStress);
 	}
 
 	/**
@@ -409,9 +397,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public String getProportionalStressAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PROPORTIONAL_STRESS_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PROPORTIONAL_STRESS_AS_STRING, true);
 	}
 
 	/**
@@ -420,8 +406,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public void setProportionalStressAsString(String newProportionalStressAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PROPORTIONAL_STRESS_AS_STRING,
-				newProportionalStressAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PROPORTIONAL_STRESS_AS_STRING, newProportionalStressAsString);
 	}
 
 	/**
@@ -439,8 +424,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public boolean isSetProportionalStressAsString() {
-		return eIsSet(
-				Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PROPORTIONAL_STRESS_AS_STRING);
+		return eIsSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PROPORTIONAL_STRESS_AS_STRING);
 	}
 
 	/**
@@ -485,8 +469,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public String getPlasticStrainAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PLASTIC_STRAIN_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PLASTIC_STRAIN_AS_STRING, true);
 	}
 
 	/**
@@ -495,8 +478,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 * @generated
 	 */
 	public void setPlasticStrainAsString(String newPlasticStrainAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PLASTIC_STRAIN_AS_STRING,
-				newPlasticStrainAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__PLASTIC_STRAIN_AS_STRING, newPlasticStrainAsString);
 	}
 
 	/**
@@ -524,8 +506,7 @@ public class IfcMechanicalSteelMaterialPropertiesImpl extends IfcMechanicalMater
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelaxation> getRelaxations() {
-		return (EList<IfcRelaxation>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__RELAXATIONS, true);
+		return (EList<IfcRelaxation>) eGet(Ifc2x3tc1Package.Literals.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES__RELAXATIONS, true);
 	}
 
 	/**

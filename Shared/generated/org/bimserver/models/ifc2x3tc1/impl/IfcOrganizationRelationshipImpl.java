@@ -129,8 +129,7 @@ public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public IfcOrganization getRelatingOrganization() {
-		return (IfcOrganization) eGet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION,
-				true);
+		return (IfcOrganization) eGet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION, true);
 	}
 
 	/**
@@ -149,8 +148,7 @@ public class IfcOrganizationRelationshipImpl extends IdEObjectImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganization> getRelatedOrganizations() {
-		return (EList<IfcOrganization>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS, true);
+		return (EList<IfcOrganization>) eGet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS, true);
 	}
 
 } //IfcOrganizationRelationshipImpl

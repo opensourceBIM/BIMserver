@@ -187,37 +187,37 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				}
 				ByteBuffer valueBuffer = convertObjectToByteArray(object, reusableBuffer, getMetaDataManager().getPackageMetaData(object.eClass().getEPackage().getName()));
 				int valueBufferPosition = valueBuffer.position();
-				if (object.eClass().getEAnnotation("nolazyload") == null && !overwriteEnabled) {
-					boolean hasAtLeastOneIndex = false;
+				boolean hasAtLeastOneIndex = false;
+				for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
+					if (eStructuralFeature.getEAnnotation("singleindex") != null) {
+						hasAtLeastOneIndex = true;
+						break;
+					}
+				}
+				if (hasAtLeastOneIndex) {
+					ByteBuffer oldKeyBuffer = ByteBuffer.allocate(16);
+					oldKeyBuffer.putInt(object.getPid());
+					oldKeyBuffer.putLong(object.getOid());
+					oldKeyBuffer.putInt(-(object.getRid() - 1));
+					byte[] oldData = database.getKeyValueStore().get(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), oldKeyBuffer.array(), this);
 					for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
 						if (eStructuralFeature.getEAnnotation("singleindex") != null) {
-							hasAtLeastOneIndex = true;
-							break;
-						}
-					}
-					if (hasAtLeastOneIndex) {
-						ByteBuffer oldKeyBuffer = ByteBuffer.allocate(16);
-						oldKeyBuffer.putInt(object.getPid());
-						oldKeyBuffer.putLong(object.getOid());
-						oldKeyBuffer.putInt(-(object.getRid() - 1));
-						byte[] oldData = database.getKeyValueStore().get(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), oldKeyBuffer.array(), this);
-						for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
-							if (eStructuralFeature.getEAnnotation("singleindex") != null) {
-								String indexTableName = object.eClass().getEPackage().getName() + "_" + object.eClass().getName() + "_" + eStructuralFeature.getName();
-								byte[] featureBytes = extractFeatureBytes(this, valueBuffer, object.eClass(), eStructuralFeature);
-
-								if (oldData != null) {
-									ByteBuffer oldValue = ByteBuffer.wrap(oldData);
-									byte[] featureBytesOldIndex = extractFeatureBytes(this, oldValue, object.eClass(), eStructuralFeature);
-									database.getKeyValueStore().delete(indexTableName, featureBytesOldIndex, oldKeyBuffer.array(), this);
-								}
-
-								if (featureBytes != null) {
-									database.getKeyValueStore().store(indexTableName, featureBytes, keyBuffer.array(), this);
-								}
+							String indexTableName = object.eClass().getEPackage().getName() + "_" + object.eClass().getName() + "_" + eStructuralFeature.getName();
+							byte[] featureBytes = extractFeatureBytes(this, valueBuffer, object.eClass(), eStructuralFeature);
+							
+							if (oldData != null) {
+								ByteBuffer oldValue = ByteBuffer.wrap(oldData);
+								byte[] featureBytesOldIndex = extractFeatureBytes(this, oldValue, object.eClass(), eStructuralFeature);
+								database.getKeyValueStore().delete(indexTableName, featureBytesOldIndex, oldKeyBuffer.array(), this);
+							}
+							
+							if (featureBytes != null) {
+								database.getKeyValueStore().store(indexTableName, featureBytes, keyBuffer.array(), this);
 							}
 						}
 					}
+				}
+				if (object.eClass().getEAnnotation("nolazyload") == null && !overwriteEnabled) {
 					database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(), valueBuffer.array(), 0, valueBufferPosition, this);
 				} else {
 					database.getKeyValueStore().store(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
@@ -1264,7 +1264,8 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 
 	public ObjectIdentifier getOidOfGuid(String schema, String guid, int pid, int rid) throws BimserverDatabaseException {
-		for (EClass eClass : getMetaDataManager().getPackageMetaData(schema).getAllSubClasses(getMetaDataManager().getPackageMetaData(schema).getEClass("IfcRoot"))) {
+		PackageMetaData packageMetaData = getMetaDataManager().getPackageMetaData(schema);
+		for (EClass eClass : packageMetaData.getAllSubClasses(packageMetaData.getEClass("IfcRoot"))) {
 			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid),
 					BinUtils.intToByteArray(pid), this);
 			try {
@@ -1279,8 +1280,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 						ByteBuffer value = ByteBuffer.wrap(record.getValue());
 
 						// Skip the unsettable part
-						byte unsettablesSize = value.get();
-						value.position(value.position() + unsettablesSize);
+						value.position(value.position() + packageMetaData.getUnsettedLength(eClass));
 
 						if (value.capacity() > 1) {
 							int stringLength = value.getInt();

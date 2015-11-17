@@ -129,8 +129,7 @@ public class IfcPhysicalQuantityImpl extends IdEObjectImpl implements IfcPhysica
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPhysicalComplexQuantity> getPartOfComplex() {
-		return (EList<IfcPhysicalComplexQuantity>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PHYSICAL_QUANTITY__PART_OF_COMPLEX, true);
+		return (EList<IfcPhysicalComplexQuantity>) eGet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_QUANTITY__PART_OF_COMPLEX, true);
 	}
 
 	/**
