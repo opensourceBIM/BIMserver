@@ -38,7 +38,7 @@ public class QueryStackFrame implements StackFrame {
 	}
 	
 	@Override
-	public Set<StackFrame> process() throws BimserverDatabaseException {
+	public Set<StackFrame> process() throws BimserverDatabaseException, QueryException {
 		if (queryIterator.hasNext()) {
 			JsonElement next = queryIterator.next();
 			return Collections.<StackFrame>singleton(new QueryPartStackFrame(queryObjectProvider,packageMetaData, query, (JsonObject) next, reusable));
