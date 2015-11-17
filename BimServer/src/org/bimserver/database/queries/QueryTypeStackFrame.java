@@ -2,6 +2,7 @@ package org.bimserver.database.queries;
 
 import java.nio.ByteBuffer;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
@@ -21,6 +22,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
@@ -89,26 +91,15 @@ public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements Ob
 		if (currentObject != null) {
 			 if (jsonQuery.has("include")) {
 				 JsonObject include = jsonQuery.getAsJsonObject("include");
-				 if (include.has("field")) {
-					 String fieldName = include.get("field").getAsString();
-					 EStructuralFeature feature = currentObject.eClass().getEStructuralFeature(fieldName);
-					 if (feature == null) {
-						 throw new QueryException("No field \"" + fieldName + "\" found on object of type " + currentObject.eClass().getName());
-					 }
-					 if (feature instanceof EAttribute) {
-						 throw new QueryException("Field \"" + fieldName + "\" is an attribute, these are always included");
-					 }
-					 if (feature.isMany()) {
-						 throw new QueryException("Field \"" + fieldName + "\" is many, this is not yet implemented");
-					 } else {
-						 Object value = currentObject.eGet(feature);
-						 if (value != null) {
-							 long refOid = (Long)value;
-							 if (!getQueryObjectProvider().hasRead(refOid)) {
-								 return Collections.<StackFrame>singleton(new FollowReferenceStackFrame(getQueryObjectProvider(), refOid, getPackageMetaData(), getReusable(), currentDatabaseQuery, jsonQuery, include));
-							 }
-						 }
-					 }
+				 return Collections.<StackFrame>singleton(new QueryIncludeStackFrame(getQueryObjectProvider(), currentDatabaseQuery, jsonQuery, getPackageMetaData(), getReusable(), include, currentObject));
+			 } else if (jsonQuery.has("includes")) {
+				 JsonArray includes = jsonQuery.get("includes").getAsJsonArray();
+				 Set<StackFrame> result = new HashSet<>();
+				 for (int i=0; i<includes.size(); i++) {
+					 result.add(new QueryIncludeStackFrame(getQueryObjectProvider(), currentDatabaseQuery, jsonQuery, getPackageMetaData(), getReusable(), includes.get(i).getAsJsonObject(), currentObject));
+				 }
+				 if (result.size() > 0) {
+					 return result;
 				 }
 			 }
 		}

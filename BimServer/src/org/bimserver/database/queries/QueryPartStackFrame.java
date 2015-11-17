@@ -30,7 +30,7 @@ public class QueryPartStackFrame implements StackFrame {
 	private final Map<EClass, List<Long>> oids;
 	private Set<String> guids;
 
-	public QueryPartStackFrame(QueryObjectProvider queryObjectProvider, PackageMetaData packageMetaData, Query query, JsonObject jsonQuery, Reusable reusable) throws BimserverDatabaseException {
+	public QueryPartStackFrame(QueryObjectProvider queryObjectProvider, PackageMetaData packageMetaData, Query query, JsonObject jsonQuery, Reusable reusable) throws BimserverDatabaseException, QueryException {
 		this.queryObjectProvider = queryObjectProvider;
 		this.packageMetaData = packageMetaData;
 		this.query = query;
@@ -72,8 +72,11 @@ public class QueryPartStackFrame implements StackFrame {
 			this.oids.put(eClass, list);
 			list.add(oid);
 		} else if (jsonQuery.has("oids")) {
-			oids = new HashMap<EClass, List<Long>>();
+			this.oids = new HashMap<EClass, List<Long>>();
 			JsonArray oids = jsonQuery.getAsJsonArray("oids");
+			if (oids.size() == 0) {
+				throw new QueryException("oids parameter of type array is of size 0");
+			}
 			for (int i=0; i<oids.size(); i++) {
 				long oid = oids.get(i).getAsLong();
 				EClass eClass = queryObjectProvider.getDatabaseSession().getEClassForOid(oid);
@@ -95,7 +98,8 @@ public class QueryPartStackFrame implements StackFrame {
 				this.guids.add(guid);
 			}
 		} else if (jsonQuery.has("guid")) {
-			
+			this.guids = new HashSet<>();
+			this.guids.add(jsonQuery.get("guid").getAsString());
 		}
 	}
 
