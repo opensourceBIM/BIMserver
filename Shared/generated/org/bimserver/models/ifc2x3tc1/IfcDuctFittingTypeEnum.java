@@ -288,8 +288,7 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDuctFittingTypeEnum[] VALUES_ARRAY = new IfcDuctFittingTypeEnum[] { NULL, EXIT, NOTDEFINED,
-			TRANSITION, OBSTRUCTION, ENTRY, JUNCTION, USERDEFINED, CONNECTOR, BEND, };
+	private static final IfcDuctFittingTypeEnum[] VALUES_ARRAY = new IfcDuctFittingTypeEnum[] { NULL, EXIT, NOTDEFINED, TRANSITION, OBSTRUCTION, ENTRY, JUNCTION, USERDEFINED, CONNECTOR, BEND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Duct Fitting Type Enum</b></em>' enumerators.

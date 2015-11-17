@@ -263,8 +263,7 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProtectiveDeviceTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTypeEnum[] { NULL,
-			CIRCUITBREAKER, VARISTOR, NOTDEFINED, FUSEDISCONNECTOR, EARTHFAILUREDEVICE, RESIDUALCURRENTCIRCUITBREAKER,
+	private static final IfcProtectiveDeviceTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTypeEnum[] { NULL, CIRCUITBREAKER, VARISTOR, NOTDEFINED, FUSEDISCONNECTOR, EARTHFAILUREDEVICE, RESIDUALCURRENTCIRCUITBREAKER,
 			USERDEFINED, RESIDUALCURRENTSWITCH, };
 
 	/**
@@ -273,8 +272,7 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProtectiveDeviceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProtectiveDeviceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Protective Device Type Enum</b></em>' literal with the specified literal value.

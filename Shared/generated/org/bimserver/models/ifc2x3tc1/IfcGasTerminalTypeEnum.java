@@ -188,8 +188,7 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcGasTerminalTypeEnum[] VALUES_ARRAY = new IfcGasTerminalTypeEnum[] { NULL, GASBURNER,
-			NOTDEFINED, GASBOOSTER, GASAPPLIANCE, USERDEFINED, };
+	private static final IfcGasTerminalTypeEnum[] VALUES_ARRAY = new IfcGasTerminalTypeEnum[] { NULL, GASBURNER, NOTDEFINED, GASBOOSTER, GASAPPLIANCE, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Gas Terminal Type Enum</b></em>' enumerators.

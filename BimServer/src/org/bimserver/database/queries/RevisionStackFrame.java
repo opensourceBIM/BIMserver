@@ -1,12 +1,13 @@
 package org.bimserver.database.queries;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Query;
-import org.bimserver.database.actions.ConcreteRevisionStackFrame;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
@@ -26,9 +27,9 @@ public class RevisionStackFrame implements StackFrame {
 	}
 
 	@Override
-	public StackFrame process() {
+	public Set<StackFrame> process() {
 		if (concreteRevisionIterator.hasNext()) {
-			return new ConcreteRevisionStackFrame(queryObjectProvider, this.concreteRevisionIterator.next());
+			return Collections.<StackFrame>singleton(new ConcreteRevisionStackFrame(queryObjectProvider, this.concreteRevisionIterator.next()));
 		}
 		return null;
 	}

@@ -421,8 +421,7 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * @generated
 	 */
 	public void setScheduleDurationAsString(String newScheduleDurationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SCHEDULE_TIME_CONTROL__SCHEDULE_DURATION_AS_STRING,
-				newScheduleDurationAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SCHEDULE_TIME_CONTROL__SCHEDULE_DURATION_AS_STRING, newScheduleDurationAsString);
 	}
 
 	/**
@@ -1025,8 +1024,7 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * @generated
 	 */
 	public IfcRelAssignsTasks getScheduleTimeControlAssigned() {
-		return (IfcRelAssignsTasks) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SCHEDULE_TIME_CONTROL__SCHEDULE_TIME_CONTROL_ASSIGNED, true);
+		return (IfcRelAssignsTasks) eGet(Ifc2x3tc1Package.Literals.IFC_SCHEDULE_TIME_CONTROL__SCHEDULE_TIME_CONTROL_ASSIGNED, true);
 	}
 
 	/**
@@ -1035,8 +1033,7 @@ public class IfcScheduleTimeControlImpl extends IfcControlImpl implements IfcSch
 	 * @generated
 	 */
 	public void setScheduleTimeControlAssigned(IfcRelAssignsTasks newScheduleTimeControlAssigned) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SCHEDULE_TIME_CONTROL__SCHEDULE_TIME_CONTROL_ASSIGNED,
-				newScheduleTimeControlAssigned);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SCHEDULE_TIME_CONTROL__SCHEDULE_TIME_CONTROL_ASSIGNED, newScheduleTimeControlAssigned);
 	}
 
 	/**

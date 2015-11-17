@@ -163,8 +163,7 @@ public enum IfcCooledBeamTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCooledBeamTypeEnum[] VALUES_ARRAY = new IfcCooledBeamTypeEnum[] { NULL, NOTDEFINED, PASSIVE,
-			USERDEFINED, ACTIVE, };
+	private static final IfcCooledBeamTypeEnum[] VALUES_ARRAY = new IfcCooledBeamTypeEnum[] { NULL, NOTDEFINED, PASSIVE, USERDEFINED, ACTIVE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cooled Beam Type Enum</b></em>' enumerators.

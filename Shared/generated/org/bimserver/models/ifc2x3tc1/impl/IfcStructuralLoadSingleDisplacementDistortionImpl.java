@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLoadSingleDisplacementDistortionImpl extends IfcStructuralLoadSingleDisplacementImpl
-		implements IfcStructuralLoadSingleDisplacementDistortion {
+public class IfcStructuralLoadSingleDisplacementDistortionImpl extends IfcStructuralLoadSingleDisplacementImpl implements IfcStructuralLoadSingleDisplacementDistortion {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcStructuralLoadSingleDisplacementDistortionImpl extends IfcStruct
 	 * @generated
 	 */
 	public double getDistortion() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION,
-				true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION, true);
 	}
 
 	/**
@@ -98,9 +96,7 @@ public class IfcStructuralLoadSingleDisplacementDistortionImpl extends IfcStruct
 	 * @generated
 	 */
 	public String getDistortionAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION_AS_STRING, true);
 	}
 
 	/**
@@ -109,8 +105,7 @@ public class IfcStructuralLoadSingleDisplacementDistortionImpl extends IfcStruct
 	 * @generated
 	 */
 	public void setDistortionAsString(String newDistortionAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION_AS_STRING,
-				newDistortionAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION_AS_STRING, newDistortionAsString);
 	}
 
 	/**
@@ -128,8 +123,7 @@ public class IfcStructuralLoadSingleDisplacementDistortionImpl extends IfcStruct
 	 * @generated
 	 */
 	public boolean isSetDistortionAsString() {
-		return eIsSet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION_AS_STRING);
+		return eIsSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION_AS_STRING);
 	}
 
 } //IfcStructuralLoadSingleDisplacementDistortionImpl

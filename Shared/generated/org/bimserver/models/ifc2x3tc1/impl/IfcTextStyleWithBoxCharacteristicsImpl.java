@@ -43,8 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextStyleWithBoxCharacteristicsImpl extends IdEObjectImpl
-		implements IfcTextStyleWithBoxCharacteristics {
+public class IfcTextStyleWithBoxCharacteristicsImpl extends IdEObjectImpl implements IfcTextStyleWithBoxCharacteristics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -116,8 +115,7 @@ public class IfcTextStyleWithBoxCharacteristicsImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public String getBoxHeightAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_HEIGHT_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_HEIGHT_AS_STRING, true);
 	}
 
 	/**
@@ -126,8 +124,7 @@ public class IfcTextStyleWithBoxCharacteristicsImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public void setBoxHeightAsString(String newBoxHeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_HEIGHT_AS_STRING,
-				newBoxHeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_HEIGHT_AS_STRING, newBoxHeightAsString);
 	}
 
 	/**
@@ -190,8 +187,7 @@ public class IfcTextStyleWithBoxCharacteristicsImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public String getBoxWidthAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_WIDTH_AS_STRING,
-				true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_WIDTH_AS_STRING, true);
 	}
 
 	/**
@@ -200,8 +196,7 @@ public class IfcTextStyleWithBoxCharacteristicsImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public void setBoxWidthAsString(String newBoxWidthAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_WIDTH_AS_STRING,
-				newBoxWidthAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_WIDTH_AS_STRING, newBoxWidthAsString);
 	}
 
 	/**
@@ -264,8 +259,7 @@ public class IfcTextStyleWithBoxCharacteristicsImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public String getBoxSlantAngleAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_SLANT_ANGLE_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_SLANT_ANGLE_AS_STRING, true);
 	}
 
 	/**
@@ -274,8 +268,7 @@ public class IfcTextStyleWithBoxCharacteristicsImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public void setBoxSlantAngleAsString(String newBoxSlantAngleAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_SLANT_ANGLE_AS_STRING,
-				newBoxSlantAngleAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_SLANT_ANGLE_AS_STRING, newBoxSlantAngleAsString);
 	}
 
 	/**
@@ -338,8 +331,7 @@ public class IfcTextStyleWithBoxCharacteristicsImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public String getBoxRotateAngleAsString() {
-		return (String) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_ROTATE_ANGLE_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_ROTATE_ANGLE_AS_STRING, true);
 	}
 
 	/**
@@ -348,8 +340,7 @@ public class IfcTextStyleWithBoxCharacteristicsImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public void setBoxRotateAngleAsString(String newBoxRotateAngleAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_ROTATE_ANGLE_AS_STRING,
-				newBoxRotateAngleAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__BOX_ROTATE_ANGLE_AS_STRING, newBoxRotateAngleAsString);
 	}
 
 	/**
@@ -376,8 +367,7 @@ public class IfcTextStyleWithBoxCharacteristicsImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public IfcSizeSelect getCharacterSpacing() {
-		return (IfcSizeSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__CHARACTER_SPACING, true);
+		return (IfcSizeSelect) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS__CHARACTER_SPACING, true);
 	}
 
 	/**

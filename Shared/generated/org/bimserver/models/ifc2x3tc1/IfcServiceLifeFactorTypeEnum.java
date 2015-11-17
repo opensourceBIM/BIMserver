@@ -288,8 +288,7 @@ public enum IfcServiceLifeFactorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcServiceLifeFactorTypeEnum[] VALUES_ARRAY = new IfcServiceLifeFactorTypeEnum[] { NULL,
-			EOUTDOORENVIRONMENT, FINUSECONDITIONS, NOTDEFINED, DINDOORENVIRONMENT, GMAINTENANCELEVEL, BDESIGNLEVEL,
+	private static final IfcServiceLifeFactorTypeEnum[] VALUES_ARRAY = new IfcServiceLifeFactorTypeEnum[] { NULL, EOUTDOORENVIRONMENT, FINUSECONDITIONS, NOTDEFINED, DINDOORENVIRONMENT, GMAINTENANCELEVEL, BDESIGNLEVEL,
 			CWORKEXECUTIONLEVEL, USERDEFINED, AQUALITYOFCOMPONENTS, };
 
 	/**
@@ -298,8 +297,7 @@ public enum IfcServiceLifeFactorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcServiceLifeFactorTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcServiceLifeFactorTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Service Life Factor Type Enum</b></em>' literal with the specified literal value.

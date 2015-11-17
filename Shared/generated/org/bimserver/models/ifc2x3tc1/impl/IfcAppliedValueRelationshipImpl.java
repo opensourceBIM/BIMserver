@@ -77,8 +77,7 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public IfcAppliedValue getComponentOfTotal() {
-		return (IfcAppliedValue) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENT_OF_TOTAL,
-				true);
+		return (IfcAppliedValue) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENT_OF_TOTAL, true);
 	}
 
 	/**
@@ -97,8 +96,7 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValue> getComponents() {
-		return (EList<IfcAppliedValue>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENTS,
-				true);
+		return (EList<IfcAppliedValue>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__COMPONENTS, true);
 	}
 
 	/**
@@ -107,8 +105,7 @@ public class IfcAppliedValueRelationshipImpl extends IdEObjectImpl implements If
 	 * @generated
 	 */
 	public IfcArithmeticOperatorEnum getArithmeticOperator() {
-		return (IfcArithmeticOperatorEnum) eGet(
-				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__ARITHMETIC_OPERATOR, true);
+		return (IfcArithmeticOperatorEnum) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE_RELATIONSHIP__ARITHMETIC_OPERATOR, true);
 	}
 
 	/**

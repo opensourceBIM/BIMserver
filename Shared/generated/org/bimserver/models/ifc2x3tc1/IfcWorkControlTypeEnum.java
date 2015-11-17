@@ -188,8 +188,7 @@ public enum IfcWorkControlTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWorkControlTypeEnum[] VALUES_ARRAY = new IfcWorkControlTypeEnum[] { NULL, NOTDEFINED,
-			BASELINE, PLANNED, USERDEFINED, ACTUAL, };
+	private static final IfcWorkControlTypeEnum[] VALUES_ARRAY = new IfcWorkControlTypeEnum[] { NULL, NOTDEFINED, BASELINE, PLANNED, USERDEFINED, ACTUAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Work Control Type Enum</b></em>' enumerators.

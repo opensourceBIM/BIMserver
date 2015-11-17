@@ -73,8 +73,7 @@ public class IfcClassificationItemRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public IfcClassificationItem getRelatingItem() {
-		return (IfcClassificationItem) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATING_ITEM, true);
+		return (IfcClassificationItem) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATING_ITEM, true);
 	}
 
 	/**
@@ -93,8 +92,7 @@ public class IfcClassificationItemRelationshipImpl extends IdEObjectImpl impleme
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItem> getRelatedItems() {
-		return (EList<IfcClassificationItem>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATED_ITEMS, true);
+		return (EList<IfcClassificationItem>) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM_RELATIONSHIP__RELATED_ITEMS, true);
 	}
 
 } //IfcClassificationItemRelationshipImpl

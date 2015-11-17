@@ -60,8 +60,7 @@ public class IfcProtectiveDeviceTypeImpl extends IfcFlowControllerTypeImpl imple
 	 * @generated
 	 */
 	public IfcProtectiveDeviceTypeEnum getPredefinedType() {
-		return (IfcProtectiveDeviceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PROTECTIVE_DEVICE_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcProtectiveDeviceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PROTECTIVE_DEVICE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

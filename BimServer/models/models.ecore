@@ -4475,11 +4475,13 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcRoot">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="GlobalId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="index"/>
+        <eAnnotations source="singleindex"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="OwnerHistory" eType="#/1/IfcOwnerHistory"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true">
         <eAnnotations source="index"/>
+        <eAnnotations source="singleindex"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>

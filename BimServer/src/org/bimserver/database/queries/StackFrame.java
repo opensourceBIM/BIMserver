@@ -1,7 +1,9 @@
 package org.bimserver.database.queries;
 
+import java.util.Set;
+
 import org.bimserver.BimserverDatabaseException;
 
 public interface StackFrame {
-	StackFrame process() throws BimserverDatabaseException, QueryException;
+	Set<StackFrame> process() throws BimserverDatabaseException, QueryException;
 }

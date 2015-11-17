@@ -1,11 +1,12 @@
-package org.bimserver.database.actions;
+package org.bimserver.database.queries;
+
+import java.util.Collections;
+import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
-import org.bimserver.database.queries.QueryObjectProvider;
-import org.bimserver.database.queries.QueryStackFrame;
-import org.bimserver.database.queries.StackFrame;
+import org.bimserver.database.actions.AbstractDownloadDatabaseAction;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
@@ -30,12 +31,12 @@ public class ConcreteRevisionStackFrame implements StackFrame {
 	}
 
 	@Override
-	public StackFrame process() throws BimserverDatabaseException {
+	public Set<StackFrame> process() throws BimserverDatabaseException {
 		if (hasRun) {
 			return null;
 		} else {
 			hasRun = true;
-			return new QueryStackFrame(queryObjectProvider, packageMetaData, query, reusable);
+			return Collections.<StackFrame>singleton(new QueryStackFrame(queryObjectProvider, packageMetaData, query, reusable));
 		}
 	}
 }

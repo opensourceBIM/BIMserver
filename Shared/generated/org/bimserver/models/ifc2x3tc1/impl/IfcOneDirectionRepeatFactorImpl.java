@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcOneDirectionRepeatFactorImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcOneDirectionRepeatFactor {
+public class IfcOneDirectionRepeatFactorImpl extends IfcGeometricRepresentationItemImpl implements IfcOneDirectionRepeatFactor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

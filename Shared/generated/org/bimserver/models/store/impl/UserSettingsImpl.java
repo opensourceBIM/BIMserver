@@ -283,8 +283,7 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<MessagingSerializerPluginConfiguration> getMessagingSerializerPlugins() {
-		return (EList<MessagingSerializerPluginConfiguration>) eGet(
-				StorePackage.Literals.USER_SETTINGS__MESSAGING_SERIALIZER_PLUGINS, true);
+		return (EList<MessagingSerializerPluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__MESSAGING_SERIALIZER_PLUGINS, true);
 	}
 
 } //UserSettingsImpl

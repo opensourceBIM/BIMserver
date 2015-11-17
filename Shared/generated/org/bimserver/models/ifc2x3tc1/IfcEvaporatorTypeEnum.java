@@ -238,8 +238,7 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEvaporatorTypeEnum[] VALUES_ARRAY = new IfcEvaporatorTypeEnum[] { NULL, NOTDEFINED,
-			FLOODEDSHELLANDTUBE, DIRECTEXPANSIONTUBEINTUBE, DIRECTEXPANSIONBRAZEDPLATE, USERDEFINED,
+	private static final IfcEvaporatorTypeEnum[] VALUES_ARRAY = new IfcEvaporatorTypeEnum[] { NULL, NOTDEFINED, FLOODEDSHELLANDTUBE, DIRECTEXPANSIONTUBEINTUBE, DIRECTEXPANSIONBRAZEDPLATE, USERDEFINED,
 			DIRECTEXPANSIONSHELLANDTUBE, SHELLANDCOIL, };
 
 	/**

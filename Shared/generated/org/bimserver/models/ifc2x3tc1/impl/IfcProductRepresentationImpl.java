@@ -147,8 +147,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentation> getRepresentations() {
-		return (EList<IfcRepresentation>) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT_REPRESENTATION__REPRESENTATIONS,
-				true);
+		return (EList<IfcRepresentation>) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT_REPRESENTATION__REPRESENTATIONS, true);
 	}
 
 } //IfcProductRepresentationImpl

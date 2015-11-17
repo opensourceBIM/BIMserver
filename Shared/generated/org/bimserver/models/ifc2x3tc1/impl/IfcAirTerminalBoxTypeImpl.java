@@ -60,8 +60,7 @@ public class IfcAirTerminalBoxTypeImpl extends IfcFlowControllerTypeImpl impleme
 	 * @generated
 	 */
 	public IfcAirTerminalBoxTypeEnum getPredefinedType() {
-		return (IfcAirTerminalBoxTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_AIR_TERMINAL_BOX_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcAirTerminalBoxTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_AIR_TERMINAL_BOX_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

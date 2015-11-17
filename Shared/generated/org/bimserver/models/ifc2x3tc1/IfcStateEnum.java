@@ -188,8 +188,7 @@ public enum IfcStateEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStateEnum[] VALUES_ARRAY = new IfcStateEnum[] { NULL, READONLYLOCKED, READWRITELOCKED,
-			READONLY, READWRITE, LOCKED, };
+	private static final IfcStateEnum[] VALUES_ARRAY = new IfcStateEnum[] { NULL, READONLYLOCKED, READWRITELOCKED, READONLY, READWRITE, LOCKED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc State Enum</b></em>' enumerators.

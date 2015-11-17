@@ -75,8 +75,7 @@ public class IfcRepresentationItemImpl extends IdEObjectImpl implements IfcRepre
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationLayerAssignment> getLayerAssignments() {
-		return (EList<IfcPresentationLayerAssignment>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_ITEM__LAYER_ASSIGNMENTS, true);
+		return (EList<IfcPresentationLayerAssignment>) eGet(Ifc2x3tc1Package.Literals.IFC_REPRESENTATION_ITEM__LAYER_ASSIGNMENTS, true);
 	}
 
 	/**

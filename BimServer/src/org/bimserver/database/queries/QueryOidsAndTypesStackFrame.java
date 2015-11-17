@@ -2,27 +2,27 @@ package org.bimserver.database.queries;
 
 import java.nio.ByteBuffer;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession.GetResult;
-import org.bimserver.database.actions.DatabaseReadingStackFrame;
-import org.bimserver.database.actions.FollowReferenceStackFrame;
-import org.bimserver.database.actions.ObjectProvidingStackFrame;
 import org.bimserver.database.Query;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
+import org.bimserver.database.actions.DatabaseReadingStackFrame;
+import org.bimserver.database.actions.ObjectProvidingStackFrame;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.Reusable;
 import org.bimserver.utils.BinUtils;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
@@ -58,7 +58,7 @@ public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame imple
 			}
 			ByteBuffer tmp = ByteBuffer.allocate(12);
 			tmp.putInt(currentDatabaseQuery.getPid());
-			tmp.putLong(startOid + 1);
+			tmp.putLong(startOid);
 			typeRecordIterator = queryObjectProvider.getDatabaseSession().getKeyValueStore().getRecordIterator(tableName, BinUtils.intToByteArray(currentDatabaseQuery.getPid()), tmp.array(), queryObjectProvider.getDatabaseSession());
 			record = typeRecordIterator.next();
 		} else {
@@ -69,7 +69,7 @@ public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame imple
 	}
 
 	@Override
-	public StackFrame process() throws BimserverDatabaseException, QueryException {
+	public Set<StackFrame> process() throws BimserverDatabaseException, QueryException {
 		if (typeRecordIterator == null) {
 			return null;
 		}
@@ -82,7 +82,7 @@ public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame imple
 		currentObject = null;
 		
 		ByteBuffer nextKeyStart = ByteBuffer.allocate(12);
-//				reads++;
+		getQueryObjectProvider().incReads();
 		ByteBuffer keyBuffer = ByteBuffer.wrap(record.getKey());
 		int keyPid = keyBuffer.getInt();
 		long keyOid = keyBuffer.getLong();
@@ -105,33 +105,22 @@ public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame imple
 		if (currentObject != null) {
 			 if (jsonQuery.has("include")) {
 				 JsonObject include = jsonQuery.getAsJsonObject("include");
-				 if (include.has("field")) {
-					 String fieldName = include.get("field").getAsString();
-					 EStructuralFeature feature = currentObject.eClass().getEStructuralFeature(fieldName);
-					 if (feature == null) {
-						 throw new QueryException("No field \"" + fieldName + "\" found on object of type " + currentObject.eClass().getName());
-					 }
-					 if (feature instanceof EAttribute) {
-						 throw new QueryException("Field \"" + fieldName + "\" is an attribute, these are always included");
-					 }
-					 if (feature.isMany()) {
-						 throw new QueryException("Field \"" + fieldName + "\" is many, this is not yet implemented");
-					 } else {
-						 Object value = currentObject.eGet(feature);
-						 if (value != null) {
-							 long refOid = (Long)value;
-							 if (!getQueryObjectProvider().hasRead(refOid)) {
-								 return new FollowReferenceStackFrame(getQueryObjectProvider(), refOid, getPackageMetaData(), getReusable(), currentDatabaseQuery);
-							 }
-						 }
-					 }
+				 return Collections.<StackFrame>singleton(new QueryIncludeStackFrame(getQueryObjectProvider(), currentDatabaseQuery, jsonQuery, getPackageMetaData(), getReusable(), include, currentObject));
+			 } else if (jsonQuery.has("includes")) {
+				 JsonArray includes = jsonQuery.get("includes").getAsJsonArray();
+				 Set<StackFrame> result = new HashSet<>();
+				 for (int i=0; i<includes.size(); i++) {
+					 result.add(new QueryIncludeStackFrame(getQueryObjectProvider(), currentDatabaseQuery, jsonQuery, getPackageMetaData(), getReusable(), includes.get(i).getAsJsonObject(), currentObject));
+				 }
+				 if (result.size() > 0) {
+					 return result;
 				 }
 			 }
 		}
 		
-		return record == null ? null : this;
+		return record == null ? null : Collections.<StackFrame>singleton(this);
 	}
-	
+
 	public HashMapVirtualObject getCurrentObject() {
 		return currentObject;
 	}

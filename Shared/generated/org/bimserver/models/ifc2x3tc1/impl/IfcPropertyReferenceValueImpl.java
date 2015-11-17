@@ -97,8 +97,7 @@ public class IfcPropertyReferenceValueImpl extends IfcSimplePropertyImpl impleme
 	 * @generated
 	 */
 	public IfcObjectReferenceSelect getPropertyReference() {
-		return (IfcObjectReferenceSelect) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE, true);
+		return (IfcObjectReferenceSelect) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE, true);
 	}
 
 	/**

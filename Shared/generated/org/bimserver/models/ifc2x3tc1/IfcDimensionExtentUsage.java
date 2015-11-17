@@ -113,8 +113,7 @@ public enum IfcDimensionExtentUsage implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDimensionExtentUsage[] VALUES_ARRAY = new IfcDimensionExtentUsage[] { NULL, TARGET,
-			ORIGIN, };
+	private static final IfcDimensionExtentUsage[] VALUES_ARRAY = new IfcDimensionExtentUsage[] { NULL, TARGET, ORIGIN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Dimension Extent Usage</b></em>' enumerators.
@@ -122,8 +121,7 @@ public enum IfcDimensionExtentUsage implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDimensionExtentUsage> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDimensionExtentUsage> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Dimension Extent Usage</b></em>' literal with the specified literal value.

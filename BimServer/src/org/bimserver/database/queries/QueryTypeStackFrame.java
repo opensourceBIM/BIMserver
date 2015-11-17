@@ -1,12 +1,13 @@
 package org.bimserver.database.queries;
 
 import java.nio.ByteBuffer;
+import java.util.Collections;
+import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession.GetResult;
 import org.bimserver.database.actions.DatabaseReadingStackFrame;
-import org.bimserver.database.actions.FollowReferenceStackFrame;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
 import org.bimserver.database.Query;
 import org.bimserver.database.Record;
@@ -56,7 +57,7 @@ public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements Ob
 	}
 
 	@Override
-	public StackFrame process() throws BimserverDatabaseException, QueryException {
+	public Set<StackFrame> process() throws BimserverDatabaseException, QueryException {
 		if (typeRecordIterator == null) {
 			return null;
 		}
@@ -69,7 +70,7 @@ public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements Ob
 		currentObject = null;
 		
 		ByteBuffer nextKeyStart = ByteBuffer.allocate(12);
-//				reads++;
+		getQueryObjectProvider().incReads();
 		ByteBuffer keyBuffer = ByteBuffer.wrap(record.getKey());
 		int keyPid = keyBuffer.getInt();
 		long keyOid = keyBuffer.getLong();
@@ -104,7 +105,7 @@ public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements Ob
 						 if (value != null) {
 							 long refOid = (Long)value;
 							 if (!getQueryObjectProvider().hasRead(refOid)) {
-								 return new FollowReferenceStackFrame(getQueryObjectProvider(), refOid, getPackageMetaData(), getReusable(), currentDatabaseQuery);
+								 return Collections.<StackFrame>singleton(new FollowReferenceStackFrame(getQueryObjectProvider(), refOid, getPackageMetaData(), getReusable(), currentDatabaseQuery, jsonQuery, include));
 							 }
 						 }
 					 }
@@ -112,7 +113,7 @@ public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements Ob
 			 }
 		}
 		
-		return this;
+		return Collections.<StackFrame>singleton(this);
 	}
 	
 	public HashMapVirtualObject getCurrentObject() {

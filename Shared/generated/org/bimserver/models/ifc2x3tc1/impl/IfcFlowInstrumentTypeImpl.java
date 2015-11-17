@@ -60,8 +60,7 @@ public class IfcFlowInstrumentTypeImpl extends IfcDistributionControlElementType
 	 * @generated
 	 */
 	public IfcFlowInstrumentTypeEnum getPredefinedType() {
-		return (IfcFlowInstrumentTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_FLOW_INSTRUMENT_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcFlowInstrumentTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_FLOW_INSTRUMENT_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**
