@@ -1,5 +1,6 @@
 package org.bimserver.database.actions;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -55,6 +56,10 @@ public class DownloadByNewQueryDatabaseAction extends BimDatabaseAction<ObjectPr
 			}
 		}
 
-		return new QueryObjectProvider(getDatabaseSession(), bimServer, json, roids);
+		try {
+			return new QueryObjectProvider(getDatabaseSession(), bimServer, json, roids);
+		} catch (IOException e) {
+			throw new UserException(e);
+		}
 	}
 }

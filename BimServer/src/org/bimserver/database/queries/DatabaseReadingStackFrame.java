@@ -1,4 +1,4 @@
-package org.bimserver.database.actions;
+package org.bimserver.database.queries;
 
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
@@ -6,8 +6,10 @@ import java.nio.ByteBuffer;
 import java.util.Date;
 
 import org.bimserver.BimserverDatabaseException;
-import org.bimserver.database.queries.QueryObjectProvider;
-import org.bimserver.database.queries.StackFrame;
+import org.bimserver.database.DatabaseSession.GetResult;
+import org.bimserver.database.Record;
+import org.bimserver.database.SearchingRecordIterator;
+import org.bimserver.database.actions.ObjectProvidingStackFrame;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.shared.HashMapVirtualObject;
@@ -23,19 +25,41 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
 
-public abstract class DatabaseReadingStackFrame implements StackFrame {
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+public abstract class DatabaseReadingStackFrame extends StackFrame implements ObjectProvidingStackFrame {
 	private PackageMetaData packageMetaData;
 	private Reusable reusable;
 	private QueryObjectProvider queryObjectProvider;
+	private QueryInterface query;
+	protected HashMapVirtualObject currentObject;
+	private ObjectNode jsonQuery;
 
-	public DatabaseReadingStackFrame(PackageMetaData packageMetaData, Reusable reusable, QueryObjectProvider queryObjectProvider) {
+	public DatabaseReadingStackFrame(PackageMetaData packageMetaData, Reusable reusable, QueryObjectProvider queryObjectProvider, QueryInterface query, ObjectNode jsonQuery) {
 		this.packageMetaData = packageMetaData;
 		this.reusable = reusable;
 		this.queryObjectProvider = queryObjectProvider;
+		this.query = query;
+		this.jsonQuery = jsonQuery;
 	}
 	
 	public Reusable getReusable() {
 		return reusable;
+	}
+	
+	public ObjectNode getJsonQuery() {
+		return jsonQuery;
+	}
+	
+	public QueryInterface getQuery() {
+		return query;
+	}
+
+	@Override
+	public HashMapVirtualObject getCurrentObject() {
+		return currentObject;
 	}
 	
 	public QueryObjectProvider getQueryObjectProvider() {
@@ -44,6 +68,74 @@ public abstract class DatabaseReadingStackFrame implements StackFrame {
 	
 	public PackageMetaData getPackageMetaData() {
 		return packageMetaData;
+	}
+	
+	protected ObjectNode getRealInclude(JsonNode include) {
+		if (include.isTextual()) {
+			String includeName = include.asText();
+			if (includeName.equals("all")) {
+//				getQueryObjectProvider().push(new FollowAllReferencesStackFrame(getQueryObjectProvider(), getPackageMetaData(), getReusable(), getQuery(), getJsonQuery(), currentObject, include));
+				setDone(true);
+			} else if (queryObjectProvider.getFullQuery().has("defines")) {
+				ObjectNode defines = (ObjectNode) queryObjectProvider.getFullQuery().get("defines");
+				if (defines.has(includeName)) {
+					ObjectNode definedInclude = (ObjectNode) defines.get(includeName);
+					return definedInclude;
+				}
+			}
+		} else if (include.isObject()) {
+			return (ObjectNode) include;
+		}
+		return null;
+	}
+	
+	protected void processPossibleIncludes(ObjectNode queryPart) throws QueryException, BimserverDatabaseException {
+		if (currentObject != null) {
+			if (queryPart.has("include")) {
+				ObjectNode realInclude = getRealInclude(queryPart.get("include"));
+				if (realInclude.has("inputType")) {
+					EClass filterClass = getQueryObjectProvider().getDatabaseSession().getEClassForName(getPackageMetaData().getSchema().name().toLowerCase(), realInclude.get("inputType").asText());
+					if (!filterClass.isSuperTypeOf(currentObject.eClass())) {
+						return;
+					}
+				}
+				getQueryObjectProvider().push(new QueryIncludeStackFrame(getQueryObjectProvider(), getQuery(), jsonQuery, getPackageMetaData(), getReusable(), realInclude, currentObject));
+			} else if (queryPart.has("includes")) {
+				ArrayNode includes = (ArrayNode) queryPart.get("includes");
+				for (int i = 0; i < includes.size(); i++) {
+					JsonNode localInclude = (JsonNode) includes.get(i);
+					ObjectNode realInclude = getRealInclude(localInclude);
+					if (realInclude.has("inputType")) {
+						EClass filterClass = getQueryObjectProvider().getDatabaseSession().getEClassForName(getPackageMetaData().getSchema().name().toLowerCase(), realInclude.get("inputType").asText());
+						if (!filterClass.isSuperTypeOf(currentObject.eClass())) {
+							return;
+						}
+					}
+					getQueryObjectProvider().push(new QueryIncludeStackFrame(getQueryObjectProvider(), getQuery(), jsonQuery, getPackageMetaData(), getReusable(), realInclude, currentObject));
+				}
+			}
+		}
+	}
+	
+	public GetResult getMap(EClass originalQueryClass, EClass eClass, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, QueryInterface query) throws BimserverDatabaseException {
+		if (keyPid == query.getPid()) {
+			if (keyRid <= query.getRid() && keyRid >= query.getStopRid()) {
+				if (!getQueryObjectProvider().hasRead(keyOid)) {
+					if (buffer.capacity() == 1 && buffer.get(0) == -1) {
+						buffer.position(buffer.position() + 1);
+						return GetResult.CONTINUE_WITH_NEXT_OID;
+						// deleted entity
+					} else {
+						 currentObject = convertByteArrayToObject(originalQueryClass, eClass, keyOid, buffer, keyRid, query);
+					}
+				}
+				return GetResult.CONTINUE_WITH_NEXT_OID;
+			} else {
+				return GetResult.CONTINUE_WITH_NEXT_RECORD;
+			}
+		} else {
+			return GetResult.STOP;
+		}
 	}
 	
 	protected HashMapVirtualObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, int rid, QueryInterface query) throws BimserverDatabaseException {
@@ -274,5 +366,44 @@ public abstract class DatabaseReadingStackFrame implements StackFrame {
 			}
 		}
 		return null;
+	}
+	
+	public HashMapVirtualObject getByOid(long oid) throws BimserverDatabaseException {
+		EClass eClass = getQueryObjectProvider().getDatabaseSession().getEClassForOid(oid);
+		ByteBuffer mustStartWith = ByteBuffer.wrap(new byte[12]);
+		mustStartWith.putInt(query.getPid());
+		mustStartWith.putLong(oid);
+		ByteBuffer startSearchWith = ByteBuffer.wrap(new byte[16]);
+		startSearchWith.putInt(query.getPid());
+		startSearchWith.putLong(oid);
+		startSearchWith.putInt(-query.getRid());
+	
+		SearchingRecordIterator recordIterator = getQueryObjectProvider().getDatabaseSession().getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), mustStartWith.array(),
+				startSearchWith.array(), getQueryObjectProvider().getDatabaseSession());
+		try {
+			Record record = recordIterator.next();
+			if (record == null) {
+				return null;
+			}
+			getQueryObjectProvider().incReads();
+			ByteBuffer keyBuffer = ByteBuffer.wrap(record.getKey());
+			ByteBuffer valueBuffer = ByteBuffer.wrap(record.getValue());
+			keyBuffer.getInt(); // pid
+			long keyOid = keyBuffer.getLong();
+			int keyRid = -keyBuffer.getInt();
+			if (keyRid <= query.getRid()) {
+				if (valueBuffer.capacity() == 1 && valueBuffer.get(0) == -1) {
+					valueBuffer.position(valueBuffer.position() + 1);
+					return null;
+					// deleted entity
+				} else {
+					return convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, keyRid, query);
+				}
+			} else {
+				return null;
+			}
+		} finally {
+			recordIterator.close();
+		}
 	}
 }

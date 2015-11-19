@@ -1,10 +1,8 @@
 package org.bimserver.database.queries;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Query;
@@ -12,7 +10,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 
-public class RevisionStackFrame implements StackFrame {
+public class RevisionStackFrame extends StackFrame {
 
 	private Revision currentRevision;
 	private Map<Integer, Long> pidRoidMap = new HashMap<>();
@@ -27,10 +25,11 @@ public class RevisionStackFrame implements StackFrame {
 	}
 
 	@Override
-	public Set<StackFrame> process() {
+	public boolean process() {
+		queryObjectProvider.push(new ConcreteRevisionStackFrame(queryObjectProvider, this.concreteRevisionIterator.next()));
 		if (concreteRevisionIterator.hasNext()) {
-			return Collections.<StackFrame>singleton(new ConcreteRevisionStackFrame(queryObjectProvider, this.concreteRevisionIterator.next()));
+			return false;
 		}
-		return null;
+		return true;
 	}
 }

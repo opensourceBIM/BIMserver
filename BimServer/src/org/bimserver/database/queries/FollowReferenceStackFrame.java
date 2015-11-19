@@ -1,51 +1,43 @@
 package org.bimserver.database.queries;
 
 import java.nio.ByteBuffer;
-import java.util.Collections;
-import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
-import org.bimserver.database.actions.DatabaseReadingStackFrame;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
-import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.Reusable;
 import org.eclipse.emf.ecore.EClass;
 
-import com.google.gson.JsonObject;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class FollowReferenceStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
 
 	private long oid;
 	private QueryInterface query;
-	private HashMapVirtualObject object;
-	private JsonObject include;
-	private JsonObject jsonQuery;
+	private ObjectNode queryPart;
 	private boolean hasRun = false;
 	
-	public FollowReferenceStackFrame(QueryObjectProvider queryObjectProvider, Long oid, PackageMetaData packageMetaData, Reusable reusable, QueryInterface query, JsonObject include, JsonObject jsonQuery) {
-		super(packageMetaData, reusable, queryObjectProvider);
+	public FollowReferenceStackFrame(QueryObjectProvider queryObjectProvider, Long oid, PackageMetaData packageMetaData, Reusable reusable, QueryInterface query, ObjectNode queryPart, ObjectNode jsonQuery) {
+		super(packageMetaData, reusable, queryObjectProvider, query, jsonQuery);
 		this.oid = oid;
 		this.query = query;
-		this.include = include;
-		this.jsonQuery = jsonQuery;
+		this.queryPart = queryPart;
 	}
 
 	@Override
-	public Set<StackFrame> process() throws BimserverDatabaseException, QueryException {
-		StackFrame stackFrame = get();
-		if (stackFrame != null) {
-			return Collections.singleton(stackFrame);
+	public boolean process() throws BimserverDatabaseException, QueryException {
+		if (getQueryObjectProvider().hasRead(oid)) {
+			processPossibleIncludes(queryPart);
+			return true;
 		}
-		return null;
-	}
-	
-	public StackFrame get() throws BimserverDatabaseException, QueryException {
+		
 		if (hasRun) {
-			return null;
+			return true;
 		}
 		hasRun = true;
 		if (oid == -1) {
@@ -65,7 +57,7 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 		try {
 			Record record = recordIterator.next();
 			if (record == null) {
-				return null;
+				return true;
 			}
 			getQueryObjectProvider().incReads();
 			ByteBuffer keyBuffer = ByteBuffer.wrap(record.getKey());
@@ -76,25 +68,18 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 			if (keyRid <= query.getRid()) {
 				if (valueBuffer.capacity() == 1 && valueBuffer.get(0) == -1) {
 					valueBuffer.position(valueBuffer.position() + 1);
-					return null;
+					return true;
 					// deleted entity
 				} else {
-					object = convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, keyRid, query);
-					if (include != null) {
-						return new QueryIncludeStackFrame(getQueryObjectProvider(), query, jsonQuery, getPackageMetaData(), getReusable(), include, object);
-					}
+					currentObject = convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, keyRid, query);
+					processPossibleIncludes(queryPart);
 				}
 			} else {
-				return null;
+				return true;
 			}
 		} finally {
 			recordIterator.close();
 		}
-		return null;
-	}
-
-	@Override
-	public HashMapVirtualObject getCurrentObject() {
-		return object;
+		return true;
 	}
 }

@@ -50,6 +50,11 @@ public class HashMapVirtualObject implements VirtualObject {
 	public Object eGet(EStructuralFeature feature) {
 		return map.get(feature);
 	}
+
+	public Object get(String featureName) {
+		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(featureName);
+		return map.get(eStructuralFeature);
+	}
 	
 	public boolean eIsSet(EStructuralFeature feature) {
 		return map.containsKey(feature);
@@ -453,5 +458,10 @@ public class HashMapVirtualObject implements VirtualObject {
 
 	public long getRoid() {
 		return reusable.getRoid();
+	}
+
+	public boolean has(String key) {
+		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(key);
+		return map.containsKey(eStructuralFeature);
 	}
 }

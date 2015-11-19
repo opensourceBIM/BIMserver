@@ -75,7 +75,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	private static final boolean MONITOR_CURSOR_STACK_TRACES = false;
 	private final AtomicLong cursorCounter = new AtomicLong();
 	private final Map<Long, StackTraceElement[]> openCursors = new ConcurrentHashMap<>();
-	private boolean useTransactions = false;
+	private boolean useTransactions = true;
 	private boolean defer = false;
 
 	public BerkeleyKeyValueStore(Path dataDir) throws DatabaseInitException {
@@ -104,7 +104,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		EnvironmentConfig envConfig = new EnvironmentConfig();
 		envConfig.setCachePercent(30);
 		envConfig.setAllowCreate(true);
-		envConfig.setTransactional(true);
+		envConfig.setTransactional(useTransactions);
 		envConfig.setTxnTimeout(10, TimeUnit.SECONDS);
 		envConfig.setLockTimeout(2000, TimeUnit.MILLISECONDS);
 		envConfig.setConfigParam(EnvironmentConfig.CHECKPOINTER_HIGH_PRIORITY, "true");
@@ -149,7 +149,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(true);
 		databaseConfig.setDeferredWrite(defer);
-		databaseConfig.setTransactional(false);
+		databaseConfig.setTransactional(useTransactions);
 		databaseConfig.setSortedDuplicates(false);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
 		if (database == null) {
@@ -167,7 +167,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(true);
 		databaseConfig.setDeferredWrite(defer);
-		databaseConfig.setTransactional(false);
+		databaseConfig.setTransactional(useTransactions);
 		databaseConfig.setSortedDuplicates(true);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
 		if (database == null) {
@@ -185,7 +185,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(false);
 		databaseConfig.setDeferredWrite(defer);
-		databaseConfig.setTransactional(false);
+		databaseConfig.setTransactional(useTransactions);
 		databaseConfig.setSortedDuplicates(false);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
 		if (database == null) {
@@ -202,7 +202,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(false);
 		databaseConfig.setDeferredWrite(defer);
-		databaseConfig.setTransactional(false);
+		databaseConfig.setTransactional(useTransactions);
 		databaseConfig.setSortedDuplicates(true);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
 		if (database == null) {

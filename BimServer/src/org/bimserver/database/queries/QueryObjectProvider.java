@@ -1,5 +1,6 @@
 package org.bimserver.database.queries;
 
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashSet;
@@ -15,6 +16,11 @@ import org.bimserver.shared.HashMapVirtualObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 public class QueryObjectProvider implements ObjectProvider {
 	private static final Logger LOGGER = LoggerFactory.getLogger(QueryObjectProvider.class);
 	private DatabaseSession databaseSession;
@@ -27,14 +33,22 @@ public class QueryObjectProvider implements ObjectProvider {
 	private long start = -1;
 	private long reads = 0;
 	private long stackFramesProcessed = 0;
+	private ObjectNode fullQuery;
 	
-	public QueryObjectProvider(DatabaseSession databaseSession, BimServer bimServer, String json, Set<Long> roids) {
+	public QueryObjectProvider(DatabaseSession databaseSession, BimServer bimServer, String json, Set<Long> roids) throws JsonParseException, JsonMappingException, IOException {
 		this.databaseSession = databaseSession;
 		this.bimServer = bimServer;
 		this.json = json;
 		
+		ObjectMapper objectMapper = new ObjectMapper();
+		fullQuery = objectMapper.readValue(json, ObjectNode.class);
+		
 		stack = new ArrayDeque<StackFrame>();
 		stack.push(new StartFrame(this, roids));
+	}
+	
+	public ObjectNode getFullQuery() {
+		return fullQuery;
 	}
 
 	@Override
@@ -45,42 +59,32 @@ public class QueryObjectProvider implements ObjectProvider {
 		try {
 			while (!stack.isEmpty()) {
 				if (stack.size() > 1000) {
-					// TODO include stack dump
 					dumpEndQuery();
 					throw new BimserverDatabaseException("Query stack size > 1000, probably a bug, please report");
 				}
 				StackFrame stackFrame = stack.peek();
+				if (stackFrame.isDone()) {
+					stack.pop();
+					continue;
+				}
 				stackFramesProcessed++;
 				if (stackFramesProcessed > 1000000) {
-					// TODO include stack dump
 					dumpEndQuery();
 					throw new BimserverDatabaseException("Too many stack frames processed, probably a bug, please report");
 				}
-//				System.out.println(stackFrame);
-				Set<StackFrame> newStackFrames = stackFrame.process();
-				if (newStackFrames == null || newStackFrames.size() == 0) {
-					stack.pop();
-				} else if (newStackFrames.size() == 1) {
-					StackFrame newStackFrame = newStackFrames.iterator().next();
-					if (newStackFrame == stackFrame) {
-						// Do nothing, we stay in the current frame
-					} else {
-						stack.push(newStackFrame);
-					}
-				} else {
-					for (StackFrame newStackFrame : newStackFrames) {
-						stack.push(newStackFrame);
-					}
-				}
+				boolean done = stackFrame.process();
+				stackFrame.setDone(done);
 				if (stackFrame instanceof ObjectProvidingStackFrame) {
 					HashMapVirtualObject currentObject = ((ObjectProvidingStackFrame) stackFrame).getCurrentObject();
 					if (currentObject != null) {
-						oidsRead.add(currentObject.getOid());
-						return currentObject;
+						if (!oidsRead.contains(currentObject.getOid())) {
+							oidsRead.add(currentObject.getOid());
+							return currentObject;
+						}
 					}
 				}
 			}
-		} catch (QueryException e) {
+		} catch (Exception e) {
 			throw new BimserverDatabaseException(e);
 		}
 
@@ -122,5 +126,9 @@ public class QueryObjectProvider implements ObjectProvider {
 
 	public boolean hasRead(long oid) {
 		return oidsRead.contains(oid);
+	}
+
+	public void push(StackFrame stackFrame) {
+		stack.push(stackFrame);
 	}
 }
