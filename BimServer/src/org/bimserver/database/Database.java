@@ -424,9 +424,10 @@ public class Database implements BimDatabase {
 	}
 	
 	public EClass getEClassForOid(long oid) throws BimserverDatabaseException {
-		ByteBuffer buffer = ByteBuffer.wrap(new byte[8]);
-		buffer.putLong(oid);
-		short cid = buffer.getShort(6);
+//		ByteBuffer buffer = ByteBuffer.wrap(new byte[8]);
+//		buffer.putLong(oid);
+//		short cid = buffer.getShort(6);
+		short cid = (short)oid;
 		EClass eClass = getEClassForCid(cid);
 		if (eClass == null) {
 			throw new BimserverDatabaseException("No class for cid " + cid + " (cid came from oid: " + oid  + ")");

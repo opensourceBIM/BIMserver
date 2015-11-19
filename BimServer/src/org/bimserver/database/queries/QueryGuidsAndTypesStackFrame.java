@@ -2,7 +2,6 @@ package org.bimserver.database.queries;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,20 +15,20 @@ import org.bimserver.shared.Reusable;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.ecore.EClass;
 
-import com.google.gson.JsonObject;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public class QueryGuidsAndTypesStackFrame implements StackFrame {
+public class QueryGuidsAndTypesStackFrame extends StackFrame {
 
 	private PackageMetaData packageMetaData;
 	private EClass eClass;
 	private QueryObjectProvider queryObjectProvider;
 	private Set<Long> oids;
 	private Reusable reusable;
-	private JsonObject jsonQuery;
+	private ObjectNode jsonQuery;
 	private Query query;
 	private boolean converted;
 
-	public QueryGuidsAndTypesStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, Query query, JsonObject jsonQuery, PackageMetaData packageMetaData, Reusable reusable, Set<String> guids) throws BimserverDatabaseException {
+	public QueryGuidsAndTypesStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, Query query, ObjectNode jsonQuery, PackageMetaData packageMetaData, Reusable reusable, Set<String> guids) throws BimserverDatabaseException {
 		this.queryObjectProvider = queryObjectProvider;
 		this.eClass = eClass;
 		this.query = query;
@@ -43,6 +42,9 @@ public class QueryGuidsAndTypesStackFrame implements StackFrame {
 			if (oidOfGuid != null) {
 				oids.add(oidOfGuid.getOid());
 			}
+		}
+		if (oids.isEmpty()) {
+			converted = true;
 		}
 	}
 
@@ -86,12 +88,13 @@ public class QueryGuidsAndTypesStackFrame implements StackFrame {
 	}
 	
 	@Override
-	public Set<StackFrame> process() throws BimserverDatabaseException, QueryException {
+	public boolean process() throws BimserverDatabaseException, QueryException {
 		if (converted) {
-			return null;
+			return true;
 		} else {
 			converted = true;
-			return Collections.<StackFrame>singleton(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, query, jsonQuery, packageMetaData, reusable, new ArrayList<>(oids)));
+			queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, query, jsonQuery, packageMetaData, reusable, new ArrayList<>(oids)));
+			return false;
 		}
 	}
 }

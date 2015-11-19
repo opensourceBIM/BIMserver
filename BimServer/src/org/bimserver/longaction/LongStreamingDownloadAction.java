@@ -1,5 +1,6 @@
 package org.bimserver.longaction;
 
+import java.io.IOException;
 import java.util.Set;
 
 import javax.activation.DataHandler;
@@ -28,6 +29,9 @@ import org.bimserver.plugins.serializers.StreamingSerializerDataSource;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.serializers.Writer;
 import org.bimserver.webservices.authorization.Authorization;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey>{
 
@@ -100,6 +104,12 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
 		} catch (SerializerException e) {
+			e.printStackTrace();
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

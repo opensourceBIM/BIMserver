@@ -1,48 +1,49 @@
 package org.bimserver.database.queries;
 
-import java.util.Collections;
+import java.io.IOException;
 import java.util.Iterator;
-import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Query;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.Reusable;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public class QueryStackFrame implements StackFrame {
+public class QueryStackFrame extends StackFrame {
 
-	private Iterator<JsonElement> queryIterator;
-	private JsonElement jsonQuery;
+	private Iterator<JsonNode> queryIterator;
 	private QueryObjectProvider queryObjectProvider;
 	private PackageMetaData packageMetaData;
 	private Query query;
 	private Reusable reusable;
 
-	public QueryStackFrame(QueryObjectProvider queryObjectProvider, PackageMetaData packageMetaData, Query query, Reusable reusable) {
+	public QueryStackFrame(QueryObjectProvider queryObjectProvider, PackageMetaData packageMetaData, Query query, Reusable reusable) throws JsonParseException, JsonMappingException, IOException {
 		this.queryObjectProvider = queryObjectProvider;
 		this.packageMetaData = packageMetaData;
 		this.query = query;
 		this.reusable = reusable;
-		JsonParser parser = new JsonParser();
-		jsonQuery = parser.parse(queryObjectProvider.getJsonString());
-		final JsonObject queryObject = (JsonObject)jsonQuery;
-		if (queryObject.has("queries")) {
-			queryIterator = queryObject.get("queries").getAsJsonArray().iterator();
+		ObjectNode fullQuery = queryObjectProvider.getFullQuery();
+		if (fullQuery.has("queries")) {
+			queryIterator = fullQuery.get("queries").iterator();
+		} else if (fullQuery.has("query")) {
+			queryIterator = new SingleIterator<JsonNode>(fullQuery.get("query"));
 		} else {
-			queryIterator = new SingleIterator<JsonElement>(queryObject);
+			queryIterator = new SingleIterator<JsonNode>(fullQuery);
 		}
 	}
 	
 	@Override
-	public Set<StackFrame> process() throws BimserverDatabaseException, QueryException {
+	public boolean process() throws BimserverDatabaseException, QueryException {
+		JsonNode next = queryIterator.next();
+		queryObjectProvider.push(new QueryPartStackFrame(queryObjectProvider,packageMetaData, query, (ObjectNode) next, reusable));
 		if (queryIterator.hasNext()) {
-			JsonElement next = queryIterator.next();
-			return Collections.<StackFrame>singleton(new QueryPartStackFrame(queryObjectProvider,packageMetaData, query, (JsonObject) next, reusable));
+			return false;
 		}
-		return null;
+		return true;
 	}
 }
