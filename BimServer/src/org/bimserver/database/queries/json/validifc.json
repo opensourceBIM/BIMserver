@@ -1,79 +1,96 @@
 {
 	defines: {
 		Units: {
-			inputType: "IfcProject",
+			type: "IfcProject",
 			field: "UnitsInContext",
 			include: {
+				type: "IfcUnitAssignment",
 				field: "Units",
 				includes: ["ConversionFactor", "Dimensions"]
 			}
 		},
 		ContainedInStructure: {
+			type: "IfcElement",
 			field: "ContainedInStructure",
 			includes: [{
+				type: "IfcRelContainedInSpatialStructure",
 				field: "RelatingStructure",
 				includes: ["Decomposes", "OwnerHistory"]
 			}, "OwnerHistory"]
 		},
 		Dimensions: {
-			inputType: "IfcConversionBasedUnit",
+			type: "IfcConversionBasedUnit",
 			field: "Dimensions"
 		},
 		ConversionFactor: {
-			inputType: "IfcConversionBasedUnit",
+			type: "IfcConversionBasedUnit",
 			field: "ConversionFactor",
 			include: {
+				type: "IfcMeasureWithUnit",
 				field: "UnitComponent"
 			}
 		},
 		Decomposes: {
+			type: "IfcObjectDefinition",
 			field: "Decomposes",
 			includes: [{
+				type: "IfcRelDecomposes",
 				field: "RelatingObject",
 				includes: ["Decomposes", "Units", "OwnerHistory"]
 			}, "OwnerHistory"]
 		},
 		OwnerHistory: {
+			type: "IfcRoot",
 			field: "OwnerHistory",
 			includes: [{
+				type: "IfcOwnerHistory",
 				field: "OwningUser",
 				includes: [{
+					type: "IfcPersonAndOrganization",
 					field: "ThePerson"
 				}, {
+					type: "IfcPersonAndOrganization",
 					field: "TheOrganization"
 				}]
 			}, {
+				type: "IfcOwnerHistory",
 				field: "OwningApplication",
 				include: {
+					type: "IfcApplication",
 					field: "ApplicationDeveloper"
 				}
 			}]
 		},
 		Representation: {
+			type: "IfcProduct",
 			field: "Representation",
 			include: {
+				type: "IfcProductRepresentation",
 				field: "Representations",
 				include: {
+					type: "IfcRepresentation",
 					field: "Items",
 					includes: [{
-						inputType: "IfcPolyline",
+						type: "IfcPolyline",
 						field: "Points"
 					}, {
-						inputType: "IfcExtrudedAreaSolid",
+						type: "IfcExtrudedAreaSolid",
 						field: "ExtrudedDirection"
 					}, {
-						inputType: "IfcExtrudedAreaSolid",
+						type: "IfcExtrudedAreaSolid",
 						field: "Position",
 						include: {
+							type: "IfcAxis2Placement3D",
 							fields: ["Location", "Axis", "RefDirection"]
 						}
 					}, {
-						inputType: "IfcExtrudedAreaSolid",
+						type: "IfcExtrudedAreaSolid",
 						field: "SweptArea",
 						include: {
+							type: "IfcArbitraryClosedProfileDef",
 							field: "OuterCurve",
 							include: {
-								inputType: "IfcPolyline",
+								type: "IfcPolyline",
 								field: "Points"
 							}
 						}
@@ -82,21 +99,25 @@
 			}
 		},
 		RelativePlacement: {
-			inputType: "IfcLocalPlacement",
+			type: "IfcLocalPlacement",
 			field: "PlacementRelTo",
 			includes: ["RelativePlacement", {
+				type: "IfcLocalPlacement",
 				field: "RelativePlacement",
 				include: {
+					type: "IfcAxis2Placement3D",
 					fields: ["Location", "Axis", "RefDirection"]
 				}
 			}]
 		},
 		ObjectPlacement: {
+			type: "IfcProduct",
 			field: "ObjectPlacement",
 			includes: ["RelativePlacement", {
-				inputType: "IfcLocalPlacement",
+				type: "IfcLocalPlacement",
 				field: "RelativePlacement",
 				include: {
+					type: "IfcAxis2Placement3D",
 					fields: ["Location", "Axis", "RefDirection"]
 				}
 			}]

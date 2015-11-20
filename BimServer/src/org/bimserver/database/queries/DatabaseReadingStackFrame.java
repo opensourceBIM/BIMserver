@@ -68,29 +68,9 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		return queryPart;
 	}
 	
-//	protected Include getRealInclude(JsonNode includeNode) throws QueryException {
-//		if (include.isTextual()) {
-//			String includeName = include.asText();
-//			Include include = queryObjectProvider.getDefinedInclude(includeName);
-//			if (includeName.equals("all")) {
-////				getQueryObjectProvider().push(new FollowAllReferencesStackFrame(getQueryObjectProvider(), getPackageMetaData(), getReusable(), getQuery(), getJsonQuery(), currentObject, include));
-//				setDone(true);
-//			} else if (includeName.contains(":")) {
-//			} else {
-//				Include include = queryObjectProvider.getNameSpace().getDefine(includeName);
-//				if (include == null) {
-//					throw new QueryException("Could not find '" + includeName + "' as include");
-//				}
-//				return include;
-//			}
-//		} else if (include.isObject()) {
-//			return (ObjectNode) include;
-//		}
-//		return null;
-//	}
-	
 	protected void processPossibleIncludes(EClass previousType, QueryPart queryPart) throws QueryException, BimserverDatabaseException {
 		// Look for field in the previous query part, could be an opposite we want to set
+		// TODO process "fields" as well
 //		if (queryPart.has("field")) {
 //			String fn = queryPart.get("field").asText();
 //			EReference inverseOrOpposite = getPackageMetaData().getInverseOrOpposite(currentObject.eClass(), previousType.getEStructuralFeature(fn));
@@ -98,24 +78,12 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 //				currentObject.addUseForSerialization(inverseOrOpposite);
 //			}
 //		}
-		// TODO process "fields" as well
 		if (currentObject != null) {
 			if (queryPart.hasIncludes()) {
 				for (Include include : queryPart.getIncludes()) {
 					processPossibleInclude(include);
 				}
 			}
-//			if (queryPart.has("include")) {
-//				ObjectNode realInclude = getRealInclude(queryPart.get("include"));
-//				processPossibleInclude(realInclude);
-//			} else if (queryPart.has("includes")) {
-//				ArrayNode includes = (ArrayNode) queryPart.get("includes");
-//				for (int i = 0; i < includes.size(); i++) {
-//					JsonNode localInclude = (JsonNode) includes.get(i);
-//					ObjectNode realInclude = getRealInclude(localInclude);
-//					processPossibleInclude(realInclude);
-//				}
-//			}
 		}
 	}
 

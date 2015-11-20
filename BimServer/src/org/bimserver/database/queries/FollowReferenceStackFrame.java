@@ -17,7 +17,6 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 
 	private long oid;
 	private QueryInterface query;
-	private QueryPart queryPart;
 	private boolean hasRun = false;
 	private EClass previousType;
 	private Include include;
@@ -27,7 +26,6 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 		this.oid = oid;
 		this.query = query;
 		this.previousType = previousType;
-		this.queryPart = queryPart;
 		this.include = include;
 	}
 

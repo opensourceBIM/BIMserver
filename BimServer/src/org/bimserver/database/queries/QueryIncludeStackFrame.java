@@ -28,17 +28,6 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 		this.currentObject = currentObject;
 		
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
-//		if (this.include.has("field")) {
-//			String fieldName = this.include.get("field").asText();
-//			features.add(processField(currentObject, fieldName));
-//		}
-//		if (this.include.has("fields")) {
-//			ArrayNode fields = (ArrayNode) this.include.get("fields");
-//			for (int i=0; i<fields.size(); i++) {
-//				String fieldName = fields.get(i).asText();
-//				features.add(processField(currentObject, fieldName));
-//			}
-//		}
 		features = include.getFields();
 		if (features.isEmpty()) {
 			setDone(true);
@@ -52,17 +41,6 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 			}
 		}
 	}
-
-//	private EStructuralFeature processField(HashMapVirtualObject currentObject, String fieldName) throws QueryException {
-//		EStructuralFeature feature = currentObject.eClass().getEStructuralFeature(fieldName);
-//		if (feature == null) {
-//			throw new QueryException("No field \"" + fieldName + "\" found on object of type " + currentObject.eClass().getName());
-//		}
-//		if (feature instanceof EAttribute) {
-//			throw new QueryException("Field \"" + fieldName + "\" is an attribute, these are always included");
-//		}
-//		return feature;
-//	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -86,9 +64,9 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 
 	private void processReference(long refOid) {
 		if (outputFilterCids == null || outputFilterCids.contains((short)refOid)) {
-			if (!getQueryObjectProvider().hasRead(refOid)) {
+//			if (!getQueryObjectProvider().hasRead(refOid)) {
 				getQueryObjectProvider().push(new FollowReferenceStackFrame(getQueryObjectProvider(), refOid, getPackageMetaData(), getReusable(), getQuery(), currentObject.eClass(), getQueryPart(), include));
-			}
+//			}
 		}
 	}
 }
