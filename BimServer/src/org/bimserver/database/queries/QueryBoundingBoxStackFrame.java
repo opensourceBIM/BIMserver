@@ -8,6 +8,8 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
+import org.bimserver.database.queries.om.InBoundingBox;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
@@ -15,16 +17,14 @@ import org.bimserver.shared.Reusable;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.ecore.EClass;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 public class QueryBoundingBoxStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
 	private EClass eClass;
 	private SearchingRecordIterator typeRecordIterator;
 	private Record record;
-	private ObjectNode inBoundingBox;
+	private InBoundingBox inBoundingBox;
 
-	public QueryBoundingBoxStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, Query query, ObjectNode jsonQuery, PackageMetaData packageMetaData, Reusable reusable, ObjectNode inBoundingBox) throws BimserverDatabaseException {
-		super(packageMetaData, reusable, queryObjectProvider, query, jsonQuery);
+	public QueryBoundingBoxStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, Query query, QueryPart queryPart, PackageMetaData packageMetaData, Reusable reusable, InBoundingBox inBoundingBox) throws BimserverDatabaseException {
+		super(packageMetaData, reusable, queryObjectProvider, query, queryPart);
 		this.eClass = eClass;
 		this.inBoundingBox = inBoundingBox;
 
@@ -89,12 +89,12 @@ public class QueryBoundingBoxStackFrame extends DatabaseReadingStackFrame implem
 				float maxY = (float) maxBounds.eGet("y");
 				float maxZ = (float) maxBounds.eGet("z");
 				if (
-						minX > inBoundingBox.get("x").asDouble() &&
-						minY > inBoundingBox.get("y").asDouble() &&
-						minZ > inBoundingBox.get("z").asDouble() &&
-						maxX < inBoundingBox.get("x").asDouble() + inBoundingBox.get("width").asDouble() &&
-						maxY < inBoundingBox.get("y").asDouble() + inBoundingBox.get("height").asDouble() &&
-						maxZ < inBoundingBox.get("z").asDouble() + inBoundingBox.get("depth").asDouble()) {
+						minX > inBoundingBox.getX() &&
+						minY > inBoundingBox.getY() &&
+						minZ > inBoundingBox.getZ() &&
+						maxX < inBoundingBox.getX() + inBoundingBox.getWidth() &&
+						maxY < inBoundingBox.getY() + inBoundingBox.getHeight() &&
+						maxZ < inBoundingBox.getZ() + inBoundingBox.getDepth()) {
 					
 				} else {
 					currentObject = null;
@@ -104,7 +104,7 @@ public class QueryBoundingBoxStackFrame extends DatabaseReadingStackFrame implem
 			}
 		}
 		
-		processPossibleIncludes(getJsonQuery());
+		processPossibleIncludes(eClass, getQueryPart());
 		
 		return false;
 	}

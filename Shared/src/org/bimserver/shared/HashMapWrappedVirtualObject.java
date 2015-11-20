@@ -40,4 +40,9 @@ public class HashMapWrappedVirtualObject implements WrappedVirtualObject {
 		EStructuralFeature feature = eClass.getEStructuralFeature(name);
 		return eGet(feature);
 	}
+
+	@Override
+	public boolean useFeatureForSerialization(EStructuralFeature feature) {
+		throw new UnsupportedOperationException();
+	}
 }

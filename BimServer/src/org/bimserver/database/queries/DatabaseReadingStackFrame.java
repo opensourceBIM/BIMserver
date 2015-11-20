@@ -10,6 +10,8 @@ import org.bimserver.database.DatabaseSession.GetResult;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
+import org.bimserver.database.queries.om.Include;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.shared.HashMapVirtualObject;
@@ -25,32 +27,24 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 public abstract class DatabaseReadingStackFrame extends StackFrame implements ObjectProvidingStackFrame {
 	private PackageMetaData packageMetaData;
 	private Reusable reusable;
 	private QueryObjectProvider queryObjectProvider;
 	private QueryInterface query;
 	protected HashMapVirtualObject currentObject;
-	private ObjectNode jsonQuery;
+	private QueryPart queryPart;
 
-	public DatabaseReadingStackFrame(PackageMetaData packageMetaData, Reusable reusable, QueryObjectProvider queryObjectProvider, QueryInterface query, ObjectNode jsonQuery) {
+	public DatabaseReadingStackFrame(PackageMetaData packageMetaData, Reusable reusable, QueryObjectProvider queryObjectProvider, QueryInterface query, QueryPart queryPart) {
 		this.packageMetaData = packageMetaData;
 		this.reusable = reusable;
 		this.queryObjectProvider = queryObjectProvider;
 		this.query = query;
-		this.jsonQuery = jsonQuery;
+		this.queryPart = queryPart;
 	}
 	
 	public Reusable getReusable() {
 		return reusable;
-	}
-	
-	public ObjectNode getJsonQuery() {
-		return jsonQuery;
 	}
 	
 	public QueryInterface getQuery() {
@@ -70,51 +64,77 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		return packageMetaData;
 	}
 	
-	protected ObjectNode getRealInclude(JsonNode include) {
-		if (include.isTextual()) {
-			String includeName = include.asText();
-			if (includeName.equals("all")) {
-//				getQueryObjectProvider().push(new FollowAllReferencesStackFrame(getQueryObjectProvider(), getPackageMetaData(), getReusable(), getQuery(), getJsonQuery(), currentObject, include));
-				setDone(true);
-			} else if (queryObjectProvider.getFullQuery().has("defines")) {
-				ObjectNode defines = (ObjectNode) queryObjectProvider.getFullQuery().get("defines");
-				if (defines.has(includeName)) {
-					ObjectNode definedInclude = (ObjectNode) defines.get(includeName);
-					return definedInclude;
-				}
-			}
-		} else if (include.isObject()) {
-			return (ObjectNode) include;
-		}
-		return null;
+	public QueryPart getQueryPart() {
+		return queryPart;
 	}
 	
-	protected void processPossibleIncludes(ObjectNode queryPart) throws QueryException, BimserverDatabaseException {
+//	protected Include getRealInclude(JsonNode includeNode) throws QueryException {
+//		if (include.isTextual()) {
+//			String includeName = include.asText();
+//			Include include = queryObjectProvider.getDefinedInclude(includeName);
+//			if (includeName.equals("all")) {
+////				getQueryObjectProvider().push(new FollowAllReferencesStackFrame(getQueryObjectProvider(), getPackageMetaData(), getReusable(), getQuery(), getJsonQuery(), currentObject, include));
+//				setDone(true);
+//			} else if (includeName.contains(":")) {
+//			} else {
+//				Include include = queryObjectProvider.getNameSpace().getDefine(includeName);
+//				if (include == null) {
+//					throw new QueryException("Could not find '" + includeName + "' as include");
+//				}
+//				return include;
+//			}
+//		} else if (include.isObject()) {
+//			return (ObjectNode) include;
+//		}
+//		return null;
+//	}
+	
+	protected void processPossibleIncludes(EClass previousType, QueryPart queryPart) throws QueryException, BimserverDatabaseException {
+		// Look for field in the previous query part, could be an opposite we want to set
+//		if (queryPart.has("field")) {
+//			String fn = queryPart.get("field").asText();
+//			EReference inverseOrOpposite = getPackageMetaData().getInverseOrOpposite(currentObject.eClass(), previousType.getEStructuralFeature(fn));
+//			if (inverseOrOpposite != null) {
+//				currentObject.addUseForSerialization(inverseOrOpposite);
+//			}
+//		}
+		// TODO process "fields" as well
 		if (currentObject != null) {
-			if (queryPart.has("include")) {
-				ObjectNode realInclude = getRealInclude(queryPart.get("include"));
-				if (realInclude.has("inputType")) {
-					EClass filterClass = getQueryObjectProvider().getDatabaseSession().getEClassForName(getPackageMetaData().getSchema().name().toLowerCase(), realInclude.get("inputType").asText());
-					if (!filterClass.isSuperTypeOf(currentObject.eClass())) {
-						return;
-					}
+			if (queryPart.hasIncludes()) {
+				for (Include include : queryPart.getIncludes()) {
+					processPossibleInclude(include);
 				}
-				getQueryObjectProvider().push(new QueryIncludeStackFrame(getQueryObjectProvider(), getQuery(), jsonQuery, getPackageMetaData(), getReusable(), realInclude, currentObject));
-			} else if (queryPart.has("includes")) {
-				ArrayNode includes = (ArrayNode) queryPart.get("includes");
-				for (int i = 0; i < includes.size(); i++) {
-					JsonNode localInclude = (JsonNode) includes.get(i);
-					ObjectNode realInclude = getRealInclude(localInclude);
-					if (realInclude.has("inputType")) {
-						EClass filterClass = getQueryObjectProvider().getDatabaseSession().getEClassForName(getPackageMetaData().getSchema().name().toLowerCase(), realInclude.get("inputType").asText());
-						if (!filterClass.isSuperTypeOf(currentObject.eClass())) {
-							return;
-						}
-					}
-					getQueryObjectProvider().push(new QueryIncludeStackFrame(getQueryObjectProvider(), getQuery(), jsonQuery, getPackageMetaData(), getReusable(), realInclude, currentObject));
+			}
+//			if (queryPart.has("include")) {
+//				ObjectNode realInclude = getRealInclude(queryPart.get("include"));
+//				processPossibleInclude(realInclude);
+//			} else if (queryPart.has("includes")) {
+//				ArrayNode includes = (ArrayNode) queryPart.get("includes");
+//				for (int i = 0; i < includes.size(); i++) {
+//					JsonNode localInclude = (JsonNode) includes.get(i);
+//					ObjectNode realInclude = getRealInclude(localInclude);
+//					processPossibleInclude(realInclude);
+//				}
+//			}
+		}
+	}
+
+	protected void processPossibleInclude(Include include) throws QueryException, BimserverDatabaseException {
+		if (include.hasTypes()) {
+			for (EClass filterClass : include.getTypes()) {
+				if (!filterClass.isSuperTypeOf(currentObject.eClass())) {
+					System.out.println(filterClass.getName() + " / " + currentObject.eClass().getName());
+					return;
 				}
 			}
 		}
+		if (include.hasFields()) {
+			for (EStructuralFeature eStructuralFeature : include.getFields()) {
+				currentObject.addUseForSerialization(eStructuralFeature);
+			}
+		}
+		
+		getQueryObjectProvider().push(new QueryIncludeStackFrame(getQueryObjectProvider(), getQuery(), getPackageMetaData(), getReusable(), include, currentObject, queryPart));
 	}
 	
 	public GetResult getMap(EClass originalQueryClass, EClass eClass, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, QueryInterface query) throws BimserverDatabaseException {

@@ -34,4 +34,9 @@ public class ByteBufferWrappedVirtualObject extends AbstractByteBufferVirtualObj
 	public Object eGet(EStructuralFeature feature) {
 		throw new UnsupportedOperationException();
 	}
+
+	@Override
+	public boolean useFeatureForSerialization(EStructuralFeature feature) {
+		throw new UnsupportedOperationException();
+	}
 }

@@ -10,6 +10,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.queries.QueryObjectProvider;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -56,9 +57,11 @@ public class DownloadByNewQueryDatabaseAction extends BimDatabaseAction<ObjectPr
 			}
 		}
 
+		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
+		
 		try {
-			return new QueryObjectProvider(getDatabaseSession(), bimServer, json, roids);
-		} catch (IOException e) {
+			return new QueryObjectProvider(getDatabaseSession(), bimServer, json, roids, packageMetaData);
+		} catch (Exception e) {
 			throw new UserException(e);
 		}
 	}

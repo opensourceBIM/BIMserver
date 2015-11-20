@@ -10,12 +10,11 @@ import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.database.Query;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.Reusable;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.ecore.EClass;
-
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class QueryGuidsAndTypesStackFrame extends StackFrame {
 
@@ -24,11 +23,11 @@ public class QueryGuidsAndTypesStackFrame extends StackFrame {
 	private QueryObjectProvider queryObjectProvider;
 	private Set<Long> oids;
 	private Reusable reusable;
-	private ObjectNode jsonQuery;
+	private QueryPart jsonQuery;
 	private Query query;
 	private boolean converted;
 
-	public QueryGuidsAndTypesStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, Query query, ObjectNode jsonQuery, PackageMetaData packageMetaData, Reusable reusable, Set<String> guids) throws BimserverDatabaseException {
+	public QueryGuidsAndTypesStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, Query query, QueryPart jsonQuery, PackageMetaData packageMetaData, Reusable reusable, Set<String> guids) throws BimserverDatabaseException {
 		this.queryObjectProvider = queryObjectProvider;
 		this.eClass = eClass;
 		this.query = query;

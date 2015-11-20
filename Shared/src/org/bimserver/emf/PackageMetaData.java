@@ -1,5 +1,7 @@
 package org.bimserver.emf;
 
+import java.util.ArrayList;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -24,6 +26,28 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcAnnotation;
+import org.bimserver.models.ifc2x3tc1.IfcAnnotationCurveOccurrence;
+import org.bimserver.models.ifc2x3tc1.IfcDimensionCurve;
+import org.bimserver.models.ifc2x3tc1.IfcElement;
+import org.bimserver.models.ifc2x3tc1.IfcGrid;
+import org.bimserver.models.ifc2x3tc1.IfcLayeredItem;
+import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
+import org.bimserver.models.ifc2x3tc1.IfcPresentationLayerAssignment;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
+import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcPropertyDefinition;
+import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
+import org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralActivity;
+import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
+import org.bimserver.models.ifc2x3tc1.IfcRelReferencedInSpatialStructure;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
+import org.bimserver.models.ifc2x3tc1.IfcRoot;
+import org.bimserver.models.ifc2x3tc1.IfcStructuralActivityAssignmentSelect;
+import org.bimserver.models.ifc2x3tc1.IfcStructuralItem;
+import org.bimserver.models.ifc2x3tc1.IfcTerminatorSymbol;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.schema.Attribute;
@@ -428,5 +452,98 @@ public class PackageMetaData implements ObjectFactory {
 			return calculateUnsettedLength(eClass);
 		}
 		return integer;
+	}
+	
+	public EReference getInverseOrOpposite(EClass eClassOfOtherEnd, EStructuralFeature eStructuralFeature) {
+		if (eStructuralFeature instanceof EAttribute) {
+			return null;
+		}
+		EReference eReference = (EReference)eStructuralFeature;
+		if (eReference.getEOpposite() != null) {
+			return eReference.getEOpposite();
+		}
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
+			if (Ifc2x3tc1Package.eINSTANCE.getIfcElement().isSuperTypeOf(eClassOfOtherEnd)) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcElement_ContainedInStructure();
+			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcAnnotation().isSuperTypeOf(eClassOfOtherEnd)) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcAnnotation_ContainedInStructure();
+			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcGrid().isSuperTypeOf(eClassOfOtherEnd)) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcGrid_ContainedInStructure();
+			}
+		}
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems()) {
+			if (Ifc2x3tc1Package.eINSTANCE.getIfcRepresentation().isSuperTypeOf(eClassOfOtherEnd)) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcRepresentation_LayerAssignments();
+			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem().isSuperTypeOf(eClassOfOtherEnd)) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_LayerAssignments();
+			}
+		}
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects()) {
+			if (Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations();
+			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcPropertyDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcPropertyDefinition_HasAssociations();
+			}
+		}
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcTerminatorSymbol_AnnotatedCurve()) {
+			if (Ifc2x3tc1Package.eINSTANCE.getIfcDimensionCurve().isSuperTypeOf(eClassOfOtherEnd)) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcStyledItem_Item();
+			}
+		}
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
+			if (Ifc2x3tc1Package.eINSTANCE.getIfcElement().isSuperTypeOf(eClassOfOtherEnd)) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcElement_ReferencedInStructures();
+			}
+		}
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcProduct_Representation()) {
+			if (Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape().isSuperTypeOf(eClassOfOtherEnd)) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape_ShapeOfProduct();
+			}
+		}
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
+			if (Ifc2x3tc1Package.eINSTANCE.getIfcStructuralItem().isSuperTypeOf(eClassOfOtherEnd)) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcStructuralItem_AssignedStructuralActivity();
+			}
+		}
+		
+		// The other way around
+		
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcElement_ContainedInStructure()) {
+			return Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements();
+		} else if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcAnnotation_ContainedInStructure()) {
+			return Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements();
+		} else if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcGrid_ContainedInStructure()) {
+			return Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements();
+		}
+		
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRepresentation_LayerAssignments()) {
+			return Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems();
+		} else if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_LayerAssignments()) {
+			return Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems();
+		}
+		
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations()) {
+			return Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects();
+		} else if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcPropertyDefinition_HasAssociations()) {
+			return Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects();
+		}
+		
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcStyledItem_Item()) {
+			return Ifc2x3tc1Package.eINSTANCE.getIfcTerminatorSymbol_AnnotatedCurve();
+		}
+		
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcElement_ReferencedInStructures()) {
+			return Ifc2x3tc1Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements();
+		}
+		
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape_ShapeOfProduct()) {
+			return Ifc2x3tc1Package.eINSTANCE.getIfcProduct_Representation();
+		}
+		
+		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcStructuralItem_AssignedStructuralActivity()) {
+			return Ifc2x3tc1Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement();
+		}
+		
+ 		return null;
 	}
 }

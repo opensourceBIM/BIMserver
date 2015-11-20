@@ -9,6 +9,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
+import org.bimserver.database.queries.QueryException;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SCheckoutResult;
@@ -83,7 +84,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 					createSerializer = serializerPlugin.createSerializer(null);
 					
 					// TODO passing a databasesession here, make sure it will be closed!!
-					ObjectProvider objectProvider = new QueryObjectProvider(databaseSession, getBimServer(), jsonQuery, roids);
+					ObjectProvider objectProvider = new QueryObjectProvider(databaseSession, getBimServer(), jsonQuery, roids, packageMetaData);
 
 					
 					createSerializer.init(objectProvider, projectInfo, getBimServer().getPluginManager(), packageMetaData);
@@ -94,7 +95,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 					serializer = serializerPlugin.createSerializer(null);
 					
 					// TODO passing a databasesession here, make sure it will be closed!!
-					ObjectProvider objectProvider = new QueryObjectProvider(databaseSession, getBimServer(), jsonQuery, roids);
+					ObjectProvider objectProvider = new QueryObjectProvider(databaseSession, getBimServer(), jsonQuery, roids, packageMetaData);
 					
 					serializer.init(objectProvider, projectInfo, null, getBimServer().getPluginManager(), packageMetaData);
 					
@@ -110,6 +111,8 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (QueryException e) {
 			e.printStackTrace();
 		}
 	}

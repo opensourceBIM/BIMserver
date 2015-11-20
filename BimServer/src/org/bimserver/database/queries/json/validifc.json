@@ -1,0 +1,105 @@
+{
+	defines: {
+		Units: {
+			inputType: "IfcProject",
+			field: "UnitsInContext",
+			include: {
+				field: "Units",
+				includes: ["ConversionFactor", "Dimensions"]
+			}
+		},
+		ContainedInStructure: {
+			field: "ContainedInStructure",
+			includes: [{
+				field: "RelatingStructure",
+				includes: ["Decomposes", "OwnerHistory"]
+			}, "OwnerHistory"]
+		},
+		Dimensions: {
+			inputType: "IfcConversionBasedUnit",
+			field: "Dimensions"
+		},
+		ConversionFactor: {
+			inputType: "IfcConversionBasedUnit",
+			field: "ConversionFactor",
+			include: {
+				field: "UnitComponent"
+			}
+		},
+		Decomposes: {
+			field: "Decomposes",
+			includes: [{
+				field: "RelatingObject",
+				includes: ["Decomposes", "Units", "OwnerHistory"]
+			}, "OwnerHistory"]
+		},
+		OwnerHistory: {
+			field: "OwnerHistory",
+			includes: [{
+				field: "OwningUser",
+				includes: [{
+					field: "ThePerson"
+				}, {
+					field: "TheOrganization"
+				}]
+			}, {
+				field: "OwningApplication",
+				include: {
+					field: "ApplicationDeveloper"
+				}
+			}]
+		},
+		Representation: {
+			field: "Representation",
+			include: {
+				field: "Representations",
+				include: {
+					field: "Items",
+					includes: [{
+						inputType: "IfcPolyline",
+						field: "Points"
+					}, {
+						inputType: "IfcExtrudedAreaSolid",
+						field: "ExtrudedDirection"
+					}, {
+						inputType: "IfcExtrudedAreaSolid",
+						field: "Position",
+						include: {
+							fields: ["Location", "Axis", "RefDirection"]
+						}
+					}, {
+						inputType: "IfcExtrudedAreaSolid",
+						field: "SweptArea",
+						include: {
+							field: "OuterCurve",
+							include: {
+								inputType: "IfcPolyline",
+								field: "Points"
+							}
+						}
+					}]
+				}
+			}
+		},
+		RelativePlacement: {
+			inputType: "IfcLocalPlacement",
+			field: "PlacementRelTo",
+			includes: ["RelativePlacement", {
+				field: "RelativePlacement",
+				include: {
+					fields: ["Location", "Axis", "RefDirection"]
+				}
+			}]
+		},
+		ObjectPlacement: {
+			field: "ObjectPlacement",
+			includes: ["RelativePlacement", {
+				inputType: "IfcLocalPlacement",
+				field: "RelativePlacement",
+				include: {
+					fields: ["Location", "Axis", "RefDirection"]
+				}
+			}]
+		}
+	}
+}

@@ -360,8 +360,12 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer 
 			writeWrappedValue(object, feature, ((EObject)referencedObject).eClass());
 		} else {
 			if (referencedObject instanceof Long) {
-				print(DASH);
-				print(String.valueOf(getExpressId((Long) referencedObject)));
+				if (object.useFeatureForSerialization(feature)) {
+					print(DASH);
+					print(String.valueOf(getExpressId((Long) referencedObject)));
+				} else {
+					print(DOLLAR);
+				}
 			} else {
 				EntityDefinition entityBN = getSchemaDefinition().getEntityBN(object.eClass().getName());
 				if (entityBN != null && entityBN.isDerived(feature.getName())) {
@@ -457,7 +461,7 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer 
 			}
 			doubleStingList = (List<?>) object.eGet(doubleStringFeature);
 		}
-		if (list.isEmpty()) {
+		if (list.isEmpty() || !object.useFeatureForSerialization(feature)) {
 			if (!feature.isUnsettable()) {
 				print(OPEN_CLOSE_PAREN);
 			} else {

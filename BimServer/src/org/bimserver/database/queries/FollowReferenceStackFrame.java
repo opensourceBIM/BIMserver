@@ -6,35 +6,37 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
+import org.bimserver.database.queries.om.Include;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.shared.Reusable;
 import org.eclipse.emf.ecore.EClass;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 public class FollowReferenceStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
 
 	private long oid;
 	private QueryInterface query;
-	private ObjectNode queryPart;
+	private QueryPart queryPart;
 	private boolean hasRun = false;
+	private EClass previousType;
+	private Include include;
 	
-	public FollowReferenceStackFrame(QueryObjectProvider queryObjectProvider, Long oid, PackageMetaData packageMetaData, Reusable reusable, QueryInterface query, ObjectNode queryPart, ObjectNode jsonQuery) {
-		super(packageMetaData, reusable, queryObjectProvider, query, jsonQuery);
+	public FollowReferenceStackFrame(QueryObjectProvider queryObjectProvider, Long oid, PackageMetaData packageMetaData, Reusable reusable, QueryInterface query, EClass previousType, QueryPart queryPart, Include include) {
+		super(packageMetaData, reusable, queryObjectProvider, query, queryPart);
 		this.oid = oid;
 		this.query = query;
+		this.previousType = previousType;
 		this.queryPart = queryPart;
+		this.include = include;
 	}
 
 	@Override
 	public boolean process() throws BimserverDatabaseException, QueryException {
-		if (getQueryObjectProvider().hasRead(oid)) {
-			processPossibleIncludes(queryPart);
-			return true;
-		}
+//		if (getQueryObjectProvider().hasRead(oid)) {
+//			processPossibleIncludes(previousType, queryPart);
+//			return true;
+//		}
 		
 		if (hasRun) {
 			return true;
@@ -72,7 +74,11 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 					// deleted entity
 				} else {
 					currentObject = convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, keyRid, query);
-					processPossibleIncludes(queryPart);
+					if (include.hasIncludes()) {
+						for (Include include : include.getIncludes()) {
+							processPossibleInclude(include);
+						}
+					}
 				}
 			} else {
 				return true;

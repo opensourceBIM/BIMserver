@@ -13,6 +13,7 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.shared.HashMapVirtualObject;
@@ -21,8 +22,6 @@ import org.bimserver.shared.Reusable;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.ecore.EClass;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
 
 	private EClass eClass;
@@ -30,8 +29,8 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 	private Record record;
 	private Map<String, Object> properties;
 
-	public QueryPropertiesAndTypesStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, Query query, ObjectNode jsonQuery, PackageMetaData packageMetaData, Reusable reusable, Map<String, Object> properties) throws BimserverDatabaseException {
-		super(packageMetaData, reusable, queryObjectProvider, query, jsonQuery);
+	public QueryPropertiesAndTypesStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, Query query, QueryPart queryPart, PackageMetaData packageMetaData, Reusable reusable, Map<String, Object> properties) throws BimserverDatabaseException {
+		super(packageMetaData, reusable, queryObjectProvider, query, queryPart);
 		this.eClass = eClass;
 		this.properties = properties;
 
@@ -124,7 +123,7 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 			}
 		}
 		
-		processPossibleIncludes(getJsonQuery());
+		processPossibleIncludes(eClass, getQueryPart());
 		
 		return false;
 	}
