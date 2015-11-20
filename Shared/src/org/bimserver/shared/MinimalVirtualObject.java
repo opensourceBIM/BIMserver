@@ -1,7 +1,6 @@
 package org.bimserver.shared;
 
 import java.nio.ByteBuffer;
-import java.util.List;
 
 import org.bimserver.BimserverDatabaseException;
 import org.eclipse.emf.ecore.EClass;
@@ -12,4 +11,5 @@ public interface MinimalVirtualObject {
 	void setAttribute(EStructuralFeature eStructuralFeature, Object value) throws BimserverDatabaseException;
 	ByteBuffer write() throws BimserverDatabaseException;
 	Object eGet(EStructuralFeature feature);
+	boolean useFeatureForSerialization(EStructuralFeature feature);
 }

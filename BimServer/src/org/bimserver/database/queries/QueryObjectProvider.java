@@ -1,23 +1,31 @@
 package org.bimserver.database.queries;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.velocity.runtime.directive.Define;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
+import org.bimserver.database.queries.om.Include;
+import org.bimserver.database.queries.om.JsonToQueryObjectModelConverter;
+import org.bimserver.database.queries.om.Namespace;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -33,22 +41,30 @@ public class QueryObjectProvider implements ObjectProvider {
 	private long start = -1;
 	private long reads = 0;
 	private long stackFramesProcessed = 0;
-	private ObjectNode fullQuery;
+	private Namespace namespace;
+	private PackageMetaData packageMetaData;
 	
-	public QueryObjectProvider(DatabaseSession databaseSession, BimServer bimServer, String json, Set<Long> roids) throws JsonParseException, JsonMappingException, IOException {
+	public QueryObjectProvider(DatabaseSession databaseSession, BimServer bimServer, String json, Set<Long> roids, PackageMetaData packageMetaData) throws JsonParseException, JsonMappingException, IOException, QueryException {
 		this.databaseSession = databaseSession;
 		this.bimServer = bimServer;
 		this.json = json;
+		this.packageMetaData = packageMetaData;
 		
 		ObjectMapper objectMapper = new ObjectMapper();
-		fullQuery = objectMapper.readValue(json, ObjectNode.class);
+		JsonNode fullQuery = objectMapper.readValue(json, ObjectNode.class);
+		if (fullQuery instanceof ObjectNode) {
+			JsonToQueryObjectModelConverter converter = new JsonToQueryObjectModelConverter(packageMetaData);
+			namespace = converter.parseJson("query", (ObjectNode) fullQuery);
+		} else {
+			throw new QueryException("Query root must be of type object");
+		}
 		
 		stack = new ArrayDeque<StackFrame>();
 		stack.push(new StartFrame(this, roids));
 	}
 	
-	public ObjectNode getFullQuery() {
-		return fullQuery;
+	public Namespace getNameSpace() {
+		return namespace;
 	}
 
 	@Override
@@ -68,7 +84,7 @@ public class QueryObjectProvider implements ObjectProvider {
 					continue;
 				}
 				stackFramesProcessed++;
-				if (stackFramesProcessed > 1000000) {
+				if (stackFramesProcessed > 10000000) {
 					dumpEndQuery();
 					throw new BimserverDatabaseException("Too many stack frames processed, probably a bug, please report");
 				}
@@ -129,6 +145,8 @@ public class QueryObjectProvider implements ObjectProvider {
 	}
 
 	public void push(StackFrame stackFrame) {
-		stack.push(stackFrame);
+		if (!stackFrame.isDone()) {
+			stack.push(stackFrame);
+		}
 	}
 }

@@ -9,12 +9,11 @@ import org.bimserver.database.Query;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.Reusable;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.ecore.EClass;
-
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
 
@@ -22,8 +21,8 @@ public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements Ob
 	private SearchingRecordIterator typeRecordIterator;
 	private Record record;
 
-	public QueryTypeStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, Query query, PackageMetaData packageMetaData, Reusable reusable, ObjectNode jsonQuery) throws BimserverLockConflictException, BimserverDatabaseException {
-		super(packageMetaData, reusable, queryObjectProvider, query, jsonQuery);
+	public QueryTypeStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, Query query, PackageMetaData packageMetaData, Reusable reusable, QueryPart queryPart) throws BimserverLockConflictException, BimserverDatabaseException {
+		super(packageMetaData, reusable, queryObjectProvider, query, queryPart);
 		this.eClass = eClass;
 		
 		String tableName = eClass.getEPackage().getName() + "_" + eClass.getName();
@@ -74,7 +73,7 @@ public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements Ob
 			record = typeRecordIterator.next();
 		}
 
-		processPossibleIncludes(getJsonQuery());
+		processPossibleIncludes(eClass, getQueryPart());
 		
 		return false;
 	}

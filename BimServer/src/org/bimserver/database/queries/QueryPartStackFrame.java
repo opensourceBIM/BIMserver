@@ -11,6 +11,8 @@ import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Query;
+import org.bimserver.database.queries.om.InBoundingBox;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.Reusable;
 import org.eclipse.emf.ecore.EClass;
@@ -26,61 +28,31 @@ public class QueryPartStackFrame extends StackFrame {
 	private Query query;
 	private PackageMetaData packageMetaData;
 	private Reusable reusable;
-	private ObjectNode partialQuery;
+	private QueryPart partialQuery;
 	private final Map<EClass, List<Long>> oids;
-	private Set<String> guids;
+	private final Set<String> guids;
 	private Map<String, Object> properties;
-	private ObjectNode inBoundingBox;
+	private InBoundingBox inBoundingBox;
 
-	public QueryPartStackFrame(QueryObjectProvider queryObjectProvider, PackageMetaData packageMetaData, Query query, ObjectNode partialQuery, Reusable reusable) throws BimserverDatabaseException, QueryException {
+	public QueryPartStackFrame(QueryObjectProvider queryObjectProvider, PackageMetaData packageMetaData, Query query, QueryPart partialQuery, Reusable reusable) throws BimserverDatabaseException, QueryException {
 		this.queryObjectProvider = queryObjectProvider;
 		this.packageMetaData = packageMetaData;
 		this.query = query;
 		this.partialQuery = partialQuery;
 		this.reusable = reusable;
-		if (partialQuery.has("type")) {
-			String type = partialQuery.get("type").asText();
-			if (type.equals("Object")) {
-				typeIterator = query.getOidCounters().keySet().iterator();
-			} else {
-				EClass typeClass = packageMetaData.getEClassIncludingDependencies(type);
-				Set<EClass> eClasses = new HashSet<EClass>();
-				eClasses.add(typeClass);
-				if (partialQuery.has("includeAllSubtypes") && partialQuery.get("includeAllSubtypes").asBoolean()) {
-					eClasses.addAll(packageMetaData.getAllSubClasses((EClass)typeClass));
-				}
-				typeIterator = eClasses.iterator();
-			}
-		} else if (partialQuery.has("types")) {
-			ArrayNode typesArray = (ArrayNode)partialQuery.get("types");
-			Set<EClass> eClasses = new HashSet<EClass>();
-			for (Iterator<JsonNode> iterator = typesArray.iterator(); iterator.hasNext();) {
-				JsonNode jsonElement = iterator.next();
-				EClass typeClass = packageMetaData.getEClassIncludingDependencies(jsonElement.asText());
-				eClasses.add(typeClass);
-				if (partialQuery.has("includeAllSubtypes") && partialQuery.get("includeAllSubtypes").asBoolean()) {
-					eClasses.addAll(packageMetaData.getAllSubClasses((EClass)typeClass));
-				}
-			}
-			typeIterator = eClasses.iterator();
+		if (partialQuery.getTypes().isEmpty()) {
+			typeIterator = query.getOidCounters().keySet().iterator();
 		} else {
-			typeIterator = null;
+			typeIterator = partialQuery.getTypes().iterator();
 		}
-		if (partialQuery.has("oid")) {
-			oids = new HashMap<EClass, List<Long>>();
-			long oid = partialQuery.get("oid").asLong();
-			EClass eClass = queryObjectProvider.getDatabaseSession().getEClassForOid(oid);
-			List<Long> list = new ArrayList<Long>();
-			this.oids.put(eClass, list);
-			list.add(oid);
-		} else if (partialQuery.has("oids")) {
+		if (partialQuery.hasOids()) {
+			List<Long> oidsList = partialQuery.getOids();
 			this.oids = new HashMap<EClass, List<Long>>();
-			ArrayNode oids = (ArrayNode) partialQuery.get("oids");
-			if (oids.size() == 0) {
-				throw new QueryException("oids parameter of type array is of size 0");
+			if (oidsList.size() == 0) {
+				throw new QueryException("\"oids\" parameter of type array is of size 0");
 			}
-			for (int i=0; i<oids.size(); i++) {
-				long oid = oids.get(i).asLong();
+			for (int i=0; i<oidsList.size(); i++) {
+				long oid = oidsList.get(i);
 				EClass eClass = queryObjectProvider.getDatabaseSession().getEClassForOid(oid);
 				List<Long> list = this.oids.get(eClass);
 				if (list == null) {
@@ -92,32 +64,13 @@ public class QueryPartStackFrame extends StackFrame {
 		} else {
 			oids = null;
 		}
-		if (partialQuery.has("guids")) {
-			this.guids = new HashSet<>();
-			ArrayNode guidsArray = (ArrayNode)partialQuery.get("guids");
-			for (int i=0; i<guidsArray.size(); i++) {
-				String guid = guidsArray.get(i).asText();
-				this.guids.add(guid);
-			}
-		} else if (partialQuery.has("guid")) {
-			this.guids = new HashSet<>();
-			this.guids.add(partialQuery.get("guid").asText());
+		if (this.partialQuery.getGuids() != null) {
+			this.guids = partialQuery.getGuids();
+		} else {
+			guids = null;
 		}
-		if (partialQuery.has("properties")) {
-			ObjectNode properties = (ObjectNode) partialQuery.get("properties");
-			this.properties = new HashMap<String, Object>();
-			Iterator<Entry<String, JsonNode>> fields = properties.fields();
-			while (fields.hasNext()) {
-				Entry<String, JsonNode> entry = fields.next();
-				JsonNode value = entry.getValue();
-				if (value.isValueNode()) {
-					this.properties.put(entry.getKey(), value.asBoolean());
-				}
-			}
-		}
-		if (partialQuery.has("inBoundingBox")) {
-			inBoundingBox = (ObjectNode) partialQuery.get("inBoundingBox");
-		}
+		this.properties = partialQuery.getProperties();
+		this.inBoundingBox = partialQuery.getInBoundingBox();
 	}
 
 	@Override

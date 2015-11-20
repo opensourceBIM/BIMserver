@@ -267,4 +267,9 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 			buffer.position(buffer.position() + 10);
 		}
 	}
+
+	@Override
+	public boolean useFeatureForSerialization(EStructuralFeature feature) {
+		throw new UnsupportedOperationException();
+	}
 }

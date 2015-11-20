@@ -4,8 +4,10 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.PackageMetaData;
@@ -32,6 +34,7 @@ public class HashMapVirtualObject implements VirtualObject {
 	private EClass eClass;
 	private long oid;
 	private Reusable reusable;
+	private Set<EStructuralFeature> useForSerializationFeatures = new HashSet<EStructuralFeature>();
 	
 	public HashMapVirtualObject(Reusable reusable, EClass eClass) {
 		this.reusable = reusable;
@@ -463,5 +466,16 @@ public class HashMapVirtualObject implements VirtualObject {
 	public boolean has(String key) {
 		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(key);
 		return map.containsKey(eStructuralFeature);
+	}
+
+	public boolean useFeatureForSerialization(EStructuralFeature feature) {
+		if (feature instanceof EAttribute) {
+			return true;
+		}
+		return useForSerializationFeatures.contains(feature);
+	}
+
+	public void addUseForSerialization(EStructuralFeature eStructuralFeature) {
+		useForSerializationFeatures.add(eStructuralFeature);
 	}
 }
