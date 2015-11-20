@@ -87,6 +87,9 @@ public class JsonToQueryObjectModelConverter {
 			JsonNode typeNode = jsonNode.get("type");
 			if (typeNode.isTextual()) {
 				EClass eClass = packageMetaData.getEClassIncludingDependencies(typeNode.asText());
+				if (eClass == null) {
+					throw new QueryException("Cannot find type \"" + typeNode.asText() + "\"");
+				}
 				include.addType(eClass);
 			} else {
 				throw new QueryException("\"type\" field mst be of type string");
@@ -192,7 +195,7 @@ public class JsonToQueryObjectModelConverter {
 			if (includeName.contains(":")) {
 				String namespaceString = includeName.substring(0, includeName.indexOf(":"));
 				String singleIncludeName = includeName.substring(includeName.indexOf(":") + 1);
-				URL resource = getClass().getResource("json/" + singleIncludeName + ".json");
+				URL resource = getClass().getResource("../json/" + namespaceString + ".json");
 				if (resource == null) {
 					throw new QueryException("Could not find '" + namespaceString + "' namespace in predefined queries");
 				}
@@ -202,17 +205,17 @@ public class JsonToQueryObjectModelConverter {
 					ObjectNode predefinedQuery = objectMapper.readValue(resource, ObjectNode.class);
 					JsonToQueryObjectModelConverter converter = new JsonToQueryObjectModelConverter(packageMetaData);
 					Namespace namespace = converter.parseJson(includeName, predefinedQuery);
-					Include define2 = namespace.getDefine(includeName);
+					Include define2 = namespace.getDefine(singleIncludeName);
 					if (define2 == null) {
-						throw new QueryException("Could not find '" + includeName + "' in defines in namespace " + namespace);
+						throw new QueryException("Could not find '" + singleIncludeName + "' in defines in namespace " + namespace.getName());
 					}
 					parentInclude.addInclude(define2);
 				} catch (JsonParseException e) {
-					e.printStackTrace();
+					throw new QueryException(e);
 				} catch (JsonMappingException e) {
-					e.printStackTrace();
+					throw new QueryException(e);
 				} catch (IOException e) {
-					e.printStackTrace();
+					throw new QueryException(e);
 				}
 			}
 		} else {
@@ -329,10 +332,22 @@ public class JsonToQueryObjectModelConverter {
 				throw new QueryException("\"inBoundingBox\" should be of type object");
 			}
 		}
-		
+
 		if (objectNode.has("include")) {
 			JsonNode includeNode = objectNode.get("include");
 			processSubInclude(queryPart, includeNode);
+		}
+		if (objectNode.has("includes")) {
+			JsonNode includesNode = objectNode.get("includes");
+			if (includesNode instanceof ArrayNode) {
+				ArrayNode includes = (ArrayNode)includesNode;
+				for (int i=0; i<includes.size(); i++) {
+					JsonNode include = includes.get(i);
+					processSubInclude(queryPart, include);
+				}
+			} else {
+				throw new QueryException("\"includes\" should be of type array");
+			}
 		}
 
 		namespace.addQueryPart(queryPart);

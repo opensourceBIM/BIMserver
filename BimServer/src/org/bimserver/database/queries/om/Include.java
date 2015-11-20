@@ -51,6 +51,9 @@ public class Include implements CanInclude {
 	}
 	
 	public void addType(EClass eClass) {
+		if (eClass == null) {
+			throw new IllegalArgumentException("eClass cannot be null");
+		}
 		if (types == null) {
 			types = new ArrayList<>();
 		}
