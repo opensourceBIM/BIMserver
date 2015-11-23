@@ -2,11 +2,9 @@ package org.bimserver.database.queries;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
@@ -16,10 +14,6 @@ import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.Reusable;
 import org.eclipse.emf.ecore.EClass;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class QueryPartStackFrame extends StackFrame {
 
@@ -40,11 +34,6 @@ public class QueryPartStackFrame extends StackFrame {
 		this.query = query;
 		this.partialQuery = partialQuery;
 		this.reusable = reusable;
-		if (partialQuery.getTypes().isEmpty()) {
-			typeIterator = query.getOidCounters().keySet().iterator();
-		} else {
-			typeIterator = partialQuery.getTypes().iterator();
-		}
 		if (partialQuery.hasOids()) {
 			List<Long> oidsList = partialQuery.getOids();
 			this.oids = new HashMap<EClass, List<Long>>();
@@ -63,6 +52,15 @@ public class QueryPartStackFrame extends StackFrame {
 			}
 		} else {
 			oids = null;
+		}
+		if (!partialQuery.hasTypes()) {
+			if (oids == null) {
+				typeIterator = query.getOidCounters().keySet().iterator();
+			} else {
+				typeIterator = oids.keySet().iterator();
+			}
+		} else {
+			typeIterator = partialQuery.getTypes().iterator();
 		}
 		if (this.partialQuery.getGuids() != null) {
 			this.guids = partialQuery.getGuids();

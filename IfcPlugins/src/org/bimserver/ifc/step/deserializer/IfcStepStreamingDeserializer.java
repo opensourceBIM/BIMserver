@@ -38,7 +38,6 @@ import org.bimserver.plugins.deserializers.StreamingDeserializer;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.ExplicitAttribute;
-import org.bimserver.plugins.schema.InverseAttribute;
 import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.shared.ByteBufferVirtualObject;
 import org.bimserver.shared.ByteBufferWrappedVirtualObject;
@@ -389,25 +388,9 @@ public abstract class IfcStepStreamingDeserializer implements StreamingDeseriali
 			if (entityBN == null) {
 				throw new DeserializeException(lineNumber, "Unknown entity " + name);
 			}
-			for (Attribute attribute : entityBN.getAttributesCached(true)) {
-				EStructuralFeature structuralFeature = eClass.getEStructuralFeature(attribute.getName());
-				if (structuralFeature == null) {
-					throw new DeserializeException(lineNumber, "Unknown feature " + eClass.getName() + "." + attribute.getName());
-				}
-				if (getPackageMetaData().useForSerialization(eClass, structuralFeature)) {
-					if (attribute instanceof InverseAttribute) {
-						if (structuralFeature instanceof EReference) {
-							EReference eReference = (EReference)structuralFeature;
-							if (eReference.isMany()) {
-								hasMultiOpposites = true;
-							} else {
-								hasSingleOpposites = true;
-							}
-							object.eUnset(structuralFeature);
-						} else {
-							throw new DeserializeException("Inverse should be a reference");
-						}
-					} else {
+			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+				if (getPackageMetaData().useForSerialization(eClass, eStructuralFeature)) {
+					if (getPackageMetaData().useForDatabaseStorage(eClass, eStructuralFeature)) {
 						int nextIndex = StringUtils.nextString(realData, lastIndex);
 						String val = null;
 						try {
@@ -419,33 +402,33 @@ public abstract class IfcStepStreamingDeserializer implements StreamingDeseriali
 									expected++;
 								}
 							}
-							throw new DeserializeException(lineNumber, eClass.getName() + " expects " + expected + " fields, but less found");
+							throw new DeserializeException(lineNumber, eClass.getName() + " expects " + expected + " fields, but less found (" + e.getMessage() + ")");
 						}
 						lastIndex = nextIndex;
 						char firstChar = val.charAt(0);
 						if (firstChar == '$') {
-							object.eUnset(structuralFeature);
-							if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-								EStructuralFeature doubleStringFeature = eClass.getEStructuralFeature(attribute.getName() + "AsString");
+							object.eUnset(eStructuralFeature);
+							if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+								EStructuralFeature doubleStringFeature = eClass.getEStructuralFeature(eStructuralFeature.getName() + "AsString");
 								object.eUnset(doubleStringFeature);
 							}
 						} else if (firstChar == '#') {
-							if (!readReference(val, object, structuralFeature)) {
+							if (!readReference(val, object, eStructuralFeature)) {
 								openReferences = true;
 							}
 						} else if (firstChar == '.') {
-							readEnum(val, object, structuralFeature);
+							readEnum(val, object, eStructuralFeature);
 						} else if (firstChar == '(') {
-							if (!readList(val, object, structuralFeature)) {
+							if (!readList(val, object, eStructuralFeature)) {
 								openReferences = true;
 							}
 						} else if (firstChar == '*') {
-							object.eUnset(structuralFeature);
+							object.eUnset(eStructuralFeature);
 						} else {
-							if (!structuralFeature.isMany()) {
-								object.setAttribute(structuralFeature, convert(structuralFeature.getEType(), val));
-								if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-									EStructuralFeature doubleStringFeature = eClass.getEStructuralFeature(attribute.getName() + "AsString");
+							if (!eStructuralFeature.isMany()) {
+								object.setAttribute(eStructuralFeature, convert(eStructuralFeature.getEType(), val));
+								if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+									EStructuralFeature doubleStringFeature = eClass.getEStructuralFeature(eStructuralFeature.getName() + "AsString");
 									object.setAttribute(doubleStringFeature, val);
 								}
 							} else {
@@ -453,10 +436,26 @@ public abstract class IfcStepStreamingDeserializer implements StreamingDeseriali
 								// schema??
 							}
 						}
+					} else {
+						int nextIndex = StringUtils.nextString(realData, lastIndex);
+						lastIndex = nextIndex;
 					}
 				} else {
-					int nextIndex = StringUtils.nextString(realData, lastIndex);
-					lastIndex = nextIndex;
+					if (getPackageMetaData().useForDatabaseStorage(eClass, eStructuralFeature)) {
+						if (eStructuralFeature instanceof EReference && getPackageMetaData().isInverse((EReference) eStructuralFeature)) {
+							EReference eReference = (EReference)eStructuralFeature;
+							if (eReference.isMany()) {
+								hasMultiOpposites = true;
+							} else {
+								hasSingleOpposites = true;
+							}
+							object.eUnset(eStructuralFeature);
+						} else {
+							if (eStructuralFeature.getEAnnotation("asstring") == null) {
+								object.eUnset(eStructuralFeature);
+							}
+						}
+					}
 				}
 			}
 			

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bimserver.database.queries.QueryException;
+import org.bimserver.emf.PackageMetaData;
 
 public class Namespace {
 	private final Map<String, Include> defines = new HashMap<>();
@@ -34,5 +35,11 @@ public class Namespace {
 	
 	public List<QueryPart> getQueryParts() {
 		return queryParts;
+	}
+
+	public QueryPart createQueryPart(PackageMetaData packageMetaData) {
+		QueryPart queryPart = new QueryPart(packageMetaData);
+		addQueryPart(queryPart);
+		return queryPart;
 	}
 }

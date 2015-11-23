@@ -478,4 +478,8 @@ public class HashMapVirtualObject implements VirtualObject {
 	public void addUseForSerialization(EStructuralFeature eStructuralFeature) {
 		useForSerializationFeatures.add(eStructuralFeature);
 	}
+
+	public void saveOverwrite() throws BimserverDatabaseException {
+		getDatabaseInterface().saveOverwrite(this);
+	}
 }

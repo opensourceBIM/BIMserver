@@ -54,6 +54,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.slf4j.LoggerFactory;
@@ -312,7 +313,8 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer 
 					writeEnum(object, feature);
 					isFirst = false;
 				} else if (type instanceof EClass) {
-					if (!packageMetaData.isInverse(feature)) {
+					EReference eReference = (EReference)feature;
+					if (!packageMetaData.isInverse(eReference)) {
 						if (!isFirst) {
 							print(COMMA);
 						}

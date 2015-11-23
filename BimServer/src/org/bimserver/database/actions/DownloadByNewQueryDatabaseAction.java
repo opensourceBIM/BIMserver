@@ -60,7 +60,7 @@ public class DownloadByNewQueryDatabaseAction extends BimDatabaseAction<ObjectPr
 		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
 		
 		try {
-			return new QueryObjectProvider(getDatabaseSession(), bimServer, json, roids, packageMetaData);
+			return QueryObjectProvider.fromJsonString(getDatabaseSession(), bimServer, json, roids, packageMetaData);
 		} catch (Exception e) {
 			throw new UserException(e);
 		}

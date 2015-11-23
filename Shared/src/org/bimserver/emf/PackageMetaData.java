@@ -1,7 +1,5 @@
 package org.bimserver.emf;
 
-import java.util.ArrayList;
-
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -26,28 +24,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcAnnotation;
-import org.bimserver.models.ifc2x3tc1.IfcAnnotationCurveOccurrence;
-import org.bimserver.models.ifc2x3tc1.IfcDimensionCurve;
-import org.bimserver.models.ifc2x3tc1.IfcElement;
-import org.bimserver.models.ifc2x3tc1.IfcGrid;
-import org.bimserver.models.ifc2x3tc1.IfcLayeredItem;
-import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
-import org.bimserver.models.ifc2x3tc1.IfcPresentationLayerAssignment;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
-import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcPropertyDefinition;
-import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
-import org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralActivity;
-import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
-import org.bimserver.models.ifc2x3tc1.IfcRelReferencedInSpatialStructure;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
-import org.bimserver.models.ifc2x3tc1.IfcRoot;
-import org.bimserver.models.ifc2x3tc1.IfcStructuralActivityAssignmentSelect;
-import org.bimserver.models.ifc2x3tc1.IfcStructuralItem;
-import org.bimserver.models.ifc2x3tc1.IfcTerminatorSymbol;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.schema.Attribute;
@@ -55,7 +31,6 @@ import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.ExplicitAttribute;
 import org.bimserver.plugins.schema.InverseAttribute;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -78,7 +53,8 @@ public class PackageMetaData implements ObjectFactory {
 	private final Map<String, EClassifier> caseSensitive = new TreeMap<String, EClassifier>();
 	private final Map<EClassifier, String> upperCases = new HashMap<>();
 	private final BiMap<EClass, Class<?>> eClassClassMap = HashBiMap.create();
-	private final Map<EStructuralFeature, Boolean> inverseCache = new HashMap<EStructuralFeature, Boolean>();
+	private final Map<EReference, Boolean> isInverseCache = new HashMap<EReference, Boolean>();
+	private final Map<EReference, Boolean> hasInverseCache = new HashMap<EReference, Boolean>();
 	private final EPackage ePackage;
 	private final Schema schema;
 	private final Set<PackageMetaData> dependencies = new HashSet<>();
@@ -258,17 +234,56 @@ public class PackageMetaData implements ObjectFactory {
 		return upperCases.get(eClass);
 	}
 
-	public boolean isInverse(EStructuralFeature feature) throws SerializerException {
-		if (inverseCache.containsKey(feature)) {
-			return inverseCache.get(feature);
+	public boolean isInverse(EReference eReference) {
+		if (isInverseCache.containsKey(eReference)) {
+			return isInverseCache.get(eReference);
 		}
-		EntityDefinition entityBN = schemaDefinition.getEntityBNNoCaseConvert(upperCases.get(feature.getEContainingClass()));
+		EntityDefinition entityBN = schemaDefinition.getEntityBNNoCaseConvert(upperCases.get(eReference.getEContainingClass()));
 		if (entityBN == null) {
 			return false;
 		}
-		Attribute attributeBNWithSuper = entityBN.getAttributeBNWithSuper(feature.getName());
+		Attribute attributeBNWithSuper = entityBN.getAttributeBNWithSuper(eReference.getName());
 		boolean isInverse = entityBN != null && attributeBNWithSuper instanceof InverseAttribute;
-		inverseCache.put(feature, isInverse);
+		
+		if (!isInverse) {
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcElement_ContainedInStructure()) {
+				isInverse = true;
+			} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcAnnotation_ContainedInStructure()) {
+				isInverse = true;
+			} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcGrid_ContainedInStructure()) {
+				isInverse = true;
+			}
+			
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRepresentation_LayerAssignments()) {
+				isInverse = true;
+			} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_LayerAssignments()) {
+				isInverse = true;
+			}
+			
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations()) {
+				isInverse = true;
+			} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcPropertyDefinition_HasAssociations()) {
+				isInverse = true;
+			}
+			
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcDimensionCurve_AnnotatedBySymbols()) {
+				isInverse = true;
+			}
+			
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcElement_ReferencedInStructures()) {
+				isInverse = true;
+			}
+			
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape_ShapeOfProduct()) {
+				isInverse = true;
+			}
+			
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcStructuralItem_AssignedStructuralActivity()) {
+				isInverse = true;
+			}
+		}
+		
+		isInverseCache.put(eReference, isInverse);
 		return isInverse;
 	}
 
@@ -375,27 +390,37 @@ public class PackageMetaData implements ObjectFactory {
 		return set.size();
 	}
 
+	public int getNrDatabaseFeatures(EClass eClass) {
+		Set<EStructuralFeature> set = useForDatabaseStorage.get(eClass);
+		if (set == null) {
+			set = buildUseForDatabaseStorage(eClass);
+		}
+		return set.size();
+	}
+
 	private synchronized Set<EStructuralFeature> buildUseForSerializationSet(EClass eClass) {
 		if (this.getSchemaDefinition() != null) {
 			if (!useForSerialization.containsKey(eClass)) {
+				if (eClass.getName().equals("IfcAxis2Placement3D")) {
+					System.out.println();
+				}
 				HashSet<EStructuralFeature> set = new HashSet<>();
 				for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 					EntityDefinition entityBN = this.getSchemaDefinition().getEntityBN(eClass.getName());
-					if (!entityBN.isDerived(eStructuralFeature.getName())) {
-						if (eStructuralFeature.getEAnnotation("hidden") != null) {
-							if (eStructuralFeature.getEAnnotation("asstring") == null) {
-							} else {
-								if (entityBN.isDerived(eStructuralFeature.getName().substring(0, eStructuralFeature.getName().length() - 8))) {
-								} else {
-									set.add(eStructuralFeature);
-								}
-							}
-						}
-						Attribute attribute = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
-						if (attribute != null && attribute instanceof ExplicitAttribute || attribute instanceof InverseAttribute) {
-							if (!entityBN.isDerived(attribute.getName())) {
-								set.add(eStructuralFeature);
-							}
+//					if (eStructuralFeature.getEAnnotation("hidden") != null) {
+						
+//						if (eStructuralFeature.getEAnnotation("asstring") == null) {
+//						} else {
+//							if (entityBN.isDerived(eStructuralFeature.getName().substring(0, eStructuralFeature.getName().length() - 8))) {
+//							} else {
+//								set.add(eStructuralFeature);
+//							}
+//						}
+//					}
+					Attribute attribute = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
+					if (attribute != null && attribute instanceof ExplicitAttribute) {
+						if (!entityBN.isDerived(eStructuralFeature.getName()) || entityBN.isDerivedOverride(eStructuralFeature.getName())) {
+							set.add(eStructuralFeature);
 						}
 					}
 				}
@@ -407,6 +432,9 @@ public class PackageMetaData implements ObjectFactory {
 	}
 
 	private synchronized Set<EStructuralFeature> buildUseForDatabaseStorage(EClass eClass) {
+		if (eClass.getName().equals("IfcGeometricRepresentationSubContext")) {
+			System.out.println();
+		}
 		if (this.getSchemaDefinition() != null) {
 			if (!useForDatabaseStorage.containsKey(eClass)) {
 				HashSet<EStructuralFeature> set = new HashSet<>();
@@ -416,10 +444,12 @@ public class PackageMetaData implements ObjectFactory {
 						set.add(eStructuralFeature);
 					} else {
 						if (!entityBN.isDerived(eStructuralFeature.getName())) {
+							boolean derived = false;
 							if (eStructuralFeature.getEAnnotation("hidden") != null) {
 								if (eStructuralFeature.getEAnnotation("asstring") == null) {
 								} else {
 									if (entityBN.isDerived(eStructuralFeature.getName().substring(0, eStructuralFeature.getName().length() - 8))) {
+										derived = true;
 									} else {
 										set.add(eStructuralFeature);
 									}
@@ -428,7 +458,9 @@ public class PackageMetaData implements ObjectFactory {
 							Attribute attribute = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
 							if (attribute == null) {
 								// geometry, *AsString
-								set.add(eStructuralFeature);
+								if (!derived) {
+									set.add(eStructuralFeature);
+								}
 							} else {
 								if (attribute instanceof ExplicitAttribute || attribute instanceof InverseAttribute) {
 									if (!entityBN.isDerived(attribute.getName())) {
@@ -452,6 +484,41 @@ public class PackageMetaData implements ObjectFactory {
 			return calculateUnsettedLength(eClass);
 		}
 		return integer;
+	}
+	
+	public boolean hasInverse(EReference eReference) {
+		if (hasInverseCache.containsKey(eReference)) {
+			return hasInverseCache.get(eReference);
+		}
+		boolean hasInverse = false;
+		if (eReference.getEOpposite() != null) {
+			hasInverse = isInverse(eReference.getEOpposite());
+		}
+		if (!hasInverse) {
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
+				hasInverse = true;
+			}
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems()) {
+				hasInverse = true;
+			}
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects()) {
+				hasInverse = true;
+			}
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcTerminatorSymbol_AnnotatedCurve()) {
+				hasInverse = true;
+			}
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
+				hasInverse = true;
+			}
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcProduct_Representation()) {
+				hasInverse = true;
+			}
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
+				hasInverse = true;
+			}
+		}
+		hasInverseCache.put(eReference, hasInverse);
+		return hasInverse;
 	}
 	
 	public EReference getInverseOrOpposite(EClass eClassOfOtherEnd, EStructuralFeature eStructuralFeature) {
@@ -487,7 +554,7 @@ public class PackageMetaData implements ObjectFactory {
 		}
 		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcTerminatorSymbol_AnnotatedCurve()) {
 			if (Ifc2x3tc1Package.eINSTANCE.getIfcDimensionCurve().isSuperTypeOf(eClassOfOtherEnd)) {
-				return Ifc2x3tc1Package.eINSTANCE.getIfcStyledItem_Item();
+				return Ifc2x3tc1Package.eINSTANCE.getIfcDimensionCurve_AnnotatedBySymbols();
 			}
 		}
 		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
@@ -545,5 +612,41 @@ public class PackageMetaData implements ObjectFactory {
 		}
 		
  		return null;
+	}
+	
+	public Set<EClass> getAllEClassesThatHaveInverses() {
+		Set<EClass> result = new HashSet<>();
+		for (EClassifier eClassifier : getEPackage().getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				for (EReference eReference : eClass.getEReferences()) {
+					if (hasInverse(eReference)) {
+						result.add(eClass);
+						continue;
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+	public Set<EReference> getAllInverseReferences(EClass eClass) {
+		Set<EReference> result = new HashSet<>();
+		for (EReference eReference : eClass.getEAllReferences()) {
+			if (isInverse(eReference)) {
+				result.add(eReference);
+			}
+		}
+		return result;
+	}
+
+	public Set<EReference> getAllHasInverseReferences(EClass eClass) {
+		Set<EReference> result = new HashSet<>();
+		for (EReference eReference : eClass.getEAllReferences()) {
+			if (hasInverse(eReference)) {
+				result.add(eReference);
+			}
+		}
+		return result;
 	}
 }

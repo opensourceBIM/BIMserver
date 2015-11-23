@@ -251,6 +251,9 @@ public class JsonToQueryObjectModelConverter {
 				throw new QueryException("\"types\" must be of type array");
 			}
 		}
+		if (objectNode.has("includeAllFields") && objectNode.get("includeAllFields").asBoolean()) {
+			queryPart.setIncludeAllFields(true);
+		}
 		if (objectNode.has("oid")) {
 			JsonNode oidNode = objectNode.get("oid");
 			if (oidNode.isNumber()) {
@@ -368,6 +371,7 @@ public class JsonToQueryObjectModelConverter {
 	private void addType(ObjectNode objectNode, QueryPart queryPart, String type) throws QueryException {
 		if (type.equals("Object")) {
 			// no type filter
+			return;
 		}
 		EClass eClass = packageMetaData.getEClassIncludingDependencies(type);
 		if (eClass == null) {

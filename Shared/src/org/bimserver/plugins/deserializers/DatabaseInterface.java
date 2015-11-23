@@ -9,5 +9,6 @@ public interface DatabaseInterface {
 	EClass getEClassForOid(long oid) throws BimserverDatabaseException;
 	short getCidOfEClass(EClass eClass);
 	long newOid(EClass eClass);
-	int save(VirtualObject wrappedValue) throws BimserverDatabaseException;
+	int save(VirtualObject virtualObject) throws BimserverDatabaseException;
+	int saveOverwrite(VirtualObject virtualObject) throws BimserverDatabaseException;
 }

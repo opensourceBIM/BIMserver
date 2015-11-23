@@ -141,7 +141,8 @@ public abstract class IfcXmlSerializer extends IfcSerializer {
 			EntityDefinition entityBN = getPackageMetaData().getSchemaDefinition().getEntityBN(object.eClass().getName().toUpperCase());
 			Attribute attributeBN = entityBN != null ? entityBN.getAttributeBNWithSuper(structuralFeature.getName()) : null;
 			boolean derived = entityBN.isDerived(structuralFeature.getName());
-			if (!getPackageMetaData().isInverse(structuralFeature) && !structuralFeature.isDerived() && !derived) {
+			EReference eReference = (EReference)structuralFeature;
+			if (!getPackageMetaData().isInverse(eReference) && !structuralFeature.isDerived() && !derived) {
 				// Because of small deviations in the string/float/string
 				// conversions some float attributes are also stored in the
 				// original string representations. These auxiliary attribute

@@ -372,69 +372,63 @@ public abstract class IfcStepDeserializer extends EmfDeserializer {
 			if (entityBN == null) {
 				throw new DeserializeException(lineNumber, "Unknown entity " + name);
 			}
-			for (Attribute attribute : entityBN.getAttributesCached(true)) {
-				EStructuralFeature structuralFeature = eClass.getEStructuralFeature(attribute.getName());
-				if (structuralFeature == null) {
-					throw new DeserializeException(lineNumber, "Unknown feature " + eClass.getName() + "." + attribute.getName());
-				}
-				if (getPackageMetaData().useForSerialization(eClass, structuralFeature)) {
-					if (!entityBN.isDerived(attribute.getName())) {
-						if (attribute instanceof InverseAttribute) {
-							if (structuralFeature instanceof EReference) {
-								EReference eReference = (EReference)structuralFeature;
-								if (eReference.isMany()) {
-								} else {
-									object.eUnset(structuralFeature);
+			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+				if (getPackageMetaData().useForSerialization(eClass, eStructuralFeature)) {
+					if (getPackageMetaData().useForDatabaseStorage(eClass, eStructuralFeature)) {
+						int nextIndex = StringUtils.nextString(realData, lastIndex);
+						String val = null;
+						try {
+							val = realData.substring(lastIndex, nextIndex - 1).trim();
+						} catch (Exception e) {
+							int expected = 0;
+							for (Attribute attribute2 : entityBN.getAttributesCached(true)) {
+								if (attribute2 instanceof ExplicitAttribute) {
+									expected++;
 								}
-							} else {
-								throw new DeserializeException("Inverse should be a reference");
 							}
+							throw new DeserializeException(lineNumber, eClass.getName() + " expects " + expected + " fields, but less found");
+						}
+						lastIndex = nextIndex;
+						char firstChar = val.charAt(0);
+						if (firstChar == '$') {
+							object.eUnset(eStructuralFeature);
+							if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+								EStructuralFeature doubleStringFeature = eClass.getEStructuralFeature(eStructuralFeature.getName() + "AsString");
+								object.eUnset(doubleStringFeature);
+							}
+						} else if (firstChar == '#') {
+							readReference(val, object, eStructuralFeature);
+						} else if (firstChar == '.') {
+							readEnum(val, object, eStructuralFeature);
+						} else if (firstChar == '(') {
+							readList(val, object, eStructuralFeature);
+						} else if (firstChar == '*') {
 						} else {
-							int nextIndex = StringUtils.nextString(realData, lastIndex);
-							String val = null;
-							try {
-								val = realData.substring(lastIndex, nextIndex - 1).trim();
-							} catch (Exception e) {
-								int expected = 0;
-								for (Attribute attribute2 : entityBN.getAttributesCached(true)) {
-									if (attribute2 instanceof ExplicitAttribute) {
-										expected++;
-									}
+							if (!eStructuralFeature.isMany()) {
+								object.eSet(eStructuralFeature, convert(eStructuralFeature.getEType(), val));
+								if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+									EStructuralFeature doubleStringFeature = eClass.getEStructuralFeature(eStructuralFeature.getName() + "AsString");
+									object.eSet(doubleStringFeature, val);
 								}
-								throw new DeserializeException(lineNumber, eClass.getName() + " expects " + expected + " fields, but less found");
-							}
-							lastIndex = nextIndex;
-							char firstChar = val.charAt(0);
-							if (firstChar == '$') {
-								object.eUnset(structuralFeature);
-								if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-									EStructuralFeature doubleStringFeature = eClass.getEStructuralFeature(attribute.getName() + "AsString");
-									object.eUnset(doubleStringFeature);
-								}
-							} else if (firstChar == '#') {
-								readReference(val, object, structuralFeature);
-							} else if (firstChar == '.') {
-								readEnum(val, object, structuralFeature);
-							} else if (firstChar == '(') {
-								readList(val, object, structuralFeature);
-							} else if (firstChar == '*') {
 							} else {
-								if (!structuralFeature.isMany()) {
-									object.eSet(structuralFeature, convert(structuralFeature.getEType(), val));
-									if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-										EStructuralFeature doubleStringFeature = eClass.getEStructuralFeature(attribute.getName() + "AsString");
-										object.eSet(doubleStringFeature, val);
-									}
-								} else {
-									// It's not a list in the file, but it is in the
-									// schema??
-								}
+								// It's not a list in the file, but it is in the
+								// schema??
+							}
+						}
+					} else {
+						int nextIndex = StringUtils.nextString(realData, lastIndex);
+						lastIndex = nextIndex;
+					}
+				} else {
+					if (getPackageMetaData().useForDatabaseStorage(eClass, eStructuralFeature)) {
+						if (eStructuralFeature instanceof EReference && getPackageMetaData().isInverse((EReference) eStructuralFeature)) {
+							object.eUnset(eStructuralFeature);
+						} else {
+							if (eStructuralFeature.getEAnnotation("asstring") == null) {
+								object.eUnset(eStructuralFeature);
 							}
 						}
 					}
-				} else {
-					int nextIndex = StringUtils.nextString(realData, lastIndex);
-					lastIndex = nextIndex;
 				}
 			}
 			if (waitingList.containsKey(recordNumber)) {

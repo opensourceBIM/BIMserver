@@ -84,9 +84,8 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 					createSerializer = serializerPlugin.createSerializer(null);
 					
 					// TODO passing a databasesession here, make sure it will be closed!!
-					ObjectProvider objectProvider = new QueryObjectProvider(databaseSession, getBimServer(), jsonQuery, roids, packageMetaData);
+					ObjectProvider objectProvider = QueryObjectProvider.fromJsonString(databaseSession, getBimServer(), jsonQuery, roids, packageMetaData);
 
-					
 					createSerializer.init(objectProvider, projectInfo, getBimServer().getPluginManager(), packageMetaData);
 
 					changeActionState(ActionState.STARTED, "Done preparing", -1);
@@ -95,7 +94,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 					serializer = serializerPlugin.createSerializer(null);
 					
 					// TODO passing a databasesession here, make sure it will be closed!!
-					ObjectProvider objectProvider = new QueryObjectProvider(databaseSession, getBimServer(), jsonQuery, roids, packageMetaData);
+					ObjectProvider objectProvider = QueryObjectProvider.fromJsonString(databaseSession, getBimServer(), jsonQuery, roids, packageMetaData);
 					
 					serializer.init(objectProvider, projectInfo, null, getBimServer().getPluginManager(), packageMetaData);
 					

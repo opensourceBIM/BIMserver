@@ -13,6 +13,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.Reusable;
+import org.bimserver.shared.WrappedVirtualObject;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -54,8 +55,12 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 					processReference(refOid);
 				}
 			} else {
-				long refOid = (Long) value;
-				processReference(refOid);
+				if (value instanceof Long) {
+					long refOid = (Long) value;
+					processReference(refOid);
+				} else if (value instanceof WrappedVirtualObject) {
+					//
+				}
 			}
 		}
 		
@@ -64,9 +69,9 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 
 	private void processReference(long refOid) {
 		if (outputFilterCids == null || outputFilterCids.contains((short)refOid)) {
-//			if (!getQueryObjectProvider().hasRead(refOid)) {
-				getQueryObjectProvider().push(new FollowReferenceStackFrame(getQueryObjectProvider(), refOid, getPackageMetaData(), getReusable(), getQuery(), currentObject.eClass(), getQueryPart(), include));
-//			}
+			if (!getQueryObjectProvider().hasRead(refOid)) {
+				getQueryObjectProvider().push(new FollowReferenceStackFrame(getQueryObjectProvider(), refOid, getPackageMetaData(), getReusable(), getQuery(), getQueryPart(), include));
+			}
 		}
 	}
 }

@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.slf4j.LoggerFactory;
@@ -261,6 +262,9 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 		if (eClass.getEAnnotation("hidden") != null) {
 			return;
 		}
+		if (object.eClass().getName().equals("IfcStyledItem")) {
+			System.out.println();
+		}
 		print(DASH);
 		int convertedKey = getExpressId(object);
 		if (convertedKey == -1) {
@@ -286,7 +290,8 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 					writeEnum(object, feature);
 					isFirst = false;
 				} else if (type instanceof EClass) {
-					if (!getPackageMetaData().isInverse(feature)) {
+					EReference eReference = (EReference)feature;
+					if (!getPackageMetaData().isInverse(eReference)) {
 						if (!isFirst) {
 							print(COMMA);
 						}
