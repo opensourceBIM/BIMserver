@@ -12,20 +12,19 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.shared.Reusable;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 
 public class FollowReferenceStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
 
 	private long oid;
 	private QueryInterface query;
 	private boolean hasRun = false;
-	private EClass previousType;
 	private Include include;
 	
-	public FollowReferenceStackFrame(QueryObjectProvider queryObjectProvider, Long oid, PackageMetaData packageMetaData, Reusable reusable, QueryInterface query, EClass previousType, QueryPart queryPart, Include include) {
+	public FollowReferenceStackFrame(QueryObjectProvider queryObjectProvider, Long oid, PackageMetaData packageMetaData, Reusable reusable, QueryInterface query, QueryPart queryPart, Include include) {
 		super(packageMetaData, reusable, queryObjectProvider, query, queryPart);
 		this.oid = oid;
 		this.query = query;
-		this.previousType = previousType;
 		this.include = include;
 	}
 
@@ -72,6 +71,15 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 					// deleted entity
 				} else {
 					currentObject = convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, keyRid, query);
+					
+					if (currentObject != null) {
+						if (getQueryPart().isIncludeAllFields()) {
+							for (EReference eReference : currentObject.eClass().getEAllReferences()) {
+								currentObject.addUseForSerialization(eReference);
+							}
+						}
+					}
+					
 					if (include.hasIncludes()) {
 						for (Include include : include.getIncludes()) {
 							processPossibleInclude(include);

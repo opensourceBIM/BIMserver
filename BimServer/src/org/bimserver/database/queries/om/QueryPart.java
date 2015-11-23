@@ -18,6 +18,7 @@ public class QueryPart implements CanInclude {
 	private PackageMetaData packageMetaData;
 	private InBoundingBox inBoundingBox;
 	private List<Include> includes;
+	private boolean includeAllFields;
 	
 	public QueryPart(PackageMetaData packageMetaData) {
 		this.packageMetaData = packageMetaData;
@@ -77,7 +78,15 @@ public class QueryPart implements CanInclude {
 	public InBoundingBox getInBoundingBox() {
 		return inBoundingBox;
 	}
+	
+	public boolean isIncludeAllFields() {
+		return includeAllFields;
+	}
 
+	public void setIncludeAllFields(boolean includeAllFields) {
+		this.includeAllFields = includeAllFields;
+	}
+	
 	@Override
 	public void addInclude(Include include) {
 		if (includes == null) {
@@ -96,5 +105,9 @@ public class QueryPart implements CanInclude {
 
 	public boolean hasOids() {
 		return oids != null;
+	}
+
+	public boolean hasTypes() {
+		return types != null;
 	}
 }

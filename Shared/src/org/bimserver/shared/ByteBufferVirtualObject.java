@@ -29,20 +29,16 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 		this.eClass = eClass;
 		this.oid = reusable.getDatabaseInterface().newOid(eClass);
 
-		int unsettedLength = (int) Math.ceil(eClass().getEAllStructuralFeatures().size() / 8.0);
-		buffer.put((byte) unsettedLength);
+		int unsettedLength = reusable.getPackageMetaData().getUnsettedLength(eClass);
 		buffer.put(new byte[unsettedLength]);
 	}
 
 	public void eUnset(EStructuralFeature feature) throws BimserverDatabaseException {
 		if (feature.isUnsettable()) {
-			int pos = 1 + (featureCounter / 8);
+			int pos = featureCounter / 8;
 			byte b = buffer.get(pos);
 			b |= (1 << (featureCounter % 8));
 			buffer.put(pos, b);
-			if (eClass.getName().equals("IfcSite")) {
-				System.out.println("UNSET: " + feature.getName());
-			}
 		} else {
 			if (feature instanceof EReference) {
 				ensureCapacity(buffer.position(), 2);
@@ -119,7 +115,7 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 		if (!eClass.isSuperTypeOf(eClass())) {
 			throw new BimserverDatabaseException("Object with oid " + getOid() + " is a " + eClass().getName() + " but it's cid-part says it's a " + eClass.getName());
 		}
-		int nrFeatures = getPackageMetaData().getNrSerializableFeatures(eClass);
+		int nrFeatures = getPackageMetaData().getNrDatabaseFeatures(eClass);
 		if (featureCounter > nrFeatures) {
 			throw new BimserverDatabaseException("Too many features seem to have been set on " + this.eClass.getName() + " " + featureCounter + " / " + nrFeatures);
 		} else if (featureCounter < nrFeatures) {

@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
@@ -83,6 +84,13 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 				for (Include include : queryPart.getIncludes()) {
 					processPossibleInclude(include);
 				}
+			} else if (queryPart.isIncludeAllFields()) {
+				for (EReference eReference : currentObject.eClass().getEAllReferences()) {
+					Include include = new Include();
+					include.addType(currentObject.eClass());
+					include.addField(eReference.getName());
+					processPossibleInclude(include);
+				}
 			}
 		}
 	}
@@ -137,6 +145,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			buffer.get(unsetted);
 			
 			int fieldCounter = 0;
+			
 			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 				try {
 					if (packageMetaData.useForDatabaseStorage(eClass, feature)) {
@@ -150,57 +159,51 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 								idEObject.setAttribute(feature, feature.getDefaultValue());
 							}
 						} else {
-							if (!query.shouldFollowReference(originalQueryClass, eClass, feature)) {
-								// we have to do some reading to maintain a correct
-								// index
-								queryObjectProvider.getDatabaseSession().fakeRead(buffer, feature);
+							Object newValue = null;
+							if (feature.isMany()) {
+								newValue = readList(idEObject, originalQueryClass, buffer, query, feature);
 							} else {
-								Object newValue = null;
-								if (feature.isMany()) {
-									newValue = readList(idEObject, originalQueryClass, buffer, query, feature);
-								} else {
-									if (feature.getEType() instanceof EEnum) {
-										int enumOrdinal = buffer.getInt();
-										if (enumOrdinal == -1) {
-											newValue = null;
-										} else {
-											EClassifier eType = feature.getEType();
-											EEnumLiteral enumLiteral = ((EEnumImpl) eType).getEEnumLiteral(enumOrdinal);
-											if (enumLiteral != null) {
-												newValue = enumLiteral.getInstance();
-											}
+								if (feature.getEType() instanceof EEnum) {
+									int enumOrdinal = buffer.getInt();
+									if (enumOrdinal == -1) {
+										newValue = null;
+									} else {
+										EClassifier eType = feature.getEType();
+										EEnumLiteral enumLiteral = ((EEnumImpl) eType).getEEnumLiteral(enumOrdinal);
+										if (enumLiteral != null) {
+											newValue = enumLiteral.getInstance();
 										}
-									} else if (feature.getEType() instanceof EClass) {
-										// EReference eReference = (EReference) feature;
-										short cid = buffer.getShort();
-										if (cid == -1) {
-											// null, do nothing
-										} else if (cid < 0) {
-											// negative cid means value is embedded in
-											// record
-											EClass referenceClass = queryObjectProvider.getDatabaseSession().getEClass((short) (-cid));
-											if (feature.getEAnnotation("dbembed") != null) {
-												newValue = readEmbeddedValue(feature, buffer, referenceClass, query);
-											} else {
-												newValue = readWrappedValue(feature, buffer, referenceClass, query);
-											}
-										} else if (cid > 0) {
-											// positive cid means value is reference to
-											// other record
-											EClass referenceClass = queryObjectProvider.getDatabaseSession().getEClass(cid);
-											if (referenceClass == null) {
-												throw new BimserverDatabaseException("No eClass found for cid " + cid);
-											}
-											newValue = readReference(originalQueryClass, buffer, feature, referenceClass, query);
-											// if (eReference.getEOpposite() != null &&
-											// ((IdEObjectImpl)
-											// newValue).isLoadedOrLoading()) {
-											// newValue = null;
-											// }
-										}
-									} else if (feature.getEType() instanceof EDataType) {
-										newValue = readPrimitiveValue(feature.getEType(), buffer, query);
 									}
+								} else if (feature.getEType() instanceof EClass) {
+									// EReference eReference = (EReference) feature;
+									short cid = buffer.getShort();
+									if (cid == -1) {
+										// null, do nothing
+									} else if (cid < 0) {
+										// negative cid means value is embedded in
+										// record
+										EClass referenceClass = queryObjectProvider.getDatabaseSession().getEClass((short) (-cid));
+										if (feature.getEAnnotation("dbembed") != null) {
+											newValue = readEmbeddedValue(feature, buffer, referenceClass, query);
+										} else {
+											newValue = readWrappedValue(feature, buffer, referenceClass, query);
+										}
+									} else if (cid > 0) {
+										// positive cid means value is reference to
+										// other record
+										EClass referenceClass = queryObjectProvider.getDatabaseSession().getEClass(cid);
+										if (referenceClass == null) {
+											throw new BimserverDatabaseException("No eClass found for cid " + cid);
+										}
+										newValue = readReference(originalQueryClass, buffer, feature, referenceClass, query);
+										// if (eReference.getEOpposite() != null &&
+										// ((IdEObjectImpl)
+										// newValue).isLoadedOrLoading()) {
+										// newValue = null;
+										// }
+									}
+								} else if (feature.getEType() instanceof EDataType) {
+									newValue = readPrimitiveValue(feature.getEType(), buffer, query);
 								}
 								if (newValue != null) {
 									idEObject.setAttribute(feature, newValue);

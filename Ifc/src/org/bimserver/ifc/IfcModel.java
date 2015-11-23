@@ -1017,7 +1017,7 @@ public abstract class IfcModel implements IfcModelInterface {
 		for (IfcTerminatorSymbol ifcTerminatorSymbol : new ArrayList<>(getAllWithSubTypes(IfcTerminatorSymbol.class))) {
 			IfcAnnotationCurveOccurrence ifcAnnotationCurveOccurrence = ifcTerminatorSymbol.getAnnotatedCurve();
 			if (ifcAnnotationCurveOccurrence instanceof IfcDimensionCurve) {
-				((IfcDimensionCurve)ifcAnnotationCurveOccurrence).setItem(ifcTerminatorSymbol);
+				((IfcDimensionCurve)ifcAnnotationCurveOccurrence).getAnnotatedBySymbols().add(ifcTerminatorSymbol);
 				nrFixes++;
 			}
 		}

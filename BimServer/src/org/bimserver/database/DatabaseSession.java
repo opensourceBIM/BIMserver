@@ -291,7 +291,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			
 			byte[] unsetted = new byte[unsettedLength];
 			buffer.get(unsetted);
-			
+			if (oid == 16021389640L) {
+				System.out.println();
+			}
 			int fieldCounter = 0;
 			
 			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
@@ -443,8 +445,8 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 						}
 						if (referencedObject != null) {
 							if (!feature.getEType().isInstance(referencedObject)) {
-								throw new BimserverDatabaseException(referencedObject.getClass().getSimpleName() + " cannot be stored in list of "
-										+ feature.getName());
+								throw new BimserverDatabaseException(referencedObject.getClass().getSimpleName() + " cannot be stored in list of type "
+										+ feature.getEType().getName() + " for feature " + feature.getName());
 							}
 							if (feature.isUnique()) {
 								list.add(referencedObject);
@@ -492,13 +494,6 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	
 	private ByteBuffer convertObjectToByteArray(IdEObject object, ByteBuffer buffer, PackageMetaData packageMetaData) throws BimserverDatabaseException {
 		int bufferSize = getExactSize(object, packageMetaData, true);
-		if (object.eClass().getName().equals("GeometryInfo")) {
-			if (bufferSize == 108) {
-				System.out.println(bufferSize);
-				bufferSize = getExactSize(object, packageMetaData, true);
-				System.out.println("2: " + bufferSize);
-			}
-		}
 		if (bufferSize > buffer.capacity()) {
 			LOGGER.debug("Buffer too small (" + bufferSize + ")");
 			buffer = ByteBuffer.allocate(bufferSize);
@@ -2112,6 +2107,16 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		EClass eClass = object.eClass();
 		ByteBuffer keyBuffer = createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
 		database.getKeyValueStore().storeNoOverwrite(eClass.getEPackage().getName() + "_" + eClass.getName(), keyBuffer.array(), valueBuffer.array(), 0, valueBuffer.position(), this);
+		database.incrementCommittedWrites(1);
+		return valueBuffer.position();
+	}
+	
+	@Override
+	public int saveOverwrite(VirtualObject object) throws BimserverLockConflictException, BimserverConcurrentModificationDatabaseException, BimserverDatabaseException {
+		ByteBuffer valueBuffer = object.write();
+		EClass eClass = object.eClass();
+		ByteBuffer keyBuffer = createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
+		database.getKeyValueStore().store(eClass.getEPackage().getName() + "_" + eClass.getName(), keyBuffer.array(), valueBuffer.array(), 0, valueBuffer.position(), this);
 		database.incrementCommittedWrites(1);
 		return valueBuffer.position();
 	}

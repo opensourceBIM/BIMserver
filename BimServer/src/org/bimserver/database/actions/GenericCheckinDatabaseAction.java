@@ -80,6 +80,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 
 		project.setLastRevision(newRevision);
 		Project parent = project.getParent();
+		result.addRevision(newRevision);
 		while (parent != null) {
 			Revision revision = getDatabaseSession().create(Revision.class);
 			result.addRevision(revision);
