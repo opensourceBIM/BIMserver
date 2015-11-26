@@ -22,6 +22,7 @@ public class StreamingJsonSerializer implements StreamingSerializer {
 
 	@Override
 	public void init(ObjectProvider objectProvider, ProjectInfo projectInfo, IfcHeader ifcHeader, PluginManager pluginManager, PackageMetaData packageMetaData) throws SerializerException {
+		System.out.println(objectProvider);
 		this.objectProvider = objectProvider;
 		this.projectInfo = projectInfo;
 		this.ifcHeader = ifcHeader;

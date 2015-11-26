@@ -78,7 +78,6 @@ import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.LongType;
-import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.ObjectDefinition;
@@ -616,18 +615,18 @@ public class BimServer {
 			}
 		}
 		for (MessagingSerializerPlugin serializerPlugin : pluginManager.getAllMessagingSerializerPlugins(true)) {
-			MessagingSerializerPluginConfiguration serializerPluginConfiguration = find(userSettings.getMessagingSerializerPlugins(), serializerPlugin.getClass().getName());
+			SerializerPluginConfiguration serializerPluginConfiguration = find(userSettings.getSerializers(), serializerPlugin.getClass().getName());
 			if (serializerPluginConfiguration == null) {
-				serializerPluginConfiguration = session.create(MessagingSerializerPluginConfiguration.class);
-				userSettings.getMessagingSerializerPlugins().add(serializerPluginConfiguration);
+				serializerPluginConfiguration = session.create(SerializerPluginConfiguration.class);
+				userSettings.getSerializers().add(serializerPluginConfiguration);
 				genericPluginConversion(session, serializerPlugin, serializerPluginConfiguration, getPluginDescriptor(session, serializerPlugin.getClass().getName()));
 			}
 		}
 		for (MessagingStreamingSerializerPlugin serializerPlugin : pluginManager.getAllMessagingStreamingSerializerPlugins(true)) {
-			MessagingSerializerPluginConfiguration serializerPluginConfiguration = find(userSettings.getMessagingSerializerPlugins(), serializerPlugin.getClass().getName());
+			SerializerPluginConfiguration serializerPluginConfiguration = find(userSettings.getSerializers(), serializerPlugin.getClass().getName());
 			if (serializerPluginConfiguration == null) {
-				serializerPluginConfiguration = session.create(MessagingSerializerPluginConfiguration.class);
-				userSettings.getMessagingSerializerPlugins().add(serializerPluginConfiguration);
+				serializerPluginConfiguration = session.create(SerializerPluginConfiguration.class);
+				userSettings.getSerializers().add(serializerPluginConfiguration);
 				genericPluginConversion(session, serializerPlugin, serializerPluginConfiguration, getPluginDescriptor(session, serializerPlugin.getClass().getName()));
 			}
 		}

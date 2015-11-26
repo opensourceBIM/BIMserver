@@ -10,7 +10,7 @@ public class ByteBufferWrappedVirtualObject extends AbstractByteBufferVirtualObj
 
 	private EClass eClass;
 
-	public ByteBufferWrappedVirtualObject(Reusable reusable, EClass eClass) {
+	public ByteBufferWrappedVirtualObject(QueryContext reusable, EClass eClass) {
 		super(10);
 		this.eClass = eClass;
 		buffer.putShort((short) -reusable.getDatabaseInterface().getCidOfEClass(eClass));

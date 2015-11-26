@@ -7,28 +7,30 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.database.queries.om.CanInclude;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.QueryPart;
-import org.bimserver.emf.PackageMetaData;
-import org.bimserver.emf.QueryInterface;
 import org.bimserver.shared.HashMapVirtualObject;
-import org.bimserver.shared.Reusable;
+import org.bimserver.shared.QueryException;
+import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.WrappedVirtualObject;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EReference;
 
 public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 
 	private Set<Short> outputFilterCids;
-	private Iterator<EStructuralFeature> featureIterator;
+	private Iterator<EReference> featureIterator;
 	private Include include;
+	private CanInclude previousInclude;
 
-	public QueryIncludeStackFrame(QueryObjectProvider queryObjectProvider, QueryInterface query, PackageMetaData packageMetaData, Reusable reusable, Include include, HashMapVirtualObject currentObject, QueryPart queryPart) throws QueryException, BimserverDatabaseException {
-		super(packageMetaData, reusable, queryObjectProvider, query, queryPart);
+	public QueryIncludeStackFrame(QueryObjectProvider queryObjectProvider, QueryContext reusable, CanInclude previousInclude, Include include, HashMapVirtualObject currentObject, QueryPart queryPart) throws QueryException, BimserverDatabaseException {
+		super(reusable, queryObjectProvider, queryPart);
+		this.previousInclude = previousInclude;
 		this.include = include;
 		this.currentObject = currentObject;
 		
-		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
+		List<EReference> features = new ArrayList<>();
 		features = include.getFields();
 		if (features.isEmpty()) {
 			setDone(true);
@@ -46,7 +48,7 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean process() throws BimserverDatabaseException, QueryException {
-		EStructuralFeature feature = featureIterator.next();
+		EReference feature = featureIterator.next();
 		Object value = currentObject.eGet(feature);
 		if (value != null) {
 			if (feature.isMany()) {
@@ -70,7 +72,7 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 	private void processReference(long refOid) {
 		if (outputFilterCids == null || outputFilterCids.contains((short)refOid)) {
 			if (!getQueryObjectProvider().hasRead(refOid)) {
-				getQueryObjectProvider().push(new FollowReferenceStackFrame(getQueryObjectProvider(), refOid, getPackageMetaData(), getReusable(), getQuery(), getQueryPart(), include));
+				getQueryObjectProvider().push(new FollowReferenceStackFrame(getQueryObjectProvider(), refOid, getReusable(), getQueryPart(), previousInclude, include));
 			}
 		}
 	}

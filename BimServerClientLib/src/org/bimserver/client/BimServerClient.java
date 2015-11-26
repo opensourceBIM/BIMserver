@@ -24,11 +24,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.notifications.NotificationsManager;
+import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
+import org.bimserver.database.queries.om.Query;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.objects.SProject;
@@ -70,6 +73,8 @@ import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 public class BimServerClient implements ConnectDisconnectListener, TokenHolder, ServiceHolder, BimServerClientInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimServerClient.class);
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
@@ -81,6 +86,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	private AuthenticationInfo authenticationInfo = new AnonymousAuthentication();
 	private String token;
 	private MetaDataManager metaDataManager;
+	private long binaryGeometryMessagingStreamingSerializer = -1;
 
 	public BimServerClient(MetaDataManager metaDataManager, String baseAddress, SServicesMap servicesMap, Channel channel) {
 		this.metaDataManager = metaDataManager;
@@ -364,5 +370,23 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public long getBinaryGeometryMessagingStreamingSerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
+		if (binaryGeometryMessagingStreamingSerializer == -1) {
+			SSerializerPluginConfiguration serializerPluginConfiguration = getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometryMessagingStreamingSerializerPlugin");
+			if (serializerPluginConfiguration != null) {
+				binaryGeometryMessagingStreamingSerializer = serializerPluginConfiguration.getOid();
+			} else {
+				throw new UserException("No binary geometry messaging serializer found");
+			}
+		}
+		return binaryGeometryMessagingStreamingSerializer;
+	}
+	
+	public long query(Query query, long roid, long serializerOid) throws ServerException, UserException, PublicInterfaceNotFoundException {
+		ObjectNode queryNode = new JsonQueryObjectModelConverter(query.getPackageMetaData()).toJson(query);
+		Long downloadId = getBimsie1ServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), queryNode.toString(), serializerOid, false);
+		return downloadId;
 	}
 }

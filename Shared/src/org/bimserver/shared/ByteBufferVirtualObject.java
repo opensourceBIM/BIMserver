@@ -18,12 +18,12 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 	private static final Logger LOGGER = LoggerFactory.getLogger(VirtualObject.class);
 	private EClass eClass;
 	private long oid;
-	private Reusable reusable;
+	private QueryContext reusable;
 	private int currentListStart = -1;
 	private int currentListSize;
 	private int featureCounter = 0;
 	
-	public ByteBufferVirtualObject(Reusable reusable, EClass eClass, int capacity) {
+	public ByteBufferVirtualObject(QueryContext reusable, EClass eClass, int capacity) {
 		super(capacity);
 		this.reusable = reusable;
 		this.eClass = eClass;

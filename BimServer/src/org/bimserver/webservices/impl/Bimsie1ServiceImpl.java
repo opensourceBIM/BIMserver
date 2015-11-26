@@ -80,6 +80,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -160,7 +161,12 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 		if (longAction instanceof LongStreamingDownloadAction) {
 			LongStreamingDownloadAction longStreamingDownloadAction = (LongStreamingDownloadAction)longAction;
 			if (longStreamingDownloadAction.getErrors().isEmpty()) {
-				SCheckoutResult result = longStreamingDownloadAction.getCheckoutResult();
+				SCheckoutResult result;
+				try {
+					result = longStreamingDownloadAction.getCheckoutResult();
+				} catch (SerializerException e) {
+					throw new UserException(e);
+				}
 				return result;
 			} else {
 				LOGGER.error(longStreamingDownloadAction.getErrors().get(0));

@@ -8,30 +8,26 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
-import org.bimserver.database.Query;
 import org.bimserver.database.queries.om.InBoundingBox;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.shared.Reusable;
+import org.bimserver.shared.QueryException;
+import org.bimserver.shared.QueryContext;
 import org.eclipse.emf.ecore.EClass;
 
 public class QueryPartStackFrame extends StackFrame {
 
 	private Iterator<EClass> typeIterator;
 	private QueryObjectProvider queryObjectProvider;
-	private Query query;
-	private PackageMetaData packageMetaData;
-	private Reusable reusable;
+	private QueryContext reusable;
 	private QueryPart partialQuery;
 	private final Map<EClass, List<Long>> oids;
 	private final Set<String> guids;
 	private Map<String, Object> properties;
 	private InBoundingBox inBoundingBox;
 
-	public QueryPartStackFrame(QueryObjectProvider queryObjectProvider, PackageMetaData packageMetaData, Query query, QueryPart partialQuery, Reusable reusable) throws BimserverDatabaseException, QueryException {
+	public QueryPartStackFrame(QueryObjectProvider queryObjectProvider, QueryPart partialQuery, QueryContext reusable) throws BimserverDatabaseException, QueryException {
 		this.queryObjectProvider = queryObjectProvider;
-		this.packageMetaData = packageMetaData;
-		this.query = query;
 		this.partialQuery = partialQuery;
 		this.reusable = reusable;
 		if (partialQuery.hasOids()) {
@@ -55,7 +51,7 @@ public class QueryPartStackFrame extends StackFrame {
 		}
 		if (!partialQuery.hasTypes()) {
 			if (oids == null) {
-				typeIterator = query.getOidCounters().keySet().iterator();
+				typeIterator = reusable.getOidCounters().keySet().iterator();
 			} else {
 				typeIterator = oids.keySet().iterator();
 			}
@@ -79,15 +75,15 @@ public class QueryPartStackFrame extends StackFrame {
 		if (typeIterator.hasNext()) {
 			EClass eClass = typeIterator.next();
 			if (oids != null) {
-				queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, query, partialQuery, packageMetaData, reusable, oids.get(eClass)));
+				queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, oids.get(eClass)));
 			} else if (guids != null) {
-				queryObjectProvider.push(new QueryGuidsAndTypesStackFrame(queryObjectProvider, eClass, query, partialQuery, packageMetaData, reusable, guids));
+				queryObjectProvider.push(new QueryGuidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, guids));
 			} else if (properties != null) {
-				queryObjectProvider.push(new QueryPropertiesAndTypesStackFrame(queryObjectProvider, eClass, query, partialQuery, packageMetaData, reusable, properties));
+				queryObjectProvider.push(new QueryPropertiesAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, properties));
 			} else if (inBoundingBox != null) {
-				queryObjectProvider.push(new QueryBoundingBoxStackFrame(queryObjectProvider, eClass, query, partialQuery, packageMetaData, reusable, inBoundingBox));
+				queryObjectProvider.push(new QueryBoundingBoxStackFrame(queryObjectProvider, eClass, partialQuery, reusable, inBoundingBox));
 			} else {
-				queryObjectProvider.push(new QueryTypeStackFrame(queryObjectProvider, eClass, query, packageMetaData, reusable, partialQuery));
+				queryObjectProvider.push(new QueryTypeStackFrame(queryObjectProvider, eClass, reusable, partialQuery));
 			}
 			return false;
 		}

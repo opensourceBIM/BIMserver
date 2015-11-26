@@ -59,7 +59,10 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 
 	private IfcHeader ifcHeader;
 
-	public SharedJsonStreamingSerializer(ObjectProvider objectProvider, IfcHeader ifcHeader, boolean includeHidden) {
+	public SharedJsonStreamingSerializer(ObjectProvider objectProvider, IfcHeader ifcHeader, boolean includeHidden) throws SerializerException {
+		if (objectProvider == null) {
+			throw new SerializerException("No object provider");
+		}
 		this.objectProvider = objectProvider;
 		this.ifcHeader = ifcHeader;
 		this.includeHidden = includeHidden;
@@ -247,6 +250,17 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 			print("}");
 		} else if (object instanceof HashMapVirtualObject) {
 			print("" + ((HashMapVirtualObject)object).getOid());
+		} else if (object instanceof HashMapWrappedVirtualObject) {
+			print("{");
+			print("\"_t\":\"" + object.eClass().getName() + "\",");
+			for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
+				print("\"" + eStructuralFeature.getName() + "\":");
+				writePrimitive(eStructuralFeature, object.eGet(eStructuralFeature));
+				if (object.eClass().getEAllStructuralFeatures().get(object.eClass().getEAllStructuralFeatures().size()-1) != eStructuralFeature) {
+					print(",");
+				}
+			}
+			print("}");
 		}
 	}
 	

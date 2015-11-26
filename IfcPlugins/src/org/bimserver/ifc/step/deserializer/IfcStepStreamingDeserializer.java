@@ -42,7 +42,7 @@ import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.shared.ByteBufferVirtualObject;
 import org.bimserver.shared.ByteBufferWrappedVirtualObject;
 import org.bimserver.shared.ListWaitingVirtualObject;
-import org.bimserver.shared.Reusable;
+import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.SingleWaitingVirtualObject;
 import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.WaitingListVirtualObject;
@@ -75,7 +75,7 @@ public abstract class IfcStepStreamingDeserializer implements StreamingDeseriali
 	// ExpressID -> ObjectID
 	// TODO find more efficient implementation
 	private final Map<Integer, Long> mappedObjects = new HashMap<>();
-	private Reusable reusable;
+	private QueryContext reusable;
 	private IfcHeader ifcHeader;
 	
 	private static MetricCollector metricCollector = new MetricCollector();
@@ -116,7 +116,7 @@ public abstract class IfcStepStreamingDeserializer implements StreamingDeseriali
 	}
 	
 	@Override
-	public long read(InputStream in, String filename, long fileSize, Reusable reusable) throws DeserializeException {
+	public long read(InputStream in, String filename, long fileSize, QueryContext reusable) throws DeserializeException {
 		this.reusable = reusable;
 		mode = Mode.HEADER;
 		if (filename != null && (filename.toUpperCase().endsWith(".ZIP") || filename.toUpperCase().endsWith(".IFCZIP"))) {

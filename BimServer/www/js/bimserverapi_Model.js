@@ -701,43 +701,47 @@ define(["bimserverapi_BimServerApiPromise"], function(BimServerPromise){
 						query: JSON.stringify(query),
 						serializerOid: serializer.oid,
 						sync: false
-					}, function(laid){
-						var url = bimServerApi.generateRevisionDownloadUrl({
-							laid: laid,
-							topicId: laid,
-							serializerOid: serializer.oid
-						});
-						othis.bimServerApi.notifier.setInfo("Getting model data...", -1);
-						othis.bimServerApi.getJson(url, null, function(data){
-//							console.log("query", data.objects.length);
-							data.objects.forEach(function(object){
-								var wrapper = othis.objects[object._i];
-								if (wrapper == null) {
-									wrapper = othis.createWrapper(object, object._t);
-									othis.objects[object._i] = wrapper;
-									if (fullTypesLoading[object._t] != null) {
-										othis.loadedTypes[object._t][wrapper.oid] = wrapper;
-									}
-								} else {
-									if (object._s == 1) {
-										wrapper.object = object;
-									}
-								}
-//								if (othis.loadedTypes[wrapper.getType()] == null) {
-//									othis.loadedTypes[wrapper.getType()] = {};
-//								}
-//								othis.loadedTypes[wrapper.getType()][object._i] = wrapper;
-								if (object._s == 1) {
-									callback(wrapper);
-								}
-							});
-//							othis.dumpByType();
-							bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
-								promise.fire();
-								othis.bimServerApi.notifier.setSuccess("Model data successfully downloaded...");
-							});
-						}, function(error){
-							console.log(error);
+					}, function(topicId){
+						othis.bimServerApi.registerProgressHandler(topicId, function(progress, state){
+							if (state.title == "Done preparing") {
+								var url = bimServerApi.generateRevisionDownloadUrl({
+									laid: topicId,
+									topicId: topicId,
+									serializerOid: serializer.oid
+								});
+								othis.bimServerApi.notifier.setInfo("Getting model data...", -1);
+								othis.bimServerApi.getJson(url, null, function(data){
+//									console.log("query", data.objects.length);
+									data.objects.forEach(function(object){
+										var wrapper = othis.objects[object._i];
+										if (wrapper == null) {
+											wrapper = othis.createWrapper(object, object._t);
+											othis.objects[object._i] = wrapper;
+											if (fullTypesLoading[object._t] != null) {
+												othis.loadedTypes[object._t][wrapper.oid] = wrapper;
+											}
+										} else {
+											if (object._s == 1) {
+												wrapper.object = object;
+											}
+										}
+//										if (othis.loadedTypes[wrapper.getType()] == null) {
+//											othis.loadedTypes[wrapper.getType()] = {};
+//										}
+//										othis.loadedTypes[wrapper.getType()][object._i] = wrapper;
+										if (object._s == 1) {
+											callback(wrapper);
+										}
+									});
+//									othis.dumpByType();
+									bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: topicId}, function(){
+										promise.fire();
+										othis.bimServerApi.notifier.setSuccess("Model data successfully downloaded...");
+									});
+								}, function(error){
+									console.log(error);
+								});								
+							}
 						});
 					});
 				});

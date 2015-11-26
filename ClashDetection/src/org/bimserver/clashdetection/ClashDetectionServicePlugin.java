@@ -19,6 +19,7 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.DoubleType;
@@ -104,9 +105,6 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						renderEngine.init();
 
 						RenderEngineModel renderEngineModel = renderEngine.openModel(new ByteArrayInputStream(baos.toByteArray()), baos.size());
-						// TODO
-						Set<RenderEngineClash> clashes = null;//renderEngineModel.findClashesWithEids(pluginConfiguration.getDouble("margin"));
-						RenderEngineGeometry geometry = null;//renderEngineModel.finalizeModelling(renderEngineModel.initializeModelling());
 
 						StillImageRenderer stillImageRenderer = getPluginManager().getFirstStillImageRenderPlugin().create(new PluginConfiguration());
 						boolean renderImage = true;
@@ -116,6 +114,9 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 							renderImage = false;
 						}
 
+//						ClashDetector clashDetector = new ClashDetector(model.getAll(GeometryInfo.class));
+//						List<Clash> clashes = clashDetector.findClashes();
+						
 //						for (RenderEngineClash clash : clashes) {
 //							RenderEngineInstanceVisualisationProperties vp = renderEngineModel.getInstanceFromExpressId((int) clash.getEid1()).getVisualisationProperties();
 //							float x = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));

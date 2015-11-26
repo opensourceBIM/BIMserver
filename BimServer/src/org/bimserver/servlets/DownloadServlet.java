@@ -43,6 +43,7 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.longaction.MessagingStreamingDataSource;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
@@ -307,6 +308,8 @@ public class DownloadServlet extends SubServlet {
 								inputStream.close();
 							} else if (dataSource instanceof StreamingSerializerDataSource){
 								((StreamingSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
+							} else if (dataSource instanceof MessagingStreamingDataSource){
+								((MessagingStreamingDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
 							} else {
 								((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
 							}

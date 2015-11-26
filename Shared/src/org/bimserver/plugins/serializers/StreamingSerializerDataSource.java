@@ -31,7 +31,10 @@ public class StreamingSerializerDataSource implements DataSource {
 	private final StreamingSerializer serializer;
 	private DoneListener doneListener;
 
-	public StreamingSerializerDataSource(StreamingSerializer serializer, DoneListener doneListener) {
+	public StreamingSerializerDataSource(StreamingSerializer serializer, DoneListener doneListener) throws SerializerException {
+		if (serializer == null) {
+			throw new SerializerException("No serializer");
+		}
 		this.serializer = serializer;
 		this.doneListener = doneListener;
 	}

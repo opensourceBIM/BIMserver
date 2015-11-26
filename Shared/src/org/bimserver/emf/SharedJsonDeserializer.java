@@ -58,12 +58,14 @@ public class SharedJsonDeserializer {
 			throw new DeserializeException("No SchemaDefinition available");
 		}
 		WaitingList<Long> waitingList = new WaitingList<Long>();
-		final boolean log = false;
+		final boolean log = true;
 		if (log) {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			try {
 				IOUtils.copy(in, baos);
-				FileUtils.writeByteArrayToFile(new File("debug.json"), baos.toByteArray());
+				File file = new File("debug.json");
+				System.out.println(file.getAbsolutePath());
+				FileUtils.writeByteArrayToFile(file, baos.toByteArray());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -131,7 +133,6 @@ public class SharedJsonDeserializer {
 			try {
 				waitingList.dumpIfNotEmpty();
 			} catch (BimServerClientException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			throw new DeserializeException("Waitinglist should be empty (" + waitingList.size() + ")");
@@ -276,13 +277,23 @@ public class SharedJsonDeserializer {
 										jsonReader.beginObject();
 										if (jsonReader.nextName().equals("_t")) {
 											String t = jsonReader.nextString();
-											IdEObject wrappedObject = (IdEObject) model.create(model.getPackageMetaData().getEClass(t), -1);
-											if (jsonReader.nextName().equals("_v")) {
-												EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
-												wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
+											IdEObject wrappedObject = (IdEObject) model.create(model.getPackageMetaData().getEClassIncludingDependencies(t), -1);
+											if (eStructuralFeature.getEAnnotation("dbembed") != null) {
+												for (EStructuralFeature eStructuralFeature2 : wrappedObject.eClass().getEAllStructuralFeatures()) {
+													String fn = jsonReader.nextName();
+													if (fn.equals(eStructuralFeature2.getName())) {
+														wrappedObject.eSet(eStructuralFeature2, readPrimitive(jsonReader, eStructuralFeature2));
+													} else {
+														throw new DeserializeException(fn + " / " + eStructuralFeature2.getName());
+													}
+												}
 												object.eSet(eStructuralFeature, wrappedObject);
 											} else {
-												// error
+												if (jsonReader.nextName().equals("_v")) {
+													EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
+													wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
+													object.eSet(eStructuralFeature, wrappedObject);
+												}
 											}
 										}
 										jsonReader.endObject();
@@ -356,7 +367,6 @@ public class SharedJsonDeserializer {
 			}
 		}
 	}
-	
 
 	private Object readPrimitive(JsonReader jsonReader, EStructuralFeature eStructuralFeature) throws IOException {
 		EClassifier eClassifier = eStructuralFeature.getEType();

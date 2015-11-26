@@ -197,6 +197,6 @@ public class EventLog implements Iterable<Event> {
 		}
 
 		csvWriter.close();
-		return null;
+		return sw.toString();
 	}
 }
