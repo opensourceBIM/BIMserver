@@ -291,9 +291,6 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			
 			byte[] unsetted = new byte[unsettedLength];
 			buffer.get(unsetted);
-			if (oid == 16021389640L) {
-				System.out.println();
-			}
 			int fieldCounter = 0;
 			
 			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {

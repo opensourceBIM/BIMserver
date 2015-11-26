@@ -432,48 +432,43 @@ public class PackageMetaData implements ObjectFactory {
 	}
 
 	private synchronized Set<EStructuralFeature> buildUseForDatabaseStorage(EClass eClass) {
-		if (eClass.getName().equals("IfcGeometricRepresentationSubContext")) {
-			System.out.println();
-		}
 		if (this.getSchemaDefinition() != null) {
-			if (!useForDatabaseStorage.containsKey(eClass)) {
-				HashSet<EStructuralFeature> set = new HashSet<>();
-				for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
-					EntityDefinition entityBN = this.getSchemaDefinition().getEntityBN(eClass.getName());
-					if (entityBN == null) {
-						set.add(eStructuralFeature);
-					} else {
-						if (!entityBN.isDerived(eStructuralFeature.getName())) {
-							boolean derived = false;
-							if (eStructuralFeature.getEAnnotation("hidden") != null) {
-								if (eStructuralFeature.getEAnnotation("asstring") == null) {
+			HashSet<EStructuralFeature> set = new HashSet<>();
+			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+				EntityDefinition entityBN = this.getSchemaDefinition().getEntityBN(eClass.getName());
+				if (entityBN == null) {
+					set.add(eStructuralFeature);
+				} else {
+					if (!entityBN.isDerived(eStructuralFeature.getName())) {
+						boolean derived = false;
+						if (eStructuralFeature.getEAnnotation("hidden") != null) {
+							if (eStructuralFeature.getEAnnotation("asstring") == null) {
+							} else {
+								if (entityBN.isDerived(eStructuralFeature.getName().substring(0, eStructuralFeature.getName().length() - 8))) {
+									derived = true;
 								} else {
-									if (entityBN.isDerived(eStructuralFeature.getName().substring(0, eStructuralFeature.getName().length() - 8))) {
-										derived = true;
-									} else {
-										set.add(eStructuralFeature);
-									}
-								}
-							}
-							Attribute attribute = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
-							if (attribute == null) {
-								// geometry, *AsString
-								if (!derived) {
 									set.add(eStructuralFeature);
 								}
-							} else {
-								if (attribute instanceof ExplicitAttribute || attribute instanceof InverseAttribute) {
-									if (!entityBN.isDerived(attribute.getName())) {
-										set.add(eStructuralFeature);
-									}
+							}
+						}
+						Attribute attribute = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
+						if (attribute == null) {
+							// geometry, *AsString
+							if (!derived) {
+								set.add(eStructuralFeature);
+							}
+						} else {
+							if (attribute instanceof ExplicitAttribute || attribute instanceof InverseAttribute) {
+								if (!entityBN.isDerived(attribute.getName())) {
+									set.add(eStructuralFeature);
 								}
 							}
 						}
 					}
 				}
-				useForDatabaseStorage.put(eClass, set);
-				return set;
 			}
+			useForDatabaseStorage.put(eClass, set);
+			return set;
 		}
 		return null;
 	}

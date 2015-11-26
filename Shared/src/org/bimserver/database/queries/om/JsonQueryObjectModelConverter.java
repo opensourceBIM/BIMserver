@@ -3,11 +3,13 @@ package org.bimserver.database.queries.om;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 
-import org.bimserver.database.queries.QueryException;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.shared.QueryException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
@@ -17,20 +19,57 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public class JsonToQueryObjectModelConverter {
-	private Namespace namespace;
+public class JsonQueryObjectModelConverter {
 	private PackageMetaData packageMetaData;
 
-	public JsonToQueryObjectModelConverter(PackageMetaData packageMetaData) {
+	public JsonQueryObjectModelConverter(PackageMetaData packageMetaData) {
 		this.packageMetaData = packageMetaData;
 	}
 	
-	public Namespace parseJson(String queryName, ObjectNode fullQuery) throws QueryException {
-		namespace = new Namespace(queryName);
+	public ObjectNode toJson(Query query) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectNode queryNode = objectMapper.createObjectNode();
+		Map<String, Include> defines = query.getDefines();
+		ObjectNode definesNode = objectMapper.createObjectNode();
+		queryNode.set("defines", definesNode);
+		for (String key : defines.keySet()) {
+			ObjectNode includeNode = objectMapper.createObjectNode();
+			Include include = defines.get(key);
+			ArrayNode fieldsNode = objectMapper.createArrayNode();
+			for (EReference eReference : include.getFields()) {
+				fieldsNode.add(eReference.getName());
+			}
+			definesNode.set(key, includeNode);
+		}
+		ArrayNode queryPartsNode = objectMapper.createArrayNode();
+		queryNode.set("queries", queryPartsNode);
+		for (QueryPart queryPart : query.getQueryParts()) {
+			ObjectNode queryPartNode = objectMapper.createObjectNode();
+			if (queryPart.hasTypes()) {
+				ArrayNode typesNode = objectMapper.createArrayNode();
+				queryPartNode.set("types", typesNode);
+				for (EClass type : queryPart.getTypes()) {
+					typesNode.add(type.getName());
+				}
+			}
+			if (queryPart.hasOids()) {
+				ArrayNode oidsNode = objectMapper.createArrayNode();
+				queryPartNode.set("oids", oidsNode);
+				for (long oid : queryPart.getOids()) {
+					oidsNode.add(oid);
+				}
+			}
+			queryPartsNode.add(queryPartNode);
+		}
+		return queryNode;
+	}
+	
+	public Query parseJson(String queryName, ObjectNode fullQuery) throws QueryException {
+		Query query = new Query(queryName, packageMetaData);
 		if (fullQuery.has("defines")) {
 			JsonNode defines = fullQuery.get("defines");
 			if (defines instanceof ObjectNode) {
-				parseDefines((ObjectNode)fullQuery.get("defines"));
+				parseDefines(query, (ObjectNode)fullQuery.get("defines"));
 			} else {
 				throw new QueryException("\"defines\" must be of type object");
 			}
@@ -43,7 +82,7 @@ public class JsonToQueryObjectModelConverter {
 					throw new QueryException("\"queries\" must contain at least one query");
 				}
 				for (int i=0; i<queries.size(); i++) {
-					parseJsonQuery((ObjectNode)queries.get(i));
+					parseJsonQuery(query, (ObjectNode)queries.get(i));
 				}
 			} else {
 				throw new QueryException("\"queries\" must be of type array");
@@ -51,35 +90,45 @@ public class JsonToQueryObjectModelConverter {
 		} else if (fullQuery.has("query")) {
 			JsonNode queryNode = fullQuery.get("query");
 			if (queryNode instanceof ObjectNode) {
-				parseJsonQuery((ObjectNode) fullQuery.get("query"));
+				parseJsonQuery(query, (ObjectNode) fullQuery.get("query"));
 			} else {
 				throw new QueryException("\"query\" must be of type object");
 			}
 		} else {
-			parseJsonQuery(fullQuery);
+			parseJsonQuery(query, fullQuery);
 		}
-		return namespace;
+		return query;
 	}
 
-	private void parseDefines(ObjectNode jsonNode) throws QueryException {
+	private void parseDefines(Query query, ObjectNode jsonNode) throws QueryException {
 		Iterator<String> fieldNames = jsonNode.fieldNames();
 		int i=0;
+		// First pass, get all the name and create stub includes, using two passing to allow the usage of includes defined later in the structure
 		while (fieldNames.hasNext()) {
 			String fieldName = fieldNames.next();
 			JsonNode defineNode = jsonNode.get(fieldName);
 			if (defineNode instanceof ObjectNode) {
-				ObjectNode define = (ObjectNode)defineNode;
-				Include include = parseInclude(define);
-				namespace.addDefine(fieldName, include);
+				Include include = new Include();
+				query.addDefine(fieldName, include);
 			} else {
 				throw new QueryException("\"defines\"[" + i + "] must be of type object");
 			}
 			i++;
 		}
+		// Second pass, actually construct the includes
+		fieldNames = jsonNode.fieldNames();
+		while (fieldNames.hasNext()) {
+			String fieldName = fieldNames.next();
+			JsonNode defineNode = jsonNode.get(fieldName);
+			ObjectNode define = (ObjectNode)defineNode;
+			parseInclude(query, define, query.getDefine(fieldName));
+		}
 	}
 	
-	private Include parseInclude(ObjectNode jsonNode) throws QueryException {
-		Include include = new Include();
+	private Include parseInclude(Query query, ObjectNode jsonNode, Include include) throws QueryException {
+		if (include == null) {
+			include = new Include();
+		}
 		if (!jsonNode.has("type") && !jsonNode.has("types")) {
 			throw new QueryException("includes require a \"type\" or \"types\" field " + jsonNode);
 		}
@@ -170,14 +219,14 @@ public class JsonToQueryObjectModelConverter {
 		}
 		if (jsonNode.has("include")) {
 			JsonNode includeNode = jsonNode.get("include");
-			processSubInclude(include, includeNode);
+			processSubInclude(query, include, includeNode);
 		}
 		if (jsonNode.has("includes")) {
 			JsonNode includesNode = jsonNode.get("includes");
 			if (includesNode instanceof ArrayNode) {
 				ArrayNode includes = (ArrayNode)includesNode;
 				for (int i=0; i<includes.size(); i++) {
-					processSubInclude(include, includes.get(i));
+					processSubInclude(query, include, includes.get(i));
 				}
 			} else {
 				throw new QueryException("\"includes\" must be of type array");
@@ -186,10 +235,10 @@ public class JsonToQueryObjectModelConverter {
 		return include;
 	}
 
-	private void processSubInclude(CanInclude parentInclude, JsonNode includeNode) throws QueryException {
+	private void processSubInclude(Query query, CanInclude parentInclude, JsonNode includeNode) throws QueryException {
 		if (includeNode instanceof ObjectNode) {
 			ObjectNode innerInclude = (ObjectNode)includeNode;
-			parentInclude.addInclude(parseInclude(innerInclude));
+			parentInclude.addInclude(parseInclude(query, innerInclude, null));
 		} else if (includeNode.isTextual()) {
 			String includeName = includeNode.asText();
 			if (includeName.contains(":")) {
@@ -203,8 +252,8 @@ public class JsonToQueryObjectModelConverter {
 				objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
 				try {
 					ObjectNode predefinedQuery = objectMapper.readValue(resource, ObjectNode.class);
-					JsonToQueryObjectModelConverter converter = new JsonToQueryObjectModelConverter(packageMetaData);
-					Namespace namespace = converter.parseJson(includeName, predefinedQuery);
+					JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
+					Query namespace = converter.parseJson(includeName, predefinedQuery);
 					Include define2 = namespace.getDefine(singleIncludeName);
 					if (define2 == null) {
 						throw new QueryException("Could not find '" + singleIncludeName + "' in defines in namespace " + namespace.getName());
@@ -217,13 +266,19 @@ public class JsonToQueryObjectModelConverter {
 				} catch (IOException e) {
 					throw new QueryException(e);
 				}
+			} else {
+				Include otherInclude = query.getDefine(includeName);
+				if (otherInclude == null) {
+					throw new QueryException("Cannot find define \"" + includeName + "\"");
+				}
+				parentInclude.addInclude(otherInclude);
 			}
 		} else {
 			throw new QueryException("\"include\" must be of type object or string");
 		}
 	}
 
-	private void parseJsonQuery(ObjectNode objectNode) throws QueryException {
+	private void parseJsonQuery(Query query, ObjectNode objectNode) throws QueryException {
 		QueryPart queryPart = new QueryPart(packageMetaData);
 		if (objectNode.has("type")) {
 			JsonNode typeNode = objectNode.get("type");
@@ -338,7 +393,7 @@ public class JsonToQueryObjectModelConverter {
 
 		if (objectNode.has("include")) {
 			JsonNode includeNode = objectNode.get("include");
-			processSubInclude(queryPart, includeNode);
+			processSubInclude(query, queryPart, includeNode);
 		}
 		if (objectNode.has("includes")) {
 			JsonNode includesNode = objectNode.get("includes");
@@ -346,14 +401,29 @@ public class JsonToQueryObjectModelConverter {
 				ArrayNode includes = (ArrayNode)includesNode;
 				for (int i=0; i<includes.size(); i++) {
 					JsonNode include = includes.get(i);
-					processSubInclude(queryPart, include);
+					processSubInclude(query, queryPart, include);
 				}
 			} else {
 				throw new QueryException("\"includes\" should be of type array");
 			}
 		}
+		
+		if (objectNode.has("fields")) {
+			JsonNode fieldsNode = objectNode.get("fields");
+			
+		}
 
-		namespace.addQueryPart(queryPart);
+		Iterator<String> fieldNames = objectNode.fieldNames();
+		while (fieldNames.hasNext()) {
+			String fieldName = fieldNames.next();
+			if (fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes")) {
+				// fine
+			} else {
+				throw new QueryException("Unknown field: \"" + fieldName + "\"");
+			}
+		}
+		
+		query.addQueryPart(queryPart);
 	}
 	
 	private double checkFloat(ObjectNode node, String key) throws QueryException {

@@ -67,9 +67,9 @@
 			include: {
 				type: "IfcProductRepresentation",
 				field: "Representations",
-				include: {
+				includes: [{
 					type: "IfcRepresentation",
-					field: "Items",
+					fields: ["Items", "ContextOfItems"],
 					includes: [{
 						type: "IfcPolyline",
 						field: "Points"
@@ -94,9 +94,17 @@
 								field: "Points"
 							}
 						}
+					}, {
+						type: "IfcBooleanResult",
+						fields: ["FirstOperand", "SecondOperand"]
 					}]
-				}
+				}, "IfcBooleanResult"]
 			}
+		},
+		IfcBooleanResult: {
+			type: "IfcBooleanResult",
+			fields: ["FirstOperand", "SecondOperand"],
+			include: "IfcBooleanResult"			
 		},
 		RelativePlacement: {
 			type: "IfcLocalPlacement",

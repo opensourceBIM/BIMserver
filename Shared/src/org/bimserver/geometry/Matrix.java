@@ -76,6 +76,19 @@ public class Matrix {
     	
     }
 
+    public static float[] multiplyV(float[] transformationMatrix, float[] coordinates) {
+		if (coordinates.length == 3) {
+			float[] result = new float[4];
+			Matrix.multiplyMV(result, 0, transformationMatrix, 0, new float[]{coordinates[0], coordinates[1], coordinates[2], 0}, 0);
+			return new float[]{result[0], result[1], result[2]};
+		} else if (coordinates.length == 4) {
+			float[] result = new float[4];
+			Matrix.multiplyMV(result, 0, transformationMatrix, 0, new float[]{coordinates[0], coordinates[1], coordinates[2], coordinates[3]}, 0);
+			return result;
+		}
+		return null;
+	}
+    
     /**
      * Multiply a 4 element vector by a 4x4 matrix and store the result in a 4
      * element column vector. In matrix notation: result = lhs x rhs

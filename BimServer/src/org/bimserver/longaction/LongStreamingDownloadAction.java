@@ -1,24 +1,22 @@
 package org.bimserver.longaction;
 
-import java.io.IOException;
 import java.util.Set;
 
 import javax.activation.DataHandler;
+import javax.activation.DataSource;
 
 import org.bimserver.BimServer;
-import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
-import org.bimserver.database.queries.QueryException;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Revision;
+import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.serializers.DoneListener;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializer;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializerPlugin;
@@ -30,17 +28,17 @@ import org.bimserver.plugins.serializers.StreamingSerializerDataSource;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.serializers.Writer;
 import org.bimserver.webservices.authorization.Authorization;
-
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey>{
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(LongStreamingDownloadAction.class);
 	private Long serializerOid;
 	private String jsonQuery;
 	private Set<Long> roids;
 	private StreamingSerializer serializer;
-	private MessagingStreamingSerializer createSerializer;
+	private MessagingStreamingSerializer messagingStreamingSerializer;
 
 	public LongStreamingDownloadAction(BimServer bimServer, String username, String userUsername, Authorization authorization, Long serializerOid, String jsonQuery, Set<Long> roids) {
 		super(bimServer, username, userUsername, authorization);
@@ -49,7 +47,6 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 		this.roids = roids;
 		
 		setProgressTopic(bimServer.getNotificationsManager().createProgressTopic(SProgressTopicType.DOWNLOAD, "Download"));
-		
 	}
 
 	@Override
@@ -77,21 +74,22 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 			}
 			PluginConfiguration serializerPluginConfiguration = databaseSession.get(serializerOid, Query.getDefault());
 			if (serializerPluginConfiguration == null) {
-				
+				LOGGER.info("No serializer config found");
 			} else {
-				if (serializerPluginConfiguration instanceof MessagingSerializerPluginConfiguration) {
-					MessagingStreamingSerializerPlugin serializerPlugin = getBimServer().getPluginManager().getMessagingStreamingSerializerPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-					createSerializer = serializerPlugin.createSerializer(null);
+				Plugin plugin = getBimServer().getPluginManager().getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+				if (plugin instanceof MessagingStreamingSerializerPlugin) {
+					MessagingStreamingSerializerPlugin serializerPlugin = (MessagingStreamingSerializerPlugin)plugin;
+					messagingStreamingSerializer = serializerPlugin.createSerializer(null);
 					
 					// TODO passing a databasesession here, make sure it will be closed!!
 					ObjectProvider objectProvider = QueryObjectProvider.fromJsonString(databaseSession, getBimServer(), jsonQuery, roids, packageMetaData);
 
-					createSerializer.init(objectProvider, projectInfo, getBimServer().getPluginManager(), packageMetaData);
+					messagingStreamingSerializer.init(objectProvider, projectInfo, getBimServer().getPluginManager(), packageMetaData);
 
 					changeActionState(ActionState.STARTED, "Done preparing", -1);
-				} else {
-					StreamingSerializerPlugin serializerPlugin = getBimServer().getPluginManager().getStreamingSerializerPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-					serializer = serializerPlugin.createSerializer(null);
+				} else if (plugin instanceof StreamingSerializerPlugin) {
+					StreamingSerializerPlugin streamingSerializerPlugin = (StreamingSerializerPlugin)plugin;
+					serializer = streamingSerializerPlugin.createSerializer(null);
 					
 					// TODO passing a databasesession here, make sure it will be closed!!
 					ObjectProvider objectProvider = QueryObjectProvider.fromJsonString(databaseSession, getBimServer(), jsonQuery, roids, packageMetaData);
@@ -99,37 +97,36 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 					serializer.init(objectProvider, projectInfo, null, getBimServer().getPluginManager(), packageMetaData);
 					
 					changeActionState(ActionState.STARTED, "Done preparing", -1);
+				} else {
+					LOGGER.error("Unimplemented " + plugin);
 				}
 			}
-		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
-		} catch (SerializerException e) {
-			e.printStackTrace();
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (QueryException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			error(e);
 		}
 	}
 
-	public SCheckoutResult getCheckoutResult() {
+	public SCheckoutResult getCheckoutResult() throws SerializerException {
 		SCheckoutResult checkoutResult = new SCheckoutResult();
-		
-		checkoutResult.setFile(new DataHandler(new StreamingSerializerDataSource(serializer, new DoneListener() {
-			@Override
-			public void done() {
-				changeActionState(ActionState.FINISHED, "Done", 100);
+		if (serializer == null) {
+			if (messagingStreamingSerializer == null) {
+				throw new SerializerException("No serializer");
+			} else {
+				DataSource dataSource = new MessagingStreamingDataSource(messagingStreamingSerializer);
+				checkoutResult.setFile(new DataHandler(dataSource));
 			}
-		})));
-		
+		} else {
+			checkoutResult.setFile(new DataHandler(new StreamingSerializerDataSource(serializer, new DoneListener() {
+				@Override
+				public void done() {
+					changeActionState(ActionState.FINISHED, "Done", 100);
+				}
+			})));
+		}
 		return checkoutResult;
 	}
 
 	public Writer getMessagingStreamingSerializer() {
-		return createSerializer;
+		return messagingStreamingSerializer;
 	}
 }

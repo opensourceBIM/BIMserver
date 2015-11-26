@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,10 +15,8 @@ import org.bimserver.GeometryCache;
 import org.bimserver.SummaryMap;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
-import org.bimserver.database.Query;
-import org.bimserver.database.queries.QueryException;
 import org.bimserver.database.queries.QueryObjectProvider;
-import org.bimserver.database.queries.om.Namespace;
+import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.mail.MailSystem;
@@ -32,11 +31,13 @@ import org.bimserver.models.store.User;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.deserializers.StreamingDeserializer;
 import org.bimserver.shared.HashMapVirtualObject;
-import org.bimserver.shared.Reusable;
+import org.bimserver.shared.QueryContext;
+import org.bimserver.shared.QueryException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,8 +73,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	}
 
 	public HashMapVirtualObject getByOid(PackageMetaData packageMetaData, DatabaseSession databaseSession, long roid, long oid) throws JsonParseException, JsonMappingException, IOException, QueryException, BimserverDatabaseException {
-		Namespace query = new Namespace("test");
-		QueryPart queryPart = query.createQueryPart(packageMetaData);
+		Query query = new Query("test", packageMetaData);
+		QueryPart queryPart = query.createQueryPart();
 		queryPart.addOid(oid);
 		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(roid), packageMetaData);
 		HashMapVirtualObject first = queryObjectProvider.next();
@@ -139,9 +140,9 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 //			}
 			
 			CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), -1, project, user, comment.trim());
-			
+
 			long newRoid = result.getRevisions().get(0).getOid();
-			Reusable reusable = new Reusable(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId(), newRoid); // TODO check
+			QueryContext reusable = new QueryContext(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId(), newRoid, -1); // TODO check
 			long size = deserializer.read(inputStream, fileName, fileSize, reusable);
 
 			Set<EClass> eClasses = deserializer.getSummaryMap().keySet();
@@ -164,56 +165,56 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			concreteRevision = result.getConcreteRevision();
 			concreteRevision.setOidCounters(buffer.array());
 
-//			for (EClass eClass : packageMetaData.getAllEClassesThatHaveInverses()) {
-//				Namespace query = new Namespace("test");
-//				QueryPart queryPart = query.createQueryPart(packageMetaData);
-//				queryPart.addType(eClass, true);
-//				QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), bimServer, query, Collections.singleton(newRoid), packageMetaData);
-//				HashMapVirtualObject next = queryObjectProvider.next();
-//				while (next != null) {
-//					for (EReference eReference : packageMetaData.getAllHasInverseReferences(eClass)) {
-//						Object reference = next.eGet(eReference);
-//						if (reference != null) {
-//							if (eReference.isMany()) {
-//								List<Long> references = (List<Long>)reference;
-//								for (Long refOid : references) {
-//									HashMapVirtualObject referencedObject = getByOid(packageMetaData, getDatabaseSession(), newRoid, refOid);
-//									EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);
-//									if (oppositeReference.isMany()) {
-//										Object existingList = referencedObject.eGet(oppositeReference);
-//										if (existingList != null) {
-//											int currentSize = ((List<?>)existingList).size();
-//											referencedObject.setListItemReference(oppositeReference, currentSize + 1, next.eClass(), next.getOid(), 0);
-//										} else {
-//											referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
-//										}
-//									} else {
-//										referencedObject.setReference(oppositeReference, next.getOid(), 0);
-//									}
-//									referencedObject.saveOverwrite();
-//								}
-//							} else {
-//								Long refOid = (Long)reference;
-//								HashMapVirtualObject referencedObject = getByOid(packageMetaData, getDatabaseSession(), newRoid, refOid);
-//								EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);
-//								if (oppositeReference.isMany()) {
-//									Object existingList = referencedObject.eGet(oppositeReference);
-//									if (existingList != null) {
-//										int currentSize = ((List<?>)existingList).size();
-//										referencedObject.setListItemReference(oppositeReference, currentSize + 1, next.eClass(), next.getOid(), 0);
-//									} else {
-//										referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
-//									}
-//								} else {
-//									referencedObject.setReference(oppositeReference, next.getOid(), 0);
-//								}
-//								referencedObject.saveOverwrite();
-//							}
-//						}
-//					}
-//					next = queryObjectProvider.next();
-//				}
-//			}
+			for (EClass eClass : packageMetaData.getAllEClassesThatHaveInverses()) {
+				Query query = new Query("test", packageMetaData);
+				QueryPart queryPart = query.createQueryPart();
+				queryPart.addType(eClass, true);
+				QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), bimServer, query, Collections.singleton(newRoid), packageMetaData);
+				HashMapVirtualObject next = queryObjectProvider.next();
+				while (next != null) {
+					for (EReference eReference : packageMetaData.getAllHasInverseReferences(eClass)) {
+						Object reference = next.eGet(eReference);
+						if (reference != null) {
+							if (eReference.isMany()) {
+								List<Long> references = (List<Long>)reference;
+								for (Long refOid : references) {
+									HashMapVirtualObject referencedObject = getByOid(packageMetaData, getDatabaseSession(), newRoid, refOid);
+									EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);
+									if (oppositeReference.isMany()) {
+										Object existingList = referencedObject.eGet(oppositeReference);
+										if (existingList != null) {
+											int currentSize = ((List<?>)existingList).size();
+											referencedObject.setListItemReference(oppositeReference, currentSize + 1, next.eClass(), next.getOid(), 0);
+										} else {
+											referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
+										}
+									} else {
+										referencedObject.setReference(oppositeReference, next.getOid(), 0);
+									}
+									referencedObject.saveOverwrite();
+								}
+							} else {
+								Long refOid = (Long)reference;
+								HashMapVirtualObject referencedObject = getByOid(packageMetaData, getDatabaseSession(), newRoid, refOid);
+								EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);
+								if (oppositeReference.isMany()) {
+									Object existingList = referencedObject.eGet(oppositeReference);
+									if (existingList != null) {
+										int currentSize = ((List<?>)existingList).size();
+										referencedObject.setListItemReference(oppositeReference, currentSize + 1, next.eClass(), next.getOid(), 0);
+									} else {
+										referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
+									}
+								} else {
+									referencedObject.setReference(oppositeReference, next.getOid(), 0);
+								}
+								referencedObject.saveOverwrite();
+							}
+						}
+					}
+					next = queryObjectProvider.next();
+				}
+			}
 			
 			result.getConcreteRevision().setSize(size);
 			for (Revision revision : result.getRevisions()) {
@@ -240,7 +241,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			if (authorization instanceof ExplicitRightsAuthorization) {
 				ExplicitRightsAuthorization explicitRightsAuthorization = (ExplicitRightsAuthorization)authorization;
 				if (explicitRightsAuthorization.getSoid() != -1) {
-					Service service = getDatabaseSession().get(explicitRightsAuthorization.getSoid(), Query.getDefault());
+					Service service = getDatabaseSession().get(explicitRightsAuthorization.getSoid(), org.bimserver.database.Query.getDefault());
 					revision.setService(service);
 				}
 			}

@@ -32,6 +32,7 @@ import org.bimserver.models.store.IfcHeader;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.StreamingReader;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
@@ -169,7 +170,8 @@ public class SharedJsonSerializer implements StreamingReader {
 											f = false;
 										}
 										IdEObject ref = (IdEObject) o;
-										if (ref.getOid() < 0 || ((IdEObject) o).eClass().getEAnnotation("wrapped") != null) {
+										EClass eClass = ((IdEObject) o).eClass();
+										if (ref.getOid() < 0 || eClass.getEAnnotation("wrapped") != null || eStructuralFeature.getEAnnotation("dbembed") != null) {
 											write(ref);
 										} else {
 											if (wrapped != 0 && referred != 0) {
@@ -204,6 +206,9 @@ public class SharedJsonSerializer implements StreamingReader {
 								} else if (((IdEObject) ref).eClass().getEAnnotation("wrapped") != null) {
 									print("\"_e" + eStructuralFeature.getName() + "\":");
 									write(ref);
+								} else if (eStructuralFeature.getEAnnotation("dbembed") != null) {
+									print("\"_e" + eStructuralFeature.getName() + "\":");
+									writeEmbedded(ref);
 								} else {
 									print("\"_r" + eStructuralFeature.getName() + "\":"	+ ref.getOid());
 								}
@@ -239,6 +244,19 @@ public class SharedJsonSerializer implements StreamingReader {
 			}
 			print("}\n");
 		}
+	}
+
+	private void writeEmbedded(IdEObject object) throws IOException {
+		print("{");
+		print("\"_t\":\"" + object.eClass().getName() + "\",");
+		for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
+			print("\"" + eStructuralFeature.getName() + "\":");
+			writePrimitive(eStructuralFeature, object.eGet(eStructuralFeature));
+			if (object.eClass().getEAllStructuralFeatures().get(object.eClass().getEAllStructuralFeatures().size()-1) != eStructuralFeature) {
+				print(",");
+			}
+		}
+		print("}");
 	}
 
 	private void write(IdEObject object) throws IOException {

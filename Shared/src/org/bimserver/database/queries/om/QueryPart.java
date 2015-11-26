@@ -10,7 +10,7 @@ import java.util.Set;
 import org.bimserver.emf.PackageMetaData;
 import org.eclipse.emf.ecore.EClass;
 
-public class QueryPart implements CanInclude {
+public class QueryPart extends PartOfQuery implements CanInclude {
 	private List<EClass> types;
 	private List<Long> oids;
 	private Set<String> guids;
@@ -109,5 +109,38 @@ public class QueryPart implements CanInclude {
 
 	public boolean hasTypes() {
 		return types != null;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		return sb.toString();
+	}
+
+	public void dump(int indent, StringBuilder sb) {
+		if (hasTypes()) {
+			sb.append(indent(indent) + "types\n");
+			for (EClass type : getTypes()) {
+				sb.append(indent(indent + 1) + type.getName() + "\n");
+			}
+		}
+		if (hasOids()) {
+			sb.append(indent(indent) + "oids\n");
+			for (long oid : getOids()) {
+				sb.append(indent(indent + 1) + oid + "\n");
+			}
+		}
+		if (hasIncludes()) {
+			sb.append(indent(indent) + "includes\n");
+			for (Include include : getIncludes()) {
+				include.dump(indent + 1, sb);
+			}
+		}
+	}
+
+	public Include createInclude() {
+		Include include = new Include();
+		addInclude(include);
+		return include;
 	}
 }

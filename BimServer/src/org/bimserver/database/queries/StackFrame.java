@@ -3,6 +3,7 @@ package org.bimserver.database.queries;
 import java.io.IOException;
 
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.shared.QueryException;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;

@@ -6,34 +6,33 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
+import org.bimserver.database.queries.om.CanInclude;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.QueryPart;
-import org.bimserver.emf.PackageMetaData;
-import org.bimserver.emf.QueryInterface;
-import org.bimserver.shared.Reusable;
+import org.bimserver.shared.QueryException;
+import org.bimserver.shared.QueryContext;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
 
 public class FollowReferenceStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
 
 	private long oid;
-	private QueryInterface query;
 	private boolean hasRun = false;
 	private Include include;
+	private CanInclude previousInclude;
 	
-	public FollowReferenceStackFrame(QueryObjectProvider queryObjectProvider, Long oid, PackageMetaData packageMetaData, Reusable reusable, QueryInterface query, QueryPart queryPart, Include include) {
-		super(packageMetaData, reusable, queryObjectProvider, query, queryPart);
+	public FollowReferenceStackFrame(QueryObjectProvider queryObjectProvider, Long oid, QueryContext reusable, QueryPart queryPart, CanInclude previousInclude, Include include) {
+		super(reusable, queryObjectProvider, queryPart);
 		this.oid = oid;
-		this.query = query;
+		this.previousInclude = previousInclude;
 		this.include = include;
 	}
 
 	@Override
 	public boolean process() throws BimserverDatabaseException, QueryException {
-//		if (getQueryObjectProvider().hasRead(oid)) {
-//			processPossibleIncludes(previousType, queryPart);
-//			return true;
-//		}
+		if (getQueryObjectProvider().hasRead(oid)) {
+			processPossibleIncludes(null, include);
+			return true;
+		}
 		
 		if (hasRun) {
 			return true;
@@ -44,12 +43,12 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 		}
 		EClass eClass = getQueryObjectProvider().getDatabaseSession().getEClassForOid(oid);
 		ByteBuffer mustStartWith = ByteBuffer.wrap(new byte[12]);
-		mustStartWith.putInt(query.getPid());
+		mustStartWith.putInt(getReusable().getPid());
 		mustStartWith.putLong(oid);
 		ByteBuffer startSearchWith = ByteBuffer.wrap(new byte[16]);
-		startSearchWith.putInt(query.getPid());
+		startSearchWith.putInt(getReusable().getPid());
 		startSearchWith.putLong(oid);
-		startSearchWith.putInt(-query.getRid());
+		startSearchWith.putInt(-getReusable().getRid());
 
 		SearchingRecordIterator recordIterator = getQueryObjectProvider().getDatabaseSession().getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), mustStartWith.array(),
 				startSearchWith.array(), getQueryObjectProvider().getDatabaseSession());
@@ -64,27 +63,42 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 			keyBuffer.getInt(); // pid
 			long keyOid = keyBuffer.getLong();
 			int keyRid = -keyBuffer.getInt();
-			if (keyRid <= query.getRid()) {
+			if (keyRid <= getReusable().getRid()) {
 				if (valueBuffer.capacity() == 1 && valueBuffer.get(0) == -1) {
 					valueBuffer.position(valueBuffer.position() + 1);
 					return true;
 					// deleted entity
 				} else {
-					currentObject = convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, keyRid, query);
+					currentObject = convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, keyRid);
 					
-					if (currentObject != null) {
-						if (getQueryPart().isIncludeAllFields()) {
-							for (EReference eReference : currentObject.eClass().getEAllReferences()) {
-								currentObject.addUseForSerialization(eReference);
-							}
-						}
+					if (currentObject.eClass().getName().toUpperCase().equals("IFCBOOLEANCLIPPINGRESULT")) {
+						System.out.println();
 					}
 					
-					if (include.hasIncludes()) {
-						for (Include include : include.getIncludes()) {
-							processPossibleInclude(include);
-						}
-					}
+					processPossibleIncludes(null, include);
+					
+//					if (include.hasFields()) {
+//						for (EReference eReference : include.getFields()) {
+//							EReference inverseOrOpposite = getPackageMetaData().getInverseOrOpposite(currentObject.eClass(), eReference);
+//							if (inverseOrOpposite != null) {
+//								currentObject.addUseForSerialization(inverseOrOpposite);
+//							}
+//						}
+//					}
+					
+//					if (currentObject != null) {
+//						if (getQueryPart().isIncludeAllFields()) {
+//							for (EReference eReference : currentObject.eClass().getEAllReferences()) {
+//								currentObject.addUseForSerialization(eReference);
+//							}
+//						}
+//					}
+//					
+//					if (include.hasIncludes()) {
+//						for (Include include : include.getIncludes()) {
+//							processPossibleInclude(include);
+//						}
+//					}
 				}
 			} else {
 				return true;

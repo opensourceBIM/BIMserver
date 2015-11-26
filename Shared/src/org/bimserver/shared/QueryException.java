@@ -1,4 +1,4 @@
-package org.bimserver.database.queries;
+package org.bimserver.shared;
 
 public class QueryException extends Exception {
 

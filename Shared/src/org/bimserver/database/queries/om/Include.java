@@ -3,14 +3,14 @@ package org.bimserver.database.queries.om;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bimserver.database.queries.QueryException;
+import org.bimserver.shared.QueryException;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EReference;
 
-public class Include implements CanInclude {
+public class Include extends PartOfQuery implements CanInclude {
 	private List<EClass> types;
 	private List<EClass> outputTypes;
-	private List<EStructuralFeature> fields;
+	private List<EReference> fields;
 	private List<Include> includes;
 	
 	/**
@@ -20,13 +20,13 @@ public class Include implements CanInclude {
 	 * @throws QueryException 
 	 */
 	public void addField(String fieldName) throws QueryException {
-		EStructuralFeature feature = null;
+		EReference feature = null;
 		for (EClass eClass : types) {
 			if (eClass.getEStructuralFeature(fieldName) == null) {
 				throw new QueryException("Class \"" + eClass.getName() + "\" does not have the field \"" + fieldName + "\"");
 			}
 			if (feature == null) {
-				feature = eClass.getEStructuralFeature(fieldName);
+				feature = (EReference) eClass.getEStructuralFeature(fieldName);
 			} else {
 				if (feature != eClass.getEStructuralFeature(fieldName)) {
 					throw new QueryException("Classes \"" + eClass.getName() + "\" and \"" + feature.getEContainingClass().getName() + "\" have fields with the same name, but they are not logically the same");
@@ -34,7 +34,7 @@ public class Include implements CanInclude {
 			}
 		}
 		if (fields == null) {
-			fields = new ArrayList<EStructuralFeature>();
+			fields = new ArrayList<EReference>();
 		}
 		fields.add(feature);
 	}
@@ -46,7 +46,7 @@ public class Include implements CanInclude {
 		includes.add(newInclude);
 	}
 
-	public List<EStructuralFeature> getFields() {
+	public List<EReference> getFields() {
 		return fields;
 	}
 	
@@ -93,5 +93,31 @@ public class Include implements CanInclude {
 
 	public boolean hasIncludes() {
 		return includes != null;
+	}
+
+	@Override
+	public boolean isIncludeAllFields() {
+		return false;
+	}
+	
+	public void dump(int indent, StringBuilder sb) {
+		if (hasTypes()) {
+			sb.append(indent(indent) + "types\n");
+			for (EClass eClass : getTypes()) {
+				sb.append(indent(indent + 1) + eClass.getName() + "\n");
+			}
+		}
+		if (hasFields()) {
+			sb.append(indent(indent) + "fields\n");
+			for (EReference field : getFields()) {
+				sb.append(indent(indent + 1) + field.getName() + "\n");
+			}
+		}
+		if (hasIncludes()) {
+			sb.append(indent(indent) + "includes\n");
+			for (Include include : getIncludes()) {
+				include.dump(indent + 1, sb);
+			}
+		}
 	}
 }

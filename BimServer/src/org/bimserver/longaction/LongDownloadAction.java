@@ -23,6 +23,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
+import org.bimserver.database.actions.DownloadByJsonQueryDatabaseAction;
 import org.bimserver.database.actions.DownloadByNamesDatabaseAction;
 import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByTypesDatabaseAction;
@@ -118,9 +119,9 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		case DOWNLOAD_OF_TYPE:
 			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getSchema(), downloadParameters.getClassNames(), downloadParameters.getSerializerOid(), downloadParameters.isIncludeAllSubtypes(), downloadParameters.getUseObjectIDM(), getAuthorization(), objectIDM, downloadParameters.getDeep());
 			break;
-//		case DOWNLOAD_JSON_QUERY:
-//			action = new DownloadByJsonQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getJsonQuery(), downloadParameters.getSerializerOid(), getAuthorization());
-//			break;
+		case DOWNLOAD_JSON_QUERY:
+			action = new DownloadByJsonQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getJsonQuery(), downloadParameters.getSerializerOid(), getAuthorization());
+			break;
 		case DOWNLOAD_PROJECTS:
 			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM);
 			break;

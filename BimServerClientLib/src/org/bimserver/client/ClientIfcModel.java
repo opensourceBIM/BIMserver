@@ -27,6 +27,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.database.queries.om.Include;
+import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
+import org.bimserver.database.queries.om.Query;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
@@ -37,13 +41,19 @@ import org.bimserver.emf.SharedJsonDeserializer;
 import org.bimserver.emf.SharedJsonSerializer;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryFactory;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.serializers.SerializerInputstream;
 import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.QueryException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -59,6 +69,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.io.LittleEndianDataInputStream;
 
 public class ClientIfcModel extends IfcModel {
 	public enum ModelState {
@@ -72,9 +83,7 @@ public class ClientIfcModel extends IfcModel {
 	private long roid;
 	private final Set<String> loadedClasses = new HashSet<String>();
 	private long ifcSerializerOid = -1;
-	private long jsonGeometrySerializerOid = -1;
 	private long binaryGeometrySerializerOid = -1;
-	private long ifcSerializerWithGeometryOid = -1;
 	private boolean recordChanges;
 	private boolean includeGeometry;
 
@@ -92,7 +101,11 @@ public class ClientIfcModel extends IfcModel {
 			}
 		}
 		if (deep) {
-			loadDeep();
+			try {
+				loadDeep();
+			} catch (QueryException e) {
+				LOGGER.error("", e);
+			}
 		}
 	}
 
@@ -178,6 +191,8 @@ public class ClientIfcModel extends IfcModel {
 			LOGGER.error("", e);
 		} catch (PublicInterfaceNotFoundException e) {
 			LOGGER.error("", e);
+		} catch (QueryException e) {
+			LOGGER.error("", e);
 		}
 		Map<IdEObject, IdEObject> map = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject sourceObject : getValues()) {
@@ -238,56 +253,182 @@ public class ClientIfcModel extends IfcModel {
 	public long getJsonSerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
 		if (ifcSerializerOid == -1) {
 			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName(
-					"org.bimserver.serializers.JsonSerializerPlugin");
+					"org.bimserver.serializers.JsonStreamingSerializerPlugin");
 			if (serializerPluginConfiguration != null) {
 				ifcSerializerOid = serializerPluginConfiguration.getOid();
+			} else {
+				throw new UserException("No JSON streaming serializer found");
 			}
 		}
 		return ifcSerializerOid;
 	}
 
-	public long getJsonSerializerWithGeometryOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
-		if (ifcSerializerWithGeometryOid == -1) {
-			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName(
-					"org.bimserver.serializers.JsonSerializerPluginWithGeometry");
-			if (serializerPluginConfiguration != null) {
-				ifcSerializerWithGeometryOid = serializerPluginConfiguration.getOid();
-			}
-		}
-		return ifcSerializerWithGeometryOid;
-	}
-
-	public long getJsonGeometrySerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
-		if (jsonGeometrySerializerOid == -1) {
-			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName(
-					"org.bimserver.geometry.json.JsonGeometrySerializerPlugin");
-			if (serializerPluginConfiguration != null) {
-				jsonGeometrySerializerOid = serializerPluginConfiguration.getOid();
-			}
-		}
-		return jsonGeometrySerializerOid;
-	}
-	
 	public long getBinaryGeometrySerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
 		if (binaryGeometrySerializerOid == -1) {
 			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName(
 					"org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin");
 			if (serializerPluginConfiguration != null) {
 				binaryGeometrySerializerOid = serializerPluginConfiguration.getOid();
+			} else {
+				throw new UserException("No binary geometry serializer found");
 			}
 		}
 		return binaryGeometrySerializerOid;
 	}
 	
-	private void loadDeep() throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
+	private void loadDeep() throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException, QueryException {
 		if (modelState != ModelState.FULLY_LOADED && modelState != ModelState.LOADING) {
 			modelState = ModelState.LOADING;
-			Long download = bimServerClient.getBimsie1ServiceInterface().download(roid, includeGeometry ? getJsonSerializerWithGeometryOid() : getJsonSerializerOid(), true, true);
+			Query query = new Query("test", getPackageMetaData());
+			QueryPart queryPart = query.createQueryPart();
+			queryPart.setIncludeAllFields(true);
+			
+			ObjectNode queryNode = new JsonQueryObjectModelConverter(query.getPackageMetaData()).toJson(query);
+			Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), queryNode.toString(), getJsonSerializerOid(), false);
+			waitForDonePreparing(topicId);
 			try {
-				processDownload(download);
+				processDownload(topicId);
 				modelState = ModelState.FULLY_LOADED;
+				loadGeometry();
 			} catch (IfcModelInterfaceException | IOException e) {
 				LOGGER.error("", e);
+			} catch (QueryException e) {
+				LOGGER.error("", e);
+			} catch (GeometryException e) {
+				LOGGER.error("", e);
+			}
+		}
+	}
+
+	private void loadGeometry() throws QueryException, ServerException, UserException, PublicInterfaceNotFoundException, IOException, GeometryException, IfcModelInterfaceException {
+		if (includeGeometry) {
+			Query query = new Query("test", getPackageMetaData());
+			QueryPart queryPart = query.createQueryPart();
+			EClass geometryInfoClass = getPackageMetaData().getEClassIncludingDependencies("GeometryInfo");
+			queryPart.addType(geometryInfoClass, false);
+			Include include = queryPart.createInclude();
+			include.addType(geometryInfoClass);
+			include.addField("data");
+			
+			for (IfcProduct ifcProduct : getAllWithSubTypes(IfcProduct.class)) {
+				GeometryInfo geometry = ifcProduct.getGeometry();
+				if (geometry != null) {
+					queryPart.addOid(geometry.getOid());
+				}
+			}
+			long serializerOid = bimServerClient.getBinaryGeometryMessagingStreamingSerializerOid();
+			long topicId = bimServerClient.query(query, roid, serializerOid);
+			// TODO use websocket notifications
+			waitForDonePreparing(topicId);
+			InputStream inputStream = bimServerClient.getDownloadData(topicId, serializerOid);
+			try {
+				processGeometryInputStream(inputStream);
+			} finally {
+				inputStream.close();
+			}
+		}
+	}
+
+	private void waitForDonePreparing(long topicId) throws UserException, ServerException, PublicInterfaceNotFoundException {
+		for (int i=0; i<10; i++) {
+			SLongActionState progress = bimServerClient.getRegistry().getProgress(topicId);
+			if (progress != null && progress.getTitle() != null && progress.getTitle().equals("Done preparing")) {
+				break;
+			}
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void processGeometryInputStream(InputStream inputStream) throws IOException, GeometryException, IfcModelInterfaceException {
+		LittleEndianDataInputStream dataInputStream = new LittleEndianDataInputStream(inputStream);
+
+		boolean done = false;
+		while (!done) {
+			byte type = dataInputStream.readByte();
+			if (type == 0) {
+				String protocol = dataInputStream.readUTF();
+				if (!protocol.equals("BGS")) {
+					throw new GeometryException("Protocol != BGS (" + protocol + ")");
+				}
+				byte formatVersion = dataInputStream.readByte();
+				if (formatVersion != 7) {
+					throw new GeometryException("Unsupported version " + formatVersion + " / 7");
+				}
+				int skip = 4 - (7 % 4);
+				if(skip != 0 && skip != 4) {
+					dataInputStream.read(new byte[skip]);
+				}
+				for (int i=0; i<6; i++) {
+					dataInputStream.readFloat();
+				}
+			} else if (type == 5) {
+				dataInputStream.read(new byte[3]);
+				long roid = dataInputStream.readLong();
+				long geometryInfoOid = dataInputStream.readLong();
+				GeometryInfo geometryInfo = (GeometryInfo) get(geometryInfoOid);
+				add(geometryInfoOid, geometryInfo);
+				
+				org.bimserver.models.geometry.Vector3f minBounds = GeometryFactory.eINSTANCE.createVector3f();
+				minBounds.setX(dataInputStream.readFloat());
+				minBounds.setY(dataInputStream.readFloat());
+				minBounds.setZ(dataInputStream.readFloat());
+
+				org.bimserver.models.geometry.Vector3f maxBounds = GeometryFactory.eINSTANCE.createVector3f();
+				maxBounds.setX(dataInputStream.readFloat());
+				maxBounds.setY(dataInputStream.readFloat());
+				maxBounds.setZ(dataInputStream.readFloat());
+				
+				geometryInfo.setMinBounds(minBounds);
+				geometryInfo.setMaxBounds(maxBounds);
+				
+				byte[] transformation = new byte[16 * 4];
+				dataInputStream.readFully(transformation);
+				geometryInfo.setTransformation(transformation);
+				
+				long geometryDataOid = dataInputStream.readLong();
+				GeometryData geometryData = (GeometryData) get(geometryDataOid);
+				if (geometryData == null) {
+					geometryData = GeometryFactory.eINSTANCE.createGeometryData();
+					add(geometryDataOid, geometryData);
+				}
+				geometryInfo.setData(geometryData);
+			} else if (type == 3) {
+				throw new GeometryException("Parts not supported");
+			} else if (type == 1) {
+				dataInputStream.read(new byte[3]);
+				long geometryDataOid = dataInputStream.readLong();
+
+				GeometryData geometryData = (GeometryData) get(geometryDataOid);
+				if (geometryData == null) {
+					geometryData = GeometryFactory.eINSTANCE.createGeometryData();
+					add(geometryDataOid, geometryData);
+				}
+				
+				int nrIndices = dataInputStream.readInt();
+				byte[] indices = new byte[nrIndices * 4];
+				dataInputStream.read(indices);
+				geometryData.setIndices(indices);
+
+				int nrVertices = dataInputStream.readInt();
+				byte[] vertices = new byte[nrVertices * 4];
+				dataInputStream.read(vertices);
+				geometryData.setVertices(vertices);
+
+				int nrNormals = dataInputStream.readInt();
+				byte[] normals = new byte[nrNormals * 4];
+				dataInputStream.read(normals);
+				geometryData.setNormals(normals);
+
+				int nrMaterials = dataInputStream.readInt();
+				byte[] materials = new byte[nrMaterials * 4];
+				dataInputStream.read(materials);
+				geometryData.setNormals(materials);
+			} else if (type == 6) {
+				done = true;
 			}
 		}
 	}

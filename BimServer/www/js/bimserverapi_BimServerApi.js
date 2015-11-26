@@ -398,6 +398,12 @@ define(
 	    			othis.call("Bimsie1NotificationRegistryInterface", "registerProgressHandler", {topicId: topicId, endPointId: othis.webSocket.endPointId}, function(){
 	    				if (callback != null) {
 	    					callback();
+	    				} else {
+	    					othis.call("Bimsie1NotificationRegistryInterface", "getProgress", {
+	    						topicId: topicId
+	    					}, function(state){
+	    						handler(topicId, state);
+	    					});
 	    				}
 	    			});
 	    		});

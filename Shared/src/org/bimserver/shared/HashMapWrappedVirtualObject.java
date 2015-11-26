@@ -13,7 +13,7 @@ public class HashMapWrappedVirtualObject implements WrappedVirtualObject {
 	private EClass eClass;
 	private final Map<EStructuralFeature, Object> map = new HashMap<>();
 
-	public HashMapWrappedVirtualObject(Reusable reusable, EClass eClass) {
+	public HashMapWrappedVirtualObject(QueryContext reusable, EClass eClass) {
 		this.eClass = eClass;
 	}
 

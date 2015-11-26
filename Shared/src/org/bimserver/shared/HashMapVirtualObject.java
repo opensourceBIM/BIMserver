@@ -33,10 +33,10 @@ public class HashMapVirtualObject implements VirtualObject {
 	private final Map<EStructuralFeature, Object> map = new HashMap<>();
 	private EClass eClass;
 	private long oid;
-	private Reusable reusable;
+	private QueryContext reusable;
 	private Set<EStructuralFeature> useForSerializationFeatures = new HashSet<EStructuralFeature>();
 	
-	public HashMapVirtualObject(Reusable reusable, EClass eClass) {
+	public HashMapVirtualObject(QueryContext reusable, EClass eClass) {
 		this.reusable = reusable;
 		this.eClass = eClass;
 		this.oid = reusable.getDatabaseInterface().newOid(eClass);
@@ -476,7 +476,11 @@ public class HashMapVirtualObject implements VirtualObject {
 	}
 
 	public void addUseForSerialization(EStructuralFeature eStructuralFeature) {
-		useForSerializationFeatures.add(eStructuralFeature);
+		if (eStructuralFeature.getEContainingClass().isSuperTypeOf(eClass)) {
+			useForSerializationFeatures.add(eStructuralFeature);
+		} else {
+			throw new IllegalArgumentException(eStructuralFeature.getName() + " does not exist in " + eClass.getName());
+		}
 	}
 
 	public void saveOverwrite() throws BimserverDatabaseException {

@@ -10,13 +10,14 @@ import org.bimserver.database.DatabaseSession.GetResult;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
+import org.bimserver.database.queries.om.CanInclude;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.emf.QueryInterface;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
-import org.bimserver.shared.Reusable;
+import org.bimserver.shared.QueryException;
+import org.bimserver.shared.QueryContext;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -29,29 +30,21 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
 
 public abstract class DatabaseReadingStackFrame extends StackFrame implements ObjectProvidingStackFrame {
-	private PackageMetaData packageMetaData;
-	private Reusable reusable;
+	private QueryContext reusable;
 	private QueryObjectProvider queryObjectProvider;
-	private QueryInterface query;
 	protected HashMapVirtualObject currentObject;
 	private QueryPart queryPart;
 
-	public DatabaseReadingStackFrame(PackageMetaData packageMetaData, Reusable reusable, QueryObjectProvider queryObjectProvider, QueryInterface query, QueryPart queryPart) {
-		this.packageMetaData = packageMetaData;
+	public DatabaseReadingStackFrame(QueryContext reusable, QueryObjectProvider queryObjectProvider, QueryPart queryPart) {
 		this.reusable = reusable;
 		this.queryObjectProvider = queryObjectProvider;
-		this.query = query;
 		this.queryPart = queryPart;
 	}
 	
-	public Reusable getReusable() {
+	public QueryContext getReusable() {
 		return reusable;
 	}
 	
-	public QueryInterface getQuery() {
-		return query;
-	}
-
 	@Override
 	public HashMapVirtualObject getCurrentObject() {
 		return currentObject;
@@ -62,40 +55,31 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 	}
 	
 	public PackageMetaData getPackageMetaData() {
-		return packageMetaData;
+		return reusable.getPackageMetaData();
 	}
 	
 	public QueryPart getQueryPart() {
 		return queryPart;
 	}
 	
-	protected void processPossibleIncludes(EClass previousType, QueryPart queryPart) throws QueryException, BimserverDatabaseException {
-		// Look for field in the previous query part, could be an opposite we want to set
-		// TODO process "fields" as well
-//		if (queryPart.has("field")) {
-//			String fn = queryPart.get("field").asText();
-//			EReference inverseOrOpposite = getPackageMetaData().getInverseOrOpposite(currentObject.eClass(), previousType.getEStructuralFeature(fn));
-//			if (inverseOrOpposite != null) {
-//				currentObject.addUseForSerialization(inverseOrOpposite);
-//			}
-//		}
+	protected void processPossibleIncludes(EClass previousType, CanInclude canInclude) throws QueryException, BimserverDatabaseException {
 		if (currentObject != null) {
-			if (queryPart.hasIncludes()) {
-				for (Include include : queryPart.getIncludes()) {
-					processPossibleInclude(include);
+			if (canInclude.hasIncludes()) {
+				for (Include include : canInclude.getIncludes()) {
+					processPossibleInclude(canInclude, include);
 				}
-			} else if (queryPart.isIncludeAllFields()) {
+			} else if (canInclude.isIncludeAllFields()) {
 				for (EReference eReference : currentObject.eClass().getEAllReferences()) {
 					Include include = new Include();
 					include.addType(currentObject.eClass());
 					include.addField(eReference.getName());
-					processPossibleInclude(include);
+					processPossibleInclude(canInclude, include);
 				}
 			}
 		}
 	}
 
-	protected void processPossibleInclude(Include include) throws QueryException, BimserverDatabaseException {
+	protected void processPossibleInclude(CanInclude previousInclude, Include include) throws QueryException, BimserverDatabaseException {
 		if (include.hasTypes()) {
 			for (EClass filterClass : include.getTypes()) {
 				if (!filterClass.isSuperTypeOf(currentObject.eClass())) {
@@ -110,19 +94,19 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			}
 		}
 		
-		getQueryObjectProvider().push(new QueryIncludeStackFrame(getQueryObjectProvider(), getQuery(), getPackageMetaData(), getReusable(), include, currentObject, queryPart));
+		getQueryObjectProvider().push(new QueryIncludeStackFrame(getQueryObjectProvider(), getReusable(), previousInclude, include, currentObject, queryPart));
 	}
 	
-	public GetResult getMap(EClass originalQueryClass, EClass eClass, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, QueryInterface query) throws BimserverDatabaseException {
-		if (keyPid == query.getPid()) {
-			if (keyRid <= query.getRid() && keyRid >= query.getStopRid()) {
+	public GetResult getMap(EClass originalQueryClass, EClass eClass, ByteBuffer buffer, int keyPid, long keyOid, int keyRid) throws BimserverDatabaseException {
+		if (keyPid == getReusable().getPid()) {
+			if (keyRid <= getReusable().getRid() && keyRid >= getReusable().getStopRid()) {
 				if (!getQueryObjectProvider().hasRead(keyOid)) {
 					if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 						buffer.position(buffer.position() + 1);
 						return GetResult.CONTINUE_WITH_NEXT_OID;
 						// deleted entity
 					} else {
-						 currentObject = convertByteArrayToObject(originalQueryClass, eClass, keyOid, buffer, keyRid, query);
+						 currentObject = convertByteArrayToObject(originalQueryClass, eClass, keyOid, buffer, keyRid);
 					}
 				}
 				return GetResult.CONTINUE_WITH_NEXT_OID;
@@ -134,12 +118,12 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		}
 	}
 	
-	protected HashMapVirtualObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, int rid, QueryInterface query) throws BimserverDatabaseException {
+	protected HashMapVirtualObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, int rid) throws BimserverDatabaseException {
 		try {
 			HashMapVirtualObject idEObject = new HashMapVirtualObject(reusable, eClass);
 			idEObject.setOid(oid);
 			
-			int unsettedLength = packageMetaData.getUnsettedLength(eClass);
+			int unsettedLength = getPackageMetaData().getUnsettedLength(eClass);
 			
 			byte[] unsetted = new byte[unsettedLength];
 			buffer.get(unsetted);
@@ -148,7 +132,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			
 			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 				try {
-					if (packageMetaData.useForDatabaseStorage(eClass, feature)) {
+					if (getPackageMetaData().useForDatabaseStorage(eClass, feature)) {
 						boolean isUnsetted = (unsetted[fieldCounter / 8] & (1 << (fieldCounter % 8))) != 0;
 						if (isUnsetted) {
 							if (feature.isUnsettable()) {
@@ -161,7 +145,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 						} else {
 							Object newValue = null;
 							if (feature.isMany()) {
-								newValue = readList(idEObject, originalQueryClass, buffer, query, feature);
+								newValue = readList(idEObject, originalQueryClass, buffer, feature);
 							} else {
 								if (feature.getEType() instanceof EEnum) {
 									int enumOrdinal = buffer.getInt();
@@ -184,9 +168,9 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 										// record
 										EClass referenceClass = queryObjectProvider.getDatabaseSession().getEClass((short) (-cid));
 										if (feature.getEAnnotation("dbembed") != null) {
-											newValue = readEmbeddedValue(feature, buffer, referenceClass, query);
+											newValue = readEmbeddedValue(feature, buffer, referenceClass);
 										} else {
-											newValue = readWrappedValue(feature, buffer, referenceClass, query);
+											newValue = readWrappedValue(feature, buffer, referenceClass);
 										}
 									} else if (cid > 0) {
 										// positive cid means value is reference to
@@ -195,7 +179,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 										if (referenceClass == null) {
 											throw new BimserverDatabaseException("No eClass found for cid " + cid);
 										}
-										newValue = readReference(originalQueryClass, buffer, feature, referenceClass, query);
+										newValue = readReference(originalQueryClass, buffer, feature, referenceClass);
 										// if (eReference.getEOpposite() != null &&
 										// ((IdEObjectImpl)
 										// newValue).isLoadedOrLoading()) {
@@ -203,7 +187,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 										// }
 									}
 								} else if (feature.getEType() instanceof EDataType) {
-									newValue = readPrimitiveValue(feature.getEType(), buffer, query);
+									newValue = readPrimitiveValue(feature.getEType(), buffer);
 								}
 								if (newValue != null) {
 									idEObject.setAttribute(feature, newValue);
@@ -228,7 +212,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		}
 	}
 	
-	private long readReference(EClass originalQueryClass, ByteBuffer buffer, EStructuralFeature feature, EClass eClass, QueryInterface query) throws BimserverDatabaseException {
+	private long readReference(EClass originalQueryClass, ByteBuffer buffer, EStructuralFeature feature, EClass eClass) throws BimserverDatabaseException {
 		if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 			buffer.position(buffer.position() + 1);
 			return -1;
@@ -237,33 +221,33 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		return oid;
 	}
 
-	private HashMapWrappedVirtualObject readWrappedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass, QueryInterface query) throws BimserverDatabaseException {
+	private HashMapWrappedVirtualObject readWrappedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass) throws BimserverDatabaseException {
 		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature("wrappedValue");
-		Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer, query);
+		Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer);
 		HashMapWrappedVirtualObject eObject = new HashMapWrappedVirtualObject(reusable, eClass);
 		eObject.setAttribute(eStructuralFeature, primitiveValue);
 		if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
 			EStructuralFeature strFeature = eClass.getEStructuralFeature("wrappedValueAsString");
-			Object stringVal = readPrimitiveValue(EcorePackage.eINSTANCE.getEString(), buffer, query);
+			Object stringVal = readPrimitiveValue(EcorePackage.eINSTANCE.getEString(), buffer);
 			eObject.setAttribute(strFeature, stringVal);
 		}
 		return eObject;
 	}
 
-	private HashMapWrappedVirtualObject readEmbeddedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass, QueryInterface query) throws BimserverDatabaseException {
+	private HashMapWrappedVirtualObject readEmbeddedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass) throws BimserverDatabaseException {
 		HashMapWrappedVirtualObject eObject = new HashMapWrappedVirtualObject(reusable, eClass);
 		for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 			if (eStructuralFeature.isMany()) {
 				//
 			} else {
-				Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer, query);
+				Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer);
 				eObject.setAttribute(eStructuralFeature, primitiveValue);
 			}
 		}
 		return eObject;
 	}
 	
-	public Object readPrimitiveValue(EClassifier classifier, ByteBuffer buffer, QueryInterface query) {
+	public Object readPrimitiveValue(EClassifier classifier, ByteBuffer buffer) {
 		if (classifier == EcorePackage.eINSTANCE.getEString()) {
 			int length = buffer.getInt();
 			if (length != -1) {
@@ -294,7 +278,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			return result;
 		} else if (classifier.getName().equals("Tristate")) {
 			int ordinal = buffer.getInt();
-			EEnum tristateEnum = query.getPackageMetaData().getEEnum("Tristate");
+			EEnum tristateEnum = getPackageMetaData().getEEnum("Tristate");
 			return tristateEnum.getEEnumLiteral(ordinal).getInstance();
 		} else if (classifier instanceof EEnum) {
 			int ordinal = buffer.getInt();
@@ -305,7 +289,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		}
 	}
 	
-	private Object readList(HashMapVirtualObject idEObject, EClass originalQueryClass, ByteBuffer buffer, QueryInterface query, EStructuralFeature feature) throws BimserverDatabaseException {
+	private Object readList(HashMapVirtualObject idEObject, EClass originalQueryClass, ByteBuffer buffer, EStructuralFeature feature) throws BimserverDatabaseException {
 		if (feature.getEType() instanceof EEnum) {
 		} else if (feature.getEType() instanceof EClass) {
 			if (buffer.capacity() == 1 && buffer.get(0) == -1) {
@@ -316,7 +300,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 				for (int i = 0; i < listSize; i++) {
 					if (feature.getEAnnotation("twodimensionalarray") != null) {
 						HashMapVirtualObject newObject = new HashMapVirtualObject(reusable, (EClass) feature.getEType());
-						Object result = readList(newObject, originalQueryClass, buffer, query, newObject.eClass().getEStructuralFeature("List"));
+						Object result = readList(newObject, originalQueryClass, buffer, newObject.eClass().getEStructuralFeature("List"));
 						if (result != null) {
 							newObject.setAttribute(newObject.eClass().getEStructuralFeature("List"), result);
 						}
@@ -333,7 +317,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 							if (referenceClass == null) {
 								throw new BimserverDatabaseException("No class found for cid " + (-cid));
 							}
-							idEObject.setListItem(feature, i, readWrappedValue(feature, buffer, referenceClass, query));
+							idEObject.setListItem(feature, i, readWrappedValue(feature, buffer, referenceClass));
 						} else if (cid > 0) {
 							// positive cid means value is a
 							// reference
@@ -342,7 +326,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 							if (referenceClass == null) {
 								throw new BimserverDatabaseException("Cannot find class with cid " + cid);
 							}
-							idEObject.setListItemReference(feature, i, referenceClass, readReference(originalQueryClass, buffer, feature, referenceClass, query), -1);
+							idEObject.setListItemReference(feature, i, referenceClass, readReference(originalQueryClass, buffer, feature, referenceClass), -1);
 						}
 					}
 				}
@@ -350,7 +334,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		} else if (feature.getEType() instanceof EDataType) {
 			int listSize = buffer.getInt();
 			for (int i = 0; i < listSize; i++) {
-				Object reference = readPrimitiveValue(feature.getEType(), buffer, query);
+				Object reference = readPrimitiveValue(feature.getEType(), buffer);
 				if (reference != null) {
 					idEObject.setListItem(feature, i, reference);
 				}
@@ -362,12 +346,12 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 	public HashMapVirtualObject getByOid(long oid) throws BimserverDatabaseException {
 		EClass eClass = getQueryObjectProvider().getDatabaseSession().getEClassForOid(oid);
 		ByteBuffer mustStartWith = ByteBuffer.wrap(new byte[12]);
-		mustStartWith.putInt(query.getPid());
+		mustStartWith.putInt(reusable.getPid());
 		mustStartWith.putLong(oid);
 		ByteBuffer startSearchWith = ByteBuffer.wrap(new byte[16]);
-		startSearchWith.putInt(query.getPid());
+		startSearchWith.putInt(reusable.getPid());
 		startSearchWith.putLong(oid);
-		startSearchWith.putInt(-query.getRid());
+		startSearchWith.putInt(-reusable.getRid());
 	
 		SearchingRecordIterator recordIterator = getQueryObjectProvider().getDatabaseSession().getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), mustStartWith.array(),
 				startSearchWith.array(), getQueryObjectProvider().getDatabaseSession());
@@ -382,13 +366,13 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			keyBuffer.getInt(); // pid
 			long keyOid = keyBuffer.getLong();
 			int keyRid = -keyBuffer.getInt();
-			if (keyRid <= query.getRid()) {
+			if (keyRid <= reusable.getRid()) {
 				if (valueBuffer.capacity() == 1 && valueBuffer.get(0) == -1) {
 					valueBuffer.position(valueBuffer.position() + 1);
 					return null;
 					// deleted entity
 				} else {
-					return convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, keyRid, query);
+					return convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, keyRid);
 				}
 			} else {
 				return null;
