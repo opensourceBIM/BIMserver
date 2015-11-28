@@ -1,17 +1,25 @@
 package org.bimserver.database.queries.om;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.QueryException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
 public class Include extends PartOfQuery implements CanInclude {
-	private List<EClass> types;
+	private Set<EClass> types;
 	private List<EClass> outputTypes;
 	private List<EReference> fields;
 	private List<Include> includes;
+	private PackageMetaData packageMetaData;
+	
+	public Include(PackageMetaData packageMetaData) {
+		this.packageMetaData = packageMetaData;
+	}
 	
 	/**
 	 * Add the fields _after_ adding the types, because the fields will be checked against the types, all types should have the given field.
@@ -50,14 +58,17 @@ public class Include extends PartOfQuery implements CanInclude {
 		return fields;
 	}
 	
-	public void addType(EClass eClass) {
+	public void addType(EClass eClass, boolean includeAllSubTypes) {
 		if (eClass == null) {
 			throw new IllegalArgumentException("eClass cannot be null");
 		}
 		if (types == null) {
-			types = new ArrayList<>();
+			types = new HashSet<>();
 		}
 		types.add(eClass);
+		if (includeAllSubTypes) {
+			types.addAll(packageMetaData.getAllSubClasses(eClass));
+		}
 	}
 
 	public void addOutputType(EClass eClass) {
@@ -75,7 +86,7 @@ public class Include extends PartOfQuery implements CanInclude {
 		return outputTypes != null;
 	}
 	
-	public List<EClass> getTypes() {
+	public Set<EClass> getTypes() {
 		return types;
 	}
 
@@ -119,5 +130,11 @@ public class Include extends PartOfQuery implements CanInclude {
 				include.dump(indent + 1, sb);
 			}
 		}
+	}
+
+	public Include createInclude() {
+		Include include = new Include(packageMetaData);
+		addInclude(include);
+		return include;
 	}
 }

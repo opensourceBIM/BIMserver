@@ -6,24 +6,24 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
-import org.bimserver.database.queries.om.CanInclude;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.QueryPart;
-import org.bimserver.shared.QueryException;
 import org.bimserver.shared.QueryContext;
+import org.bimserver.shared.QueryException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 
 public class FollowReferenceStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
 
 	private long oid;
 	private boolean hasRun = false;
 	private Include include;
-	private CanInclude previousInclude;
+	private EReference fromReference;
 	
-	public FollowReferenceStackFrame(QueryObjectProvider queryObjectProvider, Long oid, QueryContext reusable, QueryPart queryPart, CanInclude previousInclude, Include include) {
+	public FollowReferenceStackFrame(QueryObjectProvider queryObjectProvider, Long oid, QueryContext reusable, QueryPart queryPart, EReference fromReference, Include include) {
 		super(reusable, queryObjectProvider, queryPart);
 		this.oid = oid;
-		this.previousInclude = previousInclude;
+		this.fromReference = fromReference;
 		this.include = include;
 	}
 
@@ -69,36 +69,16 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 					return true;
 					// deleted entity
 				} else {
-					currentObject = convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, keyRid);
+					currentObject = convertByteArrayToObject(eClass, keyOid, valueBuffer, keyRid);
 					
-					if (currentObject.eClass().getName().toUpperCase().equals("IFCBOOLEANCLIPPINGRESULT")) {
-						System.out.println();
+					if (currentObject != null) {
+						EReference opposite = getPackageMetaData().getInverseOrOpposite(currentObject.eClass(), fromReference);
+						if (opposite != null) {
+							currentObject.addUseForSerialization(opposite);
+						}
 					}
 					
 					processPossibleIncludes(null, include);
-					
-//					if (include.hasFields()) {
-//						for (EReference eReference : include.getFields()) {
-//							EReference inverseOrOpposite = getPackageMetaData().getInverseOrOpposite(currentObject.eClass(), eReference);
-//							if (inverseOrOpposite != null) {
-//								currentObject.addUseForSerialization(inverseOrOpposite);
-//							}
-//						}
-//					}
-					
-//					if (currentObject != null) {
-//						if (getQueryPart().isIncludeAllFields()) {
-//							for (EReference eReference : currentObject.eClass().getEAllReferences()) {
-//								currentObject.addUseForSerialization(eReference);
-//							}
-//						}
-//					}
-//					
-//					if (include.hasIncludes()) {
-//						for (Include include : include.getIncludes()) {
-//							processPossibleInclude(include);
-//						}
-//					}
 				}
 			} else {
 				return true;

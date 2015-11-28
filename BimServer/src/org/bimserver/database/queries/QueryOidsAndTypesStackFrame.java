@@ -12,10 +12,9 @@ import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
 import org.bimserver.database.queries.om.QueryPart;
-import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.HashMapVirtualObject;
-import org.bimserver.shared.QueryException;
 import org.bimserver.shared.QueryContext;
+import org.bimserver.shared.QueryException;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.ecore.EClass;
 
@@ -93,6 +92,9 @@ public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame imple
 
 		processPossibleIncludes(eClass, getQueryPart());
 		
+		if (record == null) {
+			typeRecordIterator.close();
+		}
 		return record == null;
 	}
 

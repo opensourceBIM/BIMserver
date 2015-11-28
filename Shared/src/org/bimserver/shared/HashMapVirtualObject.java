@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 
-public class HashMapVirtualObject implements VirtualObject {
+public class HashMapVirtualObject extends AbstractHashMapVirtualObject implements VirtualObject {
 	private static final Logger LOGGER = LoggerFactory.getLogger(VirtualObject.class);
 	private final Map<EStructuralFeature, Object> map = new HashMap<>();
 	private EClass eClass;
@@ -67,35 +67,6 @@ public class HashMapVirtualObject implements VirtualObject {
 		return eClass;
 	}
 	
-	private int getPrimitiveSize(EDataType eDataType, Object val) {
-		if (eDataType == EcorePackage.eINSTANCE.getEInt() || eDataType == EcorePackage.eINSTANCE.getEIntegerObject()) {
-			return 4;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEFloat() || eDataType == EcorePackage.eINSTANCE.getEFloatObject()) {
-			return 4;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEBoolean() || eDataType == EcorePackage.eINSTANCE.getEBooleanObject()) {
-			return 1;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEDate()) {
-			return 8;
-		} else if (eDataType == EcorePackage.eINSTANCE.getELong() || eDataType == EcorePackage.eINSTANCE.getELongObject()) {
-			return 8;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEDouble() || eDataType == EcorePackage.eINSTANCE.getEDoubleObject()) {
-			return 8;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEString()) {
-			if (val != null) {
-				return 4 + ((String) val).getBytes(Charsets.UTF_8).length;
-			}
-			return 4;
-		} else if (eDataType == EcorePackage.eINSTANCE.getEByteArray()) {
-			if (val != null) {
-				return 4 + ((byte[]) val).length;
-			}
-			return 4;
-		} else if (eDataType instanceof EEnum) {
-			return 4;
-		}
-		throw new RuntimeException("Unimplemented: " + eDataType);
-	}
-	
 	private int getWrappedValueSize(Object val, EReference eReference) {
 		if (val == null) {
 			return 2;
@@ -122,6 +93,9 @@ public class HashMapVirtualObject implements VirtualObject {
 				refSize = 2 + getPrimitiveSize((EDataType) wrappedValueFeature.getEType(), wrappedVal);
 			}
 			return refSize;
+		} else if (val instanceof WrappedVirtualObject) {
+			WrappedVirtualObject wrappedVirtualObject = (WrappedVirtualObject)val;
+			return wrappedVirtualObject.getSize();
 		}
 		return 10;
 	}
@@ -129,42 +103,40 @@ public class HashMapVirtualObject implements VirtualObject {
 	private int getExactSize(VirtualObject virtualObject) {
 		int size = 0;
 
-		size += 1; // Length of unsetted bytes
-		int bits = 0;
-		
 		for (EStructuralFeature eStructuralFeature : eClass().getEAllStructuralFeatures()) {
-			bits++;
-			if (!useUnsetBit(eStructuralFeature)) {
-				Object val = eGet(eStructuralFeature);
-				if (eStructuralFeature instanceof EAttribute) {
-					EAttribute eAttribute = (EAttribute) eStructuralFeature;
-					if (eAttribute.isMany()) {
-						size += 4;
-						for (Object v : ((List<?>) val)) {
-							size += getPrimitiveSize(eAttribute.getEAttributeType(), v);
-						}
-					} else {
-						size += getPrimitiveSize(eAttribute.getEAttributeType(), val);
-					}
-				} else if (eStructuralFeature instanceof EReference) {
-					EReference eReference = (EReference) eStructuralFeature;
-					if (eReference.isMany()) {
-						size += 4;
-						for (Object v : ((List<?>) val)) {
-							size += getWrappedValueSize(v, eReference);
-						}
-					} else {
-						if (val == null) {
-							size += 2;
+			if (getPackageMetaData().useForDatabaseStorage(eClass, eStructuralFeature)) {
+				if (!useUnsetBit(eStructuralFeature)) {
+					Object val = eGet(eStructuralFeature);
+					if (eStructuralFeature instanceof EAttribute) {
+						EAttribute eAttribute = (EAttribute) eStructuralFeature;
+						if (eAttribute.isMany()) {
+							size += 4;
+							for (Object v : ((List<?>) val)) {
+								size += getPrimitiveSize(eAttribute.getEAttributeType(), v);
+							}
 						} else {
-							size += getWrappedValueSize(val, eReference);
+							size += getPrimitiveSize(eAttribute.getEAttributeType(), val);
+						}
+					} else if (eStructuralFeature instanceof EReference) {
+						EReference eReference = (EReference) eStructuralFeature;
+						if (eReference.isMany()) {
+							size += 4;
+							for (Object v : ((List<?>) val)) {
+								size += getWrappedValueSize(v, eReference);
+							}
+						} else {
+							if (val == null) {
+								size += 2;
+							} else {
+								size += getWrappedValueSize(val, eReference);
+							}
 						}
 					}
 				}
 			}
 		}
 
-		size += (int) Math.ceil(bits / 8.0);
+		size += getPackageMetaData().getUnsettedLength(eClass);
 
 		return size;
 	}
@@ -194,15 +166,16 @@ public class HashMapVirtualObject implements VirtualObject {
 	public ByteBuffer write() throws BimserverDatabaseException {
 		int bufferSize = getExactSize(this);
 		ByteBuffer buffer = ByteBuffer.allocate(bufferSize);
-		byte[] unsetted = new byte[(int) Math.ceil(eClass().getEAllStructuralFeatures().size() / 8.0)];
+		byte[] unsetted = new byte[getPackageMetaData().getUnsettedLength(eClass)];
 		int fieldCounter = 0;
 		for (EStructuralFeature feature : eClass().getEAllStructuralFeatures()) {
-			if (useUnsetBit(feature)) {
-				unsetted[fieldCounter / 8] |= (1 << (fieldCounter % 8));
+			if (getPackageMetaData().useForDatabaseStorage(eClass, feature)) {
+				if (useUnsetBit(feature)) {
+					unsetted[fieldCounter / 8] |= (1 << (fieldCounter % 8));
+				}
+				fieldCounter++;
 			}
-			fieldCounter++;
 		}
-		buffer.put((byte) unsetted.length);
 		buffer.put(unsetted);
 		
 		EClass eClass = getDatabaseInterface().getEClassForOid(getOid());
@@ -211,35 +184,39 @@ public class HashMapVirtualObject implements VirtualObject {
 		}
 
 		for (EStructuralFeature feature : eClass().getEAllStructuralFeatures()) {
-			if (!useUnsetBit(feature)) {
-				if (feature.isMany()) {
-					writeList(this, buffer, getPackageMetaData(), feature);
-				} else {
-					Object value = eGet(feature);
-					if (feature.getEType() instanceof EEnum) {
-						if (value == null) {
-							buffer.putInt(-1);
-						} else {
-							EEnum eEnum = (EEnum) feature.getEType();
-							EEnumLiteral eEnumLiteral = eEnum.getEEnumLiteralByLiteral(((Enum<?>) value).toString());
-							if (eEnumLiteral != null) {
-								buffer.putInt(eEnumLiteral.getValue());
-							} else {
-								LOGGER.error(((Enum<?>) value).toString() + " not found");
+			if (getPackageMetaData().useForDatabaseStorage(eClass, feature)) {
+				if (!useUnsetBit(feature)) {
+					if (feature.isMany()) {
+						writeList(this, buffer, getPackageMetaData(), feature);
+					} else {
+						Object value = eGet(feature);
+						if (feature.getEType() instanceof EEnum) {
+							if (value == null) {
 								buffer.putInt(-1);
+							} else {
+								EEnum eEnum = (EEnum) feature.getEType();
+								EEnumLiteral eEnumLiteral = eEnum.getEEnumLiteralByLiteral(((Enum<?>) value).toString());
+								if (eEnumLiteral != null) {
+									buffer.putInt(eEnumLiteral.getValue());
+								} else {
+									LOGGER.error(((Enum<?>) value).toString() + " not found");
+									buffer.putInt(-1);
+								}
 							}
+						} else if (feature.getEType() instanceof EClass) {
+							if (value == null) {
+								buffer.putShort((short) -1);
+							} else if (value instanceof VirtualObject) {
+								writeWrappedValue(getPid(), getRid(), (VirtualObject) value, buffer, getPackageMetaData());
+							} else if (value instanceof WrappedVirtualObject) {
+								writeWrappedValue(getPid(), getRid(), (WrappedVirtualObject) value, buffer, getPackageMetaData());
+							} else {
+								long referencedOid = (Long)value;
+								writeReference(referencedOid, buffer, feature);
+							}
+						} else if (feature.getEType() instanceof EDataType) {
+							writePrimitiveValue(feature, value, buffer);
 						}
-					} else if (feature.getEType() instanceof EClass) {
-						if (value == null) {
-							buffer.putShort((short) -1);
-						} else if (value instanceof VirtualObject) {
-							writeWrappedValue(getPid(), getRid(), (VirtualObject) value, buffer, getPackageMetaData());
-						} else {
-							long referencedOid = (Long)value;
-							writeReference(referencedOid, buffer, feature);
-						}
-					} else if (feature.getEType() instanceof EDataType) {
-						writePrimitiveValue(feature, value, buffer);
 					}
 				}
 			}
@@ -277,6 +254,14 @@ public class HashMapVirtualObject implements VirtualObject {
 				((VirtualObject) wrappedValue).setOid(getDatabaseInterface().newOid(eClass));
 			}
 			getDatabaseInterface().save(wrappedValue);
+		}
+	}
+
+	private void writeWrappedValue(int pid, int rid, WrappedVirtualObject wrappedValue, ByteBuffer buffer, PackageMetaData packageMetaData) throws BimserverDatabaseException {
+		Short cid = getDatabaseInterface().getCidOfEClass(wrappedValue.eClass());
+		buffer.putShort((short) -cid);
+		for (EStructuralFeature eStructuralFeature : wrappedValue.eClass().getEAllStructuralFeatures()) {
+			writePrimitiveValue(eStructuralFeature, wrappedValue.eGet(eStructuralFeature), buffer);
 		}
 	}
 	
@@ -472,7 +457,11 @@ public class HashMapVirtualObject implements VirtualObject {
 		if (feature instanceof EAttribute) {
 			return true;
 		}
-		return useForSerializationFeatures.contains(feature);
+		boolean result = useForSerializationFeatures.contains(feature);
+		if (feature.getName().equals("FirstOperand") && !result) {
+			System.out.println();
+		}
+		return result;
 	}
 
 	public void addUseForSerialization(EStructuralFeature eStructuralFeature) {
@@ -485,5 +474,10 @@ public class HashMapVirtualObject implements VirtualObject {
 
 	public void saveOverwrite() throws BimserverDatabaseException {
 		getDatabaseInterface().saveOverwrite(this);
+	}
+
+	@Override
+	public void set(String name, Object val) throws BimserverDatabaseException {
+		setAttribute(eClass.getEStructuralFeature(name), val);
 	}
 }

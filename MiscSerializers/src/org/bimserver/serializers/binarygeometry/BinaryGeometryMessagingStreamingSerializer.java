@@ -77,7 +77,7 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 		case START:
 			if (!writeStart(outputStream)) {
 				mode = Mode.END;
-				return false;
+				return true;
 			}
 			mode = Mode.DATA;
 			break;

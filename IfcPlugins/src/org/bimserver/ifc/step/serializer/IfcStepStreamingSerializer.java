@@ -18,6 +18,7 @@ package org.bimserver.ifc.step.serializer;
  *****************************************************************************/
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -40,8 +41,11 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.ObjectProvider;
+import org.bimserver.plugins.serializers.OidConvertingSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerInputstream;
+import org.bimserver.plugins.serializers.StreamingReader;
 import org.bimserver.plugins.serializers.StreamingSerializer;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
@@ -61,7 +65,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 
-public abstract class IfcStepStreamingSerializer implements StreamingSerializer {
+public abstract class IfcStepStreamingSerializer implements StreamingSerializer, StreamingReader, OidConvertingSerializer {
 	private static final byte[] NEW_LINE = "\n".getBytes(Charsets.UTF_8);
 	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(IfcStepStreamingSerializer.class);
 	private static final boolean useIso8859_1 = false;
@@ -102,12 +106,35 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer 
 	private PackageMetaData packageMetaData;
 	private PrintWriter printWriter;
 	
+	@Override
+	public boolean write(OutputStream outputStream) throws SerializerException, BimserverDatabaseException {
+		this.printWriter = new PrintWriter(new OutputStreamWriter(outputStream, Charsets.UTF_8));
+		boolean result = false;
+		try {
+			result = processMode();
+		} catch (IOException e) {
+			throw new SerializerException(e);
+		}
+		// TODO This could be slow
+		this.printWriter.flush();
+		return result;
+	}
+	
+	public Map<Long, Integer> getOidToEid() {
+		return oidToEid;
+	}
+	
 	public Mode getMode() {
 		return mode;
 	}
 	
 	public void setMode(Mode mode) {
 		this.mode = mode;
+	}
+	
+	@Override
+	public InputStream getInputStream() {
+		return new SerializerInputstream(this);
 	}
 	
 	public IfcStepStreamingSerializer(PluginConfiguration pluginConfiguration) {
@@ -129,27 +156,33 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer 
 		try {
 			this.printWriter = new PrintWriter(new OutputStreamWriter(outputStream, Charsets.UTF_8));
 			while (mode != Mode.FINISHED) {
-				if (getMode() == Mode.HEADER) {
-					writeHeader();
-					setMode(Mode.BODY);
-				} else if (getMode() == Mode.BODY) {
-					HashMapVirtualObject next = objectProvider.next();
-					if (next != null) {
-						write(next);
-						writeCounter++;
-					} else {
-						setMode(Mode.FOOTER);
-					}
-				} else if (getMode() == Mode.FOOTER) {
-					writeFooter();
-					this.printWriter.flush();
-					setMode(Mode.FINISHED);
-				} else if (getMode() == Mode.FINISHED) {
-				}			
+				processMode();			
 			}
 		} catch (IOException e) {
 			throw new SerializerException(e);
 		}
+	}
+
+	private boolean processMode() throws IOException, BimserverDatabaseException, SerializerException {
+		if (getMode() == Mode.HEADER) {
+			writeHeader();
+			setMode(Mode.BODY);
+		} else if (getMode() == Mode.BODY) {
+			HashMapVirtualObject next = objectProvider.next();
+			if (next != null) {
+				write(next);
+				writeCounter++;
+			} else {
+				setMode(Mode.FOOTER);
+			}
+		} else if (getMode() == Mode.FOOTER) {
+			writeFooter();
+			this.printWriter.flush();
+			setMode(Mode.FINISHED);
+		} else if (getMode() == Mode.FINISHED) {
+			return false;
+		}
+		return true;
 	}
 
 	private void writeFooter() throws IOException {

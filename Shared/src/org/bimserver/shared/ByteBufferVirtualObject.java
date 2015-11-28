@@ -268,4 +268,19 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 	public boolean useFeatureForSerialization(EStructuralFeature feature) {
 		throw new UnsupportedOperationException();
 	}
+
+	@Override
+	public Object get(String name) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void set(String name, Object value) throws BimserverDatabaseException {
+		setAttribute(eClass.getEStructuralFeature(name), value);
+	}
+
+	@Override
+	public boolean has(String string) {
+		throw new UnsupportedOperationException();
+	}
 }

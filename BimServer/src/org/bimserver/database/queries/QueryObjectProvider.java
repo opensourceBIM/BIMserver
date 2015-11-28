@@ -12,6 +12,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.ObjectProvidingStackFrame;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.serializers.ObjectProvider;
@@ -39,6 +40,7 @@ public class QueryObjectProvider implements ObjectProvider {
 	private long reads = 0;
 	private long stackFramesProcessed = 0;
 	private Query namespace;
+	private final Set<Long> goingToRead = new HashSet<>();
 
 	public QueryObjectProvider(DatabaseSession databaseSession, BimServer bimServer, Query query, Set<Long> roids, PackageMetaData packageMetaData) throws JsonParseException, JsonMappingException, IOException, QueryException {
 		this.databaseSession = databaseSession;
@@ -47,6 +49,12 @@ public class QueryObjectProvider implements ObjectProvider {
 		
 		stack = new ArrayDeque<StackFrame>();
 		stack.push(new StartFrame(this, roids));
+		
+		for (QueryPart queryPart : query.getQueryParts()) {
+			if (queryPart.hasOids()) {
+				goingToRead.addAll(queryPart.getOids());
+			}
+		}
 	}
 	
 	public static QueryObjectProvider fromJsonNode(DatabaseSession databaseSession, BimServer bimServer, JsonNode fullQuery, Set<Long> roids, PackageMetaData packageMetaData) throws JsonParseException, JsonMappingException, IOException, QueryException {
@@ -148,5 +156,15 @@ public class QueryObjectProvider implements ObjectProvider {
 		if (!stackFrame.isDone()) {
 			stack.push(stackFrame);
 		}
+	}
+
+	public boolean hasReadOrIsGoingToRead(Long oid) {
+		if (oidsRead.contains(oid)) {
+			return true;
+		}
+		if (goingToRead.contains(oid)) {
+			return true;
+		}
+		return false;
 	}
 }

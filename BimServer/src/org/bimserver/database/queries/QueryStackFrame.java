@@ -21,10 +21,10 @@ public class QueryStackFrame extends StackFrame {
 	public QueryStackFrame(QueryObjectProvider queryObjectProvider, QueryContext reusable) throws JsonParseException, JsonMappingException, IOException {
 		this.queryObjectProvider = queryObjectProvider;
 		this.reusable = reusable;
-		Query namespace = queryObjectProvider.getNameSpace();
-		queryIterator = namespace.getQueryParts().iterator();
+		Query query = queryObjectProvider.getNameSpace();
+		queryIterator = query.getQueryParts().iterator();
 	}
-	
+
 	@Override
 	public boolean process() throws BimserverDatabaseException, QueryException {
 		QueryPart next = queryIterator.next();

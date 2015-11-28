@@ -26,6 +26,7 @@ import java.util.zip.ZipInputStream;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.database.MetricCollector;
 import org.bimserver.emf.MetaDataException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;

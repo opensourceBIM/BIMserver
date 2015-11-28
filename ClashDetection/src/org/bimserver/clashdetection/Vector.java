@@ -5,8 +5,14 @@ public class Vector {
     public static float dot(float[] u,float[] v) {
         return ((u[X] * v[X]) + (u[Y] * v[Y]) + (u[Z] * v[Z]));
     }
+    public static double dot(double[] u,double[] v) {
+    	return ((u[X] * v[X]) + (u[Y] * v[Y]) + (u[Z] * v[Z]));
+    }
     public static float[] minus(float[] u, float[] v){
         return new float[]{u[X]-v[X],u[Y]-v[Y],u[Z]-v[Z]};
+    }
+    public static double[] minus(double[] u, double[] v){
+    	return new double[]{u[X]-v[X],u[Y]-v[Y],u[Z]-v[Z]};
     }
     public static float[] addition(float[] u, float[] v){
         return new float[]{u[X]+v[X],u[Y]+v[Y],u[Z]+v[Z]};
@@ -18,6 +24,10 @@ public class Vector {
     // (cross product)
     public static float[] crossProduct(float[] u, float[] v){
         return new float[]{(u[Y]*v[Z]) - (u[Z]*v[Y]),(u[Z]*v[X]) - (u[X]*v[Z]),(u[X]*v[Y]) - (u[Y]*v[X])};
+    }
+    // (cross product)
+    public static double[] crossProduct(double[] u, double[] v){
+    	return new double[]{(u[Y]*v[Z]) - (u[Z]*v[Y]),(u[Z]*v[X]) - (u[X]*v[Z]),(u[X]*v[Y]) - (u[Y]*v[X])};
     }
     //mangnatude or length
     public static float length(float[] u){

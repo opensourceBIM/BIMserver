@@ -11,4 +11,6 @@ public interface WrappedVirtualObject extends MinimalVirtualObject {
 	EClass eClass();
 	void setAttribute(EStructuralFeature eStructuralFeature, Object value) throws BimserverDatabaseException;
 	ByteBuffer write() throws BimserverDatabaseException;
+	void set(String name, Object value) throws BimserverDatabaseException;
+	int getSize();
 }

@@ -10,8 +10,10 @@ public interface VirtualObject extends MinimalVirtualObject {
 
 	EClass eClass();
 	Object eGet(EStructuralFeature feature);
+	Object get(String name);
 	long getOid();
 	void setOid(long oid);
+	void set(String name, Object val) throws BimserverDatabaseException;
 	void setAttribute(EStructuralFeature feature, Object val) throws BimserverDatabaseException;
 	void setReference(EStructuralFeature feature, long referenceOid, int bufferPosition) throws BimserverDatabaseException;
 	void save() throws BimserverDatabaseException;
@@ -25,4 +27,5 @@ public interface VirtualObject extends MinimalVirtualObject {
 	void startList(EStructuralFeature feature);
 	int reserveSpaceForListReference() throws BimserverDatabaseException;
 	void endList();
+	boolean has(String string);
 }
