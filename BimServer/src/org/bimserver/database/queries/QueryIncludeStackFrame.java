@@ -23,6 +23,7 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 	private Iterator<EReference> featureIterator;
 	private Include include;
 	private CanInclude previousInclude;
+	private EReference feature;
 
 	public QueryIncludeStackFrame(QueryObjectProvider queryObjectProvider, QueryContext reusable, CanInclude previousInclude, Include include, HashMapVirtualObject currentObject, QueryPart queryPart) throws QueryException, BimserverDatabaseException {
 		super(reusable, queryObjectProvider, queryPart);
@@ -48,20 +49,24 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean process() throws BimserverDatabaseException, QueryException {
-		EReference feature = featureIterator.next();
+		feature = featureIterator.next();
 		Object value = currentObject.eGet(feature);
 		if (value != null) {
 			if (feature.isMany()) {
 				List<Long> list = (List<Long>)value;
-				for (long refOid : list) {
-					processReference(refOid);
+				for (Object r : list) {
+					if (r instanceof Long) {
+						processReference((Long)r);
+					} else {
+						// ??
+					}
 				}
 			} else {
 				if (value instanceof Long) {
 					long refOid = (Long) value;
 					processReference(refOid);
 				} else if (value instanceof WrappedVirtualObject) {
-					//
+					// ??
 				}
 			}
 		}
@@ -72,7 +77,7 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 	private void processReference(long refOid) {
 		if (outputFilterCids == null || outputFilterCids.contains((short)refOid)) {
 			if (!getQueryObjectProvider().hasRead(refOid)) {
-				getQueryObjectProvider().push(new FollowReferenceStackFrame(getQueryObjectProvider(), refOid, getReusable(), getQueryPart(), previousInclude, include));
+				getQueryObjectProvider().push(new FollowReferenceStackFrame(getQueryObjectProvider(), refOid, getReusable(), getQueryPart(), feature, include));
 			}
 		}
 	}

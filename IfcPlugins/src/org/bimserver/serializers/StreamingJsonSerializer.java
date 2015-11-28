@@ -1,5 +1,6 @@
 package org.bimserver.serializers;
 
+import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.bimserver.BimserverDatabaseException;
@@ -38,5 +39,10 @@ public class StreamingJsonSerializer implements StreamingSerializer {
 		while (result) {
 			result = sharedJsonStreamingSerializer.write(outputStream);
 		}
+	}
+
+	@Override
+	public InputStream getInputStream() {
+		return null;
 	}
 }

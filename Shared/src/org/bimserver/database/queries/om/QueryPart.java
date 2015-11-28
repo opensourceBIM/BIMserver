@@ -139,7 +139,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 	}
 
 	public Include createInclude() {
-		Include include = new Include();
+		Include include = new Include(packageMetaData);
 		addInclude(include);
 		return include;
 	}

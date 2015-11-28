@@ -94,7 +94,7 @@ public class JsonQueryObjectModelConverter {
 			} else {
 				throw new QueryException("\"query\" must be of type object");
 			}
-		} else {
+		} else if (!fullQuery.has("defines")) {
 			parseJsonQuery(query, fullQuery);
 		}
 		return query;
@@ -108,7 +108,7 @@ public class JsonQueryObjectModelConverter {
 			String fieldName = fieldNames.next();
 			JsonNode defineNode = jsonNode.get(fieldName);
 			if (defineNode instanceof ObjectNode) {
-				Include include = new Include();
+				Include include = new Include(packageMetaData);
 				query.addDefine(fieldName, include);
 			} else {
 				throw new QueryException("\"defines\"[" + i + "] must be of type object");
@@ -127,7 +127,7 @@ public class JsonQueryObjectModelConverter {
 	
 	private Include parseInclude(Query query, ObjectNode jsonNode, Include include) throws QueryException {
 		if (include == null) {
-			include = new Include();
+			include = new Include(packageMetaData);
 		}
 		if (!jsonNode.has("type") && !jsonNode.has("types")) {
 			throw new QueryException("includes require a \"type\" or \"types\" field " + jsonNode);
@@ -139,7 +139,7 @@ public class JsonQueryObjectModelConverter {
 				if (eClass == null) {
 					throw new QueryException("Cannot find type \"" + typeNode.asText() + "\"");
 				}
-				include.addType(eClass);
+				include.addType(eClass, false);
 			} else {
 				throw new QueryException("\"type\" field mst be of type string");
 			}
@@ -155,7 +155,7 @@ public class JsonQueryObjectModelConverter {
 					JsonNode typeNode = types.get(i);
 					if (typeNode.isTextual()) {
 						EClass eClass = packageMetaData.getEClass(typeNode.asText());
-						include.addType(eClass);
+						include.addType(eClass, false);
 					} else {
 						throw new QueryException("\"types\"[" + i + "] field mst be of type string");
 					}
@@ -235,6 +235,33 @@ public class JsonQueryObjectModelConverter {
 		return include;
 	}
 
+	public Include getDefineFromFile(String includeName) throws QueryException {
+		String namespaceString = includeName.substring(0, includeName.indexOf(":"));
+		String singleIncludeName = includeName.substring(includeName.indexOf(":") + 1);
+		URL resource = getClass().getResource("../json/" + namespaceString + ".json");
+		if (resource == null) {
+			throw new QueryException("Could not find '" + namespaceString + "' namespace in predefined queries");
+		}
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+		try {
+			ObjectNode predefinedQuery = objectMapper.readValue(resource, ObjectNode.class);
+			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
+			Query namespace = converter.parseJson(includeName, predefinedQuery);
+			Include define2 = namespace.getDefine(singleIncludeName);
+			if (define2 == null) {
+				throw new QueryException("Could not find '" + singleIncludeName + "' in defines in namespace " + namespace.getName());
+			}
+			return define2;
+		} catch (JsonParseException e) {
+			throw new QueryException(e);
+		} catch (JsonMappingException e) {
+			throw new QueryException(e);
+		} catch (IOException e) {
+			throw new QueryException(e);
+		}
+	}
+	
 	private void processSubInclude(Query query, CanInclude parentInclude, JsonNode includeNode) throws QueryException {
 		if (includeNode instanceof ObjectNode) {
 			ObjectNode innerInclude = (ObjectNode)includeNode;
@@ -242,30 +269,7 @@ public class JsonQueryObjectModelConverter {
 		} else if (includeNode.isTextual()) {
 			String includeName = includeNode.asText();
 			if (includeName.contains(":")) {
-				String namespaceString = includeName.substring(0, includeName.indexOf(":"));
-				String singleIncludeName = includeName.substring(includeName.indexOf(":") + 1);
-				URL resource = getClass().getResource("../json/" + namespaceString + ".json");
-				if (resource == null) {
-					throw new QueryException("Could not find '" + namespaceString + "' namespace in predefined queries");
-				}
-				ObjectMapper objectMapper = new ObjectMapper();
-				objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-				try {
-					ObjectNode predefinedQuery = objectMapper.readValue(resource, ObjectNode.class);
-					JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
-					Query namespace = converter.parseJson(includeName, predefinedQuery);
-					Include define2 = namespace.getDefine(singleIncludeName);
-					if (define2 == null) {
-						throw new QueryException("Could not find '" + singleIncludeName + "' in defines in namespace " + namespace.getName());
-					}
-					parentInclude.addInclude(define2);
-				} catch (JsonParseException e) {
-					throw new QueryException(e);
-				} catch (JsonMappingException e) {
-					throw new QueryException(e);
-				} catch (IOException e) {
-					throw new QueryException(e);
-				}
+				parentInclude.addInclude(getDefineFromFile(includeName));
 			} else {
 				Include otherInclude = query.getDefine(includeName);
 				if (otherInclude == null) {
@@ -416,7 +420,7 @@ public class JsonQueryObjectModelConverter {
 		Iterator<String> fieldNames = objectNode.fieldNames();
 		while (fieldNames.hasNext()) {
 			String fieldName = fieldNames.next();
-			if (fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes")) {
+			if (fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes") || fieldName.equals("includeAllSubtypes")) {
 				// fine
 			} else {
 				throw new QueryException("Unknown field: \"" + fieldName + "\"");

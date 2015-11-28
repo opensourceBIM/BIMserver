@@ -65,6 +65,7 @@ public class ClashDetector {
 	private List<IfcProduct> products;
 	private static final Set<Combination> combinationToIgnore = new HashSet<>();
 	private static final Set<String> typesToOnlyCheckWithOwnType = new HashSet<>();
+	private float epsilon;
 
 	static {
 		typesToOnlyCheckWithOwnType.add("IfcSpace");
@@ -84,8 +85,9 @@ public class ClashDetector {
 		combinationToIgnore.add(new Combination("IfcOpeningElement", "IfcDoor"));
 	}
 	
-	public ClashDetector(List<IfcProduct> products) {
+	public ClashDetector(List<IfcProduct> products, float epsilon) {
 		this.products = products;
+		this.epsilon = epsilon;
 	}
 
 	public List<Clash> findClashes() {
@@ -101,10 +103,8 @@ public class ClashDetector {
 						if (geometryInfo2 != null) {
 							if (boundingBoxesClash(geometryInfo1, geometryInfo2)) {
 								if (trianglesClash(geometryInfo1, geometryInfo2)) {
-									if (ifcProduct1.eClass().getName().equals("IfcStair") || ifcProduct2.eClass().getName().equals("IfcStair")) {
-										clashes.add(new Clash(ifcProduct1, ifcProduct2));
-										System.out.println(ifcProduct1.eClass().getName() + " / " + ifcProduct2.eClass().getName());
-									}
+									clashes.add(new Clash(ifcProduct1, ifcProduct2));
+									System.out.println(ifcProduct1.eClass().getName() + " / " + ifcProduct2.eClass().getName());
 								}
 							}
 						}
@@ -154,7 +154,7 @@ public class ClashDetector {
 			Triangle triangle = new Triangle(indices1, vertices1, i, transformationArray1);
 			for (int j=0; j<indices2.capacity(); j+=3) {
 				Triangle triangle2 = new Triangle(indices2, vertices2, j, transformationArray2);
-				if (triangle.intersects(triangle2)) {
+				if (triangle.intersects(triangle2, epsilon)) {
 					return true;
 				}
 			}

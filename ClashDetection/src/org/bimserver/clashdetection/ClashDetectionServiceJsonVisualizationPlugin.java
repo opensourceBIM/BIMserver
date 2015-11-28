@@ -26,7 +26,7 @@ public class ClashDetectionServiceJsonVisualizationPlugin extends AbstractAddExt
 	public void newRevision(RunningService runningService, BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws Exception {
 		SProject project = bimServerClientInterface.getBimsie1ServiceInterface().getProjectByPoid(poid);
 		IfcModelInterface model = bimServerClientInterface.getModel(project, roid, true, false, true);
-		ClashDetector clashDetector = new ClashDetector(model.getAllWithSubTypes(IfcProduct.class));
+		ClashDetector clashDetector = new ClashDetector(model.getAllWithSubTypes(IfcProduct.class), 0.0000000001f);
 		List<Clash> clashes = clashDetector.findClashes();
 		
 		ObjectMapper objectMapper = new ObjectMapper();

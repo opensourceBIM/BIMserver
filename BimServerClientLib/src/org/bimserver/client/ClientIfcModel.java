@@ -307,7 +307,7 @@ public class ClientIfcModel extends IfcModel {
 			EClass geometryInfoClass = getPackageMetaData().getEClassIncludingDependencies("GeometryInfo");
 			queryPart.addType(geometryInfoClass, false);
 			Include include = queryPart.createInclude();
-			include.addType(geometryInfoClass);
+			include.addType(geometryInfoClass, false);
 			include.addField("data");
 			
 			for (IfcProduct ifcProduct : getAllWithSubTypes(IfcProduct.class)) {

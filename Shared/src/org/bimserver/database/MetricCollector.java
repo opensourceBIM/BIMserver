@@ -1,4 +1,4 @@
-package org.bimserver.ifc.step.deserializer;
+package org.bimserver.database;
 
 public class MetricCollector {
 

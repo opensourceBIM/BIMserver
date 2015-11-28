@@ -11,29 +11,34 @@ import org.bimserver.geometry.Matrix;
  * 
  */
 public class Triangle {
-	private float[] vertex1;
-	private float[] vertex2;
-	private float[] vertex3;
+	private double[] vertex1;
+	private double[] vertex2;
+	private double[] vertex3;
 	
-	private static final boolean useEpsilonTest = true;
-	private static final float epsilon = 1f; 
-
 	public Triangle(IntBuffer indices, FloatBuffer vertices, int i, float[] transformation) {
-		int index1 = indices.get(i);
-		int index2 = indices.get(i + 1);
-		int index3 = indices.get(i + 2);
+		int index1 = indices.get(i) * 3;
+		int index2 = indices.get(i + 1) * 3;
+		int index3 = indices.get(i + 2) * 3;
 
-		vertex1 = Matrix.multiplyV(transformation, new float[]{vertices.get(index1 * 3), vertices.get(index1 * 3 + 1), vertices.get(index1 * 3 + 2)});
-		vertex2 = Matrix.multiplyV(transformation, new float[]{vertices.get(index2 * 3), vertices.get(index2 * 3 + 1), vertices.get(index2 * 3 + 2)});
-		vertex3 = Matrix.multiplyV(transformation, new float[]{vertices.get(index3 * 3), vertices.get(index3 * 3 + 1), vertices.get(index3 * 3 + 2)});
+		vertex1 = ftd(Matrix.multiplyV(transformation, new float[]{vertices.get(index1), vertices.get(index1 + 1), vertices.get(index1 + 2)}));
+		vertex2 = ftd(Matrix.multiplyV(transformation, new float[]{vertices.get(index2), vertices.get(index2 + 1), vertices.get(index2 + 2)}));
+		vertex3 = ftd(Matrix.multiplyV(transformation, new float[]{vertices.get(index3), vertices.get(index3 + 1), vertices.get(index3 + 2)}));
 	}
 	
-	public float[] NEWCOMPUTE_INTERVALS(float VV0, float VV1, float VV2, float D0, float D1, float D2, float D0D1, float D0D2) {
-		float A;
-		float B;
-		float C;
-		float X0;
-		float X1;
+	public double[] ftd(float[] f) {
+		double[] r = new double[3];
+		r[0] = f[0];
+		r[1] = f[1];
+		r[2] = f[2];
+		return r;
+	}
+	
+	public double[] NEWCOMPUTE_INTERVALS(double VV0, double VV1, double VV2, double D0, double D1, double D2, double D0D1, double D0D2) {
+		double A;
+		double B;
+		double C;
+		double X0;
+		double X1;
         if(D0D1>0.0f) 
         { 
                 /* here we know that D0D2<=0.0 */ 
@@ -63,11 +68,11 @@ public class Triangle {
                 /* triangles are coplanar */
                 return null;
         } 
-        return new float[]{A, B, C, X0, X1};
+        return new double[]{A, B, C, X0, X1};
 	}
 
-	private boolean POINT_IN_TRI(float V0[], float U0[], float U1[], float U2[], int i0, int i1) {                                           
-	  float a,b,c,d0,d1,d2;                     
+	private boolean POINT_IN_TRI(double V0[], double U0[], double U1[], double U2[], int i0, int i1) {                                           
+	  double a,b,c,d0,d1,d2;                     
 	  /* is T1 completly inside T2? */          
 	  /* check if V0 is inside tri(U0,U1,U2) */ 
 	  a=U1[i1]-U0[i1];                          
@@ -91,8 +96,8 @@ public class Triangle {
 	  return false;
 	}
 	
-	public boolean coplanar_tri_tri(float N[], float V0[], float V1[], float V2[], float U0[], float U1[], float U2[]) {
-		float A[] = new float[3];
+	public int coplanar_tri_tri(double N[], double V0[], double V1[], double V2[], double U0[], double U1[], double U2[]) {
+		double A[] = new double[3];
 		short i0,i1;
 		/* first project onto an axis-aligned plane, that maximizes the area */
 		/* of the triangles, compute indices: i0,i1. */
@@ -129,27 +134,27 @@ public class Triangle {
 		/* test all edges of triangle 1 against the edges of triangle 2 */
 		
 		if (EDGE_AGAINST_TRI_EDGES(V0,V1,U0,U1,U2, i0, i1)) {
-			return true;
+			return 1;
 		}
 		if (EDGE_AGAINST_TRI_EDGES(V1,V2,U0,U1,U2, i0, i1)) {
-			return true;
+			return 1;
 		}
 		if (EDGE_AGAINST_TRI_EDGES(V2,V0,U0,U1,U2, i0, i1)) {
-			return true;
+			return 1;
 		}
 		
 		/* finally, test if tri1 is totally contained in tri2 or vice versa */
 		if (POINT_IN_TRI(V0,U0,U1,U2, i0, i1)) {
-			return true;
+			return 1;
 		}
 		if (POINT_IN_TRI(U0,V0,V1,V2, i0, i1)) {
-			return true;
+			return 1;
 		}
 		
-		return false;
+		return 0;
 	}
 	
-	private boolean EDGE_EDGE_TEST(float V0[], float U0[], float U1[], int i0, int i1, double Ax, double Ay) {
+	private boolean EDGE_EDGE_TEST(double V0[], double U0[], double U1[], int i0, int i1, double Ax, double Ay) {
 	 double Bx,By,Cx,Cy,e,d,f;
 	  Bx=U0[i0]-U1[i0];                                   
 	  By=U0[i1]-U1[i1];                                   
@@ -172,7 +177,7 @@ public class Triangle {
 	  return false;
 	}
 	  
-	 private boolean EDGE_AGAINST_TRI_EDGES(float[] V0, float[] V1, float[] U0, float[] U1, float[] U2, int i0, int i1) 
+	 private boolean EDGE_AGAINST_TRI_EDGES(double[] V0, double[] V1, double[] U0, double[] U1, double[] U2, int i0, int i1) 
 	  {                                              
 	    double Ax,Ay;               
 	    Ax=V1[i0]-V0[i0];                            
@@ -191,23 +196,169 @@ public class Triangle {
 	    }
 	    return false;
 	  }
-	  
-	public boolean intersects(Triangle triangle2) {
-		float []E1 = new float[3];
-		float []E2 = new float[3];
-		float []N1 = new float[3];
-		float []N2 = new float[3];
-		float d1;
-		float d2;
-		float du0,du1,du2,dv0,dv1,dv2;
-		float []D = new float[3];
-		float []isect1 = new float[2];
-		float []isect2 = new float[2];
-		float du0du1,du0du2,dv0dv1,dv0dv2;
+	 
+//	 public void myVmV(double[] g, double[] v2, double[] v1) {
+//	 	g[0] = v2[0]-v1[0];
+//	 	g[1] = v2[1]-v1[1];
+//	 	g[2] = v2[2]-v1[2];
+//	}
+//	 
+//	 public void myVpV(double[]g, double[]v2, double[] v1) {
+//	 	g[0] = v2[0]+v1[0];
+//	 	g[1] = v2[1]+v1[1];
+//	 	g[2] = v2[2]+v1[2];
+//	 }
+//	 
+//	 public void sVpsV_2( double[] Vr, double s1,  double[] V1, double s2, double[]V2) {
+//	  Vr[0] = s1*V1[0] + s2*V2[0];
+//	  Vr[1] = s1*V1[1] + s2*V2[1];
+//	}
+//	 
+//	 public int tr_tri_intersect3D (double[] C1, double[] P1, double[] P2, double[] D1, double[] Q1, double[] Q2) {
+//		double t[] = new double[3];
+//		double p1[] = new double[3];
+//		double p2[] = new double[3];
+//		double r[] = new double[3];
+//		double r4[] = new double[3];
+//		double beta1, beta2, beta3;
+//		double gama1, gama2, gama3;
+//		double det1, det2, det3;
+//		double dp0, dp1, dp2;
+//		double dq1,dq2,dq3,dr, dr3;
+//		double alpha1, alpha2;
+//		boolean alpha1_legal, alpha2_legal;
+//		double  SF = 0.0;
+//		boolean beta1_legal, beta2_legal;
+//				
+//		myVmV(r,D1,C1);
+//		// determinant computation	
+//		dp0 = P1[1]*P2[2]-P2[1]*P1[2];
+//		dp1 = P1[0]*P2[2]-P2[0]*P1[2];
+//		dp2 = P1[0]*P2[1]-P2[0]*P1[1];
+//		dq1 = Q1[0]*dp0 - Q1[1]*dp1 + Q1[2]*dp2;
+//		dq2 = Q2[0]*dp0 - Q2[1]*dp1 + Q2[2]*dp2;
+//		dr  = -r[0]*dp0  + r[1]*dp1  - r[2]*dp2;
+//
+//		
+//		
+//		beta1 = dr*dq2;  // beta1, beta2 are scaled so that beta_i=beta_i*dq1*dq2
+//		beta2 = dr*dq1;
+//		beta1_legal = (beta2>=0) && (beta2 <=dq1*dq1) && (dq1 != 0);
+//		beta2_legal = (beta1>=0) && (beta1 <=dq2*dq2) && (dq2 != 0);
+//			
+//		dq3=dq2-dq1;
+//		dr3=+dr-dq1;   // actually this is -dr3
+//		
+//
+//		if ((dq1 == 0) && (dq2 == 0))
+//		{
+//			if (dr!=0) return 0;  // triangles are on parallel planes
+//			else
+//			{						// triangles are on the same plane
+//				double C2[] = new double[3];
+//				double C3[] = new double[3];
+//				double D2[] = new double[3];
+//				double D3[] = new double[3];
+//				double N1[] = new double[3];
+//				// We use the coplanar test of Moller which takes the 6 vertices and 2 normals  
+//				//as input.
+//				myVpV(C2,C1,P1);
+//				myVpV(C3,C1,P2);
+//				myVpV(D2,D1,Q1);
+//				myVpV(D3,D1,Q2);
+//				N1 = Vector.crossProduct(P1,P2);
+//				return coplanar_tri_tri(N1,C1, C2,C3,D1,D2,D3);
+//			}
+//		}
+//
+//		else if (!beta2_legal && !beta1_legal) return 0;// fast reject-all vertices are on
+//														// the same side of the triangle plane
+//
+//		else if (beta2_legal && beta1_legal)    //beta1, beta2
+//		{
+//			SF = dq1*dq2;
+//			sVpsV_2(t,beta2,Q2, (-beta1),Q1);
+//		}
+//		
+//		else if (beta1_legal && !beta2_legal)   //beta1, beta3
+//		{
+//			SF = dq1*dq3;
+//			beta1 =beta1-beta2;   // all betas are multiplied by a positive SF
+//			beta3 =dr3*dq1;
+//			sVpsV_2(t,(SF-beta3-beta1),Q1,beta3,Q2);
+//		}
+//		
+//		else if (beta2_legal && !beta1_legal) //beta2, beta3
+//		{
+//			SF = dq2*dq3;
+//			beta2 =beta1-beta2;   // all betas are multiplied by a positive SF
+//			beta3 =dr3*dq2;
+//			sVpsV_2(t,(SF-beta3),Q1,(beta3-beta2),Q2);
+//			Q1=Q2;
+//			beta1=beta2;
+//		}
+//		sVpsV_2(r4,SF,r,beta1,Q1);
+//		
+//		
+//		
+//		
+//		
+////		seg_collide3(t,r4);  // calculates the 2D intersection
+//		
+//		{
+//			double[] q = t;
+//			double[] r2 = r4;
+//			
+//			p1[0]=SF*P1[0];
+//			p1[1]=SF*P1[1];
+//			p2[0]=SF*P2[0];
+//			p2[1]=SF*P2[1];
+//			det1 = p1[0]*q[1]-q[0]*p1[1];
+//			gama1 = (p1[0]*r2[1]-r2[0]*p1[1])*det1;
+//			alpha1 = (r2[0]*q[1] - q[0]*r2[1])*det1;
+//			alpha1_legal = (alpha1>=0) && (alpha1<=(det1*det1)  && (det1!=0));
+//			det2 = p2[0]*q[1] - q[0]*p2[1];
+//			alpha2 = (r2[0]*q[1] - q[0]*r2[1]) *det2;
+//			gama2 = (p2[0]*r2[1] - r2[0]*p2[1]) * det2;
+//			alpha2_legal = (alpha2>=0) && (alpha2<=(det2*det2) && (det2 !=0));
+//			det3=det2-det1;
+//			gama3=((p2[0]-p1[0])*(r2[1]-p1[1]) - (r2[0]-p1[0])*(p2[1]-p1[1]))*det3;
+//			if (alpha1_legal)
+//			{
+//				if (alpha2_legal)
+//				{
+//					if ( ((gama1<=0) && (gama1>=-(det1*det1))) || ((gama2<=0) && (gama2>=-(det2*det2))) || (gama1*gama2<0)) return 12;
+//				}
+//				else
+//				{
+//					if ( ((gama1<=0) && (gama1>=-(det1*det1))) || ((gama3<=0) && (gama3>=-(det3*det3))) || (gama1*gama3<0)) return 13;
+//				}
+//			}
+//			else
+//				if (alpha2_legal)
+//				{
+//					if ( ((gama2<=0) && (gama2>=-(det2*det2))) || ((gama3<=0) && (gama3>=-(det3*det3))) || (gama2*gama3<0)) return 23;
+//				}
+//			return 0;
+//		}
+//	}
+
+	public boolean intersects(Triangle triangle2, double epsilon) {
+		double []E1 = new double[3];
+		double []E2 = new double[3];
+		double []N1 = new double[3];
+		double []N2 = new double[3];
+		double d1;
+		double d2;
+		double du0,du1,du2,dv0,dv1,dv2;
+		double []D = new double[3];
+		double []isect1 = new double[2];
+		double []isect2 = new double[2];
+		double du0du1,du0du2,dv0dv1,dv0dv2;
 		short index;
-		float vp0,vp1,vp2;
-		float up0,up1,up2;
-		float bb,cc,max;
+		double vp0,vp1,vp2;
+		double up0,up1,up2;
+		double bb,cc,max;
 		
 		/* compute plane equation of triangle(V0,V1,V2) */
 		E1 = Vector.minus(vertex2, vertex1);
@@ -221,16 +372,14 @@ public class Triangle {
 		du1 = Vector.dot(N1, triangle2.vertex2) + d1;
 		du2 = Vector.dot(N1, triangle2.vertex3) + d1;
 		
-		if (useEpsilonTest) {
-			if(Math.abs(du0)<epsilon) du0=0.0f;
-			if(Math.abs(du1)<epsilon) du1=0.0f;
-			if(Math.abs(du2)<epsilon) du2=0.0f;
-		}
+		if(Math.abs(du0)<epsilon) du0=0.0;
+		if(Math.abs(du1)<epsilon) du1=0.0;
+		if(Math.abs(du2)<epsilon) du2=0.0;
 
 		du0du1=du0*du1;
 		du0du2=du0*du2;
 		
-		if(du0du1>0.0f && du0du2>0.0f) /* same sign on all of them + not equal 0 ? */
+		if(du0du1>0.0 && du0du2>0.0) /* same sign on all of them + not equal 0 ? */
 		return false;                    /* no intersection occurs */
 		
 		/* compute plane of triangle (U0,U1,U2) */
@@ -245,26 +394,24 @@ public class Triangle {
 		dv1 = Vector.dot(N2, vertex2) + d2;
 		dv2 = Vector.dot(N2, vertex3) + d2;
 		
-		if (useEpsilonTest) {
-			if(Math.abs(dv0)<epsilon) dv0=0.0f;
-			if(Math.abs(dv1)<epsilon) dv1=0.0f;
-			if(Math.abs(dv2)<epsilon) dv2=0.0f;
-		}
+		if(Math.abs(dv0)<epsilon) dv0=0.0;
+		if(Math.abs(dv1)<epsilon) dv1=0.0;
+		if(Math.abs(dv2)<epsilon) dv2=0.0;
 		
 		dv0dv1=dv0*dv1;
 		dv0dv2=dv0*dv2;
 		
-		if(dv0dv1>0.0f && dv0dv2>0.0f) /* same sign on all of them + not equal 0 ? */
+		if(dv0dv1>0.0 && dv0dv2>0.0) /* same sign on all of them + not equal 0 ? */
 		return false;                    /* no intersection occurs */
 		
 		/* compute direction of intersection line */
 		D = Vector.crossProduct(N1, N2);
 		
 		/* compute and index to the largest component of D */
-		max=(float)Math.abs(D[0]);
+		max=(double)Math.abs(D[0]);
 		index=0;
-		bb=(float)Math.abs(D[1]);
-		cc=(float)Math.abs(D[2]);
+		bb=(double)Math.abs(D[1]);
+		cc=(double)Math.abs(D[2]);
 		if(bb>max) { max=bb; index=1;}
 		if(cc>max) { max=cc; index=2;};
 		
@@ -278,34 +425,28 @@ public class Triangle {
 		up2=triangle2.vertex3[index];
 		
 		/* compute interval for triangle 1 */
-		float[] nci1 = NEWCOMPUTE_INTERVALS(vp0,vp1,vp2,dv0,dv1,dv2,dv0dv1,dv0dv2);
+		double[] nci1 = NEWCOMPUTE_INTERVALS(vp0,vp1,vp2,dv0,dv1,dv2,dv0dv1,dv0dv2);
 		if (nci1 == null) {
-            if (coplanar_tri_tri(N1,vertex1,vertex2,vertex3,triangle2.vertex1,triangle2.vertex2,triangle2.vertex3)) {
-            	return true;
-            }
-            return false;
+           return coplanar_tri_tri(N1,vertex1,vertex2,vertex3,triangle2.vertex1,triangle2.vertex2,triangle2.vertex3) == 1;
 		}
-		float a = nci1[0];
-		float b = nci1[1];
-		float c = nci1[2];
-		float x0 = nci1[3];
-		float x1 = nci1[4];
+		double a = nci1[0];
+		double b = nci1[1];
+		double c = nci1[2];
+		double x0 = nci1[3];
+		double x1 = nci1[4];
 		
 		/* compute interval for triangle 2 */
-		float[] nci2 = NEWCOMPUTE_INTERVALS(up0,up1,up2,du0,du1,du2,du0du1,du0du2);
+		double[] nci2 = NEWCOMPUTE_INTERVALS(up0,up1,up2,du0,du1,du2,du0du1,du0du2);
 		if (nci2 == null) {
-            if (coplanar_tri_tri(N1,vertex1,vertex2,vertex3,triangle2.vertex1,triangle2.vertex2,triangle2.vertex3)) {
-            	return true;
-            }
-            return false;
+            return coplanar_tri_tri(N1,vertex1,vertex2,vertex3,triangle2.vertex1,triangle2.vertex2,triangle2.vertex3) == 1;
 		}
-		float d = nci2[0];
-		float e = nci2[1];
-		float f = nci2[2];
-		float y0 = nci2[3];
-		float y1 = nci2[4];
+		double d = nci2[0];
+		double e = nci2[1];
+		double f = nci2[2];
+		double y0 = nci2[3];
+		double y1 = nci2[4];
 		
-		float xx,yy,xxyy,tmp;
+		double xx,yy,xxyy,tmp;
 		xx=x0*x1;
 		yy=y0*y1;
 		xxyy=xx*yy;
@@ -319,12 +460,12 @@ public class Triangle {
 		isect2[1]=tmp+f*xx*y0;
 		
 		if (isect1[0] > isect1[1]) {
-			float x = isect1[0];
+			double x = isect1[0];
 			isect1[0] = isect1[1];
 			isect1[1] = x;
 		}
 		if (isect2[0] > isect2[1]) {
-			float x = isect2[0];
+			double x = isect2[0];
 			isect2[0] = isect2[1];
 			isect2[1] = x;
 		}

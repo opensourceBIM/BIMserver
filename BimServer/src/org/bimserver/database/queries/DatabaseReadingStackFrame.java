@@ -70,11 +70,14 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 				}
 			} else if (canInclude.isIncludeAllFields()) {
 				for (EReference eReference : currentObject.eClass().getEAllReferences()) {
-					Include include = new Include();
-					include.addType(currentObject.eClass());
+					Include include = new Include(reusable.getPackageMetaData());
+					include.addType(currentObject.eClass(), false);
 					include.addField(eReference.getName());
 					processPossibleInclude(canInclude, include);
 				}
+			}
+			if (canInclude instanceof Include) {
+				processPossibleInclude(null, (Include) canInclude);
 			}
 		}
 	}
@@ -106,7 +109,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 						return GetResult.CONTINUE_WITH_NEXT_OID;
 						// deleted entity
 					} else {
-						 currentObject = convertByteArrayToObject(originalQueryClass, eClass, keyOid, buffer, keyRid);
+						 currentObject = convertByteArrayToObject(eClass, keyOid, buffer, keyRid);
 					}
 				}
 				return GetResult.CONTINUE_WITH_NEXT_OID;
@@ -118,7 +121,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		}
 	}
 	
-	protected HashMapVirtualObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, int rid) throws BimserverDatabaseException {
+	protected HashMapVirtualObject convertByteArrayToObject(EClass eClass, long oid, ByteBuffer buffer, int rid) throws BimserverDatabaseException {
 		try {
 			HashMapVirtualObject idEObject = new HashMapVirtualObject(reusable, eClass);
 			idEObject.setOid(oid);
@@ -145,7 +148,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 						} else {
 							Object newValue = null;
 							if (feature.isMany()) {
-								newValue = readList(idEObject, originalQueryClass, buffer, feature);
+								newValue = readList(idEObject, buffer, feature);
 							} else {
 								if (feature.getEType() instanceof EEnum) {
 									int enumOrdinal = buffer.getInt();
@@ -179,7 +182,12 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 										if (referenceClass == null) {
 											throw new BimserverDatabaseException("No eClass found for cid " + cid);
 										}
-										newValue = readReference(originalQueryClass, buffer, feature, referenceClass);
+										newValue = readReference(buffer, feature, referenceClass);
+										if ((Long)newValue != -1) {
+											if (queryObjectProvider.hasReadOrIsGoingToRead(((Long)newValue))) {
+												idEObject.addUseForSerialization(feature);
+											}
+										}
 										// if (eReference.getEOpposite() != null &&
 										// ((IdEObjectImpl)
 										// newValue).isLoadedOrLoading()) {
@@ -212,7 +220,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		}
 	}
 	
-	private long readReference(EClass originalQueryClass, ByteBuffer buffer, EStructuralFeature feature, EClass eClass) throws BimserverDatabaseException {
+	private long readReference(ByteBuffer buffer, EStructuralFeature feature, EClass eClass) throws BimserverDatabaseException {
 		if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 			buffer.position(buffer.position() + 1);
 			return -1;
@@ -289,7 +297,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		}
 	}
 	
-	private Object readList(HashMapVirtualObject idEObject, EClass originalQueryClass, ByteBuffer buffer, EStructuralFeature feature) throws BimserverDatabaseException {
+	private Object readList(HashMapVirtualObject idEObject, ByteBuffer buffer, EStructuralFeature feature) throws BimserverDatabaseException {
 		if (feature.getEType() instanceof EEnum) {
 		} else if (feature.getEType() instanceof EClass) {
 			if (buffer.capacity() == 1 && buffer.get(0) == -1) {
@@ -300,7 +308,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 				for (int i = 0; i < listSize; i++) {
 					if (feature.getEAnnotation("twodimensionalarray") != null) {
 						HashMapVirtualObject newObject = new HashMapVirtualObject(reusable, (EClass) feature.getEType());
-						Object result = readList(newObject, originalQueryClass, buffer, newObject.eClass().getEStructuralFeature("List"));
+						Object result = readList(newObject, buffer, newObject.eClass().getEStructuralFeature("List"));
 						if (result != null) {
 							newObject.setAttribute(newObject.eClass().getEStructuralFeature("List"), result);
 						}
@@ -326,7 +334,13 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 							if (referenceClass == null) {
 								throw new BimserverDatabaseException("Cannot find class with cid " + cid);
 							}
-							idEObject.setListItemReference(feature, i, referenceClass, readReference(originalQueryClass, buffer, feature, referenceClass), -1);
+							long rf = readReference(buffer, feature, referenceClass);
+							idEObject.setListItemReference(feature, i, referenceClass, rf, -1);
+							if (rf != -1) {
+								if (queryObjectProvider.hasReadOrIsGoingToRead((rf))) {
+									idEObject.addUseForSerialization(feature);
+								}
+							}
 						}
 					}
 				}
@@ -372,7 +386,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 					return null;
 					// deleted entity
 				} else {
-					return convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, keyRid);
+					return convertByteArrayToObject(eClass, keyOid, valueBuffer, keyRid);
 				}
 			} else {
 				return null;

@@ -11,15 +11,21 @@ import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.GenerateGeometryResult;
 import org.bimserver.GeometryCache;
+import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.SummaryMap;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.queries.QueryObjectProvider;
+import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.mail.MailSystem;
+import org.bimserver.models.geometry.GeometryInfo;
+import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
@@ -108,10 +114,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			
 			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
 
-			// TODO fix inverse mismatches
 			// TODO checksum
 			// TODO generate geometry
-			// TODO opposites
 			// TODO modelcheckers
 			// TODO test ifc4
 			// TODO store right size
@@ -142,8 +146,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), -1, project, user, comment.trim());
 
 			long newRoid = result.getRevisions().get(0).getOid();
-			QueryContext reusable = new QueryContext(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId(), newRoid, -1); // TODO check
-			long size = deserializer.read(inputStream, fileName, fileSize, reusable);
+			QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId(), newRoid, -1); // TODO check
+			long size = deserializer.read(inputStream, fileName, fileSize, queryContext);
 
 			Set<EClass> eClasses = deserializer.getSummaryMap().keySet();
 			Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
@@ -165,6 +169,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			concreteRevision = result.getConcreteRevision();
 			concreteRevision.setOidCounters(buffer.array());
 
+			int inverseFixes = 0;
 			for (EClass eClass : packageMetaData.getAllEClassesThatHaveInverses()) {
 				Query query = new Query("test", packageMetaData);
 				QueryPart queryPart = query.createQueryPart();
@@ -185,11 +190,14 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 										if (existingList != null) {
 											int currentSize = ((List<?>)existingList).size();
 											referencedObject.setListItemReference(oppositeReference, currentSize + 1, next.eClass(), next.getOid(), 0);
+											inverseFixes++;
 										} else {
 											referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
+											inverseFixes++;
 										}
 									} else {
 										referencedObject.setReference(oppositeReference, next.getOid(), 0);
+										inverseFixes++;
 									}
 									referencedObject.saveOverwrite();
 								}
@@ -202,11 +210,14 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 									if (existingList != null) {
 										int currentSize = ((List<?>)existingList).size();
 										referencedObject.setListItemReference(oppositeReference, currentSize + 1, next.eClass(), next.getOid(), 0);
+										inverseFixes++;
 									} else {
 										referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
+										inverseFixes++;
 									}
 								} else {
 									referencedObject.setReference(oppositeReference, next.getOid(), 0);
+									inverseFixes++;
 								}
 								referencedObject.saveOverwrite();
 							}
@@ -215,6 +226,36 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 					next = queryObjectProvider.next();
 				}
 			}
+			System.out.println("Inverse fixes: " + inverseFixes);
+
+			StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(bimServer);
+			GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext);
+			
+			concreteRevision.setMinBounds(generateGeometry.getMinBounds());
+			concreteRevision.setMaxBounds(generateGeometry.getMaxBounds());
+			
+			eClasses = deserializer.getSummaryMap().keySet();
+			s = 2;
+			for (EClass eClass : eClasses) {
+				if (!DatabaseSession.perRecordVersioning(eClass)) {
+					s++;
+				}
+			}
+			buffer = ByteBuffer.allocate(10 * s);
+			for (EClass eClass : eClasses) {
+				long oid = startOids.get(eClass);
+				if (!DatabaseSession.perRecordVersioning(eClass)) {
+					buffer.putShort(getDatabaseSession().getCid(eClass));
+					buffer.putLong(oid);
+				}
+			}
+			buffer.putShort(getDatabaseSession().getCid(GeometryPackage.eINSTANCE.getGeometryInfo()));
+			buffer.putLong(startOids.get(GeometryPackage.eINSTANCE.getGeometryInfo()));
+			buffer.putShort(getDatabaseSession().getCid(GeometryPackage.eINSTANCE.getGeometryData()));
+			buffer.putLong(startOids.get(GeometryPackage.eINSTANCE.getGeometryData()));
+			
+			concreteRevision = result.getConcreteRevision();
+			concreteRevision.setOidCounters(buffer.array());
 			
 			result.getConcreteRevision().setSize(size);
 			for (Revision revision : result.getRevisions()) {

@@ -6,9 +6,10 @@ import java.util.Map;
 
 import org.bimserver.BimserverDatabaseException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class HashMapWrappedVirtualObject implements WrappedVirtualObject {
+public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject implements WrappedVirtualObject {
 
 	private EClass eClass;
 	private final Map<EStructuralFeature, Object> map = new HashMap<>();
@@ -32,6 +33,12 @@ public class HashMapWrappedVirtualObject implements WrappedVirtualObject {
 	}
 
 	@Override
+	public void set(String name, Object value) throws BimserverDatabaseException {
+		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(name);
+		map.put(eStructuralFeature, value);
+	}
+
+	@Override
 	public ByteBuffer write() throws BimserverDatabaseException {
 		return null;
 	}
@@ -44,5 +51,14 @@ public class HashMapWrappedVirtualObject implements WrappedVirtualObject {
 	@Override
 	public boolean useFeatureForSerialization(EStructuralFeature feature) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public int getSize() {
+		int size = 2;
+		for (EStructuralFeature eStructuralFeature : map.keySet()) {
+			size += getPrimitiveSize((EDataType) eStructuralFeature.getEType(), map.get(eStructuralFeature));
+		}
+		return size;
 	}
 }
