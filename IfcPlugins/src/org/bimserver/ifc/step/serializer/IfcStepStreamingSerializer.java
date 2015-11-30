@@ -336,9 +336,6 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 		print(OPEN_PAREN);
 		boolean isFirst = true;
 		
-		if (object.eClass().getName().toUpperCase().equals("IFCBOOLEANCLIPPINGRESULT")) {
-			System.out.println();
-		}
 		EntityDefinition entityBN = getSchemaDefinition().getEntityBN(object.eClass().getName());
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 			if (feature.getEAnnotation("hidden") == null && (entityBN != null && (!entityBN.isDerived(feature.getName()) || entityBN.isDerivedOverride(feature.getName())))) {
