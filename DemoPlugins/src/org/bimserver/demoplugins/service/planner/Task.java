@@ -4,11 +4,28 @@ public class Task implements Comparable<Task> {
 	private String code;
 	private String description;
 	private String uniqueKey;
+	private int totalOccurances;
+	private int totalOnTime;
+	private int totalNotOnTime;
 
 	public Task(String uniqueKey, String code, String description) {
 		this.uniqueKey = uniqueKey;
 		this.code = code;
 		this.description = description;
+	}
+	
+	public void addOnTime() {
+		totalOccurances++;
+		totalOnTime++;
+	}
+	
+	public void addNotOnTime() {
+		totalOccurances++;
+		totalNotOnTime++;
+	}
+	
+	public void addUnknown() {
+		totalOccurances++;
 	}
 
 	@Override
@@ -52,5 +69,17 @@ public class Task implements Comparable<Task> {
 	
 	public String getDescription() {
 		return description;
+	}
+
+	public int getPercentOnTime() {
+		return (int) (100.0 * totalOnTime / totalOccurances);
+	}
+
+	public int getPercentTooLate() {
+		return (int) (100.0 * totalNotOnTime / totalOccurances);
+	}
+
+	public int getPercentUnknown() {
+		return 100 - (getPercentOnTime() + getPercentTooLate());
 	}
 }

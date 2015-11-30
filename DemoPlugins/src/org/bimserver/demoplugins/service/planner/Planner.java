@@ -22,13 +22,18 @@ public class Planner {
 	
 	private Map<String, Planning> planningsByGuid = new HashMap<>();
 	
-	private Map<String, Planning> planningsByMaterial = new HashMap<>();
+//	private Map<String, Planning> planningsByMaterial = new HashMap<>();
 
 	private Map<String, List<String>> materialToGuid = new HashMap<>();
 	
 	private final Map<String, Task> tasks = new HashMap<>();
+
+	private Set<String> materialAggregators;
+
+	private String materialParameter;
 	
-	public Planner() {
+	public Planner(String materialParameter) {
+		this.materialParameter = materialParameter;
 	}
 	
 	public void feedTrainingData(EventLog eventLog) {
@@ -65,11 +70,13 @@ public class Planner {
 		return planning;
 	}
 	
-	public void analyze() {
+	public void analyze(Set<String> materialAggregators) {
+		this.materialAggregators = materialAggregators;
 		for (Event event : trainingData.getOrderedByStartDate()) {
 			Planning planning = getOrCreatePlanning(event.getGuid());
 			getOrCreateListOfGuid(event.getMaterial()).add(event.getGuid());
-			planning.add(getOrCreateTask(event.getTask(), event.getTaskName()));
+			Task task = getOrCreateTask(event.getTask(), event.getTaskName());
+			planning.add(task);
 		}
 	}
 	
@@ -98,9 +105,7 @@ public class Planner {
 							IfcPropertySingleValue propertyValue = (IfcPropertySingleValue)ifcProperty;
 							if (propertyValue.getNominalValue() instanceof IfcLabel) {
 								IfcLabel label = (IfcLabel)propertyValue.getNominalValue();
-								if (ifcProperty.getName().equals("[ArchiCADProperties]Building Material / Composite / Profile / Fill")) {
-									return label.getWrappedValue();
-								} else if (ifcProperty.getName().equals("Building Material / Composite / Profile / Fill")) {
+								if (ifcProperty.getName().equals(materialParameter)) {
 									return label.getWrappedValue();
 								}
 							}
@@ -111,12 +116,22 @@ public class Planner {
 		}
 		return null;
 	}
+
+	private String getSimlifiedMaterialName(String materialName) {
+		for (String simplified : materialAggregators) {
+			if (!simplified.equals("") && materialName.toLowerCase().contains(simplified.toLowerCase())) {
+				return simplified;
+			}
+		}
+		return materialName;
+	}
 	
 	public Map<String, PlanningAdvice> getSuggestedPlanningsPerMaterial(IfcModelInterface model) {
 		Map<String, PlanningAdvice> result = new HashMap<>();
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 			String material = extractMaterial(ifcProduct);
 			if (material != null) {
+				material = getSimlifiedMaterialName(material);
 				PlanningAdvice planningAdvice = result.get(material);
 				if (planningAdvice == null) {
 					planningAdvice = new PlanningAdvice();

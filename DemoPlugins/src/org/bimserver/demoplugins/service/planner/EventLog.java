@@ -39,11 +39,15 @@ import au.com.bytecode.opencsv.CSVWriter;
 
 public class EventLog implements Iterable<Event> {
 	private final List<Event> events = new ArrayList<>();
+	private String nlsfbPropertyName;
+	private String materialPropertyName;
 
 	public EventLog() {
 	}
 	
-	public EventLog(InputStream inputStream) {
+	public EventLog(InputStream inputStream, String nlsfbPropertyName, String materialPropertyName) {
+		this.nlsfbPropertyName = nlsfbPropertyName;
+		this.materialPropertyName = materialPropertyName;
 		CSVReader reader = new CSVReader(new InputStreamReader(inputStream, Charsets.UTF_8));
 		try {
 			String[] header = reader.readNext();
@@ -81,11 +85,14 @@ public class EventLog implements Iterable<Event> {
 		}
 	}
 
-	public EventLog(IfcModelInterface model) {
+	public EventLog(IfcModelInterface model, String nlsfbPropertyName, String materialPropertyName) {
+		this.nlsfbPropertyName = nlsfbPropertyName;
+		this.materialPropertyName = materialPropertyName;
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 			Event event = new Event();
 			event.setGuid(ifcProduct.getGlobalId());
 			event.setResource(ifcProduct.getName());
+			event.setType(ifcProduct.eClass().getName());
 			
 			for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 				if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
@@ -98,11 +105,9 @@ public class EventLog implements Iterable<Event> {
 								IfcPropertySingleValue propertyValue = (IfcPropertySingleValue)ifcProperty;
 								if (propertyValue.getNominalValue() instanceof IfcLabel) {
 									IfcLabel label = (IfcLabel)propertyValue.getNominalValue();
-									if (ifcProperty.getName().equals("[ArchiCADProperties]Element Classification")) {
-										event.setType(label.getWrappedValue());
-									} else if (ifcProperty.getName().equals("[ArchiCADProperties]Building Material / Composite / Profile / Fill")) {
+									if (ifcProperty.getName().equals(materialPropertyName)) {
 										event.setMaterial(label.getWrappedValue());
-									} else if (ifcProperty.getName().equals("[ArchiCADProperties]Layer")) {
+									} else if (ifcProperty.getName().equals(nlsfbPropertyName)) {
 										event.setNlSfb(label.getWrappedValue());
 									}
 								}

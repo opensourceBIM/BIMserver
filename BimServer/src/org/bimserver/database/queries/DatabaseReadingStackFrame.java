@@ -16,8 +16,8 @@ import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
-import org.bimserver.shared.QueryException;
 import org.bimserver.shared.QueryContext;
+import org.bimserver.shared.QueryException;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -86,7 +86,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		if (include.hasTypes()) {
 			for (EClass filterClass : include.getTypes()) {
 				if (!filterClass.isSuperTypeOf(currentObject.eClass())) {
-					System.out.println(filterClass.getName() + " / " + currentObject.eClass().getName());
+//					System.out.println(filterClass.getName() + " / " + currentObject.eClass().getName());
 					return;
 				}
 			}
