@@ -316,7 +316,7 @@ public class JsonQueryObjectModelConverter {
 		if (objectNode.has("oid")) {
 			JsonNode oidNode = objectNode.get("oid");
 			if (oidNode.isNumber()) {
-				queryPart.addOid(oidNode.asInt());
+				queryPart.addOid(oidNode.asLong());
 			} else {
 				throw new QueryException("\"oid\" must be of type number");
 			}
@@ -328,7 +328,7 @@ public class JsonQueryObjectModelConverter {
 				for (int i=0; i<oids.size(); i++) {
 					JsonNode oidNode = oids.get(i);
 					if (oidNode.isNumber()) {
-						queryPart.addOid(oidNode.asInt());
+						queryPart.addOid(oidNode.asLong());
 					} else {
 						throw new QueryException("\"oids\"[" + i + "] must be of type number");
 					}
