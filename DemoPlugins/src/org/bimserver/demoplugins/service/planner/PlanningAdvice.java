@@ -2,10 +2,13 @@ package org.bimserver.demoplugins.service.planner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
 
 public class PlanningAdvice {
 
@@ -14,11 +17,17 @@ public class PlanningAdvice {
 	private Map<Planning, AtomicInteger> uniquePlannings = new HashMap<>();
 	private List<Planning> plannings = new ArrayList<>();
 	private Map<Planning, Integer> percentages = null;
+	private Set<IfcProduct> relatedProducts = new HashSet<>();
 
-	public void incrementModelCount() {
+	public void incrementModelCount(IfcProduct ifcProduct) {
+		relatedProducts.add(ifcProduct);
 		modelCount++;
 	}
 
+	public Set<IfcProduct> getRelatedProducts() {
+		return relatedProducts;
+	}
+	
 	public void setDatabaseCount(int databaseCount) {
 		this.databaseCount = databaseCount;
 		
