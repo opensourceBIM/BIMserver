@@ -149,7 +149,7 @@ public class Planner {
 					}
 					result.put(material, planningAdvice);
 				}
-				planningAdvice.incrementModelCount();
+				planningAdvice.incrementModelCount(ifcProduct);
 			}
 		}		
 		return result;
