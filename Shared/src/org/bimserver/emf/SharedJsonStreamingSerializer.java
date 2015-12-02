@@ -161,34 +161,40 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 									}
 									boolean f = true;
 									for (Object o : list) {
-										if (!f) {
-											print(",");
+										if (o == null) {
+											LOGGER.info("Unexpeced null in list " + object.eClass().getName() + ":" + object.getOid() + "." + eStructuralFeature.getName());
 										} else {
-											f = false;
-										}
-										if (o instanceof Long) {
-											long ref = (Long)o;
-											if (wrapped != 0 && referred != 0) {
-												// Special
-												// situation,
-												// where we have
-												// to construct
-												// an object
-												// around the
-												// OID to make
-												// it
-												// distinguishable
-												// from embedded
-												// objects
-												print("{");
-												print("\"_i\":");
-												print("" + ref);
-												print("}");
+											if (!f) {
+												print(",");
 											} else {
-												print("" + ref);
+												f = false;
 											}
-										} else if (o instanceof HashMapWrappedVirtualObject) {
-											write((HashMapWrappedVirtualObject) o);
+											if (o instanceof Long) {
+												long ref = (Long)o;
+												if (wrapped != 0 && referred != 0) {
+													// Special
+													// situation,
+													// where we have
+													// to construct
+													// an object
+													// around the
+													// OID to make
+													// it
+													// distinguishable
+													// from embedded
+													// objects
+													print("{");
+													print("\"_i\":");
+													print("" + ref);
+													print("}");
+												} else {
+													print("" + ref);
+												}
+											} else if (o instanceof HashMapWrappedVirtualObject) {
+												write((HashMapWrappedVirtualObject) o);
+											} else {
+												LOGGER.info("Unimplemented " + o);
+											}
 										}
 									}
 									print("]");

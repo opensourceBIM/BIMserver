@@ -92,7 +92,7 @@ public class LongActionManager {
 	public synchronized void remove(long topicId) throws UserException {
 		LongAction<?> longAction = actions.get(topicId);
 		if (longAction != null) {
-			LOGGER.debug("Cleaning up long running action: " + longAction.getDescription() + " (" + longAction.getProgressTopic().getKey().getId() + ")");
+			LOGGER.info("Cleaning up long running action: " + longAction.getDescription() + " (" + longAction.getProgressTopic().getKey().getId() + ")");
 			longAction.stop();
 			actions.remove(topicId);
 		} else {

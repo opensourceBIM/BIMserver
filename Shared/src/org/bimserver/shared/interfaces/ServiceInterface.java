@@ -82,6 +82,34 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
+	 * Start uploading a new model, the main reason for this call is to get a TopicID, which you can use to get progress updates
+	 * 
+	 * @param poid ProjectID of the project you want to upload to
+	 * @param comment Comment of this checkin
+	 * @param deserializerOid Deserializer OID
+	 * @return
+	 * @throws ServerException
+	 * @throws UserException
+	 */
+	@WebMethod(action = "initiateCheckin")
+	Long initiateCheckin(
+		@WebParam(name = "poid", partName = "initiateCheckin.poid") Long poid,
+		@WebParam(name = "deserializerOid", partName = "initiateCheckin.deserializerOid") Long deserializerOid) throws ServerException, UserException;
+
+	@WebMethod(action = "checkinInitiated")
+	Long checkinInitiated(
+		@WebParam(name = "topicId", partName = "checkinInitiated.topicId") Long topicId,
+		@WebParam(name = "poid", partName = "checkinInitiated.poid") Long poid,
+		@WebParam(name = "comment", partName = "checkinInitiated.comment") String comment,
+		@WebParam(name = "deserializerOid", partName = "checkinInitiated.deserializerOid") Long deserializerOid,
+		@WebParam(name = "fileSize", partName = "checkinInitiated.fileSize") Long fileSize,
+		@WebParam(name = "fileName", partName = "checkinInitiated.fileName") String fileName,
+		@WebParam(name = "data", partName = "checkinInitiated.data") @XmlMimeType("application/octet-stream") DataHandler data,
+		@WebParam(name = "merge", partName = "checkinInitiated.merge") Boolean merge,
+		@WebParam(name = "sync", partName = "checkinInitiated.sync") Boolean sync) throws ServerException, UserException;
+
+	
+	/**
 	 * Checkin a new model by sending a serialized form
 	 * 
 	 * @param poid The Project's ObjectID
@@ -845,7 +873,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "cleanupLongAction")
 	void cleanupLongAction(
-		@WebParam(name = "actionId", partName = "cleanupLongAction.actionId") Long actionId) throws UserException, ServerException;
+		@WebParam(name = "topicId", partName = "cleanupLongAction.topicId") Long topicId) throws UserException, ServerException;
 	
 	/**
 	 * Get the user settings of the current user

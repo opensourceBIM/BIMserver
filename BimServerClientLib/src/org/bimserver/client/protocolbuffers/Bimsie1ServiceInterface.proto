@@ -107,6 +107,8 @@ service Bimsie1ServiceInterface {
 
 	rpc getSuggestedDeserializerForExtension (GetSuggestedDeserializerForExtensionRequest) returns (GetSuggestedDeserializerForExtensionResponse);
 
+	rpc initiateCheckin (InitiateCheckinRequest) returns (InitiateCheckinResponse);
+
 	rpc terminateLongRunningAction (TerminateLongRunningActionRequest) returns (VoidResponse);
 
 	rpc undeleteProject (UndeleteProjectRequest) returns (UndeleteProjectResponse);

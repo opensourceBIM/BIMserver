@@ -401,9 +401,6 @@ public class PackageMetaData implements ObjectFactory {
 	private synchronized Set<EStructuralFeature> buildUseForSerializationSet(EClass eClass) {
 		if (this.getSchemaDefinition() != null) {
 			if (!useForSerialization.containsKey(eClass)) {
-				if (eClass.getName().equals("IfcAxis2Placement3D")) {
-					System.out.println();
-				}
 				HashSet<EStructuralFeature> set = new HashSet<>();
 				for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 					EntityDefinition entityBN = this.getSchemaDefinition().getEntityBN(eClass.getName());
@@ -610,6 +607,7 @@ public class PackageMetaData implements ObjectFactory {
 	}
 	
 	public Set<EClass> getAllEClassesThatHaveInverses() {
+		// TODO cache
 		Set<EClass> result = new HashSet<>();
 		for (EClassifier eClassifier : getEPackage().getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
@@ -626,6 +624,7 @@ public class PackageMetaData implements ObjectFactory {
 	}
 
 	public Set<EReference> getAllInverseReferences(EClass eClass) {
+		// TODO cache
 		Set<EReference> result = new HashSet<>();
 		for (EReference eReference : eClass.getEAllReferences()) {
 			if (isInverse(eReference)) {
@@ -636,6 +635,7 @@ public class PackageMetaData implements ObjectFactory {
 	}
 
 	public Set<EReference> getAllHasInverseReferences(EClass eClass) {
+		// TODO cache
 		Set<EReference> result = new HashSet<>();
 		for (EReference eReference : eClass.getEAllReferences()) {
 			if (hasInverse(eReference)) {

@@ -1,6 +1,5 @@
 package org.bimserver.database.actions;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

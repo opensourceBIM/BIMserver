@@ -35,13 +35,21 @@ public class LongStreamingCheckinAction extends LongAction<LongCheckinActionKey>
 	private StreamingCheckinDatabaseAction checkinDatabaseAction;
 	private String fileName;
 
-	public LongStreamingCheckinAction(BimServer bimServer, String username, String userUsername, Authorization authorization, StreamingCheckinDatabaseAction checkinDatabaseAction) {
+	public LongStreamingCheckinAction(Long topicId, BimServer bimServer, String username, String userUsername, Authorization authorization, StreamingCheckinDatabaseAction checkinDatabaseAction) {
 		super(bimServer, username, userUsername, authorization);
 		this.checkinDatabaseAction = checkinDatabaseAction;
 		this.fileName = checkinDatabaseAction.getFileName();
-		
-		setProgressTopic(bimServer.getNotificationsManager().createProgressOnProjectTopic(authorization.getUoid(), checkinDatabaseAction.getPoid(), SProgressTopicType.UPLOAD, "Checkin"));
+
+		if (topicId != -1) {
+			setProgressTopic(bimServer.getNotificationsManager().getProgressTopic(topicId));
+		} else {
+			setProgressTopic(bimServer.getNotificationsManager().createProgressOnProjectTopic(authorization.getUoid(), checkinDatabaseAction.getPoid(), SProgressTopicType.UPLOAD, "Checkin"));
+		}
 		checkinDatabaseAction.addProgressListener(this);
+	}
+
+	public LongStreamingCheckinAction(BimServer bimServer, String username, String userUsername, Authorization authorization, StreamingCheckinDatabaseAction checkinDatabaseAction) {
+		this(-1L, bimServer, username, userUsername, authorization, checkinDatabaseAction);
 	}
 
 	public void execute() {

@@ -5,27 +5,26 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.http.client.params.AllClientPNames;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GenerateGeometryResult;
-import org.bimserver.GeometryCache;
 import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.SummaryMap;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.queries.QueryObjectProvider;
-import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.mail.MailSystem;
-import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.GeometryPackage;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
@@ -55,25 +54,22 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	private static final Logger LOGGER = LoggerFactory.getLogger(StreamingCheckinDatabaseAction.class);
 	private final String comment;
 	private final long poid;
-	private final boolean merge;
 	private final BimServer bimServer;
 	private ConcreteRevision concreteRevision;
 	private Project project;
 	private Authorization authorization;
-	private final GeometryCache geometryCache = new GeometryCache();
 	private String fileName;
 	private long fileSize;
 	private InputStream inputStream;
 	private StreamingDeserializer deserializer;
 
-	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, boolean merge, InputStream inputStream, StreamingDeserializer deserializer) {
+	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.poid = poid;
 		this.authorization = authorization;
 		this.comment = comment;
 		this.fileName = fileName;
-		this.merge = merge;
 		this.inputStream = inputStream;
 		this.deserializer = deserializer;
 	}
@@ -151,6 +147,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 
 			Set<EClass> eClasses = deserializer.getSummaryMap().keySet();
 			Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
+			Map<EClass, Long> oidCounters = new HashMap<>();
 			int s = 0;
 			for (EClass eClass : eClasses) {
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
@@ -161,28 +158,66 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			for (EClass eClass : eClasses) {
 				long oid = startOids.get(eClass);
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
+					oidCounters.put(eClass, oid);
 					buffer.putShort(getDatabaseSession().getCid(eClass));
 					buffer.putLong(oid);
 				}
 			}
 			
+			queryContext.setOidCounters(oidCounters);
+			
 			concreteRevision = result.getConcreteRevision();
 			concreteRevision.setOidCounters(buffer.array());
 
+			setProgress("Generating inverses/opposites", 0);
 			int inverseFixes = 0;
-			for (EClass eClass : packageMetaData.getAllEClassesThatHaveInverses()) {
-				Query query = new Query("test", packageMetaData);
-				QueryPart queryPart = query.createQueryPart();
-				queryPart.addType(eClass, true);
-				QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), bimServer, query, Collections.singleton(newRoid), packageMetaData);
-				HashMapVirtualObject next = queryObjectProvider.next();
-				while (next != null) {
-					for (EReference eReference : packageMetaData.getAllHasInverseReferences(eClass)) {
-						Object reference = next.eGet(eReference);
-						if (reference != null) {
-							if (eReference.isMany()) {
-								List<Long> references = (List<Long>)reference;
-								for (Long refOid : references) {
+			
+			Set<EClass> allEClassesThatHaveInverses = packageMetaData.getAllEClassesThatHaveInverses();
+			int total = 0;
+			for (EClass eClass : allEClassesThatHaveInverses) {
+				if (eClasses.contains(eClass)) {
+					total++;
+				}				
+			}
+			int c = 0;
+			int writes = 0;
+			Set<Long> unq = new HashSet<>();
+			for (EClass eClass : allEClassesThatHaveInverses) {
+				if (eClasses.contains(eClass)) {
+					Query query = new Query("test", packageMetaData);
+					QueryPart queryPart = query.createQueryPart();
+					queryPart.addType(eClass, true);
+					QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), bimServer, query, Collections.singleton(newRoid), packageMetaData);
+					HashMapVirtualObject next = queryObjectProvider.next();
+					while (next != null) {
+						for (EReference eReference : packageMetaData.getAllHasInverseReferences(eClass)) {
+							Object reference = next.eGet(eReference);
+							if (reference != null) {
+								if (eReference.isMany()) {
+									List<Long> references = (List<Long>)reference;
+									for (Long refOid : references) {
+										HashMapVirtualObject referencedObject = getByOid(packageMetaData, getDatabaseSession(), newRoid, refOid);
+										EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);
+										if (oppositeReference.isMany()) {
+											Object existingList = referencedObject.eGet(oppositeReference);
+											if (existingList != null) {
+												int currentSize = ((List<?>)existingList).size();
+												referencedObject.setListItemReference(oppositeReference, currentSize + 1, next.eClass(), next.getOid(), 0);
+												inverseFixes++;
+											} else {
+												referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
+												inverseFixes++;
+											}
+										} else {
+											referencedObject.setReference(oppositeReference, next.getOid(), 0);
+											inverseFixes++;
+										}
+										referencedObject.saveOverwrite();
+										unq.add(referencedObject.getOid());
+										writes++;
+									}
+								} else {
+									Long refOid = (Long)reference;
 									HashMapVirtualObject referencedObject = getByOid(packageMetaData, getDatabaseSession(), newRoid, refOid);
 									EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);
 									if (oppositeReference.isMany()) {
@@ -197,42 +232,37 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 										}
 									} else {
 										referencedObject.setReference(oppositeReference, next.getOid(), 0);
+										unq.add(referencedObject.getOid());
 										inverseFixes++;
 									}
 									referencedObject.saveOverwrite();
+									writes++;
 								}
-							} else {
-								Long refOid = (Long)reference;
-								HashMapVirtualObject referencedObject = getByOid(packageMetaData, getDatabaseSession(), newRoid, refOid);
-								EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);
-								if (oppositeReference.isMany()) {
-									Object existingList = referencedObject.eGet(oppositeReference);
-									if (existingList != null) {
-										int currentSize = ((List<?>)existingList).size();
-										referencedObject.setListItemReference(oppositeReference, currentSize + 1, next.eClass(), next.getOid(), 0);
-										inverseFixes++;
-									} else {
-										referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
-										inverseFixes++;
-									}
-								} else {
-									referencedObject.setReference(oppositeReference, next.getOid(), 0);
-									inverseFixes++;
-								}
-								referencedObject.saveOverwrite();
 							}
 						}
+						next = queryObjectProvider.next();
 					}
-					next = queryObjectProvider.next();
+					setProgress("Generating inverses/opposites", (int) (100.0 * c / total));
+					c++;
 				}
 			}
-			System.out.println("Inverse fixes: " + inverseFixes);
+			LOGGER.info("Inverse/opposite fixes: " + inverseFixes + ", writes: " + writes + ", unq: " + unq.size());
 
-			StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(bimServer);
+			ProgressListener progressListener = new ProgressListener() {
+				@Override
+				public void updateProgress(String state, int percentage) {
+					setProgress("Generating geometry", percentage);
+				}
+			};
+			StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(bimServer, progressListener);
+			setProgress("Generating geometry", 0);
+
 			GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext);
 			
 			concreteRevision.setMinBounds(generateGeometry.getMinBounds());
 			concreteRevision.setMaxBounds(generateGeometry.getMaxBounds());
+
+			setProgress("Doing other stuff...", -1);
 			
 			eClasses = deserializer.getSummaryMap().keySet();
 			s = 2;
@@ -309,7 +339,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 //				}
 //			}
 
-			if (nrConcreteRevisionsBefore != 0 && !merge) {
+			if (nrConcreteRevisionsBefore != 0) {
 				// There already was a revision, lets delete it (only when not merging)
 				concreteRevision.setClear(true);
 			}

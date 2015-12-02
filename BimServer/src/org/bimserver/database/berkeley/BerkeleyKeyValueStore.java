@@ -537,7 +537,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	}
 
 	public void removeOpenCursor(long cursorId) {
-		openCursors.remove(cursorId);
+		if (MONITOR_CURSOR_STACK_TRACES) {
+			openCursors.remove(cursorId);
+		}
 	}
 
 	@Override

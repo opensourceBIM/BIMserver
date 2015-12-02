@@ -68,6 +68,11 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 		@WebParam(name = "data", partName = "checkin.data") @XmlMimeType("application/octet-stream") DataHandler data,
 		@WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServerException, UserException;
 	
+	@WebMethod(action = "initiateCheckin")
+	Long initiateCheckin(
+		@WebParam(name = "poid", partName = "initiateCheckin.poid") Long poid,
+		@WebParam(name = "deserializerOid", partName = "initiateCheckin.deserializerOid") Long deserializerOid) throws ServerException, UserException;
+	
 	/**
 	 * Checkin a new model by sending a serialized form
 	 * 

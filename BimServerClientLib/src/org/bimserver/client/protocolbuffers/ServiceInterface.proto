@@ -49,6 +49,8 @@ service ServiceInterface {
 
 	rpc checkinFromUrl (CheckinFromUrlRequest) returns (CheckinFromUrlResponse);
 
+	rpc checkinInitiated (CheckinInitiatedRequest) returns (CheckinInitiatedResponse);
+
 	rpc cleanupLongAction (CleanupLongActionRequest) returns (VoidResponse);
 
 	rpc compare (CompareRequest) returns (CompareResponse);
@@ -150,6 +152,8 @@ service ServiceInterface {
 	rpc getVolume (GetVolumeRequest) returns (GetVolumeResponse);
 
 	rpc importData (ImportDataRequest) returns (VoidResponse);
+
+	rpc initiateCheckin (InitiateCheckinRequest) returns (InitiateCheckinResponse);
 
 	rpc removeModelCheckerFromProject (RemoveModelCheckerFromProjectRequest) returns (VoidResponse);
 
@@ -440,8 +444,25 @@ message CheckinFromUrlResponse {
 	optional int64 value = 2;
 }
 
+message CheckinInitiatedRequest {
+	optional int64 topicId = 1;
+	optional int64 poid = 2;
+	optional string comment = 3;
+	optional int64 deserializerOid = 4;
+	optional int64 fileSize = 5;
+	optional string fileName = 6;
+	optional bytes data = 7;
+	optional bool merge = 8;
+	optional bool sync = 9;
+}
+
+message CheckinInitiatedResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
 message CleanupLongActionRequest {
-	optional int64 actionId = 1;
+	optional int64 topicId = 1;
 }
 
 enum SCompareType{
@@ -1495,6 +1516,16 @@ message ImportDataRequest {
 	optional string username = 2;
 	optional string password = 3;
 	optional string path = 4;
+}
+
+message InitiateCheckinRequest {
+	optional int64 poid = 1;
+	optional int64 deserializerOid = 2;
+}
+
+message InitiateCheckinResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
 }
 
 message RemoveModelCheckerFromProjectRequest {

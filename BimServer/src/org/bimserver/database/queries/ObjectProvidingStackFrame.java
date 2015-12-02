@@ -1,4 +1,4 @@
-package org.bimserver.database.actions;
+package org.bimserver.database.queries;
 
 import org.bimserver.shared.HashMapVirtualObject;
 

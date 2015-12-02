@@ -108,6 +108,7 @@ import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SModelCheckerInstance;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
+import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SProjectSmall;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
@@ -123,6 +124,7 @@ import org.bimserver.longaction.DownloadParameters.DownloadType;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongStreamingCheckinAction;
 import org.bimserver.mail.EmailMessage;
+import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CompareResult;
@@ -142,6 +144,7 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.notifications.NewExtendedDataOnRevisionNotification;
 import org.bimserver.notifications.NewRevisionNotification;
+import org.bimserver.notifications.ProgressOnProjectTopic;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.deserializers.Deserializer;
@@ -178,10 +181,39 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public ServiceImpl(ServiceMap serviceMap) {
 		super(serviceMap);
 	}
+	
+	@Override
+	public Long initiateCheckin(Long poid, Long deserializerOid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		final DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
+			Project project = session.get(poid, Query.getDefault());
+			if (!getAuthorization().hasRightsOnProjectOrSuperProjects(user, project)) {
+				throw new UserException("User has no rights to checkin models to this project");
+			}
+			if (!MailSystem.isValidEmailAddress(user.getUsername())) {
+				throw new UserException("Users must have a valid e-mail address to checkin");
+			}
+			if (project == null) {
+				throw new UserException("No project found with poid " + poid);
+			}
+			
+			ProgressOnProjectTopic progressTopic = getBimServer().getNotificationsManager().createProgressOnProjectTopic(getAuthorization().getUoid(), poid, SProgressTopicType.UPLOAD, "Checkin");
+			
+			return progressTopic.getKey().getId();
+		} catch (UserException e) {
+			throw e;
+		} catch (Throwable e) {
+			LOGGER.error("", e);
+			throw new ServerException(e);
+		} finally {
+			session.close();
+		}
+	}
 
 	@Override
-	public Long checkin(final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge, Boolean sync)
-			throws ServerException, UserException {
+	public Long checkinInitiated(Long topicId, final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		final DatabaseSession session = getBimServer().getDatabase().createSession();
 		String username = "Unknown";
@@ -241,12 +273,12 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 						streamingDeserializer.init(getBimServer().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 						OutputStream outputStream = Files.newOutputStream(file);
 						InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), outputStream);
-						StreamingCheckinDatabaseAction checkinDatabaseAction = new StreamingCheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), comment, fileName, merge, inputStream, streamingDeserializer);
-						LongStreamingCheckinAction longAction = new LongStreamingCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+						StreamingCheckinDatabaseAction checkinDatabaseAction = new StreamingCheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), comment, fileName, inputStream, streamingDeserializer);
+						LongStreamingCheckinAction longAction = new LongStreamingCheckinAction(topicId, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 						getBimServer().getLongActionManager().start(longAction);
-//						if (sync) {
+						if (sync) {
 							longAction.waitForCompletion();
-//						}
+						}
 						return longAction.getProgressTopic().getKey().getId();
 					} else {
 						throw new UserException("No (enabled) (streaming) deserializer found with oid " + deserializerOid);
@@ -263,6 +295,14 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		} finally {
 			session.close();
 		}
+	}
+	
+	
+	@Override
+	public Long checkin(final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge, Boolean sync) throws ServerException, UserException {
+		Long topicId = initiateCheckin(poid, deserializerOid);
+		checkinInitiated(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge, sync);
+		return topicId;
 	}
 	
 	@Override
@@ -499,8 +539,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 	}
 	
-	public void cleanupLongAction(Long actionId) throws UserException, ServerException {
-		getBimServer().getLongActionManager().remove(actionId);
+	public void cleanupLongAction(Long topicId) throws UserException, ServerException {
+		getBimServer().getLongActionManager().remove(topicId);
 	}
 	
 	@Override

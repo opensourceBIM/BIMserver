@@ -1,5 +1,5 @@
 
-ó
+»’
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -168,9 +168,22 @@ revisionId (
 sync ("=
 CheckinFromUrlResponse
 errorMessage (	
-value (",
-CleanupLongActionRequest
-actionId ("r
+value ("±
+CheckinInitiatedRequest
+topicId (
+poid (
+comment (	
+deserializerOid (
+fileSize (
+fileName (	
+data (
+merge (
+sync	 ("?
+CheckinInitiatedResponse
+errorMessage (	
+value ("+
+CleanupLongActionRequest
+topicId ("r
 CompareRequest
 roid1 (
 roid2 (4
@@ -945,7 +958,13 @@ objectIDMs (
 address (	
 username (	
 password (	
-path (	"M
+path (	"?
+InitiateCheckinRequest
+poid (
+deserializerOid (">
+InitiateCheckinResponse
+errorMessage (	
+value ("M
 $RemoveModelCheckerFromProjectRequest
 poid (
 modelCheckerOid ("C
@@ -1066,7 +1085,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2ÎH
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2¡J
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponsem
@@ -1080,7 +1099,8 @@ serviceOid ("F
 addUserWithPassword,.org.bimserver.pb.AddUserWithPasswordRequest-.org.bimserver.pb.AddUserWithPasswordResponseY
 changeUserType'.org.bimserver.pb.ChangeUserTypeRequest.org.bimserver.pb.VoidResponseN
 checkin .org.bimserver.pb.CheckinRequest!.org.bimserver.pb.CheckinResponsec
-checkinFromUrl'.org.bimserver.pb.CheckinFromUrlRequest(.org.bimserver.pb.CheckinFromUrlResponse_
+checkinFromUrl'.org.bimserver.pb.CheckinFromUrlRequest(.org.bimserver.pb.CheckinFromUrlResponsei
+checkinInitiated).org.bimserver.pb.CheckinInitiatedRequest*.org.bimserver.pb.CheckinInitiatedResponse_
 cleanupLongAction*.org.bimserver.pb.CleanupLongActionRequest.org.bimserver.pb.VoidResponseN
 compare .org.bimserver.pb.CompareRequest!.org.bimserver.pb.CompareResponseW
 deleteService&.org.bimserver.pb.DeleteServiceRequest.org.bimserver.pb.VoidResponseW
@@ -1134,7 +1154,8 @@ getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceRes
 getUsersProjects).org.bimserver.pb.GetUsersProjectsRequest*.org.bimserver.pb.GetUsersProjectsResponseT
 	getVolume".org.bimserver.pb.GetVolumeRequest#.org.bimserver.pb.GetVolumeResponseQ
 
-importData#.org.bimserver.pb.ImportDataRequest.org.bimserver.pb.VoidResponsew
+importData#.org.bimserver.pb.ImportDataRequest.org.bimserver.pb.VoidResponsef
+initiateCheckin(.org.bimserver.pb.InitiateCheckinRequest).org.bimserver.pb.InitiateCheckinResponsew
 removeModelCheckerFromProject6.org.bimserver.pb.RemoveModelCheckerFromProjectRequest.org.bimserver.pb.VoidResponsem
 removeServiceFromProject1.org.bimserver.pb.RemoveServiceFromProjectRequest.org.bimserver.pb.VoidResponse}
  removeUserFromExtendedDataSchema9.org.bimserver.pb.RemoveUserFromExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsex
