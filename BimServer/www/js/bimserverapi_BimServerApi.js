@@ -206,7 +206,7 @@ define(
 	    	};
 	
 	    	this.generateRevisionDownloadUrl = function(settings) {
-	    		return othis.baseUrl + "/download?token=" + othis.token + "&longActionId=" + settings.laid + (settings.zip ? "&zip=on" : "") + "&serializerOid=" + settings.serializerOid + "&topicId=" + settings.topicId;
+	    		return othis.baseUrl + "/download?token=" + othis.token + (settings.zip ? "&zip=on" : "") + "&serializerOid=" + settings.serializerOid + "&topicId=" + settings.topicId;
 	    	};
 	
 	    	this.generateExtendedDataDownloadUrl = function(edid) {
@@ -444,11 +444,23 @@ define(
 	    		xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 	    		xhr.onload = function(jqXHR, textStatus, errorThrown) {
 	    		    if (xhr.status === 200) {
-	    		        var data = JSON.parse(xhr.responseText);
-	    		        success(data);
+	    		    	try {
+	    		    		var data = JSON.parse(xhr.responseText);
+	    		    		success(data);
+	    		    	} catch (e) {
+	    		    		if (error != null) {
+	    		    			error(e);
+	    		    		} else {
+	    		    			othis.notifier.setError(e);
+	    		    			console.error(e);
+	    		    		}
+	    		    	}
 	    		    } else {
 	    		    	if (error != null) {
 	    		    		error(jqXHR, textStatus, errorThrown);
+	    		    	} else {
+	    		    		othis.notifier.setError(textStatus);
+	    		    		console.error(jqXHR, textStatus, errorThrown);
 	    		    	}
 	    		    }
 	    		};
@@ -640,8 +652,18 @@ define(
 	    		return isa;
 	    	};
 	
-	    	this.checkin = function(project, file, deserializerOid, progressListener, success, error){
-	    		var reader = new FileReader();
+	    	this.initiateCheckin = function(project, deserializerOid, callback){
+	    		othis.call("ServiceInterface", "initiateCheckin", {
+	    			deserializerOid: deserializerOid,
+	    			poid: project.oid
+	    		}, function(topicId){
+	    			if (callback != null) {
+	    				callback(topicId);
+	    			}
+	    		});
+	    	};
+	    	
+	    	this.checkin = function(topicId, project, comment, file, deserializerOid, progressListener, success, error){
 	    		var xhr = new XMLHttpRequest();
 	    		
 	    		xhr.upload.addEventListener("progress",
@@ -658,23 +680,24 @@ define(
 	    			if (result.exception == null) {
 	    				success(result.checkinid);
 	    			} else {
-	    				error(result.exception);
+	    				if (error == null) {
+	    					console.error(result.exception);
+	    				} else {
+	    					error(result.exception);
+	    				}
 	    			}
 	    		}, false);
 	    		xhr.open("POST", Global.bimServerApi.baseUrl + "/upload");
-	    		reader.onload = function(evt) {
-	    			var formData = new FormData();
-	    			formData.append("token", othis.token);
-	    			formData.append("deserializerOid", deserializerOid);
-	    			formData.append("comment", file.name);
-	    			formData.append("merge", false);
-	    			formData.append("poid", project.oid);
-	    			formData.append("sync", false);
-	    			formData.append("file", file);
-	    			
-	    			xhr.send(formData);
-	    		};
-	    		reader.readAsBinaryString(file);
+
+	    		var formData = new FormData();
+    			formData.append("token", othis.token);
+    			formData.append("deserializerOid", deserializerOid);
+    			formData.append("comment", comment);
+    			formData.append("poid", project.oid);
+    			formData.append("topicId", topicId);
+    			formData.append("file", file);
+
+    			xhr.send(formData);
 	    	};
 
 	    	this.addExtendedData = function(roid, file, success, error){

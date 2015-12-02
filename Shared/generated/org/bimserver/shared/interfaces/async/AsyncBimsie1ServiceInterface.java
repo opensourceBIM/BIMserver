@@ -224,6 +224,11 @@ public class AsyncBimsie1ServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface InitiateCheckinCallback {
+		void success(java.lang.Long result);
+		void error(Throwable e);
+	}
+	
 	public interface TerminateLongRunningActionCallback {
 		void success();
 		void error(Throwable e);
@@ -698,6 +703,18 @@ public class AsyncBimsie1ServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSuggestedDeserializerForExtension(extension, poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void initiateCheckin(final java.lang.Long poid, final java.lang.Long deserializerOid, final InitiateCheckinCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.initiateCheckin(poid, deserializerOid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

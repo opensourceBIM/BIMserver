@@ -257,13 +257,9 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void write(IdEObject object) throws SerializerException, IOException {
-//		throw new SerializerException("test");
 		EClass eClass = object.eClass();
 		if (eClass.getEAnnotation("hidden") != null) {
 			return;
-		}
-		if (object.eClass().getName().equals("IfcStyledItem")) {
-			System.out.println();
 		}
 		print(DASH);
 		int convertedKey = getExpressId(object);

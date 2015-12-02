@@ -104,6 +104,11 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 	}
 	
 	@Override
+	public Long initiateCheckin(Long poid, Long deserializerOid) throws ServerException, UserException {
+		return getServiceMap().get(ServiceInterface.class).initiateCheckin(poid, deserializerOid);
+	}
+	
+	@Override
 	public Long checkout(Long roid, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		getAuthorization().canDownload(roid);
@@ -156,8 +161,11 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 	}
 	
 	@Override
-	public SDownloadResult getDownloadData(final Long actionId) throws ServerException, UserException {
-		LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(actionId);
+	public SDownloadResult getDownloadData(final Long topicId) throws ServerException, UserException {
+		LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(topicId);
+		if (longAction == null) {
+			throw new UserException("No data found for topicId " + topicId);
+		}
 		if (longAction instanceof LongStreamingDownloadAction) {
 			LongStreamingDownloadAction longStreamingDownloadAction = (LongStreamingDownloadAction)longAction;
 			if (longStreamingDownloadAction.getErrors().isEmpty()) {
@@ -174,22 +182,18 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 			}
 		} else {
 			LongDownloadOrCheckoutAction longDownloadAction = (LongDownloadOrCheckoutAction) longAction;
-			if (longDownloadAction != null) {
-				try {
-					longDownloadAction.waitForCompletion();
-					if (longDownloadAction.getErrors().isEmpty()) {
-						SCheckoutResult result = longDownloadAction.getCheckoutResult();
-						return result;
-					} else {
-						LOGGER.error(longDownloadAction.getErrors().get(0));
-						throw new ServerException(longDownloadAction.getErrors().get(0));
-					}
-				} catch (Exception e) {
-					LOGGER.error("", e);
-					throw new ServerException(e);
+			try {
+				longDownloadAction.waitForCompletion();
+				if (longDownloadAction.getErrors().isEmpty()) {
+					SCheckoutResult result = longDownloadAction.getCheckoutResult();
+					return result;
+				} else {
+					LOGGER.error(longDownloadAction.getErrors().get(0));
+					throw new ServerException(longDownloadAction.getErrors().get(0));
 				}
-			} else {
-				throw new UserException("No data found for laid " + actionId);
+			} catch (Exception e) {
+				LOGGER.error("", e);
+				throw new ServerException(e);
 			}
 		}
 	}

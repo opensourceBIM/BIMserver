@@ -457,11 +457,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		if (feature instanceof EAttribute) {
 			return true;
 		}
-		boolean result = useForSerializationFeatures.contains(feature);
-		if (feature.getName().equals("FirstOperand") && !result) {
-			System.out.println();
-		}
-		return result;
+		return useForSerializationFeatures.contains(feature);
 	}
 
 	public void addUseForSerialization(EStructuralFeature eStructuralFeature) {

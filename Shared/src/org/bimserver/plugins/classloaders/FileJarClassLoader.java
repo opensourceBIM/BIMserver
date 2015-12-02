@@ -147,9 +147,6 @@ public class FileJarClassLoader extends JarClassLoader {
 	
 	@Override
 	public Class<?> findClass(String name) throws ClassNotFoundException {
-		if (name.contains("Tuple3f")) {
-			System.out.println();
-		}
 		String fileName = name.replace(".", "/") + ".class";
 		if (loadedClasses.containsKey(fileName)) {
 			return loadedClasses.get(fileName);

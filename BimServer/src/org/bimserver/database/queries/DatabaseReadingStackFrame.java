@@ -9,7 +9,6 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession.GetResult;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
-import org.bimserver.database.actions.ObjectProvidingStackFrame;
 import org.bimserver.database.queries.om.CanInclude;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.QueryPart;

@@ -81,31 +81,27 @@ public class UploadServlet extends SubServlet {
 				boolean sync = false;
 				String compression = null;
 				String action = null;
+				long topicId = -1;
 				while (iter.hasNext()) {
 					FileItemStream item = iter.next();
 					if (item.isFormField()) {
 						if ("action".equals(item.getFieldName())) {
 							action = Streams.asString(item.openStream());
-						}
-						if ("token".equals(item.getFieldName())) {
+						} else if ("token".equals(item.getFieldName())) {
 							token = Streams.asString(item.openStream());
-						}
-						if ("poid".equals(item.getFieldName())) {
+						} else if ("poid".equals(item.getFieldName())) {
 							poid = Long.parseLong(Streams.asString(item.openStream()));
-						}
-						if ("comment".equals(item.getFieldName())) {
+						} else if ("comment".equals(item.getFieldName())) {
 							comment = Streams.asString(item.openStream());
-						}
-						if ("sync".equals(item.getFieldName())) {
+						} else if ("topicId".equals(item.getFieldName())) {
+							topicId = Long.parseLong(Streams.asString(item.openStream()));
+						} else if ("sync".equals(item.getFieldName())) {
 							sync = Streams.asString(item.openStream()).equals("true");
-						}
-						if ("merge".equals(item.getFieldName())) {
+						} else if ("merge".equals(item.getFieldName())) {
 							merge = Streams.asString(item.openStream()).equals("true");
-						}
-						if ("compression".equals(item.getFieldName())) {
+						} else if ("compression".equals(item.getFieldName())) {
 							compression = Streams.asString(item.openStream());
-						}
-						if ("deserializerOid".equals(item.getFieldName())) {
+						} else if ("deserializerOid".equals(item.getFieldName())) {
 							deserializerOid = Long.parseLong(Streams.asString(item.openStream()));
 						}
 					} else {
@@ -132,9 +128,15 @@ public class UploadServlet extends SubServlet {
 							DataHandler ifcFile = new DataHandler(inputStreamDataSource);
 							
 							if (token != null) {
-								ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-								long checkinId = service.checkin(poid, comment, deserializerOid, -1L, name, ifcFile, merge, sync);
-								result.put("checkinid", checkinId);
+								if (topicId == -1) {
+									ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+									long checkinId = service.checkin(poid, comment, deserializerOid, -1L, name, ifcFile, merge, sync);
+									result.put("checkinid", checkinId);
+								} else {
+									ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+									long checkinId = service.checkinInitiated(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge, true);
+									result.put("checkinid", checkinId);
+								}
 							}
 						} else {
 							result.put("exception", "No poid");

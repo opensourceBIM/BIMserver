@@ -32,11 +32,16 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.actions.ProgressListener;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
@@ -89,6 +94,7 @@ public class StreamingGeometryGenerator {
 	
 	private final BimServer bimServer;
 	private final Map<Integer, VirtualObject> hashes = new ConcurrentHashMap<>();
+	private final Map<Long, VirtualObject> sizes = new ConcurrentHashMap<>();
 
 	private EClass productClass;
 	private EClass productRepresentationClass;
@@ -100,8 +106,14 @@ public class StreamingGeometryGenerator {
 	private AtomicLong bytesSaved = new AtomicLong();
 	private AtomicLong totalBytes = new AtomicLong();
 
-	public StreamingGeometryGenerator(final BimServer bimServer) {
+	private AtomicInteger jobsDone = new AtomicInteger();
+	private AtomicInteger jobsTotal = new AtomicInteger();
+
+	private ProgressListener progressListener;
+
+	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener) {
 		this.bimServer = bimServer;
+		this.progressListener = progressListener;
 	}
 	
 	public class Runner implements Runnable {
@@ -153,7 +165,7 @@ public class StreamingGeometryGenerator {
 				});
 				ifcSerializer.init(proxy, null, null, bimServer.getPluginManager(), packageMetaData);
 
-				boolean debug = true;
+				boolean debug = false;
 				InputStream in = null;
 				if (debug) {
 					File file = new File((eClass == null ? "all" : eClass.getName()) + ".ifc");
@@ -258,28 +270,27 @@ public class StreamingGeometryGenerator {
 
 									geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), geometryData.getOid(), 0);
 
-									long length = (geometryData.has("indices") ? ((byte[])geometryData.get("indices")).length : 0) + 
-												  (geometryData.has("vertices") ? ((byte[])geometryData.get("vertices")).length : 0) + 
-												  (geometryData.has("normals") ? ((byte[])geometryData.get("normals")).length : 0) + 
-												  (geometryData.has("materials") ? ((byte[])geometryData.get("materials")).length : 0) +
-												  (geometryData.has("materialIndices") ? ((byte[])geometryData.get("materialIndices")).length : 0);
+									long size = getSize(geometryData);
 
 									setTransformationMatrix(geometryInfo, tranformationMatrix);
 									if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
 										int hash = hash(geometryData);
 										if (hashes.containsKey(hash)) {
-//											databaseSession.removeFromCommit(geometryData);
 											geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), hashes.get(hash).getOid(), 0);
-											bytesSaved.addAndGet(length);
+											bytesSaved.addAndGet(size);
 										} else {
+//											if (sizes.containsKey(size) && sizes.get(size).eClass() == ifcProduct.eClass()) {
+//												LOGGER.info("More reuse might be possible " + size + " " + ifcProduct.eClass().getName() + ":" + ifcProduct.getOid() + " / " + sizes.get(size).eClass().getName() + ":" + sizes.get(size).getOid());
+//											}
 											hashes.put(hash, geometryData);
 											geometryData.save();
+//											sizes.put(size, ifcProduct);
 										}
 									} else {
 										geometryData.save();
 									}
 									geometryInfo.save();
-									totalBytes.addAndGet(length);
+									totalBytes.addAndGet(size);
 
 									if (bigMap == null) {
 										ifcProduct.setReference(geometryFeature, geometryInfo.getOid(), 0);
@@ -312,6 +323,8 @@ public class StreamingGeometryGenerator {
 				} finally {
 					in.close();
 					renderEngineModel.close();
+					jobsDone.incrementAndGet();
+					updateProgress();
 				}
 			} catch (SerializerException | RenderEngineException | IOException e) {
 				LOGGER.error("", e);
@@ -323,6 +336,10 @@ public class StreamingGeometryGenerator {
 				}
 			}
 		}
+	}
+
+	private void updateProgress() {
+		progressListener.updateProgress("Generating geometry", (int) (100.0 * jobsDone.get() / jobsTotal.get()));
 	}
 	
 	public GenerateGeometryResult generateGeometry(long uoid, final DatabaseSession databaseSession, QueryContext queryContext) throws BimserverDatabaseException, GeometryGeneratingException {
@@ -373,99 +390,52 @@ public class StreamingGeometryGenerator {
 			
 			final RenderEngineFilter renderEngineFilter = new RenderEngineFilter();
 
-			if (maxSimultanousThreads == 1) {
-				Query query = new Query("test", packageMetaData);
-				QueryPart queryPart = query.createQueryPart();
-				queryPart.addType(packageMetaData.getEClass("IfcProduct"), true);
-				JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
-				queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:ContainedInStructure"));
-				queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:OwnerHistory"));
-				queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:Representation"));
-				queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:ObjectPlacement"));
-				Include ifcWall = queryPart.createInclude();
-				ifcWall.addType(packageMetaData.getEClass("IfcWallStandardCase"), false);
-				ifcWall.addField("HasOpenings");
-				Include hasOpenings = ifcWall.createInclude();
-				hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
-				hasOpenings.addField("RelatedOpeningElement");
-				Include relatedOpeningElement = hasOpenings.createInclude();
-				relatedOpeningElement.addType(packageMetaData.getEClass("IfcOpeningElement"), false);
-				relatedOpeningElement.addField("HasFillings");
-				Include hasFillings = relatedOpeningElement.createInclude();
-				hasFillings.addType(packageMetaData.getEClass("IfcRelFillsElement"), false);
-				hasFillings.addField("RelatedBuildingElement");
-				QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
-				
-				HashMapVirtualObject next = queryObjectProvider.next();
-				query = new Query("test", packageMetaData);
-				queryPart = query.createQueryPart();
-				while (next != null) {
-					queryPart.addOid(next.getOid());
-					next = queryObjectProvider.next();
+			ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(queryContext.getOidCounters().size()));
+			for (EClass eClass : queryContext.getOidCounters().keySet()) {
+				if (packageMetaData.getEClass("IfcProduct").isSuperTypeOf(eClass)) {
+					Query query = new Query("test", packageMetaData);
+					QueryPart queryPart = query.createQueryPart();
+					queryPart.addType(eClass, false);
+					JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
+					queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:ContainedInStructure"));
+					queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:OwnerHistory"));
+					queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:Representation"));
+					queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:ObjectPlacement"));
+					if (packageMetaData.getEClass("IfcWall").isSuperTypeOf(eClass)) {
+						Include ifcWall = queryPart.createInclude();
+						ifcWall.addType(packageMetaData.getEClass(eClass.getName()), false);
+						ifcWall.addField("HasOpenings");
+						Include hasOpenings = ifcWall.createInclude();
+						hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
+						hasOpenings.addField("RelatedOpeningElement");
+						Include relatedOpeningElement = hasOpenings.createInclude();
+						relatedOpeningElement.addType(packageMetaData.getEClass("IfcOpeningElement"), false);
+						relatedOpeningElement.addField("HasFillings");
+						Include hasFillings = relatedOpeningElement.createInclude();
+						hasFillings.addType(packageMetaData.getEClass("IfcRelFillsElement"), false);
+						hasFillings.addField("RelatedBuildingElement");
+					}
+					QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
+					
+					HashMapVirtualObject next = queryObjectProvider.next();
+					query = new Query("test", packageMetaData);
+					queryPart = query.createQueryPart();
+					while (next != null) {
+						queryPart.addOid(next.getOid());
+						next = queryObjectProvider.next();
+					}
+					
+					queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
+					
+					Runner runner = new Runner(eClass, renderEnginePlugin, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, null, renderEngineFilter, generateGeometryResult, queryContext);
+					executor.submit(runner);
+					jobsTotal.incrementAndGet();
 				}
-				
-				queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
-
-				Runner runner = new Runner(null, renderEnginePlugin, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, null, renderEngineFilter, generateGeometryResult, queryContext);
-				runner.run();
-			} else {
-//				Set<EClass> classes = new HashSet<>();
-//				for (IdEObject object : model.getAllWithSubTypes(packageMetaData.getEClass("IfcProduct"))) {
-//					IdEObject representation = (IdEObject)object.eGet(representationFeature);
-//					if (representation != null && ((List<?>)representation.eGet(representationsFeature)).size() > 0) {
-//						classes.add(object.eClass());
-//					}
-//				}
-//				
-//				if (classes.size() == 0) {
-//					return null;
-//				}
-//				
-//				classes.remove(packageMetaData.getEClass("IfcAnnotation"));
-//				classes.remove(packageMetaData.getEClass("IfcOpeningElement"));
-//				
-//				LOGGER.debug("Using " + maxSimultanousThreads + " processes for geometry generation");
-//				ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(classes.size()));
-//
-//				final Map<IdEObject, IdEObject> bigMap = new HashMap<IdEObject, IdEObject>();
-//
-//				HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(packageMetaData.getEPackage()), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1").getSchemaDefinition());
-//				OidProvider oidProvider = new OidProvider(){
-//					@Override
-//					public long newOid(EClass eClass) {
-//						return databaseSession.newOid(eClass);
-//					}};
-//				for (final EClass eClass : classes) {
-//					final BasicIfcModel targetModel = new BasicIfcModel(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"), null);
-//					ModelHelper modelHelper = new ModelHelper(bimServer.getMetaDataManager(), targetModel);
-//					modelHelper.setOidProvider(oidProvider);
-//					modelHelper.setObjectIDM(idm);
-//					
-//					IdEObject newOwnerHistory = modelHelper.copyBasicObjects(model, bigMap);
-//					
-//					for (IdEObject idEObject : model.getAll(eClass)) {
-//						IdEObject newObject = modelHelper.copy(idEObject, false, ModelHelper.createObjectIdm(idEObject.eClass()));
-//						modelHelper.copyDecomposes(idEObject, newOwnerHistory);
-//						bigMap.put(newObject, idEObject);
-//						if (eClass.getName().equals("IfcWallStandardCase")) {
-//							EStructuralFeature hasOpeningsFeature = idEObject.eClass().getEStructuralFeature("HasOpenings");
-//							for (IdEObject ifcRelVoidsElement : ((List<IdEObject>)idEObject.eGet(hasOpeningsFeature))) {
-//								bigMap.put(modelHelper.copy(ifcRelVoidsElement, false), ifcRelVoidsElement);
-//								EStructuralFeature relatedOpeningElementFeature = ifcRelVoidsElement.eClass().getEStructuralFeature("RelatedOpeningElement");
-//								IdEObject relatedOpeningElement = (IdEObject) ifcRelVoidsElement.eGet(relatedOpeningElementFeature);
-//								if (relatedOpeningElement != null) {
-//									bigMap.put(modelHelper.copy(relatedOpeningElement, false), relatedOpeningElement);
-//								}
-//							}
-//						}
-//					}
-//
-//					executor.submit(new Runner(eClass, renderEnginePlugin, databaseSession, settings, ifcSerializerPlugin, bigMap, renderEngineFilter, generateGeometryResult, queryContext));
-//				}
-//				executor.shutdown();
-//				executor.awaitTermination(24, TimeUnit.HOURS);				
 			}
 			
+			executor.shutdown();
+			executor.awaitTermination(24, TimeUnit.HOURS);				
+
 			long end = System.nanoTime();
 			LOGGER.info("Rendertime: " + ((end - start) / 1000000) + "ms, " + "Reused: " + Formatters.bytesToString(bytesSaved.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(totalBytes.get() - bytesSaved.get()));
 		} catch (Exception e) {
@@ -475,6 +445,26 @@ public class StreamingGeometryGenerator {
 		return generateGeometryResult;
 	}
 	
+	private long getSize(VirtualObject geometryData) {
+		long size = 0;
+		if (geometryData.has("indices")) {
+			size += ((byte[])geometryData.get("vertices")).length;
+		}
+		if (geometryData.has("vertices")) {
+			size += ((byte[])geometryData.get("vertices")).length;
+		}
+		if (geometryData.has("normals")) {
+			size += ((byte[])geometryData.get("normals")).length;
+		}
+		if (geometryData.has("materialIndices")) {
+			size += ((byte[])geometryData.get("materialIndices")).length;
+		}
+		if (geometryData.has("materials")) {
+			size += ((byte[])geometryData.get("materials")).length;
+		}
+		return size;
+	}
+
 	private int hash(VirtualObject geometryData) {
 		int hashCode = 0;
 		if (geometryData.has("indices")) {

@@ -176,6 +176,10 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 		return null;
 	}
 	
+	public java.lang.Long initiateCheckin(java.lang.Long poid, java.lang.Long deserializerOid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public void terminateLongRunningAction(java.lang.Long actionId) throws UserException, ServerException {
 	}
 	
