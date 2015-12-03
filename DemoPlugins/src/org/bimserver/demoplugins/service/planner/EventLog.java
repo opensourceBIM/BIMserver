@@ -157,11 +157,19 @@ public class EventLog implements Iterable<Event> {
 	}
 
 	private GregorianCalendar parseDate(String string) throws ParseException {
-		DateFormat dateFormat = new SimpleDateFormat("d-M-y");
-		Date date = dateFormat.parse(string);
-		GregorianCalendar gregorianCalendar = new GregorianCalendar();
-		gregorianCalendar.setTime(date);
-		return gregorianCalendar;
+		try {
+			DateFormat dateFormat = new SimpleDateFormat("d-M-y");
+			Date date = dateFormat.parse(string);
+			GregorianCalendar gregorianCalendar = new GregorianCalendar();
+			gregorianCalendar.setTime(date);
+			return gregorianCalendar;
+		} catch (ParseException e) {
+			DateFormat dateFormat = new SimpleDateFormat("M/d/y");
+			Date date = dateFormat.parse(string);
+			GregorianCalendar gregorianCalendar = new GregorianCalendar();
+			gregorianCalendar.setTime(date);
+			return gregorianCalendar;
+		}
 	}
 	
 	public EventLog getOrderedByStartDate() {

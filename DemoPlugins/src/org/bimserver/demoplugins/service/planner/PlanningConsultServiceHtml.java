@@ -28,7 +28,7 @@ public class PlanningConsultServiceHtml extends AbstractPlanningConsultService {
 			if (planningAdvice.getDatabaseCount() == 0) {
 				if (unrecognized == null) {
 					unrecognized = new StringBuilder();
-					unrecognized.append("<p>The following elements are not recognized in the database: </p><table><thead><tr><th>Product type</th><th>Amount of elements in model</th></tr></thead><tbody>");
+					unrecognized.append("<p>The following elements are not recognized in the database: </p><table class=\"table\"><thead><tr><th>Product type</th><th>Amount of elements in model</th></tr></thead><tbody>");
 				}
 				unrecognized.append("<tr><td>" + material + "</td><td>" + planningAdvice.getModelCount() + "</td></tr>");
 			} else {
