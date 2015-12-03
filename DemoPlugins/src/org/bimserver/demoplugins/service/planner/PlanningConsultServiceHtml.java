@@ -30,7 +30,7 @@ public class PlanningConsultServiceHtml extends AbstractPlanningConsultService {
 					unrecognized = new StringBuilder();
 					unrecognized.append("<p>The following elements are not recognized in the database: </p><table><thead><tr><th>Product type</th><th>Amount of elements in model</th></tr></thead><tbody>");
 				}
-				unrecognized.append("<tr><td>" + material + "</td><td>0</td></tr>");
+				unrecognized.append("<tr><td>" + material + "</td><td>" + planningAdvice.getModelCount() + "</td></tr>");
 			} else {
 				recognized.append("<h1>" + material + "</h1>");
 				recognized.append("<p>In the model are found " + planningAdvice.getModelCount() + " elements of this type of product.</p>");
@@ -41,7 +41,7 @@ public class PlanningConsultServiceHtml extends AbstractPlanningConsultService {
 				int counter = 1;
 				for (Planning planning : planningAdvice.getUniquePlannings()) {
 					recognized.append("<h3>Variant " + counter + ": " + planningAdvice.getPercentage(planning) + " % of the elements from this product type are planned according to these steps: </h3>");
-					recognized.append("<table><thead><tr><th>Task number</th><th>Task name</th><th>Percent on time</th><th>Percent too late</th><th>Percent unknown</th></tr></thead><tbody>");
+					recognized.append("<table class=\"table\"><thead><tr><th>Task number</th><th>Task name</th><th>Percent on time</th><th>Percent too late</th><th>Percent unknown</th></tr></thead><tbody>");
 					int taskCounter = 1;
 					for (Task task : planning.getTasks()) {
 						recognized.append("<tr>");
@@ -64,6 +64,6 @@ public class PlanningConsultServiceHtml extends AbstractPlanningConsultService {
 			unrecognized.append("</tbody></table>");
 		}
 
-		addExtendedData(((unrecognized == null ? "" : unrecognized.toString()) + recognized.toString()).getBytes(Charsets.UTF_8), "planning.html", "Planning", "text/html", bimServerClientInterface, roid);
+		addExtendedData(((unrecognized == null ? "" : unrecognized.toString()) + recognized.toString()).getBytes(Charsets.UTF_8), "planning.html", "Planning Consult Results (HTML)", "text/html", bimServerClientInterface, roid);
 	}
 }

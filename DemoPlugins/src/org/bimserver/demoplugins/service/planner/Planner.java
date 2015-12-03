@@ -44,10 +44,10 @@ public class Planner {
 	}
 
 	private Task getOrCreateTask(String code, String description) {
-		Task task = tasks.get(code);
+		Task task = tasks.get(description);
 		if (task == null) {
 			task = new Task(description, code, description);
-			tasks.put(code, task);
+			tasks.put(description, task);
 		}
 		return task;
 	}
@@ -131,7 +131,7 @@ public class Planner {
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 			String material = extractMaterial(ifcProduct);
 			if (material != null) {
-				material = getSimlifiedMaterialName(material);
+//				material = getSimlifiedMaterialName(material);
 				PlanningAdvice planningAdvice = result.get(material);
 				if (planningAdvice == null) {
 					planningAdvice = new PlanningAdvice();

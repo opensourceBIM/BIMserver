@@ -101,6 +101,6 @@ public class PlanningConsultServiceVisualization extends AbstractPlanningConsult
 			}
 		}		
 		
-		addExtendedData(visNode.toString().getBytes(Charsets.UTF_8), "visualizationinfo.json", "Planning Consult Results", "application/json", bimServerClientInterface, roid);
+		addExtendedData(visNode.toString().getBytes(Charsets.UTF_8), "visualizationinfo.json", "Planning Consult Results (JSON Visualization)", "application/json", bimServerClientInterface, roid);
 	}
 }

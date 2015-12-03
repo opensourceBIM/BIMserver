@@ -42,7 +42,6 @@ public abstract class AbstractPlanningConsultService extends AbstractAddExtended
 
 			PluginConfiguration pluginConfiguration = new org.bimserver.plugins.PluginConfiguration(settings);
 
-			String nlsfbType = pluginConfiguration.getString("nlsfb");
 			String materialType = pluginConfiguration.getString("material");
 
 			Planner planner = new Planner(materialType);
@@ -53,7 +52,7 @@ public abstract class AbstractPlanningConsultService extends AbstractAddExtended
 					materialAggregators.add(pluginConfiguration.getString("materialaggregator" + i));
 				}
 
-				planner.feedTrainingData(new EventLog(new ByteArrayInputStream(eventLogBytes), nlsfbType, materialType));
+				planner.feedTrainingData(new EventLog(new ByteArrayInputStream(eventLogBytes)));
 				planner.analyze(materialAggregators);
 			}
 
