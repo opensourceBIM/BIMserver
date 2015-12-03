@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.demoplugins.service.planner.Event.Timing;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.IfcLabel;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
@@ -76,6 +77,13 @@ public class Planner {
 			Planning planning = getOrCreatePlanning(event.getGuid());
 			getOrCreateListOfGuid(event.getMaterial()).add(event.getGuid());
 			Task task = getOrCreateTask(event.getTask(), event.getTaskName());
+			if (event.getTiming() == Timing.ON_TIME) {
+				task.addOnTime();
+			} else if (event.getTiming() == Timing.TOO_LATE) {
+				task.addNotOnTime();
+			} else {
+				task.addUnknown();
+			}
 			planning.add(task);
 		}
 	}
@@ -129,13 +137,13 @@ public class Planner {
 	public Map<String, PlanningAdvice> getSuggestedPlanningsPerMaterial(IfcModelInterface model) {
 		Map<String, PlanningAdvice> result = new HashMap<>();
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-			String material = extractMaterial(ifcProduct);
-			if (material != null) {
-//				material = getSimlifiedMaterialName(material);
+			String originalMaterial = extractMaterial(ifcProduct);
+			if (originalMaterial != null) {
+				String material = getSimlifiedMaterialName(originalMaterial);
 				PlanningAdvice planningAdvice = result.get(material);
 				if (planningAdvice == null) {
 					planningAdvice = new PlanningAdvice();
-					List<String> list = materialToGuid.get(material);
+					List<String> list = materialToGuid.get(originalMaterial);
 					if (list == null) {
 						planningAdvice.setDatabaseCount(0);
 					} else {
