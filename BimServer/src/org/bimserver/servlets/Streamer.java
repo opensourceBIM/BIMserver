@@ -32,7 +32,7 @@ import org.bimserver.longaction.LongAction;
 import org.bimserver.longaction.LongDownloadOrCheckoutAction;
 import org.bimserver.longaction.LongStreamingDownloadAction;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.plugins.serializers.MessagingSerializer;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.Writer;
 import org.bimserver.shared.StreamingSocketInterface;
 import org.bimserver.shared.exceptions.ServerException;
@@ -123,7 +123,7 @@ public class Streamer implements EndPoint {
 								} while (writeMessage);
 								long end = System.nanoTime();
 								LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
-							} catch (IOException e) {
+							} catch (IOException | SerializerException e) {
 								LOGGER.error("", e);
 							}
 						}

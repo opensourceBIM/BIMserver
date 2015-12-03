@@ -49,4 +49,10 @@ public class ByteBufferWrappedVirtualObject extends AbstractByteBufferVirtualObj
 	public int getSize() {
 		throw new UnsupportedOperationException();
 	}
+
+	@Override
+	public boolean useFeatureForSerialization(EStructuralFeature feature, int index) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

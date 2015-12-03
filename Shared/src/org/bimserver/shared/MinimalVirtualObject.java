@@ -12,4 +12,5 @@ public interface MinimalVirtualObject {
 	ByteBuffer write() throws BimserverDatabaseException;
 	Object eGet(EStructuralFeature feature);
 	boolean useFeatureForSerialization(EStructuralFeature feature);
+	boolean useFeatureForSerialization(EStructuralFeature feature, int index);
 }

@@ -508,72 +508,74 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 			boolean first = true;
 			int index = 0;
 			for (Object listObject : list) {
-				if (!first) {
-					print(COMMA);
-				}
-				if (listObject instanceof Long) {
-					print(DASH);
-					print(String.valueOf(getExpressId((Long)listObject)));
-				} else {
-					if (listObject == null) {
-						print(DOLLAR);
+				if (object.useFeatureForSerialization(feature, index)) {
+					if (!first) {
+						print(COMMA);
+					}
+					if (listObject instanceof Long) {
+						print(DASH);
+						print(String.valueOf(getExpressId((Long)listObject)));
 					} else {
-						if (listObject instanceof HashMapWrappedVirtualObject && feature.getEType().getEAnnotation("wrapped") != null) {
-							HashMapWrappedVirtualObject eObject = (HashMapWrappedVirtualObject) listObject;
-							Object realVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValue"));
-							if (realVal instanceof Double) {
-								Object stringVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValueAsString"));
-								if (stringVal != null) {
-									print((String) stringVal);
-								} else {
-									writePrimitive(realVal);
-								}
-							} else {
-								writePrimitive(realVal);
-							}
-						} else if (listObject instanceof HashMapWrappedVirtualObject) {
-							HashMapWrappedVirtualObject eObject = (HashMapWrappedVirtualObject) listObject;
-							EClass class1 = eObject.eClass();
-							EStructuralFeature structuralFeature = class1.getEStructuralFeature(WRAPPED_VALUE);
-							if (structuralFeature != null) {
-								Object realVal = eObject.eGet(structuralFeature);
-								print(packageMetaData.getUpperCase(class1));
-								print(OPEN_PAREN);
-								if (realVal instanceof Double) {
-									EStructuralFeature asStringFeature = eObject.eClass().getEStructuralFeature(structuralFeature.getName() + "AsString");
-									String asString = (String) eObject.eGet(asStringFeature);
-									writeDoubleValue((Double)realVal, asString, structuralFeature);
-								} else {
-									writePrimitive(realVal);
-								}
-								print(CLOSE_PAREN);
-							} else {
-								if (feature.getEAnnotation("twodimensionalarray") != null) {
-									writeList(eObject, eObject.eClass().getEStructuralFeature("List"));
-								} else {
-//									LOGGER.info("Unfollowable reference found from " + object + "(" + object.getOid() + ")." + feature.getName() + " to " + eObject + "(" + eObject.getOid() + ")");
-								}
-							}
+						if (listObject == null) {
+							print(DOLLAR);
 						} else {
-							if (doubleStingList != null) {
-								if (index < doubleStingList.size()) {
-									String val = (String)doubleStingList.get(index);
-									if (val == null) {
-										writePrimitive(listObject);
+							if (listObject instanceof HashMapWrappedVirtualObject && feature.getEType().getEAnnotation("wrapped") != null) {
+								HashMapWrappedVirtualObject eObject = (HashMapWrappedVirtualObject) listObject;
+								Object realVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValue"));
+								if (realVal instanceof Double) {
+									Object stringVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValueAsString"));
+									if (stringVal != null) {
+										print((String) stringVal);
 									} else {
-										print(val);
+										writePrimitive(realVal);
+									}
+								} else {
+									writePrimitive(realVal);
+								}
+							} else if (listObject instanceof HashMapWrappedVirtualObject) {
+								HashMapWrappedVirtualObject eObject = (HashMapWrappedVirtualObject) listObject;
+								EClass class1 = eObject.eClass();
+								EStructuralFeature structuralFeature = class1.getEStructuralFeature(WRAPPED_VALUE);
+								if (structuralFeature != null) {
+									Object realVal = eObject.eGet(structuralFeature);
+									print(packageMetaData.getUpperCase(class1));
+									print(OPEN_PAREN);
+									if (realVal instanceof Double) {
+										EStructuralFeature asStringFeature = eObject.eClass().getEStructuralFeature(structuralFeature.getName() + "AsString");
+										String asString = (String) eObject.eGet(asStringFeature);
+										writeDoubleValue((Double)realVal, asString, structuralFeature);
+									} else {
+										writePrimitive(realVal);
+									}
+									print(CLOSE_PAREN);
+								} else {
+									if (feature.getEAnnotation("twodimensionalarray") != null) {
+										writeList(eObject, eObject.eClass().getEStructuralFeature("List"));
+									} else {
+//										LOGGER.info("Unfollowable reference found from " + object + "(" + object.getOid() + ")." + feature.getName() + " to " + eObject + "(" + eObject.getOid() + ")");
+									}
+								}
+							} else {
+								if (doubleStingList != null) {
+									if (index < doubleStingList.size()) {
+										String val = (String)doubleStingList.get(index);
+										if (val == null) {
+											writePrimitive(listObject);
+										} else {
+											print(val);
+										}
+									} else {
+										writePrimitive(listObject);
 									}
 								} else {
 									writePrimitive(listObject);
 								}
-							} else {
-								writePrimitive(listObject);
 							}
 						}
 					}
+					first = false;
 				}
-				first = false;
-				index++;
+				index++;				
 			}
 			print(CLOSE_PAREN);
 		}

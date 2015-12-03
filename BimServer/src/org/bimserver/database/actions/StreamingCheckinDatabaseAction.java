@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.http.client.params.AllClientPNames;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GenerateGeometryResult;
@@ -172,18 +171,11 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			setProgress("Generating inverses/opposites", 0);
 			int inverseFixes = 0;
 			
-			Set<EClass> allEClassesThatHaveInverses = packageMetaData.getAllEClassesThatHaveInverses();
-			int total = 0;
-			for (EClass eClass : allEClassesThatHaveInverses) {
-				if (eClasses.contains(eClass)) {
-					total++;
-				}				
-			}
 			int c = 0;
 			int writes = 0;
 			Set<Long> unq = new HashSet<>();
-			for (EClass eClass : allEClassesThatHaveInverses) {
-				if (eClasses.contains(eClass)) {
+			for (EClass eClass : deserializer.getSummaryMap().keySet()) {
+				if (packageMetaData.hasInverses(eClass)) {
 					Query query = new Query("test", packageMetaData);
 					QueryPart queryPart = query.createQueryPart();
 					queryPart.addType(eClass, true);
@@ -242,7 +234,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 						}
 						next = queryObjectProvider.next();
 					}
-					setProgress("Generating inverses/opposites", (int) (100.0 * c / total));
+					setProgress("Generating inverses/opposites", (int) (100.0 * c / deserializer.getSummaryMap().keySet().size()));
 					c++;
 				}
 			}

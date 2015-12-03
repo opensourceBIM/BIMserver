@@ -30,6 +30,7 @@ public interface MessagingStreamingSerializer extends Writer {
 	 * @param progressReporter Report any available progress to the progressReporter
 	 * @return true if there are more messages, false if there are no more
 	 * @throws IOException
+	 * @throws SerializerException 
 	 */
-	boolean writeMessage(OutputStream outputStream, ProgressReporter progressReporter) throws IOException;
+	boolean writeMessage(OutputStream outputStream, ProgressReporter progressReporter) throws IOException, SerializerException;
 }

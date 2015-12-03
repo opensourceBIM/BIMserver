@@ -61,4 +61,10 @@ public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject im
 		}
 		return size;
 	}
+
+	@Override
+	public boolean useFeatureForSerialization(EStructuralFeature feature, int index) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

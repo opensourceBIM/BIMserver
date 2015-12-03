@@ -283,4 +283,10 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 	public boolean has(String string) {
 		throw new UnsupportedOperationException();
 	}
+
+	@Override
+	public boolean useFeatureForSerialization(EStructuralFeature feature, int index) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

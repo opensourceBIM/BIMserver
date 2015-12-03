@@ -8,6 +8,7 @@ import javax.activation.DataSource;
 
 import org.bimserver.plugins.serializers.MessagingStreamingSerializer;
 import org.bimserver.plugins.serializers.ProgressReporter;
+import org.bimserver.plugins.serializers.SerializerException;
 
 public class MessagingStreamingDataSource implements DataSource {
 
@@ -37,7 +38,7 @@ public class MessagingStreamingDataSource implements DataSource {
 		return null;
 	}
 
-	public void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws IOException {
+	public void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws IOException, SerializerException {
 		while(messagingStreamingSerializer.writeMessage(outputStream, null)) {
 		}
 	}
