@@ -260,7 +260,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 						IfcModelInterface model = deserializer.read(inputStream, fileName, fileSize, null);
 						
 						CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
-						LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+						LongCheckinAction longAction = new LongCheckinAction(topicId, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 						getBimServer().getLongActionManager().start(longAction);
 						if (sync) {
 							longAction.waitForCompletion();
@@ -354,7 +354,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			IfcModelInterface model = deserializer.read(inputStream, fileName, 0, null);
 			
 			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
-			LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+			LongCheckinAction longAction = new LongCheckinAction(-1L, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 			getBimServer().getLongActionManager().start(longAction);
 			if (sync) {
 				longAction.waitForCompletion();

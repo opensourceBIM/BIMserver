@@ -678,7 +678,9 @@ define(
 	    			var result = JSON.parse(this.response);
 	    			
 	    			if (result.exception == null) {
-	    				success(result.checkinid);
+	    				if (success != null) {
+	    					success(result.checkinid);
+	    				}
 	    			} else {
 	    				if (error == null) {
 	    					console.error(result.exception);

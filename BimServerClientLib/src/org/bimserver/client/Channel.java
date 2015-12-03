@@ -163,8 +163,8 @@ public abstract class Channel implements ServiceHolder {
 		return -1;
 	}
 
-	public InputStream getDownloadData(String  baseAddress, String token, long download, long serializerOid) throws IOException {
-		String address = baseAddress + "/download?token=" + token + "&longActionId=" + download + "&serializerOid=" + serializerOid;
+	public InputStream getDownloadData(String  baseAddress, String token, long topicId, long serializerOid) throws IOException {
+		String address = baseAddress + "/download?token=" + token + "&topicId=" + topicId + "&serializerOid=" + serializerOid;
 		HttpPost httppost = new HttpPost(address);
 		try {
 			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
