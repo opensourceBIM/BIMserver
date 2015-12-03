@@ -3,6 +3,12 @@ package org.bimserver.demoplugins.service.planner;
 import java.util.GregorianCalendar;
 
 public class Event implements Comparable<Event> {
+	public static enum Timing {
+		UNKNOWN,
+		ON_TIME,
+		TOO_LATE
+	}
+	
 	private String guid;
 	private String type;
 	private String nlSfb;
@@ -12,6 +18,7 @@ public class Event implements Comparable<Event> {
 	private String taskName;
 	private GregorianCalendar taskStart;
 	private GregorianCalendar taskFinish;
+	private Timing timing = Timing.UNKNOWN;
 
 	public String getGuid() {
 		return guid;
@@ -88,5 +95,27 @@ public class Event implements Comparable<Event> {
 	@Override
 	public int compareTo(Event o) {
 		return taskStart.compareTo(o.taskStart);
+	}
+
+	public Event copy() {
+		Event event = new Event();
+		event.setGuid(guid);
+		event.setMaterial(material);
+		event.setNlSfb(nlSfb);
+		event.setResource(resource);
+		event.setTask(task);
+		event.setTaskFinish(taskFinish);
+		event.setTaskStart(taskStart);
+		event.setType(type);
+		event.setTaskName(taskName);
+		return event;
+	}
+
+	public Timing getTiming() {
+		return timing;
+	}
+
+	public void setTiming(Timing timing) {
+		this.timing = timing;
 	}
 }

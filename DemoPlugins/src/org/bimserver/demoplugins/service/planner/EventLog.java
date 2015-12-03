@@ -15,6 +15,7 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bimserver.demoplugins.service.planner.Event.Timing;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.IfcDateAndTime;
 import org.bimserver.models.ifc2x3tc1.IfcLabel;
@@ -39,15 +40,11 @@ import au.com.bytecode.opencsv.CSVWriter;
 
 public class EventLog implements Iterable<Event> {
 	private final List<Event> events = new ArrayList<>();
-	private String nlsfbPropertyName;
-	private String materialPropertyName;
 
 	public EventLog() {
 	}
 	
-	public EventLog(InputStream inputStream, String nlsfbPropertyName, String materialPropertyName) {
-		this.nlsfbPropertyName = nlsfbPropertyName;
-		this.materialPropertyName = materialPropertyName;
+	public EventLog(InputStream inputStream) {
 		CSVReader reader = new CSVReader(new InputStreamReader(inputStream, Charsets.UTF_8));
 		try {
 			String[] header = reader.readNext();
@@ -63,6 +60,14 @@ public class EventLog implements Iterable<Event> {
 				event.setTaskName(line[6]);
 				event.setTaskStart(parseDate(line[7]));
 				event.setTaskFinish(parseDate(line[8]));
+				if (line.length > 9) {
+					String timing = line[9];
+					if (timing.equals("On time")) {
+						event.setTiming(Timing.ON_TIME);
+					} else if (timing.equals("Too late")) {
+						event.setTiming(Timing.TOO_LATE);
+					}
+				}
 				events.add(event);
 				line = reader.readNext();
 			}
@@ -86,8 +91,6 @@ public class EventLog implements Iterable<Event> {
 	}
 
 	public EventLog(IfcModelInterface model, String nlsfbPropertyName, String materialPropertyName) {
-		this.nlsfbPropertyName = nlsfbPropertyName;
-		this.materialPropertyName = materialPropertyName;
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 			Event event = new Event();
 			event.setGuid(ifcProduct.getGlobalId());
@@ -140,6 +143,7 @@ public class EventLog implements Iterable<Event> {
 					}
 				}
 				events.add(event);
+				event = event.copy();
 			}
 		}
 	}
