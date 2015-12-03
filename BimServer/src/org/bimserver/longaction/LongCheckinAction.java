@@ -35,12 +35,16 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	private CheckinDatabaseAction checkinDatabaseAction;
 	private String fileName;
 
-	public LongCheckinAction(BimServer bimServer, String username, String userUsername, Authorization authorization, CheckinDatabaseAction checkinDatabaseAction) {
+	public LongCheckinAction(Long topicId, BimServer bimServer, String username, String userUsername, Authorization authorization, CheckinDatabaseAction checkinDatabaseAction) {
 		super(bimServer, username, userUsername, authorization);
 		this.checkinDatabaseAction = checkinDatabaseAction;
 		this.fileName = checkinDatabaseAction.getFileName();
 		
-		setProgressTopic(bimServer.getNotificationsManager().createProgressOnProjectTopic(authorization.getUoid(), checkinDatabaseAction.getPoid(), SProgressTopicType.UPLOAD, "Checkin"));
+		if (topicId == -1) {
+			setProgressTopic(bimServer.getNotificationsManager().createProgressOnProjectTopic(authorization.getUoid(), checkinDatabaseAction.getPoid(), SProgressTopicType.UPLOAD, "Checkin"));
+		} else {
+			setProgressTopic(bimServer.getNotificationsManager().getProgressTopic(topicId));
+		}
 		checkinDatabaseAction.addProgressListener(this);
 	}
 
