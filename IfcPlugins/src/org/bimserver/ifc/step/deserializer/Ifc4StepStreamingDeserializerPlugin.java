@@ -26,6 +26,6 @@ public class Ifc4StepStreamingDeserializerPlugin extends IfcStepStreamingDeseria
 
 	@Override
 	public String getDefaultName() {
-		return "Ifc4 Step Streaming Deserializer";
+		return "Ifc4 Step Streaming Deserializer (BETA)";
 	}
 }

@@ -158,14 +158,14 @@ public class StreamingGeometryGenerator {
 				ObjectProviderProxy proxy = new ObjectProviderProxy(objectProvider, new ObjectListener() {
 					@Override
 					public void newObject(HashMapVirtualObject next) {
-						if (Ifc2x3tc1Package.eINSTANCE.getIfcProduct().isSuperTypeOf(next.eClass())) {
+						if (eClass.isSuperTypeOf(next.eClass())) {
 							oids.add(next);
 						}
 					}
 				});
 				ifcSerializer.init(proxy, null, null, bimServer.getPluginManager(), packageMetaData);
 
-				boolean debug = false;
+				boolean debug = true;
 				InputStream in = null;
 				if (debug) {
 					File file = new File((eClass == null ? "all" : eClass.getName()) + ".ifc");
@@ -187,9 +187,10 @@ public class StreamingGeometryGenerator {
 					Map<Long, Integer> oidToEid = oidConvertingSerializer.getOidToEid();
 					
 					for (HashMapVirtualObject ifcProduct : oids) {
+						Integer expressId = oidToEid.get(ifcProduct.getOid());
 						if (ifcProduct.eGet(representationFeature) != null) {
 							try {
-								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(oidToEid.get(ifcProduct.getOid()));
+								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(expressId);
 								RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
 								boolean translate = true;
 								if (geometry == null || geometry.getIndices().length == 0) {
@@ -303,7 +304,7 @@ public class StreamingGeometryGenerator {
 								}
 							} catch (EntityNotFoundException e) {
 								// As soon as we find a representation that is not Curve2D, then we should show a "INFO" message in the log to indicate there could be something wrong
-								boolean ignoreNotFound = true;
+								boolean ignoreNotFound = false;
 //								for (Object rep : representations) {
 //									if (rep instanceof IfcShapeRepresentation) {
 //										IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation)rep;
@@ -312,9 +313,9 @@ public class StreamingGeometryGenerator {
 //										}
 //									}
 //								}
-//								if (!ignoreNotFound) {
-//									LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + ifcProduct.getExpressId() + "/" + ifcProduct.getOid());
-//								}
+								if (!ignoreNotFound) {
+									LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + (expressId) + "/" + ifcProduct.getOid());
+								}
 							} catch (BimserverDatabaseException | RenderEngineException e) {
 								LOGGER.error("", e);
 							}
@@ -408,12 +409,12 @@ public class StreamingGeometryGenerator {
 						Include hasOpenings = ifcWall.createInclude();
 						hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
 						hasOpenings.addField("RelatedOpeningElement");
-						Include relatedOpeningElement = hasOpenings.createInclude();
-						relatedOpeningElement.addType(packageMetaData.getEClass("IfcOpeningElement"), false);
-						relatedOpeningElement.addField("HasFillings");
-						Include hasFillings = relatedOpeningElement.createInclude();
-						hasFillings.addType(packageMetaData.getEClass("IfcRelFillsElement"), false);
-						hasFillings.addField("RelatedBuildingElement");
+//						Include relatedOpeningElement = hasOpenings.createInclude();
+//						relatedOpeningElement.addType(packageMetaData.getEClass("IfcOpeningElement"), false);
+//						relatedOpeningElement.addField("HasFillings");
+//						Include hasFillings = relatedOpeningElement.createInclude();
+//						hasFillings.addType(packageMetaData.getEClass("IfcRelFillsElement"), false);
+//						hasFillings.addField("RelatedBuildingElement");
 					}
 					QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
 					

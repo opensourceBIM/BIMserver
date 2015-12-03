@@ -6,11 +6,8 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
-import java.util.Iterator;
-import java.util.Map;
 
 import org.bimserver.BimserverDatabaseException;
-import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SVector3f;
 import org.bimserver.models.geometry.GeometryPackage;
@@ -23,10 +20,13 @@ import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.io.LittleEndianDataOutputStream;
 
 public class BinaryGeometryMessagingStreamingSerializer implements MessagingStreamingSerializer {
+	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryGeometryMessagingStreamingSerializer.class);
 	private static final byte FORMAT_VERSION = 7;
 	
 	private enum Mode {
@@ -38,9 +38,7 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 	private enum MessageType {
 		INIT((byte)0),
 		GEOMETRY_TRIANGLES((byte)1),
-		GEOMETRY_INSTANCE((byte)2),
 		GEOMETRY_TRIANGLES_PARTED((byte)3),
-		GEOMETRY_INSTANCE_PARTED((byte)4),
 		GEOMETRY_INFO((byte)5),
 		END((byte)6);
 		
@@ -54,41 +52,39 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 			return id;
 		}
 	}
-	
+
 	private Mode mode = Mode.START;
-	private Map<Long, Object> concreteGeometrySent;
-	private Iterator<IdEObject> iterator;
-	private PackageMetaData packageMetaData;
 	private long splitCounter = -1;
 	private ObjectProvider objectProvider;
 	private HashMapVirtualObject next;
 	private ProjectInfo projectInfo;
+	private LittleEndianDataOutputStream dataOutputStream;
 	
 	@Override
 	public void init(ObjectProvider objectProvider, ProjectInfo projectInfo, PluginManager pluginManager, PackageMetaData packageMetaData) throws SerializerException {
 		this.objectProvider = objectProvider;
 		this.projectInfo = projectInfo;
-		this.packageMetaData = packageMetaData;
 	}
 
 	@Override
-	public boolean writeMessage(OutputStream outputStream, ProgressReporter progressReporter) throws IOException {
+	public boolean writeMessage(OutputStream outputStream, ProgressReporter progressReporter) throws IOException, SerializerException {
+		dataOutputStream = new LittleEndianDataOutputStream(outputStream);
 		switch (mode) {
 		case START:
-			if (!writeStart(outputStream)) {
+			if (!writeStart()) {
 				mode = Mode.END;
 				return true;
 			}
 			mode = Mode.DATA;
 			break;
 		case DATA:
-			if (!writeData(outputStream)) {
+			if (!writeData()) {
 				mode = Mode.END;
 				return true;
 			}
 			break;
 		case END:
-			writeEnd(outputStream);
+			writeEnd();
 			return false;
 		default:
 			break;
@@ -96,13 +92,12 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 		return true;
 	}
 	
-	private boolean writeEnd(OutputStream outputStream) throws IOException {
-		outputStream.write(MessageType.END.getId());
+	private boolean writeEnd() throws IOException {
+		dataOutputStream.write(MessageType.END.getId());
 		return true;
 	}
 	
-	private boolean writeStart(OutputStream outputStream) throws IOException {
-		LittleEndianDataOutputStream dataOutputStream = new LittleEndianDataOutputStream(outputStream);
+	private boolean writeStart() throws IOException {
 		// Identifier for clients to determine if this server is even serving binary geometry
 		dataOutputStream.writeByte(MessageType.INIT.getId());
 		dataOutputStream.writeUTF("BGS");
@@ -124,10 +119,6 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 		dataOutputStream.writeFloat(maxBounds.getY());
 		dataOutputStream.writeFloat(maxBounds.getZ());
 		
-//		dataOutputStream.writeInt(nrObjects);
-		
-//		concreteGeometrySent = new HashMap<Long, Object>();
-
 		try {
 			next = objectProvider.next();
 		} catch (BimserverDatabaseException e) {
@@ -137,8 +128,7 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 		return next != null;
 	}
 	
-	private boolean writeData(OutputStream outputStream) throws IOException {
-		LittleEndianDataOutputStream dataOutputStream = new LittleEndianDataOutputStream(outputStream);
+	private boolean writeData() throws IOException, SerializerException {
 		if (next.eClass() == GeometryPackage.eINSTANCE.getGeometryInfo()) {
 			Object transformation = next.eGet(next.eClass().getEStructuralFeature("transformation"));
 			Object data = next.eGet(next.eClass().getEStructuralFeature("data"));
@@ -187,9 +177,6 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 
 				int nrParts = (totalNrIndices + maxIndexValues - 1) / maxIndexValues;
 				dataOutputStream.writeInt(nrParts);
-
-//				Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
-//				objectBounds.writeTo(dataOutputStream);
 
 				ByteBuffer indicesBuffer = ByteBuffer.wrap(indices);
 				indicesBuffer.order(ByteOrder.LITTLE_ENDIAN);
@@ -253,11 +240,6 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 				dataOutputStream.write(new byte[3]);
 				dataOutputStream.writeLong(next.getOid());
 
-//				Bounds objectBounds = new Bounds(geometryInfo.getMinBounds(), geometryInfo.getMaxBounds());
-//				objectBounds.writeTo(dataOutputStream);
-				
-//				dataOutputStream.writeLong(geometryData.getOid());
-				
 				ByteBuffer indicesBuffer = ByteBuffer.wrap(indices);
 				dataOutputStream.writeInt(indicesBuffer.capacity() / 4);
 				dataOutputStream.write(indicesBuffer.array());
@@ -280,76 +262,14 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 					// No materials used
 					dataOutputStream.writeInt(0);
 				}
-//				List<Long> arrayList = new ArrayList<Long>();
-//				arrayList.add(geometryData.getOid());
-//				concreteGeometrySent.put(geometryData.getOid(), arrayList);
-			}
-		} else if (packageMetaData.getEClass("IfcProduct").isSuperTypeOf(next.eClass())) {
-			Object geometry = next.eGet(next.eClass().getEStructuralFeature("geometry"));
-			if (geometry != null) {
-				// TODO indicate what's coming
-				dataOutputStream.writeLong(next.getOid());
-				dataOutputStream.writeLong((Long)geometry);
 			}
 		} else {
-			System.out.println("Ignoring");
-			// Ignore
+			LOGGER.info("Ignoring");
 		}
-//		GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
-//		if (geometryInfo != null && geometryInfo.getTransformation() != null) {
-//			GeometryData geometryData = geometryInfo.getData();
-			
-//			int totalNrIndices = geometryData.getIndices().length / 4;
-//			int maxIndexValues = 16389;
-//			
-//			Object reuse = concreteGeometrySent.get(geometryData.getOid());
-//			MessageType messageType = null;
-//			if (reuse == null) {
-//				if (totalNrIndices > maxIndexValues) {
-//					messageType = MessageType.GEOMETRY_TRIANGLES_PARTED;
-//				} else {
-//					messageType = MessageType.GEOMETRY_TRIANGLES;
-//				}
-//			} else {
-//				if (reuse instanceof List) {
-//					messageType = MessageType.GEOMETRY_INSTANCE_PARTED;
-//				} else {
-//					messageType = MessageType.GEOMETRY_INSTANCE;
-//				}
-//			}
-//			dataOutputStream.writeByte(messageType.getId());
-//			dataOutputStream.writeUTF(ifcProduct.eClass().getName());
-//			dataOutputStream.writeLong(roid);
-//			dataOutputStream.writeLong(ifcProduct.getOid());
-			
-			// BEWARE, ByteOrder is always LITTLE_ENDIAN, because that's what GPU's seem to prefer, Java's ByteBuffer default is BIG_ENDIAN though!
-			
-//			int skip = 4 - 3;
-//			int skip = 4 - ((3 + ifcProduct.eClass().getName().getBytes(Charsets.UTF_8).length) % 4);
-//			if(skip != 0 && skip != 4) {
-//				dataOutputStream.write(new byte[skip]);
-//			}
-//			
-//			dataOutputStream.write(geometryInfo.getTransformation());
-//			
-//			if (reuse != null && reuse instanceof Long) {
-//				// Reused geometry, only send the id of the reused geometry data
-//				dataOutputStream.writeLong(geometryData.getOid());
-//			} else if (reuse != null && reuse instanceof List) {
-//				List<Long> list = (List<Long>)reuse;
-//				dataOutputStream.writeInt(list.size());
-//				for (long coreId : list) {
-//					dataOutputStream.writeLong(coreId);
-//				}
-//			} else {
-//
-//			}
-//		}
 		try {
 			next = objectProvider.next();
 		} catch (BimserverDatabaseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new SerializerException(e);
 		}
 		return next != null;
 	}

@@ -34,7 +34,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	private EClass eClass;
 	private long oid;
 	private QueryContext reusable;
-	private Set<EStructuralFeature> useForSerializationFeatures = new HashSet<EStructuralFeature>();
+	private Map<EStructuralFeature, Object> useForSerializationFeatures = new HashMap<>();
 	
 	public HashMapVirtualObject(QueryContext reusable, EClass eClass) {
 		this.reusable = reusable;
@@ -453,16 +453,44 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		return map.containsKey(eStructuralFeature);
 	}
 
+	@SuppressWarnings("unchecked")
+	public boolean useFeatureForSerialization(EStructuralFeature feature, int index) {
+		if (feature instanceof EAttribute) {
+			return true;
+		}
+		if (useForSerializationFeatures.containsKey(feature)) {
+			Set<Integer> set = (Set<Integer>) useForSerializationFeatures.get(feature);
+			if (set.contains(index)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean useFeatureForSerialization(EStructuralFeature feature) {
 		if (feature instanceof EAttribute) {
 			return true;
 		}
-		return useForSerializationFeatures.contains(feature);
+		return useForSerializationFeatures.containsKey(feature);
 	}
 
 	public void addUseForSerialization(EStructuralFeature eStructuralFeature) {
 		if (eStructuralFeature.getEContainingClass().isSuperTypeOf(eClass)) {
-			useForSerializationFeatures.add(eStructuralFeature);
+			useForSerializationFeatures.put(eStructuralFeature, true);
+		} else {
+			throw new IllegalArgumentException(eStructuralFeature.getName() + " does not exist in " + eClass.getName());
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void addUseForSerialization(EStructuralFeature eStructuralFeature, int index) {
+		if (eStructuralFeature.getEContainingClass().isSuperTypeOf(eClass)) {
+			Set<Integer> set = (Set<Integer>) useForSerializationFeatures.get(eStructuralFeature);
+			if (set == null) {
+				set = new HashSet<>();
+				useForSerializationFeatures.put(eStructuralFeature, set);
+			}
+			set.add(index);
 		} else {
 			throw new IllegalArgumentException(eStructuralFeature.getName() + " does not exist in " + eClass.getName());
 		}

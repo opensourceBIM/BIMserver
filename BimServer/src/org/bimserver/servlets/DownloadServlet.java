@@ -36,6 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.cache.FileInputStreamDataSource;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDownloadResult;
@@ -269,8 +270,7 @@ public class DownloadServlet extends SubServlet {
 					try {
 						if (zip) {
 							if (pluginConfiguration.getString("ZipExtension") != null) {
-								response.setHeader("Content-Disposition",
-										"inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.ZIP_EXTENSION) + "\"");
+								response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.ZIP_EXTENSION) + "\"");
 							} else {
 								response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + ".zip" + "\"");
 							}
@@ -279,14 +279,8 @@ public class DownloadServlet extends SubServlet {
 							String nameInZip = dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);
 							ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
 							zipOutputStream.putNextEntry(new ZipEntry(nameInZip));
-							if (dataSource instanceof FileInputStreamDataSource) {
-								FileInputStreamDataSource fileInputStreamDataSource = (FileInputStreamDataSource) dataSource;
-								InputStream inputStream = fileInputStreamDataSource.getInputStream();
-								copy(inputStream, zipOutputStream, progressReporter, fileInputStreamDataSource.size());
-								inputStream.close();
-							} else {
-								((EmfSerializerDataSource) dataSource).writeToOutputStream(zipOutputStream, progressReporter);
-							}
+							
+							processDataSource(zipOutputStream, dataSource, progressReporter);
 							try {
 								zipOutputStream.finish();
 							} catch (IOException e) {
@@ -295,23 +289,11 @@ public class DownloadServlet extends SubServlet {
 						} else {
 							if (request.getParameter("mime") == null) {
 								response.setContentType(pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE));
-								response.setHeader("Content-Disposition",
-										"inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION) + "\"");
+								response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION) + "\"");
 							} else {
 								response.setContentType(request.getParameter("mime"));
 							}
-							if (dataSource instanceof FileInputStreamDataSource) {
-								FileInputStreamDataSource fileInputStreamDataSource = (FileInputStreamDataSource) dataSource;
-								InputStream inputStream = fileInputStreamDataSource.getInputStream();
-								copy(inputStream, outputStream, progressReporter, fileInputStreamDataSource.size());
-								inputStream.close();
-							} else if (dataSource instanceof StreamingSerializerDataSource){
-								((StreamingSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
-							} else if (dataSource instanceof MessagingStreamingDataSource){
-								((MessagingStreamingDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
-							} else {
-								((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
-							}
+							processDataSource(outputStream, dataSource, progressReporter);
 						}
 					} catch (SerializerException s) {
 						LOGGER.error("", s);
@@ -341,6 +323,21 @@ public class DownloadServlet extends SubServlet {
 		} catch (EOFException e) {
 		} catch (Exception e) {
 			LOGGER.error("", e);
+		}
+	}
+
+	private void processDataSource(OutputStream outputStream, DataSource dataSource, ProgressReporter progressReporter) throws IOException, SerializerException, BimserverDatabaseException {
+		if (dataSource instanceof FileInputStreamDataSource) {
+			FileInputStreamDataSource fileInputStreamDataSource = (FileInputStreamDataSource) dataSource;
+			InputStream inputStream = fileInputStreamDataSource.getInputStream();
+			copy(inputStream, outputStream, progressReporter, fileInputStreamDataSource.size());
+			inputStream.close();
+		} else if (dataSource instanceof StreamingSerializerDataSource){
+			((StreamingSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
+		} else if (dataSource instanceof MessagingStreamingDataSource){
+			((MessagingStreamingDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
+		} else {
+			((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
 		}
 	}
 	

@@ -9,7 +9,7 @@ import org.bimserver.plugins.serializers.StreamingSerializer;
 public class Ifc4StepStreamingSerializerPlugin extends IfcStepStreamingSerializerPlugin {
 	@Override
 	public String getDefaultName() {
-		return "Ifc4 (Streaming)";
+		return "Ifc4 (Streaming, BETA)";
 	}
 	
 	@Override

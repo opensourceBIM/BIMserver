@@ -644,4 +644,13 @@ public class PackageMetaData implements ObjectFactory {
 		}
 		return result;
 	}
+
+	public boolean hasInverses(EClass eClass) {
+		for (EReference eReference : eClass.getEAllReferences()) {
+			if (hasInverse(eReference)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

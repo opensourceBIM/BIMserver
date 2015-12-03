@@ -5,5 +5,5 @@ import java.io.OutputStream;
 
 public interface Writer {
 
-	boolean writeMessage(OutputStream outputStream, ProgressReporter progressReporter) throws IOException;
+	boolean writeMessage(OutputStream outputStream, ProgressReporter progressReporter) throws IOException, SerializerException;
 }
