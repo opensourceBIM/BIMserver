@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.bimserver.demoplugins.service.planner.Event.Timing;
 import org.bimserver.emf.IfcModelInterface;
@@ -40,11 +41,13 @@ import au.com.bytecode.opencsv.CSVWriter;
 
 public class EventLog implements Iterable<Event> {
 	private final List<Event> events = new ArrayList<>();
+	private Set<String> materialAggregators;
 
 	public EventLog() {
 	}
 	
-	public EventLog(InputStream inputStream) {
+	public EventLog(InputStream inputStream, Set<String> materialAggregators) {
+		this.materialAggregators = materialAggregators;
 		CSVReader reader = new CSVReader(new InputStreamReader(inputStream, Charsets.UTF_8));
 		try {
 			String[] header = reader.readNext();
@@ -54,7 +57,7 @@ public class EventLog implements Iterable<Event> {
 				event.setGuid(line[0]);
 				event.setType(line[1]);
 				event.setNlSfb(line[2]);
-				event.setMaterial(line[3]);
+				event.setMaterial(getSimlifiedMaterialName(line[3]));
 				event.setTask(line[4]);
 				event.setResource(line[5]);
 				event.setTaskName(line[6]);
@@ -89,7 +92,16 @@ public class EventLog implements Iterable<Event> {
 			events.add(event);
 		}
 	}
-
+	
+	private String getSimlifiedMaterialName(String materialName) {
+		for (String simplified : materialAggregators) {
+			if (!simplified.equals("") && materialName.toLowerCase().contains(simplified.toLowerCase())) {
+				return simplified;
+			}
+		}
+		return materialName;
+	}
+	
 	public EventLog(IfcModelInterface model, String nlsfbPropertyName, String materialPropertyName) {
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 			Event event = new Event();

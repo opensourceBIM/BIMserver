@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.bimserver.demoplugins.service.planner.Event.Timing;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.models.ifc2x3tc1.IfcIdentifier;
 import org.bimserver.models.ifc2x3tc1.IfcLabel;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProperty;
@@ -116,6 +117,11 @@ public class Planner {
 								if (ifcProperty.getName().equals(materialParameter)) {
 									return label.getWrappedValue();
 								}
+							} else if (propertyValue.getNominalValue() instanceof IfcIdentifier) {
+								IfcIdentifier ifcIdentifier = (IfcIdentifier)propertyValue.getNominalValue();
+								if (ifcProperty.getName().equals(materialParameter)) {
+									return ifcIdentifier.getWrappedValue();
+								}
 							}
 						}
 					}
@@ -139,11 +145,14 @@ public class Planner {
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 			String originalMaterial = extractMaterial(ifcProduct);
 			if (originalMaterial != null) {
-				String material = getSimlifiedMaterialName(originalMaterial);
-				PlanningAdvice planningAdvice = result.get(material);
+				String simplifiedMaterial = getSimlifiedMaterialName(originalMaterial);
+				PlanningAdvice planningAdvice = result.get(simplifiedMaterial);
 				if (planningAdvice == null) {
 					planningAdvice = new PlanningAdvice();
 					List<String> list = materialToGuid.get(originalMaterial);
+					if (list == null) {
+						list = materialToGuid.get(simplifiedMaterial);
+					}
 					if (list == null) {
 						planningAdvice.setDatabaseCount(0);
 					} else {
@@ -155,7 +164,7 @@ public class Planner {
 							}
 						}
 					}
-					result.put(material, planningAdvice);
+					result.put(simplifiedMaterial, planningAdvice);
 				}
 				planningAdvice.incrementModelCount(ifcProduct);
 			}

@@ -337,9 +337,6 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 							idEObject.setListItemReference(feature, i, referenceClass, rf, -1);
 							if (rf != -1) {
 								if (queryObjectProvider.hasReadOrIsGoingToRead((rf))) {
-									if (idEObject.eClass().getName().toUpperCase().equals("IFCRELCONTAINEDINSPATIALSTRUCTURE") && feature.getName().equals("RelatedElements")) {
-										System.out.println(idEObject.eClass().getName() + "." + feature.getName() + ": " + i + " " + getQueryObjectProvider().getDatabaseSession().getEClass((short)rf).getName());
-									}
 									idEObject.addUseForSerialization(feature, i);
 								}
 							}
