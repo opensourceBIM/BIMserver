@@ -52,7 +52,8 @@ public abstract class AbstractPlanningConsultService extends AbstractAddExtended
 					materialAggregators.add(pluginConfiguration.getString("materialaggregator" + i));
 				}
 
-				planner.feedTrainingData(new EventLog(new ByteArrayInputStream(eventLogBytes)));
+				EventLog eventLog = new EventLog(new ByteArrayInputStream(eventLogBytes), materialAggregators);
+				planner.feedTrainingData(eventLog);
 				planner.analyze(materialAggregators);
 			}
 
