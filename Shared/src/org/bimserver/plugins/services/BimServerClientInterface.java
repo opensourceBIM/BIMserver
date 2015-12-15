@@ -17,7 +17,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 
-public interface BimServerClientInterface extends ServiceHolder {
+public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 
 	IfcModelInterface getModel(SProject project, long roid, boolean deep, boolean recordChanges, boolean includeGeometry) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException;
 	IfcModelInterface getModel(SProject project, long roid, boolean deep, boolean recordChanges) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException;
