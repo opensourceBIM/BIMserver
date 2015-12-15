@@ -21,4 +21,8 @@ public class SingleIterator<E> implements Iterator<E> {
 		e = null;
 		return n;
 	}
+	
+	@Override
+	public void remove() {
+	}
 }

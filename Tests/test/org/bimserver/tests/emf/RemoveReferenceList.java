@@ -1,7 +1,6 @@
 package org.bimserver.tests.emf;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.nio.file.Paths;
 
@@ -75,12 +74,8 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
 				assertTrue("Size should be 2, is " + ifcFurnishingElement.getContainedInStructure().size(), ifcFurnishingElement.getContainedInStructure().size() == 2);
-				if (!ifcFurnishingElement.getContainedInStructure().get(0).getName().equals("link1")) {
-					fail("First one should be link 1");
-				}
-				if (!ifcFurnishingElement.getContainedInStructure().get(1).getName().equals("link3")) {
-					fail("Second one should be link 3");
-				}
+				assertEquals("link", "link1", ifcFurnishingElement.getContainedInStructure().get(0).getName());
+				assertEquals("link", "link3", ifcFurnishingElement.getContainedInStructure().get(1).getName());
 			}
 		} catch (Throwable e) {
 			e.printStackTrace();
