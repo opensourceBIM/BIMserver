@@ -48,7 +48,7 @@ public class Query {
 		addQueryPart(queryPart);
 		return queryPart;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

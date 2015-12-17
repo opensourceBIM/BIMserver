@@ -31,8 +31,8 @@ import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.ObjectIdentifier;
-import org.bimserver.database.Query;
-import org.bimserver.database.Query.Deep;
+import org.bimserver.database.OldQuery;
+import org.bimserver.database.OldQuery.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataException;
 import org.bimserver.emf.PackageMetaData;
@@ -78,7 +78,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 		Project project = null;
 		long incrSize = 0L;
 		
-		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, OldQuery.getDefault());
 		PackageMetaData lastPackageMetaData = null;
 		Map<Integer, Long> ridRoidMap = new HashMap<Integer, Long>();
 		for (Long roid : roids) {
@@ -116,7 +116,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 				lastPackageMetaData = packageMetaData;
 				IfcModel subModel = new ServerIfcModel(packageMetaData, ridRoidMap, getDatabaseSession());
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), objectIDM, deep, highestStopId);
+				OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), objectIDM, deep, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {

@@ -3,7 +3,7 @@ package org.bimserver.database.actions;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -24,6 +24,6 @@ public class GetUserByUserTokenDatabaseAction extends BimDatabaseAction<User> {
 	@Override
 	public User execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Token(), new StringLiteral(userToken));
-		return getDatabaseSession().querySingle(condition, User.class, Query.getDefault());
+		return getDatabaseSession().querySingle(condition, User.class, OldQuery.getDefault());
 	}
 }

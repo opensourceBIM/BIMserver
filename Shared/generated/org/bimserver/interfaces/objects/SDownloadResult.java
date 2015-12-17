@@ -17,10 +17,15 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import javax.activation.DataHandler;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
-import org.bimserver.shared.meta.*;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SDataBase;
+import org.bimserver.shared.meta.SField;
+
+import com.sun.xml.internal.ws.encoding.DataHandlerDataSource;
 
 
 @XmlRootElement
@@ -125,6 +130,7 @@ public class SDownloadResult implements SDataBase
 	}
 
 	public void setFile(javax.activation.DataHandler file) {
+		System.out.println(file.getDataSource());
 		this.file = file;
 	}
 	

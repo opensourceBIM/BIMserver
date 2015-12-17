@@ -366,7 +366,7 @@ public class StreamingGeometryGenerator {
 				throw new UserException("No IFC serializer found");
 			}
 
-			User user = (User) databaseSession.get(uoid, org.bimserver.database.Query.getDefault());
+			User user = (User) databaseSession.get(uoid, org.bimserver.database.OldQuery.getDefault());
 			UserSettings userSettings = user.getUserSettings();
 			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
 			if (defaultRenderEngine == null) {

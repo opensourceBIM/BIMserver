@@ -304,7 +304,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			if (authorization instanceof ExplicitRightsAuthorization) {
 				ExplicitRightsAuthorization explicitRightsAuthorization = (ExplicitRightsAuthorization)authorization;
 				if (explicitRightsAuthorization.getSoid() != -1) {
-					Service service = getDatabaseSession().get(explicitRightsAuthorization.getSoid(), org.bimserver.database.Query.getDefault());
+					Service service = getDatabaseSession().get(explicitRightsAuthorization.getSoid(), org.bimserver.database.OldQuery.getDefault());
 					revision.setService(service);
 				}
 			}

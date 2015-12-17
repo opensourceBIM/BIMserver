@@ -21,7 +21,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Revision;
@@ -43,9 +43,9 @@ public class GetAreaDatabaseAction extends BimDatabaseAction<Double> {
 
 	@Override
 	public Double execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		Revision revision = getDatabaseSession().get(roid, Query.getDefault());
+		Revision revision = getDatabaseSession().get(roid, OldQuery.getDefault());
 		
-		IfcProduct ifcProduct = getDatabaseSession().get(oid, new Query(bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema()), revision.getProject().getId(), revision.getId(), revision.getOid()));
+		IfcProduct ifcProduct = getDatabaseSession().get(oid, new OldQuery(bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema()), revision.getProject().getId(), revision.getId(), revision.getOid()));
 		return ifcProduct.getGeometry().getArea();
 	}
 }

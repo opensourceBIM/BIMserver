@@ -3,7 +3,7 @@ package org.bimserver.database.actions;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Service;
@@ -19,7 +19,7 @@ public class DeleteServiceDatabaseAction extends DeleteDatabaseAction<Service> {
 	
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Service object = getDatabaseSession().get(geteClass(), getOid(), Query.getDefault());
+		Service object = getDatabaseSession().get(geteClass(), getOid(), OldQuery.getDefault());
 		User user = object.getUser();
 		user.getServices().remove(object);
 		Project project = object.getProject();

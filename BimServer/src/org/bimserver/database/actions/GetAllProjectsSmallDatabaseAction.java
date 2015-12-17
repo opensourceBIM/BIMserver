@@ -27,7 +27,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProjectSmall;
 import org.bimserver.models.log.AccessMethod;
@@ -54,7 +54,7 @@ public class GetAllProjectsSmallDatabaseAction extends BimDatabaseAction<List<SP
 	public List<SProjectSmall> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		List<SProjectSmall> list = new ArrayList<SProjectSmall>();
 		User user = getUserByUoid(authorization.getUoid());
-		IfcModelInterface model = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), Query.getDefault());
+		IfcModelInterface model = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), OldQuery.getDefault());
 		List<Project> projects = model.getAll(Project.class);
 		for (Project project : projects) {
 			if (project.getParent() == null && !project.getName().equals(Database.STORE_PROJECT_NAME)) {

@@ -2,7 +2,7 @@ package org.bimserver.notifications;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
@@ -24,9 +24,9 @@ public class NewRevisionOnSpecificProjectTopic extends Topic {
 		map(new Mapper(){
 			@Override
 			public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
-				User user = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
-				Project notificationProject = session.get(StorePackage.eINSTANCE.getUser(), poid, Query.getDefault());
-				Project registrationProject = session.get(StorePackage.eINSTANCE.getUser(), key.getPoid(), Query.getDefault());
+				User user = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), OldQuery.getDefault());
+				Project notificationProject = session.get(StorePackage.eINSTANCE.getUser(), poid, OldQuery.getDefault());
+				Project registrationProject = session.get(StorePackage.eINSTANCE.getUser(), key.getPoid(), OldQuery.getDefault());
 				if (notificationProject.getOid() == registrationProject.getOid()) {
 					if (user.getUserType() == UserType.ADMIN || user.getHasRightsOn().contains(notificationProject)) {
 						endPoint.getNotificationInterface().newRevision(poid, roid);

@@ -3,7 +3,7 @@ package org.bimserver.database.actions;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
@@ -22,7 +22,7 @@ public class AddModelCompareDatabaseAction extends AddDatabaseAction<ModelCompar
 	
 	@Override
 	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
 		user.getUserSettings().getModelcompares().add(getIdEObject());
 		getDatabaseSession().store(user.getUserSettings());
 		return super.execute();

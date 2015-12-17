@@ -28,7 +28,7 @@ import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class Query implements QueryInterface {
+public class OldQuery implements QueryInterface {
 
 	public static enum Deep {
 		NO,
@@ -44,13 +44,13 @@ public class Query implements QueryInterface {
 	private PackageMetaData packageMetaData;
 	private Map<EClass, Long> oidCounters;
 
-	private static final Query DEFAULT = new Query();
+	private static final OldQuery DEFAULT = new OldQuery();
 	
 	public static final void setPackageMetaDataForDefaultQuery(PackageMetaData packageMetaData) {
 		DEFAULT.packageMetaData = packageMetaData;
 	}
 	
-	public static Query getDefault() {
+	public static OldQuery getDefault() {
 		return DEFAULT;
 	}
 	
@@ -62,7 +62,7 @@ public class Query implements QueryInterface {
 		return oidCounters;
 	}
 	
-	private Query() {
+	private OldQuery() {
 		this.packageMetaData = null;
 		this.pid = Database.STORE_PROJECT_ID;
 		this.roid = -1;
@@ -72,7 +72,7 @@ public class Query implements QueryInterface {
 		this.deep = Deep.NO;
 	}
 	
-	public Query(PackageMetaData packageMetaData, int pid, int rid, long roid) {
+	public OldQuery(PackageMetaData packageMetaData, int pid, int rid, long roid) {
 		this.packageMetaData = packageMetaData;
 		this.pid = pid;
 		this.rid = rid;
@@ -82,7 +82,7 @@ public class Query implements QueryInterface {
 		this.deep = Deep.NO;
 	}
 	
-	public Query(PackageMetaData packageMetaData, boolean deep) {
+	public OldQuery(PackageMetaData packageMetaData, boolean deep) {
 		this.packageMetaData = packageMetaData;
 		this.pid = Database.STORE_PROJECT_ID;
 		this.rid = Integer.MAX_VALUE;
@@ -92,7 +92,7 @@ public class Query implements QueryInterface {
 		this.deep = deep ? Deep.YES : Deep.NO;
 	}
 
-	public Query(PackageMetaData packageMetaData, int pid, int rid, long roid, Deep deep) {
+	public OldQuery(PackageMetaData packageMetaData, int pid, int rid, long roid, Deep deep) {
 		this.packageMetaData = packageMetaData;
 		this.objectIDM = null;
 		this.pid = pid;
@@ -102,7 +102,7 @@ public class Query implements QueryInterface {
 		this.deep = deep;
 	}
 
-	public Query(PackageMetaData packageMetaData, int pid, int rid, long roid, ObjectIDM objectIDM, Deep deep) {
+	public OldQuery(PackageMetaData packageMetaData, int pid, int rid, long roid, ObjectIDM objectIDM, Deep deep) {
 		this.packageMetaData = packageMetaData;
 		this.pid = pid;
 		this.rid = rid;
@@ -112,7 +112,7 @@ public class Query implements QueryInterface {
 		this.deep = deep;
 	}
 	
-	public Query(PackageMetaData packageMetaData, int pid, int rid, long roid, ObjectIDM objectIDM, Deep deep, int stopRid) {
+	public OldQuery(PackageMetaData packageMetaData, int pid, int rid, long roid, ObjectIDM objectIDM, Deep deep, int stopRid) {
 		this.packageMetaData = packageMetaData;
 		this.pid = pid;
 		this.rid = rid;

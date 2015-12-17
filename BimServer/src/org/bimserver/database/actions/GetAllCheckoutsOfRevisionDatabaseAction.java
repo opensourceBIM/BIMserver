@@ -22,7 +22,7 @@ import java.util.List;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -45,6 +45,6 @@ public class GetAllCheckoutsOfRevisionDatabaseAction extends BimDatabaseAction<L
 	public List<Checkout> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getRevisionByRoid(roid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_Revision(), revision);
-		return CollectionUtils.mapToList(getDatabaseSession().query(condition, Checkout.class, Query.getDefault()));
+		return CollectionUtils.mapToList(getDatabaseSession().query(condition, Checkout.class, OldQuery.getDefault()));
 	}
 }

@@ -183,7 +183,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 										}
 										newValue = readReference(buffer, feature, referenceClass);
 										if ((Long)newValue != -1) {
-											if (queryObjectProvider.hasReadOrIsGoingToRead(((Long)newValue))) {
+											if (queryObjectProvider.hasReadOrIsGoingToRead(((Long)newValue)) || queryObjectProvider.hasReadOrIsGoingToRead(referenceClass)) {
 												idEObject.addUseForSerialization(feature);
 											}
 										}
@@ -336,7 +336,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 							long rf = readReference(buffer, feature, referenceClass);
 							idEObject.setListItemReference(feature, i, referenceClass, rf, -1);
 							if (rf != -1) {
-								if (queryObjectProvider.hasReadOrIsGoingToRead((rf))) {
+								if (queryObjectProvider.hasReadOrIsGoingToRead((rf)) || queryObjectProvider.hasReadOrIsGoingToRead(referenceClass)) {
 									idEObject.addUseForSerialization(feature, i);
 								}
 							}

@@ -42,7 +42,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.NotImplementedException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
@@ -372,7 +372,7 @@ public class GeometryGenerator {
 				throw new UserException("No IFC serializer found");
 			}
 
-			User user = (User) databaseSession.get(uoid, Query.getDefault());
+			User user = (User) databaseSession.get(uoid, OldQuery.getDefault());
 			UserSettings userSettings = user.getUserSettings();
 			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
 			if (defaultRenderEngine == null) {

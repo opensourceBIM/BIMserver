@@ -32,8 +32,8 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.Channel;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
-import org.bimserver.database.Query.Deep;
+import org.bimserver.database.OldQuery;
+import org.bimserver.database.OldQuery.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.BasicIfcModel;
@@ -96,12 +96,12 @@ public class NewRevisionNotification extends Notification {
 	public void process() throws BimserverDatabaseException, UserException, ServerException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
+			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());
 			if (project == null) {
 				LOGGER.error("Project with oid " + poid + " not found");
 				return;
 			}
-			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
+			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
 			if (revision == null) {
 				LOGGER.error("Revision with roid " + roid + " not found");
 				return;
@@ -232,8 +232,8 @@ public class NewRevisionNotification extends Notification {
 									model = new BasicIfcModel(packageMetaData, null);
 									Revision revision;
 									try {
-										revision = session.get(roid, Query.getDefault());
-										session.getMap(model, new Query(packageMetaData, project.getId(), revision.getId(), revision.getOid(), null, Deep.NO));
+										revision = session.get(roid, OldQuery.getDefault());
+										session.getMap(model, new OldQuery(packageMetaData, project.getId(), revision.getId(), revision.getOid(), null, Deep.NO));
 									} catch (BimserverDatabaseException e) {
 										LOGGER.error("", e);
 									}

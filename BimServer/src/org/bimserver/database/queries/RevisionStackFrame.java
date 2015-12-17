@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.bimserver.BimserverDatabaseException;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
@@ -19,7 +19,7 @@ public class RevisionStackFrame extends StackFrame {
 
 	public RevisionStackFrame(QueryObjectProvider queryObjectProvider, long roid) throws BimserverDatabaseException {
 		this.queryObjectProvider = queryObjectProvider;
-		currentRevision = (Revision) queryObjectProvider.getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
+		currentRevision = (Revision) queryObjectProvider.getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
 		pidRoidMap.put(currentRevision.getProject().getId(), currentRevision.getOid());
 		concreteRevisionIterator = currentRevision.getConcreteRevisions().iterator();
 	}

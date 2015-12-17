@@ -24,7 +24,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.models.log.AccessMethod;
@@ -52,7 +52,7 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User actingUser = getUserByUoid(authorization.getUoid());
-		GeoTag geoTag = (GeoTag) getDatabaseSession().get(StorePackage.eINSTANCE.getGeoTag(), sGeoTag.getOid(), Query.getDefault());
+		GeoTag geoTag = (GeoTag) getDatabaseSession().get(StorePackage.eINSTANCE.getGeoTag(), sGeoTag.getOid(), OldQuery.getDefault());
 		boolean hasRights = false;
 		for (Project project : geoTag.getProjects()) {
 			if (authorization.hasRightsOnProject(actingUser, project)) {

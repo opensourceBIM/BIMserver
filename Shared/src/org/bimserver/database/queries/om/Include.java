@@ -110,8 +110,12 @@ public class Include extends PartOfQuery implements CanInclude {
 	public boolean isIncludeAllFields() {
 		return false;
 	}
-	
+
 	public void dump(int indent, StringBuilder sb) {
+		if (indent > 10) {
+			sb.append("..trimmed\n");
+			return;
+		}
 		if (hasTypes()) {
 			sb.append(indent(indent) + "types\n");
 			for (EClass eClass : getTypes()) {

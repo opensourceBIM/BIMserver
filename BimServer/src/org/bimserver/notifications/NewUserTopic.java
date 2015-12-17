@@ -2,7 +2,7 @@ package org.bimserver.notifications;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
@@ -19,7 +19,7 @@ public class NewUserTopic extends Topic {
 		map(new Mapper(){
 			@Override
 			public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
-				User actingUser = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
+				User actingUser = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), OldQuery.getDefault());
 				if (actingUser.getUserType() == UserType.ADMIN) {
 					endPoint.getNotificationInterface().newUser(uoid);
 				}

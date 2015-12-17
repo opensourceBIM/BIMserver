@@ -26,7 +26,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
@@ -92,7 +92,7 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 	}
 	
 	public org.bimserver.plugins.modelcompare.ModelCompare getModelCompare() throws ModelCompareException, BimserverDatabaseException {
-		ModelComparePluginConfiguration modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), mcid, Query.getDefault());
+		ModelComparePluginConfiguration modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), mcid, OldQuery.getDefault());
 		if (modelCompareObject != null) {
 			ModelComparePlugin modelComparePlugin = getBimServer().getPluginManager().getModelComparePlugin(modelCompareObject.getPluginDescriptor().getPluginClassName(), true);
 			if (modelComparePlugin != null) {

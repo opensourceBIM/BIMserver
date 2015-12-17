@@ -17,6 +17,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryException;
+import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,26 +26,31 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.base.Charsets;
+import com.google.common.hash.HashCode;
+import com.google.common.hash.HashFunction;
+import com.google.common.hash.Hasher;
+import com.google.common.hash.Hashing;
 
 public class QueryObjectProvider implements ObjectProvider {
 	private static final Logger LOGGER = LoggerFactory.getLogger(QueryObjectProvider.class);
 	private DatabaseSession databaseSession;
 	private BimServer bimServer;
 	
-	private String json;
-	
 	private final Set<Long> oidsRead = new HashSet<>();
 	private Deque<StackFrame> stack;
 	private long start = -1;
 	private long reads = 0;
 	private long stackFramesProcessed = 0;
-	private Query namespace;
 	private final Set<Long> goingToRead = new HashSet<>();
+	private Set<Long> roids;
+	private Query query;
 
 	public QueryObjectProvider(DatabaseSession databaseSession, BimServer bimServer, Query query, Set<Long> roids, PackageMetaData packageMetaData) throws JsonParseException, JsonMappingException, IOException, QueryException {
 		this.databaseSession = databaseSession;
 		this.bimServer = bimServer;
-		this.namespace = query;
+		this.query = query;
+		this.roids = roids;
 		
 		stack = new ArrayDeque<StackFrame>();
 		stack.push(new StartFrame(this, roids));
@@ -59,8 +65,8 @@ public class QueryObjectProvider implements ObjectProvider {
 	public static QueryObjectProvider fromJsonNode(DatabaseSession databaseSession, BimServer bimServer, JsonNode fullQuery, Set<Long> roids, PackageMetaData packageMetaData) throws JsonParseException, JsonMappingException, IOException, QueryException {
 		if (fullQuery instanceof ObjectNode) {
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
-			Query namespace = converter.parseJson("query", (ObjectNode) fullQuery);
-			return new QueryObjectProvider(databaseSession, bimServer, namespace, roids, packageMetaData);
+			Query query = converter.parseJson("query", (ObjectNode) fullQuery);
+			return new QueryObjectProvider(databaseSession, bimServer, query, roids, packageMetaData);
 		} else {
 			throw new QueryException("Query root must be of type object");
 		}
@@ -70,8 +76,8 @@ public class QueryObjectProvider implements ObjectProvider {
 		return fromJsonNode(databaseSession, bimServer, new ObjectMapper().readValue(json, ObjectNode.class), roids, packageMetaData);
 	}
 	
-	public Query getNameSpace() {
-		return namespace;
+	public Query getQuery() {
+		return query;
 	}
 
 	@Override
@@ -143,10 +149,6 @@ public class QueryObjectProvider implements ObjectProvider {
 		return bimServer.getMetaDataManager();
 	}
 
-	public String getJsonString() {
-		return json;
-	}
-
 	public boolean hasRead(long oid) {
 		return oidsRead.contains(oid);
 	}
@@ -157,6 +159,21 @@ public class QueryObjectProvider implements ObjectProvider {
 		}
 	}
 
+	public boolean hasReadOrIsGoingToRead(EClass eClass) {
+		for (QueryPart queryPart : query.getQueryParts()) {
+			if (queryPart.hasTypes()) {
+				if (queryPart.getTypes().contains(eClass)) {
+					if (queryPart.getGuids() == null && queryPart.getOids() == null && queryPart.getInBoundingBox() == null && queryPart.getProperties() == null) {
+						return true;
+					}
+				}
+			} else {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean hasReadOrIsGoingToRead(Long oid) {
 		if (oidsRead.contains(oid)) {
 			return true;

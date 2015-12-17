@@ -459,9 +459,14 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 			return true;
 		}
 		if (useForSerializationFeatures.containsKey(feature)) {
-			Set<Integer> set = (Set<Integer>) useForSerializationFeatures.get(feature);
-			if (set.contains(index)) {
-				return true;
+			Object object = useForSerializationFeatures.get(feature);
+			if (object instanceof Set) {
+				Set<Integer> set = (Set<Integer>) object;
+				if (set.contains(index)) {
+					return true;
+				}
+			} else {
+				return object == Boolean.TRUE;
 			}
 		}
 		return false;

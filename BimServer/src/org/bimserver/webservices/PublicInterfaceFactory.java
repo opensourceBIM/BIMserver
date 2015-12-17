@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.User;
@@ -52,7 +52,7 @@ public class PublicInterfaceFactory implements ServiceFactory {
 			Authorization authorization = Authorization.fromToken(bimServer.getEncryptionKey(), token);
 			DatabaseSession session = bimServer.getDatabase().createSession();
 			try {
-				User user = session.get(authorization.getUoid(), Query.getDefault());
+				User user = session.get(authorization.getUoid(), OldQuery.getDefault());
 				if (user == null) {
 					throw new UserException("No user found with uoid " + authorization.getUoid());
 				}

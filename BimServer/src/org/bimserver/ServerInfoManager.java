@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.emf.IdEObject;
@@ -75,7 +75,7 @@ public class ServerInfoManager {
 			try {
 				boolean adminFound = false;
 				ServerSettings settings = bimServer.getServerSettingsCache().getServerSettings();
-				IfcModelInterface users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), Query.getDefault());
+				IfcModelInterface users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), OldQuery.getDefault());
 				for (IdEObject idEObject : users.getValues()) {
 					if (idEObject instanceof User) {
 						User user = (User)idEObject;

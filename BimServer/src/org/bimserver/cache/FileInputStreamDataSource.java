@@ -6,9 +6,12 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import javax.activation.DataSource;
+import org.bimserver.BimserverDatabaseException;
+import org.bimserver.plugins.serializers.ExtendedDataSource;
+import org.bimserver.plugins.serializers.ProgressReporter;
+import org.bimserver.plugins.serializers.SerializerException;
 
-public class FileInputStreamDataSource implements DataSource {
+public class FileInputStreamDataSource extends ExtendedDataSource {
 
 	private final Path file;
 	private String name;
@@ -53,5 +56,22 @@ public class FileInputStreamDataSource implements DataSource {
 			e.printStackTrace();
 		}
 		return -1;
+	}
+
+	@Override
+	public void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException, IOException, BimserverDatabaseException {
+		copy(getInputStream(), outputStream, progressReporter, Files.size(file));
+	}
+	
+	private long copy(InputStream input, OutputStream output, ProgressReporter progressReporter, long totalSize) throws IOException {
+		byte[] buffer = new byte[4096];
+        long count = 0;
+        int n = 0;
+        while (-1 != (n = input.read(buffer))) {
+            output.write(buffer, 0, n);
+            count += n;
+            progressReporter.update(count, totalSize);
+        }
+        return count;
 	}
 }

@@ -21,7 +21,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.models.log.AccessMethod;
@@ -139,7 +139,7 @@ public class GenericServiceImpl {
 		}
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
+			User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSObject(user);
 		} catch (Exception e) {
 			return handleException(e);
@@ -153,7 +153,7 @@ public class GenericServiceImpl {
 	}
 	
 	protected UserSettings getUserSettings(DatabaseSession session) throws BimserverLockConflictException, BimserverDatabaseException {
-		User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
+		User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 		return user.getUserSettings();
 	}
 }

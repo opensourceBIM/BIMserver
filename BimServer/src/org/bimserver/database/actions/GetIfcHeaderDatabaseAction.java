@@ -21,7 +21,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -41,7 +41,7 @@ public class GetIfcHeaderDatabaseAction extends BimDatabaseAction<SIfcHeader> {
 
 	@Override
 	public SIfcHeader execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		ConcreteRevision concreteRevision = getDatabaseSession().get(croid, Query.getDefault());
+		ConcreteRevision concreteRevision = getDatabaseSession().get(croid, OldQuery.getDefault());
 		if (concreteRevision == null) {
 			throw new UserException("No ConcreteRevision found with oid " + croid);
 		}

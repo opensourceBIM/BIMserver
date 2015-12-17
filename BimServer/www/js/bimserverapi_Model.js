@@ -674,7 +674,7 @@ define(["bimserverapi_BimServerApiPromise"], function(BimServerPromise){
 			});
 			return promise;
 		};
-		
+
 		this.queryNew = function(query, callback){
 			var promise = new BimServerPromise();
 			var fullTypesLoading = {};

@@ -19,7 +19,6 @@ package org.bimserver.servlets;
 
 import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Date;
@@ -37,25 +36,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
-import org.bimserver.cache.FileInputStreamDataSource;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.longaction.MessagingStreamingDataSource;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.serializers.EmfSerializerDataSource;
+import org.bimserver.plugins.serializers.ExtendedDataSource;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.bimserver.plugins.serializers.StreamingSerializerDataSource;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -327,29 +323,10 @@ public class DownloadServlet extends SubServlet {
 	}
 
 	private void processDataSource(OutputStream outputStream, DataSource dataSource, ProgressReporter progressReporter) throws IOException, SerializerException, BimserverDatabaseException {
-		if (dataSource instanceof FileInputStreamDataSource) {
-			FileInputStreamDataSource fileInputStreamDataSource = (FileInputStreamDataSource) dataSource;
-			InputStream inputStream = fileInputStreamDataSource.getInputStream();
-			copy(inputStream, outputStream, progressReporter, fileInputStreamDataSource.size());
-			inputStream.close();
-		} else if (dataSource instanceof StreamingSerializerDataSource){
-			((StreamingSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
-		} else if (dataSource instanceof MessagingStreamingDataSource){
-			((MessagingStreamingDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
+		if (dataSource instanceof ExtendedDataSource) {
+			((ExtendedDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
 		} else {
-			((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
+			throw new SerializerException("Unsupported datasource type: " + dataSource);
 		}
-	}
-	
-	private long copy(InputStream input, OutputStream output, ProgressReporter progressReporter, long totalSize) throws IOException {
-		byte[] buffer = new byte[4096];
-        long count = 0;
-        int n = 0;
-        while (-1 != (n = input.read(buffer))) {
-            output.write(buffer, 0, n);
-            count += n;
-            progressReporter.update(count, totalSize);
-        }
-        return count;
 	}
 }

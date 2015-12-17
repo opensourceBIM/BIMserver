@@ -23,7 +23,7 @@ import java.util.Set;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.log.AccessMethod;
@@ -47,7 +47,7 @@ public class GetAllWritableProjectsDatabaseAction extends BimDatabaseAction<Set<
 	@Override
 	public Set<Project> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(authorization.getUoid());
-		IfcModelInterface projectsModel = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), Query.getDefault());
+		IfcModelInterface projectsModel = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), OldQuery.getDefault());
 		Set<Project> result = new HashSet<Project>();
 		for (IdEObject idEObject : projectsModel.getValues()) {
 			if (idEObject instanceof Project) {

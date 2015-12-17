@@ -22,9 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import javax.activation.DataSource;
-
-public class EmfSerializerDataSource implements DataSource {
+public class EmfSerializerDataSource extends ExtendedDataSource {
 
 	private final Serializer serializer;
 

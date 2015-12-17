@@ -27,7 +27,7 @@ import org.bimserver.client.SimpleTokenHolder;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.client.json.JsonSocketReflectorFactory;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
@@ -153,9 +153,9 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 				EClass eClassForOid = session.getEClassForOid(profileId);
 				InternalServicePluginConfiguration internalServicePluginConfiguration = null;
 				if (eClassForOid == StorePackage.eINSTANCE.getInternalServicePluginConfiguration()) {
-					internalServicePluginConfiguration = session.get(profileId, Query.getDefault());
+					internalServicePluginConfiguration = session.get(profileId, OldQuery.getDefault());
 				} else if (eClassForOid == StorePackage.eINSTANCE.getService()) {
-					Service service = session.get(profileId, Query.getDefault());
+					Service service = session.get(profileId, OldQuery.getDefault());
 					internalServicePluginConfiguration = service.getInternalService();
 				} else {
 					throw new RuntimeException("Oid is neither an InternalServicePluginConfiguration nor a Server");

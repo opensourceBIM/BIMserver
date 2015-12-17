@@ -24,7 +24,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Revision;
@@ -45,6 +45,6 @@ public class GetAvailableClassesInRevisionDatabaseAction extends BimDatabaseActi
 	public List<String> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getRevisionByRoid(roid);
 		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
-		return new ArrayList<String>(getDatabaseSession().getAvailableClassesInRevision(new Query(packageMetaData, revision.getProject().getId(), revision.getId(), -1)));
+		return new ArrayList<String>(getDatabaseSession().getAvailableClassesInRevision(new OldQuery(packageMetaData, revision.getProject().getId(), revision.getId(), -1)));
 	}
 }

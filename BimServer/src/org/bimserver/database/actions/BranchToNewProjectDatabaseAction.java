@@ -21,8 +21,8 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
-import org.bimserver.database.Query.Deep;
+import org.bimserver.database.OldQuery;
+import org.bimserver.database.OldQuery.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.BasicIfcModel;
@@ -68,9 +68,9 @@ public class BranchToNewProjectDatabaseAction extends AbstractBranchDatabaseActi
 	
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
+		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
 		Project oldProject = oldRevision.getProject();
-		final User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
+		final User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
 		if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, oldProject)) {
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}
@@ -82,7 +82,7 @@ public class BranchToNewProjectDatabaseAction extends AbstractBranchDatabaseActi
 				throw new UserException("Branching not possible for revision with multiple schemas");
 			}
 			IfcModel subModel = new BasicIfcModel(packageMetaData, null);
-			getDatabaseSession().getMap(subModel, new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), -1, Deep.NO));
+			getDatabaseSession().getMap(subModel, new OldQuery(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), -1, Deep.NO));
 			subModel.getModelMetaData().setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}

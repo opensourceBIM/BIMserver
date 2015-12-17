@@ -25,7 +25,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.AndCondition;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
@@ -72,7 +72,7 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 			condition = condition.and(authorized);
 			condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getProject_State(), new EnumLiteral(ObjectState.ACTIVE)));
 		}
-		Map<Long, Project> results = getDatabaseSession().query(condition, Project.class, Query.getDefault());
+		Map<Long, Project> results = getDatabaseSession().query(condition, Project.class, OldQuery.getDefault());
 		Set<Project> resultSet = new HashSet<Project>();
 		for (Project p : results.values()) {
 			if (p.getParent() == null || !onlyTopLevel) {

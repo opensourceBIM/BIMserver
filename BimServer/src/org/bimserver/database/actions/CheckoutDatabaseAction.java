@@ -27,8 +27,8 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GeometryGeneratingException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
-import org.bimserver.database.Query.Deep;
+import org.bimserver.database.OldQuery;
+import org.bimserver.database.OldQuery.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.BasicIfcModel;
@@ -101,7 +101,7 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 	}
 
 	private IfcModel realCheckout(Project project, Revision revision, DatabaseSession databaseSession, User user) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
-		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, OldQuery.getDefault());
 		final long totalSize = revision.getSize();
 		final AtomicLong total = new AtomicLong();
 		
@@ -112,7 +112,7 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			lastPackageMetaData = packageMetaData;
 			IfcModel subModel = new BasicIfcModel(packageMetaData, null);
 			int highestStopId = findHighestStopRid(project, subRevision);
-			Query query = new Query(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), revision.getOid(), null,  Deep.YES, highestStopId);
+			OldQuery query = new OldQuery(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), revision.getOid(), null,  Deep.YES, highestStopId);
 			subModel.addChangeListener(new IfcModelChangeListener() {
 				@Override
 				public void objectAdded() {

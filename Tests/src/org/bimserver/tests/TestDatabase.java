@@ -12,7 +12,7 @@ import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.KeyValueStore;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.berkeley.BerkeleyKeyValueStore;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
@@ -83,7 +83,7 @@ public class TestDatabase {
 			session.close();
 			session = database.createSession();
 			try {
-				User user = session.get(uoid, Query.getDefault());
+				User user = session.get(uoid, OldQuery.getDefault());
 				UserSettings userSettings = user.getUserSettings();
 				List<SerializerPluginConfiguration> serializers = userSettings.getSerializers();
 				for (SerializerPluginConfiguration serializerPluginConfiguration : serializers) {
@@ -118,7 +118,7 @@ public class TestDatabase {
 			session.close();
 			session = database.createSession();
 			try {
-				SerializerPluginConfiguration p1 = session.get(xid, Query.getDefault());
+				SerializerPluginConfiguration p1 = session.get(xid, OldQuery.getDefault());
 				UserSettings userSettings = p1.getUserSettings();
 				for (SerializerPluginConfiguration p2 : userSettings.getSerializers()) {
 					System.out.println(p2.getOid() + " - " + p2);
@@ -152,7 +152,7 @@ public class TestDatabase {
 			session.close();
 			session = database.createSession();
 			try {
-				User user = session.get(uoid, Query.getDefault());
+				User user = session.get(uoid, OldQuery.getDefault());
 				for (Project p : user.getHasRightsOn()) {
 					System.out.println(p.getName());
 				}
@@ -167,8 +167,8 @@ public class TestDatabase {
 	private void removeWithOid() {
 		DatabaseSession session = database.createSession();
 		try {
-			Project p = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
-			User u = session.get(StorePackage.eINSTANCE.getUser(), uoid, Query.getDefault());
+			Project p = session.get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());
+			User u = session.get(StorePackage.eINSTANCE.getUser(), uoid, OldQuery.getDefault());
 			if (!u.getHasRightsOn().remove(p)) {
 				System.err.println("Not removed");
 			}
@@ -188,8 +188,8 @@ public class TestDatabase {
 	private void removeWithAllOfType() {
 		DatabaseSession session = database.createSession();
 		try {
-			List<User> users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), User.class, Query.getDefault());
-			List<Project> projects = session.getAllOfType(StorePackage.eINSTANCE.getProject(), Project.class, Query.getDefault());
+			List<User> users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), User.class, OldQuery.getDefault());
+			List<Project> projects = session.getAllOfType(StorePackage.eINSTANCE.getProject(), Project.class, OldQuery.getDefault());
 			Project p = null;
 			for (Project project : projects) {
 				if (project.getName().equals("testproject")) {
@@ -219,13 +219,13 @@ public class TestDatabase {
 	private void checkWithAllOfType() {
 		DatabaseSession session = database.createSession();
 		try {
-			List<User> users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), User.class, Query.getDefault());
+			List<User> users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), User.class, OldQuery.getDefault());
 			for (User user : users) {
 				if (user.getName().equals("testuser")) {
 					System.out.println(user.getName() + ": " + user.getHasRightsOn());
 				}
 			}
-			List<Project> projects = session.getAllOfType(StorePackage.eINSTANCE.getProject(), Project.class, Query.getDefault());
+			List<Project> projects = session.getAllOfType(StorePackage.eINSTANCE.getProject(), Project.class, OldQuery.getDefault());
 			for (Project project : projects) {
 				if (project.getName().equals("testproject")) {
 					System.out.println(project.getName() + ": " + project.getHasAuthorizedUsers());

@@ -24,7 +24,7 @@ import java.util.Set;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -55,11 +55,11 @@ public abstract class BimDatabaseAction<T> {
 	}
 	
 	public Project getProjectByPoid(long poid) throws BimserverDatabaseException {
-		return databaseSession.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
+		return databaseSession.get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());
 	}
 
 	public User getUserByUoid(long uoid) throws BimserverDatabaseException {
-		return databaseSession.get(StorePackage.eINSTANCE.getUser(), uoid, Query.getDefault());
+		return databaseSession.get(StorePackage.eINSTANCE.getUser(), uoid, OldQuery.getDefault());
 	}
 	
 	public User getAdminUser() throws BimserverDatabaseException, BimserverLockConflictException {
@@ -97,11 +97,11 @@ public abstract class BimDatabaseAction<T> {
 	}
 
 	public Revision getRevisionByRoid(long roid) throws BimserverDatabaseException {
-		return (Revision) databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
+		return (Revision) databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
 	}
 
 	public ConcreteRevision getConcreteRevision(long croid) throws BimserverLockConflictException, BimserverDatabaseException {
-		return (ConcreteRevision) databaseSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, Query.getDefault());
+		return (ConcreteRevision) databaseSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, OldQuery.getDefault());
 	}
 
 	public void setDatabaseSession(DatabaseSession session) {

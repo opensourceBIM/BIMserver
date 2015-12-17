@@ -18,7 +18,7 @@ package org.bimserver.webservices.impl;
  *****************************************************************************/
 
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.ChangePasswordDatabaseAction;
 import org.bimserver.database.actions.RequestPasswordChangeDatabaseAction;
@@ -90,7 +90,7 @@ public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface
 		requireAdminAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			User user = session.get(uoid, Query.getDefault());
+			User user = session.get(uoid, OldQuery.getDefault());
 			user.setPasswordHash(hash);
 			user.setPasswordSalt(salt);
 			session.commit();

@@ -33,7 +33,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GeometryGenerator;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.GetDatabaseInformationAction;
@@ -318,7 +318,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			List<SPluginDescriptor> convertToSListPluginDescriptor = getBimServer().getSConverter().convertToSListPluginDescriptor(session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), PluginDescriptor.class, Query.getDefault()));
+			List<SPluginDescriptor> convertToSListPluginDescriptor = getBimServer().getSConverter().convertToSListPluginDescriptor(session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), PluginDescriptor.class, OldQuery.getDefault()));
 			Collections.sort(convertToSListPluginDescriptor, new SPluginDescriptorComparator());
 			return convertToSListPluginDescriptor;
 		} catch (Exception e) {
@@ -334,10 +334,10 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			session.setOverwriteEnabled(true); // Normally we wouldn't be allowed to change existing data
-			ConcreteRevision concreteRevision = session.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, Query.getDefault());
+			ConcreteRevision concreteRevision = session.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, OldQuery.getDefault());
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 			IfcModelInterface model = new BasicIfcModel(packageMetaData, null);
-			session.getMap(model, new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), -1));
+			session.getMap(model, new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), -1));
 			new GeometryGenerator(getBimServer()).generateGeometry(getAuthorization().getUoid(), getBimServer().getPluginManager(), session, model, concreteRevision.getProject().getId(), concreteRevision.getId(), true, null);
 			session.commit();
 		} catch (Exception e) {

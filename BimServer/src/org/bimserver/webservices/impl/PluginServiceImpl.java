@@ -27,7 +27,7 @@ import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.actions.AddDeserializerDatabaseAction;
 import org.bimserver.database.actions.AddInternalServiceDatabaseAction;
 import org.bimserver.database.actions.AddModelCompareDatabaseAction;
@@ -689,7 +689,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	public SObjectDefinition getPluginObjectDefinition(Long oid) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			PluginDescriptor pluginDescriptor = session.get(oid, Query.getDefault());
+			PluginDescriptor pluginDescriptor = session.get(oid, OldQuery.getDefault());
 			if (pluginDescriptor == null) {
 				throw new UserException("No PluginDescriptor found with oid " + oid);
 			}
@@ -721,7 +721,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 		session = getBimServer().getDatabase().createSession();
 		try {
-			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, Query.getDefault());
+			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, OldQuery.getDefault());
 			ServicePlugin servicePlugin = getBimServer().getPluginManager().getServicePlugin(pluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 			SInternalServicePluginConfiguration sInternalService = (SInternalServicePluginConfiguration) getBimServer().getSConverter().convertToSObject(pluginConfiguration);
 	
@@ -874,7 +874,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	public SObjectType getPluginSettings(Long poid) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, Query.getDefault());
+			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, OldQuery.getDefault());
 			ObjectType settings = pluginConfiguration.getSettings();
 			return getBimServer().getSConverter().convertToSObject(settings);
 		} catch (Exception e) {
@@ -934,7 +934,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		try {
 			Set<Schema> uniqueSchemas = new HashSet<>();
 			for (Long roid : roids) {
-				Revision revision = session.get(roid, Query.getDefault());
+				Revision revision = session.get(roid, OldQuery.getDefault());
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 					uniqueSchemas.add(Schema.valueOf(concreteRevision.getProject().getSchema().toUpperCase()));
 				}
@@ -1262,7 +1262,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	public SPluginDescriptor getPluginDescriptor(Long oid) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			PluginDescriptor pluginDescriptor = session.get(oid, Query.getDefault());
+			PluginDescriptor pluginDescriptor = session.get(oid, OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSObject(pluginDescriptor);
 		} catch (Exception e) {
 			return handleException(e);
@@ -1276,7 +1276,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			Project project = session.get(poid, Query.getDefault());
+			Project project = session.get(poid, OldQuery.getDefault());
 
 			UserSettings userSettings = getUserSettings(session);
 			EList<DeserializerPluginConfiguration> deserializers = userSettings.getDeserializers();

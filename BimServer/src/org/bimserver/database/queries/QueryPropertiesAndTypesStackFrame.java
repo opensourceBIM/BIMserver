@@ -84,31 +84,33 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 		if (currentObject != null) {
 			DatabaseSession databaseSession = getQueryObjectProvider().getDatabaseSession();
 			List<Long> isDefinedByOids = (List<Long>) currentObject.get("IsDefinedBy");
-			Set<String> propertyKeysMatched = new HashSet<>();
-			for (Long definedByOid : isDefinedByOids) {
-				EClass eClass = databaseSession.getEClassForOid(definedByOid);
-				if (getPackageMetaData().getEClass("IfcRelDefinesByProperties").isSuperTypeOf(eClass)) {
-					HashMapVirtualObject ifcRelDefinesByProperties = getByOid(definedByOid);
-					Long ifcPropertySetDefinition = (Long) ifcRelDefinesByProperties.get("RelatingPropertyDefinition");
-					if (getPackageMetaData().getEClass("IfcPropertySet").isSuperTypeOf(databaseSession.getEClassForOid(ifcPropertySetDefinition))) {
-						HashMapVirtualObject ifcPropertySet = getByOid(ifcPropertySetDefinition);
-						List<Long> properties = (List<Long>) ifcPropertySet.get("HasProperties");
-						for (long propertyOid : properties) {
-							if (getPackageMetaData().getEClass("IfcPropertySingleValue").isSuperTypeOf(databaseSession.getEClassForOid(propertyOid))) {
-								HashMapVirtualObject property = getByOid(propertyOid);
-								String name = (String) property.get("Name");
-								HashMapWrappedVirtualObject value = (HashMapWrappedVirtualObject) property.get("NominalValue");
-								for (String queryPropertyName : this.properties.keySet()) {
-									Object queryPropertyValue = this.properties.get(queryPropertyName);
-									if (queryPropertyName.equals(name)) {
-										Object wrappedValue = value.eGet(value.eClass().getEStructuralFeature("wrappedValue"));
-										if (value.eClass().getName().equals("IfcBoolean")) {
-											Tristate tristate = (Tristate)wrappedValue;
-											if (tristate.name().toLowerCase().equals(queryPropertyValue.toString())) {
+			if (isDefinedByOids != null) {
+				Set<String> propertyKeysMatched = new HashSet<>();
+				for (Long definedByOid : isDefinedByOids) {
+					EClass eClass = databaseSession.getEClassForOid(definedByOid);
+					if (getPackageMetaData().getEClass("IfcRelDefinesByProperties").isSuperTypeOf(eClass)) {
+						HashMapVirtualObject ifcRelDefinesByProperties = getByOid(definedByOid);
+						Long ifcPropertySetDefinition = (Long) ifcRelDefinesByProperties.get("RelatingPropertyDefinition");
+						if (getPackageMetaData().getEClass("IfcPropertySet").isSuperTypeOf(databaseSession.getEClassForOid(ifcPropertySetDefinition))) {
+							HashMapVirtualObject ifcPropertySet = getByOid(ifcPropertySetDefinition);
+							List<Long> properties = (List<Long>) ifcPropertySet.get("HasProperties");
+							for (long propertyOid : properties) {
+								if (getPackageMetaData().getEClass("IfcPropertySingleValue").isSuperTypeOf(databaseSession.getEClassForOid(propertyOid))) {
+									HashMapVirtualObject property = getByOid(propertyOid);
+									String name = (String) property.get("Name");
+									HashMapWrappedVirtualObject value = (HashMapWrappedVirtualObject) property.get("NominalValue");
+									for (String queryPropertyName : this.properties.keySet()) {
+										Object queryPropertyValue = this.properties.get(queryPropertyName);
+										if (queryPropertyName.equals(name)) {
+											Object wrappedValue = value.eGet(value.eClass().getEStructuralFeature("wrappedValue"));
+											if (value.eClass().getName().equals("IfcBoolean")) {
+												Tristate tristate = (Tristate)wrappedValue;
+												if (tristate.name().toLowerCase().equals(queryPropertyValue.toString())) {
+													propertyKeysMatched.add(queryPropertyName);
+												}
+											} else if (wrappedValue.equals(queryPropertyValue)) {
 												propertyKeysMatched.add(queryPropertyName);
 											}
-										} else if (wrappedValue.equals(queryPropertyValue)) {
-											propertyKeysMatched.add(queryPropertyName);
 										}
 									}
 								}
@@ -116,9 +118,9 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 						}
 					}
 				}
-			}
-			if (propertyKeysMatched.size() != this.properties.size()) {
-				currentObject = null;
+				if (propertyKeysMatched.size() != this.properties.size()) {
+					currentObject = null;
+				}
 			}
 		}
 		

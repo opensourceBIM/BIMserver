@@ -22,16 +22,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import javax.activation.DataSource;
-
 import org.bimserver.BimserverDatabaseException;
 
-public class StreamingSerializerDataSource implements DataSource {
+public class StreamingSerializerDataSource extends ExtendedDataSource {
 
 	private final StreamingSerializer serializer;
 	private DoneListener doneListener;
+	private String filename;
 
-	public StreamingSerializerDataSource(StreamingSerializer serializer, DoneListener doneListener) throws SerializerException {
+	public StreamingSerializerDataSource(String filename, StreamingSerializer serializer, DoneListener doneListener) throws SerializerException {
+		this.filename = filename;
 		if (serializer == null) {
 			throw new SerializerException("No serializer");
 		}
@@ -51,7 +51,7 @@ public class StreamingSerializerDataSource implements DataSource {
 
 	@Override
 	public String getName() {
-		return "tobedone";
+		return filename;
 	}
 
 	@Override

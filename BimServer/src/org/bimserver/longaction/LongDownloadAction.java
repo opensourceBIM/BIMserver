@@ -20,11 +20,12 @@ package org.bimserver.longaction;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByJsonQueryDatabaseAction;
 import org.bimserver.database.actions.DownloadByNamesDatabaseAction;
+import org.bimserver.database.actions.DownloadByNewJsonQueryDatabaseAction;
 import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByTypesDatabaseAction;
 import org.bimserver.database.actions.DownloadCompareDatabaseAction;
@@ -85,7 +86,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		if (downloadParameters.getUseObjectIDM()) {
 			session = getBimServer().getDatabase().createSession();
 			try {
-				SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
+				SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), OldQuery.getDefault());
 				if (serializerPluginConfiguration != null) {
 					ObjectIDMPluginConfiguration objectIdm = serializerPluginConfiguration.getObjectIDM();
 					if (objectIdm != null) {
@@ -121,6 +122,9 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			break;
 		case DOWNLOAD_JSON_QUERY:
 			action = new DownloadByJsonQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getJsonQuery(), downloadParameters.getSerializerOid(), getAuthorization());
+			break;
+		case DOWNLOAD_BY_NEW_JSON_QUERY:
+			action = new DownloadByNewJsonQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getJsonQuery(), downloadParameters.getSerializerOid(), getAuthorization());
 			break;
 		case DOWNLOAD_PROJECTS:
 			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM);

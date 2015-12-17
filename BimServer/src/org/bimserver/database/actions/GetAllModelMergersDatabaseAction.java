@@ -25,7 +25,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -48,7 +48,7 @@ public class GetAllModelMergersDatabaseAction extends GetAllDatabaseAction<Model
 	@Override
 	public List<ModelMergerPluginConfiguration> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getModelMergerPluginConfiguration());
-		Map<Long, ModelMergerPluginConfiguration> result = getDatabaseSession().query(condition, ModelMergerPluginConfiguration.class, Query.getDefault());
+		Map<Long, ModelMergerPluginConfiguration> result = getDatabaseSession().query(condition, ModelMergerPluginConfiguration.class, OldQuery.getDefault());
 		List<ModelMergerPluginConfiguration> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
 			Iterator<ModelMergerPluginConfiguration> iterator = mapToList.iterator();

@@ -2,7 +2,7 @@ package org.bimserver.notifications;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
@@ -21,8 +21,8 @@ public class NewProjectTopic extends Topic {
 		map(new Mapper(){
 			@Override
 			public void map(final EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
-				User user = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
-				Project project = session.get(StorePackage.eINSTANCE.getUser(), poid, Query.getDefault());
+				User user = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), OldQuery.getDefault());
+				Project project = session.get(StorePackage.eINSTANCE.getUser(), poid, OldQuery.getDefault());
 				if (user.getUserType() == UserType.ADMIN || user.getHasRightsOn().contains(project)) {
 					endPoint.getNotificationInterface().newProject(poid);
 				}

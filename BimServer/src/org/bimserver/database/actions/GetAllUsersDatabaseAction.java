@@ -22,7 +22,7 @@ import java.util.Set;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
@@ -54,6 +54,6 @@ public class GetAllUsersDatabaseAction extends BimDatabaseAction<Set<User>> {
 		if (actingUser.getUserType() != UserType.ADMIN) {
 			condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getUser_State(), new EnumLiteral(ObjectState.ACTIVE)));
 		}
-		return CollectionUtils.mapToSet(getDatabaseSession().query(condition, User.class, Query.getDefault()));
+		return CollectionUtils.mapToSet(getDatabaseSession().query(condition, User.class, OldQuery.getDefault()));
 	}
 }

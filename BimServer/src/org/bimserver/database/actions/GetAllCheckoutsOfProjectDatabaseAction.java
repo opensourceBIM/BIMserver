@@ -26,7 +26,7 @@ import java.util.Set;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToInCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -57,7 +57,7 @@ public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<Li
 			projects.add(project);
 		}
 		Condition condition = new HasReferenceToInCondition(StorePackage.eINSTANCE.getCheckout_Project(), projects);
-		Map<Long, Checkout> query = getDatabaseSession().query(condition, Checkout.class, Query.getDefault());
+		Map<Long, Checkout> query = getDatabaseSession().query(condition, Checkout.class, OldQuery.getDefault());
 		return CollectionUtils.mapToList(query);
 	}
 	

@@ -21,7 +21,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.models.store.Project;
@@ -42,8 +42,8 @@ public class RemoveModelCheckerFromProjectDatabaseAction extends BimDatabaseActi
 
 	@Override
 	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		ModelCheckerInstance modelCheckerInstance = getDatabaseSession().get(mcoid, Query.getDefault());
-		Project project = getDatabaseSession().get(poid, Query.getDefault());
+		ModelCheckerInstance modelCheckerInstance = getDatabaseSession().get(mcoid, OldQuery.getDefault());
+		Project project = getDatabaseSession().get(poid, OldQuery.getDefault());
 		project.getModelCheckers().remove(modelCheckerInstance);
 		getDatabaseSession().store(project);
 		return true;

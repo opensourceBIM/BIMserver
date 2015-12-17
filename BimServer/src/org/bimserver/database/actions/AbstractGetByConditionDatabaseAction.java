@@ -3,7 +3,7 @@ package org.bimserver.database.actions;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.log.AccessMethod;
@@ -21,7 +21,7 @@ public abstract class AbstractGetByConditionDatabaseAction<T extends IdEObject> 
 
 	@Override
 	public T execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		return getDatabaseSession().querySingle(condition, clazz, Query.getDefault());
+		return getDatabaseSession().querySingle(condition, clazz, OldQuery.getDefault());
 	}
 	
 	protected void setCondition(Condition condition) {

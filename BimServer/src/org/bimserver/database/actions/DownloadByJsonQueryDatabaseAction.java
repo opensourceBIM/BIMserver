@@ -31,8 +31,8 @@ import org.bimserver.GeometryGeneratingException;
 import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
-import org.bimserver.database.Query.Deep;
+import org.bimserver.database.OldQuery;
+import org.bimserver.database.OldQuery.Deep;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
@@ -79,7 +79,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		User user = getUserByUoid(getAuthorization().getUoid());
 		Project project = null;
-		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, Query.getDefault());
+		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, OldQuery.getDefault());
 		String name = "";
 		PackageMetaData lastPackageMetaData = null;
 		Map<Integer, Long> pidRoidMap = new HashMap<>();
@@ -110,7 +110,7 @@ public class DownloadByJsonQueryDatabaseAction extends AbstractDownloadDatabaseA
 					lastPackageMetaData = packageMetaData;
 					IfcModelInterface subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
 					
-					Query databaseQuery = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.NO, highestStopId);
+					OldQuery databaseQuery = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.NO, highestStopId);
 					databaseQuery.updateOidCounters(concreteRevision, getDatabaseSession());
 					JsonObject queryObject = (JsonObject)query;
 					JsonArray queries = queryObject.get("queries").getAsJsonArray();

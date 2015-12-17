@@ -22,7 +22,7 @@ import java.util.Set;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.AndCondition;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
@@ -59,6 +59,6 @@ public class GetAllNonAuthorizedUsersOfProjectDatabaseAction extends BimDatabase
 						new Not(new HasReferenceToCondition(StorePackage.eINSTANCE.getUser_HasRightsOn(), project)), 
 						new AttributeCondition(StorePackage.eINSTANCE.getUser_State(), new EnumLiteral(ObjectState.ACTIVE))), 
 				new Not(new AttributeCondition(StorePackage.eINSTANCE.getUser_UserType(), new EnumLiteral(UserType.SYSTEM))));
-		return CollectionUtils.mapToSet(getDatabaseSession().query(condition, User.class, Query.getDefault()));
+		return CollectionUtils.mapToSet(getDatabaseSession().query(condition, User.class, OldQuery.getDefault()));
 	}
 }

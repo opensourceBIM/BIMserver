@@ -21,7 +21,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Service;
@@ -42,8 +42,8 @@ public class RemoveServiceFromProjectDatabaseAction extends BimDatabaseAction<Bo
 
 	@Override
 	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		Service service = getDatabaseSession().get(soid, Query.getDefault());
-		Project project = getDatabaseSession().get(poid, Query.getDefault());
+		Service service = getDatabaseSession().get(soid, OldQuery.getDefault());
+		Project project = getDatabaseSession().get(poid, OldQuery.getDefault());
 		project.getServices().remove(service);
 		getDatabaseSession().store(project);
 		return true;

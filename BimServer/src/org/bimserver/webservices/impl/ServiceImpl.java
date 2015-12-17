@@ -29,7 +29,7 @@ import org.bimserver.BimServerImporter;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.actions.AddExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.AddExtendedDataToProjectDatabaseAction;
 import org.bimserver.database.actions.AddLocalServiceToProjectDatabaseAction;
@@ -187,8 +187,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireAuthenticationAndRunningServer();
 		final DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
-			Project project = session.get(poid, Query.getDefault());
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			Project project = session.get(poid, OldQuery.getDefault());
 			if (!getAuthorization().hasRightsOnProjectOrSuperProjects(user, project)) {
 				throw new UserException("User has no rights to checkin models to this project");
 			}
@@ -219,8 +219,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
-			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
-			Project project = session.get(poid, Query.getDefault());
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			Project project = session.get(poid, OldQuery.getDefault());
 			if (project == null) {
 				throw new UserException("No project found with poid " + poid);
 			}
@@ -243,7 +243,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 			String cacheFileName = dateFormat.format(new Date()) + "-" + fileName;
 			Path file = userDirIncoming.resolve(cacheFileName);
-			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
+			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
 			if (deserializerPluginConfiguration == null) {
 				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			} else {
@@ -312,7 +312,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
-			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			username = user.getName();
 			userUsername = user.getUsername();
 			Path homeDirIncoming = getBimServer().getHomeDir().resolve("incoming");
@@ -339,7 +339,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				fileName = dateFormat.format(new Date()) + "-" + fileName;
 			}
 			Path file = userDirIncoming.resolve(fileName);
-			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
+			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
 			if (deserializerPluginConfiguration == null) {
 				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 			}
@@ -894,7 +894,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			return null;
 		}
 		try {
-			User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
+			User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSObject(user);
 		} catch (Exception e) {
 			return handleException(e);
@@ -907,8 +907,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			SUser currentUser = getCurrentUser(session);
-			Revision revision1 = session.get(StorePackage.eINSTANCE.getRevision(), roid1, Query.getDefault());
-			Revision revision2 = session.get(StorePackage.eINSTANCE.getRevision(), roid2, Query.getDefault());
+			Revision revision1 = session.get(StorePackage.eINSTANCE.getRevision(), roid1, OldQuery.getDefault());
+			Revision revision2 = session.get(StorePackage.eINSTANCE.getRevision(), roid2, OldQuery.getDefault());
 			String senderName = currentUser.getName();
 			String senderAddress = currentUser.getUsername();
 			if (!senderAddress.contains("@") || !senderAddress.contains(".")) {
@@ -1213,7 +1213,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			org.bimserver.models.store.Service externalProfile = session.get(StorePackage.eINSTANCE.getService(), soid, Query.getDefault());
+			org.bimserver.models.store.Service externalProfile = session.get(StorePackage.eINSTANCE.getService(), soid, OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSObject(externalProfile);
 		} catch (Exception e) {
 			return handleException(e);
@@ -1296,7 +1296,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		try {
 			SUser currentUser = getCurrentUser();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Token(), new StringLiteral(currentUser.getToken()));
-			User user = session.querySingle(condition, User.class, Query.getDefault());
+			User user = session.querySingle(condition, User.class, OldQuery.getDefault());
 			if (user != null) {
 				for (InternalServicePluginConfiguration internalServicePluginConfiguration : user.getUserSettings().getServices()) {
 					if (serviceIdentifier.equals("" + internalServicePluginConfiguration.getOid())) {
@@ -1339,7 +1339,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public SFile getFile(Long fileId) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			org.bimserver.models.store.File file = (org.bimserver.models.store.File)session.get(StorePackage.eINSTANCE.getFile(), fileId, Query.getDefault());
+			org.bimserver.models.store.File file = (org.bimserver.models.store.File)session.get(StorePackage.eINSTANCE.getFile(), fileId, OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSObject(file);
 		} catch (Exception e) {
 			return handleException(e);
@@ -1366,7 +1366,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public void triggerNewExtendedData(Long edid, Long soid) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			ExtendedData extendedData = (ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), edid, Query.getDefault());
+			ExtendedData extendedData = (ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), edid, OldQuery.getDefault());
 			SExtendedDataAddedToRevision newExtendedData = new SExtendedDataAddedToRevision();
 			newExtendedData.setRevisionId(extendedData.getRevision().getOid());
 			newExtendedData.setExtendedDataId(edid);
@@ -1382,7 +1382,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public void triggerNewRevision(Long roid, Long soid) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
+			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
 			getBimServer().getNotificationsManager().notify(new NewRevisionNotification(getBimServer(), revision.getProject().getOid(), revision.getOid(), soid));
 		} catch (Exception e) {
 			handleException(e);
@@ -1401,7 +1401,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public SUserSettings getUserSettings() throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
+			User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSObject(user.getUserSettings());
 		} catch (Exception e) {
 			return handleException(e);
@@ -1428,8 +1428,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			List<LogAction> logActions = new ArrayList<LogAction>();
-			User user = session.get(getAuthorization().getUoid(), Query.getDefault());
-			IfcModelInterface projectsModel = session.getAllOfType(StorePackage.eINSTANCE.getProject(), Query.getDefault());
+			User user = session.get(getAuthorization().getUoid(), OldQuery.getDefault());
+			IfcModelInterface projectsModel = session.getAllOfType(StorePackage.eINSTANCE.getProject(), OldQuery.getDefault());
 			logActions.addAll(user.getLogs());
 			for (IdEObject idEObject : projectsModel.getValues()) {
 				if (idEObject instanceof Project) {
@@ -1527,7 +1527,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			Project project = session.get(poid, Query.getDefault());
+			Project project = session.get(poid, OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSListModelCheckerInstance(project.getModelCheckers());
 		} catch (Exception e) {
 			return handleException(e);
@@ -1541,7 +1541,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			ModelCheckerInstance modelChecker = session.get(modelCheckerOid, Query.getDefault());
+			ModelCheckerInstance modelChecker = session.get(modelCheckerOid, OldQuery.getDefault());
 			AddModelCheckerToProjectDatabaseAction action = new AddModelCheckerToProjectDatabaseAction(session, getInternalAccessMethod(), poid, modelChecker, getAuthorization());
 			session.executeAndCommitAction(action);
 		} catch (Exception e) {

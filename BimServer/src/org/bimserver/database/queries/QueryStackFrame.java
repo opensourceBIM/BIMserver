@@ -21,7 +21,7 @@ public class QueryStackFrame extends StackFrame {
 	public QueryStackFrame(QueryObjectProvider queryObjectProvider, QueryContext reusable) throws JsonParseException, JsonMappingException, IOException {
 		this.queryObjectProvider = queryObjectProvider;
 		this.reusable = reusable;
-		Query query = queryObjectProvider.getNameSpace();
+		Query query = queryObjectProvider.getQuery();
 		queryIterator = query.getQueryParts().iterator();
 	}
 
