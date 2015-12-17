@@ -297,7 +297,16 @@ public class PackageMetaData implements ObjectFactory {
 	}
 	
 	public Set<EClass> getAllSubClasses(EClass superClass) {
-		return allSubClasses.get(superClass.getName());
+		Set<EClass> set = allSubClasses.get(superClass.getName());
+		if (set == null) {
+			for (PackageMetaData dep : getDependencies()) {
+				Set<EClass> allSubClasses2 = dep.getAllSubClasses(superClass);
+				if (allSubClasses2 != null) {
+					return allSubClasses2;
+				}
+			}
+		}
+		return set;
 	}
 
 	public EClassifier getEClassifier(String type) {

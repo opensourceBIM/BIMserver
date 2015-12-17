@@ -400,8 +400,10 @@ public class StreamingGeometryGenerator {
 					JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
 					queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:ContainedInStructure"));
 					queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:OwnerHistory"));
-					queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:Representation"));
-					queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:ObjectPlacement"));
+					Include representation = jsonQueryObjectModelConverter.getDefineFromFile("validifc:Representation");
+					queryPart.addInclude(representation);
+					Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile("validifc:ObjectPlacement");
+					queryPart.addInclude(objectPlacement);
 					if (packageMetaData.getEClass("IfcWall").isSuperTypeOf(eClass)) {
 						Include ifcWall = queryPart.createInclude();
 						ifcWall.addType(packageMetaData.getEClass(eClass.getName()), false);
@@ -409,6 +411,8 @@ public class StreamingGeometryGenerator {
 						Include hasOpenings = ifcWall.createInclude();
 						hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
 						hasOpenings.addField("RelatedOpeningElement");
+						hasOpenings.addInclude(representation);
+						hasOpenings.addInclude(objectPlacement);
 //						Include relatedOpeningElement = hasOpenings.createInclude();
 //						relatedOpeningElement.addType(packageMetaData.getEClass("IfcOpeningElement"), false);
 //						relatedOpeningElement.addField("HasFillings");

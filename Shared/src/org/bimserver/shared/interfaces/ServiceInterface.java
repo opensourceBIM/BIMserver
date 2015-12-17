@@ -37,6 +37,7 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
+import org.bimserver.interfaces.objects.SGeometryInfo;
 import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SModelCheckerInstance;
@@ -1047,4 +1048,17 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getVolume")
 	Double getVolume(@WebParam(name = "roid", partName = "getVolume.roid") Long roid, @WebParam(name = "oid", partName = "getVolume.oid") Long oid) throws UserException, ServerException;
+	
+	/**
+	 * @param roid Revision-ID of the revision this object belongs to
+	 * @param oid Object-ID of the object (IfcProduct subtype)
+	 * @return SGeometryInfo with basic info about geometry
+	 * @throws UserException
+	 * @throws ServerException
+	 */
+	@WebMethod(action = "getGeometryInfo")
+	SGeometryInfo getGeometryInfo(@WebParam(name = "roid", partName = "getGeometryInfo.roid") Long roid, @WebParam(name = "oid", partName = "getGeometryInfo.oid") Long oid) throws UserException, ServerException;
+
+	@WebMethod(action = "getNrPrimitives")
+	Long getNrPrimitives(@WebParam(name = "roid", partName = "getNrPrimitives.roid") Long roid) throws ServerException, UserException;
 }

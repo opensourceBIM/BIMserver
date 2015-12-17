@@ -58,7 +58,14 @@
 					field: "ThePerson"
 				}, {
 					type: "IfcPersonAndOrganization",
-					field: "TheOrganization"
+					field: "TheOrganization",
+					includes: [{
+						type: "IfcOrganization",
+						field: "Roles"
+					}, {
+						type: "IfcOrganization",
+						field: "Addresses"
+					}]
 				}]
 			}, {
 				type: "IfcOwnerHistory",
@@ -94,17 +101,18 @@
 				}
 			}
 		},
+		IfcRepresentation: {
+			type: "IfcRepresentation",
+			fields: ["Items", "ContextOfItems"],
+			includes: ["IfcRepresentationItem", "IfcPolyline", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcMappedItem", "IfcFacetedBrep", "IfcPolygonalBoundedHalfSpace", "IfcBooleanResult", "IfcExtrudedAreaSolid"]
+		},
 		Representation: {
 			type: "IfcProduct",
 			field: "Representation",
 			include: {
 				type: "IfcProductRepresentation",
 				field: "Representations",
-				includes: [{
-					type: "IfcRepresentation",
-					fields: ["Items", "ContextOfItems"],
-					includes: ["IfcRepresentationItem", "IfcPolyline", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcMappedItem", "IfcFacetedBrep", "IfcPolygonalBoundedHalfSpace", "IfcBooleanResult", "IfcExtrudedAreaSolid"]
-				}, "IfcBooleanResult"]
+				includes: ["IfcRepresentation", "IfcBooleanResult"]
 			}
 		},
 		IfcFacetedBrep: {
@@ -136,7 +144,7 @@
 			}, {
 				type: "IfcRepresentationMap",
 				fields: ["MappingOrigin", "MappedRepresentation"],
-				includes: ["IfcAxis2Placement2D", "IfcAxis2Placement3D"]
+				includes: ["IfcAxis2Placement2D", "IfcAxis2Placement3D", "IfcRepresentation"]
 			}]
 		},
 		IfcPolyline: {

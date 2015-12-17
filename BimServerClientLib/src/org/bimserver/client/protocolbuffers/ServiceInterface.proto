@@ -123,9 +123,13 @@ service ServiceInterface {
 
 	rpc getGeoTag (GetGeoTagRequest) returns (GetGeoTagResponse);
 
+	rpc getGeometryInfo (GetGeometryInfoRequest) returns (GetGeometryInfoResponse);
+
 	rpc getIfcHeader (GetIfcHeaderRequest) returns (GetIfcHeaderResponse);
 
 	rpc getModelCheckerInstance (GetModelCheckerInstanceRequest) returns (GetModelCheckerInstanceResponse);
+
+	rpc getNrPrimitives (GetNrPrimitivesRequest) returns (GetNrPrimitivesResponse);
 
 	rpc getOidByGuid (GetOidByGuidRequest) returns (GetOidByGuidResponse);
 
@@ -1007,6 +1011,38 @@ message GetGeoTagResponse {
 	optional SGeoTag value = 2;
 }
 
+message GetGeometryInfoRequest {
+	optional int64 roid = 1;
+	optional int64 oid = 2;
+}
+
+message SVector3f {
+	optional int64 oid = 1;
+	optional int32 rid = 2;
+	optional float x = 3;
+	optional float y = 4;
+	optional float z = 5;
+}
+
+message SGeometryInfo {
+	optional double area = 1;
+	optional int64 dataId = 2;
+	optional SVector3f maxBounds = 3;
+	optional SVector3f minBounds = 4;
+	optional int64 oid = 5;
+	optional int32 primitiveCount = 6;
+	optional int32 rid = 7;
+	optional int32 startIndex = 8;
+	optional int32 startVertex = 9;
+	optional bytes transformation = 10;
+	optional double volume = 11;
+}
+
+message GetGeometryInfoResponse {
+	optional string errorMessage = 1;
+	optional SGeometryInfo value = 2;
+}
+
 message GetIfcHeaderRequest {
 	optional int64 croid = 1;
 }
@@ -1038,6 +1074,15 @@ message GetModelCheckerInstanceRequest {
 message GetModelCheckerInstanceResponse {
 	optional string errorMessage = 1;
 	optional SModelCheckerInstance value = 2;
+}
+
+message GetNrPrimitivesRequest {
+	optional int64 roid = 1;
+}
+
+message GetNrPrimitivesResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
 }
 
 message GetOidByGuidRequest {

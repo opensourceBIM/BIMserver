@@ -279,6 +279,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetGeometryInfoCallback {
+		void success(org.bimserver.interfaces.objects.SGeometryInfo result);
+		void error(Throwable e);
+	}
+	
 	public interface GetIfcHeaderCallback {
 		void success(org.bimserver.interfaces.objects.SIfcHeader result);
 		void error(Throwable e);
@@ -286,6 +291,11 @@ public class AsyncServiceInterface {
 	
 	public interface GetModelCheckerInstanceCallback {
 		void success(org.bimserver.interfaces.objects.SModelCheckerInstance result);
+		void error(Throwable e);
+	}
+	
+	public interface GetNrPrimitivesCallback {
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
@@ -1058,6 +1068,18 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void getGeometryInfo(final java.lang.Long roid, final java.lang.Long oid, final GetGeometryInfoCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getGeometryInfo(roid, oid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getIfcHeader(final java.lang.Long croid, final GetIfcHeaderCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1075,6 +1097,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getModelCheckerInstance(mcioid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getNrPrimitives(final java.lang.Long roid, final GetNrPrimitivesCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getNrPrimitives(roid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

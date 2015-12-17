@@ -153,7 +153,10 @@ public class BimServerImporter {
 								if (millisDiff > 1000 * 60 * 120) { // 120 minutes
 									continue;
 								}
-								comments.put(gregorianCalendar, new Key(file, project.getOid(), revision.getComment(), revision.getDate(), revision.getUserId()));
+								
+								if (revision.getOid() == project.getLastRevisionId()) {
+									comments.put(gregorianCalendar, new Key(file, project.getOid(), revision.getComment(), revision.getDate(), revision.getUserId()));
+								}
 								found = true;
 								break;
 							}
