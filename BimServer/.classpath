@@ -147,7 +147,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-rt-wsdl-3.1.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-sts-core-3.1.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-ws-discovery-api-3.1.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-ws-discovery-service-3.1.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-api-3.1.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-core-3.1.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-tools-common-3.1.3.jar"/>
