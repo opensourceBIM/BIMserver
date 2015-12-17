@@ -25,7 +25,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -48,7 +48,7 @@ public class GetAllModelComparesDatabaseAction extends GetAllDatabaseAction<Mode
 	@Override
 	public List<ModelComparePluginConfiguration> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getModelComparePluginConfiguration());
-		Map<Long, ModelComparePluginConfiguration> result = getDatabaseSession().query(condition, ModelComparePluginConfiguration.class, Query.getDefault());
+		Map<Long, ModelComparePluginConfiguration> result = getDatabaseSession().query(condition, ModelComparePluginConfiguration.class, OldQuery.getDefault());
 		List<ModelComparePluginConfiguration> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
 			Iterator<ModelComparePluginConfiguration> iterator = mapToList.iterator();

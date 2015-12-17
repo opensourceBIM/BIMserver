@@ -1,0 +1,214 @@
+{
+	defines: {
+		Units: {
+			type: "IfcProject",
+			fields: ["UnitsInContext", "RepresentationContexts"],
+			includes: [{
+				type: "IfcUnitAssignment",
+				field: "Units",
+				includes: ["ConversionFactor", "Dimensions"]
+			}, "IfcGeometricRepresentationContext"]
+		},
+		IfcGeometricRepresentationContext: {
+			type: "IfcGeometricRepresentationContext",
+			fields: ["WorldCoordinateSystem", "TrueNorth"]
+		},
+		IfcGeometricRepresentationSubContext: {
+			type: "IfcGeometricRepresentationSubContext",
+			field: "ParentContext"
+		},
+		ContainedInStructure: {
+			type: "IfcElement",
+			field: "ContainedInStructure",
+			includes: [{
+				type: "IfcRelContainedInSpatialStructure",
+				fields: ["RelatingStructure"],
+				includes: ["Decomposes", "OwnerHistory"]
+			}, "OwnerHistory"]
+		},
+		Dimensions: {
+			type: "IfcConversionBasedUnit",
+			field: "Dimensions"
+		},
+		ConversionFactor: {
+			type: "IfcConversionBasedUnit",
+			field: "ConversionFactor",
+			include: {
+				type: "IfcMeasureWithUnit",
+				field: "UnitComponent"
+			}
+		},
+		Decomposes: {
+			type: "IfcObjectDefinition",
+			field: "Decomposes",
+			includes: [{
+				type: "IfcRelAggregates",
+				field: "RelatingObject",
+				includes: ["Decomposes", "Units", "OwnerHistory"]
+			}, "OwnerHistory"]
+		},
+		OwnerHistory: {
+			type: "IfcRoot",
+			field: "OwnerHistory",
+			includes: [{
+				type: "IfcOwnerHistory",
+				field: "OwningUser",
+				includes: [{
+					type: "IfcPersonAndOrganization",
+					field: "ThePerson"
+				}, {
+					type: "IfcPersonAndOrganization",
+					field: "TheOrganization"
+				}]
+			}, {
+				type: "IfcOwnerHistory",
+				field: "OwningApplication",
+				include: {
+					type: "IfcApplication",
+					field: "ApplicationDeveloper"
+				}
+			}]
+		},
+		IfcSurfaceStyle: {
+			type: "IfcSurfaceStyle",
+			field: "Styles",
+			include: {
+				type: "IfcSurfaceStyleRendering",
+				fields: ["SurfaceColour", "DiffuseColour", "TransmissionColour", "DiffuseTransmissionColour", "ReflectionColour", "SpecularColour", "SpecularHighlight"]
+			}
+		},
+		IfcFillAreaStyle: {
+			type: "IfcFillAreaStyle",
+			field: "FillStyles"
+		},
+		IfcRepresentationItem: {
+			type: "IfcRepresentationItem",
+			field: "StyledByItem",
+			include: {
+				type: "IfcStyledItem",
+				field: "Styles",
+				include: {
+					type: "IfcPresentationStyleAssignment",
+					field: "Styles",
+					includes: ["IfcFillAreaStyle", "IfcSurfaceStyle"]
+				}
+			}
+		},
+		Representation: {
+			type: "IfcProduct",
+			field: "Representation",
+			include: {
+				type: "IfcProductRepresentation",
+				field: "Representations",
+				includes: [{
+					type: "IfcRepresentation",
+					fields: ["Items", "ContextOfItems"],
+					includes: ["IfcRepresentationItem", "IfcPolyline", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcMappedItem", "IfcFacetedBrep", "IfcPolygonalBoundedHalfSpace", "IfcBooleanResult", "IfcExtrudedAreaSolid"]
+				}, "IfcBooleanResult"]
+			}
+		},
+		IfcFacetedBrep: {
+			type: "IfcFacetedBrep",
+			field: "Outer",
+			include: {
+				type: "IfcClosedShell",
+				field: "CfsFaces",
+				include: {
+					type: "IfcFace",
+					field: "Bounds",
+					include: {
+						type: "IfcFaceBound",
+						field: "Bound",
+						include: {
+							type: "IfcPolyLoop",
+							field: "Polygon"
+						}
+					}
+				}
+			}
+		},
+		IfcMappedItem: {
+			type: "IfcMappedItem",
+			fields: ["MappingSource", "MappingTarget"],
+			includes: [{
+				type: "IfcCartesianTransformationOperator3D",
+				fields: ["Axis1", "Axis2", "LocalOrigin", "Axis3"]
+			}, {
+				type: "IfcRepresentationMap",
+				fields: ["MappingOrigin", "MappedRepresentation"],
+				includes: ["IfcAxis2Placement2D", "IfcAxis2Placement3D"]
+			}]
+		},
+		IfcPolyline: {
+			type: "IfcPolyline",
+			field: "Points"
+		},
+		IfcArbitraryClosedProfileDef: {
+			type: "IfcArbitraryClosedProfileDef",
+			field: "OuterCurve",
+			include: "IfcPolyline"
+		},
+		IfcHalfSpaceSolid: {
+			type: "IfcHalfSpaceSolid",
+			fields: ["BaseSurface"],
+			include: "IfcPlane"
+		},
+		IfcAxis2Placement2D: {
+			type: "IfcAxis2Placement2D",
+			fields: ["Location", "RefDirection"]
+		},
+		IfcParameterizedProfileDef: {
+			type: "IfcParameterizedProfileDef",
+			field: "Position",
+			include: "IfcAxis2Placement2D"
+		},
+		IfcExtrudedAreaSolid: {
+			type: "IfcExtrudedAreaSolid",
+			fields: ["ExtrudedDirection", "SweptArea", "Position"],
+			includes: ["IfcAxis2Placement3D", "IfcArbitraryClosedProfileDef", "IfcParameterizedProfileDef"]
+		},
+		IfcAxis2Placement3D: {
+			type: "IfcAxis2Placement3D",
+			fields: ["Location", "Axis", "RefDirection"]
+		},
+		IfcPlane: {
+			type: "IfcPlane",
+			field: "Position",
+			include: "IfcAxis2Placement3D"
+		},
+		IfcPolygonalBoundedHalfSpace: {
+			type: "IfcPolygonalBoundedHalfSpace",
+			fields: ["BaseSurface", "Position", "PolygonalBoundary"],
+			includes: ["IfcPlane", "IfcPolyline"]
+		},
+		IfcBooleanResult: {
+			type: "IfcBooleanResult",
+			fields: ["FirstOperand", "SecondOperand"],
+			includes: ["IfcBooleanResult", "IfcPolygonalBoundedHalfSpace", "IfcExtrudedAreaSolid", "IfcHalfSpaceSolid"]			
+		},
+		RelativePlacement: {
+			type: "IfcLocalPlacement",
+			field: "PlacementRelTo",
+			includes: ["RelativePlacement", {
+				type: "IfcLocalPlacement",
+				field: "RelativePlacement",
+				include: {
+					type: "IfcAxis2Placement3D",
+					fields: ["Location", "Axis", "RefDirection"]
+				}
+			}]
+		},
+		ObjectPlacement: {
+			type: "IfcProduct",
+			field: "ObjectPlacement",
+			includes: ["RelativePlacement", {
+				type: "IfcLocalPlacement",
+				field: "RelativePlacement",
+				include: {
+					type: "IfcAxis2Placement3D",
+					fields: ["Location", "Axis", "RefDirection"]
+				}
+			}]
+		}
+	}
+}

@@ -23,7 +23,7 @@ import java.util.List;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -52,7 +52,7 @@ public class Bimsie1RemoteServiceImpl extends GenericServiceImpl implements Bims
 		DatabaseSession session = getServiceMap().getBimServer().getDatabase().createSession();
 		List<SProfileDescriptor> descriptors = new ArrayList<SProfileDescriptor>();
 		try {
-			IfcModelInterface modelInterface = session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), Query.getDefault());
+			IfcModelInterface modelInterface = session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), OldQuery.getDefault());
 			for (InternalServicePluginConfiguration internalServicePluginConfiguration : modelInterface.getAll(InternalServicePluginConfiguration.class)) {
 				if (internalServicePluginConfiguration.isPublicProfile()) {
 					if (serviceIdentifier.equals("" + internalServicePluginConfiguration.getOid())) {
@@ -80,7 +80,7 @@ public class Bimsie1RemoteServiceImpl extends GenericServiceImpl implements Bims
 		List<SProfileDescriptor> descriptors = new ArrayList<SProfileDescriptor>();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Token(), new StringLiteral(token));
-			User user = session.querySingle(condition, User.class, Query.getDefault());
+			User user = session.querySingle(condition, User.class, OldQuery.getDefault());
 			if (user != null) {
 				for (InternalServicePluginConfiguration internalServicePluginConfiguration : user.getUserSettings().getServices()) {
 					if (internalServicePluginConfiguration.getPluginDescriptor().getPluginClassName().equals(serviceIdentifier)) {

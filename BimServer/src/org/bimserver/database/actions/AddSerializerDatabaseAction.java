@@ -3,7 +3,7 @@ package org.bimserver.database.actions;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
@@ -30,7 +30,7 @@ public class AddSerializerDatabaseAction extends AddDatabaseAction<SerializerPlu
 		if (getIdEObject().getObjectIDM() != null) {
 			getDatabaseSession().store(getIdEObject().getObjectIDM());
 		}
-		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
 		user.getUserSettings().getSerializers().add(getIdEObject());
 		getDatabaseSession().store(user.getUserSettings());
 

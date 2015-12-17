@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -180,9 +180,9 @@ public class BimServerImporter {
 							DatabaseSession databaseSession = database.createSession();
 							try {
 								LOGGER.info("Done");
-								Project project = databaseSession.get(updatedProject.getOid(), Query.getDefault());
+								Project project = databaseSession.get(updatedProject.getOid(), OldQuery.getDefault());
 								Revision revision = project.getLastRevision();
-								User user = (User)databaseSession.get(users.get(key.userId).getOid(), Query.getDefault());
+								User user = (User)databaseSession.get(users.get(key.userId).getOid(), OldQuery.getDefault());
 								for (Revision otherRevision : revision.getConcreteRevisions().get(0).getRevisions()) {
 									otherRevision.load();
 									otherRevision.setDate(key.date);

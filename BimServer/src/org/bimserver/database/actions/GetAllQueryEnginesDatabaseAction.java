@@ -25,7 +25,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -48,7 +48,7 @@ public class GetAllQueryEnginesDatabaseAction extends GetAllDatabaseAction<Query
 	@Override
 	public List<QueryEnginePluginConfiguration> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration());
-		Map<Long, QueryEnginePluginConfiguration> result = getDatabaseSession().query(condition, QueryEnginePluginConfiguration.class, Query.getDefault());
+		Map<Long, QueryEnginePluginConfiguration> result = getDatabaseSession().query(condition, QueryEnginePluginConfiguration.class, OldQuery.getDefault());
 		List<QueryEnginePluginConfiguration> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
 			Iterator<QueryEnginePluginConfiguration> iterator = mapToList.iterator();

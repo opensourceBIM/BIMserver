@@ -118,6 +118,10 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 	}
 
 	public void dump(int indent, StringBuilder sb) {
+		if (indent > 10) {
+			sb.append("..trimmed\n");
+			return;
+		}
 		if (hasTypes()) {
 			sb.append(indent(indent) + "types\n");
 			for (EClass type : getTypes()) {

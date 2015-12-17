@@ -22,7 +22,7 @@ import javax.activation.DataHandler;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.exceptions.NoSerializerFoundException;
@@ -104,7 +104,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				checkoutResult = new SCheckoutResult();
 				checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters));
 			} else {
-				Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), Query.getDefault());
+				Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), OldQuery.getDefault());
 				if (revision == null) {
 					throw new UserException("Revision with roid " + downloadParameters.getRoid() + " not found");
 				}
@@ -121,7 +121,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				DatabaseSession newSession = getBimServer().getDatabase().createSession();
 				RenderEnginePlugin renderEnginePlugin = null;
 				try {
-					PluginConfiguration serializerPluginConfiguration = newSession.get(StorePackage.eINSTANCE.getPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
+					PluginConfiguration serializerPluginConfiguration = newSession.get(StorePackage.eINSTANCE.getPluginConfiguration(), downloadParameters.getSerializerOid(), OldQuery.getDefault());
 					if (serializerPluginConfiguration != null) {
 						if (serializerPluginConfiguration instanceof SerializerPluginConfiguration) {
 							RenderEnginePluginConfiguration renderEngine = ((SerializerPluginConfiguration)serializerPluginConfiguration).getRenderEngine();

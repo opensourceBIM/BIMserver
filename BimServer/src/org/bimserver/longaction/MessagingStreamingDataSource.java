@@ -4,13 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import javax.activation.DataSource;
-
+import org.bimserver.plugins.serializers.ExtendedDataSource;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializer;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 
-public class MessagingStreamingDataSource implements DataSource {
+public class MessagingStreamingDataSource extends ExtendedDataSource {
 
 	private MessagingStreamingSerializer messagingStreamingSerializer;
 

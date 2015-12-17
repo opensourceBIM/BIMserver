@@ -31,7 +31,7 @@ import org.bimserver.SummaryMap;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.mail.MailSystem;
@@ -159,7 +159,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (authorization instanceof ExplicitRightsAuthorization) {
 				ExplicitRightsAuthorization explicitRightsAuthorization = (ExplicitRightsAuthorization)authorization;
 				if (explicitRightsAuthorization.getSoid() != -1) {
-					Service service = getDatabaseSession().get(explicitRightsAuthorization.getSoid(), Query.getDefault());
+					Service service = getDatabaseSession().get(explicitRightsAuthorization.getSoid(), OldQuery.getDefault());
 					revision.setService(service);
 				}
 			}

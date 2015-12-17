@@ -972,10 +972,10 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 
 	public DatabaseInformation getDatabaseInformation() throws BimserverDatabaseException {
 		DatabaseInformation databaseInformation = StoreFactory.eINSTANCE.createDatabaseInformation();
-		databaseInformation.setNumberOfProjects(getObjectCount(Project.class, Query.getDefault()));
-		databaseInformation.setNumberOfUsers(getObjectCount(User.class, Query.getDefault()));
-		databaseInformation.setNumberOfCheckouts(getObjectCount(Checkout.class, Query.getDefault()));
-		databaseInformation.setNumberOfRevisions(getObjectCount(ConcreteRevision.class, Query.getDefault()));
+		databaseInformation.setNumberOfProjects(getObjectCount(Project.class, OldQuery.getDefault()));
+		databaseInformation.setNumberOfUsers(getObjectCount(User.class, OldQuery.getDefault()));
+		databaseInformation.setNumberOfCheckouts(getObjectCount(Checkout.class, OldQuery.getDefault()));
+		databaseInformation.setNumberOfRevisions(getObjectCount(ConcreteRevision.class, OldQuery.getDefault()));
 		databaseInformation.setType(database.getKeyValueStore().getType());
 		databaseInformation.setCreated(database.getCreated());
 		databaseInformation.setDatabaseSizeInBytes(database.getKeyValueStore().getDatabaseSizeInBytes());
@@ -2034,7 +2034,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				ByteBuffer buffer = ByteBuffer.wrap(firstDuplicate);
 				buffer.getInt(); // pid
 				long oid = buffer.getLong();
-				return (T) get(oid, Query.getDefault());
+				return (T) get(oid, OldQuery.getDefault());
 			}
 		}
 		return null;
@@ -2058,7 +2058,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				ByteBuffer buffer = ByteBuffer.wrap(indexValue);
 				buffer.getInt(); // pid
 				long oid = buffer.getLong();
-				result.add((T) get(oid, Query.getDefault()));
+				result.add((T) get(oid, OldQuery.getDefault()));
 			}
 		}
 		return result;
@@ -2085,7 +2085,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			if (isUnsetted) {
 			} else {
 				if (eStructuralFeature == feature) {
-					return databaseSession.readPrimitiveBytes(feature.getEType(), buffer, Query.getDefault());
+					return databaseSession.readPrimitiveBytes(feature.getEType(), buffer, OldQuery.getDefault());
 				} else {
 					databaseSession.fakeRead(buffer, feature);
 				}

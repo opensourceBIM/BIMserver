@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StorePackage;
 import org.slf4j.Logger;
@@ -42,7 +42,7 @@ public class ServerSettingsCache {
 	public synchronized void updateCache() {
 		DatabaseSession session = database.createSession();
 		try {
-			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), new Query(session.getMetaDataManager().getPackageMetaData("store"), true));
+			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), new OldQuery(session.getMetaDataManager().getPackageMetaData("store"), true));
 			if (serverSettings.getSessionTimeOutSeconds() == 0) {
 				serverSettings.setSessionTimeOutSeconds(60 * 60 * 24 * 30);
 			}

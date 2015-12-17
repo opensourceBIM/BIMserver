@@ -1,7 +1,7 @@
 package org.bimserver;
 
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.actions.ServerSettingsSetter;
 import org.bimserver.database.actions.SetServerSettingDatabaseAction;
 import org.bimserver.models.log.AccessMethod;
@@ -23,7 +23,7 @@ public class WebModuleManager {
 	public void setDefault(Long oid) throws BimserverDatabaseException, UserException, ServerException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			final WebModulePluginConfiguration defaultWebModule = session.get(StorePackage.eINSTANCE.getWebModulePluginConfiguration(), oid, Query.getDefault());
+			final WebModulePluginConfiguration defaultWebModule = session.get(StorePackage.eINSTANCE.getWebModulePluginConfiguration(), oid, OldQuery.getDefault());
 			bimServer.setDefaultWebModule((WebModulePlugin) bimServer.getPluginManager().getPlugin(defaultWebModule.getPluginDescriptor().getPluginClassName(), true));
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, AccessMethod.INTERNAL, new ServerSettingsSetter(){
 				@Override

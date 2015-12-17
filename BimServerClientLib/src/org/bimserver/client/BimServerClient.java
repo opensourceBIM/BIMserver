@@ -389,4 +389,10 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		Long downloadId = getBimsie1ServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), queryNode.toString(), serializerOid, false);
 		return downloadId;
 	}
+
+	@Override
+	public void close() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }

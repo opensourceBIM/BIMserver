@@ -25,7 +25,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -48,7 +48,7 @@ public class GetAllRenderEnginesDatabaseAction extends GetAllDatabaseAction<Rend
 	@Override
 	public List<RenderEnginePluginConfiguration> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration());
-		Map<Long, RenderEnginePluginConfiguration> result = getDatabaseSession().query(condition, RenderEnginePluginConfiguration.class, Query.getDefault());
+		Map<Long, RenderEnginePluginConfiguration> result = getDatabaseSession().query(condition, RenderEnginePluginConfiguration.class, OldQuery.getDefault());
 		List<RenderEnginePluginConfiguration> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
 			Iterator<RenderEnginePluginConfiguration> iterator = mapToList.iterator();

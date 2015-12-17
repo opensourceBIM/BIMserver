@@ -8,7 +8,7 @@ import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
@@ -147,7 +147,7 @@ public class SConverter {
 		result.setVolume(input.getVolume());
 		result.setMinBounds(convertFromSObject(input.getMinBounds(), session));
 		result.setMaxBounds(convertFromSObject(input.getMaxBounds(), session));
-		result.setData((GeometryData)session.get(GeometryPackage.eINSTANCE.getGeometryData(), input.getDataId(), Query.getDefault()));
+		result.setData((GeometryData)session.get(GeometryPackage.eINSTANCE.getGeometryData(), input.getDataId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -435,7 +435,7 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -501,7 +501,7 @@ public class SConverter {
 		}
 		List<LogAction> listactions = result.getActions();
 		for (long oid : input.getActions()) {
-			listactions.add((LogAction)session.get(LogPackage.eINSTANCE.getLogAction(), oid, Query.getDefault()));
+			listactions.add((LogAction)session.get(LogPackage.eINSTANCE.getLogAction(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -593,8 +593,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -667,8 +667,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setCheckout((Checkout)session.get(StorePackage.eINSTANCE.getCheckout(), input.getCheckoutId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setCheckout((Checkout)session.get(StorePackage.eINSTANCE.getCheckout(), input.getCheckoutId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -747,8 +747,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -863,8 +863,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -931,8 +931,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1001,9 +1001,9 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
-		result.setParentProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getParentProjectId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
+		result.setParentProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getParentProjectId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1072,9 +1072,9 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setOldrevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getOldrevisionId(), Query.getDefault()));
-		result.setNewrevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getNewrevisionId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setOldrevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getOldrevisionId(), OldQuery.getDefault()));
+		result.setNewrevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getNewrevisionId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1143,9 +1143,9 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), Query.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1212,8 +1212,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setCheckout((Checkout)session.get(StorePackage.eINSTANCE.getCheckout(), input.getCheckoutId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setCheckout((Checkout)session.get(StorePackage.eINSTANCE.getCheckout(), input.getCheckoutId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1278,7 +1278,7 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1347,9 +1347,9 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1414,7 +1414,7 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1479,7 +1479,7 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1548,9 +1548,9 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1617,8 +1617,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1685,8 +1685,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1753,8 +1753,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1823,7 +1823,7 @@ public class SConverter {
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setPath(input.getPath());
 		result.setVersion(input.getVersion());
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1888,7 +1888,7 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -1955,8 +1955,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -2023,8 +2023,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -2091,8 +2091,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -2159,8 +2159,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -2227,8 +2227,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setGeoTag((GeoTag)session.get(StorePackage.eINSTANCE.getGeoTag(), input.getGeoTagId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setGeoTag((GeoTag)session.get(StorePackage.eINSTANCE.getGeoTag(), input.getGeoTagId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -2295,8 +2295,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -2363,8 +2363,8 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -2433,9 +2433,9 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), Query.getDefault()));
-		result.setExtendedData((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), input.getExtendedDataId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
+		result.setExtendedData((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), input.getExtendedDataId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -2504,9 +2504,9 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
-		result.setExtendedData((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), input.getExtendedDataId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
+		result.setExtendedData((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), input.getExtendedDataId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -2583,8 +2583,8 @@ public class SConverter {
 		result.getInfos().addAll(input.getInfos());
 		result.getWarnings().addAll(input.getWarnings());
 		result.getErrors().addAll(input.getErrors());
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), Query.getDefault()));
-		result.setService((Service)session.get(StorePackage.eINSTANCE.getService(), input.getServiceId(), Query.getDefault()));
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setService((Service)session.get(StorePackage.eINSTANCE.getService(), input.getServiceId(), OldQuery.getDefault()));
 		return result;
 	}
 		public SUserType convertToSObject(UserType input) {
@@ -2737,44 +2737,44 @@ public class SConverter {
 		result.setSendEmailOnNewRevision(input.isSendEmailOnNewRevision());
 		List<User> listhasAuthorizedUsers = result.getHasAuthorizedUsers();
 		for (long oid : input.getHasAuthorizedUsers()) {
-			listhasAuthorizedUsers.add((User)session.get(StorePackage.eINSTANCE.getUser(), oid, Query.getDefault()));
+			listhasAuthorizedUsers.add((User)session.get(StorePackage.eINSTANCE.getUser(), oid, OldQuery.getDefault()));
 		}
 		List<ConcreteRevision> listconcreteRevisions = result.getConcreteRevisions();
 		for (long oid : input.getConcreteRevisions()) {
-			listconcreteRevisions.add((ConcreteRevision)session.get(StorePackage.eINSTANCE.getConcreteRevision(), oid, Query.getDefault()));
+			listconcreteRevisions.add((ConcreteRevision)session.get(StorePackage.eINSTANCE.getConcreteRevision(), oid, OldQuery.getDefault()));
 		}
 		List<Revision> listrevisions = result.getRevisions();
 		for (long oid : input.getRevisions()) {
-			listrevisions.add((Revision)session.get(StorePackage.eINSTANCE.getRevision(), oid, Query.getDefault()));
+			listrevisions.add((Revision)session.get(StorePackage.eINSTANCE.getRevision(), oid, OldQuery.getDefault()));
 		}
-		result.setLastConcreteRevision((ConcreteRevision)session.get(StorePackage.eINSTANCE.getConcreteRevision(), input.getLastConcreteRevisionId(), Query.getDefault()));
-		result.setLastRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getLastRevisionId(), Query.getDefault()));
+		result.setLastConcreteRevision((ConcreteRevision)session.get(StorePackage.eINSTANCE.getConcreteRevision(), input.getLastConcreteRevisionId(), OldQuery.getDefault()));
+		result.setLastRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getLastRevisionId(), OldQuery.getDefault()));
 		List<Checkout> listcheckouts = result.getCheckouts();
 		for (long oid : input.getCheckouts()) {
-			listcheckouts.add((Checkout)session.get(StorePackage.eINSTANCE.getCheckout(), oid, Query.getDefault()));
+			listcheckouts.add((Checkout)session.get(StorePackage.eINSTANCE.getCheckout(), oid, OldQuery.getDefault()));
 		}
-		result.setCreatedBy((User)session.get(StorePackage.eINSTANCE.getUser(), input.getCreatedById(), Query.getDefault()));
-		result.setGeoTag((GeoTag)session.get(StorePackage.eINSTANCE.getGeoTag(), input.getGeoTagId(), Query.getDefault()));
+		result.setCreatedBy((User)session.get(StorePackage.eINSTANCE.getUser(), input.getCreatedById(), OldQuery.getDefault()));
+		result.setGeoTag((GeoTag)session.get(StorePackage.eINSTANCE.getGeoTag(), input.getGeoTagId(), OldQuery.getDefault()));
 		List<Project> listsubProjects = result.getSubProjects();
 		for (long oid : input.getSubProjects()) {
-			listsubProjects.add((Project)session.get(StorePackage.eINSTANCE.getProject(), oid, Query.getDefault()));
+			listsubProjects.add((Project)session.get(StorePackage.eINSTANCE.getProject(), oid, OldQuery.getDefault()));
 		}
-		result.setParent((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getParentId(), Query.getDefault()));
+		result.setParent((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getParentId(), OldQuery.getDefault()));
 		List<ExtendedData> listextendedData = result.getExtendedData();
 		for (long oid : input.getExtendedData()) {
-			listextendedData.add((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), oid, Query.getDefault()));
+			listextendedData.add((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), oid, OldQuery.getDefault()));
 		}
 		List<Service> listservices = result.getServices();
 		for (long oid : input.getServices()) {
-			listservices.add((Service)session.get(StorePackage.eINSTANCE.getService(), oid, Query.getDefault()));
+			listservices.add((Service)session.get(StorePackage.eINSTANCE.getService(), oid, OldQuery.getDefault()));
 		}
 		List<ProjectRelated> listlogs = result.getLogs();
 		for (long oid : input.getLogs()) {
-			listlogs.add((ProjectRelated)session.get(LogPackage.eINSTANCE.getProjectRelated(), oid, Query.getDefault()));
+			listlogs.add((ProjectRelated)session.get(LogPackage.eINSTANCE.getProjectRelated(), oid, OldQuery.getDefault()));
 		}
 		List<ModelCheckerInstance> listmodelCheckers = result.getModelCheckers();
 		for (long oid : input.getModelCheckers()) {
-			listmodelCheckers.add((ModelCheckerInstance)session.get(StorePackage.eINSTANCE.getModelCheckerInstance(), oid, Query.getDefault()));
+			listmodelCheckers.add((ModelCheckerInstance)session.get(StorePackage.eINSTANCE.getModelCheckerInstance(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -2892,29 +2892,29 @@ public class SConverter {
 		result.setValidationTokenCreated(input.getValidationTokenCreated());
 		List<Project> listhasRightsOn = result.getHasRightsOn();
 		for (long oid : input.getHasRightsOn()) {
-			listhasRightsOn.add((Project)session.get(StorePackage.eINSTANCE.getProject(), oid, Query.getDefault()));
+			listhasRightsOn.add((Project)session.get(StorePackage.eINSTANCE.getProject(), oid, OldQuery.getDefault()));
 		}
 		List<Revision> listrevisions = result.getRevisions();
 		for (long oid : input.getRevisions()) {
-			listrevisions.add((Revision)session.get(StorePackage.eINSTANCE.getRevision(), oid, Query.getDefault()));
+			listrevisions.add((Revision)session.get(StorePackage.eINSTANCE.getRevision(), oid, OldQuery.getDefault()));
 		}
-		result.setCreatedBy((User)session.get(StorePackage.eINSTANCE.getUser(), input.getCreatedById(), Query.getDefault()));
-		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), Query.getDefault()));
+		result.setCreatedBy((User)session.get(StorePackage.eINSTANCE.getUser(), input.getCreatedById(), OldQuery.getDefault()));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), OldQuery.getDefault()));
 		List<ExtendedDataSchema> listschemas = result.getSchemas();
 		for (long oid : input.getSchemas()) {
-			listschemas.add((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), oid, Query.getDefault()));
+			listschemas.add((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), oid, OldQuery.getDefault()));
 		}
 		List<ExtendedData> listextendedData = result.getExtendedData();
 		for (long oid : input.getExtendedData()) {
-			listextendedData.add((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), oid, Query.getDefault()));
+			listextendedData.add((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), oid, OldQuery.getDefault()));
 		}
 		List<Service> listservices = result.getServices();
 		for (long oid : input.getServices()) {
-			listservices.add((Service)session.get(StorePackage.eINSTANCE.getService(), oid, Query.getDefault()));
+			listservices.add((Service)session.get(StorePackage.eINSTANCE.getService(), oid, OldQuery.getDefault()));
 		}
 		List<UserRelated> listlogs = result.getLogs();
 		for (long oid : input.getLogs()) {
-			listlogs.add((UserRelated)session.get(LogPackage.eINSTANCE.getUserRelated(), oid, Query.getDefault()));
+			listlogs.add((UserRelated)session.get(LogPackage.eINSTANCE.getUserRelated(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -3018,26 +3018,26 @@ public class SConverter {
 		result.setLastError(input.getLastError());
 		result.setBmi(input.getBmi());
 		result.setHasGeometry(input.isHasGeometry());
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
 		List<ConcreteRevision> listconcreteRevisions = result.getConcreteRevisions();
 		for (long oid : input.getConcreteRevisions()) {
-			listconcreteRevisions.add((ConcreteRevision)session.get(StorePackage.eINSTANCE.getConcreteRevision(), oid, Query.getDefault()));
+			listconcreteRevisions.add((ConcreteRevision)session.get(StorePackage.eINSTANCE.getConcreteRevision(), oid, OldQuery.getDefault()));
 		}
-		result.setLastConcreteRevision((ConcreteRevision)session.get(StorePackage.eINSTANCE.getConcreteRevision(), input.getLastConcreteRevisionId(), Query.getDefault()));
+		result.setLastConcreteRevision((ConcreteRevision)session.get(StorePackage.eINSTANCE.getConcreteRevision(), input.getLastConcreteRevisionId(), OldQuery.getDefault()));
 		List<Checkout> listcheckouts = result.getCheckouts();
 		for (long oid : input.getCheckouts()) {
-			listcheckouts.add((Checkout)session.get(StorePackage.eINSTANCE.getCheckout(), oid, Query.getDefault()));
+			listcheckouts.add((Checkout)session.get(StorePackage.eINSTANCE.getCheckout(), oid, OldQuery.getDefault()));
 		}
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
 		List<ExtendedData> listextendedData = result.getExtendedData();
 		for (long oid : input.getExtendedData()) {
-			listextendedData.add((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), oid, Query.getDefault()));
+			listextendedData.add((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), oid, OldQuery.getDefault()));
 		}
 		List<RevisionRelated> listlogs = result.getLogs();
 		for (long oid : input.getLogs()) {
-			listlogs.add((RevisionRelated)session.get(LogPackage.eINSTANCE.getRevisionRelated(), oid, Query.getDefault()));
+			listlogs.add((RevisionRelated)session.get(LogPackage.eINSTANCE.getRevisionRelated(), oid, OldQuery.getDefault()));
 		}
-		result.setService((Service)session.get(StorePackage.eINSTANCE.getService(), input.getServiceId(), Query.getDefault()));
+		result.setService((Service)session.get(StorePackage.eINSTANCE.getService(), input.getServiceId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -3127,14 +3127,14 @@ public class SConverter {
 		result.setLastError(input.getLastError());
 		result.setClear(input.isClear());
 		result.setOidCounters(input.getOidCounters());
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
 		List<Revision> listrevisions = result.getRevisions();
 		for (long oid : input.getRevisions()) {
-			listrevisions.add((Revision)session.get(StorePackage.eINSTANCE.getRevision(), oid, Query.getDefault()));
+			listrevisions.add((Revision)session.get(StorePackage.eINSTANCE.getRevision(), oid, OldQuery.getDefault()));
 		}
-		result.setSummary((RevisionSummary)session.get(StorePackage.eINSTANCE.getRevisionSummary(), input.getSummaryId(), Query.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
-		result.setIfcHeader((IfcHeader)session.get(StorePackage.eINSTANCE.getIfcHeader(), input.getIfcHeaderId(), Query.getDefault()));
+		result.setSummary((RevisionSummary)session.get(StorePackage.eINSTANCE.getRevisionSummary(), input.getSummaryId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		result.setIfcHeader((IfcHeader)session.get(StorePackage.eINSTANCE.getIfcHeader(), input.getIfcHeaderId(), OldQuery.getDefault()));
 		result.setMinBounds(convertFromSObject(input.getMinBounds(), session));
 		result.setMaxBounds(convertFromSObject(input.getMaxBounds(), session));
 		return result;
@@ -3214,7 +3214,7 @@ public class SConverter {
 		result.setDirectionAngle(input.getDirectionAngle());
 		List<Project> listprojects = result.getProjects();
 		for (long oid : input.getProjects()) {
-			listprojects.add((Project)session.get(StorePackage.eINSTANCE.getProject(), oid, Query.getDefault()));
+			listprojects.add((Project)session.get(StorePackage.eINSTANCE.getProject(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -3291,13 +3291,13 @@ public class SConverter {
 		}
 		result.setDate(input.getDate());
 		result.setActive(input.getActive());
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
 		result.setRevision(convertFromSObject(input.getRevision(), session));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
 		result.setCheckin(convertFromSObject(input.getCheckin(), session));
 		List<CheckoutRelated> listlogs = result.getLogs();
 		for (long oid : input.getLogs()) {
-			listlogs.add((CheckoutRelated)session.get(LogPackage.eINSTANCE.getCheckoutRelated(), oid, Query.getDefault()));
+			listlogs.add((CheckoutRelated)session.get(LogPackage.eINSTANCE.getCheckoutRelated(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -3414,9 +3414,9 @@ public class SConverter {
 		result.setRenderEngineProcesses(input.getRenderEngineProcesses());
 		List<WebModulePluginConfiguration> listwebModules = result.getWebModules();
 		for (long oid : input.getWebModules()) {
-			listwebModules.add((WebModulePluginConfiguration)session.get(StorePackage.eINSTANCE.getWebModulePluginConfiguration(), oid, Query.getDefault()));
+			listwebModules.add((WebModulePluginConfiguration)session.get(StorePackage.eINSTANCE.getWebModulePluginConfiguration(), oid, OldQuery.getDefault()));
 		}
-		result.setWebModule((WebModulePluginConfiguration)session.get(StorePackage.eINSTANCE.getWebModulePluginConfiguration(), input.getWebModuleId(), Query.getDefault()));
+		result.setWebModule((WebModulePluginConfiguration)session.get(StorePackage.eINSTANCE.getWebModulePluginConfiguration(), input.getWebModuleId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -3534,45 +3534,45 @@ public class SConverter {
 		}
 		List<SerializerPluginConfiguration> listserializers = result.getSerializers();
 		for (long oid : input.getSerializers()) {
-			listserializers.add((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), oid, Query.getDefault()));
+			listserializers.add((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		List<ObjectIDMPluginConfiguration> listobjectIDMs = result.getObjectIDMs();
 		for (long oid : input.getObjectIDMs()) {
-			listobjectIDMs.add((ObjectIDMPluginConfiguration)session.get(StorePackage.eINSTANCE.getObjectIDMPluginConfiguration(), oid, Query.getDefault()));
+			listobjectIDMs.add((ObjectIDMPluginConfiguration)session.get(StorePackage.eINSTANCE.getObjectIDMPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		List<RenderEnginePluginConfiguration> listrenderEngines = result.getRenderEngines();
 		for (long oid : input.getRenderEngines()) {
-			listrenderEngines.add((RenderEnginePluginConfiguration)session.get(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration(), oid, Query.getDefault()));
+			listrenderEngines.add((RenderEnginePluginConfiguration)session.get(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		List<DeserializerPluginConfiguration> listdeserializers = result.getDeserializers();
 		for (long oid : input.getDeserializers()) {
-			listdeserializers.add((DeserializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), oid, Query.getDefault()));
+			listdeserializers.add((DeserializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		List<QueryEnginePluginConfiguration> listqueryengines = result.getQueryengines();
 		for (long oid : input.getQueryengines()) {
-			listqueryengines.add((QueryEnginePluginConfiguration)session.get(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), oid, Query.getDefault()));
+			listqueryengines.add((QueryEnginePluginConfiguration)session.get(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		List<ModelMergerPluginConfiguration> listmodelmergers = result.getModelmergers();
 		for (long oid : input.getModelmergers()) {
-			listmodelmergers.add((ModelMergerPluginConfiguration)session.get(StorePackage.eINSTANCE.getModelMergerPluginConfiguration(), oid, Query.getDefault()));
+			listmodelmergers.add((ModelMergerPluginConfiguration)session.get(StorePackage.eINSTANCE.getModelMergerPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		List<ModelComparePluginConfiguration> listmodelcompares = result.getModelcompares();
 		for (long oid : input.getModelcompares()) {
-			listmodelcompares.add((ModelComparePluginConfiguration)session.get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), oid, Query.getDefault()));
+			listmodelcompares.add((ModelComparePluginConfiguration)session.get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), oid, OldQuery.getDefault()));
 		}
-		result.setDefaultModelMerger((ModelMergerPluginConfiguration)session.get(StorePackage.eINSTANCE.getModelMergerPluginConfiguration(), input.getDefaultModelMergerId(), Query.getDefault()));
-		result.setDefaultModelCompare((ModelComparePluginConfiguration)session.get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), input.getDefaultModelCompareId(), Query.getDefault()));
-		result.setDefaultQueryEngine((QueryEnginePluginConfiguration)session.get(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), input.getDefaultQueryEngineId(), Query.getDefault()));
-		result.setDefaultRenderEngine((RenderEnginePluginConfiguration)session.get(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration(), input.getDefaultRenderEngineId(), Query.getDefault()));
-		result.setDefaultSerializer((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), input.getDefaultSerializerId(), Query.getDefault()));
-		result.setDefaultObjectIDM((ObjectIDMPluginConfiguration)session.get(StorePackage.eINSTANCE.getObjectIDMPluginConfiguration(), input.getDefaultObjectIDMId(), Query.getDefault()));
+		result.setDefaultModelMerger((ModelMergerPluginConfiguration)session.get(StorePackage.eINSTANCE.getModelMergerPluginConfiguration(), input.getDefaultModelMergerId(), OldQuery.getDefault()));
+		result.setDefaultModelCompare((ModelComparePluginConfiguration)session.get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), input.getDefaultModelCompareId(), OldQuery.getDefault()));
+		result.setDefaultQueryEngine((QueryEnginePluginConfiguration)session.get(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), input.getDefaultQueryEngineId(), OldQuery.getDefault()));
+		result.setDefaultRenderEngine((RenderEnginePluginConfiguration)session.get(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration(), input.getDefaultRenderEngineId(), OldQuery.getDefault()));
+		result.setDefaultSerializer((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), input.getDefaultSerializerId(), OldQuery.getDefault()));
+		result.setDefaultObjectIDM((ObjectIDMPluginConfiguration)session.get(StorePackage.eINSTANCE.getObjectIDMPluginConfiguration(), input.getDefaultObjectIDMId(), OldQuery.getDefault()));
 		List<InternalServicePluginConfiguration> listservices = result.getServices();
 		for (long oid : input.getServices()) {
-			listservices.add((InternalServicePluginConfiguration)session.get(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), oid, Query.getDefault()));
+			listservices.add((InternalServicePluginConfiguration)session.get(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		List<MessagingSerializerPluginConfiguration> listmessagingSerializerPlugins = result.getMessagingSerializerPlugins();
 		for (long oid : input.getMessagingSerializerPlugins()) {
-			listmessagingSerializerPlugins.add((MessagingSerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getMessagingSerializerPluginConfiguration(), oid, Query.getDefault()));
+			listmessagingSerializerPlugins.add((MessagingSerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getMessagingSerializerPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -3702,8 +3702,8 @@ public class SConverter {
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
-		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), Query.getDefault()));
-		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), Query.getDefault()));
+		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), OldQuery.getDefault()));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -3780,11 +3780,11 @@ public class SConverter {
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setStreaming(input.isStreaming());
-		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), Query.getDefault()));
-		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), Query.getDefault()));
-		result.setObjectIDM((ObjectIDMPluginConfiguration)session.get(StorePackage.eINSTANCE.getObjectIDMPluginConfiguration(), input.getObjectIDMId(), Query.getDefault()));
-		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), Query.getDefault()));
-		result.setRenderEngine((RenderEnginePluginConfiguration)session.get(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration(), input.getRenderEngineId(), Query.getDefault()));
+		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), OldQuery.getDefault()));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), OldQuery.getDefault()));
+		result.setObjectIDM((ObjectIDMPluginConfiguration)session.get(StorePackage.eINSTANCE.getObjectIDMPluginConfiguration(), input.getObjectIDMId(), OldQuery.getDefault()));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), OldQuery.getDefault()));
+		result.setRenderEngine((RenderEnginePluginConfiguration)session.get(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration(), input.getRenderEngineId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -3860,13 +3860,13 @@ public class SConverter {
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
-		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), Query.getDefault()));
-		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), Query.getDefault()));
+		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), OldQuery.getDefault()));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), OldQuery.getDefault()));
 		List<SerializerPluginConfiguration> listserializers = result.getSerializers();
 		for (long oid : input.getSerializers()) {
-			listserializers.add((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), oid, Query.getDefault()));
+			listserializers.add((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
-		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), Query.getDefault()));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -3942,13 +3942,13 @@ public class SConverter {
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
-		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), Query.getDefault()));
-		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), Query.getDefault()));
+		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), OldQuery.getDefault()));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), OldQuery.getDefault()));
 		List<SerializerPluginConfiguration> listserializers = result.getSerializers();
 		for (long oid : input.getSerializers()) {
-			listserializers.add((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), oid, Query.getDefault()));
+			listserializers.add((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
-		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), Query.getDefault()));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -4019,9 +4019,9 @@ public class SConverter {
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
-		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), Query.getDefault()));
-		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), Query.getDefault()));
-		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), Query.getDefault()));
+		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), OldQuery.getDefault()));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), OldQuery.getDefault()));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -4381,7 +4381,7 @@ public class SConverter {
 		result.setActiveSince(input.getActiveSince());
 		result.setLastActive(input.getLastActive());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -4990,7 +4990,7 @@ public class SConverter {
 		result.setPluginInterfaceClassName(input.getPluginInterfaceClassName());
 		List<PluginConfiguration> listconfigurations = result.getConfigurations();
 		for (long oid : input.getConfigurations()) {
-			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, Query.getDefault()));
+			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -5071,7 +5071,7 @@ public class SConverter {
 		result.setPluginInterfaceClassName(input.getPluginInterfaceClassName());
 		List<PluginConfiguration> listconfigurations = result.getConfigurations();
 		for (long oid : input.getConfigurations()) {
-			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, Query.getDefault()));
+			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -5152,7 +5152,7 @@ public class SConverter {
 		result.setPluginInterfaceClassName(input.getPluginInterfaceClassName());
 		List<PluginConfiguration> listconfigurations = result.getConfigurations();
 		for (long oid : input.getConfigurations()) {
-			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, Query.getDefault()));
+			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -5422,7 +5422,7 @@ public class SConverter {
 		result.setStart(input.getStart());
 		result.setUsername(input.getUsername());
 		result.setName(input.getName());
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -6200,7 +6200,7 @@ public class SConverter {
 		result.setPluginInterfaceClassName(input.getPluginInterfaceClassName());
 		List<PluginConfiguration> listconfigurations = result.getConfigurations();
 		for (long oid : input.getConfigurations()) {
-			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, Query.getDefault()));
+			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -6357,14 +6357,14 @@ public class SConverter {
 		result.setSize(input.getSize());
 		result.setValidate(input.isValidate());
 		result.setType(ExtendedDataSchemaType.values()[input.getType().ordinal()]);
-		result.setFile((File)session.get(StorePackage.eINSTANCE.getFile(), input.getFileId(), Query.getDefault()));
+		result.setFile((File)session.get(StorePackage.eINSTANCE.getFile(), input.getFileId(), OldQuery.getDefault()));
 		List<User> listusers = result.getUsers();
 		for (long oid : input.getUsers()) {
-			listusers.add((User)session.get(StorePackage.eINSTANCE.getUser(), oid, Query.getDefault()));
+			listusers.add((User)session.get(StorePackage.eINSTANCE.getUser(), oid, OldQuery.getDefault()));
 		}
 		List<ExtendedData> listextendedData = result.getExtendedData();
 		for (long oid : input.getExtendedData()) {
-			listextendedData.add((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), oid, Query.getDefault()));
+			listextendedData.add((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -6442,11 +6442,11 @@ public class SConverter {
 		result.setSize(input.getSize());
 		result.setTitle(input.getTitle());
 		result.setAdded(input.getAdded());
-		result.setFile((File)session.get(StorePackage.eINSTANCE.getFile(), input.getFileId(), Query.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
-		result.setSchema((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), input.getSchemaId(), Query.getDefault()));
-		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), Query.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
+		result.setFile((File)session.get(StorePackage.eINSTANCE.getFile(), input.getFileId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		result.setSchema((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), input.getSchemaId(), OldQuery.getDefault()));
+		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -6526,7 +6526,7 @@ public class SConverter {
 		result.setPluginInterfaceClassName(input.getPluginInterfaceClassName());
 		List<PluginConfiguration> listconfigurations = result.getConfigurations();
 		for (long oid : input.getConfigurations()) {
-			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, Query.getDefault()));
+			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -6598,9 +6598,9 @@ public class SConverter {
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
-		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), Query.getDefault()));
-		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), Query.getDefault()));
-		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), Query.getDefault()));
+		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), OldQuery.getDefault()));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), OldQuery.getDefault()));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -6680,7 +6680,7 @@ public class SConverter {
 		result.setPluginInterfaceClassName(input.getPluginInterfaceClassName());
 		List<PluginConfiguration> listconfigurations = result.getConfigurations();
 		for (long oid : input.getConfigurations()) {
-			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, Query.getDefault()));
+			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -6752,9 +6752,9 @@ public class SConverter {
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
-		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), Query.getDefault()));
-		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), Query.getDefault()));
-		result.setServerSettings((ServerSettings)session.get(StorePackage.eINSTANCE.getServerSettings(), input.getServerSettingsId(), Query.getDefault()));
+		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), OldQuery.getDefault()));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), OldQuery.getDefault()));
+		result.setServerSettings((ServerSettings)session.get(StorePackage.eINSTANCE.getServerSettings(), input.getServerSettingsId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -6834,7 +6834,7 @@ public class SConverter {
 		result.setPluginInterfaceClassName(input.getPluginInterfaceClassName());
 		List<PluginConfiguration> listconfigurations = result.getConfigurations();
 		for (long oid : input.getConfigurations()) {
-			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, Query.getDefault()));
+			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -6906,9 +6906,9 @@ public class SConverter {
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
-		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), Query.getDefault()));
-		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), Query.getDefault()));
-		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), Query.getDefault()));
+		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), OldQuery.getDefault()));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), OldQuery.getDefault()));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -6988,7 +6988,7 @@ public class SConverter {
 		result.setPluginInterfaceClassName(input.getPluginInterfaceClassName());
 		List<PluginConfiguration> listconfigurations = result.getConfigurations();
 		for (long oid : input.getConfigurations()) {
-			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, Query.getDefault()));
+			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -7060,9 +7060,9 @@ public class SConverter {
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
-		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), Query.getDefault()));
-		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), Query.getDefault()));
-		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), Query.getDefault()));
+		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), OldQuery.getDefault()));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), OldQuery.getDefault()));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), OldQuery.getDefault()));
 		return result;
 	}
 		public STrigger convertToSObject(Trigger input) {
@@ -7317,15 +7317,15 @@ public class SConverter {
 		result.setProfileName(input.getProfileName());
 		result.setProfileDescription(input.getProfileDescription());
 		result.setProfilePublic(input.isProfilePublic());
-		result.setReadExtendedData((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), input.getReadExtendedDataId(), Query.getDefault()));
-		result.setWriteRevision((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getWriteRevisionId(), Query.getDefault()));
-		result.setWriteExtendedData((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), input.getWriteExtendedDataId(), Query.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), Query.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), Query.getDefault()));
-		result.setInternalService((InternalServicePluginConfiguration)session.get(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), input.getInternalServiceId(), Query.getDefault()));
+		result.setReadExtendedData((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), input.getReadExtendedDataId(), OldQuery.getDefault()));
+		result.setWriteRevision((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getWriteRevisionId(), OldQuery.getDefault()));
+		result.setWriteExtendedData((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), input.getWriteExtendedDataId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		result.setInternalService((InternalServicePluginConfiguration)session.get(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), input.getInternalServiceId(), OldQuery.getDefault()));
 		List<ModelCheckerInstance> listmodelCheckers = result.getModelCheckers();
 		for (long oid : input.getModelCheckers()) {
-			listmodelCheckers.add((ModelCheckerInstance)session.get(StorePackage.eINSTANCE.getModelCheckerInstance(), oid, Query.getDefault()));
+			listmodelCheckers.add((ModelCheckerInstance)session.get(StorePackage.eINSTANCE.getModelCheckerInstance(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -7468,7 +7468,7 @@ public class SConverter {
 		result.setPluginInterfaceClassName(input.getPluginInterfaceClassName());
 		List<PluginConfiguration> listconfigurations = result.getConfigurations();
 		for (long oid : input.getConfigurations()) {
-			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, Query.getDefault()));
+			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -7544,9 +7544,9 @@ public class SConverter {
 		result.setDescription(input.getDescription());
 		result.setRemoteAccessible(input.isRemoteAccessible());
 		result.setPublicProfile(input.isPublicProfile());
-		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), Query.getDefault()));
-		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), Query.getDefault()));
-		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), Query.getDefault()));
+		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), OldQuery.getDefault()));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), OldQuery.getDefault()));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -8186,7 +8186,7 @@ public class SConverter {
 		result.setRequired(input.isRequired());
 		result.setDescription(input.getDescription());
 		result.setType(convertFromSObject(input.getType(), session));
-		result.setDefaultValue((Type)session.get(StorePackage.eINSTANCE.getType(), input.getDefaultValueId(), Query.getDefault()));
+		result.setDefaultValue((Type)session.get(StorePackage.eINSTANCE.getType(), input.getDefaultValueId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -9730,7 +9730,7 @@ public class SConverter {
 		result.setValid(input.isValid());
 		List<ModelCheckerResultItem> listitems = result.getItems();
 		for (long oid : input.getItems()) {
-			listitems.add((ModelCheckerResultItem)session.get(StorePackage.eINSTANCE.getModelCheckerResultItem(), oid, Query.getDefault()));
+			listitems.add((ModelCheckerResultItem)session.get(StorePackage.eINSTANCE.getModelCheckerResultItem(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -9881,7 +9881,7 @@ public class SConverter {
 		result.setPluginInterfaceClassName(input.getPluginInterfaceClassName());
 		List<PluginConfiguration> listconfigurations = result.getConfigurations();
 		for (long oid : input.getConfigurations()) {
-			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, Query.getDefault()));
+			listconfigurations.add((PluginConfiguration)session.get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, OldQuery.getDefault()));
 		}
 		return result;
 	}
@@ -9960,9 +9960,9 @@ public class SConverter {
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
-		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), Query.getDefault()));
-		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), Query.getDefault()));
-		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), Query.getDefault()));
+		result.setPluginDescriptor((PluginDescriptor)session.get(StorePackage.eINSTANCE.getPluginDescriptor(), input.getPluginDescriptorId(), OldQuery.getDefault()));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), OldQuery.getDefault()));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), OldQuery.getDefault()));
 		return result;
 	}
 

@@ -26,7 +26,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.interfaces.objects.SProjectSmall;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
@@ -53,7 +53,7 @@ public class GetAllRelatedProjectsDatabaseAction extends BimDatabaseAction<List<
 	@Override
 	public List<SProjectSmall> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		List<SProjectSmall> list = new ArrayList<SProjectSmall>();
-		Project project = getDatabaseSession().get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
+		Project project = getDatabaseSession().get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());
 		Project rootProject = getRootProject(project);
 		User user = getUserByUoid(authorization.getUoid());
 		addProjects(list, rootProject, user);

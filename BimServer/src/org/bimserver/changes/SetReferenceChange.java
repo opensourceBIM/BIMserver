@@ -23,7 +23,7 @@ import java.util.Map;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
@@ -49,7 +49,7 @@ public class SetReferenceChange implements Change {
 	@Override
 	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
-		IdEObject idEObject = databaseSession.get(model, oid, new Query(packageMetaData, project.getId(), concreteRevision.getId(), -1));
+		IdEObject idEObject = databaseSession.get(model, oid, new OldQuery(packageMetaData, project.getId(), concreteRevision.getId(), -1));
 		EClass eClass = databaseSession.getEClassForOid(oid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
@@ -81,7 +81,7 @@ public class SetReferenceChange implements Change {
 			idEObject.eSet(eReference, null);
 		} else {
 			EClass referenceEClass = databaseSession.getEClassForOid(referenceOid);
-			IdEObject referencedObject = databaseSession.get(referenceOid, new Query(packageMetaData, project.getId(), concreteRevision.getId(), -1));
+			IdEObject referencedObject = databaseSession.get(referenceOid, new OldQuery(packageMetaData, project.getId(), concreteRevision.getId(), -1));
 			if (referencedObject == null) {
 				throw new UserException("Referenced object of type " + referenceEClass.getName() + " with oid " + referenceOid + " not found");
 			}

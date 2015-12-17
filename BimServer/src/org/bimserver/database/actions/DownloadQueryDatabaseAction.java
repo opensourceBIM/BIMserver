@@ -22,7 +22,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
@@ -67,11 +67,11 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
+			SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, OldQuery.getDefault());
 			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(getBimServer(), session, AccessMethod.INTERNAL, roid, -1, serializerPluginConfiguration.getOid(), getAuthorization(), null);
 			IfcModelInterface ifcModel = session.executeAndCommitAction(action);
-			QueryEnginePluginConfiguration queryEngineObject = session.get(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), qeid, Query.getDefault());
-			Revision revision = session.get(roid, Query.getDefault());
+			QueryEnginePluginConfiguration queryEngineObject = session.get(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), qeid, OldQuery.getDefault());
+			Revision revision = session.get(roid, OldQuery.getDefault());
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 			
 			if (objectIDM == null) {

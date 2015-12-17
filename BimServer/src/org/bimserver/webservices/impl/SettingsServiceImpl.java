@@ -21,7 +21,7 @@ import java.util.List;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.actions.ServerSettingsSetter;
 import org.bimserver.database.actions.SetServerSettingDatabaseAction;
 import org.bimserver.database.actions.SetServerSettingsDatabaseAction;
@@ -349,7 +349,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	public SServerSettings getServerSettings() throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), Query.getDefault());
+			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSObject(allOfType.getAll(ServerSettings.class).get(0));
 		} catch (Exception e) {
 			return handleException(e);

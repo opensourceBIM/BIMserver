@@ -27,8 +27,8 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
-import org.bimserver.database.Query.Deep;
+import org.bimserver.database.OldQuery;
+import org.bimserver.database.OldQuery.Deep;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
@@ -77,7 +77,7 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 			int highestStopId = findHighestStopRid(project, concreteRevision);
-			Query query = new Query(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), -1, null, Deep.NO, highestStopId);
+			OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), -1, null, Deep.NO, highestStopId);
 			lastPackageMetaData = packageMetaData;
 			IfcModelInterface subModel = getDatabaseSession().getAllOfType(packageMetaData.getEPackage().getName(), className, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());

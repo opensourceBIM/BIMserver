@@ -44,6 +44,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.PatternLayout;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
+import org.bimserver.cache.NewDiskCacheManager;
 import org.bimserver.client.DirectBimServerClientFactory;
 import org.bimserver.client.json.JsonSocketReflectorFactory;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
@@ -52,7 +53,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.berkeley.BerkeleyKeyValueStore;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.berkeley.DatabaseInitException;
@@ -164,6 +165,7 @@ public class BimServer {
 	private PluginManager pluginManager;
 	private MailSystem mailSystem;
 	private DiskCacheManager diskCacheManager;
+	private NewDiskCacheManager newDiskCacheManager;
 	private ServerInfoManager serverInfoManager;
 	private PublicInterfaceFactory serviceFactory;
 	private VersionChecker versionChecker;
@@ -316,7 +318,7 @@ public class BimServer {
 								.getClass().getName()));
 						DatabaseSession session = bimDatabase.createSession();
 						try {
-							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, Query.getDefault());
+							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
 							if (pluginsFound.size() == 0) {
 								LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getClass().getName() + " not found");
 							} else if (pluginsFound.size() == 1) {
@@ -364,7 +366,7 @@ public class BimServer {
 			
 			metricsRegistry = new MetricsRegistry();
 			
-			Query.setPackageMetaDataForDefaultQuery(metaDataManager.getPackageMetaData("store"));
+			OldQuery.setPackageMetaDataForDefaultQuery(metaDataManager.getPackageMetaData("store"));
 			
 			bimDatabase = new Database(this, packages, keyValueStore, metaDataManager);
 			try {
@@ -437,6 +439,7 @@ public class BimServer {
 			mailSystem = new MailSystem(this);
 
 			diskCacheManager = new DiskCacheManager(this, config.getHomeDir().resolve("cache"));
+			newDiskCacheManager = new NewDiskCacheManager(this, config.getHomeDir().resolve("cache"));
 
 			mergerFactory = new MergerFactory(this);
 
@@ -474,10 +477,14 @@ public class BimServer {
 	 * both versions
 	 */
 	private void createDatabaseObjects(DatabaseSession session) throws BimserverLockConflictException, BimserverDatabaseException, PluginException, BimserverConcurrentModificationDatabaseException {
-		IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), Query.getDefault());
+		IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), OldQuery.getDefault());
 		for (User user : allOfType.getAll(User.class)) {
 			updateUserSettings(session, user);
 		}
+	}
+	
+	public NewDiskCacheManager getNewDiskCacheManager() {
+		return newDiskCacheManager;
 	}
 
 	private <T extends PluginConfiguration> T find(List<T> list, String name) {
@@ -775,7 +782,7 @@ public class BimServer {
 			session.store(serverSettings);
 			
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral("system"));
-			User systemUser = session.querySingle(condition, User.class, Query.getDefault());
+			User systemUser = session.querySingle(condition, User.class, OldQuery.getDefault());
 
 			ServerStarted serverStarted = session.create(ServerStarted.class);
 			serverStarted.setDate(new Date());
@@ -863,7 +870,7 @@ public class BimServer {
 		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
 		for (Plugin plugin : allPlugins) {
 			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(plugin.getClass().getName()));
-			Map<Long, PluginDescriptor> results = session.query(pluginCondition, PluginDescriptor.class, Query.getDefault());
+			Map<Long, PluginDescriptor> results = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
 			if (results.size() == 0) {
 				PluginContext pluginContext = pluginManager.getPluginContext(plugin);
 				PluginDescriptor pluginDescriptor = session.create(PluginDescriptor.class);

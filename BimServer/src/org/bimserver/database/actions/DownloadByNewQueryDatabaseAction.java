@@ -26,7 +26,7 @@ public class DownloadByNewQueryDatabaseAction extends BimDatabaseAction<ObjectPr
 	private String json;
 	private BimServer bimServer;
 
-	public DownloadByNewQueryDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, String json, long serializerOid, Authorization authorization) {
+	public DownloadByNewQueryDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, String json, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
@@ -57,7 +57,7 @@ public class DownloadByNewQueryDatabaseAction extends BimDatabaseAction<ObjectPr
 		}
 
 		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
-		
+
 		try {
 			return QueryObjectProvider.fromJsonString(getDatabaseSession(), bimServer, json, roids, packageMetaData);
 		} catch (Exception e) {

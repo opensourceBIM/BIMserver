@@ -22,7 +22,7 @@ import java.util.Set;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -45,6 +45,6 @@ public class GetAllRevisionsByUserDatabaseAction extends BimDatabaseAction<Set<R
 	public Set<Revision> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(uoid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getRevision_User(), user);
-		return CollectionUtils.mapToSet(getDatabaseSession().query(condition, Revision.class, Query.getDefault()));
+		return CollectionUtils.mapToSet(getDatabaseSession().query(condition, Revision.class, OldQuery.getDefault()));
 	}
 }

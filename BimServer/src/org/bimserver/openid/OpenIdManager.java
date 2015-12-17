@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -160,7 +160,7 @@ public class OpenIdManager {
 					DatabaseSession session = bimServer.getDatabase().createSession();
 					try {
 						Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(email));
-						User user = session.querySingle(condition, User.class, Query.getDefault());
+						User user = session.querySingle(condition, User.class, OldQuery.getDefault());
 						if (user != null) {
 							if (user.getState() == ObjectState.DELETED) {
 //								throw new UserException("User account has been deleted");

@@ -23,7 +23,7 @@ import java.util.Map;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToCondition;
 import org.bimserver.models.log.AccessMethod;
@@ -47,7 +47,7 @@ public class GetAllCheckoutsByUserDatabaseAction extends BimDatabaseAction<List<
 		User user = getUserByUoid(uoid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_User(), user);
 //		condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getCheckout_Active(), new BooleanLiteral(true)));
-		Map<Long, Checkout> query = getDatabaseSession().query(condition, Checkout.class, Query.getDefault());
+		Map<Long, Checkout> query = getDatabaseSession().query(condition, Checkout.class, OldQuery.getDefault());
 		return CollectionUtils.mapToList(query);
 	}
 }

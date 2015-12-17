@@ -1,7 +1,7 @@
 package org.bimserver;
 
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
@@ -20,7 +20,7 @@ public class MergerFactory {
 	public org.bimserver.plugins.modelmerger.ModelMerger createMerger(DatabaseSession databaseSession, Long currentUoid) throws MergeException, BimserverDatabaseException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, Query.getDefault());
+			User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, OldQuery.getDefault());
 			UserSettings userSettings = user.getUserSettings();
 
 			ModelMergerPluginConfiguration modelMergerObject = userSettings.getDefaultModelMerger();

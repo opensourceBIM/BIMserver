@@ -3,7 +3,7 @@ package org.bimserver.database.actions;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.StorePackage;
@@ -23,11 +23,11 @@ public class RemoveUserFromExtendedDataSchemaDatabaseAction extends BimDatabaseA
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), uoid, Query.getDefault());
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), uoid, OldQuery.getDefault());
 		if (user == null) {
 			throw new UserException("User with oid " + uoid + " not found");
 		}
-		ExtendedDataSchema extendedDataSchema = getDatabaseSession().get(StorePackage.eINSTANCE.getExtendedDataSchema(), edsid, Query.getDefault());
+		ExtendedDataSchema extendedDataSchema = getDatabaseSession().get(StorePackage.eINSTANCE.getExtendedDataSchema(), edsid, OldQuery.getDefault());
 		if (extendedDataSchema == null) {
 			throw new UserException("ExtendedDataSchema with oid " + edsid + " not found");
 		}

@@ -23,7 +23,7 @@ import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -250,7 +250,7 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			List<Long> list = new ArrayList<Long>();
-			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
+			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());
 			List<Long> revisionOids = new ArrayList<Long>();
 			for (Revision revision : project.getRevisions()) {
 				revisionOids.add(revision.getOid());

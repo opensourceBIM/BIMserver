@@ -24,15 +24,15 @@ import java.util.Set;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
-import org.bimserver.database.Query.Deep;
+import org.bimserver.database.OldQuery;
+import org.bimserver.database.OldQuery.Deep;
 import org.bimserver.models.store.CompareType;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
 
 public class DownloadParameters extends LongActionKey {
 	public enum DownloadType {
-		DOWNLOAD_REVISION, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS, DOWNLOAD_COMPARE, DOWNLOAD_QUERY, DOWNLOAD_BY_NAMES, DOWNLOAD_JSON_QUERY
+		DOWNLOAD_REVISION, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS, DOWNLOAD_COMPARE, DOWNLOAD_QUERY, DOWNLOAD_BY_NAMES, DOWNLOAD_JSON_QUERY, DOWNLOAD_BY_NEW_JSON_QUERY
 	};
 
 	private final DownloadType downloadType;
@@ -330,7 +330,7 @@ public class DownloadParameters extends LongActionKey {
 			for (long roid : roids) {
 				Revision revision;
 				try {
-					revision = session.get(session.getEClassForName("store", "Revision"), roid, Query.getDefault());
+					revision = session.get(session.getEClassForName("store", "Revision"), roid, OldQuery.getDefault());
 					for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 						fileName.append(concreteRevision.getProject().getName() + "-");
 					}
@@ -346,6 +346,10 @@ public class DownloadParameters extends LongActionKey {
 			return getRoidsString();
 		case DOWNLOAD_QUERY:
 			return "query";
+		case DOWNLOAD_BY_NEW_JSON_QUERY:
+			return "test";
+		default:
+			break;
 		}
 		return "unknown";
 	}

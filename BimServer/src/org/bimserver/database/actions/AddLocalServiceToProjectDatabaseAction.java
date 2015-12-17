@@ -3,7 +3,7 @@ package org.bimserver.database.actions;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
+import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.Project;
@@ -30,8 +30,8 @@ public class AddLocalServiceToProjectDatabaseAction extends BimDatabaseAction<Vo
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Project project = getDatabaseSession().get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
-		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
+		Project project = getDatabaseSession().get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
 
 		service.setUser(user);
 		for (org.bimserver.models.store.Service existing : project.getServices()) {
@@ -39,7 +39,7 @@ public class AddLocalServiceToProjectDatabaseAction extends BimDatabaseAction<Vo
 				throw new UserException("Service name \"" + service.getName() + "\" already used in this project");
 			}
 		}
-		service.setInternalService((InternalServicePluginConfiguration) getDatabaseSession().get(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), internalServiceOid, Query.getDefault()));
+		service.setInternalService((InternalServicePluginConfiguration) getDatabaseSession().get(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), internalServiceOid, OldQuery.getDefault()));
 		project.getServices().add(service);
 		service.setProject(project);
 		getDatabaseSession().store(service);
