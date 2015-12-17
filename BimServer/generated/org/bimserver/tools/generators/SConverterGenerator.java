@@ -22,7 +22,7 @@ public class SConverterGenerator
   protected final String TEXT_1 = "package org.bimserver.interfaces;";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
-  protected final String TEXT_4 = NL + NL + "import org.bimserver.emf.IdEObjectImpl;" + NL + "import org.bimserver.interfaces.objects.*;" + NL + "import java.util.*;" + NL + "import org.bimserver.models.log.*;" + NL + "import org.bimserver.models.store.*;" + NL + "import org.bimserver.database.DatabaseSession;" + NL + "import org.bimserver.BimserverDatabaseException;" + NL + "import org.bimserver.database.Query;" + NL + "" + NL + "public class SConverter {";
+  protected final String TEXT_4 = NL + NL + "import org.bimserver.emf.IdEObjectImpl;" + NL + "import org.bimserver.interfaces.objects.*;" + NL + "import java.util.*;" + NL + "import org.bimserver.models.log.*;" + NL + "import org.bimserver.models.store.*;" + NL + "import org.bimserver.database.DatabaseSession;" + NL + "import org.bimserver.BimserverDatabaseException;" + NL + "import org.bimserver.database.OldQuery;" + NL + "" + NL + "public class SConverter {";
   protected final String TEXT_5 = NL + NL + "\tpublic Set<S";
   protected final String TEXT_6 = "> convertToSSet";
   protected final String TEXT_7 = "(Collection<";
@@ -137,7 +137,7 @@ public class SConverterGenerator
   protected final String TEXT_116 = ".add((";
   protected final String TEXT_117 = ")session.get(";
   protected final String TEXT_118 = "Package.eINSTANCE.get";
-  protected final String TEXT_119 = "(), oid, Query.getDefault()));" + NL + "\t\t}";
+  protected final String TEXT_119 = "(), oid, OldQuery.getDefault()));" + NL + "\t\t}";
   protected final String TEXT_120 = NL + "\t\tresult.set";
   protected final String TEXT_121 = "(convertFromSObject(input.get";
   protected final String TEXT_122 = "(), session));";
@@ -146,7 +146,7 @@ public class SConverterGenerator
   protected final String TEXT_125 = ")session.get(";
   protected final String TEXT_126 = "Package.eINSTANCE.get";
   protected final String TEXT_127 = "(), input.get";
-  protected final String TEXT_128 = "Id(), Query.getDefault()));";
+  protected final String TEXT_128 = "Id(), OldQuery.getDefault()));";
   protected final String TEXT_129 = NL + "\t\treturn result;" + NL + "\t}";
   protected final String TEXT_130 = NL + "\t\tpublic S";
   protected final String TEXT_131 = " convertToSObject(";

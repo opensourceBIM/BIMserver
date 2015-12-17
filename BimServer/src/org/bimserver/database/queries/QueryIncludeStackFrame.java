@@ -1,6 +1,5 @@
 package org.bimserver.database.queries;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -25,16 +24,16 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 	private CanInclude previousInclude;
 	private EReference feature;
 
-	public QueryIncludeStackFrame(QueryObjectProvider queryObjectProvider, QueryContext reusable, CanInclude previousInclude, Include include, HashMapVirtualObject currentObject, QueryPart queryPart) throws QueryException, BimserverDatabaseException {
-		super(reusable, queryObjectProvider, queryPart);
+	public QueryIncludeStackFrame(QueryObjectProvider queryObjectProvider, QueryContext queryContext, CanInclude previousInclude, Include include, HashMapVirtualObject currentObject, QueryPart queryPart) throws QueryException, BimserverDatabaseException {
+		super(queryContext, queryObjectProvider, queryPart);
 		this.previousInclude = previousInclude;
 		this.include = include;
 		this.currentObject = currentObject;
 		
-		List<EReference> features = new ArrayList<>();
-		features = include.getFields();
-		if (features.isEmpty()) {
+		List<EReference> features = include.getFields();
+		if (features == null || features.isEmpty()) {
 			setDone(true);
+			return;
 		}
 		featureIterator = features.iterator();
 		if (include.getOutputTypes() != null) {
