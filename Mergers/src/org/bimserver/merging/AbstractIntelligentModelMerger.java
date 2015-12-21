@@ -143,6 +143,7 @@ public abstract class AbstractIntelligentModelMerger extends AbstractModelMerger
 	}
 
 	private void removeReplaceLinks(IdEObject mainObject, IdEObject objectToRemove) {
+		LOGGER.info("Merging " + mainObject.eClass().getName());
 		if (mainObject.eClass() != objectToRemove.eClass()) {
 			throw new RuntimeException("Classes must be the same");
 		}
