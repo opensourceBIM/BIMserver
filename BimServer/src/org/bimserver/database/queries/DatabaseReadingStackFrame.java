@@ -63,7 +63,6 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 	
 	protected void processPossibleIncludes(EClass previousType, CanInclude canInclude) throws QueryException, BimserverDatabaseException {
 		if (currentObject != null) {
-			if (currentObject.eClass().getName().equals(""))
 			if (canInclude.hasIncludes()) {
 				for (Include include : canInclude.getIncludes()) {
 					processPossibleInclude(canInclude, include);

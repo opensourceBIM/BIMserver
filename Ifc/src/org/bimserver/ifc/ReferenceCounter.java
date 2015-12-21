@@ -119,7 +119,11 @@ public class ReferenceCounter {
 //			System.out.println("Re-attaching M " + getReferredObject() + " to " + mainObject + " on " + getIdEObject() + "." + geteReference().getName());
 			AbstractEList list = (AbstractEList) getIdEObject().eGet(geteReference());
 			int index = list.indexOf(getReferredObject());
-			list.set(index, mainObject);
+			if (index != -1) {
+				if (!list.contains(mainObject)) {
+					list.set(index, mainObject);
+				}
+			}
 
 			// TODO if the old object really does exist multiple times, the new object should also exist multiple times... but it's probably a bug that it's there multiple times in the first place...
 			while (list.contains(getReferredObject())) {
