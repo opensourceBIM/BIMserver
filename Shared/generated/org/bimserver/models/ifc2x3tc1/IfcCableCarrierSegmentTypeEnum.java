@@ -43,26 +43,6 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CABLETRUNKINGSEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CABLETRUNKINGSEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CABLETRUNKINGSEGMENT(2, "CABLETRUNKINGSEGMENT", "CABLETRUNKINGSEGMENT"),
-
-	/**
 	 * The '<em><b>CABLETRAYSEGMENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,27 +50,15 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CABLETRAYSEGMENT(3, "CABLETRAYSEGMENT", "CABLETRAYSEGMENT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CABLELADDERSEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CABLELADDERSEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CABLELADDERSEGMENT(5, "CABLELADDERSEGMENT", "CABLELADDERSEGMENT"),
+	CABLETRAYSEGMENT(1, "CABLETRAYSEGMENT", "CABLETRAYSEGMENT"), /**
+																	* The '<em><b>NOTDEFINED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #NOTDEFINED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>CONDUITSEGMENT</b></em>' literal object.
@@ -100,7 +68,31 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONDUITSEGMENT(6, "CONDUITSEGMENT", "CONDUITSEGMENT");
+	CONDUITSEGMENT(3, "CONDUITSEGMENT", "CONDUITSEGMENT"), /**
+															* The '<em><b>CABLETRUNKINGSEGMENT</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #CABLETRUNKINGSEGMENT_VALUE
+															* @generated
+															* @ordered
+															*/
+	CABLETRUNKINGSEGMENT(4, "CABLETRUNKINGSEGMENT", "CABLETRUNKINGSEGMENT"), /**
+																				* The '<em><b>USERDEFINED</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #USERDEFINED_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>CABLELADDERSEGMENT</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #CABLELADDERSEGMENT_VALUE
+													* @generated
+													* @ordered
+													*/
+	CABLELADDERSEGMENT(6, "CABLELADDERSEGMENT", "CABLELADDERSEGMENT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,36 +110,6 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
-	 * The '<em><b>CABLETRUNKINGSEGMENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CABLETRUNKINGSEGMENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CABLETRUNKINGSEGMENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CABLETRUNKINGSEGMENT_VALUE = 2;
-
-	/**
 	 * The '<em><b>CABLETRAYSEGMENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -160,37 +122,22 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CABLETRAYSEGMENT_VALUE = 3;
+	public static final int CABLETRAYSEGMENT_VALUE = 1;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
-
-	/**
-	 * The '<em><b>CABLELADDERSEGMENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CABLELADDERSEGMENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CABLELADDERSEGMENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CABLELADDERSEGMENT_VALUE = 5;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>CONDUITSEGMENT</b></em>' literal value.
@@ -205,7 +152,52 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONDUITSEGMENT_VALUE = 6;
+	public static final int CONDUITSEGMENT_VALUE = 3;
+
+	/**
+	 * The '<em><b>CABLETRUNKINGSEGMENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CABLETRUNKINGSEGMENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CABLETRUNKINGSEGMENT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CABLETRUNKINGSEGMENT_VALUE = 4;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 5;
+
+	/**
+	 * The '<em><b>CABLELADDERSEGMENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CABLELADDERSEGMENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CABLELADDERSEGMENT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CABLELADDERSEGMENT_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Cable Carrier Segment Type Enum</b></em>' enumerators.
@@ -213,8 +205,8 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCableCarrierSegmentTypeEnum[] VALUES_ARRAY = new IfcCableCarrierSegmentTypeEnum[] { NULL, NOTDEFINED, CABLETRUNKINGSEGMENT, CABLETRAYSEGMENT, USERDEFINED, CABLELADDERSEGMENT,
-			CONDUITSEGMENT, };
+	private static final IfcCableCarrierSegmentTypeEnum[] VALUES_ARRAY = new IfcCableCarrierSegmentTypeEnum[] { NULL,
+			CABLETRAYSEGMENT, NOTDEFINED, CONDUITSEGMENT, CABLETRUNKINGSEGMENT, USERDEFINED, CABLELADDERSEGMENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cable Carrier Segment Type Enum</b></em>' enumerators.
@@ -222,7 +214,8 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCableCarrierSegmentTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCableCarrierSegmentTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Cable Carrier Segment Type Enum</b></em>' literal with the specified literal value.
@@ -272,18 +265,18 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case CABLETRUNKINGSEGMENT_VALUE:
-			return CABLETRUNKINGSEGMENT;
 		case CABLETRAYSEGMENT_VALUE:
 			return CABLETRAYSEGMENT;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case CONDUITSEGMENT_VALUE:
+			return CONDUITSEGMENT;
+		case CABLETRUNKINGSEGMENT_VALUE:
+			return CABLETRUNKINGSEGMENT;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case CABLELADDERSEGMENT_VALUE:
 			return CABLELADDERSEGMENT;
-		case CONDUITSEGMENT_VALUE:
-			return CONDUITSEGMENT;
 		}
 		return null;
 	}

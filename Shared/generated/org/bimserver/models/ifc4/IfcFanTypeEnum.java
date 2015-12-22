@@ -43,86 +43,6 @@ public enum IfcFanTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>CENTRIFUGALAIRFOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALAIRFOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CENTRIFUGALAIRFOIL(1, "CENTRIFUGALAIRFOIL", "CENTRIFUGALAIRFOIL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CENTRIFUGALRADIAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALRADIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CENTRIFUGALRADIAL(3, "CENTRIFUGALRADIAL", "CENTRIFUGALRADIAL"),
-
-	/**
-	 * The '<em><b>CENTRIFUGALBACKWARDINCLINEDCURVED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALBACKWARDINCLINEDCURVED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CENTRIFUGALBACKWARDINCLINEDCURVED(4, "CENTRIFUGALBACKWARDINCLINEDCURVED", "CENTRIFUGALBACKWARDINCLINEDCURVED"),
-
-	/**
-	 * The '<em><b>TUBEAXIAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TUBEAXIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TUBEAXIAL(5, "TUBEAXIAL", "TUBEAXIAL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CENTRIFUGALFORWARDCURVED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALFORWARDCURVED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CENTRIFUGALFORWARDCURVED(7, "CENTRIFUGALFORWARDCURVED", "CENTRIFUGALFORWARDCURVED"),
-
-	/**
-	 * The '<em><b>PROPELLORAXIAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROPELLORAXIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROPELLORAXIAL(8, "PROPELLORAXIAL", "PROPELLORAXIAL"),
-
-	/**
 	 * The '<em><b>VANEAXIAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,7 +50,71 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VANEAXIAL(9, "VANEAXIAL", "VANEAXIAL");
+	VANEAXIAL(1, "VANEAXIAL", "VANEAXIAL"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>CENTRIFUGALBACKWARDINCLINEDCURVED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #CENTRIFUGALBACKWARDINCLINEDCURVED_VALUE
+												* @generated
+												* @ordered
+												*/
+	CENTRIFUGALBACKWARDINCLINEDCURVED(3, "CENTRIFUGALBACKWARDINCLINEDCURVED", "CENTRIFUGALBACKWARDINCLINEDCURVED"), /**
+																													* The '<em><b>PROPELLORAXIAL</b></em>' literal object.
+																													* <!-- begin-user-doc -->
+																													* <!-- end-user-doc -->
+																													* @see #PROPELLORAXIAL_VALUE
+																													* @generated
+																													* @ordered
+																													*/
+	PROPELLORAXIAL(4, "PROPELLORAXIAL", "PROPELLORAXIAL"), /**
+															* The '<em><b>CENTRIFUGALAIRFOIL</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #CENTRIFUGALAIRFOIL_VALUE
+															* @generated
+															* @ordered
+															*/
+	CENTRIFUGALAIRFOIL(5, "CENTRIFUGALAIRFOIL", "CENTRIFUGALAIRFOIL"), /**
+																		* The '<em><b>TUBEAXIAL</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #TUBEAXIAL_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	TUBEAXIAL(6, "TUBEAXIAL", "TUBEAXIAL"), /**
+											* The '<em><b>CENTRIFUGALRADIAL</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #CENTRIFUGALRADIAL_VALUE
+											* @generated
+											* @ordered
+											*/
+	CENTRIFUGALRADIAL(7, "CENTRIFUGALRADIAL", "CENTRIFUGALRADIAL"), /**
+																	* The '<em><b>USERDEFINED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #USERDEFINED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	USERDEFINED(8, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>CENTRIFUGALFORWARDCURVED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #CENTRIFUGALFORWARDCURVED_VALUE
+													* @generated
+													* @ordered
+													*/
+	CENTRIFUGALFORWARDCURVED(9, "CENTRIFUGALFORWARDCURVED", "CENTRIFUGALFORWARDCURVED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,19 +132,19 @@ public enum IfcFanTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>CENTRIFUGALAIRFOIL</b></em>' literal value.
+	 * The '<em><b>VANEAXIAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CENTRIFUGALAIRFOIL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>VANEAXIAL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALAIRFOIL
+	 * @see #VANEAXIAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CENTRIFUGALAIRFOIL_VALUE = 1;
+	public static final int VANEAXIAL_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -178,21 +162,6 @@ public enum IfcFanTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>CENTRIFUGALRADIAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CENTRIFUGALRADIAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALRADIAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CENTRIFUGALRADIAL_VALUE = 3;
-
-	/**
 	 * The '<em><b>CENTRIFUGALBACKWARDINCLINEDCURVED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -205,52 +174,7 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CENTRIFUGALBACKWARDINCLINEDCURVED_VALUE = 4;
-
-	/**
-	 * The '<em><b>TUBEAXIAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TUBEAXIAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TUBEAXIAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TUBEAXIAL_VALUE = 5;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 6;
-
-	/**
-	 * The '<em><b>CENTRIFUGALFORWARDCURVED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CENTRIFUGALFORWARDCURVED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALFORWARDCURVED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CENTRIFUGALFORWARDCURVED_VALUE = 7;
+	public static final int CENTRIFUGALBACKWARDINCLINEDCURVED_VALUE = 3;
 
 	/**
 	 * The '<em><b>PROPELLORAXIAL</b></em>' literal value.
@@ -265,22 +189,82 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROPELLORAXIAL_VALUE = 8;
+	public static final int PROPELLORAXIAL_VALUE = 4;
 
 	/**
-	 * The '<em><b>VANEAXIAL</b></em>' literal value.
+	 * The '<em><b>CENTRIFUGALAIRFOIL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>VANEAXIAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CENTRIFUGALAIRFOIL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VANEAXIAL
+	 * @see #CENTRIFUGALAIRFOIL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VANEAXIAL_VALUE = 9;
+	public static final int CENTRIFUGALAIRFOIL_VALUE = 5;
+
+	/**
+	 * The '<em><b>TUBEAXIAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TUBEAXIAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TUBEAXIAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TUBEAXIAL_VALUE = 6;
+
+	/**
+	 * The '<em><b>CENTRIFUGALRADIAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CENTRIFUGALRADIAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CENTRIFUGALRADIAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CENTRIFUGALRADIAL_VALUE = 7;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 8;
+
+	/**
+	 * The '<em><b>CENTRIFUGALFORWARDCURVED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CENTRIFUGALFORWARDCURVED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CENTRIFUGALFORWARDCURVED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CENTRIFUGALFORWARDCURVED_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Fan Type Enum</b></em>' enumerators.
@@ -288,9 +272,9 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFanTypeEnum[] VALUES_ARRAY = new IfcFanTypeEnum[] { NULL, CENTRIFUGALAIRFOIL, NOTDEFINED,
-			CENTRIFUGALRADIAL, CENTRIFUGALBACKWARDINCLINEDCURVED, TUBEAXIAL, USERDEFINED, CENTRIFUGALFORWARDCURVED,
-			PROPELLORAXIAL, VANEAXIAL, };
+	private static final IfcFanTypeEnum[] VALUES_ARRAY = new IfcFanTypeEnum[] { NULL, VANEAXIAL, NOTDEFINED,
+			CENTRIFUGALBACKWARDINCLINEDCURVED, PROPELLORAXIAL, CENTRIFUGALAIRFOIL, TUBEAXIAL, CENTRIFUGALRADIAL,
+			USERDEFINED, CENTRIFUGALFORWARDCURVED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Fan Type Enum</b></em>' enumerators.
@@ -348,24 +332,24 @@ public enum IfcFanTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case CENTRIFUGALAIRFOIL_VALUE:
-			return CENTRIFUGALAIRFOIL;
+		case VANEAXIAL_VALUE:
+			return VANEAXIAL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case CENTRIFUGALRADIAL_VALUE:
-			return CENTRIFUGALRADIAL;
 		case CENTRIFUGALBACKWARDINCLINEDCURVED_VALUE:
 			return CENTRIFUGALBACKWARDINCLINEDCURVED;
+		case PROPELLORAXIAL_VALUE:
+			return PROPELLORAXIAL;
+		case CENTRIFUGALAIRFOIL_VALUE:
+			return CENTRIFUGALAIRFOIL;
 		case TUBEAXIAL_VALUE:
 			return TUBEAXIAL;
+		case CENTRIFUGALRADIAL_VALUE:
+			return CENTRIFUGALRADIAL;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case CENTRIFUGALFORWARDCURVED_VALUE:
 			return CENTRIFUGALFORWARDCURVED;
-		case PROPELLORAXIAL_VALUE:
-			return PROPELLORAXIAL;
-		case VANEAXIAL_VALUE:
-			return VANEAXIAL;
 		}
 		return null;
 	}

@@ -43,26 +43,6 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>TWOPOSITION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWOPOSITION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWOPOSITION(1, "TWOPOSITION", "TWOPOSITION"),
-
-	/**
-	 * The '<em><b>PROPORTIONALINTEGRALDERIVATIVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONALINTEGRALDERIVATIVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROPORTIONALINTEGRALDERIVATIVE(2, "PROPORTIONALINTEGRALDERIVATIVE", "PROPORTIONALINTEGRALDERIVATIVE"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,7 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>FLOATING</b></em>' literal object.
@@ -80,27 +60,23 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLOATING(4, "FLOATING", "FLOATING"),
-
-	/**
-	 * The '<em><b>PROPORTIONAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROPORTIONAL(5, "PROPORTIONAL", "PROPORTIONAL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
+	FLOATING(2, "FLOATING", "FLOATING"), /**
+											* The '<em><b>TWOPOSITION</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #TWOPOSITION_VALUE
+											* @generated
+											* @ordered
+											*/
+	TWOPOSITION(3, "TWOPOSITION", "TWOPOSITION"), /**
+													* The '<em><b>PROPORTIONALINTEGRALDERIVATIVE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #PROPORTIONALINTEGRALDERIVATIVE_VALUE
+													* @generated
+													* @ordered
+													*/
+	PROPORTIONALINTEGRALDERIVATIVE(4, "PROPORTIONALINTEGRALDERIVATIVE", "PROPORTIONALINTEGRALDERIVATIVE"),
 
 	/**
 	 * The '<em><b>TIMEDTWOPOSITION</b></em>' literal object.
@@ -110,7 +86,7 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TIMEDTWOPOSITION(7, "TIMEDTWOPOSITION", "TIMEDTWOPOSITION"),
+	TIMEDTWOPOSITION(5, "TIMEDTWOPOSITION", "TIMEDTWOPOSITION"),
 
 	/**
 	 * The '<em><b>PROPORTIONALINTEGRAL</b></em>' literal object.
@@ -120,7 +96,23 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PROPORTIONALINTEGRAL(8, "PROPORTIONALINTEGRAL", "PROPORTIONALINTEGRAL");
+	PROPORTIONALINTEGRAL(6, "PROPORTIONALINTEGRAL", "PROPORTIONALINTEGRAL"), /**
+																				* The '<em><b>USERDEFINED</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #USERDEFINED_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>PROPORTIONAL</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #PROPORTIONAL_VALUE
+													* @generated
+													* @ordered
+													*/
+	PROPORTIONAL(8, "PROPORTIONAL", "PROPORTIONAL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -138,36 +130,6 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>TWOPOSITION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TWOPOSITION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TWOPOSITION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TWOPOSITION_VALUE = 1;
-
-	/**
-	 * The '<em><b>PROPORTIONALINTEGRALDERIVATIVE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PROPORTIONALINTEGRALDERIVATIVE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONALINTEGRALDERIVATIVE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PROPORTIONALINTEGRALDERIVATIVE_VALUE = 2;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -180,7 +142,7 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>FLOATING</b></em>' literal value.
@@ -195,37 +157,37 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOATING_VALUE = 4;
+	public static final int FLOATING_VALUE = 2;
 
 	/**
-	 * The '<em><b>PROPORTIONAL</b></em>' literal value.
+	 * The '<em><b>TWOPOSITION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PROPORTIONAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TWOPOSITION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONAL
+	 * @see #TWOPOSITION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROPORTIONAL_VALUE = 5;
+	public static final int TWOPOSITION_VALUE = 3;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>PROPORTIONALINTEGRALDERIVATIVE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PROPORTIONALINTEGRALDERIVATIVE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #PROPORTIONALINTEGRALDERIVATIVE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 6;
+	public static final int PROPORTIONALINTEGRALDERIVATIVE_VALUE = 4;
 
 	/**
 	 * The '<em><b>TIMEDTWOPOSITION</b></em>' literal value.
@@ -240,7 +202,7 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TIMEDTWOPOSITION_VALUE = 7;
+	public static final int TIMEDTWOPOSITION_VALUE = 5;
 
 	/**
 	 * The '<em><b>PROPORTIONALINTEGRAL</b></em>' literal value.
@@ -255,7 +217,37 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROPORTIONALINTEGRAL_VALUE = 8;
+	public static final int PROPORTIONALINTEGRAL_VALUE = 6;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 7;
+
+	/**
+	 * The '<em><b>PROPORTIONAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PROPORTIONAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PROPORTIONAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PROPORTIONAL_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Controller Type Enum</b></em>' enumerators.
@@ -263,8 +255,9 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcControllerTypeEnum[] VALUES_ARRAY = new IfcControllerTypeEnum[] { NULL, TWOPOSITION, PROPORTIONALINTEGRALDERIVATIVE, NOTDEFINED, FLOATING, PROPORTIONAL, USERDEFINED, TIMEDTWOPOSITION,
-			PROPORTIONALINTEGRAL, };
+	private static final IfcControllerTypeEnum[] VALUES_ARRAY = new IfcControllerTypeEnum[] { NULL, NOTDEFINED,
+			FLOATING, TWOPOSITION, PROPORTIONALINTEGRALDERIVATIVE, TIMEDTWOPOSITION, PROPORTIONALINTEGRAL, USERDEFINED,
+			PROPORTIONAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Controller Type Enum</b></em>' enumerators.
@@ -322,22 +315,22 @@ public enum IfcControllerTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case TWOPOSITION_VALUE:
-			return TWOPOSITION;
-		case PROPORTIONALINTEGRALDERIVATIVE_VALUE:
-			return PROPORTIONALINTEGRALDERIVATIVE;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case FLOATING_VALUE:
 			return FLOATING;
-		case PROPORTIONAL_VALUE:
-			return PROPORTIONAL;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case TWOPOSITION_VALUE:
+			return TWOPOSITION;
+		case PROPORTIONALINTEGRALDERIVATIVE_VALUE:
+			return PROPORTIONALINTEGRALDERIVATIVE;
 		case TIMEDTWOPOSITION_VALUE:
 			return TIMEDTWOPOSITION;
 		case PROPORTIONALINTEGRAL_VALUE:
 			return PROPORTIONALINTEGRAL;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case PROPORTIONAL_VALUE:
+			return PROPORTIONAL;
 		}
 		return null;
 	}

@@ -43,16 +43,6 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>MONTHLY BY POSITION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MONTHLY_BY_POSITION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MONTHLY_BY_POSITION(1, "MONTHLY_BY_POSITION", "MONTHLY_BY_POSITION"),
-
-	/**
 	 * The '<em><b>BY DAY COUNT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,27 +50,7 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BY_DAY_COUNT(2, "BY_DAY_COUNT", "BY_DAY_COUNT"),
-
-	/**
-	 * The '<em><b>YEARLY BY POSITION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #YEARLY_BY_POSITION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	YEARLY_BY_POSITION(3, "YEARLY_BY_POSITION", "YEARLY_BY_POSITION"),
-
-	/**
-	 * The '<em><b>YEARLY BY DAY OF MONTH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #YEARLY_BY_DAY_OF_MONTH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	YEARLY_BY_DAY_OF_MONTH(4, "YEARLY_BY_DAY_OF_MONTH", "YEARLY_BY_DAY_OF_MONTH"),
+	BY_DAY_COUNT(1, "BY_DAY_COUNT", "BY_DAY_COUNT"),
 
 	/**
 	 * The '<em><b>WEEKLY</b></em>' literal object.
@@ -90,17 +60,15 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WEEKLY(5, "WEEKLY", "WEEKLY"),
-
-	/**
-	 * The '<em><b>MONTHLY BY DAY OF MONTH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MONTHLY_BY_DAY_OF_MONTH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MONTHLY_BY_DAY_OF_MONTH(6, "MONTHLY_BY_DAY_OF_MONTH", "MONTHLY_BY_DAY_OF_MONTH"),
+	WEEKLY(2, "WEEKLY", "WEEKLY"), /**
+									* The '<em><b>YEARLY BY POSITION</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #YEARLY_BY_POSITION_VALUE
+									* @generated
+									* @ordered
+									*/
+	YEARLY_BY_POSITION(3, "YEARLY_BY_POSITION", "YEARLY_BY_POSITION"),
 
 	/**
 	 * The '<em><b>DAILY</b></em>' literal object.
@@ -110,7 +78,23 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DAILY(7, "DAILY", "DAILY"),
+	DAILY(4, "DAILY", "DAILY"), /**
+								* The '<em><b>YEARLY BY DAY OF MONTH</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #YEARLY_BY_DAY_OF_MONTH_VALUE
+								* @generated
+								* @ordered
+								*/
+	YEARLY_BY_DAY_OF_MONTH(5, "YEARLY_BY_DAY_OF_MONTH", "YEARLY_BY_DAY_OF_MONTH"), /**
+																					* The '<em><b>MONTHLY BY DAY OF MONTH</b></em>' literal object.
+																					* <!-- begin-user-doc -->
+																					* <!-- end-user-doc -->
+																					* @see #MONTHLY_BY_DAY_OF_MONTH_VALUE
+																					* @generated
+																					* @ordered
+																					*/
+	MONTHLY_BY_DAY_OF_MONTH(6, "MONTHLY_BY_DAY_OF_MONTH", "MONTHLY_BY_DAY_OF_MONTH"),
 
 	/**
 	 * The '<em><b>BY WEEKDAY COUNT</b></em>' literal object.
@@ -120,7 +104,15 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BY_WEEKDAY_COUNT(8, "BY_WEEKDAY_COUNT", "BY_WEEKDAY_COUNT");
+	BY_WEEKDAY_COUNT(7, "BY_WEEKDAY_COUNT", "BY_WEEKDAY_COUNT"), /**
+																	* The '<em><b>MONTHLY BY POSITION</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #MONTHLY_BY_POSITION_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	MONTHLY_BY_POSITION(8, "MONTHLY_BY_POSITION", "MONTHLY_BY_POSITION");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -138,21 +130,6 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>MONTHLY BY POSITION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MONTHLY BY POSITION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MONTHLY_BY_POSITION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MONTHLY_BY_POSITION_VALUE = 1;
-
-	/**
 	 * The '<em><b>BY DAY COUNT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -165,7 +142,22 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BY_DAY_COUNT_VALUE = 2;
+	public static final int BY_DAY_COUNT_VALUE = 1;
+
+	/**
+	 * The '<em><b>WEEKLY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>WEEKLY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #WEEKLY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WEEKLY_VALUE = 2;
 
 	/**
 	 * The '<em><b>YEARLY BY POSITION</b></em>' literal value.
@@ -183,6 +175,21 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	public static final int YEARLY_BY_POSITION_VALUE = 3;
 
 	/**
+	 * The '<em><b>DAILY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DAILY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DAILY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DAILY_VALUE = 4;
+
+	/**
 	 * The '<em><b>YEARLY BY DAY OF MONTH</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -195,22 +202,7 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int YEARLY_BY_DAY_OF_MONTH_VALUE = 4;
-
-	/**
-	 * The '<em><b>WEEKLY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>WEEKLY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #WEEKLY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WEEKLY_VALUE = 5;
+	public static final int YEARLY_BY_DAY_OF_MONTH_VALUE = 5;
 
 	/**
 	 * The '<em><b>MONTHLY BY DAY OF MONTH</b></em>' literal value.
@@ -228,21 +220,6 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	public static final int MONTHLY_BY_DAY_OF_MONTH_VALUE = 6;
 
 	/**
-	 * The '<em><b>DAILY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DAILY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DAILY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DAILY_VALUE = 7;
-
-	/**
 	 * The '<em><b>BY WEEKDAY COUNT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -255,7 +232,22 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BY_WEEKDAY_COUNT_VALUE = 8;
+	public static final int BY_WEEKDAY_COUNT_VALUE = 7;
+
+	/**
+	 * The '<em><b>MONTHLY BY POSITION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MONTHLY BY POSITION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MONTHLY_BY_POSITION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MONTHLY_BY_POSITION_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Recurrence Type Enum</b></em>' enumerators.
@@ -263,9 +255,9 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRecurrenceTypeEnum[] VALUES_ARRAY = new IfcRecurrenceTypeEnum[] { NULL, MONTHLY_BY_POSITION,
-			BY_DAY_COUNT, YEARLY_BY_POSITION, YEARLY_BY_DAY_OF_MONTH, WEEKLY, MONTHLY_BY_DAY_OF_MONTH, DAILY,
-			BY_WEEKDAY_COUNT, };
+	private static final IfcRecurrenceTypeEnum[] VALUES_ARRAY = new IfcRecurrenceTypeEnum[] { NULL, BY_DAY_COUNT,
+			WEEKLY, YEARLY_BY_POSITION, DAILY, YEARLY_BY_DAY_OF_MONTH, MONTHLY_BY_DAY_OF_MONTH, BY_WEEKDAY_COUNT,
+			MONTHLY_BY_POSITION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Recurrence Type Enum</b></em>' enumerators.
@@ -323,22 +315,22 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case MONTHLY_BY_POSITION_VALUE:
-			return MONTHLY_BY_POSITION;
 		case BY_DAY_COUNT_VALUE:
 			return BY_DAY_COUNT;
-		case YEARLY_BY_POSITION_VALUE:
-			return YEARLY_BY_POSITION;
-		case YEARLY_BY_DAY_OF_MONTH_VALUE:
-			return YEARLY_BY_DAY_OF_MONTH;
 		case WEEKLY_VALUE:
 			return WEEKLY;
-		case MONTHLY_BY_DAY_OF_MONTH_VALUE:
-			return MONTHLY_BY_DAY_OF_MONTH;
+		case YEARLY_BY_POSITION_VALUE:
+			return YEARLY_BY_POSITION;
 		case DAILY_VALUE:
 			return DAILY;
+		case YEARLY_BY_DAY_OF_MONTH_VALUE:
+			return YEARLY_BY_DAY_OF_MONTH;
+		case MONTHLY_BY_DAY_OF_MONTH_VALUE:
+			return MONTHLY_BY_DAY_OF_MONTH;
 		case BY_WEEKDAY_COUNT_VALUE:
 			return BY_WEEKDAY_COUNT;
+		case MONTHLY_BY_POSITION_VALUE:
+			return MONTHLY_BY_POSITION;
 		}
 		return null;
 	}

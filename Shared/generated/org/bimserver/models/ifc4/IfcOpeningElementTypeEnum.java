@@ -53,16 +53,6 @@ public enum IfcOpeningElementTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(2, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>OPENING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +60,15 @@ public enum IfcOpeningElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OPENING(3, "OPENING", "OPENING"),
+	OPENING(2, "OPENING", "OPENING"), /**
+										* The '<em><b>USERDEFINED</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #USERDEFINED_VALUE
+										* @generated
+										* @ordered
+										*/
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>RECESS</b></em>' literal object.
@@ -113,21 +111,6 @@ public enum IfcOpeningElementTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 2;
-
-	/**
 	 * The '<em><b>OPENING</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -140,7 +123,22 @@ public enum IfcOpeningElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OPENING_VALUE = 3;
+	public static final int OPENING_VALUE = 2;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>RECESS</b></em>' literal value.
@@ -164,7 +162,7 @@ public enum IfcOpeningElementTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcOpeningElementTypeEnum[] VALUES_ARRAY = new IfcOpeningElementTypeEnum[] { NULL, NOTDEFINED,
-			USERDEFINED, OPENING, RECESS, };
+			OPENING, USERDEFINED, RECESS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Opening Element Type Enum</b></em>' enumerators.
@@ -225,10 +223,10 @@ public enum IfcOpeningElementTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case OPENING_VALUE:
 			return OPENING;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case RECESS_VALUE:
 			return RECESS;
 		}

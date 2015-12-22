@@ -63,36 +63,6 @@ public enum IfcTendonTypeEnum implements Enumerator {
 	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>WIRE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WIRE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WIRE(3, "WIRE", "WIRE"),
-
-	/**
-	 * The '<em><b>STRAND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRAND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRAND(4, "STRAND", "STRAND"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>BAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +70,31 @@ public enum IfcTendonTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BAR(6, "BAR", "BAR");
+	BAR(3, "BAR", "BAR"), /**
+							* The '<em><b>USERDEFINED</b></em>' literal object.
+							* <!-- begin-user-doc -->
+							* <!-- end-user-doc -->
+							* @see #USERDEFINED_VALUE
+							* @generated
+							* @ordered
+							*/
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>WIRE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #WIRE_VALUE
+													* @generated
+													* @ordered
+													*/
+	WIRE(5, "WIRE", "WIRE"), /**
+								* The '<em><b>STRAND</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #STRAND_VALUE
+								* @generated
+								* @ordered
+								*/
+	STRAND(6, "STRAND", "STRAND");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,34 +142,19 @@ public enum IfcTendonTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>WIRE</b></em>' literal value.
+	 * The '<em><b>BAR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>WIRE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>BAR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WIRE
+	 * @see #BAR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WIRE_VALUE = 3;
-
-	/**
-	 * The '<em><b>STRAND</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STRAND</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STRAND
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STRAND_VALUE = 4;
+	public static final int BAR_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -190,22 +169,37 @@ public enum IfcTendonTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 5;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
-	 * The '<em><b>BAR</b></em>' literal value.
+	 * The '<em><b>WIRE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BAR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>WIRE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BAR
+	 * @see #WIRE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BAR_VALUE = 6;
+	public static final int WIRE_VALUE = 5;
+
+	/**
+	 * The '<em><b>STRAND</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STRAND</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STRAND
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STRAND_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Tendon Type Enum</b></em>' enumerators.
@@ -213,7 +207,8 @@ public enum IfcTendonTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTendonTypeEnum[] VALUES_ARRAY = new IfcTendonTypeEnum[] { NULL, COATED, NOTDEFINED, WIRE, STRAND, USERDEFINED, BAR, };
+	private static final IfcTendonTypeEnum[] VALUES_ARRAY = new IfcTendonTypeEnum[] { NULL, COATED, NOTDEFINED, BAR,
+			USERDEFINED, WIRE, STRAND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Tendon Type Enum</b></em>' enumerators.
@@ -275,14 +270,14 @@ public enum IfcTendonTypeEnum implements Enumerator {
 			return COATED;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case BAR_VALUE:
+			return BAR;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case WIRE_VALUE:
 			return WIRE;
 		case STRAND_VALUE:
 			return STRAND;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case BAR_VALUE:
-			return BAR;
 		}
 		return null;
 	}

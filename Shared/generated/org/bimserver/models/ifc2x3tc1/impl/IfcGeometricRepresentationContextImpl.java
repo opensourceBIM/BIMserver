@@ -42,7 +42,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcGeometricRepresentationContextImpl extends IfcRepresentationContextImpl implements IfcGeometricRepresentationContext {
+public class IfcGeometricRepresentationContextImpl extends IfcRepresentationContextImpl
+		implements IfcGeometricRepresentationContext {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,7 +69,8 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 * @generated
 	 */
 	public int getCoordinateSpaceDimension() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__COORDINATE_SPACE_DIMENSION, true);
+		return (Integer) eGet(
+				Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__COORDINATE_SPACE_DIMENSION, true);
 	}
 
 	/**
@@ -77,7 +79,8 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 * @generated
 	 */
 	public void setCoordinateSpaceDimension(int newCoordinateSpaceDimension) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__COORDINATE_SPACE_DIMENSION, newCoordinateSpaceDimension);
+		eSet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__COORDINATE_SPACE_DIMENSION,
+				newCoordinateSpaceDimension);
 	}
 
 	/**
@@ -158,7 +161,8 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 * @generated
 	 */
 	public IfcAxis2Placement getWorldCoordinateSystem() {
-		return (IfcAxis2Placement) eGet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__WORLD_COORDINATE_SYSTEM, true);
+		return (IfcAxis2Placement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__WORLD_COORDINATE_SYSTEM, true);
 	}
 
 	/**
@@ -167,7 +171,8 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 * @generated
 	 */
 	public void setWorldCoordinateSystem(IfcAxis2Placement newWorldCoordinateSystem) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__WORLD_COORDINATE_SYSTEM, newWorldCoordinateSystem);
+		eSet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__WORLD_COORDINATE_SYSTEM,
+				newWorldCoordinateSystem);
 	}
 
 	/**
@@ -213,7 +218,8 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcGeometricRepresentationSubContext> getHasSubContexts() {
-		return (EList<IfcGeometricRepresentationSubContext>) eGet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__HAS_SUB_CONTEXTS, true);
+		return (EList<IfcGeometricRepresentationSubContext>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__HAS_SUB_CONTEXTS, true);
 	}
 
 	/**

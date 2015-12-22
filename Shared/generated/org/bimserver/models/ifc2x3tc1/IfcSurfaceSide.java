@@ -43,16 +43,6 @@ public enum IfcSurfaceSide implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>BOTH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BOTH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BOTH(1, "BOTH", "BOTH"),
-
-	/**
 	 * The '<em><b>POSITIVE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,7 @@ public enum IfcSurfaceSide implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	POSITIVE(2, "POSITIVE", "POSITIVE"),
+	POSITIVE(1, "POSITIVE", "POSITIVE"),
 
 	/**
 	 * The '<em><b>NEGATIVE</b></em>' literal object.
@@ -70,7 +60,15 @@ public enum IfcSurfaceSide implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NEGATIVE(3, "NEGATIVE", "NEGATIVE");
+	NEGATIVE(2, "NEGATIVE", "NEGATIVE"), /**
+											* The '<em><b>BOTH</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #BOTH_VALUE
+											* @generated
+											* @ordered
+											*/
+	BOTH(3, "BOTH", "BOTH");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -88,21 +86,6 @@ public enum IfcSurfaceSide implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>BOTH</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BOTH</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BOTH
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BOTH_VALUE = 1;
-
-	/**
 	 * The '<em><b>POSITIVE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -115,7 +98,7 @@ public enum IfcSurfaceSide implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POSITIVE_VALUE = 2;
+	public static final int POSITIVE_VALUE = 1;
 
 	/**
 	 * The '<em><b>NEGATIVE</b></em>' literal value.
@@ -130,7 +113,22 @@ public enum IfcSurfaceSide implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NEGATIVE_VALUE = 3;
+	public static final int NEGATIVE_VALUE = 2;
+
+	/**
+	 * The '<em><b>BOTH</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BOTH</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BOTH
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BOTH_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Ifc Surface Side</b></em>' enumerators.
@@ -138,7 +136,7 @@ public enum IfcSurfaceSide implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSurfaceSide[] VALUES_ARRAY = new IfcSurfaceSide[] { NULL, BOTH, POSITIVE, NEGATIVE, };
+	private static final IfcSurfaceSide[] VALUES_ARRAY = new IfcSurfaceSide[] { NULL, POSITIVE, NEGATIVE, BOTH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Surface Side</b></em>' enumerators.
@@ -196,12 +194,12 @@ public enum IfcSurfaceSide implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case BOTH_VALUE:
-			return BOTH;
 		case POSITIVE_VALUE:
 			return POSITIVE;
 		case NEGATIVE_VALUE:
 			return NEGATIVE;
+		case BOTH_VALUE:
+			return BOTH;
 		}
 		return null;
 	}

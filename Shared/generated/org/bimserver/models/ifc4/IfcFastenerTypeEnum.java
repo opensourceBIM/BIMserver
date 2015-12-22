@@ -43,16 +43,6 @@ public enum IfcFastenerTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>MORTAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,15 @@ public enum IfcFastenerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MORTAR(2, "MORTAR", "MORTAR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
+	MORTAR(1, "MORTAR", "MORTAR"), /**
+									* The '<em><b>NOTDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #NOTDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>GLUE</b></em>' literal object.
@@ -80,7 +68,15 @@ public enum IfcFastenerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GLUE(4, "GLUE", "GLUE"),
+	GLUE(3, "GLUE", "GLUE"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>WELD</b></em>' literal object.
@@ -108,21 +104,6 @@ public enum IfcFastenerTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
 	 * The '<em><b>MORTAR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,22 +116,22 @@ public enum IfcFastenerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MORTAR_VALUE = 2;
+	public static final int MORTAR_VALUE = 1;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>GLUE</b></em>' literal value.
@@ -165,7 +146,22 @@ public enum IfcFastenerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GLUE_VALUE = 4;
+	public static final int GLUE_VALUE = 3;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>WELD</b></em>' literal value.
@@ -188,8 +184,8 @@ public enum IfcFastenerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFastenerTypeEnum[] VALUES_ARRAY = new IfcFastenerTypeEnum[] { NULL, NOTDEFINED, MORTAR,
-			USERDEFINED, GLUE, WELD, };
+	private static final IfcFastenerTypeEnum[] VALUES_ARRAY = new IfcFastenerTypeEnum[] { NULL, MORTAR, NOTDEFINED,
+			GLUE, USERDEFINED, WELD, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Fastener Type Enum</b></em>' enumerators.
@@ -247,14 +243,14 @@ public enum IfcFastenerTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case MORTAR_VALUE:
 			return MORTAR;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case GLUE_VALUE:
 			return GLUE;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case WELD_VALUE:
 			return WELD;
 		}

@@ -138,7 +138,8 @@ public enum IfcAssemblyPlaceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAssemblyPlaceEnum[] VALUES_ARRAY = new IfcAssemblyPlaceEnum[] { NULL, SITE, NOTDEFINED, FACTORY, };
+	private static final IfcAssemblyPlaceEnum[] VALUES_ARRAY = new IfcAssemblyPlaceEnum[] { NULL, SITE, NOTDEFINED,
+			FACTORY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Assembly Place Enum</b></em>' enumerators.

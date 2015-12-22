@@ -43,16 +43,6 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>LOGICALNOTAND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOGICALNOTAND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOGICALNOTAND(1, "LOGICALNOTAND", "LOGICALNOTAND"),
-
-	/**
 	 * The '<em><b>LOGICALXOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,7 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOGICALXOR(2, "LOGICALXOR", "LOGICALXOR"),
-
-	/**
-	 * The '<em><b>LOGICALNOTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOGICALNOTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOGICALNOTOR(3, "LOGICALNOTOR", "LOGICALNOTOR"),
+	LOGICALXOR(1, "LOGICALXOR", "LOGICALXOR"),
 
 	/**
 	 * The '<em><b>LOGICALOR</b></em>' literal object.
@@ -80,7 +60,15 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOGICALOR(4, "LOGICALOR", "LOGICALOR"),
+	LOGICALOR(2, "LOGICALOR", "LOGICALOR"), /**
+											* The '<em><b>LOGICALNOTOR</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #LOGICALNOTOR_VALUE
+											* @generated
+											* @ordered
+											*/
+	LOGICALNOTOR(3, "LOGICALNOTOR", "LOGICALNOTOR"),
 
 	/**
 	 * The '<em><b>LOGICALAND</b></em>' literal object.
@@ -90,7 +78,15 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOGICALAND(5, "LOGICALAND", "LOGICALAND");
+	LOGICALAND(4, "LOGICALAND", "LOGICALAND"), /**
+												* The '<em><b>LOGICALNOTAND</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #LOGICALNOTAND_VALUE
+												* @generated
+												* @ordered
+												*/
+	LOGICALNOTAND(5, "LOGICALNOTAND", "LOGICALNOTAND");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,21 +104,6 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>LOGICALNOTAND</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>LOGICALNOTAND</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #LOGICALNOTAND
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LOGICALNOTAND_VALUE = 1;
-
-	/**
 	 * The '<em><b>LOGICALXOR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,7 +116,22 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOGICALXOR_VALUE = 2;
+	public static final int LOGICALXOR_VALUE = 1;
+
+	/**
+	 * The '<em><b>LOGICALOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LOGICALOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LOGICALOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LOGICALOR_VALUE = 2;
 
 	/**
 	 * The '<em><b>LOGICALNOTOR</b></em>' literal value.
@@ -153,21 +149,6 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	public static final int LOGICALNOTOR_VALUE = 3;
 
 	/**
-	 * The '<em><b>LOGICALOR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>LOGICALOR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #LOGICALOR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LOGICALOR_VALUE = 4;
-
-	/**
 	 * The '<em><b>LOGICALAND</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -180,7 +161,22 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOGICALAND_VALUE = 5;
+	public static final int LOGICALAND_VALUE = 4;
+
+	/**
+	 * The '<em><b>LOGICALNOTAND</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LOGICALNOTAND</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LOGICALNOTAND
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LOGICALNOTAND_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Logical Operator Enum</b></em>' enumerators.
@@ -188,8 +184,8 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLogicalOperatorEnum[] VALUES_ARRAY = new IfcLogicalOperatorEnum[] { NULL, LOGICALNOTAND,
-			LOGICALXOR, LOGICALNOTOR, LOGICALOR, LOGICALAND, };
+	private static final IfcLogicalOperatorEnum[] VALUES_ARRAY = new IfcLogicalOperatorEnum[] { NULL, LOGICALXOR,
+			LOGICALOR, LOGICALNOTOR, LOGICALAND, LOGICALNOTAND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Logical Operator Enum</b></em>' enumerators.
@@ -247,16 +243,16 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case LOGICALNOTAND_VALUE:
-			return LOGICALNOTAND;
 		case LOGICALXOR_VALUE:
 			return LOGICALXOR;
-		case LOGICALNOTOR_VALUE:
-			return LOGICALNOTOR;
 		case LOGICALOR_VALUE:
 			return LOGICALOR;
+		case LOGICALNOTOR_VALUE:
+			return LOGICALNOTOR;
 		case LOGICALAND_VALUE:
 			return LOGICALAND;
+		case LOGICALNOTAND_VALUE:
+			return LOGICALNOTAND;
 		}
 		return null;
 	}

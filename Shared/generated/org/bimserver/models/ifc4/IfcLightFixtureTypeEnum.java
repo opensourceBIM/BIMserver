@@ -53,16 +53,6 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>DIRECTIONSOURCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTIONSOURCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECTIONSOURCE(2, "DIRECTIONSOURCE", "DIRECTIONSOURCE"),
-
-	/**
 	 * The '<em><b>POINTSOURCE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,17 +60,15 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	POINTSOURCE(3, "POINTSOURCE", "POINTSOURCE"),
-
-	/**
-	 * The '<em><b>SECURITYLIGHTING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SECURITYLIGHTING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SECURITYLIGHTING(4, "SECURITYLIGHTING", "SECURITYLIGHTING"),
+	POINTSOURCE(2, "POINTSOURCE", "POINTSOURCE"), /**
+													* The '<em><b>DIRECTIONSOURCE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #DIRECTIONSOURCE_VALUE
+													* @generated
+													* @ordered
+													*/
+	DIRECTIONSOURCE(3, "DIRECTIONSOURCE", "DIRECTIONSOURCE"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -90,7 +78,15 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>SECURITYLIGHTING</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #SECURITYLIGHTING_VALUE
+													* @generated
+													* @ordered
+													*/
+	SECURITYLIGHTING(5, "SECURITYLIGHTING", "SECURITYLIGHTING");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -123,21 +119,6 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>DIRECTIONSOURCE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DIRECTIONSOURCE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTIONSOURCE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DIRECTIONSOURCE_VALUE = 2;
-
-	/**
 	 * The '<em><b>POINTSOURCE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -150,22 +131,22 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POINTSOURCE_VALUE = 3;
+	public static final int POINTSOURCE_VALUE = 2;
 
 	/**
-	 * The '<em><b>SECURITYLIGHTING</b></em>' literal value.
+	 * The '<em><b>DIRECTIONSOURCE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SECURITYLIGHTING</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DIRECTIONSOURCE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SECURITYLIGHTING
+	 * @see #DIRECTIONSOURCE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECURITYLIGHTING_VALUE = 4;
+	public static final int DIRECTIONSOURCE_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -180,7 +161,22 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 5;
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>SECURITYLIGHTING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SECURITYLIGHTING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SECURITYLIGHTING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SECURITYLIGHTING_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Light Fixture Type Enum</b></em>' enumerators.
@@ -189,7 +185,7 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcLightFixtureTypeEnum[] VALUES_ARRAY = new IfcLightFixtureTypeEnum[] { NULL, NOTDEFINED,
-			DIRECTIONSOURCE, POINTSOURCE, SECURITYLIGHTING, USERDEFINED, };
+			POINTSOURCE, DIRECTIONSOURCE, USERDEFINED, SECURITYLIGHTING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Light Fixture Type Enum</b></em>' enumerators.
@@ -250,14 +246,14 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case DIRECTIONSOURCE_VALUE:
-			return DIRECTIONSOURCE;
 		case POINTSOURCE_VALUE:
 			return POINTSOURCE;
-		case SECURITYLIGHTING_VALUE:
-			return SECURITYLIGHTING;
+		case DIRECTIONSOURCE_VALUE:
+			return DIRECTIONSOURCE;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case SECURITYLIGHTING_VALUE:
+			return SECURITYLIGHTING;
 		}
 		return null;
 	}

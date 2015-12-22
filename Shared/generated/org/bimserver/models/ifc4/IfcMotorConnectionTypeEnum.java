@@ -43,16 +43,6 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>BELTDRIVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BELTDRIVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BELTDRIVE(1, "BELTDRIVE", "BELTDRIVE"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,15 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>BELTDRIVE</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #BELTDRIVE_VALUE
+												* @generated
+												* @ordered
+												*/
+	BELTDRIVE(2, "BELTDRIVE", "BELTDRIVE"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -73,16 +71,6 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
 
 	/**
-	 * The '<em><b>COUPLING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COUPLING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COUPLING(4, "COUPLING", "COUPLING"),
-
-	/**
 	 * The '<em><b>DIRECTDRIVE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +78,15 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTDRIVE(5, "DIRECTDRIVE", "DIRECTDRIVE");
+	DIRECTDRIVE(4, "DIRECTDRIVE", "DIRECTDRIVE"), /**
+													* The '<em><b>COUPLING</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #COUPLING_VALUE
+													* @generated
+													* @ordered
+													*/
+	COUPLING(5, "COUPLING", "COUPLING");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,21 +104,6 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>BELTDRIVE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BELTDRIVE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BELTDRIVE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BELTDRIVE_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,7 +116,22 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
+
+	/**
+	 * The '<em><b>BELTDRIVE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BELTDRIVE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BELTDRIVE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BELTDRIVE_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -153,21 +149,6 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 3;
 
 	/**
-	 * The '<em><b>COUPLING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>COUPLING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #COUPLING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int COUPLING_VALUE = 4;
-
-	/**
 	 * The '<em><b>DIRECTDRIVE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -180,7 +161,22 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIRECTDRIVE_VALUE = 5;
+	public static final int DIRECTDRIVE_VALUE = 4;
+
+	/**
+	 * The '<em><b>COUPLING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>COUPLING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #COUPLING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int COUPLING_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Motor Connection Type Enum</b></em>' enumerators.
@@ -188,8 +184,8 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcMotorConnectionTypeEnum[] VALUES_ARRAY = new IfcMotorConnectionTypeEnum[] { NULL, BELTDRIVE,
-			NOTDEFINED, USERDEFINED, COUPLING, DIRECTDRIVE, };
+	private static final IfcMotorConnectionTypeEnum[] VALUES_ARRAY = new IfcMotorConnectionTypeEnum[] { NULL,
+			NOTDEFINED, BELTDRIVE, USERDEFINED, DIRECTDRIVE, COUPLING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Motor Connection Type Enum</b></em>' enumerators.
@@ -248,16 +244,16 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case BELTDRIVE_VALUE:
-			return BELTDRIVE;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case BELTDRIVE_VALUE:
+			return BELTDRIVE;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case COUPLING_VALUE:
-			return COUPLING;
 		case DIRECTDRIVE_VALUE:
 			return DIRECTDRIVE;
+		case COUPLING_VALUE:
+			return COUPLING;
 		}
 		return null;
 	}

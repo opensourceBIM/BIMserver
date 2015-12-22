@@ -43,36 +43,6 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>RESTRICTED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RESTRICTED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RESTRICTED(1, "RESTRICTED", "RESTRICTED"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CONFIDENTIAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONFIDENTIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONFIDENTIAL(3, "CONFIDENTIAL", "CONFIDENTIAL"),
-
-	/**
 	 * The '<em><b>PERSONAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +50,15 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PERSONAL(4, "PERSONAL", "PERSONAL"),
+	PERSONAL(1, "PERSONAL", "PERSONAL"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>PUBLIC</b></em>' literal object.
@@ -90,7 +68,7 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PUBLIC(5, "PUBLIC", "PUBLIC"),
+	PUBLIC(3, "PUBLIC", "PUBLIC"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -100,7 +78,23 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>RESTRICTED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #RESTRICTED_VALUE
+													* @generated
+													* @ordered
+													*/
+	RESTRICTED(5, "RESTRICTED", "RESTRICTED"), /**
+												* The '<em><b>CONFIDENTIAL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #CONFIDENTIAL_VALUE
+												* @generated
+												* @ordered
+												*/
+	CONFIDENTIAL(6, "CONFIDENTIAL", "CONFIDENTIAL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,19 +112,19 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>RESTRICTED</b></em>' literal value.
+	 * The '<em><b>PERSONAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>RESTRICTED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PERSONAL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RESTRICTED
+	 * @see #PERSONAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RESTRICTED_VALUE = 1;
+	public static final int PERSONAL_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -148,36 +142,6 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>CONFIDENTIAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CONFIDENTIAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CONFIDENTIAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONFIDENTIAL_VALUE = 3;
-
-	/**
-	 * The '<em><b>PERSONAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PERSONAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PERSONAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PERSONAL_VALUE = 4;
-
-	/**
 	 * The '<em><b>PUBLIC</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -190,7 +154,7 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PUBLIC_VALUE = 5;
+	public static final int PUBLIC_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -205,7 +169,37 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 6;
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>RESTRICTED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>RESTRICTED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RESTRICTED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RESTRICTED_VALUE = 5;
+
+	/**
+	 * The '<em><b>CONFIDENTIAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONFIDENTIAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONFIDENTIAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONFIDENTIAL_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Document Confidentiality Enum</b></em>' enumerators.
@@ -213,7 +207,8 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDocumentConfidentialityEnum[] VALUES_ARRAY = new IfcDocumentConfidentialityEnum[] { NULL, RESTRICTED, NOTDEFINED, CONFIDENTIAL, PERSONAL, PUBLIC, USERDEFINED, };
+	private static final IfcDocumentConfidentialityEnum[] VALUES_ARRAY = new IfcDocumentConfidentialityEnum[] { NULL,
+			PERSONAL, NOTDEFINED, PUBLIC, USERDEFINED, RESTRICTED, CONFIDENTIAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Document Confidentiality Enum</b></em>' enumerators.
@@ -221,7 +216,8 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDocumentConfidentialityEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDocumentConfidentialityEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Document Confidentiality Enum</b></em>' literal with the specified literal value.
@@ -271,18 +267,18 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case RESTRICTED_VALUE:
-			return RESTRICTED;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case CONFIDENTIAL_VALUE:
-			return CONFIDENTIAL;
 		case PERSONAL_VALUE:
 			return PERSONAL;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case PUBLIC_VALUE:
 			return PUBLIC;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case RESTRICTED_VALUE:
+			return RESTRICTED;
+		case CONFIDENTIAL_VALUE:
+			return CONFIDENTIAL;
 		}
 		return null;
 	}

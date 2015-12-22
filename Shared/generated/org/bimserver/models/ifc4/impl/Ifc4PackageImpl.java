@@ -22636,6 +22636,15 @@ public class Ifc4PackageImpl extends EPackageImpl implements Ifc4Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getIfcPixelTexture_Pixel() {
+		return (EAttribute) getIfcPixelTexture().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIfcPlacement() {
 		if (ifcPlacementEClass == null) {
 			ifcPlacementEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI).getEClassifiers()

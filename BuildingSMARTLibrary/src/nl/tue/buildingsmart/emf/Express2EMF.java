@@ -563,10 +563,16 @@ public class Express2EMF {
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEBoolean());
 				eAttribute.setUnsettable(expAttrib.isOptional());
 				cls.getEStructuralFeatures().add(eAttribute);
+			} else if (bt instanceof BinaryType) {
+				EAttribute eAttribute = eFactory.createEAttribute();
+				eAttribute.setUnsettable(expAttrib.isOptional());
+				eAttribute.setUpperBound(-1);
+				eAttribute.setName(attrib.getName());
+				eAttribute.setUnique(false);
+				eAttribute.setEType(EcorePackage.eINSTANCE.getEByteArray());
+				cls.getEStructuralFeatures().add(eAttribute);
 			} else if (bt == null) {
-				// TODO These are the new 2-dimensional arrays in IFC4, there is 10 of them
-				System.out.println(ent.getName() + "." + attrib.getName() + " not implemented");
-				
+				// These are the new 2-dimensional arrays in IFC4, there are 10 of them
 				addTwoDimensionalArray(ent.getName(), attrib.getName());
 			}
 			if (domain instanceof ArrayType) {

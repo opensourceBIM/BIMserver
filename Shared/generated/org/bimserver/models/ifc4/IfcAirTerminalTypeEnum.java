@@ -43,46 +43,6 @@ public enum IfcAirTerminalTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>GRILLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GRILLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GRILLE(2, "GRILLE", "GRILLE"),
-
-	/**
-	 * The '<em><b>LOUVRE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOUVRE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOUVRE(3, "LOUVRE", "LOUVRE"),
-
-	/**
-	 * The '<em><b>DIFFUSER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIFFUSER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIFFUSER(4, "DIFFUSER", "DIFFUSER"),
-
-	/**
 	 * The '<em><b>REGISTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +50,31 @@ public enum IfcAirTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	REGISTER(5, "REGISTER", "REGISTER"),
+	REGISTER(1, "REGISTER", "REGISTER"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>LOUVRE</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #LOUVRE_VALUE
+												* @generated
+												* @ordered
+												*/
+	LOUVRE(3, "LOUVRE", "LOUVRE"), /**
+									* The '<em><b>GRILLE</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #GRILLE_VALUE
+									* @generated
+									* @ordered
+									*/
+	GRILLE(4, "GRILLE", "GRILLE"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -100,7 +84,15 @@ public enum IfcAirTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>DIFFUSER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #DIFFUSER_VALUE
+													* @generated
+													* @ordered
+													*/
+	DIFFUSER(6, "DIFFUSER", "DIFFUSER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,6 +110,21 @@ public enum IfcAirTerminalTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>REGISTER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>REGISTER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #REGISTER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int REGISTER_VALUE = 1;
+
+	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -130,22 +137,7 @@ public enum IfcAirTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
-	 * The '<em><b>GRILLE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GRILLE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GRILLE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GRILLE_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>LOUVRE</b></em>' literal value.
@@ -163,34 +155,19 @@ public enum IfcAirTerminalTypeEnum implements Enumerator {
 	public static final int LOUVRE_VALUE = 3;
 
 	/**
-	 * The '<em><b>DIFFUSER</b></em>' literal value.
+	 * The '<em><b>GRILLE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DIFFUSER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>GRILLE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DIFFUSER
+	 * @see #GRILLE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIFFUSER_VALUE = 4;
-
-	/**
-	 * The '<em><b>REGISTER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>REGISTER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #REGISTER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int REGISTER_VALUE = 5;
+	public static final int GRILLE_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -205,7 +182,22 @@ public enum IfcAirTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 6;
+	public static final int USERDEFINED_VALUE = 5;
+
+	/**
+	 * The '<em><b>DIFFUSER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DIFFUSER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DIFFUSER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DIFFUSER_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Air Terminal Type Enum</b></em>' enumerators.
@@ -213,8 +205,8 @@ public enum IfcAirTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAirTerminalTypeEnum[] VALUES_ARRAY = new IfcAirTerminalTypeEnum[] { NULL, NOTDEFINED,
-			GRILLE, LOUVRE, DIFFUSER, REGISTER, USERDEFINED, };
+	private static final IfcAirTerminalTypeEnum[] VALUES_ARRAY = new IfcAirTerminalTypeEnum[] { NULL, REGISTER,
+			NOTDEFINED, LOUVRE, GRILLE, USERDEFINED, DIFFUSER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Air Terminal Type Enum</b></em>' enumerators.
@@ -272,18 +264,18 @@ public enum IfcAirTerminalTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case GRILLE_VALUE:
-			return GRILLE;
-		case LOUVRE_VALUE:
-			return LOUVRE;
-		case DIFFUSER_VALUE:
-			return DIFFUSER;
 		case REGISTER_VALUE:
 			return REGISTER;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case LOUVRE_VALUE:
+			return LOUVRE;
+		case GRILLE_VALUE:
+			return GRILLE;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case DIFFUSER_VALUE:
+			return DIFFUSER;
 		}
 		return null;
 	}

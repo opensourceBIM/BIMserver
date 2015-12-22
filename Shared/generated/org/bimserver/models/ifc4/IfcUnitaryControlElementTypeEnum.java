@@ -43,16 +43,6 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>THERMOSTAT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMOSTAT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THERMOSTAT(1, "THERMOSTAT", "THERMOSTAT"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,7 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>WEATHERSTATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WEATHERSTATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WEATHERSTATION(3, "WEATHERSTATION", "WEATHERSTATION"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>HUMIDISTAT</b></em>' literal object.
@@ -80,7 +60,15 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HUMIDISTAT(4, "HUMIDISTAT", "HUMIDISTAT"),
+	HUMIDISTAT(2, "HUMIDISTAT", "HUMIDISTAT"), /**
+												* The '<em><b>WEATHERSTATION</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #WEATHERSTATION_VALUE
+												* @generated
+												* @ordered
+												*/
+	WEATHERSTATION(3, "WEATHERSTATION", "WEATHERSTATION"),
 
 	/**
 	 * The '<em><b>GASDETECTIONPANEL</b></em>' literal object.
@@ -90,37 +78,7 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GASDETECTIONPANEL(5, "GASDETECTIONPANEL", "GASDETECTIONPANEL"),
-
-	/**
-	 * The '<em><b>MIMICPANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MIMICPANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MIMICPANEL(6, "MIMICPANEL", "MIMICPANEL"),
-
-	/**
-	 * The '<em><b>CONTROLPANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTROLPANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTROLPANEL(7, "CONTROLPANEL", "CONTROLPANEL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(8, "USERDEFINED", "USERDEFINED"),
+	GASDETECTIONPANEL(4, "GASDETECTIONPANEL", "GASDETECTIONPANEL"),
 
 	/**
 	 * The '<em><b>INDICATORPANEL</b></em>' literal object.
@@ -130,7 +88,23 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INDICATORPANEL(9, "INDICATORPANEL", "INDICATORPANEL"),
+	INDICATORPANEL(5, "INDICATORPANEL", "INDICATORPANEL"), /**
+															* The '<em><b>THERMOSTAT</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #THERMOSTAT_VALUE
+															* @generated
+															* @ordered
+															*/
+	THERMOSTAT(6, "THERMOSTAT", "THERMOSTAT"), /**
+												* The '<em><b>USERDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #USERDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>ALARMPANEL</b></em>' literal object.
@@ -140,7 +114,23 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ALARMPANEL(10, "ALARMPANEL", "ALARMPANEL");
+	ALARMPANEL(8, "ALARMPANEL", "ALARMPANEL"), /**
+												* The '<em><b>CONTROLPANEL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #CONTROLPANEL_VALUE
+												* @generated
+												* @ordered
+												*/
+	CONTROLPANEL(9, "CONTROLPANEL", "CONTROLPANEL"), /**
+														* The '<em><b>MIMICPANEL</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #MIMICPANEL_VALUE
+														* @generated
+														* @ordered
+														*/
+	MIMICPANEL(10, "MIMICPANEL", "MIMICPANEL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -158,21 +148,6 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>THERMOSTAT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>THERMOSTAT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #THERMOSTAT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int THERMOSTAT_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -185,7 +160,22 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
+
+	/**
+	 * The '<em><b>HUMIDISTAT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HUMIDISTAT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HUMIDISTAT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HUMIDISTAT_VALUE = 2;
 
 	/**
 	 * The '<em><b>WEATHERSTATION</b></em>' literal value.
@@ -203,21 +193,6 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	public static final int WEATHERSTATION_VALUE = 3;
 
 	/**
-	 * The '<em><b>HUMIDISTAT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HUMIDISTAT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HUMIDISTAT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HUMIDISTAT_VALUE = 4;
-
-	/**
 	 * The '<em><b>GASDETECTIONPANEL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -230,52 +205,7 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GASDETECTIONPANEL_VALUE = 5;
-
-	/**
-	 * The '<em><b>MIMICPANEL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MIMICPANEL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MIMICPANEL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MIMICPANEL_VALUE = 6;
-
-	/**
-	 * The '<em><b>CONTROLPANEL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CONTROLPANEL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CONTROLPANEL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONTROLPANEL_VALUE = 7;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 8;
+	public static final int GASDETECTIONPANEL_VALUE = 4;
 
 	/**
 	 * The '<em><b>INDICATORPANEL</b></em>' literal value.
@@ -290,7 +220,37 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INDICATORPANEL_VALUE = 9;
+	public static final int INDICATORPANEL_VALUE = 5;
+
+	/**
+	 * The '<em><b>THERMOSTAT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>THERMOSTAT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #THERMOSTAT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int THERMOSTAT_VALUE = 6;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 7;
 
 	/**
 	 * The '<em><b>ALARMPANEL</b></em>' literal value.
@@ -305,7 +265,37 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ALARMPANEL_VALUE = 10;
+	public static final int ALARMPANEL_VALUE = 8;
+
+	/**
+	 * The '<em><b>CONTROLPANEL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONTROLPANEL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONTROLPANEL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONTROLPANEL_VALUE = 9;
+
+	/**
+	 * The '<em><b>MIMICPANEL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MIMICPANEL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MIMICPANEL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MIMICPANEL_VALUE = 10;
 
 	/**
 	 * An array of all the '<em><b>Ifc Unitary Control Element Type Enum</b></em>' enumerators.
@@ -314,8 +304,8 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcUnitaryControlElementTypeEnum[] VALUES_ARRAY = new IfcUnitaryControlElementTypeEnum[] {
-			NULL, THERMOSTAT, NOTDEFINED, WEATHERSTATION, HUMIDISTAT, GASDETECTIONPANEL, MIMICPANEL, CONTROLPANEL,
-			USERDEFINED, INDICATORPANEL, ALARMPANEL, };
+			NULL, NOTDEFINED, HUMIDISTAT, WEATHERSTATION, GASDETECTIONPANEL, INDICATORPANEL, THERMOSTAT, USERDEFINED,
+			ALARMPANEL, CONTROLPANEL, MIMICPANEL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Unitary Control Element Type Enum</b></em>' enumerators.
@@ -374,26 +364,26 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case THERMOSTAT_VALUE:
-			return THERMOSTAT;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case WEATHERSTATION_VALUE:
-			return WEATHERSTATION;
 		case HUMIDISTAT_VALUE:
 			return HUMIDISTAT;
+		case WEATHERSTATION_VALUE:
+			return WEATHERSTATION;
 		case GASDETECTIONPANEL_VALUE:
 			return GASDETECTIONPANEL;
-		case MIMICPANEL_VALUE:
-			return MIMICPANEL;
-		case CONTROLPANEL_VALUE:
-			return CONTROLPANEL;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case INDICATORPANEL_VALUE:
 			return INDICATORPANEL;
+		case THERMOSTAT_VALUE:
+			return THERMOSTAT;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case ALARMPANEL_VALUE:
 			return ALARMPANEL;
+		case CONTROLPANEL_VALUE:
+			return CONTROLPANEL;
+		case MIMICPANEL_VALUE:
+			return MIMICPANEL;
 		}
 		return null;
 	}

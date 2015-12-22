@@ -43,66 +43,6 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SELECTORSWITCH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SELECTORSWITCH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SELECTORSWITCH(1, "SELECTORSWITCH", "SELECTORSWITCH"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CONTACTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTACTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTACTOR(3, "CONTACTOR", "CONTACTOR"),
-
-	/**
-	 * The '<em><b>KEYPAD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KEYPAD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	KEYPAD(4, "KEYPAD", "KEYPAD"),
-
-	/**
-	 * The '<em><b>SWITCHDISCONNECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SWITCHDISCONNECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SWITCHDISCONNECTOR(5, "SWITCHDISCONNECTOR", "SWITCHDISCONNECTOR"),
-
-	/**
-	 * The '<em><b>STARTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STARTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STARTER(6, "STARTER", "STARTER"),
-
-	/**
 	 * The '<em><b>MOMENTARYSWITCH</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,27 +50,23 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MOMENTARYSWITCH(7, "MOMENTARYSWITCH", "MOMENTARYSWITCH"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(8, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>EMERGENCYSTOP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EMERGENCYSTOP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EMERGENCYSTOP(9, "EMERGENCYSTOP", "EMERGENCYSTOP"),
+	MOMENTARYSWITCH(1, "MOMENTARYSWITCH", "MOMENTARYSWITCH"), /**
+																* The '<em><b>SELECTORSWITCH</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #SELECTORSWITCH_VALUE
+																* @generated
+																* @ordered
+																*/
+	SELECTORSWITCH(2, "SELECTORSWITCH", "SELECTORSWITCH"), /**
+															* The '<em><b>NOTDEFINED</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #NOTDEFINED_VALUE
+															* @generated
+															* @ordered
+															*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>DIMMERSWITCH</b></em>' literal object.
@@ -140,7 +76,7 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIMMERSWITCH(10, "DIMMERSWITCH", "DIMMERSWITCH"),
+	DIMMERSWITCH(4, "DIMMERSWITCH", "DIMMERSWITCH"),
 
 	/**
 	 * The '<em><b>TOGGLESWITCH</b></em>' literal object.
@@ -150,7 +86,55 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TOGGLESWITCH(11, "TOGGLESWITCH", "TOGGLESWITCH");
+	TOGGLESWITCH(5, "TOGGLESWITCH", "TOGGLESWITCH"), /**
+														* The '<em><b>CONTACTOR</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #CONTACTOR_VALUE
+														* @generated
+														* @ordered
+														*/
+	CONTACTOR(6, "CONTACTOR", "CONTACTOR"), /**
+											* The '<em><b>KEYPAD</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #KEYPAD_VALUE
+											* @generated
+											* @ordered
+											*/
+	KEYPAD(7, "KEYPAD", "KEYPAD"), /**
+									* The '<em><b>STARTER</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #STARTER_VALUE
+									* @generated
+									* @ordered
+									*/
+	STARTER(8, "STARTER", "STARTER"), /**
+										* The '<em><b>USERDEFINED</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #USERDEFINED_VALUE
+										* @generated
+										* @ordered
+										*/
+	USERDEFINED(9, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>EMERGENCYSTOP</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #EMERGENCYSTOP_VALUE
+													* @generated
+													* @ordered
+													*/
+	EMERGENCYSTOP(10, "EMERGENCYSTOP", "EMERGENCYSTOP"), /**
+															* The '<em><b>SWITCHDISCONNECTOR</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #SWITCHDISCONNECTOR_VALUE
+															* @generated
+															* @ordered
+															*/
+	SWITCHDISCONNECTOR(11, "SWITCHDISCONNECTOR", "SWITCHDISCONNECTOR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -168,6 +152,21 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>MOMENTARYSWITCH</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MOMENTARYSWITCH</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MOMENTARYSWITCH
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MOMENTARYSWITCH_VALUE = 1;
+
+	/**
 	 * The '<em><b>SELECTORSWITCH</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -180,7 +179,7 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SELECTORSWITCH_VALUE = 1;
+	public static final int SELECTORSWITCH_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -195,112 +194,7 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>CONTACTOR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CONTACTOR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CONTACTOR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONTACTOR_VALUE = 3;
-
-	/**
-	 * The '<em><b>KEYPAD</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>KEYPAD</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #KEYPAD
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int KEYPAD_VALUE = 4;
-
-	/**
-	 * The '<em><b>SWITCHDISCONNECTOR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SWITCHDISCONNECTOR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SWITCHDISCONNECTOR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SWITCHDISCONNECTOR_VALUE = 5;
-
-	/**
-	 * The '<em><b>STARTER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STARTER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STARTER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STARTER_VALUE = 6;
-
-	/**
-	 * The '<em><b>MOMENTARYSWITCH</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MOMENTARYSWITCH</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MOMENTARYSWITCH
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MOMENTARYSWITCH_VALUE = 7;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 8;
-
-	/**
-	 * The '<em><b>EMERGENCYSTOP</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>EMERGENCYSTOP</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #EMERGENCYSTOP
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int EMERGENCYSTOP_VALUE = 9;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>DIMMERSWITCH</b></em>' literal value.
@@ -315,7 +209,7 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIMMERSWITCH_VALUE = 10;
+	public static final int DIMMERSWITCH_VALUE = 4;
 
 	/**
 	 * The '<em><b>TOGGLESWITCH</b></em>' literal value.
@@ -330,7 +224,97 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TOGGLESWITCH_VALUE = 11;
+	public static final int TOGGLESWITCH_VALUE = 5;
+
+	/**
+	 * The '<em><b>CONTACTOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONTACTOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONTACTOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONTACTOR_VALUE = 6;
+
+	/**
+	 * The '<em><b>KEYPAD</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>KEYPAD</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #KEYPAD
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int KEYPAD_VALUE = 7;
+
+	/**
+	 * The '<em><b>STARTER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STARTER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STARTER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STARTER_VALUE = 8;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 9;
+
+	/**
+	 * The '<em><b>EMERGENCYSTOP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>EMERGENCYSTOP</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #EMERGENCYSTOP
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EMERGENCYSTOP_VALUE = 10;
+
+	/**
+	 * The '<em><b>SWITCHDISCONNECTOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SWITCHDISCONNECTOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SWITCHDISCONNECTOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SWITCHDISCONNECTOR_VALUE = 11;
 
 	/**
 	 * An array of all the '<em><b>Ifc Switching Device Type Enum</b></em>' enumerators.
@@ -339,8 +323,8 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcSwitchingDeviceTypeEnum[] VALUES_ARRAY = new IfcSwitchingDeviceTypeEnum[] { NULL,
-			SELECTORSWITCH, NOTDEFINED, CONTACTOR, KEYPAD, SWITCHDISCONNECTOR, STARTER, MOMENTARYSWITCH, USERDEFINED,
-			EMERGENCYSTOP, DIMMERSWITCH, TOGGLESWITCH, };
+			MOMENTARYSWITCH, SELECTORSWITCH, NOTDEFINED, DIMMERSWITCH, TOGGLESWITCH, CONTACTOR, KEYPAD, STARTER,
+			USERDEFINED, EMERGENCYSTOP, SWITCHDISCONNECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Switching Device Type Enum</b></em>' enumerators.
@@ -399,28 +383,28 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
+		case MOMENTARYSWITCH_VALUE:
+			return MOMENTARYSWITCH;
 		case SELECTORSWITCH_VALUE:
 			return SELECTORSWITCH;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case CONTACTOR_VALUE:
-			return CONTACTOR;
-		case KEYPAD_VALUE:
-			return KEYPAD;
-		case SWITCHDISCONNECTOR_VALUE:
-			return SWITCHDISCONNECTOR;
-		case STARTER_VALUE:
-			return STARTER;
-		case MOMENTARYSWITCH_VALUE:
-			return MOMENTARYSWITCH;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case EMERGENCYSTOP_VALUE:
-			return EMERGENCYSTOP;
 		case DIMMERSWITCH_VALUE:
 			return DIMMERSWITCH;
 		case TOGGLESWITCH_VALUE:
 			return TOGGLESWITCH;
+		case CONTACTOR_VALUE:
+			return CONTACTOR;
+		case KEYPAD_VALUE:
+			return KEYPAD;
+		case STARTER_VALUE:
+			return STARTER;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case EMERGENCYSTOP_VALUE:
+			return EMERGENCYSTOP;
+		case SWITCHDISCONNECTOR_VALUE:
+			return SWITCHDISCONNECTOR;
 		}
 		return null;
 	}

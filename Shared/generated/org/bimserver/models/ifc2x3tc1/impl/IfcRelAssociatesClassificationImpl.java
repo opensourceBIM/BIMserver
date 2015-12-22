@@ -60,7 +60,8 @@ public class IfcRelAssociatesClassificationImpl extends IfcRelAssociatesImpl imp
 	 * @generated
 	 */
 	public IfcClassificationNotationSelect getRelatingClassification() {
-		return (IfcClassificationNotationSelect) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION, true);
+		return (IfcClassificationNotationSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION, true);
 	}
 
 	/**
@@ -69,7 +70,8 @@ public class IfcRelAssociatesClassificationImpl extends IfcRelAssociatesImpl imp
 	 * @generated
 	 */
 	public void setRelatingClassification(IfcClassificationNotationSelect newRelatingClassification) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION, newRelatingClassification);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_CLASSIFICATION__RELATING_CLASSIFICATION,
+				newRelatingClassification);
 	}
 
 } //IfcRelAssociatesClassificationImpl

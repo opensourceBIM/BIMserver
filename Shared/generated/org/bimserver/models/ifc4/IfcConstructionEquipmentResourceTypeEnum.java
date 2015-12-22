@@ -43,56 +43,6 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TRANSPORTING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRANSPORTING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRANSPORTING(2, "TRANSPORTING", "TRANSPORTING"),
-
-	/**
-	 * The '<em><b>EARTHMOVING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EARTHMOVING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EARTHMOVING(3, "EARTHMOVING", "EARTHMOVING"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>HEATING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HEATING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HEATING(5, "HEATING", "HEATING"),
-
-	/**
 	 * The '<em><b>DEMOLISHING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,17 +50,15 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DEMOLISHING(6, "DEMOLISHING", "DEMOLISHING"),
-
-	/**
-	 * The '<em><b>PUMPING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PUMPING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PUMPING(7, "PUMPING", "PUMPING"),
+	DEMOLISHING(1, "DEMOLISHING", "DEMOLISHING"), /**
+													* The '<em><b>TRANSPORTING</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #TRANSPORTING_VALUE
+													* @generated
+													* @ordered
+													*/
+	TRANSPORTING(2, "TRANSPORTING", "TRANSPORTING"),
 
 	/**
 	 * The '<em><b>PAVING</b></em>' literal object.
@@ -120,17 +68,31 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PAVING(8, "PAVING", "PAVING"),
-
-	/**
-	 * The '<em><b>ERECTING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ERECTING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ERECTING(9, "ERECTING", "ERECTING"),
+	PAVING(3, "PAVING", "PAVING"), /**
+									* The '<em><b>NOTDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #NOTDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>EARTHMOVING</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #EARTHMOVING_VALUE
+												* @generated
+												* @ordered
+												*/
+	EARTHMOVING(5, "EARTHMOVING", "EARTHMOVING"), /**
+													* The '<em><b>HEATING</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #HEATING_VALUE
+													* @generated
+													* @ordered
+													*/
+	HEATING(6, "HEATING", "HEATING"),
 
 	/**
 	 * The '<em><b>LIGHTING</b></em>' literal object.
@@ -140,7 +102,31 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LIGHTING(10, "LIGHTING", "LIGHTING");
+	LIGHTING(7, "LIGHTING", "LIGHTING"), /**
+											* The '<em><b>PUMPING</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #PUMPING_VALUE
+											* @generated
+											* @ordered
+											*/
+	PUMPING(8, "PUMPING", "PUMPING"), /**
+										* The '<em><b>USERDEFINED</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #USERDEFINED_VALUE
+										* @generated
+										* @ordered
+										*/
+	USERDEFINED(9, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>ERECTING</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #ERECTING_VALUE
+													* @generated
+													* @ordered
+													*/
+	ERECTING(10, "ERECTING", "ERECTING");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -158,19 +144,19 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>DEMOLISHING</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DEMOLISHING</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #DEMOLISHING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
+	public static final int DEMOLISHING_VALUE = 1;
 
 	/**
 	 * The '<em><b>TRANSPORTING</b></em>' literal value.
@@ -188,6 +174,36 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	public static final int TRANSPORTING_VALUE = 2;
 
 	/**
+	 * The '<em><b>PAVING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PAVING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PAVING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PAVING_VALUE = 3;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 4;
+
+	/**
 	 * The '<em><b>EARTHMOVING</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -200,22 +216,7 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EARTHMOVING_VALUE = 3;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int EARTHMOVING_VALUE = 5;
 
 	/**
 	 * The '<em><b>HEATING</b></em>' literal value.
@@ -230,67 +231,7 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HEATING_VALUE = 5;
-
-	/**
-	 * The '<em><b>DEMOLISHING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DEMOLISHING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DEMOLISHING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DEMOLISHING_VALUE = 6;
-
-	/**
-	 * The '<em><b>PUMPING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PUMPING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PUMPING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PUMPING_VALUE = 7;
-
-	/**
-	 * The '<em><b>PAVING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PAVING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PAVING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PAVING_VALUE = 8;
-
-	/**
-	 * The '<em><b>ERECTING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ERECTING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ERECTING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ERECTING_VALUE = 9;
+	public static final int HEATING_VALUE = 6;
 
 	/**
 	 * The '<em><b>LIGHTING</b></em>' literal value.
@@ -305,7 +246,52 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LIGHTING_VALUE = 10;
+	public static final int LIGHTING_VALUE = 7;
+
+	/**
+	 * The '<em><b>PUMPING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PUMPING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PUMPING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PUMPING_VALUE = 8;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 9;
+
+	/**
+	 * The '<em><b>ERECTING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ERECTING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ERECTING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ERECTING_VALUE = 10;
 
 	/**
 	 * An array of all the '<em><b>Ifc Construction Equipment Resource Type Enum</b></em>' enumerators.
@@ -314,8 +300,8 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcConstructionEquipmentResourceTypeEnum[] VALUES_ARRAY = new IfcConstructionEquipmentResourceTypeEnum[] {
-			NULL, NOTDEFINED, TRANSPORTING, EARTHMOVING, USERDEFINED, HEATING, DEMOLISHING, PUMPING, PAVING, ERECTING,
-			LIGHTING, };
+			NULL, DEMOLISHING, TRANSPORTING, PAVING, NOTDEFINED, EARTHMOVING, HEATING, LIGHTING, PUMPING, USERDEFINED,
+			ERECTING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Construction Equipment Resource Type Enum</b></em>' enumerators.
@@ -374,26 +360,26 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case TRANSPORTING_VALUE:
-			return TRANSPORTING;
-		case EARTHMOVING_VALUE:
-			return EARTHMOVING;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case HEATING_VALUE:
-			return HEATING;
 		case DEMOLISHING_VALUE:
 			return DEMOLISHING;
-		case PUMPING_VALUE:
-			return PUMPING;
+		case TRANSPORTING_VALUE:
+			return TRANSPORTING;
 		case PAVING_VALUE:
 			return PAVING;
-		case ERECTING_VALUE:
-			return ERECTING;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case EARTHMOVING_VALUE:
+			return EARTHMOVING;
+		case HEATING_VALUE:
+			return HEATING;
 		case LIGHTING_VALUE:
 			return LIGHTING;
+		case PUMPING_VALUE:
+			return PUMPING;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case ERECTING_VALUE:
+			return ERECTING;
 		}
 		return null;
 	}

@@ -53,36 +53,6 @@ public enum IfcTankTypeEnum implements Enumerator {
 	STORAGE(1, "STORAGE", "STORAGE"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>VESSEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VESSEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VESSEL(3, "VESSEL", "VESSEL"),
-
-	/**
-	 * The '<em><b>BREAKPRESSURE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BREAKPRESSURE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BREAKPRESSURE(4, "BREAKPRESSURE", "BREAKPRESSURE"),
-
-	/**
 	 * The '<em><b>PRESSUREVESSEL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,37 +60,23 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRESSUREVESSEL(5, "PRESSUREVESSEL", "PRESSUREVESSEL"),
-
-	/**
-	 * The '<em><b>BASIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BASIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BASIN(6, "BASIN", "BASIN"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>FEEDANDEXPANSION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FEEDANDEXPANSION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FEEDANDEXPANSION(8, "FEEDANDEXPANSION", "FEEDANDEXPANSION"),
+	PRESSUREVESSEL(2, "PRESSUREVESSEL", "PRESSUREVESSEL"), /**
+															* The '<em><b>VESSEL</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #VESSEL_VALUE
+															* @generated
+															* @ordered
+															*/
+	VESSEL(3, "VESSEL", "VESSEL"), /**
+									* The '<em><b>NOTDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #NOTDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>EXPANSION</b></em>' literal object.
@@ -130,7 +86,39 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXPANSION(9, "EXPANSION", "EXPANSION");
+	EXPANSION(5, "EXPANSION", "EXPANSION"), /**
+											* The '<em><b>BASIN</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #BASIN_VALUE
+											* @generated
+											* @ordered
+											*/
+	BASIN(6, "BASIN", "BASIN"), /**
+								* The '<em><b>FEEDANDEXPANSION</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #FEEDANDEXPANSION_VALUE
+								* @generated
+								* @ordered
+								*/
+	FEEDANDEXPANSION(7, "FEEDANDEXPANSION", "FEEDANDEXPANSION"), /**
+																	* The '<em><b>USERDEFINED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #USERDEFINED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	USERDEFINED(8, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>BREAKPRESSURE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #BREAKPRESSURE_VALUE
+													* @generated
+													* @ordered
+													*/
+	BREAKPRESSURE(9, "BREAKPRESSURE", "BREAKPRESSURE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -163,19 +151,19 @@ public enum IfcTankTypeEnum implements Enumerator {
 	public static final int STORAGE_VALUE = 1;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>PRESSUREVESSEL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PRESSUREVESSEL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #PRESSUREVESSEL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int PRESSUREVESSEL_VALUE = 2;
 
 	/**
 	 * The '<em><b>VESSEL</b></em>' literal value.
@@ -193,34 +181,34 @@ public enum IfcTankTypeEnum implements Enumerator {
 	public static final int VESSEL_VALUE = 3;
 
 	/**
-	 * The '<em><b>BREAKPRESSURE</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BREAKPRESSURE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BREAKPRESSURE
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BREAKPRESSURE_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 4;
 
 	/**
-	 * The '<em><b>PRESSUREVESSEL</b></em>' literal value.
+	 * The '<em><b>EXPANSION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PRESSUREVESSEL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>EXPANSION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PRESSUREVESSEL
+	 * @see #EXPANSION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRESSUREVESSEL_VALUE = 5;
+	public static final int EXPANSION_VALUE = 5;
 
 	/**
 	 * The '<em><b>BASIN</b></em>' literal value.
@@ -238,21 +226,6 @@ public enum IfcTankTypeEnum implements Enumerator {
 	public static final int BASIN_VALUE = 6;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 7;
-
-	/**
 	 * The '<em><b>FEEDANDEXPANSION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -265,22 +238,37 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FEEDANDEXPANSION_VALUE = 8;
+	public static final int FEEDANDEXPANSION_VALUE = 7;
 
 	/**
-	 * The '<em><b>EXPANSION</b></em>' literal value.
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EXPANSION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EXPANSION
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXPANSION_VALUE = 9;
+	public static final int USERDEFINED_VALUE = 8;
+
+	/**
+	 * The '<em><b>BREAKPRESSURE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BREAKPRESSURE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BREAKPRESSURE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BREAKPRESSURE_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Tank Type Enum</b></em>' enumerators.
@@ -288,8 +276,8 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTankTypeEnum[] VALUES_ARRAY = new IfcTankTypeEnum[] { NULL, STORAGE, NOTDEFINED, VESSEL,
-			BREAKPRESSURE, PRESSUREVESSEL, BASIN, USERDEFINED, FEEDANDEXPANSION, EXPANSION, };
+	private static final IfcTankTypeEnum[] VALUES_ARRAY = new IfcTankTypeEnum[] { NULL, STORAGE, PRESSUREVESSEL, VESSEL,
+			NOTDEFINED, EXPANSION, BASIN, FEEDANDEXPANSION, USERDEFINED, BREAKPRESSURE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Tank Type Enum</b></em>' enumerators.
@@ -349,22 +337,22 @@ public enum IfcTankTypeEnum implements Enumerator {
 			return NULL;
 		case STORAGE_VALUE:
 			return STORAGE;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case VESSEL_VALUE:
-			return VESSEL;
-		case BREAKPRESSURE_VALUE:
-			return BREAKPRESSURE;
 		case PRESSUREVESSEL_VALUE:
 			return PRESSUREVESSEL;
-		case BASIN_VALUE:
-			return BASIN;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case FEEDANDEXPANSION_VALUE:
-			return FEEDANDEXPANSION;
+		case VESSEL_VALUE:
+			return VESSEL;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case EXPANSION_VALUE:
 			return EXPANSION;
+		case BASIN_VALUE:
+			return BASIN;
+		case FEEDANDEXPANSION_VALUE:
+			return FEEDANDEXPANSION;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case BREAKPRESSURE_VALUE:
+			return BREAKPRESSURE;
 		}
 		return null;
 	}

@@ -43,56 +43,6 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>INCLUDES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INCLUDES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INCLUDES(1, "INCLUDES", "INCLUDES"),
-
-	/**
-	 * The '<em><b>LESSTHAN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LESSTHAN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LESSTHAN(2, "LESSTHAN", "LESSTHAN"),
-
-	/**
-	 * The '<em><b>GREATERTHANOREQUALTO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GREATERTHANOREQUALTO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GREATERTHANOREQUALTO(3, "GREATERTHANOREQUALTO", "GREATERTHANOREQUALTO"),
-
-	/**
-	 * The '<em><b>NOTINCLUDES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTINCLUDES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTINCLUDES(4, "NOTINCLUDES", "NOTINCLUDES"),
-
-	/**
-	 * The '<em><b>EQUALTO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EQUALTO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EQUALTO(5, "EQUALTO", "EQUALTO"),
-
-	/**
 	 * The '<em><b>LESSTHANOREQUALTO</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +50,7 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LESSTHANOREQUALTO(6, "LESSTHANOREQUALTO", "LESSTHANOREQUALTO"),
+	LESSTHANOREQUALTO(1, "LESSTHANOREQUALTO", "LESSTHANOREQUALTO"),
 
 	/**
 	 * The '<em><b>NOTINCLUDEDIN</b></em>' literal object.
@@ -110,7 +60,15 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTINCLUDEDIN(7, "NOTINCLUDEDIN", "NOTINCLUDEDIN"),
+	NOTINCLUDEDIN(2, "NOTINCLUDEDIN", "NOTINCLUDEDIN"), /**
+														* The '<em><b>LESSTHAN</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #LESSTHAN_VALUE
+														* @generated
+														* @ordered
+														*/
+	LESSTHAN(3, "LESSTHAN", "LESSTHAN"),
 
 	/**
 	 * The '<em><b>NOTEQUALTO</b></em>' literal object.
@@ -120,7 +78,23 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTEQUALTO(8, "NOTEQUALTO", "NOTEQUALTO"),
+	NOTEQUALTO(4, "NOTEQUALTO", "NOTEQUALTO"), /**
+												* The '<em><b>EQUALTO</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #EQUALTO_VALUE
+												* @generated
+												* @ordered
+												*/
+	EQUALTO(5, "EQUALTO", "EQUALTO"), /**
+										* The '<em><b>INCLUDES</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #INCLUDES_VALUE
+										* @generated
+										* @ordered
+										*/
+	INCLUDES(6, "INCLUDES", "INCLUDES"),
 
 	/**
 	 * The '<em><b>INCLUDEDIN</b></em>' literal object.
@@ -130,7 +104,7 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INCLUDEDIN(9, "INCLUDEDIN", "INCLUDEDIN"),
+	INCLUDEDIN(7, "INCLUDEDIN", "INCLUDEDIN"),
 
 	/**
 	 * The '<em><b>GREATERTHAN</b></em>' literal object.
@@ -140,7 +114,23 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GREATERTHAN(10, "GREATERTHAN", "GREATERTHAN");
+	GREATERTHAN(8, "GREATERTHAN", "GREATERTHAN"), /**
+													* The '<em><b>GREATERTHANOREQUALTO</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #GREATERTHANOREQUALTO_VALUE
+													* @generated
+													* @ordered
+													*/
+	GREATERTHANOREQUALTO(9, "GREATERTHANOREQUALTO", "GREATERTHANOREQUALTO"), /**
+																				* The '<em><b>NOTINCLUDES</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #NOTINCLUDES_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	NOTINCLUDES(10, "NOTINCLUDES", "NOTINCLUDES");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -158,19 +148,34 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>INCLUDES</b></em>' literal value.
+	 * The '<em><b>LESSTHANOREQUALTO</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>INCLUDES</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>LESSTHANOREQUALTO</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INCLUDES
+	 * @see #LESSTHANOREQUALTO
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INCLUDES_VALUE = 1;
+	public static final int LESSTHANOREQUALTO_VALUE = 1;
+
+	/**
+	 * The '<em><b>NOTINCLUDEDIN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTINCLUDEDIN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTINCLUDEDIN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTINCLUDEDIN_VALUE = 2;
 
 	/**
 	 * The '<em><b>LESSTHAN</b></em>' literal value.
@@ -185,37 +190,22 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LESSTHAN_VALUE = 2;
+	public static final int LESSTHAN_VALUE = 3;
 
 	/**
-	 * The '<em><b>GREATERTHANOREQUALTO</b></em>' literal value.
+	 * The '<em><b>NOTEQUALTO</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>GREATERTHANOREQUALTO</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTEQUALTO</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GREATERTHANOREQUALTO
+	 * @see #NOTEQUALTO
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GREATERTHANOREQUALTO_VALUE = 3;
-
-	/**
-	 * The '<em><b>NOTINCLUDES</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTINCLUDES</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTINCLUDES
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTINCLUDES_VALUE = 4;
+	public static final int NOTEQUALTO_VALUE = 4;
 
 	/**
 	 * The '<em><b>EQUALTO</b></em>' literal value.
@@ -233,49 +223,19 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	public static final int EQUALTO_VALUE = 5;
 
 	/**
-	 * The '<em><b>LESSTHANOREQUALTO</b></em>' literal value.
+	 * The '<em><b>INCLUDES</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>LESSTHANOREQUALTO</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>INCLUDES</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LESSTHANOREQUALTO
+	 * @see #INCLUDES
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LESSTHANOREQUALTO_VALUE = 6;
-
-	/**
-	 * The '<em><b>NOTINCLUDEDIN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTINCLUDEDIN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTINCLUDEDIN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTINCLUDEDIN_VALUE = 7;
-
-	/**
-	 * The '<em><b>NOTEQUALTO</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTEQUALTO</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTEQUALTO
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTEQUALTO_VALUE = 8;
+	public static final int INCLUDES_VALUE = 6;
 
 	/**
 	 * The '<em><b>INCLUDEDIN</b></em>' literal value.
@@ -290,7 +250,7 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INCLUDEDIN_VALUE = 9;
+	public static final int INCLUDEDIN_VALUE = 7;
 
 	/**
 	 * The '<em><b>GREATERTHAN</b></em>' literal value.
@@ -305,7 +265,37 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GREATERTHAN_VALUE = 10;
+	public static final int GREATERTHAN_VALUE = 8;
+
+	/**
+	 * The '<em><b>GREATERTHANOREQUALTO</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GREATERTHANOREQUALTO</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GREATERTHANOREQUALTO
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GREATERTHANOREQUALTO_VALUE = 9;
+
+	/**
+	 * The '<em><b>NOTINCLUDES</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTINCLUDES</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTINCLUDES
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTINCLUDES_VALUE = 10;
 
 	/**
 	 * An array of all the '<em><b>Ifc Benchmark Enum</b></em>' enumerators.
@@ -313,9 +303,9 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBenchmarkEnum[] VALUES_ARRAY = new IfcBenchmarkEnum[] { NULL, INCLUDES, LESSTHAN,
-			GREATERTHANOREQUALTO, NOTINCLUDES, EQUALTO, LESSTHANOREQUALTO, NOTINCLUDEDIN, NOTEQUALTO, INCLUDEDIN,
-			GREATERTHAN, };
+	private static final IfcBenchmarkEnum[] VALUES_ARRAY = new IfcBenchmarkEnum[] { NULL, LESSTHANOREQUALTO,
+			NOTINCLUDEDIN, LESSTHAN, NOTEQUALTO, EQUALTO, INCLUDES, INCLUDEDIN, GREATERTHAN, GREATERTHANOREQUALTO,
+			NOTINCLUDES, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Benchmark Enum</b></em>' enumerators.
@@ -373,26 +363,26 @@ public enum IfcBenchmarkEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case INCLUDES_VALUE:
-			return INCLUDES;
-		case LESSTHAN_VALUE:
-			return LESSTHAN;
-		case GREATERTHANOREQUALTO_VALUE:
-			return GREATERTHANOREQUALTO;
-		case NOTINCLUDES_VALUE:
-			return NOTINCLUDES;
-		case EQUALTO_VALUE:
-			return EQUALTO;
 		case LESSTHANOREQUALTO_VALUE:
 			return LESSTHANOREQUALTO;
 		case NOTINCLUDEDIN_VALUE:
 			return NOTINCLUDEDIN;
+		case LESSTHAN_VALUE:
+			return LESSTHAN;
 		case NOTEQUALTO_VALUE:
 			return NOTEQUALTO;
+		case EQUALTO_VALUE:
+			return EQUALTO;
+		case INCLUDES_VALUE:
+			return INCLUDES;
 		case INCLUDEDIN_VALUE:
 			return INCLUDEDIN;
 		case GREATERTHAN_VALUE:
 			return GREATERTHAN;
+		case GREATERTHANOREQUALTO_VALUE:
+			return GREATERTHANOREQUALTO;
+		case NOTINCLUDES_VALUE:
+			return NOTINCLUDES;
 		}
 		return null;
 	}

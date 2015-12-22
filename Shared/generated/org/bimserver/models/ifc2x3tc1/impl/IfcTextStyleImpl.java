@@ -64,7 +64,8 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 * @generated
 	 */
 	public IfcCharacterStyleSelect getTextCharacterAppearance() {
-		return (IfcCharacterStyleSelect) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE, true);
+		return (IfcCharacterStyleSelect) eGet(Ifc2x3tc1Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE,
+				true);
 	}
 
 	/**

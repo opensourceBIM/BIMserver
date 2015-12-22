@@ -43,26 +43,6 @@ public enum IfcConnectionTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>ATPATH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ATPATH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ATPATH(1, "ATPATH", "ATPATH"),
-
-	/**
-	 * The '<em><b>ATEND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ATEND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ATEND(2, "ATEND", "ATEND"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,23 @@ public enum IfcConnectionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>ATEND</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #ATEND_VALUE
+												* @generated
+												* @ordered
+												*/
+	ATEND(2, "ATEND", "ATEND"), /**
+								* The '<em><b>ATPATH</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #ATPATH_VALUE
+								* @generated
+								* @ordered
+								*/
+	ATPATH(3, "ATPATH", "ATPATH"),
 
 	/**
 	 * The '<em><b>ATSTART</b></em>' literal object.
@@ -98,19 +94,19 @@ public enum IfcConnectionTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>ATPATH</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ATPATH</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ATPATH
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ATPATH_VALUE = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>ATEND</b></em>' literal value.
@@ -128,19 +124,19 @@ public enum IfcConnectionTypeEnum implements Enumerator {
 	public static final int ATEND_VALUE = 2;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>ATPATH</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ATPATH</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #ATPATH
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int ATPATH_VALUE = 3;
 
 	/**
 	 * The '<em><b>ATSTART</b></em>' literal value.
@@ -163,7 +159,8 @@ public enum IfcConnectionTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcConnectionTypeEnum[] VALUES_ARRAY = new IfcConnectionTypeEnum[] { NULL, ATPATH, ATEND, NOTDEFINED, ATSTART, };
+	private static final IfcConnectionTypeEnum[] VALUES_ARRAY = new IfcConnectionTypeEnum[] { NULL, NOTDEFINED, ATEND,
+			ATPATH, ATSTART, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Connection Type Enum</b></em>' enumerators.
@@ -221,12 +218,12 @@ public enum IfcConnectionTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case ATPATH_VALUE:
-			return ATPATH;
-		case ATEND_VALUE:
-			return ATEND;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case ATEND_VALUE:
+			return ATEND;
+		case ATPATH_VALUE:
+			return ATPATH;
 		case ATSTART_VALUE:
 			return ATSTART;
 		}

@@ -43,16 +43,6 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>CONSUMED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONSUMED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONSUMED(1, "CONSUMED", "CONSUMED"),
-
-	/**
 	 * The '<em><b>NOTCONSUMED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,47 +50,7 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTCONSUMED(2, "NOTCONSUMED", "NOTCONSUMED"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PARTIALLYCONSUMED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PARTIALLYCONSUMED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PARTIALLYCONSUMED(4, "PARTIALLYCONSUMED", "PARTIALLYCONSUMED"),
-
-	/**
-	 * The '<em><b>OCCUPIED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OCCUPIED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OCCUPIED(5, "OCCUPIED", "OCCUPIED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
+	NOTCONSUMED(1, "NOTCONSUMED", "NOTCONSUMED"),
 
 	/**
 	 * The '<em><b>NOTOCCUPIED</b></em>' literal object.
@@ -110,7 +60,15 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTOCCUPIED(7, "NOTOCCUPIED", "NOTOCCUPIED"),
+	NOTOCCUPIED(2, "NOTOCCUPIED", "NOTOCCUPIED"), /**
+													* The '<em><b>NOTDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #NOTDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>PARTIALLYOCCUPIED</b></em>' literal object.
@@ -120,7 +78,39 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PARTIALLYOCCUPIED(8, "PARTIALLYOCCUPIED", "PARTIALLYOCCUPIED");
+	PARTIALLYOCCUPIED(4, "PARTIALLYOCCUPIED", "PARTIALLYOCCUPIED"), /**
+																	* The '<em><b>CONSUMED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #CONSUMED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	CONSUMED(5, "CONSUMED", "CONSUMED"), /**
+											* The '<em><b>PARTIALLYCONSUMED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #PARTIALLYCONSUMED_VALUE
+											* @generated
+											* @ordered
+											*/
+	PARTIALLYCONSUMED(6, "PARTIALLYCONSUMED", "PARTIALLYCONSUMED"), /**
+																	* The '<em><b>OCCUPIED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #OCCUPIED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	OCCUPIED(7, "OCCUPIED", "OCCUPIED"), /**
+											* The '<em><b>USERDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #USERDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	USERDEFINED(8, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -138,21 +128,6 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>CONSUMED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CONSUMED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CONSUMED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONSUMED_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTCONSUMED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -165,7 +140,22 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTCONSUMED_VALUE = 2;
+	public static final int NOTCONSUMED_VALUE = 1;
+
+	/**
+	 * The '<em><b>NOTOCCUPIED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTOCCUPIED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTOCCUPIED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTOCCUPIED_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -183,6 +173,36 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
+	 * The '<em><b>PARTIALLYOCCUPIED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PARTIALLYOCCUPIED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PARTIALLYOCCUPIED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PARTIALLYOCCUPIED_VALUE = 4;
+
+	/**
+	 * The '<em><b>CONSUMED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONSUMED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONSUMED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONSUMED_VALUE = 5;
+
+	/**
 	 * The '<em><b>PARTIALLYCONSUMED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -195,7 +215,7 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PARTIALLYCONSUMED_VALUE = 4;
+	public static final int PARTIALLYCONSUMED_VALUE = 6;
 
 	/**
 	 * The '<em><b>OCCUPIED</b></em>' literal value.
@@ -210,7 +230,7 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OCCUPIED_VALUE = 5;
+	public static final int OCCUPIED_VALUE = 7;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -225,37 +245,7 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 6;
-
-	/**
-	 * The '<em><b>NOTOCCUPIED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTOCCUPIED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTOCCUPIED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTOCCUPIED_VALUE = 7;
-
-	/**
-	 * The '<em><b>PARTIALLYOCCUPIED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PARTIALLYOCCUPIED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PARTIALLYOCCUPIED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PARTIALLYOCCUPIED_VALUE = 8;
+	public static final int USERDEFINED_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Resource Consumption Enum</b></em>' enumerators.
@@ -263,8 +253,9 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcResourceConsumptionEnum[] VALUES_ARRAY = new IfcResourceConsumptionEnum[] { NULL, CONSUMED, NOTCONSUMED, NOTDEFINED, PARTIALLYCONSUMED, OCCUPIED, USERDEFINED, NOTOCCUPIED,
-			PARTIALLYOCCUPIED, };
+	private static final IfcResourceConsumptionEnum[] VALUES_ARRAY = new IfcResourceConsumptionEnum[] { NULL,
+			NOTCONSUMED, NOTOCCUPIED, NOTDEFINED, PARTIALLYOCCUPIED, CONSUMED, PARTIALLYCONSUMED, OCCUPIED,
+			USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Resource Consumption Enum</b></em>' enumerators.
@@ -272,7 +263,8 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcResourceConsumptionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcResourceConsumptionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Resource Consumption Enum</b></em>' literal with the specified literal value.
@@ -322,22 +314,22 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case CONSUMED_VALUE:
-			return CONSUMED;
 		case NOTCONSUMED_VALUE:
 			return NOTCONSUMED;
+		case NOTOCCUPIED_VALUE:
+			return NOTOCCUPIED;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case PARTIALLYOCCUPIED_VALUE:
+			return PARTIALLYOCCUPIED;
+		case CONSUMED_VALUE:
+			return CONSUMED;
 		case PARTIALLYCONSUMED_VALUE:
 			return PARTIALLYCONSUMED;
 		case OCCUPIED_VALUE:
 			return OCCUPIED;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case NOTOCCUPIED_VALUE:
-			return NOTOCCUPIED;
-		case PARTIALLYOCCUPIED_VALUE:
-			return PARTIALLYOCCUPIED;
 		}
 		return null;
 	}

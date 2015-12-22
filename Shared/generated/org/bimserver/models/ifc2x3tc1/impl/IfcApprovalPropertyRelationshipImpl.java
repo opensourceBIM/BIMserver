@@ -75,7 +75,8 @@ public class IfcApprovalPropertyRelationshipImpl extends IdEObjectImpl implement
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getApprovedProperties() {
-		return (EList<IfcProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVED_PROPERTIES, true);
+		return (EList<IfcProperty>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_APPROVAL_PROPERTY_RELATIONSHIP__APPROVED_PROPERTIES, true);
 	}
 
 	/**

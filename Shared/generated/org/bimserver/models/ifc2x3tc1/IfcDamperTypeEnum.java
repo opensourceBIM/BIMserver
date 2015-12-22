@@ -43,126 +43,6 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>BLASTDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BLASTDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BLASTDAMPER(1, "BLASTDAMPER", "BLASTDAMPER"),
-
-	/**
-	 * The '<em><b>FIRESMOKEDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIRESMOKEDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIRESMOKEDAMPER(2, "FIRESMOKEDAMPER", "FIRESMOKEDAMPER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>BALANCINGDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BALANCINGDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BALANCINGDAMPER(4, "BALANCINGDAMPER", "BALANCINGDAMPER"),
-
-	/**
-	 * The '<em><b>FIREDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIREDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIREDAMPER(5, "FIREDAMPER", "FIREDAMPER"),
-
-	/**
-	 * The '<em><b>SMOKEDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SMOKEDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SMOKEDAMPER(6, "SMOKEDAMPER", "SMOKEDAMPER"),
-
-	/**
-	 * The '<em><b>RELIEFDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RELIEFDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RELIEFDAMPER(7, "RELIEFDAMPER", "RELIEFDAMPER"),
-
-	/**
-	 * The '<em><b>GRAVITYRELIEFDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GRAVITYRELIEFDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GRAVITYRELIEFDAMPER(8, "GRAVITYRELIEFDAMPER", "GRAVITYRELIEFDAMPER"),
-
-	/**
-	 * The '<em><b>BACKDRAFTDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BACKDRAFTDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BACKDRAFTDAMPER(9, "BACKDRAFTDAMPER", "BACKDRAFTDAMPER"),
-
-	/**
-	 * The '<em><b>GRAVITYDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GRAVITYDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GRAVITYDAMPER(10, "GRAVITYDAMPER", "GRAVITYDAMPER"),
-
-	/**
-	 * The '<em><b>FUMEHOODEXHAUST</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FUMEHOODEXHAUST_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FUMEHOODEXHAUST(11, "FUMEHOODEXHAUST", "FUMEHOODEXHAUST"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(12, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>CONTROLDAMPER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -170,7 +50,103 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONTROLDAMPER(13, "CONTROLDAMPER", "CONTROLDAMPER");
+	CONTROLDAMPER(1, "CONTROLDAMPER", "CONTROLDAMPER"), /**
+														* The '<em><b>FUMEHOODEXHAUST</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #FUMEHOODEXHAUST_VALUE
+														* @generated
+														* @ordered
+														*/
+	FUMEHOODEXHAUST(2, "FUMEHOODEXHAUST", "FUMEHOODEXHAUST"), /**
+																* The '<em><b>BALANCINGDAMPER</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #BALANCINGDAMPER_VALUE
+																* @generated
+																* @ordered
+																*/
+	BALANCINGDAMPER(3, "BALANCINGDAMPER", "BALANCINGDAMPER"), /**
+																* The '<em><b>GRAVITYRELIEFDAMPER</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #GRAVITYRELIEFDAMPER_VALUE
+																* @generated
+																* @ordered
+																*/
+	GRAVITYRELIEFDAMPER(4, "GRAVITYRELIEFDAMPER", "GRAVITYRELIEFDAMPER"), /**
+																			* The '<em><b>USERDEFINED</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #USERDEFINED_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>FIREDAMPER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #FIREDAMPER_VALUE
+													* @generated
+													* @ordered
+													*/
+	FIREDAMPER(6, "FIREDAMPER", "FIREDAMPER"), /**
+												* The '<em><b>NOTDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #NOTDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	NOTDEFINED(7, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>GRAVITYDAMPER</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #GRAVITYDAMPER_VALUE
+												* @generated
+												* @ordered
+												*/
+	GRAVITYDAMPER(8, "GRAVITYDAMPER", "GRAVITYDAMPER"), /**
+														* The '<em><b>BLASTDAMPER</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #BLASTDAMPER_VALUE
+														* @generated
+														* @ordered
+														*/
+	BLASTDAMPER(9, "BLASTDAMPER", "BLASTDAMPER"), /**
+													* The '<em><b>BACKDRAFTDAMPER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #BACKDRAFTDAMPER_VALUE
+													* @generated
+													* @ordered
+													*/
+	BACKDRAFTDAMPER(10, "BACKDRAFTDAMPER", "BACKDRAFTDAMPER"), /**
+																* The '<em><b>FIRESMOKEDAMPER</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #FIRESMOKEDAMPER_VALUE
+																* @generated
+																* @ordered
+																*/
+	FIRESMOKEDAMPER(11, "FIRESMOKEDAMPER", "FIRESMOKEDAMPER"), /**
+																* The '<em><b>RELIEFDAMPER</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #RELIEFDAMPER_VALUE
+																* @generated
+																* @ordered
+																*/
+	RELIEFDAMPER(12, "RELIEFDAMPER", "RELIEFDAMPER"), /**
+														* The '<em><b>SMOKEDAMPER</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #SMOKEDAMPER_VALUE
+														* @generated
+														* @ordered
+														*/
+	SMOKEDAMPER(13, "SMOKEDAMPER", "SMOKEDAMPER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -188,154 +164,19 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>BLASTDAMPER</b></em>' literal value.
+	 * The '<em><b>CONTROLDAMPER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BLASTDAMPER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CONTROLDAMPER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BLASTDAMPER
+	 * @see #CONTROLDAMPER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BLASTDAMPER_VALUE = 1;
-
-	/**
-	 * The '<em><b>FIRESMOKEDAMPER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FIRESMOKEDAMPER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FIRESMOKEDAMPER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FIRESMOKEDAMPER_VALUE = 2;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 3;
-
-	/**
-	 * The '<em><b>BALANCINGDAMPER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BALANCINGDAMPER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BALANCINGDAMPER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BALANCINGDAMPER_VALUE = 4;
-
-	/**
-	 * The '<em><b>FIREDAMPER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FIREDAMPER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FIREDAMPER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FIREDAMPER_VALUE = 5;
-
-	/**
-	 * The '<em><b>SMOKEDAMPER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SMOKEDAMPER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SMOKEDAMPER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SMOKEDAMPER_VALUE = 6;
-
-	/**
-	 * The '<em><b>RELIEFDAMPER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>RELIEFDAMPER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #RELIEFDAMPER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RELIEFDAMPER_VALUE = 7;
-
-	/**
-	 * The '<em><b>GRAVITYRELIEFDAMPER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GRAVITYRELIEFDAMPER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GRAVITYRELIEFDAMPER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GRAVITYRELIEFDAMPER_VALUE = 8;
-
-	/**
-	 * The '<em><b>BACKDRAFTDAMPER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BACKDRAFTDAMPER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BACKDRAFTDAMPER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BACKDRAFTDAMPER_VALUE = 9;
-
-	/**
-	 * The '<em><b>GRAVITYDAMPER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GRAVITYDAMPER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GRAVITYDAMPER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GRAVITYDAMPER_VALUE = 10;
+	public static final int CONTROLDAMPER_VALUE = 1;
 
 	/**
 	 * The '<em><b>FUMEHOODEXHAUST</b></em>' literal value.
@@ -350,7 +191,37 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FUMEHOODEXHAUST_VALUE = 11;
+	public static final int FUMEHOODEXHAUST_VALUE = 2;
+
+	/**
+	 * The '<em><b>BALANCINGDAMPER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BALANCINGDAMPER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BALANCINGDAMPER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BALANCINGDAMPER_VALUE = 3;
+
+	/**
+	 * The '<em><b>GRAVITYRELIEFDAMPER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GRAVITYRELIEFDAMPER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GRAVITYRELIEFDAMPER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GRAVITYRELIEFDAMPER_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -365,22 +236,127 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 12;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
-	 * The '<em><b>CONTROLDAMPER</b></em>' literal value.
+	 * The '<em><b>FIREDAMPER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CONTROLDAMPER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>FIREDAMPER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONTROLDAMPER
+	 * @see #FIREDAMPER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTROLDAMPER_VALUE = 13;
+	public static final int FIREDAMPER_VALUE = 6;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 7;
+
+	/**
+	 * The '<em><b>GRAVITYDAMPER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GRAVITYDAMPER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GRAVITYDAMPER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GRAVITYDAMPER_VALUE = 8;
+
+	/**
+	 * The '<em><b>BLASTDAMPER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BLASTDAMPER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BLASTDAMPER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BLASTDAMPER_VALUE = 9;
+
+	/**
+	 * The '<em><b>BACKDRAFTDAMPER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BACKDRAFTDAMPER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BACKDRAFTDAMPER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BACKDRAFTDAMPER_VALUE = 10;
+
+	/**
+	 * The '<em><b>FIRESMOKEDAMPER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FIRESMOKEDAMPER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FIRESMOKEDAMPER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FIRESMOKEDAMPER_VALUE = 11;
+
+	/**
+	 * The '<em><b>RELIEFDAMPER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>RELIEFDAMPER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RELIEFDAMPER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RELIEFDAMPER_VALUE = 12;
+
+	/**
+	 * The '<em><b>SMOKEDAMPER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SMOKEDAMPER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SMOKEDAMPER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SMOKEDAMPER_VALUE = 13;
 
 	/**
 	 * An array of all the '<em><b>Ifc Damper Type Enum</b></em>' enumerators.
@@ -388,8 +364,9 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDamperTypeEnum[] VALUES_ARRAY = new IfcDamperTypeEnum[] { NULL, BLASTDAMPER, FIRESMOKEDAMPER, NOTDEFINED, BALANCINGDAMPER, FIREDAMPER, SMOKEDAMPER, RELIEFDAMPER, GRAVITYRELIEFDAMPER,
-			BACKDRAFTDAMPER, GRAVITYDAMPER, FUMEHOODEXHAUST, USERDEFINED, CONTROLDAMPER, };
+	private static final IfcDamperTypeEnum[] VALUES_ARRAY = new IfcDamperTypeEnum[] { NULL, CONTROLDAMPER,
+			FUMEHOODEXHAUST, BALANCINGDAMPER, GRAVITYRELIEFDAMPER, USERDEFINED, FIREDAMPER, NOTDEFINED, GRAVITYDAMPER,
+			BLASTDAMPER, BACKDRAFTDAMPER, FIRESMOKEDAMPER, RELIEFDAMPER, SMOKEDAMPER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Damper Type Enum</b></em>' enumerators.
@@ -447,32 +424,32 @@ public enum IfcDamperTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case BLASTDAMPER_VALUE:
-			return BLASTDAMPER;
-		case FIRESMOKEDAMPER_VALUE:
-			return FIRESMOKEDAMPER;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case BALANCINGDAMPER_VALUE:
-			return BALANCINGDAMPER;
-		case FIREDAMPER_VALUE:
-			return FIREDAMPER;
-		case SMOKEDAMPER_VALUE:
-			return SMOKEDAMPER;
-		case RELIEFDAMPER_VALUE:
-			return RELIEFDAMPER;
-		case GRAVITYRELIEFDAMPER_VALUE:
-			return GRAVITYRELIEFDAMPER;
-		case BACKDRAFTDAMPER_VALUE:
-			return BACKDRAFTDAMPER;
-		case GRAVITYDAMPER_VALUE:
-			return GRAVITYDAMPER;
-		case FUMEHOODEXHAUST_VALUE:
-			return FUMEHOODEXHAUST;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case CONTROLDAMPER_VALUE:
 			return CONTROLDAMPER;
+		case FUMEHOODEXHAUST_VALUE:
+			return FUMEHOODEXHAUST;
+		case BALANCINGDAMPER_VALUE:
+			return BALANCINGDAMPER;
+		case GRAVITYRELIEFDAMPER_VALUE:
+			return GRAVITYRELIEFDAMPER;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case FIREDAMPER_VALUE:
+			return FIREDAMPER;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case GRAVITYDAMPER_VALUE:
+			return GRAVITYDAMPER;
+		case BLASTDAMPER_VALUE:
+			return BLASTDAMPER;
+		case BACKDRAFTDAMPER_VALUE:
+			return BACKDRAFTDAMPER;
+		case FIRESMOKEDAMPER_VALUE:
+			return FIRESMOKEDAMPER;
+		case RELIEFDAMPER_VALUE:
+			return RELIEFDAMPER;
+		case SMOKEDAMPER_VALUE:
+			return SMOKEDAMPER;
 		}
 		return null;
 	}

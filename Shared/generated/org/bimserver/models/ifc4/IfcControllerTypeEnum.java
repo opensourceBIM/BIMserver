@@ -43,36 +43,6 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>MULTIPOSITION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MULTIPOSITION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MULTIPOSITION(1, "MULTIPOSITION", "MULTIPOSITION"),
-
-	/**
-	 * The '<em><b>TWOPOSITION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWOPOSITION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWOPOSITION(2, "TWOPOSITION", "TWOPOSITION"),
-
-	/**
-	 * The '<em><b>PROGRAMMABLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROGRAMMABLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROGRAMMABLE(3, "PROGRAMMABLE", "PROGRAMMABLE"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +50,7 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>FLOATING</b></em>' literal object.
@@ -90,17 +60,15 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLOATING(5, "FLOATING", "FLOATING"),
-
-	/**
-	 * The '<em><b>PROPORTIONAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROPORTIONAL(6, "PROPORTIONAL", "PROPORTIONAL"),
+	FLOATING(2, "FLOATING", "FLOATING"), /**
+											* The '<em><b>TWOPOSITION</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #TWOPOSITION_VALUE
+											* @generated
+											* @ordered
+											*/
+	TWOPOSITION(3, "TWOPOSITION", "TWOPOSITION"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -110,7 +78,31 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>PROPORTIONAL</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #PROPORTIONAL_VALUE
+													* @generated
+													* @ordered
+													*/
+	PROPORTIONAL(5, "PROPORTIONAL", "PROPORTIONAL"), /**
+														* The '<em><b>PROGRAMMABLE</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #PROGRAMMABLE_VALUE
+														* @generated
+														* @ordered
+														*/
+	PROGRAMMABLE(6, "PROGRAMMABLE", "PROGRAMMABLE"), /**
+														* The '<em><b>MULTIPOSITION</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #MULTIPOSITION_VALUE
+														* @generated
+														* @ordered
+														*/
+	MULTIPOSITION(7, "MULTIPOSITION", "MULTIPOSITION");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,51 +120,6 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>MULTIPOSITION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MULTIPOSITION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MULTIPOSITION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MULTIPOSITION_VALUE = 1;
-
-	/**
-	 * The '<em><b>TWOPOSITION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TWOPOSITION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TWOPOSITION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TWOPOSITION_VALUE = 2;
-
-	/**
-	 * The '<em><b>PROGRAMMABLE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PROGRAMMABLE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PROGRAMMABLE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PROGRAMMABLE_VALUE = 3;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -185,7 +132,7 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>FLOATING</b></em>' literal value.
@@ -200,22 +147,22 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOATING_VALUE = 5;
+	public static final int FLOATING_VALUE = 2;
 
 	/**
-	 * The '<em><b>PROPORTIONAL</b></em>' literal value.
+	 * The '<em><b>TWOPOSITION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PROPORTIONAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TWOPOSITION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONAL
+	 * @see #TWOPOSITION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROPORTIONAL_VALUE = 6;
+	public static final int TWOPOSITION_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -230,7 +177,52 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 7;
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>PROPORTIONAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PROPORTIONAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PROPORTIONAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PROPORTIONAL_VALUE = 5;
+
+	/**
+	 * The '<em><b>PROGRAMMABLE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PROGRAMMABLE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PROGRAMMABLE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PROGRAMMABLE_VALUE = 6;
+
+	/**
+	 * The '<em><b>MULTIPOSITION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MULTIPOSITION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MULTIPOSITION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MULTIPOSITION_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Controller Type Enum</b></em>' enumerators.
@@ -238,8 +230,8 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcControllerTypeEnum[] VALUES_ARRAY = new IfcControllerTypeEnum[] { NULL, MULTIPOSITION,
-			TWOPOSITION, PROGRAMMABLE, NOTDEFINED, FLOATING, PROPORTIONAL, USERDEFINED, };
+	private static final IfcControllerTypeEnum[] VALUES_ARRAY = new IfcControllerTypeEnum[] { NULL, NOTDEFINED,
+			FLOATING, TWOPOSITION, USERDEFINED, PROPORTIONAL, PROGRAMMABLE, MULTIPOSITION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Controller Type Enum</b></em>' enumerators.
@@ -297,20 +289,20 @@ public enum IfcControllerTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case MULTIPOSITION_VALUE:
-			return MULTIPOSITION;
-		case TWOPOSITION_VALUE:
-			return TWOPOSITION;
-		case PROGRAMMABLE_VALUE:
-			return PROGRAMMABLE;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case FLOATING_VALUE:
 			return FLOATING;
-		case PROPORTIONAL_VALUE:
-			return PROPORTIONAL;
+		case TWOPOSITION_VALUE:
+			return TWOPOSITION;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case PROPORTIONAL_VALUE:
+			return PROPORTIONAL;
+		case PROGRAMMABLE_VALUE:
+			return PROGRAMMABLE;
+		case MULTIPOSITION_VALUE:
+			return MULTIPOSITION;
 		}
 		return null;
 	}

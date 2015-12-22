@@ -43,26 +43,6 @@ public enum IfcRailingTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>HANDRAIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HANDRAIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HANDRAIL(2, "HANDRAIL", "HANDRAIL"),
-
-	/**
 	 * The '<em><b>GUARDRAIL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,23 @@ public enum IfcRailingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GUARDRAIL(3, "GUARDRAIL", "GUARDRAIL"),
+	GUARDRAIL(1, "GUARDRAIL", "GUARDRAIL"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>HANDRAIL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #HANDRAIL_VALUE
+												* @generated
+												* @ordered
+												*/
+	HANDRAIL(3, "HANDRAIL", "HANDRAIL"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -108,6 +104,21 @@ public enum IfcRailingTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>GUARDRAIL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GUARDRAIL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GUARDRAIL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GUARDRAIL_VALUE = 1;
+
+	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -120,7 +131,7 @@ public enum IfcRailingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>HANDRAIL</b></em>' literal value.
@@ -135,22 +146,7 @@ public enum IfcRailingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HANDRAIL_VALUE = 2;
-
-	/**
-	 * The '<em><b>GUARDRAIL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GUARDRAIL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GUARDRAIL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GUARDRAIL_VALUE = 3;
+	public static final int HANDRAIL_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -188,7 +184,8 @@ public enum IfcRailingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRailingTypeEnum[] VALUES_ARRAY = new IfcRailingTypeEnum[] { NULL, NOTDEFINED, HANDRAIL, GUARDRAIL, USERDEFINED, BALUSTRADE, };
+	private static final IfcRailingTypeEnum[] VALUES_ARRAY = new IfcRailingTypeEnum[] { NULL, GUARDRAIL, NOTDEFINED,
+			HANDRAIL, USERDEFINED, BALUSTRADE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Railing Type Enum</b></em>' enumerators.
@@ -246,12 +243,12 @@ public enum IfcRailingTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
+		case GUARDRAIL_VALUE:
+			return GUARDRAIL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case HANDRAIL_VALUE:
 			return HANDRAIL;
-		case GUARDRAIL_VALUE:
-			return GUARDRAIL;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case BALUSTRADE_VALUE:

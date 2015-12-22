@@ -53,26 +53,6 @@ public enum IfcThermalLoadTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>RADIANT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RADIANT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RADIANT(2, "RADIANT", "RADIANT"),
-
-	/**
-	 * The '<em><b>LATENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LATENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LATENT(3, "LATENT", "LATENT"),
-
-	/**
 	 * The '<em><b>SENSIBLE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +60,23 @@ public enum IfcThermalLoadTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SENSIBLE(4, "SENSIBLE", "SENSIBLE");
+	SENSIBLE(2, "SENSIBLE", "SENSIBLE"), /**
+											* The '<em><b>LATENT</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #LATENT_VALUE
+											* @generated
+											* @ordered
+											*/
+	LATENT(3, "LATENT", "LATENT"), /**
+									* The '<em><b>RADIANT</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #RADIANT_VALUE
+									* @generated
+									* @ordered
+									*/
+	RADIANT(4, "RADIANT", "RADIANT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -113,19 +109,19 @@ public enum IfcThermalLoadTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>RADIANT</b></em>' literal value.
+	 * The '<em><b>SENSIBLE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>RADIANT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SENSIBLE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RADIANT
+	 * @see #SENSIBLE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RADIANT_VALUE = 2;
+	public static final int SENSIBLE_VALUE = 2;
 
 	/**
 	 * The '<em><b>LATENT</b></em>' literal value.
@@ -143,19 +139,19 @@ public enum IfcThermalLoadTypeEnum implements Enumerator {
 	public static final int LATENT_VALUE = 3;
 
 	/**
-	 * The '<em><b>SENSIBLE</b></em>' literal value.
+	 * The '<em><b>RADIANT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SENSIBLE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>RADIANT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SENSIBLE
+	 * @see #RADIANT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SENSIBLE_VALUE = 4;
+	public static final int RADIANT_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Thermal Load Type Enum</b></em>' enumerators.
@@ -163,7 +159,8 @@ public enum IfcThermalLoadTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcThermalLoadTypeEnum[] VALUES_ARRAY = new IfcThermalLoadTypeEnum[] { NULL, NOTDEFINED, RADIANT, LATENT, SENSIBLE, };
+	private static final IfcThermalLoadTypeEnum[] VALUES_ARRAY = new IfcThermalLoadTypeEnum[] { NULL, NOTDEFINED,
+			SENSIBLE, LATENT, RADIANT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Thermal Load Type Enum</b></em>' enumerators.
@@ -223,12 +220,12 @@ public enum IfcThermalLoadTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case RADIANT_VALUE:
-			return RADIANT;
-		case LATENT_VALUE:
-			return LATENT;
 		case SENSIBLE_VALUE:
 			return SENSIBLE;
+		case LATENT_VALUE:
+			return LATENT;
+		case RADIANT_VALUE:
+			return RADIANT;
 		}
 		return null;
 	}

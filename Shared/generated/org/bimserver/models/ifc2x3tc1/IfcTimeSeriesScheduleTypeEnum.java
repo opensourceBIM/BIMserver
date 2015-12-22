@@ -63,36 +63,6 @@ public enum IfcTimeSeriesScheduleTypeEnum implements Enumerator {
 	WEEKLY(2, "WEEKLY", "WEEKLY"),
 
 	/**
-	 * The '<em><b>MONTHLY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MONTHLY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MONTHLY(3, "MONTHLY", "MONTHLY"),
-
-	/**
-	 * The '<em><b>DAILY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DAILY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DAILY(4, "DAILY", "DAILY"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>ANNUAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +70,31 @@ public enum IfcTimeSeriesScheduleTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ANNUAL(6, "ANNUAL", "ANNUAL");
+	ANNUAL(3, "ANNUAL", "ANNUAL"), /**
+									* The '<em><b>DAILY</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #DAILY_VALUE
+									* @generated
+									* @ordered
+									*/
+	DAILY(4, "DAILY", "DAILY"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>MONTHLY</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #MONTHLY_VALUE
+													* @generated
+													* @ordered
+													*/
+	MONTHLY(6, "MONTHLY", "MONTHLY");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,19 +142,19 @@ public enum IfcTimeSeriesScheduleTypeEnum implements Enumerator {
 	public static final int WEEKLY_VALUE = 2;
 
 	/**
-	 * The '<em><b>MONTHLY</b></em>' literal value.
+	 * The '<em><b>ANNUAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>MONTHLY</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ANNUAL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MONTHLY
+	 * @see #ANNUAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONTHLY_VALUE = 3;
+	public static final int ANNUAL_VALUE = 3;
 
 	/**
 	 * The '<em><b>DAILY</b></em>' literal value.
@@ -193,19 +187,19 @@ public enum IfcTimeSeriesScheduleTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 5;
 
 	/**
-	 * The '<em><b>ANNUAL</b></em>' literal value.
+	 * The '<em><b>MONTHLY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ANNUAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>MONTHLY</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ANNUAL
+	 * @see #MONTHLY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ANNUAL_VALUE = 6;
+	public static final int MONTHLY_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Time Series Schedule Type Enum</b></em>' enumerators.
@@ -213,7 +207,8 @@ public enum IfcTimeSeriesScheduleTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTimeSeriesScheduleTypeEnum[] VALUES_ARRAY = new IfcTimeSeriesScheduleTypeEnum[] { NULL, NOTDEFINED, WEEKLY, MONTHLY, DAILY, USERDEFINED, ANNUAL, };
+	private static final IfcTimeSeriesScheduleTypeEnum[] VALUES_ARRAY = new IfcTimeSeriesScheduleTypeEnum[] { NULL,
+			NOTDEFINED, WEEKLY, ANNUAL, DAILY, USERDEFINED, MONTHLY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Time Series Schedule Type Enum</b></em>' enumerators.
@@ -221,7 +216,8 @@ public enum IfcTimeSeriesScheduleTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcTimeSeriesScheduleTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcTimeSeriesScheduleTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Time Series Schedule Type Enum</b></em>' literal with the specified literal value.
@@ -275,14 +271,14 @@ public enum IfcTimeSeriesScheduleTypeEnum implements Enumerator {
 			return NOTDEFINED;
 		case WEEKLY_VALUE:
 			return WEEKLY;
-		case MONTHLY_VALUE:
-			return MONTHLY;
+		case ANNUAL_VALUE:
+			return ANNUAL;
 		case DAILY_VALUE:
 			return DAILY;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case ANNUAL_VALUE:
-			return ANNUAL;
+		case MONTHLY_VALUE:
+			return MONTHLY;
 		}
 		return null;
 	}

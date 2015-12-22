@@ -43,36 +43,6 @@ public enum IfcEngineTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(2, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>INTERNALCOMBUSTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTERNALCOMBUSTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INTERNALCOMBUSTION(3, "INTERNALCOMBUSTION", "INTERNALCOMBUSTION"),
-
-	/**
 	 * The '<em><b>EXTERNALCOMBUSTION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +50,31 @@ public enum IfcEngineTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXTERNALCOMBUSTION(4, "EXTERNALCOMBUSTION", "EXTERNALCOMBUSTION");
+	EXTERNALCOMBUSTION(1, "EXTERNALCOMBUSTION", "EXTERNALCOMBUSTION"), /**
+																		* The '<em><b>NOTDEFINED</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #NOTDEFINED_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>INTERNALCOMBUSTION</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #INTERNALCOMBUSTION_VALUE
+												* @generated
+												* @ordered
+												*/
+	INTERNALCOMBUSTION(3, "INTERNALCOMBUSTION", "INTERNALCOMBUSTION"), /**
+																		* The '<em><b>USERDEFINED</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #USERDEFINED_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -98,6 +92,21 @@ public enum IfcEngineTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>EXTERNALCOMBUSTION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>EXTERNALCOMBUSTION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #EXTERNALCOMBUSTION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EXTERNALCOMBUSTION_VALUE = 1;
+
+	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -110,22 +119,7 @@ public enum IfcEngineTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>INTERNALCOMBUSTION</b></em>' literal value.
@@ -143,19 +137,19 @@ public enum IfcEngineTypeEnum implements Enumerator {
 	public static final int INTERNALCOMBUSTION_VALUE = 3;
 
 	/**
-	 * The '<em><b>EXTERNALCOMBUSTION</b></em>' literal value.
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EXTERNALCOMBUSTION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EXTERNALCOMBUSTION
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXTERNALCOMBUSTION_VALUE = 4;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Engine Type Enum</b></em>' enumerators.
@@ -163,8 +157,8 @@ public enum IfcEngineTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEngineTypeEnum[] VALUES_ARRAY = new IfcEngineTypeEnum[] { NULL, NOTDEFINED, USERDEFINED,
-			INTERNALCOMBUSTION, EXTERNALCOMBUSTION, };
+	private static final IfcEngineTypeEnum[] VALUES_ARRAY = new IfcEngineTypeEnum[] { NULL, EXTERNALCOMBUSTION,
+			NOTDEFINED, INTERNALCOMBUSTION, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Engine Type Enum</b></em>' enumerators.
@@ -222,14 +216,14 @@ public enum IfcEngineTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case INTERNALCOMBUSTION_VALUE:
-			return INTERNALCOMBUSTION;
 		case EXTERNALCOMBUSTION_VALUE:
 			return EXTERNALCOMBUSTION;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case INTERNALCOMBUSTION_VALUE:
+			return INTERNALCOMBUSTION;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

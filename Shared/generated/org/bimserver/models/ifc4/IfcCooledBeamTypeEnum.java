@@ -43,16 +43,6 @@ public enum IfcCooledBeamTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>PASSIVE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,15 @@ public enum IfcCooledBeamTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PASSIVE(2, "PASSIVE", "PASSIVE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
+	PASSIVE(1, "PASSIVE", "PASSIVE"), /**
+										* The '<em><b>NOTDEFINED</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #NOTDEFINED_VALUE
+										* @generated
+										* @ordered
+										*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>ACTIVE</b></em>' literal object.
@@ -80,7 +68,15 @@ public enum IfcCooledBeamTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ACTIVE(4, "ACTIVE", "ACTIVE");
+	ACTIVE(3, "ACTIVE", "ACTIVE"), /**
+									* The '<em><b>USERDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #USERDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -98,21 +94,6 @@ public enum IfcCooledBeamTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
 	 * The '<em><b>PASSIVE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -125,22 +106,22 @@ public enum IfcCooledBeamTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PASSIVE_VALUE = 2;
+	public static final int PASSIVE_VALUE = 1;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>ACTIVE</b></em>' literal value.
@@ -155,7 +136,22 @@ public enum IfcCooledBeamTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ACTIVE_VALUE = 4;
+	public static final int ACTIVE_VALUE = 3;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Cooled Beam Type Enum</b></em>' enumerators.
@@ -163,8 +159,8 @@ public enum IfcCooledBeamTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCooledBeamTypeEnum[] VALUES_ARRAY = new IfcCooledBeamTypeEnum[] { NULL, NOTDEFINED, PASSIVE,
-			USERDEFINED, ACTIVE, };
+	private static final IfcCooledBeamTypeEnum[] VALUES_ARRAY = new IfcCooledBeamTypeEnum[] { NULL, PASSIVE, NOTDEFINED,
+			ACTIVE, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cooled Beam Type Enum</b></em>' enumerators.
@@ -222,14 +218,14 @@ public enum IfcCooledBeamTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case PASSIVE_VALUE:
 			return PASSIVE;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case ACTIVE_VALUE:
 			return ACTIVE;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

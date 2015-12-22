@@ -20,21 +20,15 @@ package org.bimserver.ifc.step.serializer;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
-import java.nio.charset.UnsupportedCharsetException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.codec.binary.Hex;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.ifc.step.deserializer.IfcParserWriterUtils;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
@@ -52,7 +46,6 @@ import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.MinimalVirtualObject;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -104,19 +97,17 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 	private Mode mode = Mode.HEADER;
 	private IfcHeader ifcHeader;
 	private PackageMetaData packageMetaData;
-	private PrintWriter printWriter;
+	private OutputStream outputStream;
 	
 	@Override
 	public boolean write(OutputStream outputStream) throws SerializerException, BimserverDatabaseException {
-		this.printWriter = new PrintWriter(new OutputStreamWriter(outputStream, Charsets.UTF_8));
+		this.outputStream = outputStream;
 		boolean result = false;
 		try {
 			result = processMode();
 		} catch (IOException e) {
 			throw new SerializerException(e);
 		}
-		// TODO This could be slow
-		this.printWriter.flush();
 		return result;
 	}
 	
@@ -153,8 +144,8 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 	}
 	
 	public void writeToOutputStream(OutputStream outputStream) throws SerializerException, BimserverDatabaseException {
+		this.outputStream = outputStream;
 		try {
-			this.printWriter = new PrintWriter(new OutputStreamWriter(outputStream, Charsets.UTF_8));
 			while (mode != Mode.FINISHED) {
 				processMode();			
 			}
@@ -177,7 +168,6 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 			}
 		} else if (getMode() == Mode.FOOTER) {
 			writeFooter();
-			this.printWriter.flush();
 			setMode(Mode.FINISHED);
 		} else if (getMode() == Mode.FINISHED) {
 			return false;
@@ -215,106 +205,14 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 	}
 
 	private void println(String line) throws IOException {
-		printWriter.write(line);
-		printWriter.write("\n");
-		
-//		byte[] bytes = line.getBytes(Charsets.UTF_8);
-//		outputStream.write(bytes, 0, bytes.length);
-//		outputStream.write(NEW_LINE, 0, NEW_LINE.length);
+		outputStream.write(line.getBytes(Charsets.UTF_8));
+		outputStream.write(NEW_LINE, 0, NEW_LINE.length);
 	}
 
 	private void print(String text) throws IOException {
-		printWriter.write(text);
-//		byte[] bytes = text.getBytes(Charsets.UTF_8);
-//		outputStream.write(bytes, 0, bytes.length);
+		outputStream.write(text.getBytes(Charsets.UTF_8));
 	}
 	
-	private void writePrimitive(Object val) throws SerializerException, IOException {
-		if (val.getClass().getSimpleName().equals("Tristate")) {
-			if (val.toString().equals("TRUE")) {
-				print(BOOLEAN_TRUE);
-			} else if (val.toString().equals("FALSE")) {
-				print(BOOLEAN_FALSE);
-			} else if (val.toString().equals("UNDEFINED")) {
-				print(BOOLEAN_UNDEFINED);
-			}
-		} else if (val instanceof Double) {
-			if (((Double)val).isInfinite() || (((Double)val).isNaN())) {
-				LOGGER.info("Serializing infinite or NaN double as 0.0");
-				print("0.0");
-			} else {
-				String string = val.toString();
-				if (string.endsWith(DOT_0)) {
-					print(string.substring(0, string.length() - 1));
-				} else {
-					print(string);
-				}
-			}
-		} else if (val instanceof Boolean) {
-			Boolean bool = (Boolean)val;
-			if (bool) {
-				print(BOOLEAN_TRUE);
-			} else {
-				print(BOOLEAN_FALSE);
-			}
-		} else if (val instanceof String) {
-			print(SINGLE_QUOTE);
-			String stringVal = (String)val;
-			for (int i=0; i<stringVal.length(); i++) {
-				char c = stringVal.charAt(i);
-				if (c == '\'') {
-					print("\'\'");
-				} else if (c == '\\') {
-					print("\\\\");
-				} else if (c >= 32 && c <= 126) {
-					// ISO 8859-1
-					print("" + c);
-				} else if (c < 255) {
-					//  ISO 10646 and ISO 8859-1 are the same < 255 , using ISO_8859_1
-					print("\\X\\" + new String(Hex.encodeHex(Charsets.ISO_8859_1.encode(CharBuffer.wrap(new char[]{(char) c})).array())).toUpperCase());
-				} else {
-					if (useIso8859_1) {
-						// ISO 8859-1 with -128 offset
-						ByteBuffer encode = Charsets.ISO_8859_1.encode(new String(new char[]{(char) (c - 128)}));
-						print("\\S\\" + (char)encode.get());
-					} else {
-						// The following code has not been tested (2012-04-25)
-						// Use UCS-2 or UCS-4
-						
-						// TODO when multiple sequential characters should be encoded in UCS-2 or UCS-4, we don't really need to add all those \X0\ \X2\ and \X4\ chars
-						if (Character.isLowSurrogate(c)) {
-							throw new SerializerException("Unexpected low surrogate range char");
-						} else if (Character.isHighSurrogate(c)) {
-							// We need UCS-4, this is probably never happening
-							if (i + 1 < stringVal.length()) {
-								char low = stringVal.charAt(i + 1);
-								if (!Character.isLowSurrogate(low)) {
-									throw new SerializerException("High surrogate char should be followed by char in low surrogate range");
-								}
-								try {
-									print("\\X4\\" + new String(Hex.encodeHex(Charset.forName("UTF-32").encode(new String(new char[]{c, low})).array())).toUpperCase() + "\\X0\\");
-								} catch (UnsupportedCharsetException e) {
-									throw new SerializerException(e);
-								}
-								i++;
-							} else {
-								throw new SerializerException("High surrogate char should be followed by char in low surrogate range, but end of string reached");
-							}
-						} else {
-							// UCS-2 will do
-							print("\\X2\\" + new String(Hex.encodeHex(Charsets.UTF_16BE.encode(CharBuffer.wrap(new char[]{c})).array())).toUpperCase() + "\\X0\\");
-						}
-					}
-				}
-			}
-			print(SINGLE_QUOTE);
-		} else if (val instanceof Enumerator) {
-			print("." + val + ".");
-		} else {
-			print(val == null ? "$" : val.toString());
-		}
-	}
-
 	private void write(HashMapVirtualObject object) throws SerializerException, IOException {
 //		throw new SerializerException("test");
 		EClass eClass = object.eClass();
@@ -448,7 +346,7 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 				String asString = (String) object.eGet(asStringFeature);
 				writeDoubleValue((Double)ref, asString, feature);
 			} else {
-				writePrimitive(ref);
+				IfcParserWriterUtils.writePrimitive(ref, outputStream);
 			}
 		}
 	}
@@ -458,7 +356,7 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 			print((String)asString);
 			return;
 		}
-		writePrimitive(value);
+		IfcParserWriterUtils.writePrimitive(value, outputStream);
 	}
 
 	private void writeEmbedded(HashMapWrappedVirtualObject eObject) throws SerializerException, IOException {
@@ -473,7 +371,7 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 				String asString = (String) eObject.eGet(asStringFeature);
 				writeDoubleValue((Double)realVal, asString, structuralFeature);
 			} else {
-				writePrimitive(realVal);
+				IfcParserWriterUtils.writePrimitive(realVal, outputStream);
 			}
 		}
 		print(CLOSE_PAREN);
@@ -527,10 +425,10 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 									if (stringVal != null) {
 										print((String) stringVal);
 									} else {
-										writePrimitive(realVal);
+										IfcParserWriterUtils.writePrimitive(realVal, outputStream);
 									}
 								} else {
-									writePrimitive(realVal);
+									IfcParserWriterUtils.writePrimitive(realVal, outputStream);
 								}
 							} else if (listObject instanceof HashMapWrappedVirtualObject) {
 								HashMapWrappedVirtualObject eObject = (HashMapWrappedVirtualObject) listObject;
@@ -545,7 +443,7 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 										String asString = (String) eObject.eGet(asStringFeature);
 										writeDoubleValue((Double)realVal, asString, structuralFeature);
 									} else {
-										writePrimitive(realVal);
+										IfcParserWriterUtils.writePrimitive(realVal, outputStream);
 									}
 									print(CLOSE_PAREN);
 								} else {
@@ -560,15 +458,15 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 									if (index < doubleStingList.size()) {
 										String val = (String)doubleStingList.get(index);
 										if (val == null) {
-											writePrimitive(listObject);
+											IfcParserWriterUtils.writePrimitive(listObject, outputStream);
 										} else {
 											print(val);
 										}
 									} else {
-										writePrimitive(listObject);
+										IfcParserWriterUtils.writePrimitive(listObject, outputStream);
 									}
 								} else {
-									writePrimitive(listObject);
+									IfcParserWriterUtils.writePrimitive(listObject, outputStream);
 								}
 							}
 						}
@@ -599,7 +497,7 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 						String asString = (String) betweenObject.eGet(asStringFeature);
 						writeDoubleValue((Double)val, asString, feature);
 					} else {
-						writePrimitive(val);
+						IfcParserWriterUtils.writePrimitive(val, outputStream);
 					}
 				} else {
 //					writeEmbedded(betweenObject);
@@ -627,7 +525,7 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 						String asString = (String) object2.eGet(asStringFeature);
 						writeDoubleValue((Double)val, asString, structuralFeature);
 					} else {
-						writePrimitive(val);
+						IfcParserWriterUtils.writePrimitive(val, outputStream);
 					}
 					first = false;
 				}
@@ -657,7 +555,7 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 	private void writeEnum(HashMapVirtualObject object, EStructuralFeature feature) throws SerializerException, IOException {
 		Object val = object.eGet(feature);
 		if (feature.getEType().getName().equals("Tristate")) {
-			writePrimitive( val);
+			IfcParserWriterUtils.writePrimitive(val, outputStream);
 		} else {
 			if (val == null) {
 				print(DOLLAR);

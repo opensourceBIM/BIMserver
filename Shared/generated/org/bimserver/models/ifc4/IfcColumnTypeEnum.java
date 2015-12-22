@@ -53,26 +53,6 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(2, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>PILASTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PILASTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PILASTER(3, "PILASTER", "PILASTER"),
-
-	/**
 	 * The '<em><b>COLUMN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +60,23 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COLUMN(4, "COLUMN", "COLUMN");
+	COLUMN(2, "COLUMN", "COLUMN"), /**
+									* The '<em><b>USERDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #USERDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>PILASTER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #PILASTER_VALUE
+													* @generated
+													* @ordered
+													*/
+	PILASTER(4, "PILASTER", "PILASTER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -113,6 +109,21 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
+	 * The '<em><b>COLUMN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>COLUMN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #COLUMN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int COLUMN_VALUE = 2;
+
+	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -125,7 +136,7 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 2;
+	public static final int USERDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>PILASTER</b></em>' literal value.
@@ -140,22 +151,7 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PILASTER_VALUE = 3;
-
-	/**
-	 * The '<em><b>COLUMN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>COLUMN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #COLUMN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int COLUMN_VALUE = 4;
+	public static final int PILASTER_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Column Type Enum</b></em>' enumerators.
@@ -163,8 +159,8 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcColumnTypeEnum[] VALUES_ARRAY = new IfcColumnTypeEnum[] { NULL, NOTDEFINED, USERDEFINED,
-			PILASTER, COLUMN, };
+	private static final IfcColumnTypeEnum[] VALUES_ARRAY = new IfcColumnTypeEnum[] { NULL, NOTDEFINED, COLUMN,
+			USERDEFINED, PILASTER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Column Type Enum</b></em>' enumerators.
@@ -224,12 +220,12 @@ public enum IfcColumnTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case COLUMN_VALUE:
+			return COLUMN;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case PILASTER_VALUE:
 			return PILASTER;
-		case COLUMN_VALUE:
-			return COLUMN;
 		}
 		return null;
 	}

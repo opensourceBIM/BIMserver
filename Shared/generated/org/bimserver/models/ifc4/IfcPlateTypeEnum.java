@@ -63,16 +63,6 @@ public enum IfcPlateTypeEnum implements Enumerator {
 	CURTAIN_PANEL(2, "CURTAIN_PANEL", "CURTAIN_PANEL"),
 
 	/**
-	 * The '<em><b>SHEET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHEET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHEET(3, "SHEET", "SHEET"),
-
-	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +70,15 @@ public enum IfcPlateTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>SHEET</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #SHEET_VALUE
+													* @generated
+													* @ordered
+													*/
+	SHEET(4, "SHEET", "SHEET");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,21 +126,6 @@ public enum IfcPlateTypeEnum implements Enumerator {
 	public static final int CURTAIN_PANEL_VALUE = 2;
 
 	/**
-	 * The '<em><b>SHEET</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SHEET</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SHEET
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SHEET_VALUE = 3;
-
-	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -155,7 +138,22 @@ public enum IfcPlateTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int USERDEFINED_VALUE = 3;
+
+	/**
+	 * The '<em><b>SHEET</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SHEET</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SHEET
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SHEET_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Plate Type Enum</b></em>' enumerators.
@@ -164,7 +162,7 @@ public enum IfcPlateTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcPlateTypeEnum[] VALUES_ARRAY = new IfcPlateTypeEnum[] { NULL, NOTDEFINED, CURTAIN_PANEL,
-			SHEET, USERDEFINED, };
+			USERDEFINED, SHEET, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Plate Type Enum</b></em>' enumerators.
@@ -226,10 +224,10 @@ public enum IfcPlateTypeEnum implements Enumerator {
 			return NOTDEFINED;
 		case CURTAIN_PANEL_VALUE:
 			return CURTAIN_PANEL;
-		case SHEET_VALUE:
-			return SHEET;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case SHEET_VALUE:
+			return SHEET;
 		}
 		return null;
 	}

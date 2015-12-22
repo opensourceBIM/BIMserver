@@ -56,7 +56,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDefImpl implements IfcCraneRailAShapeProfileDef {
+public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDefImpl
+		implements IfcCraneRailAShapeProfileDef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +101,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getOverallHeightAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__OVERALL_HEIGHT_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__OVERALL_HEIGHT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -109,7 +111,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setOverallHeightAsString(String newOverallHeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__OVERALL_HEIGHT_AS_STRING, newOverallHeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__OVERALL_HEIGHT_AS_STRING,
+				newOverallHeightAsString);
 	}
 
 	/**
@@ -352,7 +355,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getWebThicknessAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -361,7 +365,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setWebThicknessAsString(String newWebThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING, newWebThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING,
+				newWebThicknessAsString);
 	}
 
 	/**
@@ -523,7 +528,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setCentreOfGravityInY(double newCentreOfGravityInY) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_Y, newCentreOfGravityInY);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_Y,
+				newCentreOfGravityInY);
 	}
 
 	/**
@@ -550,7 +556,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public String getCentreOfGravityInYAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING, true);
 	}
 
 	/**
@@ -559,7 +566,8 @@ public class IfcCraneRailAShapeProfileDefImpl extends IfcParameterizedProfileDef
 	 * @generated
 	 */
 	public void setCentreOfGravityInYAsString(String newCentreOfGravityInYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING, newCentreOfGravityInYAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_YAS_STRING,
+				newCentreOfGravityInYAsString);
 	}
 
 	/**

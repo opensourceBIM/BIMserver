@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAnnotationSymbolOccurrenceImpl extends IfcAnnotationOccurrenceImpl implements IfcAnnotationSymbolOccurrence {
+public class IfcAnnotationSymbolOccurrenceImpl extends IfcAnnotationOccurrenceImpl
+		implements IfcAnnotationSymbolOccurrence {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

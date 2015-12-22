@@ -43,26 +43,6 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>EXIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXIT(1, "EXIT", "EXIT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>TRANSITION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,17 +50,15 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRANSITION(3, "TRANSITION", "TRANSITION"),
-
-	/**
-	 * The '<em><b>OBSTRUCTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OBSTRUCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OBSTRUCTION(4, "OBSTRUCTION", "OBSTRUCTION"),
+	TRANSITION(1, "TRANSITION", "TRANSITION"), /**
+												* The '<em><b>NOTDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #NOTDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>ENTRY</b></em>' literal object.
@@ -90,37 +68,7 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ENTRY(5, "ENTRY", "ENTRY"),
-
-	/**
-	 * The '<em><b>JUNCTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #JUNCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	JUNCTION(6, "JUNCTION", "JUNCTION"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CONNECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONNECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONNECTOR(8, "CONNECTOR", "CONNECTOR"),
+	ENTRY(3, "ENTRY", "ENTRY"),
 
 	/**
 	 * The '<em><b>BEND</b></em>' literal object.
@@ -130,7 +78,47 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BEND(9, "BEND", "BEND");
+	BEND(4, "BEND", "BEND"), /**
+								* The '<em><b>OBSTRUCTION</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #OBSTRUCTION_VALUE
+								* @generated
+								* @ordered
+								*/
+	OBSTRUCTION(5, "OBSTRUCTION", "OBSTRUCTION"), /**
+													* The '<em><b>USERDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #USERDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>EXIT</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #EXIT_VALUE
+													* @generated
+													* @ordered
+													*/
+	EXIT(7, "EXIT", "EXIT"), /**
+								* The '<em><b>JUNCTION</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #JUNCTION_VALUE
+								* @generated
+								* @ordered
+								*/
+	JUNCTION(8, "JUNCTION", "JUNCTION"), /**
+											* The '<em><b>CONNECTOR</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #CONNECTOR_VALUE
+											* @generated
+											* @ordered
+											*/
+	CONNECTOR(9, "CONNECTOR", "CONNECTOR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,19 +136,19 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>EXIT</b></em>' literal value.
+	 * The '<em><b>TRANSITION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EXIT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TRANSITION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EXIT
+	 * @see #TRANSITION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXIT_VALUE = 1;
+	public static final int TRANSITION_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -178,36 +166,6 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>TRANSITION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TRANSITION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TRANSITION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TRANSITION_VALUE = 3;
-
-	/**
-	 * The '<em><b>OBSTRUCTION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>OBSTRUCTION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #OBSTRUCTION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OBSTRUCTION_VALUE = 4;
-
-	/**
 	 * The '<em><b>ENTRY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -220,52 +178,7 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ENTRY_VALUE = 5;
-
-	/**
-	 * The '<em><b>JUNCTION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>JUNCTION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #JUNCTION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int JUNCTION_VALUE = 6;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 7;
-
-	/**
-	 * The '<em><b>CONNECTOR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CONNECTOR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CONNECTOR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONNECTOR_VALUE = 8;
+	public static final int ENTRY_VALUE = 3;
 
 	/**
 	 * The '<em><b>BEND</b></em>' literal value.
@@ -280,7 +193,82 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BEND_VALUE = 9;
+	public static final int BEND_VALUE = 4;
+
+	/**
+	 * The '<em><b>OBSTRUCTION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>OBSTRUCTION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #OBSTRUCTION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OBSTRUCTION_VALUE = 5;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 6;
+
+	/**
+	 * The '<em><b>EXIT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>EXIT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #EXIT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EXIT_VALUE = 7;
+
+	/**
+	 * The '<em><b>JUNCTION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>JUNCTION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #JUNCTION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int JUNCTION_VALUE = 8;
+
+	/**
+	 * The '<em><b>CONNECTOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONNECTOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONNECTOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONNECTOR_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Duct Fitting Type Enum</b></em>' enumerators.
@@ -288,7 +276,8 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDuctFittingTypeEnum[] VALUES_ARRAY = new IfcDuctFittingTypeEnum[] { NULL, EXIT, NOTDEFINED, TRANSITION, OBSTRUCTION, ENTRY, JUNCTION, USERDEFINED, CONNECTOR, BEND, };
+	private static final IfcDuctFittingTypeEnum[] VALUES_ARRAY = new IfcDuctFittingTypeEnum[] { NULL, TRANSITION,
+			NOTDEFINED, ENTRY, BEND, OBSTRUCTION, USERDEFINED, EXIT, JUNCTION, CONNECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Duct Fitting Type Enum</b></em>' enumerators.
@@ -346,24 +335,24 @@ public enum IfcDuctFittingTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case EXIT_VALUE:
-			return EXIT;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case TRANSITION_VALUE:
 			return TRANSITION;
-		case OBSTRUCTION_VALUE:
-			return OBSTRUCTION;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case ENTRY_VALUE:
 			return ENTRY;
-		case JUNCTION_VALUE:
-			return JUNCTION;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case CONNECTOR_VALUE:
-			return CONNECTOR;
 		case BEND_VALUE:
 			return BEND;
+		case OBSTRUCTION_VALUE:
+			return OBSTRUCTION;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case EXIT_VALUE:
+			return EXIT;
+		case JUNCTION_VALUE:
+			return JUNCTION;
+		case CONNECTOR_VALUE:
+			return CONNECTOR;
 		}
 		return null;
 	}

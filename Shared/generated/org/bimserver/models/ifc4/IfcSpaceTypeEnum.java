@@ -43,56 +43,6 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>GFA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GFA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GFA(1, "GFA", "GFA"),
-
-	/**
-	 * The '<em><b>INTERNAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTERNAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INTERNAL(2, "INTERNAL", "INTERNAL"),
-
-	/**
-	 * The '<em><b>EXTERNAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTERNAL(3, "EXTERNAL", "EXTERNAL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PARKING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PARKING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PARKING(5, "PARKING", "PARKING"),
-
-	/**
 	 * The '<em><b>SPACE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +50,39 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SPACE(6, "SPACE", "SPACE"),
+	SPACE(1, "SPACE", "SPACE"), /**
+								* The '<em><b>NOTDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #NOTDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>GFA</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #GFA_VALUE
+												* @generated
+												* @ordered
+												*/
+	GFA(3, "GFA", "GFA"), /**
+							* The '<em><b>EXTERNAL</b></em>' literal object.
+							* <!-- begin-user-doc -->
+							* <!-- end-user-doc -->
+							* @see #EXTERNAL_VALUE
+							* @generated
+							* @ordered
+							*/
+	EXTERNAL(4, "EXTERNAL", "EXTERNAL"), /**
+											* The '<em><b>INTERNAL</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #INTERNAL_VALUE
+											* @generated
+											* @ordered
+											*/
+	INTERNAL(5, "INTERNAL", "INTERNAL"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -110,7 +92,15 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>PARKING</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #PARKING_VALUE
+													* @generated
+													* @ordered
+													*/
+	PARKING(7, "PARKING", "PARKING");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,49 +118,19 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>GFA</b></em>' literal value.
+	 * The '<em><b>SPACE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>GFA</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SPACE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GFA
+	 * @see #SPACE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GFA_VALUE = 1;
-
-	/**
-	 * The '<em><b>INTERNAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>INTERNAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #INTERNAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INTERNAL_VALUE = 2;
-
-	/**
-	 * The '<em><b>EXTERNAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>EXTERNAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int EXTERNAL_VALUE = 3;
+	public static final int SPACE_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -185,37 +145,52 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>PARKING</b></em>' literal value.
+	 * The '<em><b>GFA</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PARKING</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>GFA</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PARKING
+	 * @see #GFA
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PARKING_VALUE = 5;
+	public static final int GFA_VALUE = 3;
 
 	/**
-	 * The '<em><b>SPACE</b></em>' literal value.
+	 * The '<em><b>EXTERNAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SPACE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>EXTERNAL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SPACE
+	 * @see #EXTERNAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPACE_VALUE = 6;
+	public static final int EXTERNAL_VALUE = 4;
+
+	/**
+	 * The '<em><b>INTERNAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>INTERNAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #INTERNAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int INTERNAL_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -230,7 +205,22 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 7;
+	public static final int USERDEFINED_VALUE = 6;
+
+	/**
+	 * The '<em><b>PARKING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PARKING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PARKING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PARKING_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Space Type Enum</b></em>' enumerators.
@@ -238,8 +228,8 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpaceTypeEnum[] VALUES_ARRAY = new IfcSpaceTypeEnum[] { NULL, GFA, INTERNAL, EXTERNAL,
-			NOTDEFINED, PARKING, SPACE, USERDEFINED, };
+	private static final IfcSpaceTypeEnum[] VALUES_ARRAY = new IfcSpaceTypeEnum[] { NULL, SPACE, NOTDEFINED, GFA,
+			EXTERNAL, INTERNAL, USERDEFINED, PARKING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Space Type Enum</b></em>' enumerators.
@@ -297,20 +287,20 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case GFA_VALUE:
-			return GFA;
-		case INTERNAL_VALUE:
-			return INTERNAL;
-		case EXTERNAL_VALUE:
-			return EXTERNAL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case PARKING_VALUE:
-			return PARKING;
 		case SPACE_VALUE:
 			return SPACE;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case GFA_VALUE:
+			return GFA;
+		case EXTERNAL_VALUE:
+			return EXTERNAL;
+		case INTERNAL_VALUE:
+			return INTERNAL;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case PARKING_VALUE:
+			return PARKING;
 		}
 		return null;
 	}

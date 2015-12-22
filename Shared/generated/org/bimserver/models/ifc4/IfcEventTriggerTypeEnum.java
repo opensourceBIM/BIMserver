@@ -43,26 +43,6 @@ public enum IfcEventTriggerTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>EVENTRULE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EVENTRULE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EVENTRULE(1, "EVENTRULE", "EVENTRULE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>EVENTTIME</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,17 +50,23 @@ public enum IfcEventTriggerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EVENTTIME(3, "EVENTTIME", "EVENTTIME"),
-
-	/**
-	 * The '<em><b>EVENTMESSAGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EVENTMESSAGE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EVENTMESSAGE(4, "EVENTMESSAGE", "EVENTMESSAGE"),
+	EVENTTIME(1, "EVENTTIME", "EVENTTIME"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>EVENTRULE</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #EVENTRULE_VALUE
+												* @generated
+												* @ordered
+												*/
+	EVENTRULE(3, "EVENTRULE", "EVENTRULE"),
 
 	/**
 	 * The '<em><b>EVENTCOMPLEX</b></em>' literal object.
@@ -90,7 +76,15 @@ public enum IfcEventTriggerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EVENTCOMPLEX(5, "EVENTCOMPLEX", "EVENTCOMPLEX"),
+	EVENTCOMPLEX(4, "EVENTCOMPLEX", "EVENTCOMPLEX"), /**
+														* The '<em><b>EVENTMESSAGE</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #EVENTMESSAGE_VALUE
+														* @generated
+														* @ordered
+														*/
+	EVENTMESSAGE(5, "EVENTMESSAGE", "EVENTMESSAGE"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -118,19 +112,19 @@ public enum IfcEventTriggerTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>EVENTRULE</b></em>' literal value.
+	 * The '<em><b>EVENTTIME</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EVENTRULE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>EVENTTIME</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EVENTRULE
+	 * @see #EVENTTIME
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EVENTRULE_VALUE = 1;
+	public static final int EVENTTIME_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -148,34 +142,19 @@ public enum IfcEventTriggerTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>EVENTTIME</b></em>' literal value.
+	 * The '<em><b>EVENTRULE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EVENTTIME</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>EVENTRULE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EVENTTIME
+	 * @see #EVENTRULE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EVENTTIME_VALUE = 3;
-
-	/**
-	 * The '<em><b>EVENTMESSAGE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>EVENTMESSAGE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #EVENTMESSAGE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int EVENTMESSAGE_VALUE = 4;
+	public static final int EVENTRULE_VALUE = 3;
 
 	/**
 	 * The '<em><b>EVENTCOMPLEX</b></em>' literal value.
@@ -190,7 +169,22 @@ public enum IfcEventTriggerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EVENTCOMPLEX_VALUE = 5;
+	public static final int EVENTCOMPLEX_VALUE = 4;
+
+	/**
+	 * The '<em><b>EVENTMESSAGE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>EVENTMESSAGE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #EVENTMESSAGE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EVENTMESSAGE_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -213,8 +207,8 @@ public enum IfcEventTriggerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEventTriggerTypeEnum[] VALUES_ARRAY = new IfcEventTriggerTypeEnum[] { NULL, EVENTRULE,
-			NOTDEFINED, EVENTTIME, EVENTMESSAGE, EVENTCOMPLEX, USERDEFINED, };
+	private static final IfcEventTriggerTypeEnum[] VALUES_ARRAY = new IfcEventTriggerTypeEnum[] { NULL, EVENTTIME,
+			NOTDEFINED, EVENTRULE, EVENTCOMPLEX, EVENTMESSAGE, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Event Trigger Type Enum</b></em>' enumerators.
@@ -273,16 +267,16 @@ public enum IfcEventTriggerTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case EVENTRULE_VALUE:
-			return EVENTRULE;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case EVENTTIME_VALUE:
 			return EVENTTIME;
-		case EVENTMESSAGE_VALUE:
-			return EVENTMESSAGE;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case EVENTRULE_VALUE:
+			return EVENTRULE;
 		case EVENTCOMPLEX_VALUE:
 			return EVENTCOMPLEX;
+		case EVENTMESSAGE_VALUE:
+			return EVENTMESSAGE;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		}

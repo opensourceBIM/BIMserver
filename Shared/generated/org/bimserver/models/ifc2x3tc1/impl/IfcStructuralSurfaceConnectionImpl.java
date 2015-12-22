@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralSurfaceConnectionImpl extends IfcStructuralConnectionImpl implements IfcStructuralSurfaceConnection {
+public class IfcStructuralSurfaceConnectionImpl extends IfcStructuralConnectionImpl
+		implements IfcStructuralSurfaceConnection {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

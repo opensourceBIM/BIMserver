@@ -104,7 +104,8 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	 * @generated
 	 */
 	public IfcElementCompositionEnum getCompositionType() {
-		return (IfcElementCompositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__COMPOSITION_TYPE, true);
+		return (IfcElementCompositionEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__COMPOSITION_TYPE, true);
 	}
 
 	/**
@@ -123,7 +124,8 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelReferencedInSpatialStructure> getReferencesElements() {
-		return (EList<IfcRelReferencedInSpatialStructure>) eGet(Ifc2x3tc1Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__REFERENCES_ELEMENTS, true);
+		return (EList<IfcRelReferencedInSpatialStructure>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__REFERENCES_ELEMENTS, true);
 	}
 
 	/**
@@ -151,7 +153,8 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelServicesBuildings> getServicedBySystems() {
-		return (EList<IfcRelServicesBuildings>) eGet(Ifc2x3tc1Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__SERVICED_BY_SYSTEMS, true);
+		return (EList<IfcRelServicesBuildings>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__SERVICED_BY_SYSTEMS, true);
 	}
 
 	/**
@@ -179,7 +182,8 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelContainedInSpatialStructure> getContainsElements() {
-		return (EList<IfcRelContainedInSpatialStructure>) eGet(Ifc2x3tc1Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__CONTAINS_ELEMENTS, true);
+		return (EList<IfcRelContainedInSpatialStructure>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__CONTAINS_ELEMENTS, true);
 	}
 
 	/**

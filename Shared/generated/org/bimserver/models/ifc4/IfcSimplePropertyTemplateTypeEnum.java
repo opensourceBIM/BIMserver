@@ -43,46 +43,6 @@ public enum IfcSimplePropertyTemplateTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>QAREA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QAREA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QAREA(1, "Q_AREA", "Q_AREA"),
-
-	/**
-	 * The '<em><b>QWEIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QWEIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QWEIGHT(2, "Q_WEIGHT", "Q_WEIGHT"),
-
-	/**
-	 * The '<em><b>PBOUNDEDVALUE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PBOUNDEDVALUE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PBOUNDEDVALUE(3, "P_BOUNDEDVALUE", "P_BOUNDEDVALUE"),
-
-	/**
-	 * The '<em><b>QCOUNT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QCOUNT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QCOUNT(4, "Q_COUNT", "Q_COUNT"),
-
-	/**
 	 * The '<em><b>QTIME</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,27 +50,7 @@ public enum IfcSimplePropertyTemplateTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	QTIME(5, "Q_TIME", "Q_TIME"),
-
-	/**
-	 * The '<em><b>PTABLEVALUE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PTABLEVALUE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PTABLEVALUE(6, "P_TABLEVALUE", "P_TABLEVALUE"),
-
-	/**
-	 * The '<em><b>PENUMERATEDVALUE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PENUMERATEDVALUE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PENUMERATEDVALUE(7, "P_ENUMERATEDVALUE", "P_ENUMERATEDVALUE"),
+	QTIME(1, "Q_TIME", "Q_TIME"),
 
 	/**
 	 * The '<em><b>PLISTVALUE</b></em>' literal object.
@@ -120,37 +60,7 @@ public enum IfcSimplePropertyTemplateTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PLISTVALUE(8, "P_LISTVALUE", "P_LISTVALUE"),
-
-	/**
-	 * The '<em><b>QVOLUME</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QVOLUME_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QVOLUME(9, "Q_VOLUME", "Q_VOLUME"),
-
-	/**
-	 * The '<em><b>PSINGLEVALUE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PSINGLEVALUE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PSINGLEVALUE(10, "P_SINGLEVALUE", "P_SINGLEVALUE"),
-
-	/**
-	 * The '<em><b>PREFERENCEVALUE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PREFERENCEVALUE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PREFERENCEVALUE(11, "P_REFERENCEVALUE", "P_REFERENCEVALUE"),
+	PLISTVALUE(2, "P_LISTVALUE", "P_LISTVALUE"),
 
 	/**
 	 * The '<em><b>QLENGTH</b></em>' literal object.
@@ -160,7 +70,79 @@ public enum IfcSimplePropertyTemplateTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	QLENGTH(12, "Q_LENGTH", "Q_LENGTH");
+	QLENGTH(3, "Q_LENGTH", "Q_LENGTH"), /**
+										* The '<em><b>QVOLUME</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #QVOLUME_VALUE
+										* @generated
+										* @ordered
+										*/
+	QVOLUME(4, "Q_VOLUME", "Q_VOLUME"), /**
+										* The '<em><b>QWEIGHT</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #QWEIGHT_VALUE
+										* @generated
+										* @ordered
+										*/
+	QWEIGHT(5, "Q_WEIGHT", "Q_WEIGHT"), /**
+										* The '<em><b>PREFERENCEVALUE</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #PREFERENCEVALUE_VALUE
+										* @generated
+										* @ordered
+										*/
+	PREFERENCEVALUE(6, "P_REFERENCEVALUE", "P_REFERENCEVALUE"), /**
+																* The '<em><b>PTABLEVALUE</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #PTABLEVALUE_VALUE
+																* @generated
+																* @ordered
+																*/
+	PTABLEVALUE(7, "P_TABLEVALUE", "P_TABLEVALUE"), /**
+													* The '<em><b>QAREA</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #QAREA_VALUE
+													* @generated
+													* @ordered
+													*/
+	QAREA(8, "Q_AREA", "Q_AREA"), /**
+									* The '<em><b>QCOUNT</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #QCOUNT_VALUE
+									* @generated
+									* @ordered
+									*/
+	QCOUNT(9, "Q_COUNT", "Q_COUNT"), /**
+										* The '<em><b>PSINGLEVALUE</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #PSINGLEVALUE_VALUE
+										* @generated
+										* @ordered
+										*/
+	PSINGLEVALUE(10, "P_SINGLEVALUE", "P_SINGLEVALUE"), /**
+														* The '<em><b>PENUMERATEDVALUE</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #PENUMERATEDVALUE_VALUE
+														* @generated
+														* @ordered
+														*/
+	PENUMERATEDVALUE(11, "P_ENUMERATEDVALUE", "P_ENUMERATEDVALUE"), /**
+																	* The '<em><b>PBOUNDEDVALUE</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #PBOUNDEDVALUE_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	PBOUNDEDVALUE(12, "P_BOUNDEDVALUE", "P_BOUNDEDVALUE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -178,66 +160,6 @@ public enum IfcSimplePropertyTemplateTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>QAREA</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>QAREA</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #QAREA
-	 * @model name="Q_AREA"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int QAREA_VALUE = 1;
-
-	/**
-	 * The '<em><b>QWEIGHT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>QWEIGHT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #QWEIGHT
-	 * @model name="Q_WEIGHT"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int QWEIGHT_VALUE = 2;
-
-	/**
-	 * The '<em><b>PBOUNDEDVALUE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PBOUNDEDVALUE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PBOUNDEDVALUE
-	 * @model name="P_BOUNDEDVALUE"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PBOUNDEDVALUE_VALUE = 3;
-
-	/**
-	 * The '<em><b>QCOUNT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>QCOUNT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #QCOUNT
-	 * @model name="Q_COUNT"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int QCOUNT_VALUE = 4;
-
-	/**
 	 * The '<em><b>QTIME</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -250,37 +172,7 @@ public enum IfcSimplePropertyTemplateTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int QTIME_VALUE = 5;
-
-	/**
-	 * The '<em><b>PTABLEVALUE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PTABLEVALUE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PTABLEVALUE
-	 * @model name="P_TABLEVALUE"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PTABLEVALUE_VALUE = 6;
-
-	/**
-	 * The '<em><b>PENUMERATEDVALUE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PENUMERATEDVALUE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PENUMERATEDVALUE
-	 * @model name="P_ENUMERATEDVALUE"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PENUMERATEDVALUE_VALUE = 7;
+	public static final int QTIME_VALUE = 1;
 
 	/**
 	 * The '<em><b>PLISTVALUE</b></em>' literal value.
@@ -295,7 +187,22 @@ public enum IfcSimplePropertyTemplateTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PLISTVALUE_VALUE = 8;
+	public static final int PLISTVALUE_VALUE = 2;
+
+	/**
+	 * The '<em><b>QLENGTH</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>QLENGTH</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #QLENGTH
+	 * @model name="Q_LENGTH"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int QLENGTH_VALUE = 3;
 
 	/**
 	 * The '<em><b>QVOLUME</b></em>' literal value.
@@ -310,7 +217,82 @@ public enum IfcSimplePropertyTemplateTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int QVOLUME_VALUE = 9;
+	public static final int QVOLUME_VALUE = 4;
+
+	/**
+	 * The '<em><b>QWEIGHT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>QWEIGHT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #QWEIGHT
+	 * @model name="Q_WEIGHT"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int QWEIGHT_VALUE = 5;
+
+	/**
+	 * The '<em><b>PREFERENCEVALUE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PREFERENCEVALUE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PREFERENCEVALUE
+	 * @model name="P_REFERENCEVALUE"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PREFERENCEVALUE_VALUE = 6;
+
+	/**
+	 * The '<em><b>PTABLEVALUE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PTABLEVALUE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PTABLEVALUE
+	 * @model name="P_TABLEVALUE"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PTABLEVALUE_VALUE = 7;
+
+	/**
+	 * The '<em><b>QAREA</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>QAREA</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #QAREA
+	 * @model name="Q_AREA"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int QAREA_VALUE = 8;
+
+	/**
+	 * The '<em><b>QCOUNT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>QCOUNT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #QCOUNT
+	 * @model name="Q_COUNT"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int QCOUNT_VALUE = 9;
 
 	/**
 	 * The '<em><b>PSINGLEVALUE</b></em>' literal value.
@@ -328,34 +310,34 @@ public enum IfcSimplePropertyTemplateTypeEnum implements Enumerator {
 	public static final int PSINGLEVALUE_VALUE = 10;
 
 	/**
-	 * The '<em><b>PREFERENCEVALUE</b></em>' literal value.
+	 * The '<em><b>PENUMERATEDVALUE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PREFERENCEVALUE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PENUMERATEDVALUE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PREFERENCEVALUE
-	 * @model name="P_REFERENCEVALUE"
+	 * @see #PENUMERATEDVALUE
+	 * @model name="P_ENUMERATEDVALUE"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PREFERENCEVALUE_VALUE = 11;
+	public static final int PENUMERATEDVALUE_VALUE = 11;
 
 	/**
-	 * The '<em><b>QLENGTH</b></em>' literal value.
+	 * The '<em><b>PBOUNDEDVALUE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>QLENGTH</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PBOUNDEDVALUE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #QLENGTH
-	 * @model name="Q_LENGTH"
+	 * @see #PBOUNDEDVALUE
+	 * @model name="P_BOUNDEDVALUE"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int QLENGTH_VALUE = 12;
+	public static final int PBOUNDEDVALUE_VALUE = 12;
 
 	/**
 	 * An array of all the '<em><b>Ifc Simple Property Template Type Enum</b></em>' enumerators.
@@ -364,8 +346,8 @@ public enum IfcSimplePropertyTemplateTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcSimplePropertyTemplateTypeEnum[] VALUES_ARRAY = new IfcSimplePropertyTemplateTypeEnum[] {
-			NULL, QAREA, QWEIGHT, PBOUNDEDVALUE, QCOUNT, QTIME, PTABLEVALUE, PENUMERATEDVALUE, PLISTVALUE, QVOLUME,
-			PSINGLEVALUE, PREFERENCEVALUE, QLENGTH, };
+			NULL, QTIME, PLISTVALUE, QLENGTH, QVOLUME, QWEIGHT, PREFERENCEVALUE, PTABLEVALUE, QAREA, QCOUNT,
+			PSINGLEVALUE, PENUMERATEDVALUE, PBOUNDEDVALUE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Simple Property Template Type Enum</b></em>' enumerators.
@@ -424,30 +406,30 @@ public enum IfcSimplePropertyTemplateTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case QAREA_VALUE:
-			return QAREA;
-		case QWEIGHT_VALUE:
-			return QWEIGHT;
-		case PBOUNDEDVALUE_VALUE:
-			return PBOUNDEDVALUE;
-		case QCOUNT_VALUE:
-			return QCOUNT;
 		case QTIME_VALUE:
 			return QTIME;
-		case PTABLEVALUE_VALUE:
-			return PTABLEVALUE;
-		case PENUMERATEDVALUE_VALUE:
-			return PENUMERATEDVALUE;
 		case PLISTVALUE_VALUE:
 			return PLISTVALUE;
-		case QVOLUME_VALUE:
-			return QVOLUME;
-		case PSINGLEVALUE_VALUE:
-			return PSINGLEVALUE;
-		case PREFERENCEVALUE_VALUE:
-			return PREFERENCEVALUE;
 		case QLENGTH_VALUE:
 			return QLENGTH;
+		case QVOLUME_VALUE:
+			return QVOLUME;
+		case QWEIGHT_VALUE:
+			return QWEIGHT;
+		case PREFERENCEVALUE_VALUE:
+			return PREFERENCEVALUE;
+		case PTABLEVALUE_VALUE:
+			return PTABLEVALUE;
+		case QAREA_VALUE:
+			return QAREA;
+		case QCOUNT_VALUE:
+			return QCOUNT;
+		case PSINGLEVALUE_VALUE:
+			return PSINGLEVALUE;
+		case PENUMERATEDVALUE_VALUE:
+			return PENUMERATEDVALUE;
+		case PBOUNDEDVALUE_VALUE:
+			return PBOUNDEDVALUE;
 		}
 		return null;
 	}

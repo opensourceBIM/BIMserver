@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralCurveMemberVaryingImpl extends IfcStructuralCurveMemberImpl implements IfcStructuralCurveMemberVarying {
+public class IfcStructuralCurveMemberVaryingImpl extends IfcStructuralCurveMemberImpl
+		implements IfcStructuralCurveMemberVarying {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

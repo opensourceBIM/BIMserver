@@ -151,7 +151,8 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItemRelationship> getIsClassifiedItemIn() {
-		return (EList<IfcClassificationItemRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFIED_ITEM_IN, true);
+		return (EList<IfcClassificationItemRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFIED_ITEM_IN, true);
 	}
 
 	/**
@@ -179,7 +180,8 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItemRelationship> getIsClassifyingItemIn() {
-		return (EList<IfcClassificationItemRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFYING_ITEM_IN, true);
+		return (EList<IfcClassificationItemRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFYING_ITEM_IN, true);
 	}
 
 	/**

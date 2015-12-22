@@ -43,26 +43,6 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>FOUNDATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FOUNDATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FOUNDATION(1, "FOUNDATION", "FOUNDATION"),
-
-	/**
-	 * The '<em><b>TRANSPORT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRANSPORT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRANSPORT(2, "TRANSPORT", "TRANSPORT"),
-
-	/**
 	 * The '<em><b>OUTERSHELL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,17 +50,23 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OUTERSHELL(3, "OUTERSHELL", "OUTERSHELL"),
-
-	/**
-	 * The '<em><b>FENESTRATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FENESTRATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FENESTRATION(4, "FENESTRATION", "FENESTRATION"),
+	OUTERSHELL(1, "OUTERSHELL", "OUTERSHELL"), /**
+												* The '<em><b>FOUNDATION</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #FOUNDATION_VALUE
+												* @generated
+												* @ordered
+												*/
+	FOUNDATION(2, "FOUNDATION", "FOUNDATION"), /**
+												* The '<em><b>TRANSPORT</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #TRANSPORT_VALUE
+												* @generated
+												* @ordered
+												*/
+	TRANSPORT(3, "TRANSPORT", "TRANSPORT"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
@@ -90,7 +76,15 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>FENESTRATION</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #FENESTRATION_VALUE
+												* @generated
+												* @ordered
+												*/
+	FENESTRATION(5, "FENESTRATION", "FENESTRATION"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -103,16 +97,6 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
-	 * The '<em><b>SHADING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHADING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHADING(7, "SHADING", "SHADING"),
-
-	/**
 	 * The '<em><b>LOADBEARING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,7 +104,15 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOADBEARING(8, "LOADBEARING", "LOADBEARING");
+	LOADBEARING(7, "LOADBEARING", "LOADBEARING"), /**
+													* The '<em><b>SHADING</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #SHADING_VALUE
+													* @generated
+													* @ordered
+													*/
+	SHADING(8, "SHADING", "SHADING");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -138,6 +130,21 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>OUTERSHELL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>OUTERSHELL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #OUTERSHELL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OUTERSHELL_VALUE = 1;
+
+	/**
 	 * The '<em><b>FOUNDATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -150,7 +157,7 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FOUNDATION_VALUE = 1;
+	public static final int FOUNDATION_VALUE = 2;
 
 	/**
 	 * The '<em><b>TRANSPORT</b></em>' literal value.
@@ -165,37 +172,7 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRANSPORT_VALUE = 2;
-
-	/**
-	 * The '<em><b>OUTERSHELL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>OUTERSHELL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #OUTERSHELL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OUTERSHELL_VALUE = 3;
-
-	/**
-	 * The '<em><b>FENESTRATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FENESTRATION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FENESTRATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FENESTRATION_VALUE = 4;
+	public static final int TRANSPORT_VALUE = 3;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -210,7 +187,22 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 5;
+	public static final int NOTDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>FENESTRATION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FENESTRATION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FENESTRATION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FENESTRATION_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -228,21 +220,6 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 6;
 
 	/**
-	 * The '<em><b>SHADING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SHADING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SHADING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SHADING_VALUE = 7;
-
-	/**
 	 * The '<em><b>LOADBEARING</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -255,7 +232,22 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOADBEARING_VALUE = 8;
+	public static final int LOADBEARING_VALUE = 7;
+
+	/**
+	 * The '<em><b>SHADING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SHADING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SHADING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SHADING_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Building System Type Enum</b></em>' enumerators.
@@ -263,8 +255,8 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBuildingSystemTypeEnum[] VALUES_ARRAY = new IfcBuildingSystemTypeEnum[] { NULL, FOUNDATION,
-			TRANSPORT, OUTERSHELL, FENESTRATION, NOTDEFINED, USERDEFINED, SHADING, LOADBEARING, };
+	private static final IfcBuildingSystemTypeEnum[] VALUES_ARRAY = new IfcBuildingSystemTypeEnum[] { NULL, OUTERSHELL,
+			FOUNDATION, TRANSPORT, NOTDEFINED, FENESTRATION, USERDEFINED, LOADBEARING, SHADING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Building System Type Enum</b></em>' enumerators.
@@ -323,22 +315,22 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
+		case OUTERSHELL_VALUE:
+			return OUTERSHELL;
 		case FOUNDATION_VALUE:
 			return FOUNDATION;
 		case TRANSPORT_VALUE:
 			return TRANSPORT;
-		case OUTERSHELL_VALUE:
-			return OUTERSHELL;
-		case FENESTRATION_VALUE:
-			return FENESTRATION;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case FENESTRATION_VALUE:
+			return FENESTRATION;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case SHADING_VALUE:
-			return SHADING;
 		case LOADBEARING_VALUE:
 			return LOADBEARING;
+		case SHADING_VALUE:
+			return SHADING;
 		}
 		return null;
 	}

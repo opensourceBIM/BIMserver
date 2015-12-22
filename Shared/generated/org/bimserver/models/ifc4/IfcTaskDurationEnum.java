@@ -53,16 +53,6 @@ public enum IfcTaskDurationEnum implements Enumerator {
 	ELAPSEDTIME(1, "ELAPSEDTIME", "ELAPSEDTIME"),
 
 	/**
-	 * The '<em><b>WORKTIME</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WORKTIME_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WORKTIME(2, "WORKTIME", "WORKTIME"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +60,15 @@ public enum IfcTaskDurationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED");
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>WORKTIME</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #WORKTIME_VALUE
+												* @generated
+												* @ordered
+												*/
+	WORKTIME(3, "WORKTIME", "WORKTIME");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -103,21 +101,6 @@ public enum IfcTaskDurationEnum implements Enumerator {
 	public static final int ELAPSEDTIME_VALUE = 1;
 
 	/**
-	 * The '<em><b>WORKTIME</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>WORKTIME</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #WORKTIME
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WORKTIME_VALUE = 2;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -130,7 +113,22 @@ public enum IfcTaskDurationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 2;
+
+	/**
+	 * The '<em><b>WORKTIME</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>WORKTIME</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #WORKTIME
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKTIME_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Ifc Task Duration Enum</b></em>' enumerators.
@@ -138,8 +136,8 @@ public enum IfcTaskDurationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTaskDurationEnum[] VALUES_ARRAY = new IfcTaskDurationEnum[] { NULL, ELAPSEDTIME, WORKTIME,
-			NOTDEFINED, };
+	private static final IfcTaskDurationEnum[] VALUES_ARRAY = new IfcTaskDurationEnum[] { NULL, ELAPSEDTIME, NOTDEFINED,
+			WORKTIME, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Task Duration Enum</b></em>' enumerators.
@@ -199,10 +197,10 @@ public enum IfcTaskDurationEnum implements Enumerator {
 			return NULL;
 		case ELAPSEDTIME_VALUE:
 			return ELAPSEDTIME;
-		case WORKTIME_VALUE:
-			return WORKTIME;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case WORKTIME_VALUE:
+			return WORKTIME;
 		}
 		return null;
 	}

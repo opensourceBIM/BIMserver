@@ -43,46 +43,6 @@ public enum IfcDistributionPortTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>CABLECARRIER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CABLECARRIER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CABLECARRIER(1, "CABLECARRIER", "CABLECARRIER"),
-
-	/**
-	 * The '<em><b>PIPE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PIPE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PIPE(2, "PIPE", "PIPE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CABLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CABLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CABLE(4, "CABLE", "CABLE"),
-
-	/**
 	 * The '<em><b>DUCT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +50,23 @@ public enum IfcDistributionPortTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DUCT(5, "DUCT", "DUCT"),
+	DUCT(1, "DUCT", "DUCT"), /**
+								* The '<em><b>NOTDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #NOTDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>CABLE</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #CABLE_VALUE
+												* @generated
+												* @ordered
+												*/
+	CABLE(3, "CABLE", "CABLE"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -100,7 +76,23 @@ public enum IfcDistributionPortTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>PIPE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #PIPE_VALUE
+													* @generated
+													* @ordered
+													*/
+	PIPE(5, "PIPE", "PIPE"), /**
+								* The '<em><b>CABLECARRIER</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #CABLECARRIER_VALUE
+								* @generated
+								* @ordered
+								*/
+	CABLECARRIER(6, "CABLECARRIER", "CABLECARRIER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,34 +110,19 @@ public enum IfcDistributionPortTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>CABLECARRIER</b></em>' literal value.
+	 * The '<em><b>DUCT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CABLECARRIER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DUCT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CABLECARRIER
+	 * @see #DUCT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CABLECARRIER_VALUE = 1;
-
-	/**
-	 * The '<em><b>PIPE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PIPE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PIPE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PIPE_VALUE = 2;
+	public static final int DUCT_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -160,7 +137,7 @@ public enum IfcDistributionPortTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>CABLE</b></em>' literal value.
@@ -175,22 +152,7 @@ public enum IfcDistributionPortTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CABLE_VALUE = 4;
-
-	/**
-	 * The '<em><b>DUCT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DUCT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DUCT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DUCT_VALUE = 5;
+	public static final int CABLE_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -205,7 +167,37 @@ public enum IfcDistributionPortTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 6;
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>PIPE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PIPE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PIPE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PIPE_VALUE = 5;
+
+	/**
+	 * The '<em><b>CABLECARRIER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CABLECARRIER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CABLECARRIER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CABLECARRIER_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Distribution Port Type Enum</b></em>' enumerators.
@@ -213,8 +205,8 @@ public enum IfcDistributionPortTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDistributionPortTypeEnum[] VALUES_ARRAY = new IfcDistributionPortTypeEnum[] { NULL,
-			CABLECARRIER, PIPE, NOTDEFINED, CABLE, DUCT, USERDEFINED, };
+	private static final IfcDistributionPortTypeEnum[] VALUES_ARRAY = new IfcDistributionPortTypeEnum[] { NULL, DUCT,
+			NOTDEFINED, CABLE, USERDEFINED, PIPE, CABLECARRIER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Distribution Port Type Enum</b></em>' enumerators.
@@ -273,18 +265,18 @@ public enum IfcDistributionPortTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case CABLECARRIER_VALUE:
-			return CABLECARRIER;
-		case PIPE_VALUE:
-			return PIPE;
+		case DUCT_VALUE:
+			return DUCT;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case CABLE_VALUE:
 			return CABLE;
-		case DUCT_VALUE:
-			return DUCT;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case PIPE_VALUE:
+			return PIPE;
+		case CABLECARRIER_VALUE:
+			return CABLECARRIER;
 		}
 		return null;
 	}

@@ -43,76 +43,6 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SPANDREL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPANDREL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPANDREL(1, "SPANDREL", "SPANDREL"),
-
-	/**
-	 * The '<em><b>LINTEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LINTEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LINTEL(2, "LINTEL", "LINTEL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TBEAM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TBEAM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TBEAM(4, "T_BEAM", "T_BEAM"),
-
-	/**
-	 * The '<em><b>HOLLOWCORE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HOLLOWCORE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HOLLOWCORE(5, "HOLLOWCORE", "HOLLOWCORE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>JOIST</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #JOIST_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	JOIST(7, "JOIST", "JOIST"),
-
-	/**
 	 * The '<em><b>BEAM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,7 +50,63 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BEAM(8, "BEAM", "BEAM");
+	BEAM(1, "BEAM", "BEAM"), /**
+								* The '<em><b>JOIST</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #JOIST_VALUE
+								* @generated
+								* @ordered
+								*/
+	JOIST(2, "JOIST", "JOIST"), /**
+								* The '<em><b>NOTDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #NOTDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>LINTEL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #LINTEL_VALUE
+												* @generated
+												* @ordered
+												*/
+	LINTEL(4, "LINTEL", "LINTEL"), /**
+									* The '<em><b>SPANDREL</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #SPANDREL_VALUE
+									* @generated
+									* @ordered
+									*/
+	SPANDREL(5, "SPANDREL", "SPANDREL"), /**
+											* The '<em><b>TBEAM</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #TBEAM_VALUE
+											* @generated
+											* @ordered
+											*/
+	TBEAM(6, "T_BEAM", "T_BEAM"), /**
+									* The '<em><b>USERDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #USERDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>HOLLOWCORE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #HOLLOWCORE_VALUE
+													* @generated
+													* @ordered
+													*/
+	HOLLOWCORE(8, "HOLLOWCORE", "HOLLOWCORE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -138,34 +124,34 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>SPANDREL</b></em>' literal value.
+	 * The '<em><b>BEAM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SPANDREL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>BEAM</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SPANDREL
+	 * @see #BEAM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPANDREL_VALUE = 1;
+	public static final int BEAM_VALUE = 1;
 
 	/**
-	 * The '<em><b>LINTEL</b></em>' literal value.
+	 * The '<em><b>JOIST</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>LINTEL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>JOIST</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LINTEL
+	 * @see #JOIST
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LINTEL_VALUE = 2;
+	public static final int JOIST_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -183,6 +169,36 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
+	 * The '<em><b>LINTEL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LINTEL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LINTEL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LINTEL_VALUE = 4;
+
+	/**
+	 * The '<em><b>SPANDREL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SPANDREL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SPANDREL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SPANDREL_VALUE = 5;
+
+	/**
 	 * The '<em><b>TBEAM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -195,22 +211,7 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TBEAM_VALUE = 4;
-
-	/**
-	 * The '<em><b>HOLLOWCORE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HOLLOWCORE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HOLLOWCORE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HOLLOWCORE_VALUE = 5;
+	public static final int TBEAM_VALUE = 6;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -225,37 +226,22 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 6;
+	public static final int USERDEFINED_VALUE = 7;
 
 	/**
-	 * The '<em><b>JOIST</b></em>' literal value.
+	 * The '<em><b>HOLLOWCORE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>JOIST</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>HOLLOWCORE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #JOIST
+	 * @see #HOLLOWCORE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int JOIST_VALUE = 7;
-
-	/**
-	 * The '<em><b>BEAM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BEAM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BEAM
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BEAM_VALUE = 8;
+	public static final int HOLLOWCORE_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Beam Type Enum</b></em>' enumerators.
@@ -263,8 +249,8 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBeamTypeEnum[] VALUES_ARRAY = new IfcBeamTypeEnum[] { NULL, SPANDREL, LINTEL, NOTDEFINED,
-			TBEAM, HOLLOWCORE, USERDEFINED, JOIST, BEAM, };
+	private static final IfcBeamTypeEnum[] VALUES_ARRAY = new IfcBeamTypeEnum[] { NULL, BEAM, JOIST, NOTDEFINED, LINTEL,
+			SPANDREL, TBEAM, USERDEFINED, HOLLOWCORE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Beam Type Enum</b></em>' enumerators.
@@ -322,22 +308,22 @@ public enum IfcBeamTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case SPANDREL_VALUE:
-			return SPANDREL;
-		case LINTEL_VALUE:
-			return LINTEL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case TBEAM_VALUE:
-			return TBEAM;
-		case HOLLOWCORE_VALUE:
-			return HOLLOWCORE;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case JOIST_VALUE:
-			return JOIST;
 		case BEAM_VALUE:
 			return BEAM;
+		case JOIST_VALUE:
+			return JOIST;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case LINTEL_VALUE:
+			return LINTEL;
+		case SPANDREL_VALUE:
+			return SPANDREL;
+		case TBEAM_VALUE:
+			return TBEAM;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case HOLLOWCORE_VALUE:
+			return HOLLOWCORE;
 		}
 		return null;
 	}

@@ -43,36 +43,6 @@ public enum IfcValveTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>FAUCET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FAUCET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FAUCET(1, "FAUCET", "FAUCET"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ISOLATING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ISOLATING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ISOLATING(3, "ISOLATING", "ISOLATING"),
-
-	/**
 	 * The '<em><b>COMMISSIONING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,97 +50,7 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMMISSIONING(4, "COMMISSIONING", "COMMISSIONING"),
-
-	/**
-	 * The '<em><b>DOUBLECHECK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLECHECK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLECHECK(5, "DOUBLECHECK", "DOUBLECHECK"),
-
-	/**
-	 * The '<em><b>STOPCOCK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STOPCOCK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STOPCOCK(6, "STOPCOCK", "STOPCOCK"),
-
-	/**
-	 * The '<em><b>PRESSUREREDUCING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRESSUREREDUCING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRESSUREREDUCING(7, "PRESSUREREDUCING", "PRESSUREREDUCING"),
-
-	/**
-	 * The '<em><b>STEAMTRAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STEAMTRAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STEAMTRAP(8, "STEAMTRAP", "STEAMTRAP"),
-
-	/**
-	 * The '<em><b>GASTAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASTAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASTAP(9, "GASTAP", "GASTAP"),
-
-	/**
-	 * The '<em><b>DOUBLEREGULATING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLEREGULATING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLEREGULATING(10, "DOUBLEREGULATING", "DOUBLEREGULATING"),
-
-	/**
-	 * The '<em><b>ANTIVACUUM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ANTIVACUUM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ANTIVACUUM(11, "ANTIVACUUM", "ANTIVACUUM"),
-
-	/**
-	 * The '<em><b>SAFETYCUTOFF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SAFETYCUTOFF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SAFETYCUTOFF(12, "SAFETYCUTOFF", "SAFETYCUTOFF"),
-
-	/**
-	 * The '<em><b>REGULATING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REGULATING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REGULATING(13, "REGULATING", "REGULATING"),
+	COMMISSIONING(1, "COMMISSIONING", "COMMISSIONING"),
 
 	/**
 	 * The '<em><b>CHANGEOVER</b></em>' literal object.
@@ -180,17 +60,7 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CHANGEOVER(14, "CHANGEOVER", "CHANGEOVER"),
-
-	/**
-	 * The '<em><b>CHECK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CHECK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CHECK(15, "CHECK", "CHECK"),
+	CHANGEOVER(2, "CHANGEOVER", "CHANGEOVER"),
 
 	/**
 	 * The '<em><b>DIVERTING</b></em>' literal object.
@@ -200,47 +70,23 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIVERTING(16, "DIVERTING", "DIVERTING"),
-
-	/**
-	 * The '<em><b>DRAWOFFCOCK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DRAWOFFCOCK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DRAWOFFCOCK(17, "DRAWOFFCOCK", "DRAWOFFCOCK"),
-
-	/**
-	 * The '<em><b>PRESSURERELIEF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRESSURERELIEF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRESSURERELIEF(18, "PRESSURERELIEF", "PRESSURERELIEF"),
-
-	/**
-	 * The '<em><b>MIXING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MIXING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MIXING(19, "MIXING", "MIXING"),
-
-	/**
-	 * The '<em><b>FLUSHING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLUSHING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLUSHING(20, "FLUSHING", "FLUSHING"),
+	DIVERTING(3, "DIVERTING", "DIVERTING"), /**
+											* The '<em><b>GASTAP</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #GASTAP_VALUE
+											* @generated
+											* @ordered
+											*/
+	GASTAP(4, "GASTAP", "GASTAP"), /**
+									* The '<em><b>ANTIVACUUM</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #ANTIVACUUM_VALUE
+									* @generated
+									* @ordered
+									*/
+	ANTIVACUUM(5, "ANTIVACUUM", "ANTIVACUUM"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -250,17 +96,7 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(21, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>GASCOCK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASCOCK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASCOCK(22, "GASCOCK", "GASCOCK"),
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>AIRRELEASE</b></em>' literal object.
@@ -270,7 +106,135 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AIRRELEASE(23, "AIRRELEASE", "AIRRELEASE");
+	AIRRELEASE(7, "AIRRELEASE", "AIRRELEASE"), /**
+												* The '<em><b>REGULATING</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #REGULATING_VALUE
+												* @generated
+												* @ordered
+												*/
+	REGULATING(8, "REGULATING", "REGULATING"), /**
+												* The '<em><b>PRESSUREREDUCING</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #PRESSUREREDUCING_VALUE
+												* @generated
+												* @ordered
+												*/
+	PRESSUREREDUCING(9, "PRESSUREREDUCING", "PRESSUREREDUCING"), /**
+																	* The '<em><b>STEAMTRAP</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #STEAMTRAP_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	STEAMTRAP(10, "STEAMTRAP", "STEAMTRAP"), /**
+												* The '<em><b>DOUBLECHECK</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #DOUBLECHECK_VALUE
+												* @generated
+												* @ordered
+												*/
+	DOUBLECHECK(11, "DOUBLECHECK", "DOUBLECHECK"), /**
+													* The '<em><b>NOTDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #NOTDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	NOTDEFINED(12, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>MIXING</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #MIXING_VALUE
+												* @generated
+												* @ordered
+												*/
+	MIXING(13, "MIXING", "MIXING"), /**
+									* The '<em><b>PRESSURERELIEF</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #PRESSURERELIEF_VALUE
+									* @generated
+									* @ordered
+									*/
+	PRESSURERELIEF(14, "PRESSURERELIEF", "PRESSURERELIEF"), /**
+															* The '<em><b>STOPCOCK</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #STOPCOCK_VALUE
+															* @generated
+															* @ordered
+															*/
+	STOPCOCK(15, "STOPCOCK", "STOPCOCK"), /**
+											* The '<em><b>FLUSHING</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #FLUSHING_VALUE
+											* @generated
+											* @ordered
+											*/
+	FLUSHING(16, "FLUSHING", "FLUSHING"), /**
+											* The '<em><b>ISOLATING</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #ISOLATING_VALUE
+											* @generated
+											* @ordered
+											*/
+	ISOLATING(17, "ISOLATING", "ISOLATING"), /**
+												* The '<em><b>FAUCET</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #FAUCET_VALUE
+												* @generated
+												* @ordered
+												*/
+	FAUCET(18, "FAUCET", "FAUCET"), /**
+									* The '<em><b>SAFETYCUTOFF</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #SAFETYCUTOFF_VALUE
+									* @generated
+									* @ordered
+									*/
+	SAFETYCUTOFF(19, "SAFETYCUTOFF", "SAFETYCUTOFF"), /**
+														* The '<em><b>CHECK</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #CHECK_VALUE
+														* @generated
+														* @ordered
+														*/
+	CHECK(20, "CHECK", "CHECK"), /**
+									* The '<em><b>DRAWOFFCOCK</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #DRAWOFFCOCK_VALUE
+									* @generated
+									* @ordered
+									*/
+	DRAWOFFCOCK(21, "DRAWOFFCOCK", "DRAWOFFCOCK"), /**
+													* The '<em><b>GASCOCK</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #GASCOCK_VALUE
+													* @generated
+													* @ordered
+													*/
+	GASCOCK(22, "GASCOCK", "GASCOCK"), /**
+										* The '<em><b>DOUBLEREGULATING</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #DOUBLEREGULATING_VALUE
+										* @generated
+										* @ordered
+										*/
+	DOUBLEREGULATING(23, "DOUBLEREGULATING", "DOUBLEREGULATING");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -288,51 +252,6 @@ public enum IfcValveTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>FAUCET</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FAUCET</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FAUCET
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FAUCET_VALUE = 1;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>ISOLATING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ISOLATING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ISOLATING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ISOLATING_VALUE = 3;
-
-	/**
 	 * The '<em><b>COMMISSIONING</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -345,142 +264,7 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMMISSIONING_VALUE = 4;
-
-	/**
-	 * The '<em><b>DOUBLECHECK</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DOUBLECHECK</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLECHECK
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DOUBLECHECK_VALUE = 5;
-
-	/**
-	 * The '<em><b>STOPCOCK</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STOPCOCK</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STOPCOCK
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STOPCOCK_VALUE = 6;
-
-	/**
-	 * The '<em><b>PRESSUREREDUCING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PRESSUREREDUCING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PRESSUREREDUCING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PRESSUREREDUCING_VALUE = 7;
-
-	/**
-	 * The '<em><b>STEAMTRAP</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STEAMTRAP</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STEAMTRAP
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STEAMTRAP_VALUE = 8;
-
-	/**
-	 * The '<em><b>GASTAP</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GASTAP</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GASTAP
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GASTAP_VALUE = 9;
-
-	/**
-	 * The '<em><b>DOUBLEREGULATING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DOUBLEREGULATING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLEREGULATING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DOUBLEREGULATING_VALUE = 10;
-
-	/**
-	 * The '<em><b>ANTIVACUUM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ANTIVACUUM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ANTIVACUUM
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ANTIVACUUM_VALUE = 11;
-
-	/**
-	 * The '<em><b>SAFETYCUTOFF</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SAFETYCUTOFF</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SAFETYCUTOFF
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SAFETYCUTOFF_VALUE = 12;
-
-	/**
-	 * The '<em><b>REGULATING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>REGULATING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #REGULATING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int REGULATING_VALUE = 13;
+	public static final int COMMISSIONING_VALUE = 1;
 
 	/**
 	 * The '<em><b>CHANGEOVER</b></em>' literal value.
@@ -495,22 +279,7 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CHANGEOVER_VALUE = 14;
-
-	/**
-	 * The '<em><b>CHECK</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CHECK</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CHECK
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CHECK_VALUE = 15;
+	public static final int CHANGEOVER_VALUE = 2;
 
 	/**
 	 * The '<em><b>DIVERTING</b></em>' literal value.
@@ -525,67 +294,37 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIVERTING_VALUE = 16;
+	public static final int DIVERTING_VALUE = 3;
 
 	/**
-	 * The '<em><b>DRAWOFFCOCK</b></em>' literal value.
+	 * The '<em><b>GASTAP</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DRAWOFFCOCK</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>GASTAP</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DRAWOFFCOCK
+	 * @see #GASTAP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DRAWOFFCOCK_VALUE = 17;
+	public static final int GASTAP_VALUE = 4;
 
 	/**
-	 * The '<em><b>PRESSURERELIEF</b></em>' literal value.
+	 * The '<em><b>ANTIVACUUM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PRESSURERELIEF</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ANTIVACUUM</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PRESSURERELIEF
+	 * @see #ANTIVACUUM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRESSURERELIEF_VALUE = 18;
-
-	/**
-	 * The '<em><b>MIXING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MIXING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MIXING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MIXING_VALUE = 19;
-
-	/**
-	 * The '<em><b>FLUSHING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FLUSHING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FLUSHING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FLUSHING_VALUE = 20;
+	public static final int ANTIVACUUM_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -600,7 +339,232 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 21;
+	public static final int USERDEFINED_VALUE = 6;
+
+	/**
+	 * The '<em><b>AIRRELEASE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>AIRRELEASE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #AIRRELEASE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int AIRRELEASE_VALUE = 7;
+
+	/**
+	 * The '<em><b>REGULATING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>REGULATING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #REGULATING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int REGULATING_VALUE = 8;
+
+	/**
+	 * The '<em><b>PRESSUREREDUCING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PRESSUREREDUCING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PRESSUREREDUCING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PRESSUREREDUCING_VALUE = 9;
+
+	/**
+	 * The '<em><b>STEAMTRAP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STEAMTRAP</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STEAMTRAP
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STEAMTRAP_VALUE = 10;
+
+	/**
+	 * The '<em><b>DOUBLECHECK</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DOUBLECHECK</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DOUBLECHECK
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DOUBLECHECK_VALUE = 11;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 12;
+
+	/**
+	 * The '<em><b>MIXING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MIXING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MIXING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MIXING_VALUE = 13;
+
+	/**
+	 * The '<em><b>PRESSURERELIEF</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PRESSURERELIEF</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PRESSURERELIEF
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PRESSURERELIEF_VALUE = 14;
+
+	/**
+	 * The '<em><b>STOPCOCK</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STOPCOCK</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STOPCOCK
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STOPCOCK_VALUE = 15;
+
+	/**
+	 * The '<em><b>FLUSHING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FLUSHING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FLUSHING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FLUSHING_VALUE = 16;
+
+	/**
+	 * The '<em><b>ISOLATING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ISOLATING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ISOLATING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ISOLATING_VALUE = 17;
+
+	/**
+	 * The '<em><b>FAUCET</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FAUCET</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FAUCET
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FAUCET_VALUE = 18;
+
+	/**
+	 * The '<em><b>SAFETYCUTOFF</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SAFETYCUTOFF</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SAFETYCUTOFF
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SAFETYCUTOFF_VALUE = 19;
+
+	/**
+	 * The '<em><b>CHECK</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CHECK</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CHECK
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CHECK_VALUE = 20;
+
+	/**
+	 * The '<em><b>DRAWOFFCOCK</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DRAWOFFCOCK</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DRAWOFFCOCK
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DRAWOFFCOCK_VALUE = 21;
 
 	/**
 	 * The '<em><b>GASCOCK</b></em>' literal value.
@@ -618,19 +582,19 @@ public enum IfcValveTypeEnum implements Enumerator {
 	public static final int GASCOCK_VALUE = 22;
 
 	/**
-	 * The '<em><b>AIRRELEASE</b></em>' literal value.
+	 * The '<em><b>DOUBLEREGULATING</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>AIRRELEASE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DOUBLEREGULATING</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AIRRELEASE
+	 * @see #DOUBLEREGULATING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AIRRELEASE_VALUE = 23;
+	public static final int DOUBLEREGULATING_VALUE = 23;
 
 	/**
 	 * An array of all the '<em><b>Ifc Valve Type Enum</b></em>' enumerators.
@@ -638,8 +602,10 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcValveTypeEnum[] VALUES_ARRAY = new IfcValveTypeEnum[] { NULL, FAUCET, NOTDEFINED, ISOLATING, COMMISSIONING, DOUBLECHECK, STOPCOCK, PRESSUREREDUCING, STEAMTRAP, GASTAP, DOUBLEREGULATING,
-			ANTIVACUUM, SAFETYCUTOFF, REGULATING, CHANGEOVER, CHECK, DIVERTING, DRAWOFFCOCK, PRESSURERELIEF, MIXING, FLUSHING, USERDEFINED, GASCOCK, AIRRELEASE, };
+	private static final IfcValveTypeEnum[] VALUES_ARRAY = new IfcValveTypeEnum[] { NULL, COMMISSIONING, CHANGEOVER,
+			DIVERTING, GASTAP, ANTIVACUUM, USERDEFINED, AIRRELEASE, REGULATING, PRESSUREREDUCING, STEAMTRAP,
+			DOUBLECHECK, NOTDEFINED, MIXING, PRESSURERELIEF, STOPCOCK, FLUSHING, ISOLATING, FAUCET, SAFETYCUTOFF, CHECK,
+			DRAWOFFCOCK, GASCOCK, DOUBLEREGULATING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Valve Type Enum</b></em>' enumerators.
@@ -697,52 +663,52 @@ public enum IfcValveTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case FAUCET_VALUE:
-			return FAUCET;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case ISOLATING_VALUE:
-			return ISOLATING;
 		case COMMISSIONING_VALUE:
 			return COMMISSIONING;
-		case DOUBLECHECK_VALUE:
-			return DOUBLECHECK;
-		case STOPCOCK_VALUE:
-			return STOPCOCK;
+		case CHANGEOVER_VALUE:
+			return CHANGEOVER;
+		case DIVERTING_VALUE:
+			return DIVERTING;
+		case GASTAP_VALUE:
+			return GASTAP;
+		case ANTIVACUUM_VALUE:
+			return ANTIVACUUM;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case AIRRELEASE_VALUE:
+			return AIRRELEASE;
+		case REGULATING_VALUE:
+			return REGULATING;
 		case PRESSUREREDUCING_VALUE:
 			return PRESSUREREDUCING;
 		case STEAMTRAP_VALUE:
 			return STEAMTRAP;
-		case GASTAP_VALUE:
-			return GASTAP;
-		case DOUBLEREGULATING_VALUE:
-			return DOUBLEREGULATING;
-		case ANTIVACUUM_VALUE:
-			return ANTIVACUUM;
-		case SAFETYCUTOFF_VALUE:
-			return SAFETYCUTOFF;
-		case REGULATING_VALUE:
-			return REGULATING;
-		case CHANGEOVER_VALUE:
-			return CHANGEOVER;
-		case CHECK_VALUE:
-			return CHECK;
-		case DIVERTING_VALUE:
-			return DIVERTING;
-		case DRAWOFFCOCK_VALUE:
-			return DRAWOFFCOCK;
-		case PRESSURERELIEF_VALUE:
-			return PRESSURERELIEF;
+		case DOUBLECHECK_VALUE:
+			return DOUBLECHECK;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case MIXING_VALUE:
 			return MIXING;
+		case PRESSURERELIEF_VALUE:
+			return PRESSURERELIEF;
+		case STOPCOCK_VALUE:
+			return STOPCOCK;
 		case FLUSHING_VALUE:
 			return FLUSHING;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case ISOLATING_VALUE:
+			return ISOLATING;
+		case FAUCET_VALUE:
+			return FAUCET;
+		case SAFETYCUTOFF_VALUE:
+			return SAFETYCUTOFF;
+		case CHECK_VALUE:
+			return CHECK;
+		case DRAWOFFCOCK_VALUE:
+			return DRAWOFFCOCK;
 		case GASCOCK_VALUE:
 			return GASCOCK;
-		case AIRRELEASE_VALUE:
-			return AIRRELEASE;
+		case DOUBLEREGULATING_VALUE:
+			return DOUBLEREGULATING;
 		}
 		return null;
 	}

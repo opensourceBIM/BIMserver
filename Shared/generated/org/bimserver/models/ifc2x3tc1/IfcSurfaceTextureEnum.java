@@ -43,36 +43,6 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>OPACITY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OPACITY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OPACITY(1, "OPACITY", "OPACITY"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SELFILLUMINATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SELFILLUMINATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SELFILLUMINATION(3, "SELFILLUMINATION", "SELFILLUMINATION"),
-
-	/**
 	 * The '<em><b>REFLECTION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +50,7 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	REFLECTION(4, "REFLECTION", "REFLECTION"),
+	REFLECTION(1, "REFLECTION", "REFLECTION"),
 
 	/**
 	 * The '<em><b>TEXTURE</b></em>' literal object.
@@ -90,37 +60,23 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TEXTURE(5, "TEXTURE", "TEXTURE"),
-
-	/**
-	 * The '<em><b>SPECULAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPECULAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPECULAR(6, "SPECULAR", "SPECULAR"),
-
-	/**
-	 * The '<em><b>BUMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BUMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BUMP(7, "BUMP", "BUMP"),
-
-	/**
-	 * The '<em><b>TRANSPARENCYMAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRANSPARENCYMAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRANSPARENCYMAP(8, "TRANSPARENCYMAP", "TRANSPARENCYMAP"),
+	TEXTURE(2, "TEXTURE", "TEXTURE"), /**
+										* The '<em><b>NOTDEFINED</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #NOTDEFINED_VALUE
+										* @generated
+										* @ordered
+										*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>OPACITY</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #OPACITY_VALUE
+												* @generated
+												* @ordered
+												*/
+	OPACITY(4, "OPACITY", "OPACITY"),
 
 	/**
 	 * The '<em><b>SHININESS</b></em>' literal object.
@@ -130,7 +86,39 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SHININESS(9, "SHININESS", "SHININESS");
+	SHININESS(5, "SHININESS", "SHININESS"), /**
+											* The '<em><b>BUMP</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #BUMP_VALUE
+											* @generated
+											* @ordered
+											*/
+	BUMP(6, "BUMP", "BUMP"), /**
+								* The '<em><b>SPECULAR</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #SPECULAR_VALUE
+								* @generated
+								* @ordered
+								*/
+	SPECULAR(7, "SPECULAR", "SPECULAR"), /**
+											* The '<em><b>TRANSPARENCYMAP</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #TRANSPARENCYMAP_VALUE
+											* @generated
+											* @ordered
+											*/
+	TRANSPARENCYMAP(8, "TRANSPARENCYMAP", "TRANSPARENCYMAP"), /**
+																* The '<em><b>SELFILLUMINATION</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #SELFILLUMINATION_VALUE
+																* @generated
+																* @ordered
+																*/
+	SELFILLUMINATION(9, "SELFILLUMINATION", "SELFILLUMINATION");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,51 +136,6 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>OPACITY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>OPACITY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #OPACITY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OPACITY_VALUE = 1;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>SELFILLUMINATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SELFILLUMINATION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SELFILLUMINATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SELFILLUMINATION_VALUE = 3;
-
-	/**
 	 * The '<em><b>REFLECTION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -205,7 +148,7 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REFLECTION_VALUE = 4;
+	public static final int REFLECTION_VALUE = 1;
 
 	/**
 	 * The '<em><b>TEXTURE</b></em>' literal value.
@@ -220,22 +163,52 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEXTURE_VALUE = 5;
+	public static final int TEXTURE_VALUE = 2;
 
 	/**
-	 * The '<em><b>SPECULAR</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SPECULAR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SPECULAR
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPECULAR_VALUE = 6;
+	public static final int NOTDEFINED_VALUE = 3;
+
+	/**
+	 * The '<em><b>OPACITY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>OPACITY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #OPACITY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OPACITY_VALUE = 4;
+
+	/**
+	 * The '<em><b>SHININESS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SHININESS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SHININESS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SHININESS_VALUE = 5;
 
 	/**
 	 * The '<em><b>BUMP</b></em>' literal value.
@@ -250,7 +223,22 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BUMP_VALUE = 7;
+	public static final int BUMP_VALUE = 6;
+
+	/**
+	 * The '<em><b>SPECULAR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SPECULAR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SPECULAR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SPECULAR_VALUE = 7;
 
 	/**
 	 * The '<em><b>TRANSPARENCYMAP</b></em>' literal value.
@@ -268,19 +256,19 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	public static final int TRANSPARENCYMAP_VALUE = 8;
 
 	/**
-	 * The '<em><b>SHININESS</b></em>' literal value.
+	 * The '<em><b>SELFILLUMINATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SHININESS</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SELFILLUMINATION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SHININESS
+	 * @see #SELFILLUMINATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SHININESS_VALUE = 9;
+	public static final int SELFILLUMINATION_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Surface Texture Enum</b></em>' enumerators.
@@ -288,7 +276,8 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSurfaceTextureEnum[] VALUES_ARRAY = new IfcSurfaceTextureEnum[] { NULL, OPACITY, NOTDEFINED, SELFILLUMINATION, REFLECTION, TEXTURE, SPECULAR, BUMP, TRANSPARENCYMAP, SHININESS, };
+	private static final IfcSurfaceTextureEnum[] VALUES_ARRAY = new IfcSurfaceTextureEnum[] { NULL, REFLECTION, TEXTURE,
+			NOTDEFINED, OPACITY, SHININESS, BUMP, SPECULAR, TRANSPARENCYMAP, SELFILLUMINATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Surface Texture Enum</b></em>' enumerators.
@@ -346,24 +335,24 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case OPACITY_VALUE:
-			return OPACITY;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case SELFILLUMINATION_VALUE:
-			return SELFILLUMINATION;
 		case REFLECTION_VALUE:
 			return REFLECTION;
 		case TEXTURE_VALUE:
 			return TEXTURE;
-		case SPECULAR_VALUE:
-			return SPECULAR;
-		case BUMP_VALUE:
-			return BUMP;
-		case TRANSPARENCYMAP_VALUE:
-			return TRANSPARENCYMAP;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case OPACITY_VALUE:
+			return OPACITY;
 		case SHININESS_VALUE:
 			return SHININESS;
+		case BUMP_VALUE:
+			return BUMP;
+		case SPECULAR_VALUE:
+			return SPECULAR;
+		case TRANSPARENCYMAP_VALUE:
+			return TRANSPARENCYMAP;
+		case SELFILLUMINATION_VALUE:
+			return SELFILLUMINATION;
 		}
 		return null;
 	}

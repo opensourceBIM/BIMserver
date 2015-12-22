@@ -43,16 +43,6 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>LOADING 3D</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOADING_3D_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOADING_3D(1, "LOADING_3D", "LOADING_3D"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,7 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>IN PLANE LOADING 2D</b></em>' literal object.
@@ -70,17 +60,7 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	IN_PLANE_LOADING_2D(3, "IN_PLANE_LOADING_2D", "IN_PLANE_LOADING_2D"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
+	IN_PLANE_LOADING_2D(2, "IN_PLANE_LOADING_2D", "IN_PLANE_LOADING_2D"),
 
 	/**
 	 * The '<em><b>OUT PLANE LOADING 2D</b></em>' literal object.
@@ -90,7 +70,23 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OUT_PLANE_LOADING_2D(5, "OUT_PLANE_LOADING_2D", "OUT_PLANE_LOADING_2D");
+	OUT_PLANE_LOADING_2D(3, "OUT_PLANE_LOADING_2D", "OUT_PLANE_LOADING_2D"), /**
+																				* The '<em><b>LOADING 3D</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #LOADING_3D_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	LOADING_3D(4, "LOADING_3D", "LOADING_3D"), /**
+												* The '<em><b>USERDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #USERDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,21 +104,6 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>LOADING 3D</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>LOADING 3D</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #LOADING_3D
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LOADING_3D_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,7 +116,7 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>IN PLANE LOADING 2D</b></em>' literal value.
@@ -150,22 +131,7 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int IN_PLANE_LOADING_2D_VALUE = 3;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int IN_PLANE_LOADING_2D_VALUE = 2;
 
 	/**
 	 * The '<em><b>OUT PLANE LOADING 2D</b></em>' literal value.
@@ -180,7 +146,37 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OUT_PLANE_LOADING_2D_VALUE = 5;
+	public static final int OUT_PLANE_LOADING_2D_VALUE = 3;
+
+	/**
+	 * The '<em><b>LOADING 3D</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LOADING 3D</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LOADING_3D
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LOADING_3D_VALUE = 4;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Analysis Model Type Enum</b></em>' enumerators.
@@ -188,7 +184,8 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAnalysisModelTypeEnum[] VALUES_ARRAY = new IfcAnalysisModelTypeEnum[] { NULL, LOADING_3D, NOTDEFINED, IN_PLANE_LOADING_2D, USERDEFINED, OUT_PLANE_LOADING_2D, };
+	private static final IfcAnalysisModelTypeEnum[] VALUES_ARRAY = new IfcAnalysisModelTypeEnum[] { NULL, NOTDEFINED,
+			IN_PLANE_LOADING_2D, OUT_PLANE_LOADING_2D, LOADING_3D, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Analysis Model Type Enum</b></em>' enumerators.
@@ -196,7 +193,8 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAnalysisModelTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAnalysisModelTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Analysis Model Type Enum</b></em>' literal with the specified literal value.
@@ -246,16 +244,16 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case LOADING_3D_VALUE:
-			return LOADING_3D;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case IN_PLANE_LOADING_2D_VALUE:
 			return IN_PLANE_LOADING_2D;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case OUT_PLANE_LOADING_2D_VALUE:
 			return OUT_PLANE_LOADING_2D;
+		case LOADING_3D_VALUE:
+			return LOADING_3D;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

@@ -43,76 +43,6 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>CONSTRUCTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONSTRUCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONSTRUCTION(1, "CONSTRUCTION", "CONSTRUCTION"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>MAINTENANCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MAINTENANCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MAINTENANCE(3, "MAINTENANCE", "MAINTENANCE"),
-
-	/**
-	 * The '<em><b>LOGISTIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOGISTIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOGISTIC(4, "LOGISTIC", "LOGISTIC"),
-
-	/**
-	 * The '<em><b>MOVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MOVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MOVE(5, "MOVE", "MOVE"),
-
-	/**
-	 * The '<em><b>REMOVAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REMOVAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REMOVAL(6, "REMOVAL", "REMOVAL"),
-
-	/**
-	 * The '<em><b>DISMANTLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISMANTLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DISMANTLE(7, "DISMANTLE", "DISMANTLE"),
-
-	/**
 	 * The '<em><b>DEMOLITION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,17 +50,15 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DEMOLITION(8, "DEMOLITION", "DEMOLITION"),
-
-	/**
-	 * The '<em><b>INSTALLATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INSTALLATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INSTALLATION(9, "INSTALLATION", "INSTALLATION"),
+	DEMOLITION(1, "DEMOLITION", "DEMOLITION"), /**
+												* The '<em><b>DISMANTLE</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #DISMANTLE_VALUE
+												* @generated
+												* @ordered
+												*/
+	DISMANTLE(2, "DISMANTLE", "DISMANTLE"),
 
 	/**
 	 * The '<em><b>ATTENDANCE</b></em>' literal object.
@@ -140,27 +68,7 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ATTENDANCE(10, "ATTENDANCE", "ATTENDANCE"),
-
-	/**
-	 * The '<em><b>OPERATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OPERATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OPERATION(11, "OPERATION", "OPERATION"),
-
-	/**
-	 * The '<em><b>DISPOSAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISPOSAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DISPOSAL(12, "DISPOSAL", "DISPOSAL"),
+	ATTENDANCE(3, "ATTENDANCE", "ATTENDANCE"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -170,7 +78,7 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(13, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>RENOVATION</b></em>' literal object.
@@ -180,7 +88,79 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RENOVATION(14, "RENOVATION", "RENOVATION");
+	RENOVATION(5, "RENOVATION", "RENOVATION"), /**
+												* The '<em><b>MAINTENANCE</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #MAINTENANCE_VALUE
+												* @generated
+												* @ordered
+												*/
+	MAINTENANCE(6, "MAINTENANCE", "MAINTENANCE"), /**
+													* The '<em><b>NOTDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #NOTDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	NOTDEFINED(7, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>REMOVAL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #REMOVAL_VALUE
+												* @generated
+												* @ordered
+												*/
+	REMOVAL(8, "REMOVAL", "REMOVAL"), /**
+										* The '<em><b>DISPOSAL</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #DISPOSAL_VALUE
+										* @generated
+										* @ordered
+										*/
+	DISPOSAL(9, "DISPOSAL", "DISPOSAL"), /**
+											* The '<em><b>MOVE</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #MOVE_VALUE
+											* @generated
+											* @ordered
+											*/
+	MOVE(10, "MOVE", "MOVE"), /**
+								* The '<em><b>OPERATION</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #OPERATION_VALUE
+								* @generated
+								* @ordered
+								*/
+	OPERATION(11, "OPERATION", "OPERATION"), /**
+												* The '<em><b>INSTALLATION</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #INSTALLATION_VALUE
+												* @generated
+												* @ordered
+												*/
+	INSTALLATION(12, "INSTALLATION", "INSTALLATION"), /**
+														* The '<em><b>CONSTRUCTION</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #CONSTRUCTION_VALUE
+														* @generated
+														* @ordered
+														*/
+	CONSTRUCTION(13, "CONSTRUCTION", "CONSTRUCTION"), /**
+														* The '<em><b>LOGISTIC</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #LOGISTIC_VALUE
+														* @generated
+														* @ordered
+														*/
+	LOGISTIC(14, "LOGISTIC", "LOGISTIC");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -198,94 +178,19 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>CONSTRUCTION</b></em>' literal value.
+	 * The '<em><b>DEMOLITION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CONSTRUCTION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DEMOLITION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONSTRUCTION
+	 * @see #DEMOLITION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONSTRUCTION_VALUE = 1;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>MAINTENANCE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MAINTENANCE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MAINTENANCE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MAINTENANCE_VALUE = 3;
-
-	/**
-	 * The '<em><b>LOGISTIC</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>LOGISTIC</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #LOGISTIC
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LOGISTIC_VALUE = 4;
-
-	/**
-	 * The '<em><b>MOVE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MOVE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MOVE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MOVE_VALUE = 5;
-
-	/**
-	 * The '<em><b>REMOVAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>REMOVAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #REMOVAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int REMOVAL_VALUE = 6;
+	public static final int DEMOLITION_VALUE = 1;
 
 	/**
 	 * The '<em><b>DISMANTLE</b></em>' literal value.
@@ -300,37 +205,7 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISMANTLE_VALUE = 7;
-
-	/**
-	 * The '<em><b>DEMOLITION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DEMOLITION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DEMOLITION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DEMOLITION_VALUE = 8;
-
-	/**
-	 * The '<em><b>INSTALLATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>INSTALLATION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #INSTALLATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INSTALLATION_VALUE = 9;
+	public static final int DISMANTLE_VALUE = 2;
 
 	/**
 	 * The '<em><b>ATTENDANCE</b></em>' literal value.
@@ -345,7 +220,112 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ATTENDANCE_VALUE = 10;
+	public static final int ATTENDANCE_VALUE = 3;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>RENOVATION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>RENOVATION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RENOVATION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RENOVATION_VALUE = 5;
+
+	/**
+	 * The '<em><b>MAINTENANCE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MAINTENANCE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MAINTENANCE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MAINTENANCE_VALUE = 6;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 7;
+
+	/**
+	 * The '<em><b>REMOVAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>REMOVAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #REMOVAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int REMOVAL_VALUE = 8;
+
+	/**
+	 * The '<em><b>DISPOSAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DISPOSAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DISPOSAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DISPOSAL_VALUE = 9;
+
+	/**
+	 * The '<em><b>MOVE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MOVE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MOVE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MOVE_VALUE = 10;
 
 	/**
 	 * The '<em><b>OPERATION</b></em>' literal value.
@@ -363,49 +343,49 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	public static final int OPERATION_VALUE = 11;
 
 	/**
-	 * The '<em><b>DISPOSAL</b></em>' literal value.
+	 * The '<em><b>INSTALLATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DISPOSAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>INSTALLATION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DISPOSAL
+	 * @see #INSTALLATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISPOSAL_VALUE = 12;
+	public static final int INSTALLATION_VALUE = 12;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>CONSTRUCTION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CONSTRUCTION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #CONSTRUCTION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 13;
+	public static final int CONSTRUCTION_VALUE = 13;
 
 	/**
-	 * The '<em><b>RENOVATION</b></em>' literal value.
+	 * The '<em><b>LOGISTIC</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>RENOVATION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>LOGISTIC</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RENOVATION
+	 * @see #LOGISTIC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RENOVATION_VALUE = 14;
+	public static final int LOGISTIC_VALUE = 14;
 
 	/**
 	 * An array of all the '<em><b>Ifc Task Type Enum</b></em>' enumerators.
@@ -413,9 +393,9 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTaskTypeEnum[] VALUES_ARRAY = new IfcTaskTypeEnum[] { NULL, CONSTRUCTION, NOTDEFINED,
-			MAINTENANCE, LOGISTIC, MOVE, REMOVAL, DISMANTLE, DEMOLITION, INSTALLATION, ATTENDANCE, OPERATION, DISPOSAL,
-			USERDEFINED, RENOVATION, };
+	private static final IfcTaskTypeEnum[] VALUES_ARRAY = new IfcTaskTypeEnum[] { NULL, DEMOLITION, DISMANTLE,
+			ATTENDANCE, USERDEFINED, RENOVATION, MAINTENANCE, NOTDEFINED, REMOVAL, DISPOSAL, MOVE, OPERATION,
+			INSTALLATION, CONSTRUCTION, LOGISTIC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Task Type Enum</b></em>' enumerators.
@@ -473,34 +453,34 @@ public enum IfcTaskTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case CONSTRUCTION_VALUE:
-			return CONSTRUCTION;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case MAINTENANCE_VALUE:
-			return MAINTENANCE;
-		case LOGISTIC_VALUE:
-			return LOGISTIC;
-		case MOVE_VALUE:
-			return MOVE;
-		case REMOVAL_VALUE:
-			return REMOVAL;
-		case DISMANTLE_VALUE:
-			return DISMANTLE;
 		case DEMOLITION_VALUE:
 			return DEMOLITION;
-		case INSTALLATION_VALUE:
-			return INSTALLATION;
+		case DISMANTLE_VALUE:
+			return DISMANTLE;
 		case ATTENDANCE_VALUE:
 			return ATTENDANCE;
-		case OPERATION_VALUE:
-			return OPERATION;
-		case DISPOSAL_VALUE:
-			return DISPOSAL;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case RENOVATION_VALUE:
 			return RENOVATION;
+		case MAINTENANCE_VALUE:
+			return MAINTENANCE;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case REMOVAL_VALUE:
+			return REMOVAL;
+		case DISPOSAL_VALUE:
+			return DISPOSAL;
+		case MOVE_VALUE:
+			return MOVE;
+		case OPERATION_VALUE:
+			return OPERATION;
+		case INSTALLATION_VALUE:
+			return INSTALLATION;
+		case CONSTRUCTION_VALUE:
+			return CONSTRUCTION;
+		case LOGISTIC_VALUE:
+			return LOGISTIC;
 		}
 		return null;
 	}

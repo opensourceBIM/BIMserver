@@ -43,16 +43,6 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>PESSIMISTICREFERENCESERVICELIFE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PESSIMISTICREFERENCESERVICELIFE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PESSIMISTICREFERENCESERVICELIFE(1, "PESSIMISTICREFERENCESERVICELIFE", "PESSIMISTICREFERENCESERVICELIFE"),
-
-	/**
 	 * The '<em><b>EXPECTEDSERVICELIFE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,27 +50,7 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXPECTEDSERVICELIFE(2, "EXPECTEDSERVICELIFE", "EXPECTEDSERVICELIFE"),
-
-	/**
-	 * The '<em><b>REFERENCESERVICELIFE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REFERENCESERVICELIFE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REFERENCESERVICELIFE(3, "REFERENCESERVICELIFE", "REFERENCESERVICELIFE"),
-
-	/**
-	 * The '<em><b>OPTIMISTICREFERENCESERVICELIFE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OPTIMISTICREFERENCESERVICELIFE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OPTIMISTICREFERENCESERVICELIFE(4, "OPTIMISTICREFERENCESERVICELIFE", "OPTIMISTICREFERENCESERVICELIFE"),
+	EXPECTEDSERVICELIFE(1, "EXPECTEDSERVICELIFE", "EXPECTEDSERVICELIFE"),
 
 	/**
 	 * The '<em><b>ACTUALSERVICELIFE</b></em>' literal object.
@@ -90,7 +60,31 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ACTUALSERVICELIFE(5, "ACTUALSERVICELIFE", "ACTUALSERVICELIFE");
+	ACTUALSERVICELIFE(2, "ACTUALSERVICELIFE", "ACTUALSERVICELIFE"), /**
+																	* The '<em><b>PESSIMISTICREFERENCESERVICELIFE</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #PESSIMISTICREFERENCESERVICELIFE_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	PESSIMISTICREFERENCESERVICELIFE(3, "PESSIMISTICREFERENCESERVICELIFE", "PESSIMISTICREFERENCESERVICELIFE"), /**
+																												* The '<em><b>OPTIMISTICREFERENCESERVICELIFE</b></em>' literal object.
+																												* <!-- begin-user-doc -->
+																												* <!-- end-user-doc -->
+																												* @see #OPTIMISTICREFERENCESERVICELIFE_VALUE
+																												* @generated
+																												* @ordered
+																												*/
+	OPTIMISTICREFERENCESERVICELIFE(4, "OPTIMISTICREFERENCESERVICELIFE", "OPTIMISTICREFERENCESERVICELIFE"), /**
+																											* The '<em><b>REFERENCESERVICELIFE</b></em>' literal object.
+																											* <!-- begin-user-doc -->
+																											* <!-- end-user-doc -->
+																											* @see #REFERENCESERVICELIFE_VALUE
+																											* @generated
+																											* @ordered
+																											*/
+	REFERENCESERVICELIFE(5, "REFERENCESERVICELIFE", "REFERENCESERVICELIFE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,21 +102,6 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>PESSIMISTICREFERENCESERVICELIFE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PESSIMISTICREFERENCESERVICELIFE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PESSIMISTICREFERENCESERVICELIFE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PESSIMISTICREFERENCESERVICELIFE_VALUE = 1;
-
-	/**
 	 * The '<em><b>EXPECTEDSERVICELIFE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,22 +114,37 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXPECTEDSERVICELIFE_VALUE = 2;
+	public static final int EXPECTEDSERVICELIFE_VALUE = 1;
 
 	/**
-	 * The '<em><b>REFERENCESERVICELIFE</b></em>' literal value.
+	 * The '<em><b>ACTUALSERVICELIFE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>REFERENCESERVICELIFE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ACTUALSERVICELIFE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #REFERENCESERVICELIFE
+	 * @see #ACTUALSERVICELIFE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REFERENCESERVICELIFE_VALUE = 3;
+	public static final int ACTUALSERVICELIFE_VALUE = 2;
+
+	/**
+	 * The '<em><b>PESSIMISTICREFERENCESERVICELIFE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PESSIMISTICREFERENCESERVICELIFE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PESSIMISTICREFERENCESERVICELIFE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PESSIMISTICREFERENCESERVICELIFE_VALUE = 3;
 
 	/**
 	 * The '<em><b>OPTIMISTICREFERENCESERVICELIFE</b></em>' literal value.
@@ -168,19 +162,19 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	public static final int OPTIMISTICREFERENCESERVICELIFE_VALUE = 4;
 
 	/**
-	 * The '<em><b>ACTUALSERVICELIFE</b></em>' literal value.
+	 * The '<em><b>REFERENCESERVICELIFE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ACTUALSERVICELIFE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>REFERENCESERVICELIFE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ACTUALSERVICELIFE
+	 * @see #REFERENCESERVICELIFE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ACTUALSERVICELIFE_VALUE = 5;
+	public static final int REFERENCESERVICELIFE_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Service Life Type Enum</b></em>' enumerators.
@@ -188,8 +182,9 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcServiceLifeTypeEnum[] VALUES_ARRAY = new IfcServiceLifeTypeEnum[] { NULL, PESSIMISTICREFERENCESERVICELIFE, EXPECTEDSERVICELIFE, REFERENCESERVICELIFE, OPTIMISTICREFERENCESERVICELIFE,
-			ACTUALSERVICELIFE, };
+	private static final IfcServiceLifeTypeEnum[] VALUES_ARRAY = new IfcServiceLifeTypeEnum[] { NULL,
+			EXPECTEDSERVICELIFE, ACTUALSERVICELIFE, PESSIMISTICREFERENCESERVICELIFE, OPTIMISTICREFERENCESERVICELIFE,
+			REFERENCESERVICELIFE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Service Life Type Enum</b></em>' enumerators.
@@ -247,16 +242,16 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case PESSIMISTICREFERENCESERVICELIFE_VALUE:
-			return PESSIMISTICREFERENCESERVICELIFE;
 		case EXPECTEDSERVICELIFE_VALUE:
 			return EXPECTEDSERVICELIFE;
-		case REFERENCESERVICELIFE_VALUE:
-			return REFERENCESERVICELIFE;
-		case OPTIMISTICREFERENCESERVICELIFE_VALUE:
-			return OPTIMISTICREFERENCESERVICELIFE;
 		case ACTUALSERVICELIFE_VALUE:
 			return ACTUALSERVICELIFE;
+		case PESSIMISTICREFERENCESERVICELIFE_VALUE:
+			return PESSIMISTICREFERENCESERVICELIFE;
+		case OPTIMISTICREFERENCESERVICELIFE_VALUE:
+			return OPTIMISTICREFERENCESERVICELIFE;
+		case REFERENCESERVICELIFE_VALUE:
+			return REFERENCESERVICELIFE;
 		}
 		return null;
 	}

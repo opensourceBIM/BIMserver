@@ -43,36 +43,6 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CONTINUOUS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTINUOUS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTINUOUS(2, "CONTINUOUS", "CONTINUOUS"),
-
-	/**
-	 * The '<em><b>DISCRETE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISCRETE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DISCRETE(3, "DISCRETE", "DISCRETE"),
-
-	/**
 	 * The '<em><b>DISCRETEBINARY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,17 +50,15 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DISCRETEBINARY(4, "DISCRETEBINARY", "DISCRETEBINARY"),
-
-	/**
-	 * The '<em><b>PIECEWISEBINARY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PIECEWISEBINARY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PIECEWISEBINARY(5, "PIECEWISEBINARY", "PIECEWISEBINARY"),
+	DISCRETEBINARY(1, "DISCRETEBINARY", "DISCRETEBINARY"), /**
+															* The '<em><b>NOTDEFINED</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #NOTDEFINED_VALUE
+															* @generated
+															* @ordered
+															*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>PIECEWISECONSTANT</b></em>' literal object.
@@ -100,7 +68,23 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PIECEWISECONSTANT(6, "PIECEWISECONSTANT", "PIECEWISECONSTANT"),
+	PIECEWISECONSTANT(3, "PIECEWISECONSTANT", "PIECEWISECONSTANT"), /**
+																	* The '<em><b>DISCRETE</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #DISCRETE_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	DISCRETE(4, "DISCRETE", "DISCRETE"), /**
+											* The '<em><b>PIECEWISEBINARY</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #PIECEWISEBINARY_VALUE
+											* @generated
+											* @ordered
+											*/
+	PIECEWISEBINARY(5, "PIECEWISEBINARY", "PIECEWISEBINARY"),
 
 	/**
 	 * The '<em><b>PIECEWISECONTINUOUS</b></em>' literal object.
@@ -110,7 +94,15 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PIECEWISECONTINUOUS(7, "PIECEWISECONTINUOUS", "PIECEWISECONTINUOUS");
+	PIECEWISECONTINUOUS(6, "PIECEWISECONTINUOUS", "PIECEWISECONTINUOUS"), /**
+																			* The '<em><b>CONTINUOUS</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #CONTINUOUS_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	CONTINUOUS(7, "CONTINUOUS", "CONTINUOUS");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,6 +120,21 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>DISCRETEBINARY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DISCRETEBINARY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DISCRETEBINARY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DISCRETEBINARY_VALUE = 1;
+
+	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -140,22 +147,22 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>CONTINUOUS</b></em>' literal value.
+	 * The '<em><b>PIECEWISECONSTANT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CONTINUOUS</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PIECEWISECONSTANT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONTINUOUS
+	 * @see #PIECEWISECONSTANT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTINUOUS_VALUE = 2;
+	public static final int PIECEWISECONSTANT_VALUE = 3;
 
 	/**
 	 * The '<em><b>DISCRETE</b></em>' literal value.
@@ -170,22 +177,7 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISCRETE_VALUE = 3;
-
-	/**
-	 * The '<em><b>DISCRETEBINARY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DISCRETEBINARY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DISCRETEBINARY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DISCRETEBINARY_VALUE = 4;
+	public static final int DISCRETE_VALUE = 4;
 
 	/**
 	 * The '<em><b>PIECEWISEBINARY</b></em>' literal value.
@@ -203,21 +195,6 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	public static final int PIECEWISEBINARY_VALUE = 5;
 
 	/**
-	 * The '<em><b>PIECEWISECONSTANT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PIECEWISECONSTANT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PIECEWISECONSTANT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PIECEWISECONSTANT_VALUE = 6;
-
-	/**
 	 * The '<em><b>PIECEWISECONTINUOUS</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -230,7 +207,22 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PIECEWISECONTINUOUS_VALUE = 7;
+	public static final int PIECEWISECONTINUOUS_VALUE = 6;
+
+	/**
+	 * The '<em><b>CONTINUOUS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONTINUOUS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONTINUOUS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONTINUOUS_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Time Series Data Type Enum</b></em>' enumerators.
@@ -238,8 +230,9 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTimeSeriesDataTypeEnum[] VALUES_ARRAY = new IfcTimeSeriesDataTypeEnum[] { NULL, NOTDEFINED,
-			CONTINUOUS, DISCRETE, DISCRETEBINARY, PIECEWISEBINARY, PIECEWISECONSTANT, PIECEWISECONTINUOUS, };
+	private static final IfcTimeSeriesDataTypeEnum[] VALUES_ARRAY = new IfcTimeSeriesDataTypeEnum[] { NULL,
+			DISCRETEBINARY, NOTDEFINED, PIECEWISECONSTANT, DISCRETE, PIECEWISEBINARY, PIECEWISECONTINUOUS,
+			CONTINUOUS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Time Series Data Type Enum</b></em>' enumerators.
@@ -298,20 +291,20 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case CONTINUOUS_VALUE:
-			return CONTINUOUS;
-		case DISCRETE_VALUE:
-			return DISCRETE;
 		case DISCRETEBINARY_VALUE:
 			return DISCRETEBINARY;
-		case PIECEWISEBINARY_VALUE:
-			return PIECEWISEBINARY;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case PIECEWISECONSTANT_VALUE:
 			return PIECEWISECONSTANT;
+		case DISCRETE_VALUE:
+			return DISCRETE;
+		case PIECEWISEBINARY_VALUE:
+			return PIECEWISEBINARY;
 		case PIECEWISECONTINUOUS_VALUE:
 			return PIECEWISECONTINUOUS;
+		case CONTINUOUS_VALUE:
+			return CONTINUOUS;
 		}
 		return null;
 	}

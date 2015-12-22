@@ -140,7 +140,8 @@ public class IfcLightSourcePositionalImpl extends IfcLightSourceImpl implements 
 	 * @generated
 	 */
 	public String getConstantAttenuationAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_POSITIONAL__CONSTANT_ATTENUATION_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_POSITIONAL__CONSTANT_ATTENUATION_AS_STRING,
+				true);
 	}
 
 	/**
@@ -149,7 +150,8 @@ public class IfcLightSourcePositionalImpl extends IfcLightSourceImpl implements 
 	 * @generated
 	 */
 	public void setConstantAttenuationAsString(String newConstantAttenuationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_POSITIONAL__CONSTANT_ATTENUATION_AS_STRING, newConstantAttenuationAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_POSITIONAL__CONSTANT_ATTENUATION_AS_STRING,
+				newConstantAttenuationAsString);
 	}
 
 	/**
@@ -176,7 +178,8 @@ public class IfcLightSourcePositionalImpl extends IfcLightSourceImpl implements 
 	 * @generated
 	 */
 	public String getDistanceAttenuationAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_POSITIONAL__DISTANCE_ATTENUATION_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_POSITIONAL__DISTANCE_ATTENUATION_AS_STRING,
+				true);
 	}
 
 	/**
@@ -185,7 +188,8 @@ public class IfcLightSourcePositionalImpl extends IfcLightSourceImpl implements 
 	 * @generated
 	 */
 	public void setDistanceAttenuationAsString(String newDistanceAttenuationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_POSITIONAL__DISTANCE_ATTENUATION_AS_STRING, newDistanceAttenuationAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_POSITIONAL__DISTANCE_ATTENUATION_AS_STRING,
+				newDistanceAttenuationAsString);
 	}
 
 	/**
@@ -212,7 +216,8 @@ public class IfcLightSourcePositionalImpl extends IfcLightSourceImpl implements 
 	 * @generated
 	 */
 	public String getQuadricAttenuationAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_POSITIONAL__QUADRIC_ATTENUATION_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_POSITIONAL__QUADRIC_ATTENUATION_AS_STRING,
+				true);
 	}
 
 	/**
@@ -221,7 +226,8 @@ public class IfcLightSourcePositionalImpl extends IfcLightSourceImpl implements 
 	 * @generated
 	 */
 	public void setQuadricAttenuationAsString(String newQuadricAttenuationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_POSITIONAL__QUADRIC_ATTENUATION_AS_STRING, newQuadricAttenuationAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_POSITIONAL__QUADRIC_ATTENUATION_AS_STRING,
+				newQuadricAttenuationAsString);
 	}
 
 } //IfcLightSourcePositionalImpl

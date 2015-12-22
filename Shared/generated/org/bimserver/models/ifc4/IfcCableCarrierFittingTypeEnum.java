@@ -63,36 +63,6 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	TEE(2, "TEE", "TEE"),
 
 	/**
-	 * The '<em><b>REDUCER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REDUCER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REDUCER(3, "REDUCER", "REDUCER"),
-
-	/**
-	 * The '<em><b>CROSS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CROSS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CROSS(4, "CROSS", "CROSS"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>BEND</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +70,31 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BEND(6, "BEND", "BEND");
+	BEND(3, "BEND", "BEND"), /**
+								* The '<em><b>CROSS</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #CROSS_VALUE
+								* @generated
+								* @ordered
+								*/
+	CROSS(4, "CROSS", "CROSS"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>REDUCER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #REDUCER_VALUE
+													* @generated
+													* @ordered
+													*/
+	REDUCER(6, "REDUCER", "REDUCER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,19 +142,19 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	public static final int TEE_VALUE = 2;
 
 	/**
-	 * The '<em><b>REDUCER</b></em>' literal value.
+	 * The '<em><b>BEND</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>REDUCER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>BEND</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #REDUCER
+	 * @see #BEND
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REDUCER_VALUE = 3;
+	public static final int BEND_VALUE = 3;
 
 	/**
 	 * The '<em><b>CROSS</b></em>' literal value.
@@ -193,19 +187,19 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 5;
 
 	/**
-	 * The '<em><b>BEND</b></em>' literal value.
+	 * The '<em><b>REDUCER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BEND</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>REDUCER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BEND
+	 * @see #REDUCER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BEND_VALUE = 6;
+	public static final int REDUCER_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Cable Carrier Fitting Type Enum</b></em>' enumerators.
@@ -214,7 +208,7 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcCableCarrierFittingTypeEnum[] VALUES_ARRAY = new IfcCableCarrierFittingTypeEnum[] { NULL,
-			NOTDEFINED, TEE, REDUCER, CROSS, USERDEFINED, BEND, };
+			NOTDEFINED, TEE, BEND, CROSS, USERDEFINED, REDUCER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cable Carrier Fitting Type Enum</b></em>' enumerators.
@@ -277,14 +271,14 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 			return NOTDEFINED;
 		case TEE_VALUE:
 			return TEE;
-		case REDUCER_VALUE:
-			return REDUCER;
+		case BEND_VALUE:
+			return BEND;
 		case CROSS_VALUE:
 			return CROSS;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case BEND_VALUE:
-			return BEND;
+		case REDUCER_VALUE:
+			return REDUCER;
 		}
 		return null;
 	}

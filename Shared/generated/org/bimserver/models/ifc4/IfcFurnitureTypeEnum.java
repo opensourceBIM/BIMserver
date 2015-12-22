@@ -43,16 +43,6 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SOFA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SOFA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SOFA(1, "SOFA", "SOFA"),
-
-	/**
 	 * The '<em><b>TABLE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,7 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TABLE(2, "TABLE", "TABLE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
+	TABLE(1, "TABLE", "TABLE"),
 
 	/**
 	 * The '<em><b>BED</b></em>' literal object.
@@ -80,7 +60,7 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BED(4, "BED", "BED"),
+	BED(2, "BED", "BED"),
 
 	/**
 	 * The '<em><b>FILECABINET</b></em>' literal object.
@@ -90,17 +70,23 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FILECABINET(5, "FILECABINET", "FILECABINET"),
-
-	/**
-	 * The '<em><b>SHELF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHELF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHELF(6, "SHELF", "SHELF"),
+	FILECABINET(3, "FILECABINET", "FILECABINET"), /**
+													* The '<em><b>SOFA</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #SOFA_VALUE
+													* @generated
+													* @ordered
+													*/
+	SOFA(4, "SOFA", "SOFA"), /**
+								* The '<em><b>NOTDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #NOTDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>CHAIR</b></em>' literal object.
@@ -110,17 +96,7 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CHAIR(7, "CHAIR", "CHAIR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(8, "USERDEFINED", "USERDEFINED"),
+	CHAIR(6, "CHAIR", "CHAIR"),
 
 	/**
 	 * The '<em><b>DESK</b></em>' literal object.
@@ -130,7 +106,23 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DESK(9, "DESK", "DESK");
+	DESK(7, "DESK", "DESK"), /**
+								* The '<em><b>SHELF</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #SHELF_VALUE
+								* @generated
+								* @ordered
+								*/
+	SHELF(8, "SHELF", "SHELF"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(9, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,21 +140,6 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>SOFA</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SOFA</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SOFA
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SOFA_VALUE = 1;
-
-	/**
 	 * The '<em><b>TABLE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -175,22 +152,7 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TABLE_VALUE = 2;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int TABLE_VALUE = 1;
 
 	/**
 	 * The '<em><b>BED</b></em>' literal value.
@@ -205,7 +167,7 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BED_VALUE = 4;
+	public static final int BED_VALUE = 2;
 
 	/**
 	 * The '<em><b>FILECABINET</b></em>' literal value.
@@ -220,22 +182,37 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FILECABINET_VALUE = 5;
+	public static final int FILECABINET_VALUE = 3;
 
 	/**
-	 * The '<em><b>SHELF</b></em>' literal value.
+	 * The '<em><b>SOFA</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SHELF</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SOFA</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SHELF
+	 * @see #SOFA
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SHELF_VALUE = 6;
+	public static final int SOFA_VALUE = 4;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 5;
 
 	/**
 	 * The '<em><b>CHAIR</b></em>' literal value.
@@ -250,22 +227,7 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CHAIR_VALUE = 7;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 8;
+	public static final int CHAIR_VALUE = 6;
 
 	/**
 	 * The '<em><b>DESK</b></em>' literal value.
@@ -280,7 +242,37 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DESK_VALUE = 9;
+	public static final int DESK_VALUE = 7;
+
+	/**
+	 * The '<em><b>SHELF</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SHELF</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SHELF
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SHELF_VALUE = 8;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Furniture Type Enum</b></em>' enumerators.
@@ -288,8 +280,8 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFurnitureTypeEnum[] VALUES_ARRAY = new IfcFurnitureTypeEnum[] { NULL, SOFA, TABLE,
-			NOTDEFINED, BED, FILECABINET, SHELF, CHAIR, USERDEFINED, DESK, };
+	private static final IfcFurnitureTypeEnum[] VALUES_ARRAY = new IfcFurnitureTypeEnum[] { NULL, TABLE, BED,
+			FILECABINET, SOFA, NOTDEFINED, CHAIR, DESK, SHELF, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Furniture Type Enum</b></em>' enumerators.
@@ -347,24 +339,24 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case SOFA_VALUE:
-			return SOFA;
 		case TABLE_VALUE:
 			return TABLE;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case BED_VALUE:
 			return BED;
 		case FILECABINET_VALUE:
 			return FILECABINET;
-		case SHELF_VALUE:
-			return SHELF;
+		case SOFA_VALUE:
+			return SOFA;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case CHAIR_VALUE:
 			return CHAIR;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case DESK_VALUE:
 			return DESK;
+		case SHELF_VALUE:
+			return SHELF;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

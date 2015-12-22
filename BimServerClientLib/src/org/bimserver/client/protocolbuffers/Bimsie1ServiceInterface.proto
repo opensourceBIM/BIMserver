@@ -355,7 +355,7 @@ message GetDeserializerByNameResponse {
 }
 
 message GetDownloadDataRequest {
-	optional int64 actionId = 1;
+	optional int64 topicId = 1;
 }
 
 message SCheckoutResult {
@@ -509,7 +509,7 @@ message GetSuggestedDeserializerForExtensionResponse {
 }
 
 message TerminateLongRunningActionRequest {
-	optional int64 actionId = 1;
+	optional int64 topicId = 1;
 }
 
 message UndeleteProjectRequest {

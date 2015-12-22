@@ -229,7 +229,8 @@ public class IfcOrganizationImpl extends IdEObjectImpl implements IfcOrganizatio
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganizationRelationship> getIsRelatedBy() {
-		return (EList<IfcOrganizationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION__IS_RELATED_BY, true);
+		return (EList<IfcOrganizationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_ORGANIZATION__IS_RELATED_BY,
+				true);
 	}
 
 	/**

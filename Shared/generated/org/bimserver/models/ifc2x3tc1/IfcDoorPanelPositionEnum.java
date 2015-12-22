@@ -43,16 +43,6 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>RIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RIGHT(1, "RIGHT", "RIGHT"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,7 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>LEFT</b></em>' literal object.
@@ -70,7 +60,15 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LEFT(3, "LEFT", "LEFT"),
+	LEFT(2, "LEFT", "LEFT"), /**
+								* The '<em><b>RIGHT</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #RIGHT_VALUE
+								* @generated
+								* @ordered
+								*/
+	RIGHT(3, "RIGHT", "RIGHT"),
 
 	/**
 	 * The '<em><b>MIDDLE</b></em>' literal object.
@@ -98,21 +96,6 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>RIGHT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>RIGHT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #RIGHT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RIGHT_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -125,7 +108,7 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>LEFT</b></em>' literal value.
@@ -140,7 +123,22 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LEFT_VALUE = 3;
+	public static final int LEFT_VALUE = 2;
+
+	/**
+	 * The '<em><b>RIGHT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>RIGHT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RIGHT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RIGHT_VALUE = 3;
 
 	/**
 	 * The '<em><b>MIDDLE</b></em>' literal value.
@@ -163,7 +161,8 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorPanelPositionEnum[] VALUES_ARRAY = new IfcDoorPanelPositionEnum[] { NULL, RIGHT, NOTDEFINED, LEFT, MIDDLE, };
+	private static final IfcDoorPanelPositionEnum[] VALUES_ARRAY = new IfcDoorPanelPositionEnum[] { NULL, NOTDEFINED,
+			LEFT, RIGHT, MIDDLE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Panel Position Enum</b></em>' enumerators.
@@ -171,7 +170,8 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDoorPanelPositionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDoorPanelPositionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Door Panel Position Enum</b></em>' literal with the specified literal value.
@@ -221,12 +221,12 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case RIGHT_VALUE:
-			return RIGHT;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case LEFT_VALUE:
 			return LEFT;
+		case RIGHT_VALUE:
+			return RIGHT;
 		case MIDDLE_VALUE:
 			return MIDDLE;
 		}

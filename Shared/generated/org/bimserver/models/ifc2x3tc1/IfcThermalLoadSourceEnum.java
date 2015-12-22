@@ -43,56 +43,6 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>DRYBULBTEMPERATURE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DRYBULBTEMPERATURE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DRYBULBTEMPERATURE(1, "DRYBULBTEMPERATURE", "DRYBULBTEMPERATURE"),
-
-	/**
-	 * The '<em><b>VENTILATIONINDOORAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VENTILATIONINDOORAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VENTILATIONINDOORAIR(2, "VENTILATIONINDOORAIR", "VENTILATIONINDOORAIR"),
-
-	/**
-	 * The '<em><b>RECIRCULATEDAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RECIRCULATEDAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RECIRCULATEDAIR(3, "RECIRCULATEDAIR", "RECIRCULATEDAIR"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>RELATIVEHUMIDITY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RELATIVEHUMIDITY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RELATIVEHUMIDITY(5, "RELATIVEHUMIDITY", "RELATIVEHUMIDITY"),
-
-	/**
 	 * The '<em><b>EXHAUSTAIR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,67 +50,15 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXHAUSTAIR(6, "EXHAUSTAIR", "EXHAUSTAIR"),
-
-	/**
-	 * The '<em><b>VENTILATIONOUTSIDEAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VENTILATIONOUTSIDEAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VENTILATIONOUTSIDEAIR(7, "VENTILATIONOUTSIDEAIR", "VENTILATIONOUTSIDEAIR"),
-
-	/**
-	 * The '<em><b>PEOPLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PEOPLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PEOPLE(8, "PEOPLE", "PEOPLE"),
-
-	/**
-	 * The '<em><b>INFILTRATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INFILTRATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INFILTRATION(9, "INFILTRATION", "INFILTRATION"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(10, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>EQUIPMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EQUIPMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EQUIPMENT(11, "EQUIPMENT", "EQUIPMENT"),
-
-	/**
-	 * The '<em><b>AIREXCHANGERATE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AIREXCHANGERATE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AIREXCHANGERATE(12, "AIREXCHANGERATE", "AIREXCHANGERATE"),
+	EXHAUSTAIR(1, "EXHAUSTAIR", "EXHAUSTAIR"), /**
+												* The '<em><b>DRYBULBTEMPERATURE</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #DRYBULBTEMPERATURE_VALUE
+												* @generated
+												* @ordered
+												*/
+	DRYBULBTEMPERATURE(2, "DRYBULBTEMPERATURE", "DRYBULBTEMPERATURE"),
 
 	/**
 	 * The '<em><b>LIGHTING</b></em>' literal object.
@@ -170,7 +68,87 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LIGHTING(13, "LIGHTING", "LIGHTING");
+	LIGHTING(3, "LIGHTING", "LIGHTING"), /**
+											* The '<em><b>USERDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #USERDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>VENTILATIONINDOORAIR</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #VENTILATIONINDOORAIR_VALUE
+													* @generated
+													* @ordered
+													*/
+	VENTILATIONINDOORAIR(5, "VENTILATIONINDOORAIR", "VENTILATIONINDOORAIR"), /**
+																				* The '<em><b>INFILTRATION</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #INFILTRATION_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	INFILTRATION(6, "INFILTRATION", "INFILTRATION"), /**
+														* The '<em><b>EQUIPMENT</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #EQUIPMENT_VALUE
+														* @generated
+														* @ordered
+														*/
+	EQUIPMENT(7, "EQUIPMENT", "EQUIPMENT"), /**
+											* The '<em><b>RECIRCULATEDAIR</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #RECIRCULATEDAIR_VALUE
+											* @generated
+											* @ordered
+											*/
+	RECIRCULATEDAIR(8, "RECIRCULATEDAIR", "RECIRCULATEDAIR"), /**
+																* The '<em><b>NOTDEFINED</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #NOTDEFINED_VALUE
+																* @generated
+																* @ordered
+																*/
+	NOTDEFINED(9, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>RELATIVEHUMIDITY</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #RELATIVEHUMIDITY_VALUE
+												* @generated
+												* @ordered
+												*/
+	RELATIVEHUMIDITY(10, "RELATIVEHUMIDITY", "RELATIVEHUMIDITY"), /**
+																	* The '<em><b>VENTILATIONOUTSIDEAIR</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #VENTILATIONOUTSIDEAIR_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	VENTILATIONOUTSIDEAIR(11, "VENTILATIONOUTSIDEAIR", "VENTILATIONOUTSIDEAIR"), /**
+																					* The '<em><b>PEOPLE</b></em>' literal object.
+																					* <!-- begin-user-doc -->
+																					* <!-- end-user-doc -->
+																					* @see #PEOPLE_VALUE
+																					* @generated
+																					* @ordered
+																					*/
+	PEOPLE(12, "PEOPLE", "PEOPLE"), /**
+									* The '<em><b>AIREXCHANGERATE</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #AIREXCHANGERATE_VALUE
+									* @generated
+									* @ordered
+									*/
+	AIREXCHANGERATE(13, "AIREXCHANGERATE", "AIREXCHANGERATE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -188,81 +166,6 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>DRYBULBTEMPERATURE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DRYBULBTEMPERATURE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DRYBULBTEMPERATURE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DRYBULBTEMPERATURE_VALUE = 1;
-
-	/**
-	 * The '<em><b>VENTILATIONINDOORAIR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>VENTILATIONINDOORAIR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #VENTILATIONINDOORAIR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int VENTILATIONINDOORAIR_VALUE = 2;
-
-	/**
-	 * The '<em><b>RECIRCULATEDAIR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>RECIRCULATEDAIR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #RECIRCULATEDAIR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RECIRCULATEDAIR_VALUE = 3;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 4;
-
-	/**
-	 * The '<em><b>RELATIVEHUMIDITY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>RELATIVEHUMIDITY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #RELATIVEHUMIDITY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RELATIVEHUMIDITY_VALUE = 5;
-
-	/**
 	 * The '<em><b>EXHAUSTAIR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -275,97 +178,22 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXHAUSTAIR_VALUE = 6;
+	public static final int EXHAUSTAIR_VALUE = 1;
 
 	/**
-	 * The '<em><b>VENTILATIONOUTSIDEAIR</b></em>' literal value.
+	 * The '<em><b>DRYBULBTEMPERATURE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>VENTILATIONOUTSIDEAIR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DRYBULBTEMPERATURE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VENTILATIONOUTSIDEAIR
+	 * @see #DRYBULBTEMPERATURE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VENTILATIONOUTSIDEAIR_VALUE = 7;
-
-	/**
-	 * The '<em><b>PEOPLE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PEOPLE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PEOPLE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PEOPLE_VALUE = 8;
-
-	/**
-	 * The '<em><b>INFILTRATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>INFILTRATION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #INFILTRATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INFILTRATION_VALUE = 9;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 10;
-
-	/**
-	 * The '<em><b>EQUIPMENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>EQUIPMENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #EQUIPMENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int EQUIPMENT_VALUE = 11;
-
-	/**
-	 * The '<em><b>AIREXCHANGERATE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>AIREXCHANGERATE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #AIREXCHANGERATE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int AIREXCHANGERATE_VALUE = 12;
+	public static final int DRYBULBTEMPERATURE_VALUE = 2;
 
 	/**
 	 * The '<em><b>LIGHTING</b></em>' literal value.
@@ -380,7 +208,157 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LIGHTING_VALUE = 13;
+	public static final int LIGHTING_VALUE = 3;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>VENTILATIONINDOORAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>VENTILATIONINDOORAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #VENTILATIONINDOORAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int VENTILATIONINDOORAIR_VALUE = 5;
+
+	/**
+	 * The '<em><b>INFILTRATION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>INFILTRATION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #INFILTRATION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int INFILTRATION_VALUE = 6;
+
+	/**
+	 * The '<em><b>EQUIPMENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>EQUIPMENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #EQUIPMENT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EQUIPMENT_VALUE = 7;
+
+	/**
+	 * The '<em><b>RECIRCULATEDAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>RECIRCULATEDAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RECIRCULATEDAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RECIRCULATEDAIR_VALUE = 8;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 9;
+
+	/**
+	 * The '<em><b>RELATIVEHUMIDITY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>RELATIVEHUMIDITY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RELATIVEHUMIDITY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RELATIVEHUMIDITY_VALUE = 10;
+
+	/**
+	 * The '<em><b>VENTILATIONOUTSIDEAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>VENTILATIONOUTSIDEAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #VENTILATIONOUTSIDEAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int VENTILATIONOUTSIDEAIR_VALUE = 11;
+
+	/**
+	 * The '<em><b>PEOPLE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PEOPLE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PEOPLE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PEOPLE_VALUE = 12;
+
+	/**
+	 * The '<em><b>AIREXCHANGERATE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>AIREXCHANGERATE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #AIREXCHANGERATE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int AIREXCHANGERATE_VALUE = 13;
 
 	/**
 	 * An array of all the '<em><b>Ifc Thermal Load Source Enum</b></em>' enumerators.
@@ -388,8 +366,9 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcThermalLoadSourceEnum[] VALUES_ARRAY = new IfcThermalLoadSourceEnum[] { NULL, DRYBULBTEMPERATURE, VENTILATIONINDOORAIR, RECIRCULATEDAIR, NOTDEFINED, RELATIVEHUMIDITY, EXHAUSTAIR,
-			VENTILATIONOUTSIDEAIR, PEOPLE, INFILTRATION, USERDEFINED, EQUIPMENT, AIREXCHANGERATE, LIGHTING, };
+	private static final IfcThermalLoadSourceEnum[] VALUES_ARRAY = new IfcThermalLoadSourceEnum[] { NULL, EXHAUSTAIR,
+			DRYBULBTEMPERATURE, LIGHTING, USERDEFINED, VENTILATIONINDOORAIR, INFILTRATION, EQUIPMENT, RECIRCULATEDAIR,
+			NOTDEFINED, RELATIVEHUMIDITY, VENTILATIONOUTSIDEAIR, PEOPLE, AIREXCHANGERATE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Thermal Load Source Enum</b></em>' enumerators.
@@ -397,7 +376,8 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcThermalLoadSourceEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcThermalLoadSourceEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Thermal Load Source Enum</b></em>' literal with the specified literal value.
@@ -447,32 +427,32 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
+		case EXHAUSTAIR_VALUE:
+			return EXHAUSTAIR;
 		case DRYBULBTEMPERATURE_VALUE:
 			return DRYBULBTEMPERATURE;
+		case LIGHTING_VALUE:
+			return LIGHTING;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case VENTILATIONINDOORAIR_VALUE:
 			return VENTILATIONINDOORAIR;
+		case INFILTRATION_VALUE:
+			return INFILTRATION;
+		case EQUIPMENT_VALUE:
+			return EQUIPMENT;
 		case RECIRCULATEDAIR_VALUE:
 			return RECIRCULATEDAIR;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case RELATIVEHUMIDITY_VALUE:
 			return RELATIVEHUMIDITY;
-		case EXHAUSTAIR_VALUE:
-			return EXHAUSTAIR;
 		case VENTILATIONOUTSIDEAIR_VALUE:
 			return VENTILATIONOUTSIDEAIR;
 		case PEOPLE_VALUE:
 			return PEOPLE;
-		case INFILTRATION_VALUE:
-			return INFILTRATION;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case EQUIPMENT_VALUE:
-			return EQUIPMENT;
 		case AIREXCHANGERATE_VALUE:
 			return AIREXCHANGERATE;
-		case LIGHTING_VALUE:
-			return LIGHTING;
 		}
 		return null;
 	}

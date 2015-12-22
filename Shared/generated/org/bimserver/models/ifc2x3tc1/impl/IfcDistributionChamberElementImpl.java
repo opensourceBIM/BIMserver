@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDistributionChamberElementImpl extends IfcDistributionFlowElementImpl implements IfcDistributionChamberElement {
+public class IfcDistributionChamberElementImpl extends IfcDistributionFlowElementImpl
+		implements IfcDistributionChamberElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

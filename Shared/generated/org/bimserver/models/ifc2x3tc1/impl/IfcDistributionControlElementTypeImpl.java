@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDistributionControlElementTypeImpl extends IfcDistributionElementTypeImpl implements IfcDistributionControlElementType {
+public class IfcDistributionControlElementTypeImpl extends IfcDistributionElementTypeImpl
+		implements IfcDistributionControlElementType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

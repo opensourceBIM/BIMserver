@@ -43,26 +43,6 @@ public enum IfcConstructionProductResourceTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>FORMWORK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FORMWORK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FORMWORK(2, "FORMWORK", "FORMWORK"),
-
-	/**
 	 * The '<em><b>ASSEMBLY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,23 @@ public enum IfcConstructionProductResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ASSEMBLY(3, "ASSEMBLY", "ASSEMBLY"),
+	ASSEMBLY(1, "ASSEMBLY", "ASSEMBLY"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>FORMWORK</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #FORMWORK_VALUE
+												* @generated
+												* @ordered
+												*/
+	FORMWORK(3, "FORMWORK", "FORMWORK"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -98,6 +94,21 @@ public enum IfcConstructionProductResourceTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>ASSEMBLY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ASSEMBLY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ASSEMBLY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ASSEMBLY_VALUE = 1;
+
+	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -110,7 +121,7 @@ public enum IfcConstructionProductResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>FORMWORK</b></em>' literal value.
@@ -125,22 +136,7 @@ public enum IfcConstructionProductResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FORMWORK_VALUE = 2;
-
-	/**
-	 * The '<em><b>ASSEMBLY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ASSEMBLY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ASSEMBLY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ASSEMBLY_VALUE = 3;
+	public static final int FORMWORK_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -164,7 +160,7 @@ public enum IfcConstructionProductResourceTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcConstructionProductResourceTypeEnum[] VALUES_ARRAY = new IfcConstructionProductResourceTypeEnum[] {
-			NULL, NOTDEFINED, FORMWORK, ASSEMBLY, USERDEFINED, };
+			NULL, ASSEMBLY, NOTDEFINED, FORMWORK, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Construction Product Resource Type Enum</b></em>' enumerators.
@@ -223,12 +219,12 @@ public enum IfcConstructionProductResourceTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
+		case ASSEMBLY_VALUE:
+			return ASSEMBLY;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case FORMWORK_VALUE:
 			return FORMWORK;
-		case ASSEMBLY_VALUE:
-			return ASSEMBLY;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		}

@@ -43,36 +43,6 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>DOUBLE ACTING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_ACTING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLE_ACTING(1, "DOUBLE_ACTING", "DOUBLE_ACTING"),
-
-	/**
-	 * The '<em><b>SWINGING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SWINGING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SWINGING(2, "SWINGING", "SWINGING"),
-
-	/**
-	 * The '<em><b>FIXEDPANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIXEDPANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIXEDPANEL(3, "FIXEDPANEL", "FIXEDPANEL"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,27 +50,7 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>REVOLVING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REVOLVING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REVOLVING(5, "REVOLVING", "REVOLVING"),
-
-	/**
-	 * The '<em><b>ROLLINGUP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROLLINGUP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROLLINGUP(6, "ROLLINGUP", "ROLLINGUP"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>FOLDING</b></em>' literal object.
@@ -110,7 +60,7 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FOLDING(7, "FOLDING", "FOLDING"),
+	FOLDING(2, "FOLDING", "FOLDING"),
 
 	/**
 	 * The '<em><b>SLIDING</b></em>' literal object.
@@ -120,7 +70,23 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SLIDING(8, "SLIDING", "SLIDING"),
+	SLIDING(3, "SLIDING", "SLIDING"), /**
+										* The '<em><b>REVOLVING</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #REVOLVING_VALUE
+										* @generated
+										* @ordered
+										*/
+	REVOLVING(4, "REVOLVING", "REVOLVING"), /**
+											* The '<em><b>SWINGING</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #SWINGING_VALUE
+											* @generated
+											* @ordered
+											*/
+	SWINGING(5, "SWINGING", "SWINGING"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -130,7 +96,31 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(9, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>ROLLINGUP</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #ROLLINGUP_VALUE
+													* @generated
+													* @ordered
+													*/
+	ROLLINGUP(7, "ROLLINGUP", "ROLLINGUP"), /**
+											* The '<em><b>DOUBLE ACTING</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #DOUBLE_ACTING_VALUE
+											* @generated
+											* @ordered
+											*/
+	DOUBLE_ACTING(8, "DOUBLE_ACTING", "DOUBLE_ACTING"), /**
+														* The '<em><b>FIXEDPANEL</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #FIXEDPANEL_VALUE
+														* @generated
+														* @ordered
+														*/
+	FIXEDPANEL(9, "FIXEDPANEL", "FIXEDPANEL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,51 +138,6 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>DOUBLE ACTING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DOUBLE ACTING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_ACTING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DOUBLE_ACTING_VALUE = 1;
-
-	/**
-	 * The '<em><b>SWINGING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SWINGING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SWINGING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SWINGING_VALUE = 2;
-
-	/**
-	 * The '<em><b>FIXEDPANEL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FIXEDPANEL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FIXEDPANEL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FIXEDPANEL_VALUE = 3;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -205,37 +150,7 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 4;
-
-	/**
-	 * The '<em><b>REVOLVING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>REVOLVING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #REVOLVING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int REVOLVING_VALUE = 5;
-
-	/**
-	 * The '<em><b>ROLLINGUP</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ROLLINGUP</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ROLLINGUP
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ROLLINGUP_VALUE = 6;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>FOLDING</b></em>' literal value.
@@ -250,7 +165,7 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FOLDING_VALUE = 7;
+	public static final int FOLDING_VALUE = 2;
 
 	/**
 	 * The '<em><b>SLIDING</b></em>' literal value.
@@ -265,7 +180,37 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SLIDING_VALUE = 8;
+	public static final int SLIDING_VALUE = 3;
+
+	/**
+	 * The '<em><b>REVOLVING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>REVOLVING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #REVOLVING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int REVOLVING_VALUE = 4;
+
+	/**
+	 * The '<em><b>SWINGING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SWINGING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SWINGING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SWINGING_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -280,7 +225,52 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 9;
+	public static final int USERDEFINED_VALUE = 6;
+
+	/**
+	 * The '<em><b>ROLLINGUP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ROLLINGUP</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ROLLINGUP
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ROLLINGUP_VALUE = 7;
+
+	/**
+	 * The '<em><b>DOUBLE ACTING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DOUBLE ACTING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DOUBLE_ACTING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DOUBLE_ACTING_VALUE = 8;
+
+	/**
+	 * The '<em><b>FIXEDPANEL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FIXEDPANEL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FIXEDPANEL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FIXEDPANEL_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Door Panel Operation Enum</b></em>' enumerators.
@@ -288,8 +278,8 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorPanelOperationEnum[] VALUES_ARRAY = new IfcDoorPanelOperationEnum[] { NULL,
-			DOUBLE_ACTING, SWINGING, FIXEDPANEL, NOTDEFINED, REVOLVING, ROLLINGUP, FOLDING, SLIDING, USERDEFINED, };
+	private static final IfcDoorPanelOperationEnum[] VALUES_ARRAY = new IfcDoorPanelOperationEnum[] { NULL, NOTDEFINED,
+			FOLDING, SLIDING, REVOLVING, SWINGING, USERDEFINED, ROLLINGUP, DOUBLE_ACTING, FIXEDPANEL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Panel Operation Enum</b></em>' enumerators.
@@ -348,24 +338,24 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case DOUBLE_ACTING_VALUE:
-			return DOUBLE_ACTING;
-		case SWINGING_VALUE:
-			return SWINGING;
-		case FIXEDPANEL_VALUE:
-			return FIXEDPANEL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case REVOLVING_VALUE:
-			return REVOLVING;
-		case ROLLINGUP_VALUE:
-			return ROLLINGUP;
 		case FOLDING_VALUE:
 			return FOLDING;
 		case SLIDING_VALUE:
 			return SLIDING;
+		case REVOLVING_VALUE:
+			return REVOLVING;
+		case SWINGING_VALUE:
+			return SWINGING;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case ROLLINGUP_VALUE:
+			return ROLLINGUP;
+		case DOUBLE_ACTING_VALUE:
+			return DOUBLE_ACTING;
+		case FIXEDPANEL_VALUE:
+			return FIXEDPANEL;
 		}
 		return null;
 	}

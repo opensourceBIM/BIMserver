@@ -43,46 +43,6 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>FULL NONLINEAR THEORY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FULL_NONLINEAR_THEORY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FULL_NONLINEAR_THEORY(1, "FULL_NONLINEAR_THEORY", "FULL_NONLINEAR_THEORY"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>THIRD ORDER THEORY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THIRD_ORDER_THEORY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THIRD_ORDER_THEORY(3, "THIRD_ORDER_THEORY", "THIRD_ORDER_THEORY"),
-
-	/**
-	 * The '<em><b>FIRST ORDER THEORY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIRST_ORDER_THEORY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIRST_ORDER_THEORY(4, "FIRST_ORDER_THEORY", "FIRST_ORDER_THEORY"),
-
-	/**
 	 * The '<em><b>SECOND ORDER THEORY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +50,23 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SECOND_ORDER_THEORY(5, "SECOND_ORDER_THEORY", "SECOND_ORDER_THEORY"),
+	SECOND_ORDER_THEORY(1, "SECOND_ORDER_THEORY", "SECOND_ORDER_THEORY"), /**
+																			* The '<em><b>NOTDEFINED</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #NOTDEFINED_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>FIRST ORDER THEORY</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #FIRST_ORDER_THEORY_VALUE
+												* @generated
+												* @ordered
+												*/
+	FIRST_ORDER_THEORY(3, "FIRST_ORDER_THEORY", "FIRST_ORDER_THEORY"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -100,7 +76,23 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>FULL NONLINEAR THEORY</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #FULL_NONLINEAR_THEORY_VALUE
+													* @generated
+													* @ordered
+													*/
+	FULL_NONLINEAR_THEORY(5, "FULL_NONLINEAR_THEORY", "FULL_NONLINEAR_THEORY"), /**
+																				* The '<em><b>THIRD ORDER THEORY</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #THIRD_ORDER_THEORY_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	THIRD_ORDER_THEORY(6, "THIRD_ORDER_THEORY", "THIRD_ORDER_THEORY");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,19 +110,19 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>FULL NONLINEAR THEORY</b></em>' literal value.
+	 * The '<em><b>SECOND ORDER THEORY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>FULL NONLINEAR THEORY</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SECOND ORDER THEORY</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FULL_NONLINEAR_THEORY
+	 * @see #SECOND_ORDER_THEORY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FULL_NONLINEAR_THEORY_VALUE = 1;
+	public static final int SECOND_ORDER_THEORY_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -148,21 +140,6 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>THIRD ORDER THEORY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>THIRD ORDER THEORY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #THIRD_ORDER_THEORY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int THIRD_ORDER_THEORY_VALUE = 3;
-
-	/**
 	 * The '<em><b>FIRST ORDER THEORY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -175,22 +152,7 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FIRST_ORDER_THEORY_VALUE = 4;
-
-	/**
-	 * The '<em><b>SECOND ORDER THEORY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SECOND ORDER THEORY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SECOND_ORDER_THEORY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SECOND_ORDER_THEORY_VALUE = 5;
+	public static final int FIRST_ORDER_THEORY_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -205,7 +167,37 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 6;
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>FULL NONLINEAR THEORY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FULL NONLINEAR THEORY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FULL_NONLINEAR_THEORY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FULL_NONLINEAR_THEORY_VALUE = 5;
+
+	/**
+	 * The '<em><b>THIRD ORDER THEORY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>THIRD ORDER THEORY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #THIRD_ORDER_THEORY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int THIRD_ORDER_THEORY_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Analysis Theory Type Enum</b></em>' enumerators.
@@ -213,7 +205,9 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAnalysisTheoryTypeEnum[] VALUES_ARRAY = new IfcAnalysisTheoryTypeEnum[] { NULL, FULL_NONLINEAR_THEORY, NOTDEFINED, THIRD_ORDER_THEORY, FIRST_ORDER_THEORY, SECOND_ORDER_THEORY, USERDEFINED, };
+	private static final IfcAnalysisTheoryTypeEnum[] VALUES_ARRAY = new IfcAnalysisTheoryTypeEnum[] { NULL,
+			SECOND_ORDER_THEORY, NOTDEFINED, FIRST_ORDER_THEORY, USERDEFINED, FULL_NONLINEAR_THEORY,
+			THIRD_ORDER_THEORY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Analysis Theory Type Enum</b></em>' enumerators.
@@ -221,7 +215,8 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAnalysisTheoryTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAnalysisTheoryTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Analysis Theory Type Enum</b></em>' literal with the specified literal value.
@@ -271,18 +266,18 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case FULL_NONLINEAR_THEORY_VALUE:
-			return FULL_NONLINEAR_THEORY;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case THIRD_ORDER_THEORY_VALUE:
-			return THIRD_ORDER_THEORY;
-		case FIRST_ORDER_THEORY_VALUE:
-			return FIRST_ORDER_THEORY;
 		case SECOND_ORDER_THEORY_VALUE:
 			return SECOND_ORDER_THEORY;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case FIRST_ORDER_THEORY_VALUE:
+			return FIRST_ORDER_THEORY;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case FULL_NONLINEAR_THEORY_VALUE:
+			return FULL_NONLINEAR_THEORY;
+		case THIRD_ORDER_THEORY_VALUE:
+			return THIRD_ORDER_THEORY;
 		}
 		return null;
 	}

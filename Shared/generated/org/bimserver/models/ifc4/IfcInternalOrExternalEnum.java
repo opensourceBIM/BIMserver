@@ -43,26 +43,6 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>INTERNAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTERNAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INTERNAL(1, "INTERNAL", "INTERNAL"),
-
-	/**
-	 * The '<em><b>EXTERNAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTERNAL(2, "EXTERNAL", "EXTERNAL"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,15 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>EXTERNAL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #EXTERNAL_VALUE
+												* @generated
+												* @ordered
+												*/
+	EXTERNAL(2, "EXTERNAL", "EXTERNAL"),
 
 	/**
 	 * The '<em><b>EXTERNAL FIRE</b></em>' literal object.
@@ -80,17 +68,15 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXTERNAL_FIRE(4, "EXTERNAL_FIRE", "EXTERNAL_FIRE"),
-
-	/**
-	 * The '<em><b>EXTERNAL EARTH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_EARTH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTERNAL_EARTH(5, "EXTERNAL_EARTH", "EXTERNAL_EARTH"),
+	EXTERNAL_FIRE(3, "EXTERNAL_FIRE", "EXTERNAL_FIRE"), /**
+														* The '<em><b>INTERNAL</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #INTERNAL_VALUE
+														* @generated
+														* @ordered
+														*/
+	INTERNAL(4, "INTERNAL", "INTERNAL"),
 
 	/**
 	 * The '<em><b>EXTERNAL WATER</b></em>' literal object.
@@ -100,7 +86,15 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXTERNAL_WATER(6, "EXTERNAL_WATER", "EXTERNAL_WATER");
+	EXTERNAL_WATER(5, "EXTERNAL_WATER", "EXTERNAL_WATER"), /**
+															* The '<em><b>EXTERNAL EARTH</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #EXTERNAL_EARTH_VALUE
+															* @generated
+															* @ordered
+															*/
+	EXTERNAL_EARTH(6, "EXTERNAL_EARTH", "EXTERNAL_EARTH");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,19 +112,19 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>INTERNAL</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>INTERNAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INTERNAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INTERNAL_VALUE = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>EXTERNAL</b></em>' literal value.
@@ -148,21 +142,6 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	public static final int EXTERNAL_VALUE = 2;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 3;
-
-	/**
 	 * The '<em><b>EXTERNAL FIRE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -175,22 +154,22 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXTERNAL_FIRE_VALUE = 4;
+	public static final int EXTERNAL_FIRE_VALUE = 3;
 
 	/**
-	 * The '<em><b>EXTERNAL EARTH</b></em>' literal value.
+	 * The '<em><b>INTERNAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EXTERNAL EARTH</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>INTERNAL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_EARTH
+	 * @see #INTERNAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXTERNAL_EARTH_VALUE = 5;
+	public static final int INTERNAL_VALUE = 4;
 
 	/**
 	 * The '<em><b>EXTERNAL WATER</b></em>' literal value.
@@ -205,7 +184,22 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXTERNAL_WATER_VALUE = 6;
+	public static final int EXTERNAL_WATER_VALUE = 5;
+
+	/**
+	 * The '<em><b>EXTERNAL EARTH</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>EXTERNAL EARTH</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #EXTERNAL_EARTH
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EXTERNAL_EARTH_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Internal Or External Enum</b></em>' enumerators.
@@ -213,8 +207,8 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcInternalOrExternalEnum[] VALUES_ARRAY = new IfcInternalOrExternalEnum[] { NULL, INTERNAL,
-			EXTERNAL, NOTDEFINED, EXTERNAL_FIRE, EXTERNAL_EARTH, EXTERNAL_WATER, };
+	private static final IfcInternalOrExternalEnum[] VALUES_ARRAY = new IfcInternalOrExternalEnum[] { NULL, NOTDEFINED,
+			EXTERNAL, EXTERNAL_FIRE, INTERNAL, EXTERNAL_WATER, EXTERNAL_EARTH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Internal Or External Enum</b></em>' enumerators.
@@ -273,18 +267,18 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case INTERNAL_VALUE:
-			return INTERNAL;
-		case EXTERNAL_VALUE:
-			return EXTERNAL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case EXTERNAL_VALUE:
+			return EXTERNAL;
 		case EXTERNAL_FIRE_VALUE:
 			return EXTERNAL_FIRE;
-		case EXTERNAL_EARTH_VALUE:
-			return EXTERNAL_EARTH;
+		case INTERNAL_VALUE:
+			return INTERNAL;
 		case EXTERNAL_WATER_VALUE:
 			return EXTERNAL_WATER;
+		case EXTERNAL_EARTH_VALUE:
+			return EXTERNAL_EARTH;
 		}
 		return null;
 	}

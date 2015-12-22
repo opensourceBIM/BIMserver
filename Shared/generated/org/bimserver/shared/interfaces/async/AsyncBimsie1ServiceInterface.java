@@ -530,11 +530,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void getDownloadData(final java.lang.Long actionId, final GetDownloadDataCallback callback) {
+	public void getDownloadData(final java.lang.Long topicId, final GetDownloadDataCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getDownloadData(actionId));
+					callback.success(syncService.getDownloadData(topicId));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -722,11 +722,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void terminateLongRunningAction(final java.lang.Long actionId, final TerminateLongRunningActionCallback callback) {
+	public void terminateLongRunningAction(final java.lang.Long topicId, final TerminateLongRunningActionCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.terminateLongRunningAction(actionId);
+					syncService.terminateLongRunningAction(topicId);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

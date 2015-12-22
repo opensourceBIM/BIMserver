@@ -43,46 +43,6 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>CIRCUITBREAKER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CIRCUITBREAKER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CIRCUITBREAKER(1, "CIRCUITBREAKER", "CIRCUITBREAKER"),
-
-	/**
-	 * The '<em><b>VARISTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VARISTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VARISTOR(2, "VARISTOR", "VARISTOR"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>FUSEDISCONNECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FUSEDISCONNECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FUSEDISCONNECTOR(4, "FUSEDISCONNECTOR", "FUSEDISCONNECTOR"),
-
-	/**
 	 * The '<em><b>EARTHFAILUREDEVICE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +50,7 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EARTHFAILUREDEVICE(5, "EARTHFAILUREDEVICE", "EARTHFAILUREDEVICE"),
+	EARTHFAILUREDEVICE(1, "EARTHFAILUREDEVICE", "EARTHFAILUREDEVICE"),
 
 	/**
 	 * The '<em><b>RESIDUALCURRENTCIRCUITBREAKER</b></em>' literal object.
@@ -100,7 +60,31 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RESIDUALCURRENTCIRCUITBREAKER(6, "RESIDUALCURRENTCIRCUITBREAKER", "RESIDUALCURRENTCIRCUITBREAKER"),
+	RESIDUALCURRENTCIRCUITBREAKER(2, "RESIDUALCURRENTCIRCUITBREAKER", "RESIDUALCURRENTCIRCUITBREAKER"), /**
+																										* The '<em><b>NOTDEFINED</b></em>' literal object.
+																										* <!-- begin-user-doc -->
+																										* <!-- end-user-doc -->
+																										* @see #NOTDEFINED_VALUE
+																										* @generated
+																										* @ordered
+																										*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>CIRCUITBREAKER</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #CIRCUITBREAKER_VALUE
+												* @generated
+												* @ordered
+												*/
+	CIRCUITBREAKER(4, "CIRCUITBREAKER", "CIRCUITBREAKER"), /**
+															* The '<em><b>VARISTOR</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #VARISTOR_VALUE
+															* @generated
+															* @ordered
+															*/
+	VARISTOR(5, "VARISTOR", "VARISTOR"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -110,7 +94,7 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>RESIDUALCURRENTSWITCH</b></em>' literal object.
@@ -120,7 +104,15 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RESIDUALCURRENTSWITCH(8, "RESIDUALCURRENTSWITCH", "RESIDUALCURRENTSWITCH");
+	RESIDUALCURRENTSWITCH(7, "RESIDUALCURRENTSWITCH", "RESIDUALCURRENTSWITCH"), /**
+																				* The '<em><b>FUSEDISCONNECTOR</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #FUSEDISCONNECTOR_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	FUSEDISCONNECTOR(8, "FUSEDISCONNECTOR", "FUSEDISCONNECTOR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -138,34 +130,34 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>CIRCUITBREAKER</b></em>' literal value.
+	 * The '<em><b>EARTHFAILUREDEVICE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CIRCUITBREAKER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>EARTHFAILUREDEVICE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CIRCUITBREAKER
+	 * @see #EARTHFAILUREDEVICE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CIRCUITBREAKER_VALUE = 1;
+	public static final int EARTHFAILUREDEVICE_VALUE = 1;
 
 	/**
-	 * The '<em><b>VARISTOR</b></em>' literal value.
+	 * The '<em><b>RESIDUALCURRENTCIRCUITBREAKER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>VARISTOR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>RESIDUALCURRENTCIRCUITBREAKER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VARISTOR
+	 * @see #RESIDUALCURRENTCIRCUITBREAKER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VARISTOR_VALUE = 2;
+	public static final int RESIDUALCURRENTCIRCUITBREAKER_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -183,49 +175,34 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
-	 * The '<em><b>FUSEDISCONNECTOR</b></em>' literal value.
+	 * The '<em><b>CIRCUITBREAKER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>FUSEDISCONNECTOR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CIRCUITBREAKER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FUSEDISCONNECTOR
+	 * @see #CIRCUITBREAKER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FUSEDISCONNECTOR_VALUE = 4;
+	public static final int CIRCUITBREAKER_VALUE = 4;
 
 	/**
-	 * The '<em><b>EARTHFAILUREDEVICE</b></em>' literal value.
+	 * The '<em><b>VARISTOR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EARTHFAILUREDEVICE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>VARISTOR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EARTHFAILUREDEVICE
+	 * @see #VARISTOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EARTHFAILUREDEVICE_VALUE = 5;
-
-	/**
-	 * The '<em><b>RESIDUALCURRENTCIRCUITBREAKER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>RESIDUALCURRENTCIRCUITBREAKER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #RESIDUALCURRENTCIRCUITBREAKER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RESIDUALCURRENTCIRCUITBREAKER_VALUE = 6;
+	public static final int VARISTOR_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -240,7 +217,7 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 7;
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * The '<em><b>RESIDUALCURRENTSWITCH</b></em>' literal value.
@@ -255,7 +232,22 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RESIDUALCURRENTSWITCH_VALUE = 8;
+	public static final int RESIDUALCURRENTSWITCH_VALUE = 7;
+
+	/**
+	 * The '<em><b>FUSEDISCONNECTOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FUSEDISCONNECTOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FUSEDISCONNECTOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FUSEDISCONNECTOR_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Protective Device Type Enum</b></em>' enumerators.
@@ -263,8 +255,9 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProtectiveDeviceTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTypeEnum[] { NULL, CIRCUITBREAKER, VARISTOR, NOTDEFINED, FUSEDISCONNECTOR, EARTHFAILUREDEVICE, RESIDUALCURRENTCIRCUITBREAKER,
-			USERDEFINED, RESIDUALCURRENTSWITCH, };
+	private static final IfcProtectiveDeviceTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTypeEnum[] { NULL,
+			EARTHFAILUREDEVICE, RESIDUALCURRENTCIRCUITBREAKER, NOTDEFINED, CIRCUITBREAKER, VARISTOR, USERDEFINED,
+			RESIDUALCURRENTSWITCH, FUSEDISCONNECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Protective Device Type Enum</b></em>' enumerators.
@@ -272,7 +265,8 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProtectiveDeviceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProtectiveDeviceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Protective Device Type Enum</b></em>' literal with the specified literal value.
@@ -322,22 +316,22 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case CIRCUITBREAKER_VALUE:
-			return CIRCUITBREAKER;
-		case VARISTOR_VALUE:
-			return VARISTOR;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case FUSEDISCONNECTOR_VALUE:
-			return FUSEDISCONNECTOR;
 		case EARTHFAILUREDEVICE_VALUE:
 			return EARTHFAILUREDEVICE;
 		case RESIDUALCURRENTCIRCUITBREAKER_VALUE:
 			return RESIDUALCURRENTCIRCUITBREAKER;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case CIRCUITBREAKER_VALUE:
+			return CIRCUITBREAKER;
+		case VARISTOR_VALUE:
+			return VARISTOR;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case RESIDUALCURRENTSWITCH_VALUE:
 			return RESIDUALCURRENTSWITCH;
+		case FUSEDISCONNECTOR_VALUE:
+			return FUSEDISCONNECTOR;
 		}
 		return null;
 	}

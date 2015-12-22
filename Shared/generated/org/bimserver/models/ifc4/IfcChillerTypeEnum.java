@@ -53,36 +53,6 @@ public enum IfcChillerTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(2, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>WATERCOOLED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERCOOLED(3, "WATERCOOLED", "WATERCOOLED"),
-
-	/**
-	 * The '<em><b>HEATRECOVERY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HEATRECOVERY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HEATRECOVERY(4, "HEATRECOVERY", "HEATRECOVERY"),
-
-	/**
 	 * The '<em><b>AIRCOOLED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +60,31 @@ public enum IfcChillerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AIRCOOLED(5, "AIRCOOLED", "AIRCOOLED");
+	AIRCOOLED(2, "AIRCOOLED", "AIRCOOLED"), /**
+											* The '<em><b>WATERCOOLED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #WATERCOOLED_VALUE
+											* @generated
+											* @ordered
+											*/
+	WATERCOOLED(3, "WATERCOOLED", "WATERCOOLED"), /**
+													* The '<em><b>USERDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #USERDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>HEATRECOVERY</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #HEATRECOVERY_VALUE
+													* @generated
+													* @ordered
+													*/
+	HEATRECOVERY(5, "HEATRECOVERY", "HEATRECOVERY");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -123,19 +117,19 @@ public enum IfcChillerTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>AIRCOOLED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>AIRCOOLED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #AIRCOOLED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 2;
+	public static final int AIRCOOLED_VALUE = 2;
 
 	/**
 	 * The '<em><b>WATERCOOLED</b></em>' literal value.
@@ -153,6 +147,21 @@ public enum IfcChillerTypeEnum implements Enumerator {
 	public static final int WATERCOOLED_VALUE = 3;
 
 	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
 	 * The '<em><b>HEATRECOVERY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -165,22 +174,7 @@ public enum IfcChillerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HEATRECOVERY_VALUE = 4;
-
-	/**
-	 * The '<em><b>AIRCOOLED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>AIRCOOLED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #AIRCOOLED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int AIRCOOLED_VALUE = 5;
+	public static final int HEATRECOVERY_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Chiller Type Enum</b></em>' enumerators.
@@ -188,8 +182,8 @@ public enum IfcChillerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcChillerTypeEnum[] VALUES_ARRAY = new IfcChillerTypeEnum[] { NULL, NOTDEFINED, USERDEFINED,
-			WATERCOOLED, HEATRECOVERY, AIRCOOLED, };
+	private static final IfcChillerTypeEnum[] VALUES_ARRAY = new IfcChillerTypeEnum[] { NULL, NOTDEFINED, AIRCOOLED,
+			WATERCOOLED, USERDEFINED, HEATRECOVERY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Chiller Type Enum</b></em>' enumerators.
@@ -249,14 +243,14 @@ public enum IfcChillerTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case WATERCOOLED_VALUE:
-			return WATERCOOLED;
-		case HEATRECOVERY_VALUE:
-			return HEATRECOVERY;
 		case AIRCOOLED_VALUE:
 			return AIRCOOLED;
+		case WATERCOOLED_VALUE:
+			return WATERCOOLED;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case HEATRECOVERY_VALUE:
+			return HEATRECOVERY;
 		}
 		return null;
 	}

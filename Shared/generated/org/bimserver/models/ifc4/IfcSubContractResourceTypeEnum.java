@@ -53,16 +53,6 @@ public enum IfcSubContractResourceTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>PURCHASE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PURCHASE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PURCHASE(2, "PURCHASE", "PURCHASE"),
-
-	/**
 	 * The '<em><b>WORK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +60,7 @@ public enum IfcSubContractResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WORK(3, "WORK", "WORK"),
+	WORK(2, "WORK", "WORK"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -80,7 +70,15 @@ public enum IfcSubContractResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>PURCHASE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #PURCHASE_VALUE
+													* @generated
+													* @ordered
+													*/
+	PURCHASE(4, "PURCHASE", "PURCHASE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -113,21 +111,6 @@ public enum IfcSubContractResourceTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>PURCHASE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PURCHASE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PURCHASE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PURCHASE_VALUE = 2;
-
-	/**
 	 * The '<em><b>WORK</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -140,7 +123,7 @@ public enum IfcSubContractResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORK_VALUE = 3;
+	public static final int WORK_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -155,7 +138,22 @@ public enum IfcSubContractResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int USERDEFINED_VALUE = 3;
+
+	/**
+	 * The '<em><b>PURCHASE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PURCHASE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PURCHASE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PURCHASE_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Sub Contract Resource Type Enum</b></em>' enumerators.
@@ -164,7 +162,7 @@ public enum IfcSubContractResourceTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcSubContractResourceTypeEnum[] VALUES_ARRAY = new IfcSubContractResourceTypeEnum[] { NULL,
-			NOTDEFINED, PURCHASE, WORK, USERDEFINED, };
+			NOTDEFINED, WORK, USERDEFINED, PURCHASE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sub Contract Resource Type Enum</b></em>' enumerators.
@@ -225,12 +223,12 @@ public enum IfcSubContractResourceTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case PURCHASE_VALUE:
-			return PURCHASE;
 		case WORK_VALUE:
 			return WORK;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case PURCHASE_VALUE:
+			return PURCHASE;
 		}
 		return null;
 	}

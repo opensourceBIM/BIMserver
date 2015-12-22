@@ -43,26 +43,6 @@ public enum IfcFlowDirectionEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SOURCEANDSINK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SOURCEANDSINK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SOURCEANDSINK(1, "SOURCEANDSINK", "SOURCEANDSINK"),
-
-	/**
-	 * The '<em><b>SOURCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SOURCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SOURCE(2, "SOURCE", "SOURCE"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,7 @@ public enum IfcFlowDirectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>SINK</b></em>' literal object.
@@ -80,7 +60,23 @@ public enum IfcFlowDirectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SINK(4, "SINK", "SINK");
+	SINK(2, "SINK", "SINK"), /**
+								* The '<em><b>SOURCE</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #SOURCE_VALUE
+								* @generated
+								* @ordered
+								*/
+	SOURCE(3, "SOURCE", "SOURCE"), /**
+									* The '<em><b>SOURCEANDSINK</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #SOURCEANDSINK_VALUE
+									* @generated
+									* @ordered
+									*/
+	SOURCEANDSINK(4, "SOURCEANDSINK", "SOURCEANDSINK");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -98,36 +94,6 @@ public enum IfcFlowDirectionEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>SOURCEANDSINK</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SOURCEANDSINK</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SOURCEANDSINK
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SOURCEANDSINK_VALUE = 1;
-
-	/**
-	 * The '<em><b>SOURCE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SOURCE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SOURCE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SOURCE_VALUE = 2;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -140,7 +106,7 @@ public enum IfcFlowDirectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>SINK</b></em>' literal value.
@@ -155,7 +121,37 @@ public enum IfcFlowDirectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SINK_VALUE = 4;
+	public static final int SINK_VALUE = 2;
+
+	/**
+	 * The '<em><b>SOURCE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SOURCE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SOURCE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SOURCE_VALUE = 3;
+
+	/**
+	 * The '<em><b>SOURCEANDSINK</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SOURCEANDSINK</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SOURCEANDSINK
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SOURCEANDSINK_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Flow Direction Enum</b></em>' enumerators.
@@ -163,7 +159,8 @@ public enum IfcFlowDirectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFlowDirectionEnum[] VALUES_ARRAY = new IfcFlowDirectionEnum[] { NULL, SOURCEANDSINK, SOURCE, NOTDEFINED, SINK, };
+	private static final IfcFlowDirectionEnum[] VALUES_ARRAY = new IfcFlowDirectionEnum[] { NULL, NOTDEFINED, SINK,
+			SOURCE, SOURCEANDSINK, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Flow Direction Enum</b></em>' enumerators.
@@ -221,14 +218,14 @@ public enum IfcFlowDirectionEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case SOURCEANDSINK_VALUE:
-			return SOURCEANDSINK;
-		case SOURCE_VALUE:
-			return SOURCE;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case SINK_VALUE:
 			return SINK;
+		case SOURCE_VALUE:
+			return SOURCE;
+		case SOURCEANDSINK_VALUE:
+			return SOURCEANDSINK;
 		}
 		return null;
 	}

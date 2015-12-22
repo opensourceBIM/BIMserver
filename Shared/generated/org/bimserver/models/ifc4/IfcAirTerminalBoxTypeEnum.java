@@ -53,36 +53,6 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>VARIABLEFLOWPRESSUREINDEPENDANT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VARIABLEFLOWPRESSUREINDEPENDANT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VARIABLEFLOWPRESSUREINDEPENDANT(2, "VARIABLEFLOWPRESSUREINDEPENDANT", "VARIABLEFLOWPRESSUREINDEPENDANT"),
-
-	/**
-	 * The '<em><b>CONSTANTFLOW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONSTANTFLOW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONSTANTFLOW(3, "CONSTANTFLOW", "CONSTANTFLOW"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>VARIABLEFLOWPRESSUREDEPENDANT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +60,31 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VARIABLEFLOWPRESSUREDEPENDANT(5, "VARIABLEFLOWPRESSUREDEPENDANT", "VARIABLEFLOWPRESSUREDEPENDANT");
+	VARIABLEFLOWPRESSUREDEPENDANT(2, "VARIABLEFLOWPRESSUREDEPENDANT", "VARIABLEFLOWPRESSUREDEPENDANT"), /**
+																										* The '<em><b>VARIABLEFLOWPRESSUREINDEPENDANT</b></em>' literal object.
+																										* <!-- begin-user-doc -->
+																										* <!-- end-user-doc -->
+																										* @see #VARIABLEFLOWPRESSUREINDEPENDANT_VALUE
+																										* @generated
+																										* @ordered
+																										*/
+	VARIABLEFLOWPRESSUREINDEPENDANT(3, "VARIABLEFLOWPRESSUREINDEPENDANT", "VARIABLEFLOWPRESSUREINDEPENDANT"), /**
+																												* The '<em><b>CONSTANTFLOW</b></em>' literal object.
+																												* <!-- begin-user-doc -->
+																												* <!-- end-user-doc -->
+																												* @see #CONSTANTFLOW_VALUE
+																												* @generated
+																												* @ordered
+																												*/
+	CONSTANTFLOW(4, "CONSTANTFLOW", "CONSTANTFLOW"), /**
+														* The '<em><b>USERDEFINED</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #USERDEFINED_VALUE
+														* @generated
+														* @ordered
+														*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -123,6 +117,21 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
+	 * The '<em><b>VARIABLEFLOWPRESSUREDEPENDANT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>VARIABLEFLOWPRESSUREDEPENDANT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #VARIABLEFLOWPRESSUREDEPENDANT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int VARIABLEFLOWPRESSUREDEPENDANT_VALUE = 2;
+
+	/**
 	 * The '<em><b>VARIABLEFLOWPRESSUREINDEPENDANT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,7 +144,7 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VARIABLEFLOWPRESSUREINDEPENDANT_VALUE = 2;
+	public static final int VARIABLEFLOWPRESSUREINDEPENDANT_VALUE = 3;
 
 	/**
 	 * The '<em><b>CONSTANTFLOW</b></em>' literal value.
@@ -150,7 +159,7 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONSTANTFLOW_VALUE = 3;
+	public static final int CONSTANTFLOW_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -165,22 +174,7 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
-
-	/**
-	 * The '<em><b>VARIABLEFLOWPRESSUREDEPENDANT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>VARIABLEFLOWPRESSUREDEPENDANT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #VARIABLEFLOWPRESSUREDEPENDANT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int VARIABLEFLOWPRESSUREDEPENDANT_VALUE = 5;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Air Terminal Box Type Enum</b></em>' enumerators.
@@ -189,7 +183,7 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcAirTerminalBoxTypeEnum[] VALUES_ARRAY = new IfcAirTerminalBoxTypeEnum[] { NULL, NOTDEFINED,
-			VARIABLEFLOWPRESSUREINDEPENDANT, CONSTANTFLOW, USERDEFINED, VARIABLEFLOWPRESSUREDEPENDANT, };
+			VARIABLEFLOWPRESSUREDEPENDANT, VARIABLEFLOWPRESSUREINDEPENDANT, CONSTANTFLOW, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Air Terminal Box Type Enum</b></em>' enumerators.
@@ -250,14 +244,14 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case VARIABLEFLOWPRESSUREDEPENDANT_VALUE:
+			return VARIABLEFLOWPRESSUREDEPENDANT;
 		case VARIABLEFLOWPRESSUREINDEPENDANT_VALUE:
 			return VARIABLEFLOWPRESSUREINDEPENDANT;
 		case CONSTANTFLOW_VALUE:
 			return CONSTANTFLOW;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case VARIABLEFLOWPRESSUREDEPENDANT_VALUE:
-			return VARIABLEFLOWPRESSUREDEPENDANT;
 		}
 		return null;
 	}

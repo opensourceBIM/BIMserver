@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDraughtingPreDefinedTextFontImpl extends IfcPreDefinedTextFontImpl implements IfcDraughtingPreDefinedTextFont {
+public class IfcDraughtingPreDefinedTextFontImpl extends IfcPreDefinedTextFontImpl
+		implements IfcDraughtingPreDefinedTextFont {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -43,16 +43,6 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>MAINTENANCE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,27 +50,15 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MAINTENANCE(2, "MAINTENANCE", "MAINTENANCE"),
-
-	/**
-	 * The '<em><b>PURCHASE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PURCHASE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PURCHASE(3, "PURCHASE", "PURCHASE"),
-
-	/**
-	 * The '<em><b>WORK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WORK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WORK(4, "WORK", "WORK"),
+	MAINTENANCE(1, "MAINTENANCE", "MAINTENANCE"), /**
+													* The '<em><b>NOTDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #NOTDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>MOVE</b></em>' literal object.
@@ -90,17 +68,15 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MOVE(5, "MOVE", "MOVE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
+	MOVE(3, "MOVE", "MOVE"), /**
+								* The '<em><b>WORK</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #WORK_VALUE
+								* @generated
+								* @ordered
+								*/
+	WORK(4, "WORK", "WORK"),
 
 	/**
 	 * The '<em><b>CHANGE</b></em>' literal object.
@@ -110,7 +86,23 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CHANGE(7, "CHANGE", "CHANGE");
+	CHANGE(5, "CHANGE", "CHANGE"), /**
+									* The '<em><b>USERDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #USERDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>PURCHASE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #PURCHASE_VALUE
+													* @generated
+													* @ordered
+													*/
+	PURCHASE(7, "PURCHASE", "PURCHASE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,21 +120,6 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
 	 * The '<em><b>MAINTENANCE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -155,22 +132,37 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MAINTENANCE_VALUE = 2;
+	public static final int MAINTENANCE_VALUE = 1;
 
 	/**
-	 * The '<em><b>PURCHASE</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PURCHASE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PURCHASE
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PURCHASE_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 2;
+
+	/**
+	 * The '<em><b>MOVE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MOVE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MOVE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MOVE_VALUE = 3;
 
 	/**
 	 * The '<em><b>WORK</b></em>' literal value.
@@ -188,19 +180,19 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	public static final int WORK_VALUE = 4;
 
 	/**
-	 * The '<em><b>MOVE</b></em>' literal value.
+	 * The '<em><b>CHANGE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>MOVE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CHANGE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MOVE
+	 * @see #CHANGE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MOVE_VALUE = 5;
+	public static final int CHANGE_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -218,19 +210,19 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 6;
 
 	/**
-	 * The '<em><b>CHANGE</b></em>' literal value.
+	 * The '<em><b>PURCHASE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CHANGE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PURCHASE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CHANGE
+	 * @see #PURCHASE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CHANGE_VALUE = 7;
+	public static final int PURCHASE_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Project Order Record Type Enum</b></em>' enumerators.
@@ -238,7 +230,8 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProjectOrderRecordTypeEnum[] VALUES_ARRAY = new IfcProjectOrderRecordTypeEnum[] { NULL, NOTDEFINED, MAINTENANCE, PURCHASE, WORK, MOVE, USERDEFINED, CHANGE, };
+	private static final IfcProjectOrderRecordTypeEnum[] VALUES_ARRAY = new IfcProjectOrderRecordTypeEnum[] { NULL,
+			MAINTENANCE, NOTDEFINED, MOVE, WORK, CHANGE, USERDEFINED, PURCHASE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Project Order Record Type Enum</b></em>' enumerators.
@@ -246,7 +239,8 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProjectOrderRecordTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProjectOrderRecordTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Project Order Record Type Enum</b></em>' literal with the specified literal value.
@@ -296,20 +290,20 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case MAINTENANCE_VALUE:
 			return MAINTENANCE;
-		case PURCHASE_VALUE:
-			return PURCHASE;
-		case WORK_VALUE:
-			return WORK;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case MOVE_VALUE:
 			return MOVE;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case WORK_VALUE:
+			return WORK;
 		case CHANGE_VALUE:
 			return CHANGE;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case PURCHASE_VALUE:
+			return PURCHASE;
 		}
 		return null;
 	}

@@ -43,36 +43,6 @@ public enum IfcPileTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SUPPORT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SUPPORT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SUPPORT(1, "SUPPORT", "SUPPORT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>FRICTION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +50,23 @@ public enum IfcPileTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FRICTION(4, "FRICTION", "FRICTION"),
+	FRICTION(1, "FRICTION", "FRICTION"), /**
+											* The '<em><b>SUPPORT</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #SUPPORT_VALUE
+											* @generated
+											* @ordered
+											*/
+	SUPPORT(2, "SUPPORT", "SUPPORT"), /**
+										* The '<em><b>NOTDEFINED</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #NOTDEFINED_VALUE
+										* @generated
+										* @ordered
+										*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>COHESION</b></em>' literal object.
@@ -90,7 +76,15 @@ public enum IfcPileTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COHESION(5, "COHESION", "COHESION");
+	COHESION(4, "COHESION", "COHESION"), /**
+											* The '<em><b>USERDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #USERDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,6 +102,21 @@ public enum IfcPileTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>FRICTION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FRICTION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FRICTION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FRICTION_VALUE = 1;
+
+	/**
 	 * The '<em><b>SUPPORT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -120,7 +129,7 @@ public enum IfcPileTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SUPPORT_VALUE = 1;
+	public static final int SUPPORT_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -135,37 +144,7 @@ public enum IfcPileTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 3;
-
-	/**
-	 * The '<em><b>FRICTION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FRICTION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FRICTION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FRICTION_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>COHESION</b></em>' literal value.
@@ -180,7 +159,22 @@ public enum IfcPileTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COHESION_VALUE = 5;
+	public static final int COHESION_VALUE = 4;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Pile Type Enum</b></em>' enumerators.
@@ -188,7 +182,8 @@ public enum IfcPileTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPileTypeEnum[] VALUES_ARRAY = new IfcPileTypeEnum[] { NULL, SUPPORT, NOTDEFINED, USERDEFINED, FRICTION, COHESION, };
+	private static final IfcPileTypeEnum[] VALUES_ARRAY = new IfcPileTypeEnum[] { NULL, FRICTION, SUPPORT, NOTDEFINED,
+			COHESION, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pile Type Enum</b></em>' enumerators.
@@ -246,16 +241,16 @@ public enum IfcPileTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
+		case FRICTION_VALUE:
+			return FRICTION;
 		case SUPPORT_VALUE:
 			return SUPPORT;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case FRICTION_VALUE:
-			return FRICTION;
 		case COHESION_VALUE:
 			return COHESION;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

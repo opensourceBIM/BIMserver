@@ -53,116 +53,6 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	SIDEHUNGLEFTHAND(1, "SIDEHUNGLEFTHAND", "SIDEHUNGLEFTHAND"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TOPHUNG</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TOPHUNG_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TOPHUNG(3, "TOPHUNG", "TOPHUNG"),
-
-	/**
-	 * The '<em><b>TILTANDTURNRIGHTHAND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TILTANDTURNRIGHTHAND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TILTANDTURNRIGHTHAND(4, "TILTANDTURNRIGHTHAND", "TILTANDTURNRIGHTHAND"),
-
-	/**
-	 * The '<em><b>PIVOTHORIZONTAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PIVOTHORIZONTAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PIVOTHORIZONTAL(5, "PIVOTHORIZONTAL", "PIVOTHORIZONTAL"),
-
-	/**
-	 * The '<em><b>SLIDINGHORIZONTAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SLIDINGHORIZONTAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SLIDINGHORIZONTAL(6, "SLIDINGHORIZONTAL", "SLIDINGHORIZONTAL"),
-
-	/**
-	 * The '<em><b>PIVOTVERTICAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PIVOTVERTICAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PIVOTVERTICAL(7, "PIVOTVERTICAL", "PIVOTVERTICAL"),
-
-	/**
-	 * The '<em><b>REMOVABLECASEMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REMOVABLECASEMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REMOVABLECASEMENT(8, "REMOVABLECASEMENT", "REMOVABLECASEMENT"),
-
-	/**
-	 * The '<em><b>OTHEROPERATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OTHEROPERATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OTHEROPERATION(9, "OTHEROPERATION", "OTHEROPERATION"),
-
-	/**
-	 * The '<em><b>SIDEHUNGRIGHTHAND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SIDEHUNGRIGHTHAND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SIDEHUNGRIGHTHAND(10, "SIDEHUNGRIGHTHAND", "SIDEHUNGRIGHTHAND"),
-
-	/**
-	 * The '<em><b>BOTTOMHUNG</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BOTTOMHUNG_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BOTTOMHUNG(11, "BOTTOMHUNG", "BOTTOMHUNG"),
-
-	/**
-	 * The '<em><b>SLIDINGVERTICAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SLIDINGVERTICAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SLIDINGVERTICAL(12, "SLIDINGVERTICAL", "SLIDINGVERTICAL"),
-
-	/**
 	 * The '<em><b>FIXEDCASEMENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -170,7 +60,23 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FIXEDCASEMENT(13, "FIXEDCASEMENT", "FIXEDCASEMENT"),
+	FIXEDCASEMENT(2, "FIXEDCASEMENT", "FIXEDCASEMENT"), /**
+														* The '<em><b>TILTANDTURNRIGHTHAND</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #TILTANDTURNRIGHTHAND_VALUE
+														* @generated
+														* @ordered
+														*/
+	TILTANDTURNRIGHTHAND(3, "TILTANDTURNRIGHTHAND", "TILTANDTURNRIGHTHAND"), /**
+																				* The '<em><b>NOTDEFINED</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #NOTDEFINED_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>TILTANDTURNLEFTHAND</b></em>' literal object.
@@ -180,7 +86,79 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TILTANDTURNLEFTHAND(14, "TILTANDTURNLEFTHAND", "TILTANDTURNLEFTHAND");
+	TILTANDTURNLEFTHAND(5, "TILTANDTURNLEFTHAND", "TILTANDTURNLEFTHAND"), /**
+																			* The '<em><b>OTHEROPERATION</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #OTHEROPERATION_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	OTHEROPERATION(6, "OTHEROPERATION", "OTHEROPERATION"), /**
+															* The '<em><b>PIVOTHORIZONTAL</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #PIVOTHORIZONTAL_VALUE
+															* @generated
+															* @ordered
+															*/
+	PIVOTHORIZONTAL(7, "PIVOTHORIZONTAL", "PIVOTHORIZONTAL"), /**
+																* The '<em><b>PIVOTVERTICAL</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #PIVOTVERTICAL_VALUE
+																* @generated
+																* @ordered
+																*/
+	PIVOTVERTICAL(8, "PIVOTVERTICAL", "PIVOTVERTICAL"), /**
+														* The '<em><b>SLIDINGHORIZONTAL</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #SLIDINGHORIZONTAL_VALUE
+														* @generated
+														* @ordered
+														*/
+	SLIDINGHORIZONTAL(9, "SLIDINGHORIZONTAL", "SLIDINGHORIZONTAL"), /**
+																	* The '<em><b>TOPHUNG</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #TOPHUNG_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	TOPHUNG(10, "TOPHUNG", "TOPHUNG"), /**
+										* The '<em><b>BOTTOMHUNG</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #BOTTOMHUNG_VALUE
+										* @generated
+										* @ordered
+										*/
+	BOTTOMHUNG(11, "BOTTOMHUNG", "BOTTOMHUNG"), /**
+												* The '<em><b>SLIDINGVERTICAL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #SLIDINGVERTICAL_VALUE
+												* @generated
+												* @ordered
+												*/
+	SLIDINGVERTICAL(12, "SLIDINGVERTICAL", "SLIDINGVERTICAL"), /**
+																* The '<em><b>SIDEHUNGRIGHTHAND</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #SIDEHUNGRIGHTHAND_VALUE
+																* @generated
+																* @ordered
+																*/
+	SIDEHUNGRIGHTHAND(13, "SIDEHUNGRIGHTHAND", "SIDEHUNGRIGHTHAND"), /**
+																		* The '<em><b>REMOVABLECASEMENT</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #REMOVABLECASEMENT_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	REMOVABLECASEMENT(14, "REMOVABLECASEMENT", "REMOVABLECASEMENT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -213,34 +191,19 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	public static final int SIDEHUNGLEFTHAND_VALUE = 1;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>FIXEDCASEMENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>FIXEDCASEMENT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #FIXEDCASEMENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>TOPHUNG</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TOPHUNG</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TOPHUNG
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TOPHUNG_VALUE = 3;
+	public static final int FIXEDCASEMENT_VALUE = 2;
 
 	/**
 	 * The '<em><b>TILTANDTURNRIGHTHAND</b></em>' literal value.
@@ -255,67 +218,37 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TILTANDTURNRIGHTHAND_VALUE = 4;
+	public static final int TILTANDTURNRIGHTHAND_VALUE = 3;
 
 	/**
-	 * The '<em><b>PIVOTHORIZONTAL</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PIVOTHORIZONTAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PIVOTHORIZONTAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PIVOTHORIZONTAL_VALUE = 5;
+	public static final int NOTDEFINED_VALUE = 4;
 
 	/**
-	 * The '<em><b>SLIDINGHORIZONTAL</b></em>' literal value.
+	 * The '<em><b>TILTANDTURNLEFTHAND</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SLIDINGHORIZONTAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TILTANDTURNLEFTHAND</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SLIDINGHORIZONTAL
+	 * @see #TILTANDTURNLEFTHAND
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SLIDINGHORIZONTAL_VALUE = 6;
-
-	/**
-	 * The '<em><b>PIVOTVERTICAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PIVOTVERTICAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PIVOTVERTICAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PIVOTVERTICAL_VALUE = 7;
-
-	/**
-	 * The '<em><b>REMOVABLECASEMENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>REMOVABLECASEMENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #REMOVABLECASEMENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int REMOVABLECASEMENT_VALUE = 8;
+	public static final int TILTANDTURNLEFTHAND_VALUE = 5;
 
 	/**
 	 * The '<em><b>OTHEROPERATION</b></em>' literal value.
@@ -330,22 +263,67 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OTHEROPERATION_VALUE = 9;
+	public static final int OTHEROPERATION_VALUE = 6;
 
 	/**
-	 * The '<em><b>SIDEHUNGRIGHTHAND</b></em>' literal value.
+	 * The '<em><b>PIVOTHORIZONTAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SIDEHUNGRIGHTHAND</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PIVOTHORIZONTAL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SIDEHUNGRIGHTHAND
+	 * @see #PIVOTHORIZONTAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SIDEHUNGRIGHTHAND_VALUE = 10;
+	public static final int PIVOTHORIZONTAL_VALUE = 7;
+
+	/**
+	 * The '<em><b>PIVOTVERTICAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PIVOTVERTICAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PIVOTVERTICAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PIVOTVERTICAL_VALUE = 8;
+
+	/**
+	 * The '<em><b>SLIDINGHORIZONTAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SLIDINGHORIZONTAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SLIDINGHORIZONTAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SLIDINGHORIZONTAL_VALUE = 9;
+
+	/**
+	 * The '<em><b>TOPHUNG</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TOPHUNG</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TOPHUNG
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TOPHUNG_VALUE = 10;
 
 	/**
 	 * The '<em><b>BOTTOMHUNG</b></em>' literal value.
@@ -378,34 +356,34 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	public static final int SLIDINGVERTICAL_VALUE = 12;
 
 	/**
-	 * The '<em><b>FIXEDCASEMENT</b></em>' literal value.
+	 * The '<em><b>SIDEHUNGRIGHTHAND</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>FIXEDCASEMENT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SIDEHUNGRIGHTHAND</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FIXEDCASEMENT
+	 * @see #SIDEHUNGRIGHTHAND
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FIXEDCASEMENT_VALUE = 13;
+	public static final int SIDEHUNGRIGHTHAND_VALUE = 13;
 
 	/**
-	 * The '<em><b>TILTANDTURNLEFTHAND</b></em>' literal value.
+	 * The '<em><b>REMOVABLECASEMENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>TILTANDTURNLEFTHAND</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>REMOVABLECASEMENT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TILTANDTURNLEFTHAND
+	 * @see #REMOVABLECASEMENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TILTANDTURNLEFTHAND_VALUE = 14;
+	public static final int REMOVABLECASEMENT_VALUE = 14;
 
 	/**
 	 * An array of all the '<em><b>Ifc Window Panel Operation Enum</b></em>' enumerators.
@@ -413,8 +391,10 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWindowPanelOperationEnum[] VALUES_ARRAY = new IfcWindowPanelOperationEnum[] { NULL, SIDEHUNGLEFTHAND, NOTDEFINED, TOPHUNG, TILTANDTURNRIGHTHAND, PIVOTHORIZONTAL, SLIDINGHORIZONTAL,
-			PIVOTVERTICAL, REMOVABLECASEMENT, OTHEROPERATION, SIDEHUNGRIGHTHAND, BOTTOMHUNG, SLIDINGVERTICAL, FIXEDCASEMENT, TILTANDTURNLEFTHAND, };
+	private static final IfcWindowPanelOperationEnum[] VALUES_ARRAY = new IfcWindowPanelOperationEnum[] { NULL,
+			SIDEHUNGLEFTHAND, FIXEDCASEMENT, TILTANDTURNRIGHTHAND, NOTDEFINED, TILTANDTURNLEFTHAND, OTHEROPERATION,
+			PIVOTHORIZONTAL, PIVOTVERTICAL, SLIDINGHORIZONTAL, TOPHUNG, BOTTOMHUNG, SLIDINGVERTICAL, SIDEHUNGRIGHTHAND,
+			REMOVABLECASEMENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Window Panel Operation Enum</b></em>' enumerators.
@@ -422,7 +402,8 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWindowPanelOperationEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWindowPanelOperationEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Window Panel Operation Enum</b></em>' literal with the specified literal value.
@@ -474,32 +455,32 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 			return NULL;
 		case SIDEHUNGLEFTHAND_VALUE:
 			return SIDEHUNGLEFTHAND;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case TOPHUNG_VALUE:
-			return TOPHUNG;
+		case FIXEDCASEMENT_VALUE:
+			return FIXEDCASEMENT;
 		case TILTANDTURNRIGHTHAND_VALUE:
 			return TILTANDTURNRIGHTHAND;
-		case PIVOTHORIZONTAL_VALUE:
-			return PIVOTHORIZONTAL;
-		case SLIDINGHORIZONTAL_VALUE:
-			return SLIDINGHORIZONTAL;
-		case PIVOTVERTICAL_VALUE:
-			return PIVOTVERTICAL;
-		case REMOVABLECASEMENT_VALUE:
-			return REMOVABLECASEMENT;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case TILTANDTURNLEFTHAND_VALUE:
+			return TILTANDTURNLEFTHAND;
 		case OTHEROPERATION_VALUE:
 			return OTHEROPERATION;
-		case SIDEHUNGRIGHTHAND_VALUE:
-			return SIDEHUNGRIGHTHAND;
+		case PIVOTHORIZONTAL_VALUE:
+			return PIVOTHORIZONTAL;
+		case PIVOTVERTICAL_VALUE:
+			return PIVOTVERTICAL;
+		case SLIDINGHORIZONTAL_VALUE:
+			return SLIDINGHORIZONTAL;
+		case TOPHUNG_VALUE:
+			return TOPHUNG;
 		case BOTTOMHUNG_VALUE:
 			return BOTTOMHUNG;
 		case SLIDINGVERTICAL_VALUE:
 			return SLIDINGVERTICAL;
-		case FIXEDCASEMENT_VALUE:
-			return FIXEDCASEMENT;
-		case TILTANDTURNLEFTHAND_VALUE:
-			return TILTANDTURNLEFTHAND;
+		case SIDEHUNGRIGHTHAND_VALUE:
+			return SIDEHUNGRIGHTHAND;
+		case REMOVABLECASEMENT_VALUE:
+			return REMOVABLECASEMENT;
 		}
 		return null;
 	}

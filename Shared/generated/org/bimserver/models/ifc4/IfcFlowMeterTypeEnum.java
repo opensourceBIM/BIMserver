@@ -43,16 +43,6 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>WATERMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERMETER(1, "WATERMETER", "WATERMETER"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,37 +50,15 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>GASMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASMETER(3, "GASMETER", "GASMETER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ENERGYMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ENERGYMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ENERGYMETER(5, "ENERGYMETER", "ENERGYMETER"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>WATERMETER</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #WATERMETER_VALUE
+												* @generated
+												* @ordered
+												*/
+	WATERMETER(2, "WATERMETER", "WATERMETER"),
 
 	/**
 	 * The '<em><b>OILMETER</b></em>' literal object.
@@ -100,7 +68,31 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OILMETER(6, "OILMETER", "OILMETER");
+	OILMETER(3, "OILMETER", "OILMETER"), /**
+											* The '<em><b>GASMETER</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #GASMETER_VALUE
+											* @generated
+											* @ordered
+											*/
+	GASMETER(4, "GASMETER", "GASMETER"), /**
+											* The '<em><b>USERDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #USERDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>ENERGYMETER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #ENERGYMETER_VALUE
+													* @generated
+													* @ordered
+													*/
+	ENERGYMETER(6, "ENERGYMETER", "ENERGYMETER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,21 +110,6 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>WATERMETER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>WATERMETER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #WATERMETER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WATERMETER_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -145,52 +122,22 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>GASMETER</b></em>' literal value.
+	 * The '<em><b>WATERMETER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>GASMETER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>WATERMETER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GASMETER
+	 * @see #WATERMETER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GASMETER_VALUE = 3;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 4;
-
-	/**
-	 * The '<em><b>ENERGYMETER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ENERGYMETER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ENERGYMETER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ENERGYMETER_VALUE = 5;
+	public static final int WATERMETER_VALUE = 2;
 
 	/**
 	 * The '<em><b>OILMETER</b></em>' literal value.
@@ -205,7 +152,52 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OILMETER_VALUE = 6;
+	public static final int OILMETER_VALUE = 3;
+
+	/**
+	 * The '<em><b>GASMETER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GASMETER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GASMETER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GASMETER_VALUE = 4;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 5;
+
+	/**
+	 * The '<em><b>ENERGYMETER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ENERGYMETER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ENERGYMETER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ENERGYMETER_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Flow Meter Type Enum</b></em>' enumerators.
@@ -213,8 +205,8 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFlowMeterTypeEnum[] VALUES_ARRAY = new IfcFlowMeterTypeEnum[] { NULL, WATERMETER,
-			NOTDEFINED, GASMETER, USERDEFINED, ENERGYMETER, OILMETER, };
+	private static final IfcFlowMeterTypeEnum[] VALUES_ARRAY = new IfcFlowMeterTypeEnum[] { NULL, NOTDEFINED,
+			WATERMETER, OILMETER, GASMETER, USERDEFINED, ENERGYMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Flow Meter Type Enum</b></em>' enumerators.
@@ -272,18 +264,18 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case WATERMETER_VALUE:
-			return WATERMETER;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case WATERMETER_VALUE:
+			return WATERMETER;
+		case OILMETER_VALUE:
+			return OILMETER;
 		case GASMETER_VALUE:
 			return GASMETER;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case ENERGYMETER_VALUE:
 			return ENERGYMETER;
-		case OILMETER_VALUE:
-			return OILMETER;
 		}
 		return null;
 	}

@@ -43,76 +43,6 @@ public enum IfcObjectiveEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>DESIGNINTENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DESIGNINTENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DESIGNINTENT(1, "DESIGNINTENT", "DESIGNINTENT"),
-
-	/**
-	 * The '<em><b>EXTERNAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTERNAL(2, "EXTERNAL", "EXTERNAL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TRIGGERCONDITION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIGGERCONDITION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIGGERCONDITION(4, "TRIGGERCONDITION", "TRIGGERCONDITION"),
-
-	/**
-	 * The '<em><b>CODECOMPLIANCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CODECOMPLIANCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CODECOMPLIANCE(5, "CODECOMPLIANCE", "CODECOMPLIANCE"),
-
-	/**
-	 * The '<em><b>PARAMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PARAMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PARAMETER(6, "PARAMETER", "PARAMETER"),
-
-	/**
-	 * The '<em><b>MERGECONFLICT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MERGECONFLICT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MERGECONFLICT(7, "MERGECONFLICT", "MERGECONFLICT"),
-
-	/**
 	 * The '<em><b>HEALTHANDSAFETY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,47 +50,7 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HEALTHANDSAFETY(8, "HEALTHANDSAFETY", "HEALTHANDSAFETY"),
-
-	/**
-	 * The '<em><b>CODEWAIVER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CODEWAIVER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CODEWAIVER(9, "CODEWAIVER", "CODEWAIVER"),
-
-	/**
-	 * The '<em><b>SPECIFICATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPECIFICATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPECIFICATION(10, "SPECIFICATION", "SPECIFICATION"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(11, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>REQUIREMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REQUIREMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REQUIREMENT(12, "REQUIREMENT", "REQUIREMENT"),
+	HEALTHANDSAFETY(1, "HEALTHANDSAFETY", "HEALTHANDSAFETY"),
 
 	/**
 	 * The '<em><b>MODELVIEW</b></em>' literal object.
@@ -170,7 +60,95 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MODELVIEW(13, "MODELVIEW", "MODELVIEW");
+	MODELVIEW(2, "MODELVIEW", "MODELVIEW"), /**
+											* The '<em><b>MERGECONFLICT</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #MERGECONFLICT_VALUE
+											* @generated
+											* @ordered
+											*/
+	MERGECONFLICT(3, "MERGECONFLICT", "MERGECONFLICT"), /**
+														* The '<em><b>TRIGGERCONDITION</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #TRIGGERCONDITION_VALUE
+														* @generated
+														* @ordered
+														*/
+	TRIGGERCONDITION(4, "TRIGGERCONDITION", "TRIGGERCONDITION"), /**
+																	* The '<em><b>USERDEFINED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #USERDEFINED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>SPECIFICATION</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #SPECIFICATION_VALUE
+													* @generated
+													* @ordered
+													*/
+	SPECIFICATION(6, "SPECIFICATION", "SPECIFICATION"), /**
+														* The '<em><b>CODECOMPLIANCE</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #CODECOMPLIANCE_VALUE
+														* @generated
+														* @ordered
+														*/
+	CODECOMPLIANCE(7, "CODECOMPLIANCE", "CODECOMPLIANCE"), /**
+															* The '<em><b>CODEWAIVER</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #CODEWAIVER_VALUE
+															* @generated
+															* @ordered
+															*/
+	CODEWAIVER(8, "CODEWAIVER", "CODEWAIVER"), /**
+												* The '<em><b>NOTDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #NOTDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	NOTDEFINED(9, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>EXTERNAL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #EXTERNAL_VALUE
+												* @generated
+												* @ordered
+												*/
+	EXTERNAL(10, "EXTERNAL", "EXTERNAL"), /**
+											* The '<em><b>DESIGNINTENT</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #DESIGNINTENT_VALUE
+											* @generated
+											* @ordered
+											*/
+	DESIGNINTENT(11, "DESIGNINTENT", "DESIGNINTENT"), /**
+														* The '<em><b>PARAMETER</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #PARAMETER_VALUE
+														* @generated
+														* @ordered
+														*/
+	PARAMETER(12, "PARAMETER", "PARAMETER"), /**
+												* The '<em><b>REQUIREMENT</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #REQUIREMENT_VALUE
+												* @generated
+												* @ordered
+												*/
+	REQUIREMENT(13, "REQUIREMENT", "REQUIREMENT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -188,49 +166,49 @@ public enum IfcObjectiveEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>DESIGNINTENT</b></em>' literal value.
+	 * The '<em><b>HEALTHANDSAFETY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DESIGNINTENT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>HEALTHANDSAFETY</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DESIGNINTENT
+	 * @see #HEALTHANDSAFETY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DESIGNINTENT_VALUE = 1;
+	public static final int HEALTHANDSAFETY_VALUE = 1;
 
 	/**
-	 * The '<em><b>EXTERNAL</b></em>' literal value.
+	 * The '<em><b>MODELVIEW</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EXTERNAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>MODELVIEW</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL
+	 * @see #MODELVIEW
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXTERNAL_VALUE = 2;
+	public static final int MODELVIEW_VALUE = 2;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>MERGECONFLICT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>MERGECONFLICT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #MERGECONFLICT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int MERGECONFLICT_VALUE = 3;
 
 	/**
 	 * The '<em><b>TRIGGERCONDITION</b></em>' literal value.
@@ -248,79 +226,19 @@ public enum IfcObjectiveEnum implements Enumerator {
 	public static final int TRIGGERCONDITION_VALUE = 4;
 
 	/**
-	 * The '<em><b>CODECOMPLIANCE</b></em>' literal value.
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CODECOMPLIANCE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CODECOMPLIANCE
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CODECOMPLIANCE_VALUE = 5;
-
-	/**
-	 * The '<em><b>PARAMETER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PARAMETER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PARAMETER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PARAMETER_VALUE = 6;
-
-	/**
-	 * The '<em><b>MERGECONFLICT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MERGECONFLICT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MERGECONFLICT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MERGECONFLICT_VALUE = 7;
-
-	/**
-	 * The '<em><b>HEALTHANDSAFETY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HEALTHANDSAFETY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HEALTHANDSAFETY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HEALTHANDSAFETY_VALUE = 8;
-
-	/**
-	 * The '<em><b>CODEWAIVER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CODEWAIVER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CODEWAIVER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CODEWAIVER_VALUE = 9;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * The '<em><b>SPECIFICATION</b></em>' literal value.
@@ -335,22 +253,97 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPECIFICATION_VALUE = 10;
+	public static final int SPECIFICATION_VALUE = 6;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>CODECOMPLIANCE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CODECOMPLIANCE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #CODECOMPLIANCE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 11;
+	public static final int CODECOMPLIANCE_VALUE = 7;
+
+	/**
+	 * The '<em><b>CODEWAIVER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CODEWAIVER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CODEWAIVER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CODEWAIVER_VALUE = 8;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 9;
+
+	/**
+	 * The '<em><b>EXTERNAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>EXTERNAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #EXTERNAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EXTERNAL_VALUE = 10;
+
+	/**
+	 * The '<em><b>DESIGNINTENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DESIGNINTENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DESIGNINTENT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DESIGNINTENT_VALUE = 11;
+
+	/**
+	 * The '<em><b>PARAMETER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PARAMETER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PARAMETER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PARAMETER_VALUE = 12;
 
 	/**
 	 * The '<em><b>REQUIREMENT</b></em>' literal value.
@@ -365,22 +358,7 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REQUIREMENT_VALUE = 12;
-
-	/**
-	 * The '<em><b>MODELVIEW</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MODELVIEW</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MODELVIEW
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MODELVIEW_VALUE = 13;
+	public static final int REQUIREMENT_VALUE = 13;
 
 	/**
 	 * An array of all the '<em><b>Ifc Objective Enum</b></em>' enumerators.
@@ -388,9 +366,9 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcObjectiveEnum[] VALUES_ARRAY = new IfcObjectiveEnum[] { NULL, DESIGNINTENT, EXTERNAL,
-			NOTDEFINED, TRIGGERCONDITION, CODECOMPLIANCE, PARAMETER, MERGECONFLICT, HEALTHANDSAFETY, CODEWAIVER,
-			SPECIFICATION, USERDEFINED, REQUIREMENT, MODELVIEW, };
+	private static final IfcObjectiveEnum[] VALUES_ARRAY = new IfcObjectiveEnum[] { NULL, HEALTHANDSAFETY, MODELVIEW,
+			MERGECONFLICT, TRIGGERCONDITION, USERDEFINED, SPECIFICATION, CODECOMPLIANCE, CODEWAIVER, NOTDEFINED,
+			EXTERNAL, DESIGNINTENT, PARAMETER, REQUIREMENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Objective Enum</b></em>' enumerators.
@@ -448,32 +426,32 @@ public enum IfcObjectiveEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case DESIGNINTENT_VALUE:
-			return DESIGNINTENT;
-		case EXTERNAL_VALUE:
-			return EXTERNAL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case TRIGGERCONDITION_VALUE:
-			return TRIGGERCONDITION;
-		case CODECOMPLIANCE_VALUE:
-			return CODECOMPLIANCE;
-		case PARAMETER_VALUE:
-			return PARAMETER;
-		case MERGECONFLICT_VALUE:
-			return MERGECONFLICT;
 		case HEALTHANDSAFETY_VALUE:
 			return HEALTHANDSAFETY;
-		case CODEWAIVER_VALUE:
-			return CODEWAIVER;
-		case SPECIFICATION_VALUE:
-			return SPECIFICATION;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case REQUIREMENT_VALUE:
-			return REQUIREMENT;
 		case MODELVIEW_VALUE:
 			return MODELVIEW;
+		case MERGECONFLICT_VALUE:
+			return MERGECONFLICT;
+		case TRIGGERCONDITION_VALUE:
+			return TRIGGERCONDITION;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case SPECIFICATION_VALUE:
+			return SPECIFICATION;
+		case CODECOMPLIANCE_VALUE:
+			return CODECOMPLIANCE;
+		case CODEWAIVER_VALUE:
+			return CODEWAIVER;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case EXTERNAL_VALUE:
+			return EXTERNAL;
+		case DESIGNINTENT_VALUE:
+			return DESIGNINTENT;
+		case PARAMETER_VALUE:
+			return PARAMETER;
+		case REQUIREMENT_VALUE:
+			return REQUIREMENT;
 		}
 		return null;
 	}

@@ -43,46 +43,6 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>NOTCH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTCH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTCH(2, "NOTCH", "NOTCH"),
-
-	/**
-	 * The '<em><b>CUTOUT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CUTOUT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CUTOUT(3, "CUTOUT", "CUTOUT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>HOLE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,17 +50,15 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HOLE(5, "HOLE", "HOLE"),
-
-	/**
-	 * The '<em><b>EDGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EDGE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EDGE(6, "EDGE", "EDGE"),
+	HOLE(1, "HOLE", "HOLE"), /**
+								* The '<em><b>NOTDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #NOTDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>CHAMFER</b></em>' literal object.
@@ -110,7 +68,23 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CHAMFER(7, "CHAMFER", "CHAMFER"),
+	CHAMFER(3, "CHAMFER", "CHAMFER"), /**
+										* The '<em><b>CUTOUT</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #CUTOUT_VALUE
+										* @generated
+										* @ordered
+										*/
+	CUTOUT(4, "CUTOUT", "CUTOUT"), /**
+									* The '<em><b>NOTCH</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #NOTCH_VALUE
+									* @generated
+									* @ordered
+									*/
+	NOTCH(5, "NOTCH", "NOTCH"),
 
 	/**
 	 * The '<em><b>MITER</b></em>' literal object.
@@ -120,7 +94,23 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MITER(8, "MITER", "MITER");
+	MITER(6, "MITER", "MITER"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>EDGE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #EDGE_VALUE
+													* @generated
+													* @ordered
+													*/
+	EDGE(8, "EDGE", "EDGE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -138,66 +128,6 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
-	 * The '<em><b>NOTCH</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTCH</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTCH
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTCH_VALUE = 2;
-
-	/**
-	 * The '<em><b>CUTOUT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CUTOUT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CUTOUT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CUTOUT_VALUE = 3;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 4;
-
-	/**
 	 * The '<em><b>HOLE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -210,22 +140,22 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HOLE_VALUE = 5;
+	public static final int HOLE_VALUE = 1;
 
 	/**
-	 * The '<em><b>EDGE</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EDGE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EDGE
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EDGE_VALUE = 6;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>CHAMFER</b></em>' literal value.
@@ -240,7 +170,37 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CHAMFER_VALUE = 7;
+	public static final int CHAMFER_VALUE = 3;
+
+	/**
+	 * The '<em><b>CUTOUT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CUTOUT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CUTOUT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CUTOUT_VALUE = 4;
+
+	/**
+	 * The '<em><b>NOTCH</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTCH</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTCH
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTCH_VALUE = 5;
 
 	/**
 	 * The '<em><b>MITER</b></em>' literal value.
@@ -255,7 +215,37 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MITER_VALUE = 8;
+	public static final int MITER_VALUE = 6;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 7;
+
+	/**
+	 * The '<em><b>EDGE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>EDGE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #EDGE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EDGE_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Voiding Feature Type Enum</b></em>' enumerators.
@@ -263,8 +253,8 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcVoidingFeatureTypeEnum[] VALUES_ARRAY = new IfcVoidingFeatureTypeEnum[] { NULL, NOTDEFINED,
-			NOTCH, CUTOUT, USERDEFINED, HOLE, EDGE, CHAMFER, MITER, };
+	private static final IfcVoidingFeatureTypeEnum[] VALUES_ARRAY = new IfcVoidingFeatureTypeEnum[] { NULL, HOLE,
+			NOTDEFINED, CHAMFER, CUTOUT, NOTCH, MITER, USERDEFINED, EDGE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Voiding Feature Type Enum</b></em>' enumerators.
@@ -323,22 +313,22 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case NOTCH_VALUE:
-			return NOTCH;
-		case CUTOUT_VALUE:
-			return CUTOUT;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case HOLE_VALUE:
 			return HOLE;
-		case EDGE_VALUE:
-			return EDGE;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case CHAMFER_VALUE:
 			return CHAMFER;
+		case CUTOUT_VALUE:
+			return CUTOUT;
+		case NOTCH_VALUE:
+			return NOTCH;
 		case MITER_VALUE:
 			return MITER;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case EDGE_VALUE:
+			return EDGE;
 		}
 		return null;
 	}

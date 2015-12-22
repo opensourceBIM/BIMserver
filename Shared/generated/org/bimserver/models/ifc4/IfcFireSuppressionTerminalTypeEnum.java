@@ -53,26 +53,6 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>HOSEREEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HOSEREEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HOSEREEL(2, "HOSEREEL", "HOSEREEL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>SPRINKLERDEFLECTOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,17 +60,7 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SPRINKLERDEFLECTOR(4, "SPRINKLERDEFLECTOR", "SPRINKLERDEFLECTOR"),
-
-	/**
-	 * The '<em><b>BREECHINGINLET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BREECHINGINLET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BREECHINGINLET(5, "BREECHINGINLET", "BREECHINGINLET"),
+	SPRINKLERDEFLECTOR(2, "SPRINKLERDEFLECTOR", "SPRINKLERDEFLECTOR"),
 
 	/**
 	 * The '<em><b>SPRINKLER</b></em>' literal object.
@@ -100,7 +70,23 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SPRINKLER(6, "SPRINKLER", "SPRINKLER"),
+	SPRINKLER(3, "SPRINKLER", "SPRINKLER"), /**
+											* The '<em><b>HOSEREEL</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #HOSEREEL_VALUE
+											* @generated
+											* @ordered
+											*/
+	HOSEREEL(4, "HOSEREEL", "HOSEREEL"), /**
+											* The '<em><b>BREECHINGINLET</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #BREECHINGINLET_VALUE
+											* @generated
+											* @ordered
+											*/
+	BREECHINGINLET(5, "BREECHINGINLET", "BREECHINGINLET"),
 
 	/**
 	 * The '<em><b>FIREHYDRANT</b></em>' literal object.
@@ -110,7 +96,15 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FIREHYDRANT(7, "FIREHYDRANT", "FIREHYDRANT");
+	FIREHYDRANT(6, "FIREHYDRANT", "FIREHYDRANT"), /**
+													* The '<em><b>USERDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #USERDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -143,36 +137,6 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>HOSEREEL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HOSEREEL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HOSEREEL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HOSEREEL_VALUE = 2;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 3;
-
-	/**
 	 * The '<em><b>SPRINKLERDEFLECTOR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -185,7 +149,37 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPRINKLERDEFLECTOR_VALUE = 4;
+	public static final int SPRINKLERDEFLECTOR_VALUE = 2;
+
+	/**
+	 * The '<em><b>SPRINKLER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SPRINKLER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SPRINKLER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SPRINKLER_VALUE = 3;
+
+	/**
+	 * The '<em><b>HOSEREEL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HOSEREEL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HOSEREEL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HOSEREEL_VALUE = 4;
 
 	/**
 	 * The '<em><b>BREECHINGINLET</b></em>' literal value.
@@ -203,21 +197,6 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 	public static final int BREECHINGINLET_VALUE = 5;
 
 	/**
-	 * The '<em><b>SPRINKLER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SPRINKLER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SPRINKLER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SPRINKLER_VALUE = 6;
-
-	/**
 	 * The '<em><b>FIREHYDRANT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -230,7 +209,22 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FIREHYDRANT_VALUE = 7;
+	public static final int FIREHYDRANT_VALUE = 6;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Fire Suppression Terminal Type Enum</b></em>' enumerators.
@@ -239,7 +233,7 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcFireSuppressionTerminalTypeEnum[] VALUES_ARRAY = new IfcFireSuppressionTerminalTypeEnum[] {
-			NULL, NOTDEFINED, HOSEREEL, USERDEFINED, SPRINKLERDEFLECTOR, BREECHINGINLET, SPRINKLER, FIREHYDRANT, };
+			NULL, NOTDEFINED, SPRINKLERDEFLECTOR, SPRINKLER, HOSEREEL, BREECHINGINLET, FIREHYDRANT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Fire Suppression Terminal Type Enum</b></em>' enumerators.
@@ -300,18 +294,18 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case HOSEREEL_VALUE:
-			return HOSEREEL;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case SPRINKLERDEFLECTOR_VALUE:
 			return SPRINKLERDEFLECTOR;
-		case BREECHINGINLET_VALUE:
-			return BREECHINGINLET;
 		case SPRINKLER_VALUE:
 			return SPRINKLER;
+		case HOSEREEL_VALUE:
+			return HOSEREEL;
+		case BREECHINGINLET_VALUE:
+			return BREECHINGINLET;
 		case FIREHYDRANT_VALUE:
 			return FIREHYDRANT;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

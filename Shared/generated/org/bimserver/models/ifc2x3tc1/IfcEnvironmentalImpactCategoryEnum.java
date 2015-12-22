@@ -43,46 +43,6 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>COMBINEDVALUE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMBINEDVALUE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMBINEDVALUE(1, "COMBINEDVALUE", "COMBINEDVALUE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>MANUFACTURE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MANUFACTURE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MANUFACTURE(3, "MANUFACTURE", "MANUFACTURE"),
-
-	/**
-	 * The '<em><b>INSTALLATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INSTALLATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INSTALLATION(4, "INSTALLATION", "INSTALLATION"),
-
-	/**
 	 * The '<em><b>EXTRACTION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +50,15 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXTRACTION(5, "EXTRACTION", "EXTRACTION"),
+	EXTRACTION(1, "EXTRACTION", "EXTRACTION"), /**
+												* The '<em><b>NOTDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #NOTDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>DISPOSAL</b></em>' literal object.
@@ -100,17 +68,7 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DISPOSAL(6, "DISPOSAL", "DISPOSAL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
+	DISPOSAL(3, "DISPOSAL", "DISPOSAL"),
 
 	/**
 	 * The '<em><b>TRANSPORTATION</b></em>' literal object.
@@ -120,7 +78,39 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRANSPORTATION(8, "TRANSPORTATION", "TRANSPORTATION");
+	TRANSPORTATION(4, "TRANSPORTATION", "TRANSPORTATION"), /**
+															* The '<em><b>MANUFACTURE</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #MANUFACTURE_VALUE
+															* @generated
+															* @ordered
+															*/
+	MANUFACTURE(5, "MANUFACTURE", "MANUFACTURE"), /**
+													* The '<em><b>INSTALLATION</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #INSTALLATION_VALUE
+													* @generated
+													* @ordered
+													*/
+	INSTALLATION(6, "INSTALLATION", "INSTALLATION"), /**
+														* The '<em><b>USERDEFINED</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #USERDEFINED_VALUE
+														* @generated
+														* @ordered
+														*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>COMBINEDVALUE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #COMBINEDVALUE_VALUE
+													* @generated
+													* @ordered
+													*/
+	COMBINEDVALUE(8, "COMBINEDVALUE", "COMBINEDVALUE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -138,19 +128,19 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>COMBINEDVALUE</b></em>' literal value.
+	 * The '<em><b>EXTRACTION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>COMBINEDVALUE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>EXTRACTION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COMBINEDVALUE
+	 * @see #EXTRACTION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMBINEDVALUE_VALUE = 1;
+	public static final int EXTRACTION_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -168,6 +158,36 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
+	 * The '<em><b>DISPOSAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DISPOSAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DISPOSAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DISPOSAL_VALUE = 3;
+
+	/**
+	 * The '<em><b>TRANSPORTATION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TRANSPORTATION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TRANSPORTATION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TRANSPORTATION_VALUE = 4;
+
+	/**
 	 * The '<em><b>MANUFACTURE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -180,7 +200,7 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MANUFACTURE_VALUE = 3;
+	public static final int MANUFACTURE_VALUE = 5;
 
 	/**
 	 * The '<em><b>INSTALLATION</b></em>' literal value.
@@ -195,37 +215,7 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INSTALLATION_VALUE = 4;
-
-	/**
-	 * The '<em><b>EXTRACTION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>EXTRACTION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #EXTRACTION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int EXTRACTION_VALUE = 5;
-
-	/**
-	 * The '<em><b>DISPOSAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DISPOSAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DISPOSAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DISPOSAL_VALUE = 6;
+	public static final int INSTALLATION_VALUE = 6;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -243,19 +233,19 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 7;
 
 	/**
-	 * The '<em><b>TRANSPORTATION</b></em>' literal value.
+	 * The '<em><b>COMBINEDVALUE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>TRANSPORTATION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>COMBINEDVALUE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TRANSPORTATION
+	 * @see #COMBINEDVALUE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRANSPORTATION_VALUE = 8;
+	public static final int COMBINEDVALUE_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Environmental Impact Category Enum</b></em>' enumerators.
@@ -263,8 +253,9 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEnvironmentalImpactCategoryEnum[] VALUES_ARRAY = new IfcEnvironmentalImpactCategoryEnum[] { NULL, COMBINEDVALUE, NOTDEFINED, MANUFACTURE, INSTALLATION, EXTRACTION, DISPOSAL, USERDEFINED,
-			TRANSPORTATION, };
+	private static final IfcEnvironmentalImpactCategoryEnum[] VALUES_ARRAY = new IfcEnvironmentalImpactCategoryEnum[] {
+			NULL, EXTRACTION, NOTDEFINED, DISPOSAL, TRANSPORTATION, MANUFACTURE, INSTALLATION, USERDEFINED,
+			COMBINEDVALUE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Environmental Impact Category Enum</b></em>' enumerators.
@@ -272,7 +263,8 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcEnvironmentalImpactCategoryEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcEnvironmentalImpactCategoryEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Environmental Impact Category Enum</b></em>' literal with the specified literal value.
@@ -322,22 +314,22 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case COMBINEDVALUE_VALUE:
-			return COMBINEDVALUE;
+		case EXTRACTION_VALUE:
+			return EXTRACTION;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case DISPOSAL_VALUE:
+			return DISPOSAL;
+		case TRANSPORTATION_VALUE:
+			return TRANSPORTATION;
 		case MANUFACTURE_VALUE:
 			return MANUFACTURE;
 		case INSTALLATION_VALUE:
 			return INSTALLATION;
-		case EXTRACTION_VALUE:
-			return EXTRACTION;
-		case DISPOSAL_VALUE:
-			return DISPOSAL;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case TRANSPORTATION_VALUE:
-			return TRANSPORTATION;
+		case COMBINEDVALUE_VALUE:
+			return COMBINEDVALUE;
 		}
 		return null;
 	}

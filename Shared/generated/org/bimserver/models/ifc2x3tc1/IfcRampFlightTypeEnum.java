@@ -43,16 +43,6 @@ public enum IfcRampFlightTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SPIRAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPIRAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPIRAL(1, "SPIRAL", "SPIRAL"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,7 @@ public enum IfcRampFlightTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>STRAIGHT</b></em>' literal object.
@@ -70,7 +60,15 @@ public enum IfcRampFlightTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STRAIGHT(3, "STRAIGHT", "STRAIGHT"),
+	STRAIGHT(2, "STRAIGHT", "STRAIGHT"), /**
+											* The '<em><b>SPIRAL</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #SPIRAL_VALUE
+											* @generated
+											* @ordered
+											*/
+	SPIRAL(3, "SPIRAL", "SPIRAL"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -98,21 +96,6 @@ public enum IfcRampFlightTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>SPIRAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SPIRAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SPIRAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SPIRAL_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -125,7 +108,7 @@ public enum IfcRampFlightTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>STRAIGHT</b></em>' literal value.
@@ -140,7 +123,22 @@ public enum IfcRampFlightTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STRAIGHT_VALUE = 3;
+	public static final int STRAIGHT_VALUE = 2;
+
+	/**
+	 * The '<em><b>SPIRAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SPIRAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SPIRAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SPIRAL_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -163,7 +161,8 @@ public enum IfcRampFlightTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRampFlightTypeEnum[] VALUES_ARRAY = new IfcRampFlightTypeEnum[] { NULL, SPIRAL, NOTDEFINED, STRAIGHT, USERDEFINED, };
+	private static final IfcRampFlightTypeEnum[] VALUES_ARRAY = new IfcRampFlightTypeEnum[] { NULL, NOTDEFINED,
+			STRAIGHT, SPIRAL, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Ramp Flight Type Enum</b></em>' enumerators.
@@ -221,12 +220,12 @@ public enum IfcRampFlightTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case SPIRAL_VALUE:
-			return SPIRAL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case STRAIGHT_VALUE:
 			return STRAIGHT;
+		case SPIRAL_VALUE:
+			return SPIRAL;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		}

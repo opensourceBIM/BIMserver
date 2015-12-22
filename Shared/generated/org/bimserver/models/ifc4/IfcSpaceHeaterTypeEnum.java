@@ -43,16 +43,6 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>RADIATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RADIATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RADIATOR(1, "RADIATOR", "RADIATOR"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,15 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CONVECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONVECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONVECTOR(3, "CONVECTOR", "CONVECTOR"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>RADIATOR</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #RADIATOR_VALUE
+												* @generated
+												* @ordered
+												*/
+	RADIATOR(2, "RADIATOR", "RADIATOR"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -80,7 +68,15 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>CONVECTOR</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #CONVECTOR_VALUE
+													* @generated
+													* @ordered
+													*/
+	CONVECTOR(4, "CONVECTOR", "CONVECTOR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -98,21 +94,6 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>RADIATOR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>RADIATOR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #RADIATOR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RADIATOR_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -125,22 +106,22 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>CONVECTOR</b></em>' literal value.
+	 * The '<em><b>RADIATOR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CONVECTOR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>RADIATOR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONVECTOR
+	 * @see #RADIATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONVECTOR_VALUE = 3;
+	public static final int RADIATOR_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -155,7 +136,22 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int USERDEFINED_VALUE = 3;
+
+	/**
+	 * The '<em><b>CONVECTOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONVECTOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONVECTOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONVECTOR_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Space Heater Type Enum</b></em>' enumerators.
@@ -163,8 +159,8 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY = new IfcSpaceHeaterTypeEnum[] { NULL, RADIATOR,
-			NOTDEFINED, CONVECTOR, USERDEFINED, };
+	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY = new IfcSpaceHeaterTypeEnum[] { NULL, NOTDEFINED,
+			RADIATOR, USERDEFINED, CONVECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Space Heater Type Enum</b></em>' enumerators.
@@ -222,14 +218,14 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case RADIATOR_VALUE:
-			return RADIATOR;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case CONVECTOR_VALUE:
-			return CONVECTOR;
+		case RADIATOR_VALUE:
+			return RADIATOR;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case CONVECTOR_VALUE:
+			return CONVECTOR;
 		}
 		return null;
 	}

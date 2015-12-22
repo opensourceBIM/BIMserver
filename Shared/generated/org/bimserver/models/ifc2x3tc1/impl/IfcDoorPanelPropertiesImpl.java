@@ -140,7 +140,8 @@ public class IfcDoorPanelPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * @generated
 	 */
 	public IfcDoorPanelOperationEnum getPanelOperation() {
-		return (IfcDoorPanelOperationEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_OPERATION, true);
+		return (IfcDoorPanelOperationEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_OPERATION,
+				true);
 	}
 
 	/**
@@ -230,7 +231,8 @@ public class IfcDoorPanelPropertiesImpl extends IfcPropertySetDefinitionImpl imp
 	 * @generated
 	 */
 	public IfcDoorPanelPositionEnum getPanelPosition() {
-		return (IfcDoorPanelPositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_POSITION, true);
+		return (IfcDoorPanelPositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_POSITION,
+				true);
 	}
 
 	/**

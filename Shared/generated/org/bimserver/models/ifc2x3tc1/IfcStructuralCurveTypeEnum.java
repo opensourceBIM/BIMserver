@@ -43,46 +43,6 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CABLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CABLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CABLE(2, "CABLE", "CABLE"),
-
-	/**
-	 * The '<em><b>TENSION MEMBER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TENSION_MEMBER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TENSION_MEMBER(3, "TENSION_MEMBER", "TENSION_MEMBER"),
-
-	/**
-	 * The '<em><b>COMPRESSION MEMBER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPRESSION_MEMBER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPRESSION_MEMBER(4, "COMPRESSION_MEMBER", "COMPRESSION_MEMBER"),
-
-	/**
 	 * The '<em><b>PIN JOINED MEMBER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,17 +50,23 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PIN_JOINED_MEMBER(5, "PIN_JOINED_MEMBER", "PIN_JOINED_MEMBER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
+	PIN_JOINED_MEMBER(1, "PIN_JOINED_MEMBER", "PIN_JOINED_MEMBER"), /**
+																	* The '<em><b>NOTDEFINED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #NOTDEFINED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>CABLE</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #CABLE_VALUE
+												* @generated
+												* @ordered
+												*/
+	CABLE(3, "CABLE", "CABLE"),
 
 	/**
 	 * The '<em><b>RIGID JOINED MEMBER</b></em>' literal object.
@@ -110,7 +76,31 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RIGID_JOINED_MEMBER(7, "RIGID_JOINED_MEMBER", "RIGID_JOINED_MEMBER");
+	RIGID_JOINED_MEMBER(4, "RIGID_JOINED_MEMBER", "RIGID_JOINED_MEMBER"), /**
+																			* The '<em><b>COMPRESSION MEMBER</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #COMPRESSION_MEMBER_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	COMPRESSION_MEMBER(5, "COMPRESSION_MEMBER", "COMPRESSION_MEMBER"), /**
+																		* The '<em><b>TENSION MEMBER</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #TENSION_MEMBER_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	TENSION_MEMBER(6, "TENSION_MEMBER", "TENSION_MEMBER"), /**
+															* The '<em><b>USERDEFINED</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #USERDEFINED_VALUE
+															* @generated
+															* @ordered
+															*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,6 +118,21 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>PIN JOINED MEMBER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PIN JOINED MEMBER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PIN_JOINED_MEMBER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PIN_JOINED_MEMBER_VALUE = 1;
+
+	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -140,7 +145,7 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>CABLE</b></em>' literal value.
@@ -155,67 +160,7 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CABLE_VALUE = 2;
-
-	/**
-	 * The '<em><b>TENSION MEMBER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TENSION MEMBER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TENSION_MEMBER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TENSION_MEMBER_VALUE = 3;
-
-	/**
-	 * The '<em><b>COMPRESSION MEMBER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>COMPRESSION MEMBER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #COMPRESSION_MEMBER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int COMPRESSION_MEMBER_VALUE = 4;
-
-	/**
-	 * The '<em><b>PIN JOINED MEMBER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PIN JOINED MEMBER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PIN_JOINED_MEMBER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PIN_JOINED_MEMBER_VALUE = 5;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 6;
+	public static final int CABLE_VALUE = 3;
 
 	/**
 	 * The '<em><b>RIGID JOINED MEMBER</b></em>' literal value.
@@ -230,7 +175,52 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RIGID_JOINED_MEMBER_VALUE = 7;
+	public static final int RIGID_JOINED_MEMBER_VALUE = 4;
+
+	/**
+	 * The '<em><b>COMPRESSION MEMBER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>COMPRESSION MEMBER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #COMPRESSION_MEMBER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int COMPRESSION_MEMBER_VALUE = 5;
+
+	/**
+	 * The '<em><b>TENSION MEMBER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TENSION MEMBER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TENSION_MEMBER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TENSION_MEMBER_VALUE = 6;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Structural Curve Type Enum</b></em>' enumerators.
@@ -238,7 +228,9 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStructuralCurveTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveTypeEnum[] { NULL, NOTDEFINED, CABLE, TENSION_MEMBER, COMPRESSION_MEMBER, PIN_JOINED_MEMBER, USERDEFINED, RIGID_JOINED_MEMBER, };
+	private static final IfcStructuralCurveTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveTypeEnum[] { NULL,
+			PIN_JOINED_MEMBER, NOTDEFINED, CABLE, RIGID_JOINED_MEMBER, COMPRESSION_MEMBER, TENSION_MEMBER,
+			USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Structural Curve Type Enum</b></em>' enumerators.
@@ -246,7 +238,8 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcStructuralCurveTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcStructuralCurveTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Structural Curve Type Enum</b></em>' literal with the specified literal value.
@@ -296,20 +289,20 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
+		case PIN_JOINED_MEMBER_VALUE:
+			return PIN_JOINED_MEMBER;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case CABLE_VALUE:
 			return CABLE;
-		case TENSION_MEMBER_VALUE:
-			return TENSION_MEMBER;
-		case COMPRESSION_MEMBER_VALUE:
-			return COMPRESSION_MEMBER;
-		case PIN_JOINED_MEMBER_VALUE:
-			return PIN_JOINED_MEMBER;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case RIGID_JOINED_MEMBER_VALUE:
 			return RIGID_JOINED_MEMBER;
+		case COMPRESSION_MEMBER_VALUE:
+			return COMPRESSION_MEMBER;
+		case TENSION_MEMBER_VALUE:
+			return TENSION_MEMBER;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

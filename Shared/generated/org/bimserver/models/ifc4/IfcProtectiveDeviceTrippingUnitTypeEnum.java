@@ -43,46 +43,6 @@ public enum IfcProtectiveDeviceTrippingUnitTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>THERMAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THERMAL(1, "THERMAL", "THERMAL"),
-
-	/**
-	 * The '<em><b>ELECTRONIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRONIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRONIC(2, "ELECTRONIC", "ELECTRONIC"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ELECTROMAGNETIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTROMAGNETIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTROMAGNETIC(4, "ELECTROMAGNETIC", "ELECTROMAGNETIC"),
-
-	/**
 	 * The '<em><b>RESIDUALCURRENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +50,23 @@ public enum IfcProtectiveDeviceTrippingUnitTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RESIDUALCURRENT(5, "RESIDUALCURRENT", "RESIDUALCURRENT"),
+	RESIDUALCURRENT(1, "RESIDUALCURRENT", "RESIDUALCURRENT"), /**
+																* The '<em><b>ELECTRONIC</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #ELECTRONIC_VALUE
+																* @generated
+																* @ordered
+																*/
+	ELECTRONIC(2, "ELECTRONIC", "ELECTRONIC"), /**
+												* The '<em><b>NOTDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #NOTDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -100,7 +76,23 @@ public enum IfcProtectiveDeviceTrippingUnitTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>THERMAL</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #THERMAL_VALUE
+													* @generated
+													* @ordered
+													*/
+	THERMAL(5, "THERMAL", "THERMAL"), /**
+										* The '<em><b>ELECTROMAGNETIC</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #ELECTROMAGNETIC_VALUE
+										* @generated
+										* @ordered
+										*/
+	ELECTROMAGNETIC(6, "ELECTROMAGNETIC", "ELECTROMAGNETIC");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,19 +110,19 @@ public enum IfcProtectiveDeviceTrippingUnitTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>THERMAL</b></em>' literal value.
+	 * The '<em><b>RESIDUALCURRENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>THERMAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>RESIDUALCURRENT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #THERMAL
+	 * @see #RESIDUALCURRENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THERMAL_VALUE = 1;
+	public static final int RESIDUALCURRENT_VALUE = 1;
 
 	/**
 	 * The '<em><b>ELECTRONIC</b></em>' literal value.
@@ -163,36 +155,6 @@ public enum IfcProtectiveDeviceTrippingUnitTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
-	 * The '<em><b>ELECTROMAGNETIC</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ELECTROMAGNETIC</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ELECTROMAGNETIC
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ELECTROMAGNETIC_VALUE = 4;
-
-	/**
-	 * The '<em><b>RESIDUALCURRENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>RESIDUALCURRENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #RESIDUALCURRENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RESIDUALCURRENT_VALUE = 5;
-
-	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -205,7 +167,37 @@ public enum IfcProtectiveDeviceTrippingUnitTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 6;
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>THERMAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>THERMAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #THERMAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int THERMAL_VALUE = 5;
+
+	/**
+	 * The '<em><b>ELECTROMAGNETIC</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ELECTROMAGNETIC</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ELECTROMAGNETIC
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ELECTROMAGNETIC_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Protective Device Tripping Unit Type Enum</b></em>' enumerators.
@@ -214,7 +206,7 @@ public enum IfcProtectiveDeviceTrippingUnitTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcProtectiveDeviceTrippingUnitTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTrippingUnitTypeEnum[] {
-			NULL, THERMAL, ELECTRONIC, NOTDEFINED, ELECTROMAGNETIC, RESIDUALCURRENT, USERDEFINED, };
+			NULL, RESIDUALCURRENT, ELECTRONIC, NOTDEFINED, USERDEFINED, THERMAL, ELECTROMAGNETIC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Protective Device Tripping Unit Type Enum</b></em>' enumerators.
@@ -273,18 +265,18 @@ public enum IfcProtectiveDeviceTrippingUnitTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case THERMAL_VALUE:
-			return THERMAL;
+		case RESIDUALCURRENT_VALUE:
+			return RESIDUALCURRENT;
 		case ELECTRONIC_VALUE:
 			return ELECTRONIC;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case ELECTROMAGNETIC_VALUE:
-			return ELECTROMAGNETIC;
-		case RESIDUALCURRENT_VALUE:
-			return RESIDUALCURRENT;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case THERMAL_VALUE:
+			return THERMAL;
+		case ELECTROMAGNETIC_VALUE:
+			return ELECTROMAGNETIC;
 		}
 		return null;
 	}

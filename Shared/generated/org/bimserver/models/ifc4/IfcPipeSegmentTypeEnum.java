@@ -43,36 +43,6 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SPOOL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPOOL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPOOL(1, "SPOOL", "SPOOL"),
-
-	/**
-	 * The '<em><b>CULVERT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CULVERT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CULVERT(2, "CULVERT", "CULVERT"),
-
-	/**
-	 * The '<em><b>FLEXIBLESEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLEXIBLESEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLEXIBLESEGMENT(3, "FLEXIBLESEGMENT", "FLEXIBLESEGMENT"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +50,7 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>GUTTER</b></em>' literal object.
@@ -90,7 +60,15 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GUTTER(5, "GUTTER", "GUTTER"),
+	GUTTER(2, "GUTTER", "GUTTER"), /**
+									* The '<em><b>FLEXIBLESEGMENT</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #FLEXIBLESEGMENT_VALUE
+									* @generated
+									* @ordered
+									*/
+	FLEXIBLESEGMENT(3, "FLEXIBLESEGMENT", "FLEXIBLESEGMENT"),
 
 	/**
 	 * The '<em><b>RIGIDSEGMENT</b></em>' literal object.
@@ -100,7 +78,15 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RIGIDSEGMENT(6, "RIGIDSEGMENT", "RIGIDSEGMENT"),
+	RIGIDSEGMENT(4, "RIGIDSEGMENT", "RIGIDSEGMENT"), /**
+														* The '<em><b>SPOOL</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #SPOOL_VALUE
+														* @generated
+														* @ordered
+														*/
+	SPOOL(5, "SPOOL", "SPOOL"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -110,7 +96,15 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>CULVERT</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #CULVERT_VALUE
+													* @generated
+													* @ordered
+													*/
+	CULVERT(7, "CULVERT", "CULVERT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,34 +122,34 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>SPOOL</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SPOOL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SPOOL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPOOL_VALUE = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>CULVERT</b></em>' literal value.
+	 * The '<em><b>GUTTER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CULVERT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>GUTTER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CULVERT
+	 * @see #GUTTER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CULVERT_VALUE = 2;
+	public static final int GUTTER_VALUE = 2;
 
 	/**
 	 * The '<em><b>FLEXIBLESEGMENT</b></em>' literal value.
@@ -173,36 +167,6 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	public static final int FLEXIBLESEGMENT_VALUE = 3;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 4;
-
-	/**
-	 * The '<em><b>GUTTER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GUTTER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GUTTER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GUTTER_VALUE = 5;
-
-	/**
 	 * The '<em><b>RIGIDSEGMENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -215,7 +179,22 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RIGIDSEGMENT_VALUE = 6;
+	public static final int RIGIDSEGMENT_VALUE = 4;
+
+	/**
+	 * The '<em><b>SPOOL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SPOOL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SPOOL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SPOOL_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -230,7 +209,22 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 7;
+	public static final int USERDEFINED_VALUE = 6;
+
+	/**
+	 * The '<em><b>CULVERT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CULVERT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CULVERT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CULVERT_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Pipe Segment Type Enum</b></em>' enumerators.
@@ -238,8 +232,8 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPipeSegmentTypeEnum[] VALUES_ARRAY = new IfcPipeSegmentTypeEnum[] { NULL, SPOOL, CULVERT,
-			FLEXIBLESEGMENT, NOTDEFINED, GUTTER, RIGIDSEGMENT, USERDEFINED, };
+	private static final IfcPipeSegmentTypeEnum[] VALUES_ARRAY = new IfcPipeSegmentTypeEnum[] { NULL, NOTDEFINED,
+			GUTTER, FLEXIBLESEGMENT, RIGIDSEGMENT, SPOOL, USERDEFINED, CULVERT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pipe Segment Type Enum</b></em>' enumerators.
@@ -297,20 +291,20 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case SPOOL_VALUE:
-			return SPOOL;
-		case CULVERT_VALUE:
-			return CULVERT;
-		case FLEXIBLESEGMENT_VALUE:
-			return FLEXIBLESEGMENT;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case GUTTER_VALUE:
 			return GUTTER;
+		case FLEXIBLESEGMENT_VALUE:
+			return FLEXIBLESEGMENT;
 		case RIGIDSEGMENT_VALUE:
 			return RIGIDSEGMENT;
+		case SPOOL_VALUE:
+			return SPOOL;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case CULVERT_VALUE:
+			return CULVERT;
 		}
 		return null;
 	}

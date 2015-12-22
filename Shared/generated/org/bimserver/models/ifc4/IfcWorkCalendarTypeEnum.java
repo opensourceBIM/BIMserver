@@ -43,26 +43,6 @@ public enum IfcWorkCalendarTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>FIRSTSHIFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIRSTSHIFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIRSTSHIFT(2, "FIRSTSHIFT", "FIRSTSHIFT"),
-
-	/**
 	 * The '<em><b>THIRDSHIFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,17 +50,15 @@ public enum IfcWorkCalendarTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	THIRDSHIFT(3, "THIRDSHIFT", "THIRDSHIFT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
+	THIRDSHIFT(1, "THIRDSHIFT", "THIRDSHIFT"), /**
+												* The '<em><b>NOTDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #NOTDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>SECONDSHIFT</b></em>' literal object.
@@ -90,7 +68,23 @@ public enum IfcWorkCalendarTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SECONDSHIFT(5, "SECONDSHIFT", "SECONDSHIFT");
+	SECONDSHIFT(3, "SECONDSHIFT", "SECONDSHIFT"), /**
+													* The '<em><b>FIRSTSHIFT</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #FIRSTSHIFT_VALUE
+													* @generated
+													* @ordered
+													*/
+	FIRSTSHIFT(4, "FIRSTSHIFT", "FIRSTSHIFT"), /**
+												* The '<em><b>USERDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #USERDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,36 +102,6 @@ public enum IfcWorkCalendarTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
-	 * The '<em><b>FIRSTSHIFT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FIRSTSHIFT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FIRSTSHIFT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FIRSTSHIFT_VALUE = 2;
-
-	/**
 	 * The '<em><b>THIRDSHIFT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -150,22 +114,22 @@ public enum IfcWorkCalendarTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THIRDSHIFT_VALUE = 3;
+	public static final int THIRDSHIFT_VALUE = 1;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>SECONDSHIFT</b></em>' literal value.
@@ -180,7 +144,37 @@ public enum IfcWorkCalendarTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECONDSHIFT_VALUE = 5;
+	public static final int SECONDSHIFT_VALUE = 3;
+
+	/**
+	 * The '<em><b>FIRSTSHIFT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FIRSTSHIFT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FIRSTSHIFT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FIRSTSHIFT_VALUE = 4;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Work Calendar Type Enum</b></em>' enumerators.
@@ -188,8 +182,8 @@ public enum IfcWorkCalendarTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWorkCalendarTypeEnum[] VALUES_ARRAY = new IfcWorkCalendarTypeEnum[] { NULL, NOTDEFINED,
-			FIRSTSHIFT, THIRDSHIFT, USERDEFINED, SECONDSHIFT, };
+	private static final IfcWorkCalendarTypeEnum[] VALUES_ARRAY = new IfcWorkCalendarTypeEnum[] { NULL, THIRDSHIFT,
+			NOTDEFINED, SECONDSHIFT, FIRSTSHIFT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Work Calendar Type Enum</b></em>' enumerators.
@@ -248,16 +242,16 @@ public enum IfcWorkCalendarTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case FIRSTSHIFT_VALUE:
-			return FIRSTSHIFT;
 		case THIRDSHIFT_VALUE:
 			return THIRDSHIFT;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case SECONDSHIFT_VALUE:
 			return SECONDSHIFT;
+		case FIRSTSHIFT_VALUE:
+			return FIRSTSHIFT;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

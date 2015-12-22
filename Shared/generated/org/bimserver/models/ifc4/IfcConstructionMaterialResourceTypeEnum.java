@@ -43,26 +43,6 @@ public enum IfcConstructionMaterialResourceTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>METAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #METAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	METAL(1, "METAL", "METAL"),
-
-	/**
-	 * The '<em><b>CONCRETE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONCRETE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONCRETE(2, "CONCRETE", "CONCRETE"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,77 +50,7 @@ public enum IfcConstructionMaterialResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>GYPSUM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GYPSUM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GYPSUM(4, "GYPSUM", "GYPSUM"),
-
-	/**
-	 * The '<em><b>AGGREGATES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AGGREGATES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AGGREGATES(5, "AGGREGATES", "AGGREGATES"),
-
-	/**
-	 * The '<em><b>DRYWALL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DRYWALL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DRYWALL(6, "DRYWALL", "DRYWALL"),
-
-	/**
-	 * The '<em><b>FUEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FUEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FUEL(7, "FUEL", "FUEL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(8, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>WOOD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WOOD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WOOD(9, "WOOD", "WOOD"),
-
-	/**
-	 * The '<em><b>PLASTIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLASTIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLASTIC(10, "PLASTIC", "PLASTIC"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>MASONRY</b></em>' literal object.
@@ -150,7 +60,79 @@ public enum IfcConstructionMaterialResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MASONRY(11, "MASONRY", "MASONRY");
+	MASONRY(2, "MASONRY", "MASONRY"), /**
+										* The '<em><b>WOOD</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #WOOD_VALUE
+										* @generated
+										* @ordered
+										*/
+	WOOD(3, "WOOD", "WOOD"), /**
+								* The '<em><b>DRYWALL</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #DRYWALL_VALUE
+								* @generated
+								* @ordered
+								*/
+	DRYWALL(4, "DRYWALL", "DRYWALL"), /**
+										* The '<em><b>FUEL</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #FUEL_VALUE
+										* @generated
+										* @ordered
+										*/
+	FUEL(5, "FUEL", "FUEL"), /**
+								* The '<em><b>METAL</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #METAL_VALUE
+								* @generated
+								* @ordered
+								*/
+	METAL(6, "METAL", "METAL"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>AGGREGATES</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #AGGREGATES_VALUE
+													* @generated
+													* @ordered
+													*/
+	AGGREGATES(8, "AGGREGATES", "AGGREGATES"), /**
+												* The '<em><b>PLASTIC</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #PLASTIC_VALUE
+												* @generated
+												* @ordered
+												*/
+	PLASTIC(9, "PLASTIC", "PLASTIC"), /**
+										* The '<em><b>CONCRETE</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #CONCRETE_VALUE
+										* @generated
+										* @ordered
+										*/
+	CONCRETE(10, "CONCRETE", "CONCRETE"), /**
+											* The '<em><b>GYPSUM</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #GYPSUM_VALUE
+											* @generated
+											* @ordered
+											*/
+	GYPSUM(11, "GYPSUM", "GYPSUM");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -168,36 +150,6 @@ public enum IfcConstructionMaterialResourceTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>METAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>METAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #METAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int METAL_VALUE = 1;
-
-	/**
-	 * The '<em><b>CONCRETE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CONCRETE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CONCRETE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONCRETE_VALUE = 2;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -210,112 +162,7 @@ public enum IfcConstructionMaterialResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
-
-	/**
-	 * The '<em><b>GYPSUM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GYPSUM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GYPSUM
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GYPSUM_VALUE = 4;
-
-	/**
-	 * The '<em><b>AGGREGATES</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>AGGREGATES</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #AGGREGATES
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int AGGREGATES_VALUE = 5;
-
-	/**
-	 * The '<em><b>DRYWALL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DRYWALL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DRYWALL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DRYWALL_VALUE = 6;
-
-	/**
-	 * The '<em><b>FUEL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FUEL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FUEL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FUEL_VALUE = 7;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 8;
-
-	/**
-	 * The '<em><b>WOOD</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>WOOD</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #WOOD
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WOOD_VALUE = 9;
-
-	/**
-	 * The '<em><b>PLASTIC</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PLASTIC</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PLASTIC
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PLASTIC_VALUE = 10;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>MASONRY</b></em>' literal value.
@@ -330,7 +177,142 @@ public enum IfcConstructionMaterialResourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MASONRY_VALUE = 11;
+	public static final int MASONRY_VALUE = 2;
+
+	/**
+	 * The '<em><b>WOOD</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>WOOD</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #WOOD
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WOOD_VALUE = 3;
+
+	/**
+	 * The '<em><b>DRYWALL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DRYWALL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DRYWALL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DRYWALL_VALUE = 4;
+
+	/**
+	 * The '<em><b>FUEL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FUEL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FUEL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FUEL_VALUE = 5;
+
+	/**
+	 * The '<em><b>METAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>METAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #METAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int METAL_VALUE = 6;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 7;
+
+	/**
+	 * The '<em><b>AGGREGATES</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>AGGREGATES</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #AGGREGATES
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int AGGREGATES_VALUE = 8;
+
+	/**
+	 * The '<em><b>PLASTIC</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PLASTIC</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PLASTIC
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PLASTIC_VALUE = 9;
+
+	/**
+	 * The '<em><b>CONCRETE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONCRETE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONCRETE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONCRETE_VALUE = 10;
+
+	/**
+	 * The '<em><b>GYPSUM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GYPSUM</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GYPSUM
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GYPSUM_VALUE = 11;
 
 	/**
 	 * An array of all the '<em><b>Ifc Construction Material Resource Type Enum</b></em>' enumerators.
@@ -339,8 +321,8 @@ public enum IfcConstructionMaterialResourceTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcConstructionMaterialResourceTypeEnum[] VALUES_ARRAY = new IfcConstructionMaterialResourceTypeEnum[] {
-			NULL, METAL, CONCRETE, NOTDEFINED, GYPSUM, AGGREGATES, DRYWALL, FUEL, USERDEFINED, WOOD, PLASTIC,
-			MASONRY, };
+			NULL, NOTDEFINED, MASONRY, WOOD, DRYWALL, FUEL, METAL, USERDEFINED, AGGREGATES, PLASTIC, CONCRETE,
+			GYPSUM, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Construction Material Resource Type Enum</b></em>' enumerators.
@@ -399,28 +381,28 @@ public enum IfcConstructionMaterialResourceTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case METAL_VALUE:
-			return METAL;
-		case CONCRETE_VALUE:
-			return CONCRETE;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case GYPSUM_VALUE:
-			return GYPSUM;
-		case AGGREGATES_VALUE:
-			return AGGREGATES;
+		case MASONRY_VALUE:
+			return MASONRY;
+		case WOOD_VALUE:
+			return WOOD;
 		case DRYWALL_VALUE:
 			return DRYWALL;
 		case FUEL_VALUE:
 			return FUEL;
+		case METAL_VALUE:
+			return METAL;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case WOOD_VALUE:
-			return WOOD;
+		case AGGREGATES_VALUE:
+			return AGGREGATES;
 		case PLASTIC_VALUE:
 			return PLASTIC;
-		case MASONRY_VALUE:
-			return MASONRY;
+		case CONCRETE_VALUE:
+			return CONCRETE;
+		case GYPSUM_VALUE:
+			return GYPSUM;
 		}
 		return null;
 	}

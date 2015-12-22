@@ -53,26 +53,6 @@ public enum IfcObjectTypeEnum implements Enumerator {
 	GROUP(1, "GROUP", "GROUP"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CONTROL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTROL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTROL(3, "CONTROL", "CONTROL"),
-
-	/**
 	 * The '<em><b>PROJECT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,27 +60,15 @@ public enum IfcObjectTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PROJECT(4, "PROJECT", "PROJECT"),
-
-	/**
-	 * The '<em><b>PROCESS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROCESS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROCESS(5, "PROCESS", "PROCESS"),
-
-	/**
-	 * The '<em><b>RESOURCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RESOURCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RESOURCE(6, "RESOURCE", "RESOURCE"),
+	PROJECT(2, "PROJECT", "PROJECT"), /**
+										* The '<em><b>NOTDEFINED</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #NOTDEFINED_VALUE
+										* @generated
+										* @ordered
+										*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>PRODUCT</b></em>' literal object.
@@ -110,7 +78,7 @@ public enum IfcObjectTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRODUCT(7, "PRODUCT", "PRODUCT"),
+	PRODUCT(4, "PRODUCT", "PRODUCT"),
 
 	/**
 	 * The '<em><b>ACTOR</b></em>' literal object.
@@ -120,7 +88,31 @@ public enum IfcObjectTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ACTOR(8, "ACTOR", "ACTOR");
+	ACTOR(5, "ACTOR", "ACTOR"), /**
+								* The '<em><b>PROCESS</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #PROCESS_VALUE
+								* @generated
+								* @ordered
+								*/
+	PROCESS(6, "PROCESS", "PROCESS"), /**
+										* The '<em><b>CONTROL</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #CONTROL_VALUE
+										* @generated
+										* @ordered
+										*/
+	CONTROL(7, "CONTROL", "CONTROL"), /**
+										* The '<em><b>RESOURCE</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #RESOURCE_VALUE
+										* @generated
+										* @ordered
+										*/
+	RESOURCE(8, "RESOURCE", "RESOURCE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -153,36 +145,6 @@ public enum IfcObjectTypeEnum implements Enumerator {
 	public static final int GROUP_VALUE = 1;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>CONTROL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CONTROL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CONTROL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONTROL_VALUE = 3;
-
-	/**
 	 * The '<em><b>PROJECT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -195,37 +157,22 @@ public enum IfcObjectTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROJECT_VALUE = 4;
+	public static final int PROJECT_VALUE = 2;
 
 	/**
-	 * The '<em><b>PROCESS</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PROCESS</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROCESS
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROCESS_VALUE = 5;
-
-	/**
-	 * The '<em><b>RESOURCE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>RESOURCE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #RESOURCE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RESOURCE_VALUE = 6;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>PRODUCT</b></em>' literal value.
@@ -240,7 +187,7 @@ public enum IfcObjectTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRODUCT_VALUE = 7;
+	public static final int PRODUCT_VALUE = 4;
 
 	/**
 	 * The '<em><b>ACTOR</b></em>' literal value.
@@ -255,7 +202,52 @@ public enum IfcObjectTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ACTOR_VALUE = 8;
+	public static final int ACTOR_VALUE = 5;
+
+	/**
+	 * The '<em><b>PROCESS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PROCESS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PROCESS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PROCESS_VALUE = 6;
+
+	/**
+	 * The '<em><b>CONTROL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONTROL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONTROL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONTROL_VALUE = 7;
+
+	/**
+	 * The '<em><b>RESOURCE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>RESOURCE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RESOURCE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RESOURCE_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Object Type Enum</b></em>' enumerators.
@@ -263,8 +255,8 @@ public enum IfcObjectTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcObjectTypeEnum[] VALUES_ARRAY = new IfcObjectTypeEnum[] { NULL, GROUP, NOTDEFINED, CONTROL,
-			PROJECT, PROCESS, RESOURCE, PRODUCT, ACTOR, };
+	private static final IfcObjectTypeEnum[] VALUES_ARRAY = new IfcObjectTypeEnum[] { NULL, GROUP, PROJECT, NOTDEFINED,
+			PRODUCT, ACTOR, PROCESS, CONTROL, RESOURCE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Object Type Enum</b></em>' enumerators.
@@ -324,20 +316,20 @@ public enum IfcObjectTypeEnum implements Enumerator {
 			return NULL;
 		case GROUP_VALUE:
 			return GROUP;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case CONTROL_VALUE:
-			return CONTROL;
 		case PROJECT_VALUE:
 			return PROJECT;
-		case PROCESS_VALUE:
-			return PROCESS;
-		case RESOURCE_VALUE:
-			return RESOURCE;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case PRODUCT_VALUE:
 			return PRODUCT;
 		case ACTOR_VALUE:
 			return ACTOR;
+		case PROCESS_VALUE:
+			return PROCESS;
+		case CONTROL_VALUE:
+			return CONTROL;
+		case RESOURCE_VALUE:
+			return RESOURCE;
 		}
 		return null;
 	}

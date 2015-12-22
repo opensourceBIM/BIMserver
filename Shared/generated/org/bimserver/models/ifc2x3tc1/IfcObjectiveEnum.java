@@ -43,46 +43,6 @@ public enum IfcObjectiveEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>DESIGNINTENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DESIGNINTENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DESIGNINTENT(1, "DESIGNINTENT", "DESIGNINTENT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TRIGGERCONDITION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIGGERCONDITION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIGGERCONDITION(3, "TRIGGERCONDITION", "TRIGGERCONDITION"),
-
-	/**
-	 * The '<em><b>CODECOMPLIANCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CODECOMPLIANCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CODECOMPLIANCE(4, "CODECOMPLIANCE", "CODECOMPLIANCE"),
-
-	/**
 	 * The '<em><b>HEALTHANDSAFETY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,17 +50,23 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HEALTHANDSAFETY(5, "HEALTHANDSAFETY", "HEALTHANDSAFETY"),
-
-	/**
-	 * The '<em><b>SPECIFICATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPECIFICATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPECIFICATION(6, "SPECIFICATION", "SPECIFICATION"),
+	HEALTHANDSAFETY(1, "HEALTHANDSAFETY", "HEALTHANDSAFETY"), /**
+																* The '<em><b>NOTDEFINED</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #NOTDEFINED_VALUE
+																* @generated
+																* @ordered
+																*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>TRIGGERCONDITION</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #TRIGGERCONDITION_VALUE
+												* @generated
+												* @ordered
+												*/
+	TRIGGERCONDITION(3, "TRIGGERCONDITION", "TRIGGERCONDITION"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -110,7 +76,31 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>SPECIFICATION</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #SPECIFICATION_VALUE
+													* @generated
+													* @ordered
+													*/
+	SPECIFICATION(5, "SPECIFICATION", "SPECIFICATION"), /**
+														* The '<em><b>CODECOMPLIANCE</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #CODECOMPLIANCE_VALUE
+														* @generated
+														* @ordered
+														*/
+	CODECOMPLIANCE(6, "CODECOMPLIANCE", "CODECOMPLIANCE"), /**
+															* The '<em><b>DESIGNINTENT</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #DESIGNINTENT_VALUE
+															* @generated
+															* @ordered
+															*/
+	DESIGNINTENT(7, "DESIGNINTENT", "DESIGNINTENT"),
 
 	/**
 	 * The '<em><b>REQUIREMENT</b></em>' literal object.
@@ -138,19 +128,19 @@ public enum IfcObjectiveEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>DESIGNINTENT</b></em>' literal value.
+	 * The '<em><b>HEALTHANDSAFETY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DESIGNINTENT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>HEALTHANDSAFETY</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DESIGNINTENT
+	 * @see #HEALTHANDSAFETY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DESIGNINTENT_VALUE = 1;
+	public static final int HEALTHANDSAFETY_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -183,34 +173,19 @@ public enum IfcObjectiveEnum implements Enumerator {
 	public static final int TRIGGERCONDITION_VALUE = 3;
 
 	/**
-	 * The '<em><b>CODECOMPLIANCE</b></em>' literal value.
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CODECOMPLIANCE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CODECOMPLIANCE
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CODECOMPLIANCE_VALUE = 4;
-
-	/**
-	 * The '<em><b>HEALTHANDSAFETY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HEALTHANDSAFETY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HEALTHANDSAFETY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HEALTHANDSAFETY_VALUE = 5;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>SPECIFICATION</b></em>' literal value.
@@ -225,22 +200,37 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPECIFICATION_VALUE = 6;
+	public static final int SPECIFICATION_VALUE = 5;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>CODECOMPLIANCE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CODECOMPLIANCE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #CODECOMPLIANCE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 7;
+	public static final int CODECOMPLIANCE_VALUE = 6;
+
+	/**
+	 * The '<em><b>DESIGNINTENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DESIGNINTENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DESIGNINTENT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DESIGNINTENT_VALUE = 7;
 
 	/**
 	 * The '<em><b>REQUIREMENT</b></em>' literal value.
@@ -263,7 +253,8 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcObjectiveEnum[] VALUES_ARRAY = new IfcObjectiveEnum[] { NULL, DESIGNINTENT, NOTDEFINED, TRIGGERCONDITION, CODECOMPLIANCE, HEALTHANDSAFETY, SPECIFICATION, USERDEFINED, REQUIREMENT, };
+	private static final IfcObjectiveEnum[] VALUES_ARRAY = new IfcObjectiveEnum[] { NULL, HEALTHANDSAFETY, NOTDEFINED,
+			TRIGGERCONDITION, USERDEFINED, SPECIFICATION, CODECOMPLIANCE, DESIGNINTENT, REQUIREMENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Objective Enum</b></em>' enumerators.
@@ -321,20 +312,20 @@ public enum IfcObjectiveEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case DESIGNINTENT_VALUE:
-			return DESIGNINTENT;
+		case HEALTHANDSAFETY_VALUE:
+			return HEALTHANDSAFETY;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case TRIGGERCONDITION_VALUE:
 			return TRIGGERCONDITION;
-		case CODECOMPLIANCE_VALUE:
-			return CODECOMPLIANCE;
-		case HEALTHANDSAFETY_VALUE:
-			return HEALTHANDSAFETY;
-		case SPECIFICATION_VALUE:
-			return SPECIFICATION;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case SPECIFICATION_VALUE:
+			return SPECIFICATION;
+		case CODECOMPLIANCE_VALUE:
+			return CODECOMPLIANCE;
+		case DESIGNINTENT_VALUE:
+			return DESIGNINTENT;
 		case REQUIREMENT_VALUE:
 			return REQUIREMENT;
 		}

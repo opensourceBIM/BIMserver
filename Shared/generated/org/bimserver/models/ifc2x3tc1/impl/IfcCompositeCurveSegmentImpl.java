@@ -42,7 +42,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItemImpl implements IfcCompositeCurveSegment {
+public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcCompositeCurveSegment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123,7 +124,8 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCompositeCurve> getUsingCurves() {
-		return (EList<IfcCompositeCurve>) eGet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__USING_CURVES, true);
+		return (EList<IfcCompositeCurve>) eGet(Ifc2x3tc1Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__USING_CURVES,
+				true);
 	}
 
 	/**

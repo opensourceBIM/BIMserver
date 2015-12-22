@@ -43,16 +43,6 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>OXYGENGENERATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OXYGENGENERATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OXYGENGENERATOR(1, "OXYGENGENERATOR", "OXYGENGENERATOR"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,7 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>FEEDAIRUNIT</b></em>' literal object.
@@ -70,17 +60,7 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FEEDAIRUNIT(3, "FEEDAIRUNIT", "FEEDAIRUNIT"),
-
-	/**
-	 * The '<em><b>OXYGENPLANT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OXYGENPLANT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OXYGENPLANT(4, "OXYGENPLANT", "OXYGENPLANT"),
+	FEEDAIRUNIT(2, "FEEDAIRUNIT", "FEEDAIRUNIT"),
 
 	/**
 	 * The '<em><b>VACUUMSTATION</b></em>' literal object.
@@ -90,7 +70,15 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VACUUMSTATION(5, "VACUUMSTATION", "VACUUMSTATION"),
+	VACUUMSTATION(3, "VACUUMSTATION", "VACUUMSTATION"), /**
+														* The '<em><b>OXYGENPLANT</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #OXYGENPLANT_VALUE
+														* @generated
+														* @ordered
+														*/
+	OXYGENPLANT(4, "OXYGENPLANT", "OXYGENPLANT"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -100,7 +88,7 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>AIRSTATION</b></em>' literal object.
@@ -110,7 +98,15 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AIRSTATION(7, "AIRSTATION", "AIRSTATION");
+	AIRSTATION(6, "AIRSTATION", "AIRSTATION"), /**
+												* The '<em><b>OXYGENGENERATOR</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #OXYGENGENERATOR_VALUE
+												* @generated
+												* @ordered
+												*/
+	OXYGENGENERATOR(7, "OXYGENGENERATOR", "OXYGENGENERATOR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,21 +124,6 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>OXYGENGENERATOR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>OXYGENGENERATOR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #OXYGENGENERATOR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OXYGENGENERATOR_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -155,7 +136,7 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>FEEDAIRUNIT</b></em>' literal value.
@@ -170,7 +151,22 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FEEDAIRUNIT_VALUE = 3;
+	public static final int FEEDAIRUNIT_VALUE = 2;
+
+	/**
+	 * The '<em><b>VACUUMSTATION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>VACUUMSTATION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #VACUUMSTATION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int VACUUMSTATION_VALUE = 3;
 
 	/**
 	 * The '<em><b>OXYGENPLANT</b></em>' literal value.
@@ -188,21 +184,6 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	public static final int OXYGENPLANT_VALUE = 4;
 
 	/**
-	 * The '<em><b>VACUUMSTATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>VACUUMSTATION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #VACUUMSTATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int VACUUMSTATION_VALUE = 5;
-
-	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -215,7 +196,7 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 6;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * The '<em><b>AIRSTATION</b></em>' literal value.
@@ -230,7 +211,22 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AIRSTATION_VALUE = 7;
+	public static final int AIRSTATION_VALUE = 6;
+
+	/**
+	 * The '<em><b>OXYGENGENERATOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>OXYGENGENERATOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #OXYGENGENERATOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OXYGENGENERATOR_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Medical Device Type Enum</b></em>' enumerators.
@@ -238,8 +234,8 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcMedicalDeviceTypeEnum[] VALUES_ARRAY = new IfcMedicalDeviceTypeEnum[] { NULL,
-			OXYGENGENERATOR, NOTDEFINED, FEEDAIRUNIT, OXYGENPLANT, VACUUMSTATION, USERDEFINED, AIRSTATION, };
+	private static final IfcMedicalDeviceTypeEnum[] VALUES_ARRAY = new IfcMedicalDeviceTypeEnum[] { NULL, NOTDEFINED,
+			FEEDAIRUNIT, VACUUMSTATION, OXYGENPLANT, USERDEFINED, AIRSTATION, OXYGENGENERATOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Medical Device Type Enum</b></em>' enumerators.
@@ -298,20 +294,20 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case OXYGENGENERATOR_VALUE:
-			return OXYGENGENERATOR;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case FEEDAIRUNIT_VALUE:
 			return FEEDAIRUNIT;
-		case OXYGENPLANT_VALUE:
-			return OXYGENPLANT;
 		case VACUUMSTATION_VALUE:
 			return VACUUMSTATION;
+		case OXYGENPLANT_VALUE:
+			return OXYGENPLANT;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case AIRSTATION_VALUE:
 			return AIRSTATION;
+		case OXYGENGENERATOR_VALUE:
+			return OXYGENGENERATOR;
 		}
 		return null;
 	}

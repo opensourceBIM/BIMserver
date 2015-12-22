@@ -43,26 +43,6 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>UNITHEATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UNITHEATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	UNITHEATER(1, "UNITHEATER", "UNITHEATER"),
-
-	/**
-	 * The '<em><b>BASEBOARDHEATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BASEBOARDHEATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BASEBOARDHEATER(2, "BASEBOARDHEATER", "BASEBOARDHEATER"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,7 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>PANELRADIATOR</b></em>' literal object.
@@ -80,47 +60,15 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PANELRADIATOR(4, "PANELRADIATOR", "PANELRADIATOR"),
-
-	/**
-	 * The '<em><b>CONVECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONVECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONVECTOR(5, "CONVECTOR", "CONVECTOR"),
-
-	/**
-	 * The '<em><b>TUBULARRADIATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TUBULARRADIATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TUBULARRADIATOR(6, "TUBULARRADIATOR", "TUBULARRADIATOR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>FINNEDTUBEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FINNEDTUBEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FINNEDTUBEUNIT(8, "FINNEDTUBEUNIT", "FINNEDTUBEUNIT"),
+	PANELRADIATOR(2, "PANELRADIATOR", "PANELRADIATOR"), /**
+														* The '<em><b>UNITHEATER</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #UNITHEATER_VALUE
+														* @generated
+														* @ordered
+														*/
+	UNITHEATER(3, "UNITHEATER", "UNITHEATER"),
 
 	/**
 	 * The '<em><b>SECTIONALRADIATOR</b></em>' literal object.
@@ -130,7 +78,47 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SECTIONALRADIATOR(9, "SECTIONALRADIATOR", "SECTIONALRADIATOR");
+	SECTIONALRADIATOR(4, "SECTIONALRADIATOR", "SECTIONALRADIATOR"), /**
+																	* The '<em><b>FINNEDTUBEUNIT</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #FINNEDTUBEUNIT_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	FINNEDTUBEUNIT(5, "FINNEDTUBEUNIT", "FINNEDTUBEUNIT"), /**
+															* The '<em><b>USERDEFINED</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #USERDEFINED_VALUE
+															* @generated
+															* @ordered
+															*/
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>TUBULARRADIATOR</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #TUBULARRADIATOR_VALUE
+													* @generated
+													* @ordered
+													*/
+	TUBULARRADIATOR(7, "TUBULARRADIATOR", "TUBULARRADIATOR"), /**
+																* The '<em><b>BASEBOARDHEATER</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #BASEBOARDHEATER_VALUE
+																* @generated
+																* @ordered
+																*/
+	BASEBOARDHEATER(8, "BASEBOARDHEATER", "BASEBOARDHEATER"), /**
+																* The '<em><b>CONVECTOR</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #CONVECTOR_VALUE
+																* @generated
+																* @ordered
+																*/
+	CONVECTOR(9, "CONVECTOR", "CONVECTOR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,36 +136,6 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>UNITHEATER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>UNITHEATER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #UNITHEATER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int UNITHEATER_VALUE = 1;
-
-	/**
-	 * The '<em><b>BASEBOARDHEATER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BASEBOARDHEATER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BASEBOARDHEATER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BASEBOARDHEATER_VALUE = 2;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -190,7 +148,7 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>PANELRADIATOR</b></em>' literal value.
@@ -205,67 +163,22 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PANELRADIATOR_VALUE = 4;
+	public static final int PANELRADIATOR_VALUE = 2;
 
 	/**
-	 * The '<em><b>CONVECTOR</b></em>' literal value.
+	 * The '<em><b>UNITHEATER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CONVECTOR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>UNITHEATER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONVECTOR
+	 * @see #UNITHEATER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONVECTOR_VALUE = 5;
-
-	/**
-	 * The '<em><b>TUBULARRADIATOR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TUBULARRADIATOR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TUBULARRADIATOR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TUBULARRADIATOR_VALUE = 6;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 7;
-
-	/**
-	 * The '<em><b>FINNEDTUBEUNIT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FINNEDTUBEUNIT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FINNEDTUBEUNIT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FINNEDTUBEUNIT_VALUE = 8;
+	public static final int UNITHEATER_VALUE = 3;
 
 	/**
 	 * The '<em><b>SECTIONALRADIATOR</b></em>' literal value.
@@ -280,7 +193,82 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECTIONALRADIATOR_VALUE = 9;
+	public static final int SECTIONALRADIATOR_VALUE = 4;
+
+	/**
+	 * The '<em><b>FINNEDTUBEUNIT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FINNEDTUBEUNIT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FINNEDTUBEUNIT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FINNEDTUBEUNIT_VALUE = 5;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 6;
+
+	/**
+	 * The '<em><b>TUBULARRADIATOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TUBULARRADIATOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TUBULARRADIATOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TUBULARRADIATOR_VALUE = 7;
+
+	/**
+	 * The '<em><b>BASEBOARDHEATER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BASEBOARDHEATER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BASEBOARDHEATER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BASEBOARDHEATER_VALUE = 8;
+
+	/**
+	 * The '<em><b>CONVECTOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONVECTOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONVECTOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONVECTOR_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Space Heater Type Enum</b></em>' enumerators.
@@ -288,8 +276,9 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY = new IfcSpaceHeaterTypeEnum[] { NULL, UNITHEATER, BASEBOARDHEATER, NOTDEFINED, PANELRADIATOR, CONVECTOR, TUBULARRADIATOR, USERDEFINED, FINNEDTUBEUNIT,
-			SECTIONALRADIATOR, };
+	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY = new IfcSpaceHeaterTypeEnum[] { NULL, NOTDEFINED,
+			PANELRADIATOR, UNITHEATER, SECTIONALRADIATOR, FINNEDTUBEUNIT, USERDEFINED, TUBULARRADIATOR, BASEBOARDHEATER,
+			CONVECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Space Heater Type Enum</b></em>' enumerators.
@@ -347,24 +336,24 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case UNITHEATER_VALUE:
-			return UNITHEATER;
-		case BASEBOARDHEATER_VALUE:
-			return BASEBOARDHEATER;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case PANELRADIATOR_VALUE:
 			return PANELRADIATOR;
-		case CONVECTOR_VALUE:
-			return CONVECTOR;
-		case TUBULARRADIATOR_VALUE:
-			return TUBULARRADIATOR;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case FINNEDTUBEUNIT_VALUE:
-			return FINNEDTUBEUNIT;
+		case UNITHEATER_VALUE:
+			return UNITHEATER;
 		case SECTIONALRADIATOR_VALUE:
 			return SECTIONALRADIATOR;
+		case FINNEDTUBEUNIT_VALUE:
+			return FINNEDTUBEUNIT;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case TUBULARRADIATOR_VALUE:
+			return TUBULARRADIATOR;
+		case BASEBOARDHEATER_VALUE:
+			return BASEBOARDHEATER;
+		case CONVECTOR_VALUE:
+			return CONVECTOR;
 		}
 		return null;
 	}

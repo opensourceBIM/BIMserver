@@ -43,16 +43,6 @@ public enum IfcTrimmingPreference implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>CARTESIAN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CARTESIAN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CARTESIAN(1, "CARTESIAN", "CARTESIAN"),
-
-	/**
 	 * The '<em><b>UNSPECIFIED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,15 @@ public enum IfcTrimmingPreference implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UNSPECIFIED(2, "UNSPECIFIED", "UNSPECIFIED"),
+	UNSPECIFIED(1, "UNSPECIFIED", "UNSPECIFIED"), /**
+													* The '<em><b>CARTESIAN</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #CARTESIAN_VALUE
+													* @generated
+													* @ordered
+													*/
+	CARTESIAN(2, "CARTESIAN", "CARTESIAN"),
 
 	/**
 	 * The '<em><b>PARAMETER</b></em>' literal object.
@@ -88,21 +86,6 @@ public enum IfcTrimmingPreference implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>CARTESIAN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CARTESIAN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CARTESIAN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CARTESIAN_VALUE = 1;
-
-	/**
 	 * The '<em><b>UNSPECIFIED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -115,7 +98,22 @@ public enum IfcTrimmingPreference implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNSPECIFIED_VALUE = 2;
+	public static final int UNSPECIFIED_VALUE = 1;
+
+	/**
+	 * The '<em><b>CARTESIAN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CARTESIAN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CARTESIAN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CARTESIAN_VALUE = 2;
 
 	/**
 	 * The '<em><b>PARAMETER</b></em>' literal value.
@@ -138,7 +136,8 @@ public enum IfcTrimmingPreference implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTrimmingPreference[] VALUES_ARRAY = new IfcTrimmingPreference[] { NULL, CARTESIAN, UNSPECIFIED, PARAMETER, };
+	private static final IfcTrimmingPreference[] VALUES_ARRAY = new IfcTrimmingPreference[] { NULL, UNSPECIFIED,
+			CARTESIAN, PARAMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Trimming Preference</b></em>' enumerators.
@@ -196,10 +195,10 @@ public enum IfcTrimmingPreference implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case CARTESIAN_VALUE:
-			return CARTESIAN;
 		case UNSPECIFIED_VALUE:
 			return UNSPECIFIED;
+		case CARTESIAN_VALUE:
+			return CARTESIAN;
 		case PARAMETER_VALUE:
 			return PARAMETER;
 		}

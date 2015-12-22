@@ -43,26 +43,6 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>FINAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FINAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FINAL(1, "FINAL", "FINAL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>REVISION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,15 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	REVISION(3, "REVISION", "REVISION"),
+	REVISION(1, "REVISION", "REVISION"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>DRAFT</b></em>' literal object.
@@ -80,7 +68,7 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DRAFT(4, "DRAFT", "DRAFT"),
+	DRAFT(3, "DRAFT", "DRAFT"),
 
 	/**
 	 * The '<em><b>FINALDRAFT</b></em>' literal object.
@@ -90,7 +78,15 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FINALDRAFT(5, "FINALDRAFT", "FINALDRAFT");
+	FINALDRAFT(4, "FINALDRAFT", "FINALDRAFT"), /**
+												* The '<em><b>FINAL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #FINAL_VALUE
+												* @generated
+												* @ordered
+												*/
+	FINAL(5, "FINAL", "FINAL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,19 +104,19 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>FINAL</b></em>' literal value.
+	 * The '<em><b>REVISION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>FINAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>REVISION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FINAL
+	 * @see #REVISION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FINAL_VALUE = 1;
+	public static final int REVISION_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -138,21 +134,6 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>REVISION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>REVISION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #REVISION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int REVISION_VALUE = 3;
-
-	/**
 	 * The '<em><b>DRAFT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -165,7 +146,7 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DRAFT_VALUE = 4;
+	public static final int DRAFT_VALUE = 3;
 
 	/**
 	 * The '<em><b>FINALDRAFT</b></em>' literal value.
@@ -180,7 +161,22 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FINALDRAFT_VALUE = 5;
+	public static final int FINALDRAFT_VALUE = 4;
+
+	/**
+	 * The '<em><b>FINAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FINAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FINAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FINAL_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Document Status Enum</b></em>' enumerators.
@@ -188,7 +184,8 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDocumentStatusEnum[] VALUES_ARRAY = new IfcDocumentStatusEnum[] { NULL, FINAL, NOTDEFINED, REVISION, DRAFT, FINALDRAFT, };
+	private static final IfcDocumentStatusEnum[] VALUES_ARRAY = new IfcDocumentStatusEnum[] { NULL, REVISION,
+			NOTDEFINED, DRAFT, FINALDRAFT, FINAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Document Status Enum</b></em>' enumerators.
@@ -246,16 +243,16 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case FINAL_VALUE:
-			return FINAL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case REVISION_VALUE:
 			return REVISION;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case DRAFT_VALUE:
 			return DRAFT;
 		case FINALDRAFT_VALUE:
 			return FINALDRAFT;
+		case FINAL_VALUE:
+			return FINAL;
 		}
 		return null;
 	}

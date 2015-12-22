@@ -43,16 +43,6 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>DATAOUTLET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DATAOUTLET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DATAOUTLET(1, "DATAOUTLET", "DATAOUTLET"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,47 +50,7 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>AUDIOVISUALOUTLET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AUDIOVISUALOUTLET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AUDIOVISUALOUTLET(3, "AUDIOVISUALOUTLET", "AUDIOVISUALOUTLET"),
-
-	/**
-	 * The '<em><b>COMMUNICATIONSOUTLET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMMUNICATIONSOUTLET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMMUNICATIONSOUTLET(4, "COMMUNICATIONSOUTLET", "COMMUNICATIONSOUTLET"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>TELEPHONEOUTLET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TELEPHONEOUTLET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TELEPHONEOUTLET(6, "TELEPHONEOUTLET", "TELEPHONEOUTLET"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>POWEROUTLET</b></em>' literal object.
@@ -110,7 +60,47 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	POWEROUTLET(7, "POWEROUTLET", "POWEROUTLET");
+	POWEROUTLET(2, "POWEROUTLET", "POWEROUTLET"), /**
+													* The '<em><b>TELEPHONEOUTLET</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #TELEPHONEOUTLET_VALUE
+													* @generated
+													* @ordered
+													*/
+	TELEPHONEOUTLET(3, "TELEPHONEOUTLET", "TELEPHONEOUTLET"), /**
+																* The '<em><b>DATAOUTLET</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #DATAOUTLET_VALUE
+																* @generated
+																* @ordered
+																*/
+	DATAOUTLET(4, "DATAOUTLET", "DATAOUTLET"), /**
+												* The '<em><b>USERDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #USERDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>COMMUNICATIONSOUTLET</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #COMMUNICATIONSOUTLET_VALUE
+													* @generated
+													* @ordered
+													*/
+	COMMUNICATIONSOUTLET(6, "COMMUNICATIONSOUTLET", "COMMUNICATIONSOUTLET"), /**
+																				* The '<em><b>AUDIOVISUALOUTLET</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #AUDIOVISUALOUTLET_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	AUDIOVISUALOUTLET(7, "AUDIOVISUALOUTLET", "AUDIOVISUALOUTLET");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,21 +118,6 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>DATAOUTLET</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DATAOUTLET</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DATAOUTLET
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DATAOUTLET_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -155,37 +130,52 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>AUDIOVISUALOUTLET</b></em>' literal value.
+	 * The '<em><b>POWEROUTLET</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>AUDIOVISUALOUTLET</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>POWEROUTLET</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AUDIOVISUALOUTLET
+	 * @see #POWEROUTLET
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AUDIOVISUALOUTLET_VALUE = 3;
+	public static final int POWEROUTLET_VALUE = 2;
 
 	/**
-	 * The '<em><b>COMMUNICATIONSOUTLET</b></em>' literal value.
+	 * The '<em><b>TELEPHONEOUTLET</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>COMMUNICATIONSOUTLET</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TELEPHONEOUTLET</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COMMUNICATIONSOUTLET
+	 * @see #TELEPHONEOUTLET
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMMUNICATIONSOUTLET_VALUE = 4;
+	public static final int TELEPHONEOUTLET_VALUE = 3;
+
+	/**
+	 * The '<em><b>DATAOUTLET</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DATAOUTLET</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DATAOUTLET
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DATAOUTLET_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -203,34 +193,34 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 5;
 
 	/**
-	 * The '<em><b>TELEPHONEOUTLET</b></em>' literal value.
+	 * The '<em><b>COMMUNICATIONSOUTLET</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>TELEPHONEOUTLET</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>COMMUNICATIONSOUTLET</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TELEPHONEOUTLET
+	 * @see #COMMUNICATIONSOUTLET
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TELEPHONEOUTLET_VALUE = 6;
+	public static final int COMMUNICATIONSOUTLET_VALUE = 6;
 
 	/**
-	 * The '<em><b>POWEROUTLET</b></em>' literal value.
+	 * The '<em><b>AUDIOVISUALOUTLET</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>POWEROUTLET</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>AUDIOVISUALOUTLET</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #POWEROUTLET
+	 * @see #AUDIOVISUALOUTLET
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POWEROUTLET_VALUE = 7;
+	public static final int AUDIOVISUALOUTLET_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Outlet Type Enum</b></em>' enumerators.
@@ -238,8 +228,8 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcOutletTypeEnum[] VALUES_ARRAY = new IfcOutletTypeEnum[] { NULL, DATAOUTLET, NOTDEFINED,
-			AUDIOVISUALOUTLET, COMMUNICATIONSOUTLET, USERDEFINED, TELEPHONEOUTLET, POWEROUTLET, };
+	private static final IfcOutletTypeEnum[] VALUES_ARRAY = new IfcOutletTypeEnum[] { NULL, NOTDEFINED, POWEROUTLET,
+			TELEPHONEOUTLET, DATAOUTLET, USERDEFINED, COMMUNICATIONSOUTLET, AUDIOVISUALOUTLET, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Outlet Type Enum</b></em>' enumerators.
@@ -297,20 +287,20 @@ public enum IfcOutletTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case DATAOUTLET_VALUE:
-			return DATAOUTLET;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case AUDIOVISUALOUTLET_VALUE:
-			return AUDIOVISUALOUTLET;
-		case COMMUNICATIONSOUTLET_VALUE:
-			return COMMUNICATIONSOUTLET;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case TELEPHONEOUTLET_VALUE:
-			return TELEPHONEOUTLET;
 		case POWEROUTLET_VALUE:
 			return POWEROUTLET;
+		case TELEPHONEOUTLET_VALUE:
+			return TELEPHONEOUTLET;
+		case DATAOUTLET_VALUE:
+			return DATAOUTLET;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case COMMUNICATIONSOUTLET_VALUE:
+			return COMMUNICATIONSOUTLET;
+		case AUDIOVISUALOUTLET_VALUE:
+			return AUDIOVISUALOUTLET;
 		}
 		return null;
 	}

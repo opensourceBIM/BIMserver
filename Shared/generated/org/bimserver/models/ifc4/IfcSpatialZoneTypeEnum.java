@@ -43,26 +43,6 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>THERMAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THERMAL(1, "THERMAL", "THERMAL"),
-
-	/**
-	 * The '<em><b>OCCUPANCY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OCCUPANCY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OCCUPANCY(2, "OCCUPANCY", "OCCUPANCY"),
-
-	/**
 	 * The '<em><b>TRANSPORT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,17 +50,7 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRANSPORT(3, "TRANSPORT", "TRANSPORT"),
-
-	/**
-	 * The '<em><b>CONSTRUCTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONSTRUCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONSTRUCTION(4, "CONSTRUCTION", "CONSTRUCTION"),
+	TRANSPORT(1, "TRANSPORT", "TRANSPORT"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
@@ -90,7 +60,7 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>VENTILATION</b></em>' literal object.
@@ -100,7 +70,7 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VENTILATION(6, "VENTILATION", "VENTILATION"),
+	VENTILATION(3, "VENTILATION", "VENTILATION"),
 
 	/**
 	 * The '<em><b>FIRESAFETY</b></em>' literal object.
@@ -110,17 +80,15 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FIRESAFETY(7, "FIRESAFETY", "FIRESAFETY"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(8, "USERDEFINED", "USERDEFINED"),
+	FIRESAFETY(4, "FIRESAFETY", "FIRESAFETY"), /**
+												* The '<em><b>CONSTRUCTION</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #CONSTRUCTION_VALUE
+												* @generated
+												* @ordered
+												*/
+	CONSTRUCTION(5, "CONSTRUCTION", "CONSTRUCTION"),
 
 	/**
 	 * The '<em><b>SECURITY</b></em>' literal object.
@@ -130,7 +98,7 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SECURITY(9, "SECURITY", "SECURITY"),
+	SECURITY(6, "SECURITY", "SECURITY"),
 
 	/**
 	 * The '<em><b>LIGHTING</b></em>' literal object.
@@ -140,7 +108,31 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LIGHTING(10, "LIGHTING", "LIGHTING");
+	LIGHTING(7, "LIGHTING", "LIGHTING"), /**
+											* The '<em><b>USERDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #USERDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	USERDEFINED(8, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>THERMAL</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #THERMAL_VALUE
+													* @generated
+													* @ordered
+													*/
+	THERMAL(9, "THERMAL", "THERMAL"), /**
+										* The '<em><b>OCCUPANCY</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #OCCUPANCY_VALUE
+										* @generated
+										* @ordered
+										*/
+	OCCUPANCY(10, "OCCUPANCY", "OCCUPANCY");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -158,36 +150,6 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>THERMAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>THERMAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #THERMAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int THERMAL_VALUE = 1;
-
-	/**
-	 * The '<em><b>OCCUPANCY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>OCCUPANCY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #OCCUPANCY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OCCUPANCY_VALUE = 2;
-
-	/**
 	 * The '<em><b>TRANSPORT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -200,22 +162,7 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRANSPORT_VALUE = 3;
-
-	/**
-	 * The '<em><b>CONSTRUCTION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CONSTRUCTION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CONSTRUCTION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONSTRUCTION_VALUE = 4;
+	public static final int TRANSPORT_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -230,7 +177,7 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 5;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>VENTILATION</b></em>' literal value.
@@ -245,7 +192,7 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VENTILATION_VALUE = 6;
+	public static final int VENTILATION_VALUE = 3;
 
 	/**
 	 * The '<em><b>FIRESAFETY</b></em>' literal value.
@@ -260,7 +207,52 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FIRESAFETY_VALUE = 7;
+	public static final int FIRESAFETY_VALUE = 4;
+
+	/**
+	 * The '<em><b>CONSTRUCTION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONSTRUCTION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONSTRUCTION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONSTRUCTION_VALUE = 5;
+
+	/**
+	 * The '<em><b>SECURITY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SECURITY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SECURITY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SECURITY_VALUE = 6;
+
+	/**
+	 * The '<em><b>LIGHTING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LIGHTING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LIGHTING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LIGHTING_VALUE = 7;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -278,34 +270,34 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 8;
 
 	/**
-	 * The '<em><b>SECURITY</b></em>' literal value.
+	 * The '<em><b>THERMAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SECURITY</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>THERMAL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SECURITY
+	 * @see #THERMAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECURITY_VALUE = 9;
+	public static final int THERMAL_VALUE = 9;
 
 	/**
-	 * The '<em><b>LIGHTING</b></em>' literal value.
+	 * The '<em><b>OCCUPANCY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>LIGHTING</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>OCCUPANCY</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LIGHTING
+	 * @see #OCCUPANCY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LIGHTING_VALUE = 10;
+	public static final int OCCUPANCY_VALUE = 10;
 
 	/**
 	 * An array of all the '<em><b>Ifc Spatial Zone Type Enum</b></em>' enumerators.
@@ -313,8 +305,8 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpatialZoneTypeEnum[] VALUES_ARRAY = new IfcSpatialZoneTypeEnum[] { NULL, THERMAL,
-			OCCUPANCY, TRANSPORT, CONSTRUCTION, NOTDEFINED, VENTILATION, FIRESAFETY, USERDEFINED, SECURITY, LIGHTING, };
+	private static final IfcSpatialZoneTypeEnum[] VALUES_ARRAY = new IfcSpatialZoneTypeEnum[] { NULL, TRANSPORT,
+			NOTDEFINED, VENTILATION, FIRESAFETY, CONSTRUCTION, SECURITY, LIGHTING, USERDEFINED, THERMAL, OCCUPANCY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Spatial Zone Type Enum</b></em>' enumerators.
@@ -372,26 +364,26 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case THERMAL_VALUE:
-			return THERMAL;
-		case OCCUPANCY_VALUE:
-			return OCCUPANCY;
 		case TRANSPORT_VALUE:
 			return TRANSPORT;
-		case CONSTRUCTION_VALUE:
-			return CONSTRUCTION;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case VENTILATION_VALUE:
 			return VENTILATION;
 		case FIRESAFETY_VALUE:
 			return FIRESAFETY;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case CONSTRUCTION_VALUE:
+			return CONSTRUCTION;
 		case SECURITY_VALUE:
 			return SECURITY;
 		case LIGHTING_VALUE:
 			return LIGHTING;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case THERMAL_VALUE:
+			return THERMAL;
+		case OCCUPANCY_VALUE:
+			return OCCUPANCY;
 		}
 		return null;
 	}

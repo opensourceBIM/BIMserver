@@ -43,16 +43,6 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>ROUND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROUND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROUND(1, "ROUND", "ROUND"),
-
-	/**
 	 * The '<em><b>FLATOVAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,7 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLATOVAL(2, "FLATOVAL", "FLATOVAL"),
+	FLATOVAL(1, "FLATOVAL", "FLATOVAL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
@@ -70,17 +60,15 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>ROUND</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #ROUND_VALUE
+												* @generated
+												* @ordered
+												*/
+	ROUND(3, "ROUND", "ROUND"),
 
 	/**
 	 * The '<em><b>RECTANGULAR</b></em>' literal object.
@@ -90,7 +78,15 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RECTANGULAR(5, "RECTANGULAR", "RECTANGULAR");
+	RECTANGULAR(4, "RECTANGULAR", "RECTANGULAR"), /**
+													* The '<em><b>USERDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #USERDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,21 +104,6 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>ROUND</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ROUND</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ROUND
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ROUND_VALUE = 1;
-
-	/**
 	 * The '<em><b>FLATOVAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,7 +116,7 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLATOVAL_VALUE = 2;
+	public static final int FLATOVAL_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -150,22 +131,22 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>ROUND</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ROUND</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #ROUND
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int ROUND_VALUE = 3;
 
 	/**
 	 * The '<em><b>RECTANGULAR</b></em>' literal value.
@@ -180,7 +161,22 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RECTANGULAR_VALUE = 5;
+	public static final int RECTANGULAR_VALUE = 4;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Duct Silencer Type Enum</b></em>' enumerators.
@@ -188,7 +184,8 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDuctSilencerTypeEnum[] VALUES_ARRAY = new IfcDuctSilencerTypeEnum[] { NULL, ROUND, FLATOVAL, NOTDEFINED, USERDEFINED, RECTANGULAR, };
+	private static final IfcDuctSilencerTypeEnum[] VALUES_ARRAY = new IfcDuctSilencerTypeEnum[] { NULL, FLATOVAL,
+			NOTDEFINED, ROUND, RECTANGULAR, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Duct Silencer Type Enum</b></em>' enumerators.
@@ -196,7 +193,8 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDuctSilencerTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDuctSilencerTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Duct Silencer Type Enum</b></em>' literal with the specified literal value.
@@ -246,16 +244,16 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case ROUND_VALUE:
-			return ROUND;
 		case FLATOVAL_VALUE:
 			return FLATOVAL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case ROUND_VALUE:
+			return ROUND;
 		case RECTANGULAR_VALUE:
 			return RECTANGULAR;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

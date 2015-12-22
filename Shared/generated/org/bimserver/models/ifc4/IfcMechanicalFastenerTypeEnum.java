@@ -43,66 +43,6 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>STUDSHEARCONNECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STUDSHEARCONNECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STUDSHEARCONNECTOR(1, "STUDSHEARCONNECTOR", "STUDSHEARCONNECTOR"),
-
-	/**
-	 * The '<em><b>STAPLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STAPLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STAPLE(2, "STAPLE", "STAPLE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>NAILPLATE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NAILPLATE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NAILPLATE(4, "NAILPLATE", "NAILPLATE"),
-
-	/**
-	 * The '<em><b>SHEARCONNECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHEARCONNECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHEARCONNECTOR(5, "SHEARCONNECTOR", "SHEARCONNECTOR"),
-
-	/**
-	 * The '<em><b>NAIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NAIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NAIL(6, "NAIL", "NAIL"),
-
-	/**
 	 * The '<em><b>DOWEL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,17 +50,39 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOWEL(7, "DOWEL", "DOWEL"),
-
-	/**
-	 * The '<em><b>BOLT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BOLT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BOLT(8, "BOLT", "BOLT"),
+	DOWEL(1, "DOWEL", "DOWEL"), /**
+								* The '<em><b>SHEARCONNECTOR</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #SHEARCONNECTOR_VALUE
+								* @generated
+								* @ordered
+								*/
+	SHEARCONNECTOR(2, "SHEARCONNECTOR", "SHEARCONNECTOR"), /**
+															* The '<em><b>STUDSHEARCONNECTOR</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #STUDSHEARCONNECTOR_VALUE
+															* @generated
+															* @ordered
+															*/
+	STUDSHEARCONNECTOR(3, "STUDSHEARCONNECTOR", "STUDSHEARCONNECTOR"), /**
+																		* The '<em><b>NAIL</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #NAIL_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	NAIL(4, "NAIL", "NAIL"), /**
+								* The '<em><b>NOTDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #NOTDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>SCREW</b></em>' literal object.
@@ -130,27 +92,15 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SCREW(9, "SCREW", "SCREW"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(10, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ANCHORBOLT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ANCHORBOLT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ANCHORBOLT(11, "ANCHORBOLT", "ANCHORBOLT"),
+	SCREW(6, "SCREW", "SCREW"), /**
+								* The '<em><b>NAILPLATE</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #NAILPLATE_VALUE
+								* @generated
+								* @ordered
+								*/
+	NAILPLATE(7, "NAILPLATE", "NAILPLATE"),
 
 	/**
 	 * The '<em><b>RIVET</b></em>' literal object.
@@ -160,7 +110,39 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RIVET(12, "RIVET", "RIVET");
+	RIVET(8, "RIVET", "RIVET"), /**
+								* The '<em><b>STAPLE</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #STAPLE_VALUE
+								* @generated
+								* @ordered
+								*/
+	STAPLE(9, "STAPLE", "STAPLE"), /**
+									* The '<em><b>ANCHORBOLT</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #ANCHORBOLT_VALUE
+									* @generated
+									* @ordered
+									*/
+	ANCHORBOLT(10, "ANCHORBOLT", "ANCHORBOLT"), /**
+												* The '<em><b>BOLT</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #BOLT_VALUE
+												* @generated
+												* @ordered
+												*/
+	BOLT(11, "BOLT", "BOLT"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(12, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -178,64 +160,19 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>STUDSHEARCONNECTOR</b></em>' literal value.
+	 * The '<em><b>DOWEL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>STUDSHEARCONNECTOR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DOWEL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STUDSHEARCONNECTOR
+	 * @see #DOWEL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STUDSHEARCONNECTOR_VALUE = 1;
-
-	/**
-	 * The '<em><b>STAPLE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STAPLE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STAPLE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STAPLE_VALUE = 2;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 3;
-
-	/**
-	 * The '<em><b>NAILPLATE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NAILPLATE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NAILPLATE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NAILPLATE_VALUE = 4;
+	public static final int DOWEL_VALUE = 1;
 
 	/**
 	 * The '<em><b>SHEARCONNECTOR</b></em>' literal value.
@@ -250,7 +187,22 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SHEARCONNECTOR_VALUE = 5;
+	public static final int SHEARCONNECTOR_VALUE = 2;
+
+	/**
+	 * The '<em><b>STUDSHEARCONNECTOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STUDSHEARCONNECTOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STUDSHEARCONNECTOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STUDSHEARCONNECTOR_VALUE = 3;
 
 	/**
 	 * The '<em><b>NAIL</b></em>' literal value.
@@ -265,37 +217,22 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NAIL_VALUE = 6;
+	public static final int NAIL_VALUE = 4;
 
 	/**
-	 * The '<em><b>DOWEL</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DOWEL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOWEL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOWEL_VALUE = 7;
-
-	/**
-	 * The '<em><b>BOLT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BOLT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BOLT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BOLT_VALUE = 8;
+	public static final int NOTDEFINED_VALUE = 5;
 
 	/**
 	 * The '<em><b>SCREW</b></em>' literal value.
@@ -310,37 +247,22 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SCREW_VALUE = 9;
+	public static final int SCREW_VALUE = 6;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>NAILPLATE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NAILPLATE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #NAILPLATE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 10;
-
-	/**
-	 * The '<em><b>ANCHORBOLT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ANCHORBOLT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ANCHORBOLT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ANCHORBOLT_VALUE = 11;
+	public static final int NAILPLATE_VALUE = 7;
 
 	/**
 	 * The '<em><b>RIVET</b></em>' literal value.
@@ -355,7 +277,67 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RIVET_VALUE = 12;
+	public static final int RIVET_VALUE = 8;
+
+	/**
+	 * The '<em><b>STAPLE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STAPLE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STAPLE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STAPLE_VALUE = 9;
+
+	/**
+	 * The '<em><b>ANCHORBOLT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ANCHORBOLT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ANCHORBOLT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ANCHORBOLT_VALUE = 10;
+
+	/**
+	 * The '<em><b>BOLT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BOLT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BOLT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BOLT_VALUE = 11;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 12;
 
 	/**
 	 * An array of all the '<em><b>Ifc Mechanical Fastener Type Enum</b></em>' enumerators.
@@ -364,8 +346,8 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcMechanicalFastenerTypeEnum[] VALUES_ARRAY = new IfcMechanicalFastenerTypeEnum[] { NULL,
-			STUDSHEARCONNECTOR, STAPLE, NOTDEFINED, NAILPLATE, SHEARCONNECTOR, NAIL, DOWEL, BOLT, SCREW, USERDEFINED,
-			ANCHORBOLT, RIVET, };
+			DOWEL, SHEARCONNECTOR, STUDSHEARCONNECTOR, NAIL, NOTDEFINED, SCREW, NAILPLATE, RIVET, STAPLE, ANCHORBOLT,
+			BOLT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Mechanical Fastener Type Enum</b></em>' enumerators.
@@ -424,30 +406,30 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case STUDSHEARCONNECTOR_VALUE:
-			return STUDSHEARCONNECTOR;
-		case STAPLE_VALUE:
-			return STAPLE;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case NAILPLATE_VALUE:
-			return NAILPLATE;
-		case SHEARCONNECTOR_VALUE:
-			return SHEARCONNECTOR;
-		case NAIL_VALUE:
-			return NAIL;
 		case DOWEL_VALUE:
 			return DOWEL;
-		case BOLT_VALUE:
-			return BOLT;
+		case SHEARCONNECTOR_VALUE:
+			return SHEARCONNECTOR;
+		case STUDSHEARCONNECTOR_VALUE:
+			return STUDSHEARCONNECTOR;
+		case NAIL_VALUE:
+			return NAIL;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case SCREW_VALUE:
 			return SCREW;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case ANCHORBOLT_VALUE:
-			return ANCHORBOLT;
+		case NAILPLATE_VALUE:
+			return NAILPLATE;
 		case RIVET_VALUE:
 			return RIVET;
+		case STAPLE_VALUE:
+			return STAPLE;
+		case ANCHORBOLT_VALUE:
+			return ANCHORBOLT;
+		case BOLT_VALUE:
+			return BOLT;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

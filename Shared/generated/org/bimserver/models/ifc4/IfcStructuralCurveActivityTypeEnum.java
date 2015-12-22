@@ -43,16 +43,6 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>PARABOLA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PARABOLA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PARABOLA(1, "PARABOLA", "PARABOLA"),
-
-	/**
 	 * The '<em><b>EQUIDISTANT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,15 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EQUIDISTANT(2, "EQUIDISTANT", "EQUIDISTANT"),
-
-	/**
-	 * The '<em><b>LINEAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LINEAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LINEAR(3, "LINEAR", "LINEAR"),
+	EQUIDISTANT(1, "EQUIDISTANT", "EQUIDISTANT"), /**
+													* The '<em><b>PARABOLA</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #PARABOLA_VALUE
+													* @generated
+													* @ordered
+													*/
+	PARABOLA(2, "PARABOLA", "PARABOLA"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
@@ -80,47 +68,7 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>DISCRETE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISCRETE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DISCRETE(5, "DISCRETE", "DISCRETE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CONST</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONST_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONST(7, "CONST", "CONST"),
-
-	/**
-	 * The '<em><b>SINUS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SINUS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SINUS(8, "SINUS", "SINUS"),
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>POLYGONAL</b></em>' literal object.
@@ -130,7 +78,47 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	POLYGONAL(9, "POLYGONAL", "POLYGONAL");
+	POLYGONAL(4, "POLYGONAL", "POLYGONAL"), /**
+											* The '<em><b>SINUS</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #SINUS_VALUE
+											* @generated
+											* @ordered
+											*/
+	SINUS(5, "SINUS", "SINUS"), /**
+								* The '<em><b>CONST</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #CONST_VALUE
+								* @generated
+								* @ordered
+								*/
+	CONST(6, "CONST", "CONST"), /**
+								* The '<em><b>DISCRETE</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #DISCRETE_VALUE
+								* @generated
+								* @ordered
+								*/
+	DISCRETE(7, "DISCRETE", "DISCRETE"), /**
+											* The '<em><b>USERDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #USERDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	USERDEFINED(8, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>LINEAR</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #LINEAR_VALUE
+													* @generated
+													* @ordered
+													*/
+	LINEAR(9, "LINEAR", "LINEAR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,21 +136,6 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>PARABOLA</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PARABOLA</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PARABOLA
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PARABOLA_VALUE = 1;
-
-	/**
 	 * The '<em><b>EQUIDISTANT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -175,22 +148,22 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EQUIDISTANT_VALUE = 2;
+	public static final int EQUIDISTANT_VALUE = 1;
 
 	/**
-	 * The '<em><b>LINEAR</b></em>' literal value.
+	 * The '<em><b>PARABOLA</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>LINEAR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PARABOLA</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LINEAR
+	 * @see #PARABOLA
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LINEAR_VALUE = 3;
+	public static final int PARABOLA_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -205,67 +178,7 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 4;
-
-	/**
-	 * The '<em><b>DISCRETE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DISCRETE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DISCRETE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DISCRETE_VALUE = 5;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 6;
-
-	/**
-	 * The '<em><b>CONST</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CONST</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CONST
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONST_VALUE = 7;
-
-	/**
-	 * The '<em><b>SINUS</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SINUS</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SINUS
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SINUS_VALUE = 8;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>POLYGONAL</b></em>' literal value.
@@ -280,7 +193,82 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POLYGONAL_VALUE = 9;
+	public static final int POLYGONAL_VALUE = 4;
+
+	/**
+	 * The '<em><b>SINUS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SINUS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SINUS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SINUS_VALUE = 5;
+
+	/**
+	 * The '<em><b>CONST</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONST</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONST
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONST_VALUE = 6;
+
+	/**
+	 * The '<em><b>DISCRETE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DISCRETE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DISCRETE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DISCRETE_VALUE = 7;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 8;
+
+	/**
+	 * The '<em><b>LINEAR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LINEAR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LINEAR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LINEAR_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Structural Curve Activity Type Enum</b></em>' enumerators.
@@ -289,7 +277,7 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcStructuralCurveActivityTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveActivityTypeEnum[] {
-			NULL, PARABOLA, EQUIDISTANT, LINEAR, NOTDEFINED, DISCRETE, USERDEFINED, CONST, SINUS, POLYGONAL, };
+			NULL, EQUIDISTANT, PARABOLA, NOTDEFINED, POLYGONAL, SINUS, CONST, DISCRETE, USERDEFINED, LINEAR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Structural Curve Activity Type Enum</b></em>' enumerators.
@@ -348,24 +336,24 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case PARABOLA_VALUE:
-			return PARABOLA;
 		case EQUIDISTANT_VALUE:
 			return EQUIDISTANT;
-		case LINEAR_VALUE:
-			return LINEAR;
+		case PARABOLA_VALUE:
+			return PARABOLA;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case POLYGONAL_VALUE:
+			return POLYGONAL;
+		case SINUS_VALUE:
+			return SINUS;
+		case CONST_VALUE:
+			return CONST;
 		case DISCRETE_VALUE:
 			return DISCRETE;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case CONST_VALUE:
-			return CONST;
-		case SINUS_VALUE:
-			return SINUS;
-		case POLYGONAL_VALUE:
-			return POLYGONAL;
+		case LINEAR_VALUE:
+			return LINEAR;
 		}
 		return null;
 	}
