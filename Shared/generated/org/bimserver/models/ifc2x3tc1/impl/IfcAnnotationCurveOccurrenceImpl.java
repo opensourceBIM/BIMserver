@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAnnotationCurveOccurrenceImpl extends IfcAnnotationOccurrenceImpl implements IfcAnnotationCurveOccurrence {
+public class IfcAnnotationCurveOccurrenceImpl extends IfcAnnotationOccurrenceImpl
+		implements IfcAnnotationCurveOccurrence {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

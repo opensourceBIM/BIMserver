@@ -43,26 +43,6 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>PROVISIONFORVOID</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROVISIONFORVOID_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROVISIONFORVOID(1, "PROVISIONFORVOID", "PROVISIONFORVOID"),
-
-	/**
-	 * The '<em><b>ELEMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELEMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELEMENT(2, "ELEMENT", "ELEMENT"),
-
-	/**
 	 * The '<em><b>COMPLEX</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,23 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMPLEX(3, "COMPLEX", "COMPLEX"),
+	COMPLEX(1, "COMPLEX", "COMPLEX"), /**
+										* The '<em><b>ELEMENT</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #ELEMENT_VALUE
+										* @generated
+										* @ordered
+										*/
+	ELEMENT(2, "ELEMENT", "ELEMENT"), /**
+										* The '<em><b>PROVISIONFORVOID</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #PROVISIONFORVOID_VALUE
+										* @generated
+										* @ordered
+										*/
+	PROVISIONFORVOID(3, "PROVISIONFORVOID", "PROVISIONFORVOID"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
@@ -83,16 +79,6 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>PARTIAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +86,15 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PARTIAL(6, "PARTIAL", "PARTIAL");
+	PARTIAL(5, "PARTIAL", "PARTIAL"), /**
+										* The '<em><b>USERDEFINED</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #USERDEFINED_VALUE
+										* @generated
+										* @ordered
+										*/
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,19 +112,19 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>PROVISIONFORVOID</b></em>' literal value.
+	 * The '<em><b>COMPLEX</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PROVISIONFORVOID</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>COMPLEX</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROVISIONFORVOID
+	 * @see #COMPLEX
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROVISIONFORVOID_VALUE = 1;
+	public static final int COMPLEX_VALUE = 1;
 
 	/**
 	 * The '<em><b>ELEMENT</b></em>' literal value.
@@ -148,19 +142,19 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	public static final int ELEMENT_VALUE = 2;
 
 	/**
-	 * The '<em><b>COMPLEX</b></em>' literal value.
+	 * The '<em><b>PROVISIONFORVOID</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>COMPLEX</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PROVISIONFORVOID</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COMPLEX
+	 * @see #PROVISIONFORVOID
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMPLEX_VALUE = 3;
+	public static final int PROVISIONFORVOID_VALUE = 3;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -178,21 +172,6 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 4;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 5;
-
-	/**
 	 * The '<em><b>PARTIAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -205,7 +184,22 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PARTIAL_VALUE = 6;
+	public static final int PARTIAL_VALUE = 5;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Building Element Proxy Type Enum</b></em>' enumerators.
@@ -214,7 +208,7 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcBuildingElementProxyTypeEnum[] VALUES_ARRAY = new IfcBuildingElementProxyTypeEnum[] { NULL,
-			PROVISIONFORVOID, ELEMENT, COMPLEX, NOTDEFINED, USERDEFINED, PARTIAL, };
+			COMPLEX, ELEMENT, PROVISIONFORVOID, NOTDEFINED, PARTIAL, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Building Element Proxy Type Enum</b></em>' enumerators.
@@ -273,18 +267,18 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case PROVISIONFORVOID_VALUE:
-			return PROVISIONFORVOID;
-		case ELEMENT_VALUE:
-			return ELEMENT;
 		case COMPLEX_VALUE:
 			return COMPLEX;
+		case ELEMENT_VALUE:
+			return ELEMENT;
+		case PROVISIONFORVOID_VALUE:
+			return PROVISIONFORVOID;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case PARTIAL_VALUE:
 			return PARTIAL;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

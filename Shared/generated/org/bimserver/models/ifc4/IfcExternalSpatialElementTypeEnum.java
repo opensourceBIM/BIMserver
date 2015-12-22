@@ -43,56 +43,6 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>EXTERNAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTERNAL(1, "EXTERNAL", "EXTERNAL"),
-
-	/**
-	 * The '<em><b>EXTERNAL FIRE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_FIRE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTERNAL_FIRE(2, "EXTERNAL_FIRE", "EXTERNAL_FIRE"),
-
-	/**
-	 * The '<em><b>EXTERNAL EARTH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_EARTH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTERNAL_EARTH(3, "EXTERNAL_EARTH", "EXTERNAL_EARTH"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>EXTERNAL WATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_WATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTERNAL_WATER(5, "EXTERNAL_WATER", "EXTERNAL_WATER"),
-
-	/**
 	 * The '<em><b>NOTDEFIEND</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +50,47 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFIEND(6, "NOTDEFIEND", "NOTDEFIEND");
+	NOTDEFIEND(1, "NOTDEFIEND", "NOTDEFIEND"), /**
+												* The '<em><b>EXTERNAL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #EXTERNAL_VALUE
+												* @generated
+												* @ordered
+												*/
+	EXTERNAL(2, "EXTERNAL", "EXTERNAL"), /**
+											* The '<em><b>EXTERNAL FIRE</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #EXTERNAL_FIRE_VALUE
+											* @generated
+											* @ordered
+											*/
+	EXTERNAL_FIRE(3, "EXTERNAL_FIRE", "EXTERNAL_FIRE"), /**
+														* The '<em><b>EXTERNAL WATER</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #EXTERNAL_WATER_VALUE
+														* @generated
+														* @ordered
+														*/
+	EXTERNAL_WATER(4, "EXTERNAL_WATER", "EXTERNAL_WATER"), /**
+															* The '<em><b>USERDEFINED</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #USERDEFINED_VALUE
+															* @generated
+															* @ordered
+															*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>EXTERNAL EARTH</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #EXTERNAL_EARTH_VALUE
+													* @generated
+													* @ordered
+													*/
+	EXTERNAL_EARTH(6, "EXTERNAL_EARTH", "EXTERNAL_EARTH");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,6 +108,21 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>NOTDEFIEND</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFIEND</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFIEND
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFIEND_VALUE = 1;
+
+	/**
 	 * The '<em><b>EXTERNAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -130,7 +135,7 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXTERNAL_VALUE = 1;
+	public static final int EXTERNAL_VALUE = 2;
 
 	/**
 	 * The '<em><b>EXTERNAL FIRE</b></em>' literal value.
@@ -145,37 +150,7 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXTERNAL_FIRE_VALUE = 2;
-
-	/**
-	 * The '<em><b>EXTERNAL EARTH</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>EXTERNAL EARTH</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_EARTH
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int EXTERNAL_EARTH_VALUE = 3;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int EXTERNAL_FIRE_VALUE = 3;
 
 	/**
 	 * The '<em><b>EXTERNAL WATER</b></em>' literal value.
@@ -190,22 +165,37 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXTERNAL_WATER_VALUE = 5;
+	public static final int EXTERNAL_WATER_VALUE = 4;
 
 	/**
-	 * The '<em><b>NOTDEFIEND</b></em>' literal value.
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFIEND</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFIEND
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFIEND_VALUE = 6;
+	public static final int USERDEFINED_VALUE = 5;
+
+	/**
+	 * The '<em><b>EXTERNAL EARTH</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>EXTERNAL EARTH</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #EXTERNAL_EARTH
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EXTERNAL_EARTH_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc External Spatial Element Type Enum</b></em>' enumerators.
@@ -214,7 +204,7 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcExternalSpatialElementTypeEnum[] VALUES_ARRAY = new IfcExternalSpatialElementTypeEnum[] {
-			NULL, EXTERNAL, EXTERNAL_FIRE, EXTERNAL_EARTH, USERDEFINED, EXTERNAL_WATER, NOTDEFIEND, };
+			NULL, NOTDEFIEND, EXTERNAL, EXTERNAL_FIRE, EXTERNAL_WATER, USERDEFINED, EXTERNAL_EARTH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc External Spatial Element Type Enum</b></em>' enumerators.
@@ -273,18 +263,18 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
+		case NOTDEFIEND_VALUE:
+			return NOTDEFIEND;
 		case EXTERNAL_VALUE:
 			return EXTERNAL;
 		case EXTERNAL_FIRE_VALUE:
 			return EXTERNAL_FIRE;
-		case EXTERNAL_EARTH_VALUE:
-			return EXTERNAL_EARTH;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case EXTERNAL_WATER_VALUE:
 			return EXTERNAL_WATER;
-		case NOTDEFIEND_VALUE:
-			return NOTDEFIEND;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case EXTERNAL_EARTH_VALUE:
+			return EXTERNAL_EARTH;
 		}
 		return null;
 	}

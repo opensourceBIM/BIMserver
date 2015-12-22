@@ -43,16 +43,6 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>FREQUENCY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FREQUENCY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FREQUENCY(1, "FREQUENCY", "FREQUENCY"),
-
-	/**
 	 * The '<em><b>VOLTAGE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,7 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VOLTAGE(2, "VOLTAGE", "VOLTAGE"),
-
-	/**
-	 * The '<em><b>RECTIFIER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RECTIFIER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RECTIFIER(3, "RECTIFIER", "RECTIFIER"),
+	VOLTAGE(1, "VOLTAGE", "VOLTAGE"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
@@ -80,17 +60,15 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>INVERTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INVERTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INVERTER(5, "INVERTER", "INVERTER"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>FREQUENCY</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #FREQUENCY_VALUE
+												* @generated
+												* @ordered
+												*/
+	FREQUENCY(3, "FREQUENCY", "FREQUENCY"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -100,7 +78,15 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>INVERTER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #INVERTER_VALUE
+													* @generated
+													* @ordered
+													*/
+	INVERTER(5, "INVERTER", "INVERTER"),
 
 	/**
 	 * The '<em><b>CURRENT</b></em>' literal object.
@@ -110,7 +96,15 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CURRENT(7, "CURRENT", "CURRENT");
+	CURRENT(6, "CURRENT", "CURRENT"), /**
+										* The '<em><b>RECTIFIER</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #RECTIFIER_VALUE
+										* @generated
+										* @ordered
+										*/
+	RECTIFIER(7, "RECTIFIER", "RECTIFIER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,21 +122,6 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>FREQUENCY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FREQUENCY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FREQUENCY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FREQUENCY_VALUE = 1;
-
-	/**
 	 * The '<em><b>VOLTAGE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -155,22 +134,7 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VOLTAGE_VALUE = 2;
-
-	/**
-	 * The '<em><b>RECTIFIER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>RECTIFIER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #RECTIFIER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RECTIFIER_VALUE = 3;
+	public static final int VOLTAGE_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -185,7 +149,37 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 2;
+
+	/**
+	 * The '<em><b>FREQUENCY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FREQUENCY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FREQUENCY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FREQUENCY_VALUE = 3;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>INVERTER</b></em>' literal value.
@@ -203,21 +197,6 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	public static final int INVERTER_VALUE = 5;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 6;
-
-	/**
 	 * The '<em><b>CURRENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -230,7 +209,22 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CURRENT_VALUE = 7;
+	public static final int CURRENT_VALUE = 6;
+
+	/**
+	 * The '<em><b>RECTIFIER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>RECTIFIER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RECTIFIER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RECTIFIER_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Transformer Type Enum</b></em>' enumerators.
@@ -238,8 +232,8 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTransformerTypeEnum[] VALUES_ARRAY = new IfcTransformerTypeEnum[] { NULL, FREQUENCY,
-			VOLTAGE, RECTIFIER, NOTDEFINED, INVERTER, USERDEFINED, CURRENT, };
+	private static final IfcTransformerTypeEnum[] VALUES_ARRAY = new IfcTransformerTypeEnum[] { NULL, VOLTAGE,
+			NOTDEFINED, FREQUENCY, USERDEFINED, INVERTER, CURRENT, RECTIFIER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Transformer Type Enum</b></em>' enumerators.
@@ -297,20 +291,20 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case FREQUENCY_VALUE:
-			return FREQUENCY;
 		case VOLTAGE_VALUE:
 			return VOLTAGE;
-		case RECTIFIER_VALUE:
-			return RECTIFIER;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case INVERTER_VALUE:
-			return INVERTER;
+		case FREQUENCY_VALUE:
+			return FREQUENCY;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case INVERTER_VALUE:
+			return INVERTER;
 		case CURRENT_VALUE:
 			return CURRENT;
+		case RECTIFIER_VALUE:
+			return RECTIFIER;
 		}
 		return null;
 	}

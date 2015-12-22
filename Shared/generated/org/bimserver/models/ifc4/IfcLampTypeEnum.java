@@ -43,46 +43,6 @@ public enum IfcLampTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>OLED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OLED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OLED(1, "OLED", "OLED"),
-
-	/**
-	 * The '<em><b>HIGHPRESSUREMERCURY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HIGHPRESSUREMERCURY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HIGHPRESSUREMERCURY(2, "HIGHPRESSUREMERCURY", "HIGHPRESSUREMERCURY"),
-
-	/**
-	 * The '<em><b>COMPACTFLUORESCENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPACTFLUORESCENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPACTFLUORESCENT(3, "COMPACTFLUORESCENT", "COMPACTFLUORESCENT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>TUNGSTENFILAMENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,57 +50,7 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TUNGSTENFILAMENT(5, "TUNGSTENFILAMENT", "TUNGSTENFILAMENT"),
-
-	/**
-	 * The '<em><b>METALHALIDE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #METALHALIDE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	METALHALIDE(6, "METALHALIDE", "METALHALIDE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>LED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LED(8, "LED", "LED"),
-
-	/**
-	 * The '<em><b>HIGHPRESSURESODIUM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HIGHPRESSURESODIUM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HIGHPRESSURESODIUM(9, "HIGHPRESSURESODIUM", "HIGHPRESSURESODIUM"),
-
-	/**
-	 * The '<em><b>HALOGEN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HALOGEN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HALOGEN(10, "HALOGEN", "HALOGEN"),
+	TUNGSTENFILAMENT(1, "TUNGSTENFILAMENT", "TUNGSTENFILAMENT"),
 
 	/**
 	 * The '<em><b>FLUORESCENT</b></em>' literal object.
@@ -150,7 +60,79 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLUORESCENT(11, "FLUORESCENT", "FLUORESCENT");
+	FLUORESCENT(2, "FLUORESCENT", "FLUORESCENT"), /**
+													* The '<em><b>NOTDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #NOTDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>HIGHPRESSURESODIUM</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #HIGHPRESSURESODIUM_VALUE
+												* @generated
+												* @ordered
+												*/
+	HIGHPRESSURESODIUM(4, "HIGHPRESSURESODIUM", "HIGHPRESSURESODIUM"), /**
+																		* The '<em><b>OLED</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #OLED_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	OLED(5, "OLED", "OLED"), /**
+								* The '<em><b>LED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #LED_VALUE
+								* @generated
+								* @ordered
+								*/
+	LED(6, "LED", "LED"), /**
+							* The '<em><b>METALHALIDE</b></em>' literal object.
+							* <!-- begin-user-doc -->
+							* <!-- end-user-doc -->
+							* @see #METALHALIDE_VALUE
+							* @generated
+							* @ordered
+							*/
+	METALHALIDE(7, "METALHALIDE", "METALHALIDE"), /**
+													* The '<em><b>USERDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #USERDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	USERDEFINED(8, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>HALOGEN</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #HALOGEN_VALUE
+													* @generated
+													* @ordered
+													*/
+	HALOGEN(9, "HALOGEN", "HALOGEN"), /**
+										* The '<em><b>COMPACTFLUORESCENT</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #COMPACTFLUORESCENT_VALUE
+										* @generated
+										* @ordered
+										*/
+	COMPACTFLUORESCENT(10, "COMPACTFLUORESCENT", "COMPACTFLUORESCENT"), /**
+																		* The '<em><b>HIGHPRESSUREMERCURY</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #HIGHPRESSUREMERCURY_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	HIGHPRESSUREMERCURY(11, "HIGHPRESSUREMERCURY", "HIGHPRESSUREMERCURY");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -168,66 +150,6 @@ public enum IfcLampTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>OLED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>OLED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #OLED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OLED_VALUE = 1;
-
-	/**
-	 * The '<em><b>HIGHPRESSUREMERCURY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HIGHPRESSUREMERCURY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HIGHPRESSUREMERCURY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HIGHPRESSUREMERCURY_VALUE = 2;
-
-	/**
-	 * The '<em><b>COMPACTFLUORESCENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>COMPACTFLUORESCENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #COMPACTFLUORESCENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int COMPACTFLUORESCENT_VALUE = 3;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 4;
-
-	/**
 	 * The '<em><b>TUNGSTENFILAMENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -240,82 +162,7 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TUNGSTENFILAMENT_VALUE = 5;
-
-	/**
-	 * The '<em><b>METALHALIDE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>METALHALIDE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #METALHALIDE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int METALHALIDE_VALUE = 6;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 7;
-
-	/**
-	 * The '<em><b>LED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>LED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #LED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LED_VALUE = 8;
-
-	/**
-	 * The '<em><b>HIGHPRESSURESODIUM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HIGHPRESSURESODIUM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HIGHPRESSURESODIUM
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HIGHPRESSURESODIUM_VALUE = 9;
-
-	/**
-	 * The '<em><b>HALOGEN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HALOGEN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HALOGEN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HALOGEN_VALUE = 10;
+	public static final int TUNGSTENFILAMENT_VALUE = 1;
 
 	/**
 	 * The '<em><b>FLUORESCENT</b></em>' literal value.
@@ -330,7 +177,142 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLUORESCENT_VALUE = 11;
+	public static final int FLUORESCENT_VALUE = 2;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 3;
+
+	/**
+	 * The '<em><b>HIGHPRESSURESODIUM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HIGHPRESSURESODIUM</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HIGHPRESSURESODIUM
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HIGHPRESSURESODIUM_VALUE = 4;
+
+	/**
+	 * The '<em><b>OLED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>OLED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #OLED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OLED_VALUE = 5;
+
+	/**
+	 * The '<em><b>LED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LED_VALUE = 6;
+
+	/**
+	 * The '<em><b>METALHALIDE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>METALHALIDE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #METALHALIDE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int METALHALIDE_VALUE = 7;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 8;
+
+	/**
+	 * The '<em><b>HALOGEN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HALOGEN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HALOGEN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HALOGEN_VALUE = 9;
+
+	/**
+	 * The '<em><b>COMPACTFLUORESCENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>COMPACTFLUORESCENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #COMPACTFLUORESCENT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int COMPACTFLUORESCENT_VALUE = 10;
+
+	/**
+	 * The '<em><b>HIGHPRESSUREMERCURY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HIGHPRESSUREMERCURY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HIGHPRESSUREMERCURY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HIGHPRESSUREMERCURY_VALUE = 11;
 
 	/**
 	 * An array of all the '<em><b>Ifc Lamp Type Enum</b></em>' enumerators.
@@ -338,9 +320,9 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLampTypeEnum[] VALUES_ARRAY = new IfcLampTypeEnum[] { NULL, OLED, HIGHPRESSUREMERCURY,
-			COMPACTFLUORESCENT, NOTDEFINED, TUNGSTENFILAMENT, METALHALIDE, USERDEFINED, LED, HIGHPRESSURESODIUM,
-			HALOGEN, FLUORESCENT, };
+	private static final IfcLampTypeEnum[] VALUES_ARRAY = new IfcLampTypeEnum[] { NULL, TUNGSTENFILAMENT, FLUORESCENT,
+			NOTDEFINED, HIGHPRESSURESODIUM, OLED, LED, METALHALIDE, USERDEFINED, HALOGEN, COMPACTFLUORESCENT,
+			HIGHPRESSUREMERCURY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Lamp Type Enum</b></em>' enumerators.
@@ -398,28 +380,28 @@ public enum IfcLampTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case OLED_VALUE:
-			return OLED;
-		case HIGHPRESSUREMERCURY_VALUE:
-			return HIGHPRESSUREMERCURY;
-		case COMPACTFLUORESCENT_VALUE:
-			return COMPACTFLUORESCENT;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case TUNGSTENFILAMENT_VALUE:
 			return TUNGSTENFILAMENT;
+		case FLUORESCENT_VALUE:
+			return FLUORESCENT;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case HIGHPRESSURESODIUM_VALUE:
+			return HIGHPRESSURESODIUM;
+		case OLED_VALUE:
+			return OLED;
+		case LED_VALUE:
+			return LED;
 		case METALHALIDE_VALUE:
 			return METALHALIDE;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case LED_VALUE:
-			return LED;
-		case HIGHPRESSURESODIUM_VALUE:
-			return HIGHPRESSURESODIUM;
 		case HALOGEN_VALUE:
 			return HALOGEN;
-		case FLUORESCENT_VALUE:
-			return FLUORESCENT;
+		case COMPACTFLUORESCENT_VALUE:
+			return COMPACTFLUORESCENT;
+		case HIGHPRESSUREMERCURY_VALUE:
+			return HIGHPRESSUREMERCURY;
 		}
 		return null;
 	}

@@ -43,16 +43,6 @@ public enum IfcSectionTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>UNIFORM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UNIFORM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	UNIFORM(1, "UNIFORM", "UNIFORM"),
-
-	/**
 	 * The '<em><b>TAPERED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,15 @@ public enum IfcSectionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TAPERED(2, "TAPERED", "TAPERED");
+	TAPERED(1, "TAPERED", "TAPERED"), /**
+										* The '<em><b>UNIFORM</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #UNIFORM_VALUE
+										* @generated
+										* @ordered
+										*/
+	UNIFORM(2, "UNIFORM", "UNIFORM");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -78,21 +76,6 @@ public enum IfcSectionTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>UNIFORM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>UNIFORM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #UNIFORM
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int UNIFORM_VALUE = 1;
-
-	/**
 	 * The '<em><b>TAPERED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -105,7 +88,22 @@ public enum IfcSectionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TAPERED_VALUE = 2;
+	public static final int TAPERED_VALUE = 1;
+
+	/**
+	 * The '<em><b>UNIFORM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>UNIFORM</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #UNIFORM
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNIFORM_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Ifc Section Type Enum</b></em>' enumerators.
@@ -113,7 +111,7 @@ public enum IfcSectionTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSectionTypeEnum[] VALUES_ARRAY = new IfcSectionTypeEnum[] { NULL, UNIFORM, TAPERED, };
+	private static final IfcSectionTypeEnum[] VALUES_ARRAY = new IfcSectionTypeEnum[] { NULL, TAPERED, UNIFORM, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Section Type Enum</b></em>' enumerators.
@@ -171,10 +169,10 @@ public enum IfcSectionTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case UNIFORM_VALUE:
-			return UNIFORM;
 		case TAPERED_VALUE:
 			return TAPERED;
+		case UNIFORM_VALUE:
+			return UNIFORM;
 		}
 		return null;
 	}

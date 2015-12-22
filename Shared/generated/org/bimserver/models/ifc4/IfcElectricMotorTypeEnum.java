@@ -63,46 +63,6 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>SYNCHRONOUS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SYNCHRONOUS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SYNCHRONOUS(3, "SYNCHRONOUS", "SYNCHRONOUS"),
-
-	/**
-	 * The '<em><b>INDUCTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INDUCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INDUCTION(4, "INDUCTION", "INDUCTION"),
-
-	/**
-	 * The '<em><b>POLYPHASE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POLYPHASE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	POLYPHASE(5, "POLYPHASE", "POLYPHASE"),
-
-	/**
-	 * The '<em><b>DC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DC(6, "DC", "DC"),
-
-	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,7 +70,39 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>INDUCTION</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #INDUCTION_VALUE
+													* @generated
+													* @ordered
+													*/
+	INDUCTION(4, "INDUCTION", "INDUCTION"), /**
+											* The '<em><b>SYNCHRONOUS</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #SYNCHRONOUS_VALUE
+											* @generated
+											* @ordered
+											*/
+	SYNCHRONOUS(5, "SYNCHRONOUS", "SYNCHRONOUS"), /**
+													* The '<em><b>POLYPHASE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #POLYPHASE_VALUE
+													* @generated
+													* @ordered
+													*/
+	POLYPHASE(6, "POLYPHASE", "POLYPHASE"), /**
+											* The '<em><b>DC</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #DC_VALUE
+											* @generated
+											* @ordered
+											*/
+	DC(7, "DC", "DC");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -158,19 +150,19 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>SYNCHRONOUS</b></em>' literal value.
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SYNCHRONOUS</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SYNCHRONOUS
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SYNCHRONOUS_VALUE = 3;
+	public static final int USERDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>INDUCTION</b></em>' literal value.
@@ -188,6 +180,21 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	public static final int INDUCTION_VALUE = 4;
 
 	/**
+	 * The '<em><b>SYNCHRONOUS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SYNCHRONOUS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SYNCHRONOUS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SYNCHRONOUS_VALUE = 5;
+
+	/**
 	 * The '<em><b>POLYPHASE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -200,7 +207,7 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POLYPHASE_VALUE = 5;
+	public static final int POLYPHASE_VALUE = 6;
 
 	/**
 	 * The '<em><b>DC</b></em>' literal value.
@@ -215,22 +222,7 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DC_VALUE = 6;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 7;
+	public static final int DC_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Electric Motor Type Enum</b></em>' enumerators.
@@ -239,7 +231,7 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcElectricMotorTypeEnum[] VALUES_ARRAY = new IfcElectricMotorTypeEnum[] { NULL,
-			RELUCTANCESYNCHRONOUS, NOTDEFINED, SYNCHRONOUS, INDUCTION, POLYPHASE, DC, USERDEFINED, };
+			RELUCTANCESYNCHRONOUS, NOTDEFINED, USERDEFINED, INDUCTION, SYNCHRONOUS, POLYPHASE, DC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Motor Type Enum</b></em>' enumerators.
@@ -302,16 +294,16 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 			return RELUCTANCESYNCHRONOUS;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case SYNCHRONOUS_VALUE:
-			return SYNCHRONOUS;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case INDUCTION_VALUE:
 			return INDUCTION;
+		case SYNCHRONOUS_VALUE:
+			return SYNCHRONOUS;
 		case POLYPHASE_VALUE:
 			return POLYPHASE;
 		case DC_VALUE:
 			return DC;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		}
 		return null;
 	}

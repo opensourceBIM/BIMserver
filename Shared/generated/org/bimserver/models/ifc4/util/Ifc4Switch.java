@@ -9897,6 +9897,24 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		}
+		return null;
+	}
+	
+	/**
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
+	@Override
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		T tmp = doSwitch1(classifierID, theEObject);
+		if (tmp != null) {
+			return tmp;
+		}
+		switch (classifierID) {
 		case Ifc4Package.IFC_REL_ASSIGNS_TO_PRODUCT: {
 			IfcRelAssignsToProduct ifcRelAssignsToProduct = (IfcRelAssignsToProduct) theEObject;
 			T result = caseIfcRelAssignsToProduct(ifcRelAssignsToProduct);
@@ -10459,24 +10477,6 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		}
-		return null;
-	}
-	
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
-	@Override
-	protected T doSwitch(int classifierID, EObject theEObject) {
-		T doSwitch1 = doSwitch1(classifierID, theEObject);
-		if (doSwitch1 != null) {
-			return doSwitch1;
-		}
-		switch (classifierID) {
 		case Ifc4Package.IFC_REPRESENTATION_ITEM: {
 			IfcRepresentationItem ifcRepresentationItem = (IfcRepresentationItem) theEObject;
 			T result = caseIfcRepresentationItem(ifcRepresentationItem);

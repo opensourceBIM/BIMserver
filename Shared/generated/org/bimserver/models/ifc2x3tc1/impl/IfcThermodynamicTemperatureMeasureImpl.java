@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcThermodynamicTemperatureMeasureImpl extends IdEObjectImpl implements IfcThermodynamicTemperatureMeasure {
+public class IfcThermodynamicTemperatureMeasureImpl extends IdEObjectImpl
+		implements IfcThermodynamicTemperatureMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,7 +108,8 @@ public class IfcThermodynamicTemperatureMeasureImpl extends IdEObjectImpl implem
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_THERMODYNAMIC_TEMPERATURE_MEASURE__WRAPPED_VALUE_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_THERMODYNAMIC_TEMPERATURE_MEASURE__WRAPPED_VALUE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -116,7 +118,8 @@ public class IfcThermodynamicTemperatureMeasureImpl extends IdEObjectImpl implem
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_THERMODYNAMIC_TEMPERATURE_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_THERMODYNAMIC_TEMPERATURE_MEASURE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**

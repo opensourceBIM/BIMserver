@@ -64,7 +64,8 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 * @generated
 	 */
 	public IfcServiceLifeFactorTypeEnum getPredefinedType() {
-		return (IfcServiceLifeFactorTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__PREDEFINED_TYPE, true);
+		return (IfcServiceLifeFactorTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE_FACTOR__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

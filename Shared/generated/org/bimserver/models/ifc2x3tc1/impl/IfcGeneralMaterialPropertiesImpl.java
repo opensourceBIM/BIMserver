@@ -38,7 +38,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl implements IfcGeneralMaterialProperties {
+public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl
+		implements IfcGeneralMaterialProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +101,8 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * @generated
 	 */
 	public String getMolecularWeightAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -109,7 +111,8 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * @generated
 	 */
 	public void setMolecularWeightAsString(String newMolecularWeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT_AS_STRING, newMolecularWeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT_AS_STRING,
+				newMolecularWeightAsString);
 	}
 
 	/**

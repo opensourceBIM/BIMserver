@@ -43,66 +43,6 @@ public enum IfcWindowStyleConstructionEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>ALUMINIUM WOOD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ALUMINIUM_WOOD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ALUMINIUM_WOOD(1, "ALUMINIUM_WOOD", "ALUMINIUM_WOOD"),
-
-	/**
-	 * The '<em><b>HIGH GRADE STEEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HIGH_GRADE_STEEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HIGH_GRADE_STEEL(2, "HIGH_GRADE_STEEL", "HIGH_GRADE_STEEL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>OTHER CONSTRUCTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OTHER_CONSTRUCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OTHER_CONSTRUCTION(4, "OTHER_CONSTRUCTION", "OTHER_CONSTRUCTION"),
-
-	/**
-	 * The '<em><b>PLASTIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLASTIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLASTIC(5, "PLASTIC", "PLASTIC"),
-
-	/**
-	 * The '<em><b>WOOD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WOOD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WOOD(6, "WOOD", "WOOD"),
-
-	/**
 	 * The '<em><b>ALUMINIUM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,7 +50,23 @@ public enum IfcWindowStyleConstructionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ALUMINIUM(7, "ALUMINIUM", "ALUMINIUM"),
+	ALUMINIUM(1, "ALUMINIUM", "ALUMINIUM"), /**
+											* The '<em><b>HIGH GRADE STEEL</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #HIGH_GRADE_STEEL_VALUE
+											* @generated
+											* @ordered
+											*/
+	HIGH_GRADE_STEEL(2, "HIGH_GRADE_STEEL", "HIGH_GRADE_STEEL"), /**
+																	* The '<em><b>NOTDEFINED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #NOTDEFINED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>STEEL</b></em>' literal object.
@@ -120,7 +76,39 @@ public enum IfcWindowStyleConstructionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STEEL(8, "STEEL", "STEEL");
+	STEEL(4, "STEEL", "STEEL"), /**
+								* The '<em><b>WOOD</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #WOOD_VALUE
+								* @generated
+								* @ordered
+								*/
+	WOOD(5, "WOOD", "WOOD"), /**
+								* The '<em><b>ALUMINIUM WOOD</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #ALUMINIUM_WOOD_VALUE
+								* @generated
+								* @ordered
+								*/
+	ALUMINIUM_WOOD(6, "ALUMINIUM_WOOD", "ALUMINIUM_WOOD"), /**
+															* The '<em><b>OTHER CONSTRUCTION</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #OTHER_CONSTRUCTION_VALUE
+															* @generated
+															* @ordered
+															*/
+	OTHER_CONSTRUCTION(7, "OTHER_CONSTRUCTION", "OTHER_CONSTRUCTION"), /**
+																		* The '<em><b>PLASTIC</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #PLASTIC_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	PLASTIC(8, "PLASTIC", "PLASTIC");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -138,19 +126,19 @@ public enum IfcWindowStyleConstructionEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>ALUMINIUM WOOD</b></em>' literal value.
+	 * The '<em><b>ALUMINIUM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ALUMINIUM WOOD</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ALUMINIUM</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ALUMINIUM_WOOD
+	 * @see #ALUMINIUM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ALUMINIUM_WOOD_VALUE = 1;
+	public static final int ALUMINIUM_VALUE = 1;
 
 	/**
 	 * The '<em><b>HIGH GRADE STEEL</b></em>' literal value.
@@ -183,34 +171,19 @@ public enum IfcWindowStyleConstructionEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
-	 * The '<em><b>OTHER CONSTRUCTION</b></em>' literal value.
+	 * The '<em><b>STEEL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>OTHER CONSTRUCTION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>STEEL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #OTHER_CONSTRUCTION
+	 * @see #STEEL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OTHER_CONSTRUCTION_VALUE = 4;
-
-	/**
-	 * The '<em><b>PLASTIC</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PLASTIC</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PLASTIC
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PLASTIC_VALUE = 5;
+	public static final int STEEL_VALUE = 4;
 
 	/**
 	 * The '<em><b>WOOD</b></em>' literal value.
@@ -225,37 +198,52 @@ public enum IfcWindowStyleConstructionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WOOD_VALUE = 6;
+	public static final int WOOD_VALUE = 5;
 
 	/**
-	 * The '<em><b>ALUMINIUM</b></em>' literal value.
+	 * The '<em><b>ALUMINIUM WOOD</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ALUMINIUM</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ALUMINIUM WOOD</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ALUMINIUM
+	 * @see #ALUMINIUM_WOOD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ALUMINIUM_VALUE = 7;
+	public static final int ALUMINIUM_WOOD_VALUE = 6;
 
 	/**
-	 * The '<em><b>STEEL</b></em>' literal value.
+	 * The '<em><b>OTHER CONSTRUCTION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>STEEL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>OTHER CONSTRUCTION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STEEL
+	 * @see #OTHER_CONSTRUCTION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STEEL_VALUE = 8;
+	public static final int OTHER_CONSTRUCTION_VALUE = 7;
+
+	/**
+	 * The '<em><b>PLASTIC</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PLASTIC</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PLASTIC
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PLASTIC_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Window Style Construction Enum</b></em>' enumerators.
@@ -264,7 +252,7 @@ public enum IfcWindowStyleConstructionEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcWindowStyleConstructionEnum[] VALUES_ARRAY = new IfcWindowStyleConstructionEnum[] { NULL,
-			ALUMINIUM_WOOD, HIGH_GRADE_STEEL, NOTDEFINED, OTHER_CONSTRUCTION, PLASTIC, WOOD, ALUMINIUM, STEEL, };
+			ALUMINIUM, HIGH_GRADE_STEEL, NOTDEFINED, STEEL, WOOD, ALUMINIUM_WOOD, OTHER_CONSTRUCTION, PLASTIC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Window Style Construction Enum</b></em>' enumerators.
@@ -323,22 +311,22 @@ public enum IfcWindowStyleConstructionEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case ALUMINIUM_WOOD_VALUE:
-			return ALUMINIUM_WOOD;
+		case ALUMINIUM_VALUE:
+			return ALUMINIUM;
 		case HIGH_GRADE_STEEL_VALUE:
 			return HIGH_GRADE_STEEL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case STEEL_VALUE:
+			return STEEL;
+		case WOOD_VALUE:
+			return WOOD;
+		case ALUMINIUM_WOOD_VALUE:
+			return ALUMINIUM_WOOD;
 		case OTHER_CONSTRUCTION_VALUE:
 			return OTHER_CONSTRUCTION;
 		case PLASTIC_VALUE:
 			return PLASTIC;
-		case WOOD_VALUE:
-			return WOOD;
-		case ALUMINIUM_VALUE:
-			return ALUMINIUM;
-		case STEEL_VALUE:
-			return STEEL;
 		}
 		return null;
 	}

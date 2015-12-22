@@ -205,7 +205,8 @@ public class IfcLibraryInformationImpl extends IdEObjectImpl implements IfcLibra
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLibraryReference> getLibraryReference() {
-		return (EList<IfcLibraryReference>) eGet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__LIBRARY_REFERENCE, true);
+		return (EList<IfcLibraryReference>) eGet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_INFORMATION__LIBRARY_REFERENCE,
+				true);
 	}
 
 	/**

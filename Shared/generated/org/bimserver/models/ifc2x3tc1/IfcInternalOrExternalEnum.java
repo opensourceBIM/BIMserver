@@ -43,26 +43,6 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>INTERNAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTERNAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INTERNAL(1, "INTERNAL", "INTERNAL"),
-
-	/**
-	 * The '<em><b>EXTERNAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTERNAL(2, "EXTERNAL", "EXTERNAL"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,23 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED");
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>EXTERNAL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #EXTERNAL_VALUE
+												* @generated
+												* @ordered
+												*/
+	EXTERNAL(2, "EXTERNAL", "EXTERNAL"), /**
+											* The '<em><b>INTERNAL</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #INTERNAL_VALUE
+											* @generated
+											* @ordered
+											*/
+	INTERNAL(3, "INTERNAL", "INTERNAL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -88,19 +84,19 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>INTERNAL</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>INTERNAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INTERNAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INTERNAL_VALUE = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>EXTERNAL</b></em>' literal value.
@@ -118,19 +114,19 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	public static final int EXTERNAL_VALUE = 2;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>INTERNAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>INTERNAL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #INTERNAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int INTERNAL_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Ifc Internal Or External Enum</b></em>' enumerators.
@@ -138,7 +134,8 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcInternalOrExternalEnum[] VALUES_ARRAY = new IfcInternalOrExternalEnum[] { NULL, INTERNAL, EXTERNAL, NOTDEFINED, };
+	private static final IfcInternalOrExternalEnum[] VALUES_ARRAY = new IfcInternalOrExternalEnum[] { NULL, NOTDEFINED,
+			EXTERNAL, INTERNAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Internal Or External Enum</b></em>' enumerators.
@@ -146,7 +143,8 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcInternalOrExternalEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcInternalOrExternalEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Internal Or External Enum</b></em>' literal with the specified literal value.
@@ -196,12 +194,12 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case INTERNAL_VALUE:
-			return INTERNAL;
-		case EXTERNAL_VALUE:
-			return EXTERNAL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case EXTERNAL_VALUE:
+			return EXTERNAL;
+		case INTERNAL_VALUE:
+			return INTERNAL;
 		}
 		return null;
 	}

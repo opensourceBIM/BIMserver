@@ -43,26 +43,6 @@ public enum IfcKnotType implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>PIECEWISE BEZIER KNOTS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PIECEWISE_BEZIER_KNOTS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PIECEWISE_BEZIER_KNOTS(1, "PIECEWISE_BEZIER_KNOTS", "PIECEWISE_BEZIER_KNOTS"),
-
-	/**
-	 * The '<em><b>UNIFORM KNOTS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UNIFORM_KNOTS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	UNIFORM_KNOTS(2, "UNIFORM_KNOTS", "UNIFORM_KNOTS"),
-
-	/**
 	 * The '<em><b>UNSPECIFIED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,7 @@ public enum IfcKnotType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UNSPECIFIED(3, "UNSPECIFIED", "UNSPECIFIED"),
+	UNSPECIFIED(1, "UNSPECIFIED", "UNSPECIFIED"),
 
 	/**
 	 * The '<em><b>QUASI UNIFORM KNOTS</b></em>' literal object.
@@ -80,7 +60,23 @@ public enum IfcKnotType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	QUASI_UNIFORM_KNOTS(4, "QUASI_UNIFORM_KNOTS", "QUASI_UNIFORM_KNOTS");
+	QUASI_UNIFORM_KNOTS(2, "QUASI_UNIFORM_KNOTS", "QUASI_UNIFORM_KNOTS"), /**
+																			* The '<em><b>UNIFORM KNOTS</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #UNIFORM_KNOTS_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	UNIFORM_KNOTS(3, "UNIFORM_KNOTS", "UNIFORM_KNOTS"), /**
+														* The '<em><b>PIECEWISE BEZIER KNOTS</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #PIECEWISE_BEZIER_KNOTS_VALUE
+														* @generated
+														* @ordered
+														*/
+	PIECEWISE_BEZIER_KNOTS(4, "PIECEWISE_BEZIER_KNOTS", "PIECEWISE_BEZIER_KNOTS");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -98,36 +94,6 @@ public enum IfcKnotType implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>PIECEWISE BEZIER KNOTS</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PIECEWISE BEZIER KNOTS</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PIECEWISE_BEZIER_KNOTS
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PIECEWISE_BEZIER_KNOTS_VALUE = 1;
-
-	/**
-	 * The '<em><b>UNIFORM KNOTS</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>UNIFORM KNOTS</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #UNIFORM_KNOTS
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int UNIFORM_KNOTS_VALUE = 2;
-
-	/**
 	 * The '<em><b>UNSPECIFIED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -140,7 +106,7 @@ public enum IfcKnotType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNSPECIFIED_VALUE = 3;
+	public static final int UNSPECIFIED_VALUE = 1;
 
 	/**
 	 * The '<em><b>QUASI UNIFORM KNOTS</b></em>' literal value.
@@ -155,7 +121,37 @@ public enum IfcKnotType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int QUASI_UNIFORM_KNOTS_VALUE = 4;
+	public static final int QUASI_UNIFORM_KNOTS_VALUE = 2;
+
+	/**
+	 * The '<em><b>UNIFORM KNOTS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>UNIFORM KNOTS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #UNIFORM_KNOTS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNIFORM_KNOTS_VALUE = 3;
+
+	/**
+	 * The '<em><b>PIECEWISE BEZIER KNOTS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PIECEWISE BEZIER KNOTS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PIECEWISE_BEZIER_KNOTS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PIECEWISE_BEZIER_KNOTS_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Knot Type</b></em>' enumerators.
@@ -163,8 +159,8 @@ public enum IfcKnotType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcKnotType[] VALUES_ARRAY = new IfcKnotType[] { NULL, PIECEWISE_BEZIER_KNOTS, UNIFORM_KNOTS,
-			UNSPECIFIED, QUASI_UNIFORM_KNOTS, };
+	private static final IfcKnotType[] VALUES_ARRAY = new IfcKnotType[] { NULL, UNSPECIFIED, QUASI_UNIFORM_KNOTS,
+			UNIFORM_KNOTS, PIECEWISE_BEZIER_KNOTS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Knot Type</b></em>' enumerators.
@@ -222,14 +218,14 @@ public enum IfcKnotType implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case PIECEWISE_BEZIER_KNOTS_VALUE:
-			return PIECEWISE_BEZIER_KNOTS;
-		case UNIFORM_KNOTS_VALUE:
-			return UNIFORM_KNOTS;
 		case UNSPECIFIED_VALUE:
 			return UNSPECIFIED;
 		case QUASI_UNIFORM_KNOTS_VALUE:
 			return QUASI_UNIFORM_KNOTS;
+		case UNIFORM_KNOTS_VALUE:
+			return UNIFORM_KNOTS;
+		case PIECEWISE_BEZIER_KNOTS_VALUE:
+			return PIECEWISE_BEZIER_KNOTS;
 		}
 		return null;
 	}

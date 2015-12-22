@@ -43,46 +43,6 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>TOILETPAN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TOILETPAN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TOILETPAN(1, "TOILETPAN", "TOILETPAN"),
-
-	/**
-	 * The '<em><b>BATH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BATH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BATH(2, "BATH", "BATH"),
-
-	/**
-	 * The '<em><b>CISTERN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CISTERN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CISTERN(3, "CISTERN", "CISTERN"),
-
-	/**
-	 * The '<em><b>BIDET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BIDET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BIDET(4, "BIDET", "BIDET"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,67 +50,7 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>WASHHANDBASIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WASHHANDBASIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WASHHANDBASIN(6, "WASHHANDBASIN", "WASHHANDBASIN"),
-
-	/**
-	 * The '<em><b>SANITARYFOUNTAIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SANITARYFOUNTAIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SANITARYFOUNTAIN(7, "SANITARYFOUNTAIN", "SANITARYFOUNTAIN"),
-
-	/**
-	 * The '<em><b>URINAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #URINAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	URINAL(8, "URINAL", "URINAL"),
-
-	/**
-	 * The '<em><b>SINK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SINK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SINK(9, "SINK", "SINK"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(10, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>WCSEAT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WCSEAT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WCSEAT(11, "WCSEAT", "WCSEAT"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>SHOWER</b></em>' literal object.
@@ -160,7 +60,87 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SHOWER(12, "SHOWER", "SHOWER");
+	SHOWER(2, "SHOWER", "SHOWER"), /**
+									* The '<em><b>SINK</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #SINK_VALUE
+									* @generated
+									* @ordered
+									*/
+	SINK(3, "SINK", "SINK"), /**
+								* The '<em><b>CISTERN</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #CISTERN_VALUE
+								* @generated
+								* @ordered
+								*/
+	CISTERN(4, "CISTERN", "CISTERN"), /**
+										* The '<em><b>WASHHANDBASIN</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #WASHHANDBASIN_VALUE
+										* @generated
+										* @ordered
+										*/
+	WASHHANDBASIN(5, "WASHHANDBASIN", "WASHHANDBASIN"), /**
+														* The '<em><b>BIDET</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #BIDET_VALUE
+														* @generated
+														* @ordered
+														*/
+	BIDET(6, "BIDET", "BIDET"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>SANITARYFOUNTAIN</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #SANITARYFOUNTAIN_VALUE
+													* @generated
+													* @ordered
+													*/
+	SANITARYFOUNTAIN(8, "SANITARYFOUNTAIN", "SANITARYFOUNTAIN"), /**
+																	* The '<em><b>TOILETPAN</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #TOILETPAN_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	TOILETPAN(9, "TOILETPAN", "TOILETPAN"), /**
+											* The '<em><b>URINAL</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #URINAL_VALUE
+											* @generated
+											* @ordered
+											*/
+	URINAL(10, "URINAL", "URINAL"), /**
+									* The '<em><b>BATH</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #BATH_VALUE
+									* @generated
+									* @ordered
+									*/
+	BATH(11, "BATH", "BATH"), /**
+								* The '<em><b>WCSEAT</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #WCSEAT_VALUE
+								* @generated
+								* @ordered
+								*/
+	WCSEAT(12, "WCSEAT", "WCSEAT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -178,66 +158,6 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>TOILETPAN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TOILETPAN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TOILETPAN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TOILETPAN_VALUE = 1;
-
-	/**
-	 * The '<em><b>BATH</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BATH</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BATH
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BATH_VALUE = 2;
-
-	/**
-	 * The '<em><b>CISTERN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CISTERN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CISTERN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CISTERN_VALUE = 3;
-
-	/**
-	 * The '<em><b>BIDET</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BIDET</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BIDET
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BIDET_VALUE = 4;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -250,97 +170,7 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 5;
-
-	/**
-	 * The '<em><b>WASHHANDBASIN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>WASHHANDBASIN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #WASHHANDBASIN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WASHHANDBASIN_VALUE = 6;
-
-	/**
-	 * The '<em><b>SANITARYFOUNTAIN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SANITARYFOUNTAIN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SANITARYFOUNTAIN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SANITARYFOUNTAIN_VALUE = 7;
-
-	/**
-	 * The '<em><b>URINAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>URINAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #URINAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int URINAL_VALUE = 8;
-
-	/**
-	 * The '<em><b>SINK</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SINK</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SINK
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SINK_VALUE = 9;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 10;
-
-	/**
-	 * The '<em><b>WCSEAT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>WCSEAT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #WCSEAT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WCSEAT_VALUE = 11;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>SHOWER</b></em>' literal value.
@@ -355,7 +185,157 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SHOWER_VALUE = 12;
+	public static final int SHOWER_VALUE = 2;
+
+	/**
+	 * The '<em><b>SINK</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SINK</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SINK
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SINK_VALUE = 3;
+
+	/**
+	 * The '<em><b>CISTERN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CISTERN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CISTERN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CISTERN_VALUE = 4;
+
+	/**
+	 * The '<em><b>WASHHANDBASIN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>WASHHANDBASIN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #WASHHANDBASIN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WASHHANDBASIN_VALUE = 5;
+
+	/**
+	 * The '<em><b>BIDET</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BIDET</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BIDET
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BIDET_VALUE = 6;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 7;
+
+	/**
+	 * The '<em><b>SANITARYFOUNTAIN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SANITARYFOUNTAIN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SANITARYFOUNTAIN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SANITARYFOUNTAIN_VALUE = 8;
+
+	/**
+	 * The '<em><b>TOILETPAN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TOILETPAN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TOILETPAN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TOILETPAN_VALUE = 9;
+
+	/**
+	 * The '<em><b>URINAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>URINAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #URINAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int URINAL_VALUE = 10;
+
+	/**
+	 * The '<em><b>BATH</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BATH</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BATH
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BATH_VALUE = 11;
+
+	/**
+	 * The '<em><b>WCSEAT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>WCSEAT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #WCSEAT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WCSEAT_VALUE = 12;
 
 	/**
 	 * An array of all the '<em><b>Ifc Sanitary Terminal Type Enum</b></em>' enumerators.
@@ -363,8 +343,9 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSanitaryTerminalTypeEnum[] VALUES_ARRAY = new IfcSanitaryTerminalTypeEnum[] { NULL, TOILETPAN, BATH, CISTERN, BIDET, NOTDEFINED, WASHHANDBASIN, SANITARYFOUNTAIN, URINAL, SINK, USERDEFINED,
-			WCSEAT, SHOWER, };
+	private static final IfcSanitaryTerminalTypeEnum[] VALUES_ARRAY = new IfcSanitaryTerminalTypeEnum[] { NULL,
+			NOTDEFINED, SHOWER, SINK, CISTERN, WASHHANDBASIN, BIDET, USERDEFINED, SANITARYFOUNTAIN, TOILETPAN, URINAL,
+			BATH, WCSEAT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sanitary Terminal Type Enum</b></em>' enumerators.
@@ -372,7 +353,8 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSanitaryTerminalTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSanitaryTerminalTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Sanitary Terminal Type Enum</b></em>' literal with the specified literal value.
@@ -422,30 +404,30 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case TOILETPAN_VALUE:
-			return TOILETPAN;
-		case BATH_VALUE:
-			return BATH;
-		case CISTERN_VALUE:
-			return CISTERN;
-		case BIDET_VALUE:
-			return BIDET;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case WASHHANDBASIN_VALUE:
-			return WASHHANDBASIN;
-		case SANITARYFOUNTAIN_VALUE:
-			return SANITARYFOUNTAIN;
-		case URINAL_VALUE:
-			return URINAL;
-		case SINK_VALUE:
-			return SINK;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case WCSEAT_VALUE:
-			return WCSEAT;
 		case SHOWER_VALUE:
 			return SHOWER;
+		case SINK_VALUE:
+			return SINK;
+		case CISTERN_VALUE:
+			return CISTERN;
+		case WASHHANDBASIN_VALUE:
+			return WASHHANDBASIN;
+		case BIDET_VALUE:
+			return BIDET;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case SANITARYFOUNTAIN_VALUE:
+			return SANITARYFOUNTAIN;
+		case TOILETPAN_VALUE:
+			return TOILETPAN;
+		case URINAL_VALUE:
+			return URINAL;
+		case BATH_VALUE:
+			return BATH;
+		case WCSEAT_VALUE:
+			return WCSEAT;
 		}
 		return null;
 	}

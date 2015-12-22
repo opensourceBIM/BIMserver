@@ -53,16 +53,6 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	SITE(1, "SITE", "SITE"),
 
 	/**
-	 * The '<em><b>HOME</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HOME_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HOME(2, "HOME", "HOME"),
-
-	/**
 	 * The '<em><b>OFFICE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +60,7 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OFFICE(3, "OFFICE", "OFFICE"),
+	OFFICE(2, "OFFICE", "OFFICE"),
 
 	/**
 	 * The '<em><b>DISTRIBUTIONPOINT</b></em>' literal object.
@@ -80,7 +70,7 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DISTRIBUTIONPOINT(4, "DISTRIBUTIONPOINT", "DISTRIBUTIONPOINT"),
+	DISTRIBUTIONPOINT(3, "DISTRIBUTIONPOINT", "DISTRIBUTIONPOINT"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -90,7 +80,15 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>HOME</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #HOME_VALUE
+													* @generated
+													* @ordered
+													*/
+	HOME(5, "HOME", "HOME");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -123,21 +121,6 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	public static final int SITE_VALUE = 1;
 
 	/**
-	 * The '<em><b>HOME</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HOME</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HOME
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HOME_VALUE = 2;
-
-	/**
 	 * The '<em><b>OFFICE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -150,7 +133,7 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OFFICE_VALUE = 3;
+	public static final int OFFICE_VALUE = 2;
 
 	/**
 	 * The '<em><b>DISTRIBUTIONPOINT</b></em>' literal value.
@@ -165,7 +148,7 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISTRIBUTIONPOINT_VALUE = 4;
+	public static final int DISTRIBUTIONPOINT_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -180,7 +163,22 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 5;
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>HOME</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HOME</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HOME
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HOME_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Address Type Enum</b></em>' enumerators.
@@ -188,7 +186,8 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAddressTypeEnum[] VALUES_ARRAY = new IfcAddressTypeEnum[] { NULL, SITE, HOME, OFFICE, DISTRIBUTIONPOINT, USERDEFINED, };
+	private static final IfcAddressTypeEnum[] VALUES_ARRAY = new IfcAddressTypeEnum[] { NULL, SITE, OFFICE,
+			DISTRIBUTIONPOINT, USERDEFINED, HOME, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Address Type Enum</b></em>' enumerators.
@@ -248,14 +247,14 @@ public enum IfcAddressTypeEnum implements Enumerator {
 			return NULL;
 		case SITE_VALUE:
 			return SITE;
-		case HOME_VALUE:
-			return HOME;
 		case OFFICE_VALUE:
 			return OFFICE;
 		case DISTRIBUTIONPOINT_VALUE:
 			return DISTRIBUTIONPOINT;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case HOME_VALUE:
+			return HOME;
 		}
 		return null;
 	}

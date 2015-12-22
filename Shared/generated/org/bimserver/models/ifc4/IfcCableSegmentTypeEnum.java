@@ -53,46 +53,6 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>CONDUCTORSEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONDUCTORSEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONDUCTORSEGMENT(2, "CONDUCTORSEGMENT", "CONDUCTORSEGMENT"),
-
-	/**
-	 * The '<em><b>CABLESEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CABLESEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CABLESEGMENT(3, "CABLESEGMENT", "CABLESEGMENT"),
-
-	/**
-	 * The '<em><b>BUSBARSEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BUSBARSEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BUSBARSEGMENT(4, "BUSBARSEGMENT", "BUSBARSEGMENT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>CORESEGMENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +60,39 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CORESEGMENT(6, "CORESEGMENT", "CORESEGMENT");
+	CORESEGMENT(2, "CORESEGMENT", "CORESEGMENT"), /**
+													* The '<em><b>CABLESEGMENT</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #CABLESEGMENT_VALUE
+													* @generated
+													* @ordered
+													*/
+	CABLESEGMENT(3, "CABLESEGMENT", "CABLESEGMENT"), /**
+														* The '<em><b>BUSBARSEGMENT</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #BUSBARSEGMENT_VALUE
+														* @generated
+														* @ordered
+														*/
+	BUSBARSEGMENT(4, "BUSBARSEGMENT", "BUSBARSEGMENT"), /**
+														* The '<em><b>USERDEFINED</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #USERDEFINED_VALUE
+														* @generated
+														* @ordered
+														*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>CONDUCTORSEGMENT</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #CONDUCTORSEGMENT_VALUE
+													* @generated
+													* @ordered
+													*/
+	CONDUCTORSEGMENT(6, "CONDUCTORSEGMENT", "CONDUCTORSEGMENT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -133,19 +125,19 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>CONDUCTORSEGMENT</b></em>' literal value.
+	 * The '<em><b>CORESEGMENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CONDUCTORSEGMENT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CORESEGMENT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONDUCTORSEGMENT
+	 * @see #CORESEGMENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONDUCTORSEGMENT_VALUE = 2;
+	public static final int CORESEGMENT_VALUE = 2;
 
 	/**
 	 * The '<em><b>CABLESEGMENT</b></em>' literal value.
@@ -193,19 +185,19 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 5;
 
 	/**
-	 * The '<em><b>CORESEGMENT</b></em>' literal value.
+	 * The '<em><b>CONDUCTORSEGMENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CORESEGMENT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CONDUCTORSEGMENT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CORESEGMENT
+	 * @see #CONDUCTORSEGMENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CORESEGMENT_VALUE = 6;
+	public static final int CONDUCTORSEGMENT_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Cable Segment Type Enum</b></em>' enumerators.
@@ -214,7 +206,7 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcCableSegmentTypeEnum[] VALUES_ARRAY = new IfcCableSegmentTypeEnum[] { NULL, NOTDEFINED,
-			CONDUCTORSEGMENT, CABLESEGMENT, BUSBARSEGMENT, USERDEFINED, CORESEGMENT, };
+			CORESEGMENT, CABLESEGMENT, BUSBARSEGMENT, USERDEFINED, CONDUCTORSEGMENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cable Segment Type Enum</b></em>' enumerators.
@@ -275,16 +267,16 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case CONDUCTORSEGMENT_VALUE:
-			return CONDUCTORSEGMENT;
+		case CORESEGMENT_VALUE:
+			return CORESEGMENT;
 		case CABLESEGMENT_VALUE:
 			return CABLESEGMENT;
 		case BUSBARSEGMENT_VALUE:
 			return BUSBARSEGMENT;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case CORESEGMENT_VALUE:
-			return CORESEGMENT;
+		case CONDUCTORSEGMENT_VALUE:
+			return CONDUCTORSEGMENT;
 		}
 		return null;
 	}

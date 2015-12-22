@@ -43,16 +43,6 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>GULLYTRAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GULLYTRAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GULLYTRAP(1, "GULLYTRAP", "GULLYTRAP"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,57 +50,7 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>WASTETRAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WASTETRAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WASTETRAP(3, "WASTETRAP", "WASTETRAP"),
-
-	/**
-	 * The '<em><b>FLOORTRAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOORTRAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOORTRAP(4, "FLOORTRAP", "FLOORTRAP"),
-
-	/**
-	 * The '<em><b>ROOFDRAIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROOFDRAIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROOFDRAIN(5, "ROOFDRAIN", "ROOFDRAIN"),
-
-	/**
-	 * The '<em><b>GULLYSUMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GULLYSUMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GULLYSUMP(6, "GULLYSUMP", "GULLYSUMP"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>WASTEDISPOSALUNIT</b></em>' literal object.
@@ -120,7 +60,39 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WASTEDISPOSALUNIT(8, "WASTEDISPOSALUNIT", "WASTEDISPOSALUNIT"),
+	WASTEDISPOSALUNIT(2, "WASTEDISPOSALUNIT", "WASTEDISPOSALUNIT"), /**
+																	* The '<em><b>GULLYSUMP</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #GULLYSUMP_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	GULLYSUMP(3, "GULLYSUMP", "GULLYSUMP"), /**
+											* The '<em><b>ROOFDRAIN</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #ROOFDRAIN_VALUE
+											* @generated
+											* @ordered
+											*/
+	ROOFDRAIN(4, "ROOFDRAIN", "ROOFDRAIN"), /**
+											* The '<em><b>WASTETRAP</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #WASTETRAP_VALUE
+											* @generated
+											* @ordered
+											*/
+	WASTETRAP(5, "WASTETRAP", "WASTETRAP"), /**
+											* The '<em><b>USERDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #USERDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>FLOORWASTE</b></em>' literal object.
@@ -130,7 +102,23 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLOORWASTE(9, "FLOORWASTE", "FLOORWASTE");
+	FLOORWASTE(7, "FLOORWASTE", "FLOORWASTE"), /**
+												* The '<em><b>FLOORTRAP</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #FLOORTRAP_VALUE
+												* @generated
+												* @ordered
+												*/
+	FLOORTRAP(8, "FLOORTRAP", "FLOORTRAP"), /**
+											* The '<em><b>GULLYTRAP</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #GULLYTRAP_VALUE
+											* @generated
+											* @ordered
+											*/
+	GULLYTRAP(9, "GULLYTRAP", "GULLYTRAP");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,21 +136,6 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>GULLYTRAP</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GULLYTRAP</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GULLYTRAP
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GULLYTRAP_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -175,82 +148,7 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>WASTETRAP</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>WASTETRAP</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #WASTETRAP
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WASTETRAP_VALUE = 3;
-
-	/**
-	 * The '<em><b>FLOORTRAP</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FLOORTRAP</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FLOORTRAP
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FLOORTRAP_VALUE = 4;
-
-	/**
-	 * The '<em><b>ROOFDRAIN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ROOFDRAIN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ROOFDRAIN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ROOFDRAIN_VALUE = 5;
-
-	/**
-	 * The '<em><b>GULLYSUMP</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GULLYSUMP</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GULLYSUMP
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GULLYSUMP_VALUE = 6;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 7;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>WASTEDISPOSALUNIT</b></em>' literal value.
@@ -265,7 +163,67 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WASTEDISPOSALUNIT_VALUE = 8;
+	public static final int WASTEDISPOSALUNIT_VALUE = 2;
+
+	/**
+	 * The '<em><b>GULLYSUMP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GULLYSUMP</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GULLYSUMP
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GULLYSUMP_VALUE = 3;
+
+	/**
+	 * The '<em><b>ROOFDRAIN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ROOFDRAIN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ROOFDRAIN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ROOFDRAIN_VALUE = 4;
+
+	/**
+	 * The '<em><b>WASTETRAP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>WASTETRAP</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #WASTETRAP
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WASTETRAP_VALUE = 5;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * The '<em><b>FLOORWASTE</b></em>' literal value.
@@ -280,7 +238,37 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOORWASTE_VALUE = 9;
+	public static final int FLOORWASTE_VALUE = 7;
+
+	/**
+	 * The '<em><b>FLOORTRAP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FLOORTRAP</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FLOORTRAP
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FLOORTRAP_VALUE = 8;
+
+	/**
+	 * The '<em><b>GULLYTRAP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GULLYTRAP</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GULLYTRAP
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GULLYTRAP_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Waste Terminal Type Enum</b></em>' enumerators.
@@ -288,8 +276,8 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWasteTerminalTypeEnum[] VALUES_ARRAY = new IfcWasteTerminalTypeEnum[] { NULL, GULLYTRAP,
-			NOTDEFINED, WASTETRAP, FLOORTRAP, ROOFDRAIN, GULLYSUMP, USERDEFINED, WASTEDISPOSALUNIT, FLOORWASTE, };
+	private static final IfcWasteTerminalTypeEnum[] VALUES_ARRAY = new IfcWasteTerminalTypeEnum[] { NULL, NOTDEFINED,
+			WASTEDISPOSALUNIT, GULLYSUMP, ROOFDRAIN, WASTETRAP, USERDEFINED, FLOORWASTE, FLOORTRAP, GULLYTRAP, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Waste Terminal Type Enum</b></em>' enumerators.
@@ -348,24 +336,24 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case GULLYTRAP_VALUE:
-			return GULLYTRAP;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case WASTETRAP_VALUE:
-			return WASTETRAP;
-		case FLOORTRAP_VALUE:
-			return FLOORTRAP;
-		case ROOFDRAIN_VALUE:
-			return ROOFDRAIN;
-		case GULLYSUMP_VALUE:
-			return GULLYSUMP;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case WASTEDISPOSALUNIT_VALUE:
 			return WASTEDISPOSALUNIT;
+		case GULLYSUMP_VALUE:
+			return GULLYSUMP;
+		case ROOFDRAIN_VALUE:
+			return ROOFDRAIN;
+		case WASTETRAP_VALUE:
+			return WASTETRAP;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case FLOORWASTE_VALUE:
 			return FLOORWASTE;
+		case FLOORTRAP_VALUE:
+			return FLOORTRAP;
+		case GULLYTRAP_VALUE:
+			return GULLYTRAP;
 		}
 		return null;
 	}

@@ -53,36 +53,6 @@ public enum IfcActionTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>EXTRAORDINARY A</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTRAORDINARY_A_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTRAORDINARY_A(2, "EXTRAORDINARY_A", "EXTRAORDINARY_A"),
-
-	/**
-	 * The '<em><b>PERMANENT G</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PERMANENT_G_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PERMANENT_G(3, "PERMANENT_G", "PERMANENT_G"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>VARIABLE Q</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +60,31 @@ public enum IfcActionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VARIABLE_Q(5, "VARIABLE_Q", "VARIABLE_Q");
+	VARIABLE_Q(2, "VARIABLE_Q", "VARIABLE_Q"), /**
+												* The '<em><b>USERDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #USERDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>EXTRAORDINARY A</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #EXTRAORDINARY_A_VALUE
+													* @generated
+													* @ordered
+													*/
+	EXTRAORDINARY_A(4, "EXTRAORDINARY_A", "EXTRAORDINARY_A"), /**
+																* The '<em><b>PERMANENT G</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #PERMANENT_G_VALUE
+																* @generated
+																* @ordered
+																*/
+	PERMANENT_G(5, "PERMANENT_G", "PERMANENT_G");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -123,34 +117,19 @@ public enum IfcActionTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>EXTRAORDINARY A</b></em>' literal value.
+	 * The '<em><b>VARIABLE Q</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EXTRAORDINARY A</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>VARIABLE Q</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EXTRAORDINARY_A
+	 * @see #VARIABLE_Q
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXTRAORDINARY_A_VALUE = 2;
-
-	/**
-	 * The '<em><b>PERMANENT G</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PERMANENT G</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PERMANENT_G
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PERMANENT_G_VALUE = 3;
+	public static final int VARIABLE_Q_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -165,22 +144,37 @@ public enum IfcActionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int USERDEFINED_VALUE = 3;
 
 	/**
-	 * The '<em><b>VARIABLE Q</b></em>' literal value.
+	 * The '<em><b>EXTRAORDINARY A</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>VARIABLE Q</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>EXTRAORDINARY A</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VARIABLE_Q
+	 * @see #EXTRAORDINARY_A
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VARIABLE_Q_VALUE = 5;
+	public static final int EXTRAORDINARY_A_VALUE = 4;
+
+	/**
+	 * The '<em><b>PERMANENT G</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PERMANENT G</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PERMANENT_G
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PERMANENT_G_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Action Type Enum</b></em>' enumerators.
@@ -188,7 +182,8 @@ public enum IfcActionTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcActionTypeEnum[] VALUES_ARRAY = new IfcActionTypeEnum[] { NULL, NOTDEFINED, EXTRAORDINARY_A, PERMANENT_G, USERDEFINED, VARIABLE_Q, };
+	private static final IfcActionTypeEnum[] VALUES_ARRAY = new IfcActionTypeEnum[] { NULL, NOTDEFINED, VARIABLE_Q,
+			USERDEFINED, EXTRAORDINARY_A, PERMANENT_G, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Action Type Enum</b></em>' enumerators.
@@ -248,14 +243,14 @@ public enum IfcActionTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case VARIABLE_Q_VALUE:
+			return VARIABLE_Q;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case EXTRAORDINARY_A_VALUE:
 			return EXTRAORDINARY_A;
 		case PERMANENT_G_VALUE:
 			return PERMANENT_G;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case VARIABLE_Q_VALUE:
-			return VARIABLE_Q;
 		}
 		return null;
 	}

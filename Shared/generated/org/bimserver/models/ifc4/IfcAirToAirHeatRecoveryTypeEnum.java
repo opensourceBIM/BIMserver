@@ -43,56 +43,6 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>THERMOSIPHONCOILTYPEHEATEXCHANGERS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMOSIPHONCOILTYPEHEATEXCHANGERS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THERMOSIPHONCOILTYPEHEATEXCHANGERS(1, "THERMOSIPHONCOILTYPEHEATEXCHANGERS", "THERMOSIPHONCOILTYPEHEATEXCHANGERS"),
-
-	/**
-	 * The '<em><b>TWINTOWERENTHALPYRECOVERYLOOPS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWINTOWERENTHALPYRECOVERYLOOPS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWINTOWERENTHALPYRECOVERYLOOPS(2, "TWINTOWERENTHALPYRECOVERYLOOPS", "TWINTOWERENTHALPYRECOVERYLOOPS"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>HEATPIPE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HEATPIPE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HEATPIPE(4, "HEATPIPE", "HEATPIPE"),
-
-	/**
-	 * The '<em><b>FIXEDPLATECROSSFLOWEXCHANGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIXEDPLATECROSSFLOWEXCHANGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIXEDPLATECROSSFLOWEXCHANGER(5, "FIXEDPLATECROSSFLOWEXCHANGER", "FIXEDPLATECROSSFLOWEXCHANGER"),
-
-	/**
 	 * The '<em><b>RUNAROUNDCOILLOOP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,17 +50,15 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RUNAROUNDCOILLOOP(6, "RUNAROUNDCOILLOOP", "RUNAROUNDCOILLOOP"),
-
-	/**
-	 * The '<em><b>ROTARYWHEEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROTARYWHEEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROTARYWHEEL(7, "ROTARYWHEEL", "ROTARYWHEEL"),
+	RUNAROUNDCOILLOOP(1, "RUNAROUNDCOILLOOP", "RUNAROUNDCOILLOOP"), /**
+																	* The '<em><b>NOTDEFINED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #NOTDEFINED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>FIXEDPLATECOUNTERFLOWEXCHANGER</b></em>' literal object.
@@ -120,27 +68,7 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FIXEDPLATECOUNTERFLOWEXCHANGER(8, "FIXEDPLATECOUNTERFLOWEXCHANGER", "FIXEDPLATECOUNTERFLOWEXCHANGER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(9, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>FIXEDPLATEPARALLELFLOWEXCHANGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIXEDPLATEPARALLELFLOWEXCHANGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIXEDPLATEPARALLELFLOWEXCHANGER(10, "FIXEDPLATEPARALLELFLOWEXCHANGER", "FIXEDPLATEPARALLELFLOWEXCHANGER"),
+	FIXEDPLATECOUNTERFLOWEXCHANGER(3, "FIXEDPLATECOUNTERFLOWEXCHANGER", "FIXEDPLATECOUNTERFLOWEXCHANGER"),
 
 	/**
 	 * The '<em><b>THERMOSIPHONSEALEDTUBEHEATEXCHANGERS</b></em>' literal object.
@@ -150,8 +78,64 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	THERMOSIPHONSEALEDTUBEHEATEXCHANGERS(11, "THERMOSIPHONSEALEDTUBEHEATEXCHANGERS",
-			"THERMOSIPHONSEALEDTUBEHEATEXCHANGERS");
+	THERMOSIPHONSEALEDTUBEHEATEXCHANGERS(4, "THERMOSIPHONSEALEDTUBEHEATEXCHANGERS",
+			"THERMOSIPHONSEALEDTUBEHEATEXCHANGERS"), /**
+														* The '<em><b>FIXEDPLATECROSSFLOWEXCHANGER</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #FIXEDPLATECROSSFLOWEXCHANGER_VALUE
+														* @generated
+														* @ordered
+														*/
+	FIXEDPLATECROSSFLOWEXCHANGER(5, "FIXEDPLATECROSSFLOWEXCHANGER", "FIXEDPLATECROSSFLOWEXCHANGER"), /**
+																										* The '<em><b>USERDEFINED</b></em>' literal object.
+																										* <!-- begin-user-doc -->
+																										* <!-- end-user-doc -->
+																										* @see #USERDEFINED_VALUE
+																										* @generated
+																										* @ordered
+																										*/
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>TWINTOWERENTHALPYRECOVERYLOOPS</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #TWINTOWERENTHALPYRECOVERYLOOPS_VALUE
+													* @generated
+													* @ordered
+													*/
+	TWINTOWERENTHALPYRECOVERYLOOPS(7, "TWINTOWERENTHALPYRECOVERYLOOPS", "TWINTOWERENTHALPYRECOVERYLOOPS"), /**
+																											* The '<em><b>FIXEDPLATEPARALLELFLOWEXCHANGER</b></em>' literal object.
+																											* <!-- begin-user-doc -->
+																											* <!-- end-user-doc -->
+																											* @see #FIXEDPLATEPARALLELFLOWEXCHANGER_VALUE
+																											* @generated
+																											* @ordered
+																											*/
+	FIXEDPLATEPARALLELFLOWEXCHANGER(8, "FIXEDPLATEPARALLELFLOWEXCHANGER", "FIXEDPLATEPARALLELFLOWEXCHANGER"), /**
+																												* The '<em><b>ROTARYWHEEL</b></em>' literal object.
+																												* <!-- begin-user-doc -->
+																												* <!-- end-user-doc -->
+																												* @see #ROTARYWHEEL_VALUE
+																												* @generated
+																												* @ordered
+																												*/
+	ROTARYWHEEL(9, "ROTARYWHEEL", "ROTARYWHEEL"), /**
+													* The '<em><b>HEATPIPE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #HEATPIPE_VALUE
+													* @generated
+													* @ordered
+													*/
+	HEATPIPE(10, "HEATPIPE", "HEATPIPE"), /**
+											* The '<em><b>THERMOSIPHONCOILTYPEHEATEXCHANGERS</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #THERMOSIPHONCOILTYPEHEATEXCHANGERS_VALUE
+											* @generated
+											* @ordered
+											*/
+	THERMOSIPHONCOILTYPEHEATEXCHANGERS(11, "THERMOSIPHONCOILTYPEHEATEXCHANGERS", "THERMOSIPHONCOILTYPEHEATEXCHANGERS");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -169,34 +153,19 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>THERMOSIPHONCOILTYPEHEATEXCHANGERS</b></em>' literal value.
+	 * The '<em><b>RUNAROUNDCOILLOOP</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>THERMOSIPHONCOILTYPEHEATEXCHANGERS</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>RUNAROUNDCOILLOOP</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #THERMOSIPHONCOILTYPEHEATEXCHANGERS
+	 * @see #RUNAROUNDCOILLOOP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THERMOSIPHONCOILTYPEHEATEXCHANGERS_VALUE = 1;
-
-	/**
-	 * The '<em><b>TWINTOWERENTHALPYRECOVERYLOOPS</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TWINTOWERENTHALPYRECOVERYLOOPS</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TWINTOWERENTHALPYRECOVERYLOOPS
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TWINTOWERENTHALPYRECOVERYLOOPS_VALUE = 2;
+	public static final int RUNAROUNDCOILLOOP_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -211,22 +180,37 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>HEATPIPE</b></em>' literal value.
+	 * The '<em><b>FIXEDPLATECOUNTERFLOWEXCHANGER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>HEATPIPE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>FIXEDPLATECOUNTERFLOWEXCHANGER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HEATPIPE
+	 * @see #FIXEDPLATECOUNTERFLOWEXCHANGER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HEATPIPE_VALUE = 4;
+	public static final int FIXEDPLATECOUNTERFLOWEXCHANGER_VALUE = 3;
+
+	/**
+	 * The '<em><b>THERMOSIPHONSEALEDTUBEHEATEXCHANGERS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>THERMOSIPHONSEALEDTUBEHEATEXCHANGERS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #THERMOSIPHONSEALEDTUBEHEATEXCHANGERS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int THERMOSIPHONSEALEDTUBEHEATEXCHANGERS_VALUE = 4;
 
 	/**
 	 * The '<em><b>FIXEDPLATECROSSFLOWEXCHANGER</b></em>' literal value.
@@ -244,51 +228,6 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	public static final int FIXEDPLATECROSSFLOWEXCHANGER_VALUE = 5;
 
 	/**
-	 * The '<em><b>RUNAROUNDCOILLOOP</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>RUNAROUNDCOILLOOP</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #RUNAROUNDCOILLOOP
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RUNAROUNDCOILLOOP_VALUE = 6;
-
-	/**
-	 * The '<em><b>ROTARYWHEEL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ROTARYWHEEL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ROTARYWHEEL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ROTARYWHEEL_VALUE = 7;
-
-	/**
-	 * The '<em><b>FIXEDPLATECOUNTERFLOWEXCHANGER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FIXEDPLATECOUNTERFLOWEXCHANGER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FIXEDPLATECOUNTERFLOWEXCHANGER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FIXEDPLATECOUNTERFLOWEXCHANGER_VALUE = 8;
-
-	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -301,7 +240,22 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 9;
+	public static final int USERDEFINED_VALUE = 6;
+
+	/**
+	 * The '<em><b>TWINTOWERENTHALPYRECOVERYLOOPS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TWINTOWERENTHALPYRECOVERYLOOPS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TWINTOWERENTHALPYRECOVERYLOOPS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TWINTOWERENTHALPYRECOVERYLOOPS_VALUE = 7;
 
 	/**
 	 * The '<em><b>FIXEDPLATEPARALLELFLOWEXCHANGER</b></em>' literal value.
@@ -316,22 +270,52 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FIXEDPLATEPARALLELFLOWEXCHANGER_VALUE = 10;
+	public static final int FIXEDPLATEPARALLELFLOWEXCHANGER_VALUE = 8;
 
 	/**
-	 * The '<em><b>THERMOSIPHONSEALEDTUBEHEATEXCHANGERS</b></em>' literal value.
+	 * The '<em><b>ROTARYWHEEL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>THERMOSIPHONSEALEDTUBEHEATEXCHANGERS</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ROTARYWHEEL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #THERMOSIPHONSEALEDTUBEHEATEXCHANGERS
+	 * @see #ROTARYWHEEL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THERMOSIPHONSEALEDTUBEHEATEXCHANGERS_VALUE = 11;
+	public static final int ROTARYWHEEL_VALUE = 9;
+
+	/**
+	 * The '<em><b>HEATPIPE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HEATPIPE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HEATPIPE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HEATPIPE_VALUE = 10;
+
+	/**
+	 * The '<em><b>THERMOSIPHONCOILTYPEHEATEXCHANGERS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>THERMOSIPHONCOILTYPEHEATEXCHANGERS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #THERMOSIPHONCOILTYPEHEATEXCHANGERS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int THERMOSIPHONCOILTYPEHEATEXCHANGERS_VALUE = 11;
 
 	/**
 	 * An array of all the '<em><b>Ifc Air To Air Heat Recovery Type Enum</b></em>' enumerators.
@@ -340,9 +324,9 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcAirToAirHeatRecoveryTypeEnum[] VALUES_ARRAY = new IfcAirToAirHeatRecoveryTypeEnum[] { NULL,
-			THERMOSIPHONCOILTYPEHEATEXCHANGERS, TWINTOWERENTHALPYRECOVERYLOOPS, NOTDEFINED, HEATPIPE,
-			FIXEDPLATECROSSFLOWEXCHANGER, RUNAROUNDCOILLOOP, ROTARYWHEEL, FIXEDPLATECOUNTERFLOWEXCHANGER, USERDEFINED,
-			FIXEDPLATEPARALLELFLOWEXCHANGER, THERMOSIPHONSEALEDTUBEHEATEXCHANGERS, };
+			RUNAROUNDCOILLOOP, NOTDEFINED, FIXEDPLATECOUNTERFLOWEXCHANGER, THERMOSIPHONSEALEDTUBEHEATEXCHANGERS,
+			FIXEDPLATECROSSFLOWEXCHANGER, USERDEFINED, TWINTOWERENTHALPYRECOVERYLOOPS, FIXEDPLATEPARALLELFLOWEXCHANGER,
+			ROTARYWHEEL, HEATPIPE, THERMOSIPHONCOILTYPEHEATEXCHANGERS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Air To Air Heat Recovery Type Enum</b></em>' enumerators.
@@ -401,28 +385,28 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case THERMOSIPHONCOILTYPEHEATEXCHANGERS_VALUE:
-			return THERMOSIPHONCOILTYPEHEATEXCHANGERS;
-		case TWINTOWERENTHALPYRECOVERYLOOPS_VALUE:
-			return TWINTOWERENTHALPYRECOVERYLOOPS;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case HEATPIPE_VALUE:
-			return HEATPIPE;
-		case FIXEDPLATECROSSFLOWEXCHANGER_VALUE:
-			return FIXEDPLATECROSSFLOWEXCHANGER;
 		case RUNAROUNDCOILLOOP_VALUE:
 			return RUNAROUNDCOILLOOP;
-		case ROTARYWHEEL_VALUE:
-			return ROTARYWHEEL;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case FIXEDPLATECOUNTERFLOWEXCHANGER_VALUE:
 			return FIXEDPLATECOUNTERFLOWEXCHANGER;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case FIXEDPLATEPARALLELFLOWEXCHANGER_VALUE:
-			return FIXEDPLATEPARALLELFLOWEXCHANGER;
 		case THERMOSIPHONSEALEDTUBEHEATEXCHANGERS_VALUE:
 			return THERMOSIPHONSEALEDTUBEHEATEXCHANGERS;
+		case FIXEDPLATECROSSFLOWEXCHANGER_VALUE:
+			return FIXEDPLATECROSSFLOWEXCHANGER;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case TWINTOWERENTHALPYRECOVERYLOOPS_VALUE:
+			return TWINTOWERENTHALPYRECOVERYLOOPS;
+		case FIXEDPLATEPARALLELFLOWEXCHANGER_VALUE:
+			return FIXEDPLATEPARALLELFLOWEXCHANGER;
+		case ROTARYWHEEL_VALUE:
+			return ROTARYWHEEL;
+		case HEATPIPE_VALUE:
+			return HEATPIPE;
+		case THERMOSIPHONCOILTYPEHEATEXCHANGERS_VALUE:
+			return THERMOSIPHONCOILTYPEHEATEXCHANGERS;
 		}
 		return null;
 	}

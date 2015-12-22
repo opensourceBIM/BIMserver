@@ -43,16 +43,6 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>TRUE LENGTH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRUE_LENGTH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRUE_LENGTH(1, "TRUE_LENGTH", "TRUE_LENGTH"),
-
-	/**
 	 * The '<em><b>PROJECTED LENGTH</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,15 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PROJECTED_LENGTH(2, "PROJECTED_LENGTH", "PROJECTED_LENGTH");
+	PROJECTED_LENGTH(1, "PROJECTED_LENGTH", "PROJECTED_LENGTH"), /**
+																	* The '<em><b>TRUE LENGTH</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #TRUE_LENGTH_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	TRUE_LENGTH(2, "TRUE_LENGTH", "TRUE_LENGTH");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -78,21 +76,6 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>TRUE LENGTH</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TRUE LENGTH</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TRUE_LENGTH
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TRUE_LENGTH_VALUE = 1;
-
-	/**
 	 * The '<em><b>PROJECTED LENGTH</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -105,7 +88,22 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROJECTED_LENGTH_VALUE = 2;
+	public static final int PROJECTED_LENGTH_VALUE = 1;
+
+	/**
+	 * The '<em><b>TRUE LENGTH</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TRUE LENGTH</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TRUE_LENGTH
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TRUE_LENGTH_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Ifc Projected Or True Length Enum</b></em>' enumerators.
@@ -114,7 +112,7 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcProjectedOrTrueLengthEnum[] VALUES_ARRAY = new IfcProjectedOrTrueLengthEnum[] { NULL,
-			TRUE_LENGTH, PROJECTED_LENGTH, };
+			PROJECTED_LENGTH, TRUE_LENGTH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Projected Or True Length Enum</b></em>' enumerators.
@@ -173,10 +171,10 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case TRUE_LENGTH_VALUE:
-			return TRUE_LENGTH;
 		case PROJECTED_LENGTH_VALUE:
 			return PROJECTED_LENGTH;
+		case TRUE_LENGTH_VALUE:
+			return TRUE_LENGTH;
 		}
 		return null;
 	}

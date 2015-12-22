@@ -43,36 +43,6 @@ public enum IfcTransitionCode implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>CONTSAMEGRADIENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTSAMEGRADIENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTSAMEGRADIENT(1, "CONTSAMEGRADIENT", "CONTSAMEGRADIENT"),
-
-	/**
-	 * The '<em><b>CONTSAMEGRADIENTSAMECURVATURE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTSAMEGRADIENTSAMECURVATURE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTSAMEGRADIENTSAMECURVATURE(2, "CONTSAMEGRADIENTSAMECURVATURE", "CONTSAMEGRADIENTSAMECURVATURE"),
-
-	/**
-	 * The '<em><b>CONTINUOUS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTINUOUS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTINUOUS(3, "CONTINUOUS", "CONTINUOUS"),
-
-	/**
 	 * The '<em><b>DISCONTINUOUS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +50,31 @@ public enum IfcTransitionCode implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DISCONTINUOUS(4, "DISCONTINUOUS", "DISCONTINUOUS");
+	DISCONTINUOUS(1, "DISCONTINUOUS", "DISCONTINUOUS"), /**
+														* The '<em><b>CONTSAMEGRADIENTSAMECURVATURE</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #CONTSAMEGRADIENTSAMECURVATURE_VALUE
+														* @generated
+														* @ordered
+														*/
+	CONTSAMEGRADIENTSAMECURVATURE(2, "CONTSAMEGRADIENTSAMECURVATURE", "CONTSAMEGRADIENTSAMECURVATURE"), /**
+																										* The '<em><b>CONTINUOUS</b></em>' literal object.
+																										* <!-- begin-user-doc -->
+																										* <!-- end-user-doc -->
+																										* @see #CONTINUOUS_VALUE
+																										* @generated
+																										* @ordered
+																										*/
+	CONTINUOUS(3, "CONTINUOUS", "CONTINUOUS"), /**
+												* The '<em><b>CONTSAMEGRADIENT</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #CONTSAMEGRADIENT_VALUE
+												* @generated
+												* @ordered
+												*/
+	CONTSAMEGRADIENT(4, "CONTSAMEGRADIENT", "CONTSAMEGRADIENT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -98,19 +92,19 @@ public enum IfcTransitionCode implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>CONTSAMEGRADIENT</b></em>' literal value.
+	 * The '<em><b>DISCONTINUOUS</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CONTSAMEGRADIENT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DISCONTINUOUS</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONTSAMEGRADIENT
+	 * @see #DISCONTINUOUS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTSAMEGRADIENT_VALUE = 1;
+	public static final int DISCONTINUOUS_VALUE = 1;
 
 	/**
 	 * The '<em><b>CONTSAMEGRADIENTSAMECURVATURE</b></em>' literal value.
@@ -143,19 +137,19 @@ public enum IfcTransitionCode implements Enumerator {
 	public static final int CONTINUOUS_VALUE = 3;
 
 	/**
-	 * The '<em><b>DISCONTINUOUS</b></em>' literal value.
+	 * The '<em><b>CONTSAMEGRADIENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DISCONTINUOUS</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CONTSAMEGRADIENT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DISCONTINUOUS
+	 * @see #CONTSAMEGRADIENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISCONTINUOUS_VALUE = 4;
+	public static final int CONTSAMEGRADIENT_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Transition Code</b></em>' enumerators.
@@ -163,8 +157,8 @@ public enum IfcTransitionCode implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTransitionCode[] VALUES_ARRAY = new IfcTransitionCode[] { NULL, CONTSAMEGRADIENT,
-			CONTSAMEGRADIENTSAMECURVATURE, CONTINUOUS, DISCONTINUOUS, };
+	private static final IfcTransitionCode[] VALUES_ARRAY = new IfcTransitionCode[] { NULL, DISCONTINUOUS,
+			CONTSAMEGRADIENTSAMECURVATURE, CONTINUOUS, CONTSAMEGRADIENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Transition Code</b></em>' enumerators.
@@ -222,14 +216,14 @@ public enum IfcTransitionCode implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case CONTSAMEGRADIENT_VALUE:
-			return CONTSAMEGRADIENT;
+		case DISCONTINUOUS_VALUE:
+			return DISCONTINUOUS;
 		case CONTSAMEGRADIENTSAMECURVATURE_VALUE:
 			return CONTSAMEGRADIENTSAMECURVATURE;
 		case CONTINUOUS_VALUE:
 			return CONTINUOUS;
-		case DISCONTINUOUS_VALUE:
-			return DISCONTINUOUS;
+		case CONTSAMEGRADIENT_VALUE:
+			return CONTSAMEGRADIENT;
 		}
 		return null;
 	}

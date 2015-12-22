@@ -43,56 +43,6 @@ public enum IfcPileConstructionEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>PRECAST CONCRETE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRECAST_CONCRETE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRECAST_CONCRETE(1, "PRECAST_CONCRETE", "PRECAST_CONCRETE"),
-
-	/**
-	 * The '<em><b>COMPOSITE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPOSITE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPOSITE(2, "COMPOSITE", "COMPOSITE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>PREFAB STEEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PREFAB_STEEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PREFAB_STEEL(5, "PREFAB_STEEL", "PREFAB_STEEL"),
-
-	/**
 	 * The '<em><b>CAST IN PLACE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +50,47 @@ public enum IfcPileConstructionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CAST_IN_PLACE(6, "CAST_IN_PLACE", "CAST_IN_PLACE");
+	CAST_IN_PLACE(1, "CAST_IN_PLACE", "CAST_IN_PLACE"), /**
+														* The '<em><b>NOTDEFINED</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #NOTDEFINED_VALUE
+														* @generated
+														* @ordered
+														*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>PREFAB STEEL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #PREFAB_STEEL_VALUE
+												* @generated
+												* @ordered
+												*/
+	PREFAB_STEEL(3, "PREFAB_STEEL", "PREFAB_STEEL"), /**
+														* The '<em><b>PRECAST CONCRETE</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #PRECAST_CONCRETE_VALUE
+														* @generated
+														* @ordered
+														*/
+	PRECAST_CONCRETE(4, "PRECAST_CONCRETE", "PRECAST_CONCRETE"), /**
+																	* The '<em><b>USERDEFINED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #USERDEFINED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>COMPOSITE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #COMPOSITE_VALUE
+													* @generated
+													* @ordered
+													*/
+	COMPOSITE(6, "COMPOSITE", "COMPOSITE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,34 +108,19 @@ public enum IfcPileConstructionEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>PRECAST CONCRETE</b></em>' literal value.
+	 * The '<em><b>CAST IN PLACE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PRECAST CONCRETE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CAST IN PLACE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PRECAST_CONCRETE
+	 * @see #CAST_IN_PLACE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRECAST_CONCRETE_VALUE = 1;
-
-	/**
-	 * The '<em><b>COMPOSITE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>COMPOSITE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #COMPOSITE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int COMPOSITE_VALUE = 2;
+	public static final int CAST_IN_PLACE_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -160,22 +135,7 @@ public enum IfcPileConstructionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>PREFAB STEEL</b></em>' literal value.
@@ -190,22 +150,52 @@ public enum IfcPileConstructionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PREFAB_STEEL_VALUE = 5;
+	public static final int PREFAB_STEEL_VALUE = 3;
 
 	/**
-	 * The '<em><b>CAST IN PLACE</b></em>' literal value.
+	 * The '<em><b>PRECAST CONCRETE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CAST IN PLACE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PRECAST CONCRETE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CAST_IN_PLACE
+	 * @see #PRECAST_CONCRETE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CAST_IN_PLACE_VALUE = 6;
+	public static final int PRECAST_CONCRETE_VALUE = 4;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 5;
+
+	/**
+	 * The '<em><b>COMPOSITE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>COMPOSITE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #COMPOSITE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int COMPOSITE_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Pile Construction Enum</b></em>' enumerators.
@@ -213,7 +203,8 @@ public enum IfcPileConstructionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPileConstructionEnum[] VALUES_ARRAY = new IfcPileConstructionEnum[] { NULL, PRECAST_CONCRETE, COMPOSITE, NOTDEFINED, USERDEFINED, PREFAB_STEEL, CAST_IN_PLACE, };
+	private static final IfcPileConstructionEnum[] VALUES_ARRAY = new IfcPileConstructionEnum[] { NULL, CAST_IN_PLACE,
+			NOTDEFINED, PREFAB_STEEL, PRECAST_CONCRETE, USERDEFINED, COMPOSITE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pile Construction Enum</b></em>' enumerators.
@@ -221,7 +212,8 @@ public enum IfcPileConstructionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPileConstructionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPileConstructionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Pile Construction Enum</b></em>' literal with the specified literal value.
@@ -271,18 +263,18 @@ public enum IfcPileConstructionEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case PRECAST_CONCRETE_VALUE:
-			return PRECAST_CONCRETE;
-		case COMPOSITE_VALUE:
-			return COMPOSITE;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case PREFAB_STEEL_VALUE:
-			return PREFAB_STEEL;
 		case CAST_IN_PLACE_VALUE:
 			return CAST_IN_PLACE;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case PREFAB_STEEL_VALUE:
+			return PREFAB_STEEL;
+		case PRECAST_CONCRETE_VALUE:
+			return PRECAST_CONCRETE;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case COMPOSITE_VALUE:
+			return COMPOSITE;
 		}
 		return null;
 	}

@@ -42,7 +42,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPermeableCoveringPropertiesImpl extends IfcPropertySetDefinitionImpl implements IfcPermeableCoveringProperties {
+public class IfcPermeableCoveringPropertiesImpl extends IfcPropertySetDefinitionImpl
+		implements IfcPermeableCoveringProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,7 +69,8 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPropertySetDefinition
 	 * @generated
 	 */
 	public IfcPermeableCoveringOperationEnum getOperationType() {
-		return (IfcPermeableCoveringOperationEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__OPERATION_TYPE, true);
+		return (IfcPermeableCoveringOperationEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__OPERATION_TYPE, true);
 	}
 
 	/**
@@ -86,7 +88,8 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPropertySetDefinition
 	 * @generated
 	 */
 	public IfcWindowPanelPositionEnum getPanelPosition() {
-		return (IfcWindowPanelPositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__PANEL_POSITION, true);
+		return (IfcWindowPanelPositionEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__PANEL_POSITION, true);
 	}
 
 	/**
@@ -212,7 +215,8 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPropertySetDefinition
 	 * @generated
 	 */
 	public String getFrameThicknessAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING,
+				true);
 	}
 
 	/**
@@ -221,7 +225,8 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPropertySetDefinition
 	 * @generated
 	 */
 	public void setFrameThicknessAsString(String newFrameThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING, newFrameThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING,
+				newFrameThicknessAsString);
 	}
 
 	/**
@@ -248,7 +253,8 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPropertySetDefinition
 	 * @generated
 	 */
 	public IfcShapeAspect getShapeAspectStyle() {
-		return (IfcShapeAspect) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__SHAPE_ASPECT_STYLE, true);
+		return (IfcShapeAspect) eGet(Ifc2x3tc1Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__SHAPE_ASPECT_STYLE,
+				true);
 	}
 
 	/**

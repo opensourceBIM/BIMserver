@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEnergyConversionDeviceTypeImpl extends IfcDistributionFlowElementTypeImpl implements IfcEnergyConversionDeviceType {
+public class IfcEnergyConversionDeviceTypeImpl extends IfcDistributionFlowElementTypeImpl
+		implements IfcEnergyConversionDeviceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

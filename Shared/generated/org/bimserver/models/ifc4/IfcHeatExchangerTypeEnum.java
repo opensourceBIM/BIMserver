@@ -53,26 +53,6 @@ public enum IfcHeatExchangerTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>SHELLANDTUBE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHELLANDTUBE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHELLANDTUBE(2, "SHELLANDTUBE", "SHELLANDTUBE"),
-
-	/**
-	 * The '<em><b>PLATE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLATE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLATE(3, "PLATE", "PLATE"),
-
-	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +60,23 @@ public enum IfcHeatExchangerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(2, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>PLATE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #PLATE_VALUE
+													* @generated
+													* @ordered
+													*/
+	PLATE(3, "PLATE", "PLATE"), /**
+								* The '<em><b>SHELLANDTUBE</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #SHELLANDTUBE_VALUE
+								* @generated
+								* @ordered
+								*/
+	SHELLANDTUBE(4, "SHELLANDTUBE", "SHELLANDTUBE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -113,19 +109,19 @@ public enum IfcHeatExchangerTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>SHELLANDTUBE</b></em>' literal value.
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SHELLANDTUBE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SHELLANDTUBE
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SHELLANDTUBE_VALUE = 2;
+	public static final int USERDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>PLATE</b></em>' literal value.
@@ -143,19 +139,19 @@ public enum IfcHeatExchangerTypeEnum implements Enumerator {
 	public static final int PLATE_VALUE = 3;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>SHELLANDTUBE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SHELLANDTUBE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #SHELLANDTUBE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int SHELLANDTUBE_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Heat Exchanger Type Enum</b></em>' enumerators.
@@ -164,7 +160,7 @@ public enum IfcHeatExchangerTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcHeatExchangerTypeEnum[] VALUES_ARRAY = new IfcHeatExchangerTypeEnum[] { NULL, NOTDEFINED,
-			SHELLANDTUBE, PLATE, USERDEFINED, };
+			USERDEFINED, PLATE, SHELLANDTUBE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Heat Exchanger Type Enum</b></em>' enumerators.
@@ -225,12 +221,12 @@ public enum IfcHeatExchangerTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case SHELLANDTUBE_VALUE:
-			return SHELLANDTUBE;
-		case PLATE_VALUE:
-			return PLATE;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case PLATE_VALUE:
+			return PLATE;
+		case SHELLANDTUBE_VALUE:
+			return SHELLANDTUBE;
 		}
 		return null;
 	}

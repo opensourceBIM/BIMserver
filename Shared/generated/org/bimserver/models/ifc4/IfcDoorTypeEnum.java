@@ -53,26 +53,6 @@ public enum IfcDoorTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>DOOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOOR(2, "DOOR", "DOOR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>GATE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +60,23 @@ public enum IfcDoorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GATE(4, "GATE", "GATE"),
+	GATE(2, "GATE", "GATE"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>DOOR</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #DOOR_VALUE
+													* @generated
+													* @ordered
+													*/
+	DOOR(4, "DOOR", "DOOR"),
 
 	/**
 	 * The '<em><b>TRAPDOOR</b></em>' literal object.
@@ -123,19 +119,19 @@ public enum IfcDoorTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>DOOR</b></em>' literal value.
+	 * The '<em><b>GATE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DOOR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>GATE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOOR
+	 * @see #GATE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOOR_VALUE = 2;
+	public static final int GATE_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -153,19 +149,19 @@ public enum IfcDoorTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 3;
 
 	/**
-	 * The '<em><b>GATE</b></em>' literal value.
+	 * The '<em><b>DOOR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>GATE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DOOR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GATE
+	 * @see #DOOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GATE_VALUE = 4;
+	public static final int DOOR_VALUE = 4;
 
 	/**
 	 * The '<em><b>TRAPDOOR</b></em>' literal value.
@@ -188,8 +184,8 @@ public enum IfcDoorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorTypeEnum[] VALUES_ARRAY = new IfcDoorTypeEnum[] { NULL, NOTDEFINED, DOOR, USERDEFINED,
-			GATE, TRAPDOOR, };
+	private static final IfcDoorTypeEnum[] VALUES_ARRAY = new IfcDoorTypeEnum[] { NULL, NOTDEFINED, GATE, USERDEFINED,
+			DOOR, TRAPDOOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Type Enum</b></em>' enumerators.
@@ -249,12 +245,12 @@ public enum IfcDoorTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case DOOR_VALUE:
-			return DOOR;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case GATE_VALUE:
 			return GATE;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case DOOR_VALUE:
+			return DOOR;
 		case TRAPDOOR_VALUE:
 			return TRAPDOOR;
 		}

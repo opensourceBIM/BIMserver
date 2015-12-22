@@ -53,16 +53,6 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>CONDUCTORSEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONDUCTORSEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONDUCTORSEGMENT(2, "CONDUCTORSEGMENT", "CONDUCTORSEGMENT"),
-
-	/**
 	 * The '<em><b>CABLESEGMENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +60,7 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CABLESEGMENT(3, "CABLESEGMENT", "CABLESEGMENT"),
+	CABLESEGMENT(2, "CABLESEGMENT", "CABLESEGMENT"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -80,7 +70,15 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>CONDUCTORSEGMENT</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #CONDUCTORSEGMENT_VALUE
+													* @generated
+													* @ordered
+													*/
+	CONDUCTORSEGMENT(4, "CONDUCTORSEGMENT", "CONDUCTORSEGMENT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -113,21 +111,6 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>CONDUCTORSEGMENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CONDUCTORSEGMENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CONDUCTORSEGMENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONDUCTORSEGMENT_VALUE = 2;
-
-	/**
 	 * The '<em><b>CABLESEGMENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -140,7 +123,7 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CABLESEGMENT_VALUE = 3;
+	public static final int CABLESEGMENT_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -155,7 +138,22 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int USERDEFINED_VALUE = 3;
+
+	/**
+	 * The '<em><b>CONDUCTORSEGMENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONDUCTORSEGMENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONDUCTORSEGMENT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONDUCTORSEGMENT_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Cable Segment Type Enum</b></em>' enumerators.
@@ -163,7 +161,8 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCableSegmentTypeEnum[] VALUES_ARRAY = new IfcCableSegmentTypeEnum[] { NULL, NOTDEFINED, CONDUCTORSEGMENT, CABLESEGMENT, USERDEFINED, };
+	private static final IfcCableSegmentTypeEnum[] VALUES_ARRAY = new IfcCableSegmentTypeEnum[] { NULL, NOTDEFINED,
+			CABLESEGMENT, USERDEFINED, CONDUCTORSEGMENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cable Segment Type Enum</b></em>' enumerators.
@@ -171,7 +170,8 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCableSegmentTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCableSegmentTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Cable Segment Type Enum</b></em>' literal with the specified literal value.
@@ -223,12 +223,12 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case CONDUCTORSEGMENT_VALUE:
-			return CONDUCTORSEGMENT;
 		case CABLESEGMENT_VALUE:
 			return CABLESEGMENT;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case CONDUCTORSEGMENT_VALUE:
+			return CONDUCTORSEGMENT;
 		}
 		return null;
 	}

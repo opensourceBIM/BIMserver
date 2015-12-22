@@ -43,26 +43,6 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>PHONE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PHONE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PHONE(1, "PHONE", "PHONE"),
-
-	/**
-	 * The '<em><b>POST</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POST_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	POST(2, "POST", "POST"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,27 +50,23 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>EMAIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EMAIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EMAIL(4, "EMAIL", "EMAIL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>POST</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #POST_VALUE
+												* @generated
+												* @ordered
+												*/
+	POST(2, "POST", "POST"), /**
+								* The '<em><b>PHONE</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #PHONE_VALUE
+								* @generated
+								* @ordered
+								*/
+	PHONE(3, "PHONE", "PHONE"),
 
 	/**
 	 * The '<em><b>VERBAL</b></em>' literal object.
@@ -100,7 +76,23 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VERBAL(6, "VERBAL", "VERBAL"),
+	VERBAL(4, "VERBAL", "VERBAL"), /**
+									* The '<em><b>USERDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #USERDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>EMAIL</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #EMAIL_VALUE
+													* @generated
+													* @ordered
+													*/
+	EMAIL(6, "EMAIL", "EMAIL"),
 
 	/**
 	 * The '<em><b>FAX</b></em>' literal object.
@@ -128,19 +120,19 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>PHONE</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PHONE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PHONE
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PHONE_VALUE = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>POST</b></em>' literal value.
@@ -158,34 +150,34 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	public static final int POST_VALUE = 2;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>PHONE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PHONE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #PHONE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int PHONE_VALUE = 3;
 
 	/**
-	 * The '<em><b>EMAIL</b></em>' literal value.
+	 * The '<em><b>VERBAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EMAIL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>VERBAL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EMAIL
+	 * @see #VERBAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EMAIL_VALUE = 4;
+	public static final int VERBAL_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -203,19 +195,19 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 5;
 
 	/**
-	 * The '<em><b>VERBAL</b></em>' literal value.
+	 * The '<em><b>EMAIL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>VERBAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>EMAIL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VERBAL
+	 * @see #EMAIL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VERBAL_VALUE = 6;
+	public static final int EMAIL_VALUE = 6;
 
 	/**
 	 * The '<em><b>FAX</b></em>' literal value.
@@ -238,8 +230,8 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcActionRequestTypeEnum[] VALUES_ARRAY = new IfcActionRequestTypeEnum[] { NULL, PHONE, POST,
-			NOTDEFINED, EMAIL, USERDEFINED, VERBAL, FAX, };
+	private static final IfcActionRequestTypeEnum[] VALUES_ARRAY = new IfcActionRequestTypeEnum[] { NULL, NOTDEFINED,
+			POST, PHONE, VERBAL, USERDEFINED, EMAIL, FAX, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Action Request Type Enum</b></em>' enumerators.
@@ -298,18 +290,18 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case PHONE_VALUE:
-			return PHONE;
-		case POST_VALUE:
-			return POST;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case EMAIL_VALUE:
-			return EMAIL;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case POST_VALUE:
+			return POST;
+		case PHONE_VALUE:
+			return PHONE;
 		case VERBAL_VALUE:
 			return VERBAL;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case EMAIL_VALUE:
+			return EMAIL;
 		case FAX_VALUE:
 			return FAX;
 		}

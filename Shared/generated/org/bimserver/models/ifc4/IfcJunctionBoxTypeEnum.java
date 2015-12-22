@@ -43,16 +43,6 @@ public enum IfcJunctionBoxTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>POWER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POWER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	POWER(1, "POWER", "POWER"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,7 @@ public enum IfcJunctionBoxTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>DATA</b></em>' literal object.
@@ -80,7 +60,23 @@ public enum IfcJunctionBoxTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DATA(4, "DATA", "DATA");
+	DATA(2, "DATA", "DATA"), /**
+								* The '<em><b>POWER</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #POWER_VALUE
+								* @generated
+								* @ordered
+								*/
+	POWER(3, "POWER", "POWER"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -98,21 +94,6 @@ public enum IfcJunctionBoxTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>POWER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>POWER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #POWER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int POWER_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -125,22 +106,7 @@ public enum IfcJunctionBoxTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>DATA</b></em>' literal value.
@@ -155,7 +121,37 @@ public enum IfcJunctionBoxTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DATA_VALUE = 4;
+	public static final int DATA_VALUE = 2;
+
+	/**
+	 * The '<em><b>POWER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>POWER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #POWER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int POWER_VALUE = 3;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Junction Box Type Enum</b></em>' enumerators.
@@ -163,8 +159,8 @@ public enum IfcJunctionBoxTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcJunctionBoxTypeEnum[] VALUES_ARRAY = new IfcJunctionBoxTypeEnum[] { NULL, POWER, NOTDEFINED,
-			USERDEFINED, DATA, };
+	private static final IfcJunctionBoxTypeEnum[] VALUES_ARRAY = new IfcJunctionBoxTypeEnum[] { NULL, NOTDEFINED, DATA,
+			POWER, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Junction Box Type Enum</b></em>' enumerators.
@@ -222,14 +218,14 @@ public enum IfcJunctionBoxTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case POWER_VALUE:
-			return POWER;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case DATA_VALUE:
 			return DATA;
+		case POWER_VALUE:
+			return POWER;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

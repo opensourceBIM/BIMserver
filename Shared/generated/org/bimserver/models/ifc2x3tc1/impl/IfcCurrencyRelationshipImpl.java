@@ -78,7 +78,8 @@ public class IfcCurrencyRelationshipImpl extends IdEObjectImpl implements IfcCur
 	 * @generated
 	 */
 	public IfcMonetaryUnit getRelatingMonetaryUnit() {
-		return (IfcMonetaryUnit) eGet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATING_MONETARY_UNIT, true);
+		return (IfcMonetaryUnit) eGet(Ifc2x3tc1Package.Literals.IFC_CURRENCY_RELATIONSHIP__RELATING_MONETARY_UNIT,
+				true);
 	}
 
 	/**

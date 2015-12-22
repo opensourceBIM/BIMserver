@@ -479,7 +479,8 @@ public class IfcUShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setCentreOfGravityInXAsString(String newCentreOfGravityInXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_USHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_XAS_STRING, newCentreOfGravityInXAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_USHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_XAS_STRING,
+				newCentreOfGravityInXAsString);
 	}
 
 	/**

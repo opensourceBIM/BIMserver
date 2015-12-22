@@ -43,16 +43,6 @@ public enum IfcCoolingTowerTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NATURALDRAFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NATURALDRAFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NATURALDRAFT(1, "NATURALDRAFT", "NATURALDRAFT"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,7 @@ public enum IfcCoolingTowerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>MECHANICALINDUCEDDRAFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MECHANICALINDUCEDDRAFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MECHANICALINDUCEDDRAFT(3, "MECHANICALINDUCEDDRAFT", "MECHANICALINDUCEDDRAFT"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>MECHANICALFORCEDDRAFT</b></em>' literal object.
@@ -80,7 +60,23 @@ public enum IfcCoolingTowerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MECHANICALFORCEDDRAFT(4, "MECHANICALFORCEDDRAFT", "MECHANICALFORCEDDRAFT"),
+	MECHANICALFORCEDDRAFT(2, "MECHANICALFORCEDDRAFT", "MECHANICALFORCEDDRAFT"), /**
+																				* The '<em><b>NATURALDRAFT</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #NATURALDRAFT_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	NATURALDRAFT(3, "NATURALDRAFT", "NATURALDRAFT"), /**
+														* The '<em><b>MECHANICALINDUCEDDRAFT</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #MECHANICALINDUCEDDRAFT_VALUE
+														* @generated
+														* @ordered
+														*/
+	MECHANICALINDUCEDDRAFT(4, "MECHANICALINDUCEDDRAFT", "MECHANICALINDUCEDDRAFT"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -108,21 +104,6 @@ public enum IfcCoolingTowerTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NATURALDRAFT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NATURALDRAFT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NATURALDRAFT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NATURALDRAFT_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,22 +116,7 @@ public enum IfcCoolingTowerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>MECHANICALINDUCEDDRAFT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MECHANICALINDUCEDDRAFT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MECHANICALINDUCEDDRAFT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MECHANICALINDUCEDDRAFT_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>MECHANICALFORCEDDRAFT</b></em>' literal value.
@@ -165,7 +131,37 @@ public enum IfcCoolingTowerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MECHANICALFORCEDDRAFT_VALUE = 4;
+	public static final int MECHANICALFORCEDDRAFT_VALUE = 2;
+
+	/**
+	 * The '<em><b>NATURALDRAFT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NATURALDRAFT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NATURALDRAFT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NATURALDRAFT_VALUE = 3;
+
+	/**
+	 * The '<em><b>MECHANICALINDUCEDDRAFT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MECHANICALINDUCEDDRAFT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MECHANICALINDUCEDDRAFT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MECHANICALINDUCEDDRAFT_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -188,8 +184,8 @@ public enum IfcCoolingTowerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCoolingTowerTypeEnum[] VALUES_ARRAY = new IfcCoolingTowerTypeEnum[] { NULL, NATURALDRAFT,
-			NOTDEFINED, MECHANICALINDUCEDDRAFT, MECHANICALFORCEDDRAFT, USERDEFINED, };
+	private static final IfcCoolingTowerTypeEnum[] VALUES_ARRAY = new IfcCoolingTowerTypeEnum[] { NULL, NOTDEFINED,
+			MECHANICALFORCEDDRAFT, NATURALDRAFT, MECHANICALINDUCEDDRAFT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cooling Tower Type Enum</b></em>' enumerators.
@@ -248,14 +244,14 @@ public enum IfcCoolingTowerTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NATURALDRAFT_VALUE:
-			return NATURALDRAFT;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case MECHANICALINDUCEDDRAFT_VALUE:
-			return MECHANICALINDUCEDDRAFT;
 		case MECHANICALFORCEDDRAFT_VALUE:
 			return MECHANICALFORCEDDRAFT;
+		case NATURALDRAFT_VALUE:
+			return NATURALDRAFT;
+		case MECHANICALINDUCEDDRAFT_VALUE:
+			return MECHANICALINDUCEDDRAFT;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		}

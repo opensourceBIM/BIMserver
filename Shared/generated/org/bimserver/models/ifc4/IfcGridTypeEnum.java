@@ -43,46 +43,6 @@ public enum IfcGridTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>TRIANGULAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIANGULAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIANGULAR(1, "TRIANGULAR", "TRIANGULAR"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>RADIAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RADIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RADIAL(3, "RADIAL", "RADIAL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>IRREGULAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +50,15 @@ public enum IfcGridTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	IRREGULAR(5, "IRREGULAR", "IRREGULAR"),
+	IRREGULAR(1, "IRREGULAR", "IRREGULAR"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>RECTANGULAR</b></em>' literal object.
@@ -100,7 +68,31 @@ public enum IfcGridTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RECTANGULAR(6, "RECTANGULAR", "RECTANGULAR");
+	RECTANGULAR(3, "RECTANGULAR", "RECTANGULAR"), /**
+													* The '<em><b>USERDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #USERDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>RADIAL</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #RADIAL_VALUE
+													* @generated
+													* @ordered
+													*/
+	RADIAL(5, "RADIAL", "RADIAL"), /**
+									* The '<em><b>TRIANGULAR</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #TRIANGULAR_VALUE
+									* @generated
+									* @ordered
+									*/
+	TRIANGULAR(6, "TRIANGULAR", "TRIANGULAR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,19 +110,19 @@ public enum IfcGridTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>TRIANGULAR</b></em>' literal value.
+	 * The '<em><b>IRREGULAR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>TRIANGULAR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>IRREGULAR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TRIANGULAR
+	 * @see #IRREGULAR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRIANGULAR_VALUE = 1;
+	public static final int IRREGULAR_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -148,19 +140,19 @@ public enum IfcGridTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>RADIAL</b></em>' literal value.
+	 * The '<em><b>RECTANGULAR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>RADIAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>RECTANGULAR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RADIAL
+	 * @see #RECTANGULAR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RADIAL_VALUE = 3;
+	public static final int RECTANGULAR_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -178,34 +170,34 @@ public enum IfcGridTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 4;
 
 	/**
-	 * The '<em><b>IRREGULAR</b></em>' literal value.
+	 * The '<em><b>RADIAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>IRREGULAR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>RADIAL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #IRREGULAR
+	 * @see #RADIAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int IRREGULAR_VALUE = 5;
+	public static final int RADIAL_VALUE = 5;
 
 	/**
-	 * The '<em><b>RECTANGULAR</b></em>' literal value.
+	 * The '<em><b>TRIANGULAR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>RECTANGULAR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TRIANGULAR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RECTANGULAR
+	 * @see #TRIANGULAR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RECTANGULAR_VALUE = 6;
+	public static final int TRIANGULAR_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Grid Type Enum</b></em>' enumerators.
@@ -213,8 +205,8 @@ public enum IfcGridTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcGridTypeEnum[] VALUES_ARRAY = new IfcGridTypeEnum[] { NULL, TRIANGULAR, NOTDEFINED, RADIAL,
-			USERDEFINED, IRREGULAR, RECTANGULAR, };
+	private static final IfcGridTypeEnum[] VALUES_ARRAY = new IfcGridTypeEnum[] { NULL, IRREGULAR, NOTDEFINED,
+			RECTANGULAR, USERDEFINED, RADIAL, TRIANGULAR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Grid Type Enum</b></em>' enumerators.
@@ -272,18 +264,18 @@ public enum IfcGridTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case TRIANGULAR_VALUE:
-			return TRIANGULAR;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case RADIAL_VALUE:
-			return RADIAL;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case IRREGULAR_VALUE:
 			return IRREGULAR;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case RECTANGULAR_VALUE:
 			return RECTANGULAR;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case RADIAL_VALUE:
+			return RADIAL;
+		case TRIANGULAR_VALUE:
+			return TRIANGULAR;
 		}
 		return null;
 	}

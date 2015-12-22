@@ -43,16 +43,6 @@ public enum IfcTubeBundleTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>FINNED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FINNED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FINNED(1, "FINNED", "FINNED"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,7 @@ public enum IfcTubeBundleTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -70,7 +60,15 @@ public enum IfcTubeBundleTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(2, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>FINNED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #FINNED_VALUE
+													* @generated
+													* @ordered
+													*/
+	FINNED(3, "FINNED", "FINNED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -88,21 +86,6 @@ public enum IfcTubeBundleTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>FINNED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FINNED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FINNED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FINNED_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -115,7 +98,7 @@ public enum IfcTubeBundleTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -130,7 +113,22 @@ public enum IfcTubeBundleTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 3;
+	public static final int USERDEFINED_VALUE = 2;
+
+	/**
+	 * The '<em><b>FINNED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FINNED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FINNED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FINNED_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Ifc Tube Bundle Type Enum</b></em>' enumerators.
@@ -138,8 +136,8 @@ public enum IfcTubeBundleTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTubeBundleTypeEnum[] VALUES_ARRAY = new IfcTubeBundleTypeEnum[] { NULL, FINNED, NOTDEFINED,
-			USERDEFINED, };
+	private static final IfcTubeBundleTypeEnum[] VALUES_ARRAY = new IfcTubeBundleTypeEnum[] { NULL, NOTDEFINED,
+			USERDEFINED, FINNED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Tube Bundle Type Enum</b></em>' enumerators.
@@ -197,12 +195,12 @@ public enum IfcTubeBundleTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case FINNED_VALUE:
-			return FINNED;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case FINNED_VALUE:
+			return FINNED;
 		}
 		return null;
 	}

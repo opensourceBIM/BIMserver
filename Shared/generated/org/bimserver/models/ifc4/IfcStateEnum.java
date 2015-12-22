@@ -43,36 +43,6 @@ public enum IfcStateEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>READONLYLOCKED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #READONLYLOCKED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	READONLYLOCKED(1, "READONLYLOCKED", "READONLYLOCKED"),
-
-	/**
-	 * The '<em><b>READWRITELOCKED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #READWRITELOCKED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	READWRITELOCKED(2, "READWRITELOCKED", "READWRITELOCKED"),
-
-	/**
-	 * The '<em><b>READONLY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #READONLY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	READONLY(3, "READONLY", "READONLY"),
-
-	/**
 	 * The '<em><b>READWRITE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +50,7 @@ public enum IfcStateEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	READWRITE(4, "READWRITE", "READWRITE"),
+	READWRITE(1, "READWRITE", "READWRITE"),
 
 	/**
 	 * The '<em><b>LOCKED</b></em>' literal object.
@@ -90,7 +60,31 @@ public enum IfcStateEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOCKED(5, "LOCKED", "LOCKED");
+	LOCKED(2, "LOCKED", "LOCKED"), /**
+									* The '<em><b>READWRITELOCKED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #READWRITELOCKED_VALUE
+									* @generated
+									* @ordered
+									*/
+	READWRITELOCKED(3, "READWRITELOCKED", "READWRITELOCKED"), /**
+																* The '<em><b>READONLYLOCKED</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #READONLYLOCKED_VALUE
+																* @generated
+																* @ordered
+																*/
+	READONLYLOCKED(4, "READONLYLOCKED", "READONLYLOCKED"), /**
+															* The '<em><b>READONLY</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #READONLY_VALUE
+															* @generated
+															* @ordered
+															*/
+	READONLY(5, "READONLY", "READONLY");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,51 +102,6 @@ public enum IfcStateEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>READONLYLOCKED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>READONLYLOCKED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #READONLYLOCKED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int READONLYLOCKED_VALUE = 1;
-
-	/**
-	 * The '<em><b>READWRITELOCKED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>READWRITELOCKED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #READWRITELOCKED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int READWRITELOCKED_VALUE = 2;
-
-	/**
-	 * The '<em><b>READONLY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>READONLY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #READONLY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int READONLY_VALUE = 3;
-
-	/**
 	 * The '<em><b>READWRITE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -165,7 +114,7 @@ public enum IfcStateEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int READWRITE_VALUE = 4;
+	public static final int READWRITE_VALUE = 1;
 
 	/**
 	 * The '<em><b>LOCKED</b></em>' literal value.
@@ -180,7 +129,52 @@ public enum IfcStateEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOCKED_VALUE = 5;
+	public static final int LOCKED_VALUE = 2;
+
+	/**
+	 * The '<em><b>READWRITELOCKED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>READWRITELOCKED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #READWRITELOCKED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int READWRITELOCKED_VALUE = 3;
+
+	/**
+	 * The '<em><b>READONLYLOCKED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>READONLYLOCKED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #READONLYLOCKED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int READONLYLOCKED_VALUE = 4;
+
+	/**
+	 * The '<em><b>READONLY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>READONLY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #READONLY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int READONLY_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc State Enum</b></em>' enumerators.
@@ -188,8 +182,8 @@ public enum IfcStateEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStateEnum[] VALUES_ARRAY = new IfcStateEnum[] { NULL, READONLYLOCKED, READWRITELOCKED,
-			READONLY, READWRITE, LOCKED, };
+	private static final IfcStateEnum[] VALUES_ARRAY = new IfcStateEnum[] { NULL, READWRITE, LOCKED, READWRITELOCKED,
+			READONLYLOCKED, READONLY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc State Enum</b></em>' enumerators.
@@ -247,16 +241,16 @@ public enum IfcStateEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case READONLYLOCKED_VALUE:
-			return READONLYLOCKED;
-		case READWRITELOCKED_VALUE:
-			return READWRITELOCKED;
-		case READONLY_VALUE:
-			return READONLY;
 		case READWRITE_VALUE:
 			return READWRITE;
 		case LOCKED_VALUE:
 			return LOCKED;
+		case READWRITELOCKED_VALUE:
+			return READWRITELOCKED;
+		case READONLYLOCKED_VALUE:
+			return READONLYLOCKED;
+		case READONLY_VALUE:
+			return READONLY;
 		}
 		return null;
 	}

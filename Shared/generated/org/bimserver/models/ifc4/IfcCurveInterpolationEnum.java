@@ -43,26 +43,6 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>LOG LOG</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOG_LOG_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOG_LOG(1, "LOG_LOG", "LOG_LOG"),
-
-	/**
-	 * The '<em><b>LINEAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LINEAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LINEAR(2, "LINEAR", "LINEAR"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,15 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>LOG LOG</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #LOG_LOG_VALUE
+												* @generated
+												* @ordered
+												*/
+	LOG_LOG(2, "LOG_LOG", "LOG_LOG"),
 
 	/**
 	 * The '<em><b>LOG LINEAR</b></em>' literal object.
@@ -80,7 +68,15 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOG_LINEAR(4, "LOG_LINEAR", "LOG_LINEAR");
+	LOG_LINEAR(3, "LOG_LINEAR", "LOG_LINEAR"), /**
+												* The '<em><b>LINEAR</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #LINEAR_VALUE
+												* @generated
+												* @ordered
+												*/
+	LINEAR(4, "LINEAR", "LINEAR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -98,36 +94,6 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>LOG LOG</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>LOG LOG</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #LOG_LOG
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LOG_LOG_VALUE = 1;
-
-	/**
-	 * The '<em><b>LINEAR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>LINEAR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #LINEAR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LINEAR_VALUE = 2;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -140,7 +106,22 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 1;
+
+	/**
+	 * The '<em><b>LOG LOG</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LOG LOG</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LOG_LOG
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LOG_LOG_VALUE = 2;
 
 	/**
 	 * The '<em><b>LOG LINEAR</b></em>' literal value.
@@ -155,7 +136,22 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOG_LINEAR_VALUE = 4;
+	public static final int LOG_LINEAR_VALUE = 3;
+
+	/**
+	 * The '<em><b>LINEAR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LINEAR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LINEAR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LINEAR_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Curve Interpolation Enum</b></em>' enumerators.
@@ -163,8 +159,8 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCurveInterpolationEnum[] VALUES_ARRAY = new IfcCurveInterpolationEnum[] { NULL, LOG_LOG,
-			LINEAR, NOTDEFINED, LOG_LINEAR, };
+	private static final IfcCurveInterpolationEnum[] VALUES_ARRAY = new IfcCurveInterpolationEnum[] { NULL, NOTDEFINED,
+			LOG_LOG, LOG_LINEAR, LINEAR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Curve Interpolation Enum</b></em>' enumerators.
@@ -223,14 +219,14 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case LOG_LOG_VALUE:
-			return LOG_LOG;
-		case LINEAR_VALUE:
-			return LINEAR;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case LOG_LOG_VALUE:
+			return LOG_LOG;
 		case LOG_LINEAR_VALUE:
 			return LOG_LINEAR;
+		case LINEAR_VALUE:
+			return LINEAR;
 		}
 		return null;
 	}

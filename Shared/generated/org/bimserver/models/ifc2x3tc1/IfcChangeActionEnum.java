@@ -53,36 +53,6 @@ public enum IfcChangeActionEnum implements Enumerator {
 	NOCHANGE(1, "NOCHANGE", "NOCHANGE"),
 
 	/**
-	 * The '<em><b>MODIFIEDADDED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MODIFIEDADDED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MODIFIEDADDED(2, "MODIFIEDADDED", "MODIFIEDADDED"),
-
-	/**
-	 * The '<em><b>MODIFIED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MODIFIED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MODIFIED(3, "MODIFIED", "MODIFIED"),
-
-	/**
-	 * The '<em><b>MODIFIEDDELETED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MODIFIEDDELETED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MODIFIEDDELETED(4, "MODIFIEDDELETED", "MODIFIEDDELETED"),
-
-	/**
 	 * The '<em><b>ADDED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +60,31 @@ public enum IfcChangeActionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ADDED(5, "ADDED", "ADDED"),
+	ADDED(2, "ADDED", "ADDED"), /**
+								* The '<em><b>MODIFIEDADDED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #MODIFIEDADDED_VALUE
+								* @generated
+								* @ordered
+								*/
+	MODIFIEDADDED(3, "MODIFIEDADDED", "MODIFIEDADDED"), /**
+														* The '<em><b>MODIFIEDDELETED</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #MODIFIEDDELETED_VALUE
+														* @generated
+														* @ordered
+														*/
+	MODIFIEDDELETED(4, "MODIFIEDDELETED", "MODIFIEDDELETED"), /**
+																* The '<em><b>MODIFIED</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #MODIFIED_VALUE
+																* @generated
+																* @ordered
+																*/
+	MODIFIED(5, "MODIFIED", "MODIFIED"),
 
 	/**
 	 * The '<em><b>DELETED</b></em>' literal object.
@@ -133,6 +127,21 @@ public enum IfcChangeActionEnum implements Enumerator {
 	public static final int NOCHANGE_VALUE = 1;
 
 	/**
+	 * The '<em><b>ADDED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ADDED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ADDED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ADDED_VALUE = 2;
+
+	/**
 	 * The '<em><b>MODIFIEDADDED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -145,22 +154,7 @@ public enum IfcChangeActionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MODIFIEDADDED_VALUE = 2;
-
-	/**
-	 * The '<em><b>MODIFIED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MODIFIED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MODIFIED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MODIFIED_VALUE = 3;
+	public static final int MODIFIEDADDED_VALUE = 3;
 
 	/**
 	 * The '<em><b>MODIFIEDDELETED</b></em>' literal value.
@@ -178,19 +172,19 @@ public enum IfcChangeActionEnum implements Enumerator {
 	public static final int MODIFIEDDELETED_VALUE = 4;
 
 	/**
-	 * The '<em><b>ADDED</b></em>' literal value.
+	 * The '<em><b>MODIFIED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ADDED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>MODIFIED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADDED
+	 * @see #MODIFIED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADDED_VALUE = 5;
+	public static final int MODIFIED_VALUE = 5;
 
 	/**
 	 * The '<em><b>DELETED</b></em>' literal value.
@@ -213,7 +207,8 @@ public enum IfcChangeActionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcChangeActionEnum[] VALUES_ARRAY = new IfcChangeActionEnum[] { NULL, NOCHANGE, MODIFIEDADDED, MODIFIED, MODIFIEDDELETED, ADDED, DELETED, };
+	private static final IfcChangeActionEnum[] VALUES_ARRAY = new IfcChangeActionEnum[] { NULL, NOCHANGE, ADDED,
+			MODIFIEDADDED, MODIFIEDDELETED, MODIFIED, DELETED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Change Action Enum</b></em>' enumerators.
@@ -273,14 +268,14 @@ public enum IfcChangeActionEnum implements Enumerator {
 			return NULL;
 		case NOCHANGE_VALUE:
 			return NOCHANGE;
-		case MODIFIEDADDED_VALUE:
-			return MODIFIEDADDED;
-		case MODIFIED_VALUE:
-			return MODIFIED;
-		case MODIFIEDDELETED_VALUE:
-			return MODIFIEDDELETED;
 		case ADDED_VALUE:
 			return ADDED;
+		case MODIFIEDADDED_VALUE:
+			return MODIFIEDADDED;
+		case MODIFIEDDELETED_VALUE:
+			return MODIFIEDDELETED;
+		case MODIFIED_VALUE:
+			return MODIFIED;
 		case DELETED_VALUE:
 			return DELETED;
 		}

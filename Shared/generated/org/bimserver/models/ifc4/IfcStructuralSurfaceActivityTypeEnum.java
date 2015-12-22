@@ -43,56 +43,6 @@ public enum IfcStructuralSurfaceActivityTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>ISOCONTOUR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ISOCONTOUR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ISOCONTOUR(1, "ISOCONTOUR", "ISOCONTOUR"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>DISCRETE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISCRETE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DISCRETE(3, "DISCRETE", "DISCRETE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CONST</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONST_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONST(5, "CONST", "CONST"),
-
-	/**
 	 * The '<em><b>BILINEAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +50,47 @@ public enum IfcStructuralSurfaceActivityTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BILINEAR(6, "BILINEAR", "BILINEAR");
+	BILINEAR(1, "BILINEAR", "BILINEAR"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>ISOCONTOUR</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #ISOCONTOUR_VALUE
+												* @generated
+												* @ordered
+												*/
+	ISOCONTOUR(3, "ISOCONTOUR", "ISOCONTOUR"), /**
+												* The '<em><b>CONST</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #CONST_VALUE
+												* @generated
+												* @ordered
+												*/
+	CONST(4, "CONST", "CONST"), /**
+								* The '<em><b>DISCRETE</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #DISCRETE_VALUE
+								* @generated
+								* @ordered
+								*/
+	DISCRETE(5, "DISCRETE", "DISCRETE"), /**
+											* The '<em><b>USERDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #USERDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,19 +108,19 @@ public enum IfcStructuralSurfaceActivityTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>ISOCONTOUR</b></em>' literal value.
+	 * The '<em><b>BILINEAR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ISOCONTOUR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>BILINEAR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ISOCONTOUR
+	 * @see #BILINEAR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ISOCONTOUR_VALUE = 1;
+	public static final int BILINEAR_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -148,34 +138,19 @@ public enum IfcStructuralSurfaceActivityTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>DISCRETE</b></em>' literal value.
+	 * The '<em><b>ISOCONTOUR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DISCRETE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ISOCONTOUR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DISCRETE
+	 * @see #ISOCONTOUR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISCRETE_VALUE = 3;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int ISOCONTOUR_VALUE = 3;
 
 	/**
 	 * The '<em><b>CONST</b></em>' literal value.
@@ -190,22 +165,37 @@ public enum IfcStructuralSurfaceActivityTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONST_VALUE = 5;
+	public static final int CONST_VALUE = 4;
 
 	/**
-	 * The '<em><b>BILINEAR</b></em>' literal value.
+	 * The '<em><b>DISCRETE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BILINEAR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DISCRETE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BILINEAR
+	 * @see #DISCRETE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BILINEAR_VALUE = 6;
+	public static final int DISCRETE_VALUE = 5;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Structural Surface Activity Type Enum</b></em>' enumerators.
@@ -214,7 +204,7 @@ public enum IfcStructuralSurfaceActivityTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcStructuralSurfaceActivityTypeEnum[] VALUES_ARRAY = new IfcStructuralSurfaceActivityTypeEnum[] {
-			NULL, ISOCONTOUR, NOTDEFINED, DISCRETE, USERDEFINED, CONST, BILINEAR, };
+			NULL, BILINEAR, NOTDEFINED, ISOCONTOUR, CONST, DISCRETE, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Structural Surface Activity Type Enum</b></em>' enumerators.
@@ -273,18 +263,18 @@ public enum IfcStructuralSurfaceActivityTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case ISOCONTOUR_VALUE:
-			return ISOCONTOUR;
+		case BILINEAR_VALUE:
+			return BILINEAR;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case ISOCONTOUR_VALUE:
+			return ISOCONTOUR;
+		case CONST_VALUE:
+			return CONST;
 		case DISCRETE_VALUE:
 			return DISCRETE;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case CONST_VALUE:
-			return CONST;
-		case BILINEAR_VALUE:
-			return BILINEAR;
 		}
 		return null;
 	}

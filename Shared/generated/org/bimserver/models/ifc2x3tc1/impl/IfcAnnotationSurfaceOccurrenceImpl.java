@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAnnotationSurfaceOccurrenceImpl extends IfcAnnotationOccurrenceImpl implements IfcAnnotationSurfaceOccurrence {
+public class IfcAnnotationSurfaceOccurrenceImpl extends IfcAnnotationOccurrenceImpl
+		implements IfcAnnotationSurfaceOccurrence {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

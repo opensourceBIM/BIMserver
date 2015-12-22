@@ -87,7 +87,8 @@ public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl imple
 	 * @generated
 	 */
 	public void setWallThicknessAsString(String newWallThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING, newWallThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING,
+				newWallThicknessAsString);
 	}
 
 } //IfcCircleHollowProfileDefImpl

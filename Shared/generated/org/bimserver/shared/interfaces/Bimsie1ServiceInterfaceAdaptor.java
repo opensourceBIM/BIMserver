@@ -116,7 +116,7 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SDownloadResult getDownloadData(java.lang.Long actionId) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SDownloadResult getDownloadData(java.lang.Long topicId) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -180,7 +180,7 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 		return null;
 	}
 	
-	public void terminateLongRunningAction(java.lang.Long actionId) throws UserException, ServerException {
+	public void terminateLongRunningAction(java.lang.Long topicId) throws UserException, ServerException {
 	}
 	
 	public java.lang.Boolean undeleteProject(java.lang.Long poid) throws UserException, ServerException {

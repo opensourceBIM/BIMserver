@@ -43,26 +43,6 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>STRAINER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRAINER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRAINER(1, "STRAINER", "STRAINER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>WATERFILTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,7 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WATERFILTER(3, "WATERFILTER", "WATERFILTER"),
+	WATERFILTER(1, "WATERFILTER", "WATERFILTER"),
 
 	/**
 	 * The '<em><b>COMPRESSEDAIRFILTER</b></em>' literal object.
@@ -80,17 +60,23 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMPRESSEDAIRFILTER(4, "COMPRESSEDAIRFILTER", "COMPRESSEDAIRFILTER"),
-
-	/**
-	 * The '<em><b>ODORFILTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ODORFILTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ODORFILTER(5, "ODORFILTER", "ODORFILTER"),
+	COMPRESSEDAIRFILTER(2, "COMPRESSEDAIRFILTER", "COMPRESSEDAIRFILTER"), /**
+																			* The '<em><b>STRAINER</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #STRAINER_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	STRAINER(3, "STRAINER", "STRAINER"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>OILFILTER</b></em>' literal object.
@@ -100,17 +86,7 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OILFILTER(6, "OILFILTER", "OILFILTER"),
-
-	/**
-	 * The '<em><b>AIRPARTICLEFILTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AIRPARTICLEFILTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AIRPARTICLEFILTER(7, "AIRPARTICLEFILTER", "AIRPARTICLEFILTER"),
+	OILFILTER(5, "OILFILTER", "OILFILTER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -120,7 +96,23 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(8, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>AIRPARTICLEFILTER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #AIRPARTICLEFILTER_VALUE
+													* @generated
+													* @ordered
+													*/
+	AIRPARTICLEFILTER(7, "AIRPARTICLEFILTER", "AIRPARTICLEFILTER"), /**
+																	* The '<em><b>ODORFILTER</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #ODORFILTER_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	ODORFILTER(8, "ODORFILTER", "ODORFILTER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -138,36 +130,6 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>STRAINER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STRAINER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STRAINER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STRAINER_VALUE = 1;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
 	 * The '<em><b>WATERFILTER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -180,7 +142,7 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATERFILTER_VALUE = 3;
+	public static final int WATERFILTER_VALUE = 1;
 
 	/**
 	 * The '<em><b>COMPRESSEDAIRFILTER</b></em>' literal value.
@@ -195,22 +157,37 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMPRESSEDAIRFILTER_VALUE = 4;
+	public static final int COMPRESSEDAIRFILTER_VALUE = 2;
 
 	/**
-	 * The '<em><b>ODORFILTER</b></em>' literal value.
+	 * The '<em><b>STRAINER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ODORFILTER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>STRAINER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ODORFILTER
+	 * @see #STRAINER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ODORFILTER_VALUE = 5;
+	public static final int STRAINER_VALUE = 3;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>OILFILTER</b></em>' literal value.
@@ -225,7 +202,22 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OILFILTER_VALUE = 6;
+	public static final int OILFILTER_VALUE = 5;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * The '<em><b>AIRPARTICLEFILTER</b></em>' literal value.
@@ -243,19 +235,19 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	public static final int AIRPARTICLEFILTER_VALUE = 7;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>ODORFILTER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ODORFILTER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #ODORFILTER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 8;
+	public static final int ODORFILTER_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Filter Type Enum</b></em>' enumerators.
@@ -263,8 +255,8 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFilterTypeEnum[] VALUES_ARRAY = new IfcFilterTypeEnum[] { NULL, STRAINER, NOTDEFINED,
-			WATERFILTER, COMPRESSEDAIRFILTER, ODORFILTER, OILFILTER, AIRPARTICLEFILTER, USERDEFINED, };
+	private static final IfcFilterTypeEnum[] VALUES_ARRAY = new IfcFilterTypeEnum[] { NULL, WATERFILTER,
+			COMPRESSEDAIRFILTER, STRAINER, NOTDEFINED, OILFILTER, USERDEFINED, AIRPARTICLEFILTER, ODORFILTER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Filter Type Enum</b></em>' enumerators.
@@ -322,22 +314,22 @@ public enum IfcFilterTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case STRAINER_VALUE:
-			return STRAINER;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case WATERFILTER_VALUE:
 			return WATERFILTER;
 		case COMPRESSEDAIRFILTER_VALUE:
 			return COMPRESSEDAIRFILTER;
-		case ODORFILTER_VALUE:
-			return ODORFILTER;
+		case STRAINER_VALUE:
+			return STRAINER;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case OILFILTER_VALUE:
 			return OILFILTER;
-		case AIRPARTICLEFILTER_VALUE:
-			return AIRPARTICLEFILTER;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case AIRPARTICLEFILTER_VALUE:
+			return AIRPARTICLEFILTER;
+		case ODORFILTER_VALUE:
+			return ODORFILTER;
 		}
 		return null;
 	}

@@ -80,7 +80,8 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements Ifc
 	 * @generated
 	 */
 	public IfcMeasureWithUnit getQuantityInProcess() {
-		return (IfcMeasureWithUnit) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS, true);
+		return (IfcMeasureWithUnit) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS,
+				true);
 	}
 
 	/**

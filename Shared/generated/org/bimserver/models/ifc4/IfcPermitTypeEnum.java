@@ -43,26 +43,6 @@ public enum IfcPermitTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>ACCESS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ACCESS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ACCESS(1, "ACCESS", "ACCESS"),
-
-	/**
-	 * The '<em><b>BUILDING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BUILDING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BUILDING(2, "BUILDING", "BUILDING"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,15 @@ public enum IfcPermitTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>BUILDING</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #BUILDING_VALUE
+												* @generated
+												* @ordered
+												*/
+	BUILDING(2, "BUILDING", "BUILDING"),
 
 	/**
 	 * The '<em><b>WORK</b></em>' literal object.
@@ -80,7 +68,7 @@ public enum IfcPermitTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WORK(4, "WORK", "WORK"),
+	WORK(3, "WORK", "WORK"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -90,7 +78,15 @@ public enum IfcPermitTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>ACCESS</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #ACCESS_VALUE
+													* @generated
+													* @ordered
+													*/
+	ACCESS(5, "ACCESS", "ACCESS");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,19 +104,19 @@ public enum IfcPermitTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>ACCESS</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ACCESS</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ACCESS
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ACCESS_VALUE = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>BUILDING</b></em>' literal value.
@@ -138,21 +134,6 @@ public enum IfcPermitTypeEnum implements Enumerator {
 	public static final int BUILDING_VALUE = 2;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 3;
-
-	/**
 	 * The '<em><b>WORK</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -165,7 +146,7 @@ public enum IfcPermitTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORK_VALUE = 4;
+	public static final int WORK_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -180,7 +161,22 @@ public enum IfcPermitTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 5;
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>ACCESS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ACCESS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ACCESS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ACCESS_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Permit Type Enum</b></em>' enumerators.
@@ -188,8 +184,8 @@ public enum IfcPermitTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPermitTypeEnum[] VALUES_ARRAY = new IfcPermitTypeEnum[] { NULL, ACCESS, BUILDING,
-			NOTDEFINED, WORK, USERDEFINED, };
+	private static final IfcPermitTypeEnum[] VALUES_ARRAY = new IfcPermitTypeEnum[] { NULL, NOTDEFINED, BUILDING, WORK,
+			USERDEFINED, ACCESS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Permit Type Enum</b></em>' enumerators.
@@ -247,16 +243,16 @@ public enum IfcPermitTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case ACCESS_VALUE:
-			return ACCESS;
-		case BUILDING_VALUE:
-			return BUILDING;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case BUILDING_VALUE:
+			return BUILDING;
 		case WORK_VALUE:
 			return WORK;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case ACCESS_VALUE:
+			return ACCESS;
 		}
 		return null;
 	}

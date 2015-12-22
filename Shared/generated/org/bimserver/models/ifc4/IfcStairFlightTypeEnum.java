@@ -43,36 +43,6 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SPIRAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPIRAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPIRAL(1, "SPIRAL", "SPIRAL"),
-
-	/**
-	 * The '<em><b>WINDER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WINDER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WINDER(2, "WINDER", "WINDER"),
-
-	/**
-	 * The '<em><b>FREEFORM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FREEFORM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FREEFORM(3, "FREEFORM", "FREEFORM"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,17 +50,7 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CURVED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CURVED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CURVED(5, "CURVED", "CURVED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>STRAIGHT</b></em>' literal object.
@@ -100,7 +60,15 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STRAIGHT(6, "STRAIGHT", "STRAIGHT"),
+	STRAIGHT(2, "STRAIGHT", "STRAIGHT"), /**
+											* The '<em><b>SPIRAL</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #SPIRAL_VALUE
+											* @generated
+											* @ordered
+											*/
+	SPIRAL(3, "SPIRAL", "SPIRAL"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -110,7 +78,31 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>WINDER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #WINDER_VALUE
+													* @generated
+													* @ordered
+													*/
+	WINDER(5, "WINDER", "WINDER"), /**
+									* The '<em><b>CURVED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #CURVED_VALUE
+									* @generated
+									* @ordered
+									*/
+	CURVED(6, "CURVED", "CURVED"), /**
+									* The '<em><b>FREEFORM</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #FREEFORM_VALUE
+									* @generated
+									* @ordered
+									*/
+	FREEFORM(7, "FREEFORM", "FREEFORM");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,51 +120,6 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>SPIRAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SPIRAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SPIRAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SPIRAL_VALUE = 1;
-
-	/**
-	 * The '<em><b>WINDER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>WINDER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #WINDER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WINDER_VALUE = 2;
-
-	/**
-	 * The '<em><b>FREEFORM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FREEFORM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FREEFORM
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FREEFORM_VALUE = 3;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -185,22 +132,7 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 4;
-
-	/**
-	 * The '<em><b>CURVED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CURVED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CURVED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CURVED_VALUE = 5;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>STRAIGHT</b></em>' literal value.
@@ -215,7 +147,22 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STRAIGHT_VALUE = 6;
+	public static final int STRAIGHT_VALUE = 2;
+
+	/**
+	 * The '<em><b>SPIRAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SPIRAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SPIRAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SPIRAL_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -230,7 +177,52 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 7;
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>WINDER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>WINDER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #WINDER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WINDER_VALUE = 5;
+
+	/**
+	 * The '<em><b>CURVED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CURVED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CURVED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CURVED_VALUE = 6;
+
+	/**
+	 * The '<em><b>FREEFORM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FREEFORM</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FREEFORM
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FREEFORM_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Stair Flight Type Enum</b></em>' enumerators.
@@ -238,8 +230,8 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStairFlightTypeEnum[] VALUES_ARRAY = new IfcStairFlightTypeEnum[] { NULL, SPIRAL, WINDER,
-			FREEFORM, NOTDEFINED, CURVED, STRAIGHT, USERDEFINED, };
+	private static final IfcStairFlightTypeEnum[] VALUES_ARRAY = new IfcStairFlightTypeEnum[] { NULL, NOTDEFINED,
+			STRAIGHT, SPIRAL, USERDEFINED, WINDER, CURVED, FREEFORM, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Stair Flight Type Enum</b></em>' enumerators.
@@ -297,20 +289,20 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case SPIRAL_VALUE:
-			return SPIRAL;
-		case WINDER_VALUE:
-			return WINDER;
-		case FREEFORM_VALUE:
-			return FREEFORM;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case CURVED_VALUE:
-			return CURVED;
 		case STRAIGHT_VALUE:
 			return STRAIGHT;
+		case SPIRAL_VALUE:
+			return SPIRAL;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case WINDER_VALUE:
+			return WINDER;
+		case CURVED_VALUE:
+			return CURVED;
+		case FREEFORM_VALUE:
+			return FREEFORM;
 		}
 		return null;
 	}

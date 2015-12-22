@@ -1,5 +1,5 @@
 
-ýW
+ûW
 Bimsie1ServiceInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.proto"g
  AddExtendedDataToRevisionRequest
 roid (5
@@ -156,9 +156,9 @@ onlyActive ("Y
 deserializerName (	"x
 GetDeserializerByNameResponse
 errorMessage (	A
-value (22.org.bimserver.pb.SDeserializerPluginConfiguration"*
-GetDownloadDataRequest
-actionId ("b
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration")
+GetDownloadDataRequest
+topicId ("b
 SCheckoutResult
 file (
 oid (
@@ -248,9 +248,9 @@ revisionNr (
 poid ("‡
 ,GetSuggestedDeserializerForExtensionResponse
 errorMessage (	A
-value (22.org.bimserver.pb.SDeserializerPluginConfiguration"5
-!TerminateLongRunningActionRequest
-actionId ("&
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration"4
+!TerminateLongRunningActionRequest
+topicId ("&
 UndeleteProjectRequest
 poid (">
 UndeleteProjectResponse

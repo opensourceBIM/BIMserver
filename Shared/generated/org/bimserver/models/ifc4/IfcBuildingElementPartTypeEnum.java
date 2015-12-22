@@ -53,26 +53,6 @@ public enum IfcBuildingElementPartTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>PRECASTPANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRECASTPANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRECASTPANEL(2, "PRECASTPANEL", "PRECASTPANEL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>INSULATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +60,23 @@ public enum IfcBuildingElementPartTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INSULATION(4, "INSULATION", "INSULATION");
+	INSULATION(2, "INSULATION", "INSULATION"), /**
+												* The '<em><b>PRECASTPANEL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #PRECASTPANEL_VALUE
+												* @generated
+												* @ordered
+												*/
+	PRECASTPANEL(3, "PRECASTPANEL", "PRECASTPANEL"), /**
+														* The '<em><b>USERDEFINED</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #USERDEFINED_VALUE
+														* @generated
+														* @ordered
+														*/
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -113,6 +109,21 @@ public enum IfcBuildingElementPartTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
+	 * The '<em><b>INSULATION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>INSULATION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #INSULATION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int INSULATION_VALUE = 2;
+
+	/**
 	 * The '<em><b>PRECASTPANEL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -125,7 +136,7 @@ public enum IfcBuildingElementPartTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRECASTPANEL_VALUE = 2;
+	public static final int PRECASTPANEL_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -140,22 +151,7 @@ public enum IfcBuildingElementPartTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 3;
-
-	/**
-	 * The '<em><b>INSULATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>INSULATION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #INSULATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INSULATION_VALUE = 4;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Building Element Part Type Enum</b></em>' enumerators.
@@ -164,7 +160,7 @@ public enum IfcBuildingElementPartTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcBuildingElementPartTypeEnum[] VALUES_ARRAY = new IfcBuildingElementPartTypeEnum[] { NULL,
-			NOTDEFINED, PRECASTPANEL, USERDEFINED, INSULATION, };
+			NOTDEFINED, INSULATION, PRECASTPANEL, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Building Element Part Type Enum</b></em>' enumerators.
@@ -225,12 +221,12 @@ public enum IfcBuildingElementPartTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case INSULATION_VALUE:
+			return INSULATION;
 		case PRECASTPANEL_VALUE:
 			return PRECASTPANEL;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case INSULATION_VALUE:
-			return INSULATION;
 		}
 		return null;
 	}

@@ -76,7 +76,8 @@ public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements Ifc
 	 * @generated
 	 */
 	public IfcDocumentSelect getReferencedDocument() {
-		return (IfcDocumentSelect) eGet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCED_DOCUMENT, true);
+		return (IfcDocumentSelect) eGet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCED_DOCUMENT,
+				true);
 	}
 
 	/**
@@ -95,7 +96,8 @@ public class IfcReferencesValueDocumentImpl extends IdEObjectImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValue> getReferencingValues() {
-		return (EList<IfcAppliedValue>) eGet(Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCING_VALUES, true);
+		return (EList<IfcAppliedValue>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REFERENCES_VALUE_DOCUMENT__REFERENCING_VALUES, true);
 	}
 
 	/**

@@ -43,76 +43,6 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>LOWVOLTAGEHALOGEN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOWVOLTAGEHALOGEN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOWVOLTAGEHALOGEN(1, "LOWVOLTAGEHALOGEN", "LOWVOLTAGEHALOGEN"),
-
-	/**
-	 * The '<em><b>MAINVOLTAGEHALOGEN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MAINVOLTAGEHALOGEN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MAINVOLTAGEHALOGEN(2, "MAINVOLTAGEHALOGEN", "MAINVOLTAGEHALOGEN"),
-
-	/**
-	 * The '<em><b>HIGHPRESSUREMERCURY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HIGHPRESSUREMERCURY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HIGHPRESSUREMERCURY(3, "HIGHPRESSUREMERCURY", "HIGHPRESSUREMERCURY"),
-
-	/**
-	 * The '<em><b>COMPACTFLUORESCENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPACTFLUORESCENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPACTFLUORESCENT(4, "COMPACTFLUORESCENT", "COMPACTFLUORESCENT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TUNGSTENFILAMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TUNGSTENFILAMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TUNGSTENFILAMENT(6, "TUNGSTENFILAMENT", "TUNGSTENFILAMENT"),
-
-	/**
-	 * The '<em><b>METALHALIDE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #METALHALIDE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	METALHALIDE(7, "METALHALIDE", "METALHALIDE"),
-
-	/**
 	 * The '<em><b>LOWPRESSURESODIUM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,27 +50,23 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOWPRESSURESODIUM(8, "LOWPRESSURESODIUM", "LOWPRESSURESODIUM"),
-
-	/**
-	 * The '<em><b>HIGHPRESSURESODIUM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HIGHPRESSURESODIUM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HIGHPRESSURESODIUM(9, "HIGHPRESSURESODIUM", "HIGHPRESSURESODIUM"),
-
-	/**
-	 * The '<em><b>LIGHTEMITTINGDIODE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LIGHTEMITTINGDIODE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LIGHTEMITTINGDIODE(10, "LIGHTEMITTINGDIODE", "LIGHTEMITTINGDIODE"),
+	LOWPRESSURESODIUM(1, "LOWPRESSURESODIUM", "LOWPRESSURESODIUM"), /**
+																	* The '<em><b>MAINVOLTAGEHALOGEN</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #MAINVOLTAGEHALOGEN_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	MAINVOLTAGEHALOGEN(2, "MAINVOLTAGEHALOGEN", "MAINVOLTAGEHALOGEN"), /**
+																		* The '<em><b>TUNGSTENFILAMENT</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #TUNGSTENFILAMENT_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	TUNGSTENFILAMENT(3, "TUNGSTENFILAMENT", "TUNGSTENFILAMENT"),
 
 	/**
 	 * The '<em><b>FLUORESCENT</b></em>' literal object.
@@ -150,7 +76,63 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLUORESCENT(11, "FLUORESCENT", "FLUORESCENT");
+	FLUORESCENT(4, "FLUORESCENT", "FLUORESCENT"), /**
+													* The '<em><b>NOTDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #NOTDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>HIGHPRESSURESODIUM</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #HIGHPRESSURESODIUM_VALUE
+												* @generated
+												* @ordered
+												*/
+	HIGHPRESSURESODIUM(6, "HIGHPRESSURESODIUM", "HIGHPRESSURESODIUM"), /**
+																		* The '<em><b>LOWVOLTAGEHALOGEN</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #LOWVOLTAGEHALOGEN_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	LOWVOLTAGEHALOGEN(7, "LOWVOLTAGEHALOGEN", "LOWVOLTAGEHALOGEN"), /**
+																	* The '<em><b>METALHALIDE</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #METALHALIDE_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	METALHALIDE(8, "METALHALIDE", "METALHALIDE"), /**
+													* The '<em><b>LIGHTEMITTINGDIODE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #LIGHTEMITTINGDIODE_VALUE
+													* @generated
+													* @ordered
+													*/
+	LIGHTEMITTINGDIODE(9, "LIGHTEMITTINGDIODE", "LIGHTEMITTINGDIODE"), /**
+																		* The '<em><b>COMPACTFLUORESCENT</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #COMPACTFLUORESCENT_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	COMPACTFLUORESCENT(10, "COMPACTFLUORESCENT", "COMPACTFLUORESCENT"), /**
+																		* The '<em><b>HIGHPRESSUREMERCURY</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #HIGHPRESSUREMERCURY_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	HIGHPRESSUREMERCURY(11, "HIGHPRESSUREMERCURY", "HIGHPRESSUREMERCURY");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -168,19 +150,19 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>LOWVOLTAGEHALOGEN</b></em>' literal value.
+	 * The '<em><b>LOWPRESSURESODIUM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>LOWVOLTAGEHALOGEN</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>LOWPRESSURESODIUM</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LOWVOLTAGEHALOGEN
+	 * @see #LOWPRESSURESODIUM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOWVOLTAGEHALOGEN_VALUE = 1;
+	public static final int LOWPRESSURESODIUM_VALUE = 1;
 
 	/**
 	 * The '<em><b>MAINVOLTAGEHALOGEN</b></em>' literal value.
@@ -198,34 +180,34 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	public static final int MAINVOLTAGEHALOGEN_VALUE = 2;
 
 	/**
-	 * The '<em><b>HIGHPRESSUREMERCURY</b></em>' literal value.
+	 * The '<em><b>TUNGSTENFILAMENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>HIGHPRESSUREMERCURY</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TUNGSTENFILAMENT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HIGHPRESSUREMERCURY
+	 * @see #TUNGSTENFILAMENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HIGHPRESSUREMERCURY_VALUE = 3;
+	public static final int TUNGSTENFILAMENT_VALUE = 3;
 
 	/**
-	 * The '<em><b>COMPACTFLUORESCENT</b></em>' literal value.
+	 * The '<em><b>FLUORESCENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>COMPACTFLUORESCENT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>FLUORESCENT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COMPACTFLUORESCENT
+	 * @see #FLUORESCENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMPACTFLUORESCENT_VALUE = 4;
+	public static final int FLUORESCENT_VALUE = 4;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -243,19 +225,34 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 5;
 
 	/**
-	 * The '<em><b>TUNGSTENFILAMENT</b></em>' literal value.
+	 * The '<em><b>HIGHPRESSURESODIUM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>TUNGSTENFILAMENT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>HIGHPRESSURESODIUM</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TUNGSTENFILAMENT
+	 * @see #HIGHPRESSURESODIUM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TUNGSTENFILAMENT_VALUE = 6;
+	public static final int HIGHPRESSURESODIUM_VALUE = 6;
+
+	/**
+	 * The '<em><b>LOWVOLTAGEHALOGEN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LOWVOLTAGEHALOGEN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LOWVOLTAGEHALOGEN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LOWVOLTAGEHALOGEN_VALUE = 7;
 
 	/**
 	 * The '<em><b>METALHALIDE</b></em>' literal value.
@@ -270,37 +267,7 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int METALHALIDE_VALUE = 7;
-
-	/**
-	 * The '<em><b>LOWPRESSURESODIUM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>LOWPRESSURESODIUM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #LOWPRESSURESODIUM
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LOWPRESSURESODIUM_VALUE = 8;
-
-	/**
-	 * The '<em><b>HIGHPRESSURESODIUM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HIGHPRESSURESODIUM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HIGHPRESSURESODIUM
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HIGHPRESSURESODIUM_VALUE = 9;
+	public static final int METALHALIDE_VALUE = 8;
 
 	/**
 	 * The '<em><b>LIGHTEMITTINGDIODE</b></em>' literal value.
@@ -315,22 +282,37 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LIGHTEMITTINGDIODE_VALUE = 10;
+	public static final int LIGHTEMITTINGDIODE_VALUE = 9;
 
 	/**
-	 * The '<em><b>FLUORESCENT</b></em>' literal value.
+	 * The '<em><b>COMPACTFLUORESCENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>FLUORESCENT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>COMPACTFLUORESCENT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLUORESCENT
+	 * @see #COMPACTFLUORESCENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLUORESCENT_VALUE = 11;
+	public static final int COMPACTFLUORESCENT_VALUE = 10;
+
+	/**
+	 * The '<em><b>HIGHPRESSUREMERCURY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HIGHPRESSUREMERCURY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HIGHPRESSUREMERCURY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HIGHPRESSUREMERCURY_VALUE = 11;
 
 	/**
 	 * An array of all the '<em><b>Ifc Light Emission Source Enum</b></em>' enumerators.
@@ -338,8 +320,9 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLightEmissionSourceEnum[] VALUES_ARRAY = new IfcLightEmissionSourceEnum[] { NULL, LOWVOLTAGEHALOGEN, MAINVOLTAGEHALOGEN, HIGHPRESSUREMERCURY, COMPACTFLUORESCENT, NOTDEFINED, TUNGSTENFILAMENT,
-			METALHALIDE, LOWPRESSURESODIUM, HIGHPRESSURESODIUM, LIGHTEMITTINGDIODE, FLUORESCENT, };
+	private static final IfcLightEmissionSourceEnum[] VALUES_ARRAY = new IfcLightEmissionSourceEnum[] { NULL,
+			LOWPRESSURESODIUM, MAINVOLTAGEHALOGEN, TUNGSTENFILAMENT, FLUORESCENT, NOTDEFINED, HIGHPRESSURESODIUM,
+			LOWVOLTAGEHALOGEN, METALHALIDE, LIGHTEMITTINGDIODE, COMPACTFLUORESCENT, HIGHPRESSUREMERCURY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Light Emission Source Enum</b></em>' enumerators.
@@ -347,7 +330,8 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcLightEmissionSourceEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcLightEmissionSourceEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Light Emission Source Enum</b></em>' literal with the specified literal value.
@@ -397,28 +381,28 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case LOWVOLTAGEHALOGEN_VALUE:
-			return LOWVOLTAGEHALOGEN;
-		case MAINVOLTAGEHALOGEN_VALUE:
-			return MAINVOLTAGEHALOGEN;
-		case HIGHPRESSUREMERCURY_VALUE:
-			return HIGHPRESSUREMERCURY;
-		case COMPACTFLUORESCENT_VALUE:
-			return COMPACTFLUORESCENT;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case TUNGSTENFILAMENT_VALUE:
-			return TUNGSTENFILAMENT;
-		case METALHALIDE_VALUE:
-			return METALHALIDE;
 		case LOWPRESSURESODIUM_VALUE:
 			return LOWPRESSURESODIUM;
-		case HIGHPRESSURESODIUM_VALUE:
-			return HIGHPRESSURESODIUM;
-		case LIGHTEMITTINGDIODE_VALUE:
-			return LIGHTEMITTINGDIODE;
+		case MAINVOLTAGEHALOGEN_VALUE:
+			return MAINVOLTAGEHALOGEN;
+		case TUNGSTENFILAMENT_VALUE:
+			return TUNGSTENFILAMENT;
 		case FLUORESCENT_VALUE:
 			return FLUORESCENT;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case HIGHPRESSURESODIUM_VALUE:
+			return HIGHPRESSURESODIUM;
+		case LOWVOLTAGEHALOGEN_VALUE:
+			return LOWVOLTAGEHALOGEN;
+		case METALHALIDE_VALUE:
+			return METALHALIDE;
+		case LIGHTEMITTINGDIODE_VALUE:
+			return LIGHTEMITTINGDIODE;
+		case COMPACTFLUORESCENT_VALUE:
+			return COMPACTFLUORESCENT;
+		case HIGHPRESSUREMERCURY_VALUE:
+			return HIGHPRESSUREMERCURY;
 		}
 		return null;
 	}

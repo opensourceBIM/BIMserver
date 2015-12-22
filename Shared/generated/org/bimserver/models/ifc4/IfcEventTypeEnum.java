@@ -43,46 +43,6 @@ public enum IfcEventTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ENDEVENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ENDEVENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ENDEVENT(2, "ENDEVENT", "ENDEVENT"),
-
-	/**
-	 * The '<em><b>STARTEVENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STARTEVENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STARTEVENT(3, "STARTEVENT", "STARTEVENT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>INTERMEDIATEEVENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +50,39 @@ public enum IfcEventTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERMEDIATEEVENT(5, "INTERMEDIATEEVENT", "INTERMEDIATEEVENT");
+	INTERMEDIATEEVENT(1, "INTERMEDIATEEVENT", "INTERMEDIATEEVENT"), /**
+																	* The '<em><b>NOTDEFINED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #NOTDEFINED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>STARTEVENT</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #STARTEVENT_VALUE
+												* @generated
+												* @ordered
+												*/
+	STARTEVENT(3, "STARTEVENT", "STARTEVENT"), /**
+												* The '<em><b>ENDEVENT</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #ENDEVENT_VALUE
+												* @generated
+												* @ordered
+												*/
+	ENDEVENT(4, "ENDEVENT", "ENDEVENT"), /**
+											* The '<em><b>USERDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #USERDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,6 +100,21 @@ public enum IfcEventTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>INTERMEDIATEEVENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>INTERMEDIATEEVENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #INTERMEDIATEEVENT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int INTERMEDIATEEVENT_VALUE = 1;
+
+	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -120,22 +127,7 @@ public enum IfcEventTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
-	 * The '<em><b>ENDEVENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ENDEVENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ENDEVENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ENDEVENT_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>STARTEVENT</b></em>' literal value.
@@ -153,6 +145,21 @@ public enum IfcEventTypeEnum implements Enumerator {
 	public static final int STARTEVENT_VALUE = 3;
 
 	/**
+	 * The '<em><b>ENDEVENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ENDEVENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ENDEVENT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ENDEVENT_VALUE = 4;
+
+	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -165,22 +172,7 @@ public enum IfcEventTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
-
-	/**
-	 * The '<em><b>INTERMEDIATEEVENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>INTERMEDIATEEVENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #INTERMEDIATEEVENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INTERMEDIATEEVENT_VALUE = 5;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Event Type Enum</b></em>' enumerators.
@@ -188,8 +180,8 @@ public enum IfcEventTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEventTypeEnum[] VALUES_ARRAY = new IfcEventTypeEnum[] { NULL, NOTDEFINED, ENDEVENT,
-			STARTEVENT, USERDEFINED, INTERMEDIATEEVENT, };
+	private static final IfcEventTypeEnum[] VALUES_ARRAY = new IfcEventTypeEnum[] { NULL, INTERMEDIATEEVENT, NOTDEFINED,
+			STARTEVENT, ENDEVENT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Event Type Enum</b></em>' enumerators.
@@ -247,16 +239,16 @@ public enum IfcEventTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case ENDEVENT_VALUE:
-			return ENDEVENT;
-		case STARTEVENT_VALUE:
-			return STARTEVENT;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case INTERMEDIATEEVENT_VALUE:
 			return INTERMEDIATEEVENT;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case STARTEVENT_VALUE:
+			return STARTEVENT;
+		case ENDEVENT_VALUE:
+			return ENDEVENT;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

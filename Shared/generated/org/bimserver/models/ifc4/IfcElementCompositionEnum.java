@@ -43,16 +43,6 @@ public enum IfcElementCompositionEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>ELEMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELEMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELEMENT(1, "ELEMENT", "ELEMENT"),
-
-	/**
 	 * The '<em><b>COMPLEX</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,15 @@ public enum IfcElementCompositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMPLEX(2, "COMPLEX", "COMPLEX"),
+	COMPLEX(1, "COMPLEX", "COMPLEX"), /**
+										* The '<em><b>ELEMENT</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #ELEMENT_VALUE
+										* @generated
+										* @ordered
+										*/
+	ELEMENT(2, "ELEMENT", "ELEMENT"),
 
 	/**
 	 * The '<em><b>PARTIAL</b></em>' literal object.
@@ -88,21 +86,6 @@ public enum IfcElementCompositionEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>ELEMENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ELEMENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ELEMENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ELEMENT_VALUE = 1;
-
-	/**
 	 * The '<em><b>COMPLEX</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -115,7 +98,22 @@ public enum IfcElementCompositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMPLEX_VALUE = 2;
+	public static final int COMPLEX_VALUE = 1;
+
+	/**
+	 * The '<em><b>ELEMENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ELEMENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ELEMENT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ELEMENT_VALUE = 2;
 
 	/**
 	 * The '<em><b>PARTIAL</b></em>' literal value.
@@ -138,8 +136,8 @@ public enum IfcElementCompositionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElementCompositionEnum[] VALUES_ARRAY = new IfcElementCompositionEnum[] { NULL, ELEMENT,
-			COMPLEX, PARTIAL, };
+	private static final IfcElementCompositionEnum[] VALUES_ARRAY = new IfcElementCompositionEnum[] { NULL, COMPLEX,
+			ELEMENT, PARTIAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Element Composition Enum</b></em>' enumerators.
@@ -198,10 +196,10 @@ public enum IfcElementCompositionEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case ELEMENT_VALUE:
-			return ELEMENT;
 		case COMPLEX_VALUE:
 			return COMPLEX;
+		case ELEMENT_VALUE:
+			return ELEMENT;
 		case PARTIAL_VALUE:
 			return PARTIAL;
 		}

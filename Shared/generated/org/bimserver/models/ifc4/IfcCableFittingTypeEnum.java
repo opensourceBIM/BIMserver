@@ -43,26 +43,6 @@ public enum IfcCableFittingTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>EXIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXIT(1, "EXIT", "EXIT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>TRANSITION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,15 @@ public enum IfcCableFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRANSITION(3, "TRANSITION", "TRANSITION"),
+	TRANSITION(1, "TRANSITION", "TRANSITION"), /**
+												* The '<em><b>NOTDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #NOTDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>ENTRY</b></em>' literal object.
@@ -80,17 +68,7 @@ public enum IfcCableFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ENTRY(4, "ENTRY", "ENTRY"),
-
-	/**
-	 * The '<em><b>JUNCTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #JUNCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	JUNCTION(5, "JUNCTION", "JUNCTION"),
+	ENTRY(3, "ENTRY", "ENTRY"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -100,7 +78,23 @@ public enum IfcCableFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>EXIT</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #EXIT_VALUE
+													* @generated
+													* @ordered
+													*/
+	EXIT(5, "EXIT", "EXIT"), /**
+								* The '<em><b>JUNCTION</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #JUNCTION_VALUE
+								* @generated
+								* @ordered
+								*/
+	JUNCTION(6, "JUNCTION", "JUNCTION"),
 
 	/**
 	 * The '<em><b>CONNECTOR</b></em>' literal object.
@@ -128,19 +122,19 @@ public enum IfcCableFittingTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>EXIT</b></em>' literal value.
+	 * The '<em><b>TRANSITION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EXIT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TRANSITION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EXIT
+	 * @see #TRANSITION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXIT_VALUE = 1;
+	public static final int TRANSITION_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -158,21 +152,6 @@ public enum IfcCableFittingTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>TRANSITION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TRANSITION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TRANSITION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TRANSITION_VALUE = 3;
-
-	/**
 	 * The '<em><b>ENTRY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -185,22 +164,7 @@ public enum IfcCableFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ENTRY_VALUE = 4;
-
-	/**
-	 * The '<em><b>JUNCTION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>JUNCTION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #JUNCTION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int JUNCTION_VALUE = 5;
+	public static final int ENTRY_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -215,7 +179,37 @@ public enum IfcCableFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 6;
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>EXIT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>EXIT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #EXIT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EXIT_VALUE = 5;
+
+	/**
+	 * The '<em><b>JUNCTION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>JUNCTION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #JUNCTION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int JUNCTION_VALUE = 6;
 
 	/**
 	 * The '<em><b>CONNECTOR</b></em>' literal value.
@@ -238,8 +232,8 @@ public enum IfcCableFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCableFittingTypeEnum[] VALUES_ARRAY = new IfcCableFittingTypeEnum[] { NULL, EXIT,
-			NOTDEFINED, TRANSITION, ENTRY, JUNCTION, USERDEFINED, CONNECTOR, };
+	private static final IfcCableFittingTypeEnum[] VALUES_ARRAY = new IfcCableFittingTypeEnum[] { NULL, TRANSITION,
+			NOTDEFINED, ENTRY, USERDEFINED, EXIT, JUNCTION, CONNECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cable Fitting Type Enum</b></em>' enumerators.
@@ -298,18 +292,18 @@ public enum IfcCableFittingTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case EXIT_VALUE:
-			return EXIT;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case TRANSITION_VALUE:
 			return TRANSITION;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case ENTRY_VALUE:
 			return ENTRY;
-		case JUNCTION_VALUE:
-			return JUNCTION;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case EXIT_VALUE:
+			return EXIT;
+		case JUNCTION_VALUE:
+			return JUNCTION;
 		case CONNECTOR_VALUE:
 			return CONNECTOR;
 		}

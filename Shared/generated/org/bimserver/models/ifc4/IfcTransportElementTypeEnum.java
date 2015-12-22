@@ -43,36 +43,6 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ESCALATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ESCALATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ESCALATOR(2, "ESCALATOR", "ESCALATOR"),
-
-	/**
-	 * The '<em><b>CRANEWAY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CRANEWAY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CRANEWAY(3, "CRANEWAY", "CRANEWAY"),
-
-	/**
 	 * The '<em><b>MOVINGWALKWAY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +50,23 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MOVINGWALKWAY(4, "MOVINGWALKWAY", "MOVINGWALKWAY"),
+	MOVINGWALKWAY(1, "MOVINGWALKWAY", "MOVINGWALKWAY"), /**
+														* The '<em><b>CRANEWAY</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #CRANEWAY_VALUE
+														* @generated
+														* @ordered
+														*/
+	CRANEWAY(2, "CRANEWAY", "CRANEWAY"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -90,17 +76,15 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ELEVATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELEVATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELEVATOR(6, "ELEVATOR", "ELEVATOR"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>ESCALATOR</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #ESCALATOR_VALUE
+													* @generated
+													* @ordered
+													*/
+	ESCALATOR(5, "ESCALATOR", "ESCALATOR"),
 
 	/**
 	 * The '<em><b>LIFTINGGEAR</b></em>' literal object.
@@ -110,7 +94,15 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LIFTINGGEAR(7, "LIFTINGGEAR", "LIFTINGGEAR");
+	LIFTINGGEAR(6, "LIFTINGGEAR", "LIFTINGGEAR"), /**
+													* The '<em><b>ELEVATOR</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #ELEVATOR_VALUE
+													* @generated
+													* @ordered
+													*/
+	ELEVATOR(7, "ELEVATOR", "ELEVATOR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,34 +120,19 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>MOVINGWALKWAY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>MOVINGWALKWAY</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #MOVINGWALKWAY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
-	 * The '<em><b>ESCALATOR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ESCALATOR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ESCALATOR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ESCALATOR_VALUE = 2;
+	public static final int MOVINGWALKWAY_VALUE = 1;
 
 	/**
 	 * The '<em><b>CRANEWAY</b></em>' literal value.
@@ -170,22 +147,22 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CRANEWAY_VALUE = 3;
+	public static final int CRANEWAY_VALUE = 2;
 
 	/**
-	 * The '<em><b>MOVINGWALKWAY</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>MOVINGWALKWAY</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MOVINGWALKWAY
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MOVINGWALKWAY_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -200,22 +177,22 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 5;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
-	 * The '<em><b>ELEVATOR</b></em>' literal value.
+	 * The '<em><b>ESCALATOR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ELEVATOR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ESCALATOR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELEVATOR
+	 * @see #ESCALATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELEVATOR_VALUE = 6;
+	public static final int ESCALATOR_VALUE = 5;
 
 	/**
 	 * The '<em><b>LIFTINGGEAR</b></em>' literal value.
@@ -230,7 +207,22 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LIFTINGGEAR_VALUE = 7;
+	public static final int LIFTINGGEAR_VALUE = 6;
+
+	/**
+	 * The '<em><b>ELEVATOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ELEVATOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ELEVATOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ELEVATOR_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Transport Element Type Enum</b></em>' enumerators.
@@ -239,7 +231,7 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcTransportElementTypeEnum[] VALUES_ARRAY = new IfcTransportElementTypeEnum[] { NULL,
-			NOTDEFINED, ESCALATOR, CRANEWAY, MOVINGWALKWAY, USERDEFINED, ELEVATOR, LIFTINGGEAR, };
+			MOVINGWALKWAY, CRANEWAY, NOTDEFINED, USERDEFINED, ESCALATOR, LIFTINGGEAR, ELEVATOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Transport Element Type Enum</b></em>' enumerators.
@@ -298,20 +290,20 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case ESCALATOR_VALUE:
-			return ESCALATOR;
-		case CRANEWAY_VALUE:
-			return CRANEWAY;
 		case MOVINGWALKWAY_VALUE:
 			return MOVINGWALKWAY;
+		case CRANEWAY_VALUE:
+			return CRANEWAY;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case ELEVATOR_VALUE:
-			return ELEVATOR;
+		case ESCALATOR_VALUE:
+			return ESCALATOR;
 		case LIFTINGGEAR_VALUE:
 			return LIFTINGGEAR;
+		case ELEVATOR_VALUE:
+			return ELEVATOR;
 		}
 		return null;
 	}

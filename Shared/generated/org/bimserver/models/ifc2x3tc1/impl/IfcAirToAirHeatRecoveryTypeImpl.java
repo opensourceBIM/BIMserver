@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcAirToAirHeatRecoveryTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcAirToAirHeatRecoveryType {
+public class IfcAirToAirHeatRecoveryTypeImpl extends IfcEnergyConversionDeviceTypeImpl
+		implements IfcAirToAirHeatRecoveryType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +61,8 @@ public class IfcAirToAirHeatRecoveryTypeImpl extends IfcEnergyConversionDeviceTy
 	 * @generated
 	 */
 	public IfcAirToAirHeatRecoveryTypeEnum getPredefinedType() {
-		return (IfcAirToAirHeatRecoveryTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_AIR_TO_AIR_HEAT_RECOVERY_TYPE__PREDEFINED_TYPE, true);
+		return (IfcAirToAirHeatRecoveryTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_AIR_TO_AIR_HEAT_RECOVERY_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

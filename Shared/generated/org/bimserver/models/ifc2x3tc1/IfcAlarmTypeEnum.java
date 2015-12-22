@@ -43,56 +43,6 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>BREAKGLASSBUTTON</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BREAKGLASSBUTTON_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BREAKGLASSBUTTON(1, "BREAKGLASSBUTTON", "BREAKGLASSBUTTON"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>BELL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BELL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BELL(3, "BELL", "BELL"),
-
-	/**
-	 * The '<em><b>WHISTLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WHISTLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WHISTLE(4, "WHISTLE", "WHISTLE"),
-
-	/**
-	 * The '<em><b>LIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LIGHT(5, "LIGHT", "LIGHT"),
-
-	/**
 	 * The '<em><b>SIREN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +50,31 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SIREN(6, "SIREN", "SIREN"),
+	SIREN(1, "SIREN", "SIREN"), /**
+								* The '<em><b>NOTDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #NOTDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>WHISTLE</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #WHISTLE_VALUE
+												* @generated
+												* @ordered
+												*/
+	WHISTLE(3, "WHISTLE", "WHISTLE"), /**
+										* The '<em><b>LIGHT</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #LIGHT_VALUE
+										* @generated
+										* @ordered
+										*/
+	LIGHT(4, "LIGHT", "LIGHT"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -110,7 +84,23 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>BELL</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #BELL_VALUE
+													* @generated
+													* @ordered
+													*/
+	BELL(6, "BELL", "BELL"), /**
+								* The '<em><b>BREAKGLASSBUTTON</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #BREAKGLASSBUTTON_VALUE
+								* @generated
+								* @ordered
+								*/
+	BREAKGLASSBUTTON(7, "BREAKGLASSBUTTON", "BREAKGLASSBUTTON"),
 
 	/**
 	 * The '<em><b>MANUALPULLBOX</b></em>' literal object.
@@ -138,19 +128,19 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>BREAKGLASSBUTTON</b></em>' literal value.
+	 * The '<em><b>SIREN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BREAKGLASSBUTTON</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SIREN</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BREAKGLASSBUTTON
+	 * @see #SIREN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BREAKGLASSBUTTON_VALUE = 1;
+	public static final int SIREN_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -168,21 +158,6 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>BELL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BELL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BELL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BELL_VALUE = 3;
-
-	/**
 	 * The '<em><b>WHISTLE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -195,7 +170,7 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WHISTLE_VALUE = 4;
+	public static final int WHISTLE_VALUE = 3;
 
 	/**
 	 * The '<em><b>LIGHT</b></em>' literal value.
@@ -210,22 +185,7 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LIGHT_VALUE = 5;
-
-	/**
-	 * The '<em><b>SIREN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SIREN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SIREN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SIREN_VALUE = 6;
+	public static final int LIGHT_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -240,7 +200,37 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 7;
+	public static final int USERDEFINED_VALUE = 5;
+
+	/**
+	 * The '<em><b>BELL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BELL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BELL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BELL_VALUE = 6;
+
+	/**
+	 * The '<em><b>BREAKGLASSBUTTON</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BREAKGLASSBUTTON</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BREAKGLASSBUTTON
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BREAKGLASSBUTTON_VALUE = 7;
 
 	/**
 	 * The '<em><b>MANUALPULLBOX</b></em>' literal value.
@@ -263,7 +253,8 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAlarmTypeEnum[] VALUES_ARRAY = new IfcAlarmTypeEnum[] { NULL, BREAKGLASSBUTTON, NOTDEFINED, BELL, WHISTLE, LIGHT, SIREN, USERDEFINED, MANUALPULLBOX, };
+	private static final IfcAlarmTypeEnum[] VALUES_ARRAY = new IfcAlarmTypeEnum[] { NULL, SIREN, NOTDEFINED, WHISTLE,
+			LIGHT, USERDEFINED, BELL, BREAKGLASSBUTTON, MANUALPULLBOX, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Alarm Type Enum</b></em>' enumerators.
@@ -321,20 +312,20 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case BREAKGLASSBUTTON_VALUE:
-			return BREAKGLASSBUTTON;
+		case SIREN_VALUE:
+			return SIREN;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case BELL_VALUE:
-			return BELL;
 		case WHISTLE_VALUE:
 			return WHISTLE;
 		case LIGHT_VALUE:
 			return LIGHT;
-		case SIREN_VALUE:
-			return SIREN;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case BELL_VALUE:
+			return BELL;
+		case BREAKGLASSBUTTON_VALUE:
+			return BREAKGLASSBUTTON;
 		case MANUALPULLBOX_VALUE:
 			return MANUALPULLBOX;
 		}

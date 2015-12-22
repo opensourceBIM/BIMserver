@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcModulusOfLinearSubgradeReactionMeasureImpl extends IdEObjectImpl implements IfcModulusOfLinearSubgradeReactionMeasure {
+public class IfcModulusOfLinearSubgradeReactionMeasureImpl extends IdEObjectImpl
+		implements IfcModulusOfLinearSubgradeReactionMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +72,8 @@ public class IfcModulusOfLinearSubgradeReactionMeasureImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public double getWrappedValue() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -107,7 +109,9 @@ public class IfcModulusOfLinearSubgradeReactionMeasureImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -116,7 +120,8 @@ public class IfcModulusOfLinearSubgradeReactionMeasureImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**
@@ -134,7 +139,8 @@ public class IfcModulusOfLinearSubgradeReactionMeasureImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public boolean isSetWrappedValueAsString() {
-		return eIsSet(Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING);
+		return eIsSet(
+				Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING);
 	}
 
 } //IfcModulusOfLinearSubgradeReactionMeasureImpl

@@ -43,26 +43,6 @@ public enum IfcRampTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>QUARTER TURN RAMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QUARTER_TURN_RAMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QUARTER_TURN_RAMP(1, "QUARTER_TURN_RAMP", "QUARTER_TURN_RAMP"),
-
-	/**
-	 * The '<em><b>SPIRAL RAMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPIRAL_RAMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPIRAL_RAMP(2, "SPIRAL_RAMP", "SPIRAL_RAMP"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,47 +50,23 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>STRAIGHT RUN RAMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRAIGHT_RUN_RAMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRAIGHT_RUN_RAMP(4, "STRAIGHT_RUN_RAMP", "STRAIGHT_RUN_RAMP"),
-
-	/**
-	 * The '<em><b>TWO STRAIGHT RUN RAMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWO_STRAIGHT_RUN_RAMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWO_STRAIGHT_RUN_RAMP(5, "TWO_STRAIGHT_RUN_RAMP", "TWO_STRAIGHT_RUN_RAMP"),
-
-	/**
-	 * The '<em><b>HALF TURN RAMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HALF_TURN_RAMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HALF_TURN_RAMP(6, "HALF_TURN_RAMP", "HALF_TURN_RAMP"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>QUARTER TURN RAMP</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #QUARTER_TURN_RAMP_VALUE
+												* @generated
+												* @ordered
+												*/
+	QUARTER_TURN_RAMP(2, "QUARTER_TURN_RAMP", "QUARTER_TURN_RAMP"), /**
+																	* The '<em><b>SPIRAL RAMP</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #SPIRAL_RAMP_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	SPIRAL_RAMP(3, "SPIRAL_RAMP", "SPIRAL_RAMP"),
 
 	/**
 	 * The '<em><b>TWO QUARTER TURN RAMP</b></em>' literal object.
@@ -120,7 +76,39 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TWO_QUARTER_TURN_RAMP(8, "TWO_QUARTER_TURN_RAMP", "TWO_QUARTER_TURN_RAMP");
+	TWO_QUARTER_TURN_RAMP(4, "TWO_QUARTER_TURN_RAMP", "TWO_QUARTER_TURN_RAMP"), /**
+																				* The '<em><b>TWO STRAIGHT RUN RAMP</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #TWO_STRAIGHT_RUN_RAMP_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	TWO_STRAIGHT_RUN_RAMP(5, "TWO_STRAIGHT_RUN_RAMP", "TWO_STRAIGHT_RUN_RAMP"), /**
+																				* The '<em><b>HALF TURN RAMP</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #HALF_TURN_RAMP_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	HALF_TURN_RAMP(6, "HALF_TURN_RAMP", "HALF_TURN_RAMP"), /**
+															* The '<em><b>USERDEFINED</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #USERDEFINED_VALUE
+															* @generated
+															* @ordered
+															*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>STRAIGHT RUN RAMP</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #STRAIGHT_RUN_RAMP_VALUE
+													* @generated
+													* @ordered
+													*/
+	STRAIGHT_RUN_RAMP(8, "STRAIGHT_RUN_RAMP", "STRAIGHT_RUN_RAMP");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -138,6 +126,21 @@ public enum IfcRampTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 1;
+
+	/**
 	 * The '<em><b>QUARTER TURN RAMP</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -150,7 +153,7 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int QUARTER_TURN_RAMP_VALUE = 1;
+	public static final int QUARTER_TURN_RAMP_VALUE = 2;
 
 	/**
 	 * The '<em><b>SPIRAL RAMP</b></em>' literal value.
@@ -165,37 +168,22 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPIRAL_RAMP_VALUE = 2;
+	public static final int SPIRAL_RAMP_VALUE = 3;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>TWO QUARTER TURN RAMP</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TWO QUARTER TURN RAMP</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #TWO_QUARTER_TURN_RAMP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
-
-	/**
-	 * The '<em><b>STRAIGHT RUN RAMP</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STRAIGHT RUN RAMP</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STRAIGHT_RUN_RAMP
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STRAIGHT_RUN_RAMP_VALUE = 4;
+	public static final int TWO_QUARTER_TURN_RAMP_VALUE = 4;
 
 	/**
 	 * The '<em><b>TWO STRAIGHT RUN RAMP</b></em>' literal value.
@@ -243,19 +231,19 @@ public enum IfcRampTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 7;
 
 	/**
-	 * The '<em><b>TWO QUARTER TURN RAMP</b></em>' literal value.
+	 * The '<em><b>STRAIGHT RUN RAMP</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>TWO QUARTER TURN RAMP</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>STRAIGHT RUN RAMP</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TWO_QUARTER_TURN_RAMP
+	 * @see #STRAIGHT_RUN_RAMP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TWO_QUARTER_TURN_RAMP_VALUE = 8;
+	public static final int STRAIGHT_RUN_RAMP_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Ramp Type Enum</b></em>' enumerators.
@@ -263,8 +251,9 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRampTypeEnum[] VALUES_ARRAY = new IfcRampTypeEnum[] { NULL, QUARTER_TURN_RAMP, SPIRAL_RAMP, NOTDEFINED, STRAIGHT_RUN_RAMP, TWO_STRAIGHT_RUN_RAMP, HALF_TURN_RAMP, USERDEFINED,
-			TWO_QUARTER_TURN_RAMP, };
+	private static final IfcRampTypeEnum[] VALUES_ARRAY = new IfcRampTypeEnum[] { NULL, NOTDEFINED, QUARTER_TURN_RAMP,
+			SPIRAL_RAMP, TWO_QUARTER_TURN_RAMP, TWO_STRAIGHT_RUN_RAMP, HALF_TURN_RAMP, USERDEFINED,
+			STRAIGHT_RUN_RAMP, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Ramp Type Enum</b></em>' enumerators.
@@ -322,22 +311,22 @@ public enum IfcRampTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case QUARTER_TURN_RAMP_VALUE:
 			return QUARTER_TURN_RAMP;
 		case SPIRAL_RAMP_VALUE:
 			return SPIRAL_RAMP;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case STRAIGHT_RUN_RAMP_VALUE:
-			return STRAIGHT_RUN_RAMP;
+		case TWO_QUARTER_TURN_RAMP_VALUE:
+			return TWO_QUARTER_TURN_RAMP;
 		case TWO_STRAIGHT_RUN_RAMP_VALUE:
 			return TWO_STRAIGHT_RUN_RAMP;
 		case HALF_TURN_RAMP_VALUE:
 			return HALF_TURN_RAMP;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case TWO_QUARTER_TURN_RAMP_VALUE:
-			return TWO_QUARTER_TURN_RAMP;
+		case STRAIGHT_RUN_RAMP_VALUE:
+			return STRAIGHT_RUN_RAMP;
 		}
 		return null;
 	}

@@ -113,7 +113,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * @generated
 	 */
 	public void setPhysicalWeightAsString(String newPhysicalWeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__PHYSICAL_WEIGHT_AS_STRING, newPhysicalWeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__PHYSICAL_WEIGHT_AS_STRING,
+				newPhysicalWeightAsString);
 	}
 
 	/**
@@ -221,7 +222,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * @generated
 	 */
 	public void setMinimumPlateThickness(double newMinimumPlateThickness) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MINIMUM_PLATE_THICKNESS, newMinimumPlateThickness);
+		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MINIMUM_PLATE_THICKNESS,
+				newMinimumPlateThickness);
 	}
 
 	/**
@@ -248,7 +250,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * @generated
 	 */
 	public String getMinimumPlateThicknessAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MINIMUM_PLATE_THICKNESS_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MINIMUM_PLATE_THICKNESS_AS_STRING, true);
 	}
 
 	/**
@@ -257,7 +260,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * @generated
 	 */
 	public void setMinimumPlateThicknessAsString(String newMinimumPlateThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MINIMUM_PLATE_THICKNESS_AS_STRING, newMinimumPlateThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MINIMUM_PLATE_THICKNESS_AS_STRING,
+				newMinimumPlateThicknessAsString);
 	}
 
 	/**
@@ -293,7 +297,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * @generated
 	 */
 	public void setMaximumPlateThickness(double newMaximumPlateThickness) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MAXIMUM_PLATE_THICKNESS, newMaximumPlateThickness);
+		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MAXIMUM_PLATE_THICKNESS,
+				newMaximumPlateThickness);
 	}
 
 	/**
@@ -320,7 +325,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * @generated
 	 */
 	public String getMaximumPlateThicknessAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MAXIMUM_PLATE_THICKNESS_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MAXIMUM_PLATE_THICKNESS_AS_STRING, true);
 	}
 
 	/**
@@ -329,7 +335,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * @generated
 	 */
 	public void setMaximumPlateThicknessAsString(String newMaximumPlateThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MAXIMUM_PLATE_THICKNESS_AS_STRING, newMaximumPlateThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__MAXIMUM_PLATE_THICKNESS_AS_STRING,
+				newMaximumPlateThicknessAsString);
 	}
 
 	/**
@@ -392,7 +399,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * @generated
 	 */
 	public String getCrossSectionAreaAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__CROSS_SECTION_AREA_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__CROSS_SECTION_AREA_AS_STRING,
+				true);
 	}
 
 	/**
@@ -401,7 +409,8 @@ public class IfcGeneralProfilePropertiesImpl extends IfcProfilePropertiesImpl im
 	 * @generated
 	 */
 	public void setCrossSectionAreaAsString(String newCrossSectionAreaAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__CROSS_SECTION_AREA_AS_STRING, newCrossSectionAreaAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_GENERAL_PROFILE_PROPERTIES__CROSS_SECTION_AREA_AS_STRING,
+				newCrossSectionAreaAsString);
 	}
 
 	/**

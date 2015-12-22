@@ -43,16 +43,6 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>GASBURNER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASBURNER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASBURNER(1, "GASBURNER", "GASBURNER"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,27 +50,15 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>GASBOOSTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASBOOSTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASBOOSTER(3, "GASBOOSTER", "GASBOOSTER"),
-
-	/**
-	 * The '<em><b>GASAPPLIANCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASAPPLIANCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASAPPLIANCE(4, "GASAPPLIANCE", "GASAPPLIANCE"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>GASBURNER</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #GASBURNER_VALUE
+												* @generated
+												* @ordered
+												*/
+	GASBURNER(2, "GASBURNER", "GASBURNER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -90,7 +68,23 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>GASBOOSTER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #GASBOOSTER_VALUE
+													* @generated
+													* @ordered
+													*/
+	GASBOOSTER(4, "GASBOOSTER", "GASBOOSTER"), /**
+												* The '<em><b>GASAPPLIANCE</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #GASAPPLIANCE_VALUE
+												* @generated
+												* @ordered
+												*/
+	GASAPPLIANCE(5, "GASAPPLIANCE", "GASAPPLIANCE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,21 +102,6 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>GASBURNER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GASBURNER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GASBURNER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GASBURNER_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,37 +114,22 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>GASBOOSTER</b></em>' literal value.
+	 * The '<em><b>GASBURNER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>GASBOOSTER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>GASBURNER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GASBOOSTER
+	 * @see #GASBURNER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GASBOOSTER_VALUE = 3;
-
-	/**
-	 * The '<em><b>GASAPPLIANCE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GASAPPLIANCE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GASAPPLIANCE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GASAPPLIANCE_VALUE = 4;
+	public static final int GASBURNER_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -180,7 +144,37 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 5;
+	public static final int USERDEFINED_VALUE = 3;
+
+	/**
+	 * The '<em><b>GASBOOSTER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GASBOOSTER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GASBOOSTER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GASBOOSTER_VALUE = 4;
+
+	/**
+	 * The '<em><b>GASAPPLIANCE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GASAPPLIANCE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GASAPPLIANCE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GASAPPLIANCE_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Gas Terminal Type Enum</b></em>' enumerators.
@@ -188,7 +182,8 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcGasTerminalTypeEnum[] VALUES_ARRAY = new IfcGasTerminalTypeEnum[] { NULL, GASBURNER, NOTDEFINED, GASBOOSTER, GASAPPLIANCE, USERDEFINED, };
+	private static final IfcGasTerminalTypeEnum[] VALUES_ARRAY = new IfcGasTerminalTypeEnum[] { NULL, NOTDEFINED,
+			GASBURNER, USERDEFINED, GASBOOSTER, GASAPPLIANCE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Gas Terminal Type Enum</b></em>' enumerators.
@@ -246,16 +241,16 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case GASBURNER_VALUE:
-			return GASBURNER;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case GASBURNER_VALUE:
+			return GASBURNER;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case GASBOOSTER_VALUE:
 			return GASBOOSTER;
 		case GASAPPLIANCE_VALUE:
 			return GASAPPLIANCE;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		}
 		return null;
 	}

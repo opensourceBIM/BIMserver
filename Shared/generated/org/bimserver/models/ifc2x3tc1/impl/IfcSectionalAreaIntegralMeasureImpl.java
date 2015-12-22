@@ -107,7 +107,8 @@ public class IfcSectionalAreaIntegralMeasureImpl extends IdEObjectImpl implement
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -116,7 +117,8 @@ public class IfcSectionalAreaIntegralMeasureImpl extends IdEObjectImpl implement
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**

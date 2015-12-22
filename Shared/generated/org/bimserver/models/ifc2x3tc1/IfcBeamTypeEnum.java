@@ -43,56 +43,6 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>LINTEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LINTEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LINTEL(1, "LINTEL", "LINTEL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TBEAM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TBEAM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TBEAM(3, "T_BEAM", "T_BEAM"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>JOIST</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #JOIST_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	JOIST(5, "JOIST", "JOIST"),
-
-	/**
 	 * The '<em><b>BEAM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +50,47 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BEAM(6, "BEAM", "BEAM");
+	BEAM(1, "BEAM", "BEAM"), /**
+								* The '<em><b>JOIST</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #JOIST_VALUE
+								* @generated
+								* @ordered
+								*/
+	JOIST(2, "JOIST", "JOIST"), /**
+								* The '<em><b>NOTDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #NOTDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>LINTEL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #LINTEL_VALUE
+												* @generated
+												* @ordered
+												*/
+	LINTEL(4, "LINTEL", "LINTEL"), /**
+									* The '<em><b>TBEAM</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #TBEAM_VALUE
+									* @generated
+									* @ordered
+									*/
+	TBEAM(5, "T_BEAM", "T_BEAM"), /**
+									* The '<em><b>USERDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #USERDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,64 +108,19 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>LINTEL</b></em>' literal value.
+	 * The '<em><b>BEAM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>LINTEL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>BEAM</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LINTEL
+	 * @see #BEAM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LINTEL_VALUE = 1;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>TBEAM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TBEAM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TBEAM
-	 * @model name="T_BEAM"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TBEAM_VALUE = 3;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int BEAM_VALUE = 1;
 
 	/**
 	 * The '<em><b>JOIST</b></em>' literal value.
@@ -190,22 +135,67 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int JOIST_VALUE = 5;
+	public static final int JOIST_VALUE = 2;
 
 	/**
-	 * The '<em><b>BEAM</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BEAM</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BEAM
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BEAM_VALUE = 6;
+	public static final int NOTDEFINED_VALUE = 3;
+
+	/**
+	 * The '<em><b>LINTEL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LINTEL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LINTEL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LINTEL_VALUE = 4;
+
+	/**
+	 * The '<em><b>TBEAM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TBEAM</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TBEAM
+	 * @model name="T_BEAM"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TBEAM_VALUE = 5;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Beam Type Enum</b></em>' enumerators.
@@ -213,7 +203,8 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBeamTypeEnum[] VALUES_ARRAY = new IfcBeamTypeEnum[] { NULL, LINTEL, NOTDEFINED, TBEAM, USERDEFINED, JOIST, BEAM, };
+	private static final IfcBeamTypeEnum[] VALUES_ARRAY = new IfcBeamTypeEnum[] { NULL, BEAM, JOIST, NOTDEFINED, LINTEL,
+			TBEAM, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Beam Type Enum</b></em>' enumerators.
@@ -271,18 +262,18 @@ public enum IfcBeamTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case LINTEL_VALUE:
-			return LINTEL;
+		case BEAM_VALUE:
+			return BEAM;
+		case JOIST_VALUE:
+			return JOIST;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case LINTEL_VALUE:
+			return LINTEL;
 		case TBEAM_VALUE:
 			return TBEAM;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case JOIST_VALUE:
-			return JOIST;
-		case BEAM_VALUE:
-			return BEAM;
 		}
 		return null;
 	}

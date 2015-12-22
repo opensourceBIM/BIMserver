@@ -43,66 +43,6 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CEILING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CEILING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CEILING(2, "CEILING", "CEILING"),
-
-	/**
-	 * The '<em><b>MEMBRANE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MEMBRANE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MEMBRANE(3, "MEMBRANE", "MEMBRANE"),
-
-	/**
-	 * The '<em><b>ROOFING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROOFING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROOFING(4, "ROOFING", "ROOFING"),
-
-	/**
-	 * The '<em><b>CLADDING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CLADDING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CLADDING(5, "CLADDING", "CLADDING"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>WRAPPING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,27 +50,39 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WRAPPING(7, "WRAPPING", "WRAPPING"),
-
-	/**
-	 * The '<em><b>FLOORING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOORING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOORING(8, "FLOORING", "FLOORING"),
-
-	/**
-	 * The '<em><b>SLEEVING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SLEEVING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SLEEVING(9, "SLEEVING", "SLEEVING"),
+	WRAPPING(1, "WRAPPING", "WRAPPING"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>CEILING</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #CEILING_VALUE
+												* @generated
+												* @ordered
+												*/
+	CEILING(3, "CEILING", "CEILING"), /**
+										* The '<em><b>ROOFING</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #ROOFING_VALUE
+										* @generated
+										* @ordered
+										*/
+	ROOFING(4, "ROOFING", "ROOFING"), /**
+										* The '<em><b>MEMBRANE</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #MEMBRANE_VALUE
+										* @generated
+										* @ordered
+										*/
+	MEMBRANE(5, "MEMBRANE", "MEMBRANE"),
 
 	/**
 	 * The '<em><b>INSULATION</b></em>' literal object.
@@ -140,7 +92,39 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INSULATION(10, "INSULATION", "INSULATION");
+	INSULATION(6, "INSULATION", "INSULATION"), /**
+												* The '<em><b>USERDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #USERDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>CLADDING</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #CLADDING_VALUE
+													* @generated
+													* @ordered
+													*/
+	CLADDING(8, "CLADDING", "CLADDING"), /**
+											* The '<em><b>SLEEVING</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #SLEEVING_VALUE
+											* @generated
+											* @ordered
+											*/
+	SLEEVING(9, "SLEEVING", "SLEEVING"), /**
+											* The '<em><b>FLOORING</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #FLOORING_VALUE
+											* @generated
+											* @ordered
+											*/
+	FLOORING(10, "FLOORING", "FLOORING");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -158,6 +142,21 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>WRAPPING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>WRAPPING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #WRAPPING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WRAPPING_VALUE = 1;
+
+	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -170,7 +169,7 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>CEILING</b></em>' literal value.
@@ -185,22 +184,7 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CEILING_VALUE = 2;
-
-	/**
-	 * The '<em><b>MEMBRANE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MEMBRANE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MEMBRANE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MEMBRANE_VALUE = 3;
+	public static final int CEILING_VALUE = 3;
 
 	/**
 	 * The '<em><b>ROOFING</b></em>' literal value.
@@ -218,19 +202,34 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	public static final int ROOFING_VALUE = 4;
 
 	/**
-	 * The '<em><b>CLADDING</b></em>' literal value.
+	 * The '<em><b>MEMBRANE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CLADDING</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>MEMBRANE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CLADDING
+	 * @see #MEMBRANE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CLADDING_VALUE = 5;
+	public static final int MEMBRANE_VALUE = 5;
+
+	/**
+	 * The '<em><b>INSULATION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>INSULATION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #INSULATION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int INSULATION_VALUE = 6;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -245,37 +244,22 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 6;
+	public static final int USERDEFINED_VALUE = 7;
 
 	/**
-	 * The '<em><b>WRAPPING</b></em>' literal value.
+	 * The '<em><b>CLADDING</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>WRAPPING</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CLADDING</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WRAPPING
+	 * @see #CLADDING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WRAPPING_VALUE = 7;
-
-	/**
-	 * The '<em><b>FLOORING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FLOORING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FLOORING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FLOORING_VALUE = 8;
+	public static final int CLADDING_VALUE = 8;
 
 	/**
 	 * The '<em><b>SLEEVING</b></em>' literal value.
@@ -293,19 +277,19 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	public static final int SLEEVING_VALUE = 9;
 
 	/**
-	 * The '<em><b>INSULATION</b></em>' literal value.
+	 * The '<em><b>FLOORING</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>INSULATION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>FLOORING</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INSULATION
+	 * @see #FLOORING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INSULATION_VALUE = 10;
+	public static final int FLOORING_VALUE = 10;
 
 	/**
 	 * An array of all the '<em><b>Ifc Covering Type Enum</b></em>' enumerators.
@@ -313,7 +297,8 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCoveringTypeEnum[] VALUES_ARRAY = new IfcCoveringTypeEnum[] { NULL, NOTDEFINED, CEILING, MEMBRANE, ROOFING, CLADDING, USERDEFINED, WRAPPING, FLOORING, SLEEVING, INSULATION, };
+	private static final IfcCoveringTypeEnum[] VALUES_ARRAY = new IfcCoveringTypeEnum[] { NULL, WRAPPING, NOTDEFINED,
+			CEILING, ROOFING, MEMBRANE, INSULATION, USERDEFINED, CLADDING, SLEEVING, FLOORING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Covering Type Enum</b></em>' enumerators.
@@ -371,26 +356,26 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
+		case WRAPPING_VALUE:
+			return WRAPPING;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case CEILING_VALUE:
 			return CEILING;
-		case MEMBRANE_VALUE:
-			return MEMBRANE;
 		case ROOFING_VALUE:
 			return ROOFING;
-		case CLADDING_VALUE:
-			return CLADDING;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case WRAPPING_VALUE:
-			return WRAPPING;
-		case FLOORING_VALUE:
-			return FLOORING;
-		case SLEEVING_VALUE:
-			return SLEEVING;
+		case MEMBRANE_VALUE:
+			return MEMBRANE;
 		case INSULATION_VALUE:
 			return INSULATION;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case CLADDING_VALUE:
+			return CLADDING;
+		case SLEEVING_VALUE:
+			return SLEEVING;
+		case FLOORING_VALUE:
+			return FLOORING;
 		}
 		return null;
 	}

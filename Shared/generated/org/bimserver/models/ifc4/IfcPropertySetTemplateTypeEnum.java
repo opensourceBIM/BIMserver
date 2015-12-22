@@ -43,66 +43,6 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>QTO OCCURRENCEDRIVEN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QTO_OCCURRENCEDRIVEN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QTO_OCCURRENCEDRIVEN(1, "QTO_OCCURRENCEDRIVEN", "QTO_OCCURRENCEDRIVEN"),
-
-	/**
-	 * The '<em><b>QTO TYPEDRIVENONLY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QTO_TYPEDRIVENONLY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QTO_TYPEDRIVENONLY(2, "QTO_TYPEDRIVENONLY", "QTO_TYPEDRIVENONLY"),
-
-	/**
-	 * The '<em><b>PSET TYPEDRIVENONLY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PSET_TYPEDRIVENONLY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PSET_TYPEDRIVENONLY(3, "PSET_TYPEDRIVENONLY", "PSET_TYPEDRIVENONLY"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PSET TYPEDRIVENOVERRIDE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PSET_TYPEDRIVENOVERRIDE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PSET_TYPEDRIVENOVERRIDE(5, "PSET_TYPEDRIVENOVERRIDE", "PSET_TYPEDRIVENOVERRIDE"),
-
-	/**
-	 * The '<em><b>QTO TYPEDRIVENOVERRIDE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QTO_TYPEDRIVENOVERRIDE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QTO_TYPEDRIVENOVERRIDE(6, "QTO_TYPEDRIVENOVERRIDE", "QTO_TYPEDRIVENOVERRIDE"),
-
-	/**
 	 * The '<em><b>PSET OCCURRENCEDRIVEN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,7 +50,55 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PSET_OCCURRENCEDRIVEN(7, "PSET_OCCURRENCEDRIVEN", "PSET_OCCURRENCEDRIVEN"),
+	PSET_OCCURRENCEDRIVEN(1, "PSET_OCCURRENCEDRIVEN", "PSET_OCCURRENCEDRIVEN"), /**
+																				* The '<em><b>NOTDEFINED</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #NOTDEFINED_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>PSET TYPEDRIVENONLY</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #PSET_TYPEDRIVENONLY_VALUE
+												* @generated
+												* @ordered
+												*/
+	PSET_TYPEDRIVENONLY(3, "PSET_TYPEDRIVENONLY", "PSET_TYPEDRIVENONLY"), /**
+																			* The '<em><b>QTO TYPEDRIVENONLY</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #QTO_TYPEDRIVENONLY_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	QTO_TYPEDRIVENONLY(4, "QTO_TYPEDRIVENONLY", "QTO_TYPEDRIVENONLY"), /**
+																		* The '<em><b>PSET TYPEDRIVENOVERRIDE</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #PSET_TYPEDRIVENOVERRIDE_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	PSET_TYPEDRIVENOVERRIDE(5, "PSET_TYPEDRIVENOVERRIDE", "PSET_TYPEDRIVENOVERRIDE"), /**
+																						* The '<em><b>QTO OCCURRENCEDRIVEN</b></em>' literal object.
+																						* <!-- begin-user-doc -->
+																						* <!-- end-user-doc -->
+																						* @see #QTO_OCCURRENCEDRIVEN_VALUE
+																						* @generated
+																						* @ordered
+																						*/
+	QTO_OCCURRENCEDRIVEN(6, "QTO_OCCURRENCEDRIVEN", "QTO_OCCURRENCEDRIVEN"), /**
+																				* The '<em><b>QTO TYPEDRIVENOVERRIDE</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #QTO_TYPEDRIVENOVERRIDE_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	QTO_TYPEDRIVENOVERRIDE(7, "QTO_TYPEDRIVENOVERRIDE", "QTO_TYPEDRIVENOVERRIDE"),
 
 	/**
 	 * The '<em><b>PSET PERFORMANCEDRIVEN</b></em>' literal object.
@@ -138,34 +126,34 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>QTO OCCURRENCEDRIVEN</b></em>' literal value.
+	 * The '<em><b>PSET OCCURRENCEDRIVEN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>QTO OCCURRENCEDRIVEN</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PSET OCCURRENCEDRIVEN</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #QTO_OCCURRENCEDRIVEN
+	 * @see #PSET_OCCURRENCEDRIVEN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int QTO_OCCURRENCEDRIVEN_VALUE = 1;
+	public static final int PSET_OCCURRENCEDRIVEN_VALUE = 1;
 
 	/**
-	 * The '<em><b>QTO TYPEDRIVENONLY</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>QTO TYPEDRIVENONLY</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #QTO_TYPEDRIVENONLY
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int QTO_TYPEDRIVENONLY_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>PSET TYPEDRIVENONLY</b></em>' literal value.
@@ -183,19 +171,19 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	public static final int PSET_TYPEDRIVENONLY_VALUE = 3;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>QTO TYPEDRIVENONLY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>QTO TYPEDRIVENONLY</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #QTO_TYPEDRIVENONLY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 4;
+	public static final int QTO_TYPEDRIVENONLY_VALUE = 4;
 
 	/**
 	 * The '<em><b>PSET TYPEDRIVENOVERRIDE</b></em>' literal value.
@@ -213,6 +201,21 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	public static final int PSET_TYPEDRIVENOVERRIDE_VALUE = 5;
 
 	/**
+	 * The '<em><b>QTO OCCURRENCEDRIVEN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>QTO OCCURRENCEDRIVEN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #QTO_OCCURRENCEDRIVEN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int QTO_OCCURRENCEDRIVEN_VALUE = 6;
+
+	/**
 	 * The '<em><b>QTO TYPEDRIVENOVERRIDE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -225,22 +228,7 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int QTO_TYPEDRIVENOVERRIDE_VALUE = 6;
-
-	/**
-	 * The '<em><b>PSET OCCURRENCEDRIVEN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PSET OCCURRENCEDRIVEN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PSET_OCCURRENCEDRIVEN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PSET_OCCURRENCEDRIVEN_VALUE = 7;
+	public static final int QTO_TYPEDRIVENOVERRIDE_VALUE = 7;
 
 	/**
 	 * The '<em><b>PSET PERFORMANCEDRIVEN</b></em>' literal value.
@@ -264,8 +252,8 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcPropertySetTemplateTypeEnum[] VALUES_ARRAY = new IfcPropertySetTemplateTypeEnum[] { NULL,
-			QTO_OCCURRENCEDRIVEN, QTO_TYPEDRIVENONLY, PSET_TYPEDRIVENONLY, NOTDEFINED, PSET_TYPEDRIVENOVERRIDE,
-			QTO_TYPEDRIVENOVERRIDE, PSET_OCCURRENCEDRIVEN, PSET_PERFORMANCEDRIVEN, };
+			PSET_OCCURRENCEDRIVEN, NOTDEFINED, PSET_TYPEDRIVENONLY, QTO_TYPEDRIVENONLY, PSET_TYPEDRIVENOVERRIDE,
+			QTO_OCCURRENCEDRIVEN, QTO_TYPEDRIVENOVERRIDE, PSET_PERFORMANCEDRIVEN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Property Set Template Type Enum</b></em>' enumerators.
@@ -324,20 +312,20 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case QTO_OCCURRENCEDRIVEN_VALUE:
-			return QTO_OCCURRENCEDRIVEN;
-		case QTO_TYPEDRIVENONLY_VALUE:
-			return QTO_TYPEDRIVENONLY;
-		case PSET_TYPEDRIVENONLY_VALUE:
-			return PSET_TYPEDRIVENONLY;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case PSET_TYPEDRIVENOVERRIDE_VALUE:
-			return PSET_TYPEDRIVENOVERRIDE;
-		case QTO_TYPEDRIVENOVERRIDE_VALUE:
-			return QTO_TYPEDRIVENOVERRIDE;
 		case PSET_OCCURRENCEDRIVEN_VALUE:
 			return PSET_OCCURRENCEDRIVEN;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case PSET_TYPEDRIVENONLY_VALUE:
+			return PSET_TYPEDRIVENONLY;
+		case QTO_TYPEDRIVENONLY_VALUE:
+			return QTO_TYPEDRIVENONLY;
+		case PSET_TYPEDRIVENOVERRIDE_VALUE:
+			return PSET_TYPEDRIVENOVERRIDE;
+		case QTO_OCCURRENCEDRIVEN_VALUE:
+			return QTO_OCCURRENCEDRIVEN;
+		case QTO_TYPEDRIVENOVERRIDE_VALUE:
+			return QTO_TYPEDRIVENOVERRIDE;
 		case PSET_PERFORMANCEDRIVEN_VALUE:
 			return PSET_PERFORMANCEDRIVEN;
 		}

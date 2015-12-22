@@ -65,7 +65,8 @@ public class IfcDraughtingCalloutImpl extends IfcGeometricRepresentationItemImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDraughtingCalloutElement> getContents() {
-		return (EList<IfcDraughtingCalloutElement>) eGet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT__CONTENTS, true);
+		return (EList<IfcDraughtingCalloutElement>) eGet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT__CONTENTS,
+				true);
 	}
 
 	/**
@@ -75,7 +76,8 @@ public class IfcDraughtingCalloutImpl extends IfcGeometricRepresentationItemImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDraughtingCalloutRelationship> getIsRelatedFromCallout() {
-		return (EList<IfcDraughtingCalloutRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT__IS_RELATED_FROM_CALLOUT, true);
+		return (EList<IfcDraughtingCalloutRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT__IS_RELATED_FROM_CALLOUT, true);
 	}
 
 	/**
@@ -103,7 +105,8 @@ public class IfcDraughtingCalloutImpl extends IfcGeometricRepresentationItemImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDraughtingCalloutRelationship> getIsRelatedToCallout() {
-		return (EList<IfcDraughtingCalloutRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT__IS_RELATED_TO_CALLOUT, true);
+		return (EList<IfcDraughtingCalloutRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DRAUGHTING_CALLOUT__IS_RELATED_TO_CALLOUT, true);
 	}
 
 	/**

@@ -43,46 +43,6 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SCREEN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SCREEN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SCREEN(2, "SCREEN", "SCREEN"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>LOUVER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOUVER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOUVER(4, "LOUVER", "LOUVER"),
-
-	/**
 	 * The '<em><b>GRILL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +50,39 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GRILL(5, "GRILL", "GRILL");
+	GRILL(1, "GRILL", "GRILL"), /**
+								* The '<em><b>LOUVER</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #LOUVER_VALUE
+								* @generated
+								* @ordered
+								*/
+	LOUVER(2, "LOUVER", "LOUVER"), /**
+									* The '<em><b>NOTDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #NOTDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>SCREEN</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #SCREEN_VALUE
+												* @generated
+												* @ordered
+												*/
+	SCREEN(4, "SCREEN", "SCREEN"), /**
+									* The '<em><b>USERDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #USERDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,49 +100,19 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>GRILL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>GRILL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #GRILL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
-	 * The '<em><b>SCREEN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SCREEN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SCREEN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SCREEN_VALUE = 2;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 3;
+	public static final int GRILL_VALUE = 1;
 
 	/**
 	 * The '<em><b>LOUVER</b></em>' literal value.
@@ -165,22 +127,52 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOUVER_VALUE = 4;
+	public static final int LOUVER_VALUE = 2;
 
 	/**
-	 * The '<em><b>GRILL</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>GRILL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GRILL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GRILL_VALUE = 5;
+	public static final int NOTDEFINED_VALUE = 3;
+
+	/**
+	 * The '<em><b>SCREEN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SCREEN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SCREEN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SCREEN_VALUE = 4;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Permeable Covering Operation Enum</b></em>' enumerators.
@@ -188,7 +180,8 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPermeableCoveringOperationEnum[] VALUES_ARRAY = new IfcPermeableCoveringOperationEnum[] { NULL, NOTDEFINED, SCREEN, USERDEFINED, LOUVER, GRILL, };
+	private static final IfcPermeableCoveringOperationEnum[] VALUES_ARRAY = new IfcPermeableCoveringOperationEnum[] {
+			NULL, GRILL, LOUVER, NOTDEFINED, SCREEN, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Permeable Covering Operation Enum</b></em>' enumerators.
@@ -196,7 +189,8 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPermeableCoveringOperationEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPermeableCoveringOperationEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Permeable Covering Operation Enum</b></em>' literal with the specified literal value.
@@ -246,16 +240,16 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
+		case GRILL_VALUE:
+			return GRILL;
+		case LOUVER_VALUE:
+			return LOUVER;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case SCREEN_VALUE:
 			return SCREEN;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case LOUVER_VALUE:
-			return LOUVER;
-		case GRILL_VALUE:
-			return GRILL;
 		}
 		return null;
 	}

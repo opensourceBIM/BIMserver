@@ -307,7 +307,8 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintClassificationRelationship> getClassifiedAs() {
-		return (EList<IfcConstraintClassificationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__CLASSIFIED_AS, true);
+		return (EList<IfcConstraintClassificationRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__CLASSIFIED_AS, true);
 	}
 
 	/**
@@ -335,7 +336,8 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintRelationship> getRelatesConstraints() {
-		return (EList<IfcConstraintRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__RELATES_CONSTRAINTS, true);
+		return (EList<IfcConstraintRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__RELATES_CONSTRAINTS,
+				true);
 	}
 
 	/**
@@ -391,7 +393,8 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyConstraintRelationship> getPropertiesForConstraint() {
-		return (EList<IfcPropertyConstraintRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__PROPERTIES_FOR_CONSTRAINT, true);
+		return (EList<IfcPropertyConstraintRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__PROPERTIES_FOR_CONSTRAINT, true);
 	}
 
 	/**
@@ -419,7 +422,8 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintAggregationRelationship> getAggregates() {
-		return (EList<IfcConstraintAggregationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__AGGREGATES, true);
+		return (EList<IfcConstraintAggregationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__AGGREGATES,
+				true);
 	}
 
 	/**
@@ -447,7 +451,8 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintAggregationRelationship> getIsAggregatedIn() {
-		return (EList<IfcConstraintAggregationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__IS_AGGREGATED_IN, true);
+		return (EList<IfcConstraintAggregationRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRAINT__IS_AGGREGATED_IN, true);
 	}
 
 	/**

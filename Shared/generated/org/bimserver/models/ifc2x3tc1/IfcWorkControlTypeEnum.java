@@ -43,16 +43,6 @@ public enum IfcWorkControlTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>BASELINE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,15 @@ public enum IfcWorkControlTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BASELINE(2, "BASELINE", "BASELINE"),
-
-	/**
-	 * The '<em><b>PLANNED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLANNED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLANNED(3, "PLANNED", "PLANNED"),
+	BASELINE(1, "BASELINE", "BASELINE"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -80,7 +68,7 @@ public enum IfcWorkControlTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>ACTUAL</b></em>' literal object.
@@ -90,7 +78,15 @@ public enum IfcWorkControlTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ACTUAL(5, "ACTUAL", "ACTUAL");
+	ACTUAL(4, "ACTUAL", "ACTUAL"), /**
+									* The '<em><b>PLANNED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #PLANNED_VALUE
+									* @generated
+									* @ordered
+									*/
+	PLANNED(5, "PLANNED", "PLANNED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,21 +104,6 @@ public enum IfcWorkControlTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
 	 * The '<em><b>BASELINE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,22 +116,22 @@ public enum IfcWorkControlTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BASELINE_VALUE = 2;
+	public static final int BASELINE_VALUE = 1;
 
 	/**
-	 * The '<em><b>PLANNED</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PLANNED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PLANNED
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PLANNED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -165,7 +146,7 @@ public enum IfcWorkControlTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int USERDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>ACTUAL</b></em>' literal value.
@@ -180,7 +161,22 @@ public enum IfcWorkControlTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ACTUAL_VALUE = 5;
+	public static final int ACTUAL_VALUE = 4;
+
+	/**
+	 * The '<em><b>PLANNED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PLANNED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PLANNED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PLANNED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Work Control Type Enum</b></em>' enumerators.
@@ -188,7 +184,8 @@ public enum IfcWorkControlTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWorkControlTypeEnum[] VALUES_ARRAY = new IfcWorkControlTypeEnum[] { NULL, NOTDEFINED, BASELINE, PLANNED, USERDEFINED, ACTUAL, };
+	private static final IfcWorkControlTypeEnum[] VALUES_ARRAY = new IfcWorkControlTypeEnum[] { NULL, BASELINE,
+			NOTDEFINED, USERDEFINED, ACTUAL, PLANNED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Work Control Type Enum</b></em>' enumerators.
@@ -246,16 +243,16 @@ public enum IfcWorkControlTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case BASELINE_VALUE:
 			return BASELINE;
-		case PLANNED_VALUE:
-			return PLANNED;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case ACTUAL_VALUE:
 			return ACTUAL;
+		case PLANNED_VALUE:
+			return PLANNED;
 		}
 		return null;
 	}

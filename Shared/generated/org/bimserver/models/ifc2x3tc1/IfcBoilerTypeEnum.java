@@ -43,16 +43,6 @@ public enum IfcBoilerTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>WATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATER(1, "WATER", "WATER"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,7 @@ public enum IfcBoilerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>STEAM</b></em>' literal object.
@@ -80,7 +60,23 @@ public enum IfcBoilerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STEAM(4, "STEAM", "STEAM");
+	STEAM(2, "STEAM", "STEAM"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>WATER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #WATER_VALUE
+													* @generated
+													* @ordered
+													*/
+	WATER(4, "WATER", "WATER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -98,21 +94,6 @@ public enum IfcBoilerTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>WATER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>WATER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #WATER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WATER_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -125,7 +106,22 @@ public enum IfcBoilerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
+
+	/**
+	 * The '<em><b>STEAM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STEAM</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STEAM
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STEAM_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -143,19 +139,19 @@ public enum IfcBoilerTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 3;
 
 	/**
-	 * The '<em><b>STEAM</b></em>' literal value.
+	 * The '<em><b>WATER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>STEAM</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>WATER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STEAM
+	 * @see #WATER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STEAM_VALUE = 4;
+	public static final int WATER_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Boiler Type Enum</b></em>' enumerators.
@@ -163,7 +159,8 @@ public enum IfcBoilerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBoilerTypeEnum[] VALUES_ARRAY = new IfcBoilerTypeEnum[] { NULL, WATER, NOTDEFINED, USERDEFINED, STEAM, };
+	private static final IfcBoilerTypeEnum[] VALUES_ARRAY = new IfcBoilerTypeEnum[] { NULL, NOTDEFINED, STEAM,
+			USERDEFINED, WATER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Boiler Type Enum</b></em>' enumerators.
@@ -221,14 +218,14 @@ public enum IfcBoilerTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case WATER_VALUE:
-			return WATER;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case STEAM_VALUE:
 			return STEAM;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case WATER_VALUE:
+			return WATER;
 		}
 		return null;
 	}

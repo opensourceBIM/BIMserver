@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTopologicalRepresentationItemImpl extends IfcRepresentationItemImpl implements IfcTopologicalRepresentationItem {
+public class IfcTopologicalRepresentationItemImpl extends IfcRepresentationItemImpl
+		implements IfcTopologicalRepresentationItem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSingleForceImpl implements IfcStructuralLoadSingleForceWarping {
+public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSingleForceImpl
+		implements IfcStructuralLoadSingleForceWarping {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,7 +97,8 @@ public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSi
 	 * @generated
 	 */
 	public String getWarpingMomentAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT_AS_STRING, true);
 	}
 
 	/**
@@ -105,7 +107,8 @@ public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSi
 	 * @generated
 	 */
 	public void setWarpingMomentAsString(String newWarpingMomentAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT_AS_STRING, newWarpingMomentAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT_AS_STRING,
+				newWarpingMomentAsString);
 	}
 
 	/**

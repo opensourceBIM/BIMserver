@@ -43,86 +43,6 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>PROJECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROJECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROJECTOR(1, "PROJECTOR", "PROJECTOR"),
-
-	/**
-	 * The '<em><b>PLAYER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLAYER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLAYER(2, "PLAYER", "PLAYER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>RECEIVER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RECEIVER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RECEIVER(4, "RECEIVER", "RECEIVER"),
-
-	/**
-	 * The '<em><b>MICROPHONE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MICROPHONE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MICROPHONE(5, "MICROPHONE", "MICROPHONE"),
-
-	/**
-	 * The '<em><b>CAMERA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CAMERA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CAMERA(6, "CAMERA", "CAMERA"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>AMPLIFIER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AMPLIFIER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AMPLIFIER(8, "AMPLIFIER", "AMPLIFIER"),
-
-	/**
 	 * The '<em><b>TELEPHONE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,37 +50,31 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TELEPHONE(9, "TELEPHONE", "TELEPHONE"),
-
-	/**
-	 * The '<em><b>DISPLAY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISPLAY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DISPLAY(10, "DISPLAY", "DISPLAY"),
-
-	/**
-	 * The '<em><b>TUNER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TUNER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TUNER(11, "TUNER", "TUNER"),
-
-	/**
-	 * The '<em><b>SWITCHER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SWITCHER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SWITCHER(12, "SWITCHER", "SWITCHER"),
+	TELEPHONE(1, "TELEPHONE", "TELEPHONE"), /**
+											* The '<em><b>CAMERA</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #CAMERA_VALUE
+											* @generated
+											* @ordered
+											*/
+	CAMERA(2, "CAMERA", "CAMERA"), /**
+									* The '<em><b>MICROPHONE</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #MICROPHONE_VALUE
+									* @generated
+									* @ordered
+									*/
+	MICROPHONE(3, "MICROPHONE", "MICROPHONE"), /**
+												* The '<em><b>USERDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #USERDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>SPEAKER</b></em>' literal object.
@@ -170,7 +84,71 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SPEAKER(13, "SPEAKER", "SPEAKER");
+	SPEAKER(5, "SPEAKER", "SPEAKER"), /**
+										* The '<em><b>PLAYER</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #PLAYER_VALUE
+										* @generated
+										* @ordered
+										*/
+	PLAYER(6, "PLAYER", "PLAYER"), /**
+									* The '<em><b>SWITCHER</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #SWITCHER_VALUE
+									* @generated
+									* @ordered
+									*/
+	SWITCHER(7, "SWITCHER", "SWITCHER"), /**
+											* The '<em><b>AMPLIFIER</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #AMPLIFIER_VALUE
+											* @generated
+											* @ordered
+											*/
+	AMPLIFIER(8, "AMPLIFIER", "AMPLIFIER"), /**
+											* The '<em><b>DISPLAY</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #DISPLAY_VALUE
+											* @generated
+											* @ordered
+											*/
+	DISPLAY(9, "DISPLAY", "DISPLAY"), /**
+										* The '<em><b>NOTDEFINED</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #NOTDEFINED_VALUE
+										* @generated
+										* @ordered
+										*/
+	NOTDEFINED(10, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>TUNER</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #TUNER_VALUE
+												* @generated
+												* @ordered
+												*/
+	TUNER(11, "TUNER", "TUNER"), /**
+									* The '<em><b>PROJECTOR</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #PROJECTOR_VALUE
+									* @generated
+									* @ordered
+									*/
+	PROJECTOR(12, "PROJECTOR", "PROJECTOR"), /**
+												* The '<em><b>RECEIVER</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #RECEIVER_VALUE
+												* @generated
+												* @ordered
+												*/
+	RECEIVER(13, "RECEIVER", "RECEIVER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -188,79 +166,19 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>PROJECTOR</b></em>' literal value.
+	 * The '<em><b>TELEPHONE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PROJECTOR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TELEPHONE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROJECTOR
+	 * @see #TELEPHONE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROJECTOR_VALUE = 1;
-
-	/**
-	 * The '<em><b>PLAYER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PLAYER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PLAYER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PLAYER_VALUE = 2;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 3;
-
-	/**
-	 * The '<em><b>RECEIVER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>RECEIVER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #RECEIVER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RECEIVER_VALUE = 4;
-
-	/**
-	 * The '<em><b>MICROPHONE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MICROPHONE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MICROPHONE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MICROPHONE_VALUE = 5;
+	public static final int TELEPHONE_VALUE = 1;
 
 	/**
 	 * The '<em><b>CAMERA</b></em>' literal value.
@@ -275,7 +193,22 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CAMERA_VALUE = 6;
+	public static final int CAMERA_VALUE = 2;
+
+	/**
+	 * The '<em><b>MICROPHONE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MICROPHONE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MICROPHONE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MICROPHONE_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -290,7 +223,52 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 7;
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>SPEAKER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SPEAKER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SPEAKER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SPEAKER_VALUE = 5;
+
+	/**
+	 * The '<em><b>PLAYER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PLAYER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PLAYER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PLAYER_VALUE = 6;
+
+	/**
+	 * The '<em><b>SWITCHER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SWITCHER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SWITCHER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SWITCHER_VALUE = 7;
 
 	/**
 	 * The '<em><b>AMPLIFIER</b></em>' literal value.
@@ -308,21 +286,6 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	public static final int AMPLIFIER_VALUE = 8;
 
 	/**
-	 * The '<em><b>TELEPHONE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TELEPHONE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TELEPHONE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TELEPHONE_VALUE = 9;
-
-	/**
 	 * The '<em><b>DISPLAY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -335,7 +298,22 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISPLAY_VALUE = 10;
+	public static final int DISPLAY_VALUE = 9;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 10;
 
 	/**
 	 * The '<em><b>TUNER</b></em>' literal value.
@@ -353,34 +331,34 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	public static final int TUNER_VALUE = 11;
 
 	/**
-	 * The '<em><b>SWITCHER</b></em>' literal value.
+	 * The '<em><b>PROJECTOR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SWITCHER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PROJECTOR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SWITCHER
+	 * @see #PROJECTOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SWITCHER_VALUE = 12;
+	public static final int PROJECTOR_VALUE = 12;
 
 	/**
-	 * The '<em><b>SPEAKER</b></em>' literal value.
+	 * The '<em><b>RECEIVER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SPEAKER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>RECEIVER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SPEAKER
+	 * @see #RECEIVER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPEAKER_VALUE = 13;
+	public static final int RECEIVER_VALUE = 13;
 
 	/**
 	 * An array of all the '<em><b>Ifc Audio Visual Appliance Type Enum</b></em>' enumerators.
@@ -389,8 +367,8 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcAudioVisualApplianceTypeEnum[] VALUES_ARRAY = new IfcAudioVisualApplianceTypeEnum[] { NULL,
-			PROJECTOR, PLAYER, NOTDEFINED, RECEIVER, MICROPHONE, CAMERA, USERDEFINED, AMPLIFIER, TELEPHONE, DISPLAY,
-			TUNER, SWITCHER, SPEAKER, };
+			TELEPHONE, CAMERA, MICROPHONE, USERDEFINED, SPEAKER, PLAYER, SWITCHER, AMPLIFIER, DISPLAY, NOTDEFINED,
+			TUNER, PROJECTOR, RECEIVER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Audio Visual Appliance Type Enum</b></em>' enumerators.
@@ -449,32 +427,32 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case PROJECTOR_VALUE:
-			return PROJECTOR;
-		case PLAYER_VALUE:
-			return PLAYER;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case RECEIVER_VALUE:
-			return RECEIVER;
-		case MICROPHONE_VALUE:
-			return MICROPHONE;
-		case CAMERA_VALUE:
-			return CAMERA;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case AMPLIFIER_VALUE:
-			return AMPLIFIER;
 		case TELEPHONE_VALUE:
 			return TELEPHONE;
-		case DISPLAY_VALUE:
-			return DISPLAY;
-		case TUNER_VALUE:
-			return TUNER;
-		case SWITCHER_VALUE:
-			return SWITCHER;
+		case CAMERA_VALUE:
+			return CAMERA;
+		case MICROPHONE_VALUE:
+			return MICROPHONE;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case SPEAKER_VALUE:
 			return SPEAKER;
+		case PLAYER_VALUE:
+			return PLAYER;
+		case SWITCHER_VALUE:
+			return SWITCHER;
+		case AMPLIFIER_VALUE:
+			return AMPLIFIER;
+		case DISPLAY_VALUE:
+			return DISPLAY;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case TUNER_VALUE:
+			return TUNER;
+		case PROJECTOR_VALUE:
+			return PROJECTOR;
+		case RECEIVER_VALUE:
+			return RECEIVER;
 		}
 		return null;
 	}

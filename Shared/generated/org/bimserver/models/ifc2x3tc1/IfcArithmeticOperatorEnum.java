@@ -43,36 +43,6 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>MULTIPLY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MULTIPLY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MULTIPLY(1, "MULTIPLY", "MULTIPLY"),
-
-	/**
-	 * The '<em><b>SUBTRACT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SUBTRACT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SUBTRACT(2, "SUBTRACT", "SUBTRACT"),
-
-	/**
-	 * The '<em><b>DIVIDE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIVIDE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIVIDE(3, "DIVIDE", "DIVIDE"),
-
-	/**
 	 * The '<em><b>ADD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +50,31 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ADD(4, "ADD", "ADD");
+	ADD(1, "ADD", "ADD"), /**
+							* The '<em><b>MULTIPLY</b></em>' literal object.
+							* <!-- begin-user-doc -->
+							* <!-- end-user-doc -->
+							* @see #MULTIPLY_VALUE
+							* @generated
+							* @ordered
+							*/
+	MULTIPLY(2, "MULTIPLY", "MULTIPLY"), /**
+											* The '<em><b>SUBTRACT</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #SUBTRACT_VALUE
+											* @generated
+											* @ordered
+											*/
+	SUBTRACT(3, "SUBTRACT", "SUBTRACT"), /**
+											* The '<em><b>DIVIDE</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #DIVIDE_VALUE
+											* @generated
+											* @ordered
+											*/
+	DIVIDE(4, "DIVIDE", "DIVIDE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -98,6 +92,21 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>ADD</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ADD</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ADD
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ADD_VALUE = 1;
+
+	/**
 	 * The '<em><b>MULTIPLY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -110,7 +119,7 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MULTIPLY_VALUE = 1;
+	public static final int MULTIPLY_VALUE = 2;
 
 	/**
 	 * The '<em><b>SUBTRACT</b></em>' literal value.
@@ -125,7 +134,7 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SUBTRACT_VALUE = 2;
+	public static final int SUBTRACT_VALUE = 3;
 
 	/**
 	 * The '<em><b>DIVIDE</b></em>' literal value.
@@ -140,22 +149,7 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIVIDE_VALUE = 3;
-
-	/**
-	 * The '<em><b>ADD</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ADD</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ADD
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ADD_VALUE = 4;
+	public static final int DIVIDE_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Arithmetic Operator Enum</b></em>' enumerators.
@@ -163,7 +157,8 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcArithmeticOperatorEnum[] VALUES_ARRAY = new IfcArithmeticOperatorEnum[] { NULL, MULTIPLY, SUBTRACT, DIVIDE, ADD, };
+	private static final IfcArithmeticOperatorEnum[] VALUES_ARRAY = new IfcArithmeticOperatorEnum[] { NULL, ADD,
+			MULTIPLY, SUBTRACT, DIVIDE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Arithmetic Operator Enum</b></em>' enumerators.
@@ -171,7 +166,8 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcArithmeticOperatorEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcArithmeticOperatorEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Arithmetic Operator Enum</b></em>' literal with the specified literal value.
@@ -221,14 +217,14 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
+		case ADD_VALUE:
+			return ADD;
 		case MULTIPLY_VALUE:
 			return MULTIPLY;
 		case SUBTRACT_VALUE:
 			return SUBTRACT;
 		case DIVIDE_VALUE:
 			return DIVIDE;
-		case ADD_VALUE:
-			return ADD;
 		}
 		return null;
 	}

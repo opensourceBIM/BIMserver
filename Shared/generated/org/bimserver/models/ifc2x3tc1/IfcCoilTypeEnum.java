@@ -53,16 +53,6 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	GASHEATINGCOIL(1, "GASHEATINGCOIL", "GASHEATINGCOIL"),
 
 	/**
-	 * The '<em><b>DXCOOLINGCOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DXCOOLINGCOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DXCOOLINGCOIL(2, "DXCOOLINGCOIL", "DXCOOLINGCOIL"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,27 +60,15 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>WATERHEATINGCOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERHEATINGCOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERHEATINGCOIL(4, "WATERHEATINGCOIL", "WATERHEATINGCOIL"),
-
-	/**
-	 * The '<em><b>STEAMHEATINGCOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STEAMHEATINGCOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STEAMHEATINGCOIL(5, "STEAMHEATINGCOIL", "STEAMHEATINGCOIL"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>DXCOOLINGCOIL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #DXCOOLINGCOIL_VALUE
+												* @generated
+												* @ordered
+												*/
+	DXCOOLINGCOIL(3, "DXCOOLINGCOIL", "DXCOOLINGCOIL"),
 
 	/**
 	 * The '<em><b>WATERCOOLINGCOIL</b></em>' literal object.
@@ -100,7 +78,15 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WATERCOOLINGCOIL(6, "WATERCOOLINGCOIL", "WATERCOOLINGCOIL"),
+	WATERCOOLINGCOIL(4, "WATERCOOLINGCOIL", "WATERCOOLINGCOIL"), /**
+																	* The '<em><b>WATERHEATINGCOIL</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #WATERHEATINGCOIL_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	WATERHEATINGCOIL(5, "WATERHEATINGCOIL", "WATERHEATINGCOIL"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -110,7 +96,7 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>ELECTRICHEATINGCOIL</b></em>' literal object.
@@ -120,7 +106,15 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICHEATINGCOIL(8, "ELECTRICHEATINGCOIL", "ELECTRICHEATINGCOIL");
+	ELECTRICHEATINGCOIL(7, "ELECTRICHEATINGCOIL", "ELECTRICHEATINGCOIL"), /**
+																			* The '<em><b>STEAMHEATINGCOIL</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #STEAMHEATINGCOIL_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	STEAMHEATINGCOIL(8, "STEAMHEATINGCOIL", "STEAMHEATINGCOIL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -153,21 +147,6 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	public static final int GASHEATINGCOIL_VALUE = 1;
 
 	/**
-	 * The '<em><b>DXCOOLINGCOIL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DXCOOLINGCOIL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DXCOOLINGCOIL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DXCOOLINGCOIL_VALUE = 2;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -180,37 +159,22 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>WATERHEATINGCOIL</b></em>' literal value.
+	 * The '<em><b>DXCOOLINGCOIL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>WATERHEATINGCOIL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DXCOOLINGCOIL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WATERHEATINGCOIL
+	 * @see #DXCOOLINGCOIL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATERHEATINGCOIL_VALUE = 4;
-
-	/**
-	 * The '<em><b>STEAMHEATINGCOIL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STEAMHEATINGCOIL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STEAMHEATINGCOIL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STEAMHEATINGCOIL_VALUE = 5;
+	public static final int DXCOOLINGCOIL_VALUE = 3;
 
 	/**
 	 * The '<em><b>WATERCOOLINGCOIL</b></em>' literal value.
@@ -225,7 +189,22 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATERCOOLINGCOIL_VALUE = 6;
+	public static final int WATERCOOLINGCOIL_VALUE = 4;
+
+	/**
+	 * The '<em><b>WATERHEATINGCOIL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>WATERHEATINGCOIL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #WATERHEATINGCOIL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WATERHEATINGCOIL_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -240,7 +219,7 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 7;
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * The '<em><b>ELECTRICHEATINGCOIL</b></em>' literal value.
@@ -255,7 +234,22 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICHEATINGCOIL_VALUE = 8;
+	public static final int ELECTRICHEATINGCOIL_VALUE = 7;
+
+	/**
+	 * The '<em><b>STEAMHEATINGCOIL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STEAMHEATINGCOIL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STEAMHEATINGCOIL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STEAMHEATINGCOIL_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Coil Type Enum</b></em>' enumerators.
@@ -263,8 +257,8 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCoilTypeEnum[] VALUES_ARRAY = new IfcCoilTypeEnum[] { NULL, GASHEATINGCOIL, DXCOOLINGCOIL, NOTDEFINED, WATERHEATINGCOIL, STEAMHEATINGCOIL, WATERCOOLINGCOIL, USERDEFINED,
-			ELECTRICHEATINGCOIL, };
+	private static final IfcCoilTypeEnum[] VALUES_ARRAY = new IfcCoilTypeEnum[] { NULL, GASHEATINGCOIL, NOTDEFINED,
+			DXCOOLINGCOIL, WATERCOOLINGCOIL, WATERHEATINGCOIL, USERDEFINED, ELECTRICHEATINGCOIL, STEAMHEATINGCOIL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Coil Type Enum</b></em>' enumerators.
@@ -324,20 +318,20 @@ public enum IfcCoilTypeEnum implements Enumerator {
 			return NULL;
 		case GASHEATINGCOIL_VALUE:
 			return GASHEATINGCOIL;
-		case DXCOOLINGCOIL_VALUE:
-			return DXCOOLINGCOIL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case WATERHEATINGCOIL_VALUE:
-			return WATERHEATINGCOIL;
-		case STEAMHEATINGCOIL_VALUE:
-			return STEAMHEATINGCOIL;
+		case DXCOOLINGCOIL_VALUE:
+			return DXCOOLINGCOIL;
 		case WATERCOOLINGCOIL_VALUE:
 			return WATERCOOLINGCOIL;
+		case WATERHEATINGCOIL_VALUE:
+			return WATERHEATINGCOIL;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case ELECTRICHEATINGCOIL_VALUE:
 			return ELECTRICHEATINGCOIL;
+		case STEAMHEATINGCOIL_VALUE:
+			return STEAMHEATINGCOIL;
 		}
 		return null;
 	}

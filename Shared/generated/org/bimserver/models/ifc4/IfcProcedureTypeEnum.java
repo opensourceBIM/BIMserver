@@ -43,46 +43,6 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>ADVICE NOTE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADVICE_NOTE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADVICE_NOTE(1, "ADVICE_NOTE", "ADVICE_NOTE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SHUTDOWN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHUTDOWN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHUTDOWN(3, "SHUTDOWN", "SHUTDOWN"),
-
-	/**
-	 * The '<em><b>ADVICE CAUTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADVICE_CAUTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADVICE_CAUTION(4, "ADVICE_CAUTION", "ADVICE_CAUTION"),
-
-	/**
 	 * The '<em><b>CALIBRATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,37 +50,7 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CALIBRATION(5, "CALIBRATION", "CALIBRATION"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>STARTUP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STARTUP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STARTUP(7, "STARTUP", "STARTUP"),
-
-	/**
-	 * The '<em><b>ADVICE WARNING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADVICE_WARNING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADVICE_WARNING(8, "ADVICE_WARNING", "ADVICE_WARNING"),
+	CALIBRATION(1, "CALIBRATION", "CALIBRATION"),
 
 	/**
 	 * The '<em><b>DIAGNOSTIC</b></em>' literal object.
@@ -130,7 +60,63 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIAGNOSTIC(9, "DIAGNOSTIC", "DIAGNOSTIC");
+	DIAGNOSTIC(2, "DIAGNOSTIC", "DIAGNOSTIC"), /**
+												* The '<em><b>NOTDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #NOTDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>ADVICE WARNING</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #ADVICE_WARNING_VALUE
+												* @generated
+												* @ordered
+												*/
+	ADVICE_WARNING(4, "ADVICE_WARNING", "ADVICE_WARNING"), /**
+															* The '<em><b>ADVICE CAUTION</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #ADVICE_CAUTION_VALUE
+															* @generated
+															* @ordered
+															*/
+	ADVICE_CAUTION(5, "ADVICE_CAUTION", "ADVICE_CAUTION"), /**
+															* The '<em><b>USERDEFINED</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #USERDEFINED_VALUE
+															* @generated
+															* @ordered
+															*/
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>SHUTDOWN</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #SHUTDOWN_VALUE
+													* @generated
+													* @ordered
+													*/
+	SHUTDOWN(7, "SHUTDOWN", "SHUTDOWN"), /**
+											* The '<em><b>STARTUP</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #STARTUP_VALUE
+											* @generated
+											* @ordered
+											*/
+	STARTUP(8, "STARTUP", "STARTUP"), /**
+										* The '<em><b>ADVICE NOTE</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #ADVICE_NOTE_VALUE
+										* @generated
+										* @ordered
+										*/
+	ADVICE_NOTE(9, "ADVICE_NOTE", "ADVICE_NOTE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,19 +134,34 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>ADVICE NOTE</b></em>' literal value.
+	 * The '<em><b>CALIBRATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ADVICE NOTE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CALIBRATION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADVICE_NOTE
+	 * @see #CALIBRATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADVICE_NOTE_VALUE = 1;
+	public static final int CALIBRATION_VALUE = 1;
+
+	/**
+	 * The '<em><b>DIAGNOSTIC</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DIAGNOSTIC</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DIAGNOSTIC
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DIAGNOSTIC_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -175,22 +176,22 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
-	 * The '<em><b>SHUTDOWN</b></em>' literal value.
+	 * The '<em><b>ADVICE WARNING</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SHUTDOWN</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ADVICE WARNING</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SHUTDOWN
+	 * @see #ADVICE_WARNING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SHUTDOWN_VALUE = 3;
+	public static final int ADVICE_WARNING_VALUE = 4;
 
 	/**
 	 * The '<em><b>ADVICE CAUTION</b></em>' literal value.
@@ -205,22 +206,7 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADVICE_CAUTION_VALUE = 4;
-
-	/**
-	 * The '<em><b>CALIBRATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CALIBRATION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CALIBRATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CALIBRATION_VALUE = 5;
+	public static final int ADVICE_CAUTION_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -238,6 +224,21 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 6;
 
 	/**
+	 * The '<em><b>SHUTDOWN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SHUTDOWN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SHUTDOWN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SHUTDOWN_VALUE = 7;
+
+	/**
 	 * The '<em><b>STARTUP</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -250,37 +251,22 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STARTUP_VALUE = 7;
+	public static final int STARTUP_VALUE = 8;
 
 	/**
-	 * The '<em><b>ADVICE WARNING</b></em>' literal value.
+	 * The '<em><b>ADVICE NOTE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ADVICE WARNING</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ADVICE NOTE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADVICE_WARNING
+	 * @see #ADVICE_NOTE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADVICE_WARNING_VALUE = 8;
-
-	/**
-	 * The '<em><b>DIAGNOSTIC</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DIAGNOSTIC</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DIAGNOSTIC
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DIAGNOSTIC_VALUE = 9;
+	public static final int ADVICE_NOTE_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Procedure Type Enum</b></em>' enumerators.
@@ -288,8 +274,8 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProcedureTypeEnum[] VALUES_ARRAY = new IfcProcedureTypeEnum[] { NULL, ADVICE_NOTE,
-			NOTDEFINED, SHUTDOWN, ADVICE_CAUTION, CALIBRATION, USERDEFINED, STARTUP, ADVICE_WARNING, DIAGNOSTIC, };
+	private static final IfcProcedureTypeEnum[] VALUES_ARRAY = new IfcProcedureTypeEnum[] { NULL, CALIBRATION,
+			DIAGNOSTIC, NOTDEFINED, ADVICE_WARNING, ADVICE_CAUTION, USERDEFINED, SHUTDOWN, STARTUP, ADVICE_NOTE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Procedure Type Enum</b></em>' enumerators.
@@ -347,24 +333,24 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case ADVICE_NOTE_VALUE:
-			return ADVICE_NOTE;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case SHUTDOWN_VALUE:
-			return SHUTDOWN;
-		case ADVICE_CAUTION_VALUE:
-			return ADVICE_CAUTION;
 		case CALIBRATION_VALUE:
 			return CALIBRATION;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case STARTUP_VALUE:
-			return STARTUP;
-		case ADVICE_WARNING_VALUE:
-			return ADVICE_WARNING;
 		case DIAGNOSTIC_VALUE:
 			return DIAGNOSTIC;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case ADVICE_WARNING_VALUE:
+			return ADVICE_WARNING;
+		case ADVICE_CAUTION_VALUE:
+			return ADVICE_CAUTION;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case SHUTDOWN_VALUE:
+			return SHUTDOWN;
+		case STARTUP_VALUE:
+			return STARTUP;
+		case ADVICE_NOTE_VALUE:
+			return ADVICE_NOTE;
 		}
 		return null;
 	}

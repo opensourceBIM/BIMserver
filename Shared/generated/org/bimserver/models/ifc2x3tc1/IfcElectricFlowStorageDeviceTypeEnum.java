@@ -43,16 +43,6 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>BATTERY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,47 +50,7 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BATTERY(2, "BATTERY", "BATTERY"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>INDUCTORBANK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INDUCTORBANK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INDUCTORBANK(4, "INDUCTORBANK", "INDUCTORBANK"),
-
-	/**
-	 * The '<em><b>HARMONICFILTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HARMONICFILTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HARMONICFILTER(5, "HARMONICFILTER", "HARMONICFILTER"),
-
-	/**
-	 * The '<em><b>UPS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UPS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	UPS(6, "UPS", "UPS"),
+	BATTERY(1, "BATTERY", "BATTERY"),
 
 	/**
 	 * The '<em><b>CAPACITORBANK</b></em>' literal object.
@@ -110,7 +60,47 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CAPACITORBANK(7, "CAPACITORBANK", "CAPACITORBANK");
+	CAPACITORBANK(2, "CAPACITORBANK", "CAPACITORBANK"), /**
+														* The '<em><b>NOTDEFINED</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #NOTDEFINED_VALUE
+														* @generated
+														* @ordered
+														*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>HARMONICFILTER</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #HARMONICFILTER_VALUE
+												* @generated
+												* @ordered
+												*/
+	HARMONICFILTER(4, "HARMONICFILTER", "HARMONICFILTER"), /**
+															* The '<em><b>UPS</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #UPS_VALUE
+															* @generated
+															* @ordered
+															*/
+	UPS(5, "UPS", "UPS"), /**
+							* The '<em><b>USERDEFINED</b></em>' literal object.
+							* <!-- begin-user-doc -->
+							* <!-- end-user-doc -->
+							* @see #USERDEFINED_VALUE
+							* @generated
+							* @ordered
+							*/
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>INDUCTORBANK</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #INDUCTORBANK_VALUE
+													* @generated
+													* @ordered
+													*/
+	INDUCTORBANK(7, "INDUCTORBANK", "INDUCTORBANK");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,21 +118,6 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
 	 * The '<em><b>BATTERY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -155,67 +130,7 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BATTERY_VALUE = 2;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 3;
-
-	/**
-	 * The '<em><b>INDUCTORBANK</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>INDUCTORBANK</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #INDUCTORBANK
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INDUCTORBANK_VALUE = 4;
-
-	/**
-	 * The '<em><b>HARMONICFILTER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HARMONICFILTER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HARMONICFILTER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HARMONICFILTER_VALUE = 5;
-
-	/**
-	 * The '<em><b>UPS</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>UPS</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #UPS
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int UPS_VALUE = 6;
+	public static final int BATTERY_VALUE = 1;
 
 	/**
 	 * The '<em><b>CAPACITORBANK</b></em>' literal value.
@@ -230,7 +145,82 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CAPACITORBANK_VALUE = 7;
+	public static final int CAPACITORBANK_VALUE = 2;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 3;
+
+	/**
+	 * The '<em><b>HARMONICFILTER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HARMONICFILTER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HARMONICFILTER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HARMONICFILTER_VALUE = 4;
+
+	/**
+	 * The '<em><b>UPS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>UPS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #UPS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UPS_VALUE = 5;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 6;
+
+	/**
+	 * The '<em><b>INDUCTORBANK</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>INDUCTORBANK</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #INDUCTORBANK
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int INDUCTORBANK_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Electric Flow Storage Device Type Enum</b></em>' enumerators.
@@ -238,7 +228,8 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricFlowStorageDeviceTypeEnum[] VALUES_ARRAY = new IfcElectricFlowStorageDeviceTypeEnum[] { NULL, NOTDEFINED, BATTERY, USERDEFINED, INDUCTORBANK, HARMONICFILTER, UPS, CAPACITORBANK, };
+	private static final IfcElectricFlowStorageDeviceTypeEnum[] VALUES_ARRAY = new IfcElectricFlowStorageDeviceTypeEnum[] {
+			NULL, BATTERY, CAPACITORBANK, NOTDEFINED, HARMONICFILTER, UPS, USERDEFINED, INDUCTORBANK, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Flow Storage Device Type Enum</b></em>' enumerators.
@@ -246,7 +237,8 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricFlowStorageDeviceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricFlowStorageDeviceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Flow Storage Device Type Enum</b></em>' literal with the specified literal value.
@@ -296,20 +288,20 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case BATTERY_VALUE:
 			return BATTERY;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
-		case INDUCTORBANK_VALUE:
-			return INDUCTORBANK;
+		case CAPACITORBANK_VALUE:
+			return CAPACITORBANK;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case HARMONICFILTER_VALUE:
 			return HARMONICFILTER;
 		case UPS_VALUE:
 			return UPS;
-		case CAPACITORBANK_VALUE:
-			return CAPACITORBANK;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case INDUCTORBANK_VALUE:
+			return INDUCTORBANK;
 		}
 		return null;
 	}

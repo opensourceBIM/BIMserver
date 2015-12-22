@@ -43,16 +43,6 @@ public enum IfcLoadGroupTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>LOAD COMBINATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOAD_COMBINATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOAD_COMBINATION(1, "LOAD_COMBINATION", "LOAD_COMBINATION"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,7 @@ public enum IfcLoadGroupTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>LOAD COMBINATION GROUP</b></em>' literal object.
@@ -70,7 +60,15 @@ public enum IfcLoadGroupTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOAD_COMBINATION_GROUP(3, "LOAD_COMBINATION_GROUP", "LOAD_COMBINATION_GROUP"),
+	LOAD_COMBINATION_GROUP(2, "LOAD_COMBINATION_GROUP", "LOAD_COMBINATION_GROUP"), /**
+																					* The '<em><b>LOAD COMBINATION</b></em>' literal object.
+																					* <!-- begin-user-doc -->
+																					* <!-- end-user-doc -->
+																					* @see #LOAD_COMBINATION_VALUE
+																					* @generated
+																					* @ordered
+																					*/
+	LOAD_COMBINATION(3, "LOAD_COMBINATION", "LOAD_COMBINATION"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -118,21 +116,6 @@ public enum IfcLoadGroupTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>LOAD COMBINATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>LOAD COMBINATION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #LOAD_COMBINATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LOAD_COMBINATION_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -145,7 +128,7 @@ public enum IfcLoadGroupTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>LOAD COMBINATION GROUP</b></em>' literal value.
@@ -160,7 +143,22 @@ public enum IfcLoadGroupTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOAD_COMBINATION_GROUP_VALUE = 3;
+	public static final int LOAD_COMBINATION_GROUP_VALUE = 2;
+
+	/**
+	 * The '<em><b>LOAD COMBINATION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LOAD COMBINATION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LOAD_COMBINATION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LOAD_COMBINATION_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -213,7 +211,8 @@ public enum IfcLoadGroupTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLoadGroupTypeEnum[] VALUES_ARRAY = new IfcLoadGroupTypeEnum[] { NULL, LOAD_COMBINATION, NOTDEFINED, LOAD_COMBINATION_GROUP, USERDEFINED, LOAD_GROUP, LOAD_CASE, };
+	private static final IfcLoadGroupTypeEnum[] VALUES_ARRAY = new IfcLoadGroupTypeEnum[] { NULL, NOTDEFINED,
+			LOAD_COMBINATION_GROUP, LOAD_COMBINATION, USERDEFINED, LOAD_GROUP, LOAD_CASE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Load Group Type Enum</b></em>' enumerators.
@@ -271,12 +270,12 @@ public enum IfcLoadGroupTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case LOAD_COMBINATION_VALUE:
-			return LOAD_COMBINATION;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case LOAD_COMBINATION_GROUP_VALUE:
 			return LOAD_COMBINATION_GROUP;
+		case LOAD_COMBINATION_VALUE:
+			return LOAD_COMBINATION;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case LOAD_GROUP_VALUE:

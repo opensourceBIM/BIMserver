@@ -43,36 +43,6 @@ public enum IfcInventoryTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SPACEINVENTORY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPACEINVENTORY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPACEINVENTORY(1, "SPACEINVENTORY", "SPACEINVENTORY"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ASSETINVENTORY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ASSETINVENTORY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ASSETINVENTORY(3, "ASSETINVENTORY", "ASSETINVENTORY"),
-
-	/**
 	 * The '<em><b>FURNITUREINVENTORY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +50,31 @@ public enum IfcInventoryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FURNITUREINVENTORY(4, "FURNITUREINVENTORY", "FURNITUREINVENTORY"),
+	FURNITUREINVENTORY(1, "FURNITUREINVENTORY", "FURNITUREINVENTORY"), /**
+																		* The '<em><b>NOTDEFINED</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #NOTDEFINED_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>ASSETINVENTORY</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #ASSETINVENTORY_VALUE
+												* @generated
+												* @ordered
+												*/
+	ASSETINVENTORY(3, "ASSETINVENTORY", "ASSETINVENTORY"), /**
+															* The '<em><b>SPACEINVENTORY</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #SPACEINVENTORY_VALUE
+															* @generated
+															* @ordered
+															*/
+	SPACEINVENTORY(4, "SPACEINVENTORY", "SPACEINVENTORY"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -108,19 +102,19 @@ public enum IfcInventoryTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>SPACEINVENTORY</b></em>' literal value.
+	 * The '<em><b>FURNITUREINVENTORY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SPACEINVENTORY</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>FURNITUREINVENTORY</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SPACEINVENTORY
+	 * @see #FURNITUREINVENTORY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPACEINVENTORY_VALUE = 1;
+	public static final int FURNITUREINVENTORY_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -153,19 +147,19 @@ public enum IfcInventoryTypeEnum implements Enumerator {
 	public static final int ASSETINVENTORY_VALUE = 3;
 
 	/**
-	 * The '<em><b>FURNITUREINVENTORY</b></em>' literal value.
+	 * The '<em><b>SPACEINVENTORY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>FURNITUREINVENTORY</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SPACEINVENTORY</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FURNITUREINVENTORY
+	 * @see #SPACEINVENTORY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FURNITUREINVENTORY_VALUE = 4;
+	public static final int SPACEINVENTORY_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -188,7 +182,8 @@ public enum IfcInventoryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcInventoryTypeEnum[] VALUES_ARRAY = new IfcInventoryTypeEnum[] { NULL, SPACEINVENTORY, NOTDEFINED, ASSETINVENTORY, FURNITUREINVENTORY, USERDEFINED, };
+	private static final IfcInventoryTypeEnum[] VALUES_ARRAY = new IfcInventoryTypeEnum[] { NULL, FURNITUREINVENTORY,
+			NOTDEFINED, ASSETINVENTORY, SPACEINVENTORY, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Inventory Type Enum</b></em>' enumerators.
@@ -246,14 +241,14 @@ public enum IfcInventoryTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case SPACEINVENTORY_VALUE:
-			return SPACEINVENTORY;
+		case FURNITUREINVENTORY_VALUE:
+			return FURNITUREINVENTORY;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case ASSETINVENTORY_VALUE:
 			return ASSETINVENTORY;
-		case FURNITUREINVENTORY_VALUE:
-			return FURNITUREINVENTORY;
+		case SPACEINVENTORY_VALUE:
+			return SPACEINVENTORY;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		}

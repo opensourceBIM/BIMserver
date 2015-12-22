@@ -53,16 +53,6 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(2, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>COLUMN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +60,15 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COLUMN(3, "COLUMN", "COLUMN");
+	COLUMN(2, "COLUMN", "COLUMN"), /**
+									* The '<em><b>USERDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #USERDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -103,21 +101,6 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 2;
-
-	/**
 	 * The '<em><b>COLUMN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -130,7 +113,22 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COLUMN_VALUE = 3;
+	public static final int COLUMN_VALUE = 2;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Ifc Column Type Enum</b></em>' enumerators.
@@ -138,7 +136,8 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcColumnTypeEnum[] VALUES_ARRAY = new IfcColumnTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, COLUMN, };
+	private static final IfcColumnTypeEnum[] VALUES_ARRAY = new IfcColumnTypeEnum[] { NULL, NOTDEFINED, COLUMN,
+			USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Column Type Enum</b></em>' enumerators.
@@ -198,10 +197,10 @@ public enum IfcColumnTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case COLUMN_VALUE:
 			return COLUMN;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

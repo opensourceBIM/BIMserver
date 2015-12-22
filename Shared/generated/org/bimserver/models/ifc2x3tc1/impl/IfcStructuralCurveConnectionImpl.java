@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralCurveConnectionImpl extends IfcStructuralConnectionImpl implements IfcStructuralCurveConnection {
+public class IfcStructuralCurveConnectionImpl extends IfcStructuralConnectionImpl
+		implements IfcStructuralCurveConnection {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

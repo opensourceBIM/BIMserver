@@ -43,16 +43,6 @@ public enum IfcSequenceEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>FINISH START</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FINISH_START_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FINISH_START(1, "FINISH_START", "FINISH_START"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,27 +50,7 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>FINISH FINISH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FINISH_FINISH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FINISH_FINISH(3, "FINISH_FINISH", "FINISH_FINISH"),
-
-	/**
-	 * The '<em><b>START START</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #START_START_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	START_START(4, "START_START", "START_START"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>START FINISH</b></em>' literal object.
@@ -90,7 +60,31 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	START_FINISH(5, "START_FINISH", "START_FINISH");
+	START_FINISH(2, "START_FINISH", "START_FINISH"), /**
+														* The '<em><b>FINISH START</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #FINISH_START_VALUE
+														* @generated
+														* @ordered
+														*/
+	FINISH_START(3, "FINISH_START", "FINISH_START"), /**
+														* The '<em><b>FINISH FINISH</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #FINISH_FINISH_VALUE
+														* @generated
+														* @ordered
+														*/
+	FINISH_FINISH(4, "FINISH_FINISH", "FINISH_FINISH"), /**
+														* The '<em><b>START START</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #START_START_VALUE
+														* @generated
+														* @ordered
+														*/
+	START_START(5, "START_START", "START_START");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,21 +102,6 @@ public enum IfcSequenceEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>FINISH START</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FINISH START</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FINISH_START
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FINISH_START_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,37 +114,7 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>FINISH FINISH</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FINISH FINISH</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FINISH_FINISH
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FINISH_FINISH_VALUE = 3;
-
-	/**
-	 * The '<em><b>START START</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>START START</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #START_START
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int START_START_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>START FINISH</b></em>' literal value.
@@ -180,7 +129,52 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int START_FINISH_VALUE = 5;
+	public static final int START_FINISH_VALUE = 2;
+
+	/**
+	 * The '<em><b>FINISH START</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FINISH START</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FINISH_START
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FINISH_START_VALUE = 3;
+
+	/**
+	 * The '<em><b>FINISH FINISH</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FINISH FINISH</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FINISH_FINISH
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FINISH_FINISH_VALUE = 4;
+
+	/**
+	 * The '<em><b>START START</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>START START</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #START_START
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int START_START_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Sequence Enum</b></em>' enumerators.
@@ -188,7 +182,8 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSequenceEnum[] VALUES_ARRAY = new IfcSequenceEnum[] { NULL, FINISH_START, NOTDEFINED, FINISH_FINISH, START_START, START_FINISH, };
+	private static final IfcSequenceEnum[] VALUES_ARRAY = new IfcSequenceEnum[] { NULL, NOTDEFINED, START_FINISH,
+			FINISH_START, FINISH_FINISH, START_START, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sequence Enum</b></em>' enumerators.
@@ -246,16 +241,16 @@ public enum IfcSequenceEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case FINISH_START_VALUE:
-			return FINISH_START;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case START_FINISH_VALUE:
+			return START_FINISH;
+		case FINISH_START_VALUE:
+			return FINISH_START;
 		case FINISH_FINISH_VALUE:
 			return FINISH_FINISH;
 		case START_START_VALUE:
 			return START_START;
-		case START_FINISH_VALUE:
-			return START_FINISH;
 		}
 		return null;
 	}

@@ -63,16 +63,6 @@ public enum IfcSystemFurnitureElementTypeEnum implements Enumerator {
 	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>WORKSURFACE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +70,15 @@ public enum IfcSystemFurnitureElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WORKSURFACE(4, "WORKSURFACE", "WORKSURFACE");
+	WORKSURFACE(3, "WORKSURFACE", "WORKSURFACE"), /**
+													* The '<em><b>USERDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #USERDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,21 +126,6 @@ public enum IfcSystemFurnitureElementTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 3;
-
-	/**
 	 * The '<em><b>WORKSURFACE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -155,7 +138,22 @@ public enum IfcSystemFurnitureElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKSURFACE_VALUE = 4;
+	public static final int WORKSURFACE_VALUE = 3;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc System Furniture Element Type Enum</b></em>' enumerators.
@@ -164,7 +162,7 @@ public enum IfcSystemFurnitureElementTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcSystemFurnitureElementTypeEnum[] VALUES_ARRAY = new IfcSystemFurnitureElementTypeEnum[] {
-			NULL, PANEL, NOTDEFINED, USERDEFINED, WORKSURFACE, };
+			NULL, PANEL, NOTDEFINED, WORKSURFACE, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc System Furniture Element Type Enum</b></em>' enumerators.
@@ -227,10 +225,10 @@ public enum IfcSystemFurnitureElementTypeEnum implements Enumerator {
 			return PANEL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case WORKSURFACE_VALUE:
 			return WORKSURFACE;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

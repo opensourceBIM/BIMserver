@@ -43,16 +43,6 @@ public enum IfcSolarDeviceTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SOLARPANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SOLARPANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SOLARPANEL(1, "SOLARPANEL", "SOLARPANEL"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,17 +50,7 @@ public enum IfcSolarDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SOLARCOLLECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SOLARCOLLECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SOLARCOLLECTOR(3, "SOLARCOLLECTOR", "SOLARCOLLECTOR"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -80,7 +60,23 @@ public enum IfcSolarDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(2, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>SOLARCOLLECTOR</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #SOLARCOLLECTOR_VALUE
+													* @generated
+													* @ordered
+													*/
+	SOLARCOLLECTOR(3, "SOLARCOLLECTOR", "SOLARCOLLECTOR"), /**
+															* The '<em><b>SOLARPANEL</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #SOLARPANEL_VALUE
+															* @generated
+															* @ordered
+															*/
+	SOLARPANEL(4, "SOLARPANEL", "SOLARPANEL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -98,21 +94,6 @@ public enum IfcSolarDeviceTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>SOLARPANEL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SOLARPANEL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SOLARPANEL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SOLARPANEL_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -125,7 +106,22 @@ public enum IfcSolarDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>SOLARCOLLECTOR</b></em>' literal value.
@@ -143,19 +139,19 @@ public enum IfcSolarDeviceTypeEnum implements Enumerator {
 	public static final int SOLARCOLLECTOR_VALUE = 3;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>SOLARPANEL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SOLARPANEL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #SOLARPANEL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int SOLARPANEL_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Solar Device Type Enum</b></em>' enumerators.
@@ -163,8 +159,8 @@ public enum IfcSolarDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSolarDeviceTypeEnum[] VALUES_ARRAY = new IfcSolarDeviceTypeEnum[] { NULL, SOLARPANEL,
-			NOTDEFINED, SOLARCOLLECTOR, USERDEFINED, };
+	private static final IfcSolarDeviceTypeEnum[] VALUES_ARRAY = new IfcSolarDeviceTypeEnum[] { NULL, NOTDEFINED,
+			USERDEFINED, SOLARCOLLECTOR, SOLARPANEL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Solar Device Type Enum</b></em>' enumerators.
@@ -222,14 +218,14 @@ public enum IfcSolarDeviceTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case SOLARPANEL_VALUE:
-			return SOLARPANEL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case SOLARCOLLECTOR_VALUE:
-			return SOLARCOLLECTOR;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case SOLARCOLLECTOR_VALUE:
+			return SOLARCOLLECTOR;
+		case SOLARPANEL_VALUE:
+			return SOLARPANEL;
 		}
 		return null;
 	}

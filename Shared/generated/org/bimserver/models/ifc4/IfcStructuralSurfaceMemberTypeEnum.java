@@ -43,16 +43,6 @@ public enum IfcStructuralSurfaceMemberTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SHELL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHELL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHELL(1, "SHELL", "SHELL"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,27 +50,7 @@ public enum IfcStructuralSurfaceMemberTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>MEMBRANE ELEMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MEMBRANE_ELEMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MEMBRANE_ELEMENT(3, "MEMBRANE_ELEMENT", "MEMBRANE_ELEMENT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>BENDING ELEMENT</b></em>' literal object.
@@ -90,7 +60,31 @@ public enum IfcStructuralSurfaceMemberTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BENDING_ELEMENT(5, "BENDING_ELEMENT", "BENDING_ELEMENT");
+	BENDING_ELEMENT(2, "BENDING_ELEMENT", "BENDING_ELEMENT"), /**
+																* The '<em><b>SHELL</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #SHELL_VALUE
+																* @generated
+																* @ordered
+																*/
+	SHELL(3, "SHELL", "SHELL"), /**
+								* The '<em><b>MEMBRANE ELEMENT</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #MEMBRANE_ELEMENT_VALUE
+								* @generated
+								* @ordered
+								*/
+	MEMBRANE_ELEMENT(4, "MEMBRANE_ELEMENT", "MEMBRANE_ELEMENT"), /**
+																	* The '<em><b>USERDEFINED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #USERDEFINED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,21 +102,6 @@ public enum IfcStructuralSurfaceMemberTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>SHELL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SHELL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SHELL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SHELL_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,37 +114,7 @@ public enum IfcStructuralSurfaceMemberTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
-	 * The '<em><b>MEMBRANE ELEMENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MEMBRANE ELEMENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MEMBRANE_ELEMENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MEMBRANE_ELEMENT_VALUE = 3;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>BENDING ELEMENT</b></em>' literal value.
@@ -180,7 +129,52 @@ public enum IfcStructuralSurfaceMemberTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BENDING_ELEMENT_VALUE = 5;
+	public static final int BENDING_ELEMENT_VALUE = 2;
+
+	/**
+	 * The '<em><b>SHELL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SHELL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SHELL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SHELL_VALUE = 3;
+
+	/**
+	 * The '<em><b>MEMBRANE ELEMENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MEMBRANE ELEMENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MEMBRANE_ELEMENT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MEMBRANE_ELEMENT_VALUE = 4;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Structural Surface Member Type Enum</b></em>' enumerators.
@@ -189,7 +183,7 @@ public enum IfcStructuralSurfaceMemberTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcStructuralSurfaceMemberTypeEnum[] VALUES_ARRAY = new IfcStructuralSurfaceMemberTypeEnum[] {
-			NULL, SHELL, NOTDEFINED, MEMBRANE_ELEMENT, USERDEFINED, BENDING_ELEMENT, };
+			NULL, NOTDEFINED, BENDING_ELEMENT, SHELL, MEMBRANE_ELEMENT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Structural Surface Member Type Enum</b></em>' enumerators.
@@ -248,16 +242,16 @@ public enum IfcStructuralSurfaceMemberTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case SHELL_VALUE:
-			return SHELL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case BENDING_ELEMENT_VALUE:
+			return BENDING_ELEMENT;
+		case SHELL_VALUE:
+			return SHELL;
 		case MEMBRANE_ELEMENT_VALUE:
 			return MEMBRANE_ELEMENT;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case BENDING_ELEMENT_VALUE:
-			return BENDING_ELEMENT;
 		}
 		return null;
 	}

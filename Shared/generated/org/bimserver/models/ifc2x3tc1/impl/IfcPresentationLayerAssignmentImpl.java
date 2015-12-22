@@ -130,7 +130,8 @@ public class IfcPresentationLayerAssignmentImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLayeredItem> getAssignedItems() {
-		return (EList<IfcLayeredItem>) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__ASSIGNED_ITEMS, true);
+		return (EList<IfcLayeredItem>) eGet(Ifc2x3tc1Package.Literals.IFC_PRESENTATION_LAYER_ASSIGNMENT__ASSIGNED_ITEMS,
+				true);
 	}
 
 	/**

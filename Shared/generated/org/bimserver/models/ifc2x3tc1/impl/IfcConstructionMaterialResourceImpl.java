@@ -37,7 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConstructionMaterialResourceImpl extends IfcConstructionResourceImpl implements IfcConstructionMaterialResource {
+public class IfcConstructionMaterialResourceImpl extends IfcConstructionResourceImpl
+		implements IfcConstructionMaterialResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +65,8 @@ public class IfcConstructionMaterialResourceImpl extends IfcConstructionResource
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcActorSelect> getSuppliers() {
-		return (EList<IfcActorSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__SUPPLIERS, true);
+		return (EList<IfcActorSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__SUPPLIERS,
+				true);
 	}
 
 	/**
@@ -136,7 +138,8 @@ public class IfcConstructionMaterialResourceImpl extends IfcConstructionResource
 	 * @generated
 	 */
 	public void setUsageRatioAsString(String newUsageRatioAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO_AS_STRING, newUsageRatioAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__USAGE_RATIO_AS_STRING,
+				newUsageRatioAsString);
 	}
 
 	/**

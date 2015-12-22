@@ -60,7 +60,8 @@ public class IfcFeatureElementAdditionImpl extends IfcFeatureElementImpl impleme
 	 * @generated
 	 */
 	public IfcRelProjectsElement getProjectsElements() {
-		return (IfcRelProjectsElement) eGet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_ADDITION__PROJECTS_ELEMENTS, true);
+		return (IfcRelProjectsElement) eGet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_ADDITION__PROJECTS_ELEMENTS,
+				true);
 	}
 
 	/**

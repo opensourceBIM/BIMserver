@@ -43,26 +43,6 @@ public enum IfcTankTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>PREFORMED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PREFORMED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PREFORMED(1, "PREFORMED", "PREFORMED"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>PRESSUREVESSEL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +50,15 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRESSUREVESSEL(3, "PRESSUREVESSEL", "PRESSUREVESSEL"),
+	PRESSUREVESSEL(1, "PRESSUREVESSEL", "PRESSUREVESSEL"), /**
+															* The '<em><b>NOTDEFINED</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #NOTDEFINED_VALUE
+															* @generated
+															* @ordered
+															*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>SECTIONAL</b></em>' literal object.
@@ -80,17 +68,15 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SECTIONAL(4, "SECTIONAL", "SECTIONAL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
+	SECTIONAL(3, "SECTIONAL", "SECTIONAL"), /**
+											* The '<em><b>PREFORMED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #PREFORMED_VALUE
+											* @generated
+											* @ordered
+											*/
+	PREFORMED(4, "PREFORMED", "PREFORMED"),
 
 	/**
 	 * The '<em><b>EXPANSION</b></em>' literal object.
@@ -100,7 +86,15 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXPANSION(6, "EXPANSION", "EXPANSION");
+	EXPANSION(5, "EXPANSION", "EXPANSION"), /**
+											* The '<em><b>USERDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #USERDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -118,19 +112,19 @@ public enum IfcTankTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>PREFORMED</b></em>' literal value.
+	 * The '<em><b>PRESSUREVESSEL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PREFORMED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PRESSUREVESSEL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PREFORMED
+	 * @see #PRESSUREVESSEL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PREFORMED_VALUE = 1;
+	public static final int PRESSUREVESSEL_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -148,21 +142,6 @@ public enum IfcTankTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>PRESSUREVESSEL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PRESSUREVESSEL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PRESSUREVESSEL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PRESSUREVESSEL_VALUE = 3;
-
-	/**
 	 * The '<em><b>SECTIONAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -175,22 +154,22 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECTIONAL_VALUE = 4;
+	public static final int SECTIONAL_VALUE = 3;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * The '<em><b>PREFORMED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PREFORMED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #PREFORMED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 5;
+	public static final int PREFORMED_VALUE = 4;
 
 	/**
 	 * The '<em><b>EXPANSION</b></em>' literal value.
@@ -205,7 +184,22 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXPANSION_VALUE = 6;
+	public static final int EXPANSION_VALUE = 5;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Tank Type Enum</b></em>' enumerators.
@@ -213,7 +207,8 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTankTypeEnum[] VALUES_ARRAY = new IfcTankTypeEnum[] { NULL, PREFORMED, NOTDEFINED, PRESSUREVESSEL, SECTIONAL, USERDEFINED, EXPANSION, };
+	private static final IfcTankTypeEnum[] VALUES_ARRAY = new IfcTankTypeEnum[] { NULL, PRESSUREVESSEL, NOTDEFINED,
+			SECTIONAL, PREFORMED, EXPANSION, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Tank Type Enum</b></em>' enumerators.
@@ -271,18 +266,18 @@ public enum IfcTankTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case PREFORMED_VALUE:
-			return PREFORMED;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case PRESSUREVESSEL_VALUE:
 			return PRESSUREVESSEL;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case SECTIONAL_VALUE:
 			return SECTIONAL;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case PREFORMED_VALUE:
+			return PREFORMED;
 		case EXPANSION_VALUE:
 			return EXPANSION;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

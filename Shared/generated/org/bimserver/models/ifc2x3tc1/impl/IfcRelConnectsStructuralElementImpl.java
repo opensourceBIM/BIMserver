@@ -80,7 +80,8 @@ public class IfcRelConnectsStructuralElementImpl extends IfcRelConnectsImpl impl
 	 * @generated
 	 */
 	public IfcStructuralMember getRelatedStructuralMember() {
-		return (IfcStructuralMember) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATED_STRUCTURAL_MEMBER, true);
+		return (IfcStructuralMember) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATED_STRUCTURAL_MEMBER, true);
 	}
 
 	/**
@@ -89,7 +90,8 @@ public class IfcRelConnectsStructuralElementImpl extends IfcRelConnectsImpl impl
 	 * @generated
 	 */
 	public void setRelatedStructuralMember(IfcStructuralMember newRelatedStructuralMember) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATED_STRUCTURAL_MEMBER, newRelatedStructuralMember);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT__RELATED_STRUCTURAL_MEMBER,
+				newRelatedStructuralMember);
 	}
 
 } //IfcRelConnectsStructuralElementImpl

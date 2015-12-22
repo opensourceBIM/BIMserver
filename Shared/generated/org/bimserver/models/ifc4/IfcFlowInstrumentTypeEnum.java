@@ -43,46 +43,6 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>PHASEANGLEMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PHASEANGLEMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PHASEANGLEMETER(1, "PHASEANGLEMETER", "PHASEANGLEMETER"),
-
-	/**
-	 * The '<em><b>POWERFACTORMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POWERFACTORMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	POWERFACTORMETER(2, "POWERFACTORMETER", "POWERFACTORMETER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>VOLTMETER RMS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VOLTMETER_RMS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VOLTMETER_RMS(4, "VOLTMETER_RMS", "VOLTMETER_RMS"),
-
-	/**
 	 * The '<em><b>PRESSUREGAUGE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,47 +50,31 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRESSUREGAUGE(5, "PRESSUREGAUGE", "PRESSUREGAUGE"),
-
-	/**
-	 * The '<em><b>FREQUENCYMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FREQUENCYMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FREQUENCYMETER(6, "FREQUENCYMETER", "FREQUENCYMETER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>VOLTMETER PEAK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VOLTMETER_PEAK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VOLTMETER_PEAK(8, "VOLTMETER_PEAK", "VOLTMETER_PEAK"),
-
-	/**
-	 * The '<em><b>AMMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AMMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AMMETER(9, "AMMETER", "AMMETER"),
+	PRESSUREGAUGE(1, "PRESSUREGAUGE", "PRESSUREGAUGE"), /**
+														* The '<em><b>POWERFACTORMETER</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #POWERFACTORMETER_VALUE
+														* @generated
+														* @ordered
+														*/
+	POWERFACTORMETER(2, "POWERFACTORMETER", "POWERFACTORMETER"), /**
+																	* The '<em><b>NOTDEFINED</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #NOTDEFINED_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>VOLTMETER RMS</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #VOLTMETER_RMS_VALUE
+												* @generated
+												* @ordered
+												*/
+	VOLTMETER_RMS(4, "VOLTMETER_RMS", "VOLTMETER_RMS"),
 
 	/**
 	 * The '<em><b>THERMOMETER</b></em>' literal object.
@@ -140,7 +84,47 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	THERMOMETER(10, "THERMOMETER", "THERMOMETER");
+	THERMOMETER(5, "THERMOMETER", "THERMOMETER"), /**
+													* The '<em><b>FREQUENCYMETER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #FREQUENCYMETER_VALUE
+													* @generated
+													* @ordered
+													*/
+	FREQUENCYMETER(6, "FREQUENCYMETER", "FREQUENCYMETER"), /**
+															* The '<em><b>VOLTMETER PEAK</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #VOLTMETER_PEAK_VALUE
+															* @generated
+															* @ordered
+															*/
+	VOLTMETER_PEAK(7, "VOLTMETER_PEAK", "VOLTMETER_PEAK"), /**
+															* The '<em><b>AMMETER</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #AMMETER_VALUE
+															* @generated
+															* @ordered
+															*/
+	AMMETER(8, "AMMETER", "AMMETER"), /**
+										* The '<em><b>USERDEFINED</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #USERDEFINED_VALUE
+										* @generated
+										* @ordered
+										*/
+	USERDEFINED(9, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>PHASEANGLEMETER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #PHASEANGLEMETER_VALUE
+													* @generated
+													* @ordered
+													*/
+	PHASEANGLEMETER(10, "PHASEANGLEMETER", "PHASEANGLEMETER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -158,19 +142,19 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>PHASEANGLEMETER</b></em>' literal value.
+	 * The '<em><b>PRESSUREGAUGE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PHASEANGLEMETER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PRESSUREGAUGE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PHASEANGLEMETER
+	 * @see #PRESSUREGAUGE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PHASEANGLEMETER_VALUE = 1;
+	public static final int PRESSUREGAUGE_VALUE = 1;
 
 	/**
 	 * The '<em><b>POWERFACTORMETER</b></em>' literal value.
@@ -218,19 +202,19 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 	public static final int VOLTMETER_RMS_VALUE = 4;
 
 	/**
-	 * The '<em><b>PRESSUREGAUGE</b></em>' literal value.
+	 * The '<em><b>THERMOMETER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PRESSUREGAUGE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>THERMOMETER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PRESSUREGAUGE
+	 * @see #THERMOMETER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRESSUREGAUGE_VALUE = 5;
+	public static final int THERMOMETER_VALUE = 5;
 
 	/**
 	 * The '<em><b>FREQUENCYMETER</b></em>' literal value.
@@ -248,21 +232,6 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 	public static final int FREQUENCYMETER_VALUE = 6;
 
 	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 7;
-
-	/**
 	 * The '<em><b>VOLTMETER PEAK</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -275,7 +244,7 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VOLTMETER_PEAK_VALUE = 8;
+	public static final int VOLTMETER_PEAK_VALUE = 7;
 
 	/**
 	 * The '<em><b>AMMETER</b></em>' literal value.
@@ -290,22 +259,37 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AMMETER_VALUE = 9;
+	public static final int AMMETER_VALUE = 8;
 
 	/**
-	 * The '<em><b>THERMOMETER</b></em>' literal value.
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>THERMOMETER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #THERMOMETER
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THERMOMETER_VALUE = 10;
+	public static final int USERDEFINED_VALUE = 9;
+
+	/**
+	 * The '<em><b>PHASEANGLEMETER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PHASEANGLEMETER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PHASEANGLEMETER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PHASEANGLEMETER_VALUE = 10;
 
 	/**
 	 * An array of all the '<em><b>Ifc Flow Instrument Type Enum</b></em>' enumerators.
@@ -314,8 +298,8 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcFlowInstrumentTypeEnum[] VALUES_ARRAY = new IfcFlowInstrumentTypeEnum[] { NULL,
-			PHASEANGLEMETER, POWERFACTORMETER, NOTDEFINED, VOLTMETER_RMS, PRESSUREGAUGE, FREQUENCYMETER, USERDEFINED,
-			VOLTMETER_PEAK, AMMETER, THERMOMETER, };
+			PRESSUREGAUGE, POWERFACTORMETER, NOTDEFINED, VOLTMETER_RMS, THERMOMETER, FREQUENCYMETER, VOLTMETER_PEAK,
+			AMMETER, USERDEFINED, PHASEANGLEMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Flow Instrument Type Enum</b></em>' enumerators.
@@ -374,26 +358,26 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case PHASEANGLEMETER_VALUE:
-			return PHASEANGLEMETER;
+		case PRESSUREGAUGE_VALUE:
+			return PRESSUREGAUGE;
 		case POWERFACTORMETER_VALUE:
 			return POWERFACTORMETER;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
 		case VOLTMETER_RMS_VALUE:
 			return VOLTMETER_RMS;
-		case PRESSUREGAUGE_VALUE:
-			return PRESSUREGAUGE;
+		case THERMOMETER_VALUE:
+			return THERMOMETER;
 		case FREQUENCYMETER_VALUE:
 			return FREQUENCYMETER;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case VOLTMETER_PEAK_VALUE:
 			return VOLTMETER_PEAK;
 		case AMMETER_VALUE:
 			return AMMETER;
-		case THERMOMETER_VALUE:
-			return THERMOMETER;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case PHASEANGLEMETER_VALUE:
+			return PHASEANGLEMETER;
 		}
 		return null;
 	}

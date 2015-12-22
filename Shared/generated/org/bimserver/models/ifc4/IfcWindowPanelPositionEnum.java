@@ -43,26 +43,6 @@ public enum IfcWindowPanelPositionEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>BOTTOM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BOTTOM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BOTTOM(1, "BOTTOM", "BOTTOM"),
-
-	/**
-	 * The '<em><b>RIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RIGHT(2, "RIGHT", "RIGHT"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,17 +50,7 @@ public enum IfcWindowPanelPositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TOP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TOP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TOP(4, "TOP", "TOP"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>LEFT</b></em>' literal object.
@@ -90,7 +60,31 @@ public enum IfcWindowPanelPositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LEFT(5, "LEFT", "LEFT"),
+	LEFT(2, "LEFT", "LEFT"), /**
+								* The '<em><b>TOP</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #TOP_VALUE
+								* @generated
+								* @ordered
+								*/
+	TOP(3, "TOP", "TOP"), /**
+							* The '<em><b>RIGHT</b></em>' literal object.
+							* <!-- begin-user-doc -->
+							* <!-- end-user-doc -->
+							* @see #RIGHT_VALUE
+							* @generated
+							* @ordered
+							*/
+	RIGHT(4, "RIGHT", "RIGHT"), /**
+								* The '<em><b>BOTTOM</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #BOTTOM_VALUE
+								* @generated
+								* @ordered
+								*/
+	BOTTOM(5, "BOTTOM", "BOTTOM"),
 
 	/**
 	 * The '<em><b>MIDDLE</b></em>' literal object.
@@ -118,36 +112,6 @@ public enum IfcWindowPanelPositionEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>BOTTOM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BOTTOM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BOTTOM
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BOTTOM_VALUE = 1;
-
-	/**
-	 * The '<em><b>RIGHT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>RIGHT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #RIGHT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int RIGHT_VALUE = 2;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -160,22 +124,7 @@ public enum IfcWindowPanelPositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
-
-	/**
-	 * The '<em><b>TOP</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TOP</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TOP
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TOP_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>LEFT</b></em>' literal value.
@@ -190,7 +139,52 @@ public enum IfcWindowPanelPositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LEFT_VALUE = 5;
+	public static final int LEFT_VALUE = 2;
+
+	/**
+	 * The '<em><b>TOP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TOP</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TOP
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TOP_VALUE = 3;
+
+	/**
+	 * The '<em><b>RIGHT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>RIGHT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RIGHT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RIGHT_VALUE = 4;
+
+	/**
+	 * The '<em><b>BOTTOM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BOTTOM</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BOTTOM
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BOTTOM_VALUE = 5;
 
 	/**
 	 * The '<em><b>MIDDLE</b></em>' literal value.
@@ -213,8 +207,8 @@ public enum IfcWindowPanelPositionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWindowPanelPositionEnum[] VALUES_ARRAY = new IfcWindowPanelPositionEnum[] { NULL, BOTTOM,
-			RIGHT, NOTDEFINED, TOP, LEFT, MIDDLE, };
+	private static final IfcWindowPanelPositionEnum[] VALUES_ARRAY = new IfcWindowPanelPositionEnum[] { NULL,
+			NOTDEFINED, LEFT, TOP, RIGHT, BOTTOM, MIDDLE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Window Panel Position Enum</b></em>' enumerators.
@@ -273,16 +267,16 @@ public enum IfcWindowPanelPositionEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case BOTTOM_VALUE:
-			return BOTTOM;
-		case RIGHT_VALUE:
-			return RIGHT;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case TOP_VALUE:
-			return TOP;
 		case LEFT_VALUE:
 			return LEFT;
+		case TOP_VALUE:
+			return TOP;
+		case RIGHT_VALUE:
+			return RIGHT;
+		case BOTTOM_VALUE:
+			return BOTTOM;
 		case MIDDLE_VALUE:
 			return MIDDLE;
 		}

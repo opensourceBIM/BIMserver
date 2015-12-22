@@ -43,36 +43,6 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>TRIPLE PANEL RIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_RIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIPLE_PANEL_RIGHT(1, "TRIPLE_PANEL_RIGHT", "TRIPLE_PANEL_RIGHT"),
-
-	/**
-	 * The '<em><b>TRIPLE PANEL VERTICAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_VERTICAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIPLE_PANEL_VERTICAL(2, "TRIPLE_PANEL_VERTICAL", "TRIPLE_PANEL_VERTICAL"),
-
-	/**
-	 * The '<em><b>TRIPLE PANEL LEFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_LEFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIPLE_PANEL_LEFT(3, "TRIPLE_PANEL_LEFT", "TRIPLE_PANEL_LEFT"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,67 +50,7 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TRIPLE PANEL BOTTOM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_BOTTOM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIPLE_PANEL_BOTTOM(5, "TRIPLE_PANEL_BOTTOM", "TRIPLE_PANEL_BOTTOM"),
-
-	/**
-	 * The '<em><b>TRIPLE PANEL HORIZONTAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_HORIZONTAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIPLE_PANEL_HORIZONTAL(6, "TRIPLE_PANEL_HORIZONTAL", "TRIPLE_PANEL_HORIZONTAL"),
-
-	/**
-	 * The '<em><b>TRIPLE PANEL TOP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_TOP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIPLE_PANEL_TOP(7, "TRIPLE_PANEL_TOP", "TRIPLE_PANEL_TOP"),
-
-	/**
-	 * The '<em><b>DOUBLE PANEL VERTICAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_PANEL_VERTICAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLE_PANEL_VERTICAL(8, "DOUBLE_PANEL_VERTICAL", "DOUBLE_PANEL_VERTICAL"),
-
-	/**
-	 * The '<em><b>SINGLE PANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SINGLE_PANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SINGLE_PANEL(9, "SINGLE_PANEL", "SINGLE_PANEL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(10, "USERDEFINED", "USERDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>DOUBLE PANEL HORIZONTAL</b></em>' literal object.
@@ -150,7 +60,79 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_PANEL_HORIZONTAL(11, "DOUBLE_PANEL_HORIZONTAL", "DOUBLE_PANEL_HORIZONTAL");
+	DOUBLE_PANEL_HORIZONTAL(2, "DOUBLE_PANEL_HORIZONTAL", "DOUBLE_PANEL_HORIZONTAL"), /**
+																						* The '<em><b>TRIPLE PANEL BOTTOM</b></em>' literal object.
+																						* <!-- begin-user-doc -->
+																						* <!-- end-user-doc -->
+																						* @see #TRIPLE_PANEL_BOTTOM_VALUE
+																						* @generated
+																						* @ordered
+																						*/
+	TRIPLE_PANEL_BOTTOM(3, "TRIPLE_PANEL_BOTTOM", "TRIPLE_PANEL_BOTTOM"), /**
+																			* The '<em><b>TRIPLE PANEL LEFT</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #TRIPLE_PANEL_LEFT_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	TRIPLE_PANEL_LEFT(4, "TRIPLE_PANEL_LEFT", "TRIPLE_PANEL_LEFT"), /**
+																	* The '<em><b>DOUBLE PANEL VERTICAL</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #DOUBLE_PANEL_VERTICAL_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	DOUBLE_PANEL_VERTICAL(5, "DOUBLE_PANEL_VERTICAL", "DOUBLE_PANEL_VERTICAL"), /**
+																				* The '<em><b>TRIPLE PANEL HORIZONTAL</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #TRIPLE_PANEL_HORIZONTAL_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	TRIPLE_PANEL_HORIZONTAL(6, "TRIPLE_PANEL_HORIZONTAL", "TRIPLE_PANEL_HORIZONTAL"), /**
+																						* The '<em><b>SINGLE PANEL</b></em>' literal object.
+																						* <!-- begin-user-doc -->
+																						* <!-- end-user-doc -->
+																						* @see #SINGLE_PANEL_VALUE
+																						* @generated
+																						* @ordered
+																						*/
+	SINGLE_PANEL(7, "SINGLE_PANEL", "SINGLE_PANEL"), /**
+														* The '<em><b>TRIPLE PANEL RIGHT</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #TRIPLE_PANEL_RIGHT_VALUE
+														* @generated
+														* @ordered
+														*/
+	TRIPLE_PANEL_RIGHT(8, "TRIPLE_PANEL_RIGHT", "TRIPLE_PANEL_RIGHT"), /**
+																		* The '<em><b>USERDEFINED</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #USERDEFINED_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	USERDEFINED(9, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>TRIPLE PANEL VERTICAL</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #TRIPLE_PANEL_VERTICAL_VALUE
+													* @generated
+													* @ordered
+													*/
+	TRIPLE_PANEL_VERTICAL(10, "TRIPLE_PANEL_VERTICAL", "TRIPLE_PANEL_VERTICAL"), /**
+																					* The '<em><b>TRIPLE PANEL TOP</b></em>' literal object.
+																					* <!-- begin-user-doc -->
+																					* <!-- end-user-doc -->
+																					* @see #TRIPLE_PANEL_TOP_VALUE
+																					* @generated
+																					* @ordered
+																					*/
+	TRIPLE_PANEL_TOP(11, "TRIPLE_PANEL_TOP", "TRIPLE_PANEL_TOP");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -168,51 +150,6 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>TRIPLE PANEL RIGHT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TRIPLE PANEL RIGHT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_RIGHT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TRIPLE_PANEL_RIGHT_VALUE = 1;
-
-	/**
-	 * The '<em><b>TRIPLE PANEL VERTICAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TRIPLE PANEL VERTICAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_VERTICAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TRIPLE_PANEL_VERTICAL_VALUE = 2;
-
-	/**
-	 * The '<em><b>TRIPLE PANEL LEFT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TRIPLE PANEL LEFT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_LEFT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TRIPLE_PANEL_LEFT_VALUE = 3;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -225,7 +162,22 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 4;
+	public static final int NOTDEFINED_VALUE = 1;
+
+	/**
+	 * The '<em><b>DOUBLE PANEL HORIZONTAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DOUBLE PANEL HORIZONTAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DOUBLE_PANEL_HORIZONTAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DOUBLE_PANEL_HORIZONTAL_VALUE = 2;
 
 	/**
 	 * The '<em><b>TRIPLE PANEL BOTTOM</b></em>' literal value.
@@ -240,7 +192,37 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRIPLE_PANEL_BOTTOM_VALUE = 5;
+	public static final int TRIPLE_PANEL_BOTTOM_VALUE = 3;
+
+	/**
+	 * The '<em><b>TRIPLE PANEL LEFT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TRIPLE PANEL LEFT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TRIPLE_PANEL_LEFT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TRIPLE_PANEL_LEFT_VALUE = 4;
+
+	/**
+	 * The '<em><b>DOUBLE PANEL VERTICAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DOUBLE PANEL VERTICAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DOUBLE_PANEL_VERTICAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DOUBLE_PANEL_VERTICAL_VALUE = 5;
 
 	/**
 	 * The '<em><b>TRIPLE PANEL HORIZONTAL</b></em>' literal value.
@@ -258,36 +240,6 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	public static final int TRIPLE_PANEL_HORIZONTAL_VALUE = 6;
 
 	/**
-	 * The '<em><b>TRIPLE PANEL TOP</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TRIPLE PANEL TOP</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_TOP
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TRIPLE_PANEL_TOP_VALUE = 7;
-
-	/**
-	 * The '<em><b>DOUBLE PANEL VERTICAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DOUBLE PANEL VERTICAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_PANEL_VERTICAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DOUBLE_PANEL_VERTICAL_VALUE = 8;
-
-	/**
 	 * The '<em><b>SINGLE PANEL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -300,7 +252,22 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SINGLE_PANEL_VALUE = 9;
+	public static final int SINGLE_PANEL_VALUE = 7;
+
+	/**
+	 * The '<em><b>TRIPLE PANEL RIGHT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TRIPLE PANEL RIGHT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TRIPLE_PANEL_RIGHT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TRIPLE_PANEL_RIGHT_VALUE = 8;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -315,22 +282,37 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 10;
+	public static final int USERDEFINED_VALUE = 9;
 
 	/**
-	 * The '<em><b>DOUBLE PANEL HORIZONTAL</b></em>' literal value.
+	 * The '<em><b>TRIPLE PANEL VERTICAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DOUBLE PANEL HORIZONTAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TRIPLE PANEL VERTICAL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_PANEL_HORIZONTAL
+	 * @see #TRIPLE_PANEL_VERTICAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_PANEL_HORIZONTAL_VALUE = 11;
+	public static final int TRIPLE_PANEL_VERTICAL_VALUE = 10;
+
+	/**
+	 * The '<em><b>TRIPLE PANEL TOP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TRIPLE PANEL TOP</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TRIPLE_PANEL_TOP
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TRIPLE_PANEL_TOP_VALUE = 11;
 
 	/**
 	 * An array of all the '<em><b>Ifc Window Style Operation Enum</b></em>' enumerators.
@@ -338,8 +320,10 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWindowStyleOperationEnum[] VALUES_ARRAY = new IfcWindowStyleOperationEnum[] { NULL, TRIPLE_PANEL_RIGHT, TRIPLE_PANEL_VERTICAL, TRIPLE_PANEL_LEFT, NOTDEFINED, TRIPLE_PANEL_BOTTOM,
-			TRIPLE_PANEL_HORIZONTAL, TRIPLE_PANEL_TOP, DOUBLE_PANEL_VERTICAL, SINGLE_PANEL, USERDEFINED, DOUBLE_PANEL_HORIZONTAL, };
+	private static final IfcWindowStyleOperationEnum[] VALUES_ARRAY = new IfcWindowStyleOperationEnum[] { NULL,
+			NOTDEFINED, DOUBLE_PANEL_HORIZONTAL, TRIPLE_PANEL_BOTTOM, TRIPLE_PANEL_LEFT, DOUBLE_PANEL_VERTICAL,
+			TRIPLE_PANEL_HORIZONTAL, SINGLE_PANEL, TRIPLE_PANEL_RIGHT, USERDEFINED, TRIPLE_PANEL_VERTICAL,
+			TRIPLE_PANEL_TOP, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Window Style Operation Enum</b></em>' enumerators.
@@ -347,7 +331,8 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWindowStyleOperationEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWindowStyleOperationEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Window Style Operation Enum</b></em>' literal with the specified literal value.
@@ -397,28 +382,28 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case TRIPLE_PANEL_RIGHT_VALUE:
-			return TRIPLE_PANEL_RIGHT;
-		case TRIPLE_PANEL_VERTICAL_VALUE:
-			return TRIPLE_PANEL_VERTICAL;
-		case TRIPLE_PANEL_LEFT_VALUE:
-			return TRIPLE_PANEL_LEFT;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case TRIPLE_PANEL_BOTTOM_VALUE:
-			return TRIPLE_PANEL_BOTTOM;
-		case TRIPLE_PANEL_HORIZONTAL_VALUE:
-			return TRIPLE_PANEL_HORIZONTAL;
-		case TRIPLE_PANEL_TOP_VALUE:
-			return TRIPLE_PANEL_TOP;
-		case DOUBLE_PANEL_VERTICAL_VALUE:
-			return DOUBLE_PANEL_VERTICAL;
-		case SINGLE_PANEL_VALUE:
-			return SINGLE_PANEL;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case DOUBLE_PANEL_HORIZONTAL_VALUE:
 			return DOUBLE_PANEL_HORIZONTAL;
+		case TRIPLE_PANEL_BOTTOM_VALUE:
+			return TRIPLE_PANEL_BOTTOM;
+		case TRIPLE_PANEL_LEFT_VALUE:
+			return TRIPLE_PANEL_LEFT;
+		case DOUBLE_PANEL_VERTICAL_VALUE:
+			return DOUBLE_PANEL_VERTICAL;
+		case TRIPLE_PANEL_HORIZONTAL_VALUE:
+			return TRIPLE_PANEL_HORIZONTAL;
+		case SINGLE_PANEL_VALUE:
+			return SINGLE_PANEL;
+		case TRIPLE_PANEL_RIGHT_VALUE:
+			return TRIPLE_PANEL_RIGHT;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case TRIPLE_PANEL_VERTICAL_VALUE:
+			return TRIPLE_PANEL_VERTICAL;
+		case TRIPLE_PANEL_TOP_VALUE:
+			return TRIPLE_PANEL_TOP;
 		}
 		return null;
 	}

@@ -43,66 +43,6 @@ public enum IfcPropertySourceEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTKNOWN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTKNOWN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTKNOWN(1, "NOTKNOWN", "NOTKNOWN"),
-
-	/**
-	 * The '<em><b>DESIGN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DESIGN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DESIGN(2, "DESIGN", "DESIGN"),
-
-	/**
-	 * The '<em><b>ASBUILT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ASBUILT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ASBUILT(3, "ASBUILT", "ASBUILT"),
-
-	/**
-	 * The '<em><b>MEASURED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MEASURED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MEASURED(4, "MEASURED", "MEASURED"),
-
-	/**
-	 * The '<em><b>DESIGNMINIMUM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DESIGNMINIMUM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DESIGNMINIMUM(5, "DESIGNMINIMUM", "DESIGNMINIMUM"),
-
-	/**
-	 * The '<em><b>COMMISSIONING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMMISSIONING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMMISSIONING(6, "COMMISSIONING", "COMMISSIONING"),
-
-	/**
 	 * The '<em><b>DESIGNMAXIMUM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,7 +50,39 @@ public enum IfcPropertySourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DESIGNMAXIMUM(7, "DESIGNMAXIMUM", "DESIGNMAXIMUM"),
+	DESIGNMAXIMUM(1, "DESIGNMAXIMUM", "DESIGNMAXIMUM"), /**
+														* The '<em><b>COMMISSIONING</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #COMMISSIONING_VALUE
+														* @generated
+														* @ordered
+														*/
+	COMMISSIONING(2, "COMMISSIONING", "COMMISSIONING"), /**
+														* The '<em><b>DESIGN</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #DESIGN_VALUE
+														* @generated
+														* @ordered
+														*/
+	DESIGN(3, "DESIGN", "DESIGN"), /**
+									* The '<em><b>NOTKNOWN</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #NOTKNOWN_VALUE
+									* @generated
+									* @ordered
+									*/
+	NOTKNOWN(4, "NOTKNOWN", "NOTKNOWN"), /**
+											* The '<em><b>MEASURED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #MEASURED_VALUE
+											* @generated
+											* @ordered
+											*/
+	MEASURED(5, "MEASURED", "MEASURED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -120,7 +92,23 @@ public enum IfcPropertySourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(8, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>DESIGNMINIMUM</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #DESIGNMINIMUM_VALUE
+													* @generated
+													* @ordered
+													*/
+	DESIGNMINIMUM(7, "DESIGNMINIMUM", "DESIGNMINIMUM"), /**
+														* The '<em><b>ASBUILT</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #ASBUILT_VALUE
+														* @generated
+														* @ordered
+														*/
+	ASBUILT(8, "ASBUILT", "ASBUILT"),
 
 	/**
 	 * The '<em><b>SIMULATED</b></em>' literal object.
@@ -148,79 +136,19 @@ public enum IfcPropertySourceEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTKNOWN</b></em>' literal value.
+	 * The '<em><b>DESIGNMAXIMUM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTKNOWN</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DESIGNMAXIMUM</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTKNOWN
+	 * @see #DESIGNMAXIMUM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTKNOWN_VALUE = 1;
-
-	/**
-	 * The '<em><b>DESIGN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DESIGN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DESIGN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DESIGN_VALUE = 2;
-
-	/**
-	 * The '<em><b>ASBUILT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ASBUILT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ASBUILT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ASBUILT_VALUE = 3;
-
-	/**
-	 * The '<em><b>MEASURED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MEASURED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MEASURED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MEASURED_VALUE = 4;
-
-	/**
-	 * The '<em><b>DESIGNMINIMUM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DESIGNMINIMUM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DESIGNMINIMUM
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DESIGNMINIMUM_VALUE = 5;
+	public static final int DESIGNMAXIMUM_VALUE = 1;
 
 	/**
 	 * The '<em><b>COMMISSIONING</b></em>' literal value.
@@ -235,22 +163,52 @@ public enum IfcPropertySourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMMISSIONING_VALUE = 6;
+	public static final int COMMISSIONING_VALUE = 2;
 
 	/**
-	 * The '<em><b>DESIGNMAXIMUM</b></em>' literal value.
+	 * The '<em><b>DESIGN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DESIGNMAXIMUM</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DESIGN</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DESIGNMAXIMUM
+	 * @see #DESIGN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DESIGNMAXIMUM_VALUE = 7;
+	public static final int DESIGN_VALUE = 3;
+
+	/**
+	 * The '<em><b>NOTKNOWN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTKNOWN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTKNOWN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTKNOWN_VALUE = 4;
+
+	/**
+	 * The '<em><b>MEASURED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MEASURED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MEASURED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MEASURED_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -265,7 +223,37 @@ public enum IfcPropertySourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 8;
+	public static final int USERDEFINED_VALUE = 6;
+
+	/**
+	 * The '<em><b>DESIGNMINIMUM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DESIGNMINIMUM</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DESIGNMINIMUM
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DESIGNMINIMUM_VALUE = 7;
+
+	/**
+	 * The '<em><b>ASBUILT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ASBUILT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ASBUILT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ASBUILT_VALUE = 8;
 
 	/**
 	 * The '<em><b>SIMULATED</b></em>' literal value.
@@ -288,7 +276,8 @@ public enum IfcPropertySourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPropertySourceEnum[] VALUES_ARRAY = new IfcPropertySourceEnum[] { NULL, NOTKNOWN, DESIGN, ASBUILT, MEASURED, DESIGNMINIMUM, COMMISSIONING, DESIGNMAXIMUM, USERDEFINED, SIMULATED, };
+	private static final IfcPropertySourceEnum[] VALUES_ARRAY = new IfcPropertySourceEnum[] { NULL, DESIGNMAXIMUM,
+			COMMISSIONING, DESIGN, NOTKNOWN, MEASURED, USERDEFINED, DESIGNMINIMUM, ASBUILT, SIMULATED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Property Source Enum</b></em>' enumerators.
@@ -346,22 +335,22 @@ public enum IfcPropertySourceEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTKNOWN_VALUE:
-			return NOTKNOWN;
-		case DESIGN_VALUE:
-			return DESIGN;
-		case ASBUILT_VALUE:
-			return ASBUILT;
-		case MEASURED_VALUE:
-			return MEASURED;
-		case DESIGNMINIMUM_VALUE:
-			return DESIGNMINIMUM;
-		case COMMISSIONING_VALUE:
-			return COMMISSIONING;
 		case DESIGNMAXIMUM_VALUE:
 			return DESIGNMAXIMUM;
+		case COMMISSIONING_VALUE:
+			return COMMISSIONING;
+		case DESIGN_VALUE:
+			return DESIGN;
+		case NOTKNOWN_VALUE:
+			return NOTKNOWN;
+		case MEASURED_VALUE:
+			return MEASURED;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case DESIGNMINIMUM_VALUE:
+			return DESIGNMINIMUM;
+		case ASBUILT_VALUE:
+			return ASBUILT;
 		case SIMULATED_VALUE:
 			return SIMULATED;
 		}

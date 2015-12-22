@@ -43,56 +43,6 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>RING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RING(1, "RING", "RING"),
-
-	/**
-	 * The '<em><b>MAIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MAIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MAIN(2, "MAIN", "MAIN"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>LIGATURE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LIGATURE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LIGATURE(4, "LIGATURE", "LIGATURE"),
-
-	/**
-	 * The '<em><b>PUNCHING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PUNCHING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PUNCHING(5, "PUNCHING", "PUNCHING"),
-
-	/**
 	 * The '<em><b>SHEAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,17 +50,23 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SHEAR(6, "SHEAR", "SHEAR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
+	SHEAR(1, "SHEAR", "SHEAR"), /**
+								* The '<em><b>NOTDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #NOTDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>RING</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #RING_VALUE
+												* @generated
+												* @ordered
+												*/
+	RING(3, "RING", "RING"),
 
 	/**
 	 * The '<em><b>STUD</b></em>' literal object.
@@ -120,7 +76,31 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STUD(8, "STUD", "STUD"),
+	STUD(4, "STUD", "STUD"), /**
+								* The '<em><b>LIGATURE</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #LIGATURE_VALUE
+								* @generated
+								* @ordered
+								*/
+	LIGATURE(5, "LIGATURE", "LIGATURE"), /**
+											* The '<em><b>MAIN</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #MAIN_VALUE
+											* @generated
+											* @ordered
+											*/
+	MAIN(6, "MAIN", "MAIN"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>EDGE</b></em>' literal object.
@@ -130,7 +110,15 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EDGE(9, "EDGE", "EDGE");
+	EDGE(8, "EDGE", "EDGE"), /**
+								* The '<em><b>PUNCHING</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #PUNCHING_VALUE
+								* @generated
+								* @ordered
+								*/
+	PUNCHING(9, "PUNCHING", "PUNCHING");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,34 +136,19 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>RING</b></em>' literal value.
+	 * The '<em><b>SHEAR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>RING</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SHEAR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RING
+	 * @see #SHEAR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RING_VALUE = 1;
-
-	/**
-	 * The '<em><b>MAIN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MAIN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MAIN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MAIN_VALUE = 2;
+	public static final int SHEAR_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -190,7 +163,37 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 2;
+
+	/**
+	 * The '<em><b>RING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>RING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RING_VALUE = 3;
+
+	/**
+	 * The '<em><b>STUD</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STUD</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STUD
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STUD_VALUE = 4;
 
 	/**
 	 * The '<em><b>LIGATURE</b></em>' literal value.
@@ -205,37 +208,22 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LIGATURE_VALUE = 4;
+	public static final int LIGATURE_VALUE = 5;
 
 	/**
-	 * The '<em><b>PUNCHING</b></em>' literal value.
+	 * The '<em><b>MAIN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PUNCHING</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>MAIN</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PUNCHING
+	 * @see #MAIN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PUNCHING_VALUE = 5;
-
-	/**
-	 * The '<em><b>SHEAR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SHEAR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SHEAR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SHEAR_VALUE = 6;
+	public static final int MAIN_VALUE = 6;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -253,21 +241,6 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 7;
 
 	/**
-	 * The '<em><b>STUD</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STUD</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STUD
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STUD_VALUE = 8;
-
-	/**
 	 * The '<em><b>EDGE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -280,7 +253,22 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EDGE_VALUE = 9;
+	public static final int EDGE_VALUE = 8;
+
+	/**
+	 * The '<em><b>PUNCHING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PUNCHING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PUNCHING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PUNCHING_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Reinforcing Bar Role Enum</b></em>' enumerators.
@@ -288,7 +276,8 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcReinforcingBarRoleEnum[] VALUES_ARRAY = new IfcReinforcingBarRoleEnum[] { NULL, RING, MAIN, NOTDEFINED, LIGATURE, PUNCHING, SHEAR, USERDEFINED, STUD, EDGE, };
+	private static final IfcReinforcingBarRoleEnum[] VALUES_ARRAY = new IfcReinforcingBarRoleEnum[] { NULL, SHEAR,
+			NOTDEFINED, RING, STUD, LIGATURE, MAIN, USERDEFINED, EDGE, PUNCHING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Reinforcing Bar Role Enum</b></em>' enumerators.
@@ -296,7 +285,8 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcReinforcingBarRoleEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcReinforcingBarRoleEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Reinforcing Bar Role Enum</b></em>' literal with the specified literal value.
@@ -346,24 +336,24 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case RING_VALUE:
-			return RING;
-		case MAIN_VALUE:
-			return MAIN;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case LIGATURE_VALUE:
-			return LIGATURE;
-		case PUNCHING_VALUE:
-			return PUNCHING;
 		case SHEAR_VALUE:
 			return SHEAR;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case RING_VALUE:
+			return RING;
 		case STUD_VALUE:
 			return STUD;
+		case LIGATURE_VALUE:
+			return LIGATURE;
+		case MAIN_VALUE:
+			return MAIN;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case EDGE_VALUE:
 			return EDGE;
+		case PUNCHING_VALUE:
+			return PUNCHING;
 		}
 		return null;
 	}

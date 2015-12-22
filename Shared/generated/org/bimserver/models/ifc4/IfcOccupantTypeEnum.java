@@ -43,46 +43,6 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>LESSEE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LESSEE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LESSEE(2, "LESSEE", "LESSEE"),
-
-	/**
-	 * The '<em><b>ASSIGNOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ASSIGNOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ASSIGNOR(3, "ASSIGNOR", "ASSIGNOR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>OWNER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +50,15 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OWNER(5, "OWNER", "OWNER"),
+	OWNER(1, "OWNER", "OWNER"), /**
+								* The '<em><b>NOTDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #NOTDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>LETTINGAGENT</b></em>' literal object.
@@ -100,27 +68,7 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LETTINGAGENT(6, "LETTINGAGENT", "LETTINGAGENT"),
-
-	/**
-	 * The '<em><b>TENANT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TENANT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TENANT(7, "TENANT", "TENANT"),
-
-	/**
-	 * The '<em><b>LESSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LESSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LESSOR(8, "LESSOR", "LESSOR"),
+	LETTINGAGENT(3, "LETTINGAGENT", "LETTINGAGENT"),
 
 	/**
 	 * The '<em><b>ASSIGNEE</b></em>' literal object.
@@ -130,7 +78,47 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ASSIGNEE(9, "ASSIGNEE", "ASSIGNEE");
+	ASSIGNEE(4, "ASSIGNEE", "ASSIGNEE"), /**
+											* The '<em><b>LESSEE</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #LESSEE_VALUE
+											* @generated
+											* @ordered
+											*/
+	LESSEE(5, "LESSEE", "LESSEE"), /**
+									* The '<em><b>USERDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #USERDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>ASSIGNOR</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #ASSIGNOR_VALUE
+													* @generated
+													* @ordered
+													*/
+	ASSIGNOR(7, "ASSIGNOR", "ASSIGNOR"), /**
+											* The '<em><b>TENANT</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #TENANT_VALUE
+											* @generated
+											* @ordered
+											*/
+	TENANT(8, "TENANT", "TENANT"), /**
+									* The '<em><b>LESSOR</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #LESSOR_VALUE
+									* @generated
+									* @ordered
+									*/
+	LESSOR(9, "LESSOR", "LESSOR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,66 +136,6 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
-	 * The '<em><b>LESSEE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>LESSEE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #LESSEE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LESSEE_VALUE = 2;
-
-	/**
-	 * The '<em><b>ASSIGNOR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ASSIGNOR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ASSIGNOR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ASSIGNOR_VALUE = 3;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 4;
-
-	/**
 	 * The '<em><b>OWNER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -220,7 +148,22 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OWNER_VALUE = 5;
+	public static final int OWNER_VALUE = 1;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>LETTINGAGENT</b></em>' literal value.
@@ -235,37 +178,7 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LETTINGAGENT_VALUE = 6;
-
-	/**
-	 * The '<em><b>TENANT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TENANT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TENANT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TENANT_VALUE = 7;
-
-	/**
-	 * The '<em><b>LESSOR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>LESSOR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #LESSOR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int LESSOR_VALUE = 8;
+	public static final int LETTINGAGENT_VALUE = 3;
 
 	/**
 	 * The '<em><b>ASSIGNEE</b></em>' literal value.
@@ -280,7 +193,82 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ASSIGNEE_VALUE = 9;
+	public static final int ASSIGNEE_VALUE = 4;
+
+	/**
+	 * The '<em><b>LESSEE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LESSEE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LESSEE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LESSEE_VALUE = 5;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 6;
+
+	/**
+	 * The '<em><b>ASSIGNOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ASSIGNOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ASSIGNOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ASSIGNOR_VALUE = 7;
+
+	/**
+	 * The '<em><b>TENANT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TENANT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TENANT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TENANT_VALUE = 8;
+
+	/**
+	 * The '<em><b>LESSOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LESSOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LESSOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LESSOR_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Occupant Type Enum</b></em>' enumerators.
@@ -288,8 +276,8 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcOccupantTypeEnum[] VALUES_ARRAY = new IfcOccupantTypeEnum[] { NULL, NOTDEFINED, LESSEE,
-			ASSIGNOR, USERDEFINED, OWNER, LETTINGAGENT, TENANT, LESSOR, ASSIGNEE, };
+	private static final IfcOccupantTypeEnum[] VALUES_ARRAY = new IfcOccupantTypeEnum[] { NULL, OWNER, NOTDEFINED,
+			LETTINGAGENT, ASSIGNEE, LESSEE, USERDEFINED, ASSIGNOR, TENANT, LESSOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Occupant Type Enum</b></em>' enumerators.
@@ -347,24 +335,24 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case LESSEE_VALUE:
-			return LESSEE;
-		case ASSIGNOR_VALUE:
-			return ASSIGNOR;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case OWNER_VALUE:
 			return OWNER;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case LETTINGAGENT_VALUE:
 			return LETTINGAGENT;
+		case ASSIGNEE_VALUE:
+			return ASSIGNEE;
+		case LESSEE_VALUE:
+			return LESSEE;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case ASSIGNOR_VALUE:
+			return ASSIGNOR;
 		case TENANT_VALUE:
 			return TENANT;
 		case LESSOR_VALUE:
 			return LESSOR;
-		case ASSIGNEE_VALUE:
-			return ASSIGNEE;
 		}
 		return null;
 	}

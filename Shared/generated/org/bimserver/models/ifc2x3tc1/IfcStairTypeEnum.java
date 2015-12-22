@@ -43,26 +43,6 @@ public enum IfcStairTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SPIRAL STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPIRAL_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPIRAL_STAIR(1, "SPIRAL_STAIR", "SPIRAL_STAIR"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>QUARTER WINDING STAIR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,107 +50,7 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	QUARTER_WINDING_STAIR(3, "QUARTER_WINDING_STAIR", "QUARTER_WINDING_STAIR"),
-
-	/**
-	 * The '<em><b>HALF WINDING STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HALF_WINDING_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HALF_WINDING_STAIR(4, "HALF_WINDING_STAIR", "HALF_WINDING_STAIR"),
-
-	/**
-	 * The '<em><b>STRAIGHT RUN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRAIGHT_RUN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRAIGHT_RUN_STAIR(5, "STRAIGHT_RUN_STAIR", "STRAIGHT_RUN_STAIR"),
-
-	/**
-	 * The '<em><b>TWO CURVED RUN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWO_CURVED_RUN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWO_CURVED_RUN_STAIR(6, "TWO_CURVED_RUN_STAIR", "TWO_CURVED_RUN_STAIR"),
-
-	/**
-	 * The '<em><b>HALF TURN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HALF_TURN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HALF_TURN_STAIR(7, "HALF_TURN_STAIR", "HALF_TURN_STAIR"),
-
-	/**
-	 * The '<em><b>CURVED RUN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CURVED_RUN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CURVED_RUN_STAIR(8, "CURVED_RUN_STAIR", "CURVED_RUN_STAIR"),
-
-	/**
-	 * The '<em><b>DOUBLE RETURN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_RETURN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLE_RETURN_STAIR(9, "DOUBLE_RETURN_STAIR", "DOUBLE_RETURN_STAIR"),
-
-	/**
-	 * The '<em><b>QUARTER TURN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QUARTER_TURN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QUARTER_TURN_STAIR(10, "QUARTER_TURN_STAIR", "QUARTER_TURN_STAIR"),
-
-	/**
-	 * The '<em><b>TWO QUARTER WINDING STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWO_QUARTER_WINDING_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWO_QUARTER_WINDING_STAIR(11, "TWO_QUARTER_WINDING_STAIR", "TWO_QUARTER_WINDING_STAIR"),
-
-	/**
-	 * The '<em><b>TWO QUARTER TURN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWO_QUARTER_TURN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWO_QUARTER_TURN_STAIR(12, "TWO_QUARTER_TURN_STAIR", "TWO_QUARTER_TURN_STAIR"),
-
-	/**
-	 * The '<em><b>THREE QUARTER TURN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THREE_QUARTER_TURN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THREE_QUARTER_TURN_STAIR(13, "THREE_QUARTER_TURN_STAIR", "THREE_QUARTER_TURN_STAIR"),
+	QUARTER_WINDING_STAIR(1, "QUARTER_WINDING_STAIR", "QUARTER_WINDING_STAIR"),
 
 	/**
 	 * The '<em><b>TWO STRAIGHT RUN STAIR</b></em>' literal object.
@@ -180,17 +60,39 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TWO_STRAIGHT_RUN_STAIR(14, "TWO_STRAIGHT_RUN_STAIR", "TWO_STRAIGHT_RUN_STAIR"),
-
-	/**
-	 * The '<em><b>THREE QUARTER WINDING STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THREE_QUARTER_WINDING_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THREE_QUARTER_WINDING_STAIR(15, "THREE_QUARTER_WINDING_STAIR", "THREE_QUARTER_WINDING_STAIR"),
+	TWO_STRAIGHT_RUN_STAIR(2, "TWO_STRAIGHT_RUN_STAIR", "TWO_STRAIGHT_RUN_STAIR"), /**
+																					* The '<em><b>DOUBLE RETURN STAIR</b></em>' literal object.
+																					* <!-- begin-user-doc -->
+																					* <!-- end-user-doc -->
+																					* @see #DOUBLE_RETURN_STAIR_VALUE
+																					* @generated
+																					* @ordered
+																					*/
+	DOUBLE_RETURN_STAIR(3, "DOUBLE_RETURN_STAIR", "DOUBLE_RETURN_STAIR"), /**
+																			* The '<em><b>CURVED RUN STAIR</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #CURVED_RUN_STAIR_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	CURVED_RUN_STAIR(4, "CURVED_RUN_STAIR", "CURVED_RUN_STAIR"), /**
+																	* The '<em><b>STRAIGHT RUN STAIR</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #STRAIGHT_RUN_STAIR_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	STRAIGHT_RUN_STAIR(5, "STRAIGHT_RUN_STAIR", "STRAIGHT_RUN_STAIR"), /**
+																		* The '<em><b>HALF WINDING STAIR</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #HALF_WINDING_STAIR_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	HALF_WINDING_STAIR(6, "HALF_WINDING_STAIR", "HALF_WINDING_STAIR"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -200,7 +102,79 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(16, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>TWO CURVED RUN STAIR</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #TWO_CURVED_RUN_STAIR_VALUE
+													* @generated
+													* @ordered
+													*/
+	TWO_CURVED_RUN_STAIR(8, "TWO_CURVED_RUN_STAIR", "TWO_CURVED_RUN_STAIR"), /**
+																				* The '<em><b>QUARTER TURN STAIR</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #QUARTER_TURN_STAIR_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	QUARTER_TURN_STAIR(9, "QUARTER_TURN_STAIR", "QUARTER_TURN_STAIR"), /**
+																		* The '<em><b>THREE QUARTER TURN STAIR</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #THREE_QUARTER_TURN_STAIR_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	THREE_QUARTER_TURN_STAIR(10, "THREE_QUARTER_TURN_STAIR", "THREE_QUARTER_TURN_STAIR"), /**
+																							* The '<em><b>NOTDEFINED</b></em>' literal object.
+																							* <!-- begin-user-doc -->
+																							* <!-- end-user-doc -->
+																							* @see #NOTDEFINED_VALUE
+																							* @generated
+																							* @ordered
+																							*/
+	NOTDEFINED(11, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>SPIRAL STAIR</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #SPIRAL_STAIR_VALUE
+												* @generated
+												* @ordered
+												*/
+	SPIRAL_STAIR(12, "SPIRAL_STAIR", "SPIRAL_STAIR"), /**
+														* The '<em><b>HALF TURN STAIR</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #HALF_TURN_STAIR_VALUE
+														* @generated
+														* @ordered
+														*/
+	HALF_TURN_STAIR(13, "HALF_TURN_STAIR", "HALF_TURN_STAIR"), /**
+																* The '<em><b>THREE QUARTER WINDING STAIR</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #THREE_QUARTER_WINDING_STAIR_VALUE
+																* @generated
+																* @ordered
+																*/
+	THREE_QUARTER_WINDING_STAIR(14, "THREE_QUARTER_WINDING_STAIR", "THREE_QUARTER_WINDING_STAIR"), /**
+																									* The '<em><b>TWO QUARTER WINDING STAIR</b></em>' literal object.
+																									* <!-- begin-user-doc -->
+																									* <!-- end-user-doc -->
+																									* @see #TWO_QUARTER_WINDING_STAIR_VALUE
+																									* @generated
+																									* @ordered
+																									*/
+	TWO_QUARTER_WINDING_STAIR(15, "TWO_QUARTER_WINDING_STAIR", "TWO_QUARTER_WINDING_STAIR"), /**
+																								* The '<em><b>TWO QUARTER TURN STAIR</b></em>' literal object.
+																								* <!-- begin-user-doc -->
+																								* <!-- end-user-doc -->
+																								* @see #TWO_QUARTER_TURN_STAIR_VALUE
+																								* @generated
+																								* @ordered
+																								*/
+	TWO_QUARTER_TURN_STAIR(16, "TWO_QUARTER_TURN_STAIR", "TWO_QUARTER_TURN_STAIR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -218,36 +192,6 @@ public enum IfcStairTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>SPIRAL STAIR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SPIRAL STAIR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SPIRAL_STAIR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SPIRAL_STAIR_VALUE = 1;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 2;
-
-	/**
 	 * The '<em><b>QUARTER WINDING STAIR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -260,22 +204,52 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int QUARTER_WINDING_STAIR_VALUE = 3;
+	public static final int QUARTER_WINDING_STAIR_VALUE = 1;
 
 	/**
-	 * The '<em><b>HALF WINDING STAIR</b></em>' literal value.
+	 * The '<em><b>TWO STRAIGHT RUN STAIR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>HALF WINDING STAIR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TWO STRAIGHT RUN STAIR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HALF_WINDING_STAIR
+	 * @see #TWO_STRAIGHT_RUN_STAIR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HALF_WINDING_STAIR_VALUE = 4;
+	public static final int TWO_STRAIGHT_RUN_STAIR_VALUE = 2;
+
+	/**
+	 * The '<em><b>DOUBLE RETURN STAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DOUBLE RETURN STAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DOUBLE_RETURN_STAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DOUBLE_RETURN_STAIR_VALUE = 3;
+
+	/**
+	 * The '<em><b>CURVED RUN STAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CURVED RUN STAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CURVED_RUN_STAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CURVED_RUN_STAIR_VALUE = 4;
 
 	/**
 	 * The '<em><b>STRAIGHT RUN STAIR</b></em>' literal value.
@@ -293,154 +267,19 @@ public enum IfcStairTypeEnum implements Enumerator {
 	public static final int STRAIGHT_RUN_STAIR_VALUE = 5;
 
 	/**
-	 * The '<em><b>TWO CURVED RUN STAIR</b></em>' literal value.
+	 * The '<em><b>HALF WINDING STAIR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>TWO CURVED RUN STAIR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>HALF WINDING STAIR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TWO_CURVED_RUN_STAIR
+	 * @see #HALF_WINDING_STAIR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TWO_CURVED_RUN_STAIR_VALUE = 6;
-
-	/**
-	 * The '<em><b>HALF TURN STAIR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HALF TURN STAIR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HALF_TURN_STAIR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HALF_TURN_STAIR_VALUE = 7;
-
-	/**
-	 * The '<em><b>CURVED RUN STAIR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CURVED RUN STAIR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CURVED_RUN_STAIR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CURVED_RUN_STAIR_VALUE = 8;
-
-	/**
-	 * The '<em><b>DOUBLE RETURN STAIR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DOUBLE RETURN STAIR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_RETURN_STAIR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DOUBLE_RETURN_STAIR_VALUE = 9;
-
-	/**
-	 * The '<em><b>QUARTER TURN STAIR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>QUARTER TURN STAIR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #QUARTER_TURN_STAIR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int QUARTER_TURN_STAIR_VALUE = 10;
-
-	/**
-	 * The '<em><b>TWO QUARTER WINDING STAIR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TWO QUARTER WINDING STAIR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TWO_QUARTER_WINDING_STAIR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TWO_QUARTER_WINDING_STAIR_VALUE = 11;
-
-	/**
-	 * The '<em><b>TWO QUARTER TURN STAIR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TWO QUARTER TURN STAIR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TWO_QUARTER_TURN_STAIR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TWO_QUARTER_TURN_STAIR_VALUE = 12;
-
-	/**
-	 * The '<em><b>THREE QUARTER TURN STAIR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>THREE QUARTER TURN STAIR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #THREE_QUARTER_TURN_STAIR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int THREE_QUARTER_TURN_STAIR_VALUE = 13;
-
-	/**
-	 * The '<em><b>TWO STRAIGHT RUN STAIR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TWO STRAIGHT RUN STAIR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TWO_STRAIGHT_RUN_STAIR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TWO_STRAIGHT_RUN_STAIR_VALUE = 14;
-
-	/**
-	 * The '<em><b>THREE QUARTER WINDING STAIR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>THREE QUARTER WINDING STAIR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #THREE_QUARTER_WINDING_STAIR
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int THREE_QUARTER_WINDING_STAIR_VALUE = 15;
+	public static final int HALF_WINDING_STAIR_VALUE = 6;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -455,7 +294,142 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 16;
+	public static final int USERDEFINED_VALUE = 7;
+
+	/**
+	 * The '<em><b>TWO CURVED RUN STAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TWO CURVED RUN STAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TWO_CURVED_RUN_STAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TWO_CURVED_RUN_STAIR_VALUE = 8;
+
+	/**
+	 * The '<em><b>QUARTER TURN STAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>QUARTER TURN STAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #QUARTER_TURN_STAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int QUARTER_TURN_STAIR_VALUE = 9;
+
+	/**
+	 * The '<em><b>THREE QUARTER TURN STAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>THREE QUARTER TURN STAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #THREE_QUARTER_TURN_STAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int THREE_QUARTER_TURN_STAIR_VALUE = 10;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 11;
+
+	/**
+	 * The '<em><b>SPIRAL STAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SPIRAL STAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SPIRAL_STAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SPIRAL_STAIR_VALUE = 12;
+
+	/**
+	 * The '<em><b>HALF TURN STAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HALF TURN STAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HALF_TURN_STAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HALF_TURN_STAIR_VALUE = 13;
+
+	/**
+	 * The '<em><b>THREE QUARTER WINDING STAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>THREE QUARTER WINDING STAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #THREE_QUARTER_WINDING_STAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int THREE_QUARTER_WINDING_STAIR_VALUE = 14;
+
+	/**
+	 * The '<em><b>TWO QUARTER WINDING STAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TWO QUARTER WINDING STAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TWO_QUARTER_WINDING_STAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TWO_QUARTER_WINDING_STAIR_VALUE = 15;
+
+	/**
+	 * The '<em><b>TWO QUARTER TURN STAIR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TWO QUARTER TURN STAIR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TWO_QUARTER_TURN_STAIR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TWO_QUARTER_TURN_STAIR_VALUE = 16;
 
 	/**
 	 * An array of all the '<em><b>Ifc Stair Type Enum</b></em>' enumerators.
@@ -463,8 +437,10 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStairTypeEnum[] VALUES_ARRAY = new IfcStairTypeEnum[] { NULL, SPIRAL_STAIR, NOTDEFINED, QUARTER_WINDING_STAIR, HALF_WINDING_STAIR, STRAIGHT_RUN_STAIR, TWO_CURVED_RUN_STAIR, HALF_TURN_STAIR,
-			CURVED_RUN_STAIR, DOUBLE_RETURN_STAIR, QUARTER_TURN_STAIR, TWO_QUARTER_WINDING_STAIR, TWO_QUARTER_TURN_STAIR, THREE_QUARTER_TURN_STAIR, TWO_STRAIGHT_RUN_STAIR, THREE_QUARTER_WINDING_STAIR, USERDEFINED, };
+	private static final IfcStairTypeEnum[] VALUES_ARRAY = new IfcStairTypeEnum[] { NULL, QUARTER_WINDING_STAIR,
+			TWO_STRAIGHT_RUN_STAIR, DOUBLE_RETURN_STAIR, CURVED_RUN_STAIR, STRAIGHT_RUN_STAIR, HALF_WINDING_STAIR,
+			USERDEFINED, TWO_CURVED_RUN_STAIR, QUARTER_TURN_STAIR, THREE_QUARTER_TURN_STAIR, NOTDEFINED, SPIRAL_STAIR,
+			HALF_TURN_STAIR, THREE_QUARTER_WINDING_STAIR, TWO_QUARTER_WINDING_STAIR, TWO_QUARTER_TURN_STAIR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Stair Type Enum</b></em>' enumerators.
@@ -522,38 +498,38 @@ public enum IfcStairTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case SPIRAL_STAIR_VALUE:
-			return SPIRAL_STAIR;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case QUARTER_WINDING_STAIR_VALUE:
 			return QUARTER_WINDING_STAIR;
-		case HALF_WINDING_STAIR_VALUE:
-			return HALF_WINDING_STAIR;
-		case STRAIGHT_RUN_STAIR_VALUE:
-			return STRAIGHT_RUN_STAIR;
-		case TWO_CURVED_RUN_STAIR_VALUE:
-			return TWO_CURVED_RUN_STAIR;
-		case HALF_TURN_STAIR_VALUE:
-			return HALF_TURN_STAIR;
-		case CURVED_RUN_STAIR_VALUE:
-			return CURVED_RUN_STAIR;
+		case TWO_STRAIGHT_RUN_STAIR_VALUE:
+			return TWO_STRAIGHT_RUN_STAIR;
 		case DOUBLE_RETURN_STAIR_VALUE:
 			return DOUBLE_RETURN_STAIR;
+		case CURVED_RUN_STAIR_VALUE:
+			return CURVED_RUN_STAIR;
+		case STRAIGHT_RUN_STAIR_VALUE:
+			return STRAIGHT_RUN_STAIR;
+		case HALF_WINDING_STAIR_VALUE:
+			return HALF_WINDING_STAIR;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case TWO_CURVED_RUN_STAIR_VALUE:
+			return TWO_CURVED_RUN_STAIR;
 		case QUARTER_TURN_STAIR_VALUE:
 			return QUARTER_TURN_STAIR;
+		case THREE_QUARTER_TURN_STAIR_VALUE:
+			return THREE_QUARTER_TURN_STAIR;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case SPIRAL_STAIR_VALUE:
+			return SPIRAL_STAIR;
+		case HALF_TURN_STAIR_VALUE:
+			return HALF_TURN_STAIR;
+		case THREE_QUARTER_WINDING_STAIR_VALUE:
+			return THREE_QUARTER_WINDING_STAIR;
 		case TWO_QUARTER_WINDING_STAIR_VALUE:
 			return TWO_QUARTER_WINDING_STAIR;
 		case TWO_QUARTER_TURN_STAIR_VALUE:
 			return TWO_QUARTER_TURN_STAIR;
-		case THREE_QUARTER_TURN_STAIR_VALUE:
-			return THREE_QUARTER_TURN_STAIR;
-		case TWO_STRAIGHT_RUN_STAIR_VALUE:
-			return TWO_STRAIGHT_RUN_STAIR;
-		case THREE_QUARTER_WINDING_STAIR_VALUE:
-			return THREE_QUARTER_WINDING_STAIR;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		}
 		return null;
 	}

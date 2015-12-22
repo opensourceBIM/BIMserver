@@ -43,36 +43,6 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>DBB</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DBB_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DBB(1, "DBB", "DBB"),
-
-	/**
-	 * The '<em><b>DBC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DBC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DBC(2, "DBC", "DBC"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>DBA</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,17 +50,23 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DBA(4, "DBA", "DBA"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
+	DBA(1, "DBA", "DBA"), /**
+							* The '<em><b>NOTDEFINED</b></em>' literal object.
+							* <!-- begin-user-doc -->
+							* <!-- end-user-doc -->
+							* @see #NOTDEFINED_VALUE
+							* @generated
+							* @ordered
+							*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>DBC</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #DBC_VALUE
+												* @generated
+												* @ordered
+												*/
+	DBC(3, "DBC", "DBC"),
 
 	/**
 	 * The '<em><b>NR</b></em>' literal object.
@@ -100,7 +76,15 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NR(6, "NR", "NR"),
+	NR(4, "NR", "NR"), /**
+						* The '<em><b>DBB</b></em>' literal object.
+						* <!-- begin-user-doc -->
+						* <!-- end-user-doc -->
+						* @see #DBB_VALUE
+						* @generated
+						* @ordered
+						*/
+	DBB(5, "DBB", "DBB"),
 
 	/**
 	 * The '<em><b>NC</b></em>' literal object.
@@ -110,7 +94,15 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NC(7, "NC", "NC");
+	NC(6, "NC", "NC"), /**
+						* The '<em><b>USERDEFINED</b></em>' literal object.
+						* <!-- begin-user-doc -->
+						* <!-- end-user-doc -->
+						* @see #USERDEFINED_VALUE
+						* @generated
+						* @ordered
+						*/
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,34 +120,19 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>DBB</b></em>' literal value.
+	 * The '<em><b>DBA</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DBB</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DBA</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DBB
+	 * @see #DBA
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DBB_VALUE = 1;
-
-	/**
-	 * The '<em><b>DBC</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DBC</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DBC
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DBC_VALUE = 2;
+	public static final int DBA_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -170,37 +147,22 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
-	 * The '<em><b>DBA</b></em>' literal value.
+	 * The '<em><b>DBC</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DBA</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DBC</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DBA
+	 * @see #DBC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DBA_VALUE = 4;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 5;
+	public static final int DBC_VALUE = 3;
 
 	/**
 	 * The '<em><b>NR</b></em>' literal value.
@@ -215,7 +177,22 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NR_VALUE = 6;
+	public static final int NR_VALUE = 4;
+
+	/**
+	 * The '<em><b>DBB</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DBB</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DBB
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DBB_VALUE = 5;
 
 	/**
 	 * The '<em><b>NC</b></em>' literal value.
@@ -230,7 +207,22 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NC_VALUE = 7;
+	public static final int NC_VALUE = 6;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Sound Scale Enum</b></em>' enumerators.
@@ -238,7 +230,8 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSoundScaleEnum[] VALUES_ARRAY = new IfcSoundScaleEnum[] { NULL, DBB, DBC, NOTDEFINED, DBA, USERDEFINED, NR, NC, };
+	private static final IfcSoundScaleEnum[] VALUES_ARRAY = new IfcSoundScaleEnum[] { NULL, DBA, NOTDEFINED, DBC, NR,
+			DBB, NC, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sound Scale Enum</b></em>' enumerators.
@@ -296,20 +289,20 @@ public enum IfcSoundScaleEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case DBB_VALUE:
-			return DBB;
-		case DBC_VALUE:
-			return DBC;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case DBA_VALUE:
 			return DBA;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case DBC_VALUE:
+			return DBC;
 		case NR_VALUE:
 			return NR;
+		case DBB_VALUE:
+			return DBB;
 		case NC_VALUE:
 			return NC;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		}
 		return null;
 	}

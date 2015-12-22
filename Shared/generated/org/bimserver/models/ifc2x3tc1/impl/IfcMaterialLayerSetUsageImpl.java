@@ -95,7 +95,8 @@ public class IfcMaterialLayerSetUsageImpl extends IdEObjectImpl implements IfcMa
 	 * @generated
 	 */
 	public IfcLayerSetDirectionEnum getLayerSetDirection() {
-		return (IfcLayerSetDirectionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__LAYER_SET_DIRECTION, true);
+		return (IfcLayerSetDirectionEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__LAYER_SET_DIRECTION, true);
 	}
 
 	/**
@@ -113,7 +114,8 @@ public class IfcMaterialLayerSetUsageImpl extends IdEObjectImpl implements IfcMa
 	 * @generated
 	 */
 	public IfcDirectionSenseEnum getDirectionSense() {
-		return (IfcDirectionSenseEnum) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__DIRECTION_SENSE, true);
+		return (IfcDirectionSenseEnum) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__DIRECTION_SENSE,
+				true);
 	}
 
 	/**
@@ -140,7 +142,8 @@ public class IfcMaterialLayerSetUsageImpl extends IdEObjectImpl implements IfcMa
 	 * @generated
 	 */
 	public void setOffsetFromReferenceLine(double newOffsetFromReferenceLine) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE, newOffsetFromReferenceLine);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE,
+				newOffsetFromReferenceLine);
 	}
 
 	/**
@@ -149,7 +152,8 @@ public class IfcMaterialLayerSetUsageImpl extends IdEObjectImpl implements IfcMa
 	 * @generated
 	 */
 	public String getOffsetFromReferenceLineAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE_AS_STRING, true);
 	}
 
 	/**
@@ -158,7 +162,8 @@ public class IfcMaterialLayerSetUsageImpl extends IdEObjectImpl implements IfcMa
 	 * @generated
 	 */
 	public void setOffsetFromReferenceLineAsString(String newOffsetFromReferenceLineAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE_AS_STRING, newOffsetFromReferenceLineAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MATERIAL_LAYER_SET_USAGE__OFFSET_FROM_REFERENCE_LINE_AS_STRING,
+				newOffsetFromReferenceLineAsString);
 	}
 
 } //IfcMaterialLayerSetUsageImpl

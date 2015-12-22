@@ -43,76 +43,6 @@ public enum IfcWallTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PLUMBINGWALL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLUMBINGWALL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLUMBINGWALL(2, "PLUMBINGWALL", "PLUMBINGWALL"),
-
-	/**
-	 * The '<em><b>MOVABLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MOVABLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MOVABLE(3, "MOVABLE", "MOVABLE"),
-
-	/**
-	 * The '<em><b>SHEAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHEAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHEAR(4, "SHEAR", "SHEAR"),
-
-	/**
-	 * The '<em><b>STANDARD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STANDARD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STANDARD(5, "STANDARD", "STANDARD"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>SOLIDWALL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SOLIDWALL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SOLIDWALL(7, "SOLIDWALL", "SOLIDWALL"),
-
-	/**
 	 * The '<em><b>PARAPET</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,27 +50,15 @@ public enum IfcWallTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PARAPET(8, "PARAPET", "PARAPET"),
-
-	/**
-	 * The '<em><b>PARTITIONING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PARTITIONING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PARTITIONING(9, "PARTITIONING", "PARTITIONING"),
-
-	/**
-	 * The '<em><b>POLYGONAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POLYGONAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	POLYGONAL(10, "POLYGONAL", "POLYGONAL"),
+	PARAPET(1, "PARAPET", "PARAPET"), /**
+										* The '<em><b>SHEAR</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #SHEAR_VALUE
+										* @generated
+										* @ordered
+										*/
+	SHEAR(2, "SHEAR", "SHEAR"),
 
 	/**
 	 * The '<em><b>ELEMENTEDWALL</b></em>' literal object.
@@ -150,7 +68,71 @@ public enum IfcWallTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELEMENTEDWALL(11, "ELEMENTEDWALL", "ELEMENTEDWALL");
+	ELEMENTEDWALL(3, "ELEMENTEDWALL", "ELEMENTEDWALL"), /**
+														* The '<em><b>NOTDEFINED</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #NOTDEFINED_VALUE
+														* @generated
+														* @ordered
+														*/
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>POLYGONAL</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #POLYGONAL_VALUE
+												* @generated
+												* @ordered
+												*/
+	POLYGONAL(5, "POLYGONAL", "POLYGONAL"), /**
+											* The '<em><b>MOVABLE</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #MOVABLE_VALUE
+											* @generated
+											* @ordered
+											*/
+	MOVABLE(6, "MOVABLE", "MOVABLE"), /**
+										* The '<em><b>PARTITIONING</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #PARTITIONING_VALUE
+										* @generated
+										* @ordered
+										*/
+	PARTITIONING(7, "PARTITIONING", "PARTITIONING"), /**
+														* The '<em><b>USERDEFINED</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #USERDEFINED_VALUE
+														* @generated
+														* @ordered
+														*/
+	USERDEFINED(8, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>SOLIDWALL</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #SOLIDWALL_VALUE
+													* @generated
+													* @ordered
+													*/
+	SOLIDWALL(9, "SOLIDWALL", "SOLIDWALL"), /**
+											* The '<em><b>PLUMBINGWALL</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #PLUMBINGWALL_VALUE
+											* @generated
+											* @ordered
+											*/
+	PLUMBINGWALL(10, "PLUMBINGWALL", "PLUMBINGWALL"), /**
+														* The '<em><b>STANDARD</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #STANDARD_VALUE
+														* @generated
+														* @ordered
+														*/
+	STANDARD(11, "STANDARD", "STANDARD");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -168,49 +150,19 @@ public enum IfcWallTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>PARAPET</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PARAPET</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #PARAPET
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
-	 * The '<em><b>PLUMBINGWALL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PLUMBINGWALL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PLUMBINGWALL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PLUMBINGWALL_VALUE = 2;
-
-	/**
-	 * The '<em><b>MOVABLE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MOVABLE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MOVABLE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MOVABLE_VALUE = 3;
+	public static final int PARAPET_VALUE = 1;
 
 	/**
 	 * The '<em><b>SHEAR</b></em>' literal value.
@@ -225,97 +177,7 @@ public enum IfcWallTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SHEAR_VALUE = 4;
-
-	/**
-	 * The '<em><b>STANDARD</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STANDARD</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STANDARD
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STANDARD_VALUE = 5;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 6;
-
-	/**
-	 * The '<em><b>SOLIDWALL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SOLIDWALL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SOLIDWALL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SOLIDWALL_VALUE = 7;
-
-	/**
-	 * The '<em><b>PARAPET</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PARAPET</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PARAPET
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PARAPET_VALUE = 8;
-
-	/**
-	 * The '<em><b>PARTITIONING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PARTITIONING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PARTITIONING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PARTITIONING_VALUE = 9;
-
-	/**
-	 * The '<em><b>POLYGONAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>POLYGONAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #POLYGONAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int POLYGONAL_VALUE = 10;
+	public static final int SHEAR_VALUE = 2;
 
 	/**
 	 * The '<em><b>ELEMENTEDWALL</b></em>' literal value.
@@ -330,7 +192,127 @@ public enum IfcWallTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELEMENTEDWALL_VALUE = 11;
+	public static final int ELEMENTEDWALL_VALUE = 3;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>POLYGONAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>POLYGONAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #POLYGONAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int POLYGONAL_VALUE = 5;
+
+	/**
+	 * The '<em><b>MOVABLE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MOVABLE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MOVABLE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MOVABLE_VALUE = 6;
+
+	/**
+	 * The '<em><b>PARTITIONING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PARTITIONING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PARTITIONING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PARTITIONING_VALUE = 7;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 8;
+
+	/**
+	 * The '<em><b>SOLIDWALL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SOLIDWALL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SOLIDWALL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SOLIDWALL_VALUE = 9;
+
+	/**
+	 * The '<em><b>PLUMBINGWALL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PLUMBINGWALL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PLUMBINGWALL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PLUMBINGWALL_VALUE = 10;
+
+	/**
+	 * The '<em><b>STANDARD</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STANDARD</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STANDARD
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STANDARD_VALUE = 11;
 
 	/**
 	 * An array of all the '<em><b>Ifc Wall Type Enum</b></em>' enumerators.
@@ -338,8 +320,8 @@ public enum IfcWallTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWallTypeEnum[] VALUES_ARRAY = new IfcWallTypeEnum[] { NULL, NOTDEFINED, PLUMBINGWALL,
-			MOVABLE, SHEAR, STANDARD, USERDEFINED, SOLIDWALL, PARAPET, PARTITIONING, POLYGONAL, ELEMENTEDWALL, };
+	private static final IfcWallTypeEnum[] VALUES_ARRAY = new IfcWallTypeEnum[] { NULL, PARAPET, SHEAR, ELEMENTEDWALL,
+			NOTDEFINED, POLYGONAL, MOVABLE, PARTITIONING, USERDEFINED, SOLIDWALL, PLUMBINGWALL, STANDARD, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Wall Type Enum</b></em>' enumerators.
@@ -397,28 +379,28 @@ public enum IfcWallTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case PLUMBINGWALL_VALUE:
-			return PLUMBINGWALL;
-		case MOVABLE_VALUE:
-			return MOVABLE;
+		case PARAPET_VALUE:
+			return PARAPET;
 		case SHEAR_VALUE:
 			return SHEAR;
-		case STANDARD_VALUE:
-			return STANDARD;
+		case ELEMENTEDWALL_VALUE:
+			return ELEMENTEDWALL;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case POLYGONAL_VALUE:
+			return POLYGONAL;
+		case MOVABLE_VALUE:
+			return MOVABLE;
+		case PARTITIONING_VALUE:
+			return PARTITIONING;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case SOLIDWALL_VALUE:
 			return SOLIDWALL;
-		case PARAPET_VALUE:
-			return PARAPET;
-		case PARTITIONING_VALUE:
-			return PARTITIONING;
-		case POLYGONAL_VALUE:
-			return POLYGONAL;
-		case ELEMENTEDWALL_VALUE:
-			return ELEMENTEDWALL;
+		case PLUMBINGWALL_VALUE:
+			return PLUMBINGWALL;
+		case STANDARD_VALUE:
+			return STANDARD;
 		}
 		return null;
 	}

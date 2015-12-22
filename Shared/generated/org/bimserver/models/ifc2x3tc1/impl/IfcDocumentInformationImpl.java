@@ -170,7 +170,8 @@ public class IfcDocumentInformationImpl extends IdEObjectImpl implements IfcDocu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDocumentReference> getDocumentReferences() {
-		return (EList<IfcDocumentReference>) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION__DOCUMENT_REFERENCES, true);
+		return (EList<IfcDocumentReference>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION__DOCUMENT_REFERENCES, true);
 	}
 
 	/**
@@ -477,7 +478,8 @@ public class IfcDocumentInformationImpl extends IdEObjectImpl implements IfcDocu
 	 * @generated
 	 */
 	public IfcDocumentElectronicFormat getElectronicFormat() {
-		return (IfcDocumentElectronicFormat) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION__ELECTRONIC_FORMAT, true);
+		return (IfcDocumentElectronicFormat) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION__ELECTRONIC_FORMAT,
+				true);
 	}
 
 	/**
@@ -585,7 +587,8 @@ public class IfcDocumentInformationImpl extends IdEObjectImpl implements IfcDocu
 	 * @generated
 	 */
 	public IfcDocumentConfidentialityEnum getConfidentiality() {
-		return (IfcDocumentConfidentialityEnum) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION__CONFIDENTIALITY, true);
+		return (IfcDocumentConfidentialityEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION__CONFIDENTIALITY, true);
 	}
 
 	/**
@@ -658,7 +661,8 @@ public class IfcDocumentInformationImpl extends IdEObjectImpl implements IfcDocu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDocumentInformationRelationship> getIsPointedTo() {
-		return (EList<IfcDocumentInformationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION__IS_POINTED_TO, true);
+		return (EList<IfcDocumentInformationRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION__IS_POINTED_TO, true);
 	}
 
 	/**
@@ -686,7 +690,8 @@ public class IfcDocumentInformationImpl extends IdEObjectImpl implements IfcDocu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDocumentInformationRelationship> getIsPointer() {
-		return (EList<IfcDocumentInformationRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION__IS_POINTER, true);
+		return (EList<IfcDocumentInformationRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_DOCUMENT_INFORMATION__IS_POINTER, true);
 	}
 
 	/**

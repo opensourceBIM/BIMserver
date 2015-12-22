@@ -53,26 +53,6 @@ public enum IfcSurfaceFeatureTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>MARK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MARK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MARK(2, "MARK", "MARK"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>TREATMENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +60,15 @@ public enum IfcSurfaceFeatureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TREATMENT(4, "TREATMENT", "TREATMENT"),
+	TREATMENT(2, "TREATMENT", "TREATMENT"), /**
+											* The '<em><b>USERDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #USERDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>TAG</b></em>' literal object.
@@ -90,7 +78,15 @@ public enum IfcSurfaceFeatureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TAG(5, "TAG", "TAG");
+	TAG(4, "TAG", "TAG"), /**
+							* The '<em><b>MARK</b></em>' literal object.
+							* <!-- begin-user-doc -->
+							* <!-- end-user-doc -->
+							* @see #MARK_VALUE
+							* @generated
+							* @ordered
+							*/
+	MARK(5, "MARK", "MARK");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -123,19 +119,19 @@ public enum IfcSurfaceFeatureTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>MARK</b></em>' literal value.
+	 * The '<em><b>TREATMENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>MARK</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TREATMENT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MARK
+	 * @see #TREATMENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MARK_VALUE = 2;
+	public static final int TREATMENT_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -153,21 +149,6 @@ public enum IfcSurfaceFeatureTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 3;
 
 	/**
-	 * The '<em><b>TREATMENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TREATMENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TREATMENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TREATMENT_VALUE = 4;
-
-	/**
 	 * The '<em><b>TAG</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -180,7 +161,22 @@ public enum IfcSurfaceFeatureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TAG_VALUE = 5;
+	public static final int TAG_VALUE = 4;
+
+	/**
+	 * The '<em><b>MARK</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MARK</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MARK
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MARK_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Surface Feature Type Enum</b></em>' enumerators.
@@ -189,7 +185,7 @@ public enum IfcSurfaceFeatureTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcSurfaceFeatureTypeEnum[] VALUES_ARRAY = new IfcSurfaceFeatureTypeEnum[] { NULL, NOTDEFINED,
-			MARK, USERDEFINED, TREATMENT, TAG, };
+			TREATMENT, USERDEFINED, TAG, MARK, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Surface Feature Type Enum</b></em>' enumerators.
@@ -250,14 +246,14 @@ public enum IfcSurfaceFeatureTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case MARK_VALUE:
-			return MARK;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case TREATMENT_VALUE:
 			return TREATMENT;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case TAG_VALUE:
 			return TAG;
+		case MARK_VALUE:
+			return MARK;
 		}
 		return null;
 	}

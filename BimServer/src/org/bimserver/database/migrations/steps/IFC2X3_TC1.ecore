@@ -3300,6 +3300,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ColourComponents">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Pixel" unique="false" upperBound="-1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPlacement" eSuperTypes="//IfcGeometricRepresentationItem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Location" eType="//IfcCartesianPoint"/>
@@ -7616,59 +7619,59 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcActionSourceTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="SNOW_S" value="1" literal="SNOW_S"/>
     <eLiterals name="PRESTRESSING_P" value="2" literal="PRESTRESSING_P"/>
-    <eLiterals name="SNOW_S" value="3" literal="SNOW_S"/>
-    <eLiterals name="ERECTION" value="4" literal="ERECTION"/>
-    <eLiterals name="SETTLEMENT_U" value="5" literal="SETTLEMENT_U"/>
-    <eLiterals name="IMPACT" value="6" literal="IMPACT"/>
-    <eLiterals name="LIVE_LOAD_Q" value="7" literal="LIVE_LOAD_Q"/>
-    <eLiterals name="COMPLETION_G1" value="8" literal="COMPLETION_G1"/>
-    <eLiterals name="BUOYANCY" value="9" literal="BUOYANCY"/>
-    <eLiterals name="EARTHQUAKE_E" value="10" literal="EARTHQUAKE_E"/>
-    <eLiterals name="CURRENT" value="11" literal="CURRENT"/>
-    <eLiterals name="FIRE" value="12" literal="FIRE"/>
-    <eLiterals name="WAVE" value="13" literal="WAVE"/>
-    <eLiterals name="TEMPERATURE_T" value="14" literal="TEMPERATURE_T"/>
-    <eLiterals name="ICE" value="15" literal="ICE"/>
-    <eLiterals name="CREEP" value="16" literal="CREEP"/>
-    <eLiterals name="RAIN" value="17" literal="RAIN"/>
-    <eLiterals name="PROPPING" value="18" literal="PROPPING"/>
-    <eLiterals name="SYSTEM_IMPERFECTION" value="19" literal="SYSTEM_IMPERFECTION"/>
-    <eLiterals name="TRANSPORT" value="20" literal="TRANSPORT"/>
-    <eLiterals name="IMPULSE" value="21" literal="IMPULSE"/>
-    <eLiterals name="BRAKES" value="22" literal="BRAKES"/>
-    <eLiterals name="USERDEFINED" value="23" literal="USERDEFINED"/>
-    <eLiterals name="SHRINKAGE" value="24" literal="SHRINKAGE"/>
+    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
+    <eLiterals name="EARTHQUAKE_E" value="4" literal="EARTHQUAKE_E"/>
+    <eLiterals name="IMPULSE" value="5" literal="IMPULSE"/>
+    <eLiterals name="SYSTEM_IMPERFECTION" value="6" literal="SYSTEM_IMPERFECTION"/>
+    <eLiterals name="WAVE" value="7" literal="WAVE"/>
+    <eLiterals name="TRANSPORT" value="8" literal="TRANSPORT"/>
+    <eLiterals name="NOTDEFINED" value="9" literal="NOTDEFINED"/>
+    <eLiterals name="FIRE" value="10" literal="FIRE"/>
+    <eLiterals name="ERECTION" value="11" literal="ERECTION"/>
+    <eLiterals name="LACK_OF_FIT" value="12" literal="LACK_OF_FIT"/>
+    <eLiterals name="TEMPERATURE_T" value="13" literal="TEMPERATURE_T"/>
+    <eLiterals name="ICE" value="14" literal="ICE"/>
+    <eLiterals name="BRAKES" value="15" literal="BRAKES"/>
+    <eLiterals name="PROPPING" value="16" literal="PROPPING"/>
+    <eLiterals name="CURRENT" value="17" literal="CURRENT"/>
+    <eLiterals name="IMPACT" value="18" literal="IMPACT"/>
+    <eLiterals name="BUOYANCY" value="19" literal="BUOYANCY"/>
+    <eLiterals name="RAIN" value="20" literal="RAIN"/>
+    <eLiterals name="SHRINKAGE" value="21" literal="SHRINKAGE"/>
+    <eLiterals name="LIVE_LOAD_Q" value="22" literal="LIVE_LOAD_Q"/>
+    <eLiterals name="CREEP" value="23" literal="CREEP"/>
+    <eLiterals name="SETTLEMENT_U" value="24" literal="SETTLEMENT_U"/>
     <eLiterals name="DEAD_LOAD_G" value="25" literal="DEAD_LOAD_G"/>
-    <eLiterals name="WIND_W" value="26" literal="WIND_W"/>
-    <eLiterals name="LACK_OF_FIT" value="27" literal="LACK_OF_FIT"/>
+    <eLiterals name="COMPLETION_G1" value="26" literal="COMPLETION_G1"/>
+    <eLiterals name="WIND_W" value="27" literal="WIND_W"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcActionTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="EXTRAORDINARY_A" value="2" literal="EXTRAORDINARY_A"/>
-    <eLiterals name="PERMANENT_G" value="3" literal="PERMANENT_G"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="VARIABLE_Q" value="5" literal="VARIABLE_Q"/>
+    <eLiterals name="VARIABLE_Q" value="2" literal="VARIABLE_Q"/>
+    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
+    <eLiterals name="EXTRAORDINARY_A" value="4" literal="EXTRAORDINARY_A"/>
+    <eLiterals name="PERMANENT_G" value="5" literal="PERMANENT_G"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcActuatorTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="ELECTRICACTUATOR" value="1" literal="ELECTRICACTUATOR"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="PNEUMATICACTUATOR" value="3" literal="PNEUMATICACTUATOR"/>
-    <eLiterals name="HANDOPERATEDACTUATOR" value="4" literal="HANDOPERATEDACTUATOR"/>
-    <eLiterals name="THERMOSTATICACTUATOR" value="5" literal="THERMOSTATICACTUATOR"/>
-    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="HYDRAULICACTUATOR" value="7" literal="HYDRAULICACTUATOR"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="THERMOSTATICACTUATOR" value="2" literal="THERMOSTATICACTUATOR"/>
+    <eLiterals name="HANDOPERATEDACTUATOR" value="3" literal="HANDOPERATEDACTUATOR"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="ELECTRICACTUATOR" value="5" literal="ELECTRICACTUATOR"/>
+    <eLiterals name="HYDRAULICACTUATOR" value="6" literal="HYDRAULICACTUATOR"/>
+    <eLiterals name="PNEUMATICACTUATOR" value="7" literal="PNEUMATICACTUATOR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcAddressTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="SITE" value="1" literal="SITE"/>
-    <eLiterals name="HOME" value="2" literal="HOME"/>
-    <eLiterals name="OFFICE" value="3" literal="OFFICE"/>
-    <eLiterals name="DISTRIBUTIONPOINT" value="4" literal="DISTRIBUTIONPOINT"/>
-    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
+    <eLiterals name="OFFICE" value="2" literal="OFFICE"/>
+    <eLiterals name="DISTRIBUTIONPOINT" value="3" literal="DISTRIBUTIONPOINT"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="HOME" value="5" literal="HOME"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcAheadOrBehind">
     <eLiterals name="NULL" literal="NULL"/>
@@ -7678,71 +7681,71 @@
   <eClassifiers xsi:type="ecore:EEnum" name="IfcAirTerminalBoxTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="VARIABLEFLOWPRESSUREINDEPENDANT" value="2" literal="VARIABLEFLOWPRESSUREINDEPENDANT"/>
-    <eLiterals name="CONSTANTFLOW" value="3" literal="CONSTANTFLOW"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="VARIABLEFLOWPRESSUREDEPENDANT" value="5" literal="VARIABLEFLOWPRESSUREDEPENDANT"/>
+    <eLiterals name="VARIABLEFLOWPRESSUREDEPENDANT" value="2" literal="VARIABLEFLOWPRESSUREDEPENDANT"/>
+    <eLiterals name="VARIABLEFLOWPRESSUREINDEPENDANT" value="3" literal="VARIABLEFLOWPRESSUREINDEPENDANT"/>
+    <eLiterals name="CONSTANTFLOW" value="4" literal="CONSTANTFLOW"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcAirTerminalTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="GRILLE" value="2" literal="GRILLE"/>
-    <eLiterals name="LINEARGRILLE" value="3" literal="LINEARGRILLE"/>
-    <eLiterals name="IRIS" value="4" literal="IRIS"/>
-    <eLiterals name="DIFFUSER" value="5" literal="DIFFUSER"/>
-    <eLiterals name="LINEARDIFFUSER" value="6" literal="LINEARDIFFUSER"/>
-    <eLiterals name="REGISTER" value="7" literal="REGISTER"/>
+    <eLiterals name="REGISTER" value="1" literal="REGISTER"/>
+    <eLiterals name="IRIS" value="2" literal="IRIS"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="LINEARGRILLE" value="4" literal="LINEARGRILLE"/>
+    <eLiterals name="LINEARDIFFUSER" value="5" literal="LINEARDIFFUSER"/>
+    <eLiterals name="EYEBALL" value="6" literal="EYEBALL"/>
+    <eLiterals name="GRILLE" value="7" literal="GRILLE"/>
     <eLiterals name="USERDEFINED" value="8" literal="USERDEFINED"/>
-    <eLiterals name="EYEBALL" value="9" literal="EYEBALL"/>
+    <eLiterals name="DIFFUSER" value="9" literal="DIFFUSER"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcAirToAirHeatRecoveryTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="THERMOSIPHONCOILTYPEHEATEXCHANGERS" value="1" literal="THERMOSIPHONCOILTYPEHEATEXCHANGERS"/>
-    <eLiterals name="TWINTOWERENTHALPYRECOVERYLOOPS" value="2" literal="TWINTOWERENTHALPYRECOVERYLOOPS"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="HEATPIPE" value="4" literal="HEATPIPE"/>
+    <eLiterals name="RUNAROUNDCOILLOOP" value="1" literal="RUNAROUNDCOILLOOP"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="FIXEDPLATECOUNTERFLOWEXCHANGER" value="3" literal="FIXEDPLATECOUNTERFLOWEXCHANGER"/>
+    <eLiterals name="THERMOSIPHONSEALEDTUBEHEATEXCHANGERS" value="4" literal="THERMOSIPHONSEALEDTUBEHEATEXCHANGERS"/>
     <eLiterals name="FIXEDPLATECROSSFLOWEXCHANGER" value="5" literal="FIXEDPLATECROSSFLOWEXCHANGER"/>
-    <eLiterals name="RUNAROUNDCOILLOOP" value="6" literal="RUNAROUNDCOILLOOP"/>
-    <eLiterals name="ROTARYWHEEL" value="7" literal="ROTARYWHEEL"/>
-    <eLiterals name="FIXEDPLATECOUNTERFLOWEXCHANGER" value="8" literal="FIXEDPLATECOUNTERFLOWEXCHANGER"/>
-    <eLiterals name="USERDEFINED" value="9" literal="USERDEFINED"/>
-    <eLiterals name="FIXEDPLATEPARALLELFLOWEXCHANGER" value="10" literal="FIXEDPLATEPARALLELFLOWEXCHANGER"/>
-    <eLiterals name="THERMOSIPHONSEALEDTUBEHEATEXCHANGERS" value="11" literal="THERMOSIPHONSEALEDTUBEHEATEXCHANGERS"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="TWINTOWERENTHALPYRECOVERYLOOPS" value="7" literal="TWINTOWERENTHALPYRECOVERYLOOPS"/>
+    <eLiterals name="FIXEDPLATEPARALLELFLOWEXCHANGER" value="8" literal="FIXEDPLATEPARALLELFLOWEXCHANGER"/>
+    <eLiterals name="ROTARYWHEEL" value="9" literal="ROTARYWHEEL"/>
+    <eLiterals name="HEATPIPE" value="10" literal="HEATPIPE"/>
+    <eLiterals name="THERMOSIPHONCOILTYPEHEATEXCHANGERS" value="11" literal="THERMOSIPHONCOILTYPEHEATEXCHANGERS"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcAlarmTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="BREAKGLASSBUTTON" value="1" literal="BREAKGLASSBUTTON"/>
+    <eLiterals name="SIREN" value="1" literal="SIREN"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="BELL" value="3" literal="BELL"/>
-    <eLiterals name="WHISTLE" value="4" literal="WHISTLE"/>
-    <eLiterals name="LIGHT" value="5" literal="LIGHT"/>
-    <eLiterals name="SIREN" value="6" literal="SIREN"/>
-    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="WHISTLE" value="3" literal="WHISTLE"/>
+    <eLiterals name="LIGHT" value="4" literal="LIGHT"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
+    <eLiterals name="BELL" value="6" literal="BELL"/>
+    <eLiterals name="BREAKGLASSBUTTON" value="7" literal="BREAKGLASSBUTTON"/>
     <eLiterals name="MANUALPULLBOX" value="8" literal="MANUALPULLBOX"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcAnalysisModelTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="LOADING_3D" value="1" literal="LOADING_3D"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="IN_PLANE_LOADING_2D" value="3" literal="IN_PLANE_LOADING_2D"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="OUT_PLANE_LOADING_2D" value="5" literal="OUT_PLANE_LOADING_2D"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="IN_PLANE_LOADING_2D" value="2" literal="IN_PLANE_LOADING_2D"/>
+    <eLiterals name="OUT_PLANE_LOADING_2D" value="3" literal="OUT_PLANE_LOADING_2D"/>
+    <eLiterals name="LOADING_3D" value="4" literal="LOADING_3D"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcAnalysisTheoryTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="FULL_NONLINEAR_THEORY" value="1" literal="FULL_NONLINEAR_THEORY"/>
+    <eLiterals name="SECOND_ORDER_THEORY" value="1" literal="SECOND_ORDER_THEORY"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="THIRD_ORDER_THEORY" value="3" literal="THIRD_ORDER_THEORY"/>
-    <eLiterals name="FIRST_ORDER_THEORY" value="4" literal="FIRST_ORDER_THEORY"/>
-    <eLiterals name="SECOND_ORDER_THEORY" value="5" literal="SECOND_ORDER_THEORY"/>
-    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="FIRST_ORDER_THEORY" value="3" literal="FIRST_ORDER_THEORY"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="FULL_NONLINEAR_THEORY" value="5" literal="FULL_NONLINEAR_THEORY"/>
+    <eLiterals name="THIRD_ORDER_THEORY" value="6" literal="THIRD_ORDER_THEORY"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcArithmeticOperatorEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="MULTIPLY" value="1" literal="MULTIPLY"/>
-    <eLiterals name="SUBTRACT" value="2" literal="SUBTRACT"/>
-    <eLiterals name="DIVIDE" value="3" literal="DIVIDE"/>
-    <eLiterals name="ADD" value="4" literal="ADD"/>
+    <eLiterals name="ADD" value="1" literal="ADD"/>
+    <eLiterals name="MULTIPLY" value="2" literal="MULTIPLY"/>
+    <eLiterals name="SUBTRACT" value="3" literal="SUBTRACT"/>
+    <eLiterals name="DIVIDE" value="4" literal="DIVIDE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcAssemblyPlaceEnum">
     <eLiterals name="NULL" literal="NULL"/>
@@ -7753,36 +7756,36 @@
   <eClassifiers xsi:type="ecore:EEnum" name="IfcBSplineCurveForm">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="PARABOLIC_ARC" value="1" literal="PARABOLIC_ARC"/>
-    <eLiterals name="ELLIPTIC_ARC" value="2" literal="ELLIPTIC_ARC"/>
+    <eLiterals name="UNSPECIFIED" value="2" literal="UNSPECIFIED"/>
     <eLiterals name="HYPERBOLIC_ARC" value="3" literal="HYPERBOLIC_ARC"/>
-    <eLiterals name="UNSPECIFIED" value="4" literal="UNSPECIFIED"/>
+    <eLiterals name="ELLIPTIC_ARC" value="4" literal="ELLIPTIC_ARC"/>
     <eLiterals name="POLYLINE_FORM" value="5" literal="POLYLINE_FORM"/>
     <eLiterals name="CIRCULAR_ARC" value="6" literal="CIRCULAR_ARC"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcBeamTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="LINTEL" value="1" literal="LINTEL"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="T_BEAM" value="3" literal="T_BEAM"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="JOIST" value="5" literal="JOIST"/>
-    <eLiterals name="BEAM" value="6" literal="BEAM"/>
+    <eLiterals name="BEAM" value="1" literal="BEAM"/>
+    <eLiterals name="JOIST" value="2" literal="JOIST"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="LINTEL" value="4" literal="LINTEL"/>
+    <eLiterals name="T_BEAM" value="5" literal="T_BEAM"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcBenchmarkEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="LESSTHAN" value="1" literal="LESSTHAN"/>
-    <eLiterals name="GREATERTHANOREQUALTO" value="2" literal="GREATERTHANOREQUALTO"/>
-    <eLiterals name="EQUALTO" value="3" literal="EQUALTO"/>
-    <eLiterals name="LESSTHANOREQUALTO" value="4" literal="LESSTHANOREQUALTO"/>
-    <eLiterals name="NOTEQUALTO" value="5" literal="NOTEQUALTO"/>
-    <eLiterals name="GREATERTHAN" value="6" literal="GREATERTHAN"/>
+    <eLiterals name="LESSTHANOREQUALTO" value="1" literal="LESSTHANOREQUALTO"/>
+    <eLiterals name="LESSTHAN" value="2" literal="LESSTHAN"/>
+    <eLiterals name="NOTEQUALTO" value="3" literal="NOTEQUALTO"/>
+    <eLiterals name="EQUALTO" value="4" literal="EQUALTO"/>
+    <eLiterals name="GREATERTHAN" value="5" literal="GREATERTHAN"/>
+    <eLiterals name="GREATERTHANOREQUALTO" value="6" literal="GREATERTHANOREQUALTO"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcBoilerTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="WATER" value="1" literal="WATER"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="STEAM" value="2" literal="STEAM"/>
     <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
-    <eLiterals name="STEAM" value="4" literal="STEAM"/>
+    <eLiterals name="WATER" value="4" literal="WATER"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcBooleanOperator">
     <eLiterals name="NULL" literal="NULL"/>
@@ -7799,243 +7802,243 @@
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
     <eLiterals name="TEE" value="2" literal="TEE"/>
-    <eLiterals name="REDUCER" value="3" literal="REDUCER"/>
+    <eLiterals name="BEND" value="3" literal="BEND"/>
     <eLiterals name="CROSS" value="4" literal="CROSS"/>
     <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
-    <eLiterals name="BEND" value="6" literal="BEND"/>
+    <eLiterals name="REDUCER" value="6" literal="REDUCER"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcCableCarrierSegmentTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="CABLETRUNKINGSEGMENT" value="2" literal="CABLETRUNKINGSEGMENT"/>
-    <eLiterals name="CABLETRAYSEGMENT" value="3" literal="CABLETRAYSEGMENT"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="CABLELADDERSEGMENT" value="5" literal="CABLELADDERSEGMENT"/>
-    <eLiterals name="CONDUITSEGMENT" value="6" literal="CONDUITSEGMENT"/>
+    <eLiterals name="CABLETRAYSEGMENT" value="1" literal="CABLETRAYSEGMENT"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="CONDUITSEGMENT" value="3" literal="CONDUITSEGMENT"/>
+    <eLiterals name="CABLETRUNKINGSEGMENT" value="4" literal="CABLETRUNKINGSEGMENT"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
+    <eLiterals name="CABLELADDERSEGMENT" value="6" literal="CABLELADDERSEGMENT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcCableSegmentTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="CONDUCTORSEGMENT" value="2" literal="CONDUCTORSEGMENT"/>
-    <eLiterals name="CABLESEGMENT" value="3" literal="CABLESEGMENT"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="CABLESEGMENT" value="2" literal="CABLESEGMENT"/>
+    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
+    <eLiterals name="CONDUCTORSEGMENT" value="4" literal="CONDUCTORSEGMENT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcChangeActionEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOCHANGE" value="1" literal="NOCHANGE"/>
-    <eLiterals name="MODIFIEDADDED" value="2" literal="MODIFIEDADDED"/>
-    <eLiterals name="MODIFIED" value="3" literal="MODIFIED"/>
+    <eLiterals name="ADDED" value="2" literal="ADDED"/>
+    <eLiterals name="MODIFIEDADDED" value="3" literal="MODIFIEDADDED"/>
     <eLiterals name="MODIFIEDDELETED" value="4" literal="MODIFIEDDELETED"/>
-    <eLiterals name="ADDED" value="5" literal="ADDED"/>
+    <eLiterals name="MODIFIED" value="5" literal="MODIFIED"/>
     <eLiterals name="DELETED" value="6" literal="DELETED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcChillerTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="USERDEFINED" value="2" literal="USERDEFINED"/>
+    <eLiterals name="AIRCOOLED" value="2" literal="AIRCOOLED"/>
     <eLiterals name="WATERCOOLED" value="3" literal="WATERCOOLED"/>
-    <eLiterals name="HEATRECOVERY" value="4" literal="HEATRECOVERY"/>
-    <eLiterals name="AIRCOOLED" value="5" literal="AIRCOOLED"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="HEATRECOVERY" value="5" literal="HEATRECOVERY"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcCoilTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="GASHEATINGCOIL" value="1" literal="GASHEATINGCOIL"/>
-    <eLiterals name="DXCOOLINGCOIL" value="2" literal="DXCOOLINGCOIL"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="WATERHEATINGCOIL" value="4" literal="WATERHEATINGCOIL"/>
-    <eLiterals name="STEAMHEATINGCOIL" value="5" literal="STEAMHEATINGCOIL"/>
-    <eLiterals name="WATERCOOLINGCOIL" value="6" literal="WATERCOOLINGCOIL"/>
-    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
-    <eLiterals name="ELECTRICHEATINGCOIL" value="8" literal="ELECTRICHEATINGCOIL"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="DXCOOLINGCOIL" value="3" literal="DXCOOLINGCOIL"/>
+    <eLiterals name="WATERCOOLINGCOIL" value="4" literal="WATERCOOLINGCOIL"/>
+    <eLiterals name="WATERHEATINGCOIL" value="5" literal="WATERHEATINGCOIL"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="ELECTRICHEATINGCOIL" value="7" literal="ELECTRICHEATINGCOIL"/>
+    <eLiterals name="STEAMHEATINGCOIL" value="8" literal="STEAMHEATINGCOIL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcColumnTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="USERDEFINED" value="2" literal="USERDEFINED"/>
-    <eLiterals name="COLUMN" value="3" literal="COLUMN"/>
+    <eLiterals name="COLUMN" value="2" literal="COLUMN"/>
+    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcCompressorTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="BOOSTER" value="1" literal="BOOSTER"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="SINGLESCREW" value="3" literal="SINGLESCREW"/>
-    <eLiterals name="ROTARYVANE" value="4" literal="ROTARYVANE"/>
-    <eLiterals name="OPENTYPE" value="5" literal="OPENTYPE"/>
-    <eLiterals name="SINGLESTAGE" value="6" literal="SINGLESTAGE"/>
-    <eLiterals name="HERMETIC" value="7" literal="HERMETIC"/>
+    <eLiterals name="TWINSCREW" value="1" literal="TWINSCREW"/>
+    <eLiterals name="SINGLESCREW" value="2" literal="SINGLESCREW"/>
+    <eLiterals name="SINGLESTAGE" value="3" literal="SINGLESTAGE"/>
+    <eLiterals name="RECIPROCATING" value="4" literal="RECIPROCATING"/>
+    <eLiterals name="TROCHOIDAL" value="5" literal="TROCHOIDAL"/>
+    <eLiterals name="OPENTYPE" value="6" literal="OPENTYPE"/>
+    <eLiterals name="ROTARYVANE" value="7" literal="ROTARYVANE"/>
     <eLiterals name="SEMIHERMETIC" value="8" literal="SEMIHERMETIC"/>
-    <eLiterals name="TWINSCREW" value="9" literal="TWINSCREW"/>
-    <eLiterals name="ROTARY" value="10" literal="ROTARY"/>
-    <eLiterals name="SCROLL" value="11" literal="SCROLL"/>
-    <eLiterals name="USERDEFINED" value="12" literal="USERDEFINED"/>
-    <eLiterals name="ROLLINGPISTON" value="13" literal="ROLLINGPISTON"/>
+    <eLiterals name="USERDEFINED" value="9" literal="USERDEFINED"/>
+    <eLiterals name="HERMETIC" value="10" literal="HERMETIC"/>
+    <eLiterals name="DYNAMIC" value="11" literal="DYNAMIC"/>
+    <eLiterals name="NOTDEFINED" value="12" literal="NOTDEFINED"/>
+    <eLiterals name="SCROLL" value="13" literal="SCROLL"/>
     <eLiterals name="WELDEDSHELLHERMETIC" value="14" literal="WELDEDSHELLHERMETIC"/>
-    <eLiterals name="DYNAMIC" value="15" literal="DYNAMIC"/>
-    <eLiterals name="RECIPROCATING" value="16" literal="RECIPROCATING"/>
-    <eLiterals name="TROCHOIDAL" value="17" literal="TROCHOIDAL"/>
+    <eLiterals name="BOOSTER" value="15" literal="BOOSTER"/>
+    <eLiterals name="ROLLINGPISTON" value="16" literal="ROLLINGPISTON"/>
+    <eLiterals name="ROTARY" value="17" literal="ROTARY"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcCondenserTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="EVAPORATIVECOOLED" value="1" literal="EVAPORATIVECOOLED"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
-    <eLiterals name="WATERCOOLEDSHELLTUBE" value="4" literal="WATERCOOLEDSHELLTUBE"/>
-    <eLiterals name="WATERCOOLEDTUBEINTUBE" value="5" literal="WATERCOOLEDTUBEINTUBE"/>
-    <eLiterals name="WATERCOOLEDBRAZEDPLATE" value="6" literal="WATERCOOLEDBRAZEDPLATE"/>
-    <eLiterals name="WATERCOOLEDSHELLCOIL" value="7" literal="WATERCOOLEDSHELLCOIL"/>
-    <eLiterals name="AIRCOOLED" value="8" literal="AIRCOOLED"/>
+    <eLiterals name="WATERCOOLEDSHELLCOIL" value="3" literal="WATERCOOLEDSHELLCOIL"/>
+    <eLiterals name="AIRCOOLED" value="4" literal="AIRCOOLED"/>
+    <eLiterals name="WATERCOOLEDBRAZEDPLATE" value="5" literal="WATERCOOLEDBRAZEDPLATE"/>
+    <eLiterals name="WATERCOOLEDSHELLTUBE" value="6" literal="WATERCOOLEDSHELLTUBE"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="WATERCOOLEDTUBEINTUBE" value="8" literal="WATERCOOLEDTUBEINTUBE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcConnectionTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="ATPATH" value="1" literal="ATPATH"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
     <eLiterals name="ATEND" value="2" literal="ATEND"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="ATPATH" value="3" literal="ATPATH"/>
     <eLiterals name="ATSTART" value="4" literal="ATSTART"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcConstraintEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="ADVISORY" value="1" literal="ADVISORY"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="ADVISORY" value="2" literal="ADVISORY"/>
     <eLiterals name="HARD" value="3" literal="HARD"/>
     <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
     <eLiterals name="SOFT" value="5" literal="SOFT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcControllerTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="TWOPOSITION" value="1" literal="TWOPOSITION"/>
-    <eLiterals name="PROPORTIONALINTEGRALDERIVATIVE" value="2" literal="PROPORTIONALINTEGRALDERIVATIVE"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="FLOATING" value="4" literal="FLOATING"/>
-    <eLiterals name="PROPORTIONAL" value="5" literal="PROPORTIONAL"/>
-    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="TIMEDTWOPOSITION" value="7" literal="TIMEDTWOPOSITION"/>
-    <eLiterals name="PROPORTIONALINTEGRAL" value="8" literal="PROPORTIONALINTEGRAL"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="FLOATING" value="2" literal="FLOATING"/>
+    <eLiterals name="TWOPOSITION" value="3" literal="TWOPOSITION"/>
+    <eLiterals name="PROPORTIONALINTEGRALDERIVATIVE" value="4" literal="PROPORTIONALINTEGRALDERIVATIVE"/>
+    <eLiterals name="TIMEDTWOPOSITION" value="5" literal="TIMEDTWOPOSITION"/>
+    <eLiterals name="PROPORTIONALINTEGRAL" value="6" literal="PROPORTIONALINTEGRAL"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="PROPORTIONAL" value="8" literal="PROPORTIONAL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcCooledBeamTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="PASSIVE" value="2" literal="PASSIVE"/>
-    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
-    <eLiterals name="ACTIVE" value="4" literal="ACTIVE"/>
+    <eLiterals name="PASSIVE" value="1" literal="PASSIVE"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="ACTIVE" value="3" literal="ACTIVE"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcCoolingTowerTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NATURALDRAFT" value="1" literal="NATURALDRAFT"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="MECHANICALINDUCEDDRAFT" value="3" literal="MECHANICALINDUCEDDRAFT"/>
-    <eLiterals name="MECHANICALFORCEDDRAFT" value="4" literal="MECHANICALFORCEDDRAFT"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="MECHANICALFORCEDDRAFT" value="2" literal="MECHANICALFORCEDDRAFT"/>
+    <eLiterals name="NATURALDRAFT" value="3" literal="NATURALDRAFT"/>
+    <eLiterals name="MECHANICALINDUCEDDRAFT" value="4" literal="MECHANICALINDUCEDDRAFT"/>
     <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcCostScheduleTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="TENDER" value="1" literal="TENDER"/>
-    <eLiterals name="BUDGET" value="2" literal="BUDGET"/>
-    <eLiterals name="COSTPLAN" value="3" literal="COSTPLAN"/>
-    <eLiterals name="PRICEDBILLOFQUANTITIES" value="4" literal="PRICEDBILLOFQUANTITIES"/>
-    <eLiterals name="NOTDEFINED" value="5" literal="NOTDEFINED"/>
-    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="UNPRICEDBILLOFQUANTITIES" value="7" literal="UNPRICEDBILLOFQUANTITIES"/>
-    <eLiterals name="SCHEDULEOFRATES" value="8" literal="SCHEDULEOFRATES"/>
+    <eLiterals name="UNPRICEDBILLOFQUANTITIES" value="1" literal="UNPRICEDBILLOFQUANTITIES"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="TENDER" value="3" literal="TENDER"/>
+    <eLiterals name="COSTPLAN" value="4" literal="COSTPLAN"/>
+    <eLiterals name="PRICEDBILLOFQUANTITIES" value="5" literal="PRICEDBILLOFQUANTITIES"/>
+    <eLiterals name="SCHEDULEOFRATES" value="6" literal="SCHEDULEOFRATES"/>
+    <eLiterals name="BUDGET" value="7" literal="BUDGET"/>
+    <eLiterals name="USERDEFINED" value="8" literal="USERDEFINED"/>
     <eLiterals name="ESTIMATE" value="9" literal="ESTIMATE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcCoveringTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="CEILING" value="2" literal="CEILING"/>
-    <eLiterals name="MEMBRANE" value="3" literal="MEMBRANE"/>
+    <eLiterals name="WRAPPING" value="1" literal="WRAPPING"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="CEILING" value="3" literal="CEILING"/>
     <eLiterals name="ROOFING" value="4" literal="ROOFING"/>
-    <eLiterals name="CLADDING" value="5" literal="CLADDING"/>
-    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="WRAPPING" value="7" literal="WRAPPING"/>
-    <eLiterals name="FLOORING" value="8" literal="FLOORING"/>
+    <eLiterals name="MEMBRANE" value="5" literal="MEMBRANE"/>
+    <eLiterals name="INSULATION" value="6" literal="INSULATION"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="CLADDING" value="8" literal="CLADDING"/>
     <eLiterals name="SLEEVING" value="9" literal="SLEEVING"/>
-    <eLiterals name="INSULATION" value="10" literal="INSULATION"/>
+    <eLiterals name="FLOORING" value="10" literal="FLOORING"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcCurrencyEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="CNY" value="1" literal="CNY"/>
-    <eLiterals name="JPY" value="2" literal="JPY"/>
-    <eLiterals name="KYD" value="3" literal="KYD"/>
-    <eLiterals name="TTD" value="4" literal="TTD"/>
-    <eLiterals name="LKR" value="5" literal="LKR"/>
-    <eLiterals name="MXN" value="6" literal="MXN"/>
-    <eLiterals name="XEU" value="7" literal="XEU"/>
-    <eLiterals name="CAD" value="8" literal="CAD"/>
-    <eLiterals name="ZAR" value="9" literal="ZAR"/>
-    <eLiterals name="AUD" value="10" literal="AUD"/>
-    <eLiterals name="DEM" value="11" literal="DEM"/>
-    <eLiterals name="NOK" value="12" literal="NOK"/>
-    <eLiterals name="ILS" value="13" literal="ILS"/>
-    <eLiterals name="AES" value="14" literal="AES"/>
-    <eLiterals name="FAK" value="15" literal="FAK"/>
-    <eLiterals name="PKR" value="16" literal="PKR"/>
-    <eLiterals name="BBD" value="17" literal="BBD"/>
-    <eLiterals name="THB" value="18" literal="THB"/>
-    <eLiterals name="SCR" value="19" literal="SCR"/>
-    <eLiterals name="FKP" value="20" literal="FKP"/>
-    <eLiterals name="ATS" value="21" literal="ATS"/>
-    <eLiterals name="FIM" value="22" literal="FIM"/>
-    <eLiterals name="IDR" value="23" literal="IDR"/>
-    <eLiterals name="AED" value="24" literal="AED"/>
-    <eLiterals name="PGK" value="25" literal="PGK"/>
-    <eLiterals name="GIP" value="26" literal="GIP"/>
-    <eLiterals name="QAR" value="27" literal="QAR"/>
-    <eLiterals name="BHD" value="28" literal="BHD"/>
-    <eLiterals name="BWP" value="29" literal="BWP"/>
-    <eLiterals name="BSD" value="30" literal="BSD"/>
-    <eLiterals name="IRP" value="31" literal="IRP"/>
-    <eLiterals name="DKK" value="32" literal="DKK"/>
-    <eLiterals name="SEK" value="33" literal="SEK"/>
-    <eLiterals name="MYR" value="34" literal="MYR"/>
-    <eLiterals name="FJD" value="35" literal="FJD"/>
-    <eLiterals name="DDP" value="36" literal="DDP"/>
-    <eLiterals name="GRX" value="37" literal="GRX"/>
-    <eLiterals name="KRW" value="38" literal="KRW"/>
-    <eLiterals name="JMD" value="39" literal="JMD"/>
-    <eLiterals name="EST" value="40" literal="EST"/>
-    <eLiterals name="BGL" value="41" literal="BGL"/>
-    <eLiterals name="ZWD" value="42" literal="ZWD"/>
-    <eLiterals name="CZK" value="43" literal="CZK"/>
-    <eLiterals name="FRF" value="44" literal="FRF"/>
-    <eLiterals name="KWD" value="45" literal="KWD"/>
-    <eLiterals name="VEB" value="46" literal="VEB"/>
-    <eLiterals name="VND" value="47" literal="VND"/>
-    <eLiterals name="TRL" value="48" literal="TRL"/>
-    <eLiterals name="JOD" value="49" literal="JOD"/>
-    <eLiterals name="NZD" value="50" literal="NZD"/>
-    <eLiterals name="CLP" value="51" literal="CLP"/>
-    <eLiterals name="GBP" value="52" literal="GBP"/>
-    <eLiterals name="KES" value="53" literal="KES"/>
-    <eLiterals name="CHF" value="54" literal="CHF"/>
-    <eLiterals name="EGL" value="55" literal="EGL"/>
-    <eLiterals name="MUR" value="56" literal="MUR"/>
-    <eLiterals name="SAR" value="57" literal="SAR"/>
-    <eLiterals name="BZD" value="58" literal="BZD"/>
-    <eLiterals name="INR" value="59" literal="INR"/>
-    <eLiterals name="PTN" value="60" literal="PTN"/>
-    <eLiterals name="TWD" value="61" literal="TWD"/>
-    <eLiterals name="BMD" value="62" literal="BMD"/>
-    <eLiterals name="ITL" value="63" literal="ITL"/>
-    <eLiterals name="OMR" value="64" literal="OMR"/>
-    <eLiterals name="SGD" value="65" literal="SGD"/>
-    <eLiterals name="NLG" value="66" literal="NLG"/>
-    <eLiterals name="SKP" value="67" literal="SKP"/>
-    <eLiterals name="HKD" value="68" literal="HKD"/>
-    <eLiterals name="RUR" value="69" literal="RUR"/>
-    <eLiterals name="GMD" value="70" literal="GMD"/>
-    <eLiterals name="CYS" value="71" literal="CYS"/>
-    <eLiterals name="CBD" value="72" literal="CBD"/>
-    <eLiterals name="BRL" value="73" literal="BRL"/>
-    <eLiterals name="EUR" value="74" literal="EUR"/>
+    <eLiterals name="ATS" value="1" literal="ATS"/>
+    <eLiterals name="CHF" value="2" literal="CHF"/>
+    <eLiterals name="ITL" value="3" literal="ITL"/>
+    <eLiterals name="FJD" value="4" literal="FJD"/>
+    <eLiterals name="MXN" value="5" literal="MXN"/>
+    <eLiterals name="SCR" value="6" literal="SCR"/>
+    <eLiterals name="MTL" value="7" literal="MTL"/>
+    <eLiterals name="BBD" value="8" literal="BBD"/>
+    <eLiterals name="CLP" value="9" literal="CLP"/>
+    <eLiterals name="XEU" value="10" literal="XEU"/>
+    <eLiterals name="ZAR" value="11" literal="ZAR"/>
+    <eLiterals name="VND" value="12" literal="VND"/>
+    <eLiterals name="TRL" value="13" literal="TRL"/>
+    <eLiterals name="AUD" value="14" literal="AUD"/>
+    <eLiterals name="ILS" value="15" literal="ILS"/>
+    <eLiterals name="BSD" value="16" literal="BSD"/>
+    <eLiterals name="IDR" value="17" literal="IDR"/>
+    <eLiterals name="KYD" value="18" literal="KYD"/>
+    <eLiterals name="BWP" value="19" literal="BWP"/>
+    <eLiterals name="CYS" value="20" literal="CYS"/>
+    <eLiterals name="JOD" value="21" literal="JOD"/>
+    <eLiterals name="GMD" value="22" literal="GMD"/>
+    <eLiterals name="AED" value="23" literal="AED"/>
+    <eLiterals name="HKD" value="24" literal="HKD"/>
+    <eLiterals name="TWD" value="25" literal="TWD"/>
+    <eLiterals name="EUR" value="26" literal="EUR"/>
+    <eLiterals name="DKK" value="27" literal="DKK"/>
+    <eLiterals name="BGL" value="28" literal="BGL"/>
+    <eLiterals name="ZWD" value="29" literal="ZWD"/>
+    <eLiterals name="CAD" value="30" literal="CAD"/>
+    <eLiterals name="MYR" value="31" literal="MYR"/>
+    <eLiterals name="FKP" value="32" literal="FKP"/>
+    <eLiterals name="MUR" value="33" literal="MUR"/>
+    <eLiterals name="NOK" value="34" literal="NOK"/>
+    <eLiterals name="AES" value="35" literal="AES"/>
+    <eLiterals name="GIP" value="36" literal="GIP"/>
+    <eLiterals name="LKR" value="37" literal="LKR"/>
+    <eLiterals name="CZK" value="38" literal="CZK"/>
+    <eLiterals name="OMR" value="39" literal="OMR"/>
+    <eLiterals name="PGK" value="40" literal="PGK"/>
+    <eLiterals name="PKR" value="41" literal="PKR"/>
+    <eLiterals name="KES" value="42" literal="KES"/>
+    <eLiterals name="SEK" value="43" literal="SEK"/>
+    <eLiterals name="BHD" value="44" literal="BHD"/>
+    <eLiterals name="QAR" value="45" literal="QAR"/>
+    <eLiterals name="CBD" value="46" literal="CBD"/>
+    <eLiterals name="SAR" value="47" literal="SAR"/>
+    <eLiterals name="TTD" value="48" literal="TTD"/>
+    <eLiterals name="IRP" value="49" literal="IRP"/>
+    <eLiterals name="NLG" value="50" literal="NLG"/>
+    <eLiterals name="PTN" value="51" literal="PTN"/>
+    <eLiterals name="GRX" value="52" literal="GRX"/>
+    <eLiterals name="INR" value="53" literal="INR"/>
+    <eLiterals name="CNY" value="54" literal="CNY"/>
+    <eLiterals name="THB" value="55" literal="THB"/>
+    <eLiterals name="DDP" value="56" literal="DDP"/>
+    <eLiterals name="KRW" value="57" literal="KRW"/>
+    <eLiterals name="JPY" value="58" literal="JPY"/>
+    <eLiterals name="PLN" value="59" literal="PLN"/>
+    <eLiterals name="GBP" value="60" literal="GBP"/>
+    <eLiterals name="BMD" value="61" literal="BMD"/>
+    <eLiterals name="HUF" value="62" literal="HUF"/>
+    <eLiterals name="KWD" value="63" literal="KWD"/>
+    <eLiterals name="PHP" value="64" literal="PHP"/>
+    <eLiterals name="LUF" value="65" literal="LUF"/>
+    <eLiterals name="JMD" value="66" literal="JMD"/>
+    <eLiterals name="BEG" value="67" literal="BEG"/>
+    <eLiterals name="EST" value="68" literal="EST"/>
+    <eLiterals name="USD" value="69" literal="USD"/>
+    <eLiterals name="EGL" value="70" literal="EGL"/>
+    <eLiterals name="FIM" value="71" literal="FIM"/>
+    <eLiterals name="BZD" value="72" literal="BZD"/>
+    <eLiterals name="DEM" value="73" literal="DEM"/>
+    <eLiterals name="RUR" value="74" literal="RUR"/>
     <eLiterals name="ICK" value="75" literal="ICK"/>
-    <eLiterals name="BEG" value="76" literal="BEG"/>
-    <eLiterals name="PHP" value="77" literal="PHP"/>
-    <eLiterals name="HUF" value="78" literal="HUF"/>
-    <eLiterals name="PLN" value="79" literal="PLN"/>
-    <eLiterals name="USD" value="80" literal="USD"/>
-    <eLiterals name="MTL" value="81" literal="MTL"/>
-    <eLiterals name="LUF" value="82" literal="LUF"/>
-    <eLiterals name="BND" value="83" literal="BND"/>
+    <eLiterals name="FAK" value="76" literal="FAK"/>
+    <eLiterals name="SGD" value="77" literal="SGD"/>
+    <eLiterals name="VEB" value="78" literal="VEB"/>
+    <eLiterals name="BND" value="79" literal="BND"/>
+    <eLiterals name="NZD" value="80" literal="NZD"/>
+    <eLiterals name="SKP" value="81" literal="SKP"/>
+    <eLiterals name="FRF" value="82" literal="FRF"/>
+    <eLiterals name="BRL" value="83" literal="BRL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcCurtainWallTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
@@ -8044,19 +8047,19 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDamperTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="BLASTDAMPER" value="1" literal="BLASTDAMPER"/>
-    <eLiterals name="FIRESMOKEDAMPER" value="2" literal="FIRESMOKEDAMPER"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="BALANCINGDAMPER" value="4" literal="BALANCINGDAMPER"/>
-    <eLiterals name="FIREDAMPER" value="5" literal="FIREDAMPER"/>
-    <eLiterals name="SMOKEDAMPER" value="6" literal="SMOKEDAMPER"/>
-    <eLiterals name="RELIEFDAMPER" value="7" literal="RELIEFDAMPER"/>
-    <eLiterals name="GRAVITYRELIEFDAMPER" value="8" literal="GRAVITYRELIEFDAMPER"/>
-    <eLiterals name="BACKDRAFTDAMPER" value="9" literal="BACKDRAFTDAMPER"/>
-    <eLiterals name="GRAVITYDAMPER" value="10" literal="GRAVITYDAMPER"/>
-    <eLiterals name="FUMEHOODEXHAUST" value="11" literal="FUMEHOODEXHAUST"/>
-    <eLiterals name="USERDEFINED" value="12" literal="USERDEFINED"/>
-    <eLiterals name="CONTROLDAMPER" value="13" literal="CONTROLDAMPER"/>
+    <eLiterals name="CONTROLDAMPER" value="1" literal="CONTROLDAMPER"/>
+    <eLiterals name="FUMEHOODEXHAUST" value="2" literal="FUMEHOODEXHAUST"/>
+    <eLiterals name="BALANCINGDAMPER" value="3" literal="BALANCINGDAMPER"/>
+    <eLiterals name="GRAVITYRELIEFDAMPER" value="4" literal="GRAVITYRELIEFDAMPER"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
+    <eLiterals name="FIREDAMPER" value="6" literal="FIREDAMPER"/>
+    <eLiterals name="NOTDEFINED" value="7" literal="NOTDEFINED"/>
+    <eLiterals name="GRAVITYDAMPER" value="8" literal="GRAVITYDAMPER"/>
+    <eLiterals name="BLASTDAMPER" value="9" literal="BLASTDAMPER"/>
+    <eLiterals name="BACKDRAFTDAMPER" value="10" literal="BACKDRAFTDAMPER"/>
+    <eLiterals name="FIRESMOKEDAMPER" value="11" literal="FIRESMOKEDAMPER"/>
+    <eLiterals name="RELIEFDAMPER" value="12" literal="RELIEFDAMPER"/>
+    <eLiterals name="SMOKEDAMPER" value="13" literal="SMOKEDAMPER"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDataOriginEnum">
     <eLiterals name="NULL" literal="NULL"/>
@@ -8068,55 +8071,55 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDerivedUnitEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="MOMENTOFINERTIAUNIT" value="1" literal="MOMENTOFINERTIAUNIT"/>
-    <eLiterals name="MOLECULARWEIGHTUNIT" value="2" literal="MOLECULARWEIGHTUNIT"/>
-    <eLiterals name="SECTIONMODULUSUNIT" value="3" literal="SECTIONMODULUSUNIT"/>
-    <eLiterals name="HEATFLUXDENSITYUNIT" value="4" literal="HEATFLUXDENSITYUNIT"/>
-    <eLiterals name="ROTATIONALFREQUENCYUNIT" value="5" literal="ROTATIONALFREQUENCYUNIT"/>
-    <eLiterals name="THERMALTRANSMITTANCEUNIT" value="6" literal="THERMALTRANSMITTANCEUNIT"/>
-    <eLiterals name="KINEMATICVISCOSITYUNIT" value="7" literal="KINEMATICVISCOSITYUNIT"/>
-    <eLiterals name="VOLUMETRICFLOWRATEUNIT" value="8" literal="VOLUMETRICFLOWRATEUNIT"/>
-    <eLiterals name="SPECIFICHEATCAPACITYUNIT" value="9" literal="SPECIFICHEATCAPACITYUNIT"/>
-    <eLiterals name="HEATINGVALUEUNIT" value="10" literal="HEATINGVALUEUNIT"/>
-    <eLiterals name="TORQUEUNIT" value="11" literal="TORQUEUNIT"/>
-    <eLiterals name="THERMALRESISTANCEUNIT" value="12" literal="THERMALRESISTANCEUNIT"/>
-    <eLiterals name="SHEARMODULUSUNIT" value="13" literal="SHEARMODULUSUNIT"/>
-    <eLiterals name="MODULUSOFSUBGRADEREACTIONUNIT" value="14" literal="MODULUSOFSUBGRADEREACTIONUNIT"/>
-    <eLiterals name="DYNAMICVISCOSITYUNIT" value="15" literal="DYNAMICVISCOSITYUNIT"/>
-    <eLiterals name="ROTATIONALSTIFFNESSUNIT" value="16" literal="ROTATIONALSTIFFNESSUNIT"/>
-    <eLiterals name="MASSDENSITYUNIT" value="17" literal="MASSDENSITYUNIT"/>
-    <eLiterals name="LINEARSTIFFNESSUNIT" value="18" literal="LINEARSTIFFNESSUNIT"/>
-    <eLiterals name="VAPORPERMEABILITYUNIT" value="19" literal="VAPORPERMEABILITYUNIT"/>
-    <eLiterals name="TEMPERATUREGRADIENTUNIT" value="20" literal="TEMPERATUREGRADIENTUNIT"/>
-    <eLiterals name="ANGULARVELOCITYUNIT" value="21" literal="ANGULARVELOCITYUNIT"/>
-    <eLiterals name="CURVATUREUNIT" value="22" literal="CURVATUREUNIT"/>
-    <eLiterals name="WARPINGMOMENTUNIT" value="23" literal="WARPINGMOMENTUNIT"/>
-    <eLiterals name="ROTATIONALMASSUNIT" value="24" literal="ROTATIONALMASSUNIT"/>
-    <eLiterals name="THERMALADMITTANCEUNIT" value="25" literal="THERMALADMITTANCEUNIT"/>
-    <eLiterals name="MASSFLOWRATEUNIT" value="26" literal="MASSFLOWRATEUNIT"/>
-    <eLiterals name="SOUNDPOWERUNIT" value="27" literal="SOUNDPOWERUNIT"/>
-    <eLiterals name="COMPOUNDPLANEANGLEUNIT" value="28" literal="COMPOUNDPLANEANGLEUNIT"/>
-    <eLiterals name="ISOTHERMALMOISTURECAPACITYUNIT" value="29" literal="ISOTHERMALMOISTURECAPACITYUNIT"/>
-    <eLiterals name="IONCONCENTRATIONUNIT" value="30" literal="IONCONCENTRATIONUNIT"/>
-    <eLiterals name="ACCELERATIONUNIT" value="31" literal="ACCELERATIONUNIT"/>
-    <eLiterals name="MODULUSOFROTATIONALSUBGRADEREACTIONUNIT" value="32" literal="MODULUSOFROTATIONALSUBGRADEREACTIONUNIT"/>
-    <eLiterals name="PLANARFORCEUNIT" value="33" literal="PLANARFORCEUNIT"/>
-    <eLiterals name="MOISTUREDIFFUSIVITYUNIT" value="34" literal="MOISTUREDIFFUSIVITYUNIT"/>
-    <eLiterals name="SECTIONAREAINTEGRALUNIT" value="35" literal="SECTIONAREAINTEGRALUNIT"/>
-    <eLiterals name="MODULUSOFELASTICITYUNIT" value="36" literal="MODULUSOFELASTICITYUNIT"/>
-    <eLiterals name="LINEARVELOCITYUNIT" value="37" literal="LINEARVELOCITYUNIT"/>
-    <eLiterals name="MASSPERLENGTHUNIT" value="38" literal="MASSPERLENGTHUNIT"/>
-    <eLiterals name="INTEGERCOUNTRATEUNIT" value="39" literal="INTEGERCOUNTRATEUNIT"/>
-    <eLiterals name="LINEARMOMENTUNIT" value="40" literal="LINEARMOMENTUNIT"/>
-    <eLiterals name="SOUNDPRESSUREUNIT" value="41" literal="SOUNDPRESSUREUNIT"/>
-    <eLiterals name="LINEARFORCEUNIT" value="42" literal="LINEARFORCEUNIT"/>
+    <eLiterals name="MODULUSOFELASTICITYUNIT" value="1" literal="MODULUSOFELASTICITYUNIT"/>
+    <eLiterals name="CURVATUREUNIT" value="2" literal="CURVATUREUNIT"/>
+    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
+    <eLiterals name="DYNAMICVISCOSITYUNIT" value="4" literal="DYNAMICVISCOSITYUNIT"/>
+    <eLiterals name="MASSDENSITYUNIT" value="5" literal="MASSDENSITYUNIT"/>
+    <eLiterals name="SHEARMODULUSUNIT" value="6" literal="SHEARMODULUSUNIT"/>
+    <eLiterals name="LINEARMOMENTUNIT" value="7" literal="LINEARMOMENTUNIT"/>
+    <eLiterals name="WARPINGMOMENTUNIT" value="8" literal="WARPINGMOMENTUNIT"/>
+    <eLiterals name="VOLUMETRICFLOWRATEUNIT" value="9" literal="VOLUMETRICFLOWRATEUNIT"/>
+    <eLiterals name="WARPINGCONSTANTUNIT" value="10" literal="WARPINGCONSTANTUNIT"/>
+    <eLiterals name="MODULUSOFSUBGRADEREACTIONUNIT" value="11" literal="MODULUSOFSUBGRADEREACTIONUNIT"/>
+    <eLiterals name="THERMALTRANSMITTANCEUNIT" value="12" literal="THERMALTRANSMITTANCEUNIT"/>
+    <eLiterals name="THERMALEXPANSIONCOEFFICIENTUNIT" value="13" literal="THERMALEXPANSIONCOEFFICIENTUNIT"/>
+    <eLiterals name="ROTATIONALSTIFFNESSUNIT" value="14" literal="ROTATIONALSTIFFNESSUNIT"/>
+    <eLiterals name="MOMENTOFINERTIAUNIT" value="15" literal="MOMENTOFINERTIAUNIT"/>
+    <eLiterals name="TEMPERATUREGRADIENTUNIT" value="16" literal="TEMPERATUREGRADIENTUNIT"/>
+    <eLiterals name="THERMALCONDUCTANCEUNIT" value="17" literal="THERMALCONDUCTANCEUNIT"/>
+    <eLiterals name="MASSFLOWRATEUNIT" value="18" literal="MASSFLOWRATEUNIT"/>
+    <eLiterals name="MOISTUREDIFFUSIVITYUNIT" value="19" literal="MOISTUREDIFFUSIVITYUNIT"/>
+    <eLiterals name="KINEMATICVISCOSITYUNIT" value="20" literal="KINEMATICVISCOSITYUNIT"/>
+    <eLiterals name="TORQUEUNIT" value="21" literal="TORQUEUNIT"/>
+    <eLiterals name="HEATFLUXDENSITYUNIT" value="22" literal="HEATFLUXDENSITYUNIT"/>
+    <eLiterals name="THERMALADMITTANCEUNIT" value="23" literal="THERMALADMITTANCEUNIT"/>
+    <eLiterals name="ANGULARVELOCITYUNIT" value="24" literal="ANGULARVELOCITYUNIT"/>
+    <eLiterals name="LINEARFORCEUNIT" value="25" literal="LINEARFORCEUNIT"/>
+    <eLiterals name="LINEARSTIFFNESSUNIT" value="26" literal="LINEARSTIFFNESSUNIT"/>
+    <eLiterals name="IONCONCENTRATIONUNIT" value="27" literal="IONCONCENTRATIONUNIT"/>
+    <eLiterals name="SECTIONAREAINTEGRALUNIT" value="28" literal="SECTIONAREAINTEGRALUNIT"/>
+    <eLiterals name="SOUNDPOWERUNIT" value="29" literal="SOUNDPOWERUNIT"/>
+    <eLiterals name="LINEARVELOCITYUNIT" value="30" literal="LINEARVELOCITYUNIT"/>
+    <eLiterals name="PLANARFORCEUNIT" value="31" literal="PLANARFORCEUNIT"/>
+    <eLiterals name="SPECIFICHEATCAPACITYUNIT" value="32" literal="SPECIFICHEATCAPACITYUNIT"/>
+    <eLiterals name="VAPORPERMEABILITYUNIT" value="33" literal="VAPORPERMEABILITYUNIT"/>
+    <eLiterals name="ROTATIONALFREQUENCYUNIT" value="34" literal="ROTATIONALFREQUENCYUNIT"/>
+    <eLiterals name="THERMALRESISTANCEUNIT" value="35" literal="THERMALRESISTANCEUNIT"/>
+    <eLiterals name="PHUNIT" value="36" literal="PHUNIT"/>
+    <eLiterals name="MASSPERLENGTHUNIT" value="37" literal="MASSPERLENGTHUNIT"/>
+    <eLiterals name="SOUNDPRESSUREUNIT" value="38" literal="SOUNDPRESSUREUNIT"/>
+    <eLiterals name="MODULUSOFROTATIONALSUBGRADEREACTIONUNIT" value="39" literal="MODULUSOFROTATIONALSUBGRADEREACTIONUNIT"/>
+    <eLiterals name="ACCELERATIONUNIT" value="40" literal="ACCELERATIONUNIT"/>
+    <eLiterals name="SECTIONMODULUSUNIT" value="41" literal="SECTIONMODULUSUNIT"/>
+    <eLiterals name="MODULUSOFLINEARSUBGRADEREACTIONUNIT" value="42" literal="MODULUSOFLINEARSUBGRADEREACTIONUNIT"/>
     <eLiterals name="LUMINOUSINTENSITYDISTRIBUTIONUNIT" value="43" literal="LUMINOUSINTENSITYDISTRIBUTIONUNIT"/>
-    <eLiterals name="PHUNIT" value="44" literal="PHUNIT"/>
-    <eLiterals name="THERMALEXPANSIONCOEFFICIENTUNIT" value="45" literal="THERMALEXPANSIONCOEFFICIENTUNIT"/>
-    <eLiterals name="MODULUSOFLINEARSUBGRADEREACTIONUNIT" value="46" literal="MODULUSOFLINEARSUBGRADEREACTIONUNIT"/>
-    <eLiterals name="WARPINGCONSTANTUNIT" value="47" literal="WARPINGCONSTANTUNIT"/>
-    <eLiterals name="USERDEFINED" value="48" literal="USERDEFINED"/>
-    <eLiterals name="THERMALCONDUCTANCEUNIT" value="49" literal="THERMALCONDUCTANCEUNIT"/>
+    <eLiterals name="INTEGERCOUNTRATEUNIT" value="44" literal="INTEGERCOUNTRATEUNIT"/>
+    <eLiterals name="COMPOUNDPLANEANGLEUNIT" value="45" literal="COMPOUNDPLANEANGLEUNIT"/>
+    <eLiterals name="HEATINGVALUEUNIT" value="46" literal="HEATINGVALUEUNIT"/>
+    <eLiterals name="ISOTHERMALMOISTURECAPACITYUNIT" value="47" literal="ISOTHERMALMOISTURECAPACITYUNIT"/>
+    <eLiterals name="MOLECULARWEIGHTUNIT" value="48" literal="MOLECULARWEIGHTUNIT"/>
+    <eLiterals name="ROTATIONALMASSUNIT" value="49" literal="ROTATIONALMASSUNIT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDimensionExtentUsage">
     <eLiterals name="NULL" literal="NULL"/>
@@ -8131,139 +8134,139 @@
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDistributionChamberElementTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="METERCHAMBER" value="1" literal="METERCHAMBER"/>
-    <eLiterals name="MANHOLE" value="2" literal="MANHOLE"/>
+    <eLiterals name="SUMP" value="2" literal="SUMP"/>
     <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="VALVECHAMBER" value="4" literal="VALVECHAMBER"/>
-    <eLiterals name="INSPECTIONPIT" value="5" literal="INSPECTIONPIT"/>
-    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="SUMP" value="7" literal="SUMP"/>
-    <eLiterals name="TRENCH" value="8" literal="TRENCH"/>
-    <eLiterals name="INSPECTIONCHAMBER" value="9" literal="INSPECTIONCHAMBER"/>
-    <eLiterals name="FORMEDDUCT" value="10" literal="FORMEDDUCT"/>
+    <eLiterals name="FORMEDDUCT" value="4" literal="FORMEDDUCT"/>
+    <eLiterals name="INSPECTIONCHAMBER" value="5" literal="INSPECTIONCHAMBER"/>
+    <eLiterals name="INSPECTIONPIT" value="6" literal="INSPECTIONPIT"/>
+    <eLiterals name="TRENCH" value="7" literal="TRENCH"/>
+    <eLiterals name="USERDEFINED" value="8" literal="USERDEFINED"/>
+    <eLiterals name="MANHOLE" value="9" literal="MANHOLE"/>
+    <eLiterals name="VALVECHAMBER" value="10" literal="VALVECHAMBER"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDocumentConfidentialityEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="RESTRICTED" value="1" literal="RESTRICTED"/>
+    <eLiterals name="PERSONAL" value="1" literal="PERSONAL"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="CONFIDENTIAL" value="3" literal="CONFIDENTIAL"/>
-    <eLiterals name="PERSONAL" value="4" literal="PERSONAL"/>
-    <eLiterals name="PUBLIC" value="5" literal="PUBLIC"/>
-    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="PUBLIC" value="3" literal="PUBLIC"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="RESTRICTED" value="5" literal="RESTRICTED"/>
+    <eLiterals name="CONFIDENTIAL" value="6" literal="CONFIDENTIAL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDocumentStatusEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="FINAL" value="1" literal="FINAL"/>
+    <eLiterals name="REVISION" value="1" literal="REVISION"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="REVISION" value="3" literal="REVISION"/>
-    <eLiterals name="DRAFT" value="4" literal="DRAFT"/>
-    <eLiterals name="FINALDRAFT" value="5" literal="FINALDRAFT"/>
+    <eLiterals name="DRAFT" value="3" literal="DRAFT"/>
+    <eLiterals name="FINALDRAFT" value="4" literal="FINALDRAFT"/>
+    <eLiterals name="FINAL" value="5" literal="FINAL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDoorPanelOperationEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="DOUBLE_ACTING" value="1" literal="DOUBLE_ACTING"/>
-    <eLiterals name="SWINGING" value="2" literal="SWINGING"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="FOLDING" value="2" literal="FOLDING"/>
+    <eLiterals name="SLIDING" value="3" literal="SLIDING"/>
     <eLiterals name="REVOLVING" value="4" literal="REVOLVING"/>
-    <eLiterals name="ROLLINGUP" value="5" literal="ROLLINGUP"/>
-    <eLiterals name="FOLDING" value="6" literal="FOLDING"/>
-    <eLiterals name="SLIDING" value="7" literal="SLIDING"/>
-    <eLiterals name="USERDEFINED" value="8" literal="USERDEFINED"/>
+    <eLiterals name="SWINGING" value="5" literal="SWINGING"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="ROLLINGUP" value="7" literal="ROLLINGUP"/>
+    <eLiterals name="DOUBLE_ACTING" value="8" literal="DOUBLE_ACTING"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDoorPanelPositionEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="RIGHT" value="1" literal="RIGHT"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="LEFT" value="3" literal="LEFT"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="LEFT" value="2" literal="LEFT"/>
+    <eLiterals name="RIGHT" value="3" literal="RIGHT"/>
     <eLiterals name="MIDDLE" value="4" literal="MIDDLE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDoorStyleConstructionEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="ALUMINIUM_WOOD" value="1" literal="ALUMINIUM_WOOD"/>
+    <eLiterals name="ALUMINIUM" value="1" literal="ALUMINIUM"/>
     <eLiterals name="HIGH_GRADE_STEEL" value="2" literal="HIGH_GRADE_STEEL"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="ALUMINIUM_PLASTIC" value="4" literal="ALUMINIUM_PLASTIC"/>
-    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
-    <eLiterals name="PLASTIC" value="6" literal="PLASTIC"/>
-    <eLiterals name="WOOD" value="7" literal="WOOD"/>
-    <eLiterals name="ALUMINIUM" value="8" literal="ALUMINIUM"/>
-    <eLiterals name="STEEL" value="9" literal="STEEL"/>
+    <eLiterals name="ALUMINIUM_PLASTIC" value="3" literal="ALUMINIUM_PLASTIC"/>
+    <eLiterals name="NOTDEFINED" value="4" literal="NOTDEFINED"/>
+    <eLiterals name="STEEL" value="5" literal="STEEL"/>
+    <eLiterals name="WOOD" value="6" literal="WOOD"/>
+    <eLiterals name="ALUMINIUM_WOOD" value="7" literal="ALUMINIUM_WOOD"/>
+    <eLiterals name="USERDEFINED" value="8" literal="USERDEFINED"/>
+    <eLiterals name="PLASTIC" value="9" literal="PLASTIC"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDoorStyleOperationEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="SINGLE_SWING_LEFT" value="1" literal="SINGLE_SWING_LEFT"/>
-    <eLiterals name="FOLDING_TO_LEFT" value="2" literal="FOLDING_TO_LEFT"/>
-    <eLiterals name="SINGLE_SWING_RIGHT" value="3" literal="SINGLE_SWING_RIGHT"/>
-    <eLiterals name="NOTDEFINED" value="4" literal="NOTDEFINED"/>
-    <eLiterals name="ROLLINGUP" value="5" literal="ROLLINGUP"/>
-    <eLiterals name="DOUBLE_DOOR_FOLDING" value="6" literal="DOUBLE_DOOR_FOLDING"/>
-    <eLiterals name="DOUBLE_DOOR_DOUBLE_SWING" value="7" literal="DOUBLE_DOOR_DOUBLE_SWING"/>
-    <eLiterals name="DOUBLE_DOOR_SINGLE_SWING" value="8" literal="DOUBLE_DOOR_SINGLE_SWING"/>
-    <eLiterals name="SLIDING_TO_LEFT" value="9" literal="SLIDING_TO_LEFT"/>
-    <eLiterals name="DOUBLE_DOOR_SLIDING" value="10" literal="DOUBLE_DOOR_SLIDING"/>
-    <eLiterals name="FOLDING_TO_RIGHT" value="11" literal="FOLDING_TO_RIGHT"/>
-    <eLiterals name="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT" value="12" literal="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT"/>
-    <eLiterals name="REVOLVING" value="13" literal="REVOLVING"/>
-    <eLiterals name="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT" value="14" literal="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT"/>
-    <eLiterals name="USERDEFINED" value="15" literal="USERDEFINED"/>
-    <eLiterals name="SLIDING_TO_RIGHT" value="16" literal="SLIDING_TO_RIGHT"/>
-    <eLiterals name="DOUBLE_SWING_LEFT" value="17" literal="DOUBLE_SWING_LEFT"/>
-    <eLiterals name="DOUBLE_SWING_RIGHT" value="18" literal="DOUBLE_SWING_RIGHT"/>
+    <eLiterals name="DOUBLE_DOOR_DOUBLE_SWING" value="1" literal="DOUBLE_DOOR_DOUBLE_SWING"/>
+    <eLiterals name="USERDEFINED" value="2" literal="USERDEFINED"/>
+    <eLiterals name="FOLDING_TO_LEFT" value="3" literal="FOLDING_TO_LEFT"/>
+    <eLiterals name="SLIDING_TO_RIGHT" value="4" literal="SLIDING_TO_RIGHT"/>
+    <eLiterals name="SINGLE_SWING_RIGHT" value="5" literal="SINGLE_SWING_RIGHT"/>
+    <eLiterals name="DOUBLE_SWING_LEFT" value="6" literal="DOUBLE_SWING_LEFT"/>
+    <eLiterals name="NOTDEFINED" value="7" literal="NOTDEFINED"/>
+    <eLiterals name="DOUBLE_DOOR_FOLDING" value="8" literal="DOUBLE_DOOR_FOLDING"/>
+    <eLiterals name="REVOLVING" value="9" literal="REVOLVING"/>
+    <eLiterals name="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT" value="10" literal="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT"/>
+    <eLiterals name="SLIDING_TO_LEFT" value="11" literal="SLIDING_TO_LEFT"/>
+    <eLiterals name="DOUBLE_SWING_RIGHT" value="12" literal="DOUBLE_SWING_RIGHT"/>
+    <eLiterals name="ROLLINGUP" value="13" literal="ROLLINGUP"/>
+    <eLiterals name="SINGLE_SWING_LEFT" value="14" literal="SINGLE_SWING_LEFT"/>
+    <eLiterals name="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT" value="15" literal="DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT"/>
+    <eLiterals name="DOUBLE_DOOR_SINGLE_SWING" value="16" literal="DOUBLE_DOOR_SINGLE_SWING"/>
+    <eLiterals name="DOUBLE_DOOR_SLIDING" value="17" literal="DOUBLE_DOOR_SLIDING"/>
+    <eLiterals name="FOLDING_TO_RIGHT" value="18" literal="FOLDING_TO_RIGHT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDuctFittingTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="EXIT" value="1" literal="EXIT"/>
+    <eLiterals name="TRANSITION" value="1" literal="TRANSITION"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="TRANSITION" value="3" literal="TRANSITION"/>
-    <eLiterals name="OBSTRUCTION" value="4" literal="OBSTRUCTION"/>
-    <eLiterals name="ENTRY" value="5" literal="ENTRY"/>
-    <eLiterals name="JUNCTION" value="6" literal="JUNCTION"/>
-    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
-    <eLiterals name="CONNECTOR" value="8" literal="CONNECTOR"/>
-    <eLiterals name="BEND" value="9" literal="BEND"/>
+    <eLiterals name="ENTRY" value="3" literal="ENTRY"/>
+    <eLiterals name="BEND" value="4" literal="BEND"/>
+    <eLiterals name="OBSTRUCTION" value="5" literal="OBSTRUCTION"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="EXIT" value="7" literal="EXIT"/>
+    <eLiterals name="JUNCTION" value="8" literal="JUNCTION"/>
+    <eLiterals name="CONNECTOR" value="9" literal="CONNECTOR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDuctSegmentTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="FLEXIBLESEGMENT" value="1" literal="FLEXIBLESEGMENT"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="RIGIDSEGMENT" value="3" literal="RIGIDSEGMENT"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="RIGIDSEGMENT" value="2" literal="RIGIDSEGMENT"/>
+    <eLiterals name="FLEXIBLESEGMENT" value="3" literal="FLEXIBLESEGMENT"/>
     <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcDuctSilencerTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="ROUND" value="1" literal="ROUND"/>
-    <eLiterals name="FLATOVAL" value="2" literal="FLATOVAL"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="RECTANGULAR" value="5" literal="RECTANGULAR"/>
+    <eLiterals name="FLATOVAL" value="1" literal="FLATOVAL"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="ROUND" value="3" literal="ROUND"/>
+    <eLiterals name="RECTANGULAR" value="4" literal="RECTANGULAR"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcElectricApplianceTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="FRIDGE_FREEZER" value="1" literal="FRIDGE_FREEZER"/>
-    <eLiterals name="REFRIGERATOR" value="2" literal="REFRIGERATOR"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="TV" value="1" literal="TV"/>
+    <eLiterals name="TUMBLEDRYER" value="2" literal="TUMBLEDRYER"/>
+    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
     <eLiterals name="WASHINGMACHINE" value="4" literal="WASHINGMACHINE"/>
-    <eLiterals name="SCANNER" value="5" literal="SCANNER"/>
-    <eLiterals name="FREEZER" value="6" literal="FREEZER"/>
-    <eLiterals name="COMPUTER" value="7" literal="COMPUTER"/>
-    <eLiterals name="INDIRECTWATERHEATER" value="8" literal="INDIRECTWATERHEATER"/>
-    <eLiterals name="PHOTOCOPIER" value="9" literal="PHOTOCOPIER"/>
-    <eLiterals name="FACSIMILE" value="10" literal="FACSIMILE"/>
-    <eLiterals name="VENDINGMACHINE" value="11" literal="VENDINGMACHINE"/>
-    <eLiterals name="DISHWASHER" value="12" literal="DISHWASHER"/>
-    <eLiterals name="HANDDRYER" value="13" literal="HANDDRYER"/>
-    <eLiterals name="MICROWAVE" value="14" literal="MICROWAVE"/>
-    <eLiterals name="FREESTANDINGFAN" value="15" literal="FREESTANDINGFAN"/>
-    <eLiterals name="PRINTER" value="16" literal="PRINTER"/>
-    <eLiterals name="RADIANTHEATER" value="17" literal="RADIANTHEATER"/>
-    <eLiterals name="ELECTRICHEATER" value="18" literal="ELECTRICHEATER"/>
-    <eLiterals name="WATERCOOLER" value="19" literal="WATERCOOLER"/>
-    <eLiterals name="TELEPHONE" value="20" literal="TELEPHONE"/>
-    <eLiterals name="WATERHEATER" value="21" literal="WATERHEATER"/>
+    <eLiterals name="FRIDGE_FREEZER" value="5" literal="FRIDGE_FREEZER"/>
+    <eLiterals name="NOTDEFINED" value="6" literal="NOTDEFINED"/>
+    <eLiterals name="FREEZER" value="7" literal="FREEZER"/>
+    <eLiterals name="ELECTRICHEATER" value="8" literal="ELECTRICHEATER"/>
+    <eLiterals name="REFRIGERATOR" value="9" literal="REFRIGERATOR"/>
+    <eLiterals name="DISHWASHER" value="10" literal="DISHWASHER"/>
+    <eLiterals name="WATERHEATER" value="11" literal="WATERHEATER"/>
+    <eLiterals name="TELEPHONE" value="12" literal="TELEPHONE"/>
+    <eLiterals name="RADIANTHEATER" value="13" literal="RADIANTHEATER"/>
+    <eLiterals name="PHOTOCOPIER" value="14" literal="PHOTOCOPIER"/>
+    <eLiterals name="MICROWAVE" value="15" literal="MICROWAVE"/>
+    <eLiterals name="FREESTANDINGFAN" value="16" literal="FREESTANDINGFAN"/>
+    <eLiterals name="VENDINGMACHINE" value="17" literal="VENDINGMACHINE"/>
+    <eLiterals name="HANDDRYER" value="18" literal="HANDDRYER"/>
+    <eLiterals name="INDIRECTWATERHEATER" value="19" literal="INDIRECTWATERHEATER"/>
+    <eLiterals name="ELECTRICCOOKER" value="20" literal="ELECTRICCOOKER"/>
+    <eLiterals name="SCANNER" value="21" literal="SCANNER"/>
     <eLiterals name="DIRECTWATERHEATER" value="22" literal="DIRECTWATERHEATER"/>
-    <eLiterals name="TUMBLEDRYER" value="23" literal="TUMBLEDRYER"/>
-    <eLiterals name="USERDEFINED" value="24" literal="USERDEFINED"/>
-    <eLiterals name="ELECTRICCOOKER" value="25" literal="ELECTRICCOOKER"/>
-    <eLiterals name="TV" value="26" literal="TV"/>
+    <eLiterals name="PRINTER" value="23" literal="PRINTER"/>
+    <eLiterals name="COMPUTER" value="24" literal="COMPUTER"/>
+    <eLiterals name="WATERCOOLER" value="25" literal="WATERCOOLER"/>
+    <eLiterals name="FACSIMILE" value="26" literal="FACSIMILE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcElectricCurrentEnum">
     <eLiterals name="NULL" literal="NULL"/>
@@ -8273,27 +8276,27 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcElectricDistributionPointFunctionEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="CONSUMERUNIT" value="1" literal="CONSUMERUNIT"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="SWITCHBOARD" value="3" literal="SWITCHBOARD"/>
-    <eLiterals name="MIMICPANEL" value="4" literal="MIMICPANEL"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="DISTRIBUTIONBOARD" value="2" literal="DISTRIBUTIONBOARD"/>
+    <eLiterals name="CONSUMERUNIT" value="3" literal="CONSUMERUNIT"/>
+    <eLiterals name="SWITCHBOARD" value="4" literal="SWITCHBOARD"/>
     <eLiterals name="GASDETECTORPANEL" value="5" literal="GASDETECTORPANEL"/>
-    <eLiterals name="CONTROLPANEL" value="6" literal="CONTROLPANEL"/>
-    <eLiterals name="MOTORCONTROLCENTRE" value="7" literal="MOTORCONTROLCENTRE"/>
+    <eLiterals name="MOTORCONTROLCENTRE" value="6" literal="MOTORCONTROLCENTRE"/>
+    <eLiterals name="INDICATORPANEL" value="7" literal="INDICATORPANEL"/>
     <eLiterals name="USERDEFINED" value="8" literal="USERDEFINED"/>
-    <eLiterals name="INDICATORPANEL" value="9" literal="INDICATORPANEL"/>
-    <eLiterals name="DISTRIBUTIONBOARD" value="10" literal="DISTRIBUTIONBOARD"/>
-    <eLiterals name="ALARMPANEL" value="11" literal="ALARMPANEL"/>
+    <eLiterals name="ALARMPANEL" value="9" literal="ALARMPANEL"/>
+    <eLiterals name="CONTROLPANEL" value="10" literal="CONTROLPANEL"/>
+    <eLiterals name="MIMICPANEL" value="11" literal="MIMICPANEL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcElectricFlowStorageDeviceTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="BATTERY" value="2" literal="BATTERY"/>
-    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
-    <eLiterals name="INDUCTORBANK" value="4" literal="INDUCTORBANK"/>
-    <eLiterals name="HARMONICFILTER" value="5" literal="HARMONICFILTER"/>
-    <eLiterals name="UPS" value="6" literal="UPS"/>
-    <eLiterals name="CAPACITORBANK" value="7" literal="CAPACITORBANK"/>
+    <eLiterals name="BATTERY" value="1" literal="BATTERY"/>
+    <eLiterals name="CAPACITORBANK" value="2" literal="CAPACITORBANK"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="HARMONICFILTER" value="4" literal="HARMONICFILTER"/>
+    <eLiterals name="UPS" value="5" literal="UPS"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="INDUCTORBANK" value="7" literal="INDUCTORBANK"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcElectricGeneratorTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
@@ -8312,175 +8315,175 @@
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="RELUCTANCESYNCHRONOUS" value="1" literal="RELUCTANCESYNCHRONOUS"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="SYNCHRONOUS" value="3" literal="SYNCHRONOUS"/>
+    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
     <eLiterals name="INDUCTION" value="4" literal="INDUCTION"/>
-    <eLiterals name="POLYPHASE" value="5" literal="POLYPHASE"/>
-    <eLiterals name="DC" value="6" literal="DC"/>
-    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="SYNCHRONOUS" value="5" literal="SYNCHRONOUS"/>
+    <eLiterals name="POLYPHASE" value="6" literal="POLYPHASE"/>
+    <eLiterals name="DC" value="7" literal="DC"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcElectricTimeControlTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="TIMEDELAY" value="1" literal="TIMEDELAY"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
-    <eLiterals name="TIMECLOCK" value="4" literal="TIMECLOCK"/>
-    <eLiterals name="RELAY" value="5" literal="RELAY"/>
+    <eLiterals name="RELAY" value="3" literal="RELAY"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="TIMECLOCK" value="5" literal="TIMECLOCK"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcElementAssemblyTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="SLAB_FIELD" value="1" literal="SLAB_FIELD"/>
-    <eLiterals name="BEAM_GRID" value="2" literal="BEAM_GRID"/>
-    <eLiterals name="ARCH" value="3" literal="ARCH"/>
-    <eLiterals name="NOTDEFINED" value="4" literal="NOTDEFINED"/>
-    <eLiterals name="REINFORCEMENT_UNIT" value="5" literal="REINFORCEMENT_UNIT"/>
-    <eLiterals name="BRACED_FRAME" value="6" literal="BRACED_FRAME"/>
-    <eLiterals name="GIRDER" value="7" literal="GIRDER"/>
-    <eLiterals name="RIGID_FRAME" value="8" literal="RIGID_FRAME"/>
-    <eLiterals name="TRUSS" value="9" literal="TRUSS"/>
-    <eLiterals name="USERDEFINED" value="10" literal="USERDEFINED"/>
-    <eLiterals name="ACCESSORY_ASSEMBLY" value="11" literal="ACCESSORY_ASSEMBLY"/>
+    <eLiterals name="TRUSS" value="1" literal="TRUSS"/>
+    <eLiterals name="GIRDER" value="2" literal="GIRDER"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="SLAB_FIELD" value="4" literal="SLAB_FIELD"/>
+    <eLiterals name="ARCH" value="5" literal="ARCH"/>
+    <eLiterals name="BEAM_GRID" value="6" literal="BEAM_GRID"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="ACCESSORY_ASSEMBLY" value="8" literal="ACCESSORY_ASSEMBLY"/>
+    <eLiterals name="BRACED_FRAME" value="9" literal="BRACED_FRAME"/>
+    <eLiterals name="RIGID_FRAME" value="10" literal="RIGID_FRAME"/>
+    <eLiterals name="REINFORCEMENT_UNIT" value="11" literal="REINFORCEMENT_UNIT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcElementCompositionEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="ELEMENT" value="1" literal="ELEMENT"/>
-    <eLiterals name="COMPLEX" value="2" literal="COMPLEX"/>
+    <eLiterals name="COMPLEX" value="1" literal="COMPLEX"/>
+    <eLiterals name="ELEMENT" value="2" literal="ELEMENT"/>
     <eLiterals name="PARTIAL" value="3" literal="PARTIAL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcEnergySequenceEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="SECONDARY" value="1" literal="SECONDARY"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="SECONDARY" value="2" literal="SECONDARY"/>
     <eLiterals name="PRIMARY" value="3" literal="PRIMARY"/>
-    <eLiterals name="TERTIARY" value="4" literal="TERTIARY"/>
-    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="TERTIARY" value="5" literal="TERTIARY"/>
     <eLiterals name="AUXILIARY" value="6" literal="AUXILIARY"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcEnvironmentalImpactCategoryEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="COMBINEDVALUE" value="1" literal="COMBINEDVALUE"/>
+    <eLiterals name="EXTRACTION" value="1" literal="EXTRACTION"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="MANUFACTURE" value="3" literal="MANUFACTURE"/>
-    <eLiterals name="INSTALLATION" value="4" literal="INSTALLATION"/>
-    <eLiterals name="EXTRACTION" value="5" literal="EXTRACTION"/>
-    <eLiterals name="DISPOSAL" value="6" literal="DISPOSAL"/>
+    <eLiterals name="DISPOSAL" value="3" literal="DISPOSAL"/>
+    <eLiterals name="TRANSPORTATION" value="4" literal="TRANSPORTATION"/>
+    <eLiterals name="MANUFACTURE" value="5" literal="MANUFACTURE"/>
+    <eLiterals name="INSTALLATION" value="6" literal="INSTALLATION"/>
     <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
-    <eLiterals name="TRANSPORTATION" value="8" literal="TRANSPORTATION"/>
+    <eLiterals name="COMBINEDVALUE" value="8" literal="COMBINEDVALUE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcEvaporativeCoolerTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER" value="1" literal="DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="INDIRECTDIRECTCOMBINATION" value="3" literal="INDIRECTDIRECTCOMBINATION"/>
-    <eLiterals name="DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER" value="4" literal="DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER"/>
-    <eLiterals name="DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER" value="5" literal="DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER"/>
-    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="INDIRECTEVAPORATIVEPACKAGEAIRCOOLER" value="7" literal="INDIRECTEVAPORATIVEPACKAGEAIRCOOLER"/>
-    <eLiterals name="INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER" value="8" literal="INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER"/>
-    <eLiterals name="INDIRECTEVAPORATIVEWETCOIL" value="9" literal="INDIRECTEVAPORATIVEWETCOIL"/>
-    <eLiterals name="DIRECTEVAPORATIVEAIRWASHER" value="10" literal="DIRECTEVAPORATIVEAIRWASHER"/>
-    <eLiterals name="DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER" value="11" literal="DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER"/>
+    <eLiterals name="INDIRECTEVAPORATIVEPACKAGEAIRCOOLER" value="3" literal="INDIRECTEVAPORATIVEPACKAGEAIRCOOLER"/>
+    <eLiterals name="INDIRECTEVAPORATIVEWETCOIL" value="4" literal="INDIRECTEVAPORATIVEWETCOIL"/>
+    <eLiterals name="INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER" value="5" literal="INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER"/>
+    <eLiterals name="INDIRECTDIRECTCOMBINATION" value="6" literal="INDIRECTDIRECTCOMBINATION"/>
+    <eLiterals name="DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER" value="7" literal="DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER"/>
+    <eLiterals name="DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER" value="8" literal="DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER"/>
+    <eLiterals name="USERDEFINED" value="9" literal="USERDEFINED"/>
+    <eLiterals name="DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER" value="10" literal="DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER"/>
+    <eLiterals name="DIRECTEVAPORATIVEAIRWASHER" value="11" literal="DIRECTEVAPORATIVEAIRWASHER"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcEvaporatorTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="FLOODEDSHELLANDTUBE" value="2" literal="FLOODEDSHELLANDTUBE"/>
+    <eLiterals name="DIRECTEXPANSIONSHELLANDTUBE" value="2" literal="DIRECTEXPANSIONSHELLANDTUBE"/>
     <eLiterals name="DIRECTEXPANSIONTUBEINTUBE" value="3" literal="DIRECTEXPANSIONTUBEINTUBE"/>
     <eLiterals name="DIRECTEXPANSIONBRAZEDPLATE" value="4" literal="DIRECTEXPANSIONBRAZEDPLATE"/>
     <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
-    <eLiterals name="DIRECTEXPANSIONSHELLANDTUBE" value="6" literal="DIRECTEXPANSIONSHELLANDTUBE"/>
-    <eLiterals name="SHELLANDCOIL" value="7" literal="SHELLANDCOIL"/>
+    <eLiterals name="SHELLANDCOIL" value="6" literal="SHELLANDCOIL"/>
+    <eLiterals name="FLOODEDSHELLANDTUBE" value="7" literal="FLOODEDSHELLANDTUBE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcFanTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="CENTRIFUGALAIRFOIL" value="1" literal="CENTRIFUGALAIRFOIL"/>
+    <eLiterals name="VANEAXIAL" value="1" literal="VANEAXIAL"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="CENTRIFUGALRADIAL" value="3" literal="CENTRIFUGALRADIAL"/>
-    <eLiterals name="CENTRIFUGALBACKWARDINCLINEDCURVED" value="4" literal="CENTRIFUGALBACKWARDINCLINEDCURVED"/>
-    <eLiterals name="TUBEAXIAL" value="5" literal="TUBEAXIAL"/>
-    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="CENTRIFUGALFORWARDCURVED" value="7" literal="CENTRIFUGALFORWARDCURVED"/>
-    <eLiterals name="PROPELLORAXIAL" value="8" literal="PROPELLORAXIAL"/>
-    <eLiterals name="VANEAXIAL" value="9" literal="VANEAXIAL"/>
+    <eLiterals name="CENTRIFUGALBACKWARDINCLINEDCURVED" value="3" literal="CENTRIFUGALBACKWARDINCLINEDCURVED"/>
+    <eLiterals name="PROPELLORAXIAL" value="4" literal="PROPELLORAXIAL"/>
+    <eLiterals name="CENTRIFUGALAIRFOIL" value="5" literal="CENTRIFUGALAIRFOIL"/>
+    <eLiterals name="TUBEAXIAL" value="6" literal="TUBEAXIAL"/>
+    <eLiterals name="CENTRIFUGALRADIAL" value="7" literal="CENTRIFUGALRADIAL"/>
+    <eLiterals name="USERDEFINED" value="8" literal="USERDEFINED"/>
+    <eLiterals name="CENTRIFUGALFORWARDCURVED" value="9" literal="CENTRIFUGALFORWARDCURVED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcFilterTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="STRAINER" value="1" literal="STRAINER"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="WATERFILTER" value="3" literal="WATERFILTER"/>
-    <eLiterals name="ODORFILTER" value="4" literal="ODORFILTER"/>
-    <eLiterals name="OILFILTER" value="5" literal="OILFILTER"/>
+    <eLiterals name="WATERFILTER" value="1" literal="WATERFILTER"/>
+    <eLiterals name="STRAINER" value="2" literal="STRAINER"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="OILFILTER" value="4" literal="OILFILTER"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
     <eLiterals name="AIRPARTICLEFILTER" value="6" literal="AIRPARTICLEFILTER"/>
-    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="ODORFILTER" value="7" literal="ODORFILTER"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcFireSuppressionTerminalTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="HOSEREEL" value="2" literal="HOSEREEL"/>
-    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
-    <eLiterals name="SPRINKLERDEFLECTOR" value="4" literal="SPRINKLERDEFLECTOR"/>
+    <eLiterals name="SPRINKLERDEFLECTOR" value="2" literal="SPRINKLERDEFLECTOR"/>
+    <eLiterals name="SPRINKLER" value="3" literal="SPRINKLER"/>
+    <eLiterals name="HOSEREEL" value="4" literal="HOSEREEL"/>
     <eLiterals name="BREECHINGINLET" value="5" literal="BREECHINGINLET"/>
-    <eLiterals name="SPRINKLER" value="6" literal="SPRINKLER"/>
-    <eLiterals name="FIREHYDRANT" value="7" literal="FIREHYDRANT"/>
+    <eLiterals name="FIREHYDRANT" value="6" literal="FIREHYDRANT"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcFlowDirectionEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="SOURCEANDSINK" value="1" literal="SOURCEANDSINK"/>
-    <eLiterals name="SOURCE" value="2" literal="SOURCE"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="SINK" value="4" literal="SINK"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="SINK" value="2" literal="SINK"/>
+    <eLiterals name="SOURCE" value="3" literal="SOURCE"/>
+    <eLiterals name="SOURCEANDSINK" value="4" literal="SOURCEANDSINK"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcFlowInstrumentTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="PHASEANGLEMETER" value="1" literal="PHASEANGLEMETER"/>
+    <eLiterals name="PRESSUREGAUGE" value="1" literal="PRESSUREGAUGE"/>
     <eLiterals name="POWERFACTORMETER" value="2" literal="POWERFACTORMETER"/>
     <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
     <eLiterals name="VOLTMETER_RMS" value="4" literal="VOLTMETER_RMS"/>
-    <eLiterals name="PRESSUREGAUGE" value="5" literal="PRESSUREGAUGE"/>
+    <eLiterals name="THERMOMETER" value="5" literal="THERMOMETER"/>
     <eLiterals name="FREQUENCYMETER" value="6" literal="FREQUENCYMETER"/>
-    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
-    <eLiterals name="VOLTMETER_PEAK" value="8" literal="VOLTMETER_PEAK"/>
-    <eLiterals name="AMMETER" value="9" literal="AMMETER"/>
-    <eLiterals name="THERMOMETER" value="10" literal="THERMOMETER"/>
+    <eLiterals name="VOLTMETER_PEAK" value="7" literal="VOLTMETER_PEAK"/>
+    <eLiterals name="AMMETER" value="8" literal="AMMETER"/>
+    <eLiterals name="USERDEFINED" value="9" literal="USERDEFINED"/>
+    <eLiterals name="PHASEANGLEMETER" value="10" literal="PHASEANGLEMETER"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcFlowMeterTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="WATERMETER" value="1" literal="WATERMETER"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="GASMETER" value="3" literal="GASMETER"/>
-    <eLiterals name="ELECTRICMETER" value="4" literal="ELECTRICMETER"/>
-    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
-    <eLiterals name="FLOWMETER" value="6" literal="FLOWMETER"/>
-    <eLiterals name="ENERGYMETER" value="7" literal="ENERGYMETER"/>
-    <eLiterals name="OILMETER" value="8" literal="OILMETER"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="WATERMETER" value="2" literal="WATERMETER"/>
+    <eLiterals name="ELECTRICMETER" value="3" literal="ELECTRICMETER"/>
+    <eLiterals name="FLOWMETER" value="4" literal="FLOWMETER"/>
+    <eLiterals name="OILMETER" value="5" literal="OILMETER"/>
+    <eLiterals name="GASMETER" value="6" literal="GASMETER"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="ENERGYMETER" value="8" literal="ENERGYMETER"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcFootingTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="STRIP_FOOTING" value="1" literal="STRIP_FOOTING"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="FOOTING_BEAM" value="3" literal="FOOTING_BEAM"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="PAD_FOOTING" value="3" literal="PAD_FOOTING"/>
+    <eLiterals name="FOOTING_BEAM" value="4" literal="FOOTING_BEAM"/>
     <eLiterals name="PILE_CAP" value="5" literal="PILE_CAP"/>
-    <eLiterals name="PAD_FOOTING" value="6" literal="PAD_FOOTING"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcGasTerminalTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="GASBURNER" value="1" literal="GASBURNER"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="GASBOOSTER" value="3" literal="GASBOOSTER"/>
-    <eLiterals name="GASAPPLIANCE" value="4" literal="GASAPPLIANCE"/>
-    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="GASBURNER" value="2" literal="GASBURNER"/>
+    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
+    <eLiterals name="GASBOOSTER" value="4" literal="GASBOOSTER"/>
+    <eLiterals name="GASAPPLIANCE" value="5" literal="GASAPPLIANCE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcGeometricProjectionEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="ELEVATION_VIEW" value="1" literal="ELEVATION_VIEW"/>
-    <eLiterals name="SKETCH_VIEW" value="2" literal="SKETCH_VIEW"/>
-    <eLiterals name="REFLECTED_PLAN_VIEW" value="3" literal="REFLECTED_PLAN_VIEW"/>
-    <eLiterals name="PLAN_VIEW" value="4" literal="PLAN_VIEW"/>
-    <eLiterals name="NOTDEFINED" value="5" literal="NOTDEFINED"/>
-    <eLiterals name="GRAPH_VIEW" value="6" literal="GRAPH_VIEW"/>
-    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
-    <eLiterals name="SECTION_VIEW" value="8" literal="SECTION_VIEW"/>
-    <eLiterals name="MODEL_VIEW" value="9" literal="MODEL_VIEW"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="PLAN_VIEW" value="2" literal="PLAN_VIEW"/>
+    <eLiterals name="SECTION_VIEW" value="3" literal="SECTION_VIEW"/>
+    <eLiterals name="SKETCH_VIEW" value="4" literal="SKETCH_VIEW"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
+    <eLiterals name="REFLECTED_PLAN_VIEW" value="6" literal="REFLECTED_PLAN_VIEW"/>
+    <eLiterals name="ELEVATION_VIEW" value="7" literal="ELEVATION_VIEW"/>
+    <eLiterals name="MODEL_VIEW" value="8" literal="MODEL_VIEW"/>
+    <eLiterals name="GRAPH_VIEW" value="9" literal="GRAPH_VIEW"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcGlobalOrLocalEnum">
     <eLiterals name="NULL" literal="NULL"/>
@@ -8490,40 +8493,40 @@
   <eClassifiers xsi:type="ecore:EEnum" name="IfcHeatExchangerTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="SHELLANDTUBE" value="2" literal="SHELLANDTUBE"/>
+    <eLiterals name="USERDEFINED" value="2" literal="USERDEFINED"/>
     <eLiterals name="PLATE" value="3" literal="PLATE"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="SHELLANDTUBE" value="4" literal="SHELLANDTUBE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcHumidifierTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="ADIABATICPAN" value="1" literal="ADIABATICPAN"/>
     <eLiterals name="ADIABATICULTRASONIC" value="2" literal="ADIABATICULTRASONIC"/>
-    <eLiterals name="STEAMINJECTION" value="3" literal="STEAMINJECTION"/>
-    <eLiterals name="ADIABATICWETTEDELEMENT" value="4" literal="ADIABATICWETTEDELEMENT"/>
-    <eLiterals name="ASSISTEDSTEAM" value="5" literal="ASSISTEDSTEAM"/>
-    <eLiterals name="ADIABATICATOMIZING" value="6" literal="ADIABATICATOMIZING"/>
-    <eLiterals name="ADIABATICPAN" value="7" literal="ADIABATICPAN"/>
-    <eLiterals name="ASSISTEDELECTRIC" value="8" literal="ASSISTEDELECTRIC"/>
-    <eLiterals name="ASSISTEDBUTANE" value="9" literal="ASSISTEDBUTANE"/>
+    <eLiterals name="ASSISTEDNATURALGAS" value="3" literal="ASSISTEDNATURALGAS"/>
+    <eLiterals name="ADIABATICRIGIDMEDIA" value="4" literal="ADIABATICRIGIDMEDIA"/>
+    <eLiterals name="ADIABATICWETTEDELEMENT" value="5" literal="ADIABATICWETTEDELEMENT"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="ADIABATICAIRWASHER" value="7" literal="ADIABATICAIRWASHER"/>
+    <eLiterals name="ADIABATICATOMIZING" value="8" literal="ADIABATICATOMIZING"/>
+    <eLiterals name="ASSISTEDELECTRIC" value="9" literal="ASSISTEDELECTRIC"/>
     <eLiterals name="ASSISTEDPROPANE" value="10" literal="ASSISTEDPROPANE"/>
-    <eLiterals name="ADIABATICRIGIDMEDIA" value="11" literal="ADIABATICRIGIDMEDIA"/>
-    <eLiterals name="USERDEFINED" value="12" literal="USERDEFINED"/>
-    <eLiterals name="ADIABATICCOMPRESSEDAIRNOZZLE" value="13" literal="ADIABATICCOMPRESSEDAIRNOZZLE"/>
-    <eLiterals name="ADIABATICAIRWASHER" value="14" literal="ADIABATICAIRWASHER"/>
-    <eLiterals name="ASSISTEDNATURALGAS" value="15" literal="ASSISTEDNATURALGAS"/>
+    <eLiterals name="NOTDEFINED" value="11" literal="NOTDEFINED"/>
+    <eLiterals name="ASSISTEDBUTANE" value="12" literal="ASSISTEDBUTANE"/>
+    <eLiterals name="STEAMINJECTION" value="13" literal="STEAMINJECTION"/>
+    <eLiterals name="ADIABATICCOMPRESSEDAIRNOZZLE" value="14" literal="ADIABATICCOMPRESSEDAIRNOZZLE"/>
+    <eLiterals name="ASSISTEDSTEAM" value="15" literal="ASSISTEDSTEAM"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcInternalOrExternalEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="INTERNAL" value="1" literal="INTERNAL"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
     <eLiterals name="EXTERNAL" value="2" literal="EXTERNAL"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="INTERNAL" value="3" literal="INTERNAL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcInventoryTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="SPACEINVENTORY" value="1" literal="SPACEINVENTORY"/>
+    <eLiterals name="FURNITUREINVENTORY" value="1" literal="FURNITUREINVENTORY"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
     <eLiterals name="ASSETINVENTORY" value="3" literal="ASSETINVENTORY"/>
-    <eLiterals name="FURNITUREINVENTORY" value="4" literal="FURNITUREINVENTORY"/>
+    <eLiterals name="SPACEINVENTORY" value="4" literal="SPACEINVENTORY"/>
     <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcJunctionBoxTypeEnum">
@@ -8533,14 +8536,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcLampTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="HIGHPRESSUREMERCURY" value="1" literal="HIGHPRESSUREMERCURY"/>
-    <eLiterals name="COMPACTFLUORESCENT" value="2" literal="COMPACTFLUORESCENT"/>
+    <eLiterals name="TUNGSTENFILAMENT" value="1" literal="TUNGSTENFILAMENT"/>
+    <eLiterals name="FLUORESCENT" value="2" literal="FLUORESCENT"/>
     <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="TUNGSTENFILAMENT" value="4" literal="TUNGSTENFILAMENT"/>
+    <eLiterals name="HIGHPRESSURESODIUM" value="4" literal="HIGHPRESSURESODIUM"/>
     <eLiterals name="METALHALIDE" value="5" literal="METALHALIDE"/>
     <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="HIGHPRESSURESODIUM" value="7" literal="HIGHPRESSURESODIUM"/>
-    <eLiterals name="FLUORESCENT" value="8" literal="FLUORESCENT"/>
+    <eLiterals name="COMPACTFLUORESCENT" value="7" literal="COMPACTFLUORESCENT"/>
+    <eLiterals name="HIGHPRESSUREMERCURY" value="8" literal="HIGHPRESSUREMERCURY"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcLayerSetDirectionEnum">
     <eLiterals name="NULL" literal="NULL"/>
@@ -8552,35 +8555,35 @@
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
     <eLiterals name="TYPE_C" value="2" literal="TYPE_C"/>
-    <eLiterals name="TYPE_B" value="3" literal="TYPE_B"/>
-    <eLiterals name="TYPE_A" value="4" literal="TYPE_A"/>
+    <eLiterals name="TYPE_A" value="3" literal="TYPE_A"/>
+    <eLiterals name="TYPE_B" value="4" literal="TYPE_B"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcLightEmissionSourceEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="LOWVOLTAGEHALOGEN" value="1" literal="LOWVOLTAGEHALOGEN"/>
+    <eLiterals name="LOWPRESSURESODIUM" value="1" literal="LOWPRESSURESODIUM"/>
     <eLiterals name="MAINVOLTAGEHALOGEN" value="2" literal="MAINVOLTAGEHALOGEN"/>
-    <eLiterals name="HIGHPRESSUREMERCURY" value="3" literal="HIGHPRESSUREMERCURY"/>
-    <eLiterals name="COMPACTFLUORESCENT" value="4" literal="COMPACTFLUORESCENT"/>
+    <eLiterals name="TUNGSTENFILAMENT" value="3" literal="TUNGSTENFILAMENT"/>
+    <eLiterals name="FLUORESCENT" value="4" literal="FLUORESCENT"/>
     <eLiterals name="NOTDEFINED" value="5" literal="NOTDEFINED"/>
-    <eLiterals name="TUNGSTENFILAMENT" value="6" literal="TUNGSTENFILAMENT"/>
-    <eLiterals name="METALHALIDE" value="7" literal="METALHALIDE"/>
-    <eLiterals name="LOWPRESSURESODIUM" value="8" literal="LOWPRESSURESODIUM"/>
-    <eLiterals name="HIGHPRESSURESODIUM" value="9" literal="HIGHPRESSURESODIUM"/>
-    <eLiterals name="LIGHTEMITTINGDIODE" value="10" literal="LIGHTEMITTINGDIODE"/>
-    <eLiterals name="FLUORESCENT" value="11" literal="FLUORESCENT"/>
+    <eLiterals name="HIGHPRESSURESODIUM" value="6" literal="HIGHPRESSURESODIUM"/>
+    <eLiterals name="LOWVOLTAGEHALOGEN" value="7" literal="LOWVOLTAGEHALOGEN"/>
+    <eLiterals name="METALHALIDE" value="8" literal="METALHALIDE"/>
+    <eLiterals name="LIGHTEMITTINGDIODE" value="9" literal="LIGHTEMITTINGDIODE"/>
+    <eLiterals name="COMPACTFLUORESCENT" value="10" literal="COMPACTFLUORESCENT"/>
+    <eLiterals name="HIGHPRESSUREMERCURY" value="11" literal="HIGHPRESSUREMERCURY"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcLightFixtureTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="DIRECTIONSOURCE" value="2" literal="DIRECTIONSOURCE"/>
-    <eLiterals name="POINTSOURCE" value="3" literal="POINTSOURCE"/>
+    <eLiterals name="POINTSOURCE" value="2" literal="POINTSOURCE"/>
+    <eLiterals name="DIRECTIONSOURCE" value="3" literal="DIRECTIONSOURCE"/>
     <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcLoadGroupTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="LOAD_COMBINATION" value="1" literal="LOAD_COMBINATION"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="LOAD_COMBINATION_GROUP" value="3" literal="LOAD_COMBINATION_GROUP"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="LOAD_COMBINATION_GROUP" value="2" literal="LOAD_COMBINATION_GROUP"/>
+    <eLiterals name="LOAD_COMBINATION" value="3" literal="LOAD_COMBINATION"/>
     <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
     <eLiterals name="LOAD_GROUP" value="5" literal="LOAD_GROUP"/>
     <eLiterals name="LOAD_CASE" value="6" literal="LOAD_CASE"/>
@@ -8592,28 +8595,28 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcMemberTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="CHORD" value="1" literal="CHORD"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="MEMBER" value="3" literal="MEMBER"/>
-    <eLiterals name="PLATE" value="4" literal="PLATE"/>
-    <eLiterals name="STUD" value="5" literal="STUD"/>
-    <eLiterals name="MULLION" value="6" literal="MULLION"/>
-    <eLiterals name="COLLAR" value="7" literal="COLLAR"/>
-    <eLiterals name="PURLIN" value="8" literal="PURLIN"/>
-    <eLiterals name="POST" value="9" literal="POST"/>
-    <eLiterals name="RAFTER" value="10" literal="RAFTER"/>
-    <eLiterals name="USERDEFINED" value="11" literal="USERDEFINED"/>
-    <eLiterals name="BRACE" value="12" literal="BRACE"/>
-    <eLiterals name="STRUT" value="13" literal="STRUT"/>
-    <eLiterals name="STRINGER" value="14" literal="STRINGER"/>
+    <eLiterals name="POST" value="1" literal="POST"/>
+    <eLiterals name="RAFTER" value="2" literal="RAFTER"/>
+    <eLiterals name="STRUT" value="3" literal="STRUT"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="COLLAR" value="5" literal="COLLAR"/>
+    <eLiterals name="CHORD" value="6" literal="CHORD"/>
+    <eLiterals name="MEMBER" value="7" literal="MEMBER"/>
+    <eLiterals name="NOTDEFINED" value="8" literal="NOTDEFINED"/>
+    <eLiterals name="PURLIN" value="9" literal="PURLIN"/>
+    <eLiterals name="STUD" value="10" literal="STUD"/>
+    <eLiterals name="BRACE" value="11" literal="BRACE"/>
+    <eLiterals name="PLATE" value="12" literal="PLATE"/>
+    <eLiterals name="STRINGER" value="13" literal="STRINGER"/>
+    <eLiterals name="MULLION" value="14" literal="MULLION"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcMotorConnectionTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="BELTDRIVE" value="1" literal="BELTDRIVE"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="BELTDRIVE" value="2" literal="BELTDRIVE"/>
     <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
-    <eLiterals name="COUPLING" value="4" literal="COUPLING"/>
-    <eLiterals name="DIRECTDRIVE" value="5" literal="DIRECTDRIVE"/>
+    <eLiterals name="DIRECTDRIVE" value="4" literal="DIRECTDRIVE"/>
+    <eLiterals name="COUPLING" value="5" literal="COUPLING"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcNullStyleEnum">
     <eLiterals name="NULL" literal="NULL"/>
@@ -8621,52 +8624,52 @@
   <eClassifiers xsi:type="ecore:EEnum" name="IfcObjectTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="GROUP" value="1" literal="GROUP"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="CONTROL" value="3" literal="CONTROL"/>
-    <eLiterals name="PROJECT" value="4" literal="PROJECT"/>
-    <eLiterals name="PROCESS" value="5" literal="PROCESS"/>
-    <eLiterals name="RESOURCE" value="6" literal="RESOURCE"/>
-    <eLiterals name="PRODUCT" value="7" literal="PRODUCT"/>
-    <eLiterals name="ACTOR" value="8" literal="ACTOR"/>
+    <eLiterals name="PROJECT" value="2" literal="PROJECT"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="PRODUCT" value="4" literal="PRODUCT"/>
+    <eLiterals name="ACTOR" value="5" literal="ACTOR"/>
+    <eLiterals name="PROCESS" value="6" literal="PROCESS"/>
+    <eLiterals name="CONTROL" value="7" literal="CONTROL"/>
+    <eLiterals name="RESOURCE" value="8" literal="RESOURCE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcObjectiveEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="DESIGNINTENT" value="1" literal="DESIGNINTENT"/>
+    <eLiterals name="HEALTHANDSAFETY" value="1" literal="HEALTHANDSAFETY"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
     <eLiterals name="TRIGGERCONDITION" value="3" literal="TRIGGERCONDITION"/>
-    <eLiterals name="CODECOMPLIANCE" value="4" literal="CODECOMPLIANCE"/>
-    <eLiterals name="HEALTHANDSAFETY" value="5" literal="HEALTHANDSAFETY"/>
-    <eLiterals name="SPECIFICATION" value="6" literal="SPECIFICATION"/>
-    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="SPECIFICATION" value="5" literal="SPECIFICATION"/>
+    <eLiterals name="CODECOMPLIANCE" value="6" literal="CODECOMPLIANCE"/>
+    <eLiterals name="DESIGNINTENT" value="7" literal="DESIGNINTENT"/>
     <eLiterals name="REQUIREMENT" value="8" literal="REQUIREMENT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcOccupantTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="LESSEE" value="2" literal="LESSEE"/>
-    <eLiterals name="ASSIGNOR" value="3" literal="ASSIGNOR"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="OWNER" value="5" literal="OWNER"/>
-    <eLiterals name="LETTINGAGENT" value="6" literal="LETTINGAGENT"/>
-    <eLiterals name="TENANT" value="7" literal="TENANT"/>
-    <eLiterals name="LESSOR" value="8" literal="LESSOR"/>
-    <eLiterals name="ASSIGNEE" value="9" literal="ASSIGNEE"/>
+    <eLiterals name="OWNER" value="1" literal="OWNER"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="LETTINGAGENT" value="3" literal="LETTINGAGENT"/>
+    <eLiterals name="ASSIGNEE" value="4" literal="ASSIGNEE"/>
+    <eLiterals name="LESSEE" value="5" literal="LESSEE"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="ASSIGNOR" value="7" literal="ASSIGNOR"/>
+    <eLiterals name="TENANT" value="8" literal="TENANT"/>
+    <eLiterals name="LESSOR" value="9" literal="LESSOR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcOutletTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="AUDIOVISUALOUTLET" value="2" literal="AUDIOVISUALOUTLET"/>
-    <eLiterals name="COMMUNICATIONSOUTLET" value="3" literal="COMMUNICATIONSOUTLET"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="POWEROUTLET" value="5" literal="POWEROUTLET"/>
+    <eLiterals name="POWEROUTLET" value="2" literal="POWEROUTLET"/>
+    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
+    <eLiterals name="COMMUNICATIONSOUTLET" value="4" literal="COMMUNICATIONSOUTLET"/>
+    <eLiterals name="AUDIOVISUALOUTLET" value="5" literal="AUDIOVISUALOUTLET"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcPermeableCoveringOperationEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="SCREEN" value="2" literal="SCREEN"/>
-    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
-    <eLiterals name="LOUVER" value="4" literal="LOUVER"/>
-    <eLiterals name="GRILL" value="5" literal="GRILL"/>
+    <eLiterals name="GRILL" value="1" literal="GRILL"/>
+    <eLiterals name="LOUVER" value="2" literal="LOUVER"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="SCREEN" value="4" literal="SCREEN"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcPhysicalOrVirtualEnum">
     <eLiterals name="NULL" literal="NULL"/>
@@ -8676,60 +8679,60 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcPileConstructionEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="PRECAST_CONCRETE" value="1" literal="PRECAST_CONCRETE"/>
-    <eLiterals name="COMPOSITE" value="2" literal="COMPOSITE"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="PREFAB_STEEL" value="5" literal="PREFAB_STEEL"/>
-    <eLiterals name="CAST_IN_PLACE" value="6" literal="CAST_IN_PLACE"/>
+    <eLiterals name="CAST_IN_PLACE" value="1" literal="CAST_IN_PLACE"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="PREFAB_STEEL" value="3" literal="PREFAB_STEEL"/>
+    <eLiterals name="PRECAST_CONCRETE" value="4" literal="PRECAST_CONCRETE"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
+    <eLiterals name="COMPOSITE" value="6" literal="COMPOSITE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcPileTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="SUPPORT" value="1" literal="SUPPORT"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
-    <eLiterals name="FRICTION" value="4" literal="FRICTION"/>
-    <eLiterals name="COHESION" value="5" literal="COHESION"/>
+    <eLiterals name="FRICTION" value="1" literal="FRICTION"/>
+    <eLiterals name="SUPPORT" value="2" literal="SUPPORT"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="COHESION" value="4" literal="COHESION"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcPipeFittingTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="EXIT" value="1" literal="EXIT"/>
+    <eLiterals name="TRANSITION" value="1" literal="TRANSITION"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="TRANSITION" value="3" literal="TRANSITION"/>
-    <eLiterals name="OBSTRUCTION" value="4" literal="OBSTRUCTION"/>
-    <eLiterals name="ENTRY" value="5" literal="ENTRY"/>
-    <eLiterals name="JUNCTION" value="6" literal="JUNCTION"/>
-    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
-    <eLiterals name="CONNECTOR" value="8" literal="CONNECTOR"/>
-    <eLiterals name="BEND" value="9" literal="BEND"/>
+    <eLiterals name="ENTRY" value="3" literal="ENTRY"/>
+    <eLiterals name="BEND" value="4" literal="BEND"/>
+    <eLiterals name="OBSTRUCTION" value="5" literal="OBSTRUCTION"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="EXIT" value="7" literal="EXIT"/>
+    <eLiterals name="JUNCTION" value="8" literal="JUNCTION"/>
+    <eLiterals name="CONNECTOR" value="9" literal="CONNECTOR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcPipeSegmentTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="SPOOL" value="1" literal="SPOOL"/>
-    <eLiterals name="FLEXIBLESEGMENT" value="2" literal="FLEXIBLESEGMENT"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="GUTTER" value="4" literal="GUTTER"/>
-    <eLiterals name="RIGIDSEGMENT" value="5" literal="RIGIDSEGMENT"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="GUTTER" value="2" literal="GUTTER"/>
+    <eLiterals name="FLEXIBLESEGMENT" value="3" literal="FLEXIBLESEGMENT"/>
+    <eLiterals name="RIGIDSEGMENT" value="4" literal="RIGIDSEGMENT"/>
+    <eLiterals name="SPOOL" value="5" literal="SPOOL"/>
     <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcPlateTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
     <eLiterals name="CURTAIN_PANEL" value="2" literal="CURTAIN_PANEL"/>
-    <eLiterals name="SHEET" value="3" literal="SHEET"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
+    <eLiterals name="SHEET" value="4" literal="SHEET"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcProcedureTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="ADVICE_NOTE" value="1" literal="ADVICE_NOTE"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="SHUTDOWN" value="3" literal="SHUTDOWN"/>
-    <eLiterals name="ADVICE_CAUTION" value="4" literal="ADVICE_CAUTION"/>
-    <eLiterals name="CALIBRATION" value="5" literal="CALIBRATION"/>
+    <eLiterals name="CALIBRATION" value="1" literal="CALIBRATION"/>
+    <eLiterals name="DIAGNOSTIC" value="2" literal="DIAGNOSTIC"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="ADVICE_WARNING" value="4" literal="ADVICE_WARNING"/>
+    <eLiterals name="ADVICE_CAUTION" value="5" literal="ADVICE_CAUTION"/>
     <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="STARTUP" value="7" literal="STARTUP"/>
-    <eLiterals name="ADVICE_WARNING" value="8" literal="ADVICE_WARNING"/>
-    <eLiterals name="DIAGNOSTIC" value="9" literal="DIAGNOSTIC"/>
+    <eLiterals name="SHUTDOWN" value="7" literal="SHUTDOWN"/>
+    <eLiterals name="STARTUP" value="8" literal="STARTUP"/>
+    <eLiterals name="ADVICE_NOTE" value="9" literal="ADVICE_NOTE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcProfileTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
@@ -8738,128 +8741,128 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcProjectOrderRecordTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="MAINTENANCE" value="2" literal="MAINTENANCE"/>
-    <eLiterals name="PURCHASE" value="3" literal="PURCHASE"/>
+    <eLiterals name="MAINTENANCE" value="1" literal="MAINTENANCE"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="MOVE" value="3" literal="MOVE"/>
     <eLiterals name="WORK" value="4" literal="WORK"/>
-    <eLiterals name="MOVE" value="5" literal="MOVE"/>
+    <eLiterals name="CHANGE" value="5" literal="CHANGE"/>
     <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="CHANGE" value="7" literal="CHANGE"/>
+    <eLiterals name="PURCHASE" value="7" literal="PURCHASE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcProjectOrderTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="PURCHASEORDER" value="1" literal="PURCHASEORDER"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="MOVEORDER" value="3" literal="MOVEORDER"/>
-    <eLiterals name="MAINTENANCEWORKORDER" value="4" literal="MAINTENANCEWORKORDER"/>
-    <eLiterals name="WORKORDER" value="5" literal="WORKORDER"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="MOVEORDER" value="2" literal="MOVEORDER"/>
+    <eLiterals name="WORKORDER" value="3" literal="WORKORDER"/>
+    <eLiterals name="CHANGEORDER" value="4" literal="CHANGEORDER"/>
+    <eLiterals name="MAINTENANCEWORKORDER" value="5" literal="MAINTENANCEWORKORDER"/>
     <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="CHANGEORDER" value="7" literal="CHANGEORDER"/>
+    <eLiterals name="PURCHASEORDER" value="7" literal="PURCHASEORDER"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcProjectedOrTrueLengthEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="TRUE_LENGTH" value="1" literal="TRUE_LENGTH"/>
-    <eLiterals name="PROJECTED_LENGTH" value="2" literal="PROJECTED_LENGTH"/>
+    <eLiterals name="PROJECTED_LENGTH" value="1" literal="PROJECTED_LENGTH"/>
+    <eLiterals name="TRUE_LENGTH" value="2" literal="TRUE_LENGTH"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcPropertySourceEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTKNOWN" value="1" literal="NOTKNOWN"/>
-    <eLiterals name="DESIGN" value="2" literal="DESIGN"/>
-    <eLiterals name="ASBUILT" value="3" literal="ASBUILT"/>
-    <eLiterals name="MEASURED" value="4" literal="MEASURED"/>
-    <eLiterals name="DESIGNMINIMUM" value="5" literal="DESIGNMINIMUM"/>
-    <eLiterals name="COMMISSIONING" value="6" literal="COMMISSIONING"/>
-    <eLiterals name="DESIGNMAXIMUM" value="7" literal="DESIGNMAXIMUM"/>
-    <eLiterals name="USERDEFINED" value="8" literal="USERDEFINED"/>
+    <eLiterals name="DESIGNMAXIMUM" value="1" literal="DESIGNMAXIMUM"/>
+    <eLiterals name="COMMISSIONING" value="2" literal="COMMISSIONING"/>
+    <eLiterals name="DESIGN" value="3" literal="DESIGN"/>
+    <eLiterals name="NOTKNOWN" value="4" literal="NOTKNOWN"/>
+    <eLiterals name="MEASURED" value="5" literal="MEASURED"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="DESIGNMINIMUM" value="7" literal="DESIGNMINIMUM"/>
+    <eLiterals name="ASBUILT" value="8" literal="ASBUILT"/>
     <eLiterals name="SIMULATED" value="9" literal="SIMULATED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcProtectiveDeviceTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="CIRCUITBREAKER" value="1" literal="CIRCUITBREAKER"/>
-    <eLiterals name="VARISTOR" value="2" literal="VARISTOR"/>
+    <eLiterals name="EARTHFAILUREDEVICE" value="1" literal="EARTHFAILUREDEVICE"/>
+    <eLiterals name="RESIDUALCURRENTCIRCUITBREAKER" value="2" literal="RESIDUALCURRENTCIRCUITBREAKER"/>
     <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="FUSEDISCONNECTOR" value="4" literal="FUSEDISCONNECTOR"/>
-    <eLiterals name="EARTHFAILUREDEVICE" value="5" literal="EARTHFAILUREDEVICE"/>
-    <eLiterals name="RESIDUALCURRENTCIRCUITBREAKER" value="6" literal="RESIDUALCURRENTCIRCUITBREAKER"/>
-    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
-    <eLiterals name="RESIDUALCURRENTSWITCH" value="8" literal="RESIDUALCURRENTSWITCH"/>
+    <eLiterals name="CIRCUITBREAKER" value="4" literal="CIRCUITBREAKER"/>
+    <eLiterals name="VARISTOR" value="5" literal="VARISTOR"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="RESIDUALCURRENTSWITCH" value="7" literal="RESIDUALCURRENTSWITCH"/>
+    <eLiterals name="FUSEDISCONNECTOR" value="8" literal="FUSEDISCONNECTOR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcPumpTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="VERTICALTURBINE" value="1" literal="VERTICALTURBINE"/>
-    <eLiterals name="ENDSUCTION" value="2" literal="ENDSUCTION"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="SPLITCASE" value="4" literal="SPLITCASE"/>
-    <eLiterals name="VERTICALINLINE" value="5" literal="VERTICALINLINE"/>
-    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="CIRCULATOR" value="7" literal="CIRCULATOR"/>
+    <eLiterals name="SPLITCASE" value="1" literal="SPLITCASE"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="CIRCULATOR" value="3" literal="CIRCULATOR"/>
+    <eLiterals name="ENDSUCTION" value="4" literal="ENDSUCTION"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
+    <eLiterals name="VERTICALINLINE" value="6" literal="VERTICALINLINE"/>
+    <eLiterals name="VERTICALTURBINE" value="7" literal="VERTICALTURBINE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcRailingTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="HANDRAIL" value="2" literal="HANDRAIL"/>
-    <eLiterals name="GUARDRAIL" value="3" literal="GUARDRAIL"/>
+    <eLiterals name="GUARDRAIL" value="1" literal="GUARDRAIL"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="HANDRAIL" value="3" literal="HANDRAIL"/>
     <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
     <eLiterals name="BALUSTRADE" value="5" literal="BALUSTRADE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcRampFlightTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="SPIRAL" value="1" literal="SPIRAL"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="STRAIGHT" value="3" literal="STRAIGHT"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="STRAIGHT" value="2" literal="STRAIGHT"/>
+    <eLiterals name="SPIRAL" value="3" literal="SPIRAL"/>
     <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcRampTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="QUARTER_TURN_RAMP" value="1" literal="QUARTER_TURN_RAMP"/>
-    <eLiterals name="SPIRAL_RAMP" value="2" literal="SPIRAL_RAMP"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="STRAIGHT_RUN_RAMP" value="4" literal="STRAIGHT_RUN_RAMP"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="QUARTER_TURN_RAMP" value="2" literal="QUARTER_TURN_RAMP"/>
+    <eLiterals name="SPIRAL_RAMP" value="3" literal="SPIRAL_RAMP"/>
+    <eLiterals name="TWO_QUARTER_TURN_RAMP" value="4" literal="TWO_QUARTER_TURN_RAMP"/>
     <eLiterals name="TWO_STRAIGHT_RUN_RAMP" value="5" literal="TWO_STRAIGHT_RUN_RAMP"/>
     <eLiterals name="HALF_TURN_RAMP" value="6" literal="HALF_TURN_RAMP"/>
     <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
-    <eLiterals name="TWO_QUARTER_TURN_RAMP" value="8" literal="TWO_QUARTER_TURN_RAMP"/>
+    <eLiterals name="STRAIGHT_RUN_RAMP" value="8" literal="STRAIGHT_RUN_RAMP"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcReflectanceMethodEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="METAL" value="1" literal="METAL"/>
-    <eLiterals name="MATT" value="2" literal="MATT"/>
-    <eLiterals name="MIRROR" value="3" literal="MIRROR"/>
-    <eLiterals name="NOTDEFINED" value="4" literal="NOTDEFINED"/>
-    <eLiterals name="FLAT" value="5" literal="FLAT"/>
-    <eLiterals name="STRAUSS" value="6" literal="STRAUSS"/>
-    <eLiterals name="BLINN" value="7" literal="BLINN"/>
-    <eLiterals name="PLASTIC" value="8" literal="PLASTIC"/>
-    <eLiterals name="GLASS" value="9" literal="GLASS"/>
-    <eLiterals name="PHONG" value="10" literal="PHONG"/>
+    <eLiterals name="GLASS" value="1" literal="GLASS"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="MATT" value="3" literal="MATT"/>
+    <eLiterals name="FLAT" value="4" literal="FLAT"/>
+    <eLiterals name="PHONG" value="5" literal="PHONG"/>
+    <eLiterals name="BLINN" value="6" literal="BLINN"/>
+    <eLiterals name="METAL" value="7" literal="METAL"/>
+    <eLiterals name="STRAUSS" value="8" literal="STRAUSS"/>
+    <eLiterals name="PLASTIC" value="9" literal="PLASTIC"/>
+    <eLiterals name="MIRROR" value="10" literal="MIRROR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcReinforcingBarRoleEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="RING" value="1" literal="RING"/>
-    <eLiterals name="MAIN" value="2" literal="MAIN"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="LIGATURE" value="4" literal="LIGATURE"/>
-    <eLiterals name="PUNCHING" value="5" literal="PUNCHING"/>
-    <eLiterals name="SHEAR" value="6" literal="SHEAR"/>
+    <eLiterals name="SHEAR" value="1" literal="SHEAR"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="RING" value="3" literal="RING"/>
+    <eLiterals name="STUD" value="4" literal="STUD"/>
+    <eLiterals name="LIGATURE" value="5" literal="LIGATURE"/>
+    <eLiterals name="MAIN" value="6" literal="MAIN"/>
     <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
-    <eLiterals name="STUD" value="8" literal="STUD"/>
-    <eLiterals name="EDGE" value="9" literal="EDGE"/>
+    <eLiterals name="EDGE" value="8" literal="EDGE"/>
+    <eLiterals name="PUNCHING" value="9" literal="PUNCHING"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcReinforcingBarSurfaceEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="TEXTURED" value="1" literal="TEXTURED"/>
-    <eLiterals name="PLAIN" value="2" literal="PLAIN"/>
+    <eLiterals name="PLAIN" value="1" literal="PLAIN"/>
+    <eLiterals name="TEXTURED" value="2" literal="TEXTURED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcResourceConsumptionEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="CONSUMED" value="1" literal="CONSUMED"/>
-    <eLiterals name="NOTCONSUMED" value="2" literal="NOTCONSUMED"/>
+    <eLiterals name="NOTCONSUMED" value="1" literal="NOTCONSUMED"/>
+    <eLiterals name="NOTOCCUPIED" value="2" literal="NOTOCCUPIED"/>
     <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="PARTIALLYCONSUMED" value="4" literal="PARTIALLYCONSUMED"/>
-    <eLiterals name="OCCUPIED" value="5" literal="OCCUPIED"/>
-    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="NOTOCCUPIED" value="7" literal="NOTOCCUPIED"/>
-    <eLiterals name="PARTIALLYOCCUPIED" value="8" literal="PARTIALLYOCCUPIED"/>
+    <eLiterals name="PARTIALLYOCCUPIED" value="4" literal="PARTIALLYOCCUPIED"/>
+    <eLiterals name="CONSUMED" value="5" literal="CONSUMED"/>
+    <eLiterals name="PARTIALLYCONSUMED" value="6" literal="PARTIALLYCONSUMED"/>
+    <eLiterals name="OCCUPIED" value="7" literal="OCCUPIED"/>
+    <eLiterals name="USERDEFINED" value="8" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcRibPlateDirectionEnum">
     <eLiterals name="NULL" literal="NULL"/>
@@ -8868,195 +8871,195 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcRoleEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="COSTENGINEER" value="1" literal="COSTENGINEER"/>
-    <eLiterals name="COMISSIONINGENGINEER" value="2" literal="COMISSIONINGENGINEER"/>
-    <eLiterals name="BUILDINGOPERATOR" value="3" literal="BUILDINGOPERATOR"/>
-    <eLiterals name="RESELLER" value="4" literal="RESELLER"/>
-    <eLiterals name="ENGINEER" value="5" literal="ENGINEER"/>
-    <eLiterals name="ARCHITECT" value="6" literal="ARCHITECT"/>
-    <eLiterals name="PROJECTMANAGER" value="7" literal="PROJECTMANAGER"/>
-    <eLiterals name="CLIENT" value="8" literal="CLIENT"/>
-    <eLiterals name="ELECTRICALENGINEER" value="9" literal="ELECTRICALENGINEER"/>
-    <eLiterals name="CIVILENGINEER" value="10" literal="CIVILENGINEER"/>
+    <eLiterals name="CONSTRUCTIONMANAGER" value="1" literal="CONSTRUCTIONMANAGER"/>
+    <eLiterals name="COSTENGINEER" value="2" literal="COSTENGINEER"/>
+    <eLiterals name="CONSULTANT" value="3" literal="CONSULTANT"/>
+    <eLiterals name="BUILDINGOWNER" value="4" literal="BUILDINGOWNER"/>
+    <eLiterals name="COMISSIONINGENGINEER" value="5" literal="COMISSIONINGENGINEER"/>
+    <eLiterals name="ENGINEER" value="6" literal="ENGINEER"/>
+    <eLiterals name="CONTRACTOR" value="7" literal="CONTRACTOR"/>
+    <eLiterals name="ELECTRICALENGINEER" value="8" literal="ELECTRICALENGINEER"/>
+    <eLiterals name="USERDEFINED" value="9" literal="USERDEFINED"/>
+    <eLiterals name="MANUFACTURER" value="10" literal="MANUFACTURER"/>
     <eLiterals name="SUPPLIER" value="11" literal="SUPPLIER"/>
-    <eLiterals name="CONTRACTOR" value="12" literal="CONTRACTOR"/>
-    <eLiterals name="FIELDCONSTRUCTIONMANAGER" value="13" literal="FIELDCONSTRUCTIONMANAGER"/>
-    <eLiterals name="FACILITIESMANAGER" value="14" literal="FACILITIESMANAGER"/>
-    <eLiterals name="OWNER" value="15" literal="OWNER"/>
-    <eLiterals name="CONSTRUCTIONMANAGER" value="16" literal="CONSTRUCTIONMANAGER"/>
-    <eLiterals name="STRUCTURALENGINEER" value="17" literal="STRUCTURALENGINEER"/>
-    <eLiterals name="MECHANICALENGINEER" value="18" literal="MECHANICALENGINEER"/>
-    <eLiterals name="USERDEFINED" value="19" literal="USERDEFINED"/>
-    <eLiterals name="CONSULTANT" value="20" literal="CONSULTANT"/>
-    <eLiterals name="MANUFACTURER" value="21" literal="MANUFACTURER"/>
-    <eLiterals name="SUBCONTRACTOR" value="22" literal="SUBCONTRACTOR"/>
-    <eLiterals name="BUILDINGOWNER" value="23" literal="BUILDINGOWNER"/>
+    <eLiterals name="STRUCTURALENGINEER" value="12" literal="STRUCTURALENGINEER"/>
+    <eLiterals name="CLIENT" value="13" literal="CLIENT"/>
+    <eLiterals name="OWNER" value="14" literal="OWNER"/>
+    <eLiterals name="RESELLER" value="15" literal="RESELLER"/>
+    <eLiterals name="CIVILENGINEER" value="16" literal="CIVILENGINEER"/>
+    <eLiterals name="BUILDINGOPERATOR" value="17" literal="BUILDINGOPERATOR"/>
+    <eLiterals name="PROJECTMANAGER" value="18" literal="PROJECTMANAGER"/>
+    <eLiterals name="MECHANICALENGINEER" value="19" literal="MECHANICALENGINEER"/>
+    <eLiterals name="FACILITIESMANAGER" value="20" literal="FACILITIESMANAGER"/>
+    <eLiterals name="SUBCONTRACTOR" value="21" literal="SUBCONTRACTOR"/>
+    <eLiterals name="FIELDCONSTRUCTIONMANAGER" value="22" literal="FIELDCONSTRUCTIONMANAGER"/>
+    <eLiterals name="ARCHITECT" value="23" literal="ARCHITECT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcRoofTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="HIPPED_GABLE_ROOF" value="1" literal="HIPPED_GABLE_ROOF"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="SHED_ROOF" value="3" literal="SHED_ROOF"/>
-    <eLiterals name="HIP_ROOF" value="4" literal="HIP_ROOF"/>
-    <eLiterals name="DOME_ROOF" value="5" literal="DOME_ROOF"/>
-    <eLiterals name="PAVILION_ROOF" value="6" literal="PAVILION_ROOF"/>
+    <eLiterals name="SHED_ROOF" value="1" literal="SHED_ROOF"/>
+    <eLiterals name="HIP_ROOF" value="2" literal="HIP_ROOF"/>
+    <eLiterals name="FLAT_ROOF" value="3" literal="FLAT_ROOF"/>
+    <eLiterals name="BUTTERFLY_ROOF" value="4" literal="BUTTERFLY_ROOF"/>
+    <eLiterals name="RAINBOW_ROOF" value="5" literal="RAINBOW_ROOF"/>
+    <eLiterals name="BARREL_ROOF" value="6" literal="BARREL_ROOF"/>
     <eLiterals name="FREEFORM" value="7" literal="FREEFORM"/>
-    <eLiterals name="GABLE_ROOF" value="8" literal="GABLE_ROOF"/>
-    <eLiterals name="BARREL_ROOF" value="9" literal="BARREL_ROOF"/>
-    <eLiterals name="MANSARD_ROOF" value="10" literal="MANSARD_ROOF"/>
-    <eLiterals name="FLAT_ROOF" value="11" literal="FLAT_ROOF"/>
-    <eLiterals name="RAINBOW_ROOF" value="12" literal="RAINBOW_ROOF"/>
-    <eLiterals name="GAMBREL_ROOF" value="13" literal="GAMBREL_ROOF"/>
-    <eLiterals name="BUTTERFLY_ROOF" value="14" literal="BUTTERFLY_ROOF"/>
+    <eLiterals name="HIPPED_GABLE_ROOF" value="8" literal="HIPPED_GABLE_ROOF"/>
+    <eLiterals name="NOTDEFINED" value="9" literal="NOTDEFINED"/>
+    <eLiterals name="PAVILION_ROOF" value="10" literal="PAVILION_ROOF"/>
+    <eLiterals name="GABLE_ROOF" value="11" literal="GABLE_ROOF"/>
+    <eLiterals name="GAMBREL_ROOF" value="12" literal="GAMBREL_ROOF"/>
+    <eLiterals name="DOME_ROOF" value="13" literal="DOME_ROOF"/>
+    <eLiterals name="MANSARD_ROOF" value="14" literal="MANSARD_ROOF"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSIPrefix">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="ATTO" value="1" literal="ATTO"/>
-    <eLiterals name="MICRO" value="2" literal="MICRO"/>
-    <eLiterals name="PICO" value="3" literal="PICO"/>
-    <eLiterals name="CENTI" value="4" literal="CENTI"/>
-    <eLiterals name="DECI" value="5" literal="DECI"/>
-    <eLiterals name="KILO" value="6" literal="KILO"/>
-    <eLiterals name="TERA" value="7" literal="TERA"/>
-    <eLiterals name="MEGA" value="8" literal="MEGA"/>
-    <eLiterals name="PETA" value="9" literal="PETA"/>
-    <eLiterals name="FEMTO" value="10" literal="FEMTO"/>
-    <eLiterals name="EXA" value="11" literal="EXA"/>
-    <eLiterals name="MILLI" value="12" literal="MILLI"/>
-    <eLiterals name="GIGA" value="13" literal="GIGA"/>
-    <eLiterals name="DECA" value="14" literal="DECA"/>
-    <eLiterals name="HECTO" value="15" literal="HECTO"/>
-    <eLiterals name="NANO" value="16" literal="NANO"/>
+    <eLiterals name="DECA" value="1" literal="DECA"/>
+    <eLiterals name="PICO" value="2" literal="PICO"/>
+    <eLiterals name="KILO" value="3" literal="KILO"/>
+    <eLiterals name="PETA" value="4" literal="PETA"/>
+    <eLiterals name="TERA" value="5" literal="TERA"/>
+    <eLiterals name="EXA" value="6" literal="EXA"/>
+    <eLiterals name="NANO" value="7" literal="NANO"/>
+    <eLiterals name="ATTO" value="8" literal="ATTO"/>
+    <eLiterals name="CENTI" value="9" literal="CENTI"/>
+    <eLiterals name="MILLI" value="10" literal="MILLI"/>
+    <eLiterals name="FEMTO" value="11" literal="FEMTO"/>
+    <eLiterals name="MEGA" value="12" literal="MEGA"/>
+    <eLiterals name="HECTO" value="13" literal="HECTO"/>
+    <eLiterals name="DECI" value="14" literal="DECI"/>
+    <eLiterals name="MICRO" value="15" literal="MICRO"/>
+    <eLiterals name="GIGA" value="16" literal="GIGA"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSIUnitName">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="TESLA" value="1" literal="TESLA"/>
-    <eLiterals name="HENRY" value="2" literal="HENRY"/>
-    <eLiterals name="METRE" value="3" literal="METRE"/>
-    <eLiterals name="SECOND" value="4" literal="SECOND"/>
-    <eLiterals name="AMPERE" value="5" literal="AMPERE"/>
-    <eLiterals name="JOULE" value="6" literal="JOULE"/>
-    <eLiterals name="GRAM" value="7" literal="GRAM"/>
-    <eLiterals name="KELVIN" value="8" literal="KELVIN"/>
-    <eLiterals name="LUMEN" value="9" literal="LUMEN"/>
-    <eLiterals name="FARAD" value="10" literal="FARAD"/>
-    <eLiterals name="STERADIAN" value="11" literal="STERADIAN"/>
-    <eLiterals name="LUX" value="12" literal="LUX"/>
-    <eLiterals name="DEGREE_CELSIUS" value="13" literal="DEGREE_CELSIUS"/>
-    <eLiterals name="SIEVERT" value="14" literal="SIEVERT"/>
-    <eLiterals name="CUBIC_METRE" value="15" literal="CUBIC_METRE"/>
-    <eLiterals name="NEWTON" value="16" literal="NEWTON"/>
-    <eLiterals name="WATT" value="17" literal="WATT"/>
-    <eLiterals name="CANDELA" value="18" literal="CANDELA"/>
-    <eLiterals name="RADIAN" value="19" literal="RADIAN"/>
-    <eLiterals name="PASCAL" value="20" literal="PASCAL"/>
-    <eLiterals name="VOLT" value="21" literal="VOLT"/>
-    <eLiterals name="WEBER" value="22" literal="WEBER"/>
-    <eLiterals name="COULOMB" value="23" literal="COULOMB"/>
-    <eLiterals name="SQUARE_METRE" value="24" literal="SQUARE_METRE"/>
-    <eLiterals name="HERTZ" value="25" literal="HERTZ"/>
-    <eLiterals name="SIEMENS" value="26" literal="SIEMENS"/>
-    <eLiterals name="BECQUEREL" value="27" literal="BECQUEREL"/>
-    <eLiterals name="MOLE" value="28" literal="MOLE"/>
-    <eLiterals name="OHM" value="29" literal="OHM"/>
-    <eLiterals name="GRAY" value="30" literal="GRAY"/>
+    <eLiterals name="RADIAN" value="1" literal="RADIAN"/>
+    <eLiterals name="GRAY" value="2" literal="GRAY"/>
+    <eLiterals name="BECQUEREL" value="3" literal="BECQUEREL"/>
+    <eLiterals name="DEGREE_CELSIUS" value="4" literal="DEGREE_CELSIUS"/>
+    <eLiterals name="CUBIC_METRE" value="5" literal="CUBIC_METRE"/>
+    <eLiterals name="SIEVERT" value="6" literal="SIEVERT"/>
+    <eLiterals name="WEBER" value="7" literal="WEBER"/>
+    <eLiterals name="PASCAL" value="8" literal="PASCAL"/>
+    <eLiterals name="OHM" value="9" literal="OHM"/>
+    <eLiterals name="AMPERE" value="10" literal="AMPERE"/>
+    <eLiterals name="LUMEN" value="11" literal="LUMEN"/>
+    <eLiterals name="JOULE" value="12" literal="JOULE"/>
+    <eLiterals name="COULOMB" value="13" literal="COULOMB"/>
+    <eLiterals name="KELVIN" value="14" literal="KELVIN"/>
+    <eLiterals name="WATT" value="15" literal="WATT"/>
+    <eLiterals name="FARAD" value="16" literal="FARAD"/>
+    <eLiterals name="STERADIAN" value="17" literal="STERADIAN"/>
+    <eLiterals name="VOLT" value="18" literal="VOLT"/>
+    <eLiterals name="SIEMENS" value="19" literal="SIEMENS"/>
+    <eLiterals name="HERTZ" value="20" literal="HERTZ"/>
+    <eLiterals name="SQUARE_METRE" value="21" literal="SQUARE_METRE"/>
+    <eLiterals name="LUX" value="22" literal="LUX"/>
+    <eLiterals name="HENRY" value="23" literal="HENRY"/>
+    <eLiterals name="CANDELA" value="24" literal="CANDELA"/>
+    <eLiterals name="METRE" value="25" literal="METRE"/>
+    <eLiterals name="GRAM" value="26" literal="GRAM"/>
+    <eLiterals name="TESLA" value="27" literal="TESLA"/>
+    <eLiterals name="SECOND" value="28" literal="SECOND"/>
+    <eLiterals name="NEWTON" value="29" literal="NEWTON"/>
+    <eLiterals name="MOLE" value="30" literal="MOLE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSanitaryTerminalTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="TOILETPAN" value="1" literal="TOILETPAN"/>
-    <eLiterals name="BATH" value="2" literal="BATH"/>
-    <eLiterals name="CISTERN" value="3" literal="CISTERN"/>
-    <eLiterals name="BIDET" value="4" literal="BIDET"/>
-    <eLiterals name="NOTDEFINED" value="5" literal="NOTDEFINED"/>
-    <eLiterals name="WASHHANDBASIN" value="6" literal="WASHHANDBASIN"/>
-    <eLiterals name="SANITARYFOUNTAIN" value="7" literal="SANITARYFOUNTAIN"/>
-    <eLiterals name="URINAL" value="8" literal="URINAL"/>
-    <eLiterals name="SINK" value="9" literal="SINK"/>
-    <eLiterals name="USERDEFINED" value="10" literal="USERDEFINED"/>
-    <eLiterals name="WCSEAT" value="11" literal="WCSEAT"/>
-    <eLiterals name="SHOWER" value="12" literal="SHOWER"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="SHOWER" value="2" literal="SHOWER"/>
+    <eLiterals name="SINK" value="3" literal="SINK"/>
+    <eLiterals name="CISTERN" value="4" literal="CISTERN"/>
+    <eLiterals name="WASHHANDBASIN" value="5" literal="WASHHANDBASIN"/>
+    <eLiterals name="BIDET" value="6" literal="BIDET"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="SANITARYFOUNTAIN" value="8" literal="SANITARYFOUNTAIN"/>
+    <eLiterals name="TOILETPAN" value="9" literal="TOILETPAN"/>
+    <eLiterals name="URINAL" value="10" literal="URINAL"/>
+    <eLiterals name="BATH" value="11" literal="BATH"/>
+    <eLiterals name="WCSEAT" value="12" literal="WCSEAT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSectionTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="UNIFORM" value="1" literal="UNIFORM"/>
-    <eLiterals name="TAPERED" value="2" literal="TAPERED"/>
+    <eLiterals name="TAPERED" value="1" literal="TAPERED"/>
+    <eLiterals name="UNIFORM" value="2" literal="UNIFORM"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSensorTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="FIRESENSOR" value="1" literal="FIRESENSOR"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="HEATSENSOR" value="3" literal="HEATSENSOR"/>
-    <eLiterals name="MOVEMENTSENSOR" value="4" literal="MOVEMENTSENSOR"/>
-    <eLiterals name="FLOWSENSOR" value="5" literal="FLOWSENSOR"/>
-    <eLiterals name="MOISTURESENSOR" value="6" literal="MOISTURESENSOR"/>
-    <eLiterals name="LIGHTSENSOR" value="7" literal="LIGHTSENSOR"/>
-    <eLiterals name="SMOKESENSOR" value="8" literal="SMOKESENSOR"/>
-    <eLiterals name="TEMPERATURESENSOR" value="9" literal="TEMPERATURESENSOR"/>
-    <eLiterals name="GASSENSOR" value="10" literal="GASSENSOR"/>
-    <eLiterals name="PRESSURESENSOR" value="11" literal="PRESSURESENSOR"/>
-    <eLiterals name="USERDEFINED" value="12" literal="USERDEFINED"/>
-    <eLiterals name="HUMIDITYSENSOR" value="13" literal="HUMIDITYSENSOR"/>
-    <eLiterals name="CO2SENSOR" value="14" literal="CO2SENSOR"/>
-    <eLiterals name="SOUNDSENSOR" value="15" literal="SOUNDSENSOR"/>
+    <eLiterals name="HUMIDITYSENSOR" value="1" literal="HUMIDITYSENSOR"/>
+    <eLiterals name="PRESSURESENSOR" value="2" literal="PRESSURESENSOR"/>
+    <eLiterals name="FIRESENSOR" value="3" literal="FIRESENSOR"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="GASSENSOR" value="5" literal="GASSENSOR"/>
+    <eLiterals name="HEATSENSOR" value="6" literal="HEATSENSOR"/>
+    <eLiterals name="CO2SENSOR" value="7" literal="CO2SENSOR"/>
+    <eLiterals name="MOVEMENTSENSOR" value="8" literal="MOVEMENTSENSOR"/>
+    <eLiterals name="NOTDEFINED" value="9" literal="NOTDEFINED"/>
+    <eLiterals name="LIGHTSENSOR" value="10" literal="LIGHTSENSOR"/>
+    <eLiterals name="SOUNDSENSOR" value="11" literal="SOUNDSENSOR"/>
+    <eLiterals name="TEMPERATURESENSOR" value="12" literal="TEMPERATURESENSOR"/>
+    <eLiterals name="FLOWSENSOR" value="13" literal="FLOWSENSOR"/>
+    <eLiterals name="MOISTURESENSOR" value="14" literal="MOISTURESENSOR"/>
+    <eLiterals name="SMOKESENSOR" value="15" literal="SMOKESENSOR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSequenceEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="FINISH_START" value="1" literal="FINISH_START"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="FINISH_FINISH" value="3" literal="FINISH_FINISH"/>
-    <eLiterals name="START_START" value="4" literal="START_START"/>
-    <eLiterals name="START_FINISH" value="5" literal="START_FINISH"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="START_FINISH" value="2" literal="START_FINISH"/>
+    <eLiterals name="FINISH_START" value="3" literal="FINISH_START"/>
+    <eLiterals name="FINISH_FINISH" value="4" literal="FINISH_FINISH"/>
+    <eLiterals name="START_START" value="5" literal="START_START"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcServiceLifeFactorTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="E_OUTDOORENVIRONMENT" value="1" literal="E_OUTDOORENVIRONMENT"/>
-    <eLiterals name="F_INUSECONDITIONS" value="2" literal="F_INUSECONDITIONS"/>
+    <eLiterals name="G_MAINTENANCELEVEL" value="1" literal="G_MAINTENANCELEVEL"/>
+    <eLiterals name="B_DESIGNLEVEL" value="2" literal="B_DESIGNLEVEL"/>
     <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="D_INDOORENVIRONMENT" value="4" literal="D_INDOORENVIRONMENT"/>
-    <eLiterals name="G_MAINTENANCELEVEL" value="5" literal="G_MAINTENANCELEVEL"/>
-    <eLiterals name="B_DESIGNLEVEL" value="6" literal="B_DESIGNLEVEL"/>
-    <eLiterals name="C_WORKEXECUTIONLEVEL" value="7" literal="C_WORKEXECUTIONLEVEL"/>
-    <eLiterals name="USERDEFINED" value="8" literal="USERDEFINED"/>
-    <eLiterals name="A_QUALITYOFCOMPONENTS" value="9" literal="A_QUALITYOFCOMPONENTS"/>
+    <eLiterals name="E_OUTDOORENVIRONMENT" value="4" literal="E_OUTDOORENVIRONMENT"/>
+    <eLiterals name="A_QUALITYOFCOMPONENTS" value="5" literal="A_QUALITYOFCOMPONENTS"/>
+    <eLiterals name="F_INUSECONDITIONS" value="6" literal="F_INUSECONDITIONS"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="C_WORKEXECUTIONLEVEL" value="8" literal="C_WORKEXECUTIONLEVEL"/>
+    <eLiterals name="D_INDOORENVIRONMENT" value="9" literal="D_INDOORENVIRONMENT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcServiceLifeTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="PESSIMISTICREFERENCESERVICELIFE" value="1" literal="PESSIMISTICREFERENCESERVICELIFE"/>
-    <eLiterals name="EXPECTEDSERVICELIFE" value="2" literal="EXPECTEDSERVICELIFE"/>
-    <eLiterals name="REFERENCESERVICELIFE" value="3" literal="REFERENCESERVICELIFE"/>
+    <eLiterals name="EXPECTEDSERVICELIFE" value="1" literal="EXPECTEDSERVICELIFE"/>
+    <eLiterals name="ACTUALSERVICELIFE" value="2" literal="ACTUALSERVICELIFE"/>
+    <eLiterals name="PESSIMISTICREFERENCESERVICELIFE" value="3" literal="PESSIMISTICREFERENCESERVICELIFE"/>
     <eLiterals name="OPTIMISTICREFERENCESERVICELIFE" value="4" literal="OPTIMISTICREFERENCESERVICELIFE"/>
-    <eLiterals name="ACTUALSERVICELIFE" value="5" literal="ACTUALSERVICELIFE"/>
+    <eLiterals name="REFERENCESERVICELIFE" value="5" literal="REFERENCESERVICELIFE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSlabTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="BASESLAB" value="2" literal="BASESLAB"/>
-    <eLiterals name="FLOOR" value="3" literal="FLOOR"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="FLOOR" value="1" literal="FLOOR"/>
+    <eLiterals name="ROOF" value="2" literal="ROOF"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="BASESLAB" value="4" literal="BASESLAB"/>
     <eLiterals name="LANDING" value="5" literal="LANDING"/>
-    <eLiterals name="ROOF" value="6" literal="ROOF"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSoundScaleEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="DBB" value="1" literal="DBB"/>
-    <eLiterals name="DBC" value="2" literal="DBC"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="DBA" value="4" literal="DBA"/>
-    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
-    <eLiterals name="NR" value="6" literal="NR"/>
-    <eLiterals name="NC" value="7" literal="NC"/>
+    <eLiterals name="DBA" value="1" literal="DBA"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="DBC" value="3" literal="DBC"/>
+    <eLiterals name="NR" value="4" literal="NR"/>
+    <eLiterals name="DBB" value="5" literal="DBB"/>
+    <eLiterals name="NC" value="6" literal="NC"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSpaceHeaterTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="UNITHEATER" value="1" literal="UNITHEATER"/>
-    <eLiterals name="BASEBOARDHEATER" value="2" literal="BASEBOARDHEATER"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="PANELRADIATOR" value="4" literal="PANELRADIATOR"/>
-    <eLiterals name="CONVECTOR" value="5" literal="CONVECTOR"/>
-    <eLiterals name="TUBULARRADIATOR" value="6" literal="TUBULARRADIATOR"/>
-    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
-    <eLiterals name="FINNEDTUBEUNIT" value="8" literal="FINNEDTUBEUNIT"/>
-    <eLiterals name="SECTIONALRADIATOR" value="9" literal="SECTIONALRADIATOR"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="PANELRADIATOR" value="2" literal="PANELRADIATOR"/>
+    <eLiterals name="UNITHEATER" value="3" literal="UNITHEATER"/>
+    <eLiterals name="SECTIONALRADIATOR" value="4" literal="SECTIONALRADIATOR"/>
+    <eLiterals name="FINNEDTUBEUNIT" value="5" literal="FINNEDTUBEUNIT"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="TUBULARRADIATOR" value="7" literal="TUBULARRADIATOR"/>
+    <eLiterals name="BASEBOARDHEATER" value="8" literal="BASEBOARDHEATER"/>
+    <eLiterals name="CONVECTOR" value="9" literal="CONVECTOR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSpaceTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
@@ -9065,355 +9068,355 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcStackTerminalTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="COWL" value="1" literal="COWL"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="RAINWATERHOPPER" value="2" literal="RAINWATERHOPPER"/>
     <eLiterals name="BIRDCAGE" value="3" literal="BIRDCAGE"/>
     <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="RAINWATERHOPPER" value="5" literal="RAINWATERHOPPER"/>
+    <eLiterals name="COWL" value="5" literal="COWL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcStairFlightTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="SPIRAL" value="1" literal="SPIRAL"/>
-    <eLiterals name="WINDER" value="2" literal="WINDER"/>
-    <eLiterals name="FREEFORM" value="3" literal="FREEFORM"/>
-    <eLiterals name="NOTDEFINED" value="4" literal="NOTDEFINED"/>
-    <eLiterals name="CURVED" value="5" literal="CURVED"/>
-    <eLiterals name="STRAIGHT" value="6" literal="STRAIGHT"/>
-    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="STRAIGHT" value="2" literal="STRAIGHT"/>
+    <eLiterals name="SPIRAL" value="3" literal="SPIRAL"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="WINDER" value="5" literal="WINDER"/>
+    <eLiterals name="CURVED" value="6" literal="CURVED"/>
+    <eLiterals name="FREEFORM" value="7" literal="FREEFORM"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcStairTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="SPIRAL_STAIR" value="1" literal="SPIRAL_STAIR"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="QUARTER_WINDING_STAIR" value="3" literal="QUARTER_WINDING_STAIR"/>
-    <eLiterals name="HALF_WINDING_STAIR" value="4" literal="HALF_WINDING_STAIR"/>
+    <eLiterals name="QUARTER_WINDING_STAIR" value="1" literal="QUARTER_WINDING_STAIR"/>
+    <eLiterals name="TWO_STRAIGHT_RUN_STAIR" value="2" literal="TWO_STRAIGHT_RUN_STAIR"/>
+    <eLiterals name="DOUBLE_RETURN_STAIR" value="3" literal="DOUBLE_RETURN_STAIR"/>
+    <eLiterals name="CURVED_RUN_STAIR" value="4" literal="CURVED_RUN_STAIR"/>
     <eLiterals name="STRAIGHT_RUN_STAIR" value="5" literal="STRAIGHT_RUN_STAIR"/>
-    <eLiterals name="TWO_CURVED_RUN_STAIR" value="6" literal="TWO_CURVED_RUN_STAIR"/>
-    <eLiterals name="HALF_TURN_STAIR" value="7" literal="HALF_TURN_STAIR"/>
-    <eLiterals name="CURVED_RUN_STAIR" value="8" literal="CURVED_RUN_STAIR"/>
-    <eLiterals name="DOUBLE_RETURN_STAIR" value="9" literal="DOUBLE_RETURN_STAIR"/>
-    <eLiterals name="QUARTER_TURN_STAIR" value="10" literal="QUARTER_TURN_STAIR"/>
-    <eLiterals name="TWO_QUARTER_WINDING_STAIR" value="11" literal="TWO_QUARTER_WINDING_STAIR"/>
-    <eLiterals name="TWO_QUARTER_TURN_STAIR" value="12" literal="TWO_QUARTER_TURN_STAIR"/>
-    <eLiterals name="THREE_QUARTER_TURN_STAIR" value="13" literal="THREE_QUARTER_TURN_STAIR"/>
-    <eLiterals name="TWO_STRAIGHT_RUN_STAIR" value="14" literal="TWO_STRAIGHT_RUN_STAIR"/>
-    <eLiterals name="THREE_QUARTER_WINDING_STAIR" value="15" literal="THREE_QUARTER_WINDING_STAIR"/>
-    <eLiterals name="USERDEFINED" value="16" literal="USERDEFINED"/>
+    <eLiterals name="HALF_WINDING_STAIR" value="6" literal="HALF_WINDING_STAIR"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="TWO_CURVED_RUN_STAIR" value="8" literal="TWO_CURVED_RUN_STAIR"/>
+    <eLiterals name="QUARTER_TURN_STAIR" value="9" literal="QUARTER_TURN_STAIR"/>
+    <eLiterals name="THREE_QUARTER_TURN_STAIR" value="10" literal="THREE_QUARTER_TURN_STAIR"/>
+    <eLiterals name="NOTDEFINED" value="11" literal="NOTDEFINED"/>
+    <eLiterals name="SPIRAL_STAIR" value="12" literal="SPIRAL_STAIR"/>
+    <eLiterals name="HALF_TURN_STAIR" value="13" literal="HALF_TURN_STAIR"/>
+    <eLiterals name="THREE_QUARTER_WINDING_STAIR" value="14" literal="THREE_QUARTER_WINDING_STAIR"/>
+    <eLiterals name="TWO_QUARTER_WINDING_STAIR" value="15" literal="TWO_QUARTER_WINDING_STAIR"/>
+    <eLiterals name="TWO_QUARTER_TURN_STAIR" value="16" literal="TWO_QUARTER_TURN_STAIR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcStateEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="READONLYLOCKED" value="1" literal="READONLYLOCKED"/>
-    <eLiterals name="READWRITELOCKED" value="2" literal="READWRITELOCKED"/>
-    <eLiterals name="READONLY" value="3" literal="READONLY"/>
-    <eLiterals name="READWRITE" value="4" literal="READWRITE"/>
-    <eLiterals name="LOCKED" value="5" literal="LOCKED"/>
+    <eLiterals name="READWRITE" value="1" literal="READWRITE"/>
+    <eLiterals name="LOCKED" value="2" literal="LOCKED"/>
+    <eLiterals name="READWRITELOCKED" value="3" literal="READWRITELOCKED"/>
+    <eLiterals name="READONLYLOCKED" value="4" literal="READONLYLOCKED"/>
+    <eLiterals name="READONLY" value="5" literal="READONLY"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcStructuralCurveTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="CABLE" value="2" literal="CABLE"/>
-    <eLiterals name="TENSION_MEMBER" value="3" literal="TENSION_MEMBER"/>
-    <eLiterals name="COMPRESSION_MEMBER" value="4" literal="COMPRESSION_MEMBER"/>
-    <eLiterals name="PIN_JOINED_MEMBER" value="5" literal="PIN_JOINED_MEMBER"/>
-    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
-    <eLiterals name="RIGID_JOINED_MEMBER" value="7" literal="RIGID_JOINED_MEMBER"/>
+    <eLiterals name="PIN_JOINED_MEMBER" value="1" literal="PIN_JOINED_MEMBER"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="CABLE" value="3" literal="CABLE"/>
+    <eLiterals name="RIGID_JOINED_MEMBER" value="4" literal="RIGID_JOINED_MEMBER"/>
+    <eLiterals name="COMPRESSION_MEMBER" value="5" literal="COMPRESSION_MEMBER"/>
+    <eLiterals name="TENSION_MEMBER" value="6" literal="TENSION_MEMBER"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcStructuralSurfaceTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="SHELL" value="1" literal="SHELL"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="MEMBRANE_ELEMENT" value="3" literal="MEMBRANE_ELEMENT"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="BENDING_ELEMENT" value="5" literal="BENDING_ELEMENT"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="BENDING_ELEMENT" value="2" literal="BENDING_ELEMENT"/>
+    <eLiterals name="SHELL" value="3" literal="SHELL"/>
+    <eLiterals name="MEMBRANE_ELEMENT" value="4" literal="MEMBRANE_ELEMENT"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSurfaceSide">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="BOTH" value="1" literal="BOTH"/>
-    <eLiterals name="POSITIVE" value="2" literal="POSITIVE"/>
-    <eLiterals name="NEGATIVE" value="3" literal="NEGATIVE"/>
+    <eLiterals name="POSITIVE" value="1" literal="POSITIVE"/>
+    <eLiterals name="NEGATIVE" value="2" literal="NEGATIVE"/>
+    <eLiterals name="BOTH" value="3" literal="BOTH"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSurfaceTextureEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="OPACITY" value="1" literal="OPACITY"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="SELFILLUMINATION" value="3" literal="SELFILLUMINATION"/>
-    <eLiterals name="REFLECTION" value="4" literal="REFLECTION"/>
-    <eLiterals name="TEXTURE" value="5" literal="TEXTURE"/>
-    <eLiterals name="SPECULAR" value="6" literal="SPECULAR"/>
-    <eLiterals name="BUMP" value="7" literal="BUMP"/>
+    <eLiterals name="REFLECTION" value="1" literal="REFLECTION"/>
+    <eLiterals name="TEXTURE" value="2" literal="TEXTURE"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="OPACITY" value="4" literal="OPACITY"/>
+    <eLiterals name="SHININESS" value="5" literal="SHININESS"/>
+    <eLiterals name="BUMP" value="6" literal="BUMP"/>
+    <eLiterals name="SPECULAR" value="7" literal="SPECULAR"/>
     <eLiterals name="TRANSPARENCYMAP" value="8" literal="TRANSPARENCYMAP"/>
-    <eLiterals name="SHININESS" value="9" literal="SHININESS"/>
+    <eLiterals name="SELFILLUMINATION" value="9" literal="SELFILLUMINATION"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcSwitchingDeviceTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="CONTACTOR" value="2" literal="CONTACTOR"/>
-    <eLiterals name="SWITCHDISCONNECTOR" value="3" literal="SWITCHDISCONNECTOR"/>
+    <eLiterals name="TOGGLESWITCH" value="2" literal="TOGGLESWITCH"/>
+    <eLiterals name="CONTACTOR" value="3" literal="CONTACTOR"/>
     <eLiterals name="STARTER" value="4" literal="STARTER"/>
     <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
     <eLiterals name="EMERGENCYSTOP" value="6" literal="EMERGENCYSTOP"/>
-    <eLiterals name="TOGGLESWITCH" value="7" literal="TOGGLESWITCH"/>
+    <eLiterals name="SWITCHDISCONNECTOR" value="7" literal="SWITCHDISCONNECTOR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcTankTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="PREFORMED" value="1" literal="PREFORMED"/>
+    <eLiterals name="PRESSUREVESSEL" value="1" literal="PRESSUREVESSEL"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="PRESSUREVESSEL" value="3" literal="PRESSUREVESSEL"/>
-    <eLiterals name="SECTIONAL" value="4" literal="SECTIONAL"/>
-    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
-    <eLiterals name="EXPANSION" value="6" literal="EXPANSION"/>
+    <eLiterals name="SECTIONAL" value="3" literal="SECTIONAL"/>
+    <eLiterals name="PREFORMED" value="4" literal="PREFORMED"/>
+    <eLiterals name="EXPANSION" value="5" literal="EXPANSION"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcTendonTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="COATED" value="1" literal="COATED"/>
     <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="WIRE" value="3" literal="WIRE"/>
-    <eLiterals name="STRAND" value="4" literal="STRAND"/>
-    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
-    <eLiterals name="BAR" value="6" literal="BAR"/>
+    <eLiterals name="BAR" value="3" literal="BAR"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="WIRE" value="5" literal="WIRE"/>
+    <eLiterals name="STRAND" value="6" literal="STRAND"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcTextPath">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="RIGHT" value="1" literal="RIGHT"/>
-    <eLiterals name="DOWN" value="2" literal="DOWN"/>
-    <eLiterals name="UP" value="3" literal="UP"/>
-    <eLiterals name="LEFT" value="4" literal="LEFT"/>
+    <eLiterals name="DOWN" value="1" literal="DOWN"/>
+    <eLiterals name="LEFT" value="2" literal="LEFT"/>
+    <eLiterals name="RIGHT" value="3" literal="RIGHT"/>
+    <eLiterals name="UP" value="4" literal="UP"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcThermalLoadSourceEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="DRYBULBTEMPERATURE" value="1" literal="DRYBULBTEMPERATURE"/>
-    <eLiterals name="VENTILATIONINDOORAIR" value="2" literal="VENTILATIONINDOORAIR"/>
-    <eLiterals name="RECIRCULATEDAIR" value="3" literal="RECIRCULATEDAIR"/>
-    <eLiterals name="NOTDEFINED" value="4" literal="NOTDEFINED"/>
-    <eLiterals name="RELATIVEHUMIDITY" value="5" literal="RELATIVEHUMIDITY"/>
-    <eLiterals name="EXHAUSTAIR" value="6" literal="EXHAUSTAIR"/>
-    <eLiterals name="VENTILATIONOUTSIDEAIR" value="7" literal="VENTILATIONOUTSIDEAIR"/>
-    <eLiterals name="PEOPLE" value="8" literal="PEOPLE"/>
-    <eLiterals name="INFILTRATION" value="9" literal="INFILTRATION"/>
-    <eLiterals name="USERDEFINED" value="10" literal="USERDEFINED"/>
-    <eLiterals name="EQUIPMENT" value="11" literal="EQUIPMENT"/>
-    <eLiterals name="AIREXCHANGERATE" value="12" literal="AIREXCHANGERATE"/>
-    <eLiterals name="LIGHTING" value="13" literal="LIGHTING"/>
+    <eLiterals name="EXHAUSTAIR" value="1" literal="EXHAUSTAIR"/>
+    <eLiterals name="DRYBULBTEMPERATURE" value="2" literal="DRYBULBTEMPERATURE"/>
+    <eLiterals name="LIGHTING" value="3" literal="LIGHTING"/>
+    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="VENTILATIONINDOORAIR" value="5" literal="VENTILATIONINDOORAIR"/>
+    <eLiterals name="INFILTRATION" value="6" literal="INFILTRATION"/>
+    <eLiterals name="EQUIPMENT" value="7" literal="EQUIPMENT"/>
+    <eLiterals name="RECIRCULATEDAIR" value="8" literal="RECIRCULATEDAIR"/>
+    <eLiterals name="NOTDEFINED" value="9" literal="NOTDEFINED"/>
+    <eLiterals name="RELATIVEHUMIDITY" value="10" literal="RELATIVEHUMIDITY"/>
+    <eLiterals name="VENTILATIONOUTSIDEAIR" value="11" literal="VENTILATIONOUTSIDEAIR"/>
+    <eLiterals name="PEOPLE" value="12" literal="PEOPLE"/>
+    <eLiterals name="AIREXCHANGERATE" value="13" literal="AIREXCHANGERATE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcThermalLoadTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="RADIANT" value="2" literal="RADIANT"/>
+    <eLiterals name="SENSIBLE" value="2" literal="SENSIBLE"/>
     <eLiterals name="LATENT" value="3" literal="LATENT"/>
-    <eLiterals name="SENSIBLE" value="4" literal="SENSIBLE"/>
+    <eLiterals name="RADIANT" value="4" literal="RADIANT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcTimeSeriesDataTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="CONTINUOUS" value="2" literal="CONTINUOUS"/>
-    <eLiterals name="DISCRETE" value="3" literal="DISCRETE"/>
-    <eLiterals name="DISCRETEBINARY" value="4" literal="DISCRETEBINARY"/>
+    <eLiterals name="DISCRETEBINARY" value="1" literal="DISCRETEBINARY"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="PIECEWISECONSTANT" value="3" literal="PIECEWISECONSTANT"/>
+    <eLiterals name="DISCRETE" value="4" literal="DISCRETE"/>
     <eLiterals name="PIECEWISEBINARY" value="5" literal="PIECEWISEBINARY"/>
-    <eLiterals name="PIECEWISECONSTANT" value="6" literal="PIECEWISECONSTANT"/>
-    <eLiterals name="PIECEWISECONTINUOUS" value="7" literal="PIECEWISECONTINUOUS"/>
+    <eLiterals name="PIECEWISECONTINUOUS" value="6" literal="PIECEWISECONTINUOUS"/>
+    <eLiterals name="CONTINUOUS" value="7" literal="CONTINUOUS"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcTimeSeriesScheduleTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
     <eLiterals name="WEEKLY" value="2" literal="WEEKLY"/>
-    <eLiterals name="MONTHLY" value="3" literal="MONTHLY"/>
+    <eLiterals name="ANNUAL" value="3" literal="ANNUAL"/>
     <eLiterals name="DAILY" value="4" literal="DAILY"/>
     <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
-    <eLiterals name="ANNUAL" value="6" literal="ANNUAL"/>
+    <eLiterals name="MONTHLY" value="6" literal="MONTHLY"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcTransformerTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="FREQUENCY" value="1" literal="FREQUENCY"/>
-    <eLiterals name="VOLTAGE" value="2" literal="VOLTAGE"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="VOLTAGE" value="1" literal="VOLTAGE"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="FREQUENCY" value="3" literal="FREQUENCY"/>
     <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
     <eLiterals name="CURRENT" value="5" literal="CURRENT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcTransitionCode">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="CONTSAMEGRADIENT" value="1" literal="CONTSAMEGRADIENT"/>
+    <eLiterals name="DISCONTINUOUS" value="1" literal="DISCONTINUOUS"/>
     <eLiterals name="CONTSAMEGRADIENTSAMECURVATURE" value="2" literal="CONTSAMEGRADIENTSAMECURVATURE"/>
     <eLiterals name="CONTINUOUS" value="3" literal="CONTINUOUS"/>
-    <eLiterals name="DISCONTINUOUS" value="4" literal="DISCONTINUOUS"/>
+    <eLiterals name="CONTSAMEGRADIENT" value="4" literal="CONTSAMEGRADIENT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcTransportElementTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="ESCALATOR" value="2" literal="ESCALATOR"/>
-    <eLiterals name="MOVINGWALKWAY" value="3" literal="MOVINGWALKWAY"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
+    <eLiterals name="MOVINGWALKWAY" value="1" literal="MOVINGWALKWAY"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
+    <eLiterals name="ESCALATOR" value="4" literal="ESCALATOR"/>
     <eLiterals name="ELEVATOR" value="5" literal="ELEVATOR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcTrimmingPreference">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="CARTESIAN" value="1" literal="CARTESIAN"/>
-    <eLiterals name="UNSPECIFIED" value="2" literal="UNSPECIFIED"/>
+    <eLiterals name="UNSPECIFIED" value="1" literal="UNSPECIFIED"/>
+    <eLiterals name="CARTESIAN" value="2" literal="CARTESIAN"/>
     <eLiterals name="PARAMETER" value="3" literal="PARAMETER"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcTubeBundleTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="FINNED" value="1" literal="FINNED"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="USERDEFINED" value="2" literal="USERDEFINED"/>
+    <eLiterals name="FINNED" value="3" literal="FINNED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcUnitEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="ELECTRICRESISTANCEUNIT" value="1" literal="ELECTRICRESISTANCEUNIT"/>
-    <eLiterals name="ELECTRICCURRENTUNIT" value="2" literal="ELECTRICCURRENTUNIT"/>
-    <eLiterals name="ILLUMINANCEUNIT" value="3" literal="ILLUMINANCEUNIT"/>
-    <eLiterals name="AREAUNIT" value="4" literal="AREAUNIT"/>
-    <eLiterals name="FREQUENCYUNIT" value="5" literal="FREQUENCYUNIT"/>
-    <eLiterals name="TIMEUNIT" value="6" literal="TIMEUNIT"/>
-    <eLiterals name="ELECTRICCHARGEUNIT" value="7" literal="ELECTRICCHARGEUNIT"/>
-    <eLiterals name="FORCEUNIT" value="8" literal="FORCEUNIT"/>
-    <eLiterals name="RADIOACTIVITYUNIT" value="9" literal="RADIOACTIVITYUNIT"/>
-    <eLiterals name="LENGTHUNIT" value="10" literal="LENGTHUNIT"/>
-    <eLiterals name="DOSEEQUIVALENTUNIT" value="11" literal="DOSEEQUIVALENTUNIT"/>
-    <eLiterals name="INDUCTANCEUNIT" value="12" literal="INDUCTANCEUNIT"/>
-    <eLiterals name="MAGNETICFLUXDENSITYUNIT" value="13" literal="MAGNETICFLUXDENSITYUNIT"/>
-    <eLiterals name="LUMINOUSINTENSITYUNIT" value="14" literal="LUMINOUSINTENSITYUNIT"/>
-    <eLiterals name="LUMINOUSFLUXUNIT" value="15" literal="LUMINOUSFLUXUNIT"/>
-    <eLiterals name="VOLUMEUNIT" value="16" literal="VOLUMEUNIT"/>
+    <eLiterals name="LENGTHUNIT" value="1" literal="LENGTHUNIT"/>
+    <eLiterals name="SOLIDANGLEUNIT" value="2" literal="SOLIDANGLEUNIT"/>
+    <eLiterals name="RADIOACTIVITYUNIT" value="3" literal="RADIOACTIVITYUNIT"/>
+    <eLiterals name="ENERGYUNIT" value="4" literal="ENERGYUNIT"/>
+    <eLiterals name="AMOUNTOFSUBSTANCEUNIT" value="5" literal="AMOUNTOFSUBSTANCEUNIT"/>
+    <eLiterals name="LUMINOUSFLUXUNIT" value="6" literal="LUMINOUSFLUXUNIT"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="FREQUENCYUNIT" value="8" literal="FREQUENCYUNIT"/>
+    <eLiterals name="LUMINOUSINTENSITYUNIT" value="9" literal="LUMINOUSINTENSITYUNIT"/>
+    <eLiterals name="DOSEEQUIVALENTUNIT" value="10" literal="DOSEEQUIVALENTUNIT"/>
+    <eLiterals name="ABSORBEDDOSEUNIT" value="11" literal="ABSORBEDDOSEUNIT"/>
+    <eLiterals name="ELECTRICCAPACITANCEUNIT" value="12" literal="ELECTRICCAPACITANCEUNIT"/>
+    <eLiterals name="ELECTRICRESISTANCEUNIT" value="13" literal="ELECTRICRESISTANCEUNIT"/>
+    <eLiterals name="PRESSUREUNIT" value="14" literal="PRESSUREUNIT"/>
+    <eLiterals name="ELECTRICVOLTAGEUNIT" value="15" literal="ELECTRICVOLTAGEUNIT"/>
+    <eLiterals name="MAGNETICFLUXDENSITYUNIT" value="16" literal="MAGNETICFLUXDENSITYUNIT"/>
     <eLiterals name="ELECTRICCONDUCTANCEUNIT" value="17" literal="ELECTRICCONDUCTANCEUNIT"/>
-    <eLiterals name="AMOUNTOFSUBSTANCEUNIT" value="18" literal="AMOUNTOFSUBSTANCEUNIT"/>
-    <eLiterals name="ENERGYUNIT" value="19" literal="ENERGYUNIT"/>
-    <eLiterals name="POWERUNIT" value="20" literal="POWERUNIT"/>
-    <eLiterals name="SOLIDANGLEUNIT" value="21" literal="SOLIDANGLEUNIT"/>
-    <eLiterals name="ELECTRICVOLTAGEUNIT" value="22" literal="ELECTRICVOLTAGEUNIT"/>
-    <eLiterals name="ELECTRICCAPACITANCEUNIT" value="23" literal="ELECTRICCAPACITANCEUNIT"/>
-    <eLiterals name="PRESSUREUNIT" value="24" literal="PRESSUREUNIT"/>
-    <eLiterals name="THERMODYNAMICTEMPERATUREUNIT" value="25" literal="THERMODYNAMICTEMPERATUREUNIT"/>
+    <eLiterals name="ILLUMINANCEUNIT" value="18" literal="ILLUMINANCEUNIT"/>
+    <eLiterals name="INDUCTANCEUNIT" value="19" literal="INDUCTANCEUNIT"/>
+    <eLiterals name="ELECTRICCHARGEUNIT" value="20" literal="ELECTRICCHARGEUNIT"/>
+    <eLiterals name="ELECTRICCURRENTUNIT" value="21" literal="ELECTRICCURRENTUNIT"/>
+    <eLiterals name="POWERUNIT" value="22" literal="POWERUNIT"/>
+    <eLiterals name="THERMODYNAMICTEMPERATUREUNIT" value="23" literal="THERMODYNAMICTEMPERATUREUNIT"/>
+    <eLiterals name="VOLUMEUNIT" value="24" literal="VOLUMEUNIT"/>
+    <eLiterals name="MAGNETICFLUXUNIT" value="25" literal="MAGNETICFLUXUNIT"/>
     <eLiterals name="MASSUNIT" value="26" literal="MASSUNIT"/>
-    <eLiterals name="USERDEFINED" value="27" literal="USERDEFINED"/>
-    <eLiterals name="ABSORBEDDOSEUNIT" value="28" literal="ABSORBEDDOSEUNIT"/>
-    <eLiterals name="MAGNETICFLUXUNIT" value="29" literal="MAGNETICFLUXUNIT"/>
+    <eLiterals name="TIMEUNIT" value="27" literal="TIMEUNIT"/>
+    <eLiterals name="AREAUNIT" value="28" literal="AREAUNIT"/>
+    <eLiterals name="FORCEUNIT" value="29" literal="FORCEUNIT"/>
     <eLiterals name="PLANEANGLEUNIT" value="30" literal="PLANEANGLEUNIT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcUnitaryEquipmentTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="SPLITSYSTEM" value="1" literal="SPLITSYSTEM"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="ROOFTOPUNIT" value="3" literal="ROOFTOPUNIT"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="AIRCONDITIONINGUNIT" value="5" literal="AIRCONDITIONINGUNIT"/>
-    <eLiterals name="AIRHANDLER" value="6" literal="AIRHANDLER"/>
+    <eLiterals name="AIRHANDLER" value="1" literal="AIRHANDLER"/>
+    <eLiterals name="ROOFTOPUNIT" value="2" literal="ROOFTOPUNIT"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="SPLITSYSTEM" value="4" literal="SPLITSYSTEM"/>
+    <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
+    <eLiterals name="AIRCONDITIONINGUNIT" value="6" literal="AIRCONDITIONINGUNIT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcValveTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="FAUCET" value="1" literal="FAUCET"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="ISOLATING" value="3" literal="ISOLATING"/>
-    <eLiterals name="COMMISSIONING" value="4" literal="COMMISSIONING"/>
-    <eLiterals name="DOUBLECHECK" value="5" literal="DOUBLECHECK"/>
-    <eLiterals name="STOPCOCK" value="6" literal="STOPCOCK"/>
-    <eLiterals name="PRESSUREREDUCING" value="7" literal="PRESSUREREDUCING"/>
-    <eLiterals name="STEAMTRAP" value="8" literal="STEAMTRAP"/>
-    <eLiterals name="GASTAP" value="9" literal="GASTAP"/>
-    <eLiterals name="DOUBLEREGULATING" value="10" literal="DOUBLEREGULATING"/>
-    <eLiterals name="ANTIVACUUM" value="11" literal="ANTIVACUUM"/>
-    <eLiterals name="SAFETYCUTOFF" value="12" literal="SAFETYCUTOFF"/>
-    <eLiterals name="REGULATING" value="13" literal="REGULATING"/>
-    <eLiterals name="CHANGEOVER" value="14" literal="CHANGEOVER"/>
-    <eLiterals name="CHECK" value="15" literal="CHECK"/>
-    <eLiterals name="DIVERTING" value="16" literal="DIVERTING"/>
-    <eLiterals name="DRAWOFFCOCK" value="17" literal="DRAWOFFCOCK"/>
-    <eLiterals name="PRESSURERELIEF" value="18" literal="PRESSURERELIEF"/>
-    <eLiterals name="MIXING" value="19" literal="MIXING"/>
-    <eLiterals name="FLUSHING" value="20" literal="FLUSHING"/>
-    <eLiterals name="USERDEFINED" value="21" literal="USERDEFINED"/>
+    <eLiterals name="COMMISSIONING" value="1" literal="COMMISSIONING"/>
+    <eLiterals name="CHANGEOVER" value="2" literal="CHANGEOVER"/>
+    <eLiterals name="DIVERTING" value="3" literal="DIVERTING"/>
+    <eLiterals name="GASTAP" value="4" literal="GASTAP"/>
+    <eLiterals name="ANTIVACUUM" value="5" literal="ANTIVACUUM"/>
+    <eLiterals name="USERDEFINED" value="6" literal="USERDEFINED"/>
+    <eLiterals name="AIRRELEASE" value="7" literal="AIRRELEASE"/>
+    <eLiterals name="REGULATING" value="8" literal="REGULATING"/>
+    <eLiterals name="PRESSUREREDUCING" value="9" literal="PRESSUREREDUCING"/>
+    <eLiterals name="STEAMTRAP" value="10" literal="STEAMTRAP"/>
+    <eLiterals name="DOUBLECHECK" value="11" literal="DOUBLECHECK"/>
+    <eLiterals name="NOTDEFINED" value="12" literal="NOTDEFINED"/>
+    <eLiterals name="MIXING" value="13" literal="MIXING"/>
+    <eLiterals name="PRESSURERELIEF" value="14" literal="PRESSURERELIEF"/>
+    <eLiterals name="STOPCOCK" value="15" literal="STOPCOCK"/>
+    <eLiterals name="FLUSHING" value="16" literal="FLUSHING"/>
+    <eLiterals name="ISOLATING" value="17" literal="ISOLATING"/>
+    <eLiterals name="FAUCET" value="18" literal="FAUCET"/>
+    <eLiterals name="SAFETYCUTOFF" value="19" literal="SAFETYCUTOFF"/>
+    <eLiterals name="CHECK" value="20" literal="CHECK"/>
+    <eLiterals name="DRAWOFFCOCK" value="21" literal="DRAWOFFCOCK"/>
     <eLiterals name="GASCOCK" value="22" literal="GASCOCK"/>
-    <eLiterals name="AIRRELEASE" value="23" literal="AIRRELEASE"/>
+    <eLiterals name="DOUBLEREGULATING" value="23" literal="DOUBLEREGULATING"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcVibrationIsolatorTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="SPRING" value="2" literal="SPRING"/>
+    <eLiterals name="SPRING" value="1" literal="SPRING"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
     <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
     <eLiterals name="COMPRESSION" value="4" literal="COMPRESSION"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcWallTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="PLUMBINGWALL" value="2" literal="PLUMBINGWALL"/>
-    <eLiterals name="SHEAR" value="3" literal="SHEAR"/>
-    <eLiterals name="STANDARD" value="4" literal="STANDARD"/>
+    <eLiterals name="SHEAR" value="1" literal="SHEAR"/>
+    <eLiterals name="ELEMENTEDWALL" value="2" literal="ELEMENTEDWALL"/>
+    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
+    <eLiterals name="POLYGONAL" value="4" literal="POLYGONAL"/>
     <eLiterals name="USERDEFINED" value="5" literal="USERDEFINED"/>
-    <eLiterals name="POLYGONAL" value="6" literal="POLYGONAL"/>
-    <eLiterals name="ELEMENTEDWALL" value="7" literal="ELEMENTEDWALL"/>
+    <eLiterals name="STANDARD" value="6" literal="STANDARD"/>
+    <eLiterals name="PLUMBINGWALL" value="7" literal="PLUMBINGWALL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcWasteTerminalTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="PETROLINTERCEPTOR" value="1" literal="PETROLINTERCEPTOR"/>
-    <eLiterals name="GULLYTRAP" value="2" literal="GULLYTRAP"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="WASTETRAP" value="4" literal="WASTETRAP"/>
-    <eLiterals name="FLOORTRAP" value="5" literal="FLOORTRAP"/>
-    <eLiterals name="ROOFDRAIN" value="6" literal="ROOFDRAIN"/>
-    <eLiterals name="GREASEINTERCEPTOR" value="7" literal="GREASEINTERCEPTOR"/>
-    <eLiterals name="GULLYSUMP" value="8" literal="GULLYSUMP"/>
-    <eLiterals name="USERDEFINED" value="9" literal="USERDEFINED"/>
-    <eLiterals name="WASTEDISPOSALUNIT" value="10" literal="WASTEDISPOSALUNIT"/>
-    <eLiterals name="OILINTERCEPTOR" value="11" literal="OILINTERCEPTOR"/>
-    <eLiterals name="FLOORWASTE" value="12" literal="FLOORWASTE"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="GREASEINTERCEPTOR" value="2" literal="GREASEINTERCEPTOR"/>
+    <eLiterals name="WASTEDISPOSALUNIT" value="3" literal="WASTEDISPOSALUNIT"/>
+    <eLiterals name="GULLYSUMP" value="4" literal="GULLYSUMP"/>
+    <eLiterals name="ROOFDRAIN" value="5" literal="ROOFDRAIN"/>
+    <eLiterals name="WASTETRAP" value="6" literal="WASTETRAP"/>
+    <eLiterals name="USERDEFINED" value="7" literal="USERDEFINED"/>
+    <eLiterals name="FLOORWASTE" value="8" literal="FLOORWASTE"/>
+    <eLiterals name="PETROLINTERCEPTOR" value="9" literal="PETROLINTERCEPTOR"/>
+    <eLiterals name="FLOORTRAP" value="10" literal="FLOORTRAP"/>
+    <eLiterals name="GULLYTRAP" value="11" literal="GULLYTRAP"/>
+    <eLiterals name="OILINTERCEPTOR" value="12" literal="OILINTERCEPTOR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcWindowPanelOperationEnum">
     <eLiterals name="NULL" literal="NULL"/>
     <eLiterals name="SIDEHUNGLEFTHAND" value="1" literal="SIDEHUNGLEFTHAND"/>
-    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
-    <eLiterals name="TOPHUNG" value="3" literal="TOPHUNG"/>
-    <eLiterals name="TILTANDTURNRIGHTHAND" value="4" literal="TILTANDTURNRIGHTHAND"/>
-    <eLiterals name="PIVOTHORIZONTAL" value="5" literal="PIVOTHORIZONTAL"/>
-    <eLiterals name="SLIDINGHORIZONTAL" value="6" literal="SLIDINGHORIZONTAL"/>
-    <eLiterals name="PIVOTVERTICAL" value="7" literal="PIVOTVERTICAL"/>
-    <eLiterals name="REMOVABLECASEMENT" value="8" literal="REMOVABLECASEMENT"/>
-    <eLiterals name="OTHEROPERATION" value="9" literal="OTHEROPERATION"/>
-    <eLiterals name="SIDEHUNGRIGHTHAND" value="10" literal="SIDEHUNGRIGHTHAND"/>
+    <eLiterals name="FIXEDCASEMENT" value="2" literal="FIXEDCASEMENT"/>
+    <eLiterals name="TILTANDTURNRIGHTHAND" value="3" literal="TILTANDTURNRIGHTHAND"/>
+    <eLiterals name="NOTDEFINED" value="4" literal="NOTDEFINED"/>
+    <eLiterals name="TILTANDTURNLEFTHAND" value="5" literal="TILTANDTURNLEFTHAND"/>
+    <eLiterals name="OTHEROPERATION" value="6" literal="OTHEROPERATION"/>
+    <eLiterals name="PIVOTHORIZONTAL" value="7" literal="PIVOTHORIZONTAL"/>
+    <eLiterals name="PIVOTVERTICAL" value="8" literal="PIVOTVERTICAL"/>
+    <eLiterals name="SLIDINGHORIZONTAL" value="9" literal="SLIDINGHORIZONTAL"/>
+    <eLiterals name="TOPHUNG" value="10" literal="TOPHUNG"/>
     <eLiterals name="BOTTOMHUNG" value="11" literal="BOTTOMHUNG"/>
     <eLiterals name="SLIDINGVERTICAL" value="12" literal="SLIDINGVERTICAL"/>
-    <eLiterals name="FIXEDCASEMENT" value="13" literal="FIXEDCASEMENT"/>
-    <eLiterals name="TILTANDTURNLEFTHAND" value="14" literal="TILTANDTURNLEFTHAND"/>
+    <eLiterals name="SIDEHUNGRIGHTHAND" value="13" literal="SIDEHUNGRIGHTHAND"/>
+    <eLiterals name="REMOVABLECASEMENT" value="14" literal="REMOVABLECASEMENT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcWindowPanelPositionEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="BOTTOM" value="1" literal="BOTTOM"/>
-    <eLiterals name="RIGHT" value="2" literal="RIGHT"/>
-    <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="TOP" value="4" literal="TOP"/>
-    <eLiterals name="LEFT" value="5" literal="LEFT"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="LEFT" value="2" literal="LEFT"/>
+    <eLiterals name="TOP" value="3" literal="TOP"/>
+    <eLiterals name="RIGHT" value="4" literal="RIGHT"/>
+    <eLiterals name="BOTTOM" value="5" literal="BOTTOM"/>
     <eLiterals name="MIDDLE" value="6" literal="MIDDLE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcWindowStyleConstructionEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="ALUMINIUM_WOOD" value="1" literal="ALUMINIUM_WOOD"/>
+    <eLiterals name="ALUMINIUM" value="1" literal="ALUMINIUM"/>
     <eLiterals name="HIGH_GRADE_STEEL" value="2" literal="HIGH_GRADE_STEEL"/>
     <eLiterals name="NOTDEFINED" value="3" literal="NOTDEFINED"/>
-    <eLiterals name="OTHER_CONSTRUCTION" value="4" literal="OTHER_CONSTRUCTION"/>
-    <eLiterals name="PLASTIC" value="5" literal="PLASTIC"/>
-    <eLiterals name="WOOD" value="6" literal="WOOD"/>
-    <eLiterals name="ALUMINIUM" value="7" literal="ALUMINIUM"/>
-    <eLiterals name="STEEL" value="8" literal="STEEL"/>
+    <eLiterals name="STEEL" value="4" literal="STEEL"/>
+    <eLiterals name="WOOD" value="5" literal="WOOD"/>
+    <eLiterals name="ALUMINIUM_WOOD" value="6" literal="ALUMINIUM_WOOD"/>
+    <eLiterals name="OTHER_CONSTRUCTION" value="7" literal="OTHER_CONSTRUCTION"/>
+    <eLiterals name="PLASTIC" value="8" literal="PLASTIC"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcWindowStyleOperationEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="TRIPLE_PANEL_RIGHT" value="1" literal="TRIPLE_PANEL_RIGHT"/>
-    <eLiterals name="TRIPLE_PANEL_VERTICAL" value="2" literal="TRIPLE_PANEL_VERTICAL"/>
-    <eLiterals name="TRIPLE_PANEL_LEFT" value="3" literal="TRIPLE_PANEL_LEFT"/>
-    <eLiterals name="NOTDEFINED" value="4" literal="NOTDEFINED"/>
-    <eLiterals name="TRIPLE_PANEL_BOTTOM" value="5" literal="TRIPLE_PANEL_BOTTOM"/>
+    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
+    <eLiterals name="DOUBLE_PANEL_HORIZONTAL" value="2" literal="DOUBLE_PANEL_HORIZONTAL"/>
+    <eLiterals name="TRIPLE_PANEL_BOTTOM" value="3" literal="TRIPLE_PANEL_BOTTOM"/>
+    <eLiterals name="TRIPLE_PANEL_LEFT" value="4" literal="TRIPLE_PANEL_LEFT"/>
+    <eLiterals name="DOUBLE_PANEL_VERTICAL" value="5" literal="DOUBLE_PANEL_VERTICAL"/>
     <eLiterals name="TRIPLE_PANEL_HORIZONTAL" value="6" literal="TRIPLE_PANEL_HORIZONTAL"/>
-    <eLiterals name="TRIPLE_PANEL_TOP" value="7" literal="TRIPLE_PANEL_TOP"/>
-    <eLiterals name="DOUBLE_PANEL_VERTICAL" value="8" literal="DOUBLE_PANEL_VERTICAL"/>
-    <eLiterals name="SINGLE_PANEL" value="9" literal="SINGLE_PANEL"/>
-    <eLiterals name="USERDEFINED" value="10" literal="USERDEFINED"/>
-    <eLiterals name="DOUBLE_PANEL_HORIZONTAL" value="11" literal="DOUBLE_PANEL_HORIZONTAL"/>
+    <eLiterals name="SINGLE_PANEL" value="7" literal="SINGLE_PANEL"/>
+    <eLiterals name="TRIPLE_PANEL_RIGHT" value="8" literal="TRIPLE_PANEL_RIGHT"/>
+    <eLiterals name="USERDEFINED" value="9" literal="USERDEFINED"/>
+    <eLiterals name="TRIPLE_PANEL_VERTICAL" value="10" literal="TRIPLE_PANEL_VERTICAL"/>
+    <eLiterals name="TRIPLE_PANEL_TOP" value="11" literal="TRIPLE_PANEL_TOP"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IfcWorkControlTypeEnum">
     <eLiterals name="NULL" literal="NULL"/>
-    <eLiterals name="NOTDEFINED" value="1" literal="NOTDEFINED"/>
-    <eLiterals name="BASELINE" value="2" literal="BASELINE"/>
-    <eLiterals name="PLANNED" value="3" literal="PLANNED"/>
-    <eLiterals name="USERDEFINED" value="4" literal="USERDEFINED"/>
-    <eLiterals name="ACTUAL" value="5" literal="ACTUAL"/>
+    <eLiterals name="BASELINE" value="1" literal="BASELINE"/>
+    <eLiterals name="NOTDEFINED" value="2" literal="NOTDEFINED"/>
+    <eLiterals name="USERDEFINED" value="3" literal="USERDEFINED"/>
+    <eLiterals name="ACTUAL" value="4" literal="ACTUAL"/>
+    <eLiterals name="PLANNED" value="5" literal="PLANNED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcComplexNumber" eSuperTypes="//IfcMeasureValue">
     <eAnnotations source="wrapped"/>

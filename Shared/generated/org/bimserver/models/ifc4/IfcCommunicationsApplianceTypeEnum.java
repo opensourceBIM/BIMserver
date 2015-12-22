@@ -43,76 +43,6 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PRINTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRINTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRINTER(2, "PRINTER", "PRINTER"),
-
-	/**
-	 * The '<em><b>ROUTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROUTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROUTER(3, "ROUTER", "ROUTER"),
-
-	/**
-	 * The '<em><b>ANTENNA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ANTENNA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ANTENNA(4, "ANTENNA", "ANTENNA"),
-
-	/**
-	 * The '<em><b>SCANNER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SCANNER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SCANNER(5, "SCANNER", "SCANNER"),
-
-	/**
-	 * The '<em><b>NETWORKHUB</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NETWORKHUB_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NETWORKHUB(6, "NETWORKHUB", "NETWORKHUB"),
-
-	/**
-	 * The '<em><b>REPEATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REPEATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REPEATER(7, "REPEATER", "REPEATER"),
-
-	/**
 	 * The '<em><b>GATEWAY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,57 +50,7 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GATEWAY(8, "GATEWAY", "GATEWAY"),
-
-	/**
-	 * The '<em><b>MODEM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MODEM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MODEM(9, "MODEM", "MODEM"),
-
-	/**
-	 * The '<em><b>COMPUTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPUTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPUTER(10, "COMPUTER", "COMPUTER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(11, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>NETWORKBRIDGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NETWORKBRIDGE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NETWORKBRIDGE(12, "NETWORKBRIDGE", "NETWORKBRIDGE"),
-
-	/**
-	 * The '<em><b>FAX</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FAX_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FAX(13, "FAX", "FAX"),
+	GATEWAY(1, "GATEWAY", "GATEWAY"),
 
 	/**
 	 * The '<em><b>NETWORKAPPLIANCE</b></em>' literal object.
@@ -180,7 +60,103 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NETWORKAPPLIANCE(14, "NETWORKAPPLIANCE", "NETWORKAPPLIANCE");
+	NETWORKAPPLIANCE(2, "NETWORKAPPLIANCE", "NETWORKAPPLIANCE"), /**
+																	* The '<em><b>ROUTER</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #ROUTER_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	ROUTER(3, "ROUTER", "ROUTER"), /**
+									* The '<em><b>MODEM</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #MODEM_VALUE
+									* @generated
+									* @ordered
+									*/
+	MODEM(4, "MODEM", "MODEM"), /**
+								* The '<em><b>USERDEFINED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #USERDEFINED_VALUE
+								* @generated
+								* @ordered
+								*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>ANTENNA</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #ANTENNA_VALUE
+													* @generated
+													* @ordered
+													*/
+	ANTENNA(6, "ANTENNA", "ANTENNA"), /**
+										* The '<em><b>SCANNER</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #SCANNER_VALUE
+										* @generated
+										* @ordered
+										*/
+	SCANNER(7, "SCANNER", "SCANNER"), /**
+										* The '<em><b>NETWORKHUB</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #NETWORKHUB_VALUE
+										* @generated
+										* @ordered
+										*/
+	NETWORKHUB(8, "NETWORKHUB", "NETWORKHUB"), /**
+												* The '<em><b>NETWORKBRIDGE</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #NETWORKBRIDGE_VALUE
+												* @generated
+												* @ordered
+												*/
+	NETWORKBRIDGE(9, "NETWORKBRIDGE", "NETWORKBRIDGE"), /**
+														* The '<em><b>NOTDEFINED</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #NOTDEFINED_VALUE
+														* @generated
+														* @ordered
+														*/
+	NOTDEFINED(10, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>PRINTER</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #PRINTER_VALUE
+												* @generated
+												* @ordered
+												*/
+	PRINTER(11, "PRINTER", "PRINTER"), /**
+										* The '<em><b>COMPUTER</b></em>' literal object.
+										* <!-- begin-user-doc -->
+										* <!-- end-user-doc -->
+										* @see #COMPUTER_VALUE
+										* @generated
+										* @ordered
+										*/
+	COMPUTER(12, "COMPUTER", "COMPUTER"), /**
+											* The '<em><b>REPEATER</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #REPEATER_VALUE
+											* @generated
+											* @ordered
+											*/
+	REPEATER(13, "REPEATER", "REPEATER"), /**
+											* The '<em><b>FAX</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #FAX_VALUE
+											* @generated
+											* @ordered
+											*/
+	FAX(14, "FAX", "FAX");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -198,34 +174,34 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * The '<em><b>GATEWAY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>GATEWAY</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #GATEWAY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 1;
+	public static final int GATEWAY_VALUE = 1;
 
 	/**
-	 * The '<em><b>PRINTER</b></em>' literal value.
+	 * The '<em><b>NETWORKAPPLIANCE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>PRINTER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NETWORKAPPLIANCE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PRINTER
+	 * @see #NETWORKAPPLIANCE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRINTER_VALUE = 2;
+	public static final int NETWORKAPPLIANCE_VALUE = 2;
 
 	/**
 	 * The '<em><b>ROUTER</b></em>' literal value.
@@ -243,81 +219,6 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	public static final int ROUTER_VALUE = 3;
 
 	/**
-	 * The '<em><b>ANTENNA</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ANTENNA</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ANTENNA
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ANTENNA_VALUE = 4;
-
-	/**
-	 * The '<em><b>SCANNER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SCANNER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SCANNER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SCANNER_VALUE = 5;
-
-	/**
-	 * The '<em><b>NETWORKHUB</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NETWORKHUB</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NETWORKHUB
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NETWORKHUB_VALUE = 6;
-
-	/**
-	 * The '<em><b>REPEATER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>REPEATER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #REPEATER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int REPEATER_VALUE = 7;
-
-	/**
-	 * The '<em><b>GATEWAY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GATEWAY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GATEWAY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GATEWAY_VALUE = 8;
-
-	/**
 	 * The '<em><b>MODEM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -330,22 +231,7 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MODEM_VALUE = 9;
-
-	/**
-	 * The '<em><b>COMPUTER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>COMPUTER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #COMPUTER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int COMPUTER_VALUE = 10;
+	public static final int MODEM_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -360,7 +246,52 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 11;
+	public static final int USERDEFINED_VALUE = 5;
+
+	/**
+	 * The '<em><b>ANTENNA</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ANTENNA</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ANTENNA
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ANTENNA_VALUE = 6;
+
+	/**
+	 * The '<em><b>SCANNER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SCANNER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SCANNER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SCANNER_VALUE = 7;
+
+	/**
+	 * The '<em><b>NETWORKHUB</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NETWORKHUB</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NETWORKHUB
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NETWORKHUB_VALUE = 8;
 
 	/**
 	 * The '<em><b>NETWORKBRIDGE</b></em>' literal value.
@@ -375,7 +306,67 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NETWORKBRIDGE_VALUE = 12;
+	public static final int NETWORKBRIDGE_VALUE = 9;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 10;
+
+	/**
+	 * The '<em><b>PRINTER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PRINTER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PRINTER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PRINTER_VALUE = 11;
+
+	/**
+	 * The '<em><b>COMPUTER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>COMPUTER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #COMPUTER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int COMPUTER_VALUE = 12;
+
+	/**
+	 * The '<em><b>REPEATER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>REPEATER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #REPEATER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int REPEATER_VALUE = 13;
 
 	/**
 	 * The '<em><b>FAX</b></em>' literal value.
@@ -390,22 +381,7 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FAX_VALUE = 13;
-
-	/**
-	 * The '<em><b>NETWORKAPPLIANCE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NETWORKAPPLIANCE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NETWORKAPPLIANCE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NETWORKAPPLIANCE_VALUE = 14;
+	public static final int FAX_VALUE = 14;
 
 	/**
 	 * An array of all the '<em><b>Ifc Communications Appliance Type Enum</b></em>' enumerators.
@@ -414,8 +390,8 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcCommunicationsApplianceTypeEnum[] VALUES_ARRAY = new IfcCommunicationsApplianceTypeEnum[] {
-			NULL, NOTDEFINED, PRINTER, ROUTER, ANTENNA, SCANNER, NETWORKHUB, REPEATER, GATEWAY, MODEM, COMPUTER,
-			USERDEFINED, NETWORKBRIDGE, FAX, NETWORKAPPLIANCE, };
+			NULL, GATEWAY, NETWORKAPPLIANCE, ROUTER, MODEM, USERDEFINED, ANTENNA, SCANNER, NETWORKHUB, NETWORKBRIDGE,
+			NOTDEFINED, PRINTER, COMPUTER, REPEATER, FAX, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Communications Appliance Type Enum</b></em>' enumerators.
@@ -474,34 +450,34 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
-		case PRINTER_VALUE:
-			return PRINTER;
+		case GATEWAY_VALUE:
+			return GATEWAY;
+		case NETWORKAPPLIANCE_VALUE:
+			return NETWORKAPPLIANCE;
 		case ROUTER_VALUE:
 			return ROUTER;
+		case MODEM_VALUE:
+			return MODEM;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
 		case ANTENNA_VALUE:
 			return ANTENNA;
 		case SCANNER_VALUE:
 			return SCANNER;
 		case NETWORKHUB_VALUE:
 			return NETWORKHUB;
-		case REPEATER_VALUE:
-			return REPEATER;
-		case GATEWAY_VALUE:
-			return GATEWAY;
-		case MODEM_VALUE:
-			return MODEM;
-		case COMPUTER_VALUE:
-			return COMPUTER;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
 		case NETWORKBRIDGE_VALUE:
 			return NETWORKBRIDGE;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
+		case PRINTER_VALUE:
+			return PRINTER;
+		case COMPUTER_VALUE:
+			return COMPUTER;
+		case REPEATER_VALUE:
+			return REPEATER;
 		case FAX_VALUE:
 			return FAX;
-		case NETWORKAPPLIANCE_VALUE:
-			return NETWORKAPPLIANCE;
 		}
 		return null;
 	}

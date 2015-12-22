@@ -43,16 +43,6 @@ public enum IfcVibrationIsolatorTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>SPRING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,15 @@ public enum IfcVibrationIsolatorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SPRING(2, "SPRING", "SPRING"),
+	SPRING(1, "SPRING", "SPRING"), /**
+									* The '<em><b>NOTDEFINED</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #NOTDEFINED_VALUE
+									* @generated
+									* @ordered
+									*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
@@ -98,21 +96,6 @@ public enum IfcVibrationIsolatorTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 1;
-
-	/**
 	 * The '<em><b>SPRING</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -125,7 +108,22 @@ public enum IfcVibrationIsolatorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPRING_VALUE = 2;
+	public static final int SPRING_VALUE = 1;
+
+	/**
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NOTDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -163,7 +161,8 @@ public enum IfcVibrationIsolatorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcVibrationIsolatorTypeEnum[] VALUES_ARRAY = new IfcVibrationIsolatorTypeEnum[] { NULL, NOTDEFINED, SPRING, USERDEFINED, COMPRESSION, };
+	private static final IfcVibrationIsolatorTypeEnum[] VALUES_ARRAY = new IfcVibrationIsolatorTypeEnum[] { NULL,
+			SPRING, NOTDEFINED, USERDEFINED, COMPRESSION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Vibration Isolator Type Enum</b></em>' enumerators.
@@ -171,7 +170,8 @@ public enum IfcVibrationIsolatorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcVibrationIsolatorTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcVibrationIsolatorTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Vibration Isolator Type Enum</b></em>' literal with the specified literal value.
@@ -221,10 +221,10 @@ public enum IfcVibrationIsolatorTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case SPRING_VALUE:
 			return SPRING;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
 		case COMPRESSION_VALUE:

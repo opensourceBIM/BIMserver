@@ -106,7 +106,8 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 * @generated
 	 */
 	public void setUserDefinedEnergySequence(String newUserDefinedEnergySequence) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE, newUserDefinedEnergySequence);
+		eSet(Ifc2x3tc1Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE,
+				newUserDefinedEnergySequence);
 	}
 
 	/**

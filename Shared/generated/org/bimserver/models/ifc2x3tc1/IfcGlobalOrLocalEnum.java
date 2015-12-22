@@ -113,7 +113,8 @@ public enum IfcGlobalOrLocalEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcGlobalOrLocalEnum[] VALUES_ARRAY = new IfcGlobalOrLocalEnum[] { NULL, LOCAL_COORDS, GLOBAL_COORDS, };
+	private static final IfcGlobalOrLocalEnum[] VALUES_ARRAY = new IfcGlobalOrLocalEnum[] { NULL, LOCAL_COORDS,
+			GLOBAL_COORDS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Global Or Local Enum</b></em>' enumerators.

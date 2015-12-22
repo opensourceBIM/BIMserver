@@ -43,16 +43,6 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>SECONDARY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SECONDARY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SECONDARY(1, "SECONDARY", "SECONDARY"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,15 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>SECONDARY</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #SECONDARY_VALUE
+												* @generated
+												* @ordered
+												*/
+	SECONDARY(2, "SECONDARY", "SECONDARY"),
 
 	/**
 	 * The '<em><b>PRIMARY</b></em>' literal object.
@@ -73,16 +71,6 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	PRIMARY(3, "PRIMARY", "PRIMARY"),
 
 	/**
-	 * The '<em><b>TERTIARY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TERTIARY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TERTIARY(4, "TERTIARY", "TERTIARY"),
-
-	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,7 +78,15 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>TERTIARY</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #TERTIARY_VALUE
+													* @generated
+													* @ordered
+													*/
+	TERTIARY(5, "TERTIARY", "TERTIARY"),
 
 	/**
 	 * The '<em><b>AUXILIARY</b></em>' literal object.
@@ -118,21 +114,6 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>SECONDARY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SECONDARY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SECONDARY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SECONDARY_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -145,7 +126,22 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
+
+	/**
+	 * The '<em><b>SECONDARY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SECONDARY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SECONDARY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SECONDARY_VALUE = 2;
 
 	/**
 	 * The '<em><b>PRIMARY</b></em>' literal value.
@@ -163,21 +159,6 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	public static final int PRIMARY_VALUE = 3;
 
 	/**
-	 * The '<em><b>TERTIARY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TERTIARY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TERTIARY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TERTIARY_VALUE = 4;
-
-	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -190,7 +171,22 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED_VALUE = 5;
+	public static final int USERDEFINED_VALUE = 4;
+
+	/**
+	 * The '<em><b>TERTIARY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TERTIARY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TERTIARY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TERTIARY_VALUE = 5;
 
 	/**
 	 * The '<em><b>AUXILIARY</b></em>' literal value.
@@ -213,7 +209,8 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEnergySequenceEnum[] VALUES_ARRAY = new IfcEnergySequenceEnum[] { NULL, SECONDARY, NOTDEFINED, PRIMARY, TERTIARY, USERDEFINED, AUXILIARY, };
+	private static final IfcEnergySequenceEnum[] VALUES_ARRAY = new IfcEnergySequenceEnum[] { NULL, NOTDEFINED,
+			SECONDARY, PRIMARY, USERDEFINED, TERTIARY, AUXILIARY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Energy Sequence Enum</b></em>' enumerators.
@@ -271,16 +268,16 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case SECONDARY_VALUE:
-			return SECONDARY;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case SECONDARY_VALUE:
+			return SECONDARY;
 		case PRIMARY_VALUE:
 			return PRIMARY;
-		case TERTIARY_VALUE:
-			return TERTIARY;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case TERTIARY_VALUE:
+			return TERTIARY;
 		case AUXILIARY_VALUE:
 			return AUXILIARY;
 		}

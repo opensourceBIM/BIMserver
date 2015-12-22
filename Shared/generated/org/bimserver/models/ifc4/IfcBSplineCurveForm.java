@@ -53,26 +53,6 @@ public enum IfcBSplineCurveForm implements Enumerator {
 	PARABOLIC_ARC(1, "PARABOLIC_ARC", "PARABOLIC_ARC"),
 
 	/**
-	 * The '<em><b>ELLIPTIC ARC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELLIPTIC_ARC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELLIPTIC_ARC(2, "ELLIPTIC_ARC", "ELLIPTIC_ARC"),
-
-	/**
-	 * The '<em><b>HYPERBOLIC ARC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HYPERBOLIC_ARC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HYPERBOLIC_ARC(3, "HYPERBOLIC_ARC", "HYPERBOLIC_ARC"),
-
-	/**
 	 * The '<em><b>UNSPECIFIED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +60,23 @@ public enum IfcBSplineCurveForm implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UNSPECIFIED(4, "UNSPECIFIED", "UNSPECIFIED"),
+	UNSPECIFIED(2, "UNSPECIFIED", "UNSPECIFIED"), /**
+													* The '<em><b>HYPERBOLIC ARC</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #HYPERBOLIC_ARC_VALUE
+													* @generated
+													* @ordered
+													*/
+	HYPERBOLIC_ARC(3, "HYPERBOLIC_ARC", "HYPERBOLIC_ARC"), /**
+															* The '<em><b>ELLIPTIC ARC</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #ELLIPTIC_ARC_VALUE
+															* @generated
+															* @ordered
+															*/
+	ELLIPTIC_ARC(4, "ELLIPTIC_ARC", "ELLIPTIC_ARC"),
 
 	/**
 	 * The '<em><b>POLYLINE FORM</b></em>' literal object.
@@ -133,19 +129,19 @@ public enum IfcBSplineCurveForm implements Enumerator {
 	public static final int PARABOLIC_ARC_VALUE = 1;
 
 	/**
-	 * The '<em><b>ELLIPTIC ARC</b></em>' literal value.
+	 * The '<em><b>UNSPECIFIED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ELLIPTIC ARC</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>UNSPECIFIED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELLIPTIC_ARC
+	 * @see #UNSPECIFIED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELLIPTIC_ARC_VALUE = 2;
+	public static final int UNSPECIFIED_VALUE = 2;
 
 	/**
 	 * The '<em><b>HYPERBOLIC ARC</b></em>' literal value.
@@ -163,19 +159,19 @@ public enum IfcBSplineCurveForm implements Enumerator {
 	public static final int HYPERBOLIC_ARC_VALUE = 3;
 
 	/**
-	 * The '<em><b>UNSPECIFIED</b></em>' literal value.
+	 * The '<em><b>ELLIPTIC ARC</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>UNSPECIFIED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>ELLIPTIC ARC</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #UNSPECIFIED
+	 * @see #ELLIPTIC_ARC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNSPECIFIED_VALUE = 4;
+	public static final int ELLIPTIC_ARC_VALUE = 4;
 
 	/**
 	 * The '<em><b>POLYLINE FORM</b></em>' literal value.
@@ -214,7 +210,7 @@ public enum IfcBSplineCurveForm implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcBSplineCurveForm[] VALUES_ARRAY = new IfcBSplineCurveForm[] { NULL, PARABOLIC_ARC,
-			ELLIPTIC_ARC, HYPERBOLIC_ARC, UNSPECIFIED, POLYLINE_FORM, CIRCULAR_ARC, };
+			UNSPECIFIED, HYPERBOLIC_ARC, ELLIPTIC_ARC, POLYLINE_FORM, CIRCULAR_ARC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc BSpline Curve Form</b></em>' enumerators.
@@ -274,12 +270,12 @@ public enum IfcBSplineCurveForm implements Enumerator {
 			return NULL;
 		case PARABOLIC_ARC_VALUE:
 			return PARABOLIC_ARC;
-		case ELLIPTIC_ARC_VALUE:
-			return ELLIPTIC_ARC;
-		case HYPERBOLIC_ARC_VALUE:
-			return HYPERBOLIC_ARC;
 		case UNSPECIFIED_VALUE:
 			return UNSPECIFIED;
+		case HYPERBOLIC_ARC_VALUE:
+			return HYPERBOLIC_ARC;
+		case ELLIPTIC_ARC_VALUE:
+			return ELLIPTIC_ARC;
 		case POLYLINE_FORM_VALUE:
 			return POLYLINE_FORM;
 		case CIRCULAR_ARC_VALUE:

@@ -43,146 +43,6 @@ public enum IfcRoleEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>COSTENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COSTENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COSTENGINEER(1, "COSTENGINEER", "COSTENGINEER"),
-
-	/**
-	 * The '<em><b>BUILDINGOPERATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BUILDINGOPERATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BUILDINGOPERATOR(2, "BUILDINGOPERATOR", "BUILDINGOPERATOR"),
-
-	/**
-	 * The '<em><b>RESELLER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RESELLER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RESELLER(3, "RESELLER", "RESELLER"),
-
-	/**
-	 * The '<em><b>ENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ENGINEER(4, "ENGINEER", "ENGINEER"),
-
-	/**
-	 * The '<em><b>ARCHITECT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ARCHITECT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ARCHITECT(5, "ARCHITECT", "ARCHITECT"),
-
-	/**
-	 * The '<em><b>PROJECTMANAGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROJECTMANAGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROJECTMANAGER(6, "PROJECTMANAGER", "PROJECTMANAGER"),
-
-	/**
-	 * The '<em><b>CLIENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CLIENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CLIENT(7, "CLIENT", "CLIENT"),
-
-	/**
-	 * The '<em><b>ELECTRICALENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICALENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRICALENGINEER(8, "ELECTRICALENGINEER", "ELECTRICALENGINEER"),
-
-	/**
-	 * The '<em><b>CIVILENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CIVILENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CIVILENGINEER(9, "CIVILENGINEER", "CIVILENGINEER"),
-
-	/**
-	 * The '<em><b>SUPPLIER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SUPPLIER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SUPPLIER(10, "SUPPLIER", "SUPPLIER"),
-
-	/**
-	 * The '<em><b>CONTRACTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTRACTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTRACTOR(11, "CONTRACTOR", "CONTRACTOR"),
-
-	/**
-	 * The '<em><b>FIELDCONSTRUCTIONMANAGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIELDCONSTRUCTIONMANAGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIELDCONSTRUCTIONMANAGER(12, "FIELDCONSTRUCTIONMANAGER", "FIELDCONSTRUCTIONMANAGER"),
-
-	/**
-	 * The '<em><b>FACILITIESMANAGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FACILITIESMANAGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FACILITIESMANAGER(13, "FACILITIESMANAGER", "FACILITIESMANAGER"),
-
-	/**
-	 * The '<em><b>OWNER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OWNER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OWNER(14, "OWNER", "OWNER"),
-
-	/**
 	 * The '<em><b>CONSTRUCTIONMANAGER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -190,47 +50,15 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONSTRUCTIONMANAGER(15, "CONSTRUCTIONMANAGER", "CONSTRUCTIONMANAGER"),
-
-	/**
-	 * The '<em><b>STRUCTURALENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRUCTURALENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRUCTURALENGINEER(16, "STRUCTURALENGINEER", "STRUCTURALENGINEER"),
-
-	/**
-	 * The '<em><b>MECHANICALENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MECHANICALENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MECHANICALENGINEER(17, "MECHANICALENGINEER", "MECHANICALENGINEER"),
-
-	/**
-	 * The '<em><b>COMMISSIONINGENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMMISSIONINGENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMMISSIONINGENGINEER(18, "COMMISSIONINGENGINEER", "COMMISSIONINGENGINEER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(19, "USERDEFINED", "USERDEFINED"),
+	CONSTRUCTIONMANAGER(1, "CONSTRUCTIONMANAGER", "CONSTRUCTIONMANAGER"), /**
+																			* The '<em><b>COSTENGINEER</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #COSTENGINEER_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	COSTENGINEER(2, "COSTENGINEER", "COSTENGINEER"),
 
 	/**
 	 * The '<em><b>CONSULTANT</b></em>' literal object.
@@ -240,27 +68,7 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONSULTANT(20, "CONSULTANT", "CONSULTANT"),
-
-	/**
-	 * The '<em><b>MANUFACTURER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MANUFACTURER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MANUFACTURER(21, "MANUFACTURER", "MANUFACTURER"),
-
-	/**
-	 * The '<em><b>SUBCONTRACTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SUBCONTRACTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SUBCONTRACTOR(22, "SUBCONTRACTOR", "SUBCONTRACTOR"),
+	CONSULTANT(3, "CONSULTANT", "CONSULTANT"),
 
 	/**
 	 * The '<em><b>BUILDINGOWNER</b></em>' literal object.
@@ -270,7 +78,159 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BUILDINGOWNER(23, "BUILDINGOWNER", "BUILDINGOWNER");
+	BUILDINGOWNER(4, "BUILDINGOWNER", "BUILDINGOWNER"), /**
+														* The '<em><b>COMMISSIONINGENGINEER</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #COMMISSIONINGENGINEER_VALUE
+														* @generated
+														* @ordered
+														*/
+	COMMISSIONINGENGINEER(5, "COMMISSIONINGENGINEER", "COMMISSIONINGENGINEER"), /**
+																				* The '<em><b>ENGINEER</b></em>' literal object.
+																				* <!-- begin-user-doc -->
+																				* <!-- end-user-doc -->
+																				* @see #ENGINEER_VALUE
+																				* @generated
+																				* @ordered
+																				*/
+	ENGINEER(6, "ENGINEER", "ENGINEER"), /**
+											* The '<em><b>CONTRACTOR</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #CONTRACTOR_VALUE
+											* @generated
+											* @ordered
+											*/
+	CONTRACTOR(7, "CONTRACTOR", "CONTRACTOR"), /**
+												* The '<em><b>ELECTRICALENGINEER</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #ELECTRICALENGINEER_VALUE
+												* @generated
+												* @ordered
+												*/
+	ELECTRICALENGINEER(8, "ELECTRICALENGINEER", "ELECTRICALENGINEER"), /**
+																		* The '<em><b>USERDEFINED</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #USERDEFINED_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	USERDEFINED(9, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>MANUFACTURER</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #MANUFACTURER_VALUE
+													* @generated
+													* @ordered
+													*/
+	MANUFACTURER(10, "MANUFACTURER", "MANUFACTURER"), /**
+														* The '<em><b>SUPPLIER</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #SUPPLIER_VALUE
+														* @generated
+														* @ordered
+														*/
+	SUPPLIER(11, "SUPPLIER", "SUPPLIER"), /**
+											* The '<em><b>STRUCTURALENGINEER</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #STRUCTURALENGINEER_VALUE
+											* @generated
+											* @ordered
+											*/
+	STRUCTURALENGINEER(12, "STRUCTURALENGINEER", "STRUCTURALENGINEER"), /**
+																		* The '<em><b>CLIENT</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #CLIENT_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	CLIENT(13, "CLIENT", "CLIENT"), /**
+									* The '<em><b>OWNER</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #OWNER_VALUE
+									* @generated
+									* @ordered
+									*/
+	OWNER(14, "OWNER", "OWNER"), /**
+									* The '<em><b>RESELLER</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #RESELLER_VALUE
+									* @generated
+									* @ordered
+									*/
+	RESELLER(15, "RESELLER", "RESELLER"), /**
+											* The '<em><b>CIVILENGINEER</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #CIVILENGINEER_VALUE
+											* @generated
+											* @ordered
+											*/
+	CIVILENGINEER(16, "CIVILENGINEER", "CIVILENGINEER"), /**
+															* The '<em><b>BUILDINGOPERATOR</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #BUILDINGOPERATOR_VALUE
+															* @generated
+															* @ordered
+															*/
+	BUILDINGOPERATOR(17, "BUILDINGOPERATOR", "BUILDINGOPERATOR"), /**
+																	* The '<em><b>PROJECTMANAGER</b></em>' literal object.
+																	* <!-- begin-user-doc -->
+																	* <!-- end-user-doc -->
+																	* @see #PROJECTMANAGER_VALUE
+																	* @generated
+																	* @ordered
+																	*/
+	PROJECTMANAGER(18, "PROJECTMANAGER", "PROJECTMANAGER"), /**
+															* The '<em><b>MECHANICALENGINEER</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #MECHANICALENGINEER_VALUE
+															* @generated
+															* @ordered
+															*/
+	MECHANICALENGINEER(19, "MECHANICALENGINEER", "MECHANICALENGINEER"), /**
+																		* The '<em><b>FACILITIESMANAGER</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #FACILITIESMANAGER_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	FACILITIESMANAGER(20, "FACILITIESMANAGER", "FACILITIESMANAGER"), /**
+																		* The '<em><b>SUBCONTRACTOR</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #SUBCONTRACTOR_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	SUBCONTRACTOR(21, "SUBCONTRACTOR", "SUBCONTRACTOR"), /**
+															* The '<em><b>FIELDCONSTRUCTIONMANAGER</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #FIELDCONSTRUCTIONMANAGER_VALUE
+															* @generated
+															* @ordered
+															*/
+	FIELDCONSTRUCTIONMANAGER(22, "FIELDCONSTRUCTIONMANAGER", "FIELDCONSTRUCTIONMANAGER"), /**
+																							* The '<em><b>ARCHITECT</b></em>' literal object.
+																							* <!-- begin-user-doc -->
+																							* <!-- end-user-doc -->
+																							* @see #ARCHITECT_VALUE
+																							* @generated
+																							* @ordered
+																							*/
+	ARCHITECT(23, "ARCHITECT", "ARCHITECT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -288,6 +248,21 @@ public enum IfcRoleEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
+	 * The '<em><b>CONSTRUCTIONMANAGER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONSTRUCTIONMANAGER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONSTRUCTIONMANAGER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONSTRUCTIONMANAGER_VALUE = 1;
+
+	/**
 	 * The '<em><b>COSTENGINEER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -300,37 +275,52 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COSTENGINEER_VALUE = 1;
+	public static final int COSTENGINEER_VALUE = 2;
 
 	/**
-	 * The '<em><b>BUILDINGOPERATOR</b></em>' literal value.
+	 * The '<em><b>CONSULTANT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BUILDINGOPERATOR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CONSULTANT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BUILDINGOPERATOR
+	 * @see #CONSULTANT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BUILDINGOPERATOR_VALUE = 2;
+	public static final int CONSULTANT_VALUE = 3;
 
 	/**
-	 * The '<em><b>RESELLER</b></em>' literal value.
+	 * The '<em><b>BUILDINGOWNER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>RESELLER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>BUILDINGOWNER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RESELLER
+	 * @see #BUILDINGOWNER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RESELLER_VALUE = 3;
+	public static final int BUILDINGOWNER_VALUE = 4;
+
+	/**
+	 * The '<em><b>COMMISSIONINGENGINEER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>COMMISSIONINGENGINEER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #COMMISSIONINGENGINEER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int COMMISSIONINGENGINEER_VALUE = 5;
 
 	/**
 	 * The '<em><b>ENGINEER</b></em>' literal value.
@@ -345,52 +335,22 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ENGINEER_VALUE = 4;
+	public static final int ENGINEER_VALUE = 6;
 
 	/**
-	 * The '<em><b>ARCHITECT</b></em>' literal value.
+	 * The '<em><b>CONTRACTOR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ARCHITECT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CONTRACTOR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ARCHITECT
+	 * @see #CONTRACTOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ARCHITECT_VALUE = 5;
-
-	/**
-	 * The '<em><b>PROJECTMANAGER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PROJECTMANAGER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PROJECTMANAGER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PROJECTMANAGER_VALUE = 6;
-
-	/**
-	 * The '<em><b>CLIENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CLIENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CLIENT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CLIENT_VALUE = 7;
+	public static final int CONTRACTOR_VALUE = 7;
 
 	/**
 	 * The '<em><b>ELECTRICALENGINEER</b></em>' literal value.
@@ -408,19 +368,34 @@ public enum IfcRoleEnum implements Enumerator {
 	public static final int ELECTRICALENGINEER_VALUE = 8;
 
 	/**
-	 * The '<em><b>CIVILENGINEER</b></em>' literal value.
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CIVILENGINEER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CIVILENGINEER
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CIVILENGINEER_VALUE = 9;
+	public static final int USERDEFINED_VALUE = 9;
+
+	/**
+	 * The '<em><b>MANUFACTURER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MANUFACTURER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MANUFACTURER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MANUFACTURER_VALUE = 10;
 
 	/**
 	 * The '<em><b>SUPPLIER</b></em>' literal value.
@@ -435,52 +410,37 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SUPPLIER_VALUE = 10;
+	public static final int SUPPLIER_VALUE = 11;
 
 	/**
-	 * The '<em><b>CONTRACTOR</b></em>' literal value.
+	 * The '<em><b>STRUCTURALENGINEER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CONTRACTOR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>STRUCTURALENGINEER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONTRACTOR
+	 * @see #STRUCTURALENGINEER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTRACTOR_VALUE = 11;
+	public static final int STRUCTURALENGINEER_VALUE = 12;
 
 	/**
-	 * The '<em><b>FIELDCONSTRUCTIONMANAGER</b></em>' literal value.
+	 * The '<em><b>CLIENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>FIELDCONSTRUCTIONMANAGER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CLIENT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FIELDCONSTRUCTIONMANAGER
+	 * @see #CLIENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FIELDCONSTRUCTIONMANAGER_VALUE = 12;
-
-	/**
-	 * The '<em><b>FACILITIESMANAGER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>FACILITIESMANAGER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FACILITIESMANAGER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FACILITIESMANAGER_VALUE = 13;
+	public static final int CLIENT_VALUE = 13;
 
 	/**
 	 * The '<em><b>OWNER</b></em>' literal value.
@@ -498,34 +458,64 @@ public enum IfcRoleEnum implements Enumerator {
 	public static final int OWNER_VALUE = 14;
 
 	/**
-	 * The '<em><b>CONSTRUCTIONMANAGER</b></em>' literal value.
+	 * The '<em><b>RESELLER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CONSTRUCTIONMANAGER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>RESELLER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONSTRUCTIONMANAGER
+	 * @see #RESELLER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONSTRUCTIONMANAGER_VALUE = 15;
+	public static final int RESELLER_VALUE = 15;
 
 	/**
-	 * The '<em><b>STRUCTURALENGINEER</b></em>' literal value.
+	 * The '<em><b>CIVILENGINEER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>STRUCTURALENGINEER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CIVILENGINEER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STRUCTURALENGINEER
+	 * @see #CIVILENGINEER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STRUCTURALENGINEER_VALUE = 16;
+	public static final int CIVILENGINEER_VALUE = 16;
+
+	/**
+	 * The '<em><b>BUILDINGOPERATOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BUILDINGOPERATOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BUILDINGOPERATOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BUILDINGOPERATOR_VALUE = 17;
+
+	/**
+	 * The '<em><b>PROJECTMANAGER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PROJECTMANAGER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PROJECTMANAGER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PROJECTMANAGER_VALUE = 18;
 
 	/**
 	 * The '<em><b>MECHANICALENGINEER</b></em>' literal value.
@@ -540,67 +530,22 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MECHANICALENGINEER_VALUE = 17;
+	public static final int MECHANICALENGINEER_VALUE = 19;
 
 	/**
-	 * The '<em><b>COMMISSIONINGENGINEER</b></em>' literal value.
+	 * The '<em><b>FACILITIESMANAGER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>COMMISSIONINGENGINEER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>FACILITIESMANAGER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COMMISSIONINGENGINEER
+	 * @see #FACILITIESMANAGER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMMISSIONINGENGINEER_VALUE = 18;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 19;
-
-	/**
-	 * The '<em><b>CONSULTANT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CONSULTANT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CONSULTANT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONSULTANT_VALUE = 20;
-
-	/**
-	 * The '<em><b>MANUFACTURER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MANUFACTURER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MANUFACTURER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MANUFACTURER_VALUE = 21;
+	public static final int FACILITIESMANAGER_VALUE = 20;
 
 	/**
 	 * The '<em><b>SUBCONTRACTOR</b></em>' literal value.
@@ -615,22 +560,37 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SUBCONTRACTOR_VALUE = 22;
+	public static final int SUBCONTRACTOR_VALUE = 21;
 
 	/**
-	 * The '<em><b>BUILDINGOWNER</b></em>' literal value.
+	 * The '<em><b>FIELDCONSTRUCTIONMANAGER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BUILDINGOWNER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>FIELDCONSTRUCTIONMANAGER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BUILDINGOWNER
+	 * @see #FIELDCONSTRUCTIONMANAGER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BUILDINGOWNER_VALUE = 23;
+	public static final int FIELDCONSTRUCTIONMANAGER_VALUE = 22;
+
+	/**
+	 * The '<em><b>ARCHITECT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ARCHITECT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ARCHITECT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ARCHITECT_VALUE = 23;
 
 	/**
 	 * An array of all the '<em><b>Ifc Role Enum</b></em>' enumerators.
@@ -638,11 +598,11 @@ public enum IfcRoleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRoleEnum[] VALUES_ARRAY = new IfcRoleEnum[] { NULL, COSTENGINEER, BUILDINGOPERATOR,
-			RESELLER, ENGINEER, ARCHITECT, PROJECTMANAGER, CLIENT, ELECTRICALENGINEER, CIVILENGINEER, SUPPLIER,
-			CONTRACTOR, FIELDCONSTRUCTIONMANAGER, FACILITIESMANAGER, OWNER, CONSTRUCTIONMANAGER, STRUCTURALENGINEER,
-			MECHANICALENGINEER, COMMISSIONINGENGINEER, USERDEFINED, CONSULTANT, MANUFACTURER, SUBCONTRACTOR,
-			BUILDINGOWNER, };
+	private static final IfcRoleEnum[] VALUES_ARRAY = new IfcRoleEnum[] { NULL, CONSTRUCTIONMANAGER, COSTENGINEER,
+			CONSULTANT, BUILDINGOWNER, COMMISSIONINGENGINEER, ENGINEER, CONTRACTOR, ELECTRICALENGINEER, USERDEFINED,
+			MANUFACTURER, SUPPLIER, STRUCTURALENGINEER, CLIENT, OWNER, RESELLER, CIVILENGINEER, BUILDINGOPERATOR,
+			PROJECTMANAGER, MECHANICALENGINEER, FACILITIESMANAGER, SUBCONTRACTOR, FIELDCONSTRUCTIONMANAGER,
+			ARCHITECT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Role Enum</b></em>' enumerators.
@@ -700,52 +660,52 @@ public enum IfcRoleEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case COSTENGINEER_VALUE:
-			return COSTENGINEER;
-		case BUILDINGOPERATOR_VALUE:
-			return BUILDINGOPERATOR;
-		case RESELLER_VALUE:
-			return RESELLER;
-		case ENGINEER_VALUE:
-			return ENGINEER;
-		case ARCHITECT_VALUE:
-			return ARCHITECT;
-		case PROJECTMANAGER_VALUE:
-			return PROJECTMANAGER;
-		case CLIENT_VALUE:
-			return CLIENT;
-		case ELECTRICALENGINEER_VALUE:
-			return ELECTRICALENGINEER;
-		case CIVILENGINEER_VALUE:
-			return CIVILENGINEER;
-		case SUPPLIER_VALUE:
-			return SUPPLIER;
-		case CONTRACTOR_VALUE:
-			return CONTRACTOR;
-		case FIELDCONSTRUCTIONMANAGER_VALUE:
-			return FIELDCONSTRUCTIONMANAGER;
-		case FACILITIESMANAGER_VALUE:
-			return FACILITIESMANAGER;
-		case OWNER_VALUE:
-			return OWNER;
 		case CONSTRUCTIONMANAGER_VALUE:
 			return CONSTRUCTIONMANAGER;
-		case STRUCTURALENGINEER_VALUE:
-			return STRUCTURALENGINEER;
-		case MECHANICALENGINEER_VALUE:
-			return MECHANICALENGINEER;
-		case COMMISSIONINGENGINEER_VALUE:
-			return COMMISSIONINGENGINEER;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case COSTENGINEER_VALUE:
+			return COSTENGINEER;
 		case CONSULTANT_VALUE:
 			return CONSULTANT;
-		case MANUFACTURER_VALUE:
-			return MANUFACTURER;
-		case SUBCONTRACTOR_VALUE:
-			return SUBCONTRACTOR;
 		case BUILDINGOWNER_VALUE:
 			return BUILDINGOWNER;
+		case COMMISSIONINGENGINEER_VALUE:
+			return COMMISSIONINGENGINEER;
+		case ENGINEER_VALUE:
+			return ENGINEER;
+		case CONTRACTOR_VALUE:
+			return CONTRACTOR;
+		case ELECTRICALENGINEER_VALUE:
+			return ELECTRICALENGINEER;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case MANUFACTURER_VALUE:
+			return MANUFACTURER;
+		case SUPPLIER_VALUE:
+			return SUPPLIER;
+		case STRUCTURALENGINEER_VALUE:
+			return STRUCTURALENGINEER;
+		case CLIENT_VALUE:
+			return CLIENT;
+		case OWNER_VALUE:
+			return OWNER;
+		case RESELLER_VALUE:
+			return RESELLER;
+		case CIVILENGINEER_VALUE:
+			return CIVILENGINEER;
+		case BUILDINGOPERATOR_VALUE:
+			return BUILDINGOPERATOR;
+		case PROJECTMANAGER_VALUE:
+			return PROJECTMANAGER;
+		case MECHANICALENGINEER_VALUE:
+			return MECHANICALENGINEER;
+		case FACILITIESMANAGER_VALUE:
+			return FACILITIESMANAGER;
+		case SUBCONTRACTOR_VALUE:
+			return SUBCONTRACTOR;
+		case FIELDCONSTRUCTIONMANAGER_VALUE:
+			return FIELDCONSTRUCTIONMANAGER;
+		case ARCHITECT_VALUE:
+			return ARCHITECT;
 		}
 		return null;
 	}

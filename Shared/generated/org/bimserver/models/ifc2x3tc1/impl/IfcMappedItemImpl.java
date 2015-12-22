@@ -80,7 +80,8 @@ public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements IfcM
 	 * @generated
 	 */
 	public IfcCartesianTransformationOperator getMappingTarget() {
-		return (IfcCartesianTransformationOperator) eGet(Ifc2x3tc1Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET, true);
+		return (IfcCartesianTransformationOperator) eGet(Ifc2x3tc1Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET,
+				true);
 	}
 
 	/**

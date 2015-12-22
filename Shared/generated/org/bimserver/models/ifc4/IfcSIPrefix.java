@@ -43,136 +43,6 @@ public enum IfcSIPrefix implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>ATTO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ATTO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ATTO(1, "ATTO", "ATTO"),
-
-	/**
-	 * The '<em><b>MICRO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MICRO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MICRO(2, "MICRO", "MICRO"),
-
-	/**
-	 * The '<em><b>PICO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PICO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PICO(3, "PICO", "PICO"),
-
-	/**
-	 * The '<em><b>CENTI</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CENTI_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CENTI(4, "CENTI", "CENTI"),
-
-	/**
-	 * The '<em><b>DECI</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DECI_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DECI(5, "DECI", "DECI"),
-
-	/**
-	 * The '<em><b>KILO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KILO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	KILO(6, "KILO", "KILO"),
-
-	/**
-	 * The '<em><b>TERA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TERA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TERA(7, "TERA", "TERA"),
-
-	/**
-	 * The '<em><b>MEGA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MEGA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MEGA(8, "MEGA", "MEGA"),
-
-	/**
-	 * The '<em><b>PETA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PETA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PETA(9, "PETA", "PETA"),
-
-	/**
-	 * The '<em><b>FEMTO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FEMTO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FEMTO(10, "FEMTO", "FEMTO"),
-
-	/**
-	 * The '<em><b>EXA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXA(11, "EXA", "EXA"),
-
-	/**
-	 * The '<em><b>MILLI</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MILLI_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MILLI(12, "MILLI", "MILLI"),
-
-	/**
-	 * The '<em><b>GIGA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GIGA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GIGA(13, "GIGA", "GIGA"),
-
-	/**
 	 * The '<em><b>DECA</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -180,17 +50,47 @@ public enum IfcSIPrefix implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DECA(14, "DECA", "DECA"),
-
-	/**
-	 * The '<em><b>HECTO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HECTO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HECTO(15, "HECTO", "HECTO"),
+	DECA(1, "DECA", "DECA"), /**
+								* The '<em><b>PICO</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #PICO_VALUE
+								* @generated
+								* @ordered
+								*/
+	PICO(2, "PICO", "PICO"), /**
+								* The '<em><b>KILO</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #KILO_VALUE
+								* @generated
+								* @ordered
+								*/
+	KILO(3, "KILO", "KILO"), /**
+								* The '<em><b>PETA</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #PETA_VALUE
+								* @generated
+								* @ordered
+								*/
+	PETA(4, "PETA", "PETA"), /**
+								* The '<em><b>TERA</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #TERA_VALUE
+								* @generated
+								* @ordered
+								*/
+	TERA(5, "TERA", "TERA"), /**
+								* The '<em><b>EXA</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #EXA_VALUE
+								* @generated
+								* @ordered
+								*/
+	EXA(6, "EXA", "EXA"),
 
 	/**
 	 * The '<em><b>NANO</b></em>' literal object.
@@ -200,7 +100,79 @@ public enum IfcSIPrefix implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NANO(16, "NANO", "NANO");
+	NANO(7, "NANO", "NANO"), /**
+								* The '<em><b>ATTO</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #ATTO_VALUE
+								* @generated
+								* @ordered
+								*/
+	ATTO(8, "ATTO", "ATTO"), /**
+								* The '<em><b>CENTI</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #CENTI_VALUE
+								* @generated
+								* @ordered
+								*/
+	CENTI(9, "CENTI", "CENTI"), /**
+								* The '<em><b>MILLI</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #MILLI_VALUE
+								* @generated
+								* @ordered
+								*/
+	MILLI(10, "MILLI", "MILLI"), /**
+									* The '<em><b>FEMTO</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #FEMTO_VALUE
+									* @generated
+									* @ordered
+									*/
+	FEMTO(11, "FEMTO", "FEMTO"), /**
+									* The '<em><b>MEGA</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #MEGA_VALUE
+									* @generated
+									* @ordered
+									*/
+	MEGA(12, "MEGA", "MEGA"), /**
+								* The '<em><b>HECTO</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #HECTO_VALUE
+								* @generated
+								* @ordered
+								*/
+	HECTO(13, "HECTO", "HECTO"), /**
+									* The '<em><b>DECI</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #DECI_VALUE
+									* @generated
+									* @ordered
+									*/
+	DECI(14, "DECI", "DECI"), /**
+								* The '<em><b>MICRO</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #MICRO_VALUE
+								* @generated
+								* @ordered
+								*/
+	MICRO(15, "MICRO", "MICRO"), /**
+									* The '<em><b>GIGA</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #GIGA_VALUE
+									* @generated
+									* @ordered
+									*/
+	GIGA(16, "GIGA", "GIGA");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -218,34 +190,19 @@ public enum IfcSIPrefix implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>ATTO</b></em>' literal value.
+	 * The '<em><b>DECA</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ATTO</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DECA</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ATTO
+	 * @see #DECA
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ATTO_VALUE = 1;
-
-	/**
-	 * The '<em><b>MICRO</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MICRO</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MICRO
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MICRO_VALUE = 2;
+	public static final int DECA_VALUE = 1;
 
 	/**
 	 * The '<em><b>PICO</b></em>' literal value.
@@ -260,37 +217,7 @@ public enum IfcSIPrefix implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PICO_VALUE = 3;
-
-	/**
-	 * The '<em><b>CENTI</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CENTI</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CENTI
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CENTI_VALUE = 4;
-
-	/**
-	 * The '<em><b>DECI</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DECI</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DECI
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DECI_VALUE = 5;
+	public static final int PICO_VALUE = 2;
 
 	/**
 	 * The '<em><b>KILO</b></em>' literal value.
@@ -305,37 +232,7 @@ public enum IfcSIPrefix implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KILO_VALUE = 6;
-
-	/**
-	 * The '<em><b>TERA</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TERA</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TERA
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TERA_VALUE = 7;
-
-	/**
-	 * The '<em><b>MEGA</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MEGA</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MEGA
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MEGA_VALUE = 8;
+	public static final int KILO_VALUE = 3;
 
 	/**
 	 * The '<em><b>PETA</b></em>' literal value.
@@ -350,22 +247,22 @@ public enum IfcSIPrefix implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PETA_VALUE = 9;
+	public static final int PETA_VALUE = 4;
 
 	/**
-	 * The '<em><b>FEMTO</b></em>' literal value.
+	 * The '<em><b>TERA</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>FEMTO</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>TERA</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FEMTO
+	 * @see #TERA
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FEMTO_VALUE = 10;
+	public static final int TERA_VALUE = 5;
 
 	/**
 	 * The '<em><b>EXA</b></em>' literal value.
@@ -380,67 +277,7 @@ public enum IfcSIPrefix implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXA_VALUE = 11;
-
-	/**
-	 * The '<em><b>MILLI</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MILLI</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #MILLI
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int MILLI_VALUE = 12;
-
-	/**
-	 * The '<em><b>GIGA</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GIGA</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GIGA
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GIGA_VALUE = 13;
-
-	/**
-	 * The '<em><b>DECA</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>DECA</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #DECA
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int DECA_VALUE = 14;
-
-	/**
-	 * The '<em><b>HECTO</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>HECTO</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #HECTO
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HECTO_VALUE = 15;
+	public static final int EXA_VALUE = 6;
 
 	/**
 	 * The '<em><b>NANO</b></em>' literal value.
@@ -455,7 +292,142 @@ public enum IfcSIPrefix implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NANO_VALUE = 16;
+	public static final int NANO_VALUE = 7;
+
+	/**
+	 * The '<em><b>ATTO</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ATTO</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ATTO
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ATTO_VALUE = 8;
+
+	/**
+	 * The '<em><b>CENTI</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CENTI</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CENTI
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CENTI_VALUE = 9;
+
+	/**
+	 * The '<em><b>MILLI</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MILLI</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MILLI
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MILLI_VALUE = 10;
+
+	/**
+	 * The '<em><b>FEMTO</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FEMTO</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FEMTO
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FEMTO_VALUE = 11;
+
+	/**
+	 * The '<em><b>MEGA</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MEGA</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MEGA
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MEGA_VALUE = 12;
+
+	/**
+	 * The '<em><b>HECTO</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HECTO</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HECTO
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HECTO_VALUE = 13;
+
+	/**
+	 * The '<em><b>DECI</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DECI</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DECI
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DECI_VALUE = 14;
+
+	/**
+	 * The '<em><b>MICRO</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MICRO</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MICRO
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MICRO_VALUE = 15;
+
+	/**
+	 * The '<em><b>GIGA</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GIGA</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GIGA
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GIGA_VALUE = 16;
 
 	/**
 	 * An array of all the '<em><b>Ifc SI Prefix</b></em>' enumerators.
@@ -463,8 +435,8 @@ public enum IfcSIPrefix implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSIPrefix[] VALUES_ARRAY = new IfcSIPrefix[] { NULL, ATTO, MICRO, PICO, CENTI, DECI, KILO,
-			TERA, MEGA, PETA, FEMTO, EXA, MILLI, GIGA, DECA, HECTO, NANO, };
+	private static final IfcSIPrefix[] VALUES_ARRAY = new IfcSIPrefix[] { NULL, DECA, PICO, KILO, PETA, TERA, EXA, NANO,
+			ATTO, CENTI, MILLI, FEMTO, MEGA, HECTO, DECI, MICRO, GIGA, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc SI Prefix</b></em>' enumerators.
@@ -522,38 +494,38 @@ public enum IfcSIPrefix implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case ATTO_VALUE:
-			return ATTO;
-		case MICRO_VALUE:
-			return MICRO;
-		case PICO_VALUE:
-			return PICO;
-		case CENTI_VALUE:
-			return CENTI;
-		case DECI_VALUE:
-			return DECI;
-		case KILO_VALUE:
-			return KILO;
-		case TERA_VALUE:
-			return TERA;
-		case MEGA_VALUE:
-			return MEGA;
-		case PETA_VALUE:
-			return PETA;
-		case FEMTO_VALUE:
-			return FEMTO;
-		case EXA_VALUE:
-			return EXA;
-		case MILLI_VALUE:
-			return MILLI;
-		case GIGA_VALUE:
-			return GIGA;
 		case DECA_VALUE:
 			return DECA;
-		case HECTO_VALUE:
-			return HECTO;
+		case PICO_VALUE:
+			return PICO;
+		case KILO_VALUE:
+			return KILO;
+		case PETA_VALUE:
+			return PETA;
+		case TERA_VALUE:
+			return TERA;
+		case EXA_VALUE:
+			return EXA;
 		case NANO_VALUE:
 			return NANO;
+		case ATTO_VALUE:
+			return ATTO;
+		case CENTI_VALUE:
+			return CENTI;
+		case MILLI_VALUE:
+			return MILLI;
+		case FEMTO_VALUE:
+			return FEMTO;
+		case MEGA_VALUE:
+			return MEGA;
+		case HECTO_VALUE:
+			return HECTO;
+		case DECI_VALUE:
+			return DECI;
+		case MICRO_VALUE:
+			return MICRO;
+		case GIGA_VALUE:
+			return GIGA;
 		}
 		return null;
 	}

@@ -43,16 +43,6 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>TEXTURED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TEXTURED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TEXTURED(1, "TEXTURED", "TEXTURED"),
-
-	/**
 	 * The '<em><b>PLAIN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +50,15 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PLAIN(2, "PLAIN", "PLAIN");
+	PLAIN(1, "PLAIN", "PLAIN"), /**
+								* The '<em><b>TEXTURED</b></em>' literal object.
+								* <!-- begin-user-doc -->
+								* <!-- end-user-doc -->
+								* @see #TEXTURED_VALUE
+								* @generated
+								* @ordered
+								*/
+	TEXTURED(2, "TEXTURED", "TEXTURED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -78,21 +76,6 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>TEXTURED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>TEXTURED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TEXTURED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TEXTURED_VALUE = 1;
-
-	/**
 	 * The '<em><b>PLAIN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -105,7 +88,22 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PLAIN_VALUE = 2;
+	public static final int PLAIN_VALUE = 1;
+
+	/**
+	 * The '<em><b>TEXTURED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TEXTURED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TEXTURED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TEXTURED_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Ifc Reinforcing Bar Surface Enum</b></em>' enumerators.
@@ -113,7 +111,8 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcReinforcingBarSurfaceEnum[] VALUES_ARRAY = new IfcReinforcingBarSurfaceEnum[] { NULL, TEXTURED, PLAIN, };
+	private static final IfcReinforcingBarSurfaceEnum[] VALUES_ARRAY = new IfcReinforcingBarSurfaceEnum[] { NULL, PLAIN,
+			TEXTURED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Reinforcing Bar Surface Enum</b></em>' enumerators.
@@ -121,7 +120,8 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcReinforcingBarSurfaceEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcReinforcingBarSurfaceEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Reinforcing Bar Surface Enum</b></em>' literal with the specified literal value.
@@ -171,10 +171,10 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case TEXTURED_VALUE:
-			return TEXTURED;
 		case PLAIN_VALUE:
 			return PLAIN;
+		case TEXTURED_VALUE:
+			return TEXTURED;
 		}
 		return null;
 	}

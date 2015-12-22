@@ -80,7 +80,8 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 * @generated
 	 */
 	public IfcEnvironmentalImpactCategoryEnum getCategory() {
-		return (IfcEnvironmentalImpactCategoryEnum) eGet(Ifc2x3tc1Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__CATEGORY, true);
+		return (IfcEnvironmentalImpactCategoryEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__CATEGORY, true);
 	}
 
 	/**

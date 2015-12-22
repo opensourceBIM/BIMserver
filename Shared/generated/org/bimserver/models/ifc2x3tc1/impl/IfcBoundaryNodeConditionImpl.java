@@ -115,7 +115,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public void setLinearStiffnessXAsString(String newLinearStiffnessXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__LINEAR_STIFFNESS_XAS_STRING, newLinearStiffnessXAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__LINEAR_STIFFNESS_XAS_STRING,
+				newLinearStiffnessXAsString);
 	}
 
 	/**
@@ -187,7 +188,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public void setLinearStiffnessYAsString(String newLinearStiffnessYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__LINEAR_STIFFNESS_YAS_STRING, newLinearStiffnessYAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__LINEAR_STIFFNESS_YAS_STRING,
+				newLinearStiffnessYAsString);
 	}
 
 	/**
@@ -259,7 +261,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public void setLinearStiffnessZAsString(String newLinearStiffnessZAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__LINEAR_STIFFNESS_ZAS_STRING, newLinearStiffnessZAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__LINEAR_STIFFNESS_ZAS_STRING,
+				newLinearStiffnessZAsString);
 	}
 
 	/**
@@ -322,7 +325,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public String getRotationalStiffnessXAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_XAS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_XAS_STRING,
+				true);
 	}
 
 	/**
@@ -331,7 +335,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public void setRotationalStiffnessXAsString(String newRotationalStiffnessXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_XAS_STRING, newRotationalStiffnessXAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_XAS_STRING,
+				newRotationalStiffnessXAsString);
 	}
 
 	/**
@@ -394,7 +399,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public String getRotationalStiffnessYAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_YAS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_YAS_STRING,
+				true);
 	}
 
 	/**
@@ -403,7 +409,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public void setRotationalStiffnessYAsString(String newRotationalStiffnessYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_YAS_STRING, newRotationalStiffnessYAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_YAS_STRING,
+				newRotationalStiffnessYAsString);
 	}
 
 	/**
@@ -466,7 +473,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public String getRotationalStiffnessZAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_ZAS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_ZAS_STRING,
+				true);
 	}
 
 	/**
@@ -475,7 +483,8 @@ public class IfcBoundaryNodeConditionImpl extends IfcBoundaryConditionImpl imple
 	 * @generated
 	 */
 	public void setRotationalStiffnessZAsString(String newRotationalStiffnessZAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_ZAS_STRING, newRotationalStiffnessZAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BOUNDARY_NODE_CONDITION__ROTATIONAL_STIFFNESS_ZAS_STRING,
+				newRotationalStiffnessZAsString);
 	}
 
 	/**

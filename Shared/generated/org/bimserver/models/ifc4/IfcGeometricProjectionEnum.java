@@ -43,46 +43,6 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>ELEVATION VIEW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELEVATION_VIEW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELEVATION_VIEW(1, "ELEVATION_VIEW", "ELEVATION_VIEW"),
-
-	/**
-	 * The '<em><b>SKETCH VIEW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SKETCH_VIEW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SKETCH_VIEW(2, "SKETCH_VIEW", "SKETCH_VIEW"),
-
-	/**
-	 * The '<em><b>REFLECTED PLAN VIEW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REFLECTED_PLAN_VIEW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REFLECTED_PLAN_VIEW(3, "REFLECTED_PLAN_VIEW", "REFLECTED_PLAN_VIEW"),
-
-	/**
-	 * The '<em><b>PLAN VIEW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLAN_VIEW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLAN_VIEW(4, "PLAN_VIEW", "PLAN_VIEW"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,27 +50,15 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>GRAPH VIEW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GRAPH_VIEW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GRAPH_VIEW(6, "GRAPH_VIEW", "GRAPH_VIEW"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												* The '<em><b>PLAN VIEW</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #PLAN_VIEW_VALUE
+												* @generated
+												* @ordered
+												*/
+	PLAN_VIEW(2, "PLAN_VIEW", "PLAN_VIEW"),
 
 	/**
 	 * The '<em><b>SECTION VIEW</b></em>' literal object.
@@ -120,7 +68,39 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SECTION_VIEW(8, "SECTION_VIEW", "SECTION_VIEW"),
+	SECTION_VIEW(3, "SECTION_VIEW", "SECTION_VIEW"), /**
+														* The '<em><b>SKETCH VIEW</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #SKETCH_VIEW_VALUE
+														* @generated
+														* @ordered
+														*/
+	SKETCH_VIEW(4, "SKETCH_VIEW", "SKETCH_VIEW"), /**
+													* The '<em><b>USERDEFINED</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #USERDEFINED_VALUE
+													* @generated
+													* @ordered
+													*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>REFLECTED PLAN VIEW</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #REFLECTED_PLAN_VIEW_VALUE
+													* @generated
+													* @ordered
+													*/
+	REFLECTED_PLAN_VIEW(6, "REFLECTED_PLAN_VIEW", "REFLECTED_PLAN_VIEW"), /**
+																			* The '<em><b>ELEVATION VIEW</b></em>' literal object.
+																			* <!-- begin-user-doc -->
+																			* <!-- end-user-doc -->
+																			* @see #ELEVATION_VIEW_VALUE
+																			* @generated
+																			* @ordered
+																			*/
+	ELEVATION_VIEW(7, "ELEVATION_VIEW", "ELEVATION_VIEW"),
 
 	/**
 	 * The '<em><b>MODEL VIEW</b></em>' literal object.
@@ -130,7 +110,15 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MODEL_VIEW(9, "MODEL_VIEW", "MODEL_VIEW");
+	MODEL_VIEW(8, "MODEL_VIEW", "MODEL_VIEW"), /**
+												* The '<em><b>GRAPH VIEW</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #GRAPH_VIEW_VALUE
+												* @generated
+												* @ordered
+												*/
+	GRAPH_VIEW(9, "GRAPH_VIEW", "GRAPH_VIEW");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -148,49 +136,19 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>ELEVATION VIEW</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ELEVATION VIEW</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELEVATION_VIEW
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELEVATION_VIEW_VALUE = 1;
-
-	/**
-	 * The '<em><b>SKETCH VIEW</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SKETCH VIEW</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SKETCH_VIEW
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SKETCH_VIEW_VALUE = 2;
-
-	/**
-	 * The '<em><b>REFLECTED PLAN VIEW</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>REFLECTED PLAN VIEW</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #REFLECTED_PLAN_VIEW
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int REFLECTED_PLAN_VIEW_VALUE = 3;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>PLAN VIEW</b></em>' literal value.
@@ -205,52 +163,7 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PLAN_VIEW_VALUE = 4;
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NOTDEFINED_VALUE = 5;
-
-	/**
-	 * The '<em><b>GRAPH VIEW</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>GRAPH VIEW</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #GRAPH_VIEW
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int GRAPH_VIEW_VALUE = 6;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 7;
+	public static final int PLAN_VIEW_VALUE = 2;
 
 	/**
 	 * The '<em><b>SECTION VIEW</b></em>' literal value.
@@ -265,7 +178,67 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECTION_VIEW_VALUE = 8;
+	public static final int SECTION_VIEW_VALUE = 3;
+
+	/**
+	 * The '<em><b>SKETCH VIEW</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SKETCH VIEW</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SKETCH_VIEW
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SKETCH_VIEW_VALUE = 4;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 5;
+
+	/**
+	 * The '<em><b>REFLECTED PLAN VIEW</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>REFLECTED PLAN VIEW</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #REFLECTED_PLAN_VIEW
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int REFLECTED_PLAN_VIEW_VALUE = 6;
+
+	/**
+	 * The '<em><b>ELEVATION VIEW</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ELEVATION VIEW</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ELEVATION_VIEW
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ELEVATION_VIEW_VALUE = 7;
 
 	/**
 	 * The '<em><b>MODEL VIEW</b></em>' literal value.
@@ -280,7 +253,22 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MODEL_VIEW_VALUE = 9;
+	public static final int MODEL_VIEW_VALUE = 8;
+
+	/**
+	 * The '<em><b>GRAPH VIEW</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>GRAPH VIEW</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #GRAPH_VIEW
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GRAPH_VIEW_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Geometric Projection Enum</b></em>' enumerators.
@@ -289,8 +277,8 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcGeometricProjectionEnum[] VALUES_ARRAY = new IfcGeometricProjectionEnum[] { NULL,
-			ELEVATION_VIEW, SKETCH_VIEW, REFLECTED_PLAN_VIEW, PLAN_VIEW, NOTDEFINED, GRAPH_VIEW, USERDEFINED,
-			SECTION_VIEW, MODEL_VIEW, };
+			NOTDEFINED, PLAN_VIEW, SECTION_VIEW, SKETCH_VIEW, USERDEFINED, REFLECTED_PLAN_VIEW, ELEVATION_VIEW,
+			MODEL_VIEW, GRAPH_VIEW, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Geometric Projection Enum</b></em>' enumerators.
@@ -349,24 +337,24 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case ELEVATION_VIEW_VALUE:
-			return ELEVATION_VIEW;
-		case SKETCH_VIEW_VALUE:
-			return SKETCH_VIEW;
-		case REFLECTED_PLAN_VIEW_VALUE:
-			return REFLECTED_PLAN_VIEW;
-		case PLAN_VIEW_VALUE:
-			return PLAN_VIEW;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case GRAPH_VIEW_VALUE:
-			return GRAPH_VIEW;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case PLAN_VIEW_VALUE:
+			return PLAN_VIEW;
 		case SECTION_VIEW_VALUE:
 			return SECTION_VIEW;
+		case SKETCH_VIEW_VALUE:
+			return SKETCH_VIEW;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case REFLECTED_PLAN_VIEW_VALUE:
+			return REFLECTED_PLAN_VIEW;
+		case ELEVATION_VIEW_VALUE:
+			return ELEVATION_VIEW;
 		case MODEL_VIEW_VALUE:
 			return MODEL_VIEW;
+		case GRAPH_VIEW_VALUE:
+			return GRAPH_VIEW;
 		}
 		return null;
 	}

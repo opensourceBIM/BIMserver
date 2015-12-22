@@ -43,16 +43,6 @@ public enum IfcStackTerminalTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>COWL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COWL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COWL(1, "COWL", "COWL"),
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,27 +50,7 @@ public enum IfcStackTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>BIRDCAGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BIRDCAGE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BIRDCAGE(3, "BIRDCAGE", "BIRDCAGE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>RAINWATERHOPPER</b></em>' literal object.
@@ -90,7 +60,31 @@ public enum IfcStackTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RAINWATERHOPPER(5, "RAINWATERHOPPER", "RAINWATERHOPPER");
+	RAINWATERHOPPER(2, "RAINWATERHOPPER", "RAINWATERHOPPER"), /**
+																* The '<em><b>BIRDCAGE</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #BIRDCAGE_VALUE
+																* @generated
+																* @ordered
+																*/
+	BIRDCAGE(3, "BIRDCAGE", "BIRDCAGE"), /**
+											* The '<em><b>USERDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #USERDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>COWL</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #COWL_VALUE
+													* @generated
+													* @ordered
+													*/
+	COWL(5, "COWL", "COWL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -108,21 +102,6 @@ public enum IfcStackTerminalTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>COWL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>COWL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #COWL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int COWL_VALUE = 1;
-
-	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,7 +114,22 @@ public enum IfcStackTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 2;
+	public static final int NOTDEFINED_VALUE = 1;
+
+	/**
+	 * The '<em><b>RAINWATERHOPPER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>RAINWATERHOPPER</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RAINWATERHOPPER
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RAINWATERHOPPER_VALUE = 2;
 
 	/**
 	 * The '<em><b>BIRDCAGE</b></em>' literal value.
@@ -168,19 +162,19 @@ public enum IfcStackTerminalTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 4;
 
 	/**
-	 * The '<em><b>RAINWATERHOPPER</b></em>' literal value.
+	 * The '<em><b>COWL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>RAINWATERHOPPER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>COWL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RAINWATERHOPPER
+	 * @see #COWL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RAINWATERHOPPER_VALUE = 5;
+	public static final int COWL_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Stack Terminal Type Enum</b></em>' enumerators.
@@ -188,8 +182,8 @@ public enum IfcStackTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStackTerminalTypeEnum[] VALUES_ARRAY = new IfcStackTerminalTypeEnum[] { NULL, COWL,
-			NOTDEFINED, BIRDCAGE, USERDEFINED, RAINWATERHOPPER, };
+	private static final IfcStackTerminalTypeEnum[] VALUES_ARRAY = new IfcStackTerminalTypeEnum[] { NULL, NOTDEFINED,
+			RAINWATERHOPPER, BIRDCAGE, USERDEFINED, COWL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Stack Terminal Type Enum</b></em>' enumerators.
@@ -248,16 +242,16 @@ public enum IfcStackTerminalTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case COWL_VALUE:
-			return COWL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
+		case RAINWATERHOPPER_VALUE:
+			return RAINWATERHOPPER;
 		case BIRDCAGE_VALUE:
 			return BIRDCAGE;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case RAINWATERHOPPER_VALUE:
-			return RAINWATERHOPPER;
+		case COWL_VALUE:
+			return COWL;
 		}
 		return null;
 	}

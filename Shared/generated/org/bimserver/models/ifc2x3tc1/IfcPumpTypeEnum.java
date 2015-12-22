@@ -43,36 +43,6 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>VERTICALTURBINE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VERTICALTURBINE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VERTICALTURBINE(1, "VERTICALTURBINE", "VERTICALTURBINE"),
-
-	/**
-	 * The '<em><b>ENDSUCTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ENDSUCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ENDSUCTION(2, "ENDSUCTION", "ENDSUCTION"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
 	 * The '<em><b>SPLITCASE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,27 +50,15 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SPLITCASE(4, "SPLITCASE", "SPLITCASE"),
-
-	/**
-	 * The '<em><b>VERTICALINLINE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VERTICALINLINE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VERTICALINLINE(5, "VERTICALINLINE", "VERTICALINLINE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
+	SPLITCASE(1, "SPLITCASE", "SPLITCASE"), /**
+											* The '<em><b>NOTDEFINED</b></em>' literal object.
+											* <!-- begin-user-doc -->
+											* <!-- end-user-doc -->
+											* @see #NOTDEFINED_VALUE
+											* @generated
+											* @ordered
+											*/
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>CIRCULATOR</b></em>' literal object.
@@ -110,7 +68,39 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CIRCULATOR(7, "CIRCULATOR", "CIRCULATOR");
+	CIRCULATOR(3, "CIRCULATOR", "CIRCULATOR"), /**
+												* The '<em><b>ENDSUCTION</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #ENDSUCTION_VALUE
+												* @generated
+												* @ordered
+												*/
+	ENDSUCTION(4, "ENDSUCTION", "ENDSUCTION"), /**
+												* The '<em><b>USERDEFINED</b></em>' literal object.
+												* <!-- begin-user-doc -->
+												* <!-- end-user-doc -->
+												* @see #USERDEFINED_VALUE
+												* @generated
+												* @ordered
+												*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													* The '<em><b>VERTICALINLINE</b></em>' literal object.
+													* <!-- begin-user-doc -->
+													* <!-- end-user-doc -->
+													* @see #VERTICALINLINE_VALUE
+													* @generated
+													* @ordered
+													*/
+	VERTICALINLINE(6, "VERTICALINLINE", "VERTICALINLINE"), /**
+															* The '<em><b>VERTICALTURBINE</b></em>' literal object.
+															* <!-- begin-user-doc -->
+															* <!-- end-user-doc -->
+															* @see #VERTICALTURBINE_VALUE
+															* @generated
+															* @ordered
+															*/
+	VERTICALTURBINE(7, "VERTICALTURBINE", "VERTICALTURBINE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -128,34 +118,19 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>VERTICALTURBINE</b></em>' literal value.
+	 * The '<em><b>SPLITCASE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>VERTICALTURBINE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SPLITCASE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VERTICALTURBINE
+	 * @see #SPLITCASE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VERTICALTURBINE_VALUE = 1;
-
-	/**
-	 * The '<em><b>ENDSUCTION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ENDSUCTION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #ENDSUCTION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ENDSUCTION_VALUE = 2;
+	public static final int SPLITCASE_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -170,52 +145,7 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED_VALUE = 3;
-
-	/**
-	 * The '<em><b>SPLITCASE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SPLITCASE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SPLITCASE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SPLITCASE_VALUE = 4;
-
-	/**
-	 * The '<em><b>VERTICALINLINE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>VERTICALINLINE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #VERTICALINLINE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int VERTICALINLINE_VALUE = 5;
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int USERDEFINED_VALUE = 6;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>CIRCULATOR</b></em>' literal value.
@@ -230,7 +160,67 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CIRCULATOR_VALUE = 7;
+	public static final int CIRCULATOR_VALUE = 3;
+
+	/**
+	 * The '<em><b>ENDSUCTION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ENDSUCTION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ENDSUCTION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ENDSUCTION_VALUE = 4;
+
+	/**
+	 * The '<em><b>USERDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>USERDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #USERDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int USERDEFINED_VALUE = 5;
+
+	/**
+	 * The '<em><b>VERTICALINLINE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>VERTICALINLINE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #VERTICALINLINE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int VERTICALINLINE_VALUE = 6;
+
+	/**
+	 * The '<em><b>VERTICALTURBINE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>VERTICALTURBINE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #VERTICALTURBINE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int VERTICALTURBINE_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Pump Type Enum</b></em>' enumerators.
@@ -238,7 +228,8 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPumpTypeEnum[] VALUES_ARRAY = new IfcPumpTypeEnum[] { NULL, VERTICALTURBINE, ENDSUCTION, NOTDEFINED, SPLITCASE, VERTICALINLINE, USERDEFINED, CIRCULATOR, };
+	private static final IfcPumpTypeEnum[] VALUES_ARRAY = new IfcPumpTypeEnum[] { NULL, SPLITCASE, NOTDEFINED,
+			CIRCULATOR, ENDSUCTION, USERDEFINED, VERTICALINLINE, VERTICALTURBINE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pump Type Enum</b></em>' enumerators.
@@ -296,20 +287,20 @@ public enum IfcPumpTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case VERTICALTURBINE_VALUE:
-			return VERTICALTURBINE;
-		case ENDSUCTION_VALUE:
-			return ENDSUCTION;
-		case NOTDEFINED_VALUE:
-			return NOTDEFINED;
 		case SPLITCASE_VALUE:
 			return SPLITCASE;
-		case VERTICALINLINE_VALUE:
-			return VERTICALINLINE;
-		case USERDEFINED_VALUE:
-			return USERDEFINED;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case CIRCULATOR_VALUE:
 			return CIRCULATOR;
+		case ENDSUCTION_VALUE:
+			return ENDSUCTION;
+		case USERDEFINED_VALUE:
+			return USERDEFINED;
+		case VERTICALINLINE_VALUE:
+			return VERTICALINLINE;
+		case VERTICALTURBINE_VALUE:
+			return VERTICALTURBINE;
 		}
 		return null;
 	}

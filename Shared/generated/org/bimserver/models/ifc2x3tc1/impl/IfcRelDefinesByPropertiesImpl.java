@@ -60,7 +60,8 @@ public class IfcRelDefinesByPropertiesImpl extends IfcRelDefinesImpl implements 
 	 * @generated
 	 */
 	public IfcPropertySetDefinition getRelatingPropertyDefinition() {
-		return (IfcPropertySetDefinition) eGet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION, true);
+		return (IfcPropertySetDefinition) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION, true);
 	}
 
 	/**
@@ -69,7 +70,8 @@ public class IfcRelDefinesByPropertiesImpl extends IfcRelDefinesImpl implements 
 	 * @generated
 	 */
 	public void setRelatingPropertyDefinition(IfcPropertySetDefinition newRelatingPropertyDefinition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION, newRelatingPropertyDefinition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION,
+				newRelatingPropertyDefinition);
 	}
 
 } //IfcRelDefinesByPropertiesImpl

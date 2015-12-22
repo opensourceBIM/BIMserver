@@ -53,46 +53,6 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
-	 * The '<em><b>FLOODEDSHELLANDTUBE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOODEDSHELLANDTUBE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOODEDSHELLANDTUBE(2, "FLOODEDSHELLANDTUBE", "FLOODEDSHELLANDTUBE"),
-
-	/**
-	 * The '<em><b>DIRECTEXPANSIONTUBEINTUBE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTEXPANSIONTUBEINTUBE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECTEXPANSIONTUBEINTUBE(3, "DIRECTEXPANSIONTUBEINTUBE", "DIRECTEXPANSIONTUBEINTUBE"),
-
-	/**
-	 * The '<em><b>DIRECTEXPANSIONBRAZEDPLATE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTEXPANSIONBRAZEDPLATE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECTEXPANSIONBRAZEDPLATE(4, "DIRECTEXPANSIONBRAZEDPLATE", "DIRECTEXPANSIONBRAZEDPLATE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
 	 * The '<em><b>DIRECTEXPANSIONSHELLANDTUBE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,17 +60,31 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEXPANSIONSHELLANDTUBE(6, "DIRECTEXPANSIONSHELLANDTUBE", "DIRECTEXPANSIONSHELLANDTUBE"),
-
-	/**
-	 * The '<em><b>SHELLANDCOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHELLANDCOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHELLANDCOIL(7, "SHELLANDCOIL", "SHELLANDCOIL"),
+	DIRECTEXPANSIONSHELLANDTUBE(2, "DIRECTEXPANSIONSHELLANDTUBE", "DIRECTEXPANSIONSHELLANDTUBE"), /**
+																									* The '<em><b>DIRECTEXPANSIONTUBEINTUBE</b></em>' literal object.
+																									* <!-- begin-user-doc -->
+																									* <!-- end-user-doc -->
+																									* @see #DIRECTEXPANSIONTUBEINTUBE_VALUE
+																									* @generated
+																									* @ordered
+																									*/
+	DIRECTEXPANSIONTUBEINTUBE(3, "DIRECTEXPANSIONTUBEINTUBE", "DIRECTEXPANSIONTUBEINTUBE"), /**
+																							* The '<em><b>DIRECTEXPANSIONBRAZEDPLATE</b></em>' literal object.
+																							* <!-- begin-user-doc -->
+																							* <!-- end-user-doc -->
+																							* @see #DIRECTEXPANSIONBRAZEDPLATE_VALUE
+																							* @generated
+																							* @ordered
+																							*/
+	DIRECTEXPANSIONBRAZEDPLATE(4, "DIRECTEXPANSIONBRAZEDPLATE", "DIRECTEXPANSIONBRAZEDPLATE"), /**
+																								* The '<em><b>USERDEFINED</b></em>' literal object.
+																								* <!-- begin-user-doc -->
+																								* <!-- end-user-doc -->
+																								* @see #USERDEFINED_VALUE
+																								* @generated
+																								* @ordered
+																								*/
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>DIRECTEXPANSION</b></em>' literal object.
@@ -120,7 +94,23 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEXPANSION(8, "DIRECTEXPANSION", "DIRECTEXPANSION");
+	DIRECTEXPANSION(6, "DIRECTEXPANSION", "DIRECTEXPANSION"), /**
+																* The '<em><b>SHELLANDCOIL</b></em>' literal object.
+																* <!-- begin-user-doc -->
+																* <!-- end-user-doc -->
+																* @see #SHELLANDCOIL_VALUE
+																* @generated
+																* @ordered
+																*/
+	SHELLANDCOIL(7, "SHELLANDCOIL", "SHELLANDCOIL"), /**
+														* The '<em><b>FLOODEDSHELLANDTUBE</b></em>' literal object.
+														* <!-- begin-user-doc -->
+														* <!-- end-user-doc -->
+														* @see #FLOODEDSHELLANDTUBE_VALUE
+														* @generated
+														* @ordered
+														*/
+	FLOODEDSHELLANDTUBE(8, "FLOODEDSHELLANDTUBE", "FLOODEDSHELLANDTUBE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -153,19 +143,19 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
-	 * The '<em><b>FLOODEDSHELLANDTUBE</b></em>' literal value.
+	 * The '<em><b>DIRECTEXPANSIONSHELLANDTUBE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>FLOODEDSHELLANDTUBE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DIRECTEXPANSIONSHELLANDTUBE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLOODEDSHELLANDTUBE
+	 * @see #DIRECTEXPANSIONSHELLANDTUBE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOODEDSHELLANDTUBE_VALUE = 2;
+	public static final int DIRECTEXPANSIONSHELLANDTUBE_VALUE = 2;
 
 	/**
 	 * The '<em><b>DIRECTEXPANSIONTUBEINTUBE</b></em>' literal value.
@@ -213,19 +203,19 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 5;
 
 	/**
-	 * The '<em><b>DIRECTEXPANSIONSHELLANDTUBE</b></em>' literal value.
+	 * The '<em><b>DIRECTEXPANSION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DIRECTEXPANSIONSHELLANDTUBE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>DIRECTEXPANSION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTEXPANSIONSHELLANDTUBE
+	 * @see #DIRECTEXPANSION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIRECTEXPANSIONSHELLANDTUBE_VALUE = 6;
+	public static final int DIRECTEXPANSION_VALUE = 6;
 
 	/**
 	 * The '<em><b>SHELLANDCOIL</b></em>' literal value.
@@ -243,19 +233,19 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	public static final int SHELLANDCOIL_VALUE = 7;
 
 	/**
-	 * The '<em><b>DIRECTEXPANSION</b></em>' literal value.
+	 * The '<em><b>FLOODEDSHELLANDTUBE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DIRECTEXPANSION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>FLOODEDSHELLANDTUBE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTEXPANSION
+	 * @see #FLOODEDSHELLANDTUBE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIRECTEXPANSION_VALUE = 8;
+	public static final int FLOODEDSHELLANDTUBE_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Evaporator Type Enum</b></em>' enumerators.
@@ -264,8 +254,8 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	private static final IfcEvaporatorTypeEnum[] VALUES_ARRAY = new IfcEvaporatorTypeEnum[] { NULL, NOTDEFINED,
-			FLOODEDSHELLANDTUBE, DIRECTEXPANSIONTUBEINTUBE, DIRECTEXPANSIONBRAZEDPLATE, USERDEFINED,
-			DIRECTEXPANSIONSHELLANDTUBE, SHELLANDCOIL, DIRECTEXPANSION, };
+			DIRECTEXPANSIONSHELLANDTUBE, DIRECTEXPANSIONTUBEINTUBE, DIRECTEXPANSIONBRAZEDPLATE, USERDEFINED,
+			DIRECTEXPANSION, SHELLANDCOIL, FLOODEDSHELLANDTUBE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Evaporator Type Enum</b></em>' enumerators.
@@ -325,20 +315,20 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 			return NULL;
 		case NOTDEFINED_VALUE:
 			return NOTDEFINED;
-		case FLOODEDSHELLANDTUBE_VALUE:
-			return FLOODEDSHELLANDTUBE;
+		case DIRECTEXPANSIONSHELLANDTUBE_VALUE:
+			return DIRECTEXPANSIONSHELLANDTUBE;
 		case DIRECTEXPANSIONTUBEINTUBE_VALUE:
 			return DIRECTEXPANSIONTUBEINTUBE;
 		case DIRECTEXPANSIONBRAZEDPLATE_VALUE:
 			return DIRECTEXPANSIONBRAZEDPLATE;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
-		case DIRECTEXPANSIONSHELLANDTUBE_VALUE:
-			return DIRECTEXPANSIONSHELLANDTUBE;
-		case SHELLANDCOIL_VALUE:
-			return SHELLANDCOIL;
 		case DIRECTEXPANSION_VALUE:
 			return DIRECTEXPANSION;
+		case SHELLANDCOIL_VALUE:
+			return SHELLANDCOIL;
+		case FLOODEDSHELLANDTUBE_VALUE:
+			return FLOODEDSHELLANDTUBE;
 		}
 		return null;
 	}
