@@ -96,13 +96,13 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	/**
 	 * Terminate a long running action
 	 * 
-	 * @param actionId The actionId returned by one of the download or checkout methods
+	 * @param topicId The actionId returned by one of the download or checkout methods
 	 * @return An SDownloadResult containing the serialized data
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "terminateLongRunningAction")
 	void terminateLongRunningAction(
-		@WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
+		@WebParam(name = "topicId", partName = "getDownloadData.topicId") Long topicId) throws ServerException, UserException;
 
 	/**
 	 * Checkout an existing model, checkout is the same as download, except a "checkout" will tell the server and other users you are working on it
@@ -273,13 +273,13 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	/**
 	 * Get the data for a download/checkout
 	 * 
-	 * @param actionId The actionId returned by one of the download or checkout methods
+	 * @param topicId The topicId returned by one of the download or checkout methods
 	 * @return An SDownloadResult containing the serialized data
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getDownloadData")
 	SDownloadResult getDownloadData(
-		@WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
+		@WebParam(name = "topicId", partName = "getDownloadData.topicId") Long topicId) throws ServerException, UserException;
 
 	/**
 	 * @param serializerName Name of the Serializer

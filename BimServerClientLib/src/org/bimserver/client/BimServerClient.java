@@ -302,8 +302,8 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		}
 	}
 
-	public InputStream getDownloadData(long downloadId, long serializerOid) throws IOException {
-		return channel.getDownloadData(baseAddress, token, downloadId, serializerOid);
+	public InputStream getDownloadData(long topicId, long serializerOid) throws IOException {
+		return channel.getDownloadData(baseAddress, token, topicId, serializerOid);
 	}
 
 	public IfcModelInterface newModel(SProject project, boolean recordChanges) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
@@ -386,8 +386,8 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	
 	public long query(Query query, long roid, long serializerOid) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		ObjectNode queryNode = new JsonQueryObjectModelConverter(query.getPackageMetaData()).toJson(query);
-		Long downloadId = getBimsie1ServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), queryNode.toString(), serializerOid, false);
-		return downloadId;
+		Long topicId = getBimsie1ServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), queryNode.toString(), serializerOid, false);
+		return topicId;
 	}
 
 	@Override

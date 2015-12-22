@@ -43,8 +43,8 @@ public class SingleCheckinAndDownloadSimplified extends TestWithEmbeddedServer {
 			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 			
 			// Download the latest revision  (the one we just checked in)
-			Long downloadId = bimServerClient.getBimsie1ServiceInterface().download(newProject.getLastRevisionId(), colladaSerializer.getOid(), true, false); // Note: sync: false
-			InputStream downloadData = bimServerClient.getDownloadData(downloadId, colladaSerializer.getOid());
+			Long topicIdId = bimServerClient.getBimsie1ServiceInterface().download(newProject.getLastRevisionId(), colladaSerializer.getOid(), true, false); // Note: sync: false
+			InputStream downloadData = bimServerClient.getDownloadData(topicIdId, colladaSerializer.getOid());
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			IOUtils.copy(downloadData, baos);
 			System.out.println(baos.size() + " bytes downloaded");
