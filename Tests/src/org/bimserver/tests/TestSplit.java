@@ -30,9 +30,9 @@ public class TestSplit {
 			
 			IfcModelInterface model = client.getModel(project, project.getLastRevisionId(), true, false);
 			for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-				Long downloadId = client.getBimsie1ServiceInterface().downloadByOids(Collections.singleton(project.getLastRevisionId()), Collections.singleton(ifcProduct.getOid()), serializer.getOid(), true, false);
-				System.out.println(downloadId);
-				InputStream downloadData = client.getDownloadData(downloadId, serializer.getOid());
+				Long topicId = client.getBimsie1ServiceInterface().downloadByOids(Collections.singleton(project.getLastRevisionId()), Collections.singleton(ifcProduct.getOid()), serializer.getOid(), true, false);
+				System.out.println(topicId);
+				InputStream downloadData = client.getDownloadData(topicId, serializer.getOid());
 				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 				org.apache.commons.io.IOUtils.copy(downloadData, byteArrayOutputStream);
 				downloadData.close();

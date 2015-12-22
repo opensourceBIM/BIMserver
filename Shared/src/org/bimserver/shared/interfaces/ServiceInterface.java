@@ -868,7 +868,7 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Cleanup a long running action, this is important to keep memory usage of BIMserver down
 	 * 
-	 * @param actionId
+	 * @param topicId
 	 * @throws UserException
 	 * @throws ServerException
 	 */

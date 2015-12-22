@@ -50,10 +50,10 @@ public class SubProjects extends TestWithEmbeddedServer {
 			mainProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(mainProject.getOid());
 
 			// Download the latest revision (the one we just checked in)
-//			Long downloadId = bimServerClient.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(mainProject.getLastRevisionId()),
+//			Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(mainProject.getLastRevisionId()),
 //					Collections.singleton("IfcWall"), serializer.getOid(), true, false, true, true);
-			Long downloadId = bimServerClient.getBimsie1ServiceInterface().download(mainProject.getLastRevisionId(), serializer.getOid(), true, true);
-			IOUtils.copy(bimServerClient.getDownloadData(downloadId, serializer.getOid()), new FileOutputStream(new File("out.ifc")));
+			Long topicId = bimServerClient.getBimsie1ServiceInterface().download(mainProject.getLastRevisionId(), serializer.getOid(), true, true);
+			IOUtils.copy(bimServerClient.getDownloadData(topicId, serializer.getOid()), new FileOutputStream(new File("out.ifc")));
 			long e = System.nanoTime();
 			System.out.println(((e - s) / 1000000) + " ms");
 		} catch (Exception e) {

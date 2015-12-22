@@ -38,8 +38,8 @@ public class TestBimQlSoap {
 					if (queryEngine == null) {
 						throw new RuntimeException("No BIMQL query engines found");
 					}
-					Long downloadId = bimServerClient.getBimsie1ServiceInterface().downloadQuery(revision.getOid(), queryEngine.getOid(), "Select $Var1Where $Var1.EntityType = IfcDoor", true, serializerPluginConfiguration.getOid());
-					SDownloadResult downloadData = bimServerClient.getBimsie1ServiceInterface().getDownloadData(downloadId);
+					Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadQuery(revision.getOid(), queryEngine.getOid(), "Select $Var1Where $Var1.EntityType = IfcDoor", true, serializerPluginConfiguration.getOid());
+					SDownloadResult downloadData = bimServerClient.getBimsie1ServiceInterface().getDownloadData(topicId);
 					DataHandler dataHandler = downloadData.getFile();
 					IOUtils.copy(dataHandler.getInputStream(), new FileOutputStream(Paths.get("test.ifc").toFile()));
 				}

@@ -48,8 +48,8 @@ public class MultiCheckinAndDownload extends TestWithEmbeddedServer {
 					newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 					
 					// Download the latest revision  (the one we just checked in)
-					Long downloadId = bimServerClient.getBimsie1ServiceInterface().download(newProject.getLastRevisionId(), serializer.getOid(), true, true);
-					SLongActionState downloadState = bimServerClient.getRegistry().getProgress(downloadId);
+					Long topicId = bimServerClient.getBimsie1ServiceInterface().download(newProject.getLastRevisionId(), serializer.getOid(), true, true);
+					SLongActionState downloadState = bimServerClient.getRegistry().getProgress(topicId);
 					if (downloadState.getState() == SActionState.FINISHED) {
 						// Success
 						System.out.println("Success");

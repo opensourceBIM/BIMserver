@@ -157,12 +157,12 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 	}
 	
 	@Override
-	public void terminateLongRunningAction(Long actionId) throws ServerException, UserException {
-		LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(actionId);
+	public void terminateLongRunningAction(Long topicId) throws ServerException, UserException {
+		LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(topicId);
 		if (longAction != null) {
 			longAction.terminate();
 		} else {
-			throw new UserException("No data found for laid " + actionId);
+			throw new UserException("No data found for topicId " + topicId);
 		}
 	}
 	
