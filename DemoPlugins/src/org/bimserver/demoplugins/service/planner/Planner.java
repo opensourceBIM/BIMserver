@@ -156,7 +156,8 @@ public class Planner {
 					if (list == null) {
 						planningAdvice.setDatabaseCount(0);
 					} else {
-						planningAdvice.setDatabaseCount(list.size());
+						Set<String> set = new HashSet<>(list);
+						planningAdvice.setDatabaseCount(set.size());
 						for (String guid : list) {
 							Planning planning = planningsByGuid.get(guid);
 							if (planning != null) {
