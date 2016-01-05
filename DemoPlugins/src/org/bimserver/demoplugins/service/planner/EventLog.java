@@ -61,16 +61,17 @@ public class EventLog implements Iterable<Event> {
 			while (line != null) {
 				Event event = new Event();
 				event.setGuid(line[0]);
-				event.setType(line[1]);
-				event.setNlSfb(line[2]);
-				event.setMaterial(getSimlifiedMaterialName(line[3]));
-				event.setTask(line[4]);
-				event.setResource(line[5]);
-				event.setTaskName(line[6]);
-				event.setTaskStart(parseDate(line[7]));
-				event.setTaskFinish(parseDate(line[8]));
-				if (line.length > 9) {
-					String timing = line[9];
+				event.setGuid(line[1]);
+				event.setType(line[2]);
+				event.setNlSfb(line[3]);
+				event.setMaterial(getSimlifiedMaterialName(line[4]));
+				event.setTask(line[5]);
+				event.setResource(line[6]);
+				event.setTaskName(line[7]);
+				event.setTaskStart(parseDate(line[8]));
+				event.setTaskFinish(parseDate(line[9]));
+				if (line.length > 10) {
+					String timing = line[10];
 					if (timing.equals("On time")) {
 						event.setTiming(Timing.ON_TIME);
 					} else if (timing.equals("Too late")) {
