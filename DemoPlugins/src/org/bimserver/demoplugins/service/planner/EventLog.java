@@ -60,7 +60,7 @@ public class EventLog implements Iterable<Event> {
 			String[] line = reader.readNext();
 			while (line != null) {
 				Event event = new Event();
-				event.setGuid(line[0]);
+				event.setBuildingGuid(line[0]);
 				event.setGuid(line[1]);
 				event.setType(line[2]);
 				event.setNlSfb(line[3]);
