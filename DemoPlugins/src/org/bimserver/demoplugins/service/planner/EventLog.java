@@ -163,7 +163,7 @@ public class EventLog implements Iterable<Event> {
 	private GregorianCalendar parseDate(IfcDateAndTime start) {
 		GregorianCalendar gregorianCalendar = new GregorianCalendar();
 		gregorianCalendar.set(Calendar.YEAR, start.getDateComponent().getYearComponent());
-		gregorianCalendar.set(Calendar.MONTH, start.getDateComponent().getMonthComponent() + 1);
+		gregorianCalendar.set(Calendar.MONTH, start.getDateComponent().getMonthComponent() - 1);
 		gregorianCalendar.set(Calendar.DAY_OF_MONTH, start.getDateComponent().getDayComponent());
 		return gregorianCalendar;
 	}
