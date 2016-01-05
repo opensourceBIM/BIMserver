@@ -19,6 +19,7 @@ public class Event implements Comparable<Event> {
 	private GregorianCalendar taskStart;
 	private GregorianCalendar taskFinish;
 	private Timing timing = Timing.UNKNOWN;
+	private String buildingGuid;
 
 	public String getGuid() {
 		return guid;
@@ -117,5 +118,13 @@ public class Event implements Comparable<Event> {
 
 	public void setTiming(Timing timing) {
 		this.timing = timing;
+	}
+
+	public void setBuildingGuid(String buildingGuid) {
+		this.buildingGuid = buildingGuid;
+	}
+	
+	public String getBuildingGuid() {
+		return buildingGuid;
 	}
 }

@@ -18,8 +18,11 @@ import java.util.Set;
 
 import org.bimserver.demoplugins.service.planner.Event.Timing;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.models.ifc2x3tc1.IfcBuilding;
 import org.bimserver.models.ifc2x3tc1.IfcDateAndTime;
+import org.bimserver.models.ifc2x3tc1.IfcElement;
 import org.bimserver.models.ifc2x3tc1.IfcLabel;
+import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcProcess;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProperty;
@@ -29,9 +32,12 @@ import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssigns;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsTasks;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToProcess;
+import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
+import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefinesByProperties;
 import org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl;
+import org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement;
 import org.bimserver.models.ifc2x3tc1.IfcTask;
 
 import com.google.common.base.Charsets;
@@ -154,6 +160,21 @@ public class EventLog implements Iterable<Event> {
 						}
 					}
 				}
+
+				// Assumes a fixed path to IfcBuilding
+				if (ifcProduct instanceof IfcElement) {
+					IfcElement ifcElement = (IfcElement)ifcProduct;
+					for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : ifcElement.getContainedInStructure()) {
+						IfcSpatialStructureElement relatingStructure = ifcRelContainedInSpatialStructure.getRelatingStructure();
+						for (IfcRelDecomposes ifcRelDecomposes : relatingStructure.getDecomposes()) {
+							IfcObjectDefinition relatingObject = ifcRelDecomposes.getRelatingObject();
+							if (relatingObject instanceof IfcBuilding) {
+								event.setBuildingGuid(((IfcBuilding)relatingObject).getGlobalId());
+							}
+						}
+					}
+				}
+				
 				events.add(event);
 				event = event.copy();
 			}
@@ -209,10 +230,11 @@ public class EventLog implements Iterable<Event> {
 	public String toCsvString() throws IOException {
 		StringWriter sw = new StringWriter();
 		CSVWriter csvWriter = new CSVWriter(sw);
-		csvWriter.writeNext(new String[]{"GUID", "ifcClass", "Nl-sfb", "Material", "Task", "Resource", "TaskName", "TaskStart", "TaskFinish"});
+		csvWriter.writeNext(new String[]{"BuildingGUID", "GUID", "IfcClass", "Nl-sfb", "Material", "TaskID", "Resource", "TaskName", "TaskStart", "TaskFinish"});
 
 		for (Event event : events) {
 			csvWriter.writeNext(new String[]{
+				event.getBuildingGuid(),
 				event.getGuid(),
 				event.getType(),
 				event.getNlSfb(),
