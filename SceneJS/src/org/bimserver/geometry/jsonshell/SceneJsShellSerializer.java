@@ -245,14 +245,14 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		Extends sceneExtends = getSceneExtends();
 		// Calculate the maximum ray length through the scene (using the two
 		// extreme points of the scene's bounding box)
-		float[] extentsDiff = new float[] { sceneExtends.max[0] - sceneExtends.min[0], sceneExtends.max[1] - sceneExtends.min[1], sceneExtends.max[2] - sceneExtends.min[2] };
-		if (Float.isInfinite(extentsDiff[0]))
+		double[] extentsDiff = new double[] { sceneExtends.max[0] - sceneExtends.min[0], sceneExtends.max[1] - sceneExtends.min[1], sceneExtends.max[2] - sceneExtends.min[2] };
+		if (Double.isInfinite(extentsDiff[0]))
 			extentsDiff[0] = 50.0f;
-		if (Float.isInfinite(extentsDiff[1]))
+		if (Double.isInfinite(extentsDiff[1]))
 			extentsDiff[1] = 50.0f;
-		if (Float.isInfinite(extentsDiff[2]))
+		if (Double.isInfinite(extentsDiff[2]))
 			extentsDiff[2] = 50.0f;
-		float extentsDiffLength = (float) Math.sqrt((double) (extentsDiff[0] * extentsDiff[0] + extentsDiff[1] * extentsDiff[1] + extentsDiff[2] * extentsDiff[2]));
+		double extentsDiffLength = Math.sqrt(extentsDiff[0] * extentsDiff[0] + extentsDiff[1] * extentsDiff[1] + extentsDiff[2] * extentsDiff[2]);
 
 		// Write the nodes to the stream
 		jsonWriter.beginObject().name("type").value("lookAt").name("id").value("main-lookAt").name("eye").beginObject().name("x").value(extentsDiff[0] * 1.5f).name("y")
@@ -378,22 +378,22 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 
 	private void writeBounds(JsonWriter jsonWriter) throws IOException {
 		Extends sceneExtends = getSceneExtends();
-		float[] bounds = { sceneExtends.max[0] - sceneExtends.min[0], sceneExtends.max[1] - sceneExtends.min[1], sceneExtends.max[2] - sceneExtends.min[2] };
+		double[] bounds = { sceneExtends.max[0] - sceneExtends.min[0], sceneExtends.max[1] - sceneExtends.min[1], sceneExtends.max[2] - sceneExtends.min[2] };
 		jsonWriter.beginArray();
-		jsonWriter.value(Float.isInfinite(bounds[0]) ? 50.0f : bounds[0]);
-		jsonWriter.value(Float.isInfinite(bounds[1]) ? 50.0f : bounds[1]);
-		jsonWriter.value(Float.isInfinite(bounds[2]) ? 50.0f : bounds[2]);
+		jsonWriter.value(Double.isInfinite(bounds[0]) ? 50.0f : bounds[0]);
+		jsonWriter.value(Double.isInfinite(bounds[1]) ? 50.0f : bounds[1]);
+		jsonWriter.value(Double.isInfinite(bounds[2]) ? 50.0f : bounds[2]);
 		jsonWriter.endArray();
 	}
 
 	private void writeBounds2(JsonWriter jsonWriter) throws IOException {
 		Extends sceneExtends = getSceneExtends();
-		float[] bounds = { (sceneExtends.max[0] + sceneExtends.min[0]) * 0.5f, (sceneExtends.max[1] + sceneExtends.min[1]) * 0.5f,
+		double[] bounds = { (sceneExtends.max[0] + sceneExtends.min[0]) * 0.5f, (sceneExtends.max[1] + sceneExtends.min[1]) * 0.5f,
 				(sceneExtends.max[2] + sceneExtends.min[2]) * 0.5f };
 		jsonWriter.beginArray();
-		jsonWriter.value(Float.isInfinite(bounds[0]) || Float.isNaN(bounds[0]) ? 50.0f : bounds[0]);
-		jsonWriter.value(Float.isInfinite(bounds[1]) || Float.isNaN(bounds[1]) ? 50.0f : bounds[1]);
-		jsonWriter.value(Float.isInfinite(bounds[2]) || Float.isNaN(bounds[2]) ? 50.0f : bounds[2]);
+		jsonWriter.value(Double.isInfinite(bounds[0]) || Double.isNaN(bounds[0]) ? 50.0f : bounds[0]);
+		jsonWriter.value(Double.isInfinite(bounds[1]) || Double.isNaN(bounds[1]) ? 50.0f : bounds[1]);
+		jsonWriter.value(Double.isInfinite(bounds[2]) || Double.isNaN(bounds[2]) ? 50.0f : bounds[2]);
 		jsonWriter.endArray();
 	}
 

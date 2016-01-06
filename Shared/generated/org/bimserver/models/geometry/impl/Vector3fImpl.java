@@ -71,8 +71,8 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getX() {
-		return (Float) eGet(GeometryPackage.Literals.VECTOR3F__X, true);
+	public double getX() {
+		return (Double) eGet(GeometryPackage.Literals.VECTOR3F__X, true);
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setX(float newX) {
+	public void setX(double newX) {
 		eSet(GeometryPackage.Literals.VECTOR3F__X, newX);
 	}
 
@@ -89,8 +89,8 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getY() {
-		return (Float) eGet(GeometryPackage.Literals.VECTOR3F__Y, true);
+	public double getY() {
+		return (Double) eGet(GeometryPackage.Literals.VECTOR3F__Y, true);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setY(float newY) {
+	public void setY(double newY) {
 		eSet(GeometryPackage.Literals.VECTOR3F__Y, newY);
 	}
 
@@ -107,8 +107,8 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getZ() {
-		return (Float) eGet(GeometryPackage.Literals.VECTOR3F__Z, true);
+	public double getZ() {
+		return (Double) eGet(GeometryPackage.Literals.VECTOR3F__Z, true);
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setZ(float newZ) {
+	public void setZ(double newZ) {
 		eSet(GeometryPackage.Literals.VECTOR3F__Z, newZ);
 	}
 

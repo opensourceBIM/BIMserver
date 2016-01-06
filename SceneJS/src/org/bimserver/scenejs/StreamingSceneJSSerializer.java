@@ -454,14 +454,14 @@ public class StreamingSceneJSSerializer extends AbstractGeometrySerializer {
 
 	private void writeVisualScenes(JsonWriter jsonWriter) throws IOException {
 		// Calculate the maximum ray length through the scene (using the two extreme points of the scene's bounding box)
-		float[] extentsDiff = new float[]{getSceneExtends().max[0] - getSceneExtends().min[0], getSceneExtends().max[1] - getSceneExtends().min[1], getSceneExtends().max[2] - getSceneExtends().min[2] };
-		if (Float.isInfinite(extentsDiff[0]))
+		double[] extentsDiff = new double[]{getSceneExtends().max[0] - getSceneExtends().min[0], getSceneExtends().max[1] - getSceneExtends().min[1], getSceneExtends().max[2] - getSceneExtends().min[2] };
+		if (Double.isInfinite(extentsDiff[0]))
 			extentsDiff[0] = 50.0f;
-		if (Float.isInfinite(extentsDiff[1]))
+		if (Double.isInfinite(extentsDiff[1]))
 			extentsDiff[1] = 50.0f;
-		if (Float.isInfinite(extentsDiff[2]))
+		if (Double.isInfinite(extentsDiff[2]))
 			extentsDiff[2] = 50.0f;
-		float extentsDiffLength = (float) Math.sqrt((double)(extentsDiff[0]*extentsDiff[0] + extentsDiff[1]*extentsDiff[1] + extentsDiff[2]*extentsDiff[2]));
+		double extentsDiffLength = Math.sqrt(extentsDiff[0]*extentsDiff[0] + extentsDiff[1]*extentsDiff[1] + extentsDiff[2]*extentsDiff[2]);
 
 		// Write the nodes to the stream
 		jsonWriter.
@@ -604,11 +604,11 @@ jsonWriter						.endArray()
 	}
 
 	private void writeBounds(JsonWriter jsonWriter) throws IOException {
-		float[] bounds = {getSceneExtends().max[0] - getSceneExtends().min[0], getSceneExtends().max[1] - getSceneExtends().min[1], getSceneExtends().max[2] - getSceneExtends().min[2]};
+		double[] bounds = {getSceneExtends().max[0] - getSceneExtends().min[0], getSceneExtends().max[1] - getSceneExtends().min[1], getSceneExtends().max[2] - getSceneExtends().min[2]};
 		jsonWriter.beginArray();
-		jsonWriter.value(Float.isInfinite(bounds[0])? 50.0f : bounds[0]);
-		jsonWriter.value(Float.isInfinite(bounds[1])? 50.0f : bounds[1]);
-		jsonWriter.value(Float.isInfinite(bounds[2])? 50.0f : bounds[2]);
+		jsonWriter.value(Double.isInfinite(bounds[0])? 50.0f : bounds[0]);
+		jsonWriter.value(Double.isInfinite(bounds[1])? 50.0f : bounds[1]);
+		jsonWriter.value(Double.isInfinite(bounds[2])? 50.0f : bounds[2]);
 		jsonWriter.endArray();
 	}
 

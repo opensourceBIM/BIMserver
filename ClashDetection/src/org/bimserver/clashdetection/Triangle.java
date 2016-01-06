@@ -15,22 +15,14 @@ public class Triangle {
 	private double[] vertex2;
 	private double[] vertex3;
 	
-	public Triangle(IntBuffer indices, FloatBuffer vertices, int i, float[] transformation) {
+	public Triangle(IntBuffer indices, FloatBuffer vertices, int i, double[] transformation) {
 		int index1 = indices.get(i) * 3;
 		int index2 = indices.get(i + 1) * 3;
 		int index3 = indices.get(i + 2) * 3;
 
-		vertex1 = ftd(Matrix.multiplyV(transformation, new float[]{vertices.get(index1), vertices.get(index1 + 1), vertices.get(index1 + 2)}));
-		vertex2 = ftd(Matrix.multiplyV(transformation, new float[]{vertices.get(index2), vertices.get(index2 + 1), vertices.get(index2 + 2)}));
-		vertex3 = ftd(Matrix.multiplyV(transformation, new float[]{vertices.get(index3), vertices.get(index3 + 1), vertices.get(index3 + 2)}));
-	}
-	
-	public double[] ftd(float[] f) {
-		double[] r = new double[3];
-		r[0] = f[0];
-		r[1] = f[1];
-		r[2] = f[2];
-		return r;
+		vertex1 = Matrix.multiplyV(transformation, new double[]{vertices.get(index1), vertices.get(index1 + 1), vertices.get(index1 + 2)});
+		vertex2 = Matrix.multiplyV(transformation, new double[]{vertices.get(index2), vertices.get(index2 + 1), vertices.get(index2 + 2)});
+		vertex3 = Matrix.multiplyV(transformation, new double[]{vertices.get(index3), vertices.get(index3 + 1), vertices.get(index3 + 2)});
 	}
 	
 	public double[] NEWCOMPUTE_INTERVALS(double VV0, double VV1, double VV2, double D0, double D1, double D2, double D0D1, double D0D2) {

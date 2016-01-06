@@ -23,16 +23,16 @@ import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.Vector3f;
 
 public class Extends {
-	public float[] min = { Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY };
-	public float[] max = { Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY };
+	public double[] min = { Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY };
+	public double[] max = { Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY };
 	
-	public void addToMinExtents(float[] vertex) {
+	public void addToMinExtents(double[] vertex) {
 		for (int i=0; i<vertex.length; i++) {
 			min[i] = Math.min(vertex[i], min[i]);
 		}
 	}
 	
-	public void addToMaxExtents(float[] vertex) {
+	public void addToMaxExtents(double[] vertex) {
 		for (int i=0; i<vertex.length; i++) {
 			max[i] = Math.max(vertex[i], max[i]);
 		}
@@ -46,7 +46,7 @@ public class Extends {
 	public void integrate(GeometryInfo geometryInfo) {
 		Vector3f min = geometryInfo.getMinBounds();
 		Vector3f max = geometryInfo.getMaxBounds();
-		addToMinExtents(new float[]{min.getX(), min.getY(), min.getZ()});
-		addToMaxExtents(new float[]{max.getX(), max.getY(), max.getZ()});
+		addToMinExtents(new double[]{min.getX(), min.getY(), min.getZ()});
+		addToMaxExtents(new double[]{max.getX(), max.getY(), max.getZ()});
 	}
 }

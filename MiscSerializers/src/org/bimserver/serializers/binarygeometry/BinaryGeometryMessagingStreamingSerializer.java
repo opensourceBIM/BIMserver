@@ -111,13 +111,13 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 		}
 
 		SVector3f minBounds = projectInfo.getMinBounds();
-		dataOutputStream.writeFloat(minBounds.getX());
-		dataOutputStream.writeFloat(minBounds.getY());
-		dataOutputStream.writeFloat(minBounds.getZ());
+		dataOutputStream.writeDouble(minBounds.getX());
+		dataOutputStream.writeDouble(minBounds.getY());
+		dataOutputStream.writeDouble(minBounds.getZ());
 		SVector3f maxBounds = projectInfo.getMaxBounds();
-		dataOutputStream.writeFloat(maxBounds.getX());
-		dataOutputStream.writeFloat(maxBounds.getY());
-		dataOutputStream.writeFloat(maxBounds.getZ());
+		dataOutputStream.writeDouble(maxBounds.getX());
+		dataOutputStream.writeDouble(maxBounds.getY());
+		dataOutputStream.writeDouble(maxBounds.getZ());
 		
 		try {
 			next = objectProvider.next();
@@ -133,23 +133,23 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 			Object transformation = next.eGet(next.eClass().getEStructuralFeature("transformation"));
 			Object data = next.eGet(next.eClass().getEStructuralFeature("data"));
 			dataOutputStream.writeByte(MessageType.GEOMETRY_INFO.getId());
-			dataOutputStream.write(new byte[3]);
+			dataOutputStream.write(new byte[7]);
 			dataOutputStream.writeLong(next.getRoid());
 			dataOutputStream.writeLong(next.getOid());
 			HashMapWrappedVirtualObject minBounds = (HashMapWrappedVirtualObject) next.eGet(next.eClass().getEStructuralFeature("minBounds"));
 			HashMapWrappedVirtualObject maxBounds = (HashMapWrappedVirtualObject) next.eGet(next.eClass().getEStructuralFeature("maxBounds"));
-			Float minX = (Float) minBounds.eGet("x");
-			Float minY = (Float) minBounds.eGet("y");
-			Float minZ = (Float) minBounds.eGet("z");
-			Float maxX = (Float) maxBounds.eGet("x");
-			Float maxY = (Float) maxBounds.eGet("y");
-			Float maxZ = (Float) maxBounds.eGet("z");
-			dataOutputStream.writeFloat(minX);
-			dataOutputStream.writeFloat(minY);
-			dataOutputStream.writeFloat(minZ);
-			dataOutputStream.writeFloat(maxX);
-			dataOutputStream.writeFloat(maxY);
-			dataOutputStream.writeFloat(maxZ);
+			Double minX = (Double) minBounds.eGet("x");
+			Double minY = (Double) minBounds.eGet("y");
+			Double minZ = (Double) minBounds.eGet("z");
+			Double maxX = (Double) maxBounds.eGet("x");
+			Double maxY = (Double) maxBounds.eGet("y");
+			Double maxZ = (Double) maxBounds.eGet("z");
+			dataOutputStream.writeDouble(minX);
+			dataOutputStream.writeDouble(minY);
+			dataOutputStream.writeDouble(minZ);
+			dataOutputStream.writeDouble(maxX);
+			dataOutputStream.writeDouble(maxY);
+			dataOutputStream.writeDouble(maxZ);
 			dataOutputStream.write((byte[])transformation);
 			dataOutputStream.writeLong((Long)data);
 		} else if (next.eClass() == GeometryPackage.eINSTANCE.getGeometryData()) {
@@ -237,7 +237,7 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 				}
 			} else {
 				dataOutputStream.write(MessageType.GEOMETRY_TRIANGLES.getId());
-				dataOutputStream.write(new byte[3]);
+				dataOutputStream.write(new byte[7]);
 				dataOutputStream.writeLong(next.getOid());
 
 				ByteBuffer indicesBuffer = ByteBuffer.wrap(indices);

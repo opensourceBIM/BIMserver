@@ -385,7 +385,7 @@ public class ClientIfcModel extends IfcModel {
 				geometryInfo.setMinBounds(minBounds);
 				geometryInfo.setMaxBounds(maxBounds);
 				
-				byte[] transformation = new byte[16 * 4];
+				byte[] transformation = new byte[16 * 8];
 				dataInputStream.readFully(transformation);
 				geometryInfo.setTransformation(transformation);
 				

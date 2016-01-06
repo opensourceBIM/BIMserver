@@ -88,6 +88,19 @@ public class Matrix {
 		}
 		return null;
 	}
+
+    public static double[] multiplyV(double[] transformationMatrix, double[] coordinates) {
+    	if (coordinates.length == 3) {
+    		double[] result = new double[4];
+    		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new double[]{coordinates[0], coordinates[1], coordinates[2], 0}, 0);
+    		return new double[]{result[0], result[1], result[2]};
+    	} else if (coordinates.length == 4) {
+    		double[] result = new double[4];
+    		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new double[]{coordinates[0], coordinates[1], coordinates[2], coordinates[3]}, 0);
+    		return result;
+    	}
+    	return null;
+    }
     
     /**
      * Multiply a 4 element vector by a 4x4 matrix and store the result in a 4
@@ -112,6 +125,13 @@ public class Matrix {
      * rhsVecOffset + 4 > rhsVec.length.
      */
     public static void multiplyMV(float[] resultVec, int resultVecOffset, float[] lhsMat, int lhsMatOffset, float[] rhsVec, int rhsVecOffset) {
+    	resultVec[resultVecOffset + 0] = lhsMat[0] * rhsVec[0] + lhsMat[4] * rhsVec[1] + lhsMat[8] * rhsVec[2] + lhsMat[12] * rhsVec[3];
+    	resultVec[resultVecOffset + 1] = lhsMat[1] * rhsVec[0] + lhsMat[5] * rhsVec[1] + lhsMat[9] * rhsVec[2] + lhsMat[13] * rhsVec[3];
+    	resultVec[resultVecOffset + 2] = lhsMat[2] * rhsVec[0] + lhsMat[6] * rhsVec[1] + lhsMat[10] * rhsVec[2] + lhsMat[14] * rhsVec[3];
+    	resultVec[resultVecOffset + 3] = lhsMat[3] * rhsVec[0] + lhsMat[7] * rhsVec[1] + lhsMat[11] * rhsVec[2] + lhsMat[15] * rhsVec[3];
+    }
+
+    public static void multiplyMV(double[] resultVec, int resultVecOffset, double[] lhsMat, int lhsMatOffset, double[] rhsVec, int rhsVecOffset) {
     	resultVec[resultVecOffset + 0] = lhsMat[0] * rhsVec[0] + lhsMat[4] * rhsVec[1] + lhsMat[8] * rhsVec[2] + lhsMat[12] * rhsVec[3];
     	resultVec[resultVecOffset + 1] = lhsMat[1] * rhsVec[0] + lhsMat[5] * rhsVec[1] + lhsMat[9] * rhsVec[2] + lhsMat[13] * rhsVec[3];
     	resultVec[resultVecOffset + 2] = lhsMat[2] * rhsVec[0] + lhsMat[6] * rhsVec[1] + lhsMat[10] * rhsVec[2] + lhsMat[14] * rhsVec[3];
@@ -444,6 +464,20 @@ public class Matrix {
     }
 
     /**
+     * Sets matrix m to the identity matrix.
+     * @param sm returns the result
+     * @param smOffset index into sm where the result matrix starts
+     */
+    public static void setIdentityM(double[] sm, int smOffset) {
+    	for (int i=0 ; i<16 ; i++) {
+    		sm[smOffset + i] = 0;
+    	}
+    	for(int i = 0; i < 16; i += 5) {
+    		sm[smOffset + i] = 1.0;
+    	}
+    }
+
+    /**
      * Scales matrix  m by x, y, and z, putting the result in sm
      * @param sm returns the result
      * @param smOffset index into sm where the result matrix starts
@@ -482,6 +516,16 @@ public class Matrix {
             m[ 4 + mi] *= y;
             m[ 8 + mi] *= z;
         }
+    }
+
+    public static void scaleM(double[] m, int mOffset,
+    		float x, float y, float z) {
+    	for (int i=0 ; i<4 ; i++) {
+    		int mi = mOffset + i;
+    		m[     mi] *= x;
+    		m[ 4 + mi] *= y;
+    		m[ 8 + mi] *= z;
+    	}
     }
 
     /**
@@ -761,6 +805,27 @@ public class Matrix {
 
 	public static float[] changeOrientation(float[] input) {
 		float[] result = new float[16];
+		result[0] = input[0];
+		result[1] = input[4];
+		result[2] = input[8];
+		result[3] = input[12];
+		result[4] = input[1];
+		result[5] = input[5];
+		result[6] = input[9];
+		result[7] = input[13];
+		result[8] = input[2];
+		result[9] = input[6];
+		result[10] = input[10];
+		result[11] = input[14];
+		result[12] = input[3];
+		result[13] = input[7];
+		result[14] = input[11];
+		result[15] = input[15];
+		return result;
+	}
+
+	public static double[] changeOrientation(double[] input) {
+		double[] result = new double[16];
 		result[0] = input[0];
 		result[1] = input[4];
 		result[2] = input[8];

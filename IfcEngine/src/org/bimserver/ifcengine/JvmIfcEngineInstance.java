@@ -40,15 +40,15 @@ public class JvmIfcEngineInstance implements RenderEngineInstance {
 	}
 
 	@Override
-	public float[] getTransformationMatrix() throws RenderEngineException {
+	public double[] getTransformationMatrix() throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.GET_TRANSFORMATION_MATRIX);
 			failSafeIfcEngine.writeInt(modelId);
 			failSafeIfcEngine.writeInt(instanceId);
 			failSafeIfcEngine.flush();
-			float[] result = new float[16];
+			double[] result = new double[16];
 			for (int i=0; i<16; i++) {
-				result[i] = failSafeIfcEngine.readFloat();
+				result[i] = failSafeIfcEngine.readDouble();
 			}
 			return result;
 		}

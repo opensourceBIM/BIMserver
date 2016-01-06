@@ -223,12 +223,12 @@ public class Lod2ExcelServicePlugin extends AbstractAddExtendedDataService {
 	}
 	
 	class Bounds {
-		float minX = Float.MAX_VALUE;
-		float minY = Float.MAX_VALUE;
-		float minZ = Float.MAX_VALUE;
-		float maxX = -Float.MAX_VALUE;
-		float maxY = -Float.MAX_VALUE;
-		float maxZ = -Float.MAX_VALUE;
+		double minX = Double.MAX_VALUE;
+		double minY = Double.MAX_VALUE;
+		double minZ = Double.MAX_VALUE;
+		double maxX = -Double.MAX_VALUE;
+		double maxY = -Double.MAX_VALUE;
+		double maxZ = -Double.MAX_VALUE;
 
 		public Bounds(Vector3f minBounds, Vector3f maxBounds) {
 			minX = minBounds.getX();

@@ -2,6 +2,7 @@ package org.bimserver.clashdetection;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -138,14 +139,14 @@ public class ClashDetector {
 		IntBuffer indices2 = getIntBuffer(data2.getIndices());
 		FloatBuffer vertices2 = getFloatBuffer(data2.getVertices());
 		
-		FloatBuffer transformation1 = getFloatBuffer(geometryInfo1.getTransformation());
-		float[] transformationArray1 = new float[16];
+		DoubleBuffer transformation1 = getDoubleBuffer(geometryInfo1.getTransformation());
+		double[] transformationArray1 = new double[16];
 		for (int i=0; i<16; i++) {
 			transformationArray1[i] = transformation1.get();
 		}
 		
-		FloatBuffer transformation2 = getFloatBuffer(geometryInfo2.getTransformation());
-		float[] transformationArray2 = new float[16];
+		DoubleBuffer transformation2 = getDoubleBuffer(geometryInfo2.getTransformation());
+		double[] transformationArray2 = new double[16];
 		for (int i=0; i<16; i++) {
 			transformationArray2[i] = transformation2.get();
 		}
@@ -170,6 +171,14 @@ public class ClashDetector {
 		return verticesFloatBuffer;
 	}
 
+	private DoubleBuffer getDoubleBuffer(byte[] input) {
+		ByteBuffer vertexBuffer = ByteBuffer.wrap(input);
+		vertexBuffer.order(ByteOrder.LITTLE_ENDIAN);
+		DoubleBuffer doubleBuffer = vertexBuffer.asDoubleBuffer();
+		doubleBuffer.position(0);
+		return doubleBuffer;
+	}
+	
 	private IntBuffer getIntBuffer(byte[] input) {
 		ByteBuffer indicesBuffer = ByteBuffer.wrap(input);
 		indicesBuffer.order(ByteOrder.LITTLE_ENDIAN);
