@@ -23,16 +23,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
-import org.bimserver.LocalDevPluginLoader;
-import org.bimserver.emf.MetaDataManager;
-import org.bimserver.models.log.LogPackage;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
@@ -46,12 +41,10 @@ public class DataObjectGeneratorWrapper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DataObjectGeneratorWrapper.class);
 	private File sourceFolder = new File("../Shared/generated");
 	private File packageFolder = new File(sourceFolder, "org" + File.separator + "bimserver" + File.separator + "interfaces" + File.separator + "objects");
+	private PluginManager pluginManager;
 
-	public static void main(String[] args) {
-		Set<EPackage> ePackages = new HashSet<EPackage>();
-		ePackages.add(StorePackage.eINSTANCE);
-		ePackages.add(LogPackage.eINSTANCE);
-		new DataObjectGeneratorWrapper().generateDataObjects(ePackages);
+	public DataObjectGeneratorWrapper(PluginManager pluginManager) {
+		this.pluginManager = pluginManager;
 	}
 
 	public void generateDataObjects(Set<EPackage> ePackages) {
@@ -62,45 +55,36 @@ public class DataObjectGeneratorWrapper {
 		}
 		ServiceInterfaceObjectGenerator dataObjectGenerator = new ServiceInterfaceObjectGenerator();
 		Set<String> fileNamesCreated = new HashSet<String>();
-		org.bimserver.plugins.PluginManager pluginManager;
-		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
-			pluginManager.setMetaDataManager(metaDataManager);
-			metaDataManager.init();
-			for (EPackage ePackage : ePackages) {
-				for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-					if (eClassifier instanceof EClass || eClassifier instanceof EEnum) {
-						Object[] arguments = new Object[]{
-							eClassifier,
-							new ImportManager(),
-							metaDataManager
-						};
-						String generated = dataObjectGenerator.generate(arguments);
-						String fileName = "S" + eClassifier.getName() + ".java";
-						fileNamesCreated.add(fileName);
-						File file = new File(packageFolder, fileName);
-						try {
-							OutputStream fileOutputStream = new FileOutputStream(file);
-							fileOutputStream.write(generated.getBytes(Charsets.UTF_8));
-							fileOutputStream.close();
-						} catch (FileNotFoundException e) {
-							LOGGER.error("", e);
-						} catch (UnsupportedEncodingException e) {
-							LOGGER.error("", e);
-						} catch (IOException e) {
-							LOGGER.error("", e);
-						}
+		for (EPackage ePackage : ePackages) {
+			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+				if (eClassifier instanceof EClass || eClassifier instanceof EEnum) {
+					Object[] arguments = new Object[]{
+						eClassifier,
+						new ImportManager(),
+						pluginManager.getMetaDataManager()
+					};
+					String generated = dataObjectGenerator.generate(arguments);
+					String fileName = "S" + eClassifier.getName() + ".java";
+					fileNamesCreated.add(fileName);
+					File file = new File(packageFolder, fileName);
+					try {
+						OutputStream fileOutputStream = new FileOutputStream(file);
+						fileOutputStream.write(generated.getBytes(Charsets.UTF_8));
+						fileOutputStream.close();
+					} catch (FileNotFoundException e) {
+						LOGGER.error("", e);
+					} catch (UnsupportedEncodingException e) {
+						LOGGER.error("", e);
+					} catch (IOException e) {
+						LOGGER.error("", e);
 					}
 				}
 			}
-			for (File file : packageFolder.listFiles()) {
-				if (!fileNamesCreated.contains(file.getName())) {
-					file.delete();
-				}
+		}
+		for (File file : packageFolder.listFiles()) {
+			if (!fileNamesCreated.contains(file.getName())) {
+				file.delete();
 			}
-		} catch (PluginException e1) {
-			e1.printStackTrace();
 		}
 	}
 }

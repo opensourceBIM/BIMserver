@@ -26,6 +26,7 @@ import org.bimserver.interfaces.objects.*;
 import java.util.*;
 import org.bimserver.models.log.*;
 import org.bimserver.models.store.*;
+import org.bimserver.models.geometry.*;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.OldQuery;
