@@ -72,6 +72,10 @@ public class RootServlet extends HttpServlet {
 			}
 			response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
+			if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+				return;
+			}
+			
 			String requestUri = request.getRequestURI();
 			String servletContextPath = getServletContext().getContextPath();
 			if (requestUri.startsWith(servletContextPath)) {
