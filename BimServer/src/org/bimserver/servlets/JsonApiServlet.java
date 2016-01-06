@@ -54,9 +54,6 @@ public class JsonApiServlet extends SubServlet {
 		}
 		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type");
-		if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
-			return;
-		}
 		response.setCharacterEncoding("UTF-8");
 		try {
 			ServletInputStream inputStream = request.getInputStream();
