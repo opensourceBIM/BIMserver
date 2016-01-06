@@ -132,11 +132,11 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 			GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(ifcProduct.eClass().getEStructuralFeature("geometry"));
 			if (geometryInfo != null && geometryInfo.getTransformation() != null) {
 				Bounds objectBounds = new Bounds(
-						new Float3(
+						new Double3(
 							geometryInfo.getMinBounds().getX(), 
 							geometryInfo.getMinBounds().getY(), 
 							geometryInfo.getMinBounds().getZ()), 
-						new Float3(
+						new Double3(
 							geometryInfo.getMaxBounds().getX(), 
 							geometryInfo.getMaxBounds().getY(), 
 							geometryInfo.getMaxBounds().getZ()));

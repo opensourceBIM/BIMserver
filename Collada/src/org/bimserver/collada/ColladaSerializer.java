@@ -22,7 +22,6 @@ import java.io.PrintWriter;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.DoubleBuffer;
-import java.nio.FloatBuffer;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.Format;
@@ -378,10 +377,24 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		return StringUtils.join(list, " ");
 	}
 
+	private String doubleArrayToSpaceDelimitedString(double[] matrix) {
+		List<Double> floatMatrix = doubleArrayToFloatList(matrix);
+		List<String> list = listToStringList(floatMatrix, decimalFormat);
+		// Get data as space-delimited string: 1.004 5.0 24.00145
+		return StringUtils.join(list, " ");
+	}
+
 	private List<Float> floatArrayToFloatList(float[] array) {
 		List<Float> list = new ArrayList<Float>();
 		for (float f : array)
 			list.add(new Float(f));
+		return list;
+	}
+
+	private List<Double> doubleArrayToFloatList(double[] array) {
+		List<Double> list = new ArrayList<Double>();
+		for (double f : array)
+			list.add(new Double(f));
 		return list;
 	}
 	
@@ -468,16 +481,16 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 	private void printMatrix(PrintWriter out, GeometryInfo geometryInfo) {
 		ByteBuffer transformation = ByteBuffer.wrap(geometryInfo.getTransformation());
 		transformation.order(ByteOrder.LITTLE_ENDIAN);
-		FloatBuffer floatBuffer = transformation.asFloatBuffer();
+		DoubleBuffer doubleBuffer = transformation.asDoubleBuffer();
 		// Prepare to create the transform matrix.
-		float[] matrix = new float[16];
+		double[] matrix = new double[16];
 		// Add the first 16 values of the buffer.
 		for (int i = 0; i < matrix.length; i++)
-			matrix[i] = floatBuffer.get();
+			matrix[i] = doubleBuffer.get();
 		// Switch from column-major (x.x ... x.y ... x.z ... 0 ...) to row-major orientation (x.x x.y x.z 0 ...)?
 		matrix = Matrix.changeOrientation(matrix);
 		// List all 16 elements of the matrix as a single space-delimited String object.
-		out.println("    <matrix>" + floatArrayToSpaceDelimitedString(matrix) + "</matrix>");
+		out.println("    <matrix>" + doubleArrayToSpaceDelimitedString(matrix) + "</matrix>");
 	}
 
 	private void writeEffects(PrintWriter out) {

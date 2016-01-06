@@ -251,22 +251,22 @@ public class IfcEngineServer extends Thread {
 					int modelId = in.readInt();
 					int instanceId = in.readInt();
 					InstanceTransformationMatrix instanceTransformationMatrix = ifcEngine.getInstanceTransformationMatrix(pointers.get(modelId), pointers.get(instanceId));
-					out.writeFloat((float) instanceTransformationMatrix._11);
-					out.writeFloat((float) instanceTransformationMatrix._12);
-					out.writeFloat((float) instanceTransformationMatrix._13);
-					out.writeFloat((float) instanceTransformationMatrix._14);
-					out.writeFloat((float) instanceTransformationMatrix._21);
-					out.writeFloat((float) instanceTransformationMatrix._22);
-					out.writeFloat((float) instanceTransformationMatrix._23);
-					out.writeFloat((float) instanceTransformationMatrix._24);
-					out.writeFloat((float) instanceTransformationMatrix._31);
-					out.writeFloat((float) instanceTransformationMatrix._32);
-					out.writeFloat((float) instanceTransformationMatrix._33);
-					out.writeFloat((float) instanceTransformationMatrix._34);
-					out.writeFloat((float) instanceTransformationMatrix._41);
-					out.writeFloat((float) instanceTransformationMatrix._42);
-					out.writeFloat((float) instanceTransformationMatrix._43);
-					out.writeFloat((float) instanceTransformationMatrix._44);
+					out.writeDouble(instanceTransformationMatrix._11);
+					out.writeDouble(instanceTransformationMatrix._12);
+					out.writeDouble(instanceTransformationMatrix._13);
+					out.writeDouble(instanceTransformationMatrix._14);
+					out.writeDouble(instanceTransformationMatrix._21);
+					out.writeDouble(instanceTransformationMatrix._22);
+					out.writeDouble(instanceTransformationMatrix._23);
+					out.writeDouble(instanceTransformationMatrix._24);
+					out.writeDouble(instanceTransformationMatrix._31);
+					out.writeDouble(instanceTransformationMatrix._32);
+					out.writeDouble(instanceTransformationMatrix._33);
+					out.writeDouble(instanceTransformationMatrix._34);
+					out.writeDouble(instanceTransformationMatrix._41);
+					out.writeDouble(instanceTransformationMatrix._42);
+					out.writeDouble(instanceTransformationMatrix._43);
+					out.writeDouble(instanceTransformationMatrix._44);
 					break;					
 				}
 				case CLOSE: {

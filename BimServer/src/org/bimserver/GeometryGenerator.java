@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.Arrays;
@@ -155,7 +156,7 @@ public class GeometryGenerator {
 				renderEngine.init();
 				ifcSerializer.init(targetModel, null, bimServer.getPluginManager(), null, model.getPackageMetaData(), true);
 
-				boolean debug = false;
+				boolean debug = true;
 				InputStream in = null;
 				if (debug) {
 					File file = new File((eClass == null ? "all" : eClass.getName()) + ".ifc");
@@ -261,9 +262,10 @@ public class GeometryGenerator {
 										}
 									}
 
-									float[] tranformationMatrix = new float[16];
+									double[] tranformationMatrix = new double[16];
 									if (translate && renderEngineInstance.getTransformationMatrix() != null) {
 										tranformationMatrix = renderEngineInstance.getTransformationMatrix();
+//										Matrix.setIdentityM(tranformationMatrix, 0);
 									} else {
 										Matrix.setIdentityM(tranformationMatrix, 0);
 									}
@@ -487,12 +489,12 @@ public class GeometryGenerator {
 		return hashCode;
 	}
 
-	private void processExtends(GeometryInfo geometryInfo, float[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) {
-		float x = vertices[index];
-		float y = vertices[index + 1];
-		float z = vertices[index + 2];
-		float[] result = new float[4];
-		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new float[] { x, y, z, 1 }, 0);
+	private void processExtends(GeometryInfo geometryInfo, double[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) {
+		double x = vertices[index];
+		double y = vertices[index + 1];
+		double z = vertices[index + 2];
+		double[] result = new double[4];
+		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new double[] { x, y, z, 1 }, 0);
 		x = result[0];
 		y = result[1];
 		z = result[2];
@@ -537,12 +539,12 @@ public class GeometryGenerator {
 		return buffer.array();
 	}
 
-	private void setTransformationMatrix(GeometryInfo geometryInfo, float[] transformationMatrix) {
-		ByteBuffer byteBuffer = ByteBuffer.allocate(16 * 4);
+	private void setTransformationMatrix(GeometryInfo geometryInfo, double[] transformationMatrix) {
+		ByteBuffer byteBuffer = ByteBuffer.allocate(16 * 8);
 		byteBuffer.order(ByteOrder.nativeOrder());
-		FloatBuffer asFloatBuffer = byteBuffer.asFloatBuffer();
-		for (float f : transformationMatrix) {
-			asFloatBuffer.put(f);
+		DoubleBuffer asDoubleBuffer = byteBuffer.asDoubleBuffer();
+		for (double f : transformationMatrix) {
+			asDoubleBuffer.put(f);
 		}
 		geometryInfo.setTransformation(byteBuffer.array());
 	}

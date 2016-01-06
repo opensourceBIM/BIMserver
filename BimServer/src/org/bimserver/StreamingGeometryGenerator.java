@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.Arrays;
@@ -56,7 +57,6 @@ import org.bimserver.geometry.Matrix;
 import org.bimserver.geometry.Vector;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -258,7 +258,7 @@ public class StreamingGeometryGenerator {
 										}
 									}
 
-									float[] tranformationMatrix = new float[16];
+									double[] tranformationMatrix = new double[16];
 									if (translate && renderEngineInstance.getTransformationMatrix() != null) {
 										tranformationMatrix = renderEngineInstance.getTransformationMatrix();
 									} else {
@@ -490,12 +490,12 @@ public class StreamingGeometryGenerator {
 		return hashCode;
 	}
 
-	private void processExtends(VirtualObject geometryInfo, float[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {
-		float x = vertices[index];
-		float y = vertices[index + 1];
-		float z = vertices[index + 2];
-		float[] result = new float[4];
-		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new float[] { x, y, z, 1 }, 0);
+	private void processExtends(VirtualObject geometryInfo, double[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {
+		double x = vertices[index];
+		double y = vertices[index + 1];
+		double z = vertices[index + 2];
+		double[] result = new double[4];
+		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new double[] { x, y, z, 1 }, 0);
 		x = result[0];
 		y = result[1];
 		z = result[2];
@@ -544,12 +544,12 @@ public class StreamingGeometryGenerator {
 		return buffer.array();
 	}
 
-	private void setTransformationMatrix(VirtualObject geometryInfo, float[] transformationMatrix) throws BimserverDatabaseException {
+	private void setTransformationMatrix(VirtualObject geometryInfo, double[] transformationMatrix) throws BimserverDatabaseException {
 		ByteBuffer byteBuffer = ByteBuffer.allocate(16 * 4);
 		byteBuffer.order(ByteOrder.nativeOrder());
-		FloatBuffer asFloatBuffer = byteBuffer.asFloatBuffer();
-		for (float f : transformationMatrix) {
-			asFloatBuffer.put(f);
+		DoubleBuffer asDoubleBuffer = byteBuffer.asDoubleBuffer();
+		for (double f : transformationMatrix) {
+			asDoubleBuffer.put(f);
 		}
 		geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Transformation(), byteBuffer.array());
 	}

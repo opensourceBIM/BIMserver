@@ -43,9 +43,9 @@ public class Step0013 extends Migration {
 		
 		EClass geometryInfo = schema.createEClass("geometry", "GeometryInfo");
 		EClass vector3f = schema.createEClass("geometry", "Vector3f");
-		schema.createEAttribute(vector3f, "x", EcorePackage.eINSTANCE.getEFloat(), Multiplicity.SINGLE);
-		schema.createEAttribute(vector3f, "y", EcorePackage.eINSTANCE.getEFloat(), Multiplicity.SINGLE);
-		schema.createEAttribute(vector3f, "z", EcorePackage.eINSTANCE.getEFloat(), Multiplicity.SINGLE);
+		schema.createEAttribute(vector3f, "x", EcorePackage.eINSTANCE.getEDouble(), Multiplicity.SINGLE);
+		schema.createEAttribute(vector3f, "y", EcorePackage.eINSTANCE.getEDouble(), Multiplicity.SINGLE);
+		schema.createEAttribute(vector3f, "z", EcorePackage.eINSTANCE.getEDouble(), Multiplicity.SINGLE);
 
 		EReference geometryInfoMinBounds = schema.createEReference(geometryInfo, "minBounds", vector3f, Multiplicity.SINGLE);
 		geometryInfoMinBounds.getEAnnotations().add(createDbEmbedReferenceAnnotation());

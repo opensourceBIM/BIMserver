@@ -29,9 +29,9 @@ public class SVector3f implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	private float x;
-	private float y;
-	private float z;
+	private double x;
+	private double y;
+	private double z;
 
 	public long getOid() {
 		return this.oid;
@@ -79,15 +79,15 @@ public class SVector3f implements SDataBase
 
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("x")) {
-			setX((Float)val);
+			setX((Double)val);
 			return;
 		}
 		if (sField.getName().equals("y")) {
-			setY((Float)val);
+			setY((Double)val);
 			return;
 		}
 		if (sField.getName().equals("z")) {
-			setZ((Float)val);
+			setZ((Double)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -101,27 +101,27 @@ public class SVector3f implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public float getX() {
+	public double getX() {
 		return x;
 	}
 
-	public void setX(float x) {
+	public void setX(double x) {
 		this.x = x;
 	}
 	
-	public float getY() {
+	public double getY() {
 		return y;
 	}
 
-	public void setY(float y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 	
-	public float getZ() {
+	public double getZ() {
 		return z;
 	}
 
-	public void setZ(float z) {
+	public void setZ(double z) {
 		this.z = z;
 	}
 	
