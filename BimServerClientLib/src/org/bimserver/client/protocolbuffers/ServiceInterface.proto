@@ -1019,9 +1019,9 @@ message GetGeometryInfoRequest {
 message SVector3f {
 	optional int64 oid = 1;
 	optional int32 rid = 2;
-	optional float x = 3;
-	optional float y = 4;
-	optional float z = 5;
+	optional double x = 3;
+	optional double y = 4;
+	optional double z = 5;
 }
 
 message SGeometryInfo {

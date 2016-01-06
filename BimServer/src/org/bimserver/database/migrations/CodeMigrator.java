@@ -19,6 +19,7 @@ package org.bimserver.database.migrations;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -27,7 +28,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
-import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.OptionsParser;
@@ -68,14 +68,33 @@ public class CodeMigrator {
 	private List<SService> knownServices = new ArrayList<SService>();
 	private List<String> knownShortNames = new ArrayList<String>();
 	private SServicesMap servicesMap = new SServicesMap();
+	private String[] args;
+
+	public CodeMigrator(String[] args) {
+		this.args = args;
+	}
 
 	public static void main(String[] args) {
-		new CodeMigrator().start();
+		new CodeMigrator(args).start();
 	}
 
 	public static void loadPlugins(PluginManager pluginManager, Path current, Path[] pluginDirectories) throws PluginException {
 		LOGGER.info("Loading plugins from " + current.toString());
 
+		if (pluginDirectories != null) {
+			for (Path pluginDirectory : pluginDirectories) {
+				try {
+					pluginManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
+				} catch (PluginException e) {
+					LOGGER.error("", e);
+				} catch (IOException e) {
+					LOGGER.error("", e);
+				}
+			}
+		}
+	}
+	
+	public static void loadPlugins(PluginManager pluginManager, Path[] pluginDirectories) throws PluginException {
 		if (pluginDirectories != null) {
 			for (Path pluginDirectory : pluginDirectories) {
 				try {
@@ -99,10 +118,19 @@ public class CodeMigrator {
 		LOGGER.info("Model migrated to version " + latestVersion);
 
 		LOGGER.info("Generating ServiceInterface objects...");
-		DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper();
 		Set<EPackage> ePackages = new LinkedHashSet<EPackage>();
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
+			Path home = Paths.get("home");
+			if (!Files.exists(home)) {
+				try {
+					Files.createDirectories(home);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			PluginManager pluginManager = new PluginManager(home.resolve("tmp"), System.getProperty("java.class.path"), null, null, null);
+			Path[] pluginDirectories = new OptionsParser(args).getPluginDirectories();
+			loadPlugins(pluginManager, pluginDirectories);
 			
 			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
 			pluginManager.setMetaDataManager(metaDataManager);
@@ -111,6 +139,8 @@ public class CodeMigrator {
 
 			pluginManager.initAllLoadedPlugins();
 			
+			DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper(pluginManager);
+
 			for (EPackage ePackage : schema.getEPackages()) {
 				if (!ePackage.getName().equals("ifc2x3tc1") && !ePackage.getName().equals("ifc4")) {
 					ePackages.add(ePackage);

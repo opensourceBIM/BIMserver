@@ -22,7 +22,7 @@ public class SConverterGenerator
   protected final String TEXT_1 = "package org.bimserver.interfaces;";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
-  protected final String TEXT_4 = NL + NL + "import org.bimserver.emf.IdEObjectImpl;" + NL + "import org.bimserver.interfaces.objects.*;" + NL + "import java.util.*;" + NL + "import org.bimserver.models.log.*;" + NL + "import org.bimserver.models.store.*;" + NL + "import org.bimserver.database.DatabaseSession;" + NL + "import org.bimserver.BimserverDatabaseException;" + NL + "import org.bimserver.database.OldQuery;" + NL + "" + NL + "public class SConverter {";
+  protected final String TEXT_4 = NL + NL + "import org.bimserver.emf.IdEObjectImpl;" + NL + "import org.bimserver.interfaces.objects.*;" + NL + "import java.util.*;" + NL + "import org.bimserver.models.log.*;" + NL + "import org.bimserver.models.store.*;" + NL + "import org.bimserver.models.geometry.*;" + NL + "import org.bimserver.database.DatabaseSession;" + NL + "import org.bimserver.BimserverDatabaseException;" + NL + "import org.bimserver.database.OldQuery;" + NL + "" + NL + "public class SConverter {";
   protected final String TEXT_5 = NL + NL + "\tpublic Set<S";
   protected final String TEXT_6 = "> convertToSSet";
   protected final String TEXT_7 = "(Collection<";
