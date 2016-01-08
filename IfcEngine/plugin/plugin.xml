@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<PluginDescriptor>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.renderengine.RenderEnginePlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifcengine.JvmRenderEnginePlugin</implementationClass>
-		<enabled>true</enabled>
-	</PluginImplementation>
-</PluginDescriptor>

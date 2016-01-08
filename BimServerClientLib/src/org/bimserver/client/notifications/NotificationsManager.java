@@ -41,7 +41,6 @@ import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.ReflectorException;
-import org.codehaus.jettison.json.JSONException;
 import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 import org.slf4j.Logger;
@@ -177,7 +176,7 @@ public class NotificationsManager extends NotificationsClient {
 		}
 	}
 
-	public void handleIncoming(JsonObject request) throws UserException, JSONException, ConvertException, IOException {
+	public void handleIncoming(JsonObject request) throws UserException, ConvertException, IOException {
 		String interfaceName = request.get("interface").getAsString();
 		String methodName = request.get("method").getAsString();
 		SService sService = servicesMap.getByName(interfaceName);

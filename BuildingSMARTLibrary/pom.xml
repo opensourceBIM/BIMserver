@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>OpensourceBIM</groupId>
-	<artifactId>BimServerClientLib</artifactId>
+	<artifactId>BuildingSMARTLibrary</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -28,33 +28,30 @@
 	<dependencies>
 		<dependency>
 			<groupId>OpensourceBIM</groupId>
-			<artifactId>Shared</artifactId>
+			<artifactId>PluginBase</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>OpensourceBIM</groupId>
-			<artifactId>Ifc</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr-runtime</artifactId>
+			<version>3.1.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jetty.websocket</groupId>
-			<artifactId>websocket-api</artifactId>
-			<version>9.3.6.v20151106</version>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.6.0</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jetty.websocket</groupId>
-			<artifactId>websocket-client</artifactId>
-			<version>9.3.6.v20151106</version>
+			<groupId>gnu.getopt</groupId>
+			<artifactId>java-getopt</artifactId>
+			<version>1.0.13</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-transports-http</artifactId>
-			<version>3.1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			<version>3.1.4</version>
+			<groupId>ifcNamespaces</groupId>
+			<artifactId>ifcNamespaces</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+    		<systemPath>${project.basedir}/lib/ifcNamespaces.jar</systemPath>
 		</dependency>
 	</dependencies>
 </project>

@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>Tools</groupId>
+	<groupId>OpensourceBIM</groupId>
 	<artifactId>Tools</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<build>
@@ -27,14 +27,19 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>BimServer</groupId>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>3.6</version>
+		</dependency>
+		<dependency>
+			<groupId>OpensourceBIM</groupId>
 			<artifactId>BimServer</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.opencsv</groupId>
-			<artifactId>opencsv</artifactId>
-			<version>3.6</version>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6.12</version>
 		</dependency>
 	</dependencies>
 </project>
