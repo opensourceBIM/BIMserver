@@ -20,21 +20,22 @@ package org.bimserver;
 import java.util.ArrayList;
 import java.util.Set;
 
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.objectidms.FieldIgnoreMap;
 import org.bimserver.plugins.objectidms.StructuralFeatureIdentifier;
-import org.bimserver.plugins.schema.Attribute;
-import org.bimserver.plugins.schema.EntityDefinition;
-import org.bimserver.plugins.schema.InverseAttribute;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import nl.tue.buildingsmart.schema.Attribute;
+import nl.tue.buildingsmart.schema.EntityDefinition;
+import nl.tue.buildingsmart.schema.InverseAttribute;
+
 public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 
-	public SchemaFieldIgnoreMap(Set<? extends EPackage> packages, SchemaDefinition schema) {
+	public SchemaFieldIgnoreMap(Set<? extends EPackage> packages, PackageMetaData packageMetaData) {
 		super(packages);
-		ArrayList<EntityDefinition> entities = schema.getEntities();
+		ArrayList<EntityDefinition> entities = packageMetaData.getSchemaDefinition().getEntities();
 		for (EntityDefinition entity : entities) {
 			for (Attribute attribute : entity.getAttributes(true)) {
 				if (attribute instanceof InverseAttribute) {

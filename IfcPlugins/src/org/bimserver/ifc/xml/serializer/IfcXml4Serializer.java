@@ -22,16 +22,10 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.shared.exceptions.PluginException;
 
 public class IfcXml4Serializer extends IfcXmlSerializer {
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManagerInterface pluginManager, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
-		try {
-			setSchema(pluginManager.requireSchemaDefinition("ifc4"));
-		} catch (PluginException e) {
-			throw new SerializerException(e);
-		}
 		super.init(model, projectInfo, pluginManager, packageMetaData, normalizeOids);
 	}
 }

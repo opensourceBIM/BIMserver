@@ -1,6 +1,0 @@
-<?xml version='1.0' ?> 
-<settings>
-  <resource name='**ANTLR-ECLIPSE-PLUGIN**'>
-    <property name='pluginVersion' value='2.7.6' />
-  </resource>
-</settings>

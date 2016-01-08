@@ -1,4 +1,4 @@
-package nl.tue.buildingsmart.emf;
+package org.bimserver.schemaconverter;
 
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
@@ -25,31 +25,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import nl.tue.buildingsmart.express.parser.SchemaLoader;
-
-import org.bimserver.plugins.schema.AggregationType;
-import org.bimserver.plugins.schema.ArrayType;
-import org.bimserver.plugins.schema.Attribute;
-import org.bimserver.plugins.schema.BaseType;
-import org.bimserver.plugins.schema.BinaryType;
-import org.bimserver.plugins.schema.BooleanType;
-import org.bimserver.plugins.schema.DefinedType;
-import org.bimserver.plugins.schema.DerivedAttribute2;
-import org.bimserver.plugins.schema.EntityDefinition;
-import org.bimserver.plugins.schema.EnumerationType;
-import org.bimserver.plugins.schema.ExplicitAttribute;
-import org.bimserver.plugins.schema.IntegerBound;
-import org.bimserver.plugins.schema.IntegerType;
-import org.bimserver.plugins.schema.InverseAttribute;
-import org.bimserver.plugins.schema.LogicalType;
-import org.bimserver.plugins.schema.NamedType;
-import org.bimserver.plugins.schema.NumberType;
-import org.bimserver.plugins.schema.RealType;
-import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.schema.SelectType;
-import org.bimserver.plugins.schema.SimpleType;
-import org.bimserver.plugins.schema.StringType;
-import org.bimserver.plugins.schema.UnderlyingType;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
@@ -68,6 +43,32 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import nl.tue.buildingsmart.emf.DerivedReader;
+import nl.tue.buildingsmart.express.parser.SchemaLoader;
+import nl.tue.buildingsmart.schema.AggregationType;
+import nl.tue.buildingsmart.schema.ArrayType;
+import nl.tue.buildingsmart.schema.Attribute;
+import nl.tue.buildingsmart.schema.BaseType;
+import nl.tue.buildingsmart.schema.BinaryType;
+import nl.tue.buildingsmart.schema.BooleanType;
+import nl.tue.buildingsmart.schema.DefinedType;
+import nl.tue.buildingsmart.schema.DerivedAttribute2;
+import nl.tue.buildingsmart.schema.EntityDefinition;
+import nl.tue.buildingsmart.schema.EnumerationType;
+import nl.tue.buildingsmart.schema.ExplicitAttribute;
+import nl.tue.buildingsmart.schema.IntegerBound;
+import nl.tue.buildingsmart.schema.IntegerType;
+import nl.tue.buildingsmart.schema.InverseAttribute;
+import nl.tue.buildingsmart.schema.LogicalType;
+import nl.tue.buildingsmart.schema.NamedType;
+import nl.tue.buildingsmart.schema.NumberType;
+import nl.tue.buildingsmart.schema.RealType;
+import nl.tue.buildingsmart.schema.SchemaDefinition;
+import nl.tue.buildingsmart.schema.SelectType;
+import nl.tue.buildingsmart.schema.SimpleType;
+import nl.tue.buildingsmart.schema.StringType;
+import nl.tue.buildingsmart.schema.UnderlyingType;
 
 public class Express2EMF {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Express2EMF.class);

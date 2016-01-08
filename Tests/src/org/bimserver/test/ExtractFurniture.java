@@ -41,7 +41,7 @@ public class ExtractFurniture {
 			IfcFurnishingElement picknick = (IfcFurnishingElement) model.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
 
 			IfcModelInterface newModel = new BasicIfcModel(packageMetaData, null);
-			ModelHelper modelHelper = new ModelHelper(pluginManager.getMetaDataManager(), new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.requireSchemaDefinition("ifc2x3tc1")), newModel);
+			ModelHelper modelHelper = new ModelHelper(pluginManager.getMetaDataManager(), new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1")), newModel);
 			
 			modelHelper.copy(picknick, false);
 			

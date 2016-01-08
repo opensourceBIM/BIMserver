@@ -75,7 +75,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 			
 			if (objectIDM == null) {
-				objectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), packageMetaData.getSchemaDefinition());
+				objectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), packageMetaData);
 			}
 			
 			if (queryEngineObject != null) {

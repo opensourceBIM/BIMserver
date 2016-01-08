@@ -40,7 +40,6 @@ import org.bimserver.models.store.PrimitiveEnum;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StringType;
 import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.PluginSourceType;
 import org.bimserver.shared.exceptions.PluginException;

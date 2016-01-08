@@ -59,7 +59,7 @@ public class RevisionMerger {
 		updateReferences();
 		fixExplicitNullReferences();
 		fixNonGuidObjects();
-		TracingGarbageCollector tracingGarbageCollector = new TracingGarbageCollector(resultModel, null);
+		TracingGarbageCollector tracingGarbageCollector = new TracingGarbageCollector(resultModel);
 		Set<IdEObject> rootObjects = new HashSet<IdEObject>();
 		for (IdEObject idEObject : resultModel.getValues()) {
 			if (idEObject instanceof IfcProject) {

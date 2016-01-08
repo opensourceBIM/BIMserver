@@ -24,28 +24,28 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
-import org.bimserver.plugins.schema.Attribute;
-import org.bimserver.plugins.schema.EntityDefinition;
-import org.bimserver.plugins.schema.InverseAttribute;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.eclipse.emf.ecore.EReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import nl.tue.buildingsmart.schema.Attribute;
+import nl.tue.buildingsmart.schema.EntityDefinition;
+import nl.tue.buildingsmart.schema.InverseAttribute;
+import nl.tue.buildingsmart.schema.SchemaDefinition;
 
 public class TracingGarbageCollector {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TracingGarbageCollector.class);
 	private final IfcModel ifcModel;
 	private final Set<IdEObject> referencedObjects = new HashSet<IdEObject>();
-	private final SchemaDefinition schema;
 
-	public TracingGarbageCollector(IfcModel ifcModel, SchemaDefinition schema) {
+	public TracingGarbageCollector(IfcModel ifcModel) {
 		this.ifcModel = ifcModel;
-		this.schema = schema;
 	}
 
 	@SuppressWarnings("rawtypes")
 	public void mark(Set<? extends IdEObject> rootObjects) {
 		referencedObjects.addAll(rootObjects);
+		SchemaDefinition schema = ifcModel.getPackageMetaData().getSchemaDefinition();
 		for (IdEObject rootObject : rootObjects) {
 			for (EReference eReference : rootObject.eClass().getEAllReferences()) {
 				Attribute attributeBNWithSuper = null;
