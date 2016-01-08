@@ -23,7 +23,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.json.ConvertException;
-import org.codehaus.jettison.json.JSONException;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
@@ -91,8 +90,6 @@ public class WebSocketImpl {
 					try {
 						socketNotificationsClient.handleIncoming(object.get("request").getAsJsonObject());
 					} catch (UserException e) {
-						LOGGER.error("", e);
-					} catch (JSONException e) {
 						LOGGER.error("", e);
 					} catch (ConvertException e) {
 						LOGGER.error("", e);

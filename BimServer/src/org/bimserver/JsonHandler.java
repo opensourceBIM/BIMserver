@@ -32,7 +32,6 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.reflector.KeyValuePair;
-import org.codehaus.jettison.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -185,7 +184,7 @@ public class JsonHandler {
 	}
 
 	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, String methodName, String token)
-			throws JSONException, UserException, ServerException {
+			throws UserException, ServerException {
 		if (methodName.equals("login") || methodName.equals("autologin")) {
 			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
 		}

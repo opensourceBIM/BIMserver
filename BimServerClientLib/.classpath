@@ -7,25 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Shared"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/antlr-2.7.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/aopalliance-1.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-manifest.jar" sourcepath="C:/Software/JavaLibs/apache-cxf-2.3.0-src"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/geronimo-javamail_1.4_spec-1.7.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/geronimo-jms_1.1_spec-1.1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/js-1.7R2.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/xml-resolver-1.2.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/junit-4.8.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-api-9.2.5.v20141112.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-client-9.2.5.v20141112.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/websocket-common-9.2.5.v20141112.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jetty/jetty-util-9.2.5.v20141112.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/jettison-1.3.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-core-3.1.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-rt-databinding-jaxb-3.1.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-rt-frontend-jaxws-3.1.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-rt-frontend-simple-3.1.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-rt-transports-http-3.1.3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>

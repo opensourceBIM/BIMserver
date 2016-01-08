@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/xbean_xpath.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/xbean.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/xmlbeans-qname.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/xmlpublic.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/antlr-3.1.1-runtime.jar" sourcepath="/BimServer/libsrc/antlr.jar.zip"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/antlr-3.1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/ifcNamespaces.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/java-getopt-1.0.13.jar"/>
+	<classpathentry including="**/*.java" kind="src" output="target/classes" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
