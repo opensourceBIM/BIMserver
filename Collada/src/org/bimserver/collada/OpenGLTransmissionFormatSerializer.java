@@ -38,6 +38,7 @@ import org.bimserver.collada.Collada2GLTFThread.Collada2GLTFConfiguration;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProgressReporter;
@@ -51,7 +52,7 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(OpenGLTransmissionFormatSerializer.class);
 	private ColladaSerializer colladaSerializer = null;
-	private PluginManager pluginManager = null;
+	private PluginManagerInterface pluginManager = null;
 	private ProjectInfo projectInfo = null;
 	
 	// Export settings-related.
@@ -97,13 +98,13 @@ public class OpenGLTransmissionFormatSerializer extends EmfSerializer {
 
 	//
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManagerInterface pluginManager, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, packageMetaData, normalizeOids);
 		this.pluginManager = pluginManager;
 		this.projectInfo = projectInfo;
 		try {
 			colladaSerializer = new ColladaSerializer();
-			colladaSerializer.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
+			colladaSerializer.init(model, projectInfo, pluginManager, packageMetaData, normalizeOids);
 		} catch (SerializerException e) {
 			throw new SerializerException(e);
 		}

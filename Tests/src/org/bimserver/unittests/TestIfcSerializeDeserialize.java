@@ -33,7 +33,6 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
@@ -41,6 +40,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 import org.junit.Test;
 
 public class TestIfcSerializeDeserialize {
@@ -57,7 +57,7 @@ public class TestIfcSerializeDeserialize {
 			IfcModel model = new BasicIfcModel(packageMetaData, null);
 			IfcWall wall = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
 			wall.setName("Test with 'quote and \\backslash");
-			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);
+			serializer.init(model, null, pluginManager, packageMetaData, false);
 			serializer.writeToFile(Paths.get("output/test.ifc"), null);
 			
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);

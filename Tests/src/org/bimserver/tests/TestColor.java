@@ -10,7 +10,6 @@ import org.bimserver.emf.Schema;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
@@ -18,6 +17,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class TestColor {
 	public static void main(String[] args) {
@@ -57,7 +57,7 @@ public class TestColor {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(null);
 			model.generateMinimalExpressIds();
-			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, false);
+			serializer.init(model, null, pluginManager, null, false);
 			serializer.writeToFile(Paths.get("color.ifc"), null);
 		} catch (PluginException e1) {
 			e1.printStackTrace();

@@ -22,9 +22,9 @@ import java.util.Map;
 
 import org.bimserver.BimServer;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.ServiceHolder;
 import org.bimserver.shared.ServiceMapInterface;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.MetaInterface;

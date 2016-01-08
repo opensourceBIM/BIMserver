@@ -7,7 +7,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.SharedJsonStreamingSerializer;
 import org.bimserver.models.store.IfcHeader;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -18,11 +18,11 @@ public class StreamingJsonSerializer implements StreamingSerializer {
 	private ObjectProvider objectProvider;
 	private ProjectInfo projectInfo;
 	private IfcHeader ifcHeader;
-	private PluginManager pluginManager;
+	private PluginManagerInterface pluginManager;
 	private PackageMetaData packageMetaData;
 
 	@Override
-	public void init(ObjectProvider objectProvider, ProjectInfo projectInfo, IfcHeader ifcHeader, PluginManager pluginManager, PackageMetaData packageMetaData) throws SerializerException {
+	public void init(ObjectProvider objectProvider, ProjectInfo projectInfo, IfcHeader ifcHeader, PluginManagerInterface pluginManager, PackageMetaData packageMetaData) throws SerializerException {
 		System.out.println(objectProvider);
 		this.objectProvider = objectProvider;
 		this.projectInfo = projectInfo;

@@ -6,17 +6,17 @@ import java.util.Set;
 import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.StreamingSerializer;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class JsonStreamingSerializerPlugin implements StreamingSerializerPlugin {
 
 	private boolean initialized;
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		initialized = true;
 	}
 

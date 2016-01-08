@@ -68,16 +68,15 @@ import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.store.SIPrefix;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.renderengine.RenderEngineException;
-import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
+import org.bimserver.utils.Vector3d;
 import org.eclipse.emf.common.util.EList;
-import org.openmali.vecmath2.Vector3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -130,9 +129,9 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 	private Vector3d highestObserved = new Vector3d();
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManagerInterface pluginManager, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
 		this.lengthUnitPrefix = getLengthUnitPrefix(model);
-		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
+		super.init(model, projectInfo, pluginManager, packageMetaData, normalizeOids);
 	}
 
 	@Override
@@ -247,20 +246,20 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 				float y = positionsBuffer.getFloat();
 				float z = positionsBuffer.getFloat();
 				// X
-				if (x > highestObserved.x())
-					highestObserved.x(x);
-				else if (x < lowestObserved.x())
-					lowestObserved.x(x);
+				if (x > highestObserved.x)
+					highestObserved.x = x;
+				else if (x < lowestObserved.x)
+					lowestObserved.x = x;
 				// Y
-				if (y > highestObserved.y())
-					highestObserved.y(y);
-				else if (y < lowestObserved.y())
-					lowestObserved.y(y);
+				if (y > highestObserved.y)
+					highestObserved.y = y;
+				else if (y < lowestObserved.y)
+					lowestObserved.y = y;
 				// Z
-				if (z > highestObserved.z())
-					highestObserved.z(z);
-				else if (z < lowestObserved.z())
-					lowestObserved.z(z);
+				if (z > highestObserved.z)
+					highestObserved.z = z;
+				else if (z < lowestObserved.z)
+					lowestObserved.z = z;
 			}
 			positionsBuffer.rewind();
 			//
@@ -447,17 +446,17 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 			}
 		}
 		// Create convenience variables to simplify the perceived complexity of the equations.
-		float lx = (float) lowestObserved.x(), ly = (float) lowestObserved.y(), lz = (float) lowestObserved.z();
-		float hx = (float) highestObserved.x(), hy = (float) highestObserved.y(), hz = (float) highestObserved.z();
+		float lx = (float) lowestObserved.x, ly = (float) lowestObserved.y, lz = (float) lowestObserved.z;
+		float hx = (float) highestObserved.x, hy = (float) highestObserved.y, hz = (float) highestObserved.z;
 		// Derive useful information from the observed boundary of the IFC objects.
 		Vector3d delta = new Vector3d(hx, hy, hz);
 		delta.sub(lowestObserved);
 		// Move the light left (-x) and back (-y) and up (+z) at 20% of the size of the observed objects. 
-		Vector3d leftLightLocation = new Vector3d(lx - (0.2 * delta.x()), ly - (0.2 * delta.y()), hz + (0.2 * delta.z()));
-		float x = (float) leftLightLocation.x(), y = (float) leftLightLocation.y(), z = (float) leftLightLocation.z();
+		Vector3d leftLightLocation = new Vector3d(lx - (0.2 * delta.x), ly - (0.2 * delta.y), hz + (0.2 * delta.z));
+		float x = (float) leftLightLocation.x, y = (float) leftLightLocation.y, z = (float) leftLightLocation.z;
 		// Move left (-x) and back (-y) at 500% and up (+z) at 200% of the light (so that the objects are in sensing range of the camera). 
 		Vector3d leftCameraLocation = new Vector3d(5 * x, 5 * y, 2 * z);
-		float cx = (float) leftCameraLocation.x(), cy = (float) leftCameraLocation.y(), cz = (float) leftCameraLocation.z();
+		float cx = (float) leftCameraLocation.x, cy = (float) leftCameraLocation.y, cz = (float) leftCameraLocation.z;
 		// TODO: Three.js doesn't seem to care about the camera and the light.
 		// Include the camera.
 		out.println("   <node id=\"Camera\" name=\"Camera\">");

@@ -42,12 +42,12 @@ import org.bimserver.interfaces.objects.SRevisionSummaryContainer;
 import org.bimserver.interfaces.objects.SRevisionSummaryType;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -135,7 +135,7 @@ public class TestClientEmfModelLocal {
 			MetaDataManager metaDataManager = new MetaDataManager(bimServer.getPluginManager());
 			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
-			serializer.init(model, null, bimServer.getPluginManager(), null, packageMetaData, false);
+			serializer.init(model, null, bimServer.getPluginManager(), packageMetaData, false);
 			Path output = Paths.get("output");
 			if (!Files.exists(output)) {
 				Files.createDirectory(output);

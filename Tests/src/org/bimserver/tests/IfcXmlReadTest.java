@@ -9,13 +9,13 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class IfcXmlReadTest {
 	public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class IfcXmlReadTest {
 				Path outFile = Paths.get("out.ifc");
 				SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 				Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, false);
+				serializer.init(model, null, pluginManager, null, false);
 				try {
 					serializer.writeToFile(outFile, null);
 				} catch (SerializerException e) {

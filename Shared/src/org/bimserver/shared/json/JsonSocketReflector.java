@@ -32,6 +32,7 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.meta.SServicesMap;
+import org.bimserver.shared.reflector.ReflectorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

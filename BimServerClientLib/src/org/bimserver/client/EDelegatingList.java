@@ -22,7 +22,7 @@ import java.util.List;
 
 import org.bimserver.client.ClientIfcModel.ModelState;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.common.util.AbstractEList;

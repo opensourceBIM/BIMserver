@@ -25,7 +25,7 @@ import org.bimserver.interfaces.objects.SListDataValue;
 import org.bimserver.interfaces.objects.SReferenceDataValue;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSimpleDataValue;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;

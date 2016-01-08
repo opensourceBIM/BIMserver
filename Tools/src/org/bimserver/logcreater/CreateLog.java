@@ -36,7 +36,7 @@ import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 
-import au.com.bytecode.opencsv.CSVWriter;
+import com.opencsv.CSVWriter;
 
 public class CreateLog {
 	private final Map<GregorianCalendar, Event> timeline = new TreeMap<>();

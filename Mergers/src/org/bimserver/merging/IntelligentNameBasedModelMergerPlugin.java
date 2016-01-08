@@ -2,17 +2,17 @@ package org.bimserver.merging;
 
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.modelmerger.ModelMerger;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class IntelligentNameBasedModelMergerPlugin implements ModelMergerPlugin {
 
 	private boolean initialized;
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		initialized = true;
 	}
 

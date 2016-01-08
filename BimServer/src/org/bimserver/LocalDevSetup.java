@@ -10,12 +10,12 @@ import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactor
 import org.bimserver.client.soap.SoapBimServerClientFactory;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.plugins.OptionsParser;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

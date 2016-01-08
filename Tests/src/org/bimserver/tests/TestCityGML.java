@@ -6,7 +6,6 @@ import java.util.Collection;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
@@ -14,6 +13,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class TestCityGML {
 	public static void main(String[] args) {
@@ -31,7 +31,7 @@ public class TestCityGML {
 				Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 				deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 				IfcModelInterface model = deserializer.read(Paths.get("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\Eindhoven - TUe_model - RevitArch.ifc"));
-				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, false);
+				serializer.init(model, null, pluginManager, null, false);
 				serializer.writeToFile(Paths.get("output/ac11.gml"), null);
 			}
 		} catch (PluginException e) {

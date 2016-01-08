@@ -36,7 +36,7 @@ public class RevisionMergeTest {
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-			serializer.init(merged, null, null, pluginManager.requireRenderEngine(), null, false);
+			serializer.init(merged, null, null, null, false);
 			serializer.writeToFile(Paths.get("merged.ifc"), null);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,1 +1,0 @@
-This projects contains a few demo plugins.

@@ -18,10 +18,10 @@ package org.bimserver.ifc.step.deserializer;
  *****************************************************************************/
 
 import org.bimserver.models.store.ObjectDefinition;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.schema.SchemaException;
+import org.bimserver.shared.exceptions.PluginException;
 
 public abstract class IfcStepDeserializerPlugin implements DeserializerPlugin {
 
@@ -33,7 +33,7 @@ public abstract class IfcStepDeserializerPlugin implements DeserializerPlugin {
 	}
 
 	@Override
-	public void init(PluginManager pluginManager) throws SchemaException, PluginException {
+	public void init(PluginManagerInterface pluginManager) throws SchemaException, PluginException {
 		initialized = true;
 	}
 

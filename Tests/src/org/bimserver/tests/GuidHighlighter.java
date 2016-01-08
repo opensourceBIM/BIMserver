@@ -23,12 +23,12 @@ import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleElementSelect;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class GuidHighlighter {
 	public GuidHighlighter(SchemaDefinition schema, IfcModelInterface model, Path outputFile, Set<String> highlightedGuids) {
@@ -38,7 +38,7 @@ public class GuidHighlighter {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			try {
-				serializer.init(model, null, null, pluginManager.requireRenderEngine(), null, false);
+				serializer.init(model, null, null, null, false);
 				serializer.writeToFile(outputFile, null);
 			} catch (SerializerException e) {
 				e.printStackTrace();

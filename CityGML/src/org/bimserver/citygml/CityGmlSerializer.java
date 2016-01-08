@@ -62,6 +62,7 @@ import org.bimserver.models.ifc2x3tc1.IfcVirtualElement;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.ProgressReporter;
@@ -125,8 +126,8 @@ public class CityGmlSerializer extends AbstractGeometrySerializer {
 	}
 
 	@Override
-	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
-		super.init(ifcModel, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
+	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManagerInterface pluginManager, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
+		super.init(ifcModel, projectInfo, pluginManager, packageMetaData, normalizeOids);
 		this.model = ifcModel;
 		ctx = new CityGMLContext();
 		citygml = new CityGMLFactory();

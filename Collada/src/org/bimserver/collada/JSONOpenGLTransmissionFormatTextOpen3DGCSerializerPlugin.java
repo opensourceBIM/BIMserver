@@ -22,10 +22,11 @@ import java.util.Set;
 import org.bimserver.collada.Collada2GLTFThread.Collada2GLTFConfiguration;
 import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class JSONOpenGLTransmissionFormatTextOpen3DGCSerializerPlugin extends AbstractSerializerPlugin {
 
@@ -48,7 +49,7 @@ public class JSONOpenGLTransmissionFormatTextOpen3DGCSerializerPlugin extends Ab
 	}
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		// TODO: Consolidate separate OpenGL Transformation Format convenience plugins when plugin parameters are supported in the PluginImplementation of plugin.xml. 
 		initialized = true;
 	}

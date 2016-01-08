@@ -23,11 +23,12 @@ import org.bimserver.models.store.PrimitiveDefinition;
 import org.bimserver.models.store.PrimitiveEnum;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 
@@ -35,7 +36,7 @@ public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 	private FileBasedObjectIDM fileBasedObjectIDM;
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		try {
 			fileBasedObjectIDM = new FileBasedObjectIDM(pluginManager.requireSchemaDefinition("ifc2x3tc1"), pluginManager.getPluginContext(this), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 		} catch (ObjectIDMException e) {

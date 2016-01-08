@@ -21,10 +21,10 @@ import java.util.Set;
 
 import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
+import org.bimserver.shared.exceptions.PluginException;
 
 @Deprecated
 public class BinaryGeometrySerializerPlugin extends AbstractSerializerPlugin {
@@ -32,7 +32,7 @@ public class BinaryGeometrySerializerPlugin extends AbstractSerializerPlugin {
 	private boolean initialized;
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		initialized = true;
 	}
 

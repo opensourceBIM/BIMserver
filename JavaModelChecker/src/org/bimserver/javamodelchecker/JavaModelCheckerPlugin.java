@@ -3,24 +3,25 @@ package org.bimserver.javamodelchecker;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class JavaModelCheckerPlugin implements ModelCheckerPlugin {
 
 	private boolean initialized;
-	private PluginManager pluginManager;
+	private PluginManagerInterface pluginManager;
 	
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		this.pluginManager = pluginManager;
 		initExamples(pluginManager);
 		initialized = true;
 	}
 
-	private void initExamples(PluginManager pluginManager) {
+	private void initExamples(PluginManagerInterface pluginManager) {
 	}
 
 	@Override

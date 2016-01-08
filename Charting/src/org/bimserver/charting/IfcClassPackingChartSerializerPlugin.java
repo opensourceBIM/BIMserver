@@ -23,10 +23,11 @@ import org.bimserver.charting.ColorScales.LinearColorScale;
 import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class IfcClassPackingChartSerializerPlugin extends AbstractSerializerPlugin {
 
@@ -53,7 +54,7 @@ public class IfcClassPackingChartSerializerPlugin extends AbstractSerializerPlug
 	}
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		initialized = true;
 	}
 

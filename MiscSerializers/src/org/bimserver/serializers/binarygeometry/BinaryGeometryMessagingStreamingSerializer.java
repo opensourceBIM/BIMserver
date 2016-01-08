@@ -11,7 +11,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SVector3f;
 import org.bimserver.models.geometry.GeometryPackage;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializer;
 import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.plugins.serializers.ProgressReporter;
@@ -61,7 +61,7 @@ public class BinaryGeometryMessagingStreamingSerializer implements MessagingStre
 	private LittleEndianDataOutputStream dataOutputStream;
 	
 	@Override
-	public void init(ObjectProvider objectProvider, ProjectInfo projectInfo, PluginManager pluginManager, PackageMetaData packageMetaData) throws SerializerException {
+	public void init(ObjectProvider objectProvider, ProjectInfo projectInfo, PluginManagerInterface pluginManager, PackageMetaData packageMetaData) throws SerializerException {
 		this.objectProvider = objectProvider;
 		this.projectInfo = projectInfo;
 	}

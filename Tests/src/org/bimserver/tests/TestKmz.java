@@ -6,15 +6,14 @@ import java.util.Collection;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class TestKmz {
 	public static void main(String[] args) {
@@ -30,7 +29,6 @@ public class TestKmz {
 			// IfcEnginePlugin ifcEngine =
 			// pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin",
 			// true);
-			RenderEnginePlugin ifcEnginePlugin = pluginManager.getRenderEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
 			if (!allDeserializerPlugins.isEmpty()) {
 				DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
 				Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
@@ -38,7 +36,7 @@ public class TestKmz {
 				IfcModelInterface model = deserializer.read(TestFile.WALL_ONLY.getFile());
 				// IfcModelInterface model =
 				// deserializer.read(TestFile.ADTHAUS.getFile(), true);
-				serializer.init(model, null, pluginManager, ifcEnginePlugin, null, false);
+				serializer.init(model, null, pluginManager, null, false);
 				serializer.writeToFile(Paths.get("output/ac11.kmz"), null);
 			}
 		} catch (PluginException e) {

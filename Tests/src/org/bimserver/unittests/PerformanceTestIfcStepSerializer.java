@@ -32,11 +32,11 @@ import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -70,7 +70,7 @@ public class PerformanceTestIfcStepSerializer {
 					}
 				}
 			}
-			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);
+			serializer.init(model, null, pluginManager, packageMetaData, false);
 			long start = System.nanoTime();
 			serializer.writeToFile(Paths.get("output/test.ifc"), null);
 			System.out.println("Serialize took: " + ((System.nanoTime() - start) / 1000000) + "ms");

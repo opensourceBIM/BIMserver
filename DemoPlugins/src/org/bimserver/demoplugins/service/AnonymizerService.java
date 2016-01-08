@@ -11,9 +11,9 @@ import org.bimserver.models.ifc2x3tc1.IfcPerson;
 import org.bimserver.models.ifc2x3tc1.IfcPostalAddress;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.plugins.services.AbstractModifyRevisionService;
-import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 

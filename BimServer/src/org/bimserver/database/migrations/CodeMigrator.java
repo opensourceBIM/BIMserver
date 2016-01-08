@@ -31,9 +31,9 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.OptionsParser;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.InterfaceList;
+import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
@@ -163,7 +163,7 @@ public class CodeMigrator {
 				SService service = new SService(servicesMap, new SourceCodeFetcher() {
 					@Override
 					public String get(Class<?> clazz) {
-						File javaFile = new File("../Shared/src/" + clazz.getName().replace(".", "/") + ".java");
+						File javaFile = new File("../PluginBase/src/" + clazz.getName().replace(".", "/") + ".java");
 						try {
 							return FileUtils.readFileToString(javaFile);
 						} catch (IOException e) {
@@ -191,7 +191,7 @@ public class CodeMigrator {
 
 			LOGGER.info("Protocol buffers file and classes generated");
 
-			RealtimeReflectorFactoryBuilder reflectorBuilder = new RealtimeReflectorFactoryBuilder(InterfaceList.createSServicesMap(), new File("../Shared/genclasses"));
+			RealtimeReflectorFactoryBuilder reflectorBuilder = new RealtimeReflectorFactoryBuilder(InterfaceList.createSServicesMap(), new File("../PluginBase/genclasses"));
 			reflectorBuilder.newReflectorFactory();
 			
 			LOGGER.info("");

@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 
 import org.bimserver.LocalDevSetup;
 import org.bimserver.emf.Schema;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
@@ -16,6 +15,7 @@ import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class TestGen {
 	public static void main(String[] args) {

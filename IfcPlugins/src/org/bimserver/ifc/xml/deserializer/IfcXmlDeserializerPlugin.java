@@ -18,9 +18,9 @@ package org.bimserver.ifc.xml.deserializer;
  *****************************************************************************/
 
 import org.bimserver.models.store.ObjectDefinition;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public abstract class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 
@@ -32,7 +32,7 @@ public abstract class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 	}
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		initialized = true;
 		pluginManager.requireSchemaDefinition("ifc2x3tc1");
 	}

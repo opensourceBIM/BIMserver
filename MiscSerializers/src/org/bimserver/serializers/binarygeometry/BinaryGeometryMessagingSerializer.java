@@ -34,8 +34,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryInfo;
-import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.renderengine.RenderEnginePlugin;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.MessagingSerializer;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
@@ -80,10 +79,9 @@ public class BinaryGeometryMessagingSerializer implements MessagingSerializer {
 	private long splitCounter = -1;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin,
-			PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
-				this.model = model;
-				this.packageMetaData = packageMetaData;
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManagerInterface pluginManager, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
+		this.model = model;
+		this.packageMetaData = packageMetaData;
 	}
 
 	@Override

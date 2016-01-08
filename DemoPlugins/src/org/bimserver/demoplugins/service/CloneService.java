@@ -25,14 +25,15 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StringType;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.ChannelConnectionException;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UserTokenAuthentication;
+import org.bimserver.shared.exceptions.PluginException;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -46,7 +47,7 @@ public class CloneService extends ServicePlugin {
 	private boolean initialized;
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		super.init(pluginManager);
 		initialized = true;
 	}

@@ -32,7 +32,6 @@ import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleElementSelect;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
 import org.bimserver.models.ifc2x3tc1.IfcText;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
@@ -40,6 +39,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -251,11 +251,9 @@ public class Colorizer {
 		try {
 			model.resetExpressIds();
 			// TODO
-			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, true);
+			serializer.init(model, null, pluginManager, null, true);
 			serializer.writeToFile(outFile, null);
 		} catch (SerializerException e) {
-			e.printStackTrace();
-		} catch (PluginException e) {
 			e.printStackTrace();
 		}
 	}

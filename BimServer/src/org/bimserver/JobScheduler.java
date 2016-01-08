@@ -30,6 +30,9 @@ import org.quartz.SimpleTrigger;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import static org.quartz.JobBuilder.*; 
+import static org.quartz.TriggerBuilder.*; 
+import static org.quartz.SimpleScheduleBuilder.*;
 
 public class JobScheduler {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JobScheduler.class);
@@ -87,9 +90,9 @@ public class JobScheduler {
 		}
 	}
 
-	private void addRecurringJob(Class<?> class1, int intervalMillis) throws SchedulerException {
-		SimpleTrigger trigger = new SimpleTrigger(class1.getSimpleName(), "group1", SimpleTrigger.REPEAT_INDEFINITELY, intervalMillis);
-		JobDetail job = new JobDetail(class1.getSimpleName(), "group1", class1);
+	private void addRecurringJob(Class<? extends Job> class1, int intervalMillis) throws SchedulerException {
+		SimpleTrigger trigger = newTrigger().withIdentity("group1", class1.getSimpleName()).withSchedule(simpleSchedule().withIntervalInMilliseconds(intervalMillis).repeatForever()).build();
+		JobDetail job = newJob(class1).withIdentity("group1", class1.getSimpleName()).build();
 		sched.scheduleJob(job, trigger);
 	}
 
