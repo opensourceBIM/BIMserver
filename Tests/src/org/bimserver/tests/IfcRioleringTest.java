@@ -15,10 +15,10 @@ import org.bimserver.models.ifc2x3tc1.IfcFlowTerminal;
 import org.bimserver.models.ifc2x3tc1.IfcPort;
 import org.bimserver.models.ifc2x3tc1.IfcRelConnectsPortToElement;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

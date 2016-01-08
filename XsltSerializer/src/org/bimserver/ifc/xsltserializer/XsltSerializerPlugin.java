@@ -22,10 +22,11 @@ import java.util.Set;
 import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class XsltSerializerPlugin extends AbstractSerializerPlugin {
 
@@ -52,7 +53,7 @@ public class XsltSerializerPlugin extends AbstractSerializerPlugin {
 	}
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		pluginManager.requireSchemaDefinition("ifc2x3tc1");
 		initialized  = true;
 	}

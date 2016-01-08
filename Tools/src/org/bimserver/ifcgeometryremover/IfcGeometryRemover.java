@@ -17,13 +17,13 @@ import org.bimserver.ifc.ReferenceCounter;
 import org.bimserver.ifc.ReferenceCounter.Reference;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.IfcDoc;
+import org.bimserver.shared.exceptions.PluginException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 
@@ -90,11 +90,9 @@ public class IfcGeometryRemover {
 		Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 		try {
 			model.resetExpressIds();
-			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, true);
+			serializer.init(model, null, pluginManager, null, true);
 			serializer.writeToFile(outFile, null);
 		} catch (SerializerException e) {
-			e.printStackTrace();
-		} catch (PluginException e) {
 			e.printStackTrace();
 		}
 	}

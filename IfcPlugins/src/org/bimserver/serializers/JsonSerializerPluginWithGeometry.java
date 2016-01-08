@@ -22,10 +22,10 @@ import java.util.Set;
 import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class JsonSerializerPluginWithGeometry extends AbstractSerializerPlugin {
 
@@ -52,7 +52,7 @@ public class JsonSerializerPluginWithGeometry extends AbstractSerializerPlugin {
 	}
 	
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		initialized = true;
 	}
 

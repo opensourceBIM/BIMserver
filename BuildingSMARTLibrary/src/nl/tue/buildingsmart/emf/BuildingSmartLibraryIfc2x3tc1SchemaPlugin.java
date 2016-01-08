@@ -9,9 +9,9 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class BuildingSmartLibraryIfc2x3tc1SchemaPlugin extends AbstractSchemaPlugin {
 
@@ -39,7 +39,7 @@ public class BuildingSmartLibraryIfc2x3tc1SchemaPlugin extends AbstractSchemaPlu
 	}
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
 		try {
 			String schemaName = "IFC2X3_TC1.exp";

@@ -20,7 +20,7 @@ package org.bimserver.test;
 import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public class GetAllAccounts {

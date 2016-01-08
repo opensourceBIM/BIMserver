@@ -6,15 +6,14 @@ import java.util.Collection;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class TestCollada {
 	public static void main(String[] args) {
@@ -30,7 +29,6 @@ public class TestCollada {
 			// IfcEnginePlugin ifcEngine =
 			// pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin",
 			// true);
-			RenderEnginePlugin ifcEngine = pluginManager.getRenderEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
 			if (!allDeserializerPlugins.isEmpty()) {
 				DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
 				Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
@@ -39,7 +37,7 @@ public class TestCollada {
 				// File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\m1-bevinding\\M1_project.ifc"),
 				// true);
 				IfcModelInterface model = deserializer.read(TestFile.WALL_ONLY.getFile());
-				serializer.init(model, null, pluginManager, ifcEngine, null, false);
+				serializer.init(model, null, pluginManager, null, false);
 				serializer.writeToFile(Paths.get("output/ac11.dae"), null);
 			}
 		} catch (PluginException e) {

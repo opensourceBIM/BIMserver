@@ -40,9 +40,10 @@ import org.bimserver.models.store.PrimitiveEnum;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StringType;
 import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.PluginSourceType;
+import org.bimserver.shared.exceptions.PluginException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,7 +62,7 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	}
 	
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		pluginContext = pluginManager.getPluginContext(this);
 	}
 	
@@ -123,7 +124,6 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	public String getSubDir() {
 		return "";
 	}
-	
 	
 	/**
 	 * @return An identifier for this specific WebModule that will be used in the version-string that can be used for caching purposes

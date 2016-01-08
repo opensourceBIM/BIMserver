@@ -34,6 +34,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProgressReporter;
@@ -48,9 +49,9 @@ public class XsltSerializer extends EmfSerializer {
 	private Set<XsltParameter> parameters = new HashSet<XsltParameter>();
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids)
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManagerInterface pluginManager, PackageMetaData packageMetaData, boolean normalizeOids)
 			throws SerializerException {
-		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
+		super.init(model, projectInfo, pluginManager, packageMetaData, normalizeOids);
 	}
 
 	public void setXsltUrl(URL url) {
@@ -68,7 +69,7 @@ public class XsltSerializer extends EmfSerializer {
 		case BODY:
 			SerializerPlugin plugin = (SerializerPlugin) getPluginManager().getPlugin("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin", true);
 			Serializer ifcXmlSerializer = plugin.createSerializer(new PluginConfiguration());
-			ifcXmlSerializer.init(model, null, getPluginManager(), null, getPackageMetaData(), false);
+			ifcXmlSerializer.init(model, null, getPluginManager(), getPackageMetaData(), false);
 			TransformerFactory factory = TransformerFactory.newInstance();
 			try {
 				StreamSource xslStream = new StreamSource(xsltUrl.openStream());

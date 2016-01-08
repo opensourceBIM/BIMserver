@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
@@ -15,6 +14,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class CityGmlTest {
 	public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class CityGmlTest {
 			IfcModelInterface model = deserializer.read(TestFile.AC11.getFile());
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.citygml.CityGmlSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), null, false);
+			serializer.init(model, null, pluginManager, null, false);
 			FileOutputStream fos = new FileOutputStream(Paths.get("out.gml").toFile());
 			serializer.writeToOutputStream(fos, null);
 			fos.close();

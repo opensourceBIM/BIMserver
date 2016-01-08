@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.shared.exceptions.PluginException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

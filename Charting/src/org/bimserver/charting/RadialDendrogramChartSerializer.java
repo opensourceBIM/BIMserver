@@ -24,8 +24,7 @@ import java.util.ArrayList;
 import org.bimserver.charting.Charts.RadialDendrogram;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.renderengine.RenderEnginePlugin;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -38,8 +37,8 @@ public class RadialDendrogramChartSerializer extends ChartEmfSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RadialDendrogramChartSerializer.class);
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, renderEnginePlugin, packageMetaData, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManagerInterface pluginManager, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, packageMetaData, normalizeOids);
 		// Pick chart.
 		chart = new RadialDendrogram();
 		integrateSettings();

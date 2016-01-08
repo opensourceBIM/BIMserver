@@ -155,7 +155,7 @@ public class SerializerFactory {
 								projectInfo.setY(52.3700);
 							}
 							projectInfo.setAuthorName(username);
-							serializer.init(model, projectInfo, pluginManager, renderEnginePlugin, model.getPackageMetaData(), true);
+							serializer.init(model, projectInfo, pluginManager, model.getPackageMetaData(), true);
 							return serializer;
 						} catch (NullPointerException e) {
 							LOGGER.error("", e);
@@ -171,7 +171,7 @@ public class SerializerFactory {
 		return null;
 	}
 	
-	public MessagingSerializer createMessagingSerializer(String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
+	public MessagingSerializer createMessagingSerializer(String username, IfcModelInterface model, DownloadParameters downloadParameters) throws SerializerException {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
 			MessagingSerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getMessagingSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), OldQuery.getDefault());
@@ -182,7 +182,7 @@ public class SerializerFactory {
 					MessagingSerializer serializer = serializerPlugin.createSerializer(new PluginConfiguration(settings));
 					if (serializer != null) {
 						try {
-							serializer.init(model, null, pluginManager, renderEnginePlugin, model.getPackageMetaData(), true);
+							serializer.init(model, null, pluginManager, model.getPackageMetaData(), true);
 							return serializer;
 						} catch (NullPointerException e) {
 							LOGGER.error("", e);

@@ -154,7 +154,7 @@ public class GeometryGenerator {
 			}
 			try {
 				renderEngine.init();
-				ifcSerializer.init(targetModel, null, bimServer.getPluginManager(), null, model.getPackageMetaData(), true);
+				ifcSerializer.init(targetModel, null, bimServer.getPluginManager(), model.getPackageMetaData(), true);
 
 				boolean debug = true;
 				InputStream in = null;
@@ -263,11 +263,9 @@ public class GeometryGenerator {
 									}
 
 									double[] tranformationMatrix = new double[16];
+									Matrix.setIdentityM(tranformationMatrix, 0);
 									if (translate && renderEngineInstance.getTransformationMatrix() != null) {
 										tranformationMatrix = renderEngineInstance.getTransformationMatrix();
-//										Matrix.setIdentityM(tranformationMatrix, 0);
-									} else {
-										Matrix.setIdentityM(tranformationMatrix, 0);
 									}
 
 									for (int i = 0; i < geometry.getIndices().length; i++) {

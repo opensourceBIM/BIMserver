@@ -31,7 +31,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.step.deserializer.IfcParserWriterUtils;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.ObjectProvider;
@@ -136,7 +136,7 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 	}
 
 	@Override
-	public void init(ObjectProvider objectProvider, ProjectInfo projectInfo, IfcHeader ifcHeader, PluginManager pluginManager, PackageMetaData packageMetaData) throws SerializerException {
+	public void init(ObjectProvider objectProvider, ProjectInfo projectInfo, IfcHeader ifcHeader, PluginManagerInterface pluginManager, PackageMetaData packageMetaData) throws SerializerException {
 		this.objectProvider = objectProvider;
 		this.projectInfo = projectInfo;
 		this.ifcHeader = ifcHeader;

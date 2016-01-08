@@ -226,7 +226,7 @@ public class JvmIfcEngineModel implements RenderEngineModel {
         int setting = 0;
         int mask = 0;
         mask += TRANSFORM_GEOMETRY;
-        setting += renderEngineFilter.isTranslateGeometry() ? 0 : TRANSFORM_GEOMETRY;
         setFilter(setting, mask);
+        setting += renderEngineFilter.isTranformGeometry() ? TRANSFORM_GEOMETRY : 0;
 	}
 }

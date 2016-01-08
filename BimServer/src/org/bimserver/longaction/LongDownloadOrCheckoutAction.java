@@ -131,7 +131,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 							checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, renderEnginePlugin, downloadParameters);
 						} else if (serializerPluginConfiguration instanceof MessagingSerializerPluginConfiguration) {
 							try {
-								messagingSerializer = getBimServer().getSerializerFactory().createMessagingSerializer(getUserName(), ifcModel, renderEnginePlugin, downloadParameters);
+								messagingSerializer = getBimServer().getSerializerFactory().createMessagingSerializer(getUserName(), ifcModel, downloadParameters);
 							} catch (SerializerException e) {
 								e.printStackTrace();
 							}

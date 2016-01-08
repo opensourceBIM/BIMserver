@@ -9,7 +9,6 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
@@ -18,6 +17,7 @@ import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.utils.PathUtils;
 
 public class TestColladaSerializer {
@@ -46,7 +46,7 @@ public class TestColladaSerializer {
 					IfcModelInterface model = ifcDeserializer.read(file);
 
 					Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-					serializer.init(model, projectInfo, pluginManager, pluginManager.requireRenderEngine(), null, false);
+					serializer.init(model, projectInfo, pluginManager, null, false);
 					serializer.writeToFile(output.resolve(file.getFileName().toString() + ".dae"), null);
 				}
 			}

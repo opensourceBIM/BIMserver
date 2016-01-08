@@ -10,17 +10,18 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.schema.SchemaPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.utils.PathUtils;
 
 public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 
-	private PluginManager pluginManager;
+	private PluginManagerInterface pluginManager;
 	private boolean initialized = false;
 	private Path nativeFolder;
 	private Path schemaFile;
@@ -31,7 +32,7 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 	}
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		this.pluginManager = pluginManager;
 		try {
 			PluginContext pluginContext = pluginManager.getPluginContext(this);

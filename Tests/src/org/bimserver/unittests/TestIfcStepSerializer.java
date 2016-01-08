@@ -30,11 +30,11 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 import org.junit.Test;
 
 public class TestIfcStepSerializer {
@@ -51,7 +51,7 @@ public class TestIfcStepSerializer {
 			IfcModel model = new BasicIfcModel(packageMetaData, null);
 			IfcWall wall = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
 			wall.setName("Test with 'quotes");
-			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);
+			serializer.init(model, null, pluginManager, packageMetaData, false);
 			serializer.writeToFile(Paths.get("output/test.ifc"), null);
 		} catch (PluginException e) {
 			e.printStackTrace();

@@ -3,10 +3,8 @@ package org.bimserver.clashdetection;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
-import java.util.Set;
 
 import javax.activation.DataSource;
-import javax.mail.util.ByteArrayDataSource;
 
 import org.bimserver.bcf.visinfo.Direction;
 import org.bimserver.bcf.visinfo.Point;
@@ -19,7 +17,6 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.DoubleType;
@@ -31,12 +28,9 @@ import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.renderengine.RenderEngine;
-import org.bimserver.plugins.renderengine.RenderEngineClash;
-import org.bimserver.plugins.renderengine.RenderEngineGeometry;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -44,9 +38,11 @@ import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.stillimagerenderer.StillImageRenderer;
 import org.bimserver.plugins.stillimagerenderer.StillImageRendererException;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.exceptions.PluginException;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.utils.ByteArrayDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,7 +52,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 	private boolean initialized;
 
 	@Override
-	public void init(final PluginManager pluginManager) throws PluginException {
+	public void init(final PluginManagerInterface pluginManager) throws PluginException {
 		super.init(pluginManager);
 		initialized = true;
 	}

@@ -27,7 +27,6 @@ import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
@@ -35,6 +34,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.tests.TestFile;
 import org.junit.Test;
 
@@ -54,7 +54,7 @@ public class TestIfcStepDeserializer {
 			
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-			serializer.init(modelInterface, null, pluginManager, pluginManager.requireRenderEngine(), packageMetaData, false);
+			serializer.init(modelInterface, null, pluginManager, packageMetaData, false);
 			serializer.writeToFile(Paths.get("output/test.ifc"), null);
 		} catch (PluginException e) {
 			e.printStackTrace();

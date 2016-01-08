@@ -1,16 +1,17 @@
 package org.bimserver.admin;
 
 
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.web.AbstractWebModulePlugin;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class AdminWebModulePlugin extends AbstractWebModulePlugin {
 
 	private boolean initialized;
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		super.init(pluginManager);
 		initialized = true;
 	}

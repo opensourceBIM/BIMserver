@@ -63,7 +63,7 @@ import org.bimserver.models.ifc2x3tc1.IfcStructuralActivityAssignmentSelect;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralItem;
 import org.bimserver.models.ifc2x3tc1.IfcTerminatorSymbol;
 import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.common.util.ECollections;

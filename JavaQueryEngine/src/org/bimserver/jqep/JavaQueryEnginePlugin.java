@@ -13,10 +13,11 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.queryengine.QueryEngine;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.utils.PathUtils;
 
 import com.google.common.base.Charsets;
@@ -24,16 +25,16 @@ import com.google.common.base.Charsets;
 public class JavaQueryEnginePlugin implements QueryEnginePlugin {
 	private boolean initialized = false;
 	private final Map<String, String> examples = new LinkedHashMap<String, String>();
-	private PluginManager pluginManager;
+	private PluginManagerInterface pluginManager;
 
 	@Override
-	public void init(PluginManager pluginManager) throws PluginException {
+	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		this.pluginManager = pluginManager;
 		initialized = true;
 		initExamples(pluginManager);
 	}
 
-	private void initExamples(PluginManager pluginManager) {
+	private void initExamples(PluginManagerInterface pluginManager) {
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
 		try {
 			for (Path path : PathUtils.list(pluginContext.getRootPath().resolve("examples"))) {

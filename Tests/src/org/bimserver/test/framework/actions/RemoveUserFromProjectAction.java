@@ -20,7 +20,7 @@ package org.bimserver.test.framework.actions;
 import java.util.List;
 
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;

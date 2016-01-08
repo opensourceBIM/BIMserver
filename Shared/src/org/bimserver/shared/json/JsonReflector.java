@@ -24,6 +24,7 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
+import org.bimserver.shared.reflector.ReflectorException;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;

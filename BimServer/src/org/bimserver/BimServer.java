@@ -107,7 +107,6 @@ import org.bimserver.pb.server.ProtocolBuffersServer;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.PluginSourceType;
 import org.bimserver.plugins.ResourceFetcher;
@@ -130,6 +129,7 @@ import org.bimserver.schemaconverter.SchemaConverterManager;
 import org.bimserver.serializers.SerializerFactory;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.InterfaceList;
+import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.PublicInterface;
@@ -724,7 +724,7 @@ public class BimServer {
 	private WebModulePluginConfiguration findWebModule(ServerSettings serverSettings, String name) {
 		for (WebModulePlugin webModulePlugin : pluginManager.getAllWebPlugins(true)) {
 			WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), webModulePlugin.getClass().getName());
-			if (webModulePlugin.getClass().getName().equals(name)) {
+			if (webModulePlugin.getDefaultName().equals(name)) {
 				return webPluginConfiguration;
 			}
 		}
@@ -767,7 +767,7 @@ public class BimServer {
 			
 			// Set the default
 			if (serverSettings.getWebModule() == null) {
-				WebModulePluginConfiguration bimviewsWebModule = findWebModule(serverSettings, "org.bimserver.bimviews.BimViewsWebModulePlugin");
+				WebModulePluginConfiguration bimviewsWebModule = findWebModule(serverSettings, "BIM Views");
 				if (bimviewsWebModule != null) {
 					serverSettings.setWebModule(bimviewsWebModule);
 					setDefaultWebModule(pluginManager.getWebModulePlugin(bimviewsWebModule.getPluginDescriptor().getPluginClassName(), true));
