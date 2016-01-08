@@ -1,5 +1,15 @@
 package org.bimserver.interfaces;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.bimserver.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OldQuery;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -19,13 +29,46 @@ package org.bimserver.interfaces;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.interfaces.objects.*;
-import java.util.*;
-import org.bimserver.models.log.*;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryFactory;
+import org.bimserver.models.geometry.GeometryInfo;
+import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.geometry.Vector3f;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.log.CheckoutRelated;
+import org.bimserver.models.log.DatabaseCreated;
+import org.bimserver.models.log.Download;
+import org.bimserver.models.log.ExtendedDataAddedToProject;
+import org.bimserver.models.log.ExtendedDataAddedToRevision;
+import org.bimserver.models.log.GeoTagUpdated;
+import org.bimserver.models.log.LogAction;
+import org.bimserver.models.log.LogFactory;
+import org.bimserver.models.log.LogPackage;
+import org.bimserver.models.log.NewCheckoutAdded;
+import org.bimserver.models.log.NewObjectIDMUploaded;
+import org.bimserver.models.log.NewProjectAdded;
+import org.bimserver.models.log.NewRevisionAdded;
+import org.bimserver.models.log.NewUserAdded;
+import org.bimserver.models.log.PasswordChanged;
+import org.bimserver.models.log.PasswordReset;
+import org.bimserver.models.log.ProjectDeleted;
+import org.bimserver.models.log.ProjectRelated;
+import org.bimserver.models.log.ProjectUndeleted;
+import org.bimserver.models.log.ProjectUpdated;
+import org.bimserver.models.log.RemoteServiceCalled;
+import org.bimserver.models.log.RevisionBranched;
+import org.bimserver.models.log.RevisionRelated;
+import org.bimserver.models.log.RevisionUpdated;
+import org.bimserver.models.log.ServerLog;
+import org.bimserver.models.log.ServerStarted;
+import org.bimserver.models.log.SettingsSaved;
+import org.bimserver.models.log.UserAddedToProject;
+import org.bimserver.models.log.UserChanged;
+import org.bimserver.models.log.UserDeleted;
+import org.bimserver.models.log.UserRelated;
+import org.bimserver.models.log.UserRemovedFromProject;
+import org.bimserver.models.log.UserUndeleted;
 import org.bimserver.models.store.*;
-import org.bimserver.models.geometry.*;
-import org.bimserver.database.DatabaseSession;
-import org.bimserver.BimserverDatabaseException;
-import org.bimserver.database.OldQuery;
 
 public class SConverter {
 

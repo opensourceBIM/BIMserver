@@ -47,9 +47,6 @@ import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
-import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.schema.SchemaException;
-import org.bimserver.plugins.schema.SchemaPlugin;
 import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -471,26 +468,6 @@ public class PluginManager implements PluginManagerInterface {
 		return allDeserializerPlugins;
 	}
 
-	public Collection<SchemaPlugin> getAllSchemaPlugins(boolean onlyEnabled) {
-		return getPlugins(SchemaPlugin.class, onlyEnabled);
-	}
-	
-	public SchemaDefinition requireSchemaDefinition(String name) throws PluginException {
-		Collection<SchemaPlugin> allSchemaPlugins = getAllSchemaPlugins(true);
-		if (allSchemaPlugins.size() == 0) {
-			throw new SchemaException("No schema plugins found");
-		}
-		for (SchemaPlugin schemaPlugin : allSchemaPlugins) {
-			if (!schemaPlugin.isInitialized()) {
-				schemaPlugin.init(this);
-			}
-			if (schemaPlugin.getSchemaVersion().toLowerCase().equals(name.toLowerCase())) {
-				return schemaPlugin.getSchemaDefinition(new PluginConfiguration());
-			}
-		}
-		throw new PluginException("No schema definition found for " + name);
-	}
-	
 	public DeserializerPlugin requireDeserializer(String extension) throws DeserializeException {
 		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(extension, true);
 		if (allDeserializerPlugins.size() == 0) {
@@ -595,22 +572,6 @@ public class PluginManager implements PluginManagerInterface {
 			throw new PluginException("No deserializers with extension " + extension + " found");
 		}
 		return allDeserializerPlugins.iterator().next();
-	}
-
-	public SchemaPlugin getFirstSchemaPlugin(String schema, boolean onlyEnabled) throws PluginException {
-		Collection<SchemaPlugin> allSchemaPlugins = getAllSchemaPlugins(onlyEnabled);
-		if (allSchemaPlugins.size() == 0) {
-			throw new PluginException("No schema plugins found");
-		}
-		for (SchemaPlugin schemaPlugin : allSchemaPlugins) {
-			if (schemaPlugin.getSchemaVersion().equals(schema)) {
-				if (!schemaPlugin.isInitialized()) {
-					schemaPlugin.init(this);
-				}
-				return schemaPlugin;
-			}
-		}
-		return null;
 	}
 
 	public ObjectIDMPlugin getObjectIDMByName(String className, boolean onlyEnabled) {

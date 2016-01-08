@@ -1,4 +1,4 @@
-package nl.tue.buildingsmart.emf;
+package org.bimserver.schemaconverter;
 
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org

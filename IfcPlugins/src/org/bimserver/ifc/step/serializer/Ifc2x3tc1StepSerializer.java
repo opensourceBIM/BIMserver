@@ -23,7 +23,6 @@ import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.shared.exceptions.PluginException;
 
 public class Ifc2x3tc1StepSerializer extends IfcStepSerializer {
 
@@ -33,12 +32,7 @@ public class Ifc2x3tc1StepSerializer extends IfcStepSerializer {
 	
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManagerInterface pluginManager, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
-		try {
-			setSchema(pluginManager.requireSchemaDefinition("ifc2x3tc1"));
-			setHeaderSchema("IFC2X3");
-		} catch (PluginException e) {
-			throw new SerializerException(e);
-		}
+		setHeaderSchema("IFC2X3");
 		super.init(model, projectInfo, pluginManager, packageMetaData, normalizeOids);
 	}
 }

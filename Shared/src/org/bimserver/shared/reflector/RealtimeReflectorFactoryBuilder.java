@@ -20,15 +20,6 @@ package org.bimserver.shared.reflector;
 import java.io.File;
 import java.io.IOException;
 
-import javassist.CannotCompileException;
-import javassist.ClassClassPath;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.CtConstructor;
-import javassist.CtField;
-import javassist.CtMethod;
-import javassist.NotFoundException;
-
 import org.apache.commons.io.FileUtils;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.meta.SMethod;
@@ -37,6 +28,15 @@ import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javassist.CannotCompileException;
+import javassist.ClassClassPath;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.CtConstructor;
+import javassist.CtField;
+import javassist.CtMethod;
+import javassist.NotFoundException;
 
 public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RealtimeReflectorFactoryBuilder.class);

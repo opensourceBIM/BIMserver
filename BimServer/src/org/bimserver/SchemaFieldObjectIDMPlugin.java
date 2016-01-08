@@ -1,5 +1,7 @@
 package org.bimserver;
 
+import org.bimserver.emf.PackageMetaData;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -20,11 +22,9 @@ package org.bimserver;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.utils.CollectionUtils;
 
@@ -35,8 +35,8 @@ public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
 
 	@Override
 	public void init(PluginManagerInterface pluginManager) throws PluginException {
-		SchemaDefinition schema = pluginManager.requireSchemaDefinition("ifc2x3tc1");
-		objectIDM = new SchemaFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), schema);
+		PackageMetaData packageMetaData = pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
+		objectIDM = new SchemaFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), packageMetaData);
 		initialized = true;
 	}
 

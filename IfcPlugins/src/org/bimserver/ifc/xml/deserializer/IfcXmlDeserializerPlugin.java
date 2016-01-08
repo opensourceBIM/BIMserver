@@ -34,7 +34,6 @@ public abstract class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 	@Override
 	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		initialized = true;
-		pluginManager.requireSchemaDefinition("ifc2x3tc1");
 	}
 
 	@Override

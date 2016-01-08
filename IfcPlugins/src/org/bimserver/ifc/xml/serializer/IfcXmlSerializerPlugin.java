@@ -48,7 +48,6 @@ public abstract class IfcXmlSerializerPlugin extends AbstractSerializerPlugin {
 
 	@Override
 	public void init(PluginManagerInterface pluginManager) throws PluginException {
-		pluginManager.requireSchemaDefinition("ifc2x3tc1");
 		initialized = true;
 	}
 

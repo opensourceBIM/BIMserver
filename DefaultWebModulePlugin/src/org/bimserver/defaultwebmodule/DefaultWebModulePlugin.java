@@ -1,6 +1,5 @@
 package org.bimserver.defaultwebmodule;
 
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.web.AbstractWebModulePlugin;
 import org.bimserver.shared.exceptions.PluginException;

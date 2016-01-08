@@ -421,7 +421,7 @@ public class GeometryGenerator {
 
 				final Map<IdEObject, IdEObject> bigMap = new HashMap<IdEObject, IdEObject>();
 
-				HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(packageMetaData.getEPackage()), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1").getSchemaDefinition());
+				HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(packageMetaData.getEPackage()), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 				OidProvider oidProvider = new OidProvider(){
 					@Override
 					public long newOid(EClass eClass) {

@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;

@@ -29,7 +29,6 @@ import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.ifc.step.deserializer.IfcParserWriterUtils;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.StringUtils;
@@ -45,6 +44,8 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
+
+import nl.tue.buildingsmart.schema.EntityDefinition;
 
 public abstract class IfcStepSerializer extends IfcSerializer {
 	private static final byte[] NEW_LINE = "\n".getBytes(Charsets.UTF_8);
@@ -179,7 +180,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 		print(upperCase);
 		print(OPEN_PAREN);
 		boolean isFirst = true;
-		EntityDefinition entityBN = getSchemaDefinition().getEntityBN(object.eClass().getName());
+		EntityDefinition entityBN = getPackageMetaData().getSchemaDefinition().getEntityBN(object.eClass().getName());
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 			if (feature.getEAnnotation("hidden") == null && (entityBN != null && (!entityBN.isDerived(feature.getName()) || entityBN.isDerivedOverride(feature.getName())))) {
 				EClassifier type = feature.getEType();
@@ -229,7 +230,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 				print(DASH);
 				print(String.valueOf(getExpressId((IdEObject) referencedObject)));
 			} else {
-				EntityDefinition entityBN = getSchemaDefinition().getEntityBN(object.eClass().getName());
+				EntityDefinition entityBN = getPackageMetaData().getSchemaDefinition().getEntityBN(object.eClass().getName());
 				if (entityBN != null && entityBN.isDerived(feature.getName())) {
 					print(ASTERISK);
 				} else if (feature.isMany()) {
@@ -453,7 +454,7 @@ public abstract class IfcStepSerializer extends IfcSerializer {
 				if (type.getName().equals("IfcBoolean") || type.getName().equals("IfcLogical") || type == ECORE_PACKAGE_INSTANCE.getEBoolean()) {
 					print(BOOLEAN_UNDEFINED);
 				} else {
-					EntityDefinition entityBN = getSchemaDefinition().getEntityBN(object.eClass().getName());
+					EntityDefinition entityBN = getPackageMetaData().getSchemaDefinition().getEntityBN(object.eClass().getName());
 					if (entityBN != null && entityBN.isDerived(feature.getName())) {
 						print(ASTERISK);
 					} else {

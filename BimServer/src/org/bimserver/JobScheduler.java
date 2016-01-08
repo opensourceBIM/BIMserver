@@ -1,5 +1,9 @@
 package org.bimserver;
 
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
+import static org.quartz.TriggerBuilder.newTrigger;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -30,9 +34,6 @@ import org.quartz.SimpleTrigger;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import static org.quartz.JobBuilder.*; 
-import static org.quartz.TriggerBuilder.*; 
-import static org.quartz.SimpleScheduleBuilder.*;
 
 public class JobScheduler {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JobScheduler.class);

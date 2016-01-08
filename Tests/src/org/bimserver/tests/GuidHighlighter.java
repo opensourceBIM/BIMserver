@@ -24,11 +24,12 @@ import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleElementSelect;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.PluginException;
+
+import nl.tue.buildingsmart.schema.SchemaDefinition;
 
 public class GuidHighlighter {
 	public GuidHighlighter(SchemaDefinition schema, IfcModelInterface model, Path outputFile, Set<String> highlightedGuids) {
