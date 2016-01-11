@@ -1,1 +1,1 @@
-This projects contains a few demo plugins.
+This projects contains both unit tests, and code snippets used for trying things out
