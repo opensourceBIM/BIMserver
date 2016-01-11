@@ -1,0 +1,7 @@
+{
+	"identifier": "dwmp",
+	"version": "%VERSION%",
+	"description": "Default BIMserver Web GUI",
+	"defaultName": "Default WMP",
+	"defaultContextPath": "default"
+}

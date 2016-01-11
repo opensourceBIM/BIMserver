@@ -24,7 +24,7 @@
   	</dependency>
   	<dependency>
   		<groupId>OpensourceBIM</groupId>
-  		<artifactId>Ifc</artifactId>
+  		<artifactId>Shared</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>

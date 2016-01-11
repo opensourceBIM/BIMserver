@@ -102,8 +102,6 @@ public class RootServlet extends HttpServlet {
 				return;
 			} else if (requestUri.startsWith("/stream")) {
 				LOGGER.warn("Stream request should not be going to this servlet!");
-			} else if (requestUri.startsWith("/openid")) {
-				bimServer.getOpenIdManager().verifyResponse(request, response);
 			} else if (requestUri.startsWith("/soap11/") || requestUri.equals("/soap11")) {
 				soap11Servlet.service(request, response);
 			} else if (requestUri.startsWith("/soap12/") || requestUri.equals("/soap12")) {

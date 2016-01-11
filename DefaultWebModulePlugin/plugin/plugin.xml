@@ -2,7 +2,7 @@
 <PluginDescriptor>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.web.WebModulePlugin</interfaceClass>
-		<implementationClass>org.bimserver.defaultwebmodule.DefaultWebModulePlugin</implementationClass>
+		<implementationJson>defaultwmp.json</implementationJson>
 		<enabled>true</enabled>
 	</PluginImplementation>
 </PluginDescriptor>

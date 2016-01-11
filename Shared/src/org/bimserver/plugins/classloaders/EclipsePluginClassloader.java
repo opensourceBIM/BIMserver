@@ -41,7 +41,7 @@ public class EclipsePluginClassloader extends PublicFindClassClassLoader {
 	public EclipsePluginClassloader(ClassLoader parentClassloader, Path projectFolder) {
 		super(parentClassloader);
 		this.projectFolder = projectFolder;
-		this.classFolder = projectFolder.resolve("bin");
+		this.classFolder = projectFolder.resolve("target/classes");
 	}
 	
 	@Override

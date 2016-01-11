@@ -25,7 +25,6 @@ import java.nio.file.Path;
 import java.security.SecureRandom;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -40,8 +39,6 @@ import java.util.concurrent.TimeUnit;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.PatternLayout;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.cache.NewDiskCacheManager;
@@ -67,7 +64,6 @@ import org.bimserver.endpoints.EndPointManager;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SVersion;
-import org.bimserver.logging.CustomFileAppender;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -102,7 +98,6 @@ import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.notifications.InternalServicesManager;
 import org.bimserver.notifications.NotificationsManager;
-import org.bimserver.openid.OpenIdManager;
 import org.bimserver.pb.server.ProtocolBuffersServer;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginChangeListener;
@@ -191,7 +186,6 @@ public class BimServer {
 	private WebModulePlugin defaultWebModule;
 	private ExecutorService executorService = Executors.newCachedThreadPool();
 	private InternalServicesManager internalServicesManager;
-	private OpenIdManager openIdManager;
 	private MetaDataManager metaDataManager;
 	private SchemaConverterManager schemaConverterManager = new SchemaConverterManager();
 	private WebModuleManager webModuleManager;
@@ -909,17 +903,17 @@ public class BimServer {
 	}
 	
 	private void fixLogging() throws IOException {
-		Path file = config.getHomeDir().resolve("logs/bimserver.log");
-		CustomFileAppender appender = new CustomFileAppender(file);
-		appender.setLayout(new PatternLayout("%d{dd-MM-yyyy HH:mm:ss} %-5p %-80m (%c.java:%L) %n"));
-		System.out.println("Logging to: " + file.toString());
-		Enumeration<?> currentLoggers = LogManager.getCurrentLoggers();
-		LogManager.getRootLogger().addAppender(appender);
-		while (currentLoggers.hasMoreElements()) {
-			Object nextElement = currentLoggers.nextElement();
-			org.apache.log4j.Logger logger2 = (org.apache.log4j.Logger) nextElement;
-			logger2.addAppender(appender);
-		}
+//		Path file = config.getHomeDir().resolve("logs/bimserver.log");
+//		CustomFileAppender appender = new CustomFileAppender(file);
+//		appender.setLayout(new PatternLayout("%d{dd-MM-yyyy HH:mm:ss} %-5p %-80m (%c.java:%L) %n"));
+//		System.out.println("Logging to: " + file.toString());
+//		Enumeration<?> currentLoggers = LogManager.getCurrentLoggers();
+//		LogManager.getRootLogger().addAppender(appender);
+//		while (currentLoggers.hasMoreElements()) {
+//			Object nextElement = currentLoggers.nextElement();
+//			org.apache.log4j.Logger logger2 = (org.apache.log4j.Logger) nextElement;
+//			logger2.addAppender(appender);
+//		}
 	}
 
 	private void initHomeDir() throws IOException {
@@ -1095,10 +1089,6 @@ public class BimServer {
 	
 	public ExecutorService getExecutorService() {
 		return executorService;
-	}
-	
-	public OpenIdManager getOpenIdManager() {
-		return openIdManager;
 	}
 	
 	public MetaDataManager getMetaDataManager() {

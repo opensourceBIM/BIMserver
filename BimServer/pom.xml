@@ -38,11 +38,6 @@
 			<version>9.3.6.v20151106</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-websocket</artifactId>
-			<version>8.1.18.v20150929</version>
-		</dependency>
-		<dependency>
 			<groupId>org.eclipse.jetty.websocket</groupId>
 			<artifactId>websocket-servlet</artifactId>
 			<version>9.3.6.v20151106</version>
@@ -51,16 +46,6 @@
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-webapp</artifactId>
 			<version>9.3.6.v20151106</version>
-		</dependency>
-		<dependency>
-			<groupId>org.openid4java</groupId>
-			<artifactId>openid4java</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -92,17 +77,20 @@
 			<artifactId>rome</artifactId>
 			<version>1.5.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<version>2.2.2</version>
 		</dependency>
-
 		<dependency>
-			<groupId>OpensourceBIM</groupId>
-			<artifactId>Shared</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.3</version>
 		</dependency>
 		<dependency>
 			<groupId>OpensourceBIM</groupId>
@@ -123,6 +111,16 @@
 			<groupId>org.codehaus.jettison</groupId>
 			<artifactId>jettison</artifactId>
 			<version>1.3.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thetransactioncompany</groupId>
+			<artifactId>cors-filter</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty.websocket</groupId>
+			<artifactId>websocket-server</artifactId>
+			<version>9.3.6.v20151106</version>
 		</dependency>
 	</dependencies>
 	<repositories>

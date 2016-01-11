@@ -2,16 +2,6 @@
 <PluginDescriptor>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.serializers.objectinfo.ObjectInfoSerializerPlugin</implementationClass>
-		<enabled>true</enabled>
-	</PluginImplementation>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.serializers.objectcsv.ObjectCSVSerializerPlugin</implementationClass>
-		<enabled>true</enabled>
-	</PluginImplementation>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin</implementationClass>
 		<enabled>true</enabled>
 	</PluginImplementation>
