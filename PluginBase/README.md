@@ -1,0 +1,1 @@
+This project contains code required for building plugins. This should be the only compile-time dependency you need. The only dependencies of this project are jar files that are available on maven repositories.
