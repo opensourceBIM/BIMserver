@@ -20,7 +20,7 @@ final class CodeFetcher implements SourceCodeFetcher {
 		URL url = clazz.getResource(clazz.getSimpleName() + ".java");
 		if (url == null) {
 			try {
-				url = new File("../Shared/src/" + clazz.getName().replace(".", "/") + ".java").toURI().toURL();
+				url = new File("../PluginBase/src/" + clazz.getName().replace(".", "/") + ".java").toURI().toURL();
 			} catch (MalformedURLException e) {
 				LOGGER.error("", e);				}
 		}

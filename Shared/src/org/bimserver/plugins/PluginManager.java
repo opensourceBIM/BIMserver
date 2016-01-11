@@ -169,7 +169,7 @@ public class PluginManager implements PluginManagerInterface {
 				}
 			};
 			
-			loadPlugins(resourceLoader, pluginClassloader, projectRoot.toUri(), projectRoot.resolve("bin").toString(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT);
+			loadPlugins(resourceLoader, pluginClassloader, projectRoot.toUri(), projectRoot.resolve("target/classes").toString(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {

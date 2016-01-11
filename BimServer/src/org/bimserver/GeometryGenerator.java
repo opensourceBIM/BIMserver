@@ -224,7 +224,7 @@ public class GeometryGenerator {
 //										EStructuralFeature guidFeature = ifcProduct.eClass().getEStructuralFeature("GlobalId");
 //										String guid = (String) ifcProduct.eGet(guidFeature);
 //										System.out.println(guid + ": " + "Area: " + area + ", Volume: " + volume);
-									} catch (NotImplementedException e) {
+									} catch (UnsupportedOperationException e) {
 									}
 									
 									GeometryData geometryData = null;

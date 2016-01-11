@@ -178,4 +178,9 @@ public class QueryObjectProvider implements ObjectProvider {
 		}
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

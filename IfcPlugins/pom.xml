@@ -19,7 +19,12 @@
   <dependencies>
   	<dependency>
   		<groupId>OpensourceBIM</groupId>
-  		<artifactId>Ifc</artifactId>
+  		<artifactId>PluginBase</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>OpensourceBIM</groupId>
+  		<artifactId>Shared</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>

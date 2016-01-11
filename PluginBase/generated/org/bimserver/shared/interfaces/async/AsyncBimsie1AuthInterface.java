@@ -103,18 +103,6 @@ public class AsyncBimsie1AuthInterface {
 		});
 	}
 	
-	public void loginOpenId(final java.lang.String op, final java.lang.String returnUrl, final LoginOpenIdCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.loginOpenId(op, returnUrl));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void loginUserToken(final java.lang.String token, final LoginUserTokenCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -139,17 +127,4 @@ public class AsyncBimsie1AuthInterface {
 			}
 		});
 	}
-	
-	public void validateOpenId(final java.lang.String queryString, final ValidateOpenIdCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.validateOpenId(queryString));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 }
