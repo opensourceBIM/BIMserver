@@ -1,1 +1,1 @@
-This projects contains a few demo plugins.
+This project contains test files
