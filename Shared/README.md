@@ -1,1 +1,1 @@
-This projects contains a few demo plugins.
+This project contains code that is being shared between both the BIMserver project, and the BimServerClientLib.
