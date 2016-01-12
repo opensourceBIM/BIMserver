@@ -194,11 +194,7 @@ public class BimServer {
 	/**
 	 * Create a new BIMserver
 	 * 
-	 * @param homeDir
-	 *            A directory where the user can store instance specific
-	 *            configuration files
-	 * @param resourceFetcher
-	 *            A resource fetcher
+	 * @param config Configuration of BIMserver
 	 */
 	public BimServer(BimServerConfig config) {
 		this.config = config;
