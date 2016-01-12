@@ -33,8 +33,7 @@ import java.util.UUID;
  * CCPL BY-NC-SA 3.0 (cc) 2008 Eike Tauscher, Jan Tulke <br>
  * <br>
  * The OPEN IFC JAVA TOOLBOX package itself (except this class) is licensed under <br>
- * <a rel="license"
- * href="http://creativecommons.org/licenses/by-nc-sa/3.0/de/">Creative Commons
+ * <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/de/">Creative Commons
  * Attribution-Non-Commercial- Share Alike 3.0 Germany</a>.<br>
  * Please visit <a
  * href="http://www.openifctools.com">http://www.openifctools.com</a> for more
