@@ -17,7 +17,6 @@ package org.bimserver.ifc;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-
 public class InverseMistmaches {
 //	private final Map<EReference, EReference> map = new HashMap<>();
 	
