@@ -10,7 +10,9 @@
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
-			<resource><directory>genclasses</directory></resource>
+			<resource>
+				<directory>genclasses</directory>
+			</resource>
 		</resources>
 		<plugins>
 			<plugin>
@@ -103,6 +105,12 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<name>Shared</name>
 	<organization>
 		<name>OpenSource BIM</name>
