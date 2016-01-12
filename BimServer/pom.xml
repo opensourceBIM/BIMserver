@@ -59,6 +59,10 @@
 					<description>Description of your release</description>
 					<releaseName>1.0 Final</releaseName>
 					<tag>${project.version}</tag>
+					<phase>deploy</phase>
+					<goals>
+						<goal>release</goal>
+					</goals>
 					<fileSets>
 						<fileSet>
 							<directory>${project.build.directory}</directory>
