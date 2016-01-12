@@ -266,6 +266,7 @@
 	</organization>
 	<scm>
 		<url>https://github.com/opensourceBIM/BIMserver.git</url>
+		<developerConnection>https://github.com/opensourceBIM/BIMserver.git</developerConnection>
 		<connection>opensourceBIM/BIMserver</connection>
 	</scm>
 	<issueManagement>
