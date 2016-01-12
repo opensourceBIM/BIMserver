@@ -56,6 +56,20 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.6</version>
 				<configuration>
+					<webResources>
+						<resource>
+							<directory>emailtemplates</directory>
+							<targetPath>WEB-INF</targetPath>
+						</resource>
+						<resource>
+							<directory>license.txt</directory>
+							<targetPath>/</targetPath>
+						</resource>
+						<resource>
+							<directory>deploy</directory>
+							<targetPath>WEB-INF</targetPath>
+						</resource>
+					</webResources>
 					<webXml>www/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>

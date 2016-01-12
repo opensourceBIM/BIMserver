@@ -1,0 +1,16 @@
+## Available parameters:
+##   name: The users full name
+##   username: The users username (usually e-mail address)
+##   siteaddress: The address of the running BIMserver
+##   validationlink: A link where the user can set his/her password
+
+#parse("inc/header.template")
+Dear $name,<br/>
+
+An administrator of $siteaddress has created a BIMserver account for you.<br/>
+
+Please click the following link to set your password:<br/>
+
+$validationlink<br/>
+
+#parse("inc/footer.template")

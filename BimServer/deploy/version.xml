@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sVersion>
+	<date>@DATE@</date>
+	<downloadUrl>http://download.bimserver.org</downloadUrl>
+	<major>@MAJOR@</major>
+	<minor>@MINOR@</minor>
+	<oid>0</oid>
+	<revision>@REVISION@</revision>
+	<supportEmail>support@bimserver.org</supportEmail>
+	<supportUrl>http://support.bimserver.org</supportUrl>
+</sVersion>
