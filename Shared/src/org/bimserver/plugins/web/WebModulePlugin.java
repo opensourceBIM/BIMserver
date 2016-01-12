@@ -26,7 +26,7 @@ public interface WebModulePlugin extends Plugin {
 	/**
 	 * Handles the individual requests, just like a servlet
 	 * 
-	 * @param request The HTTP request
+	 * @param requestUrl Request URL
 	 * @param response The HTTP response
 	 */
 	boolean service(String requestUrl, HttpServletResponse response);
