@@ -22,19 +22,24 @@ public class Licenser {
 	private void start() {
 		File workspace = new File("../").getAbsoluteFile();
 		for (File project : workspace.listFiles()) {
-			if (!project.getName().startsWith(".")) {
-				File srcFolder = new File(project, "src");
-				if (srcFolder.exists()) {
-					String license = getCommentedLicenseText(new File(project, "license.txt"));
-					if (license != null) {
-						process(srcFolder, license);
-					}
-				}
-			}
+			processProject(project);
 		}
+		processProject(new File("C:\\Git\\BuildingSMARTLibrary\\BuildingSMARTLibrary"));
 		System.out.println("Unchanged: " + same);
 		System.out.println("Changed: " + changed);
 		System.out.println("Skipped: " + skipped);
+	}
+
+	private void processProject(File project) {
+		if (!project.getName().startsWith(".")) {
+			File srcFolder = new File(project, "src");
+			if (srcFolder.exists()) {
+				String license = getCommentedLicenseText(new File(project, "license.txt"));
+				if (license != null) {
+					process(srcFolder, license);
+				}
+			}
+		}
 	}
 
 	private void process(File srcFolder, String license) {
