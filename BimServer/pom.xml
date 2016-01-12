@@ -112,6 +112,7 @@
 							<execution>
 								<id>github</id>
 								<phase>deploy</phase>
+								<repositoryId>github</repositoryId>
 								<goals>
 									<goal>release</goal>
 								</goals>
