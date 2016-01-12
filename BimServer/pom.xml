@@ -118,7 +118,6 @@
 								<inherited>false</inherited>
 								<configuration>
 									<releaseName>v${project.version}</releaseName>
-									<repositoryId>github</repositoryId>
 									<tag>v${project.version}</tag>
 									<artifact>${project.build.directory}/${project.artifactId}-${project.version}.jar</artifact>
 								</configuration>
