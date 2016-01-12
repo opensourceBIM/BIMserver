@@ -31,7 +31,7 @@
 						</goals>
 						<configuration>
 							<sources>
-								<source>generated</source>
+								<source>genclasses</source>
 							</sources>
 						</configuration>
 					</execution>
