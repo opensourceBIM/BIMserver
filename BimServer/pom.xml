@@ -265,8 +265,8 @@
 		<url>opensourcebim.org</url>
 	</organization>
 	<scm>
-		<url>scm:https://github.com/opensourceBIM/BIMserver.git</url>
-		<developerConnection>scm:https://github.com/opensourceBIM/BIMserver.git</developerConnection>
+		<url>scm:git:https://github.com/opensourceBIM/BIMserver.git</url>
+		<developerConnection>scm:git:https://github.com/opensourceBIM/BIMserver.git</developerConnection>
 		<connection>opensourceBIM/BIMserver</connection>
 	</scm>
 	<issueManagement>
