@@ -241,7 +241,7 @@
 	</organization>
 	<scm>
 		<url>https://github.com/opensourceBIM/BIMserver.git</url>
-		<connection>https://github.com/opensourceBIM/BIMserver.git</connection>
+		<connection>opensourceBIM/BIMserver</connection>
 	</scm>
 	<issueManagement>
 		<system>GitHub</system>
