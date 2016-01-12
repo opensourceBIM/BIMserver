@@ -56,6 +56,7 @@
 				<artifactId>github-release-plugin</artifactId>
 				<version>1.1.1</version>
 				<configuration>
+					<id>github-upload</id>
 					<description>Description of your release</description>
 					<releaseName>1.0 Final</releaseName>
 					<tag>${project.version}</tag>
