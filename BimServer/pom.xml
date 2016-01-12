@@ -62,7 +62,10 @@
 							<targetPath>WEB-INF</targetPath>
 						</resource>
 						<resource>
-							<directory>license.txt</directory>
+							<directory>.</directory>
+							<includes>
+								<include>license.txt</include>
+							</includes>
 							<targetPath>/</targetPath>
 						</resource>
 						<resource>
@@ -82,6 +85,14 @@
 					<serverId>ossrh</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>false</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<releaseProfiles>release</releaseProfiles>
 				</configuration>
 			</plugin>
 			<plugin>
