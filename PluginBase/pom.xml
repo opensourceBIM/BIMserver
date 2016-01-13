@@ -78,6 +78,7 @@
 	</build>
 	<profiles>
 		<profile>
+			<id>compile</id>
 			<build>
 				<plugins>
 					<plugin>
