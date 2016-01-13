@@ -101,7 +101,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>PluginBase</artifactId>
-			<version>1.5.0</version>
+			<version>1.5.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<distributionManagement>
