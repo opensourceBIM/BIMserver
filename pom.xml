@@ -131,8 +131,8 @@
 	</repositories>
 	<scm>
 		<url>https://github.com/opensourceBIM/BIMserver.git</url>
-		<connection>scm:git:https://github.com/opensourceBIM/BIMserver.git/Builds</connection>
-		<developerConnection>scm:git:https://github.com/opensourceBIM/BIMserver.git/Builds</developerConnection>
+		<connection>scm:git:https://github.com/opensourceBIM/BIMserver.git</connection>
+		<developerConnection>scm:git:https://github.com/opensourceBIM/BIMserver.git</developerConnection>
 		<tag>Builds-1.5.0</tag>
 	</scm>
 	<organization>
