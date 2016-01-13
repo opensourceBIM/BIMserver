@@ -29,7 +29,7 @@
 		<system>GitHub</system>
 		<url>https://github.com/opensourceBIM/BIMserver/issues</url>
 	</issueManagement>
-	<name>BimServer</name>
+	<name>Build</name>
 	<url>https://github.com/opensourceBIM/BIMserver</url>
 	<licenses>
 		<license>
@@ -49,6 +49,8 @@
 		<module>BimServerClientLib</module>
 		<module>PluginBase</module>
 		<module>Shared</module>
+		<module>BimServerWar</module>
+		<module>BimServerJar</module>
 	</modules>
 	<distributionManagement>
 		<snapshotRepository>
