@@ -18,7 +18,7 @@
 					<webResources>
 						<resource>
 							<directory>../BimServer/emailtemplates</directory>
-							<targetPath>WEB-INF</targetPath>
+							<targetPath>WEB-INF/templates</targetPath>
 						</resource>
 						<resource>
 							<directory>.</directory>
@@ -43,9 +43,6 @@
 						<execution>
 							<id>github.com</id>
 							<phase>deploy</phase>
-							<goals>
-								<goal>release</goal>
-							</goals>
 							<inherited>false</inherited>
 							<configuration>
 								<releaseName>${project.version}</releaseName>
