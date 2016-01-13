@@ -44,7 +44,6 @@ public class WarServerInitializer implements ServletContextListener {
 
 	private BimServer bimServer;
 	
-	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		ServletContext servletContext = servletContextEvent.getServletContext();
 		Path homeDir = null;
@@ -57,7 +56,7 @@ public class WarServerInitializer implements ServletContextListener {
 
 		boolean autoMigrate = false;
 		if (servletContext.getAttribute("autoMigrate") != null) {
-			autoMigrate = (boolean) servletContext.getAttribute("autoMigrate");
+			autoMigrate = (Boolean) servletContext.getAttribute("autoMigrate");
 		}
 		if (autoMigrate == false && servletContext.getInitParameter("autoMigrate") != null) {
 			autoMigrate = Boolean.valueOf(servletContext.getInitParameter("autoMigrate"));
@@ -127,7 +126,6 @@ public class WarServerInitializer implements ServletContextListener {
 		return sb.toString();
 	}
 
-	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
 		servletContextEvent.getServletContext().removeAttribute("bimserver");
 		if (bimServer != null) {
