@@ -1,11 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.opensourcebim</groupId>
 	<artifactId>BimServer</artifactId>
-	<version>1.5.0-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<parent>
+		<groupId>org.opensourcebim</groupId>
+		<artifactId>Builds</artifactId>
+		<version>1.5.0-SNAPSHOT</version>
+	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
@@ -152,12 +156,6 @@
 			</build>
 		</profile>
 	</profiles>
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
@@ -250,41 +248,4 @@
 			<version>9.3.6.v20151106</version>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>oracleReleases</id>
-			<name>Oracle Released Java Packages</name>
-			<url>http://download.oracle.com/maven</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
-	<scm>
-		<url>https://github.com/opensourceBIM/BIMserver.git</url>
-		<connection>scm:git:https://github.com/opensourceBIM/BIMserver.git/BimServer</connection>
-		<developerConnection>scm:git:https://github.com/opensourceBIM/BIMserver.git/BimServer</developerConnection>
-	  <tag>Builds-1.5.0</tag>
-  </scm>
-	<organization>
-		<name>OpenSource BIM</name>
-		<url>opensourcebim.org</url>
-	</organization>
-	<issueManagement>
-		<system>GitHub</system>
-		<url>https://github.com/opensourceBIM/BIMserver/issues</url>
-	</issueManagement>
-	<name>BimServer</name>
-	<url>https://github.com/opensourceBIM/BIMserver</url>
-	<licenses>
-		<license>
-			<name>GNU Affero General Public License</name>
-			<url>http://www.gnu.org/licenses/agpl-3.0.en.html</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-	<developers>
-		<developer>
-			<email>ruben@logic-labs.nl</email>
-			<name>Ruben de Laat</name>
-		</developer>
-	</developers>
 </project>
