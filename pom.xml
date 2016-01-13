@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.opensourcebim</groupId>
 	<artifactId>Builds</artifactId>
-	<version>1.5.1-SNAPSHOT</version>
+	<version>1.5.1</version>
 	<packaging>pom</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -103,7 +103,7 @@
 		<url>https://github.com/opensourceBIM/BIMserver.git</url>
 		<connection>scm:git:https://github.com/opensourceBIM/BIMserver.git</connection>
 		<developerConnection>scm:git:https://github.com/opensourceBIM/BIMserver.git</developerConnection>
-		<tag>Builds-1.5.0</tag>
+		<tag>Builds-1.5.1</tag>
 	</scm>
 	<organization>
 		<name>OpenSource BIM</name>
