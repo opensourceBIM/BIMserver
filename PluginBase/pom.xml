@@ -17,13 +17,11 @@
 			<resource>
 				<directory>generated</directory>
 				<excludes>
-					<exclude>**/*.java</exclude>
 				</excludes>
 			</resource>
 			<resource>
 				<directory>src</directory>
 				<excludes>
-					<exclude>**/*.java</exclude>
 				</excludes>
 			</resource>
 		</resources>
