@@ -8,6 +8,35 @@
 		<artifactId>Builds</artifactId>
 		<version>1.5.2-SNAPSHOT</version>
 	</parent>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>../BimServer/emailtemplates</directory>
+							<targetPath>WEB-INF</targetPath>
+						</resource>
+						<resource>
+							<directory>.</directory>
+							<includes>
+								<include>license.txt</include>
+							</includes>
+							<targetPath>/</targetPath>
+						</resource>
+						<resource>
+							<directory>../BimServer/deploy</directory>
+							<targetPath>WEB-INF</targetPath>
+						</resource>
+					</webResources>
+					<webXml>../BimServer/www/WEB-INF/web.xml</webXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<profiles>
 		<profile>
 			<id>release</id>
