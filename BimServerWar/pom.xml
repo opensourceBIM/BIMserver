@@ -35,23 +35,6 @@
 					<webXml>../BimServer/www/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
-				<plugin>
-					<groupId>de.jutzig</groupId>
-					<artifactId>github-release-plugin</artifactId>
-					<version>1.1.0</version>
-					<executions>
-						<execution>
-							<id>github.com</id>
-							<phase>deploy</phase>
-							<inherited>false</inherited>
-							<configuration>
-								<releaseName>${project.version}</releaseName>
-								<tag>${project.version}</tag>
-								<artifact>${project.build.directory}/${project.artifactId}-${project.version}.war</artifact>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
 		</plugins>
 	</build>
 	<dependencies>
