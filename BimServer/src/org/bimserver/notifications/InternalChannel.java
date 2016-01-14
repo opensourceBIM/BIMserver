@@ -1,6 +1,5 @@
 package org.bimserver.notifications;
 
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.bimserver.client.Channel;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ChannelConnectionException;
@@ -18,8 +17,8 @@ public class InternalChannel extends Channel {
 	private ServiceFactory serviceFactory;
 	private SServicesMap sServicesMap;
 
-	public InternalChannel(CloseableHttpClient httpClient, ServiceFactory serviceFactory, SServicesMap sServicesMap) {
-		super(httpClient);
+	public InternalChannel(ServiceFactory serviceFactory, SServicesMap sServicesMap) {
+		super(null);
 		this.serviceFactory = serviceFactory;
 		this.sServicesMap = sServicesMap;
 	}
