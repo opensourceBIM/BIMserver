@@ -19,7 +19,6 @@
 		<url>https://github.com/opensourceBIM/BIMserver.git</url>
 		<connection>scm:git:https://github.com/opensourceBIM/BIMserver.git</connection>
 		<developerConnection>scm:git:https://github.com/opensourceBIM/BIMserver.git</developerConnection>
-		<tag>Builds-1.5.4</tag>
 	</scm>
 	<organization>
 		<name>OpenSource BIM</name>
