@@ -3,12 +3,11 @@
 	<description>WAR version of BIMserver</description>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>BimServerWar</artifactId>
-	<version>1.5.6</version>
 	<packaging>war</packaging>
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>Builds</artifactId>
-		<version>1.5.6</version>
+		<version>1.5.6-SNAPSHOT</version>
 	</parent>
 	<build>
 		<plugins>
@@ -43,7 +42,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>BimServer</artifactId>
-			<version>1.5.6</version>
+			<version>1.5.6-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
