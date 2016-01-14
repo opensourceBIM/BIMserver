@@ -10,6 +10,7 @@
 		<version>1.5.7-SNAPSHOT</version>
 	</parent>
 	<build>
+		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -33,7 +34,7 @@
 							<targetPath>WEB-INF</targetPath>
 						</resource>
 					</webResources>
-					<webXml>../BimServer/www/WEB-INF/web.xml</webXml>
+					<webXml>web.xml</webXml>
 				</configuration>
 			</plugin>
 		</plugins>
