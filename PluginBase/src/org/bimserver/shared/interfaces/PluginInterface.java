@@ -606,4 +606,6 @@ public interface PluginInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllObjectIDMPluginDescriptors")
 	List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws ServerException, UserException;
+	
+	
 }
