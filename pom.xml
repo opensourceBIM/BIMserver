@@ -4,6 +4,7 @@
 	<artifactId>Builds</artifactId>
 	<version>1.5.6-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<description>This is the parent pom, no idea why this is being released</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
