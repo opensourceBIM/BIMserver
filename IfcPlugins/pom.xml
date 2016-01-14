@@ -61,12 +61,12 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>PluginBase</artifactId>
-			<version>1.5.2-SNAPSHOT</version>
+			<version>1.5.3-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>Shared</artifactId>
-			<version>1.5.2-SNAPSHOT</version>
+			<version>1.5.3-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<scm>
