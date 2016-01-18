@@ -1,1 +1,0 @@
-This projects contains the builds scripts and other required files.
