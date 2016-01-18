@@ -33,18 +33,12 @@ import org.bimserver.plugins.serializers.StreamingSerializer;
 public class StreamingJsonSerializer implements StreamingSerializer {
 
 	private ObjectProvider objectProvider;
-	private ProjectInfo projectInfo;
 	private IfcHeader ifcHeader;
-	private PluginManagerInterface pluginManager;
-	private PackageMetaData packageMetaData;
 
 	@Override
 	public void init(ObjectProvider objectProvider, ProjectInfo projectInfo, IfcHeader ifcHeader, PluginManagerInterface pluginManager, PackageMetaData packageMetaData) throws SerializerException {
 		this.objectProvider = objectProvider;
-		this.projectInfo = projectInfo;
 		this.ifcHeader = ifcHeader;
-		this.pluginManager = pluginManager;
-		this.packageMetaData = packageMetaData;
 	}
 
 	@Override

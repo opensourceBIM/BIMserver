@@ -38,12 +38,10 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 	private Set<Short> outputFilterCids;
 	private Iterator<EReference> featureIterator;
 	private Include include;
-	private CanInclude previousInclude;
 	private EReference feature;
 
 	public QueryIncludeStackFrame(QueryObjectProvider queryObjectProvider, QueryContext queryContext, CanInclude previousInclude, Include include, HashMapVirtualObject currentObject, QueryPart queryPart) throws QueryException, BimserverDatabaseException {
 		super(queryContext, queryObjectProvider, queryPart);
-		this.previousInclude = previousInclude;
 		this.include = include;
 		this.currentObject = currentObject;
 		

@@ -99,6 +99,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		return first;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {

@@ -55,14 +55,12 @@ public class QueryObjectProvider implements ObjectProvider {
 	private long reads = 0;
 	private long stackFramesProcessed = 0;
 	private final Set<Long> goingToRead = new HashSet<>();
-	private Set<Long> roids;
 	private Query query;
 
 	public QueryObjectProvider(DatabaseSession databaseSession, BimServer bimServer, Query query, Set<Long> roids, PackageMetaData packageMetaData) throws JsonParseException, JsonMappingException, IOException, QueryException {
 		this.databaseSession = databaseSession;
 		this.bimServer = bimServer;
 		this.query = query;
-		this.roids = roids;
 		
 		stack = new ArrayDeque<StackFrame>();
 		stack.push(new StartFrame(this, roids));

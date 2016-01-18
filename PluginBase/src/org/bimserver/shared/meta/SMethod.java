@@ -40,8 +40,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl;
-
 public class SMethod {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SMethod.class);
 	private String doc = "";
@@ -86,10 +84,6 @@ public class SMethod {
 			Type type = parameterizedType.getActualTypeArguments()[0];
 			if (type instanceof Class) {
 				this.genericReturnType = service.getServicesMap().getSType(((Class)type).getName());
-			} else if (type instanceof GenericArrayTypeImpl) {
-				// Somehow this only happens on Java 6 JVMs
-				GenericArrayTypeImpl genericArrayTypeImpl = (GenericArrayTypeImpl)type;
-				this.genericReturnType = service.getServicesMap().getSType(((Class)genericArrayTypeImpl.getGenericComponentType()).getName());
 			}
 		}
  	}

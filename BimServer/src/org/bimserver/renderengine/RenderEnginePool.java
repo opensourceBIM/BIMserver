@@ -22,6 +22,7 @@ public class RenderEnginePool {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public RenderEngine request() throws InterruptedException {
 		CountDownLatch latch = null;
 		synchronized (this) {

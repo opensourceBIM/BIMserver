@@ -48,11 +48,9 @@ public class JavaModelChecker implements ModelChecker {
 	private static String libPath = System.getProperty("java.class.path");
 	private ClassLoader classLoader;
 	private JavaFileManager pluginFileManager;
-	private Path rootPath;
 
 	public JavaModelChecker(ClassLoader classLoader, Path rootPath) {
 		this.classLoader = classLoader;
-		this.rootPath = rootPath;
 		this.pluginFileManager = ToolProvider.getSystemJavaCompiler().getStandardFileManager(null, null, null);
 	}
 

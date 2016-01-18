@@ -57,6 +57,7 @@ public class JarSettings {
 	@XmlElement
 	private boolean forceipv4 = false;
 
+	@SuppressWarnings("restriction")
 	public JarSettings() {
 		com.sun.management.OperatingSystemMXBean os = (com.sun.management.OperatingSystemMXBean) java.lang.management.ManagementFactory.getOperatingSystemMXBean();
 		long physicalMemorySize = os.getTotalPhysicalMemorySize();

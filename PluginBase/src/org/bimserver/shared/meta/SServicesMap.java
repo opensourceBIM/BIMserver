@@ -41,8 +41,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
-
 public class SServicesMap {
 	// Must be LinkedHashMap because order IS important for dependencies
 	private final Map<String, SService> servicesByName = new LinkedHashMap<String, SService>();
@@ -148,6 +146,7 @@ public class SServicesMap {
 		}
 	}
 	
+	@SuppressWarnings("restriction")
 	public Class<?> getGenericType(Method method) {
 		Type genericReturnType = method.getGenericReturnType();
 		if (method.getGenericReturnType() instanceof ParameterizedType) {
@@ -157,8 +156,8 @@ public class SServicesMap {
 				return null;
 			} else if (first instanceof ParameterizedType) {
 				return null;
-			} else if (first instanceof TypeVariableImpl) {
-				TypeVariableImpl<?> typeVariableImpl = (TypeVariableImpl<?>)first;
+			} else if (first instanceof sun.reflect.generics.reflectiveObjects.TypeVariableImpl) {
+				sun.reflect.generics.reflectiveObjects.TypeVariableImpl<?> typeVariableImpl = (sun.reflect.generics.reflectiveObjects.TypeVariableImpl<?>)first;
 				GenericDeclaration genericDeclaration = typeVariableImpl.getGenericDeclaration();
 				if (genericDeclaration instanceof Class) {
 					return (Class<?>) genericDeclaration;

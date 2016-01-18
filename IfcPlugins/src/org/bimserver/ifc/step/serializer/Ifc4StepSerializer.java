@@ -23,7 +23,6 @@ import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.shared.exceptions.PluginException;
 
 public class Ifc4StepSerializer extends IfcStepSerializer {
 
