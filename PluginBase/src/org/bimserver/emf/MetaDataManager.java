@@ -79,7 +79,7 @@ public class MetaDataManager {
 	}
 
 	public void addEPackage(EPackage ePackage, Schema schema) {
-		ePackages.put(ePackage.getName().toLowerCase(), new PackageMetaData(this, ePackage, schema));
+		ePackages.put(ePackage.getName().toLowerCase(), new PackageMetaData(this, ePackage, schema, pluginManager.getTempDir()));
 	}
 
 	public PluginManagerInterface getPluginManager() {

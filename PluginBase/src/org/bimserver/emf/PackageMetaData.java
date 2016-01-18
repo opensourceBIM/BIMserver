@@ -18,7 +18,8 @@ package org.bimserver.emf;
  *****************************************************************************/
 
 import java.io.IOException;
-
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -66,8 +67,9 @@ public class PackageMetaData implements ObjectFactory {
 	private final Map<EClass, Set<EStructuralFeature>> useForDatabaseStorage = new HashMap<>();
 	private final Map<EClass, OppositeInfo> oppositeInfos = new HashMap<>();
 	private final Map<EClass, Integer> unsettedLengths = new HashMap<EClass, Integer>();
+	private Path schemaPath;
 
-	public PackageMetaData(MetaDataManager metaDataManager, EPackage ePackage, Schema schema) {
+	public PackageMetaData(MetaDataManager metaDataManager, EPackage ePackage, Schema schema, Path tempDir) {
 		this.ePackage = ePackage;
 		this.schema = schema;
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
@@ -106,6 +108,10 @@ public class PackageMetaData implements ObjectFactory {
 					schemaDefinition = SchemaLoader.loadIfc4();
 				} else {
 					LOGGER.error("Unimplemented schema: " + schema);
+				}
+				schemaPath = tempDir.resolve(schema.name() + ".exp");
+				if (!Files.exists(schemaPath)) {
+					Files.write(schemaPath, schemaDefinition.getSchemaData());
 				}
 			} catch (IOException e) {
 				LOGGER.error("", e);
@@ -670,5 +676,9 @@ public class PackageMetaData implements ObjectFactory {
 
 	public SchemaDefinition getSchemaDefinition() {
 		return schemaDefinition;
+	}
+
+	public Path getSchemaPath() {
+		return schemaPath;
 	}
 }

@@ -63,4 +63,11 @@ public enum Schema {
 	public String getEPackageName() {
 		return ePackage.getName();
 	}
+
+	public static Set<Schema> getIfcSchemas() {
+		Set<Schema> schemas = new HashSet<>();
+		schemas.add(IFC2X3TC1);
+		schemas.add(IFC4);
+		return schemas;
+	}
 }

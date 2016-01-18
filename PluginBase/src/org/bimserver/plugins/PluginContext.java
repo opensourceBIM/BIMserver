@@ -23,6 +23,7 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.bimserver.models.store.Parameter;
 
@@ -38,8 +39,9 @@ public class PluginContext {
 	private boolean enabled = true;
 	private FileSystem fileSystem;
 	private Path rootPath;
+	private List<Dependency> dependencies;
 
-	public PluginContext(PluginManagerInterface pluginManager, ClassLoader classLoader, PluginSourceType pluginType, URI location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation) throws IOException {
+	public PluginContext(PluginManagerInterface pluginManager, ClassLoader classLoader, PluginSourceType pluginType, URI location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation, List<Dependency> dependencies) throws IOException {
 		this.pluginManager = pluginManager;
 		this.classLoader = classLoader;
 		this.pluginType = pluginType;
@@ -47,6 +49,7 @@ public class PluginContext {
 		this.plugin = plugin;
 		this.pluginImplementation = pluginImplementation;
 		this.classLocation = classLocation;
+		this.dependencies = dependencies;
 		switch (pluginType) {
 		case ECLIPSE_PROJECT:
 			fileSystem = FileSystems.getDefault();
@@ -104,5 +107,9 @@ public class PluginContext {
 	
 	public PluginImplementation getPluginImplementation() {
 		return pluginImplementation;
+	}
+
+	public List<Dependency> getDependencies() {
+		return dependencies;
 	}
 }
