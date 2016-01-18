@@ -16,11 +16,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="target/classes" path="genclasses">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="genclasses"/>
 	<classpathentry kind="output" path="target/classes"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.4.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.4.3-src.zip"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.7.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.7.3-src.zip"/>

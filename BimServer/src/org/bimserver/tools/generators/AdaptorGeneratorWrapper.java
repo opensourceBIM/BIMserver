@@ -34,7 +34,7 @@ public class AdaptorGeneratorWrapper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SConverterGeneratorWrapper.class);
 
 	public void generate(Class<?> interfaceClass, SService sService) {
-		File adaptorFile = new File("../Shared/generated/org/bimserver/shared/interfaces/" + interfaceClass.getSimpleName() + "Adaptor.java");
+		File adaptorFile = new File("../PluginBase/generated/org/bimserver/shared/interfaces/" + interfaceClass.getSimpleName() + "Adaptor.java");
 		AdaptorGenerator adaptorGenerator = new AdaptorGenerator();
 		String generated = adaptorGenerator.generate(sService);
 		try {
