@@ -1,5 +1,5 @@
 
-ª∑
+˛º
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"∏
  SDeserializerPluginConfiguration
 description (	
@@ -399,7 +399,18 @@ parameters (2.org.bimserver.pb.SParameter
 rid ("_
 GetPluginSettingsResponse
 errorMessage (	,
-value (2.org.bimserver.pb.SObjectType")
+value (2.org.bimserver.pb.SObjectType"4
+!GetPluginUpdateInformationRequest
+topicId ("w
+SPluginUpdateInformation
+availableVersions (
+currentVersionId (
+name (	
+oid (
+rid ("u
+"GetPluginUpdateInformationResponse
+errorMessage (	9
+value (2*.org.bimserver.pb.SPluginUpdateInformation")
 GetRenderEngineByIdRequest
 oid ("v
 GetRenderEngineByIdResponse
@@ -451,7 +462,11 @@ $GetSerializerPluginDescriptorRequest
 oid ("Y
 SetPluginSettingsRequest
 poid (/
-settings (2.org.bimserver.pb.SObjectType"e
+settings (2.org.bimserver.pb.SObjectType"(
+&StartGetPluginUpdateInformationRequest"N
+'StartGetPluginUpdateInformationResponse
+errorMessage (	
+value ("e
 UpdateDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration"n
 UpdateInternalServiceRequestN
@@ -474,7 +489,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*ö
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2âH
+SPrimitiveEnum_BYTE_ARRAY2¨J
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -531,7 +546,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*ö
 getObjectIDMByName+.org.bimserver.pb.GetObjectIDMByNameRequest,.org.bimserver.pb.GetObjectIDMByNameResponser
 getPluginDescriptor,.org.bimserver.pb.GetPluginDescriptorRequest-.org.bimserver.pb.GetPluginDescriptorResponseÑ
 getPluginObjectDefinition2.org.bimserver.pb.GetPluginObjectDefinitionRequest3.org.bimserver.pb.GetPluginObjectDefinitionResponsel
-getPluginSettings*.org.bimserver.pb.GetPluginSettingsRequest+.org.bimserver.pb.GetPluginSettingsResponser
+getPluginSettings*.org.bimserver.pb.GetPluginSettingsRequest+.org.bimserver.pb.GetPluginSettingsResponseá
+getPluginUpdateInformation3.org.bimserver.pb.GetPluginUpdateInformationRequest4.org.bimserver.pb.GetPluginUpdateInformationResponser
 getRenderEngineById,.org.bimserver.pb.GetRenderEngineByIdRequest-.org.bimserver.pb.GetRenderEngineByIdResponsex
 getRenderEngineByName..org.bimserver.pb.GetRenderEngineByNameRequest/.org.bimserver.pb.GetRenderEngineByNameResponseì
 getSerializerByPluginClassName7.org.bimserver.pb.GetSerializerByPluginClassNameRequest8.org.bimserver.pb.GetSerializerByPluginClassNameResponseê
@@ -546,7 +562,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*ö
 setDefaultRenderEngine/.org.bimserver.pb.SetDefaultRenderEngineRequest.org.bimserver.pb.VoidResponsee
 setDefaultSerializer-.org.bimserver.pb.SetDefaultSerializerRequest.org.bimserver.pb.VoidResponsec
 setDefaultWebModule,.org.bimserver.pb.SetDefaultWebModuleRequest.org.bimserver.pb.VoidResponse_
-setPluginSettings*.org.bimserver.pb.SetPluginSettingsRequest.org.bimserver.pb.VoidResponsea
+setPluginSettings*.org.bimserver.pb.SetPluginSettingsRequest.org.bimserver.pb.VoidResponseñ
+startGetPluginUpdateInformation8.org.bimserver.pb.StartGetPluginUpdateInformationRequest9.org.bimserver.pb.StartGetPluginUpdateInformationResponsea
 updateDeserializer+.org.bimserver.pb.UpdateDeserializerRequest.org.bimserver.pb.VoidResponseg
 updateInternalService..org.bimserver.pb.UpdateInternalServiceRequest.org.bimserver.pb.VoidResponsea
 updateModelCompare+.org.bimserver.pb.UpdateModelCompareRequest.org.bimserver.pb.VoidResponse_

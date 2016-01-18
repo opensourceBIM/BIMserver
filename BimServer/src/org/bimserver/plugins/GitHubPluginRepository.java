@@ -31,18 +31,20 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class GitHubPluginRepository {
-	private String organization;
-	private String repository;
+
+	private String url;
 
 	public GitHubPluginRepository(String organization, String repository) {
-		this.organization = organization;
-		this.repository = repository;
+		this.url = "https://github.com/" + organization + "/" + repository + "/raw/master/plugins.json";
+	}
+
+	public GitHubPluginRepository(String url) {
+		this.url = url;
 	}
 
 	public List<PluginLocation> listPluginLocations() {
 		List<PluginLocation> pluginLocations = new ArrayList<>();
 		
-		String url = "https://github.com/" + organization + "/" + repository + "/raw/master/plugins.json";
 		try {
 			String content = NetUtils.getContent(new URL(url), 5000);
 			ObjectMapper objectMapper = new ObjectMapper();

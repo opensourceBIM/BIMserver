@@ -138,7 +138,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 		SDatabaseInformation databaseInformation = getDatabaseInformation();
 
-		bimServerInfo.setCurrentVersion(version.getMajor() + "." + version.getMinor() + "." + version.getRevision());
+		bimServerInfo.setCurrentVersion(version.getFullString());
 		bimServerInfo.setCurrentDate(version.getDate());
 		bimServerInfo.setLatestVersion(latestVersion.getMajor() + "." + latestVersion.getMinor() + "." + latestVersion.getRevision());
 		bimServerInfo.setLatestDate(latestVersion.getDate());

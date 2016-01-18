@@ -85,6 +85,7 @@ import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
+import org.bimserver.interfaces.objects.SPluginUpdateInformation;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
@@ -1307,6 +1308,16 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		} finally {
 			session.close();
 		}
+		return null;
+	}
+
+	@Override
+	public Long startGetPluginUpdateInformation() throws UserException, ServerException {
+		return null;
+	}
+
+	@Override
+	public List<SPluginUpdateInformation> getPluginUpdateInformation(Long topicId) {
 		return null;
 	}
 }

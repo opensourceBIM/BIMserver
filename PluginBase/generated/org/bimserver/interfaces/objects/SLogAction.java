@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
+ * Copyright (C) 2009-2016  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -14,21 +14,17 @@ package org.bimserver.interfaces.objects;
  * GNU Affero General Public License for more details.
  * 
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import java.util.Date;
-
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
-
-import org.bimserver.shared.meta.SClass;
-import org.bimserver.shared.meta.SDataBase;
-import org.bimserver.shared.meta.SField;
+import org.bimserver.shared.meta.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SExtendedDataAddedToProject.class, SServerStarted.class, SExtendedDataAddedToRevision.class, SProjectRelated.class, SCheckoutRelated.class, SNewObjectIDMUploaded.class, SRevisionRelated.class, SDatabaseCreated.class, SRevisionBranched.class, SGeoTagUpdated.class, SRemoteServiceCalled.class, SUserRelated.class, SSettingsSaved.class, SDownload.class})
+@XmlSeeAlso(value={SDatabaseCreated.class, SProjectRelated.class, SSettingsSaved.class, SExtendedDataAddedToProject.class, SRemoteServiceCalled.class, SExtendedDataAddedToRevision.class, SGeoTagUpdated.class, SRevisionRelated.class, SNewObjectIDMUploaded.class, SCheckoutRelated.class, SUserRelated.class, SDownload.class, SRevisionBranched.class, SServerStarted.class})
 public class SLogAction implements SDataBase
 {
 	private long oid = -1;

@@ -1,5 +1,11 @@
 package org.bimserver.plugins;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.aether.artifact.Artifact;
+import org.eclipse.aether.version.Version;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -19,4 +25,28 @@ package org.bimserver.plugins;
 
 public class MavenPluginVersion extends PluginVersion {
 
+	private Version version;
+	private List<MavenDependency> dependencies = new ArrayList<>();
+	private Artifact artifact;
+
+	public MavenPluginVersion(Artifact artifact, Version version) {
+		this.artifact = artifact;
+		this.version = version;
+	}
+	
+	public Artifact getArtifact() {
+		return artifact;
+	}
+	
+	public Version getVersion() {
+		return version;
+	}
+
+	public void addDependency(MavenDependency mavenDependency) {
+		dependencies.add(mavenDependency);
+	}
+	
+	public List<MavenDependency> getDependencies() {
+		return dependencies;
+	}
 }

@@ -42,6 +42,7 @@ import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
+import org.bimserver.interfaces.objects.SPluginUpdateInformation;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
@@ -607,5 +608,17 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getAllObjectIDMPluginDescriptors")
 	List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws ServerException, UserException;
 	
+	/**
+	 * Start the collections of plugin update information, this can take a while, so it's async
+	 * 
+	 * @return TopicID which you can use to get progress information about this request
+	 * @throws ServerException 
+	 * @throws UserException 
+	 */
+	@WebMethod(action = "startGetPluginUpdateInformation")
+	Long startGetPluginUpdateInformation() throws UserException, ServerException;
 	
+	@WebMethod(action = "getPluginUpdateInformation")
+	List<SPluginUpdateInformation> getPluginUpdateInformation(
+			@WebParam(name = "topicId", partName = "getPluginUpdateInformation.topicId") Long topicId) throws UserException, ServerException;
 }

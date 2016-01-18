@@ -309,6 +309,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetPluginUpdateInformationCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginUpdateInformation> result);
+		void error(Throwable e);
+	}
+	
 	public interface GetRenderEngineByIdCallback {
 		void success(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration result);
 		void error(Throwable e);
@@ -381,6 +386,11 @@ public class AsyncPluginInterface {
 	
 	public interface SetPluginSettingsCallback {
 		void success();
+		void error(Throwable e);
+	}
+	
+	public interface StartGetPluginUpdateInformationCallback {
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
@@ -1115,6 +1125,18 @@ public class AsyncPluginInterface {
 		});
 	}
 	
+	public void getPluginUpdateInformation(final java.lang.Long topicId, final GetPluginUpdateInformationCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getPluginUpdateInformation(topicId));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getRenderEngineById(final java.lang.Long oid, final GetRenderEngineByIdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1296,6 +1318,18 @@ public class AsyncPluginInterface {
 				try {
 					syncService.setPluginSettings(poid, settings);
 					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void startGetPluginUpdateInformation(final StartGetPluginUpdateInformationCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.startGetPluginUpdateInformation());
 				} catch (Throwable e) {
 					callback.error(e);
 				}

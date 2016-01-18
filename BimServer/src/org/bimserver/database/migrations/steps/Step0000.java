@@ -412,6 +412,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(versionInfoClass, "major", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(versionInfoClass, "minor", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(versionInfoClass, "revision", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(versionInfoClass, "fullString", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(versionInfoClass, "date", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(versionInfoClass, "downloadUrl", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(versionInfoClass, "supportUrl", ecorePackage.getEString(), Multiplicity.SINGLE);

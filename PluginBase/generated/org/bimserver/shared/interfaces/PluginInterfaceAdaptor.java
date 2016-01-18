@@ -228,6 +228,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SPluginUpdateInformation> getPluginUpdateInformation(java.lang.Long topicId) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration getRenderEngineById(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
@@ -278,6 +282,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public void setPluginSettings(java.lang.Long poid, org.bimserver.interfaces.objects.SObjectType settings) throws UserException, ServerException {
+	}
+	
+	public java.lang.Long startGetPluginUpdateInformation() throws UserException, ServerException {
+		return null;
 	}
 	
 	public void updateDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws UserException, ServerException {

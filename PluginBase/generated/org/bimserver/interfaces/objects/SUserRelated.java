@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
+ * Copyright (C) 2009-2016  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -14,21 +14,17 @@ package org.bimserver.interfaces.objects;
  * GNU Affero General Public License for more details.
  * 
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import java.util.Date;
-
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
-
-import org.bimserver.shared.meta.SClass;
-import org.bimserver.shared.meta.SDataBase;
-import org.bimserver.shared.meta.SField;
+import org.bimserver.shared.meta.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SUserAddedToProject.class, SUserDeleted.class, SNewUserAdded.class, SPasswordChanged.class, SPasswordReset.class, SUserChanged.class, SUserUndeleted.class, SUserRemovedFromProject.class})
+@XmlSeeAlso(value={SNewUserAdded.class, SUserRemovedFromProject.class, SUserUndeleted.class, SPasswordChanged.class, SUserDeleted.class, SUserAddedToProject.class, SPasswordReset.class, SUserChanged.class})
 public class SUserRelated extends SLogAction implements SDataBase
 {
 	private long oid = -1;

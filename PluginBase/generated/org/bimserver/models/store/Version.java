@@ -32,6 +32,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.Version#getMajor <em>Major</em>}</li>
  *   <li>{@link org.bimserver.models.store.Version#getMinor <em>Minor</em>}</li>
  *   <li>{@link org.bimserver.models.store.Version#getRevision <em>Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Version#getFullString <em>Full String</em>}</li>
  *   <li>{@link org.bimserver.models.store.Version#getDate <em>Date</em>}</li>
  *   <li>{@link org.bimserver.models.store.Version#getDownloadUrl <em>Download Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.Version#getSupportUrl <em>Support Url</em>}</li>
@@ -121,6 +122,32 @@ public interface Version extends IdEObject {
 	 * @generated
 	 */
 	void setRevision(Integer value);
+
+	/**
+	 * Returns the value of the '<em><b>Full String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Full String</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Full String</em>' attribute.
+	 * @see #setFullString(String)
+	 * @see org.bimserver.models.store.StorePackage#getVersion_FullString()
+	 * @model
+	 * @generated
+	 */
+	String getFullString();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Version#getFullString <em>Full String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Full String</em>' attribute.
+	 * @see #getFullString()
+	 * @generated
+	 */
+	void setFullString(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Date</b></em>' attribute.
