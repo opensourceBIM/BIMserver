@@ -212,7 +212,7 @@ public class PluginManager implements PluginManagerInterface {
 					org.apache.maven.model.Dependency depend = it.next();
 					try {
 						DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
-
+						
 						DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
 						locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
 						// locator.addService( TransporterFactory.class,

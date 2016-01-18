@@ -3237,13 +3237,22 @@ public interface StorePackage extends EPackage {
 	int VERSION__REVISION = 2;
 
 	/**
+	 * The feature id for the '<em><b>Full String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION__FULL_STRING = 3;
+
+	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERSION__DATE = 3;
+	int VERSION__DATE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Download Url</b></em>' attribute.
@@ -3252,7 +3261,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERSION__DOWNLOAD_URL = 4;
+	int VERSION__DOWNLOAD_URL = 5;
 
 	/**
 	 * The feature id for the '<em><b>Support Url</b></em>' attribute.
@@ -3261,7 +3270,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERSION__SUPPORT_URL = 5;
+	int VERSION__SUPPORT_URL = 6;
 
 	/**
 	 * The feature id for the '<em><b>Support Email</b></em>' attribute.
@@ -3270,7 +3279,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERSION__SUPPORT_EMAIL = 6;
+	int VERSION__SUPPORT_EMAIL = 7;
 
 	/**
 	 * The number of structural features of the '<em>Version</em>' class.
@@ -3279,7 +3288,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERSION_FEATURE_COUNT = 7;
+	int VERSION_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.RenderEnginePluginDescriptorImpl <em>Render Engine Plugin Descriptor</em>}' class.
@@ -6857,6 +6866,89 @@ public interface StorePackage extends EPackage {
 	int METHOD_METRIC_FEATURE_COUNT = 6;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginVersionImpl <em>Plugin Version</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.PluginVersionImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginVersion()
+	 * @generated
+	 */
+	int PLUGIN_VERSION = 98;
+
+	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_VERSION__VERSION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_VERSION__TYPE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Plugin Version</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_VERSION_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginUpdateInformationImpl <em>Plugin Update Information</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.PluginUpdateInformationImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginUpdateInformation()
+	 * @generated
+	 */
+	int PLUGIN_UPDATE_INFORMATION = 99;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_UPDATE_INFORMATION__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Current Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_UPDATE_INFORMATION__CURRENT_VERSION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Available Versions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_UPDATE_INFORMATION__AVAILABLE_VERSIONS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Plugin Update Information</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_UPDATE_INFORMATION_FEATURE_COUNT = 3;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6864,7 +6956,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 98;
+	int USER_TYPE = 100;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -6874,7 +6966,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 99;
+	int SI_PREFIX = 101;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -6884,7 +6976,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 100;
+	int OBJECT_STATE = 102;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -6894,7 +6986,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 101;
+	int COMPARE_TYPE = 103;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -6904,7 +6996,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 102;
+	int ACTION_STATE = 104;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -6914,7 +7006,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 103;
+	int SERVER_STATE = 105;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -6924,7 +7016,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 104;
+	int EXTENDED_DATA_SCHEMA_TYPE = 106;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -6934,7 +7026,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 105;
+	int TRIGGER = 107;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
@@ -6944,7 +7036,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
 	 * @generated
 	 */
-	int SERVICE_SIMPLE_TYPE = 106;
+	int SERVICE_SIMPLE_TYPE = 108;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -6954,7 +7046,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 107;
+	int PRIMITIVE_ENUM = 109;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -6964,7 +7056,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 108;
+	int NOTIFICTION_RESULT_ENUM = 110;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -6974,7 +7066,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 109;
+	int PROGRESS_TOPIC_TYPE = 111;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ModelCheckerResultType <em>Model Checker Result Type</em>}' enum.
@@ -6984,7 +7076,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultType()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_TYPE = 110;
+	int MODEL_CHECKER_RESULT_TYPE = 112;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}' enum.
@@ -6994,7 +7086,17 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSmtpProtocol()
 	 * @generated
 	 */
-	int SMTP_PROTOCOL = 111;
+	int SMTP_PROTOCOL = 113;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.PluginType <em>Plugin Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.PluginType
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginType()
+	 * @generated
+	 */
+	int PLUGIN_TYPE = 114;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -7004,7 +7106,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 112;
+	int DATA_HANDLER = 115;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -9836,6 +9938,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getVersion_Revision();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Version#getFullString <em>Full String</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Full String</em>'.
+	 * @see org.bimserver.models.store.Version#getFullString()
+	 * @see #getVersion()
+	 * @generated
+	 */
+	EAttribute getVersion_FullString();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Version#getDate <em>Date</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12563,6 +12676,81 @@ public interface StorePackage extends EPackage {
 	EAttribute getMethodMetric_LongestMs();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginVersion <em>Plugin Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Plugin Version</em>'.
+	 * @see org.bimserver.models.store.PluginVersion
+	 * @generated
+	 */
+	EClass getPluginVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginVersion#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Version</em>'.
+	 * @see org.bimserver.models.store.PluginVersion#getVersion()
+	 * @see #getPluginVersion()
+	 * @generated
+	 */
+	EAttribute getPluginVersion_Version();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginVersion#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.bimserver.models.store.PluginVersion#getType()
+	 * @see #getPluginVersion()
+	 * @generated
+	 */
+	EAttribute getPluginVersion_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginUpdateInformation <em>Plugin Update Information</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Plugin Update Information</em>'.
+	 * @see org.bimserver.models.store.PluginUpdateInformation
+	 * @generated
+	 */
+	EClass getPluginUpdateInformation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginUpdateInformation#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.PluginUpdateInformation#getName()
+	 * @see #getPluginUpdateInformation()
+	 * @generated
+	 */
+	EAttribute getPluginUpdateInformation_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.PluginUpdateInformation#getCurrentVersion <em>Current Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Current Version</em>'.
+	 * @see org.bimserver.models.store.PluginUpdateInformation#getCurrentVersion()
+	 * @see #getPluginUpdateInformation()
+	 * @generated
+	 */
+	EReference getPluginUpdateInformation_CurrentVersion();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.PluginUpdateInformation#getAvailableVersions <em>Available Versions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Available Versions</em>'.
+	 * @see org.bimserver.models.store.PluginUpdateInformation#getAvailableVersions()
+	 * @see #getPluginUpdateInformation()
+	 * @generated
+	 */
+	EReference getPluginUpdateInformation_AvailableVersions();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12701,6 +12889,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getSmtpProtocol();
+
+	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.PluginType <em>Plugin Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Plugin Type</em>'.
+	 * @see org.bimserver.models.store.PluginType
+	 * @generated
+	 */
+	EEnum getPluginType();
 
 	/**
 	 * Returns the meta object for data type '{@link javax.activation.DataHandler <em>Data Handler</em>}'.
@@ -13491,8 +13689,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION = eINSTANCE
-				.getServerSettings_SendConfirmationEmailAfterRegistration();
+		EAttribute SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION = eINSTANCE.getServerSettings_SendConfirmationEmailAfterRegistration();
 
 		/**
 		 * The meta object literal for the '<em><b>Allow Self Registration</b></em>' attribute feature.
@@ -13508,8 +13705,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS = eINSTANCE
-				.getServerSettings_AllowUsersToCreateTopLevelProjects();
+		EAttribute SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS = eINSTANCE.getServerSettings_AllowUsersToCreateTopLevelProjects();
 
 		/**
 		 * The meta object literal for the '<em><b>Checkin Merging Enabled</b></em>' attribute feature.
@@ -13557,8 +13753,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN = eINSTANCE
-				.getServerSettings_GenerateGeometryOnCheckin();
+		EAttribute SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN = eINSTANCE.getServerSettings_GenerateGeometryOnCheckin();
 
 		/**
 		 * The meta object literal for the '<em><b>Allow Only Whitelisted</b></em>' attribute feature.
@@ -13582,8 +13777,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = eINSTANCE
-				.getServerSettings_HideUserListForNonAdmin();
+		EAttribute SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = eINSTANCE.getServerSettings_HideUserListForNonAdmin();
 
 		/**
 		 * The meta object literal for the '<em><b>Protocol Buffers Port</b></em>' attribute feature.
@@ -13687,8 +13881,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER = eINSTANCE
-				.getServerSettings_AllowCreateValidatedUser();
+		EAttribute SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER = eINSTANCE.getServerSettings_AllowCreateValidatedUser();
 
 		/**
 		 * The meta object literal for the '<em><b>Render Engine Processes</b></em>' attribute feature.
@@ -13902,8 +14095,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
-				.getSerializerPluginConfiguration_UserSettings();
+		EReference SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getSerializerPluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '<em><b>Render Engine</b></em>' reference feature.
@@ -13911,8 +14103,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE = eINSTANCE
-				.getSerializerPluginConfiguration_RenderEngine();
+		EReference SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE = eINSTANCE.getSerializerPluginConfiguration_RenderEngine();
 
 		/**
 		 * The meta object literal for the '<em><b>Streaming</b></em>' attribute feature.
@@ -13938,8 +14129,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OBJECT_IDM_PLUGIN_CONFIGURATION__SERIALIZERS = eINSTANCE
-				.getObjectIDMPluginConfiguration_Serializers();
+		EReference OBJECT_IDM_PLUGIN_CONFIGURATION__SERIALIZERS = eINSTANCE.getObjectIDMPluginConfiguration_Serializers();
 
 		/**
 		 * The meta object literal for the '<em><b>User Settings</b></em>' reference feature.
@@ -13947,8 +14137,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OBJECT_IDM_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
-				.getObjectIDMPluginConfiguration_UserSettings();
+		EReference OBJECT_IDM_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getObjectIDMPluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RenderEnginePluginConfigurationImpl <em>Render Engine Plugin Configuration</em>}' class.
@@ -13966,8 +14155,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RENDER_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS = eINSTANCE
-				.getRenderEnginePluginConfiguration_Serializers();
+		EReference RENDER_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS = eINSTANCE.getRenderEnginePluginConfiguration_Serializers();
 
 		/**
 		 * The meta object literal for the '<em><b>User Settings</b></em>' reference feature.
@@ -13975,8 +14163,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
-				.getRenderEnginePluginConfiguration_UserSettings();
+		EReference RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getRenderEnginePluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DeserializerPluginConfigurationImpl <em>Deserializer Plugin Configuration</em>}' class.
@@ -13994,8 +14181,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DESERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
-				.getDeserializerPluginConfiguration_UserSettings();
+		EReference DESERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getDeserializerPluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DownloadResultImpl <em>Download Result</em>}' class.
@@ -14371,8 +14557,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES = eINSTANCE
-				.getDatabaseInformation_DatabaseSizeInBytes();
+		EAttribute DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES = eINSTANCE.getDatabaseInformation_DatabaseSizeInBytes();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -14478,8 +14663,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = eINSTANCE
-				.getPluginDescriptor_PluginInterfaceClassName();
+		EAttribute PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = eINSTANCE.getPluginDescriptor_PluginInterfaceClassName();
 
 		/**
 		 * The meta object literal for the '<em><b>Configurations</b></em>' reference list feature.
@@ -14922,6 +15106,14 @@ public interface StorePackage extends EPackage {
 		EAttribute VERSION__REVISION = eINSTANCE.getVersion_Revision();
 
 		/**
+		 * The meta object literal for the '<em><b>Full String</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION__FULL_STRING = eINSTANCE.getVersion_FullString();
+
+		/**
 		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -15195,8 +15387,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference QUERY_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
-				.getQueryEnginePluginConfiguration_UserSettings();
+		EReference QUERY_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getQueryEnginePluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.WebModulePluginDescriptorImpl <em>Web Module Plugin Descriptor</em>}' class.
@@ -15224,8 +15415,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WEB_MODULE_PLUGIN_CONFIGURATION__SERVER_SETTINGS = eINSTANCE
-				.getWebModulePluginConfiguration_ServerSettings();
+		EReference WEB_MODULE_PLUGIN_CONFIGURATION__SERVER_SETTINGS = eINSTANCE.getWebModulePluginConfiguration_ServerSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelMergerPluginDescriptorImpl <em>Model Merger Plugin Descriptor</em>}' class.
@@ -15253,8 +15443,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_MERGER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
-				.getModelMergerPluginConfiguration_UserSettings();
+		EReference MODEL_MERGER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getModelMergerPluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelComparePluginDescriptorImpl <em>Model Compare Plugin Descriptor</em>}' class.
@@ -15282,8 +15471,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_COMPARE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
-				.getModelComparePluginConfiguration_UserSettings();
+		EReference MODEL_COMPARE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getModelComparePluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ProfileDescriptorImpl <em>Profile Descriptor</em>}' class.
@@ -15687,8 +15875,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE = eINSTANCE
-				.getInternalServicePluginConfiguration_RemoteAccessible();
+		EAttribute INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE = eINSTANCE.getInternalServicePluginConfiguration_RemoteAccessible();
 
 		/**
 		 * The meta object literal for the '<em><b>User Settings</b></em>' reference feature.
@@ -15696,8 +15883,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
-				.getInternalServicePluginConfiguration_UserSettings();
+		EReference INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getInternalServicePluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '<em><b>Public Profile</b></em>' attribute feature.
@@ -15705,8 +15891,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE = eINSTANCE
-				.getInternalServicePluginConfiguration_PublicProfile();
+		EAttribute INTERNAL_SERVICE_PLUGIN_CONFIGURATION__PUBLIC_PROFILE = eINSTANCE.getInternalServicePluginConfiguration_PublicProfile();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceInterfaceImpl <em>Service Interface</em>}' class.
@@ -16932,8 +17117,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME = eINSTANCE
-				.getModelCheckerInstance_ModelCheckerPluginClassName();
+		EAttribute MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME = eINSTANCE.getModelCheckerInstance_ModelCheckerPluginClassName();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelCheckerPluginDescriptorImpl <em>Model Checker Plugin Descriptor</em>}' class.
@@ -16961,8 +17145,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE
-				.getMessagingSerializerPluginConfiguration_UserSettings();
+		EReference MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getMessagingSerializerPluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.MetricsImpl <em>Metrics</em>}' class.
@@ -17065,6 +17248,66 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute METHOD_METRIC__LONGEST_MS = eINSTANCE.getMethodMetric_LongestMs();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginVersionImpl <em>Plugin Version</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.PluginVersionImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginVersion()
+		 * @generated
+		 */
+		EClass PLUGIN_VERSION = eINSTANCE.getPluginVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_VERSION__VERSION = eINSTANCE.getPluginVersion_Version();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_VERSION__TYPE = eINSTANCE.getPluginVersion_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginUpdateInformationImpl <em>Plugin Update Information</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.PluginUpdateInformationImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginUpdateInformation()
+		 * @generated
+		 */
+		EClass PLUGIN_UPDATE_INFORMATION = eINSTANCE.getPluginUpdateInformation();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_UPDATE_INFORMATION__NAME = eINSTANCE.getPluginUpdateInformation_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Current Version</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PLUGIN_UPDATE_INFORMATION__CURRENT_VERSION = eINSTANCE.getPluginUpdateInformation_CurrentVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Available Versions</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PLUGIN_UPDATE_INFORMATION__AVAILABLE_VERSIONS = eINSTANCE.getPluginUpdateInformation_AvailableVersions();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
@@ -17205,6 +17448,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum SMTP_PROTOCOL = eINSTANCE.getSmtpProtocol();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.PluginType <em>Plugin Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.PluginType
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginType()
+		 * @generated
+		 */
+		EEnum PLUGIN_TYPE = eINSTANCE.getPluginType();
 
 		/**
 		 * The meta object literal for the '<em>Data Handler</em>' data type.

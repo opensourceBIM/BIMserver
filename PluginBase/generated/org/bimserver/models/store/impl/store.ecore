@@ -465,6 +465,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="major" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="revision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fullString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="downloadUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="supportUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -883,5 +884,19 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="averageMs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortestMs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="longestMs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PluginVersion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//PluginType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PluginType">
+    <eLiterals name="MAVEN"/>
+    <eLiterals name="GITHUB" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PluginUpdateInformation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentVersion" eType="#//PluginVersion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="availableVersions" upperBound="-1"
+        eType="#//PluginVersion"/>
   </eClassifiers>
 </ecore:EPackage>

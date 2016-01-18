@@ -296,7 +296,7 @@ public class BimServer {
 			LOGGER.debug("Starting BIMserver");
 			SVersion localVersion = versionChecker.getLocalVersion();
 			if (localVersion != null) {
-				LOGGER.info("Version: " + localVersion.getMajor() + "." + localVersion.getMinor() + "." + localVersion.getRevision() + " - " + localVersion.getDate());
+				LOGGER.info("Version: " + localVersion.getFullString());
 			} else {
 				LOGGER.info("Unknown version");
 			}

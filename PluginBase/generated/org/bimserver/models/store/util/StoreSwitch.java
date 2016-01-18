@@ -854,6 +854,20 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case StorePackage.PLUGIN_VERSION: {
+			PluginVersion pluginVersion = (PluginVersion) theEObject;
+			T result = casePluginVersion(pluginVersion);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.PLUGIN_UPDATE_INFORMATION: {
+			PluginUpdateInformation pluginUpdateInformation = (PluginUpdateInformation) theEObject;
+			T result = casePluginUpdateInformation(pluginUpdateInformation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -2326,6 +2340,36 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMethodMetric(MethodMetric object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Plugin Version</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Plugin Version</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePluginVersion(PluginVersion object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Plugin Update Information</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Plugin Update Information</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePluginUpdateInformation(PluginUpdateInformation object) {
 		return null;
 	}
 

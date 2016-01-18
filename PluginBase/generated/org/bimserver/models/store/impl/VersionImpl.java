@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.VersionImpl#getMajor <em>Major</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.VersionImpl#getMinor <em>Minor</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.VersionImpl#getRevision <em>Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.VersionImpl#getFullString <em>Full String</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.VersionImpl#getDate <em>Date</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.VersionImpl#getDownloadUrl <em>Download Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.VersionImpl#getSupportUrl <em>Support Url</em>}</li>
@@ -124,6 +125,24 @@ public class VersionImpl extends IdEObjectImpl implements Version {
 	 */
 	public void setRevision(Integer newRevision) {
 		eSet(StorePackage.Literals.VERSION__REVISION, newRevision);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getFullString() {
+		return (String) eGet(StorePackage.Literals.VERSION__FULL_STRING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFullString(String newFullString) {
+		eSet(StorePackage.Literals.VERSION__FULL_STRING, newFullString);
 	}
 
 	/**

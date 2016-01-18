@@ -65,7 +65,7 @@ public class ProtocolBuffersGenerator {
             }
 		}
         if (execFile == null) {
-        	execFile = new File("../Builds/build/pb/protoc.exe");
+        	execFile = new File("../BimServer/deploy/protoc.exe");
         }
 
         try {

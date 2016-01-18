@@ -18,9 +18,14 @@ package org.bimserver.version;
  *****************************************************************************/
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -31,8 +36,14 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
+import org.apache.maven.model.Model;
+import org.apache.maven.model.Parent;
+import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.plugins.ResourceFetcher;
+import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +62,7 @@ public class VersionChecker {
 		version.setSupportEmail("support@bimserver.org");
 		version.setDownloadUrl("http://download.bimserver.org");
 		version.setSupportUrl("http://support.bimserver.org");
-		
+
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(SVersion.class);
 			Marshaller marshaller = jaxbContext.createMarshaller();
@@ -60,16 +71,33 @@ public class VersionChecker {
 			LOGGER.error("", e);
 		}
 	}
-	
+
 	public VersionChecker(ResourceFetcher resourceFetcher) {
+		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+		Path pom = Paths.get("pom.xml");
+		Path parentPom = Paths.get("../pom.xml");
+
 		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(SVersion.class);
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			localVersion = (SVersion) unmarshaller.unmarshal(resourceFetcher.getResource("version.xml"));
-		} catch (JAXBException e) {
-			LOGGER.error("", e);
+			if (Files.exists(pom)) {
+				Model model = mavenreader.read(new FileReader(pom.toFile()));
+				Model parentModel = mavenreader.read(new FileReader(parentPom.toFile()));
+				
+				DefaultArtifactVersion defaultArtifactVersion = new DefaultArtifactVersion(parentModel.getVersion());
+				localVersion = new SVersion();
+				localVersion.setMajor(defaultArtifactVersion.getMajorVersion());
+				localVersion.setMinor(defaultArtifactVersion.getMinorVersion());
+				localVersion.setRevision(defaultArtifactVersion.getIncrementalVersion());
+				localVersion.setFullString(defaultArtifactVersion.toString());
+				LOGGER.info("BIMserver version: " + defaultArtifactVersion.getMajorVersion() + "." + defaultArtifactVersion.getMinorVersion() + "." + defaultArtifactVersion.getIncrementalVersion() + "-" + defaultArtifactVersion.getQualifier());
+			} else {
+				LOGGER.warn("No version info");
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
-			LOGGER.error("", e);
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
 		}
 	}
 

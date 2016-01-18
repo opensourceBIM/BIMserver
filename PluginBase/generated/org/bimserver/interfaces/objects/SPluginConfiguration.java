@@ -1,8 +1,7 @@
 package org.bimserver.interfaces.objects;
 
-import javax.xml.bind.annotation.XmlRootElement;
 /******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
+ * Copyright (C) 2009-2016  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -15,18 +14,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  * GNU Affero General Public License for more details.
  * 
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
-
-import org.bimserver.shared.meta.SClass;
-import org.bimserver.shared.meta.SDataBase;
-import org.bimserver.shared.meta.SField;
+import org.bimserver.shared.meta.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SSerializerPluginConfiguration.class, SObjectIDMPluginConfiguration.class, SMessagingSerializerPluginConfiguration.class, SModelMergerPluginConfiguration.class, SWebModulePluginConfiguration.class, SRenderEnginePluginConfiguration.class, SDeserializerPluginConfiguration.class, SQueryEnginePluginConfiguration.class, SInternalServicePluginConfiguration.class, SModelComparePluginConfiguration.class})
+@XmlSeeAlso(value={SRenderEnginePluginConfiguration.class, SModelComparePluginConfiguration.class, SDeserializerPluginConfiguration.class, SWebModulePluginConfiguration.class, SInternalServicePluginConfiguration.class, SModelMergerPluginConfiguration.class, SMessagingSerializerPluginConfiguration.class, SQueryEnginePluginConfiguration.class, SObjectIDMPluginConfiguration.class, SSerializerPluginConfiguration.class})
 public class SPluginConfiguration implements SDataBase
 {
 	private long oid = -1;

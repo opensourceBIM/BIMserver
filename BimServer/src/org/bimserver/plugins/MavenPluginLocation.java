@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
 import org.eclipse.aether.DefaultRepositorySystemSession;
 import org.eclipse.aether.RepositorySystem;
@@ -31,6 +32,9 @@ import org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory;
 import org.eclipse.aether.impl.DefaultServiceLocator;
 import org.eclipse.aether.repository.LocalRepository;
 import org.eclipse.aether.repository.RemoteRepository;
+import org.eclipse.aether.resolution.ArtifactDescriptorException;
+import org.eclipse.aether.resolution.ArtifactDescriptorRequest;
+import org.eclipse.aether.resolution.ArtifactDescriptorResult;
 import org.eclipse.aether.resolution.VersionRangeRequest;
 import org.eclipse.aether.resolution.VersionRangeResolutionException;
 import org.eclipse.aether.resolution.VersionRangeResult;
@@ -87,14 +91,26 @@ public class MavenPluginLocation extends PluginLocation {
 		rangeRequest.setArtifact(artifact);
 		rangeRequest.setRepositories(newRepositories(system, session));
 
-		VersionRangeResult rangeResult;
 		try {
-			rangeResult = system.resolveVersionRange(session, rangeRequest);
+			VersionRangeResult rangeResult = system.resolveVersionRange(session, rangeRequest);
 			List<Version> versions = rangeResult.getVersions();
 			for (Version version : versions) {
-				System.out.println(version);
+				ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
+				descriptorRequest.setArtifact(artifact);
+				descriptorRequest.setRepositories(new ArrayList<RemoteRepository>(Arrays.asList(newCentralRepository())));
+
+				MavenPluginVersion mavenPluginVersion = new MavenPluginVersion(artifact, version);
+				ArtifactDescriptorResult descriptorResult = system.readArtifactDescriptor(session, descriptorRequest);
+				for (org.eclipse.aether.graph.Dependency dependency : descriptorResult.getDependencies()) {
+					DefaultArtifactVersion artifactVersion = new DefaultArtifactVersion(dependency.getArtifact().getVersion());
+					mavenPluginVersion.addDependency(new MavenDependency(dependency.getArtifact(), artifactVersion));
+				}
+				pluginVersions.add(mavenPluginVersion);
 			}
+
 		} catch (VersionRangeResolutionException e) {
+			e.printStackTrace();
+		} catch (ArtifactDescriptorException e) {
 			e.printStackTrace();
 		}
 

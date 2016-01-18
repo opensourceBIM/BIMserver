@@ -28,10 +28,11 @@ import org.bimserver.utils.PathUtils;
 public class LocalDevelopmentResourceFetcher extends ResourceFetcher {
 
 	public LocalDevelopmentResourceFetcher(Path workspaceDir) {
-		addPath(workspaceDir.resolve("Builds/defaultsettings/local"));
-		addPath(workspaceDir.resolve("Builds/defaultsettings/shared"));
-		addPath(workspaceDir.resolve("Builds/build/targets/local"));
-		addPath(workspaceDir.resolve("Builds/build/targets/shared"));
+//		addPath(workspaceDir.resolve("Builds/defaultsettings/local"));
+//		addPath(workspaceDir.resolve("Builds/defaultsettings/shared"));
+//		addPath(workspaceDir.resolve("Builds/build/targets/local"));
+//		addPath(workspaceDir.resolve("Builds/build/targets/shared"));
+		addPath(workspaceDir.resolve("BimServer"));
 		addPath(workspaceDir.resolve("BimServerClientLib/src/org/bimserver/client/protocolbuffers"));
 	}
 

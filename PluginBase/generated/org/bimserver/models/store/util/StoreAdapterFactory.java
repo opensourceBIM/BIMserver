@@ -568,6 +568,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter casePluginVersion(PluginVersion object) {
+			return createPluginVersionAdapter();
+		}
+
+		@Override
+		public Adapter casePluginUpdateInformation(PluginUpdateInformation object) {
+			return createPluginUpdateInformationAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -1955,6 +1965,34 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMethodMetricAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PluginVersion <em>Plugin Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.PluginVersion
+	 * @generated
+	 */
+	public Adapter createPluginVersionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PluginUpdateInformation <em>Plugin Update Information</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.PluginUpdateInformation
+	 * @generated
+	 */
+	public Adapter createPluginUpdateInformationAdapter() {
 		return null;
 	}
 

@@ -39,7 +39,7 @@ import com.google.common.base.Charsets;
 
 public class DataObjectGeneratorWrapper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DataObjectGeneratorWrapper.class);
-	private File sourceFolder = new File("../Shared/generated");
+	private File sourceFolder = new File("../PluginBase/generated");
 	private File packageFolder = new File(sourceFolder, "org" + File.separator + "bimserver" + File.separator + "interfaces" + File.separator + "objects");
 	private PluginManager pluginManager;
 

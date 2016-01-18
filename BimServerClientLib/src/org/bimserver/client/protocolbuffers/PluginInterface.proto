@@ -140,6 +140,8 @@ service PluginInterface {
 
 	rpc getPluginSettings (GetPluginSettingsRequest) returns (GetPluginSettingsResponse);
 
+	rpc getPluginUpdateInformation (GetPluginUpdateInformationRequest) returns (GetPluginUpdateInformationResponse);
+
 	rpc getRenderEngineById (GetRenderEngineByIdRequest) returns (GetRenderEngineByIdResponse);
 
 	rpc getRenderEngineByName (GetRenderEngineByNameRequest) returns (GetRenderEngineByNameResponse);
@@ -169,6 +171,8 @@ service PluginInterface {
 	rpc setDefaultWebModule (SetDefaultWebModuleRequest) returns (VoidResponse);
 
 	rpc setPluginSettings (SetPluginSettingsRequest) returns (VoidResponse);
+
+	rpc startGetPluginUpdateInformation (StartGetPluginUpdateInformationRequest) returns (StartGetPluginUpdateInformationResponse);
 
 	rpc updateDeserializer (UpdateDeserializerRequest) returns (VoidResponse);
 
@@ -820,6 +824,23 @@ message GetPluginSettingsResponse {
 	optional SObjectType value = 2;
 }
 
+message GetPluginUpdateInformationRequest {
+	optional int64 topicId = 1;
+}
+
+message SPluginUpdateInformation {
+	repeated int64 availableVersions = 1;
+	optional int64 currentVersionId = 2;
+	optional string name = 3;
+	optional int64 oid = 4;
+	optional int32 rid = 5;
+}
+
+message GetPluginUpdateInformationResponse {
+	optional string errorMessage = 1;
+	repeated SPluginUpdateInformation value = 2;
+}
+
 message GetRenderEngineByIdRequest {
 	optional int64 oid = 1;
 }
@@ -914,6 +935,14 @@ message SetDefaultWebModuleRequest {
 message SetPluginSettingsRequest {
 	optional int64 poid = 1;
 	optional SObjectType settings = 2;
+}
+
+message StartGetPluginUpdateInformationRequest {
+}
+
+message StartGetPluginUpdateInformationResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
 }
 
 message UpdateDeserializerRequest {
