@@ -47,7 +47,6 @@ import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.StructuralFeatureIdentifier;
-import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.webservices.authorization.Authorization;

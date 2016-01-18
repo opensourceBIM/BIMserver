@@ -344,91 +344,91 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	private void processGeometryInputStream(InputStream inputStream) throws IOException, GeometryException, IfcModelInterfaceException {
-		LittleEndianDataInputStream dataInputStream = new LittleEndianDataInputStream(inputStream);
-
-		boolean done = false;
-		while (!done) {
-			byte type = dataInputStream.readByte();
-			if (type == 0) {
-				String protocol = dataInputStream.readUTF();
-				if (!protocol.equals("BGS")) {
-					throw new GeometryException("Protocol != BGS (" + protocol + ")");
+		try (LittleEndianDataInputStream dataInputStream = new LittleEndianDataInputStream(inputStream)) {
+			boolean done = false;
+			while (!done) {
+				byte type = dataInputStream.readByte();
+				if (type == 0) {
+					String protocol = dataInputStream.readUTF();
+					if (!protocol.equals("BGS")) {
+						throw new GeometryException("Protocol != BGS (" + protocol + ")");
+					}
+					byte formatVersion = dataInputStream.readByte();
+					if (formatVersion != 7) {
+						throw new GeometryException("Unsupported version " + formatVersion + " / 7");
+					}
+					int skip = 4 - (7 % 4);
+					if(skip != 0 && skip != 4) {
+						dataInputStream.read(new byte[skip]);
+					}
+					for (int i=0; i<6; i++) {
+						dataInputStream.readFloat();
+					}
+				} else if (type == 5) {
+					dataInputStream.read(new byte[3]);
+					dataInputStream.readLong(); // roid
+					long geometryInfoOid = dataInputStream.readLong();
+					GeometryInfo geometryInfo = (GeometryInfo) get(geometryInfoOid);
+					add(geometryInfoOid, geometryInfo);
+					
+					org.bimserver.models.geometry.Vector3f minBounds = GeometryFactory.eINSTANCE.createVector3f();
+					minBounds.setX(dataInputStream.readFloat());
+					minBounds.setY(dataInputStream.readFloat());
+					minBounds.setZ(dataInputStream.readFloat());
+					
+					org.bimserver.models.geometry.Vector3f maxBounds = GeometryFactory.eINSTANCE.createVector3f();
+					maxBounds.setX(dataInputStream.readFloat());
+					maxBounds.setY(dataInputStream.readFloat());
+					maxBounds.setZ(dataInputStream.readFloat());
+					
+					geometryInfo.setMinBounds(minBounds);
+					geometryInfo.setMaxBounds(maxBounds);
+					
+					byte[] transformation = new byte[16 * 8];
+					dataInputStream.readFully(transformation);
+					geometryInfo.setTransformation(transformation);
+					
+					long geometryDataOid = dataInputStream.readLong();
+					GeometryData geometryData = (GeometryData) get(geometryDataOid);
+					if (geometryData == null) {
+						geometryData = GeometryFactory.eINSTANCE.createGeometryData();
+						add(geometryDataOid, geometryData);
+					}
+					geometryInfo.setData(geometryData);
+				} else if (type == 3) {
+					throw new GeometryException("Parts not supported");
+				} else if (type == 1) {
+					dataInputStream.read(new byte[3]);
+					long geometryDataOid = dataInputStream.readLong();
+					
+					GeometryData geometryData = (GeometryData) get(geometryDataOid);
+					if (geometryData == null) {
+						geometryData = GeometryFactory.eINSTANCE.createGeometryData();
+						add(geometryDataOid, geometryData);
+					}
+					
+					int nrIndices = dataInputStream.readInt();
+					byte[] indices = new byte[nrIndices * 4];
+					dataInputStream.read(indices);
+					geometryData.setIndices(indices);
+					
+					int nrVertices = dataInputStream.readInt();
+					byte[] vertices = new byte[nrVertices * 4];
+					dataInputStream.read(vertices);
+					geometryData.setVertices(vertices);
+					
+					int nrNormals = dataInputStream.readInt();
+					byte[] normals = new byte[nrNormals * 4];
+					dataInputStream.read(normals);
+					geometryData.setNormals(normals);
+					
+					int nrMaterials = dataInputStream.readInt();
+					byte[] materials = new byte[nrMaterials * 4];
+					dataInputStream.read(materials);
+					geometryData.setNormals(materials);
+				} else if (type == 6) {
+					done = true;
 				}
-				byte formatVersion = dataInputStream.readByte();
-				if (formatVersion != 7) {
-					throw new GeometryException("Unsupported version " + formatVersion + " / 7");
-				}
-				int skip = 4 - (7 % 4);
-				if(skip != 0 && skip != 4) {
-					dataInputStream.read(new byte[skip]);
-				}
-				for (int i=0; i<6; i++) {
-					dataInputStream.readFloat();
-				}
-			} else if (type == 5) {
-				dataInputStream.read(new byte[3]);
-				long roid = dataInputStream.readLong();
-				long geometryInfoOid = dataInputStream.readLong();
-				GeometryInfo geometryInfo = (GeometryInfo) get(geometryInfoOid);
-				add(geometryInfoOid, geometryInfo);
-				
-				org.bimserver.models.geometry.Vector3f minBounds = GeometryFactory.eINSTANCE.createVector3f();
-				minBounds.setX(dataInputStream.readFloat());
-				minBounds.setY(dataInputStream.readFloat());
-				minBounds.setZ(dataInputStream.readFloat());
-
-				org.bimserver.models.geometry.Vector3f maxBounds = GeometryFactory.eINSTANCE.createVector3f();
-				maxBounds.setX(dataInputStream.readFloat());
-				maxBounds.setY(dataInputStream.readFloat());
-				maxBounds.setZ(dataInputStream.readFloat());
-				
-				geometryInfo.setMinBounds(minBounds);
-				geometryInfo.setMaxBounds(maxBounds);
-				
-				byte[] transformation = new byte[16 * 8];
-				dataInputStream.readFully(transformation);
-				geometryInfo.setTransformation(transformation);
-				
-				long geometryDataOid = dataInputStream.readLong();
-				GeometryData geometryData = (GeometryData) get(geometryDataOid);
-				if (geometryData == null) {
-					geometryData = GeometryFactory.eINSTANCE.createGeometryData();
-					add(geometryDataOid, geometryData);
-				}
-				geometryInfo.setData(geometryData);
-			} else if (type == 3) {
-				throw new GeometryException("Parts not supported");
-			} else if (type == 1) {
-				dataInputStream.read(new byte[3]);
-				long geometryDataOid = dataInputStream.readLong();
-
-				GeometryData geometryData = (GeometryData) get(geometryDataOid);
-				if (geometryData == null) {
-					geometryData = GeometryFactory.eINSTANCE.createGeometryData();
-					add(geometryDataOid, geometryData);
-				}
-				
-				int nrIndices = dataInputStream.readInt();
-				byte[] indices = new byte[nrIndices * 4];
-				dataInputStream.read(indices);
-				geometryData.setIndices(indices);
-
-				int nrVertices = dataInputStream.readInt();
-				byte[] vertices = new byte[nrVertices * 4];
-				dataInputStream.read(vertices);
-				geometryData.setVertices(vertices);
-
-				int nrNormals = dataInputStream.readInt();
-				byte[] normals = new byte[nrNormals * 4];
-				dataInputStream.read(normals);
-				geometryData.setNormals(normals);
-
-				int nrMaterials = dataInputStream.readInt();
-				byte[] materials = new byte[nrMaterials * 4];
-				dataInputStream.read(materials);
-				geometryData.setNormals(materials);
-			} else if (type == 6) {
-				done = true;
 			}
 		}
 	}

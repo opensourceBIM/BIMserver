@@ -52,7 +52,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 
@@ -61,14 +60,11 @@ import nl.tue.buildingsmart.schema.SchemaDefinition;
 
 public abstract class IfcStepStreamingSerializer implements StreamingSerializer, StreamingReader, OidConvertingSerializer {
 	private static final byte[] NEW_LINE = "\n".getBytes(Charsets.UTF_8);
-	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(IfcStepStreamingSerializer.class);
-	private static final boolean useIso8859_1 = false;
 	private static final EcorePackage ECORE_PACKAGE_INSTANCE = EcorePackage.eINSTANCE;
 	private static final String NULL = "NULL";
 	private static final String OPEN_CLOSE_PAREN = "()";
 	private static final String ASTERISK = "*";
 	private static final String PAREN_CLOSE_SEMICOLON = ");";
-	private static final String DOT_0 = ".0";
 	private static final String DASH = "#";
 	private static final String IFC_LOGICAL = "IfcLogical";
 	private static final String IFC_BOOLEAN = "IfcBoolean";
@@ -77,16 +73,11 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 	private static final String OPEN_PAREN = "(";
 	private static final String CLOSE_PAREN = ")";
 	private static final String BOOLEAN_UNDEFINED = ".U.";
-	private static final String SINGLE_QUOTE = "'";
-	private static final String BOOLEAN_FALSE = ".F.";
-	private static final String BOOLEAN_TRUE = ".T.";
 	private static final String DOLLAR = "$";
 	private static final String WRAPPED_VALUE = "wrappedValue";
 	
 	private String headerSchema;
-	private long writeCounter;
 	private ObjectProvider objectProvider;
-	private ProjectInfo projectInfo;
 	
 	private Map<Long, Integer> oidToEid = new HashMap<>();
 	private int oidCounter = 1;
@@ -139,7 +130,6 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 	@Override
 	public void init(ObjectProvider objectProvider, ProjectInfo projectInfo, IfcHeader ifcHeader, PluginManagerInterface pluginManager, PackageMetaData packageMetaData) throws SerializerException {
 		this.objectProvider = objectProvider;
-		this.projectInfo = projectInfo;
 		this.ifcHeader = ifcHeader;
 		this.packageMetaData = packageMetaData;
 	}
@@ -163,7 +153,6 @@ public abstract class IfcStepStreamingSerializer implements StreamingSerializer,
 			HashMapVirtualObject next = objectProvider.next();
 			if (next != null) {
 				write(next);
-				writeCounter++;
 			} else {
 				setMode(Mode.FOOTER);
 			}

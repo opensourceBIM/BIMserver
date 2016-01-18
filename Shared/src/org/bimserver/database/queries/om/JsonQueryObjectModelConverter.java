@@ -430,8 +430,7 @@ public class JsonQueryObjectModelConverter {
 		}
 		
 		if (objectNode.has("fields")) {
-			JsonNode fieldsNode = objectNode.get("fields");
-			
+			objectNode.get("fields"); // fields node
 		}
 
 		Iterator<String> fieldNames = objectNode.fieldNames();

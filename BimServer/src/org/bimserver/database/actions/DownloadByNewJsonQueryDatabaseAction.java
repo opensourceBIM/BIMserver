@@ -19,9 +19,7 @@ package org.bimserver.database.actions;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
@@ -38,12 +36,8 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.PluginConfiguration;
-import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
-import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryException;
 import org.bimserver.shared.exceptions.UserException;
@@ -58,16 +52,15 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 
 	private final Set<Long> roids;
 	private int progress;
-	private long serializerOid;
 	private String json;
 
 	public DownloadByNewJsonQueryDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, String json, long serializerOid, Authorization authorization) {
 		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roids = roids;
 		this.json = json;
-		this.serializerOid = serializerOid;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		long roid = roids.iterator().next();
@@ -116,13 +109,7 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 			next = queryObjectProvider.next();
 		}
 		
-		IfcModelSet ifcModelSet = new IfcModelSet();
-		User user = getUserByUoid(getAuthorization().getUoid());
-		Project project = null;
-		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, OldQuery.getDefault());
 		String name = "";
-		PackageMetaData lastPackageMetaData = null;
-		Map<Integer, Long> pidRoidMap = new HashMap<>();
 		ifcModel.getModelMetaData().setName(name);
 		ifcModel.getModelMetaData().setRevisionId(1);
 		if (getAuthorization().getUoid() != -1) {

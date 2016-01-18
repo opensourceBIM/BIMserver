@@ -49,14 +49,11 @@ import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.geometry.Matrix;
 import org.bimserver.geometry.Vector;
 import org.bimserver.models.geometry.GeometryPackage;
-import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -94,13 +91,10 @@ public class StreamingGeometryGenerator {
 	
 	private final BimServer bimServer;
 	private final Map<Integer, VirtualObject> hashes = new ConcurrentHashMap<>();
-	private final Map<Long, VirtualObject> sizes = new ConcurrentHashMap<>();
 
 	private EClass productClass;
-	private EClass productRepresentationClass;
 	private EStructuralFeature geometryFeature;
 	private EStructuralFeature representationFeature;
-	private EStructuralFeature representationsFeature;
 	private PackageMetaData packageMetaData;
 
 	private AtomicLong bytesSaved = new AtomicLong();
@@ -120,7 +114,6 @@ public class StreamingGeometryGenerator {
 
 		private EClass eClass;
 		private RenderEnginePlugin renderEnginePlugin;
-		private DatabaseSession databaseSession;
 		private RenderEngineSettings renderEngineSettings;
 		private RenderEngineFilter renderEngineFilter;
 		private RenderEngineFilter renderEngineFilterTransformed = new RenderEngineFilter(true);
@@ -133,7 +126,6 @@ public class StreamingGeometryGenerator {
 		public Runner(EClass eClass, RenderEnginePlugin renderEnginePlugin, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider, StreamingSerializerPlugin ifcSerializerPlugin, Map<IdEObject, IdEObject> bigMap, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext) {
 			this.eClass = eClass;
 			this.renderEnginePlugin = renderEnginePlugin;
-			this.databaseSession = databaseSession;
 			this.renderEngineSettings = renderEngineSettings;
 			this.objectProvider = objectProvider;
 			this.ifcSerializerPlugin = ifcSerializerPlugin;
@@ -347,10 +339,8 @@ public class StreamingGeometryGenerator {
 		GenerateGeometryResult generateGeometryResult = new GenerateGeometryResult();
 		packageMetaData = queryContext.getPackageMetaData();
 		productClass = packageMetaData.getEClass("IfcProduct");
-		productRepresentationClass = packageMetaData.getEClass("IfcProductRepresentation");
 		geometryFeature = productClass.getEStructuralFeature("geometry");
 		representationFeature = productClass.getEStructuralFeature("Representation");
-		representationsFeature = productRepresentationClass.getEStructuralFeature("Representations");
 
 		long start = System.nanoTime();
 		String pluginName = "";
@@ -837,15 +827,5 @@ public class StreamingGeometryGenerator {
 		test(v1, u1, transformationMatrix, maxDiff);
 		test(v2, u2, transformationMatrix, maxDiff);
 		test(v3, u3, transformationMatrix, maxDiff);
-	}
-
-	private Vector3f createVector3f(PackageMetaData packageMetaData, IfcModelInterface model, float defaultValue, DatabaseSession session, boolean store, int pid, int rid) throws BimserverDatabaseException, IfcModelInterfaceException {
-		Vector3f vector3f = null;
-		vector3f = model.createAndAdd(GeometryPackage.eINSTANCE.getVector3f(), session.newOid(GeometryPackage.eINSTANCE.getVector3f()));
-		session.store(vector3f, pid, rid);
-		vector3f.setX(defaultValue);
-		vector3f.setY(defaultValue);
-		vector3f.setZ(defaultValue);
-		return vector3f;
 	}
 }

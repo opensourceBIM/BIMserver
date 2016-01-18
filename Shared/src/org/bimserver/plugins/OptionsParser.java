@@ -21,9 +21,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
@@ -35,7 +35,7 @@ public class OptionsParser {
 
 		options.addOption("plugins", true, "Directory from which to load plugins");
 		
-		CommandLineParser parser = new BasicParser();
+		CommandLineParser parser = new DefaultParser();
 		pluginDirectories = null;
 		try {
 			CommandLine cmd = parser.parse(options, args);
