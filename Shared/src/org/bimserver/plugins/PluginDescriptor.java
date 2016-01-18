@@ -39,17 +39,17 @@ public class PluginDescriptor {
 	@XmlElement(name="PluginImplementation")
 	private List<PluginImplementation> implementations = new ArrayList<PluginImplementation>();
 	
-	@XmlElementWrapper(name="dependencies")
-	@XmlElement(name="Dependency")
-	private List<Dependency> dependencies = new ArrayList<Dependency>();
+//	@XmlElementWrapper(name="dependencies")
+//	@XmlElement(name="Dependency")
+//	private List<Dependency> dependencies = new ArrayList<Dependency>();
 	
-	public List<Dependency> getDependencies() {
-		return dependencies;
-	}
-	
-	public void setDependencies(List<Dependency> dependencies) {
-		this.dependencies = dependencies;
-	}
+//	public List<Dependency> getDependencies() {
+//		return dependencies;
+//	}
+//	
+//	public void setDependencies(List<Dependency> dependencies) {
+//		this.dependencies = dependencies;
+//	}
 
 	public void setImplementations(List<PluginImplementation> implementations) {
 		this.implementations = implementations;
@@ -70,11 +70,11 @@ public class PluginDescriptor {
 	
 	public static void main(String[] args) {
 		PluginDescriptor descriptor = new PluginDescriptor();
-		Dependency dependency = new Dependency();
-		dependency.setPath("test");
+//		Dependency dependency = new Dependency();
+//		dependency.setPath("test");
 		PluginImplementation pluginImplementation = new PluginImplementation();
 		descriptor.getImplementations().add(pluginImplementation);
-		descriptor.getDependencies().add(dependency);
+//		descriptor.getDependencies().add(dependency);
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(PluginDescriptor.class);
 			Marshaller marshaller = jaxbContext.createMarshaller();

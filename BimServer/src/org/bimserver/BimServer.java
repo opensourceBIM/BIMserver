@@ -118,6 +118,7 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
+import org.bimserver.renderengine.RenderEnginePools;
 import org.bimserver.schemaconverter.Ifc2x3tc1ToIfc4SchemaConverterFactory;
 import org.bimserver.schemaconverter.Ifc4ToIfc2x3tc1SchemaConverterFactory;
 import org.bimserver.schemaconverter.SchemaConverterManager;
@@ -190,6 +191,7 @@ public class BimServer {
 	private SchemaConverterManager schemaConverterManager = new SchemaConverterManager();
 	private WebModuleManager webModuleManager;
 	private MetricsRegistry metricsRegistry;
+	private RenderEnginePools renderEnginePools;
 
 	/**
 	 * Create a new BIMserver
@@ -328,7 +330,7 @@ public class BimServer {
 						}
 					}
 				});
-				pluginManager.loadPlugin(ObjectIDMPlugin.class, new File(".").toURI(), "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL, null);
+				pluginManager.loadPlugin(ObjectIDMPlugin.class, new File(".").toURI(), "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL, null, null);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
@@ -408,6 +410,8 @@ public class BimServer {
 			serverSettingsCache = new ServerSettingsCache(bimDatabase);
 			
 			serverInfoManager.update();
+			
+			renderEnginePools = new RenderEnginePools(this);
 			
 			if (serverInfoManager.getServerState() == ServerState.MIGRATION_REQUIRED) {
 				serverInfoManager.registerStateChangeListener(new StateChangeListener() {
@@ -667,6 +671,10 @@ public class BimServer {
 			}
 		}
 		session.store(userSettings);
+	}
+	
+	public RenderEnginePools getRenderEnginePools() {
+		return renderEnginePools;
 	}
 
 	private ObjectType convertSettings(DatabaseSession session, Plugin plugin) throws BimserverDatabaseException {

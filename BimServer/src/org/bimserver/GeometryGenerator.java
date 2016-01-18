@@ -41,7 +41,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.NotImplementedException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IdEObject;
@@ -75,11 +74,12 @@ import org.bimserver.plugins.renderengine.RenderEngineFilter;
 import org.bimserver.plugins.renderengine.RenderEngineGeometry;
 import org.bimserver.plugins.renderengine.RenderEngineInstance;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
-import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.renderengine.RenderEnginePool;
+import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.utils.Formatters;
@@ -111,7 +111,6 @@ public class GeometryGenerator {
 	public class Runner implements Runnable {
 
 		private EClass eClass;
-		private RenderEnginePlugin renderEnginePlugin;
 		private DatabaseSession databaseSession;
 		private RenderEngineSettings renderEngineSettings;
 		private RenderEngineFilter renderEngineFilter;
@@ -124,10 +123,11 @@ public class GeometryGenerator {
 		private int rid;
 		private Map<IdEObject, IdEObject> bigMap;
 		private GenerateGeometryResult generateGeometryResult;
+		private String renderEnginePluginClassName;
 
-		public Runner(EClass eClass, RenderEnginePlugin renderEnginePlugin, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, boolean store, IfcModelInterface targetModel, SerializerPlugin ifcSerializerPlugin, IfcModelInterface model, int pid, int rid, Map<IdEObject, IdEObject> bigMap, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult) {
+		public Runner(EClass eClass, String renderEnginePluginClassName, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, boolean store, IfcModelInterface targetModel, SerializerPlugin ifcSerializerPlugin, IfcModelInterface model, int pid, int rid, Map<IdEObject, IdEObject> bigMap, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult) {
 			this.eClass = eClass;
-			this.renderEnginePlugin = renderEnginePlugin;
+			this.renderEnginePluginClassName = renderEnginePluginClassName;
 			this.databaseSession = databaseSession;
 			this.renderEngineSettings = renderEngineSettings;
 			this.store = store;
@@ -146,13 +146,11 @@ public class GeometryGenerator {
 			targetModel.generateMinimalExpressIds();
 
 			Serializer ifcSerializer = ifcSerializerPlugin.createSerializer(new PluginConfiguration());
+			RenderEnginePool pool = null;
 			RenderEngine renderEngine = null;
 			try {
-				renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration(), model.getPackageMetaData().getSchema().getEPackageName());
-			} catch (RenderEngineException e) {
-				LOGGER.error("", e);
-			}
-			try {
+				pool = bimServer.getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), renderEnginePluginClassName);
+				renderEngine = pool.request();
 				renderEngine.init();
 				ifcSerializer.init(targetModel, null, bimServer.getPluginManager(), model.getPackageMetaData(), true);
 
@@ -331,14 +329,10 @@ public class GeometryGenerator {
 					in.close();
 					renderEngineModel.close();
 				}
-			} catch (SerializerException | RenderEngineException | IOException e) {
+			} catch (SerializerException | IOException | InterruptedException | PluginException e) {
 				LOGGER.error("", e);
 			} finally {
-				try {
-					renderEngine.close();
-				} catch (RenderEngineException e) {
-					LOGGER.error("", e);
-				}
+				pool.release(renderEngine);
 			}
 		}
 	}
@@ -378,10 +372,6 @@ public class GeometryGenerator {
 			if (defaultRenderEngine == null) {
 				throw new UserException("No default render engine has been selected for this user");
 			}
-			final RenderEnginePlugin renderEnginePlugin = pluginManager.getRenderEngine(defaultRenderEngine.getPluginDescriptor().getPluginClassName(), true);
-			if (renderEnginePlugin == null) {
-				throw new UserException("No (enabled) render engine found of type " + defaultRenderEngine.getPluginDescriptor().getPluginClassName());
-			}
 
 			int maxSimultanousThreads = Math.min(bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses(), Runtime.getRuntime().availableProcessors());
 			if (maxSimultanousThreads < 1) {
@@ -398,7 +388,7 @@ public class GeometryGenerator {
 			final RenderEngineFilter renderEngineFilter = new RenderEngineFilter();
 
 			if (maxSimultanousThreads == 1) {
-				Runner runner = new Runner(null, renderEnginePlugin, databaseSession, settings, store, model, ifcSerializerPlugin, model, pid, rid, null, renderEngineFilter, generateGeometryResult);
+				Runner runner = new Runner(null, defaultRenderEngine.getPluginDescriptor().getPluginClassName(), databaseSession, settings, store, model, ifcSerializerPlugin, model, pid, rid, null, renderEngineFilter, generateGeometryResult);
 				runner.run();
 			} else {
 				Set<EClass> classes = new HashSet<>();
@@ -452,7 +442,7 @@ public class GeometryGenerator {
 						}
 					}
 
-					executor.submit(new Runner(eClass, renderEnginePlugin, databaseSession, settings, store, targetModel, ifcSerializerPlugin, model, pid, rid, bigMap, renderEngineFilter, generateGeometryResult));
+					executor.submit(new Runner(eClass, defaultRenderEngine.getPluginDescriptor().getPluginClassName(), databaseSession, settings, store, targetModel, ifcSerializerPlugin, model, pid, rid, bigMap, renderEngineFilter, generateGeometryResult));
 				}
 				executor.shutdown();
 				executor.awaitTermination(24, TimeUnit.HOURS);				

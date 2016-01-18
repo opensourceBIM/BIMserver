@@ -1,4 +1,4 @@
-package org.bimserver.plugins;
+package org.bimserver.interfaces.objects;
 
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
@@ -17,20 +17,31 @@ package org.bimserver.plugins;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
+public enum SSIPrefix {
+	meter(0),
+	attometer(-18),
+	femtometer(-15),
+	picometer(-12),
+	nanometer(-9),
+	micrometer(-6),
+	millimeter(-3),
+	centimeter(-2),
+	decimeter(-1),
+	decameter(1),
+	hectometer(2),
+	kilometer(3),
+	megameter(6),
+	gigameter(9),
+	terameter(12),
+	petameter(15),
+	exameter(18);
+	int ordinal;
 
-@XmlAccessorType(XmlAccessType.NONE)
-public class Dependency {
-	@XmlAttribute(name="path")
-	private String path;
-
-	public String getPath() {
-		return path;
+	SSIPrefix(int ordinal) {
+		this.ordinal = ordinal;
 	}
-
-	public void setPath(String path) {
-		this.path = path;
+	
+	public int getOrdinal() {
+		return ordinal;
 	}
 }
