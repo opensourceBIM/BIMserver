@@ -1,7 +1,7 @@
 package org.bimserver.pb;
 
 /******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
+ * Copyright (C) 2009-2016  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -14,7 +14,7 @@ package org.bimserver.pb;
  * GNU Affero General Public License for more details.
  * 
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import "ServiceInterface.proto";
 import "AdminInterface.proto";
@@ -38,13 +38,9 @@ service Bimsie1AuthInterface {
 
 	rpc login (LoginRequest) returns (LoginResponse);
 
-	rpc loginOpenId (LoginOpenIdRequest) returns (LoginOpenIdResponse);
-
 	rpc loginUserToken (LoginUserTokenRequest) returns (LoginUserTokenResponse);
 
 	rpc logout (LogoutRequest) returns (VoidResponse);
-
-	rpc validateOpenId (ValidateOpenIdRequest) returns (ValidateOpenIdResponse);
 
 }
 
@@ -74,16 +70,6 @@ message LoginResponse {
 	optional string value = 2;
 }
 
-message LoginOpenIdRequest {
-	optional string op = 1;
-	optional string returnUrl = 2;
-}
-
-message LoginOpenIdResponse {
-	optional string errorMessage = 1;
-	optional string value = 2;
-}
-
 message LoginUserTokenRequest {
 	optional string token = 1;
 }
@@ -94,14 +80,5 @@ message LoginUserTokenResponse {
 }
 
 message LogoutRequest {
-}
-
-message ValidateOpenIdRequest {
-	optional string queryString = 1;
-}
-
-message ValidateOpenIdResponse {
-	optional string errorMessage = 1;
-	optional string value = 2;
 }
 

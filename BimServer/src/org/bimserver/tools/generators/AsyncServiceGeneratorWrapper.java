@@ -34,7 +34,7 @@ public class AsyncServiceGeneratorWrapper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SConverterGeneratorWrapper.class);
 
 	public void generate(Class<?> interfaceClass, SService sService) {
-		File adaptorFile = new File("../Shared/generated/org/bimserver/shared/interfaces/async/Async" + interfaceClass.getSimpleName() + ".java");
+		File adaptorFile = new File("../PluginBase/generated/org/bimserver/shared/interfaces/async/Async" + interfaceClass.getSimpleName() + ".java");
 		AsyncServiceGenerator asyncServiceGenerator = new AsyncServiceGenerator();
 		String generated = asyncServiceGenerator.generate(sService);
 		try {

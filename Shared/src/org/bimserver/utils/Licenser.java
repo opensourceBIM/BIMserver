@@ -25,6 +25,7 @@ public class Licenser {
 			processProject(project);
 		}
 		processProject(new File("C:\\Git\\BuildingSMARTLibrary\\BuildingSMARTLibrary"));
+		processProject(new File("C:\\Git\\BinarySerializers\\BinarySerializers"));
 		System.out.println("Unchanged: " + same);
 		System.out.println("Changed: " + changed);
 		System.out.println("Skipped: " + skipped);

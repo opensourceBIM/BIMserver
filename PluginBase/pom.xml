@@ -124,7 +124,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>BuildingSMARTLibrary</artifactId>
-			<version>1.0.6</version>
+			<version>1.0.8-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
