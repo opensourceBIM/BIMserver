@@ -29,8 +29,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.bimserver.models.store.PluginUpdateInformation#getOrganization <em>Organization</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginUpdateInformation#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.PluginUpdateInformation#getCurrentVersion <em>Current Version</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginUpdateInformation#getLatestVersion <em>Latest Version</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginUpdateInformation#getAvailableVersions <em>Available Versions</em>}</li>
  * </ul>
  *
@@ -40,6 +41,32 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface PluginUpdateInformation extends IdEObject {
+	/**
+	 * Returns the value of the '<em><b>Organization</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Organization</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Organization</em>' attribute.
+	 * @see #setOrganization(String)
+	 * @see org.bimserver.models.store.StorePackage#getPluginUpdateInformation_Organization()
+	 * @model
+	 * @generated
+	 */
+	String getOrganization();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginUpdateInformation#getOrganization <em>Organization</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Organization</em>' attribute.
+	 * @see #getOrganization()
+	 * @generated
+	 */
+	void setOrganization(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -67,30 +94,30 @@ public interface PluginUpdateInformation extends IdEObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Current Version</b></em>' reference.
+	 * Returns the value of the '<em><b>Latest Version</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Current Version</em>' reference isn't clear,
+	 * If the meaning of the '<em>Latest Version</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Current Version</em>' reference.
-	 * @see #setCurrentVersion(PluginVersion)
-	 * @see org.bimserver.models.store.StorePackage#getPluginUpdateInformation_CurrentVersion()
+	 * @return the value of the '<em>Latest Version</em>' reference.
+	 * @see #setLatestVersion(PluginVersion)
+	 * @see org.bimserver.models.store.StorePackage#getPluginUpdateInformation_LatestVersion()
 	 * @model
 	 * @generated
 	 */
-	PluginVersion getCurrentVersion();
+	PluginVersion getLatestVersion();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.PluginUpdateInformation#getCurrentVersion <em>Current Version</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginUpdateInformation#getLatestVersion <em>Latest Version</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Current Version</em>' reference.
-	 * @see #getCurrentVersion()
+	 * @param value the new value of the '<em>Latest Version</em>' reference.
+	 * @see #getLatestVersion()
 	 * @generated
 	 */
-	void setCurrentVersion(PluginVersion value);
+	void setLatestVersion(PluginVersion value);
 
 	/**
 	 * Returns the value of the '<em><b>Available Versions</b></em>' reference list.

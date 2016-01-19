@@ -219,6 +219,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetAvailablePluginsCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginUpdateInformation> result);
+		void error(Throwable e);
+	}
+	
 	public interface GetDefaultModelCompareCallback {
 		void success(org.bimserver.interfaces.objects.SModelComparePluginConfiguration result);
 		void error(Throwable e);
@@ -309,11 +314,6 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
-	public interface GetPluginUpdateInformationCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SPluginUpdateInformation> result);
-		void error(Throwable e);
-	}
-	
 	public interface GetRenderEngineByIdCallback {
 		void success(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration result);
 		void error(Throwable e);
@@ -346,6 +346,11 @@ public class AsyncPluginInterface {
 	
 	public interface HasActiveSerializerCallback {
 		void success(java.lang.Boolean result);
+		void error(Throwable e);
+	}
+	
+	public interface InstallPluginCallback {
+		void success();
 		void error(Throwable e);
 	}
 	
@@ -909,6 +914,18 @@ public class AsyncPluginInterface {
 		});
 	}
 	
+	public void getAvailablePlugins(final GetAvailablePluginsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAvailablePlugins());
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getDefaultModelCompare(final GetDefaultModelCompareCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1125,18 +1142,6 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void getPluginUpdateInformation(final java.lang.Long topicId, final GetPluginUpdateInformationCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getPluginUpdateInformation(topicId));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getRenderEngineById(final java.lang.Long oid, final GetRenderEngineByIdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1214,6 +1219,19 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.hasActiveSerializer(contentType));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void installPlugin(final java.lang.String repository, final java.lang.String groupId, final java.lang.String artifactId, final java.lang.String version, final InstallPluginCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.installPlugin(repository, groupId, artifactId, version);
+					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
 				}

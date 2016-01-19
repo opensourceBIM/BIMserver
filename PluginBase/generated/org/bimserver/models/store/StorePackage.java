@@ -6894,13 +6894,58 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_VERSION__TYPE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_VERSION__DESCRIPTION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Mismatch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_VERSION__MISMATCH = 3;
+
+	/**
+	 * The feature id for the '<em><b>Repository</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_VERSION__REPOSITORY = 4;
+
+	/**
+	 * The feature id for the '<em><b>Group Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_VERSION__GROUP_ID = 5;
+
+	/**
+	 * The feature id for the '<em><b>Artifact Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_VERSION__ARTIFACT_ID = 6;
+
+	/**
 	 * The number of structural features of the '<em>Plugin Version</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_VERSION_FEATURE_COUNT = 2;
+	int PLUGIN_VERSION_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginUpdateInformationImpl <em>Plugin Update Information</em>}' class.
@@ -6913,22 +6958,31 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_UPDATE_INFORMATION = 99;
 
 	/**
+	 * The feature id for the '<em><b>Organization</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_UPDATE_INFORMATION__ORGANIZATION = 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_UPDATE_INFORMATION__NAME = 0;
+	int PLUGIN_UPDATE_INFORMATION__NAME = 1;
 
 	/**
-	 * The feature id for the '<em><b>Current Version</b></em>' reference.
+	 * The feature id for the '<em><b>Latest Version</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_UPDATE_INFORMATION__CURRENT_VERSION = 1;
+	int PLUGIN_UPDATE_INFORMATION__LATEST_VERSION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Available Versions</b></em>' reference list.
@@ -6937,7 +6991,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_UPDATE_INFORMATION__AVAILABLE_VERSIONS = 2;
+	int PLUGIN_UPDATE_INFORMATION__AVAILABLE_VERSIONS = 3;
 
 	/**
 	 * The number of structural features of the '<em>Plugin Update Information</em>' class.
@@ -6946,7 +7000,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_UPDATE_INFORMATION_FEATURE_COUNT = 3;
+	int PLUGIN_UPDATE_INFORMATION_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
@@ -12708,6 +12762,61 @@ public interface StorePackage extends EPackage {
 	EAttribute getPluginVersion_Type();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginVersion#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.PluginVersion#getDescription()
+	 * @see #getPluginVersion()
+	 * @generated
+	 */
+	EAttribute getPluginVersion_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginVersion#isMismatch <em>Mismatch</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mismatch</em>'.
+	 * @see org.bimserver.models.store.PluginVersion#isMismatch()
+	 * @see #getPluginVersion()
+	 * @generated
+	 */
+	EAttribute getPluginVersion_Mismatch();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginVersion#getRepository <em>Repository</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Repository</em>'.
+	 * @see org.bimserver.models.store.PluginVersion#getRepository()
+	 * @see #getPluginVersion()
+	 * @generated
+	 */
+	EAttribute getPluginVersion_Repository();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginVersion#getGroupId <em>Group Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Group Id</em>'.
+	 * @see org.bimserver.models.store.PluginVersion#getGroupId()
+	 * @see #getPluginVersion()
+	 * @generated
+	 */
+	EAttribute getPluginVersion_GroupId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginVersion#getArtifactId <em>Artifact Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Artifact Id</em>'.
+	 * @see org.bimserver.models.store.PluginVersion#getArtifactId()
+	 * @see #getPluginVersion()
+	 * @generated
+	 */
+	EAttribute getPluginVersion_ArtifactId();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginUpdateInformation <em>Plugin Update Information</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12716,6 +12825,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPluginUpdateInformation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginUpdateInformation#getOrganization <em>Organization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Organization</em>'.
+	 * @see org.bimserver.models.store.PluginUpdateInformation#getOrganization()
+	 * @see #getPluginUpdateInformation()
+	 * @generated
+	 */
+	EAttribute getPluginUpdateInformation_Organization();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginUpdateInformation#getName <em>Name</em>}'.
@@ -12729,15 +12849,15 @@ public interface StorePackage extends EPackage {
 	EAttribute getPluginUpdateInformation_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.PluginUpdateInformation#getCurrentVersion <em>Current Version</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.PluginUpdateInformation#getLatestVersion <em>Latest Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Current Version</em>'.
-	 * @see org.bimserver.models.store.PluginUpdateInformation#getCurrentVersion()
+	 * @return the meta object for the reference '<em>Latest Version</em>'.
+	 * @see org.bimserver.models.store.PluginUpdateInformation#getLatestVersion()
 	 * @see #getPluginUpdateInformation()
 	 * @generated
 	 */
-	EReference getPluginUpdateInformation_CurrentVersion();
+	EReference getPluginUpdateInformation_LatestVersion();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.PluginUpdateInformation#getAvailableVersions <em>Available Versions</em>}'.
@@ -17276,6 +17396,46 @@ public interface StorePackage extends EPackage {
 		EAttribute PLUGIN_VERSION__TYPE = eINSTANCE.getPluginVersion_Type();
 
 		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_VERSION__DESCRIPTION = eINSTANCE.getPluginVersion_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Mismatch</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_VERSION__MISMATCH = eINSTANCE.getPluginVersion_Mismatch();
+
+		/**
+		 * The meta object literal for the '<em><b>Repository</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_VERSION__REPOSITORY = eINSTANCE.getPluginVersion_Repository();
+
+		/**
+		 * The meta object literal for the '<em><b>Group Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_VERSION__GROUP_ID = eINSTANCE.getPluginVersion_GroupId();
+
+		/**
+		 * The meta object literal for the '<em><b>Artifact Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_VERSION__ARTIFACT_ID = eINSTANCE.getPluginVersion_ArtifactId();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginUpdateInformationImpl <em>Plugin Update Information</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -17286,6 +17446,14 @@ public interface StorePackage extends EPackage {
 		EClass PLUGIN_UPDATE_INFORMATION = eINSTANCE.getPluginUpdateInformation();
 
 		/**
+		 * The meta object literal for the '<em><b>Organization</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_UPDATE_INFORMATION__ORGANIZATION = eINSTANCE.getPluginUpdateInformation_Organization();
+
+		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -17294,12 +17462,12 @@ public interface StorePackage extends EPackage {
 		EAttribute PLUGIN_UPDATE_INFORMATION__NAME = eINSTANCE.getPluginUpdateInformation_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Current Version</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Latest Version</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PLUGIN_UPDATE_INFORMATION__CURRENT_VERSION = eINSTANCE.getPluginUpdateInformation_CurrentVersion();
+		EReference PLUGIN_UPDATE_INFORMATION__LATEST_VERSION = eINSTANCE.getPluginUpdateInformation_LatestVersion();
 
 		/**
 		 * The meta object literal for the '<em><b>Available Versions</b></em>' reference list feature.

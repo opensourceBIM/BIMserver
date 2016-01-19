@@ -45,6 +45,7 @@ import org.bimserver.database.actions.DeleteObjectIDMDatabaseAction;
 import org.bimserver.database.actions.DeleteQueryEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteRenderEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
+import org.bimserver.database.actions.GetAvailablePluginInformation;
 import org.bimserver.database.actions.GetByIdDatabaseAction;
 import org.bimserver.database.actions.GetMessagingSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByIdDatabaseAction;
@@ -53,11 +54,13 @@ import org.bimserver.database.actions.GetModelMergerByIdDatabaseAction;
 import org.bimserver.database.actions.GetModelMergerByNameDatabaseAction;
 import org.bimserver.database.actions.GetObjectIDMByIdDatabaseAction;
 import org.bimserver.database.actions.GetObjectIDMByNameDatabaseAction;
+import org.bimserver.database.actions.GetPluginUpdateInformation;
 import org.bimserver.database.actions.GetRenderEngineByIdDatabaseAction;
 import org.bimserver.database.actions.GetRenderEngineByNameDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByIdDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByNameDatabaseAction;
+import org.bimserver.database.actions.InstallPlugin;
 import org.bimserver.database.actions.SetPluginSettingsDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
 import org.bimserver.database.actions.UpdateDatabaseAction;
@@ -1317,7 +1320,27 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public List<SPluginUpdateInformation> getPluginUpdateInformation(Long topicId) {
-		return null;
+	public List<SPluginUpdateInformation> getAvailablePlugins() throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetAvailablePluginInformation(session, getInternalAccessMethod(), getBimServer(), false));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	public void installPlugin(String repository, String groupId, String artifactId, String version) throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			session.executeAndCommitAction(new InstallPlugin(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

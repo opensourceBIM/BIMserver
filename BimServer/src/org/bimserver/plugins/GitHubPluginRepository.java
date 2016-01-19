@@ -39,7 +39,7 @@ public class GitHubPluginRepository {
 	}
 
 	public GitHubPluginRepository(String url) {
-		this.url = url;
+		this.url = url + "/plugins.json";
 	}
 
 	public List<PluginLocation> listPluginLocations() {

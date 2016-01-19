@@ -449,10 +449,14 @@ define(
     		    		var data = JSON.parse(xhr.responseText);
     		    		success(data);
     		    	} catch (e) {
-    		    		if (error != null) {
-    		    			error(e);
+    		    		if (e instanceof SyntaxError) {
+    		    			if (error != null) {
+    		    				error(e);
+    		    			} else {
+    		    				othis.notifier.setError(e);
+    		    				console.error(e);
+    		    			}
     		    		} else {
-    		    			othis.notifier.setError(e);
     		    			console.error(e);
     		    		}
     		    	}

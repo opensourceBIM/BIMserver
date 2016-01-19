@@ -199,7 +199,6 @@ public class PluginManager implements PluginManagerInterface {
 			List<org.bimserver.plugins.Dependency> bimServerDependencies = new ArrayList<>();
 			
 			Path pom = projectRoot.resolve("pom.xml");
-			System.out.println(projectRoot.getFileName());
 			if (Files.exists(pom)) {
 				Model model = mavenreader.read(new FileReader(pom.toFile()));
 
@@ -609,6 +608,13 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	public Path getTempDir() {
+		if (!Files.isDirectory(tempDir)) {
+			try {
+				Files.createDirectories(tempDir);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		return tempDir;
 	}
 

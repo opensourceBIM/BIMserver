@@ -34,8 +34,9 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.bimserver.models.store.impl.PluginUpdateInformationImpl#getOrganization <em>Organization</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginUpdateInformationImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginUpdateInformationImpl#getCurrentVersion <em>Current Version</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginUpdateInformationImpl#getLatestVersion <em>Latest Version</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginUpdateInformationImpl#getAvailableVersions <em>Available Versions</em>}</li>
  * </ul>
  *
@@ -76,6 +77,24 @@ public class PluginUpdateInformationImpl extends IdEObjectImpl implements Plugin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getOrganization() {
+		return (String) eGet(StorePackage.Literals.PLUGIN_UPDATE_INFORMATION__ORGANIZATION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOrganization(String newOrganization) {
+		eSet(StorePackage.Literals.PLUGIN_UPDATE_INFORMATION__ORGANIZATION, newOrganization);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_UPDATE_INFORMATION__NAME, true);
 	}
@@ -94,8 +113,8 @@ public class PluginUpdateInformationImpl extends IdEObjectImpl implements Plugin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PluginVersion getCurrentVersion() {
-		return (PluginVersion) eGet(StorePackage.Literals.PLUGIN_UPDATE_INFORMATION__CURRENT_VERSION, true);
+	public PluginVersion getLatestVersion() {
+		return (PluginVersion) eGet(StorePackage.Literals.PLUGIN_UPDATE_INFORMATION__LATEST_VERSION, true);
 	}
 
 	/**
@@ -103,8 +122,8 @@ public class PluginUpdateInformationImpl extends IdEObjectImpl implements Plugin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCurrentVersion(PluginVersion newCurrentVersion) {
-		eSet(StorePackage.Literals.PLUGIN_UPDATE_INFORMATION__CURRENT_VERSION, newCurrentVersion);
+	public void setLatestVersion(PluginVersion newLatestVersion) {
+		eSet(StorePackage.Literals.PLUGIN_UPDATE_INFORMATION__LATEST_VERSION, newLatestVersion);
 	}
 
 	/**
