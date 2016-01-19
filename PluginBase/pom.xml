@@ -15,43 +15,23 @@
 		<resources>
 			<resource>
 				<directory>generated</directory>
-				<excludes>
-				</excludes>
 			</resource>
 			<resource>
 				<directory>src</directory>
-				<excludes>
-				</excludes>
 			</resource>
 		</resources>
 		<plugins>
 			<plugin>
-				<groupId>org.eclipse.m2e</groupId>
-				<artifactId>lifecycle-mapping</artifactId>
-				<version>1.0.0</version>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.10</version>
+				<goals>
+					<goal>add-source</goal>
+				</goals>
 				<configuration>
-					<lifecycleMappingMetadata>
-						<pluginExecutions>
-							<pluginExecution>
-								<pluginExecutionFilter>
-									<groupId>org.codehaus.mojo</groupId>
-									<artifactId>build-helper-maven-plugin</artifactId>
-									<versionRange>1.5</versionRange>
-									<goals>
-										<goal>add-source</goal>
-									</goals>
-									<configuration>
-										<sources>
-											<source>generated</source>
-										</sources>
-									</configuration>
-								</pluginExecutionFilter>
-								<action>
-									<execute />
-								</action>
-							</pluginExecution>
-						</pluginExecutions>
-					</lifecycleMappingMetadata>
+					<sources>
+						<source>generated</source>
+					</sources>
 				</configuration>
 			</plugin>
 		</plugins>
