@@ -3,6 +3,7 @@ package org.bimserver.plugins;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.maven.model.Model;
 import org.eclipse.aether.artifact.Artifact;
 import org.eclipse.aether.version.Version;
 
@@ -28,6 +29,7 @@ public class MavenPluginVersion extends PluginVersion {
 	private Version version;
 	private List<MavenDependency> dependencies = new ArrayList<>();
 	private Artifact artifact;
+	private Model model;
 
 	public MavenPluginVersion(Artifact artifact, Version version) {
 		this.artifact = artifact;
@@ -48,5 +50,13 @@ public class MavenPluginVersion extends PluginVersion {
 	
 	public List<MavenDependency> getDependencies() {
 		return dependencies;
+	}
+
+	public void setModel(Model model) {
+		this.model = model;
+	}
+	
+	public Model getModel() {
+		return model;
 	}
 }

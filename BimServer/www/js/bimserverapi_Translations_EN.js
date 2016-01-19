@@ -48,6 +48,8 @@ define(function(){
 		GETUSERSETTINGS_BUSY: "Getting user settings",
 		GETALLQUERYENGINES_BUSY: "Getting query engines",
 		REGISTERNEWPROJECTHANDLER_BUSY: "Registering for updates on new projects",
-		ADDUSER_BUSY: "Adding user..."
+		ADDUSER_BUSY: "Adding user...",
+		GETAVAILABLEPLUGINS_BUSY: "Loading available plugins, this can take a while",
+		GETAVAILABLEPLUGINS_DONE: "Done loading available plugins"
 	}
 });

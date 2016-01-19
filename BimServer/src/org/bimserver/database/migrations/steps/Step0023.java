@@ -20,11 +20,17 @@ public class Step0023 extends Migration {
 		
 		schema.createEAttribute(pluginVersionClass, "version", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(pluginVersionClass, "type", pluginType);
+		schema.createEAttribute(pluginVersionClass, "description", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(pluginVersionClass, "mismatch", EcorePackage.eINSTANCE.getEBoolean());
+		schema.createEAttribute(pluginVersionClass, "repository", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(pluginVersionClass, "groupId", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(pluginVersionClass, "artifactId", EcorePackage.eINSTANCE.getEString());
 		
 		EClass pluginUpdateInformation = schema.createEClass("store", "PluginUpdateInformation");
+		schema.createEAttribute(pluginUpdateInformation, "organization", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(pluginUpdateInformation, "name", EcorePackage.eINSTANCE.getEString());
-		schema.createEReference(pluginUpdateInformation, "currentVersion", pluginVersionClass, Multiplicity.SINGLE);
-		schema.createEReference(pluginUpdateInformation, "availableVersions", pluginVersionClass, Multiplicity.MANY);
+		schema.createEReference(pluginUpdateInformation, "latestVersion", pluginVersionClass, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
+		schema.createEReference(pluginUpdateInformation, "availableVersions", pluginVersionClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 	}
 
 	@Override

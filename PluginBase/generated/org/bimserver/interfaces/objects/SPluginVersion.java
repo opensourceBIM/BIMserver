@@ -31,6 +31,11 @@ public class SPluginVersion implements SDataBase
 	private static SClass sClass;
 	private java.lang.String version;
 	private SPluginType type;
+	private java.lang.String description;
+	private boolean mismatch;
+	private java.lang.String repository;
+	private java.lang.String groupId;
+	private java.lang.String artifactId;
 
 	public long getOid() {
 		return this.oid;
@@ -64,6 +69,21 @@ public class SPluginVersion implements SDataBase
 		if (sField.getName().equals("type")) {
 			return getType();
 		}
+		if (sField.getName().equals("description")) {
+			return getDescription();
+		}
+		if (sField.getName().equals("mismatch")) {
+			return isMismatch();
+		}
+		if (sField.getName().equals("repository")) {
+			return getRepository();
+		}
+		if (sField.getName().equals("groupId")) {
+			return getGroupId();
+		}
+		if (sField.getName().equals("artifactId")) {
+			return getArtifactId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -80,6 +100,26 @@ public class SPluginVersion implements SDataBase
 		}
 		if (sField.getName().equals("type")) {
 			setType((SPluginType)val);
+			return;
+		}
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
+			return;
+		}
+		if (sField.getName().equals("mismatch")) {
+			setMismatch((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("repository")) {
+			setRepository((String)val);
+			return;
+		}
+		if (sField.getName().equals("groupId")) {
+			setGroupId((String)val);
+			return;
+		}
+		if (sField.getName().equals("artifactId")) {
+			setArtifactId((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -107,6 +147,46 @@ public class SPluginVersion implements SDataBase
 
 	public void setType(SPluginType type) {
 		this.type = type;
+	}
+	
+	public java.lang.String getDescription() {
+		return description;
+	}
+
+	public void setDescription(java.lang.String description) {
+		this.description = description;
+	}
+	
+	public boolean isMismatch() {
+		return mismatch;
+	}
+
+	public void setMismatch(boolean mismatch) {
+		this.mismatch = mismatch;
+	}
+	
+	public java.lang.String getRepository() {
+		return repository;
+	}
+
+	public void setRepository(java.lang.String repository) {
+		this.repository = repository;
+	}
+	
+	public java.lang.String getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(java.lang.String groupId) {
+		this.groupId = groupId;
+	}
+	
+	public java.lang.String getArtifactId() {
+		return artifactId;
+	}
+
+	public void setArtifactId(java.lang.String artifactId) {
+		this.artifactId = artifactId;
 	}
 	
 	@Override

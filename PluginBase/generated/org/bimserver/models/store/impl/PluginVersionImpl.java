@@ -34,6 +34,11 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#isMismatch <em>Mismatch</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#getRepository <em>Repository</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#getGroupId <em>Group Id</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#getArtifactId <em>Artifact Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -102,6 +107,96 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 */
 	public void setType(PluginType newType) {
 		eSet(StorePackage.Literals.PLUGIN_VERSION__TYPE, newType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDescription() {
+		return (String) eGet(StorePackage.Literals.PLUGIN_VERSION__DESCRIPTION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		eSet(StorePackage.Literals.PLUGIN_VERSION__DESCRIPTION, newDescription);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isMismatch() {
+		return (Boolean) eGet(StorePackage.Literals.PLUGIN_VERSION__MISMATCH, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMismatch(boolean newMismatch) {
+		eSet(StorePackage.Literals.PLUGIN_VERSION__MISMATCH, newMismatch);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getRepository() {
+		return (String) eGet(StorePackage.Literals.PLUGIN_VERSION__REPOSITORY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRepository(String newRepository) {
+		eSet(StorePackage.Literals.PLUGIN_VERSION__REPOSITORY, newRepository);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getGroupId() {
+		return (String) eGet(StorePackage.Literals.PLUGIN_VERSION__GROUP_ID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGroupId(String newGroupId) {
+		eSet(StorePackage.Literals.PLUGIN_VERSION__GROUP_ID, newGroupId);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getArtifactId() {
+		return (String) eGet(StorePackage.Literals.PLUGIN_VERSION__ARTIFACT_ID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setArtifactId(String newArtifactId) {
+		eSet(StorePackage.Literals.PLUGIN_VERSION__ARTIFACT_ID, newArtifactId);
 	}
 
 } //PluginVersionImpl

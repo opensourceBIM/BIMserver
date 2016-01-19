@@ -5907,6 +5907,51 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPluginVersion_Description() {
+		return (EAttribute) getPluginVersion().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginVersion_Mismatch() {
+		return (EAttribute) getPluginVersion().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginVersion_Repository() {
+		return (EAttribute) getPluginVersion().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginVersion_GroupId() {
+		return (EAttribute) getPluginVersion().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginVersion_ArtifactId() {
+		return (EAttribute) getPluginVersion().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPluginUpdateInformation() {
 		if (pluginUpdateInformationEClass == null) {
 			pluginUpdateInformationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(115);
@@ -5919,7 +5964,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginUpdateInformation_Name() {
+	public EAttribute getPluginUpdateInformation_Organization() {
 		return (EAttribute) getPluginUpdateInformation().getEStructuralFeatures().get(0);
 	}
 
@@ -5928,8 +5973,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPluginUpdateInformation_CurrentVersion() {
-		return (EReference) getPluginUpdateInformation().getEStructuralFeatures().get(1);
+	public EAttribute getPluginUpdateInformation_Name() {
+		return (EAttribute) getPluginUpdateInformation().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPluginUpdateInformation_LatestVersion() {
+		return (EReference) getPluginUpdateInformation().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -5938,7 +5992,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getPluginUpdateInformation_AvailableVersions() {
-		return (EReference) getPluginUpdateInformation().getEStructuralFeatures().get(2);
+		return (EReference) getPluginUpdateInformation().getEStructuralFeatures().get(3);
 	}
 
 	/**

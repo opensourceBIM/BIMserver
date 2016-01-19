@@ -31,9 +31,10 @@ public class SPluginUpdateInformation implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	private java.lang.String organization;
 	private java.lang.String name;
-	private long currentVersionId = -1;
-	private List<Long> availableVersions = new ArrayList<Long>();
+	private SPluginVersion latestVersion;
+	private List<SPluginVersion> availableVersions = new ArrayList<SPluginVersion>();
 
 	public long getOid() {
 		return this.oid;
@@ -61,11 +62,14 @@ public class SPluginUpdateInformation implements SDataBase
 	}
 
 	public Object sGet(SField sField) {
+		if (sField.getName().equals("organization")) {
+			return getOrganization();
+		}
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
-		if (sField.getName().equals("currentVersionId")) {
-			return getCurrentVersionId();
+		if (sField.getName().equals("latestVersion")) {
+			return getLatestVersion();
 		}
 		if (sField.getName().equals("availableVersions")) {
 			return getAvailableVersions();
@@ -81,16 +85,20 @@ public class SPluginUpdateInformation implements SDataBase
 	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("organization")) {
+			setOrganization((String)val);
+			return;
+		}
 		if (sField.getName().equals("name")) {
 			setName((String)val);
 			return;
 		}
-		if (sField.getName().equals("currentVersionId")) {
-			setCurrentVersionId((Long)val);
+		if (sField.getName().equals("latestVersion")) {
+			setLatestVersion((SPluginVersion)val);
 			return;
 		}
 		if (sField.getName().equals("availableVersions")) {
-			setAvailableVersions((List<Long>)val);
+			setAvailableVersions((List<SPluginVersion>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -104,6 +112,14 @@ public class SPluginUpdateInformation implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
+	public java.lang.String getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(java.lang.String organization) {
+		this.organization = organization;
+	}
+	
 	public java.lang.String getName() {
 		return name;
 	}
@@ -112,19 +128,20 @@ public class SPluginUpdateInformation implements SDataBase
 		this.name = name;
 	}
 	
-	public long getCurrentVersionId() {
-		return currentVersionId;
+	public SPluginVersion getLatestVersion() {
+		return latestVersion;
 	}
 
-	public void setCurrentVersionId(long currentVersionId) {
-		this.currentVersionId = currentVersionId;
+	public void setLatestVersion(SPluginVersion latestVersion) {
+		this.latestVersion = latestVersion;
 	}
 	
-	public List<Long> getAvailableVersions() {
+	
+	public List<SPluginVersion> getAvailableVersions() {
 		return availableVersions;
 	}
 
-	public void setAvailableVersions(List<Long> availableVersions) {
+	public void setAvailableVersions(List<SPluginVersion> availableVersions) {
 		this.availableVersions = availableVersions;
 	}
 	

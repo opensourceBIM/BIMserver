@@ -156,6 +156,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SPluginUpdateInformation> getAvailablePlugins() throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SModelComparePluginConfiguration getDefaultModelCompare() throws UserException, ServerException {
 		return null;
 	}
@@ -228,10 +232,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SPluginUpdateInformation> getPluginUpdateInformation(java.lang.Long topicId) throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration getRenderEngineById(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
@@ -258,6 +258,9 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	
 	public java.lang.Boolean hasActiveSerializer(java.lang.String contentType) throws UserException, ServerException {
 		return null;
+	}
+	
+	public void installPlugin(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version) throws UserException, ServerException {
 	}
 	
 	public void setDefaultModelCompare(java.lang.Long oid) throws UserException, ServerException {

@@ -88,7 +88,6 @@ public class VersionChecker {
 				localVersion.setMinor(defaultArtifactVersion.getMinorVersion());
 				localVersion.setRevision(defaultArtifactVersion.getIncrementalVersion());
 				localVersion.setFullString(defaultArtifactVersion.toString());
-				LOGGER.info("BIMserver version: " + defaultArtifactVersion.getMajorVersion() + "." + defaultArtifactVersion.getMinorVersion() + "." + defaultArtifactVersion.getIncrementalVersion() + "-" + defaultArtifactVersion.getQualifier());
 			} else {
 				LOGGER.warn("No version info");
 			}

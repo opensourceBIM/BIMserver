@@ -1,20 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-
+<!DOCTYPE xml>
+<configuration debug="">
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<layout class="ch.qos.logback.classic.PatternLayout">
-			<Pattern>
-				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
-			</Pattern>
-		</layout>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{HH:mm:ss} %-5level [%thread]: %-80message \(%file:%line\) %n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>TRACE</level>
+			<onMatch>ACCEPT</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>DENY</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>DENY</onMatch>
+		</filter>
+	</appender>
+	<appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level (%file:%line) %message%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>DENY</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>DENY</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>TRACE</level>
+			<onMatch>DENY</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>ACCEPT</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+		</filter>
+		<target>System.err</target>
 	</appender>
 
-	<logger name="org.apache.cxf" level="error" additivity="false">
-		<appender-ref ref="STDOUT" />
+	<logger name="org.eclipse.jetty" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.apache.cxf" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="nl.tue.buildingsmart" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.apache.http" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.quartz" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
 	</logger>
 
-	<root level="info">
+	<logger name="org.bimserver" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="STDERR" />
+	</logger>
+
+	<root level="debug">
+		<appender-ref ref="STDERR" />
 		<appender-ref ref="STDOUT" />
 	</root>
-
 </configuration>

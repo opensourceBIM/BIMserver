@@ -618,7 +618,13 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "startGetPluginUpdateInformation")
 	Long startGetPluginUpdateInformation() throws UserException, ServerException;
 	
-	@WebMethod(action = "getPluginUpdateInformation")
-	List<SPluginUpdateInformation> getPluginUpdateInformation(
-			@WebParam(name = "topicId", partName = "getPluginUpdateInformation.topicId") Long topicId) throws UserException, ServerException;
+	@WebMethod(action = "getAvailablePlugins")
+	List<SPluginUpdateInformation> getAvailablePlugins() throws UserException, ServerException;
+
+	@WebMethod(action = "installPlugin")
+	void installPlugin(
+			@WebParam(name = "repository", partName = "installPlugin.repository") String repository, 
+			@WebParam(name = "groupId", partName = "installPlugin.groupId") String groupId, 
+			@WebParam(name = "artifactId", partName = "installPlugin.artifactId") String artifactId, 
+			@WebParam(name = "version", partName = "installPlugin.version") String version) throws UserException, ServerException;
 }

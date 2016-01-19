@@ -345,13 +345,14 @@ message GetLatestVersionRequest {
 message SVersion {
 	optional int64 date = 1;
 	optional string downloadUrl = 2;
-	optional int32 major = 3;
-	optional int32 minor = 4;
-	optional int64 oid = 5;
-	optional int32 revision = 6;
-	optional int32 rid = 7;
-	optional string supportEmail = 8;
-	optional string supportUrl = 9;
+	optional string fullString = 3;
+	optional int32 major = 4;
+	optional int32 minor = 5;
+	optional int64 oid = 6;
+	optional int32 revision = 7;
+	optional int32 rid = 8;
+	optional string supportEmail = 9;
+	optional string supportUrl = 10;
 }
 
 message GetLatestVersionResponse {

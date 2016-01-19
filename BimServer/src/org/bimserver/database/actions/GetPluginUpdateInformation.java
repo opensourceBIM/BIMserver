@@ -15,8 +15,9 @@ import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
-import org.bimserver.models.store.PluginUpdateInformation;
-import org.bimserver.models.store.StoreFactory;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.interfaces.objects.SPluginUpdateInformation;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.GitHubPluginRepository;
 import org.bimserver.plugins.MavenDependency;
 import org.bimserver.plugins.MavenPluginVersion;
@@ -28,18 +29,20 @@ import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GetPluginUpdateInformation extends AsyncAction<List<PluginUpdateInformation>> {
+public class GetPluginUpdateInformation extends BimDatabaseAction<List<SPluginUpdateInformation>> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GetPluginUpdateInformation.class);
+	private BimServer bimServer;
 	
-	public GetPluginUpdateInformation(BimServer bimServer) {
-		super(bimServer);
+	public GetPluginUpdateInformation(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer) {
+		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 	}
-	
+
 	@Override
-	public List<PluginUpdateInformation> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
-		List<PluginUpdateInformation> result = new ArrayList<>();
-		
-		GitHubPluginRepository repository = new GitHubPluginRepository(getBimServer().getServerSettingsCache().getServerSettings().getServiceRepositoryUrl());
+	public List<SPluginUpdateInformation> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
+		List<SPluginUpdateInformation> result = new ArrayList<>();
+
+		GitHubPluginRepository repository = new GitHubPluginRepository(bimServer.getServerSettingsCache().getServerSettings().getServiceRepositoryUrl());
 		
 		DefaultArtifactVersion bimserverVersion = null;
 		
@@ -60,7 +63,7 @@ public class GetPluginUpdateInformation extends AsyncAction<List<PluginUpdateInf
 		for (PluginLocation pluginLocation : repository.listPluginLocations()) {
 			for (PluginVersion pluginVersion : pluginLocation.getAllVersions()) {
 				if (pluginVersion instanceof MavenPluginVersion) {
-					PluginUpdateInformation pluginUpdateInformation = StoreFactory.eINSTANCE.createPluginUpdateInformation();
+					SPluginUpdateInformation pluginUpdateInformation = new SPluginUpdateInformation();
 					boolean useful = true;
 					MavenPluginVersion mavenPluginVersion = (MavenPluginVersion)pluginVersion;
 					for (MavenDependency mavenDependency : mavenPluginVersion.getDependencies()) {

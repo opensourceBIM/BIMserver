@@ -10,11 +10,6 @@
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
-		<resources>
-			<resource>
-				<directory>genclasses</directory>
-			</resource>
-		</resources>
 	</build>
 	<dependencies>
 		<dependency>
