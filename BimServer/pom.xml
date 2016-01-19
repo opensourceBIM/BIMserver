@@ -1,12 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<name>BimServer</name>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>BimServer</artifactId>
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>Builds</artifactId>
-		<version>1.5.8-SNAPSHOT</version>
+		<version>1.5.8</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -169,7 +168,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>BimServerClientLib</artifactId>
-			<version>1.5.8-SNAPSHOT</version>
+			<version>1.5.8</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>
