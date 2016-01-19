@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>Builds</artifactId>
-		<version>1.5.8</version>
+		<version>1.5.9-SNAPSHOT</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>BimServer</artifactId>
-			<version>1.5.8</version>
+			<version>1.5.9-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
