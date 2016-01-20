@@ -120,7 +120,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>BuildingSMARTLibrary</artifactId>
-			<version>1.0.10-SNAPSHOT</version>
+			<version>1.0.9</version>
 		</dependency>
 	</dependencies>
 </project>
