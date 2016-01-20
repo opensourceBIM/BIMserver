@@ -2079,7 +2079,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUserSettings_Queryengines() {
+	public EReference getUserSettings_QueryEngines() {
 		return (EReference) getUserSettings().getEStructuralFeatures().get(4);
 	}
 
@@ -2088,7 +2088,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUserSettings_Modelmergers() {
+	public EReference getUserSettings_ModelMergers() {
 		return (EReference) getUserSettings().getEStructuralFeatures().get(5);
 	}
 
@@ -2097,7 +2097,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUserSettings_Modelcompares() {
+	public EReference getUserSettings_ModelCompares() {
 		return (EReference) getUserSettings().getEStructuralFeatures().get(6);
 	}
 

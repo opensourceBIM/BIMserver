@@ -92,7 +92,7 @@ import com.sleepycat.je.LockConflictException;
 import com.sleepycat.je.LockTimeoutException;
 import com.sleepycat.je.TransactionTimeoutException;
 
-public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterface {
+public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterface, AutoCloseable {
 	public static final int DEFAULT_CONFLICT_RETRIES = 10;
 	private static final boolean DEVELOPER_DEBUG = false;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);

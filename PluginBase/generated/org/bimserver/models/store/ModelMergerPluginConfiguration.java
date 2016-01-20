@@ -35,7 +35,7 @@ package org.bimserver.models.store;
 public interface ModelMergerPluginConfiguration extends PluginConfiguration {
 	/**
 	 * Returns the value of the '<em><b>User Settings</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getModelmergers <em>Modelmergers</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getModelMergers <em>Model Mergers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>User Settings</em>' reference isn't clear,
@@ -45,8 +45,8 @@ public interface ModelMergerPluginConfiguration extends PluginConfiguration {
 	 * @return the value of the '<em>User Settings</em>' reference.
 	 * @see #setUserSettings(UserSettings)
 	 * @see org.bimserver.models.store.StorePackage#getModelMergerPluginConfiguration_UserSettings()
-	 * @see org.bimserver.models.store.UserSettings#getModelmergers
-	 * @model opposite="modelmergers"
+	 * @see org.bimserver.models.store.UserSettings#getModelMergers
+	 * @model opposite="modelMergers"
 	 * @generated
 	 */
 	UserSettings getUserSettings();

@@ -1,7 +1,5 @@
 package org.bimserver.database.actions;
 
-import java.nio.file.Path;
-
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -13,16 +11,16 @@ import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class InstallPlugin extends BimDatabaseAction<Void> {
+public class UninstallPlugin extends BimDatabaseAction<Void> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(InstallPlugin.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(UninstallPlugin.class);
 	private BimServer bimServer;
 	private String groupId;
 	private String artifactId;
 	private String version;
 	private String repository;
 
-	public InstallPlugin(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String repository, String groupId, String artifactId, String version) {
+	public UninstallPlugin(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String repository, String groupId, String artifactId, String version) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.repository = repository;
@@ -34,11 +32,9 @@ public class InstallPlugin extends BimDatabaseAction<Void> {
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		MavenPluginLocation mavenPluginLocation = new MavenPluginLocation(repository, groupId, artifactId);
-		
+
 		try {
-			Path jarFile = mavenPluginLocation.getVersionJar(version);
-			
-			bimServer.getPluginManager().install(mavenPluginLocation.getIdentifier(), jarFile);
+			bimServer.getPluginManager().uninstall(mavenPluginLocation.getIdentifier());
 		} catch (Exception e) {
 			throw new UserException(e);
 		}

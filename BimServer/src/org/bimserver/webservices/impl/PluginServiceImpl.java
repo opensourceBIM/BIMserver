@@ -47,6 +47,7 @@ import org.bimserver.database.actions.DeleteRenderEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
 import org.bimserver.database.actions.GetAvailablePluginInformation;
 import org.bimserver.database.actions.GetByIdDatabaseAction;
+import org.bimserver.database.actions.GetInstalledPluginInformation;
 import org.bimserver.database.actions.GetMessagingSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByIdDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByNameDatabaseAction;
@@ -54,7 +55,6 @@ import org.bimserver.database.actions.GetModelMergerByIdDatabaseAction;
 import org.bimserver.database.actions.GetModelMergerByNameDatabaseAction;
 import org.bimserver.database.actions.GetObjectIDMByIdDatabaseAction;
 import org.bimserver.database.actions.GetObjectIDMByNameDatabaseAction;
-import org.bimserver.database.actions.GetPluginUpdateInformation;
 import org.bimserver.database.actions.GetRenderEngineByIdDatabaseAction;
 import org.bimserver.database.actions.GetRenderEngineByNameDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByPluginClassNameDatabaseAction;
@@ -63,6 +63,7 @@ import org.bimserver.database.actions.GetWebModuleByNameDatabaseAction;
 import org.bimserver.database.actions.InstallPlugin;
 import org.bimserver.database.actions.SetPluginSettingsDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
+import org.bimserver.database.actions.UninstallPlugin;
 import org.bimserver.database.actions.UpdateDatabaseAction;
 import org.bimserver.database.actions.UpdateDeserializerDatabaseAction;
 import org.bimserver.database.actions.UpdateModelCompareDatabaseAction;
@@ -387,7 +388,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			UserSettings userSettings = getUserSettings(session);
-			List<SQueryEnginePluginConfiguration> queryEngines = getBimServer().getSConverter().convertToSListQueryEnginePluginConfiguration(userSettings.getQueryengines());
+			List<SQueryEnginePluginConfiguration> queryEngines = getBimServer().getSConverter().convertToSListQueryEnginePluginConfiguration(userSettings.getQueryEngines());
 			Collections.sort(queryEngines, new SPluginConfigurationComparator());
 			return queryEngines;
 		} catch (Exception e) {
@@ -403,7 +404,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			UserSettings userSettings = getUserSettings(session);
-			List<SModelComparePluginConfiguration> modelCompares = getBimServer().getSConverter().convertToSListModelComparePluginConfiguration(userSettings.getModelcompares());
+			List<SModelComparePluginConfiguration> modelCompares = getBimServer().getSConverter().convertToSListModelComparePluginConfiguration(userSettings.getModelCompares());
 			Collections.sort(modelCompares, new SPluginConfigurationComparator());
 			return modelCompares;
 		} catch (Exception e) {
@@ -419,7 +420,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			UserSettings userSettings = getUserSettings(session);
-			List<SModelMergerPluginConfiguration> modelMergers = getBimServer().getSConverter().convertToSListModelMergerPluginConfiguration(userSettings.getModelmergers());
+			List<SModelMergerPluginConfiguration> modelMergers = getBimServer().getSConverter().convertToSListModelMergerPluginConfiguration(userSettings.getModelMergers());
 			Collections.sort(modelMergers, new SPluginConfigurationComparator());
 			return modelMergers;
 		} catch (Exception e) {
@@ -691,6 +692,9 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	
 	@Override
 	public SObjectDefinition getPluginObjectDefinition(Long oid) throws ServerException, UserException {
+		if (oid == -1) {
+			return null;
+		}
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			PluginDescriptor pluginDescriptor = session.get(oid, OldQuery.getDefault());
@@ -912,7 +916,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
 				@Override
 				public void set(UserSettings userSettings) {
-					userSettings.setDefaultQueryEngine(find(userSettings.getQueryengines(), oid));
+					userSettings.setDefaultQueryEngine(find(userSettings.getQueryEngines(), oid));
 				}});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
@@ -1016,7 +1020,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
 				@Override
 				public void set(UserSettings userSettings) {
-					userSettings.setDefaultModelCompare(find(userSettings.getModelcompares(), oid));
+					userSettings.setDefaultModelCompare(find(userSettings.getModelCompares(), oid));
 				}});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
@@ -1033,7 +1037,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
 				@Override
 				public void set(UserSettings userSettings) {
-					userSettings.setDefaultModelMerger(find(userSettings.getModelmergers(), oid));
+					userSettings.setDefaultModelMerger(find(userSettings.getModelMergers(), oid));
 				}});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
@@ -1264,6 +1268,9 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	
 	@Override
 	public SPluginDescriptor getPluginDescriptor(Long oid) throws ServerException, UserException {
+		if (oid == -1) {
+			return null;
+		}
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			PluginDescriptor pluginDescriptor = session.get(oid, OldQuery.getDefault());
@@ -1337,6 +1344,32 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			session.executeAndCommitAction(new InstallPlugin(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public List<SPluginUpdateInformation> getInstalledPlugins() throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetInstalledPluginInformation(session, getInternalAccessMethod(), getBimServer(), false));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void uninstallPlugin(String repository, String groupId, String artifactId, String version) throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			session.executeAndCommitAction(new UninstallPlugin(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

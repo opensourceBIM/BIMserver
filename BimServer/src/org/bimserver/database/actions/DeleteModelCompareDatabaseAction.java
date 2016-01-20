@@ -37,7 +37,7 @@ public class DeleteModelCompareDatabaseAction extends DeleteDatabaseAction<Model
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		ModelComparePluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), OldQuery.getDefault());
 		UserSettings settings = object.getUserSettings();
-		settings.getModelcompares().remove(object);
+		settings.getModelCompares().remove(object);
 		getDatabaseSession().store(settings);
 		return super.execute();
 	}

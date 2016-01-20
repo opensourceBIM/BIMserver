@@ -37,7 +37,7 @@ public class DeleteQueryEngineDatabaseAction extends DeleteDatabaseAction<QueryE
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		QueryEnginePluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), OldQuery.getDefault());
 		UserSettings settings = object.getUserSettings();
-		settings.getQueryengines().remove(object);
+		settings.getQueryEngines().remove(object);
 		getDatabaseSession().store(settings);
 		return super.execute();
 	}

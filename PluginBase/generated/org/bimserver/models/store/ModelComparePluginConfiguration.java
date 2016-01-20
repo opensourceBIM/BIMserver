@@ -35,7 +35,7 @@ package org.bimserver.models.store;
 public interface ModelComparePluginConfiguration extends PluginConfiguration {
 	/**
 	 * Returns the value of the '<em><b>User Settings</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getModelcompares <em>Modelcompares</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getModelCompares <em>Model Compares</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>User Settings</em>' reference isn't clear,
@@ -45,8 +45,8 @@ public interface ModelComparePluginConfiguration extends PluginConfiguration {
 	 * @return the value of the '<em>User Settings</em>' reference.
 	 * @see #setUserSettings(UserSettings)
 	 * @see org.bimserver.models.store.StorePackage#getModelComparePluginConfiguration_UserSettings()
-	 * @see org.bimserver.models.store.UserSettings#getModelcompares
-	 * @model opposite="modelcompares"
+	 * @see org.bimserver.models.store.UserSettings#getModelCompares
+	 * @model opposite="modelCompares"
 	 * @generated
 	 */
 	UserSettings getUserSettings();

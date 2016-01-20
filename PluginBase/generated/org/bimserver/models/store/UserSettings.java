@@ -32,9 +32,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.UserSettings#getObjectIDMs <em>Object ID Ms</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getRenderEngines <em>Render Engines</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getDeserializers <em>Deserializers</em>}</li>
- *   <li>{@link org.bimserver.models.store.UserSettings#getQueryengines <em>Queryengines</em>}</li>
- *   <li>{@link org.bimserver.models.store.UserSettings#getModelmergers <em>Modelmergers</em>}</li>
- *   <li>{@link org.bimserver.models.store.UserSettings#getModelcompares <em>Modelcompares</em>}</li>
+ *   <li>{@link org.bimserver.models.store.UserSettings#getQueryEngines <em>Query Engines</em>}</li>
+ *   <li>{@link org.bimserver.models.store.UserSettings#getModelMergers <em>Model Mergers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.UserSettings#getModelCompares <em>Model Compares</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultModelMerger <em>Default Model Merger</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultModelCompare <em>Default Model Compare</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultQueryEngine <em>Default Query Engine</em>}</li>
@@ -124,58 +124,58 @@ public interface UserSettings extends IdEObject {
 	EList<DeserializerPluginConfiguration> getDeserializers();
 
 	/**
-	 * Returns the value of the '<em><b>Queryengines</b></em>' reference list.
+	 * Returns the value of the '<em><b>Query Engines</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.store.QueryEnginePluginConfiguration}.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.QueryEnginePluginConfiguration#getUserSettings <em>User Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Queryengines</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Query Engines</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Queryengines</em>' reference list.
-	 * @see org.bimserver.models.store.StorePackage#getUserSettings_Queryengines()
+	 * @return the value of the '<em>Query Engines</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getUserSettings_QueryEngines()
 	 * @see org.bimserver.models.store.QueryEnginePluginConfiguration#getUserSettings
 	 * @model opposite="userSettings"
 	 * @generated
 	 */
-	EList<QueryEnginePluginConfiguration> getQueryengines();
+	EList<QueryEnginePluginConfiguration> getQueryEngines();
 
 	/**
-	 * Returns the value of the '<em><b>Modelmergers</b></em>' reference list.
+	 * Returns the value of the '<em><b>Model Mergers</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.store.ModelMergerPluginConfiguration}.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ModelMergerPluginConfiguration#getUserSettings <em>User Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Modelmergers</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Model Mergers</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Modelmergers</em>' reference list.
-	 * @see org.bimserver.models.store.StorePackage#getUserSettings_Modelmergers()
+	 * @return the value of the '<em>Model Mergers</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getUserSettings_ModelMergers()
 	 * @see org.bimserver.models.store.ModelMergerPluginConfiguration#getUserSettings
 	 * @model opposite="userSettings"
 	 * @generated
 	 */
-	EList<ModelMergerPluginConfiguration> getModelmergers();
+	EList<ModelMergerPluginConfiguration> getModelMergers();
 
 	/**
-	 * Returns the value of the '<em><b>Modelcompares</b></em>' reference list.
+	 * Returns the value of the '<em><b>Model Compares</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.store.ModelComparePluginConfiguration}.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ModelComparePluginConfiguration#getUserSettings <em>User Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Modelcompares</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Model Compares</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Modelcompares</em>' reference list.
-	 * @see org.bimserver.models.store.StorePackage#getUserSettings_Modelcompares()
+	 * @return the value of the '<em>Model Compares</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getUserSettings_ModelCompares()
 	 * @see org.bimserver.models.store.ModelComparePluginConfiguration#getUserSettings
 	 * @model opposite="userSettings"
 	 * @generated
 	 */
-	EList<ModelComparePluginConfiguration> getModelcompares();
+	EList<ModelComparePluginConfiguration> getModelCompares();
 
 	/**
 	 * Returns the value of the '<em><b>Default Model Merger</b></em>' reference.

@@ -26,6 +26,12 @@ public class Licenser {
 		}
 		processProject(new File("C:\\Git\\BuildingSMARTLibrary\\BuildingSMARTLibrary"));
 		processProject(new File("C:\\Git\\BinarySerializers\\BinarySerializers"));
+		processProject(new File("C:\\Git\\CityGML\\CityGML"));
+		processProject(new File("C:\\Git\\Collada\\Collada"));
+		processProject(new File("C:\\Git\\Mergers\\Mergers"));
+		processProject(new File("C:\\Git\\JavaQueryEngine\\JavaQueryEngine"));
+		processProject(new File("C:\\Git\\JavaModelChecker\\JavaModelChecker"));
+		processProject(new File("C:\\Git\\Charting\\Charting"));
 		System.out.println("Unchanged: " + same);
 		System.out.println("Changed: " + changed);
 		System.out.println("Skipped: " + skipped);
