@@ -37,7 +37,7 @@ public class DeleteModelMergerDatabaseAction extends DeleteDatabaseAction<ModelM
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		ModelMergerPluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), OldQuery.getDefault());
 		UserSettings settings = object.getUserSettings();
-		settings.getModelmergers().remove(object);
+		settings.getModelMergers().remove(object);
 		getDatabaseSession().store(settings);
 		return super.execute();
 	}

@@ -1,5 +1,7 @@
 package org.bimserver.plugins;
 
+import org.bimserver.BimserverDatabaseException;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -18,5 +20,6 @@ package org.bimserver.plugins;
  *****************************************************************************/
 
 public interface PluginChangeListener {
+	void pluginInstalled(Plugin plugin) throws BimserverDatabaseException;
 	void pluginStateChanged(PluginContext pluginContext, boolean enabled);
 }

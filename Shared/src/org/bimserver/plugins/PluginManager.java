@@ -50,6 +50,7 @@ import javax.xml.bind.Unmarshaller;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.Schema;
 import org.bimserver.models.store.Parameter;
@@ -115,25 +116,37 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class PluginManager implements PluginManagerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
-	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<Class<? extends Plugin>, Set<PluginContext>>();
+	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<>();
 	private final Map<Plugin, PluginContext> pluginToPluginContext = new HashMap<>();
-	private final Set<Path> loadedLocations = new HashSet<>();
-	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<PluginChangeListener>();
+	private final Map<String, PluginBundle> identifierToPluginBundle = new HashMap<>();
+	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<>();
 	private final Path tempDir;
 	private final String baseClassPath;
 	private final ServiceFactory serviceFactory;
 	private final NotificationsManagerInterface notificationsManagerInterface;
 	private final SServicesMap servicesMap;
+	private final Path pluginsDir;
 	private BimServerClientFactory bimServerClientFactory;
 	private MetaDataManager metaDataManager;
 
-	public PluginManager(Path tempDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, SServicesMap servicesMap) {
+	public PluginManager(Path tempDir, Path pluginsDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, SServicesMap servicesMap) {
 		LOGGER.debug("Creating new PluginManager");
+		this.pluginsDir = pluginsDir;
 		this.tempDir = tempDir;
 		this.baseClassPath = baseClassPath;
 		this.serviceFactory = serviceFactory;
 		this.notificationsManagerInterface = notificationsManagerInterface;
 		this.servicesMap = servicesMap;
+		
+		if (pluginsDir != null) {
+			if (!Files.isDirectory(pluginsDir)) {
+				try {
+					Files.createDirectories(pluginsDir);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	public void loadPluginsFromEclipseProjectNoExceptions(Path projectRoot) {
@@ -144,12 +157,9 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public void loadPluginsFromEclipseProject(Path projectRoot) throws PluginException {
-		for (Path path : loadedLocations) {
-			if (projectRoot.startsWith(path)) {
-				// Already loaded this plugin, or a "parent plugin"
-				return;
-			}
+	public PluginBundle loadPluginsFromEclipseProject(Path projectRoot) throws PluginException {
+		if (identifierToPluginBundle.containsKey(projectRoot.getFileName().toAbsolutePath())) {
+			throw new PluginException("Plugin already loaded");
 		}
 		if (!Files.isDirectory(projectRoot)) {
 			throw new PluginException("No directory: " + projectRoot.toString());
@@ -273,7 +283,10 @@ public class PluginManager implements PluginManagerInterface {
 //			loadDependencies(libFolder, delegatingClassLoader);
 			EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
 			// pluginClassloader.dumpStructure(0);
-			loadedLocations.add(projectRoot);
+			PluginBundle pluginBundle = new PluginBundle(null);
+			
+			// TODO
+			identifierToPluginBundle.put(null, pluginBundle);
 
 			ResourceLoader resourceLoader = new ResourceLoader() {
 				@Override
@@ -287,7 +300,7 @@ public class PluginManager implements PluginManagerInterface {
 				}
 			};
 
-			loadPlugins(resourceLoader, pluginClassloader, projectRoot.toUri(), projectRoot.resolve("target/classes").toString(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT, bimServerDependencies);
+			return loadPlugins(pluginBundle, resourceLoader, pluginClassloader, projectRoot.toUri(), projectRoot.resolve("target/classes").toString(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT, bimServerDependencies);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
@@ -307,7 +320,7 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void loadPlugins(ResourceLoader resourceLoader, ClassLoader classLoader, URI location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType, List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
+	private PluginBundle loadPlugins(PluginBundle pluginBundle, ResourceLoader resourceLoader, ClassLoader classLoader, URI location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType, List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
 			if (pluginImplementation.isEnabled()) {
 				String interfaceClassName = pluginImplementation.getInterfaceClass().trim().replace("\n", "");
@@ -318,7 +331,7 @@ public class PluginManager implements PluginManagerInterface {
 						try {
 							Class implementationClass = classLoader.loadClass(implementationClassName);
 							Plugin plugin = (Plugin) implementationClass.newInstance();
-							loadPlugin(interfaceClass, location, classLocation, plugin, classLoader, pluginType, pluginImplementation, dependencies);
+							pluginBundle.add(loadPlugin(interfaceClass, location, classLocation, plugin, classLoader, pluginType, pluginImplementation, dependencies));
 						} catch (NoClassDefFoundError e) {
 							throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
 						} catch (ClassNotFoundException e) {
@@ -349,6 +362,7 @@ public class PluginManager implements PluginManagerInterface {
 				LOGGER.info("Plugin " + pluginImplementation.getImplementationClass() + " is disabled in plugin.xml");
 			}
 		}
+		return pluginBundle;
 	}
 
 	private PluginDescriptor getPluginDescriptor(InputStream inputStream) throws JAXBException {
@@ -366,7 +380,7 @@ public class PluginManager implements PluginManagerInterface {
 		for (Path file : PathUtils.list(directory)) {
 			if (file.getFileName().toString().toLowerCase().endsWith(".jar")) {
 				try {
-					loadPluginsFromJar(file);
+					loadPluginsFromJar(null, file);
 				} catch (PluginException e) {
 					LOGGER.error("", e);
 				}
@@ -374,12 +388,9 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public void loadPluginsFromJar(Path file) throws PluginException {
-		for (Path path : loadedLocations) {
-			if (file.startsWith(path)) {
-				// Already loaded this plugin, or a "parent plugin"
-				return;
-			}
+	public PluginBundle loadPluginsFromJar(String identifier, Path file) throws PluginException {
+		if (identifierToPluginBundle.containsKey(identifier)) {
+			throw new PluginException("Plugin already loaded " + file);
 		}
 		LOGGER.debug("Loading plugins from " + file.toString());
 		if (!Files.exists(file)) {
@@ -396,7 +407,11 @@ public class PluginManager implements PluginManagerInterface {
 				throw new PluginException("No plugin descriptor could be created");
 			}
 			LOGGER.debug(pluginDescriptor.toString());
-			loadedLocations.add(file);
+			PluginBundle pluginBundle = new PluginBundle(identifier);
+			pluginBundle.addClassLoader(jarClassLoader);
+			
+			identifierToPluginBundle.put(identifier, pluginBundle);
+			
 			URI fileUri = file.toAbsolutePath().toUri();
 			URI jarUri = new URI("jar:" + fileUri.toString());
 
@@ -407,7 +422,7 @@ public class PluginManager implements PluginManagerInterface {
 				}
 			};
 
-			loadPlugins(resourceLoader, jarClassLoader, jarUri, file.toAbsolutePath().toString(), pluginDescriptor, PluginSourceType.JAR_FILE, null);
+			return loadPlugins(pluginBundle, resourceLoader, jarClassLoader, jarUri, file.toAbsolutePath().toString(), pluginDescriptor, PluginSourceType.JAR_FILE, null);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
@@ -506,7 +521,7 @@ public class PluginManager implements PluginManagerInterface {
 					}
 				};
 
-				loadPlugins(resourceLoader, getClass().getClassLoader(), url.toURI(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL, null);
+				loadPlugins(new PluginBundle(null), resourceLoader, getClass().getClassLoader(), url.toURI(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL, null);
 			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
@@ -566,6 +581,12 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
+	public void notifyPluginInstalled(Plugin plugin) throws BimserverDatabaseException {
+		for (PluginChangeListener pluginChangeListener : pluginChangeListeners) {
+			pluginChangeListener.pluginInstalled(plugin);
+		}
+	}
+
 	public Collection<DeserializerPlugin> getAllDeserializerPlugins(String extension, boolean onlyEnabled) {
 		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(onlyEnabled);
 		Iterator<DeserializerPlugin> iterator = allDeserializerPlugins.iterator();
@@ -618,7 +639,7 @@ public class PluginManager implements PluginManagerInterface {
 		return tempDir;
 	}
 
-	public void loadPlugin(Class<? extends Plugin> interfaceClass, URI location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType, PluginImplementation pluginImplementation, List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
+	public Plugin loadPlugin(Class<? extends Plugin> interfaceClass, URI location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType, PluginImplementation pluginImplementation, List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
 		LOGGER.debug("Loading plugin " + plugin.getClass().getSimpleName() + " of type " + interfaceClass.getSimpleName());
 		if (!Plugin.class.isAssignableFrom(interfaceClass)) {
 			throw new PluginException("Given interface class (" + interfaceClass.getName() + ") must be a subclass of " + Plugin.class.getName());
@@ -634,6 +655,7 @@ public class PluginManager implements PluginManagerInterface {
 		} catch (IOException e) {
 			throw new PluginException(e);
 		}
+		return plugin;
 	}
 
 	/**
@@ -892,5 +914,64 @@ public class PluginManager implements PluginManagerInterface {
 
 	public MessagingStreamingSerializerPlugin getMessagingStreamingSerializerPlugin(String className, boolean onlyEnabled) {
 		return (MessagingStreamingSerializerPlugin) getPlugin(className, onlyEnabled);
+	}
+
+	public PluginBundle install(String identifier, Path jarFile) throws Exception {
+		Path target = pluginsDir.resolve(jarFile.getFileName().toString());
+		if (Files.exists(target)) {
+			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
+		}
+		Files.copy(jarFile, target);
+		PluginBundle pluginBundle = null;
+		// Stage 1, load all plugins from the JAR file and initialize them
+		try {
+			pluginBundle = loadPluginsFromJar(identifier, target);
+			for (Plugin plugin : pluginBundle) {
+				plugin.init(this);
+			}
+		} catch (Exception e) {
+			Files.delete(target);
+			LOGGER.error("", e);
+			throw e;
+		}
+		// Stage 2, if all went well, notify the listeners of this plugin, if anything goes wrong in the notifications, the plugin bundle will be uninstalled
+		try {
+			for (Plugin plugin : pluginBundle) {
+				notifyPluginInstalled(plugin);
+			}
+			return pluginBundle;
+		} catch (Exception e) {
+			uninstall(pluginBundle);
+			Files.delete(target);
+			LOGGER.error("", e);
+			throw e;
+		}
+	}
+
+	public void uninstall(String identifier) {
+		PluginBundle pluginBundle = identifierToPluginBundle.get(identifier);
+		try {
+			pluginBundle.close();
+			identifierToPluginBundle.remove(identifier);
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		}
+	}
+	
+	private void uninstall(PluginBundle pluginBundle) {
+		try {
+			pluginBundle.close();
+			identifierToPluginBundle.remove(pluginBundle.getIdentifier());
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		}
+	}
+
+	public PluginBundle getPluginBundle(String identifier) {
+		return identifierToPluginBundle.get(identifier);
+	}
+
+	public Collection<PluginBundle> getPluginBundles() {
+		return identifierToPluginBundle.values();
 	}
 }

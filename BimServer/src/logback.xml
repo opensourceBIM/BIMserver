@@ -28,7 +28,7 @@
 	</appender>
 	<appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level (%file:%line) %message%n</pattern>
+			<pattern>%d{HH:mm:ss} %-5level [%thread]: %-80message \(%file:%line\) %n</pattern>
 		</encoder>
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
 			<level>DEBUG</level>
@@ -66,6 +66,9 @@
 		<appender-ref ref="STDERR" />
 	</logger>
 	<logger name="org.quartz" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.eclipse.aether" level="warn" additivity="false">
 		<appender-ref ref="STDERR" />
 	</logger>
 

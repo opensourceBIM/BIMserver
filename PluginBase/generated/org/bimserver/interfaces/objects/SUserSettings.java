@@ -35,9 +35,9 @@ public class SUserSettings implements SDataBase
 	private List<Long> objectIDMs = new ArrayList<Long>();
 	private List<Long> renderEngines = new ArrayList<Long>();
 	private List<Long> deserializers = new ArrayList<Long>();
-	private List<Long> queryengines = new ArrayList<Long>();
-	private List<Long> modelmergers = new ArrayList<Long>();
-	private List<Long> modelcompares = new ArrayList<Long>();
+	private List<Long> queryEngines = new ArrayList<Long>();
+	private List<Long> modelMergers = new ArrayList<Long>();
+	private List<Long> modelCompares = new ArrayList<Long>();
 	private long defaultModelMergerId = -1;
 	private long defaultModelCompareId = -1;
 	private long defaultQueryEngineId = -1;
@@ -85,14 +85,14 @@ public class SUserSettings implements SDataBase
 		if (sField.getName().equals("deserializers")) {
 			return getDeserializers();
 		}
-		if (sField.getName().equals("queryengines")) {
-			return getQueryengines();
+		if (sField.getName().equals("queryEngines")) {
+			return getQueryEngines();
 		}
-		if (sField.getName().equals("modelmergers")) {
-			return getModelmergers();
+		if (sField.getName().equals("modelMergers")) {
+			return getModelMergers();
 		}
-		if (sField.getName().equals("modelcompares")) {
-			return getModelcompares();
+		if (sField.getName().equals("modelCompares")) {
+			return getModelCompares();
 		}
 		if (sField.getName().equals("defaultModelMergerId")) {
 			return getDefaultModelMergerId();
@@ -145,16 +145,16 @@ public class SUserSettings implements SDataBase
 			setDeserializers((List<Long>)val);
 			return;
 		}
-		if (sField.getName().equals("queryengines")) {
-			setQueryengines((List<Long>)val);
+		if (sField.getName().equals("queryEngines")) {
+			setQueryEngines((List<Long>)val);
 			return;
 		}
-		if (sField.getName().equals("modelmergers")) {
-			setModelmergers((List<Long>)val);
+		if (sField.getName().equals("modelMergers")) {
+			setModelMergers((List<Long>)val);
 			return;
 		}
-		if (sField.getName().equals("modelcompares")) {
-			setModelcompares((List<Long>)val);
+		if (sField.getName().equals("modelCompares")) {
+			setModelCompares((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("defaultModelMergerId")) {
@@ -232,28 +232,28 @@ public class SUserSettings implements SDataBase
 		this.deserializers = deserializers;
 	}
 	
-	public List<Long> getQueryengines() {
-		return queryengines;
+	public List<Long> getQueryEngines() {
+		return queryEngines;
 	}
 
-	public void setQueryengines(List<Long> queryengines) {
-		this.queryengines = queryengines;
+	public void setQueryEngines(List<Long> queryEngines) {
+		this.queryEngines = queryEngines;
 	}
 	
-	public List<Long> getModelmergers() {
-		return modelmergers;
+	public List<Long> getModelMergers() {
+		return modelMergers;
 	}
 
-	public void setModelmergers(List<Long> modelmergers) {
-		this.modelmergers = modelmergers;
+	public void setModelMergers(List<Long> modelMergers) {
+		this.modelMergers = modelMergers;
 	}
 	
-	public List<Long> getModelcompares() {
-		return modelcompares;
+	public List<Long> getModelCompares() {
+		return modelCompares;
 	}
 
-	public void setModelcompares(List<Long> modelcompares) {
-		this.modelcompares = modelcompares;
+	public void setModelCompares(List<Long> modelCompares) {
+		this.modelCompares = modelCompares;
 	}
 	
 	public long getDefaultModelMergerId() {

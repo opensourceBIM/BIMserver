@@ -259,6 +259,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetInstalledPluginsCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginUpdateInformation> result);
+		void error(Throwable e);
+	}
+	
 	public interface GetInternalServiceByIdCallback {
 		void success(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration result);
 		void error(Throwable e);
@@ -396,6 +401,11 @@ public class AsyncPluginInterface {
 	
 	public interface StartGetPluginUpdateInformationCallback {
 		void success(java.lang.Long result);
+		void error(Throwable e);
+	}
+	
+	public interface UninstallPluginCallback {
+		void success();
 		void error(Throwable e);
 	}
 	
@@ -1010,6 +1020,18 @@ public class AsyncPluginInterface {
 		});
 	}
 	
+	public void getInstalledPlugins(final GetInstalledPluginsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getInstalledPlugins());
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getInternalServiceById(final java.lang.Long oid, final GetInternalServiceByIdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1348,6 +1370,19 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.startGetPluginUpdateInformation());
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void uninstallPlugin(final java.lang.String repository, final java.lang.String groupId, final java.lang.String artifactId, final java.lang.String version, final UninstallPluginCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.uninstallPlugin(repository, groupId, artifactId, version);
+					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
 				}

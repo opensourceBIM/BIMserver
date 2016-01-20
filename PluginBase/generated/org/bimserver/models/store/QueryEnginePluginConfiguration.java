@@ -35,7 +35,7 @@ package org.bimserver.models.store;
 public interface QueryEnginePluginConfiguration extends PluginConfiguration {
 	/**
 	 * Returns the value of the '<em><b>User Settings</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getQueryengines <em>Queryengines</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getQueryEngines <em>Query Engines</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>User Settings</em>' reference isn't clear,
@@ -45,8 +45,8 @@ public interface QueryEnginePluginConfiguration extends PluginConfiguration {
 	 * @return the value of the '<em>User Settings</em>' reference.
 	 * @see #setUserSettings(UserSettings)
 	 * @see org.bimserver.models.store.StorePackage#getQueryEnginePluginConfiguration_UserSettings()
-	 * @see org.bimserver.models.store.UserSettings#getQueryengines
-	 * @model opposite="queryengines"
+	 * @see org.bimserver.models.store.UserSettings#getQueryEngines
+	 * @model opposite="queryEngines"
 	 * @generated
 	 */
 	UserSettings getUserSettings();

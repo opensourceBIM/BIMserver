@@ -1521,11 +1521,11 @@ message SUserSettings {
 	optional int64 defaultSerializerId = 6;
 	repeated int64 deserializers = 7;
 	repeated int64 messagingSerializerPlugins = 8;
-	repeated int64 modelcompares = 9;
-	repeated int64 modelmergers = 10;
+	repeated int64 modelCompares = 9;
+	repeated int64 modelMergers = 10;
 	repeated int64 objectIDMs = 11;
 	optional int64 oid = 12;
-	repeated int64 queryengines = 13;
+	repeated int64 queryEngines = 13;
 	repeated int64 renderEngines = 14;
 	optional int32 rid = 15;
 	repeated int64 serializers = 16;

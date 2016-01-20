@@ -1,9 +1,27 @@
 package org.bimserver.plugins;
 
+/******************************************************************************
+ * Copyright (C) 2009-2016  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
@@ -186,12 +204,6 @@ public class MavenPluginLocation extends PluginLocation {
 		LocalRepository localRepo = new LocalRepository("target/local-repo");
 		session.setLocalRepositoryManager(system.newLocalRepositoryManager(session, localRepo));
 
-		session.setTransferListener(new ConsoleTransferListener());
-		session.setRepositoryListener(new ConsoleRepositoryListener());
-
-		// uncomment to generate dirty trees
-		// session.setDependencyGraphTransformer( null );
-
 		return session;
 	}
 
@@ -207,7 +219,7 @@ public class MavenPluginLocation extends PluginLocation {
 		return defaultrepository;
 	}
 
-	public File getVersionJar(String version) throws ArtifactResolutionException {
+	public Path getVersionJar(String version) throws ArtifactResolutionException {
 		ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
 		
 		Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":" + version.toString());
@@ -220,8 +232,11 @@ public class MavenPluginLocation extends PluginLocation {
 		request.setRepositories(repositories);
 		ArtifactResult resolveArtifact = system.resolveArtifact(session, request);
 		
-		File jarFile = resolveArtifact.getArtifact().getFile();
-		
-		return jarFile;
+		return resolveArtifact.getArtifact().getFile().toPath();
+	}
+
+	@Override
+	public String getIdentifier() {
+		return groupId + ":" + artifactId;
 	}
 }

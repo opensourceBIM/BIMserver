@@ -188,6 +188,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SPluginUpdateInformation> getInstalledPlugins() throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SInternalServicePluginConfiguration getInternalServiceById(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
@@ -289,6 +293,9 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	
 	public java.lang.Long startGetPluginUpdateInformation() throws UserException, ServerException {
 		return null;
+	}
+	
+	public void uninstallPlugin(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version) throws UserException, ServerException {
 	}
 	
 	public void updateDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws UserException, ServerException {

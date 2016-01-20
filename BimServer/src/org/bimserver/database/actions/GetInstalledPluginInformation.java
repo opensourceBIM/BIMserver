@@ -42,13 +42,13 @@ import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GetAvailablePluginInformation extends BimDatabaseAction<List<SPluginUpdateInformation>> {
-	private static final Logger LOGGER = LoggerFactory.getLogger(GetAvailablePluginInformation.class);
+public class GetInstalledPluginInformation extends BimDatabaseAction<List<SPluginUpdateInformation>> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(GetInstalledPluginInformation.class);
 	private BimServer bimServer;
 	private boolean strictVersionChecking;
 	private DefaultArtifactVersion bimserverVersion;
 
-	public GetAvailablePluginInformation(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, boolean strictVersionChecking) {
+	public GetInstalledPluginInformation(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, boolean strictVersionChecking) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.strictVersionChecking = strictVersionChecking;
@@ -62,6 +62,11 @@ public class GetAvailablePluginInformation extends BimDatabaseAction<List<SPlugi
 
 		bimserverVersion = new DefaultArtifactVersion(bimServer.getVersionChecker().getLocalVersion().getFullString());
 
+		for (PluginBundle pluginBundle : bimServer.getPluginManager().getPluginBundles()) {
+			SPluginUpdateInformation sPluginUpdateInformation = new SPluginUpdateInformation();
+			result.add(sPluginUpdateInformation);
+		}
+		
 		for (PluginLocation pluginLocation : repository.listPluginLocations()) {
 			PluginBundle pluginBundle = bimServer.getPluginManager().getPluginBundle(pluginLocation.getIdentifier());
 			// Skipping all plugin bundles that already have an installed version

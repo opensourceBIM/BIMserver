@@ -480,7 +480,7 @@ public class Step0000 extends Migration {
 		EClass queryEnginePluginConfiguration = schema.createEClass(storePackage, "QueryEnginePluginConfiguration", pluginConfiguration);
 
 		EReference queryEngineSettingsReference = schema.createEReference(queryEnginePluginConfiguration, "userSettings", userSettings, Multiplicity.SINGLE);
-		EReference settingsQueryEnginesReference = schema.createEReference(userSettings, "queryengines", queryEnginePluginConfiguration, Multiplicity.MANY);
+		EReference settingsQueryEnginesReference = schema.createEReference(userSettings, "queryEngines", queryEnginePluginConfiguration, Multiplicity.MANY);
 		
 		queryEngineSettingsReference.setEOpposite(settingsQueryEnginesReference);
 		settingsQueryEnginesReference.setEOpposite(queryEngineSettingsReference);
@@ -500,7 +500,7 @@ public class Step0000 extends Migration {
 		EClass modelMergerPluginConfiguration = schema.createEClass(storePackage, "ModelMergerPluginConfiguration", pluginConfiguration);
 
 		EReference modelMergerSettingsReference = schema.createEReference(modelMergerPluginConfiguration, "userSettings", userSettings, Multiplicity.SINGLE);
-		EReference settingsModelMergersReference = schema.createEReference(userSettings, "modelmergers", modelMergerPluginConfiguration, Multiplicity.MANY);
+		EReference settingsModelMergersReference = schema.createEReference(userSettings, "modelMergers", modelMergerPluginConfiguration, Multiplicity.MANY);
 		
 		modelMergerSettingsReference.setEOpposite(settingsModelMergersReference);
 		settingsModelMergersReference.setEOpposite(modelMergerSettingsReference);
@@ -510,7 +510,7 @@ public class Step0000 extends Migration {
 		EClass modelComparePluginConfiguration = schema.createEClass(storePackage, "ModelComparePluginConfiguration", pluginConfiguration);
 
 		EReference modelCompareSettingsReference = schema.createEReference(modelComparePluginConfiguration, "userSettings", userSettings, Multiplicity.SINGLE);
-		EReference settingsModelComparesReference = schema.createEReference(userSettings, "modelcompares", modelComparePluginConfiguration, Multiplicity.MANY);
+		EReference settingsModelComparesReference = schema.createEReference(userSettings, "modelCompares", modelComparePluginConfiguration, Multiplicity.MANY);
 
 		modelCompareSettingsReference.setEOpposite(settingsModelComparesReference);
 		settingsModelComparesReference.setEOpposite(modelCompareSettingsReference);

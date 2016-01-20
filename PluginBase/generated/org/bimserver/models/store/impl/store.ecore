@@ -229,11 +229,11 @@
         eType="#//RenderEnginePluginConfiguration" eOpposite="#//RenderEnginePluginConfiguration/userSettings"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deserializers" upperBound="-1"
         eType="#//DeserializerPluginConfiguration" eOpposite="#//DeserializerPluginConfiguration/userSettings"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="queryengines" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="queryEngines" upperBound="-1"
         eType="#//QueryEnginePluginConfiguration" eOpposite="#//QueryEnginePluginConfiguration/userSettings"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modelmergers" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelMergers" upperBound="-1"
         eType="#//ModelMergerPluginConfiguration" eOpposite="#//ModelMergerPluginConfiguration/userSettings"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modelcompares" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelCompares" upperBound="-1"
         eType="#//ModelComparePluginConfiguration" eOpposite="#//ModelComparePluginConfiguration/userSettings"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultModelMerger" eType="#//ModelMergerPluginConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultModelCompare" eType="#//ModelComparePluginConfiguration"/>
@@ -513,7 +513,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginConfiguration" eSuperTypes="#//PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
-        eOpposite="#//UserSettings/queryengines"/>
+        eOpposite="#//UserSettings/queryEngines"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WebModulePluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EClass" name="WebModulePluginConfiguration" eSuperTypes="#//PluginConfiguration">
@@ -523,12 +523,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="ModelMergerPluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EClass" name="ModelMergerPluginConfiguration" eSuperTypes="#//PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
-        eOpposite="#//UserSettings/modelmergers"/>
+        eOpposite="#//UserSettings/modelMergers"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelComparePluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EClass" name="ModelComparePluginConfiguration" eSuperTypes="#//PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
-        eOpposite="#//UserSettings/modelcompares"/>
+        eOpposite="#//UserSettings/modelCompares"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Trigger">
     <eLiterals name="NEW_REVISION"/>

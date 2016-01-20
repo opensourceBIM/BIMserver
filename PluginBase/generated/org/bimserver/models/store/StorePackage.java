@@ -1250,31 +1250,31 @@ public interface StorePackage extends EPackage {
 	int USER_SETTINGS__DESERIALIZERS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Queryengines</b></em>' reference list.
+	 * The feature id for the '<em><b>Query Engines</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SETTINGS__QUERYENGINES = 4;
+	int USER_SETTINGS__QUERY_ENGINES = 4;
 
 	/**
-	 * The feature id for the '<em><b>Modelmergers</b></em>' reference list.
+	 * The feature id for the '<em><b>Model Mergers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SETTINGS__MODELMERGERS = 5;
+	int USER_SETTINGS__MODEL_MERGERS = 5;
 
 	/**
-	 * The feature id for the '<em><b>Modelcompares</b></em>' reference list.
+	 * The feature id for the '<em><b>Model Compares</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SETTINGS__MODELCOMPARES = 6;
+	int USER_SETTINGS__MODEL_COMPARES = 6;
 
 	/**
 	 * The feature id for the '<em><b>Default Model Merger</b></em>' reference.
@@ -8508,37 +8508,37 @@ public interface StorePackage extends EPackage {
 	EReference getUserSettings_Deserializers();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getQueryengines <em>Queryengines</em>}'.
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getQueryEngines <em>Query Engines</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Queryengines</em>'.
-	 * @see org.bimserver.models.store.UserSettings#getQueryengines()
+	 * @return the meta object for the reference list '<em>Query Engines</em>'.
+	 * @see org.bimserver.models.store.UserSettings#getQueryEngines()
 	 * @see #getUserSettings()
 	 * @generated
 	 */
-	EReference getUserSettings_Queryengines();
+	EReference getUserSettings_QueryEngines();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getModelmergers <em>Modelmergers</em>}'.
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getModelMergers <em>Model Mergers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Modelmergers</em>'.
-	 * @see org.bimserver.models.store.UserSettings#getModelmergers()
+	 * @return the meta object for the reference list '<em>Model Mergers</em>'.
+	 * @see org.bimserver.models.store.UserSettings#getModelMergers()
 	 * @see #getUserSettings()
 	 * @generated
 	 */
-	EReference getUserSettings_Modelmergers();
+	EReference getUserSettings_ModelMergers();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getModelcompares <em>Modelcompares</em>}'.
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getModelCompares <em>Model Compares</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Modelcompares</em>'.
-	 * @see org.bimserver.models.store.UserSettings#getModelcompares()
+	 * @return the meta object for the reference list '<em>Model Compares</em>'.
+	 * @see org.bimserver.models.store.UserSettings#getModelCompares()
 	 * @see #getUserSettings()
 	 * @generated
 	 */
-	EReference getUserSettings_Modelcompares();
+	EReference getUserSettings_ModelCompares();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.store.UserSettings#getDefaultModelMerger <em>Default Model Merger</em>}'.
@@ -14054,28 +14054,28 @@ public interface StorePackage extends EPackage {
 		EReference USER_SETTINGS__DESERIALIZERS = eINSTANCE.getUserSettings_Deserializers();
 
 		/**
-		 * The meta object literal for the '<em><b>Queryengines</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Query Engines</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USER_SETTINGS__QUERYENGINES = eINSTANCE.getUserSettings_Queryengines();
+		EReference USER_SETTINGS__QUERY_ENGINES = eINSTANCE.getUserSettings_QueryEngines();
 
 		/**
-		 * The meta object literal for the '<em><b>Modelmergers</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Model Mergers</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USER_SETTINGS__MODELMERGERS = eINSTANCE.getUserSettings_Modelmergers();
+		EReference USER_SETTINGS__MODEL_MERGERS = eINSTANCE.getUserSettings_ModelMergers();
 
 		/**
-		 * The meta object literal for the '<em><b>Modelcompares</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Model Compares</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USER_SETTINGS__MODELCOMPARES = eINSTANCE.getUserSettings_Modelcompares();
+		EReference USER_SETTINGS__MODEL_COMPARES = eINSTANCE.getUserSettings_ModelCompares();
 
 		/**
 		 * The meta object literal for the '<em><b>Default Model Merger</b></em>' reference feature.

@@ -960,13 +960,13 @@ executorId (
 defaultSerializerId (
 deserializers ("
 messagingSerializerPlugins (
-modelcompares	 (
-modelmergers
+modelCompares	 (
+modelMergers
  (
 
 objectIDMs (
 oid (
-queryengines (
+queryEngines (
 renderEngines (
 rid (
 serializers (

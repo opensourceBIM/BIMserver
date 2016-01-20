@@ -211,4 +211,8 @@ public class FileJarClassLoader extends JarClassLoader {
 		System.out.print(StringUtils.gen("  ", indent));
 		System.out.println("FileJarClassLoader " + jarFile.getFileName().toString());
 	}
+	
+	public void close() throws IOException {
+		fileSystem.close();
+	}
 }

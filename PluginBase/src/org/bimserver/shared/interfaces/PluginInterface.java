@@ -621,10 +621,20 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getAvailablePlugins")
 	List<SPluginUpdateInformation> getAvailablePlugins() throws UserException, ServerException;
 
+	@WebMethod(action = "getInstalledPlugins")
+	List<SPluginUpdateInformation> getInstalledPlugins() throws UserException, ServerException;
+
 	@WebMethod(action = "installPlugin")
 	void installPlugin(
 			@WebParam(name = "repository", partName = "installPlugin.repository") String repository, 
 			@WebParam(name = "groupId", partName = "installPlugin.groupId") String groupId, 
 			@WebParam(name = "artifactId", partName = "installPlugin.artifactId") String artifactId, 
 			@WebParam(name = "version", partName = "installPlugin.version") String version) throws UserException, ServerException;
+
+	@WebMethod(action = "uninstallPlugin")
+	void uninstallPlugin(
+			@WebParam(name = "repository", partName = "uninstallPlugin.repository") String repository, 
+			@WebParam(name = "groupId", partName = "uninstallPlugin.groupId") String groupId, 
+			@WebParam(name = "artifactId", partName = "uninstallPlugin.artifactId") String artifactId, 
+			@WebParam(name = "version", partName = "uninstallPlugin.version") String version) throws UserException, ServerException;
 }

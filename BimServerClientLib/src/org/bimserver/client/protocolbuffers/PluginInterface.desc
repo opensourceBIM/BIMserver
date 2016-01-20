@@ -1,5 +1,5 @@
 
-¬À
+¨Ä
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"¸
  SDeserializerPluginConfiguration
 description (	
@@ -236,14 +236,19 @@ settingsId ("p
 GetAllWebModulesResponse
 errorMessage (	>
 value (2/.org.bimserver.pb.SWebModulePluginConfiguration"
-GetAvailablePluginsRequest"
-SPluginVersion
-description (	
-mismatch (
-oid (
-rid (+
-type (2.org.bimserver.pb.SPluginType
-version (	"Î
+GetAvailablePluginsRequest"È
+SPluginVersion
+
+artifactId (	
+description (	
+groupId (	
+mismatch (
+oid (
+
+repository (	
+rid (+
+type (2.org.bimserver.pb.SPluginType
+version	 (	"Î
 SPluginUpdateInformation;
 availableVersions (2 .org.bimserver.pb.SPluginVersion7
 latestVersion (2 .org.bimserver.pb.SPluginVersion
@@ -281,7 +286,11 @@ settingsId ("p
 GetDefaultWebModuleRequest"s
 GetDefaultWebModuleResponse
 errorMessage (	>
-value (2/.org.bimserver.pb.SWebModulePluginConfiguration",
+value (2/.org.bimserver.pb.SWebModulePluginConfiguration"
+GetInstalledPluginsRequest"n
+GetInstalledPluginsResponse
+errorMessage (	9
+value (2*.org.bimserver.pb.SPluginUpdateInformation",
 GetInternalServiceByIdRequest
 oid ("|
 GetInternalServiceByIdResponse
@@ -480,7 +489,14 @@ artifactId (	
 &StartGetPluginUpdateInformationRequest"N
 'StartGetPluginUpdateInformationResponse
 errorMessage (	
-value ("e
+value ("b
+UninstallPluginRequest
+
+repository (	
+groupId (	
+
+artifactId (	
+version (	"e
 UpdateDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration"n
 UpdateInternalServiceRequestN
@@ -506,7 +522,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*<
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2ïJ
+SPrimitiveEnum_BYTE_ARRAY2ÀL
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -553,7 +569,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*<
 getDefaultQueryEngine..org.bimserver.pb.GetDefaultQueryEngineRequest/.org.bimserver.pb.GetDefaultQueryEngineResponse{
 getDefaultRenderEngine/.org.bimserver.pb.GetDefaultRenderEngineRequest0.org.bimserver.pb.GetDefaultRenderEngineResponseu
 getDefaultSerializer-.org.bimserver.pb.GetDefaultSerializerRequest..org.bimserver.pb.GetDefaultSerializerResponser
-getDefaultWebModule,.org.bimserver.pb.GetDefaultWebModuleRequest-.org.bimserver.pb.GetDefaultWebModuleResponse{
+getDefaultWebModule,.org.bimserver.pb.GetDefaultWebModuleRequest-.org.bimserver.pb.GetDefaultWebModuleResponser
+getInstalledPlugins,.org.bimserver.pb.GetInstalledPluginsRequest-.org.bimserver.pb.GetInstalledPluginsResponse{
 getInternalServiceById/.org.bimserver.pb.GetInternalServiceByIdRequest0.org.bimserver.pb.GetInternalServiceByIdResponse®
 'getMessagingSerializerByPluginClassName@.org.bimserver.pb.GetMessagingSerializerByPluginClassNameRequestA.org.bimserver.pb.GetMessagingSerializerByPluginClassNameResponser
 getModelCompareById,.org.bimserver.pb.GetModelCompareByIdRequest-.org.bimserver.pb.GetModelCompareByIdResponsex
@@ -581,7 +598,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*<
 setDefaultSerializer-.org.bimserver.pb.SetDefaultSerializerRequest.org.bimserver.pb.VoidResponsec
 setDefaultWebModule,.org.bimserver.pb.SetDefaultWebModuleRequest.org.bimserver.pb.VoidResponse_
 setPluginSettings*.org.bimserver.pb.SetPluginSettingsRequest.org.bimserver.pb.VoidResponse–
-startGetPluginUpdateInformation8.org.bimserver.pb.StartGetPluginUpdateInformationRequest9.org.bimserver.pb.StartGetPluginUpdateInformationResponsea
+startGetPluginUpdateInformation8.org.bimserver.pb.StartGetPluginUpdateInformationRequest9.org.bimserver.pb.StartGetPluginUpdateInformationResponse[
+uninstallPlugin(.org.bimserver.pb.UninstallPluginRequest.org.bimserver.pb.VoidResponsea
 updateDeserializer+.org.bimserver.pb.UpdateDeserializerRequest.org.bimserver.pb.VoidResponseg
 updateInternalService..org.bimserver.pb.UpdateInternalServiceRequest.org.bimserver.pb.VoidResponsea
 updateModelCompare+.org.bimserver.pb.UpdateModelCompareRequest.org.bimserver.pb.VoidResponse_

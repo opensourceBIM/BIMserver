@@ -120,7 +120,7 @@ public class CodeMigrator {
 		LOGGER.info("Generating ServiceInterface objects...");
 		Set<EPackage> ePackages = new LinkedHashSet<EPackage>();
 		try {
-			Path home = Paths.get("home");
+			Path home = Paths.get("cmhome");
 			if (!Files.exists(home)) {
 				try {
 					Files.createDirectories(home);
@@ -128,7 +128,7 @@ public class CodeMigrator {
 					e.printStackTrace();
 				}
 			}
-			PluginManager pluginManager = new PluginManager(home.resolve("tmp"), System.getProperty("java.class.path"), null, null, null);
+			PluginManager pluginManager = new PluginManager(home.resolve("tmp"), null, System.getProperty("java.class.path"), null, null, null);
 			Path[] pluginDirectories = new OptionsParser(args).getPluginDirectories();
 			loadPlugins(pluginManager, pluginDirectories);
 			
@@ -198,6 +198,13 @@ public class CodeMigrator {
 			LOGGER.info("Migration successfull");
 		} catch (PluginException e1) {
 			e1.printStackTrace();
+		}
+		
+		try {
+			FileUtils.deleteDirectory(new File("cmhome"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

@@ -43,9 +43,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getObjectIDMs <em>Object ID Ms</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getRenderEngines <em>Render Engines</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDeserializers <em>Deserializers</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getQueryengines <em>Queryengines</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getModelmergers <em>Modelmergers</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getModelcompares <em>Modelcompares</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getQueryEngines <em>Query Engines</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getModelMergers <em>Model Mergers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getModelCompares <em>Model Compares</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultModelMerger <em>Default Model Merger</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultModelCompare <em>Default Model Compare</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultQueryEngine <em>Default Query Engine</em>}</li>
@@ -134,8 +134,8 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<QueryEnginePluginConfiguration> getQueryengines() {
-		return (EList<QueryEnginePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__QUERYENGINES, true);
+	public EList<QueryEnginePluginConfiguration> getQueryEngines() {
+		return (EList<QueryEnginePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__QUERY_ENGINES, true);
 	}
 
 	/**
@@ -144,8 +144,8 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<ModelMergerPluginConfiguration> getModelmergers() {
-		return (EList<ModelMergerPluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__MODELMERGERS, true);
+	public EList<ModelMergerPluginConfiguration> getModelMergers() {
+		return (EList<ModelMergerPluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__MODEL_MERGERS, true);
 	}
 
 	/**
@@ -154,8 +154,8 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<ModelComparePluginConfiguration> getModelcompares() {
-		return (EList<ModelComparePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__MODELCOMPARES, true);
+	public EList<ModelComparePluginConfiguration> getModelCompares() {
+		return (EList<ModelComparePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__MODEL_COMPARES, true);
 	}
 
 	/**
