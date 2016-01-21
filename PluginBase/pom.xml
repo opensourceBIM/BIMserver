@@ -18,6 +18,9 @@
 			<resource>
 				<directory>src</directory>
 			</resource>
+			<resource>
+				<directory>genclasses</directory>
+			</resource>
 		</resources>
 		<plugins>
 			<plugin>
