@@ -5,6 +5,7 @@
 	<formats>
 		<format>jar</format>
 	</formats>
+	<id>bimserverstarter-${pom.version}</id>
 	<includeBaseDirectory>false</includeBaseDirectory>
 	<dependencySets>
 		<dependencySet>
