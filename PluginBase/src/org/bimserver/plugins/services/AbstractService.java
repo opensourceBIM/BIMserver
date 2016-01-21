@@ -43,12 +43,10 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractService extends ServicePlugin {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractService.class);
 	private String name;
-	private String description;
 	private PluginContext pluginContext;
 
-	public AbstractService(String name, String description) {
+	public AbstractService(String name) {
 		this.name = name;
-		this.description = description;
 	}
 	
 	@Override
@@ -62,18 +60,8 @@ public abstract class AbstractService extends ServicePlugin {
 	}
 	
 	@Override
-	public String getDescription() {
-		return description;
-	}
-
-	@Override
 	public String getDefaultName() {
 		return name;
-	}
-
-	@Override
-	public String getVersion() {
-		return "1.0";
 	}
 
 	@Override
@@ -165,7 +153,6 @@ public abstract class AbstractService extends ServicePlugin {
 		serviceDescriptor.setProviderName("BIMserver");
 		serviceDescriptor.setIdentifier("" + internalService.getOid());
 		serviceDescriptor.setName(name);
-		serviceDescriptor.setDescription(description);
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 		addRequiredRights(serviceDescriptor);

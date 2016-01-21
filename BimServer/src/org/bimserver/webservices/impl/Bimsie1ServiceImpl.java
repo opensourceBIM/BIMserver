@@ -461,7 +461,7 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 			DatabaseSession session = getBimServer().getDatabase().createSession();
 			try {
 				Project project = session.get(poid, OldQuery.getDefault());
-				for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true)) {
+				for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true).values()) {
 					if (deserializerPlugin.canHandleExtension(extension)) {
 						UserSettings userSettings = getUserSettings(session);
 						for (DeserializerPluginConfiguration deserializer : userSettings.getDeserializers()) {

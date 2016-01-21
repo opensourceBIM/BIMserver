@@ -40,11 +40,16 @@ public class PluginContext {
 	private FileSystem fileSystem;
 	private Path rootPath;
 	private List<Dependency> dependencies;
+	private PluginBundle pluginBundle;
+	private String description;
+	private boolean initialized;
 
-	public PluginContext(PluginManagerInterface pluginManager, ClassLoader classLoader, PluginSourceType pluginType, URI location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation, List<Dependency> dependencies) throws IOException {
+	public PluginContext(PluginManagerInterface pluginManager, PluginBundle pluginBundle, ClassLoader classLoader, PluginSourceType pluginType, String description, URI location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation, List<Dependency> dependencies) throws IOException {
 		this.pluginManager = pluginManager;
+		this.pluginBundle = pluginBundle;
 		this.classLoader = classLoader;
 		this.pluginType = pluginType;
+		this.description = description;
 		this.location = location;
 		this.plugin = plugin;
 		this.pluginImplementation = pluginImplementation;
@@ -111,5 +116,26 @@ public class PluginContext {
 
 	public List<Dependency> getDependencies() {
 		return dependencies;
+	}
+
+	public PluginBundle getPluginBundle() {
+		return pluginBundle;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public boolean isInitialized() {
+		return initialized;
+	}
+
+	public void setInitialized(boolean initialized) {
+		this.initialized = initialized;
+	}
+
+	public String getVersion() {
+		// All plugins in a bundle have the same version
+		return pluginBundle.getVersion();
 	}
 }

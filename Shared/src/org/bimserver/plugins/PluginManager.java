@@ -118,7 +118,7 @@ public class PluginManager implements PluginManagerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<>();
 	private final Map<Plugin, PluginContext> pluginToPluginContext = new HashMap<>();
-	private final Map<String, PluginBundle> identifierToPluginBundle = new HashMap<>();
+	private final Map<String, PluginBundleImpl> identifierToPluginBundle = new HashMap<>();
 	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<>();
 	private final Path tempDir;
 	private final String baseClassPath;
@@ -157,7 +157,7 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public PluginBundle loadPluginsFromEclipseProject(Path projectRoot) throws PluginException {
+	public PluginBundleImpl loadPluginsFromEclipseProject(Path projectRoot) throws PluginException {
 		if (identifierToPluginBundle.containsKey(projectRoot.getFileName().toAbsolutePath())) {
 			throw new PluginException("Plugin already loaded");
 		}
@@ -283,7 +283,7 @@ public class PluginManager implements PluginManagerInterface {
 //			loadDependencies(libFolder, delegatingClassLoader);
 			EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
 			// pluginClassloader.dumpStructure(0);
-			PluginBundle pluginBundle = new PluginBundle(null);
+			PluginBundleImpl pluginBundle = new PluginBundleImpl(null);
 			
 			// TODO
 			identifierToPluginBundle.put(null, pluginBundle);
@@ -320,7 +320,7 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private PluginBundle loadPlugins(PluginBundle pluginBundle, ResourceLoader resourceLoader, ClassLoader classLoader, URI location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType, List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
+	private PluginBundleImpl loadPlugins(PluginBundleImpl pluginBundle, ResourceLoader resourceLoader, ClassLoader classLoader, URI location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType, List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
 			if (pluginImplementation.isEnabled()) {
 				String interfaceClassName = pluginImplementation.getInterfaceClass().trim().replace("\n", "");
@@ -331,7 +331,7 @@ public class PluginManager implements PluginManagerInterface {
 						try {
 							Class implementationClass = classLoader.loadClass(implementationClassName);
 							Plugin plugin = (Plugin) implementationClass.newInstance();
-							pluginBundle.add(loadPlugin(interfaceClass, location, classLocation, plugin, classLoader, pluginType, pluginImplementation, dependencies));
+							pluginBundle.add(loadPlugin(pluginBundle, interfaceClass, location, classLocation, plugin, classLoader, pluginType, pluginImplementation, dependencies));
 						} catch (NoClassDefFoundError e) {
 							throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
 						} catch (ClassNotFoundException e) {
@@ -345,7 +345,7 @@ public class PluginManager implements PluginManagerInterface {
 						ObjectMapper objectMapper = new ObjectMapper();
 						ObjectNode settings = objectMapper.readValue(resourceLoader.load(pluginImplementation.getImplementationJson()), ObjectNode.class);
 						JsonWebModule jsonWebModule = new JsonWebModule(settings);
-						loadPlugin(interfaceClass, location, classLocation, jsonWebModule, classLoader, pluginType, pluginImplementation, dependencies);
+						loadPlugin(pluginBundle, interfaceClass, location, classLocation, jsonWebModule, classLoader, pluginType, pluginImplementation, dependencies);
 					}
 				} catch (ClassNotFoundException e) {
 					throw new PluginException("Interface class '" + interfaceClassName + "' not found", e);
@@ -388,7 +388,7 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public PluginBundle loadPluginsFromJar(String identifier, Path file) throws PluginException {
+	public PluginBundleImpl loadPluginsFromJar(String identifier, Path file) throws PluginException {
 		if (identifierToPluginBundle.containsKey(identifier)) {
 			throw new PluginException("Plugin already loaded " + file);
 		}
@@ -407,7 +407,7 @@ public class PluginManager implements PluginManagerInterface {
 				throw new PluginException("No plugin descriptor could be created");
 			}
 			LOGGER.debug(pluginDescriptor.toString());
-			PluginBundle pluginBundle = new PluginBundle(identifier);
+			PluginBundleImpl pluginBundle = new PluginBundleImpl(identifier);
 			pluginBundle.addClassLoader(jarClassLoader);
 			
 			identifierToPluginBundle.put(identifier, pluginBundle);
@@ -435,13 +435,13 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private <T> Collection<T> getPlugins(Class<T> requiredInterfaceClass, boolean onlyEnabled) {
-		Collection<T> plugins = new ArrayList<T>();
+	private <T> Map<PluginContext, T> getPlugins(Class<T> requiredInterfaceClass, boolean onlyEnabled) {
+		Map<PluginContext, T> plugins = new HashMap<>();
 		for (Class interfaceClass : implementations.keySet()) {
 			if (requiredInterfaceClass.isAssignableFrom(interfaceClass)) {
 				for (PluginContext pluginContext : implementations.get(interfaceClass)) {
 					if (!onlyEnabled || pluginContext.isEnabled()) {
-						plugins.add((T) pluginContext.getPlugin());
+						plugins.put(pluginContext, (T) pluginContext.getPlugin());
 					}
 				}
 			}
@@ -449,47 +449,47 @@ public class PluginManager implements PluginManagerInterface {
 		return plugins;
 	}
 
-	public Collection<ObjectIDMPlugin> getAllObjectIDMPlugins(boolean onlyEnabled) {
+	public Map<PluginContext, ObjectIDMPlugin> getAllObjectIDMPlugins(boolean onlyEnabled) {
 		return getPlugins(ObjectIDMPlugin.class, onlyEnabled);
 	}
 
-	public Collection<RenderEnginePlugin> getAllRenderEnginePlugins(boolean onlyEnabled) {
+	public Map<PluginContext, RenderEnginePlugin> getAllRenderEnginePlugins(boolean onlyEnabled) {
 		return getPlugins(RenderEnginePlugin.class, onlyEnabled);
 	}
 
-	public Collection<StillImageRenderPlugin> getAllStillImageRenderPlugins(boolean onlyEnabled) {
+	public Map<PluginContext, StillImageRenderPlugin> getAllStillImageRenderPlugins(boolean onlyEnabled) {
 		return getPlugins(StillImageRenderPlugin.class, onlyEnabled);
 	}
 
-	public Collection<QueryEnginePlugin> getAllQueryEnginePlugins(boolean onlyEnabled) {
+	public Map<PluginContext, QueryEnginePlugin> getAllQueryEnginePlugins(boolean onlyEnabled) {
 		return getPlugins(QueryEnginePlugin.class, onlyEnabled);
 	}
 
-	public Collection<SerializerPlugin> getAllSerializerPlugins(boolean onlyEnabled) {
+	public Map<PluginContext, SerializerPlugin> getAllSerializerPlugins(boolean onlyEnabled) {
 		return getPlugins(SerializerPlugin.class, onlyEnabled);
 	}
 
-	public Collection<MessagingSerializerPlugin> getAllMessagingSerializerPlugins(boolean onlyEnabled) {
+	public Map<PluginContext, MessagingSerializerPlugin> getAllMessagingSerializerPlugins(boolean onlyEnabled) {
 		return getPlugins(MessagingSerializerPlugin.class, onlyEnabled);
 	}
 
-	public Collection<MessagingStreamingSerializerPlugin> getAllMessagingStreamingSerializerPlugins(boolean onlyEnabled) {
+	public Map<PluginContext, MessagingStreamingSerializerPlugin> getAllMessagingStreamingSerializerPlugins(boolean onlyEnabled) {
 		return getPlugins(MessagingStreamingSerializerPlugin.class, onlyEnabled);
 	}
 
-	public Collection<DeserializerPlugin> getAllDeserializerPlugins(boolean onlyEnabled) {
+	public Map<PluginContext, DeserializerPlugin> getAllDeserializerPlugins(boolean onlyEnabled) {
 		return getPlugins(DeserializerPlugin.class, onlyEnabled);
 	}
 
-	public Collection<StreamingDeserializerPlugin> getAllStreamingDeserializerPlugins(boolean onlyEnabled) {
+	public Map<PluginContext, StreamingDeserializerPlugin> getAllStreamingDeserializerPlugins(boolean onlyEnabled) {
 		return getPlugins(StreamingDeserializerPlugin.class, onlyEnabled);
 	}
 
-	public Collection<StreamingSerializerPlugin> getAllStreamingSeserializerPlugins(boolean onlyEnabled) {
+	public Map<PluginContext, StreamingSerializerPlugin> getAllStreamingSeserializerPlugins(boolean onlyEnabled) {
 		return getPlugins(StreamingSerializerPlugin.class, onlyEnabled);
 	}
 
-	public Collection<Plugin> getAllPlugins(boolean onlyEnabled) {
+	public Map<PluginContext, Plugin> getAllPlugins(boolean onlyEnabled) {
 		return getPlugins(Plugin.class, onlyEnabled);
 	}
 
@@ -521,7 +521,7 @@ public class PluginManager implements PluginManagerInterface {
 					}
 				};
 
-				loadPlugins(new PluginBundle(null), resourceLoader, getClass().getClassLoader(), url.toURI(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL, null);
+				loadPlugins(new PluginBundleImpl(null), resourceLoader, getClass().getClassLoader(), url.toURI(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL, null);
 			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
@@ -581,14 +581,14 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public void notifyPluginInstalled(Plugin plugin) throws BimserverDatabaseException {
+	public void notifyPluginInstalled(PluginContext pluginContext) throws BimserverDatabaseException {
 		for (PluginChangeListener pluginChangeListener : pluginChangeListeners) {
-			pluginChangeListener.pluginInstalled(plugin);
+			pluginChangeListener.pluginInstalled(pluginContext);
 		}
 	}
 
 	public Collection<DeserializerPlugin> getAllDeserializerPlugins(String extension, boolean onlyEnabled) {
-		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(onlyEnabled);
+		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(onlyEnabled).values();
 		Iterator<DeserializerPlugin> iterator = allDeserializerPlugins.iterator();
 		while (iterator.hasNext()) {
 			DeserializerPlugin deserializerPlugin = iterator.next();
@@ -608,26 +608,6 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public RenderEnginePlugin requireRenderEngine() throws PluginException {
-		Collection<RenderEnginePlugin> allRenderEnginePlugins = getAllRenderEnginePlugins(true);
-		if (allRenderEnginePlugins.size() == 0) {
-			throw new RenderEngineException("A working RenderEngine is required");
-		}
-		RenderEnginePlugin renderEnginePlugin = allRenderEnginePlugins.iterator().next();
-		if (!renderEnginePlugin.isInitialized()) {
-			renderEnginePlugin.init(this);
-		}
-		return renderEnginePlugin;
-	}
-
-	public ObjectIDM requireObjectIDM() throws ObjectIDMException {
-		Collection<ObjectIDMPlugin> plugins = getPlugins(ObjectIDMPlugin.class, true);
-		if (plugins.size() == 0) {
-			throw new ObjectIDMException("An ObjectIDM is required");
-		}
-		return plugins.iterator().next().getObjectIDM(new PluginConfiguration());
-	}
-
 	public Path getTempDir() {
 		if (!Files.isDirectory(tempDir)) {
 			try {
@@ -639,7 +619,7 @@ public class PluginManager implements PluginManagerInterface {
 		return tempDir;
 	}
 
-	public Plugin loadPlugin(Class<? extends Plugin> interfaceClass, URI location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType, PluginImplementation pluginImplementation, List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
+	public PluginContext loadPlugin(PluginBundle pluginBundle, Class<? extends Plugin> interfaceClass, URI location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType, PluginImplementation pluginImplementation, List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
 		LOGGER.debug("Loading plugin " + plugin.getClass().getSimpleName() + " of type " + interfaceClass.getSimpleName());
 		if (!Plugin.class.isAssignableFrom(interfaceClass)) {
 			throw new PluginException("Given interface class (" + interfaceClass.getName() + ") must be a subclass of " + Plugin.class.getName());
@@ -649,13 +629,13 @@ public class PluginManager implements PluginManagerInterface {
 		}
 		Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
 		try {
-			PluginContext pluginContext = new PluginContext(this, classLoader, pluginType, location, plugin, pluginImplementation, classLocation, dependencies);
+			PluginContext pluginContext = new PluginContext(this, pluginBundle, classLoader, pluginType, pluginImplementation.getDescription(), location, plugin, pluginImplementation, classLocation, dependencies);
 			pluginToPluginContext.put(plugin, pluginContext);
 			set.add(pluginContext);
+			return pluginContext;
 		} catch (IOException e) {
 			throw new PluginException(e);
 		}
-		return plugin;
 	}
 
 	/**
@@ -670,8 +650,9 @@ public class PluginManager implements PluginManagerInterface {
 			for (PluginContext pluginContext : set) {
 				try {
 					Plugin plugin = pluginContext.getPlugin();
-					if (!plugin.isInitialized()) {
+					if (!pluginContext.isInitialized()) {
 						plugin.init(this);
+						pluginContext.setInitialized(true);
 					}
 				} catch (Throwable e) {
 					LOGGER.error("", e);
@@ -722,7 +703,7 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	private <T extends Plugin> T getPluginByClassName(Class<T> clazz, String className, boolean onlyEnabled) {
-		Collection<T> allPlugins = getPlugins(clazz, onlyEnabled);
+		Collection<T> allPlugins = getPlugins(clazz, onlyEnabled).values();
 		for (T t : allPlugins) {
 			if (t.getClass().getName().equals(className)) {
 				return t;
@@ -774,11 +755,11 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public Collection<ModelMergerPlugin> getAllModelMergerPlugins(boolean onlyEnabled) {
+	public Map<PluginContext, ModelMergerPlugin> getAllModelMergerPlugins(boolean onlyEnabled) {
 		return getPlugins(ModelMergerPlugin.class, onlyEnabled);
 	}
 
-	public Collection<ModelComparePlugin> getAllModelComparePlugins(boolean onlyEnabled) {
+	public Map<PluginContext, ModelComparePlugin> getAllModelComparePlugins(boolean onlyEnabled) {
 		return getPlugins(ModelComparePlugin.class, onlyEnabled);
 	}
 
@@ -790,7 +771,7 @@ public class PluginManager implements PluginManagerInterface {
 		return getPluginByClassName(ModelComparePlugin.class, className, onlyEnabled);
 	}
 
-	public Collection<ServicePlugin> getAllServicePlugins(boolean onlyEnabled) {
+	public Map<PluginContext, ServicePlugin> getAllServicePlugins(boolean onlyEnabled) {
 		return getPlugins(ServicePlugin.class, onlyEnabled);
 	}
 
@@ -818,18 +799,18 @@ public class PluginManager implements PluginManagerInterface {
 		return servicesMap;
 	}
 
-	public StillImageRenderPlugin getFirstStillImageRenderPlugin() throws PluginException {
-		Collection<StillImageRenderPlugin> allPlugins = getAllStillImageRenderPlugins(true);
-		if (allPlugins.size() == 0) {
-			throw new PluginException("No still image render plugins found");
-		}
-		StillImageRenderPlugin plugin = allPlugins.iterator().next();
-		if (!plugin.isInitialized()) {
-			plugin.init(this);
-		}
-		return plugin;
-
-	}
+//	public StillImageRenderPlugin getFirstStillImageRenderPlugin() throws PluginException {
+//		Collection<StillImageRenderPlugin> allPlugins = getAllStillImageRenderPlugins(true).values();
+//		if (allPlugins.size() == 0) {
+//			throw new PluginException("No still image render plugins found");
+//		}
+//		StillImageRenderPlugin plugin = allPlugins.iterator().next();
+//		if (!plugin.isInitialized()) {
+//			plugin.init(this);
+//		}
+//		return plugin;
+//
+//	}
 
 	public Parameter getParameter(PluginContext pluginContext, String name) {
 		return null;
@@ -847,11 +828,11 @@ public class PluginManager implements PluginManagerInterface {
 		return (WebModulePlugin) getPlugin(className, onlyEnabled);
 	}
 
-	public Collection<WebModulePlugin> getAllWebPlugins(boolean onlyEnabled) {
+	public Map<PluginContext, WebModulePlugin> getAllWebPlugins(boolean onlyEnabled) {
 		return getPlugins(WebModulePlugin.class, onlyEnabled);
 	}
 
-	public Collection<ModelCheckerPlugin> getAllModelCheckerPlugins(boolean onlyEnabled) {
+	public Map<PluginContext, ModelCheckerPlugin> getAllModelCheckerPlugins(boolean onlyEnabled) {
 		return getPlugins(ModelCheckerPlugin.class, onlyEnabled);
 	}
 
@@ -916,18 +897,18 @@ public class PluginManager implements PluginManagerInterface {
 		return (MessagingStreamingSerializerPlugin) getPlugin(className, onlyEnabled);
 	}
 
-	public PluginBundle install(String identifier, Path jarFile) throws Exception {
+	public PluginBundleImpl install(String identifier, Path jarFile) throws Exception {
 		Path target = pluginsDir.resolve(identifier + ".jar");
 		if (Files.exists(target)) {
 			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
 		}
 		Files.copy(jarFile, target);
-		PluginBundle pluginBundle = null;
+		PluginBundleImpl pluginBundle = null;
 		// Stage 1, load all plugins from the JAR file and initialize them
 		try {
 			pluginBundle = loadPluginsFromJar(identifier, target);
-			for (Plugin plugin : pluginBundle) {
-				plugin.init(this);
+			for (PluginContext pluginContext : pluginBundle) {
+				pluginContext.getPlugin().init(this);
 			}
 		} catch (Exception e) {
 			Files.delete(target);
@@ -936,8 +917,8 @@ public class PluginManager implements PluginManagerInterface {
 		}
 		// Stage 2, if all went well, notify the listeners of this plugin, if anything goes wrong in the notifications, the plugin bundle will be uninstalled
 		try {
-			for (Plugin plugin : pluginBundle) {
-				notifyPluginInstalled(plugin);
+			for (PluginContext pluginContext : pluginBundle) {
+				notifyPluginInstalled(pluginContext);
 			}
 			return pluginBundle;
 		} catch (Exception e) {
@@ -949,7 +930,7 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	public void uninstall(String identifier) {
-		PluginBundle pluginBundle = identifierToPluginBundle.get(identifier);
+		PluginBundleImpl pluginBundle = identifierToPluginBundle.get(identifier);
 		try {
 			pluginBundle.close();
 			identifierToPluginBundle.remove(identifier);
@@ -958,7 +939,7 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 	
-	private void uninstall(PluginBundle pluginBundle) {
+	private void uninstall(PluginBundleImpl pluginBundle) {
 		try {
 			pluginBundle.close();
 			identifierToPluginBundle.remove(pluginBundle.getIdentifier());
@@ -967,11 +948,17 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public PluginBundle getPluginBundle(String identifier) {
+	public PluginBundleImpl getPluginBundle(String identifier) {
 		return identifierToPluginBundle.get(identifier);
 	}
 
-	public Collection<PluginBundle> getPluginBundles() {
+	public Collection<PluginBundleImpl> getPluginBundles() {
 		return identifierToPluginBundle.values();
+	}
+
+	@Override
+	public ObjectIDM getDefaultObjectIDM() throws ObjectIDMException {
+		// TODO add a mechanism that can be used to ask a database what the default plugin is
+		return null;
 	}
 }

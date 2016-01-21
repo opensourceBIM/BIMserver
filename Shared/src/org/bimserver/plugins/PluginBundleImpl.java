@@ -7,22 +7,22 @@ import java.util.Set;
 
 import org.bimserver.plugins.classloaders.FileJarClassLoader;
 
-public class PluginBundle implements Iterable<Plugin> {
-	private final Set<Plugin> plugins = new HashSet<>();
+public class PluginBundleImpl implements PluginBundle, Iterable<PluginContext> {
+	private final Set<PluginContext> pluginsContexts = new HashSet<>();
 	private final Set<FileJarClassLoader> classloaders = new HashSet<>();
 	private String identifier;
 
-	public PluginBundle(String identifier) {
+	public PluginBundleImpl(String identifier) {
 		this.identifier = identifier;
 	}
 	
-	public void add(Plugin plugin) {
-		plugins.add(plugin);
+	public void add(PluginContext pluginContext) {
+		pluginsContexts.add(pluginContext);
 	}
 
 	@Override
-	public Iterator<Plugin> iterator() {
-		return plugins.iterator();
+	public Iterator<PluginContext> iterator() {
+		return pluginsContexts.iterator();
 	}
 
 	public void close() throws IOException {
@@ -37,5 +37,10 @@ public class PluginBundle implements Iterable<Plugin> {
 
 	public String getIdentifier() {
 		return identifier;
+	}
+
+	@Override
+	public String getVersion() {
+		return null;
 	}
 }

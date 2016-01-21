@@ -52,34 +52,28 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 	}
 	
 	protected void checkGeometry(PluginConfiguration serializerPluginConfiguration, PluginManager pluginManager, IfcModelInterface model, Project project, ConcreteRevision concreteRevision, Revision revision) throws BimserverDatabaseException, GeometryGeneratingException {
-		boolean needsGeometry = false;
 		Plugin plugin = pluginManager.getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-		if (plugin instanceof SerializerPlugin) {
-			needsGeometry = ((SerializerPlugin)plugin).needsGeometry();
-		} else if (plugin instanceof MessagingSerializerPlugin) {
-			needsGeometry = ((MessagingSerializerPlugin)plugin).needsGeometry();
-		}
-		if (needsGeometry) {
-			if (!revision.isHasGeometry()) {
-				setProgress("Generating geometry...", -1);
-				// TODO When generating geometry for a partial model download (by types for example), this will fail (for example walls have no openings)
-				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), false, null);
-			} else {
-				EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
-				List<IdEObject> allWithSubTypes = new ArrayList<>(model.getAllWithSubTypes(productClass));
-				for (IdEObject ifcProduct : allWithSubTypes) {
-					ifcProduct.forceLoad();
-					GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(productClass.getEStructuralFeature("geometry"));
-					if (geometryInfo != null) {
-						geometryInfo.forceLoad();
-						geometryInfo.getData().forceLoad();
-						geometryInfo.getTransformation();
-						geometryInfo.getMinBounds().forceLoad();
-						geometryInfo.getMaxBounds().forceLoad();
-					}
-				}
-			}
-		}
+//		if (needsGeometry) {
+//			if (!revision.isHasGeometry()) {
+//				setProgress("Generating geometry...", -1);
+//				// TODO When generating geometry for a partial model download (by types for example), this will fail (for example walls have no openings)
+//				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), false, null);
+//			} else {
+//				EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
+//				List<IdEObject> allWithSubTypes = new ArrayList<>(model.getAllWithSubTypes(productClass));
+//				for (IdEObject ifcProduct : allWithSubTypes) {
+//					ifcProduct.forceLoad();
+//					GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(productClass.getEStructuralFeature("geometry"));
+//					if (geometryInfo != null) {
+//						geometryInfo.forceLoad();
+//						geometryInfo.getData().forceLoad();
+//						geometryInfo.getTransformation();
+//						geometryInfo.getMinBounds().forceLoad();
+//						geometryInfo.getMaxBounds().forceLoad();
+//					}
+//				}
+//			}
+//		}
 	}
 
 	public BimServer getBimServer() {

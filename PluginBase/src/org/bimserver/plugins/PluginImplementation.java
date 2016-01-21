@@ -39,6 +39,9 @@ public class PluginImplementation {
 	private String implementationClass;
 	
 	@XmlElement
+	private String description;
+	
+	@XmlElement
 	private List<String> requires = new ArrayList<String>();
 	
 	public String getInterfaceClass() {
@@ -84,5 +87,13 @@ public class PluginImplementation {
 
 	public void setImplementationJson(String implementationJson) {
 		this.implementationJson = implementationJson;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

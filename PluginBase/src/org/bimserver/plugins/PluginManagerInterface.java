@@ -29,16 +29,13 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
-import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewExtendedDataOnProjectHandler;
 import org.bimserver.plugins.services.NewExtendedDataOnRevisionHandler;
 import org.bimserver.plugins.services.NewRevisionHandler;
-import org.bimserver.plugins.stillimagerenderer.StillImageRenderPlugin;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceFactory;
-import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public interface PluginManagerInterface {
@@ -59,10 +56,6 @@ public interface PluginManagerInterface {
 
 	DeserializerPlugin getDeserializerPlugin(String string, boolean b);
 
-	StillImageRenderPlugin getFirstStillImageRenderPlugin() throws PluginException;
-
-	RenderEnginePlugin requireRenderEngine() throws PluginException;
-
 	DeserializerPlugin requireDeserializer(String string) throws DeserializeException;
 
 	void registerNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler);
@@ -79,5 +72,5 @@ public interface PluginManagerInterface {
 
 	MetaDataManager getMetaDataManager();
 
-	ObjectIDM requireObjectIDM() throws ObjectIDMException;
+	ObjectIDM getDefaultObjectIDM() throws ObjectIDMException;
 }

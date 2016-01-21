@@ -34,7 +34,6 @@ public abstract class ServicePlugin implements Plugin {
 
 	public abstract String getTitle();
 	private PluginManagerInterface pluginManager;
-	private boolean initialized;
 	
 	public ServiceInterface getServiceInterface(String token) throws UserException {
 		return pluginManager.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
@@ -55,12 +54,6 @@ public abstract class ServicePlugin implements Plugin {
 	@Override
 	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		this.pluginManager = pluginManager;
-		initialized = true;
-	}
-	
-	@Override
-	public boolean isInitialized() {
-		return initialized;
 	}
 	
 	public PluginManagerInterface getPluginManager() {
