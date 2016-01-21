@@ -156,7 +156,7 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SPluginUpdateInformation> getAvailablePlugins() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginBundleUpdateInformation> getAvailablePlugins() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -188,7 +188,7 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SPluginUpdateInformation> getInstalledPlugins() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginBundleUpdateInformation> getInstalledPlugins() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -225,6 +225,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public org.bimserver.interfaces.objects.SPluginDescriptor getPluginDescriptor(java.lang.Long oid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<org.bimserver.interfaces.objects.SPluginInformation> getPluginInformation(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version) throws UserException, ServerException {
 		return null;
 	}
 	

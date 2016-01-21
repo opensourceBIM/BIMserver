@@ -17,20 +17,12 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public enum SPluginType {
-	SERIALIZER(0),
-	DESERIALIZER(1),
-	RENDER_ENGINE(2),
-	QUERY_ENGINE(3),
-	OBJECT_IDM(4),
-	WEB_MODULE(5),
-	MODEL_MERGER(6),
-	MODEL_COMPARE(7),
-	MODEL_CHECKER(8),
-	STILL_IMAGE_RENDER(9);
+public enum SPluginBundleType {
+	MAVEN(0),
+	GITHUB(1);
 	int ordinal;
 
-	SPluginType(int ordinal) {
+	SPluginBundleType(int ordinal) {
 		this.ordinal = ordinal;
 	}
 	

@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SPluginVersion implements SDataBase
+public class SPluginBundleVersion implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
@@ -30,7 +30,7 @@ public class SPluginVersion implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private java.lang.String version;
-	private SPluginType type;
+	private SPluginBundleType type;
 	private java.lang.String description;
 	private boolean mismatch;
 	private java.lang.String repository;
@@ -59,7 +59,7 @@ public class SPluginVersion implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPluginVersion.sClass = sClass;
+		SPluginBundleVersion.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
@@ -99,7 +99,7 @@ public class SPluginVersion implements SDataBase
 			return;
 		}
 		if (sField.getName().equals("type")) {
-			setType((SPluginType)val);
+			setType((SPluginBundleType)val);
 			return;
 		}
 		if (sField.getName().equals("description")) {
@@ -141,11 +141,11 @@ public class SPluginVersion implements SDataBase
 		this.version = version;
 	}
 	
-	public SPluginType getType() {
+	public SPluginBundleType getType() {
 		return type;
 	}
 
-	public void setType(SPluginType type) {
+	public void setType(SPluginBundleType type) {
 		this.type = type;
 	}
 	
@@ -205,7 +205,7 @@ public class SPluginVersion implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPluginVersion other = (SPluginVersion) obj;
+		SPluginBundleVersion other = (SPluginBundleVersion) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

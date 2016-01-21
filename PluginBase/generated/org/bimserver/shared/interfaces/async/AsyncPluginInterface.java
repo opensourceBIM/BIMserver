@@ -220,7 +220,7 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface GetAvailablePluginsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SPluginUpdateInformation> result);
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginBundleUpdateInformation> result);
 		void error(Throwable e);
 	}
 	
@@ -260,7 +260,7 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface GetInstalledPluginsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SPluginUpdateInformation> result);
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginBundleUpdateInformation> result);
 		void error(Throwable e);
 	}
 	
@@ -306,6 +306,11 @@ public class AsyncPluginInterface {
 	
 	public interface GetPluginDescriptorCallback {
 		void success(org.bimserver.interfaces.objects.SPluginDescriptor result);
+		void error(Throwable e);
+	}
+	
+	public interface GetPluginInformationCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginInformation> result);
 		void error(Throwable e);
 	}
 	
@@ -1133,6 +1138,18 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getPluginDescriptor(oid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getPluginInformation(final java.lang.String repository, final java.lang.String groupId, final java.lang.String artifactId, final java.lang.String version, final GetPluginInformationCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getPluginInformation(repository, groupId, artifactId, version));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

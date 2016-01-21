@@ -140,6 +140,8 @@ service PluginInterface {
 
 	rpc getPluginDescriptor (GetPluginDescriptorRequest) returns (GetPluginDescriptorResponse);
 
+	rpc getPluginInformation (GetPluginInformationRequest) returns (GetPluginInformationResponse);
+
 	rpc getPluginObjectDefinition (GetPluginObjectDefinitionRequest) returns (GetPluginObjectDefinitionResponse);
 
 	rpc getPluginSettings (GetPluginSettingsRequest) returns (GetPluginSettingsResponse);
@@ -562,12 +564,12 @@ message GetAllWebModulesResponse {
 message GetAvailablePluginsRequest {
 }
 
-enum SPluginType{
-	SPluginType_MAVEN = 0;
-	SPluginType_GITHUB = 1;
+enum SPluginBundleType{
+	SPluginBundleType_MAVEN = 0;
+	SPluginBundleType_GITHUB = 1;
 }
 
-message SPluginVersion {
+message SPluginBundleVersion {
 	optional string artifactId = 1;
 	optional string description = 2;
 	optional string groupId = 3;
@@ -575,13 +577,13 @@ message SPluginVersion {
 	optional int64 oid = 5;
 	optional string repository = 6;
 	optional int32 rid = 7;
-	optional SPluginType type = 8;
+	optional SPluginBundleType type = 8;
 	optional string version = 9;
 }
 
-message SPluginUpdateInformation {
-	repeated SPluginVersion availableVersions = 1;
-	optional SPluginVersion latestVersion = 2;
+message SPluginBundleUpdateInformation {
+	repeated SPluginBundleVersion availableVersions = 1;
+	optional SPluginBundleVersion latestVersion = 2;
 	optional string name = 3;
 	optional int64 oid = 4;
 	optional string organization = 5;
@@ -590,7 +592,7 @@ message SPluginUpdateInformation {
 
 message GetAvailablePluginsResponse {
 	optional string errorMessage = 1;
-	repeated SPluginUpdateInformation value = 2;
+	repeated SPluginBundleUpdateInformation value = 2;
 }
 
 message GetDefaultModelCompareRequest {
@@ -654,7 +656,7 @@ message GetInstalledPluginsRequest {
 
 message GetInstalledPluginsResponse {
 	optional string errorMessage = 1;
-	repeated SPluginUpdateInformation value = 2;
+	repeated SPluginBundleUpdateInformation value = 2;
 }
 
 message GetInternalServiceByIdRequest {
@@ -747,6 +749,41 @@ message GetPluginDescriptorRequest {
 message GetPluginDescriptorResponse {
 	optional string errorMessage = 1;
 	optional SPluginDescriptor value = 2;
+}
+
+message GetPluginInformationRequest {
+	optional string repository = 1;
+	optional string groupId = 2;
+	optional string artifactId = 3;
+	optional string version = 4;
+}
+
+enum SPluginType{
+	SPluginType_SERIALIZER = 0;
+	SPluginType_DESERIALIZER = 1;
+	SPluginType_RENDER_ENGINE = 2;
+	SPluginType_QUERY_ENGINE = 3;
+	SPluginType_OBJECT_IDM = 4;
+	SPluginType_WEB_MODULE = 5;
+	SPluginType_MODEL_MERGER = 6;
+	SPluginType_MODEL_COMPARE = 7;
+	SPluginType_MODEL_CHECKER = 8;
+	SPluginType_STILL_IMAGE_RENDER = 9;
+}
+
+message SPluginInformation {
+	optional string description = 1;
+	optional bool installForAllUsers = 2;
+	optional bool installForNewUsers = 3;
+	optional string name = 4;
+	optional int64 oid = 5;
+	optional int32 rid = 6;
+	optional SPluginType type = 7;
+}
+
+message GetPluginInformationResponse {
+	optional string errorMessage = 1;
+	repeated SPluginInformation value = 2;
 }
 
 message GetPluginObjectDefinitionRequest {

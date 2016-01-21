@@ -885,28 +885,47 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortestMs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="longestMs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PluginVersion">
+  <eClassifiers xsi:type="ecore:EClass" name="PluginBundleVersion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//PluginType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//PluginBundleType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mismatch" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="repository" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="artifactId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="PluginType">
+  <eClassifiers xsi:type="ecore:EEnum" name="PluginBundleType">
     <eLiterals name="MAVEN"/>
     <eLiterals name="GITHUB" value="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PluginUpdateInformation">
+  <eClassifiers xsi:type="ecore:EEnum" name="PluginType">
+    <eLiterals name="SERIALIZER"/>
+    <eLiterals name="DESERIALIZER" value="1"/>
+    <eLiterals name="RENDER_ENGINE" value="2"/>
+    <eLiterals name="QUERY_ENGINE" value="3"/>
+    <eLiterals name="OBJECT_IDM" value="4"/>
+    <eLiterals name="WEB_MODULE" value="5"/>
+    <eLiterals name="MODEL_MERGER" value="6"/>
+    <eLiterals name="MODEL_COMPARE" value="7"/>
+    <eLiterals name="MODEL_CHECKER" value="8"/>
+    <eLiterals name="STILL_IMAGE_RENDER" value="9"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PluginBundleUpdateInformation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="organization" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="latestVersion" eType="#//PluginVersion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="latestVersion" eType="#//PluginBundleVersion">
       <eAnnotations source="embedsreference"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="availableVersions" upperBound="-1"
-        eType="#//PluginVersion">
+        eType="#//PluginBundleVersion">
       <eAnnotations source="embedsreference"/>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PluginInformation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//PluginType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="installForAllUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="installForNewUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>

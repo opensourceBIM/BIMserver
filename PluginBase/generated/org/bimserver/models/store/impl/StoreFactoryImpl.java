@@ -265,10 +265,12 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createInterfaceMetric();
 		case StorePackage.METHOD_METRIC:
 			return (EObject) createMethodMetric();
-		case StorePackage.PLUGIN_VERSION:
-			return (EObject) createPluginVersion();
-		case StorePackage.PLUGIN_UPDATE_INFORMATION:
-			return (EObject) createPluginUpdateInformation();
+		case StorePackage.PLUGIN_BUNDLE_VERSION:
+			return (EObject) createPluginBundleVersion();
+		case StorePackage.PLUGIN_BUNDLE_UPDATE_INFORMATION:
+			return (EObject) createPluginBundleUpdateInformation();
+		case StorePackage.PLUGIN_INFORMATION:
+			return (EObject) createPluginInformation();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -310,6 +312,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createModelCheckerResultTypeFromString(eDataType, initialValue);
 		case StorePackage.SMTP_PROTOCOL:
 			return createSmtpProtocolFromString(eDataType, initialValue);
+		case StorePackage.PLUGIN_BUNDLE_TYPE:
+			return createPluginBundleTypeFromString(eDataType, initialValue);
 		case StorePackage.PLUGIN_TYPE:
 			return createPluginTypeFromString(eDataType, initialValue);
 		case StorePackage.DATA_HANDLER:
@@ -355,6 +359,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertModelCheckerResultTypeToString(eDataType, instanceValue);
 		case StorePackage.SMTP_PROTOCOL:
 			return convertSmtpProtocolToString(eDataType, instanceValue);
+		case StorePackage.PLUGIN_BUNDLE_TYPE:
+			return convertPluginBundleTypeToString(eDataType, instanceValue);
 		case StorePackage.PLUGIN_TYPE:
 			return convertPluginTypeToString(eDataType, instanceValue);
 		case StorePackage.DATA_HANDLER:
@@ -1349,9 +1355,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PluginVersion createPluginVersion() {
-		PluginVersionImpl pluginVersion = new PluginVersionImpl();
-		return pluginVersion;
+	public PluginBundleVersion createPluginBundleVersion() {
+		PluginBundleVersionImpl pluginBundleVersion = new PluginBundleVersionImpl();
+		return pluginBundleVersion;
 	}
 
 	/**
@@ -1359,9 +1365,19 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PluginUpdateInformation createPluginUpdateInformation() {
-		PluginUpdateInformationImpl pluginUpdateInformation = new PluginUpdateInformationImpl();
-		return pluginUpdateInformation;
+	public PluginBundleUpdateInformation createPluginBundleUpdateInformation() {
+		PluginBundleUpdateInformationImpl pluginBundleUpdateInformation = new PluginBundleUpdateInformationImpl();
+		return pluginBundleUpdateInformation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PluginInformation createPluginInformation() {
+		PluginInformationImpl pluginInformation = new PluginInformationImpl();
+		return pluginInformation;
 	}
 
 	/**
@@ -1655,6 +1671,27 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertSmtpProtocolToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PluginBundleType createPluginBundleTypeFromString(EDataType eDataType, String initialValue) {
+		PluginBundleType result = PluginBundleType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPluginBundleTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

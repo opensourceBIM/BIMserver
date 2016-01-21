@@ -854,16 +854,23 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.PLUGIN_VERSION: {
-			PluginVersion pluginVersion = (PluginVersion) theEObject;
-			T result = casePluginVersion(pluginVersion);
+		case StorePackage.PLUGIN_BUNDLE_VERSION: {
+			PluginBundleVersion pluginBundleVersion = (PluginBundleVersion) theEObject;
+			T result = casePluginBundleVersion(pluginBundleVersion);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.PLUGIN_UPDATE_INFORMATION: {
-			PluginUpdateInformation pluginUpdateInformation = (PluginUpdateInformation) theEObject;
-			T result = casePluginUpdateInformation(pluginUpdateInformation);
+		case StorePackage.PLUGIN_BUNDLE_UPDATE_INFORMATION: {
+			PluginBundleUpdateInformation pluginBundleUpdateInformation = (PluginBundleUpdateInformation) theEObject;
+			T result = casePluginBundleUpdateInformation(pluginBundleUpdateInformation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.PLUGIN_INFORMATION: {
+			PluginInformation pluginInformation = (PluginInformation) theEObject;
+			T result = casePluginInformation(pluginInformation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -2344,32 +2351,47 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Plugin Version</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Plugin Bundle Version</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Plugin Version</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Plugin Bundle Version</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePluginVersion(PluginVersion object) {
+	public T casePluginBundleVersion(PluginBundleVersion object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Plugin Update Information</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Plugin Bundle Update Information</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Plugin Update Information</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Plugin Bundle Update Information</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePluginUpdateInformation(PluginUpdateInformation object) {
+	public T casePluginBundleUpdateInformation(PluginBundleUpdateInformation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Plugin Information</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Plugin Information</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePluginInformation(PluginInformation object) {
 		return null;
 	}
 

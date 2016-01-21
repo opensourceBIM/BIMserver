@@ -568,13 +568,18 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter casePluginVersion(PluginVersion object) {
-			return createPluginVersionAdapter();
+		public Adapter casePluginBundleVersion(PluginBundleVersion object) {
+			return createPluginBundleVersionAdapter();
 		}
 
 		@Override
-		public Adapter casePluginUpdateInformation(PluginUpdateInformation object) {
-			return createPluginUpdateInformationAdapter();
+		public Adapter casePluginBundleUpdateInformation(PluginBundleUpdateInformation object) {
+			return createPluginBundleUpdateInformationAdapter();
+		}
+
+		@Override
+		public Adapter casePluginInformation(PluginInformation object) {
+			return createPluginInformationAdapter();
 		}
 
 		@Override
@@ -1969,30 +1974,44 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PluginVersion <em>Plugin Version</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PluginBundleVersion <em>Plugin Bundle Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.PluginVersion
+	 * @see org.bimserver.models.store.PluginBundleVersion
 	 * @generated
 	 */
-	public Adapter createPluginVersionAdapter() {
+	public Adapter createPluginBundleVersionAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PluginUpdateInformation <em>Plugin Update Information</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PluginBundleUpdateInformation <em>Plugin Bundle Update Information</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.PluginUpdateInformation
+	 * @see org.bimserver.models.store.PluginBundleUpdateInformation
 	 * @generated
 	 */
-	public Adapter createPluginUpdateInformationAdapter() {
+	public Adapter createPluginBundleUpdateInformationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PluginInformation <em>Plugin Information</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.PluginInformation
+	 * @generated
+	 */
+	public Adapter createPluginInformationAdapter() {
 		return null;
 	}
 

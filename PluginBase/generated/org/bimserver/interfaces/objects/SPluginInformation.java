@@ -16,25 +16,24 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SPluginUpdateInformation implements SDataBase
+public class SPluginInformation implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private java.lang.String organization;
 	private java.lang.String name;
-	private SPluginVersion latestVersion;
-	private List<SPluginVersion> availableVersions = new ArrayList<SPluginVersion>();
+	private SPluginType type;
+	private java.lang.String description;
+	private boolean installForAllUsers;
+	private boolean installForNewUsers;
 
 	public long getOid() {
 		return this.oid;
@@ -58,21 +57,24 @@ public class SPluginUpdateInformation implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPluginUpdateInformation.sClass = sClass;
+		SPluginInformation.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("organization")) {
-			return getOrganization();
-		}
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
-		if (sField.getName().equals("latestVersion")) {
-			return getLatestVersion();
+		if (sField.getName().equals("type")) {
+			return getType();
 		}
-		if (sField.getName().equals("availableVersions")) {
-			return getAvailableVersions();
+		if (sField.getName().equals("description")) {
+			return getDescription();
+		}
+		if (sField.getName().equals("installForAllUsers")) {
+			return isInstallForAllUsers();
+		}
+		if (sField.getName().equals("installForNewUsers")) {
+			return isInstallForNewUsers();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -82,23 +84,26 @@ public class SPluginUpdateInformation implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
-	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("organization")) {
-			setOrganization((String)val);
-			return;
-		}
 		if (sField.getName().equals("name")) {
 			setName((String)val);
 			return;
 		}
-		if (sField.getName().equals("latestVersion")) {
-			setLatestVersion((SPluginVersion)val);
+		if (sField.getName().equals("type")) {
+			setType((SPluginType)val);
 			return;
 		}
-		if (sField.getName().equals("availableVersions")) {
-			setAvailableVersions((List<SPluginVersion>)val);
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
+			return;
+		}
+		if (sField.getName().equals("installForAllUsers")) {
+			setInstallForAllUsers((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("installForNewUsers")) {
+			setInstallForNewUsers((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -112,14 +117,6 @@ public class SPluginUpdateInformation implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public java.lang.String getOrganization() {
-		return organization;
-	}
-
-	public void setOrganization(java.lang.String organization) {
-		this.organization = organization;
-	}
-	
 	public java.lang.String getName() {
 		return name;
 	}
@@ -128,21 +125,36 @@ public class SPluginUpdateInformation implements SDataBase
 		this.name = name;
 	}
 	
-	public SPluginVersion getLatestVersion() {
-		return latestVersion;
+	public SPluginType getType() {
+		return type;
 	}
 
-	public void setLatestVersion(SPluginVersion latestVersion) {
-		this.latestVersion = latestVersion;
+	public void setType(SPluginType type) {
+		this.type = type;
 	}
 	
-	
-	public List<SPluginVersion> getAvailableVersions() {
-		return availableVersions;
+	public java.lang.String getDescription() {
+		return description;
 	}
 
-	public void setAvailableVersions(List<SPluginVersion> availableVersions) {
-		this.availableVersions = availableVersions;
+	public void setDescription(java.lang.String description) {
+		this.description = description;
+	}
+	
+	public boolean isInstallForAllUsers() {
+		return installForAllUsers;
+	}
+
+	public void setInstallForAllUsers(boolean installForAllUsers) {
+		this.installForAllUsers = installForAllUsers;
+	}
+	
+	public boolean isInstallForNewUsers() {
+		return installForNewUsers;
+	}
+
+	public void setInstallForNewUsers(boolean installForNewUsers) {
+		this.installForNewUsers = installForNewUsers;
 	}
 	
 	@Override
@@ -161,7 +173,7 @@ public class SPluginUpdateInformation implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPluginUpdateInformation other = (SPluginUpdateInformation) obj;
+		SPluginInformation other = (SPluginInformation) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

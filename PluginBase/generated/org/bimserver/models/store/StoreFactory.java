@@ -918,22 +918,31 @@ public interface StoreFactory extends EFactory {
 	MethodMetric createMethodMetric();
 
 	/**
-	 * Returns a new object of class '<em>Plugin Version</em>'.
+	 * Returns a new object of class '<em>Plugin Bundle Version</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Plugin Version</em>'.
+	 * @return a new object of class '<em>Plugin Bundle Version</em>'.
 	 * @generated
 	 */
-	PluginVersion createPluginVersion();
+	PluginBundleVersion createPluginBundleVersion();
 
 	/**
-	 * Returns a new object of class '<em>Plugin Update Information</em>'.
+	 * Returns a new object of class '<em>Plugin Bundle Update Information</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Plugin Update Information</em>'.
+	 * @return a new object of class '<em>Plugin Bundle Update Information</em>'.
 	 * @generated
 	 */
-	PluginUpdateInformation createPluginUpdateInformation();
+	PluginBundleUpdateInformation createPluginBundleUpdateInformation();
+
+	/**
+	 * Returns a new object of class '<em>Plugin Information</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Plugin Information</em>'.
+	 * @generated
+	 */
+	PluginInformation createPluginInformation();
 
 	/**
 	 * Returns the package supported by this factory.
