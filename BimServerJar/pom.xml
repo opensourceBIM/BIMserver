@@ -16,7 +16,12 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<descriptor>assembly.xml</descriptor>
-					<finalName>bimserver-${pom.version}</finalName>
+					<finalName>bimserverjar-${pom.version}</finalName>
+					<archive>
+						<manifest>
+							<mainClass>org.bimserver.starter.Starter</mainClass>
+						</manifest>
+					</archive>
 				</configuration>
 				<executions>
 					<execution>

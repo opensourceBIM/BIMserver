@@ -917,7 +917,7 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	public PluginBundle install(String identifier, Path jarFile) throws Exception {
-		Path target = pluginsDir.resolve(jarFile.getFileName().toString());
+		Path target = pluginsDir.resolve(identifier + ".jar");
 		if (Files.exists(target)) {
 			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
 		}
