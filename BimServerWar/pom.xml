@@ -32,6 +32,9 @@
 						<resource>
 							<directory>../BimServer/deploy</directory>
 							<targetPath>WEB-INF</targetPath>
+							<excludes>
+								<exclude>web.xml</exclude>
+							</excludes>
 						</resource>
 					</webResources>
 					<webXml>web.xml</webXml>

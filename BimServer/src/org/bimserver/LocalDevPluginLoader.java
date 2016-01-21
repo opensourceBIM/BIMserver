@@ -33,10 +33,8 @@ public class LocalDevPluginLoader {
 		if (pluginDirectories != null) {
 			for (Path pluginDirectory : pluginDirectories) {
 				try {
-					pluginManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
+					pluginManager.loadPluginsFromEclipseProject(pluginDirectory);
 				} catch (PluginException e) {
-					LOGGER.error("", e);
-				} catch (IOException e) {
 					LOGGER.error("", e);
 				}
 			}

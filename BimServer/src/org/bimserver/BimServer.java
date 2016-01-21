@@ -147,6 +147,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.FileAppender;
+
 /*
  * Main class to start a BIMserver
  */
@@ -199,7 +204,8 @@ public class BimServer {
 	/**
 	 * Create a new BIMserver
 	 * 
-	 * @param config Configuration of BIMserver
+	 * @param config
+	 *            Configuration of BIMserver
 	 */
 	public BimServer(BimServerConfig config) {
 		this.config = config;
@@ -242,21 +248,21 @@ public class BimServer {
 
 			serverInfoManager = new ServerInfoManager();
 			LOGGER.debug("ServerInfoManager created");
-			
+
 			notificationsManager = new NotificationsManager(this, jsonSocketReflectorFactory);
 			LOGGER.debug("NotificationsManager created");
-			
+
 			internalServicesManager = new InternalServicesManager(this, notificationsManager.getSiteAddress());
 			LOGGER.debug("InternalServicesManager created");
-			
+
 			serviceFactory = new PublicInterfaceFactory(this);
 			LOGGER.debug("PublicInterfaceFactory created");
-			
+
 			pluginManager = new PluginManager(config.getHomeDir().resolve("tmp"), config.getHomeDir().resolve("plugins"), config.getClassPath(), serviceFactory, internalServicesManager, servicesMap);
 			metaDataManager = new MetaDataManager(pluginManager);
 			pluginManager.setMetaDataManager(metaDataManager);
 			LOGGER.debug("PluginManager created");
-			
+
 			versionChecker = new VersionChecker(config.getResourceFetcher());
 			LOGGER.debug("Version Checker created");
 
@@ -266,7 +272,7 @@ public class BimServer {
 				embeddedWebServer = new EmbeddedWebServer(this, config.isLocalDev());
 				LOGGER.debug("Embedded webserver created");
 			}
-			
+
 			LOGGER.debug("Done with initial setup");
 		} catch (Throwable e) {
 			if (LOGGER == null) {
@@ -281,11 +287,11 @@ public class BimServer {
 	public Map<String, WebModulePlugin> getWebModules() {
 		return webModules;
 	}
-	
+
 	public WebModulePlugin getDefaultWebModule() {
 		return defaultWebModule;
 	}
-	
+
 	public JsonSocketReflectorFactory getJsonSocketReflectorFactory() {
 		return jsonSocketReflectorFactory;
 	}
@@ -309,8 +315,7 @@ public class BimServer {
 					@Override
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
 						// Reflect this change also in the database
-						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(pluginContext.getPlugin()
-								.getClass().getName()));
+						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(pluginContext.getPlugin().getClass().getName()));
 						DatabaseSession session = bimDatabase.createSession();
 						try {
 							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
@@ -335,7 +340,8 @@ public class BimServer {
 
 					@Override
 					public void pluginInstalled(Plugin plugin) throws BimserverDatabaseException {
-						// TODO allow user to select users to which to add this plugin
+						// TODO allow user to select users to which to add this
+						// plugin
 						try (DatabaseSession session = bimDatabase.createSession()) {
 							PluginContext pluginContext = pluginManager.getPluginContext(plugin);
 							PluginDescriptor pluginDescriptor = session.create(PluginDescriptor.class);
@@ -344,7 +350,9 @@ public class BimServer {
 							pluginDescriptor.setDescription(plugin.getDescription() + " " + plugin.getVersion());
 							pluginDescriptor.setLocation(pluginContext.getLocation().toString());
 							pluginDescriptor.setPluginInterfaceClassName(getPluginInterfaceClass(plugin).getName());
-							pluginDescriptor.setEnabled(true); // New plugins are enabled by default
+							pluginDescriptor.setEnabled(true); // New plugins
+																// are enabled
+																// by default
 
 							IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), OldQuery.getDefault());
 							for (User user : allOfType.getAll(User.class)) {
@@ -380,14 +388,14 @@ public class BimServer {
 			templateEngine.init(config.getResourceFetcher().getResource("templates/"));
 			Path databaseDir = config.getHomeDir().resolve("database");
 			BerkeleyKeyValueStore keyValueStore = new BerkeleyKeyValueStore(databaseDir);
-			
+
 			schemaConverterManager.registerConverter(new Ifc2x3tc1ToIfc4SchemaConverterFactory());
 			schemaConverterManager.registerConverter(new Ifc4ToIfc2x3tc1SchemaConverterFactory());
-			
+
 			metricsRegistry = new MetricsRegistry();
-			
+
 			OldQuery.setPackageMetaDataForDefaultQuery(metaDataManager.getPackageMetaData("store"));
-			
+
 			bimDatabase = new Database(this, packages, keyValueStore, metaDataManager);
 			try {
 				bimDatabase.init();
@@ -426,21 +434,21 @@ public class BimServer {
 
 			protocolBuffersMetaData = new ProtocolBuffersMetaData();
 			protocolBuffersMetaData.load(servicesMap, ProtocolBuffersBimServerClientFactory.class);
-			
+
 			serverInfoManager.init(this);
 
 			webModuleManager = new WebModuleManager(this);
-			
+
 			jsonHandler = new JsonHandler(this);
-			
+
 			serializerFactory = new SerializerFactory();
 
 			serverSettingsCache = new ServerSettingsCache(bimDatabase);
-			
+
 			serverInfoManager.update();
-			
+
 			renderEnginePools = new RenderEnginePools(this);
-			
+
 			if (serverInfoManager.getServerState() == ServerState.MIGRATION_REQUIRED) {
 				serverInfoManager.registerStateChangeListener(new StateChangeListener() {
 					@Override
@@ -478,7 +486,7 @@ public class BimServer {
 			if (config.isStartEmbeddedWebServer()) {
 				embeddedWebServer.start();
 			}
-			
+
 			if (config.isStartCommandLine()) {
 				commandLine = new CommandLine(this);
 				commandLine.start();
@@ -488,7 +496,7 @@ public class BimServer {
 			serverInfoManager.setErrorMessage(e.getMessage());
 		}
 	}
-	
+
 	public SecretKeySpec getEncryptionKey() {
 		return encryptionkey;
 	}
@@ -504,7 +512,7 @@ public class BimServer {
 			updateUserSettings(session, user);
 		}
 	}
-	
+
 	public NewDiskCacheManager getNewDiskCacheManager() {
 		return newDiskCacheManager;
 	}
@@ -512,7 +520,7 @@ public class BimServer {
 	private <T extends PluginConfiguration> T find(List<T> list, String name) {
 		for (T t : list) {
 			if (t.getPluginDescriptor() == null) {
-//				throw new RuntimeException("No PluginDescriptor!");
+				// throw new RuntimeException("No PluginDescriptor!");
 			} else {
 				if (t.getPluginDescriptor().getPluginClassName().equals(name)) {
 					return t;
@@ -526,10 +534,11 @@ public class BimServer {
 		try {
 			pluginConfiguration.setName(plugin.getDefaultName());
 			pluginConfiguration.setPluginDescriptor(pluginDescriptor);
-			
+
 			// For the opposite of setPluginDescriptor
-			//session.store(pluginDescriptor); Disabled for now, this creates massive lists, that are not really useful...
-			
+			// session.store(pluginDescriptor); Disabled for now, this creates
+			// massive lists, that are not really useful...
+
 			pluginConfiguration.setDescription(plugin.getDescription());
 			pluginConfiguration.setEnabled(true);
 			pluginConfiguration.setSettings(convertSettings(session, plugin));
@@ -555,7 +564,7 @@ public class BimServer {
 		}
 		return null;
 	}
-	
+
 	public void updateUserPlugin(DatabaseSession session, User user, PluginDescriptor pluginDescriptor, Plugin plugin) throws BimserverDatabaseException {
 		UserSettings userSettings = user.getUserSettings();
 		if (userSettings == null) {
@@ -563,13 +572,13 @@ public class BimServer {
 			user.setUserSettings(userSettings);
 			session.store(user);
 		}
-		
+
 		Class<?> pluginInterface = getPluginInterface(plugin.getClass());
 		String pluginInterfaceName = pluginInterface.getSimpleName();
 		if (pluginInterfaceName.endsWith("Plugin")) {
 			pluginInterfaceName = pluginInterfaceName.substring(0, pluginInterfaceName.length() - 6);
 		}
-		
+
 		if (pluginInterfaceName.equals("MessagingStreamingSerializer") || pluginInterfaceName.equals("MessagingSerializer") || pluginInterfaceName.equals("StreamingSerializer")) {
 			pluginInterfaceName = "Serializer";
 		}
@@ -577,7 +586,8 @@ public class BimServer {
 			pluginInterfaceName = "Deserializer";
 		}
 		if (pluginInterfaceName.equals("ModelChecker")) {
-			// ModelChecker are not coupled to UserSettings but to ServerSettings
+			// ModelChecker are not coupled to UserSettings but to
+			// ServerSettings
 			return;
 		}
 
@@ -585,7 +595,7 @@ public class BimServer {
 		EReference listReference = (EReference) userSettingsClass.getEStructuralFeature(StringUtils.firstLowerCase(pluginInterfaceName) + "s");
 		EReference defaultReference = (EReference) userSettingsClass.getEStructuralFeature("default" + pluginInterfaceName);
 		EClass pluginConfigurationClass = (EClass) listReference.getEType();
-		
+
 		List<PluginConfiguration> list = (List<PluginConfiguration>) userSettings.eGet(listReference);
 		PluginConfiguration pluginConfiguration = find(list, plugin.getClass().getName());
 		if (pluginConfiguration == null) {
@@ -593,7 +603,7 @@ public class BimServer {
 			list.add(pluginConfiguration);
 			genericPluginConversion(session, plugin, pluginConfiguration, pluginDescriptor);
 		}
-		
+
 		if (defaultReference != null) {
 			if (userSettings.eGet(defaultReference) == null && !list.isEmpty()) {
 				userSettings.eSet(defaultReference, list.get(0));
@@ -601,7 +611,7 @@ public class BimServer {
 		}
 		session.store(userSettings);
 	}
-	
+
 	public void updateUserSettings(DatabaseSession session, User user) throws BimserverLockConflictException, BimserverDatabaseException {
 		UserSettings userSettings = user.getUserSettings();
 		if (userSettings == null) {
@@ -630,7 +640,8 @@ public class BimServer {
 				userSettings.getRenderEngines().add(ifcEnginePluginConfiguration);
 				genericPluginConversion(session, ifcEnginePlugin, ifcEnginePluginConfiguration, getPluginDescriptor(session, ifcEnginePlugin.getClass().getName()));
 			}
-			if (userSettings.getDefaultRenderEngine() != null && userSettings.getDefaultRenderEngine().getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifcengine.TNOJvmRenderEnginePlugin") && ifcEnginePlugin.getClass().getName().equals("org.ifcopenshell.IfcOpenShellEnginePlugin")) {
+			if (userSettings.getDefaultRenderEngine() != null && userSettings.getDefaultRenderEngine().getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifcengine.TNOJvmRenderEnginePlugin")
+					&& ifcEnginePlugin.getClass().getName().equals("org.ifcopenshell.IfcOpenShellEnginePlugin")) {
 				userSettings.setDefaultRenderEngine(ifcEnginePluginConfiguration);
 			}
 			if (userSettings.getDefaultRenderEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.ifcopenshell.IfcOpenShellEnginePlugin")) {
@@ -760,7 +771,7 @@ public class BimServer {
 		}
 		session.store(userSettings);
 	}
-	
+
 	public RenderEnginePools getRenderEnginePools() {
 		return renderEnginePools;
 	}
@@ -816,7 +827,7 @@ public class BimServer {
 		}
 		return null;
 	}
-	
+
 	private void initDatabaseDependantItems() throws BimserverDatabaseException {
 		serverSettingsCache.init();
 		notificationsManager.init();
@@ -835,9 +846,9 @@ public class BimServer {
 
 			session = bimDatabase.createSession();
 			createDatabaseObjects(session);
-			
+
 			ServerSettings serverSettings = serverSettingsCache.getServerSettings();
-			
+
 			for (WebModulePlugin webModulePlugin : pluginManager.getAllWebPlugins(true)) {
 				WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), webModulePlugin.getClass().getName());
 				if (webPluginConfiguration == null) {
@@ -850,7 +861,7 @@ public class BimServer {
 					}
 				}
 			}
-			
+
 			// Set the default
 			if (serverSettings.getWebModule() == null) {
 				WebModulePluginConfiguration bimviewsWebModule = findWebModule(serverSettings, "BIM Views");
@@ -866,7 +877,7 @@ public class BimServer {
 				}
 			}
 			session.store(serverSettings);
-			
+
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral("system"));
 			User systemUser = session.querySingle(condition, User.class, OldQuery.getDefault());
 
@@ -884,7 +895,7 @@ public class BimServer {
 			} finally {
 				session.close();
 			}
-			
+
 			webModules = new HashMap<String, WebModulePlugin>();
 			DatabaseSession ses = bimDatabase.createSession();
 			try {
@@ -893,14 +904,17 @@ public class BimServer {
 					String contextPath = "";
 					for (Parameter parameter : webModulePluginConfiguration.getSettings().getParameters()) {
 						if (parameter.getName().equals("contextPath")) {
-							contextPath = ((StringType)parameter.getValue()).getValue();
+							contextPath = ((StringType) parameter.getValue()).getValue();
 						}
 					}
 					webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(webModulePluginConfiguration.getPluginDescriptor().getPluginClassName(), true));
 				}
-//				if (serverSettingsCache.getServerSettings().getWebModule() != null) {
-//					defaultWebModule = (WebModulePlugin) pluginManager.getPlugin(serverSettingsCache.getServerSettings().getWebModule().getPluginDescriptor().getPluginClassName(), true);
-//				}
+				// if (serverSettingsCache.getServerSettings().getWebModule() !=
+				// null) {
+				// defaultWebModule = (WebModulePlugin)
+				// pluginManager.getPlugin(serverSettingsCache.getServerSettings().getWebModule().getPluginDescriptor().getPluginClassName(),
+				// true);
+				// }
 			} finally {
 				ses.close();
 			}
@@ -914,7 +928,7 @@ public class BimServer {
 					LOGGER.error("", e);
 				}
 			}
-			
+
 			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap, pluginManager, metaDataManager);
 			pluginManager.setBimServerClientFactory(bimServerClientFactory);
 		} catch (BimserverLockConflictException e) {
@@ -923,7 +937,7 @@ public class BimServer {
 			throw new BimserverDatabaseException(e);
 		}
 	}
-	
+
 	public WebModuleManager getWebModuleManager() {
 		return webModuleManager;
 	}
@@ -951,7 +965,7 @@ public class BimServer {
 		}
 		return plugin.getClass();
 	}
-	
+
 	private void updatePlugins(DatabaseSession session) throws BimserverDatabaseException {
 		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
 		for (Plugin plugin : allPlugins) {
@@ -965,7 +979,8 @@ public class BimServer {
 				pluginDescriptor.setDescription(plugin.getDescription() + " " + plugin.getVersion());
 				pluginDescriptor.setLocation(pluginContext.getLocation().toString());
 				pluginDescriptor.setPluginInterfaceClassName(getPluginInterfaceClass(plugin).getName());
-				pluginDescriptor.setEnabled(true); // New plugins are enabled by default
+				pluginDescriptor.setEnabled(true); // New plugins are enabled by
+													// default
 			} else if (results.size() == 1) {
 				PluginContext pluginContext = pluginManager.getPluginContext(plugin);
 				PluginDescriptor pluginDescriptor = results.values().iterator().next();
@@ -993,21 +1008,42 @@ public class BimServer {
 	public void setDefaultWebModule(WebModulePlugin defaultWebModule) {
 		this.defaultWebModule = defaultWebModule;
 	}
-	
-	private void fixLogging() throws IOException {
-//		Path file = config.getHomeDir().resolve("logs/bimserver.log");
-//		CustomFileAppender appender = new CustomFileAppender(file);
-//		appender.setLayout(new PatternLayout("%d{dd-MM-yyyy HH:mm:ss} %-5p %-80m (%c.java:%L) %n"));
-//		System.out.println("Logging to: " + file.toString());
-//		Enumeration<?> currentLoggers = LogManager.getCurrentLoggers();
-//		LogManager.getRootLogger().addAppender(appender);
-//		while (currentLoggers.hasMoreElements()) {
-//			Object nextElement = currentLoggers.nextElement();
-//			org.apache.log4j.Logger logger2 = (org.apache.log4j.Logger) nextElement;
-//			logger2.addAppender(appender);
-//		}
-	}
 
+	/**
+	 * Add a file appender to every logger we can find (the loggers should already have been configured via logback.xml)
+	 * 
+	 * @throws IOException
+	 */
+	private void fixLogging() throws IOException {
+		Path logFolder = config.getHomeDir().resolve("logs");
+		if (!Files.isDirectory(logFolder)) {
+			Files.createDirectories(logFolder);
+		}
+		Path file = logFolder.resolve("bimserver.log");
+
+		LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+		PatternLayoutEncoder ple = new PatternLayoutEncoder();
+
+		ple.setPattern("%date %level [%thread] %logger{10} [%file:%line] %msg%n");
+		ple.setContext(lc);
+		ple.start();
+		FileAppender<ILoggingEvent> fileAppender = new FileAppender<ILoggingEvent>();
+		String filename = file.toAbsolutePath().toString();
+		
+		System.out.println("Logging to " + filename);
+		
+		fileAppender.setFile(filename);
+		fileAppender.setEncoder(ple);
+		fileAppender.setContext(lc);
+		fileAppender.start();
+
+		for (ch.qos.logback.classic.Logger log : lc.getLoggerList()) {
+			if (log.getLevel() != null) {
+				log.addAppender(fileAppender);
+			}
+		}
+	}
+	
 	private void initHomeDir() throws IOException {
 		String[] filesToCheck = new String[] { "logs", "tmp", "log4j.xml", "templates" };
 		if (!Files.exists(config.getHomeDir())) {
@@ -1110,7 +1146,7 @@ public class BimServer {
 	public BimServerClientFactory getBimServerClientFactory() {
 		return bimServerClientFactory;
 	}
-	
+
 	public PublicInterfaceFactory getServiceFactory() {
 		return serviceFactory;
 	}
@@ -1158,7 +1194,7 @@ public class BimServer {
 	public JsonHandler getJsonHandler() {
 		return jsonHandler;
 	}
-	
+
 	public SConverter getSConverter() {
 		return sConverter;
 	}
@@ -1174,19 +1210,19 @@ public class BimServer {
 	public <T extends PublicInterface> T getService(Class<T> clazz) {
 		return getServiceFactory().get(new SystemAuthorization(getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS), AccessMethod.INTERNAL).get(clazz);
 	}
-	
+
 	public LongTransactionManager getLongTransactionManager() {
 		return longTransactionManager;
 	}
-	
+
 	public ExecutorService getExecutorService() {
 		return executorService;
 	}
-	
+
 	public MetaDataManager getMetaDataManager() {
 		return metaDataManager;
 	}
-	
+
 	public SchemaConverterManager getSchemaConverterManager() {
 		return schemaConverterManager;
 	}
