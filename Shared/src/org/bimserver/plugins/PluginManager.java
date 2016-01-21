@@ -930,12 +930,22 @@ public class PluginManager implements PluginManagerInterface {
 		switch (className) {
 		case "org.bimserver.plugins.deserializers.DeserializerPlugin":
 			return SPluginType.DESERIALIZER;
+		case "org.bimserver.plugins.deserializers.StreamingDeserializerPlugin":
+			return SPluginType.DESERIALIZER;
 		case "org.bimserver.plugins.serializers.SerializerPlugin":
+			return SPluginType.SERIALIZER;
+		case "org.bimserver.plugins.serializers.StreamingSerializerPlugin":
+			return SPluginType.SERIALIZER;
+		case "org.bimserver.plugins.serializers.MessagingStreamingSerializerPlugin":
+			return SPluginType.SERIALIZER;
+		case "org.bimserver.plugins.serializers.MessagingSerializerPlugin":
 			return SPluginType.SERIALIZER;
 		case "org.bimserver.plugins.modelchecker.ModelCheckerPlugin":
 			return SPluginType.MODEL_CHECKER;
 		case "org.bimserver.plugins.modelmerger.ModelMergerPlugin":
 			return SPluginType.MODEL_MERGER;
+		case "org.bimserver.plugins.modelcompare.ModelComparePlugin":
+			return SPluginType.MODEL_COMPARE;
 		case "org.bimserver.plugins.objectidms.ObjectIDMPlugin":
 			return SPluginType.OBJECT_IDM;
 		case "org.bimserver.plugins.queryengine.QueryEnginePlugin":
