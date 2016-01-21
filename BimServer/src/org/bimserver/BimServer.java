@@ -763,7 +763,7 @@ public class BimServer {
 		return webModuleManager;
 	}
 
-	private Class<?> getPluginInterfaceClass(Plugin plugin) {
+	public static Class<?> getPluginInterfaceClass(Plugin plugin) {
 		for (Class<?> pluginInterface : plugin.getClass().getInterfaces()) {
 			if (pluginInterface != Plugin.class && Plugin.class.isAssignableFrom(pluginInterface)) {
 				return pluginInterface;

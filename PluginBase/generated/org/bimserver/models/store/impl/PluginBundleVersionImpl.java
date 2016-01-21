@@ -18,38 +18,38 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 
-import org.bimserver.models.store.PluginType;
-import org.bimserver.models.store.PluginVersion;
+import org.bimserver.models.store.PluginBundleType;
+import org.bimserver.models.store.PluginBundleVersion;
 import org.bimserver.models.store.StorePackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Plugin Version</b></em>'.
+ * An implementation of the model object '<em><b>Plugin Bundle Version</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#getVersion <em>Version</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#isMismatch <em>Mismatch</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#getRepository <em>Repository</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#getGroupId <em>Group Id</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginVersionImpl#getArtifactId <em>Artifact Id</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#isMismatch <em>Mismatch</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getRepository <em>Repository</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getGroupId <em>Group Id</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getArtifactId <em>Artifact Id</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
+public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBundleVersion {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PluginVersionImpl() {
+	protected PluginBundleVersionImpl() {
 		super();
 	}
 
@@ -60,7 +60,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StorePackage.Literals.PLUGIN_VERSION;
+		return StorePackage.Literals.PLUGIN_BUNDLE_VERSION;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * @generated
 	 */
 	public String getVersion() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_VERSION__VERSION, true);
+		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__VERSION, true);
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * @generated
 	 */
 	public void setVersion(String newVersion) {
-		eSet(StorePackage.Literals.PLUGIN_VERSION__VERSION, newVersion);
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__VERSION, newVersion);
 	}
 
 	/**
@@ -96,8 +96,8 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PluginType getType() {
-		return (PluginType) eGet(StorePackage.Literals.PLUGIN_VERSION__TYPE, true);
+	public PluginBundleType getType() {
+		return (PluginBundleType) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__TYPE, true);
 	}
 
 	/**
@@ -105,8 +105,8 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(PluginType newType) {
-		eSet(StorePackage.Literals.PLUGIN_VERSION__TYPE, newType);
+	public void setType(PluginBundleType newType) {
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__TYPE, newType);
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * @generated
 	 */
 	public String getDescription() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_VERSION__DESCRIPTION, true);
+		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__DESCRIPTION, true);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.PLUGIN_VERSION__DESCRIPTION, newDescription);
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__DESCRIPTION, newDescription);
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * @generated
 	 */
 	public boolean isMismatch() {
-		return (Boolean) eGet(StorePackage.Literals.PLUGIN_VERSION__MISMATCH, true);
+		return (Boolean) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__MISMATCH, true);
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * @generated
 	 */
 	public void setMismatch(boolean newMismatch) {
-		eSet(StorePackage.Literals.PLUGIN_VERSION__MISMATCH, newMismatch);
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__MISMATCH, newMismatch);
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * @generated
 	 */
 	public String getRepository() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_VERSION__REPOSITORY, true);
+		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__REPOSITORY, true);
 	}
 
 	/**
@@ -160,7 +160,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * @generated
 	 */
 	public void setRepository(String newRepository) {
-		eSet(StorePackage.Literals.PLUGIN_VERSION__REPOSITORY, newRepository);
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__REPOSITORY, newRepository);
 	}
 
 	/**
@@ -169,7 +169,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * @generated
 	 */
 	public String getGroupId() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_VERSION__GROUP_ID, true);
+		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__GROUP_ID, true);
 	}
 
 	/**
@@ -178,7 +178,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * @generated
 	 */
 	public void setGroupId(String newGroupId) {
-		eSet(StorePackage.Literals.PLUGIN_VERSION__GROUP_ID, newGroupId);
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__GROUP_ID, newGroupId);
 	}
 
 	/**
@@ -187,7 +187,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * @generated
 	 */
 	public String getArtifactId() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_VERSION__ARTIFACT_ID, true);
+		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ARTIFACT_ID, true);
 	}
 
 	/**
@@ -196,7 +196,7 @@ public class PluginVersionImpl extends IdEObjectImpl implements PluginVersion {
 	 * @generated
 	 */
 	public void setArtifactId(String newArtifactId) {
-		eSet(StorePackage.Literals.PLUGIN_VERSION__ARTIFACT_ID, newArtifactId);
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ARTIFACT_ID, newArtifactId);
 	}
 
-} //PluginVersionImpl
+} //PluginBundleVersionImpl

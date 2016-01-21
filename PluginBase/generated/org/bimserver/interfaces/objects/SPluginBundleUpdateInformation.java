@@ -16,21 +16,25 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SDoubleType.class, SLongType.class, SByteArrayType.class, SStringType.class, SBooleanType.class})
-public class SPrimitiveType extends SType implements SDataBase
+public class SPluginBundleUpdateInformation implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
+	private java.lang.String organization;
+	private java.lang.String name;
+	private SPluginBundleVersion latestVersion;
+	private List<SPluginBundleVersion> availableVersions = new ArrayList<SPluginBundleVersion>();
 
 	public long getOid() {
 		return this.oid;
@@ -54,10 +58,22 @@ public class SPrimitiveType extends SType implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPrimitiveType.sClass = sClass;
+		SPluginBundleUpdateInformation.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
+		if (sField.getName().equals("organization")) {
+			return getOrganization();
+		}
+		if (sField.getName().equals("name")) {
+			return getName();
+		}
+		if (sField.getName().equals("latestVersion")) {
+			return getLatestVersion();
+		}
+		if (sField.getName().equals("availableVersions")) {
+			return getAvailableVersions();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -66,8 +82,25 @@ public class SPrimitiveType extends SType implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("organization")) {
+			setOrganization((String)val);
+			return;
+		}
+		if (sField.getName().equals("name")) {
+			setName((String)val);
+			return;
+		}
+		if (sField.getName().equals("latestVersion")) {
+			setLatestVersion((SPluginBundleVersion)val);
+			return;
+		}
+		if (sField.getName().equals("availableVersions")) {
+			setAvailableVersions((List<SPluginBundleVersion>)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -77,6 +110,39 @@ public class SPrimitiveType extends SType implements SDataBase
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
+	public java.lang.String getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(java.lang.String organization) {
+		this.organization = organization;
+	}
+	
+	public java.lang.String getName() {
+		return name;
+	}
+
+	public void setName(java.lang.String name) {
+		this.name = name;
+	}
+	
+	public SPluginBundleVersion getLatestVersion() {
+		return latestVersion;
+	}
+
+	public void setLatestVersion(SPluginBundleVersion latestVersion) {
+		this.latestVersion = latestVersion;
+	}
+	
+	
+	public List<SPluginBundleVersion> getAvailableVersions() {
+		return availableVersions;
+	}
+
+	public void setAvailableVersions(List<SPluginBundleVersion> availableVersions) {
+		this.availableVersions = availableVersions;
 	}
 	
 	@Override
@@ -95,7 +161,7 @@ public class SPrimitiveType extends SType implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPrimitiveType other = (SPrimitiveType) obj;
+		SPluginBundleUpdateInformation other = (SPluginBundleUpdateInformation) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

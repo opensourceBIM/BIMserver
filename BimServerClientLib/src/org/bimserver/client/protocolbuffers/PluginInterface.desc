@@ -1,5 +1,5 @@
 
-¨Ä
+§Ë
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"¸
  SDeserializerPluginConfiguration
 description (	
@@ -236,8 +236,8 @@ settingsId ("p
 GetAllWebModulesResponse
 errorMessage (	>
 value (2/.org.bimserver.pb.SWebModulePluginConfiguration"
-GetAvailablePluginsRequest"È
-SPluginVersion
+GetAvailablePluginsRequest"Ô
+SPluginBundleVersion
 
 artifactId (	
 description (	
@@ -246,19 +246,19 @@ artifactId (	
 oid (
 
 repository (	
-rid (+
-type (2.org.bimserver.pb.SPluginType
-version	 (	"Î
-SPluginUpdateInformation;
-availableVersions (2 .org.bimserver.pb.SPluginVersion7
-latestVersion (2 .org.bimserver.pb.SPluginVersion
+rid (1
+type (2#.org.bimserver.pb.SPluginBundleType
+version	 (	"à
+SPluginBundleUpdateInformationA
+availableVersions (2&.org.bimserver.pb.SPluginBundleVersion=
+latestVersion (2&.org.bimserver.pb.SPluginBundleVersion
 name (	
 oid (
 organization (	
-rid ("n
+rid ("t
 GetAvailablePluginsResponse
-errorMessage (	9
-value (2*.org.bimserver.pb.SPluginUpdateInformation"
+errorMessage (	?
+value (20.org.bimserver.pb.SPluginBundleUpdateInformation"
 GetDefaultModelCompareRequest"y
 GetDefaultModelCompareResponse
 errorMessage (	A
@@ -287,10 +287,10 @@ repository (	
 GetDefaultWebModuleResponse
 errorMessage (	>
 value (2/.org.bimserver.pb.SWebModulePluginConfiguration"
-GetInstalledPluginsRequest"n
+GetInstalledPluginsRequest"t
 GetInstalledPluginsResponse
-errorMessage (	9
-value (2*.org.bimserver.pb.SPluginUpdateInformation",
+errorMessage (	?
+value (20.org.bimserver.pb.SPluginBundleUpdateInformation",
 GetInternalServiceByIdRequest
 oid ("|
 GetInternalServiceByIdResponse
@@ -345,7 +345,25 @@ settingsId (
 oid ("g
 GetPluginDescriptorResponse
 errorMessage (	2
-value (2#.org.bimserver.pb.SPluginDescriptor"/
+value (2#.org.bimserver.pb.SPluginDescriptor"g
+GetPluginInformationRequest
+
+repository (	
+groupId (	
+
+artifactId (	
+version (	"¶
+SPluginInformation
+description (	
+installForAllUsers (
+installForNewUsers (
+name (	
+oid (
+rid (+
+type (2.org.bimserver.pb.SPluginType"i
+GetPluginInformationResponse
+errorMessage (	3
+value (2$.org.bimserver.pb.SPluginInformation"/
  GetPluginObjectDefinitionRequest
 oid ("C
 SArrayDefinition/
@@ -513,16 +531,27 @@ artifactId (	
 renderEngine (22.org.bimserver.pb.SRenderEnginePluginConfiguration"_
 UpdateSerializerRequestD
 
-serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*<
-SPluginType
-SPluginType_MAVEN 
-SPluginType_GITHUB*š
+serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*N
+SPluginBundleType
+SPluginBundleType_MAVEN 
+SPluginBundleType_GITHUB*¼
+SPluginType
+SPluginType_SERIALIZER 
+SPluginType_DESERIALIZER
+SPluginType_RENDER_ENGINE
+SPluginType_QUERY_ENGINE
+SPluginType_OBJECT_IDM
+SPluginType_WEB_MODULE
+SPluginType_MODEL_MERGER
+SPluginType_MODEL_COMPARE
+SPluginType_MODEL_CHECKER"
+SPluginType_STILL_IMAGE_RENDER	*š
 SPrimitiveEnum
 SPrimitiveEnum_LONG 
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2ÀL
+SPrimitiveEnum_BYTE_ARRAY2·M
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -579,7 +608,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*<
 getModelMergerByName-.org.bimserver.pb.GetModelMergerByNameRequest..org.bimserver.pb.GetModelMergerByNameResponsei
 getObjectIDMById).org.bimserver.pb.GetObjectIDMByIdRequest*.org.bimserver.pb.GetObjectIDMByIdResponseo
 getObjectIDMByName+.org.bimserver.pb.GetObjectIDMByNameRequest,.org.bimserver.pb.GetObjectIDMByNameResponser
-getPluginDescriptor,.org.bimserver.pb.GetPluginDescriptorRequest-.org.bimserver.pb.GetPluginDescriptorResponse„
+getPluginDescriptor,.org.bimserver.pb.GetPluginDescriptorRequest-.org.bimserver.pb.GetPluginDescriptorResponseu
+getPluginInformation-.org.bimserver.pb.GetPluginInformationRequest..org.bimserver.pb.GetPluginInformationResponse„
 getPluginObjectDefinition2.org.bimserver.pb.GetPluginObjectDefinitionRequest3.org.bimserver.pb.GetPluginObjectDefinitionResponsel
 getPluginSettings*.org.bimserver.pb.GetPluginSettingsRequest+.org.bimserver.pb.GetPluginSettingsResponser
 getRenderEngineById,.org.bimserver.pb.GetRenderEngineByIdRequest-.org.bimserver.pb.GetRenderEngineByIdResponsex

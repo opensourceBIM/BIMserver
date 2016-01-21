@@ -537,15 +537,21 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SMethodMetric();
 					}
 				}));
-				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SPluginVersion"), new SConstructor(){
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SPluginBundleVersion"), new SConstructor(){
 					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SPluginVersion();
+						return new org.bimserver.interfaces.objects.SPluginBundleVersion();
 					}
 				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SPluginBundleType"), null));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SPluginType"), null));
-				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SPluginUpdateInformation"), new SConstructor(){
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SPluginBundleUpdateInformation"), new SConstructor(){
 					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SPluginUpdateInformation();
+						return new org.bimserver.interfaces.objects.SPluginBundleUpdateInformation();
+					}
+				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SPluginInformation"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SPluginInformation();
 					}
 				}));
 			super.init();

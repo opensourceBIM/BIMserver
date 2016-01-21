@@ -53,6 +53,8 @@ import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.Schema;
+import org.bimserver.interfaces.objects.SPluginInformation;
+import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.classloaders.DelegatingClassLoader;
@@ -69,7 +71,6 @@ import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
-import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializerPlugin;
@@ -137,7 +138,7 @@ public class PluginManager implements PluginManagerInterface {
 		this.serviceFactory = serviceFactory;
 		this.notificationsManagerInterface = notificationsManagerInterface;
 		this.servicesMap = servicesMap;
-		
+
 		if (pluginsDir != null) {
 			if (!Files.isDirectory(pluginsDir)) {
 				try {
@@ -207,7 +208,7 @@ public class PluginManager implements PluginManagerInterface {
 			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 
 			List<org.bimserver.plugins.Dependency> bimServerDependencies = new ArrayList<>();
-			
+
 			Path pom = projectRoot.resolve("pom.xml");
 			if (Files.exists(pom)) {
 				Model model = mavenreader.read(new FileReader(pom.toFile()));
@@ -221,7 +222,7 @@ public class PluginManager implements PluginManagerInterface {
 					org.apache.maven.model.Dependency depend = it.next();
 					try {
 						DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
-						
+
 						DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
 						locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
 						// locator.addService( TransporterFactory.class,
@@ -235,7 +236,9 @@ public class PluginManager implements PluginManagerInterface {
 						session.setLocalRepositoryManager(system.newLocalRepositoryManager(session, localRepo));
 
 						Dependency dependency2 = new Dependency(new DefaultArtifact(depend.getGroupId() + ":" + depend.getArtifactId() + ":" + depend.getVersion()), "compile");
-//						RemoteRepository central = new RemoteRepository.Builder("central", "default", "http://repo1.maven.org/maven2/").build();
+						// RemoteRepository central = new
+						// RemoteRepository.Builder("central", "default",
+						// "http://repo1.maven.org/maven2/").build();
 
 						CollectRequest collectRequest = new CollectRequest();
 						collectRequest.setRoot(dependency2);
@@ -247,7 +250,7 @@ public class PluginManager implements PluginManagerInterface {
 						Path workspaceDir = Paths.get("..");
 						bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("PluginBase/target/classes")));
 						bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("Shared/target/classes")));
-						
+
 						try {
 							system.resolveDependencies(session, dependencyRequest);
 						} catch (DependencyResolutionException e) {
@@ -256,20 +259,21 @@ public class PluginManager implements PluginManagerInterface {
 
 						PreorderNodeListGenerator nlg = new PreorderNodeListGenerator();
 						node.accept(nlg);
-						
+
 						for (Artifact artifact : nlg.getArtifacts(false)) {
 							Path jarFile = Paths.get(artifact.getFile().getAbsolutePath());
-							
+
 							LOGGER.info("Loading " + jarFile);
-							
-//							Path path = projectRoot.getParent().resolve(nlg.getClassPath());
-							
+
+							// Path path =
+							// projectRoot.getParent().resolve(nlg.getClassPath());
+
 							DelegatingClassLoader depDelLoader = new DelegatingClassLoader(previous);
 							loadDependencies(jarFile, depDelLoader);
 							EclipsePluginClassloader depLoader = new EclipsePluginClassloader(depDelLoader, projectRoot);
-							
+
 							bimServerDependencies.add(new org.bimserver.plugins.Dependency(jarFile));
-							
+
 							previous = depLoader;
 						}
 					} catch (DependencyCollectionException e) {
@@ -279,12 +283,12 @@ public class PluginManager implements PluginManagerInterface {
 			}
 
 			delegatingClassLoader.add(previous);
-//			Path libFolder = projectRoot.resolve("lib");
-//			loadDependencies(libFolder, delegatingClassLoader);
+			// Path libFolder = projectRoot.resolve("lib");
+			// loadDependencies(libFolder, delegatingClassLoader);
 			EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
 			// pluginClassloader.dumpStructure(0);
 			PluginBundleImpl pluginBundle = new PluginBundleImpl(null);
-			
+
 			// TODO
 			identifierToPluginBundle.put(null, pluginBundle);
 
@@ -320,7 +324,8 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private PluginBundleImpl loadPlugins(PluginBundleImpl pluginBundle, ResourceLoader resourceLoader, ClassLoader classLoader, URI location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType, List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
+	private PluginBundleImpl loadPlugins(PluginBundleImpl pluginBundle, ResourceLoader resourceLoader, ClassLoader classLoader, URI location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType,
+			List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
 			if (pluginImplementation.isEnabled()) {
 				String interfaceClassName = pluginImplementation.getInterfaceClass().trim().replace("\n", "");
@@ -409,9 +414,9 @@ public class PluginManager implements PluginManagerInterface {
 			LOGGER.debug(pluginDescriptor.toString());
 			PluginBundleImpl pluginBundle = new PluginBundleImpl(identifier);
 			pluginBundle.addClassLoader(jarClassLoader);
-			
+
 			identifierToPluginBundle.put(identifier, pluginBundle);
-			
+
 			URI fileUri = file.toAbsolutePath().toUri();
 			URI jarUri = new URI("jar:" + fileUri.toString());
 
@@ -619,7 +624,8 @@ public class PluginManager implements PluginManagerInterface {
 		return tempDir;
 	}
 
-	public PluginContext loadPlugin(PluginBundle pluginBundle, Class<? extends Plugin> interfaceClass, URI location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType, PluginImplementation pluginImplementation, List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
+	public PluginContext loadPlugin(PluginBundle pluginBundle, Class<? extends Plugin> interfaceClass, URI location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType,
+			PluginImplementation pluginImplementation, List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
 		LOGGER.debug("Loading plugin " + plugin.getClass().getSimpleName() + " of type " + interfaceClass.getSimpleName());
 		if (!Plugin.class.isAssignableFrom(interfaceClass)) {
 			throw new PluginException("Given interface class (" + interfaceClass.getName() + ") must be a subclass of " + Plugin.class.getName());
@@ -799,18 +805,20 @@ public class PluginManager implements PluginManagerInterface {
 		return servicesMap;
 	}
 
-//	public StillImageRenderPlugin getFirstStillImageRenderPlugin() throws PluginException {
-//		Collection<StillImageRenderPlugin> allPlugins = getAllStillImageRenderPlugins(true).values();
-//		if (allPlugins.size() == 0) {
-//			throw new PluginException("No still image render plugins found");
-//		}
-//		StillImageRenderPlugin plugin = allPlugins.iterator().next();
-//		if (!plugin.isInitialized()) {
-//			plugin.init(this);
-//		}
-//		return plugin;
-//
-//	}
+	// public StillImageRenderPlugin getFirstStillImageRenderPlugin() throws
+	// PluginException {
+	// Collection<StillImageRenderPlugin> allPlugins =
+	// getAllStillImageRenderPlugins(true).values();
+	// if (allPlugins.size() == 0) {
+	// throw new PluginException("No still image render plugins found");
+	// }
+	// StillImageRenderPlugin plugin = allPlugins.iterator().next();
+	// if (!plugin.isInitialized()) {
+	// plugin.init(this);
+	// }
+	// return plugin;
+	//
+	// }
 
 	public Parameter getParameter(PluginContext pluginContext, String name) {
 		return null;
@@ -897,6 +905,51 @@ public class PluginManager implements PluginManagerInterface {
 		return (MessagingStreamingSerializerPlugin) getPlugin(className, onlyEnabled);
 	}
 
+	public List<SPluginInformation> getPluginInformation(Path file) throws PluginException, FileNotFoundException, IOException, JAXBException {
+		final FileJarClassLoader jarClassLoader = new FileJarClassLoader(this, getClass().getClassLoader(), file);
+		InputStream pluginStream = jarClassLoader.getResourceAsStream("plugin/plugin.xml");
+		if (pluginStream == null) {
+			throw new PluginException("No plugin/plugin.xml found in " + file.getFileName().toString());
+		}
+		PluginDescriptor pluginDescriptor = getPluginDescriptor(pluginStream);
+		if (pluginDescriptor == null) {
+			throw new PluginException("No plugin descriptor could be created");
+		}
+		List<SPluginInformation> list = new ArrayList<>();
+		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
+			SPluginInformation sPluginInformation = new SPluginInformation();
+			sPluginInformation.setName(pluginImplementation.getImplementationClass());
+			sPluginInformation.setDescription(pluginImplementation.getDescription());
+			sPluginInformation.setType(getPluginTypeFromClass(pluginImplementation.getInterfaceClass()));
+			list.add(sPluginInformation);
+		}
+		return list;
+	}
+
+	public SPluginType getPluginTypeFromClass(String className) {
+		switch (className) {
+		case "org.bimserver.plugins.deserializers.DeserializerPlugin":
+			return SPluginType.DESERIALIZER;
+		case "org.bimserver.plugins.serializers.SerializerPlugin":
+			return SPluginType.SERIALIZER;
+		case "org.bimserver.plugins.modelchecker.ModelCheckerPlugin":
+			return SPluginType.MODEL_CHECKER;
+		case "org.bimserver.plugins.modelmerger.ModelMergerPlugin":
+			return SPluginType.MODEL_MERGER;
+		case "org.bimserver.plugins.objectidms.ObjectIDMPlugin":
+			return SPluginType.OBJECT_IDM;
+		case "org.bimserver.plugins.queryengine.QueryEnginePlugin":
+			return SPluginType.QUERY_ENGINE;
+		case "org.bimserver.plugins.renderengine.RenderEnginePlugin":
+			return SPluginType.RENDER_ENGINE;
+		case "org.bimserver.plugins.stillimagerenderer.StillImageRenderPlugin":
+			return SPluginType.STILL_IMAGE_RENDER;
+		case "org.bimserver.plugins.web.WebModulePlugin":
+			return SPluginType.WEB_MODULE;
+		}
+		return null;
+	}
+
 	public PluginBundleImpl install(String identifier, Path jarFile) throws Exception {
 		Path target = pluginsDir.resolve(identifier + ".jar");
 		if (Files.exists(target)) {
@@ -915,7 +968,9 @@ public class PluginManager implements PluginManagerInterface {
 			LOGGER.error("", e);
 			throw e;
 		}
-		// Stage 2, if all went well, notify the listeners of this plugin, if anything goes wrong in the notifications, the plugin bundle will be uninstalled
+		// Stage 2, if all went well, notify the listeners of this plugin, if
+		// anything goes wrong in the notifications, the plugin bundle will be
+		// uninstalled
 		try {
 			for (PluginContext pluginContext : pluginBundle) {
 				notifyPluginInstalled(pluginContext);
@@ -938,7 +993,7 @@ public class PluginManager implements PluginManagerInterface {
 			LOGGER.error("", e);
 		}
 	}
-	
+
 	private void uninstall(PluginBundleImpl pluginBundle) {
 		try {
 			pluginBundle.close();
@@ -958,7 +1013,8 @@ public class PluginManager implements PluginManagerInterface {
 
 	@Override
 	public ObjectIDM getDefaultObjectIDM() throws ObjectIDMException {
-		// TODO add a mechanism that can be used to ask a database what the default plugin is
+		// TODO add a mechanism that can be used to ask a database what the
+		// default plugin is
 		return null;
 	}
 }

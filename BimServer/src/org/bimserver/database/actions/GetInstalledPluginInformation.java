@@ -26,9 +26,9 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.interfaces.objects.SPluginType;
-import org.bimserver.interfaces.objects.SPluginUpdateInformation;
-import org.bimserver.interfaces.objects.SPluginVersion;
+import org.bimserver.interfaces.objects.SPluginBundleType;
+import org.bimserver.interfaces.objects.SPluginBundleUpdateInformation;
+import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.GitHubPluginRepository;
 import org.bimserver.plugins.MavenDependency;
@@ -42,7 +42,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GetInstalledPluginInformation extends BimDatabaseAction<List<SPluginUpdateInformation>> {
+public class GetInstalledPluginInformation extends BimDatabaseAction<List<SPluginBundleUpdateInformation>> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GetInstalledPluginInformation.class);
 	private BimServer bimServer;
 	private boolean strictVersionChecking;
@@ -55,15 +55,15 @@ public class GetInstalledPluginInformation extends BimDatabaseAction<List<SPlugi
 	}
 
 	@Override
-	public List<SPluginUpdateInformation> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
-		List<SPluginUpdateInformation> result = new ArrayList<>();
+	public List<SPluginBundleUpdateInformation> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
+		List<SPluginBundleUpdateInformation> result = new ArrayList<>();
 
 		GitHubPluginRepository repository = new GitHubPluginRepository(bimServer.getServerSettingsCache().getServerSettings().getServiceRepositoryUrl());
 
 		bimserverVersion = new DefaultArtifactVersion(bimServer.getVersionChecker().getLocalVersion().getFullString());
 
 		for (PluginBundleImpl pluginBundle : bimServer.getPluginManager().getPluginBundles()) {
-			SPluginUpdateInformation sPluginUpdateInformation = new SPluginUpdateInformation();
+			SPluginBundleUpdateInformation sPluginUpdateInformation = new SPluginBundleUpdateInformation();
 			result.add(sPluginUpdateInformation);
 		}
 		
@@ -73,7 +73,7 @@ public class GetInstalledPluginInformation extends BimDatabaseAction<List<SPlugi
 			if (pluginBundle == null) {
 				if (pluginLocation instanceof MavenPluginLocation) {
 					MavenPluginLocation mavenPluginLocation = (MavenPluginLocation) pluginLocation;
-					SPluginUpdateInformation processMavenPluginLocation = processMavenPluginLocation(mavenPluginLocation);
+					SPluginBundleUpdateInformation processMavenPluginLocation = processMavenPluginLocation(mavenPluginLocation);
 					if (processMavenPluginLocation != null) {
 						result.add(processMavenPluginLocation);
 					}
@@ -84,12 +84,12 @@ public class GetInstalledPluginInformation extends BimDatabaseAction<List<SPlugi
 		return result;
 	}
 
-	private SPluginUpdateInformation processMavenPluginLocation(MavenPluginLocation mavenPluginLocation) {
-		SPluginUpdateInformation pluginUpdateInformation = new SPluginUpdateInformation();
+	private SPluginBundleUpdateInformation processMavenPluginLocation(MavenPluginLocation mavenPluginLocation) {
+		SPluginBundleUpdateInformation pluginUpdateInformation = new SPluginBundleUpdateInformation();
 		boolean usefulBundle = false;
 		for (PluginVersion pluginVersion : mavenPluginLocation.getAllVersions()) {
 			if (pluginVersion instanceof MavenPluginVersion) {
-				SPluginVersion sPluginVersion = new SPluginVersion();
+				SPluginBundleVersion sPluginVersion = new SPluginBundleVersion();
 				boolean useful = true;
 				MavenPluginVersion mavenPluginVersion = (MavenPluginVersion) pluginVersion;
 				for (MavenDependency mavenDependency : mavenPluginVersion.getDependencies()) {
@@ -118,7 +118,7 @@ public class GetInstalledPluginInformation extends BimDatabaseAction<List<SPlugi
 					sPluginVersion.setArtifactId(mavenPluginLocation.getArtifactId());
 					sPluginVersion.setGroupId(mavenPluginLocation.getGroupId());
 					sPluginVersion.setRepository(mavenPluginLocation.getRepository());
-					sPluginVersion.setType(SPluginType.MAVEN);
+					sPluginVersion.setType(SPluginBundleType.MAVEN);
 					sPluginVersion.setVersion(mavenPluginVersion.getVersion().toString());
 					sPluginVersion.setDescription(mavenPluginVersion.getModel().getDescription());
 					pluginUpdateInformation.setName(mavenPluginVersion.getArtifact().getArtifactId());

@@ -14,7 +14,6 @@
 		<resources>
 			<resource>
 				<directory>src</directory>
-				<targetPath>org/bimserver/starter</targetPath>
 				<includes>
 					<include>org/bimserver/starter/logo_small.png</include>
 				</includes>
