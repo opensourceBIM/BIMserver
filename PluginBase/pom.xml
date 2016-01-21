@@ -2,11 +2,11 @@
 	<name>PluginBase</name>
 	<description>Base project for BIMserver plugin development. Some plugins mights also need the Shared library</description>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>PluginBase</artifactId>
+	<artifactId>pluginbase</artifactId>
 	<packaging>jar</packaging>
 	<parent>
 		<groupId>org.opensourcebim</groupId>
-		<artifactId>Builds</artifactId>
+		<artifactId>parent</artifactId>
 		<version>1.5.10-SNAPSHOT</version>
 	</parent>
 	<build>

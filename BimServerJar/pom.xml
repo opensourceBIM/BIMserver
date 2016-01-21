@@ -2,10 +2,10 @@
 	<name>BimServerJar</name>
 	<description>Standalone runnable JAR for BIMserver evaluation without having to setup a full BIMserver</description>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>BimServerJar</artifactId>
+	<artifactId>bimserverjar</artifactId>
 	<parent>
 		<groupId>org.opensourcebim</groupId>
-		<artifactId>Builds</artifactId>
+		<artifactId>parent</artifactId>
 		<version>1.5.10-SNAPSHOT</version>
 	</parent>
 	<build>
@@ -32,7 +32,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
-			<artifactId>BimServer</artifactId>
+			<artifactId>bimserver</artifactId>
 			<version>1.5.10-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

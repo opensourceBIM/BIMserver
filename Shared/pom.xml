@@ -2,10 +2,10 @@
 	<name>Shared</name>
 	<description>Shared libraries, common parent for both BIMserver and BimServerClientLib</description>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>Shared</artifactId>
+	<artifactId>shared</artifactId>
 	<parent>
 		<groupId>org.opensourcebim</groupId>
-		<artifactId>Builds</artifactId>
+		<artifactId>parent</artifactId>
 		<version>1.5.10-SNAPSHOT</version>
 	</parent>
 	<build>
@@ -59,7 +59,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
-			<artifactId>PluginBase</artifactId>
+			<artifactId>pluginbase</artifactId>
 			<version>1.5.10-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

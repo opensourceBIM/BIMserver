@@ -2,11 +2,11 @@
 	<name>BimServerWar</name>
 	<description>WAR version of BIMserver</description>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>BimServerWar</artifactId>
+	<artifactId>bimserverwar</artifactId>
 	<packaging>war</packaging>
 	<parent>
 		<groupId>org.opensourcebim</groupId>
-		<artifactId>Builds</artifactId>
+		<artifactId>parent</artifactId>
 		<version>1.5.10-SNAPSHOT</version>
 	</parent>
 	<build>
@@ -42,7 +42,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
-			<artifactId>BimServer</artifactId>
+			<artifactId>bimserver</artifactId>
 			<version>1.5.10-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
