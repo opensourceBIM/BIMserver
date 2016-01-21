@@ -23,7 +23,7 @@
 							<targetPath>WEB-INF/templates</targetPath>
 						</resource>
 						<resource>
-							<directory>.</directory>
+							<directory>..</directory>
 							<includes>
 								<include>pom.xml</include>
 							</includes>
