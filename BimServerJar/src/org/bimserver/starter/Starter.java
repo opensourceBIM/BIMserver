@@ -69,7 +69,6 @@ public class Starter extends JFrame {
 	private JTextField addressField;
 	private JTextField portField;
 	private JTextField heapSizeField;
-	private JTextField permSizeField;
 	private JCheckBox forceIpv4Field;
 	private JTextField stackSizeField;
 	private JButton browserHomeDir;
@@ -88,7 +87,6 @@ public class Starter extends JFrame {
 			jarSettings.setJvm(jvmField.getText());
 			jarSettings.setStacksize(stackSizeField.getText());
 			jarSettings.setHeapsize(heapSizeField.getText());
-			jarSettings.setPermsize(permSizeField.getText());
 			jarSettings.setHomedir(homeDirField.getText());
 			jarSettings.setForceipv4(forceIpv4Field.isSelected());
 			jarSettings.save();
@@ -202,12 +200,6 @@ public class Starter extends JFrame {
 		heapSizeField = new JTextField(jarSettings.getHeapsize());
 		fields.add(heapSizeField);
 
-		JLabel permSizeLabel = new JLabel("Max Perm Size");
-		fields.add(permSizeLabel);
-
-		permSizeField = new JTextField(jarSettings.getPermsize());
-		fields.add(permSizeField);
-
 		JLabel stackSizeLabel = new JLabel("Stack Size");
 		fields.add(stackSizeLabel);
 
@@ -239,7 +231,7 @@ public class Starter extends JFrame {
 								setComponentsEnabled(false);
 								File file = expand();
 								startStopButton.setText("Stop");
-								start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText(), permSizeField.getText(), jvmField.getText(), homeDirField.getText());
+								start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText(), jvmField.getText(), homeDirField.getText());
 							} else {
 								JOptionPane.showMessageDialog(Starter.this, "JVM field should contain a valid JVM directory, or 'default' for the default JVM");
 							}
@@ -278,7 +270,6 @@ public class Starter extends JFrame {
 		homeDirField.getDocument().addDocumentListener(documentChangeListener);
 		addressField.getDocument().addDocumentListener(documentChangeListener);
 		portField.getDocument().addDocumentListener(documentChangeListener);
-		permSizeField.getDocument().addDocumentListener(documentChangeListener);
 		heapSizeField.getDocument().addDocumentListener(documentChangeListener);
 		stackSizeField.getDocument().addDocumentListener(documentChangeListener);
 		forceIpv4Field.addChangeListener(new ChangeListener() {
@@ -339,14 +330,13 @@ public class Starter extends JFrame {
 		portField.setEditable(enabled);
 		heapSizeField.setEditable(enabled);
 		stackSizeField.setEditable(enabled);
-		permSizeField.setEditable(enabled);
 		jvmField.setEditable(enabled);
 		homeDirField.setEditable(enabled);
 		browserHomeDir.setEnabled(enabled);
 		browserJvm.setEnabled(enabled);
 	}
 	
-	private void start(File destDir, String address, String port, String heapsize, String stacksize, String permsize, String jvmPath, String homedir) {
+	private void start(File destDir, String address, String port, String heapsize, String stacksize, String jvmPath, String homedir) {
 		try {
 			String os = System.getProperty("os.name");
 			boolean isMac = os.toLowerCase().contains("mac");
@@ -394,7 +384,6 @@ public class Starter extends JFrame {
 			}
 			commands.add("-Xmx" + heapsize);
 			commands.add("-Xss" + stacksize);
-			commands.add("-XX:MaxPermSize=" + permsize);
 //			boolean debug = true;
 //			if (debug ) {
 //				command += " -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y";

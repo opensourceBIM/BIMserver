@@ -49,9 +49,6 @@ public class JarSettings {
 	private String heapsize = "1024m";
 
 	@XmlElement
-	private String permsize = "256m";
-
-	@XmlElement
 	private String stacksize = "1024k";
 
 	@XmlElement
@@ -152,14 +149,6 @@ public class JarSettings {
 
 	public String getHomedir() {
 		return homedir;
-	}
-
-	public void setPermsize(String permsize) {
-		this.permsize = permsize;
-	}
-
-	public String getPermsize() {
-		return permsize;
 	}
 
 	public boolean isForceipv4() {
