@@ -19,7 +19,7 @@
 				</includes>
 			</resource>
 			<resource>
-				<directory>.</directory>
+				<directory>..</directory>
 				<includes>
 					<include>pom.xml</include>
 				</includes>
