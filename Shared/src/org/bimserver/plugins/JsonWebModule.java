@@ -25,7 +25,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class JsonWebModule extends AbstractWebModulePlugin {
 
 	private ObjectNode settings;
-	private boolean initialized;
 
 	public JsonWebModule(ObjectNode settings) {
 		this.settings = settings;
@@ -34,27 +33,11 @@ public class JsonWebModule extends AbstractWebModulePlugin {
 	@Override
 	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		super.init(pluginManager);
-		initialized = true;
-	}
-
-	@Override
-	public String getDescription() {
-		return settings.get("description").asText();
 	}
 
 	@Override
 	public String getDefaultName() {
 		return settings.get("defaultName").asText();
-	}
-
-	@Override
-	public String getVersion() {
-		return settings.get("version").asText();
-	}
-
-	@Override
-	public boolean isInitialized() {
-		return initialized;
 	}
 
 	@Override

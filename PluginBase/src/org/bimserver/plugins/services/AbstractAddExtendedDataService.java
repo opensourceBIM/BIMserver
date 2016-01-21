@@ -28,8 +28,8 @@ public abstract class AbstractAddExtendedDataService extends AbstractService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractAddExtendedDataService.class);
 	private String namespace;
 
-	public AbstractAddExtendedDataService(String name, String description, String namespace) {
-		super(name, description);
+	public AbstractAddExtendedDataService(String name, String namespace) {
+		super(name);
 		this.namespace = namespace;
 	}
 	

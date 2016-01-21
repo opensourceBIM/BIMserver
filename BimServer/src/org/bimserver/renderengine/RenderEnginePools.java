@@ -38,7 +38,7 @@ public class RenderEnginePools {
 		this.bimServer = bimServer;
 		int nrRenderEngineProcesses = this.bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses();
 		
-		Collection<RenderEnginePlugin> renderEnginePlugins = bimServer.getPluginManager().getAllRenderEnginePlugins(true);
+		Collection<RenderEnginePlugin> renderEnginePlugins = bimServer.getPluginManager().getAllRenderEnginePlugins(true).values();
 		for (Schema schema : Schema.getIfcSchemas()) {
 			HashMap<String, RenderEnginePool> map = new HashMap<>();
 			pools.put(schema, map);

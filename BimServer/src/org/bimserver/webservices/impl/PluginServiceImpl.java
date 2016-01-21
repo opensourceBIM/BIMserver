@@ -321,7 +321,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	public List<SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		List<SDeserializerPluginDescriptor> descriptors = new ArrayList<SDeserializerPluginDescriptor>();
-		for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true)) {
+		for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true).values()) {
 			SDeserializerPluginDescriptor descriptor = new SDeserializerPluginDescriptor();
 			descriptor.setDefaultName(deserializerPlugin.getDefaultName());
 			descriptor.setPluginClassName(deserializerPlugin.getClass().getName());
@@ -1256,7 +1256,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws UserException {
 		requireRealUserAuthentication();
-		Collection<ObjectIDMPlugin> allObjectIDMs = getBimServer().getPluginManager().getAllObjectIDMPlugins(true);
+		Collection<ObjectIDMPlugin> allObjectIDMs = getBimServer().getPluginManager().getAllObjectIDMPlugins(true).values();
 		List<SObjectIDMPluginDescriptor> descriptors = new ArrayList<SObjectIDMPluginDescriptor>();
 		for (ObjectIDMPlugin ObjectIDMPlugin : allObjectIDMs) {
 			SObjectIDMPluginDescriptor descriptor = new SObjectIDMPluginDescriptor();

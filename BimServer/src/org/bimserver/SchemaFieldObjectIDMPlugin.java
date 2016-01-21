@@ -30,33 +30,16 @@ import org.bimserver.utils.CollectionUtils;
 public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
 
 	private SchemaFieldIgnoreMap objectIDM;
-	private boolean initialized = false;
 
 	@Override
 	public void init(PluginManagerInterface pluginManager) throws PluginException {
 		PackageMetaData packageMetaData = pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
 		objectIDM = new SchemaFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), packageMetaData);
-		initialized = true;
-	}
-
-	@Override
-	public String getDescription() {
-		return "SchemaFieldObjectIDMPlugin";
-	}
-
-	@Override
-	public String getVersion() {
-		return "1.0";
 	}
 
 	@Override
 	public ObjectIDM getObjectIDM(PluginConfiguration pluginConfiguration) {
 		return objectIDM;
-	}
-
-	@Override
-	public boolean isInitialized() {
-		return initialized;
 	}
 
 	@Override

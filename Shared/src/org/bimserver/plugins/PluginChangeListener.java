@@ -20,6 +20,6 @@ import org.bimserver.BimserverDatabaseException;
  *****************************************************************************/
 
 public interface PluginChangeListener {
-	void pluginInstalled(Plugin plugin) throws BimserverDatabaseException;
+	void pluginInstalled(PluginContext pluginContext) throws BimserverDatabaseException;
 	void pluginStateChanged(PluginContext pluginContext, boolean enabled);
 }

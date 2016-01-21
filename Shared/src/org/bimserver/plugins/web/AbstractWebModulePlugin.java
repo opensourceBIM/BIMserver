@@ -92,7 +92,7 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 					response.getOutputStream().write(("{\"version\":\"" + getIdentifier() + "-" + System.nanoTime() + "\"}").getBytes(Charsets.UTF_8));
 					return true;
 				} else if (getPluginContext().getPluginType() == PluginSourceType.JAR_FILE) {
-					response.getOutputStream().write(("{\"version\":\"" + getIdentifier() + "-" + getVersion() + "\"}").getBytes(Charsets.UTF_8));
+					response.getOutputStream().write(("{\"version\":\"" + getIdentifier() + "-" + pluginContext.getVersion() + "\"}").getBytes(Charsets.UTF_8));
 					return true;
 				}
 			}
