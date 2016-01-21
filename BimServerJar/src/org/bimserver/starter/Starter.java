@@ -213,7 +213,7 @@ public class Starter extends JFrame {
 		forceIpv4Field.setSelected(jarSettings.isForceipv4());
 		fields.add(forceIpv4Field);
 		
-		SpringUtilities.makeCompactGrid(fields, 8, 2, // rows, cols
+		SpringUtilities.makeCompactGrid(fields, 7, 2, // rows, cols
 				6, 6, // initX, initY
 				6, 6); // xPad, yPad
 
