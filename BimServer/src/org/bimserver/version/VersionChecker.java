@@ -25,7 +25,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -36,10 +35,8 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
-import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.model.Model;
-import org.apache.maven.model.Parent;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.plugins.ResourceFetcher;
@@ -73,16 +70,29 @@ public class VersionChecker {
 	}
 
 	public VersionChecker(ResourceFetcher resourceFetcher) {
-		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
-		Path pom = Paths.get("pom.xml");
-		Path parentPom = Paths.get("../pom.xml");
-
 		try {
+			Path pom = resourceFetcher.getFile("pom.xml");
+
+			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 			if (Files.exists(pom)) {
-				Model model = mavenreader.read(new FileReader(pom.toFile()));
-				Model parentModel = mavenreader.read(new FileReader(parentPom.toFile()));
+				String version = null;
+				if (pom != null) {
+					Model model = mavenreader.read(new FileReader(pom.toFile()));
+					version = model.getVersion();
+				}					
+
+				if (version == null) {
+					// Only on development environments we have to get the version from the parent pom file
+					Path parentPom = resourceFetcher.getFile("../pom.xml");
+					if (parentPom != null) {
+						Model parentModel = mavenreader.read(new FileReader(parentPom.toFile()));
+						version = parentModel.getVersion();
+					} else {
+						LOGGER.error("No parent pom.xml found");
+					}
+				}
 				
-				DefaultArtifactVersion defaultArtifactVersion = new DefaultArtifactVersion(parentModel.getVersion());
+				DefaultArtifactVersion defaultArtifactVersion = new DefaultArtifactVersion(version);
 				localVersion = new SVersion();
 				localVersion.setMajor(defaultArtifactVersion.getMajorVersion());
 				localVersion.setMinor(defaultArtifactVersion.getMinorVersion());
