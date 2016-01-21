@@ -547,14 +547,18 @@ public class BimServer {
 		if (pluginInterfaceName.equals("StreamingDeserializer")) {
 			pluginInterfaceName = "Deserializer";
 		}
-		if (pluginInterfaceName.equals("ModelChecker")) {
-			// ModelChecker are not coupled to UserSettings but to
+		if (pluginInterfaceName.equals("ModelChecker") || pluginInterfaceName.equals("WebModule")) {
+			// ModelChecker and WebModule are not coupled to UserSettings but to
 			// ServerSettings
 			return;
 		}
 
 		EClass userSettingsClass = StorePackage.eINSTANCE.getUserSettings();
-		EReference listReference = (EReference) userSettingsClass.getEStructuralFeature(StringUtils.firstLowerCase(pluginInterfaceName) + "s");
+		String listRefName = StringUtils.firstLowerCase(pluginInterfaceName) + "s";
+		EReference listReference = (EReference) userSettingsClass.getEStructuralFeature(listRefName);
+		if (listReference == null) {
+			LOGGER.warn(listRefName + " not found");
+		}
 		EReference defaultReference = (EReference) userSettingsClass.getEStructuralFeature("default" + pluginInterfaceName);
 		EClass pluginConfigurationClass = (EClass) listReference.getEType();
 
@@ -667,11 +671,11 @@ public class BimServer {
 			ServerSettings serverSettings = serverSettingsCache.getServerSettings();
 
 			for (Entry<PluginContext, WebModulePlugin> webModulePlugin : pluginManager.getAllWebPlugins(true).entrySet()) {
-				WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), webModulePlugin.getClass().getName());
+				WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), webModulePlugin.getValue().getClass().getName());
 				if (webPluginConfiguration == null) {
 					webPluginConfiguration = session.create(WebModulePluginConfiguration.class);
 					serverSettings.getWebModules().add(webPluginConfiguration);
-					genericPluginConversion(webModulePlugin.getKey(), session, webPluginConfiguration, getPluginDescriptor(session, webModulePlugin.getClass().getName()));
+					genericPluginConversion(webModulePlugin.getKey(), session, webPluginConfiguration, getPluginDescriptor(session, webModulePlugin.getValue().getClass().getName()));
 				} else {
 					if (webPluginConfiguration == serverSettings.getWebModule()) {
 						setDefaultWebModule(webModulePlugin.getValue());
