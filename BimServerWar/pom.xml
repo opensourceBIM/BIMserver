@@ -25,6 +25,13 @@
 						<resource>
 							<directory>.</directory>
 							<includes>
+								<include>pom.xml</include>
+							</includes>
+							<targetPath>WEB-INF</targetPath>
+						</resource>
+						<resource>
+							<directory>.</directory>
+							<includes>
 								<include>license.txt</include>
 							</includes>
 							<targetPath>/</targetPath>

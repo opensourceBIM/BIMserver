@@ -19,6 +19,12 @@
 					<include>org/bimserver/starter/logo_small.png</include>
 				</includes>
 			</resource>
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>pom.xml</include>
+				</includes>
+			</resource>
 		</resources>
 		<plugins>
 			<plugin>
