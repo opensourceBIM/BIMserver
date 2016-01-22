@@ -1,5 +1,7 @@
 package org.bimserver.plugins.modelcompare;
 
+import org.bimserver.interfaces.objects.SPluginType;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -22,4 +24,9 @@ import org.bimserver.plugins.PluginConfiguration;
 
 public interface ModelComparePlugin extends Plugin {
 	ModelCompare createModelCompare(PluginConfiguration pluginConfiguration) throws ModelCompareException;
+	
+	@Override
+	default SPluginType getPluginType() {
+		return SPluginType.MODEL_COMPARE;
+	}
 }

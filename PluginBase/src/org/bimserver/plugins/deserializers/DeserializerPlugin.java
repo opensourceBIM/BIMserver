@@ -20,6 +20,7 @@ package org.bimserver.plugins.deserializers;
 import java.util.Set;
 
 import org.bimserver.emf.Schema;
+import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 
@@ -40,4 +41,9 @@ public interface DeserializerPlugin extends Plugin {
 	 * @return A set of Schemas this deserializer can deserialize
 	 */
 	Set<Schema> getSupportedSchemas();
+	
+	@Override
+	default SPluginType getPluginType() {
+		return SPluginType.DESERIALIZER;
+	}
 }
