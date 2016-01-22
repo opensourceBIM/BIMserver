@@ -18,6 +18,7 @@ package org.bimserver.plugins.services;
  *****************************************************************************/
 
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
+import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.Plugin;
@@ -75,4 +76,9 @@ public abstract class ServicePlugin implements Plugin {
 	 */
 	public abstract void register(long uoid, SInternalServicePluginConfiguration internalService, PluginConfiguration pluginConfiguration);
 	public abstract void unregister(SInternalServicePluginConfiguration internalService);
+	
+	@Override
+	public SPluginType getPluginType() {
+		return SPluginType.SERVICE;
+	}
 }
