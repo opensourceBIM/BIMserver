@@ -42,7 +42,7 @@ public interface PluginManagerInterface {
 
 	Plugin getPlugin(String string, boolean b);
 
-	PluginContext getPluginContext(Plugin abstractWebModulePlugin);
+	PluginContext getPluginContext(Plugin plugin);
 
 	FileSystem getOrCreateFileSystem(URI location) throws IOException;
 
@@ -54,7 +54,7 @@ public interface PluginManagerInterface {
 
 	String getCompleteClassPath();
 
-	DeserializerPlugin getDeserializerPlugin(String string, boolean b);
+	DeserializerPlugin getDeserializerPlugin(String string, boolean enabled);
 
 	DeserializerPlugin requireDeserializer(String string) throws DeserializeException;
 

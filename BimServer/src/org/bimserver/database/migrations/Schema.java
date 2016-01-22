@@ -277,15 +277,20 @@ public class Schema {
 	public void addEPackage(EPackage ePackage) {
 		packages.put(ePackage.getName(), ePackage);
 		changes.add(new NewPackageChange(ePackage));
+		Set<EClass> newClasses = new HashSet<>();
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
-				EClass eClass = (EClass)eClassifier;
-				addEClass(eClass);
+				newClasses.add((EClass) eClassifier);
 			}
 		}
+		addEClasses(ePackage, newClasses);
 	}
 
-	private void addEClass(EClass eClass) {
+	private void addEClasses(EPackage ePackage, Set<EClass> newClasses) {
+		changes.add(new NewClassBulkChange(ePackage, newClasses));
+	}
+
+	public void addEClass(EClass eClass) {
 		changes.add(new NewClassChange(eClass));
 	}
 

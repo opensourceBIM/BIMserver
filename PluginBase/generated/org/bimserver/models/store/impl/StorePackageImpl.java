@@ -754,7 +754,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pluginBundleUpdateInformationEClass = null;
+	private EClass pluginBundleEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2932,6 +2932,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getPluginDescriptor_Configurations() {
 		return (EReference) getPluginDescriptor().getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginDescriptor_InstallForNewUsers() {
+		return (EAttribute) getPluginDescriptor().getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -5966,11 +5975,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPluginBundleUpdateInformation() {
-		if (pluginBundleUpdateInformationEClass == null) {
-			pluginBundleUpdateInformationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(116);
+	public EClass getPluginBundle() {
+		if (pluginBundleEClass == null) {
+			pluginBundleEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(116);
 		}
-		return pluginBundleUpdateInformationEClass;
+		return pluginBundleEClass;
 	}
 
 	/**
@@ -5978,8 +5987,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginBundleUpdateInformation_Organization() {
-		return (EAttribute) getPluginBundleUpdateInformation().getEStructuralFeatures().get(0);
+	public EAttribute getPluginBundle_Organization() {
+		return (EAttribute) getPluginBundle().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -5987,8 +5996,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginBundleUpdateInformation_Name() {
-		return (EAttribute) getPluginBundleUpdateInformation().getEStructuralFeatures().get(1);
+	public EAttribute getPluginBundle_Name() {
+		return (EAttribute) getPluginBundle().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -5996,8 +6005,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPluginBundleUpdateInformation_LatestVersion() {
-		return (EReference) getPluginBundleUpdateInformation().getEStructuralFeatures().get(2);
+	public EReference getPluginBundle_LatestVersion() {
+		return (EReference) getPluginBundle().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -6005,8 +6014,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPluginBundleUpdateInformation_AvailableVersions() {
-		return (EReference) getPluginBundleUpdateInformation().getEStructuralFeatures().get(3);
+	public EReference getPluginBundle_AvailableVersions() {
+		return (EReference) getPluginBundle().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPluginBundle_InstalledVersion() {
+		return (EReference) getPluginBundle().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -6053,7 +6071,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginInformation_InstallForAllUsers() {
+	public EAttribute getPluginInformation_Enabled() {
 		return (EAttribute) getPluginInformation().getEStructuralFeatures().get(3);
 	}
 
@@ -6062,8 +6080,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginInformation_InstallForNewUsers() {
+	public EAttribute getPluginInformation_InstallForAllUsers() {
 		return (EAttribute) getPluginInformation().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginInformation_InstallForNewUsers() {
+		return (EAttribute) getPluginInformation().getEStructuralFeatures().get(5);
 	}
 
 	/**

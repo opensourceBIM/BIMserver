@@ -573,8 +573,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter casePluginBundleUpdateInformation(PluginBundleUpdateInformation object) {
-			return createPluginBundleUpdateInformationAdapter();
+		public Adapter casePluginBundle(PluginBundle object) {
+			return createPluginBundleAdapter();
 		}
 
 		@Override
@@ -1988,16 +1988,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PluginBundleUpdateInformation <em>Plugin Bundle Update Information</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PluginBundle <em>Plugin Bundle</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.PluginBundleUpdateInformation
+	 * @see org.bimserver.models.store.PluginBundle
 	 * @generated
 	 */
-	public Adapter createPluginBundleUpdateInformationAdapter() {
+	public Adapter createPluginBundleAdapter() {
 		return null;
 	}
 

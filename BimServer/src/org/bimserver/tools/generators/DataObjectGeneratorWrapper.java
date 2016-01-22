@@ -27,7 +27,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.emf.MetaDataManager;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
@@ -41,10 +41,10 @@ public class DataObjectGeneratorWrapper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DataObjectGeneratorWrapper.class);
 	private File sourceFolder = new File("../PluginBase/generated");
 	private File packageFolder = new File(sourceFolder, "org" + File.separator + "bimserver" + File.separator + "interfaces" + File.separator + "objects");
-	private PluginManager pluginManager;
+	private MetaDataManager metaDataManager;
 
-	public DataObjectGeneratorWrapper(PluginManager pluginManager) {
-		this.pluginManager = pluginManager;
+	public DataObjectGeneratorWrapper(MetaDataManager metaDataManager) {
+		this.metaDataManager = metaDataManager;
 	}
 
 	public void generateDataObjects(Set<EPackage> ePackages) {
@@ -61,7 +61,7 @@ public class DataObjectGeneratorWrapper {
 					Object[] arguments = new Object[]{
 						eClassifier,
 						new ImportManager(),
-						pluginManager.getMetaDataManager()
+						metaDataManager
 					};
 					String generated = dataObjectGenerator.generate(arguments);
 					String fileName = "S" + eClassifier.getName() + ".java";

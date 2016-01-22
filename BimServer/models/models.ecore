@@ -20035,6 +20035,7 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="configurations" upperBound="-1"
           eType="#/4/PluginConfiguration" eOpposite="#/4/PluginConfiguration/pluginDescriptor"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="installForNewUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SerializerPluginDescriptor" eSuperTypes="#/4/PluginDescriptor"/>
     <eClassifiers xsi:type="ecore:EClass" name="DeserializerPluginDescriptor" eSuperTypes="#/4/PluginDescriptor"/>
@@ -20574,6 +20575,7 @@
     <eClassifiers xsi:type="ecore:EEnum" name="PluginBundleType">
       <eLiterals name="MAVEN"/>
       <eLiterals name="GITHUB" value="1"/>
+      <eLiterals name="LOCAL" value="2"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="PluginType">
       <eLiterals name="SERIALIZER"/>
@@ -20586,8 +20588,9 @@
       <eLiterals name="MODEL_COMPARE" value="7"/>
       <eLiterals name="MODEL_CHECKER" value="8"/>
       <eLiterals name="STILL_IMAGE_RENDER" value="9"/>
+      <eLiterals name="SERVICE" value="10"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PluginBundleUpdateInformation">
+    <eClassifiers xsi:type="ecore:EClass" name="PluginBundle">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="organization" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="latestVersion" eType="#/4/PluginBundleVersion">
@@ -20597,11 +20600,15 @@
           eType="#/4/PluginBundleVersion">
         <eAnnotations source="embedsreference"/>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="installedVersion" eType="#/4/PluginBundleVersion">
+        <eAnnotations source="embedsreference"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PluginInformation">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#/4/PluginType"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="installForAllUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="installForNewUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>

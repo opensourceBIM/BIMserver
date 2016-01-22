@@ -18,6 +18,7 @@ package org.bimserver.plugins.classloaders;
  *****************************************************************************/
 
 import java.io.ByteArrayInputStream;
+import java.io.Closeable;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,7 +44,7 @@ import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class FileJarClassLoader extends JarClassLoader {
+public class FileJarClassLoader extends JarClassLoader implements Closeable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileJarClassLoader.class);
 	private final Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
 	private final Map<String, byte[]> jarContent = new HashMap<>();

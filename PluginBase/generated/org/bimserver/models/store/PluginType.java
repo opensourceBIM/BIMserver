@@ -112,7 +112,15 @@ public enum PluginType implements Enumerator {
 														* @generated
 														* @ordered
 														*/
-	STILL_IMAGE_RENDER(9, "STILL_IMAGE_RENDER", "STILL_IMAGE_RENDER");
+	STILL_IMAGE_RENDER(9, "STILL_IMAGE_RENDER", "STILL_IMAGE_RENDER"), /**
+																		* The '<em><b>SERVICE</b></em>' literal object.
+																		* <!-- begin-user-doc -->
+																		* <!-- end-user-doc -->
+																		* @see #SERVICE_VALUE
+																		* @generated
+																		* @ordered
+																		*/
+	SERVICE(10, "SERVICE", "SERVICE");
 
 	/**
 	 * The '<em><b>SERIALIZER</b></em>' literal value.
@@ -265,12 +273,27 @@ public enum PluginType implements Enumerator {
 	public static final int STILL_IMAGE_RENDER_VALUE = 9;
 
 	/**
+	 * The '<em><b>SERVICE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SERVICE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SERVICE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SERVICE_VALUE = 10;
+
+	/**
 	 * An array of all the '<em><b>Plugin Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PluginType[] VALUES_ARRAY = new PluginType[] { SERIALIZER, DESERIALIZER, RENDER_ENGINE, QUERY_ENGINE, OBJECT_IDM, WEB_MODULE, MODEL_MERGER, MODEL_COMPARE, MODEL_CHECKER, STILL_IMAGE_RENDER, };
+	private static final PluginType[] VALUES_ARRAY = new PluginType[] { SERIALIZER, DESERIALIZER, RENDER_ENGINE, QUERY_ENGINE, OBJECT_IDM, WEB_MODULE, MODEL_MERGER, MODEL_COMPARE, MODEL_CHECKER, STILL_IMAGE_RENDER, SERVICE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Plugin Type</b></em>' enumerators.
@@ -346,6 +369,8 @@ public enum PluginType implements Enumerator {
 			return MODEL_CHECKER;
 		case STILL_IMAGE_RENDER_VALUE:
 			return STILL_IMAGE_RENDER;
+		case SERVICE_VALUE:
+			return SERVICE;
 		}
 		return null;
 	}

@@ -2456,13 +2456,22 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_DESCRIPTOR__CONFIGURATIONS = 7;
 
 	/**
+	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = 8;
+
+	/**
 	 * The number of structural features of the '<em>Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 8;
+	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.
@@ -2545,6 +2554,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int SERIALIZER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
 
 	/**
 	 * The number of structural features of the '<em>Serializer Plugin Descriptor</em>' class.
@@ -2636,6 +2654,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int DESERIALIZER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
 
 	/**
 	 * The number of structural features of the '<em>Deserializer Plugin Descriptor</em>' class.
@@ -3373,6 +3400,15 @@ public interface StorePackage extends EPackage {
 	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
+
+	/**
 	 * The number of structural features of the '<em>Render Engine Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3719,6 +3755,15 @@ public interface StorePackage extends EPackage {
 	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
+
+	/**
 	 * The number of structural features of the '<em>Query Engine Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3881,6 +3926,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int WEB_MODULE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEB_MODULE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
 
 	/**
 	 * The number of structural features of the '<em>Web Module Plugin Descriptor</em>' class.
@@ -4047,6 +4101,15 @@ public interface StorePackage extends EPackage {
 	int MODEL_MERGER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_MERGER_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
+
+	/**
 	 * The number of structural features of the '<em>Model Merger Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4209,6 +4272,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
 
 	/**
 	 * The number of structural features of the '<em>Model Compare Plugin Descriptor</em>' class.
@@ -4827,6 +4899,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int SERVICE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
 
 	/**
 	 * The number of structural features of the '<em>Service Plugin Descriptor</em>' class.
@@ -6646,6 +6727,15 @@ public interface StorePackage extends EPackage {
 	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
+
+	/**
 	 * The number of structural features of the '<em>Model Checker Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6948,14 +7038,14 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_BUNDLE_VERSION_FEATURE_COUNT = 7;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginBundleUpdateInformationImpl <em>Plugin Bundle Update Information</em>}' class.
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginBundleImpl <em>Plugin Bundle</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.PluginBundleUpdateInformationImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundleUpdateInformation()
+	 * @see org.bimserver.models.store.impl.PluginBundleImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundle()
 	 * @generated
 	 */
-	int PLUGIN_BUNDLE_UPDATE_INFORMATION = 99;
+	int PLUGIN_BUNDLE = 99;
 
 	/**
 	 * The feature id for the '<em><b>Organization</b></em>' attribute.
@@ -6964,7 +7054,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_BUNDLE_UPDATE_INFORMATION__ORGANIZATION = 0;
+	int PLUGIN_BUNDLE__ORGANIZATION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6973,7 +7063,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_BUNDLE_UPDATE_INFORMATION__NAME = 1;
+	int PLUGIN_BUNDLE__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Latest Version</b></em>' reference.
@@ -6982,7 +7072,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_BUNDLE_UPDATE_INFORMATION__LATEST_VERSION = 2;
+	int PLUGIN_BUNDLE__LATEST_VERSION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Available Versions</b></em>' reference list.
@@ -6991,16 +7081,25 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_BUNDLE_UPDATE_INFORMATION__AVAILABLE_VERSIONS = 3;
+	int PLUGIN_BUNDLE__AVAILABLE_VERSIONS = 3;
 
 	/**
-	 * The number of structural features of the '<em>Plugin Bundle Update Information</em>' class.
+	 * The feature id for the '<em><b>Installed Version</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_BUNDLE_UPDATE_INFORMATION_FEATURE_COUNT = 4;
+	int PLUGIN_BUNDLE__INSTALLED_VERSION = 4;
+
+	/**
+	 * The number of structural features of the '<em>Plugin Bundle</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_BUNDLE_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginInformationImpl <em>Plugin Information</em>}' class.
@@ -7040,13 +7139,22 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_INFORMATION__DESCRIPTION = 2;
 
 	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_INFORMATION__ENABLED = 3;
+
+	/**
 	 * The feature id for the '<em><b>Install For All Users</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_INFORMATION__INSTALL_FOR_ALL_USERS = 3;
+	int PLUGIN_INFORMATION__INSTALL_FOR_ALL_USERS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
@@ -7055,7 +7163,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_INFORMATION__INSTALL_FOR_NEW_USERS = 4;
+	int PLUGIN_INFORMATION__INSTALL_FOR_NEW_USERS = 5;
 
 	/**
 	 * The number of structural features of the '<em>Plugin Information</em>' class.
@@ -7064,7 +7172,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_INFORMATION_FEATURE_COUNT = 5;
+	int PLUGIN_INFORMATION_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
@@ -9530,6 +9638,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPluginDescriptor_Configurations();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#isInstallForNewUsers <em>Install For New Users</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Install For New Users</em>'.
+	 * @see org.bimserver.models.store.PluginDescriptor#isInstallForNewUsers()
+	 * @see #getPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getPluginDescriptor_InstallForNewUsers();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.SerializerPluginDescriptor <em>Serializer Plugin Descriptor</em>}'.
@@ -12891,58 +13010,69 @@ public interface StorePackage extends EPackage {
 	EAttribute getPluginBundleVersion_ArtifactId();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginBundleUpdateInformation <em>Plugin Bundle Update Information</em>}'.
+	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginBundle <em>Plugin Bundle</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Plugin Bundle Update Information</em>'.
-	 * @see org.bimserver.models.store.PluginBundleUpdateInformation
+	 * @return the meta object for class '<em>Plugin Bundle</em>'.
+	 * @see org.bimserver.models.store.PluginBundle
 	 * @generated
 	 */
-	EClass getPluginBundleUpdateInformation();
+	EClass getPluginBundle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginBundleUpdateInformation#getOrganization <em>Organization</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginBundle#getOrganization <em>Organization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Organization</em>'.
-	 * @see org.bimserver.models.store.PluginBundleUpdateInformation#getOrganization()
-	 * @see #getPluginBundleUpdateInformation()
+	 * @see org.bimserver.models.store.PluginBundle#getOrganization()
+	 * @see #getPluginBundle()
 	 * @generated
 	 */
-	EAttribute getPluginBundleUpdateInformation_Organization();
+	EAttribute getPluginBundle_Organization();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginBundleUpdateInformation#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginBundle#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.bimserver.models.store.PluginBundleUpdateInformation#getName()
-	 * @see #getPluginBundleUpdateInformation()
+	 * @see org.bimserver.models.store.PluginBundle#getName()
+	 * @see #getPluginBundle()
 	 * @generated
 	 */
-	EAttribute getPluginBundleUpdateInformation_Name();
+	EAttribute getPluginBundle_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.PluginBundleUpdateInformation#getLatestVersion <em>Latest Version</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.PluginBundle#getLatestVersion <em>Latest Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Latest Version</em>'.
-	 * @see org.bimserver.models.store.PluginBundleUpdateInformation#getLatestVersion()
-	 * @see #getPluginBundleUpdateInformation()
+	 * @see org.bimserver.models.store.PluginBundle#getLatestVersion()
+	 * @see #getPluginBundle()
 	 * @generated
 	 */
-	EReference getPluginBundleUpdateInformation_LatestVersion();
+	EReference getPluginBundle_LatestVersion();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.PluginBundleUpdateInformation#getAvailableVersions <em>Available Versions</em>}'.
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.PluginBundle#getAvailableVersions <em>Available Versions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Available Versions</em>'.
-	 * @see org.bimserver.models.store.PluginBundleUpdateInformation#getAvailableVersions()
-	 * @see #getPluginBundleUpdateInformation()
+	 * @see org.bimserver.models.store.PluginBundle#getAvailableVersions()
+	 * @see #getPluginBundle()
 	 * @generated
 	 */
-	EReference getPluginBundleUpdateInformation_AvailableVersions();
+	EReference getPluginBundle_AvailableVersions();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.PluginBundle#getInstalledVersion <em>Installed Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Installed Version</em>'.
+	 * @see org.bimserver.models.store.PluginBundle#getInstalledVersion()
+	 * @see #getPluginBundle()
+	 * @generated
+	 */
+	EReference getPluginBundle_InstalledVersion();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginInformation <em>Plugin Information</em>}'.
@@ -12986,6 +13116,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPluginInformation_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginInformation#isEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.bimserver.models.store.PluginInformation#isEnabled()
+	 * @see #getPluginInformation()
+	 * @generated
+	 */
+	EAttribute getPluginInformation_Enabled();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginInformation#isInstallForAllUsers <em>Install For All Users</em>}'.
@@ -14941,6 +15082,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference PLUGIN_DESCRIPTOR__CONFIGURATIONS = eINSTANCE.getPluginDescriptor_Configurations();
+
+		/**
+		 * The meta object literal for the '<em><b>Install For New Users</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = eINSTANCE.getPluginDescriptor_InstallForNewUsers();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.
@@ -17585,14 +17734,14 @@ public interface StorePackage extends EPackage {
 		EAttribute PLUGIN_BUNDLE_VERSION__ARTIFACT_ID = eINSTANCE.getPluginBundleVersion_ArtifactId();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginBundleUpdateInformationImpl <em>Plugin Bundle Update Information</em>}' class.
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginBundleImpl <em>Plugin Bundle</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.PluginBundleUpdateInformationImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundleUpdateInformation()
+		 * @see org.bimserver.models.store.impl.PluginBundleImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundle()
 		 * @generated
 		 */
-		EClass PLUGIN_BUNDLE_UPDATE_INFORMATION = eINSTANCE.getPluginBundleUpdateInformation();
+		EClass PLUGIN_BUNDLE = eINSTANCE.getPluginBundle();
 
 		/**
 		 * The meta object literal for the '<em><b>Organization</b></em>' attribute feature.
@@ -17600,7 +17749,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN_BUNDLE_UPDATE_INFORMATION__ORGANIZATION = eINSTANCE.getPluginBundleUpdateInformation_Organization();
+		EAttribute PLUGIN_BUNDLE__ORGANIZATION = eINSTANCE.getPluginBundle_Organization();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -17608,7 +17757,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN_BUNDLE_UPDATE_INFORMATION__NAME = eINSTANCE.getPluginBundleUpdateInformation_Name();
+		EAttribute PLUGIN_BUNDLE__NAME = eINSTANCE.getPluginBundle_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Latest Version</b></em>' reference feature.
@@ -17616,7 +17765,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PLUGIN_BUNDLE_UPDATE_INFORMATION__LATEST_VERSION = eINSTANCE.getPluginBundleUpdateInformation_LatestVersion();
+		EReference PLUGIN_BUNDLE__LATEST_VERSION = eINSTANCE.getPluginBundle_LatestVersion();
 
 		/**
 		 * The meta object literal for the '<em><b>Available Versions</b></em>' reference list feature.
@@ -17624,7 +17773,15 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PLUGIN_BUNDLE_UPDATE_INFORMATION__AVAILABLE_VERSIONS = eINSTANCE.getPluginBundleUpdateInformation_AvailableVersions();
+		EReference PLUGIN_BUNDLE__AVAILABLE_VERSIONS = eINSTANCE.getPluginBundle_AvailableVersions();
+
+		/**
+		 * The meta object literal for the '<em><b>Installed Version</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PLUGIN_BUNDLE__INSTALLED_VERSION = eINSTANCE.getPluginBundle_InstalledVersion();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginInformationImpl <em>Plugin Information</em>}' class.
@@ -17659,6 +17816,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLUGIN_INFORMATION__DESCRIPTION = eINSTANCE.getPluginInformation_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_INFORMATION__ENABLED = eINSTANCE.getPluginInformation_Enabled();
 
 		/**
 		 * The meta object literal for the '<em><b>Install For All Users</b></em>' attribute feature.

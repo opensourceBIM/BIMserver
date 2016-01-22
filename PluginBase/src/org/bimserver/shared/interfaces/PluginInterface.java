@@ -41,7 +41,7 @@ import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
-import org.bimserver.interfaces.objects.SPluginBundleUpdateInformation;
+import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
@@ -609,35 +609,26 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getAllObjectIDMPluginDescriptors")
 	List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws ServerException, UserException;
 	
-	/**
-	 * Start the collections of plugin update information, this can take a while, so it's async
-	 * 
-	 * @return TopicID which you can use to get progress information about this request
-	 * @throws ServerException 
-	 * @throws UserException 
-	 */
-	@WebMethod(action = "startGetPluginUpdateInformation")
-	Long startGetPluginUpdateInformation() throws UserException, ServerException;
-	
-	@WebMethod(action = "getAvailablePlugins")
-	List<SPluginBundleUpdateInformation> getAvailablePlugins() throws UserException, ServerException;
+	@WebMethod(action = "getAvailablePluginBundles")
+	List<SPluginBundle> getAvailablePluginBundles() throws UserException, ServerException;
 
-	@WebMethod(action = "getInstalledPlugins")
-	List<SPluginBundleUpdateInformation> getInstalledPlugins() throws UserException, ServerException;
+	@WebMethod(action = "getInstalledPluginBundles")
+	List<SPluginBundle> getInstalledPluginBundles() throws UserException, ServerException;
 
-	@WebMethod(action = "installPlugin")
-	void installPlugin(
-		@WebParam(name = "repository", partName = "installPlugin.repository") String repository, 
-		@WebParam(name = "groupId", partName = "installPlugin.groupId") String groupId, 
-		@WebParam(name = "artifactId", partName = "installPlugin.artifactId") String artifactId, 
-		@WebParam(name = "version", partName = "installPlugin.version") String version) throws UserException, ServerException;
+	@WebMethod(action = "installPluginBundle")
+	void installPluginBundle(
+		@WebParam(name = "repository", partName = "installPluginBundle.repository") String repository, 
+		@WebParam(name = "groupId", partName = "installPluginBundle.groupId") String groupId, 
+		@WebParam(name = "artifactId", partName = "installPluginBundle.artifactId") String artifactId, 
+		@WebParam(name = "version", partName = "installPluginBundle.version") String version,
+		@WebParam(name = "plugins", partName = "installPluginBundle.plugins") List<SPluginInformation> plugins) throws UserException, ServerException;
 
-	@WebMethod(action = "uninstallPlugin")
-	void uninstallPlugin(
-		@WebParam(name = "repository", partName = "uninstallPlugin.repository") String repository, 
-		@WebParam(name = "groupId", partName = "uninstallPlugin.groupId") String groupId, 
-		@WebParam(name = "artifactId", partName = "uninstallPlugin.artifactId") String artifactId, 
-		@WebParam(name = "version", partName = "uninstallPlugin.version") String version) throws UserException, ServerException;
+	@WebMethod(action = "uninstallPluginBundle")
+	void uninstallPluginBundle(
+		@WebParam(name = "repository", partName = "uninstallPluginBundle.repository") String repository, 
+		@WebParam(name = "groupId", partName = "uninstallPluginBundle.groupId") String groupId, 
+		@WebParam(name = "artifactId", partName = "uninstallPluginBundle.artifactId") String artifactId, 
+		@WebParam(name = "version", partName = "uninstallPluginBundle.version") String version) throws UserException, ServerException;
 	
 	@WebMethod(action = "getPluginInformation")
 	List<SPluginInformation> getPluginInformation(

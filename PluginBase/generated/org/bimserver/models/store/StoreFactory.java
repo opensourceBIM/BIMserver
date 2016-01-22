@@ -927,13 +927,13 @@ public interface StoreFactory extends EFactory {
 	PluginBundleVersion createPluginBundleVersion();
 
 	/**
-	 * Returns a new object of class '<em>Plugin Bundle Update Information</em>'.
+	 * Returns a new object of class '<em>Plugin Bundle</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Plugin Bundle Update Information</em>'.
+	 * @return a new object of class '<em>Plugin Bundle</em>'.
 	 * @generated
 	 */
-	PluginBundleUpdateInformation createPluginBundleUpdateInformation();
+	PluginBundle createPluginBundle();
 
 	/**
 	 * Returns a new object of class '<em>Plugin Information</em>'.

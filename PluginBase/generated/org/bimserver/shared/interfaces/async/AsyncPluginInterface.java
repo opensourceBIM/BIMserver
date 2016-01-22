@@ -219,8 +219,8 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
-	public interface GetAvailablePluginsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SPluginBundleUpdateInformation> result);
+	public interface GetAvailablePluginBundlesCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginBundle> result);
 		void error(Throwable e);
 	}
 	
@@ -259,8 +259,8 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
-	public interface GetInstalledPluginsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SPluginBundleUpdateInformation> result);
+	public interface GetInstalledPluginBundlesCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginBundle> result);
 		void error(Throwable e);
 	}
 	
@@ -359,7 +359,7 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
-	public interface InstallPluginCallback {
+	public interface InstallPluginBundleCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -404,12 +404,7 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
-	public interface StartGetPluginUpdateInformationCallback {
-		void success(java.lang.Long result);
-		void error(Throwable e);
-	}
-	
-	public interface UninstallPluginCallback {
+	public interface UninstallPluginBundleCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -929,11 +924,11 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void getAvailablePlugins(final GetAvailablePluginsCallback callback) {
+	public void getAvailablePluginBundles(final GetAvailablePluginBundlesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getAvailablePlugins());
+					callback.success(syncService.getAvailablePluginBundles());
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -1025,11 +1020,11 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void getInstalledPlugins(final GetInstalledPluginsCallback callback) {
+	public void getInstalledPluginBundles(final GetInstalledPluginBundlesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getInstalledPlugins());
+					callback.success(syncService.getInstalledPluginBundles());
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -1265,11 +1260,11 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void installPlugin(final java.lang.String repository, final java.lang.String groupId, final java.lang.String artifactId, final java.lang.String version, final InstallPluginCallback callback) {
+	public void installPluginBundle(final java.lang.String repository, final java.lang.String groupId, final java.lang.String artifactId, final java.lang.String version, final java.util.List<org.bimserver.interfaces.objects.SPluginInformation> plugins, final InstallPluginBundleCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.installPlugin(repository, groupId, artifactId, version);
+					syncService.installPluginBundle(repository, groupId, artifactId, version, plugins);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
@@ -1382,23 +1377,11 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void startGetPluginUpdateInformation(final StartGetPluginUpdateInformationCallback callback) {
+	public void uninstallPluginBundle(final java.lang.String repository, final java.lang.String groupId, final java.lang.String artifactId, final java.lang.String version, final UninstallPluginBundleCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.startGetPluginUpdateInformation());
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void uninstallPlugin(final java.lang.String repository, final java.lang.String groupId, final java.lang.String artifactId, final java.lang.String version, final UninstallPluginCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					syncService.uninstallPlugin(repository, groupId, artifactId, version);
+					syncService.uninstallPluginBundle(repository, groupId, artifactId, version);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

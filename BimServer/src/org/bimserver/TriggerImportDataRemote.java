@@ -1,5 +1,7 @@
 package org.bimserver;
 
+import java.nio.file.Path;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -40,8 +42,10 @@ public class TriggerImportDataRemote {
 		 *  4: Local path to incoming folder of old server, this local path has to be available on the new server, so you have to copy it from the old server
 		 */
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			Path home = Paths.get("home");
+			Path tmp = home.resolve("tmp");
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
+			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
 			JsonBimServerClientFactory factory = new JsonBimServerClientFactory(metaDataManager, args[0]);
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo(args[1], args[2]));

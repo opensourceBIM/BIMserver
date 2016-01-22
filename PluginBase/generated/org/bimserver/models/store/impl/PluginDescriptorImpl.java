@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getPluginInterfaceClassName <em>Plugin Interface Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getConfigurations <em>Configurations</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#isInstallForNewUsers <em>Install For New Users</em>}</li>
  * </ul>
  *
  * @generated
@@ -207,6 +208,24 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	@SuppressWarnings("unchecked")
 	public EList<PluginConfiguration> getConfigurations() {
 		return (EList<PluginConfiguration>) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__CONFIGURATIONS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isInstallForNewUsers() {
+		return (Boolean) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInstallForNewUsers(boolean newInstallForNewUsers) {
+		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS, newInstallForNewUsers);
 	}
 
 } //PluginDescriptorImpl

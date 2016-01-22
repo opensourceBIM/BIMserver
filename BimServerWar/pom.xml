@@ -20,7 +20,7 @@
 					<webResources>
 						<resource>
 							<directory>../BimServer/emailtemplates</directory>
-							<targetPath>WEB-INF/templates</targetPath>
+							<targetPath>WEB-INF/emailtemplates</targetPath>
 						</resource>
 						<resource>
 							<directory>..</directory>

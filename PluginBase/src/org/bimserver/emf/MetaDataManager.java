@@ -1,5 +1,7 @@
 package org.bimserver.emf;
 
+import java.nio.file.Path;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -28,7 +30,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.plugins.PluginManagerInterface;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
@@ -36,10 +37,10 @@ import org.eclipse.emf.ecore.EReference;
 
 public class MetaDataManager {
 	private final Map<String, PackageMetaData> ePackages = new TreeMap<String, PackageMetaData>();
-	private PluginManagerInterface pluginManager;
+	private Path tempDir;
 
-	public MetaDataManager(PluginManagerInterface pluginManager) {
-		this.pluginManager = pluginManager;
+	public MetaDataManager(Path tempDir) {
+		this.tempDir = tempDir;
 	}
 	
 	public void init() {
@@ -79,11 +80,7 @@ public class MetaDataManager {
 	}
 
 	public void addEPackage(EPackage ePackage, Schema schema) {
-		ePackages.put(ePackage.getName().toLowerCase(), new PackageMetaData(this, ePackage, schema, pluginManager.getTempDir()));
-	}
-
-	public PluginManagerInterface getPluginManager() {
-		return pluginManager;
+		ePackages.put(ePackage.getName().toLowerCase(), new PackageMetaData(this, ePackage, schema, tempDir));
 	}
 
 	public Collection<PackageMetaData> getAll() {

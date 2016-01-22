@@ -45,9 +45,9 @@ import org.bimserver.database.actions.DeleteObjectIDMDatabaseAction;
 import org.bimserver.database.actions.DeleteQueryEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteRenderEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
-import org.bimserver.database.actions.GetAvailablePluginInformation;
+import org.bimserver.database.actions.GetAvailablePluginBundles;
 import org.bimserver.database.actions.GetByIdDatabaseAction;
-import org.bimserver.database.actions.GetInstalledPluginInformation;
+import org.bimserver.database.actions.GetInstalledPluginBundles;
 import org.bimserver.database.actions.GetMessagingSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByIdDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByNameDatabaseAction;
@@ -89,7 +89,7 @@ import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
-import org.bimserver.interfaces.objects.SPluginBundleUpdateInformation;
+import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
@@ -1324,16 +1324,11 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public Long startGetPluginUpdateInformation() throws UserException, ServerException {
-		return null;
-	}
-
-	@Override
-	public List<SPluginBundleUpdateInformation> getAvailablePlugins() throws UserException, ServerException {
+	public List<SPluginBundle> getAvailablePluginBundles() throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return session.executeAndCommitAction(new GetAvailablePluginInformation(session, getInternalAccessMethod(), getBimServer(), false));
+			return session.executeAndCommitAction(new GetAvailablePluginBundles(session, getInternalAccessMethod(), getBimServer(), false));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1341,11 +1336,11 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 	}
 	
-	public void installPlugin(String repository, String groupId, String artifactId, String version) throws UserException, ServerException {
+	public void installPluginBundle(String repository, String groupId, String artifactId, String version, List<SPluginInformation> plugins) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			session.executeAndCommitAction(new InstallPlugin(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version));
+			session.executeAndCommitAction(new InstallPlugin(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version, plugins));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -1354,11 +1349,11 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public List<SPluginBundleUpdateInformation> getInstalledPlugins() throws UserException, ServerException {
+	public List<SPluginBundle> getInstalledPluginBundles() throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return session.executeAndCommitAction(new GetInstalledPluginInformation(session, getInternalAccessMethod(), getBimServer(), false));
+			return session.executeAndCommitAction(new GetInstalledPluginBundles(session, getInternalAccessMethod(), getBimServer(), false));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1367,7 +1362,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public void uninstallPlugin(String repository, String groupId, String artifactId, String version) throws UserException, ServerException {
+	public void uninstallPluginBundle(String repository, String groupId, String artifactId, String version) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {

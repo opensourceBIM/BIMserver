@@ -1,46 +1,71 @@
 package org.bimserver.plugins;
 
+import java.io.Closeable;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.plugins.classloaders.FileJarClassLoader;
+import org.bimserver.interfaces.objects.SPluginBundle;
+import org.bimserver.interfaces.objects.SPluginBundleVersion;
 
 public class PluginBundleImpl implements PluginBundle, Iterable<PluginContext> {
-	private final Set<PluginContext> pluginsContexts = new HashSet<>();
-	private final Set<FileJarClassLoader> classloaders = new HashSet<>();
-	private String identifier;
+	private final Map<String, PluginContext> pluginsContexts = new HashMap<>();
+	private final Set<Closeable> cloaseables = new HashSet<>();
+	private SPluginBundleVersion pluginBundleVersion;
+	private PluginBundleVersionIdentifier pluginBundleVersionIdentifier;
+	private SPluginBundle sPluginBundle;
 
-	public PluginBundleImpl(String identifier) {
-		this.identifier = identifier;
+	public PluginBundleImpl(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion) {
+		this.pluginBundleVersionIdentifier = pluginBundleVersionIdentifier;
+		this.sPluginBundle = sPluginBundle;
+		this.pluginBundleVersion = pluginBundleVersion;
 	}
 	
 	public void add(PluginContext pluginContext) {
-		pluginsContexts.add(pluginContext);
+		pluginsContexts.put(pluginContext.getPlugin().getClass().getName(), pluginContext);
 	}
 
 	@Override
 	public Iterator<PluginContext> iterator() {
-		return pluginsContexts.iterator();
+		return pluginsContexts.values().iterator();
 	}
 
 	public void close() throws IOException {
-		for (FileJarClassLoader fileJarClassLoader : classloaders) {
-			fileJarClassLoader.close();
+		for (Closeable closeable : cloaseables) {
+			closeable.close();
 		}
 	}
 
-	public void addClassLoader(FileJarClassLoader jarClassLoader) {
-		classloaders.add(jarClassLoader);
+	public void addCloseable(Closeable closeable) {
+		cloaseables.add(closeable);
 	}
 
-	public String getIdentifier() {
-		return identifier;
+	public PluginBundleVersionIdentifier getPluginBundleVersionIdentifier() {
+		return pluginBundleVersionIdentifier;
 	}
 
 	@Override
 	public String getVersion() {
-		return null;
+		return pluginBundleVersion.getVersion();
+	}
+
+	public SPluginBundleVersion getPluginBundleVersion() {
+		return pluginBundleVersion;
+	}
+
+	@Override
+	public SPluginBundle getPluginBundle() {
+		SPluginBundle result = new SPluginBundle();
+		result.setName(sPluginBundle.getName());
+		result.setOrganization(sPluginBundle.getOrganization());
+		return result;
+	}
+
+	@Override
+	public PluginContext getPluginContext(String name) {
+		return pluginsContexts.get(name);
 	}
 }

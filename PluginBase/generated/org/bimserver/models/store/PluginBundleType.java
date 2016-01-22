@@ -50,7 +50,15 @@ public enum PluginBundleType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GITHUB(1, "GITHUB", "GITHUB");
+	GITHUB(1, "GITHUB", "GITHUB"), /**
+									* The '<em><b>LOCAL</b></em>' literal object.
+									* <!-- begin-user-doc -->
+									* <!-- end-user-doc -->
+									* @see #LOCAL_VALUE
+									* @generated
+									* @ordered
+									*/
+	LOCAL(2, "LOCAL", "LOCAL");
 
 	/**
 	 * The '<em><b>MAVEN</b></em>' literal value.
@@ -83,12 +91,27 @@ public enum PluginBundleType implements Enumerator {
 	public static final int GITHUB_VALUE = 1;
 
 	/**
+	 * The '<em><b>LOCAL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LOCAL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LOCAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LOCAL_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>Plugin Bundle Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PluginBundleType[] VALUES_ARRAY = new PluginBundleType[] { MAVEN, GITHUB, };
+	private static final PluginBundleType[] VALUES_ARRAY = new PluginBundleType[] { MAVEN, GITHUB, LOCAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Plugin Bundle Type</b></em>' enumerators.
@@ -148,6 +171,8 @@ public enum PluginBundleType implements Enumerator {
 			return MAVEN;
 		case GITHUB_VALUE:
 			return GITHUB;
+		case LOCAL_VALUE:
+			return LOCAL;
 		}
 		return null;
 	}

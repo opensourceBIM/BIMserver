@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SModelCheckerPluginDescriptor.class, SSerializerPluginDescriptor.class, SRenderEnginePluginDescriptor.class, SDeserializerPluginDescriptor.class, SModelMergerPluginDescriptor.class, SServicePluginDescriptor.class, SModelComparePluginDescriptor.class, SQueryEnginePluginDescriptor.class, SWebModulePluginDescriptor.class})
+@XmlSeeAlso(value={SSerializerPluginDescriptor.class, SDeserializerPluginDescriptor.class, SModelCheckerPluginDescriptor.class, SModelComparePluginDescriptor.class, SServicePluginDescriptor.class, SQueryEnginePluginDescriptor.class, SModelMergerPluginDescriptor.class, SWebModulePluginDescriptor.class, SRenderEnginePluginDescriptor.class})
 public class SPluginDescriptor implements SDataBase
 {
 	private long oid = -1;
@@ -41,6 +41,7 @@ public class SPluginDescriptor implements SDataBase
 	private java.lang.Boolean enabled;
 	private java.lang.String pluginInterfaceClassName;
 	private List<Long> configurations = new ArrayList<Long>();
+	private boolean installForNewUsers;
 
 	public long getOid() {
 		return this.oid;
@@ -92,6 +93,9 @@ public class SPluginDescriptor implements SDataBase
 		if (sField.getName().equals("configurations")) {
 			return getConfigurations();
 		}
+		if (sField.getName().equals("installForNewUsers")) {
+			return isInstallForNewUsers();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -133,6 +137,10 @@ public class SPluginDescriptor implements SDataBase
 		}
 		if (sField.getName().equals("configurations")) {
 			setConfigurations((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("installForNewUsers")) {
+			setInstallForNewUsers((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -208,6 +216,14 @@ public class SPluginDescriptor implements SDataBase
 
 	public void setConfigurations(List<Long> configurations) {
 		this.configurations = configurations;
+	}
+	
+	public boolean isInstallForNewUsers() {
+		return installForNewUsers;
+	}
+
+	public void setInstallForNewUsers(boolean installForNewUsers) {
+		this.installForNewUsers = installForNewUsers;
 	}
 	
 	@Override

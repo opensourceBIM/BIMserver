@@ -18,7 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 
-import org.bimserver.models.store.PluginBundleUpdateInformation;
+import org.bimserver.models.store.PluginBundle;
 import org.bimserver.models.store.PluginBundleVersion;
 import org.bimserver.models.store.StorePackage;
 
@@ -28,27 +28,28 @@ import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Plugin Bundle Update Information</b></em>'.
+ * An implementation of the model object '<em><b>Plugin Bundle</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.PluginBundleUpdateInformationImpl#getOrganization <em>Organization</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginBundleUpdateInformationImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginBundleUpdateInformationImpl#getLatestVersion <em>Latest Version</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginBundleUpdateInformationImpl#getAvailableVersions <em>Available Versions</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleImpl#getOrganization <em>Organization</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleImpl#getLatestVersion <em>Latest Version</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleImpl#getAvailableVersions <em>Available Versions</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleImpl#getInstalledVersion <em>Installed Version</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PluginBundleUpdateInformationImpl extends IdEObjectImpl implements PluginBundleUpdateInformation {
+public class PluginBundleImpl extends IdEObjectImpl implements PluginBundle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PluginBundleUpdateInformationImpl() {
+	protected PluginBundleImpl() {
 		super();
 	}
 
@@ -59,7 +60,7 @@ public class PluginBundleUpdateInformationImpl extends IdEObjectImpl implements 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StorePackage.Literals.PLUGIN_BUNDLE_UPDATE_INFORMATION;
+		return StorePackage.Literals.PLUGIN_BUNDLE;
 	}
 
 	/**
@@ -78,7 +79,7 @@ public class PluginBundleUpdateInformationImpl extends IdEObjectImpl implements 
 	 * @generated
 	 */
 	public String getOrganization() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_UPDATE_INFORMATION__ORGANIZATION, true);
+		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE__ORGANIZATION, true);
 	}
 
 	/**
@@ -87,7 +88,7 @@ public class PluginBundleUpdateInformationImpl extends IdEObjectImpl implements 
 	 * @generated
 	 */
 	public void setOrganization(String newOrganization) {
-		eSet(StorePackage.Literals.PLUGIN_BUNDLE_UPDATE_INFORMATION__ORGANIZATION, newOrganization);
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE__ORGANIZATION, newOrganization);
 	}
 
 	/**
@@ -96,7 +97,7 @@ public class PluginBundleUpdateInformationImpl extends IdEObjectImpl implements 
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_UPDATE_INFORMATION__NAME, true);
+		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE__NAME, true);
 	}
 
 	/**
@@ -105,7 +106,7 @@ public class PluginBundleUpdateInformationImpl extends IdEObjectImpl implements 
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eSet(StorePackage.Literals.PLUGIN_BUNDLE_UPDATE_INFORMATION__NAME, newName);
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE__NAME, newName);
 	}
 
 	/**
@@ -114,7 +115,7 @@ public class PluginBundleUpdateInformationImpl extends IdEObjectImpl implements 
 	 * @generated
 	 */
 	public PluginBundleVersion getLatestVersion() {
-		return (PluginBundleVersion) eGet(StorePackage.Literals.PLUGIN_BUNDLE_UPDATE_INFORMATION__LATEST_VERSION, true);
+		return (PluginBundleVersion) eGet(StorePackage.Literals.PLUGIN_BUNDLE__LATEST_VERSION, true);
 	}
 
 	/**
@@ -123,7 +124,7 @@ public class PluginBundleUpdateInformationImpl extends IdEObjectImpl implements 
 	 * @generated
 	 */
 	public void setLatestVersion(PluginBundleVersion newLatestVersion) {
-		eSet(StorePackage.Literals.PLUGIN_BUNDLE_UPDATE_INFORMATION__LATEST_VERSION, newLatestVersion);
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE__LATEST_VERSION, newLatestVersion);
 	}
 
 	/**
@@ -133,7 +134,26 @@ public class PluginBundleUpdateInformationImpl extends IdEObjectImpl implements 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<PluginBundleVersion> getAvailableVersions() {
-		return (EList<PluginBundleVersion>) eGet(StorePackage.Literals.PLUGIN_BUNDLE_UPDATE_INFORMATION__AVAILABLE_VERSIONS, true);
+		return (EList<PluginBundleVersion>) eGet(StorePackage.Literals.PLUGIN_BUNDLE__AVAILABLE_VERSIONS, true);
 	}
 
-} //PluginBundleUpdateInformationImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public PluginBundleVersion getInstalledVersion() {
+		return (PluginBundleVersion) eGet(StorePackage.Literals.PLUGIN_BUNDLE__INSTALLED_VERSION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInstalledVersion(PluginBundleVersion newInstalledVersion) {
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE__INSTALLED_VERSION, newInstalledVersion);
+	}
+
+} //PluginBundleImpl

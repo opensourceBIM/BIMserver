@@ -1,5 +1,7 @@
 package org.bimserver.plugins.renderengine;
 
+import org.bimserver.interfaces.objects.SPluginType;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -27,4 +29,9 @@ public interface RenderEnginePlugin extends Plugin {
 	 * @throws RenderEngineException
 	 */
 	RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration, String schema) throws RenderEngineException;
+	
+	@Override
+	default SPluginType getPluginType() {
+		return SPluginType.RENDER_ENGINE;
+	}
 }

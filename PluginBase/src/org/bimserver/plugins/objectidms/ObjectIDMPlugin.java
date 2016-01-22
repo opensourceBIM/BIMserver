@@ -1,5 +1,7 @@
 package org.bimserver.plugins.objectidms;
 
+import org.bimserver.interfaces.objects.SPluginType;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -22,4 +24,9 @@ import org.bimserver.plugins.PluginConfiguration;
 
 public interface ObjectIDMPlugin extends Plugin {
 	ObjectIDM getObjectIDM(PluginConfiguration pluginConfiguration);
+	
+	@Override
+	default SPluginType getPluginType() {
+		return SPluginType.OBJECT_IDM;
+	}
 }
