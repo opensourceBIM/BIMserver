@@ -231,6 +231,7 @@ public class Database implements BimDatabase {
 		settings.setSessionTimeOutSeconds(60 * 60 * 24 * 30); // 1 month
 		settings.getWhitelistedDomains().add("localhost");
 		settings.getWhitelistedDomains().add("localhost:8080");
+		settings.setPluginStrictVersionChecking(true);
 		return settings;
 	}
 	

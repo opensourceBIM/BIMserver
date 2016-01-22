@@ -55,7 +55,7 @@ public class GetInstalledPluginBundles extends BimDatabaseAction<List<SPluginBun
 
 		for (PluginBundle pluginBundle : bimServer.getPluginManager().getPluginBundles()) {
 			SPluginBundleVersion installedVersion = pluginBundle.getPluginBundleVersion();
-			MavenPluginLocation mavenPluginLocation = new MavenPluginLocation(installedVersion.getRepository(), installedVersion.getGroupId(), installedVersion.getArtifactId());
+			MavenPluginLocation mavenPluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(installedVersion.getRepository(), installedVersion.getGroupId(), installedVersion.getArtifactId());
 			
 			SPluginBundle sPluginBundle = GetAvailablePluginBundles.processMavenPluginLocation(mavenPluginLocation, strictVersionChecking, bimserverVersion);
 			if (sPluginBundle == null) {

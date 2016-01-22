@@ -74,6 +74,9 @@ public class Step0023 extends Migration {
 		
 		EClass pluginDescriptor = schema.getEClass("store", "PluginDescriptor");
 		schema.createEAttribute(pluginDescriptor, "installForNewUsers", EcorePackage.eINSTANCE.getEBoolean());
+		
+		EClass serverSettingsClass = schema.getEClass("store", "ServerSettings");
+		schema.createEAttribute(serverSettingsClass, "pluginStrictVersionChecking", EcorePackage.eINSTANCE.getEBoolean());
 	}
 
 	@Override

@@ -59,7 +59,7 @@ public class GetAvailablePluginBundles extends BimDatabaseAction<List<SPluginBun
 	public List<SPluginBundle> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		List<SPluginBundle> result = new ArrayList<>();
 
-		GitHubPluginRepository repository = new GitHubPluginRepository(bimServer.getServerSettingsCache().getServerSettings().getServiceRepositoryUrl());
+		GitHubPluginRepository repository = new GitHubPluginRepository(bimServer.getMavenPluginRepository(), bimServer.getServerSettingsCache().getServerSettings().getServiceRepositoryUrl());
 
 		bimserverVersion = new DefaultArtifactVersion(bimServer.getVersionChecker().getLocalVersion().getFullString());
 
@@ -91,10 +91,10 @@ public class GetAvailablePluginBundles extends BimDatabaseAction<List<SPluginBun
 				for (MavenDependency mavenDependency : mavenPluginVersion.getDependencies()) {
 					if (mavenDependency.getArtifact().getGroupId().equals("org.opensourcebim")) {
 						String artifactId = mavenDependency.getArtifact().getArtifactId();
-						// Shared and PluginBase always have the same versions
+						// shared and pluginbase always have the same version
 						// as this BIMserver, so if any of them is a dependency
 						// for the plugin, it's version has to be ok
-						if (artifactId.equals("Shared") || artifactId.equals("PluginBase")) {
+						if (artifactId.equals("shared") || artifactId.equals("pluginbase")) {
 							VersionRange versionRange = VersionRange.createFromVersion(mavenDependency.getArtifact().getVersion());
 							if (versionRange.containsVersion(bimserverVersion)) {
 

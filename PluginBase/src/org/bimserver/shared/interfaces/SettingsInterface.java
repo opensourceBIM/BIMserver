@@ -244,4 +244,18 @@ public interface SettingsInterface extends PublicInterface {
 	@WebMethod(action = "setWhiteListedDomains")
 	void setWhiteListedDomains(
 		@WebParam(name = "domains", partName = "setWhiteListedDomains.domains") List<String> domains) throws ServerException, UserException;
+
+	/**
+	 * Set whether only plugins can be installed that indicate to work with this BIMserver version
+	 * 
+	 * @param strict Boolean
+	 * @throws UserException 
+	 * @throws ServerException 
+	 */
+	@WebMethod(action = "setPluginStrictVersionChecking")
+	void setPluginStrictVersionChecking(
+		@WebParam(name = "strict", partName = "setPluginStrictVersionChecking.strict") Boolean strict) throws UserException, ServerException;
+
+	@WebMethod(action = "isPluginStrictVersionChecking")
+	Boolean isPluginStrictVersionChecking() throws ServerException, UserException;
 }

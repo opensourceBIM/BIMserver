@@ -57,11 +57,12 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setServiceRepositoryUrl(url);
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -75,11 +76,12 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setProtocolBuffersPort(port);
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -104,11 +106,12 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		}
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setEmailSenderAddress(emailSenderAddress);
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -135,11 +138,12 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		}
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setSiteAddress(siteAddress);
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -164,11 +168,12 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		}
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setSmtpServer(smtpServer);
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -193,11 +198,12 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setHideUserListForNonAdmin(hideUserListForNonAdmin);
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -211,11 +217,12 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setAllowSelfRegistration(allowSelfRegistration);
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -235,11 +242,12 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -255,15 +263,22 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
+	public Boolean isPluginStrictVersionChecking() throws ServerException, UserException {
+		requireAuthentication();
+		return getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking();
+	}
+
+	@Override
 	public void setCheckinMergingEnabled(final Boolean checkinMergingEnabled) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setCheckinMergingEnabled(checkinMergingEnabled);
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -283,11 +298,12 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -307,17 +323,18 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		requireAdminAuthenticationAndRunningServer();
 		return getBimServer().getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin();
 	}
-	
+
 	@Override
 	public void setCacheOutputFiles(final Boolean cacheOutputFiles) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setCacheOutputFiles(cacheOutputFiles);
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -325,17 +342,18 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public void setGenerateGeometryOnCheckin(final Boolean generateGeometryOnCheckin) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setGenerateGeometryOnCheckin(generateGeometryOnCheckin);
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -343,8 +361,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 			session.close();
 		}
 	}
-	
-	
+
 	@Override
 	public SServerSettings getServerSettings() throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -357,7 +374,6 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 			session.close();
 		}
 	}
-	
 
 	@Override
 	public void setWhiteListedDomains(final List<String> domains) throws ServerException, UserException {
@@ -378,7 +394,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public void setServerSettings(SServerSettings serverSettings) throws ServerException, UserException {
 		if (getBimServer().getServerInfo().getServerState() != ServerState.NOT_SETUP) {
@@ -390,6 +406,25 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 			session.executeAndCommitAction(action);
 			getBimServer().getServerSettingsCache().updateCache();
 		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void setPluginStrictVersionChecking(Boolean strict) throws UserException, ServerException {
+		requireAdminAuthenticationAndRunningServer();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
+				@Override
+				public void set(ServerSettings serverSettings) {
+					serverSettings.setPluginStrictVersionChecking(strict);
+				}
+			});
+			session.executeAndCommitAction(action);
+		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		} finally {
 			session.close();

@@ -50,6 +50,7 @@ public class LocalDevBimServerStarter {
 				adminInterface.setup("http://localhost:" + port, "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 				SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
 				settingsInterface.setCacheOutputFiles(false);
+				settingsInterface.setPluginStrictVersionChecking(false);
 			}
 		} catch (PluginException e) {
 			LOGGER.error("", e);

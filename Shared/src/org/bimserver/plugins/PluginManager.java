@@ -509,7 +509,7 @@ public class PluginManager implements PluginManagerInterface {
 				}
 			};
 
-			return loadPlugins(pluginBundleVersionIdentifier, resourceLoader, jarClassLoader, jarUri, file.toAbsolutePath().toString(), pluginDescriptor, PluginSourceType.JAR_FILE, null, sPluginBundle, pluginBundleVersion);
+			return loadPlugins(pluginBundleVersionIdentifier, resourceLoader, jarClassLoader, jarUri, file.toAbsolutePath().toString(), pluginDescriptor, PluginSourceType.JAR_FILE, new ArrayList<org.bimserver.plugins.Dependency>(), sPluginBundle, pluginBundleVersion);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
@@ -719,7 +719,7 @@ public class PluginManager implements PluginManagerInterface {
 		}
 		Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
 		try {
-			PluginContext pluginContext = new PluginContext(this, pluginBundle, classLoader, pluginType, pluginImplementation.getDescription(), location, plugin, pluginImplementation, classLocation, dependencies);
+			PluginContext pluginContext = new PluginContext(this, pluginBundle, interfaceClass, classLoader, pluginType, pluginImplementation.getDescription(), location, plugin, pluginImplementation, classLocation, dependencies);
 			pluginToPluginContext.put(plugin, pluginContext);
 			set.add(pluginContext);
 			return pluginContext;
@@ -990,24 +990,26 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	public List<SPluginInformation> getPluginInformation(Path file) throws PluginException, FileNotFoundException, IOException, JAXBException {
-		final FileJarClassLoader jarClassLoader = new FileJarClassLoader(this, getClass().getClassLoader(), file);
-		InputStream pluginStream = jarClassLoader.getResourceAsStream("plugin/plugin.xml");
-		if (pluginStream == null) {
-			throw new PluginException("No plugin/plugin.xml found in " + file.getFileName().toString());
+		try (JarFile jarFile = new JarFile(file.toFile())) {
+			ZipEntry entry = jarFile.getEntry("plugin/plugin.xml");
+			if (entry == null) {
+				throw new PluginException("No plugin/plugin.xml found in " + file.getFileName().toString());
+			}
+			InputStream pluginStream = jarFile.getInputStream(entry);
+			PluginDescriptor pluginDescriptor = getPluginDescriptor(pluginStream);
+			if (pluginDescriptor == null) {
+				throw new PluginException("No plugin descriptor could be created");
+			}
+			List<SPluginInformation> list = new ArrayList<>();
+			for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
+				SPluginInformation sPluginInformation = new SPluginInformation();
+				sPluginInformation.setName(pluginImplementation.getImplementationClass());
+				sPluginInformation.setDescription(pluginImplementation.getDescription());
+				sPluginInformation.setType(getPluginTypeFromClass(pluginImplementation.getInterfaceClass()));
+				list.add(sPluginInformation);
+			}
+			return list;
 		}
-		PluginDescriptor pluginDescriptor = getPluginDescriptor(pluginStream);
-		if (pluginDescriptor == null) {
-			throw new PluginException("No plugin descriptor could be created");
-		}
-		List<SPluginInformation> list = new ArrayList<>();
-		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
-			SPluginInformation sPluginInformation = new SPluginInformation();
-			sPluginInformation.setName(pluginImplementation.getImplementationClass());
-			sPluginInformation.setDescription(pluginImplementation.getDescription());
-			sPluginInformation.setType(getPluginTypeFromClass(pluginImplementation.getInterfaceClass()));
-			list.add(sPluginInformation);
-		}
-		return list;
 	}
 
 	public SPluginType getPluginTypeFromClass(String className) {
@@ -1091,11 +1093,26 @@ public class PluginManager implements PluginManagerInterface {
 			pluginBundle.close();
 			pluginBundleVersionIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier);
 			pluginBundleIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier.getPluginBundleIdentifier());
+
+			for (PluginContext pluginContext : pluginBundle) {
+				Set<PluginContext> set = implementations.get(pluginContext.getPluginInterface());
+				set.remove(pluginContext);
+			}
 			
 			Path target = pluginsDir.resolve(pluginBundleVersionIdentifier.getFileName());
 			Files.delete(target);
+			
+			for (PluginContext pluginContext : pluginBundle) {
+				notifyPluginUninstalled(pluginContext);
+			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
+		}
+	}
+
+	private void notifyPluginUninstalled(PluginContext pluginContext) {
+		for (PluginChangeListener pluginChangeListener : pluginChangeListeners) {
+			pluginChangeListener.pluginUninstalled(pluginContext);
 		}
 	}
 

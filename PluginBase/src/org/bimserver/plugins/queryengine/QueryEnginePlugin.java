@@ -22,13 +22,14 @@ import java.util.Collection;
 import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
+import org.bimserver.shared.exceptions.PluginException;
 
 public interface QueryEnginePlugin extends Plugin {
 
 	/**
 	 * @return A usable QueryEngine implementation
 	 */
-	QueryEngine getQueryEngine(PluginConfiguration pluginConfiguration);
+	QueryEngine getQueryEngine(PluginConfiguration pluginConfiguration) throws PluginException;
 	
 	/**
 	 * @return Return a list of keys (usually file names) corresponding to code examples for this plugin

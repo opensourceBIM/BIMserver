@@ -51,14 +51,27 @@ public class RenderEnginePools {
 			}
 		}
 	}
-	
+
 	public RenderEnginePool getRenderEnginePool(Schema schema, String className) throws PluginException {
 		if (pools.containsKey(schema)) {
 			Map<String, RenderEnginePool> map = pools.get(schema);
 			if (map.containsKey(className)) {
 				return map.get(className);
 			} else {
-				throw new PluginException("No render engine found for className " + className);
+				// Maybe this plugin has been installed after startup, let's have a look in the PluginManager
+				RenderEnginePlugin renderEnginePlugin = bimServer.getPluginManager().getRenderEngine(className, true);
+				if (renderEnginePlugin == null) {
+					throw new PluginException("No render engine found for className " + className);
+				} else {
+					int nrRenderEngineProcesses = this.bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses();
+					RenderEnginePool renderEnginePool = new RenderEnginePool(nrRenderEngineProcesses, new RenderEngineFactory(){
+						@Override
+						public RenderEngine createRenderEngine() throws RenderEngineException {
+							return renderEnginePlugin.createRenderEngine(new PluginConfiguration(), schema.name());
+						}});
+					map.put(className, renderEnginePool);
+					return renderEnginePool;
+				}
 			}
 		} else {
 			throw new PluginException("No render engine found for schema " + schema);

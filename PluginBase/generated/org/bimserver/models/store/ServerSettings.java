@@ -54,6 +54,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#isReuseGeometry <em>Reuse Geometry</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getRenderEngineProcesses <em>Render Engine Processes</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#isPluginStrictVersionChecking <em>Plugin Strict Version Checking</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getServerSettings()
@@ -726,5 +727,31 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setRenderEngineProcesses(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Plugin Strict Version Checking</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Plugin Strict Version Checking</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Plugin Strict Version Checking</em>' attribute.
+	 * @see #setPluginStrictVersionChecking(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_PluginStrictVersionChecking()
+	 * @model
+	 * @generated
+	 */
+	boolean isPluginStrictVersionChecking();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#isPluginStrictVersionChecking <em>Plugin Strict Version Checking</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Plugin Strict Version Checking</em>' attribute.
+	 * @see #isPluginStrictVersionChecking()
+	 * @generated
+	 */
+	void setPluginStrictVersionChecking(boolean value);
 
 } // ServerSettings

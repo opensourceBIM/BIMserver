@@ -53,6 +53,6 @@ public class GetSerializerByPluginClassNameDatabaseAction extends BimDatabaseAct
 				return serializerPluginConfiguration;
 			}
 		}
-		return null;
+		throw new UserException("No plugin found for this user with classname " + pluginClassName);
 	}
 }

@@ -43,10 +43,12 @@ public class PluginContext {
 	private PluginBundle pluginBundle;
 	private String description;
 	private boolean initialized;
+	private Class<?> pluginInterface;
 
-	public PluginContext(PluginManagerInterface pluginManager, PluginBundle pluginBundle, ClassLoader classLoader, PluginSourceType pluginType, String description, URI location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation, List<Dependency> dependencies) throws IOException {
+	public PluginContext(PluginManagerInterface pluginManager, PluginBundle pluginBundle, Class<?> pluginInterface, ClassLoader classLoader, PluginSourceType pluginType, String description, URI location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation, List<Dependency> dependencies) throws IOException {
 		this.pluginManager = pluginManager;
 		this.pluginBundle = pluginBundle;
+		this.pluginInterface = pluginInterface;
 		this.classLoader = classLoader;
 		this.pluginType = pluginType;
 		this.description = description;
@@ -137,5 +139,9 @@ public class PluginContext {
 	public String getVersion() {
 		// All plugins in a bundle have the same version
 		return pluginBundle.getVersion();
+	}
+
+	public Class<?> getPluginInterface() {
+		return pluginInterface;
 	}
 }

@@ -52,6 +52,8 @@ define(function(){
 		GETAVAILABLEPLUGINBUNDLES_BUSY: "Loading available plugins, this can take a while...",
 		GETAVAILABLEPLUGINBUNDLES_DONE: "Done loading available plugins",
 		INSTALLPLUGINBUNDLE_BUSY: "Installing plugin...",
-		INSTALLPLUGINBUNDLE_DONE: "Plugin successfully installed"
+		INSTALLPLUGINBUNDLE_DONE: "Plugin successfully installed",
+		GETPLUGININFORMATION_BUSY: "Getting plugin information, this can take a while for large plugins...",
+		GETPLUGININFORMATION_DONE: "Plugin information successfully retrieved"
 	}
 });
