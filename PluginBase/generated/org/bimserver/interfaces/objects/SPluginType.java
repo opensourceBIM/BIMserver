@@ -27,7 +27,8 @@ public enum SPluginType {
 	MODEL_MERGER(6),
 	MODEL_COMPARE(7),
 	MODEL_CHECKER(8),
-	STILL_IMAGE_RENDER(9);
+	STILL_IMAGE_RENDER(9),
+	SERVICE(10);
 	int ordinal;
 
 	SPluginType(int ordinal) {

@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginInformationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginInformationImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginInformationImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginInformationImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginInformationImpl#isInstallForAllUsers <em>Install For All Users</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginInformationImpl#isInstallForNewUsers <em>Install For New Users</em>}</li>
  * </ul>
@@ -123,6 +124,24 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 */
 	public void setDescription(String newDescription) {
 		eSet(StorePackage.Literals.PLUGIN_INFORMATION__DESCRIPTION, newDescription);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isEnabled() {
+		return (Boolean) eGet(StorePackage.Literals.PLUGIN_INFORMATION__ENABLED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEnabled(boolean newEnabled) {
+		eSet(StorePackage.Literals.PLUGIN_INFORMATION__ENABLED, newEnabled);
 	}
 
 	/**

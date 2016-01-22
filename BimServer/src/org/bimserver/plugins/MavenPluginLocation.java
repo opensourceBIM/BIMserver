@@ -48,6 +48,9 @@ import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
+import org.bimserver.interfaces.objects.SPluginBundle;
+import org.bimserver.interfaces.objects.SPluginBundleType;
+import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.eclipse.aether.DefaultRepositorySystemSession;
 import org.eclipse.aether.RepositorySystem;
@@ -81,6 +84,7 @@ public class MavenPluginLocation extends PluginLocation {
 	private RepositorySystem system;
 	private RepositorySystemSession session;
 	private List<RemoteRepository> repositories;
+	private RemoteRepository remoteRepository;
 
 	public MavenPluginLocation(String defaultrepository, String groupId, String artifactId) {
 		this.defaultrepository = defaultrepository;
@@ -112,7 +116,7 @@ public class MavenPluginLocation extends PluginLocation {
 	public String toString() {
 		return groupId + "." + artifactId;
 	}
-
+	
 	@Override
 	public List<PluginVersion> getAllVersions() {
 		List<PluginVersion> pluginVersions = new ArrayList<>();
@@ -212,7 +216,8 @@ public class MavenPluginLocation extends PluginLocation {
 	}
 
 	private RemoteRepository newCentralRepository() {
-		return new RemoteRepository.Builder("central", "default", defaultrepository).build();
+		remoteRepository = new RemoteRepository.Builder("central", "default", defaultrepository).build();
+		return remoteRepository;
 	}
 
 	public String getRepository() {
@@ -220,13 +225,8 @@ public class MavenPluginLocation extends PluginLocation {
 	}
 
 	public Path getVersionJar(String version) throws ArtifactResolutionException {
-		ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
-		
 		Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":" + version.toString());
 		
-		descriptorRequest.setArtifact(versionArtifact);
-		descriptorRequest.setRepositories(repositories);
-
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(versionArtifact);
 		request.setRepositories(repositories);
@@ -236,7 +236,79 @@ public class MavenPluginLocation extends PluginLocation {
 	}
 
 	@Override
-	public String getIdentifier() {
-		return groupId + ":" + artifactId;
+	public PluginBundleIdentifier getPluginIdentifier() {
+		return new PluginBundleIdentifier(groupId, artifactId);
+	}
+
+	public SPluginBundle getPluginBundle(String version) {
+		try {
+			Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":pom:" + version);
+			
+			ArtifactRequest request = new ArtifactRequest();
+			request.setArtifact(versionArtifact);
+			request.setRepositories(repositories);
+			ArtifactResult resolveArtifact = system.resolveArtifact(session, request);
+	
+			File pomFile = resolveArtifact.getArtifact().getFile();
+			
+			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+
+			Model model = mavenreader.read(new FileReader(pomFile));
+			SPluginBundle sPluginBundle = new SPluginBundle();
+			
+			sPluginBundle.setOrganization(model.getOrganization().getName());
+			sPluginBundle.setName(model.getName());
+
+			return sPluginBundle;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} catch (ArtifactResolutionException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public SPluginBundleVersion getPluginBundleVersion(String version) {
+		try {
+			Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":pom:" + version.toString());
+			
+			ArtifactRequest request = new ArtifactRequest();
+			request.setArtifact(versionArtifact);
+			request.setRepositories(repositories);
+			ArtifactResult resolveArtifact = system.resolveArtifact(session, request);
+			Artifact artifact = resolveArtifact.getArtifact();
+	
+			File pomFile = resolveArtifact.getArtifact().getFile();
+			
+			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+
+			Model model = mavenreader.read(new FileReader(pomFile));
+			SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
+			sPluginBundleVersion.setType(SPluginBundleType.MAVEN);
+			sPluginBundleVersion.setGroupId(artifact.getGroupId());
+			sPluginBundleVersion.setArtifactId(artifact.getArtifactId());
+			sPluginBundleVersion.setVersion(version);
+			sPluginBundleVersion.setDescription(model.getDescription());
+			sPluginBundleVersion.setRepository(remoteRepository.getUrl());
+			sPluginBundleVersion.setMismatch(false); // TODO
+			return sPluginBundleVersion;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} catch (ArtifactResolutionException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public PluginBundleVersionIdentifier getPluginVersionIdentifier(String version) {
+		return new PluginBundleVersionIdentifier(getPluginIdentifier(), version);
 	}
 }

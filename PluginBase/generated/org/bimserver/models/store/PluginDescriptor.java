@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getPluginInterfaceClassName <em>Plugin Interface Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getConfigurations <em>Configurations</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginDescriptor#isInstallForNewUsers <em>Install For New Users</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getPluginDescriptor()
@@ -243,5 +244,31 @@ public interface PluginDescriptor extends IdEObject {
 	 * @generated
 	 */
 	EList<PluginConfiguration> getConfigurations();
+
+	/**
+	 * Returns the value of the '<em><b>Install For New Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Install For New Users</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Install For New Users</em>' attribute.
+	 * @see #setInstallForNewUsers(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getPluginDescriptor_InstallForNewUsers()
+	 * @model
+	 * @generated
+	 */
+	boolean isInstallForNewUsers();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginDescriptor#isInstallForNewUsers <em>Install For New Users</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Install For New Users</em>' attribute.
+	 * @see #isInstallForNewUsers()
+	 * @generated
+	 */
+	void setInstallForNewUsers(boolean value);
 
 } // PluginDescriptor

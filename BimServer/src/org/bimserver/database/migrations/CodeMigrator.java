@@ -30,7 +30,6 @@ import java.util.Set;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.exceptions.PluginException;
@@ -68,14 +67,9 @@ public class CodeMigrator {
 	private List<SService> knownServices = new ArrayList<SService>();
 	private List<String> knownShortNames = new ArrayList<String>();
 	private SServicesMap servicesMap = new SServicesMap();
-	private String[] args;
-
-	public CodeMigrator(String[] args) {
-		this.args = args;
-	}
 
 	public static void main(String[] args) {
-		new CodeMigrator(args).start();
+		new CodeMigrator().start();
 	}
 
 	public static void loadPlugins(PluginManager pluginManager, Path current, Path[] pluginDirectories) throws PluginException {
@@ -119,86 +113,83 @@ public class CodeMigrator {
 
 		LOGGER.info("Generating ServiceInterface objects...");
 		Set<EPackage> ePackages = new LinkedHashSet<EPackage>();
-		try {
-			Path home = Paths.get("cmhome");
-			if (!Files.exists(home)) {
-				try {
-					Files.createDirectories(home);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		Path home = Paths.get("cmhome");
+		if (!Files.exists(home)) {
+			try {
+				Files.createDirectories(home);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			PluginManager pluginManager = new PluginManager(home.resolve("tmp"), null, System.getProperty("java.class.path"), null, null, null);
-			Path[] pluginDirectories = new OptionsParser(args).getPluginDirectories();
-			loadPlugins(pluginManager, pluginDirectories);
-			
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
-			pluginManager.setMetaDataManager(metaDataManager);
-			loadPlugins(pluginManager, Paths.get(".."), new OptionsParser().getPluginDirectories());
-			metaDataManager.init();
-
-			pluginManager.initAllLoadedPlugins();
-			
-			DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper(pluginManager);
-
-			for (EPackage ePackage : schema.getEPackages()) {
-				if (!ePackage.getName().equals("ifc2x3tc1") && !ePackage.getName().equals("ifc4")) {
-					ePackages.add(ePackage);
-				}
-			}
-			
-			serviceGenerator.generateDataObjects(ePackages);
-			LOGGER.info("ServiceInterface objects successfully generated");
-
-			SConverterGeneratorWrapper sConverterGenerator = new SConverterGeneratorWrapper(metaDataManager);
-			sConverterGenerator.generate(ePackages);
-
-			SServiceGeneratorWrapper serviceGeneratorWrapper = new SServiceGeneratorWrapper();
-			serviceGeneratorWrapper.generate(ServiceInterface.class, StorePackage.eINSTANCE);
-
-			LOGGER.info("Generating protocol buffers file and classes...");
-			protocolBuffersGenerator = new ProtocolBuffersGenerator();
-
-			for (Class<? extends PublicInterface> clazz : InterfaceList.getInterfaces()) {
-				SService service = new SService(servicesMap, new SourceCodeFetcher() {
-					@Override
-					public String get(Class<?> clazz) {
-						File javaFile = new File("../PluginBase/src/" + clazz.getName().replace(".", "/") + ".java");
-						try {
-							return FileUtils.readFileToString(javaFile);
-						} catch (IOException e) {
-							return null;
-						}
-					}
-				} , clazz);
-				servicesMap.add(service);
-			}
-			servicesMap.initialize();
-			for (SService service : servicesMap.list()) {
-				AdaptorGeneratorWrapper adaptorGeneratorWrapper = new AdaptorGeneratorWrapper();
-				adaptorGeneratorWrapper.generate(service.getInterfaceClass(), service);
-				AsyncServiceGeneratorWrapper asyncServiceGeneratorWrapper = new AsyncServiceGeneratorWrapper();
-				asyncServiceGeneratorWrapper.generate(service.getInterfaceClass(), service);
-				File protoFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + service.getInterfaceClass().getSimpleName() + ".proto");
-				File descFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + service.getInterfaceClass().getSimpleName() + ".desc");
-				protocolBuffersGenerator.generate(service.getInterfaceClass(), protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);
-				this.knownServices.add(service);
-				this.knownShortNames.add(service.getInterfaceClass().getSimpleName());
-			}
-
-			SPackageGeneratorWrapper sPackageGeneratorWrapper = new SPackageGeneratorWrapper();
-			sPackageGeneratorWrapper.generate(ePackages);
-
-			LOGGER.info("Protocol buffers file and classes generated");
-
-			RealtimeReflectorFactoryBuilder reflectorBuilder = new RealtimeReflectorFactoryBuilder(InterfaceList.createSServicesMap(), new File("../PluginBase/genclasses"));
-			reflectorBuilder.newReflectorFactory();
-			
-			LOGGER.info("");
-			LOGGER.info("Migration successfull");
-		} catch (PluginException e1) {
-			e1.printStackTrace();
 		}
+		
+		Path tmp = home.resolve("tmp");
+		if (!Files.exists(tmp)) {
+			try {
+				Files.createDirectories(tmp);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		MetaDataManager metaDataManager = new MetaDataManager(tmp);
+		metaDataManager.init();
+
+		DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper(metaDataManager);
+
+		for (EPackage ePackage : schema.getEPackages()) {
+			if (!ePackage.getName().equals("ifc2x3tc1") && !ePackage.getName().equals("ifc4")) {
+				ePackages.add(ePackage);
+			}
+		}
+		
+		serviceGenerator.generateDataObjects(ePackages);
+		LOGGER.info("ServiceInterface objects successfully generated");
+
+		SConverterGeneratorWrapper sConverterGenerator = new SConverterGeneratorWrapper(metaDataManager);
+		sConverterGenerator.generate(ePackages);
+
+		SServiceGeneratorWrapper serviceGeneratorWrapper = new SServiceGeneratorWrapper();
+		serviceGeneratorWrapper.generate(ServiceInterface.class, StorePackage.eINSTANCE);
+
+		LOGGER.info("Generating protocol buffers file and classes...");
+		protocolBuffersGenerator = new ProtocolBuffersGenerator();
+
+		for (Class<? extends PublicInterface> clazz : InterfaceList.getInterfaces()) {
+			SService service = new SService(servicesMap, new SourceCodeFetcher() {
+				@Override
+				public String get(Class<?> clazz) {
+					File javaFile = new File("../PluginBase/src/" + clazz.getName().replace(".", "/") + ".java");
+					try {
+						return FileUtils.readFileToString(javaFile);
+					} catch (IOException e) {
+						return null;
+					}
+				}
+			} , clazz);
+			servicesMap.add(service);
+		}
+		servicesMap.initialize();
+		for (SService service : servicesMap.list()) {
+			AdaptorGeneratorWrapper adaptorGeneratorWrapper = new AdaptorGeneratorWrapper();
+			adaptorGeneratorWrapper.generate(service.getInterfaceClass(), service);
+			AsyncServiceGeneratorWrapper asyncServiceGeneratorWrapper = new AsyncServiceGeneratorWrapper();
+			asyncServiceGeneratorWrapper.generate(service.getInterfaceClass(), service);
+			File protoFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + service.getInterfaceClass().getSimpleName() + ".proto");
+			File descFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + service.getInterfaceClass().getSimpleName() + ".desc");
+			protocolBuffersGenerator.generate(service.getInterfaceClass(), protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);
+			this.knownServices.add(service);
+			this.knownShortNames.add(service.getInterfaceClass().getSimpleName());
+		}
+
+		SPackageGeneratorWrapper sPackageGeneratorWrapper = new SPackageGeneratorWrapper();
+		sPackageGeneratorWrapper.generate(ePackages);
+
+		LOGGER.info("Protocol buffers file and classes generated");
+
+		RealtimeReflectorFactoryBuilder reflectorBuilder = new RealtimeReflectorFactoryBuilder(InterfaceList.createSServicesMap(), new File("../PluginBase/genclasses"));
+		reflectorBuilder.newReflectorFactory();
+		
+		LOGGER.info("");
+		LOGGER.info("Migration successfull");
 		
 		try {
 			FileUtils.deleteDirectory(new File("cmhome"));

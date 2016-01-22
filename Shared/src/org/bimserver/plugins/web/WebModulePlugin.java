@@ -19,6 +19,7 @@ package org.bimserver.plugins.web;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.plugins.Plugin;
 
 public interface WebModulePlugin extends Plugin {
@@ -30,4 +31,9 @@ public interface WebModulePlugin extends Plugin {
 	 * @param response The HTTP response
 	 */
 	boolean service(String requestUrl, HttpServletResponse response);
+	
+	@Override
+	default SPluginType getPluginType() {
+		return SPluginType.WEB_MODULE;
+	}
 }

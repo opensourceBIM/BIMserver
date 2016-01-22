@@ -32,6 +32,7 @@ public class SPluginInformation implements SDataBase
 	private java.lang.String name;
 	private SPluginType type;
 	private java.lang.String description;
+	private boolean enabled;
 	private boolean installForAllUsers;
 	private boolean installForNewUsers;
 
@@ -70,6 +71,9 @@ public class SPluginInformation implements SDataBase
 		if (sField.getName().equals("description")) {
 			return getDescription();
 		}
+		if (sField.getName().equals("enabled")) {
+			return isEnabled();
+		}
 		if (sField.getName().equals("installForAllUsers")) {
 			return isInstallForAllUsers();
 		}
@@ -96,6 +100,10 @@ public class SPluginInformation implements SDataBase
 		}
 		if (sField.getName().equals("description")) {
 			setDescription((String)val);
+			return;
+		}
+		if (sField.getName().equals("enabled")) {
+			setEnabled((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("installForAllUsers")) {
@@ -139,6 +147,14 @@ public class SPluginInformation implements SDataBase
 
 	public void setDescription(java.lang.String description) {
 		this.description = description;
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 	
 	public boolean isInstallForAllUsers() {

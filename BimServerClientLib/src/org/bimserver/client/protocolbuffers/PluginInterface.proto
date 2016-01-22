@@ -104,7 +104,7 @@ service PluginInterface {
 
 	rpc getAllWebModules (GetAllWebModulesRequest) returns (GetAllWebModulesResponse);
 
-	rpc getAvailablePlugins (GetAvailablePluginsRequest) returns (GetAvailablePluginsResponse);
+	rpc getAvailablePluginBundles (GetAvailablePluginBundlesRequest) returns (GetAvailablePluginBundlesResponse);
 
 	rpc getDefaultModelCompare (GetDefaultModelCompareRequest) returns (GetDefaultModelCompareResponse);
 
@@ -120,7 +120,7 @@ service PluginInterface {
 
 	rpc getDefaultWebModule (GetDefaultWebModuleRequest) returns (GetDefaultWebModuleResponse);
 
-	rpc getInstalledPlugins (GetInstalledPluginsRequest) returns (GetInstalledPluginsResponse);
+	rpc getInstalledPluginBundles (GetInstalledPluginBundlesRequest) returns (GetInstalledPluginBundlesResponse);
 
 	rpc getInternalServiceById (GetInternalServiceByIdRequest) returns (GetInternalServiceByIdResponse);
 
@@ -160,7 +160,7 @@ service PluginInterface {
 
 	rpc hasActiveSerializer (HasActiveSerializerRequest) returns (HasActiveSerializerResponse);
 
-	rpc installPlugin (InstallPluginRequest) returns (VoidResponse);
+	rpc installPluginBundle (InstallPluginBundleRequest) returns (VoidResponse);
 
 	rpc setDefaultModelCompare (SetDefaultModelCompareRequest) returns (VoidResponse);
 
@@ -178,9 +178,7 @@ service PluginInterface {
 
 	rpc setPluginSettings (SetPluginSettingsRequest) returns (VoidResponse);
 
-	rpc startGetPluginUpdateInformation (StartGetPluginUpdateInformationRequest) returns (StartGetPluginUpdateInformationResponse);
-
-	rpc uninstallPlugin (UninstallPluginRequest) returns (VoidResponse);
+	rpc uninstallPluginBundle (UninstallPluginBundleRequest) returns (VoidResponse);
 
 	rpc updateDeserializer (UpdateDeserializerRequest) returns (VoidResponse);
 
@@ -561,12 +559,13 @@ message GetAllWebModulesResponse {
 	repeated SWebModulePluginConfiguration value = 2;
 }
 
-message GetAvailablePluginsRequest {
+message GetAvailablePluginBundlesRequest {
 }
 
 enum SPluginBundleType{
 	SPluginBundleType_MAVEN = 0;
 	SPluginBundleType_GITHUB = 1;
+	SPluginBundleType_LOCAL = 2;
 }
 
 message SPluginBundleVersion {
@@ -581,18 +580,19 @@ message SPluginBundleVersion {
 	optional string version = 9;
 }
 
-message SPluginBundleUpdateInformation {
+message SPluginBundle {
 	repeated SPluginBundleVersion availableVersions = 1;
-	optional SPluginBundleVersion latestVersion = 2;
-	optional string name = 3;
-	optional int64 oid = 4;
-	optional string organization = 5;
-	optional int32 rid = 6;
+	optional SPluginBundleVersion installedVersion = 2;
+	optional SPluginBundleVersion latestVersion = 3;
+	optional string name = 4;
+	optional int64 oid = 5;
+	optional string organization = 6;
+	optional int32 rid = 7;
 }
 
-message GetAvailablePluginsResponse {
+message GetAvailablePluginBundlesResponse {
 	optional string errorMessage = 1;
-	repeated SPluginBundleUpdateInformation value = 2;
+	repeated SPluginBundle value = 2;
 }
 
 message GetDefaultModelCompareRequest {
@@ -651,12 +651,12 @@ message GetDefaultWebModuleResponse {
 	optional SWebModulePluginConfiguration value = 2;
 }
 
-message GetInstalledPluginsRequest {
+message GetInstalledPluginBundlesRequest {
 }
 
-message GetInstalledPluginsResponse {
+message GetInstalledPluginBundlesResponse {
 	optional string errorMessage = 1;
-	repeated SPluginBundleUpdateInformation value = 2;
+	repeated SPluginBundle value = 2;
 }
 
 message GetInternalServiceByIdRequest {
@@ -769,16 +769,18 @@ enum SPluginType{
 	SPluginType_MODEL_COMPARE = 7;
 	SPluginType_MODEL_CHECKER = 8;
 	SPluginType_STILL_IMAGE_RENDER = 9;
+	SPluginType_SERVICE = 10;
 }
 
 message SPluginInformation {
 	optional string description = 1;
-	optional bool installForAllUsers = 2;
-	optional bool installForNewUsers = 3;
-	optional string name = 4;
-	optional int64 oid = 5;
-	optional int32 rid = 6;
-	optional SPluginType type = 7;
+	optional bool enabled = 2;
+	optional bool installForAllUsers = 3;
+	optional bool installForNewUsers = 4;
+	optional string name = 5;
+	optional int64 oid = 6;
+	optional int32 rid = 7;
+	optional SPluginType type = 8;
 }
 
 message GetPluginInformationResponse {
@@ -972,11 +974,12 @@ message HasActiveSerializerResponse {
 	optional bool value = 2;
 }
 
-message InstallPluginRequest {
+message InstallPluginBundleRequest {
 	optional string repository = 1;
 	optional string groupId = 2;
 	optional string artifactId = 3;
 	optional string version = 4;
+	repeated SPluginInformation plugins = 5;
 }
 
 message SetDefaultModelCompareRequest {
@@ -1012,15 +1015,7 @@ message SetPluginSettingsRequest {
 	optional SObjectType settings = 2;
 }
 
-message StartGetPluginUpdateInformationRequest {
-}
-
-message StartGetPluginUpdateInformationResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message UninstallPluginRequest {
+message UninstallPluginBundleRequest {
 	optional string repository = 1;
 	optional string groupId = 2;
 	optional string artifactId = 3;

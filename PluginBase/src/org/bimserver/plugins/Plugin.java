@@ -1,5 +1,7 @@
 package org.bimserver.plugins;
 
+import org.bimserver.interfaces.objects.SPluginType;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -37,4 +39,6 @@ public interface Plugin {
 	 * @return An object with the definition of a set of properties that can be set by the user of a plugin, the plugin can later use the actual values a user has set
 	 */
 	ObjectDefinition getSettingsDefinition();
+	
+	SPluginType getPluginType();
 }

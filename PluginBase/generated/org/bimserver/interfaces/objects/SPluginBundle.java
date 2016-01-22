@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SPluginBundleUpdateInformation implements SDataBase
+public class SPluginBundle implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
@@ -35,6 +35,7 @@ public class SPluginBundleUpdateInformation implements SDataBase
 	private java.lang.String name;
 	private SPluginBundleVersion latestVersion;
 	private List<SPluginBundleVersion> availableVersions = new ArrayList<SPluginBundleVersion>();
+	private SPluginBundleVersion installedVersion;
 
 	public long getOid() {
 		return this.oid;
@@ -58,7 +59,7 @@ public class SPluginBundleUpdateInformation implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPluginBundleUpdateInformation.sClass = sClass;
+		SPluginBundle.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
@@ -73,6 +74,9 @@ public class SPluginBundleUpdateInformation implements SDataBase
 		}
 		if (sField.getName().equals("availableVersions")) {
 			return getAvailableVersions();
+		}
+		if (sField.getName().equals("installedVersion")) {
+			return getInstalledVersion();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -99,6 +103,10 @@ public class SPluginBundleUpdateInformation implements SDataBase
 		}
 		if (sField.getName().equals("availableVersions")) {
 			setAvailableVersions((List<SPluginBundleVersion>)val);
+			return;
+		}
+		if (sField.getName().equals("installedVersion")) {
+			setInstalledVersion((SPluginBundleVersion)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -145,6 +153,15 @@ public class SPluginBundleUpdateInformation implements SDataBase
 		this.availableVersions = availableVersions;
 	}
 	
+	public SPluginBundleVersion getInstalledVersion() {
+		return installedVersion;
+	}
+
+	public void setInstalledVersion(SPluginBundleVersion installedVersion) {
+		this.installedVersion = installedVersion;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -161,7 +178,7 @@ public class SPluginBundleUpdateInformation implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPluginBundleUpdateInformation other = (SPluginBundleUpdateInformation) obj;
+		SPluginBundle other = (SPluginBundle) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

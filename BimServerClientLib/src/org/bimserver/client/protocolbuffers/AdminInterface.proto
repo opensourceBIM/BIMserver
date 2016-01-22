@@ -94,12 +94,13 @@ message SDeserializerPluginDescriptor {
 	optional string defaultName = 2;
 	optional string description = 3;
 	optional bool enabled = 4;
-	optional string location = 5;
-	optional int64 oid = 6;
-	optional string pluginClassName = 7;
-	optional string pluginInterfaceClassName = 8;
-	optional int32 rid = 9;
-	optional string simpleName = 10;
+	optional bool installForNewUsers = 5;
+	optional string location = 6;
+	optional int64 oid = 7;
+	optional string pluginClassName = 8;
+	optional string pluginInterfaceClassName = 9;
+	optional int32 rid = 10;
+	optional string simpleName = 11;
 }
 
 message SModelCheckerPluginDescriptor {
@@ -107,12 +108,13 @@ message SModelCheckerPluginDescriptor {
 	optional string defaultName = 2;
 	optional string description = 3;
 	optional bool enabled = 4;
-	optional string location = 5;
-	optional int64 oid = 6;
-	optional string pluginClassName = 7;
-	optional string pluginInterfaceClassName = 8;
-	optional int32 rid = 9;
-	optional string simpleName = 10;
+	optional bool installForNewUsers = 5;
+	optional string location = 6;
+	optional int64 oid = 7;
+	optional string pluginClassName = 8;
+	optional string pluginInterfaceClassName = 9;
+	optional int32 rid = 10;
+	optional string simpleName = 11;
 }
 
 message SModelComparePluginDescriptor {
@@ -120,12 +122,13 @@ message SModelComparePluginDescriptor {
 	optional string defaultName = 2;
 	optional string description = 3;
 	optional bool enabled = 4;
-	optional string location = 5;
-	optional int64 oid = 6;
-	optional string pluginClassName = 7;
-	optional string pluginInterfaceClassName = 8;
-	optional int32 rid = 9;
-	optional string simpleName = 10;
+	optional bool installForNewUsers = 5;
+	optional string location = 6;
+	optional int64 oid = 7;
+	optional string pluginClassName = 8;
+	optional string pluginInterfaceClassName = 9;
+	optional int32 rid = 10;
+	optional string simpleName = 11;
 }
 
 message SModelMergerPluginDescriptor {
@@ -133,12 +136,13 @@ message SModelMergerPluginDescriptor {
 	optional string defaultName = 2;
 	optional string description = 3;
 	optional bool enabled = 4;
-	optional string location = 5;
-	optional int64 oid = 6;
-	optional string pluginClassName = 7;
-	optional string pluginInterfaceClassName = 8;
-	optional int32 rid = 9;
-	optional string simpleName = 10;
+	optional bool installForNewUsers = 5;
+	optional string location = 6;
+	optional int64 oid = 7;
+	optional string pluginClassName = 8;
+	optional string pluginInterfaceClassName = 9;
+	optional int32 rid = 10;
+	optional string simpleName = 11;
 }
 
 message SQueryEnginePluginDescriptor {
@@ -146,12 +150,13 @@ message SQueryEnginePluginDescriptor {
 	optional string defaultName = 2;
 	optional string description = 3;
 	optional bool enabled = 4;
-	optional string location = 5;
-	optional int64 oid = 6;
-	optional string pluginClassName = 7;
-	optional string pluginInterfaceClassName = 8;
-	optional int32 rid = 9;
-	optional string simpleName = 10;
+	optional bool installForNewUsers = 5;
+	optional string location = 6;
+	optional int64 oid = 7;
+	optional string pluginClassName = 8;
+	optional string pluginInterfaceClassName = 9;
+	optional int32 rid = 10;
+	optional string simpleName = 11;
 }
 
 message SRenderEnginePluginDescriptor {
@@ -159,12 +164,13 @@ message SRenderEnginePluginDescriptor {
 	optional string defaultName = 2;
 	optional string description = 3;
 	optional bool enabled = 4;
-	optional string location = 5;
-	optional int64 oid = 6;
-	optional string pluginClassName = 7;
-	optional string pluginInterfaceClassName = 8;
-	optional int32 rid = 9;
-	optional string simpleName = 10;
+	optional bool installForNewUsers = 5;
+	optional string location = 6;
+	optional int64 oid = 7;
+	optional string pluginClassName = 8;
+	optional string pluginInterfaceClassName = 9;
+	optional int32 rid = 10;
+	optional string simpleName = 11;
 }
 
 message SSerializerPluginDescriptor {
@@ -172,12 +178,13 @@ message SSerializerPluginDescriptor {
 	optional string defaultName = 2;
 	optional string description = 3;
 	optional bool enabled = 4;
-	optional string location = 5;
-	optional int64 oid = 6;
-	optional string pluginClassName = 7;
-	optional string pluginInterfaceClassName = 8;
-	optional int32 rid = 9;
-	optional string simpleName = 10;
+	optional bool installForNewUsers = 5;
+	optional string location = 6;
+	optional int64 oid = 7;
+	optional string pluginClassName = 8;
+	optional string pluginInterfaceClassName = 9;
+	optional int32 rid = 10;
+	optional string simpleName = 11;
 }
 
 message SServicePluginDescriptor {
@@ -185,12 +192,13 @@ message SServicePluginDescriptor {
 	optional string defaultName = 2;
 	optional string description = 3;
 	optional bool enabled = 4;
-	optional string location = 5;
-	optional int64 oid = 6;
-	optional string pluginClassName = 7;
-	optional string pluginInterfaceClassName = 8;
-	optional int32 rid = 9;
-	optional string simpleName = 10;
+	optional bool installForNewUsers = 5;
+	optional string location = 6;
+	optional int64 oid = 7;
+	optional string pluginClassName = 8;
+	optional string pluginInterfaceClassName = 9;
+	optional int32 rid = 10;
+	optional string simpleName = 11;
 }
 
 message SWebModulePluginDescriptor {
@@ -198,12 +206,13 @@ message SWebModulePluginDescriptor {
 	optional string defaultName = 2;
 	optional string description = 3;
 	optional bool enabled = 4;
-	optional string location = 5;
-	optional int64 oid = 6;
-	optional string pluginClassName = 7;
-	optional string pluginInterfaceClassName = 8;
-	optional int32 rid = 9;
-	optional string simpleName = 10;
+	optional bool installForNewUsers = 5;
+	optional string location = 6;
+	optional int64 oid = 7;
+	optional string pluginClassName = 8;
+	optional string pluginInterfaceClassName = 9;
+	optional int32 rid = 10;
+	optional string simpleName = 11;
 }
 
 message SPluginDescriptor {
@@ -221,12 +230,13 @@ message SPluginDescriptor {
 	optional string defaultName = 12;
 	optional string description = 13;
 	optional bool enabled = 14;
-	optional string location = 15;
-	optional int64 oid = 16;
-	optional string pluginClassName = 17;
-	optional string pluginInterfaceClassName = 18;
-	optional int32 rid = 19;
-	optional string simpleName = 20;
+	optional bool installForNewUsers = 15;
+	optional string location = 16;
+	optional int64 oid = 17;
+	optional string pluginClassName = 18;
+	optional string pluginInterfaceClassName = 19;
+	optional int32 rid = 20;
+	optional string simpleName = 21;
 }
 
 message GetAllPluginsResponse {

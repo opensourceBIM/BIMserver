@@ -69,9 +69,10 @@ public class LocalDevSetup {
 			if (!Files.exists(home)) {
 				Files.createDirectory(home);
 			}
-			PluginManager pluginManager = new PluginManager(home.resolve("tmp"), null, System.getProperty("java.class.path"), null, null, null);
+			Path tmp = home.resolve("tmp");
+			PluginManager pluginManager = new PluginManager(tmp, null, System.getProperty("java.class.path"), null, null, null);
 
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
 			loadPlugins(pluginManager, Paths.get(".."), new OptionsParser(args).getPluginDirectories());
 			metaDataManager.init();
@@ -96,10 +97,11 @@ public class LocalDevSetup {
 			if (!Files.isDirectory(home)) {
 				Files.createDirectory(home);
 			}
-			PluginManager pluginManager = new PluginManager(home.resolve("tmp"), null, System.getProperty("java.class.path"), null, null, null);
+			Path tmp = home.resolve("tmp");
+			PluginManager pluginManager = new PluginManager(tmp, null, System.getProperty("java.class.path"), null, null, null);
 			pluginManager.loadAllPluginsFromEclipseWorkspace(Paths.get("../"), true);
 			
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
 			metaDataManager.init();
 
@@ -121,8 +123,10 @@ public class LocalDevSetup {
 
 	public static final BimServerClientInterface setupSoap(String address) {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			Path home = Paths.get("home");
+			Path tmp = home.resolve("tmp");
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
+			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
 			BimServerClientFactory factory = new SoapBimServerClientFactory(metaDataManager, address);
 			return factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
@@ -138,8 +142,10 @@ public class LocalDevSetup {
 	
 	public static final BimServerClientInterface setupProtocolBuffers(String address) {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			Path home = Paths.get("home");
+			Path tmp = home.resolve("tmp");
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
+			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
 			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory(address, 8000, 8000, null, metaDataManager);
 			return factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));

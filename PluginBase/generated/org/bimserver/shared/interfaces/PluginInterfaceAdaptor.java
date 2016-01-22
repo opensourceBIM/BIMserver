@@ -156,7 +156,7 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SPluginBundleUpdateInformation> getAvailablePlugins() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginBundle> getAvailablePluginBundles() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -188,7 +188,7 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SPluginBundleUpdateInformation> getInstalledPlugins() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginBundle> getInstalledPluginBundles() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -268,7 +268,7 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public void installPlugin(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version) throws UserException, ServerException {
+	public void installPluginBundle(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version, java.util.List<org.bimserver.interfaces.objects.SPluginInformation> plugins) throws UserException, ServerException {
 	}
 	
 	public void setDefaultModelCompare(java.lang.Long oid) throws UserException, ServerException {
@@ -295,11 +295,7 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	public void setPluginSettings(java.lang.Long poid, org.bimserver.interfaces.objects.SObjectType settings) throws UserException, ServerException {
 	}
 	
-	public java.lang.Long startGetPluginUpdateInformation() throws UserException, ServerException {
-		return null;
-	}
-	
-	public void uninstallPlugin(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version) throws UserException, ServerException {
+	public void uninstallPluginBundle(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version) throws UserException, ServerException {
 	}
 	
 	public void updateDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws UserException, ServerException {

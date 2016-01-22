@@ -19,7 +19,8 @@ package org.bimserver.interfaces.objects;
 
 public enum SPluginBundleType {
 	MAVEN(0),
-	GITHUB(1);
+	GITHUB(1),
+	LOCAL(2);
 	int ordinal;
 
 	SPluginBundleType(int ordinal) {

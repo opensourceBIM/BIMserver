@@ -34,6 +34,7 @@ public class Step0023 extends Migration {
 		EEnum pluginBundleType = schema.createEEnum("store", "PluginBundleType");
 		schema.createEEnumLiteral(pluginBundleType, "MAVEN");
 		schema.createEEnumLiteral(pluginBundleType, "GITHUB");
+		schema.createEEnumLiteral(pluginBundleType, "LOCAL");
 
 		EEnum pluginType = schema.createEEnum("store", "PluginType");
 		schema.createEEnumLiteral(pluginType, "SERIALIZER");
@@ -46,6 +47,7 @@ public class Step0023 extends Migration {
 		schema.createEEnumLiteral(pluginType, "MODEL_COMPARE");
 		schema.createEEnumLiteral(pluginType, "MODEL_CHECKER");
 		schema.createEEnumLiteral(pluginType, "STILL_IMAGE_RENDER");
+		schema.createEEnumLiteral(pluginType, "SERVICE");
 
 		schema.createEAttribute(pluginBundleVersionClass, "version", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(pluginBundleVersionClass, "type", pluginBundleType);
@@ -55,18 +57,23 @@ public class Step0023 extends Migration {
 		schema.createEAttribute(pluginBundleVersionClass, "groupId", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(pluginBundleVersionClass, "artifactId", EcorePackage.eINSTANCE.getEString());
 
-		EClass pluginBundleUpdateInformation = schema.createEClass("store", "PluginBundleUpdateInformation");
-		schema.createEAttribute(pluginBundleUpdateInformation, "organization", EcorePackage.eINSTANCE.getEString());
-		schema.createEAttribute(pluginBundleUpdateInformation, "name", EcorePackage.eINSTANCE.getEString());
-		schema.createEReference(pluginBundleUpdateInformation, "latestVersion", pluginBundleVersionClass, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
-		schema.createEReference(pluginBundleUpdateInformation, "availableVersions", pluginBundleVersionClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
+		EClass pluginBundle = schema.createEClass("store", "PluginBundle");
+		schema.createEAttribute(pluginBundle, "organization", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(pluginBundle, "name", EcorePackage.eINSTANCE.getEString());
+		schema.createEReference(pluginBundle, "latestVersion", pluginBundleVersionClass, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
+		schema.createEReference(pluginBundle, "availableVersions", pluginBundleVersionClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
+		schema.createEReference(pluginBundle, "installedVersion", pluginBundleVersionClass, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
 
 		EClass pluginInformation = schema.createEClass("store", "PluginInformation");
 		schema.createEAttribute(pluginInformation, "name", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(pluginInformation, "type", pluginType);
 		schema.createEAttribute(pluginInformation, "description", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(pluginInformation, "enabled", EcorePackage.eINSTANCE.getEBoolean());
 		schema.createEAttribute(pluginInformation, "installForAllUsers", EcorePackage.eINSTANCE.getEBoolean());
 		schema.createEAttribute(pluginInformation, "installForNewUsers", EcorePackage.eINSTANCE.getEBoolean());
+		
+		EClass pluginDescriptor = schema.getEClass("store", "PluginDescriptor");
+		schema.createEAttribute(pluginDescriptor, "installForNewUsers", EcorePackage.eINSTANCE.getEBoolean());
 	}
 
 	@Override

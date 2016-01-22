@@ -19,6 +19,7 @@ package org.bimserver.plugins.queryengine;
 
 import java.util.Collection;
 
+import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 
@@ -39,4 +40,9 @@ public interface QueryEnginePlugin extends Plugin {
 	 * @return Return the code example for the given key
 	 */
 	String getExample(String key);
+	
+	@Override
+	default SPluginType getPluginType() {
+		return SPluginType.QUERY_ENGINE;
+	}
 }

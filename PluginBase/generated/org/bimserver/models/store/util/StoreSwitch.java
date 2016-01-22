@@ -861,9 +861,9 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.PLUGIN_BUNDLE_UPDATE_INFORMATION: {
-			PluginBundleUpdateInformation pluginBundleUpdateInformation = (PluginBundleUpdateInformation) theEObject;
-			T result = casePluginBundleUpdateInformation(pluginBundleUpdateInformation);
+		case StorePackage.PLUGIN_BUNDLE: {
+			PluginBundle pluginBundle = (PluginBundle) theEObject;
+			T result = casePluginBundle(pluginBundle);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -2366,17 +2366,17 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Plugin Bundle Update Information</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Plugin Bundle</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Plugin Bundle Update Information</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Plugin Bundle</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePluginBundleUpdateInformation(PluginBundleUpdateInformation object) {
+	public T casePluginBundle(PluginBundle object) {
 		return null;
 	}
 

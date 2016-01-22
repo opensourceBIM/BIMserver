@@ -1,5 +1,7 @@
 package org.bimserver.plugins;
 
+import java.io.Closeable;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -33,7 +35,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -42,6 +43,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.jar.JarFile;
+import java.util.zip.ZipEntry;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -53,6 +56,9 @@ import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.Schema;
+import org.bimserver.interfaces.objects.SPluginBundle;
+import org.bimserver.interfaces.objects.SPluginBundleType;
+import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.models.store.Parameter;
@@ -119,7 +125,8 @@ public class PluginManager implements PluginManagerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<>();
 	private final Map<Plugin, PluginContext> pluginToPluginContext = new HashMap<>();
-	private final Map<String, PluginBundleImpl> identifierToPluginBundle = new HashMap<>();
+	private final Map<PluginBundleIdentifier, PluginBundle> pluginBundleIdentifierToPluginBundle = new HashMap<>();
+	private final Map<PluginBundleVersionIdentifier, PluginBundle> pluginBundleVersionIdentifierToPluginBundle = new HashMap<>();
 	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<>();
 	private final Path tempDir;
 	private final String baseClassPath;
@@ -146,6 +153,20 @@ public class PluginManager implements PluginManagerInterface {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+			} else {
+				try {
+					for (Path file : PathUtils.list(pluginsDir)) {
+						try {
+							PluginBundleVersionIdentifier pluginBundleVersionIdentifier = PluginBundleVersionIdentifier.fromFileName(file.getFileName().toString());
+							loadPluginsFromJar(pluginBundleVersionIdentifier, file, extractPluginBundleFromJar(file), extractPluginBundleVersionFromJar(file));
+							LOGGER.info("Loading " + pluginBundleVersionIdentifier.getHumanReadable());
+						} catch (PluginException e) {
+							LOGGER.error("", e);
+						}
+					}
+				} catch (IOException e) {
+					LOGGER.error("", e);
+				}
 			}
 		}
 	}
@@ -158,22 +179,31 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public PluginBundleImpl loadPluginsFromEclipseProject(Path projectRoot) throws PluginException {
-		if (identifierToPluginBundle.containsKey(projectRoot.getFileName().toAbsolutePath())) {
-			throw new PluginException("Plugin already loaded");
-		}
-		if (!Files.isDirectory(projectRoot)) {
-			throw new PluginException("No directory: " + projectRoot.toString());
-		}
-		final Path pluginFolder = projectRoot.resolve("plugin");
-		if (!Files.isDirectory(pluginFolder)) {
-			throw new PluginException("No 'plugin' directory found in " + projectRoot.toString());
-		}
-		Path pluginFile = pluginFolder.resolve("plugin.xml");
-		if (!Files.exists(pluginFile)) {
-			throw new PluginException("No 'plugin.xml' found in " + pluginFolder.toString());
-		}
+	public PluginBundle loadPluginsFromEclipseProject(Path projectRoot) throws PluginException {
 		try {
+			Path pomFile = projectRoot.resolve("pom.xml");
+			if (!Files.exists(pomFile)) {
+				throw new PluginException("No pom.xml found in " + projectRoot.toString());
+			}
+			
+			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+			Model model = mavenreader.read(new FileReader(pomFile.toFile()));
+			PluginBundleVersionIdentifier pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(model.getGroupId(), model.getArtifactId(), model.getVersion());
+			
+			if (pluginBundleIdentifierToPluginBundle.containsKey(pluginBundleVersionIdentifier.getPluginBundleIdentifier())) {
+				throw new PluginException("Plugin " + pluginBundleVersionIdentifier.getPluginBundleIdentifier().getHumanReadable() + " already loaded (version " + pluginBundleIdentifierToPluginBundle.get(pluginBundleVersionIdentifier.getPluginBundleIdentifier()).getPluginBundleVersion().getVersion() + ")");
+			}
+			if (!Files.isDirectory(projectRoot)) {
+				throw new PluginException("No directory: " + projectRoot.toString());
+			}
+			final Path pluginFolder = projectRoot.resolve("plugin");
+			if (!Files.isDirectory(pluginFolder)) {
+				throw new PluginException("No 'plugin' directory found in " + projectRoot.toString());
+			}
+			Path pluginFile = pluginFolder.resolve("plugin.xml");
+			if (!Files.exists(pluginFile)) {
+				throw new PluginException("No 'plugin.xml' found in " + pluginFolder.toString());
+			}
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(Files.newInputStream(pluginFile));
 			DelegatingClassLoader delegatingClassLoader = new DelegatingClassLoader(getClass().getClassLoader());
 			PublicFindClassClassLoader previous = new PublicFindClassClassLoader(getClass().getClassLoader()) {
@@ -191,94 +221,76 @@ public class PluginManager implements PluginManagerInterface {
 				public void dumpStructure(int indent) {
 				}
 			};
-			// for (Dependency dependency : pluginDescriptor.getDependencies())
-			// {
-			// Path path =
-			// projectRoot.getParent().resolve(dependency.getPath());
-			//
-			// DelegatingClassLoader depDelLoader = new
-			// DelegatingClassLoader(previous);
-			// Path depLibFolder = path.resolve("lib");
-			// loadDependencies(depLibFolder, depDelLoader);
-			// EclipsePluginClassloader depLoader = new
-			// EclipsePluginClassloader(depDelLoader, path);
-			// previous = depLoader;
-			// }
-
-			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 
 			List<org.bimserver.plugins.Dependency> bimServerDependencies = new ArrayList<>();
 
-			Path pom = projectRoot.resolve("pom.xml");
-			if (Files.exists(pom)) {
-				Model model = mavenreader.read(new FileReader(pom.toFile()));
+			pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(new PluginBundleIdentifier(model.getGroupId(), model.getArtifactId()), model.getVersion());
+			
+			File localFile = new File("C:\\Users\\Ruben de Laat\\.m2\\repository");
 
-				File localFile = new File("C:\\Users\\Ruben de Laat\\.m2\\repository");
+			List<org.apache.maven.model.Dependency> dependencies = model.getDependencies();
+			Iterator<org.apache.maven.model.Dependency> it = dependencies.iterator();
 
-				List<org.apache.maven.model.Dependency> dependencies = model.getDependencies();
-				Iterator<org.apache.maven.model.Dependency> it = dependencies.iterator();
+			while (it.hasNext()) {
+				org.apache.maven.model.Dependency depend = it.next();
+				try {
+					DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
 
-				while (it.hasNext()) {
-					org.apache.maven.model.Dependency depend = it.next();
+					DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
+					locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
+					// locator.addService( TransporterFactory.class,
+					// FileTransporterFactory.class );
+					// locator.addService( TransporterFactory.class,
+					// HttpTransporterFactory.class );
+
+					RepositorySystem system = locator.getService(RepositorySystem.class);
+
+					LocalRepository localRepo = new LocalRepository(localFile);
+					session.setLocalRepositoryManager(system.newLocalRepositoryManager(session, localRepo));
+
+					Dependency dependency2 = new Dependency(new DefaultArtifact(depend.getGroupId() + ":" + depend.getArtifactId() + ":" + depend.getVersion()), "compile");
+					// RemoteRepository central = new
+					// RemoteRepository.Builder("central", "default",
+					// "http://repo1.maven.org/maven2/").build();
+
+					CollectRequest collectRequest = new CollectRequest();
+					collectRequest.setRoot(dependency2);
+					DependencyNode node = system.collectDependencies(session, collectRequest).getRoot();
+
+					DependencyRequest dependencyRequest = new DependencyRequest();
+					dependencyRequest.setRoot(node);
+
+					Path workspaceDir = Paths.get("..");
+					bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("PluginBase/target/classes")));
+					bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("Shared/target/classes")));
+
 					try {
-						DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
-
-						DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
-						locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
-						// locator.addService( TransporterFactory.class,
-						// FileTransporterFactory.class );
-						// locator.addService( TransporterFactory.class,
-						// HttpTransporterFactory.class );
-
-						RepositorySystem system = locator.getService(RepositorySystem.class);
-
-						LocalRepository localRepo = new LocalRepository(localFile);
-						session.setLocalRepositoryManager(system.newLocalRepositoryManager(session, localRepo));
-
-						Dependency dependency2 = new Dependency(new DefaultArtifact(depend.getGroupId() + ":" + depend.getArtifactId() + ":" + depend.getVersion()), "compile");
-						// RemoteRepository central = new
-						// RemoteRepository.Builder("central", "default",
-						// "http://repo1.maven.org/maven2/").build();
-
-						CollectRequest collectRequest = new CollectRequest();
-						collectRequest.setRoot(dependency2);
-						DependencyNode node = system.collectDependencies(session, collectRequest).getRoot();
-
-						DependencyRequest dependencyRequest = new DependencyRequest();
-						dependencyRequest.setRoot(node);
-
-						Path workspaceDir = Paths.get("..");
-						bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("PluginBase/target/classes")));
-						bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("Shared/target/classes")));
-
-						try {
-							system.resolveDependencies(session, dependencyRequest);
-						} catch (DependencyResolutionException e) {
-							// Ignore
-						}
-
-						PreorderNodeListGenerator nlg = new PreorderNodeListGenerator();
-						node.accept(nlg);
-
-						for (Artifact artifact : nlg.getArtifacts(false)) {
-							Path jarFile = Paths.get(artifact.getFile().getAbsolutePath());
-
-							LOGGER.info("Loading " + jarFile);
-
-							// Path path =
-							// projectRoot.getParent().resolve(nlg.getClassPath());
-
-							DelegatingClassLoader depDelLoader = new DelegatingClassLoader(previous);
-							loadDependencies(jarFile, depDelLoader);
-							EclipsePluginClassloader depLoader = new EclipsePluginClassloader(depDelLoader, projectRoot);
-
-							bimServerDependencies.add(new org.bimserver.plugins.Dependency(jarFile));
-
-							previous = depLoader;
-						}
-					} catch (DependencyCollectionException e) {
-						e.printStackTrace();
+						system.resolveDependencies(session, dependencyRequest);
+					} catch (DependencyResolutionException e) {
+						// Ignore
 					}
+
+					PreorderNodeListGenerator nlg = new PreorderNodeListGenerator();
+					node.accept(nlg);
+
+					for (Artifact artifact : nlg.getArtifacts(false)) {
+						Path jarFile = Paths.get(artifact.getFile().getAbsolutePath());
+
+						LOGGER.info("Loading " + jarFile);
+
+						// Path path =
+						// projectRoot.getParent().resolve(nlg.getClassPath());
+
+						DelegatingClassLoader depDelLoader = new DelegatingClassLoader(previous);
+						loadDependencies(jarFile, depDelLoader);
+						EclipsePluginClassloader depLoader = new EclipsePluginClassloader(depDelLoader, projectRoot);
+
+						bimServerDependencies.add(new org.bimserver.plugins.Dependency(jarFile));
+
+						previous = depLoader;
+					}
+				} catch (DependencyCollectionException e) {
+					e.printStackTrace();
 				}
 			}
 
@@ -287,10 +299,6 @@ public class PluginManager implements PluginManagerInterface {
 			// loadDependencies(libFolder, delegatingClassLoader);
 			EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
 			// pluginClassloader.dumpStructure(0);
-			PluginBundleImpl pluginBundle = new PluginBundleImpl(null);
-
-			// TODO
-			identifierToPluginBundle.put(null, pluginBundle);
 
 			ResourceLoader resourceLoader = new ResourceLoader() {
 				@Override
@@ -303,8 +311,24 @@ public class PluginManager implements PluginManagerInterface {
 					return null;
 				}
 			};
+			
+			SPluginBundle sPluginBundle = new SPluginBundle();
+			sPluginBundle.setOrganization(model.getOrganization().getName());
+			sPluginBundle.setName(model.getName());
+			
+			SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
+			sPluginBundleVersion.setType(SPluginBundleType.MAVEN);
+			sPluginBundleVersion.setGroupId(model.getGroupId());
+			sPluginBundleVersion.setArtifactId(model.getArtifactId());
+			sPluginBundleVersion.setVersion(model.getVersion());
+			sPluginBundleVersion.setDescription(model.getDescription());
+			sPluginBundleVersion.setRepository("local");
+			sPluginBundleVersion.setType(SPluginBundleType.LOCAL);
+			sPluginBundleVersion.setMismatch(false); // TODO
 
-			return loadPlugins(pluginBundle, resourceLoader, pluginClassloader, projectRoot.toUri(), projectRoot.resolve("target/classes").toString(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT, bimServerDependencies);
+			sPluginBundle.setInstalledVersion(sPluginBundleVersion);
+
+			return loadPlugins(pluginBundleVersionIdentifier, resourceLoader, pluginClassloader, projectRoot.toUri(), projectRoot.resolve("target/classes").toString(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT, bimServerDependencies, sPluginBundle, sPluginBundleVersion);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
@@ -324,8 +348,14 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private PluginBundleImpl loadPlugins(PluginBundleImpl pluginBundle, ResourceLoader resourceLoader, ClassLoader classLoader, URI location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType,
-			List<org.bimserver.plugins.Dependency> dependencies) throws PluginException {
+	private PluginBundle loadPlugins(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, ResourceLoader resourceLoader, ClassLoader classLoader, URI location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType,
+			List<org.bimserver.plugins.Dependency> dependencies, SPluginBundle sPluginBundle, SPluginBundleVersion sPluginBundleVersion) throws PluginException {
+		PluginBundle pluginBundle = new PluginBundleImpl(pluginBundleVersionIdentifier, sPluginBundle, sPluginBundleVersion);
+		
+		if (classLoader instanceof Closeable) {
+			pluginBundle.addCloseable((Closeable) classLoader);
+		}
+		
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
 			if (pluginImplementation.isEnabled()) {
 				String interfaceClassName = pluginImplementation.getInterfaceClass().trim().replace("\n", "");
@@ -367,6 +397,9 @@ public class PluginManager implements PluginManagerInterface {
 				LOGGER.info("Plugin " + pluginImplementation.getImplementationClass() + " is disabled in plugin.xml");
 			}
 		}
+		pluginBundleIdentifierToPluginBundle.put(pluginBundleVersionIdentifier.getPluginBundleIdentifier(), pluginBundle);
+		pluginBundleVersionIdentifierToPluginBundle.put(pluginBundleVersionIdentifier, pluginBundle);
+
 		return pluginBundle;
 	}
 
@@ -385,7 +418,8 @@ public class PluginManager implements PluginManagerInterface {
 		for (Path file : PathUtils.list(directory)) {
 			if (file.getFileName().toString().toLowerCase().endsWith(".jar")) {
 				try {
-					loadPluginsFromJar(null, file);
+					// TODO
+					loadPluginsFromJar(null, file, null, null);
 				} catch (PluginException e) {
 					LOGGER.error("", e);
 				}
@@ -393,9 +427,61 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public PluginBundleImpl loadPluginsFromJar(String identifier, Path file) throws PluginException {
-		if (identifierToPluginBundle.containsKey(identifier)) {
-			throw new PluginException("Plugin already loaded " + file);
+	public SPluginBundle extractPluginBundleFromJar(Path jarFilePath) throws PluginException {
+		String filename = jarFilePath.getFileName().toString();
+		PluginBundleVersionIdentifier pluginBundleVersionIdentifier = PluginBundleVersionIdentifier.fromFileName(filename);
+		try (JarFile jarFile = new JarFile(jarFilePath.toFile())) {
+			String pomLocation = "META-INF/maven/" + pluginBundleVersionIdentifier.getPluginBundleIdentifier().getGroupId() + "/" + pluginBundleVersionIdentifier.getPluginBundleIdentifier().getArtifactId() + "/" + "pom.xml";
+			ZipEntry pomEntry = jarFile.getEntry(pomLocation);
+			if (pomEntry == null) {
+				throw new PluginException("No pom.xml found in JAR file " + jarFilePath.toString() + ", " + pomLocation);
+			}
+			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+
+			Model model = mavenreader.read(jarFile.getInputStream(pomEntry));
+			SPluginBundle sPluginBundle = new SPluginBundle();
+			sPluginBundle.setOrganization(model.getOrganization().getName());
+			sPluginBundle.setName(model.getName());
+			return sPluginBundle;
+		} catch (IOException e) {
+			throw new PluginException(e);
+		} catch (XmlPullParserException e) {
+			throw new PluginException(e);
+		}
+	}
+	
+	public SPluginBundleVersion extractPluginBundleVersionFromJar(Path jarFilePath) throws PluginException {
+		String filename = jarFilePath.getFileName().toString();
+		PluginBundleVersionIdentifier pluginBundleVersionIdentifier = PluginBundleVersionIdentifier.fromFileName(filename);
+		PluginBundleIdentifier pluginBundleIdentifier = pluginBundleVersionIdentifier.getPluginBundleIdentifier();
+		try (JarFile jarFile = new JarFile(jarFilePath.toFile())) {
+			ZipEntry pomEntry = jarFile.getEntry("META-INF/maven/" + pluginBundleIdentifier.getGroupId() + "/" + pluginBundleIdentifier.getArtifactId() + "/" + "pom.xml");
+			if (pomEntry == null) {
+				throw new PluginException("No pom.xml found in JAR file " + jarFilePath.toString());
+			}
+			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+
+			Model model = mavenreader.read(jarFile.getInputStream(pomEntry));
+			SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
+			sPluginBundleVersion.setType(SPluginBundleType.MAVEN);
+			sPluginBundleVersion.setGroupId(model.getGroupId());
+			sPluginBundleVersion.setArtifactId(model.getArtifactId());
+			sPluginBundleVersion.setVersion(model.getVersion());
+			sPluginBundleVersion.setDescription(model.getDescription());
+			sPluginBundleVersion.setRepository("local");
+			sPluginBundleVersion.setMismatch(false); // TODO
+			return sPluginBundleVersion;
+		} catch (IOException e) {
+			throw new PluginException(e);
+		} catch (XmlPullParserException e) {
+			throw new PluginException(e);
+		}
+	}
+
+	public PluginBundle loadPluginsFromJar(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, Path file, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion) throws PluginException {
+		PluginBundleIdentifier pluginBundleIdentifier = pluginBundleVersionIdentifier.getPluginBundleIdentifier();
+		if (pluginBundleIdentifierToPluginBundle.containsKey(pluginBundleIdentifier)) {
+			throw new PluginException("Plugin " + pluginBundleIdentifier.getHumanReadable() + " already loaded (version " + pluginBundleIdentifierToPluginBundle.get(pluginBundleIdentifier).getPluginBundleVersion().getVersion() + ")");
 		}
 		LOGGER.debug("Loading plugins from " + file.toString());
 		if (!Files.exists(file)) {
@@ -412,11 +498,7 @@ public class PluginManager implements PluginManagerInterface {
 				throw new PluginException("No plugin descriptor could be created");
 			}
 			LOGGER.debug(pluginDescriptor.toString());
-			PluginBundleImpl pluginBundle = new PluginBundleImpl(identifier);
-			pluginBundle.addClassLoader(jarClassLoader);
-
-			identifierToPluginBundle.put(identifier, pluginBundle);
-
+			
 			URI fileUri = file.toAbsolutePath().toUri();
 			URI jarUri = new URI("jar:" + fileUri.toString());
 
@@ -427,7 +509,7 @@ public class PluginManager implements PluginManagerInterface {
 				}
 			};
 
-			return loadPlugins(pluginBundle, resourceLoader, jarClassLoader, jarUri, file.toAbsolutePath().toString(), pluginDescriptor, PluginSourceType.JAR_FILE, null);
+			return loadPlugins(pluginBundleVersionIdentifier, resourceLoader, jarClassLoader, jarUri, file.toAbsolutePath().toString(), pluginDescriptor, PluginSourceType.JAR_FILE, null, sPluginBundle, pluginBundleVersion);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
@@ -511,33 +593,35 @@ public class PluginManager implements PluginManagerInterface {
 	 * downloaded a BIMserver client library and added certain plugins to the
 	 * classpath, this method should be able to find and load them
 	 */
-	public void loadPluginsFromCurrentClassloader() {
-		try {
-			Enumeration<URL> resources = getClass().getClassLoader().getResources("plugin/plugin.xml");
-			while (resources.hasMoreElements()) {
-				URL url = resources.nextElement();
-				LOGGER.info("Loading " + url);
-				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
-
-				ResourceLoader resourceLoader = new ResourceLoader() {
-					@Override
-					public InputStream load(String name) {
-						return getClass().getClassLoader().getResourceAsStream(name);
-					}
-				};
-
-				loadPlugins(new PluginBundleImpl(null), resourceLoader, getClass().getClassLoader(), url.toURI(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL, null);
-			}
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		} catch (JAXBException e) {
-			LOGGER.error("", e);
-		} catch (PluginException e) {
-			LOGGER.error("", e);
-		} catch (URISyntaxException e) {
-			LOGGER.error("", e);
-		}
-	}
+//	@Deprecated
+//	public void loadPluginsFromCurrentClassloader() {
+//		try {
+//			Enumeration<URL> resources = getClass().getClassLoader().getResources("plugin/plugin.xml");
+//			while (resources.hasMoreElements()) {
+//				URL url = resources.nextElement();
+//				LOGGER.info("Loading " + url);
+//				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
+//
+//				ResourceLoader resourceLoader = new ResourceLoader() {
+//					@Override
+//					public InputStream load(String name) {
+//						return getClass().getClassLoader().getResourceAsStream(name);
+//					}
+//				};
+//
+//				// TODO
+////				loadPlugins(new PluginBundleImpl(null, null), resourceLoader, getClass().getClassLoader(), url.toURI(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL, null);
+//			}
+//		} catch (IOException e) {
+//			LOGGER.error("", e);
+//		} catch (JAXBException e) {
+//			LOGGER.error("", e);
+//		} catch (PluginException e) {
+//			LOGGER.error("", e);
+//		} catch (URISyntaxException e) {
+//			LOGGER.error("", e);
+//		}
+//	}
 
 	public void enablePlugin(String name) {
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
@@ -586,9 +670,9 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public void notifyPluginInstalled(PluginContext pluginContext) throws BimserverDatabaseException {
+	public void notifyPluginInstalled(PluginContext pluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException {
 		for (PluginChangeListener pluginChangeListener : pluginChangeListeners) {
-			pluginChangeListener.pluginInstalled(pluginContext);
+			pluginChangeListener.pluginInstalled(pluginContext, sPluginInformation);
 		}
 	}
 
@@ -950,6 +1034,8 @@ public class PluginManager implements PluginManagerInterface {
 			return SPluginType.OBJECT_IDM;
 		case "org.bimserver.plugins.queryengine.QueryEnginePlugin":
 			return SPluginType.QUERY_ENGINE;
+		case "org.bimserver.plugins.services.ServicePlugin":
+			return SPluginType.SERVICE;
 		case "org.bimserver.plugins.renderengine.RenderEnginePlugin":
 			return SPluginType.RENDER_ENGINE;
 		case "org.bimserver.plugins.stillimagerenderer.StillImageRenderPlugin":
@@ -960,18 +1046,21 @@ public class PluginManager implements PluginManagerInterface {
 		return null;
 	}
 
-	public PluginBundleImpl install(String identifier, Path jarFile) throws Exception {
-		Path target = pluginsDir.resolve(identifier + ".jar");
+	public PluginBundle install(PluginBundleVersionIdentifier pluginVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, Path jarFile, List<SPluginInformation> plugins) throws Exception {
+		Path target = pluginsDir.resolve(pluginVersionIdentifier.getFileName());
 		if (Files.exists(target)) {
 			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
 		}
 		Files.copy(jarFile, target);
-		PluginBundleImpl pluginBundle = null;
+		PluginBundle pluginBundle = null;
 		// Stage 1, load all plugins from the JAR file and initialize them
 		try {
-			pluginBundle = loadPluginsFromJar(identifier, target);
-			for (PluginContext pluginContext : pluginBundle) {
-				pluginContext.getPlugin().init(this);
+			pluginBundle = loadPluginsFromJar(pluginVersionIdentifier, target, sPluginBundle, pluginBundleVersion);
+			for (SPluginInformation sPluginInformation : plugins) {
+				if (sPluginInformation.isEnabled()) {
+					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getName());
+					pluginContext.getPlugin().init(this);
+				}
 			}
 		} catch (Exception e) {
 			Files.delete(target);
@@ -982,43 +1071,40 @@ public class PluginManager implements PluginManagerInterface {
 		// anything goes wrong in the notifications, the plugin bundle will be
 		// uninstalled
 		try {
-			for (PluginContext pluginContext : pluginBundle) {
-				notifyPluginInstalled(pluginContext);
+			for (SPluginInformation sPluginInformation : plugins) {
+				if (sPluginInformation.isEnabled()) {
+					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getName());
+					notifyPluginInstalled(pluginContext, sPluginInformation);
+				}
 			}
 			return pluginBundle;
 		} catch (Exception e) {
-			uninstall(pluginBundle);
-			Files.delete(target);
+			uninstall(pluginVersionIdentifier);
 			LOGGER.error("", e);
 			throw e;
 		}
 	}
 
-	public void uninstall(String identifier) {
-		PluginBundleImpl pluginBundle = identifierToPluginBundle.get(identifier);
+	public void uninstall(PluginBundleVersionIdentifier pluginBundleVersionIdentifier) {
+		PluginBundle pluginBundle = pluginBundleVersionIdentifierToPluginBundle.get(pluginBundleVersionIdentifier);
 		try {
 			pluginBundle.close();
-			identifierToPluginBundle.remove(identifier);
+			pluginBundleVersionIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier);
+			pluginBundleIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier.getPluginBundleIdentifier());
+			
+			Path target = pluginsDir.resolve(pluginBundleVersionIdentifier.getFileName());
+			Files.delete(target);
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
 	}
 
-	private void uninstall(PluginBundleImpl pluginBundle) {
-		try {
-			pluginBundle.close();
-			identifierToPluginBundle.remove(pluginBundle.getIdentifier());
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		}
+	public PluginBundle getPluginBundle(PluginBundleIdentifier pluginIdentifier) {
+		return pluginBundleIdentifierToPluginBundle.get(pluginIdentifier);
 	}
 
-	public PluginBundleImpl getPluginBundle(String identifier) {
-		return identifierToPluginBundle.get(identifier);
-	}
-
-	public Collection<PluginBundleImpl> getPluginBundles() {
-		return identifierToPluginBundle.values();
+	public Collection<PluginBundle> getPluginBundles() {
+		return pluginBundleVersionIdentifierToPluginBundle.values();
 	}
 
 	@Override

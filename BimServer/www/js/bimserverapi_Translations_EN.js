@@ -49,9 +49,9 @@ define(function(){
 		GETALLQUERYENGINES_BUSY: "Getting query engines",
 		REGISTERNEWPROJECTHANDLER_BUSY: "Registering for updates on new projects",
 		ADDUSER_BUSY: "Adding user...",
-		GETAVAILABLEPLUGINS_BUSY: "Loading available plugins, this can take a while...",
-		GETAVAILABLEPLUGINS_DONE: "Done loading available plugins",
-		INSTALLPLUGIN_BUSY: "Installing plugin...",
-		INSTALLPLUGIN_DONE: "Plugin successfully installed"
+		GETAVAILABLEPLUGINBUNDLES_BUSY: "Loading available plugins, this can take a while...",
+		GETAVAILABLEPLUGINBUNDLES_DONE: "Done loading available plugins",
+		INSTALLPLUGINBUNDLE_BUSY: "Installing plugin...",
+		INSTALLPLUGINBUNDLE_DONE: "Plugin successfully installed"
 	}
 });

@@ -267,8 +267,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createMethodMetric();
 		case StorePackage.PLUGIN_BUNDLE_VERSION:
 			return (EObject) createPluginBundleVersion();
-		case StorePackage.PLUGIN_BUNDLE_UPDATE_INFORMATION:
-			return (EObject) createPluginBundleUpdateInformation();
+		case StorePackage.PLUGIN_BUNDLE:
+			return (EObject) createPluginBundle();
 		case StorePackage.PLUGIN_INFORMATION:
 			return (EObject) createPluginInformation();
 		default:
@@ -1365,9 +1365,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PluginBundleUpdateInformation createPluginBundleUpdateInformation() {
-		PluginBundleUpdateInformationImpl pluginBundleUpdateInformation = new PluginBundleUpdateInformationImpl();
-		return pluginBundleUpdateInformation;
+	public PluginBundle createPluginBundle() {
+		PluginBundleImpl pluginBundle = new PluginBundleImpl();
+		return pluginBundle;
 	}
 
 	/**
