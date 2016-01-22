@@ -73,6 +73,7 @@ import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.notifications.InternalServicesManager;
 import org.bimserver.notifications.NotificationsManager;
 import org.bimserver.pb.server.ProtocolBuffersServer;
+import org.bimserver.plugins.MavenPluginRepository;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
@@ -161,6 +162,7 @@ public class BimServer {
 	private WebModuleManager webModuleManager;
 	private MetricsRegistry metricsRegistry;
 	private RenderEnginePools renderEnginePools;
+	private MavenPluginRepository mavenPluginRepository;
 
 	/**
 	 * Create a new BIMserver
@@ -305,8 +307,6 @@ public class BimServer {
 
 					@Override
 					public void pluginInstalled(PluginContext pluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException {
-						// TODO allow user to select users to which to add this
-						// plugin
 						try (DatabaseSession session = bimDatabase.createSession()) {
 							Plugin plugin = pluginContext.getPlugin();
 							
@@ -332,6 +332,35 @@ public class BimServer {
 							} catch (ServiceException e) {
 								LOGGER.error("", e);
 							}
+						}
+					}
+
+					@Override
+					public void pluginUninstalled(PluginContext pluginContext) {
+						// Reflect this change also in the database
+						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(pluginContext.getPlugin().getClass().getName()));
+						DatabaseSession session = bimDatabase.createSession();
+						try {
+							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
+							if (pluginsFound.size() == 0) {
+								LOGGER.error("Error removing plugin-state in database, plugin " + pluginContext.getPlugin().getClass().getName() + " not found");
+							} else if (pluginsFound.size() == 1) {
+								PluginDescriptor pluginDescriptor = pluginsFound.values().iterator().next();
+								for (PluginConfiguration pluginConfiguration : pluginDescriptor.getConfigurations()) {
+									pluginConfiguration.remove();
+								}
+								pluginDescriptor.remove();
+								session.store(pluginDescriptor);
+							} else {
+								LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getClass().getName());
+							}
+							session.commit();
+						} catch (BimserverDatabaseException e) {
+							LOGGER.error("", e);
+						} catch (ServiceException e) {
+							LOGGER.error("", e);
+						} finally {
+							session.close();
 						}
 					}
 				});
@@ -362,6 +391,12 @@ public class BimServer {
 
 			metricsRegistry = new MetricsRegistry();
 
+			Path mavenPath = config.getHomeDir().resolve("maven");
+			if (!Files.exists(mavenPath)) {
+				Files.createDirectories(mavenPath);
+			}
+			mavenPluginRepository = new MavenPluginRepository(mavenPath, "https://repo1.maven.org/maven2");
+			
 			OldQuery.setPackageMetaDataForDefaultQuery(metaDataManager.getPackageMetaData("store"));
 
 			bimDatabase = new Database(this, packages, keyValueStore, metaDataManager);
@@ -465,6 +500,10 @@ public class BimServer {
 		}
 	}
 
+	public MavenPluginRepository getMavenPluginRepository() {
+		return mavenPluginRepository;
+	}
+	
 	public SecretKeySpec getEncryptionKey() {
 		return encryptionkey;
 	}

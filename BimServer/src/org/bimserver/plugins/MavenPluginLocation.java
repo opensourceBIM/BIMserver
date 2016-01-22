@@ -41,26 +41,17 @@ import java.nio.file.Path;
  *****************************************************************************/
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
-import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
 import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.interfaces.objects.SPluginBundleType;
 import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
-import org.eclipse.aether.DefaultRepositorySystemSession;
-import org.eclipse.aether.RepositorySystem;
-import org.eclipse.aether.RepositorySystemSession;
 import org.eclipse.aether.artifact.Artifact;
 import org.eclipse.aether.artifact.DefaultArtifact;
-import org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory;
-import org.eclipse.aether.impl.DefaultServiceLocator;
-import org.eclipse.aether.repository.LocalRepository;
-import org.eclipse.aether.repository.RemoteRepository;
 import org.eclipse.aether.resolution.ArtifactDescriptorException;
 import org.eclipse.aether.resolution.ArtifactDescriptorRequest;
 import org.eclipse.aether.resolution.ArtifactDescriptorResult;
@@ -70,10 +61,6 @@ import org.eclipse.aether.resolution.ArtifactResult;
 import org.eclipse.aether.resolution.VersionRangeRequest;
 import org.eclipse.aether.resolution.VersionRangeResolutionException;
 import org.eclipse.aether.resolution.VersionRangeResult;
-import org.eclipse.aether.spi.connector.RepositoryConnectorFactory;
-import org.eclipse.aether.spi.connector.transport.TransporterFactory;
-import org.eclipse.aether.transport.file.FileTransporterFactory;
-import org.eclipse.aether.transport.http.HttpTransporterFactory;
 import org.eclipse.aether.version.Version;
 
 public class MavenPluginLocation extends PluginLocation {
@@ -81,19 +68,15 @@ public class MavenPluginLocation extends PluginLocation {
 	private String defaultrepository;
 	private String groupId;
 	private String artifactId;
-	private RepositorySystem system;
-	private RepositorySystemSession session;
-	private List<RemoteRepository> repositories;
-	private RemoteRepository remoteRepository;
+	private MavenPluginRepository mavenPluginRepository;
+	private String repository;
 
-	public MavenPluginLocation(String defaultrepository, String groupId, String artifactId) {
+	protected MavenPluginLocation(MavenPluginRepository mavenPluginRepository, String defaultrepository, String groupId, String artifactId) {
+		this.mavenPluginRepository = mavenPluginRepository;
 		this.defaultrepository = defaultrepository;
 		this.groupId = groupId;
 		this.artifactId = artifactId;
-		
-		system = newRepositorySystem();
-		session = newRepositorySystemSession(system);
-		repositories = newRepositories(system, session);
+		this.repository = mavenPluginRepository.getRemoteRepositoryUrl();
 	}
 
 	public void setGroupId(String groupId) {
@@ -125,11 +108,11 @@ public class MavenPluginLocation extends PluginLocation {
 
 		VersionRangeRequest rangeRequest = new VersionRangeRequest();
 		rangeRequest.setArtifact(artifact);
-		rangeRequest.setRepositories(repositories);
+		rangeRequest.setRepositories(mavenPluginRepository.getRepositories());
 
 //		RemoteRepository centralRepo = newCentralRepository();
 		try {
-			VersionRangeResult rangeResult = system.resolveVersionRange(session, rangeRequest);
+			VersionRangeResult rangeResult = mavenPluginRepository.getSystem().resolveVersionRange(mavenPluginRepository.getSession(), rangeRequest);
 			List<Version> versions = rangeResult.getVersions();
 			for (Version version : versions) {
 				ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
@@ -137,15 +120,15 @@ public class MavenPluginLocation extends PluginLocation {
 				Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":pom:" + version.toString());
 				
 				descriptorRequest.setArtifact(versionArtifact);
-				descriptorRequest.setRepositories(repositories);
+				descriptorRequest.setRepositories(mavenPluginRepository.getRepositories());
 
 				MavenPluginVersion mavenPluginVersion = new MavenPluginVersion(versionArtifact, version);
-				ArtifactDescriptorResult descriptorResult = system.readArtifactDescriptor(session, descriptorRequest);
+				ArtifactDescriptorResult descriptorResult = mavenPluginRepository.getSystem().readArtifactDescriptor(mavenPluginRepository.getSession(), descriptorRequest);
 				
 				ArtifactRequest request = new ArtifactRequest();
 				request.setArtifact(descriptorResult.getArtifact());
-				request.setRepositories(repositories);
-				ArtifactResult resolveArtifact = system.resolveArtifact(session, request);
+				request.setRepositories(mavenPluginRepository.getRepositories());
+				ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 				
 				File pomFile = resolveArtifact.getArtifact().getFile();
 				
@@ -180,57 +163,13 @@ public class MavenPluginLocation extends PluginLocation {
 		return pluginVersions;
 	}
 
-	public RepositorySystem newRepositorySystem() {
-		/*
-		 * Aether's components implement org.eclipse.aether.spi.locator.Service
-		 * to ease manual wiring and using the prepopulated
-		 * DefaultServiceLocator, we only need to register the repository
-		 * connector and transporter factories.
-		 */
-		DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
-		locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
-		locator.addService(TransporterFactory.class, FileTransporterFactory.class);
-		locator.addService(TransporterFactory.class, HttpTransporterFactory.class);
-
-		locator.setErrorHandler(new DefaultServiceLocator.ErrorHandler() {
-			@Override
-			public void serviceCreationFailed(Class<?> type, Class<?> impl, Throwable exception) {
-				exception.printStackTrace();
-			}
-		});
-
-		return locator.getService(RepositorySystem.class);
-	}
-
-	public DefaultRepositorySystemSession newRepositorySystemSession(RepositorySystem system) {
-		DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
-
-		LocalRepository localRepo = new LocalRepository("target/local-repo");
-		session.setLocalRepositoryManager(system.newLocalRepositoryManager(session, localRepo));
-
-		return session;
-	}
-
-	public List<RemoteRepository> newRepositories(RepositorySystem system, RepositorySystemSession session) {
-		return new ArrayList<RemoteRepository>(Arrays.asList(newCentralRepository()));
-	}
-
-	private RemoteRepository newCentralRepository() {
-		remoteRepository = new RemoteRepository.Builder("central", "default", defaultrepository).build();
-		return remoteRepository;
-	}
-
-	public String getRepository() {
-		return defaultrepository;
-	}
-
 	public Path getVersionJar(String version) throws ArtifactResolutionException {
 		Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":" + version.toString());
 		
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(versionArtifact);
-		request.setRepositories(repositories);
-		ArtifactResult resolveArtifact = system.resolveArtifact(session, request);
+		request.setRepositories(mavenPluginRepository.getRepositories());
+		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 		
 		return resolveArtifact.getArtifact().getFile().toPath();
 	}
@@ -246,8 +185,8 @@ public class MavenPluginLocation extends PluginLocation {
 			
 			ArtifactRequest request = new ArtifactRequest();
 			request.setArtifact(versionArtifact);
-			request.setRepositories(repositories);
-			ArtifactResult resolveArtifact = system.resolveArtifact(session, request);
+			request.setRepositories(mavenPluginRepository.getRepositories());
+			ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 	
 			File pomFile = resolveArtifact.getArtifact().getFile();
 			
@@ -278,8 +217,8 @@ public class MavenPluginLocation extends PluginLocation {
 			
 			ArtifactRequest request = new ArtifactRequest();
 			request.setArtifact(versionArtifact);
-			request.setRepositories(repositories);
-			ArtifactResult resolveArtifact = system.resolveArtifact(session, request);
+			request.setRepositories(mavenPluginRepository.getRepositories());
+			ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 			Artifact artifact = resolveArtifact.getArtifact();
 	
 			File pomFile = resolveArtifact.getArtifact().getFile();
@@ -293,8 +232,8 @@ public class MavenPluginLocation extends PluginLocation {
 			sPluginBundleVersion.setArtifactId(artifact.getArtifactId());
 			sPluginBundleVersion.setVersion(version);
 			sPluginBundleVersion.setDescription(model.getDescription());
-			sPluginBundleVersion.setRepository(remoteRepository.getUrl());
-			sPluginBundleVersion.setMismatch(false); // TODO
+			sPluginBundleVersion.setRepository(defaultrepository);
+			sPluginBundleVersion.setMismatch(false);
 			return sPluginBundleVersion;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -310,5 +249,9 @@ public class MavenPluginLocation extends PluginLocation {
 
 	public PluginBundleVersionIdentifier getPluginVersionIdentifier(String version) {
 		return new PluginBundleVersionIdentifier(getPluginIdentifier(), version);
+	}
+
+	public String getRepository() {
+		return repository;
 	}
 }

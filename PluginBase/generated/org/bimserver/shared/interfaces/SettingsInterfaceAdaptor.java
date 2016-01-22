@@ -69,6 +69,10 @@ public class SettingsInterfaceAdaptor implements org.bimserver.shared.interfaces
 		return null;
 	}
 	
+	public java.lang.Boolean isPluginStrictVersionChecking() throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.Boolean isSendConfirmationEmailAfterRegistration() throws UserException, ServerException {
 		return null;
 	}
@@ -92,6 +96,9 @@ public class SettingsInterfaceAdaptor implements org.bimserver.shared.interfaces
 	}
 	
 	public void setHideUserListForNonAdmin(java.lang.Boolean hideUserListForNonAdmin) throws UserException, ServerException {
+	}
+	
+	public void setPluginStrictVersionChecking(java.lang.Boolean strict) throws UserException, ServerException {
 	}
 	
 	public void setProtocolBuffersPort(java.lang.Integer port) throws UserException, ServerException {

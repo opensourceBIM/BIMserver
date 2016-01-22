@@ -89,6 +89,11 @@ public class AsyncSettingsInterface {
 		void error(Throwable e);
 	}
 	
+	public interface IsPluginStrictVersionCheckingCallback {
+		void success(java.lang.Boolean result);
+		void error(Throwable e);
+	}
+	
 	public interface IsSendConfirmationEmailAfterRegistrationCallback {
 		void success(java.lang.Boolean result);
 		void error(Throwable e);
@@ -125,6 +130,11 @@ public class AsyncSettingsInterface {
 	}
 	
 	public interface SetHideUserListForNonAdminCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
+	public interface SetPluginStrictVersionCheckingCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -310,6 +320,18 @@ public class AsyncSettingsInterface {
 		});
 	}
 	
+	public void isPluginStrictVersionChecking(final IsPluginStrictVersionCheckingCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.isPluginStrictVersionChecking());
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void isSendConfirmationEmailAfterRegistration(final IsSendConfirmationEmailAfterRegistrationCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -405,6 +427,19 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					syncService.setHideUserListForNonAdmin(hideUserListForNonAdmin);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setPluginStrictVersionChecking(final java.lang.Boolean strict, final SetPluginStrictVersionCheckingCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setPluginStrictVersionChecking(strict);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

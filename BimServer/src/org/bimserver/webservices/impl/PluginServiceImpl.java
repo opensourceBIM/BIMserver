@@ -1122,11 +1122,10 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetWebModuleByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		} finally {
 			session.close();
 		}
-		return null;
 	}
 
 	@Override
@@ -1137,11 +1136,10 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByPluginClassNameDatabaseAction(session, getAuthorization(), getInternalAccessMethod(), pluginClassName)));
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		} finally {
 			session.close();
 		}
-		return null;
 	}
 	
 	@Override
@@ -1152,11 +1150,10 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetMessagingSerializerByPluginClassNameDatabaseAction(session, getAuthorization(), getInternalAccessMethod(), pluginClassName)));
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		} finally {
 			session.close();
 		}
-		return null;
 	}
 	
 	@Override
@@ -1328,7 +1325,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return session.executeAndCommitAction(new GetAvailablePluginBundles(session, getInternalAccessMethod(), getBimServer(), false));
+			return session.executeAndCommitAction(new GetAvailablePluginBundles(session, getInternalAccessMethod(), getBimServer(), getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking()));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1353,7 +1350,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return session.executeAndCommitAction(new GetInstalledPluginBundles(session, getInternalAccessMethod(), getBimServer(), false));
+			return session.executeAndCommitAction(new GetInstalledPluginBundles(session, getInternalAccessMethod(), getBimServer(), getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking()));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

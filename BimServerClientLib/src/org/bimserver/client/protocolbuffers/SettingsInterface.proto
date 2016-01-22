@@ -50,6 +50,8 @@ service SettingsInterface {
 
 	rpc isHideUserListForNonAdmin (IsHideUserListForNonAdminRequest) returns (IsHideUserListForNonAdminResponse);
 
+	rpc isPluginStrictVersionChecking (IsPluginStrictVersionCheckingRequest) returns (IsPluginStrictVersionCheckingResponse);
+
 	rpc isSendConfirmationEmailAfterRegistration (IsSendConfirmationEmailAfterRegistrationRequest) returns (IsSendConfirmationEmailAfterRegistrationResponse);
 
 	rpc setAllowSelfRegistration (SetAllowSelfRegistrationRequest) returns (VoidResponse);
@@ -65,6 +67,8 @@ service SettingsInterface {
 	rpc setGenerateGeometryOnCheckin (SetGenerateGeometryOnCheckinRequest) returns (VoidResponse);
 
 	rpc setHideUserListForNonAdmin (SetHideUserListForNonAdminRequest) returns (VoidResponse);
+
+	rpc setPluginStrictVersionChecking (SetPluginStrictVersionCheckingRequest) returns (VoidResponse);
 
 	rpc setProtocolBuffersPort (SetProtocolBuffersPortRequest) returns (VoidResponse);
 
@@ -119,23 +123,24 @@ message SServerSettings {
 	optional bool generateGeometryOnCheckin = 9;
 	optional bool hideUserListForNonAdmin = 10;
 	optional int64 oid = 11;
-	optional int32 protocolBuffersPort = 12;
-	optional int32 renderEngineProcesses = 13;
-	optional bool reuseGeometry = 14;
-	optional int32 rid = 15;
-	optional bool sendConfirmationEmailAfterRegistration = 16;
-	optional bool sendEmailOnNewRevision = 17;
-	optional string serviceRepositoryUrl = 18;
-	optional int32 sessionTimeOutSeconds = 19;
-	optional string siteAddress = 20;
-	optional string smtpPassword = 21;
-	optional int32 smtpPort = 22;
-	optional SSmtpProtocol smtpProtocol = 23;
-	optional string smtpServer = 24;
-	optional string smtpUsername = 25;
-	optional int64 webModuleId = 26;
-	repeated int64 webModules = 27;
-	repeated string whitelistedDomains = 28;
+	optional bool pluginStrictVersionChecking = 12;
+	optional int32 protocolBuffersPort = 13;
+	optional int32 renderEngineProcesses = 14;
+	optional bool reuseGeometry = 15;
+	optional int32 rid = 16;
+	optional bool sendConfirmationEmailAfterRegistration = 17;
+	optional bool sendEmailOnNewRevision = 18;
+	optional string serviceRepositoryUrl = 19;
+	optional int32 sessionTimeOutSeconds = 20;
+	optional string siteAddress = 21;
+	optional string smtpPassword = 22;
+	optional int32 smtpPort = 23;
+	optional SSmtpProtocol smtpProtocol = 24;
+	optional string smtpServer = 25;
+	optional string smtpUsername = 26;
+	optional int64 webModuleId = 27;
+	repeated int64 webModules = 28;
+	repeated string whitelistedDomains = 29;
 }
 
 message GetServerSettingsResponse {
@@ -215,6 +220,14 @@ message IsHideUserListForNonAdminResponse {
 	optional bool value = 2;
 }
 
+message IsPluginStrictVersionCheckingRequest {
+}
+
+message IsPluginStrictVersionCheckingResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
 message IsSendConfirmationEmailAfterRegistrationRequest {
 }
 
@@ -249,6 +262,10 @@ message SetGenerateGeometryOnCheckinRequest {
 
 message SetHideUserListForNonAdminRequest {
 	optional bool hideUserListForNonAdmin = 1;
+}
+
+message SetPluginStrictVersionCheckingRequest {
+	optional bool strict = 1;
 }
 
 message SetProtocolBuffersPortRequest {

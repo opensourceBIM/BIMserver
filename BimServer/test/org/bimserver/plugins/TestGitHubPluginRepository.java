@@ -1,5 +1,6 @@
 package org.bimserver.plugins;
 
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.junit.Test;
@@ -7,7 +8,8 @@ import org.junit.Test;
 public class TestGitHubPluginRepository {
 	@Test
 	public void test() {
-		GitHubPluginRepository gitHubPluginRepository = new GitHubPluginRepository("opensourceBIM", "BIMserver-Repository");
+		MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(Paths.get("maven"), "https://repo1.maven.org/maven2");
+		GitHubPluginRepository gitHubPluginRepository = new GitHubPluginRepository(mavenPluginRepository, "opensourceBIM", "BIMserver-Repository");
 		
 		List<PluginLocation> pluginLocations = gitHubPluginRepository.listPluginLocations();
 		for (PluginLocation pluginLocation : pluginLocations) {

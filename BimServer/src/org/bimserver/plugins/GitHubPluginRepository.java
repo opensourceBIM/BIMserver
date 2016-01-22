@@ -32,19 +32,21 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class GitHubPluginRepository {
 
-	private String url;
+	private final MavenPluginRepository mavenPluginRepository;
+	private final String url;
 
-	public GitHubPluginRepository(String organization, String repository) {
+	public GitHubPluginRepository(MavenPluginRepository mavenPluginRepository, String organization, String repository) {
+		this.mavenPluginRepository = mavenPluginRepository;
 		this.url = "https://github.com/" + organization + "/" + repository + "/raw/master/plugins.json";
 	}
 
-	public GitHubPluginRepository(String url) {
+	public GitHubPluginRepository(MavenPluginRepository mavenPluginRepository, String url) {
+		this.mavenPluginRepository = mavenPluginRepository;
 		this.url = url + "/plugins.json";
 	}
 
 	public List<PluginLocation> listPluginLocations() {
 		List<PluginLocation> pluginLocations = new ArrayList<>();
-		
 		try {
 			String content = NetUtils.getContent(new URL(url), 5000);
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -54,7 +56,7 @@ public class GitHubPluginRepository {
 				ObjectNode pluginObject = (ObjectNode)pluginNode;
 				if (pluginObject.has("maven")) {
 					ObjectNode mavenNode = (ObjectNode) pluginObject.get("maven");
-					MavenPluginLocation mavenPluginLocation = new MavenPluginLocation(mavenNode.get("defaultrepository").asText(), mavenNode.get("groupId").asText(), mavenNode.get("artifactId").asText());
+					MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(mavenNode.get("defaultrepository").asText(), mavenNode.get("groupId").asText(), mavenNode.get("artifactId").asText());
 					pluginLocations.add(mavenPluginLocation);
 				}
 			}

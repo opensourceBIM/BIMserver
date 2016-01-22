@@ -58,6 +58,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isReuseGeometry <em>Reuse Geometry</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getRenderEngineProcesses <em>Render Engine Processes</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isPluginStrictVersionChecking <em>Plugin Strict Version Checking</em>}</li>
  * </ul>
  *
  * @generated
@@ -542,6 +543,24 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setRenderEngineProcesses(int newRenderEngineProcesses) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__RENDER_ENGINE_PROCESSES, newRenderEngineProcesses);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isPluginStrictVersionChecking() {
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__PLUGIN_STRICT_VERSION_CHECKING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPluginStrictVersionChecking(boolean newPluginStrictVersionChecking) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__PLUGIN_STRICT_VERSION_CHECKING, newPluginStrictVersionChecking);
 	}
 
 } //ServerSettingsImpl

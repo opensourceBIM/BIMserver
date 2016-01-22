@@ -40,6 +40,7 @@ import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.queryengine.QueryEngine;
 import org.bimserver.plugins.queryengine.QueryEngineException;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
@@ -112,6 +113,8 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 		} catch (BimserverDatabaseException e) {
 			throw new UserException(e);
 		} catch (QueryEngineException e) {
+			throw new UserException(e);
+		} catch (PluginException e) {
 			throw new UserException(e);
 		} finally {
 			session.close();
