@@ -20,6 +20,7 @@ package org.bimserver.plugins.serializers;
 import java.util.Set;
 
 import org.bimserver.emf.Schema;
+import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 
@@ -39,4 +40,9 @@ public interface MessagingStreamingSerializerPlugin extends Plugin {
 	 * @return The schema supported by this serializer
 	 */
 	Set<Schema> getSupportedSchemas();
+	
+	@Override
+	default SPluginType getPluginType() {
+		return SPluginType.SERIALIZER;
+	}
 }
