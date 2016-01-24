@@ -58,7 +58,7 @@ import org.slf4j.LoggerFactory;
 public class InternalServicesManager implements NotificationsManagerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(InternalServicesManager.class);
 
-	private final Map<Long, Map<String, ServiceDescriptor>> internalServices = new HashMap<Long, Map<String, ServiceDescriptor>>();
+	private final Map<Long, Map<String, ServiceDescriptor>> uoidToInternalServices = new HashMap<Long, Map<String, ServiceDescriptor>>();
 	private final Map<String, Bimsie1RemoteServiceInterface> internalRemoteServiceInterfaces = new HashMap<String, Bimsie1RemoteServiceInterface>();
 	private final Map<String, BimServerClientFactory> factories = new HashMap<>();
 	private BimServer bimServer;
@@ -76,10 +76,10 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	@Override
 	public void register(long uoid, ServiceDescriptor serviceDescriptor, Bimsie1RemoteServiceInterface remoteServiceInterface) {
 		serviceDescriptor.setUrl(url);
-		Map<String, ServiceDescriptor> map = internalServices.get(uoid);
+		Map<String, ServiceDescriptor> map = uoidToInternalServices.get(uoid);
 		if (map == null) {
 			map = new HashMap<String, ServiceDescriptor>();
-			internalServices.put(uoid, map);
+			uoidToInternalServices.put(uoid, map);
 		}
 		map.put(serviceDescriptor.getIdentifier(), serviceDescriptor);
 		internalRemoteServiceInterfaces.put(serviceDescriptor.getIdentifier(), remoteServiceInterface);
@@ -87,7 +87,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	
 	public ServiceDescriptor getInternalService(Long uoid, String serviceIdentifier) {
 		// Temporary hack, should be used based
-		for (Entry<Long, Map<String, ServiceDescriptor>> entry : internalServices.entrySet()) {
+		for (Entry<Long, Map<String, ServiceDescriptor>> entry : uoidToInternalServices.entrySet()) {
 			if (entry.getValue().containsKey(serviceIdentifier)) {
 				return entry.getValue().get(serviceIdentifier);
 			}
@@ -100,7 +100,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	}
 	
 	public Map<String, ServiceDescriptor> getInternalServices(long uoid) {
-		return internalServices.get(uoid);
+		return uoidToInternalServices.get(uoid);
 	}
 	
 	public Bimsie1RemoteServiceInterface getLocalRemoteServiceInterface(String serviceIdentifier) {
@@ -222,8 +222,11 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	}
 	
 	@Override
-	public void unregisterInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor) {
-		internalServices.remove(serviceDescriptor.getIdentifier());
+	public void unregisterInternalNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor) {
+		Map<String, ServiceDescriptor> map = uoidToInternalServices.get(uoid);
+		if (map != null) {
+			map.remove(serviceDescriptor.getIdentifier());
+		}
 		internalRemoteServiceInterfaces.remove(serviceDescriptor.getIdentifier());
 	}
 }

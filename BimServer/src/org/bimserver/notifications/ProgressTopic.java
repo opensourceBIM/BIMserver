@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 public class ProgressTopic extends Topic {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProgressTopic.class);
-	private static final int RATE_LIMIT_NANO_SECONDS = 200000000; // 200ms
+	private static final long RATE_LIMIT_NANO_SECONDS = 200000000; // 200ms
 	private SProgressTopicType type;
 	private String description;
 	private ProgressTopicKey key;
@@ -53,7 +53,7 @@ public class ProgressTopic extends Topic {
 		try {
 			// Actually we should be keeping track of when we last sent a message to A SPECIFIC ENDPOINT, this way, new endpoints won't receive the message rights away
 			
-			boolean sendMessage = lastSent == -1 || (System.nanoTime() - lastSent > RATE_LIMIT_NANO_SECONDS && state.getProgress() != lastProgress.getProgress());
+			boolean sendMessage = lastSent == -1L || (System.nanoTime() - lastSent > RATE_LIMIT_NANO_SECONDS && state.getProgress().intValue() != lastProgress.getProgress().intValue());
 			sendMessage |= state.getProgress() == 100;
 			sendMessage |= state.getState() == ActionState.FINISHED;
 			sendMessage |= state.getState() == ActionState.AS_ERROR;

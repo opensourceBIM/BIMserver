@@ -60,7 +60,7 @@ public interface PluginManagerInterface {
 
 	void registerNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler);
 
-	void unregisterNewRevisionHandler(ServiceDescriptor serviceDescriptor);
+	void unregisterNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor);
 
 	BimServerClientInterface getLocalBimServerClientInterface(AuthenticationInfo tokenAuthentication) throws ServiceException, ChannelConnectionException;
 

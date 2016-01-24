@@ -18,7 +18,6 @@ package org.bimserver.plugins.deserializers;
  *****************************************************************************/
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
@@ -46,19 +45,9 @@ public abstract class EmfDeserializer implements Deserializer {
 	
 	@Override
 	public IfcModelInterface read(Path file, ByteProgressReporter progressReporter) throws DeserializeException {
-		FileInputStream fileInputStream;
-		try {
-			fileInputStream = new FileInputStream(file.toFile());
-			try {
-				return read(fileInputStream, file.getFileName().toString(), file.toFile().length(), progressReporter);
-			} finally {
-				try {
-					fileInputStream.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		} catch (FileNotFoundException e) {
+		try (FileInputStream fileInputStream = new FileInputStream(file.toFile())) {
+			return read(fileInputStream, file.getFileName().toString(), file.toFile().length(), progressReporter);
+		} catch (IOException e) {
 			throw new DeserializeException(e);
 		}
 	}

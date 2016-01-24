@@ -72,6 +72,10 @@ public class EmailMessage {
 				transport = new SMTPTransport(mailSession, new URLName(serverSettings.getSmtpServer()));
 			} else if (serverSettings.getSmtpProtocol() == SmtpProtocol.SMTPS) {
 				transport = new SMTPSSLTransport(mailSession, new URLName(serverSettings.getSmtpServer()));
+			} else if (serverSettings.getSmtpProtocol() == SmtpProtocol.STARTTLS) {
+				transport = new SMTPSSLTransport(mailSession, new URLName(serverSettings.getSmtpServer()));
+			} else {
+				throw new RuntimeException("Unimplemented SMTP protocol: " + serverSettings.getSmtpProtocol());
 			}
 			transport.connect(serverSettings.getSmtpServer(), serverSettings.getSmtpUsername(), serverSettings.getSmtpPassword());
 

@@ -44,10 +44,10 @@ final class CodeFetcher implements SourceCodeFetcher {
 		if (url != null) {
 			try {
 				InputStream inputStream = url.openStream();
+				if (inputStream == null) {
+					return null;
+				}
 				try {
-					if (inputStream == null) {
-						return null;
-					}
 					StringWriter out = new StringWriter();
 					IOUtils.copy(inputStream, out);
 					return out.toString();

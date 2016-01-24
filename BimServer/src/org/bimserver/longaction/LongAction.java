@@ -182,10 +182,15 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	
 	@Override
 	public void error(Exception error) {
-		LOGGER.error("", error);
-		errors.add(error.getMessage());
-		stop = new GregorianCalendar();
-		changeActionState(ActionState.AS_ERROR, error == null ? "Unknown Error" : error.getMessage(), 0);
+		if (error == null) {
+			LOGGER.error("Unknown error");
+			changeActionState(ActionState.AS_ERROR, "Unknown Error", 0);
+		} else {
+			LOGGER.error("", error);
+			errors.add(error.getMessage());
+			stop = new GregorianCalendar();
+			changeActionState(ActionState.AS_ERROR, error == null ? "Unknown Error" : error.getMessage(), 0);
+		}
 	}
 	
 	@Override

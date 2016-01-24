@@ -44,8 +44,8 @@ public abstract class ServicePlugin implements Plugin {
 		pluginManager.registerNewRevisionHandler(uoid, serviceDescriptor, newRevisionHandler);
 	}
 
-	protected void unregisterNewRevisionHandler(ServiceDescriptor serviceDescriptor) {
-		pluginManager.unregisterNewRevisionHandler(serviceDescriptor);
+	protected void unregisterNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor) {
+		pluginManager.unregisterNewRevisionHandler(uoid, serviceDescriptor);
 	}
 	
 	protected BimServerClientInterface getLocalBimServerClientInterface(AuthenticationInfo tokenAuthentication) throws ServiceException, ChannelConnectionException {

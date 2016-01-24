@@ -608,6 +608,7 @@ public class BimServer {
 			EReference listReference = (EReference) userSettingsClass.getEStructuralFeature(listRefName);
 			if (listReference == null) {
 				LOGGER.warn(listRefName + " not found");
+				return;
 			}
 			EReference defaultReference = (EReference) userSettingsClass.getEStructuralFeature("default" + pluginInterfaceName);
 			EClass pluginConfigurationClass = (EClass) listReference.getEType();
