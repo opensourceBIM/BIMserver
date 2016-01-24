@@ -86,11 +86,7 @@ public class WarServerInitializer implements ServletContextListener {
 		Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
 		LOGGER.info("Servlet Context Name: " + servletContext.getServletContextName());
 		
-		List<Path> files = resourceFetcher.getFiles("plugins");
 		try {
-			for (Path file : files) {
-				bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(file);
-			}
 			bimServer.start();
 		} catch (ServerException e) {
 			LOGGER.error("", e);
@@ -101,8 +97,6 @@ public class WarServerInitializer implements ServletContextListener {
 		} catch (PluginException e) {
 			LOGGER.error("", e);
 		} catch (DatabaseRestartRequiredException e) {
-			LOGGER.error("", e);
-		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
 		servletContext.setAttribute("bimserver", bimServer);
