@@ -29,6 +29,7 @@ public class JarResourceFetcher extends ResourceFetcher {
 	public JarResourceFetcher() {
 		addPath(Paths.get("home"));
 		addPath(Paths.get("config"));
+		addPath(Paths.get("."));
 	}
 	
 	@Override
