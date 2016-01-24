@@ -35,8 +35,10 @@
 					<archive>
 						<manifest>
 							<mainClass>org.bimserver.starter.Starter</mainClass>
-							<Real-Main-Class>org.bimserver.JarBimServer</Real-Main-Class>
 						</manifest>
+						<manifestEntries>
+							<Real-Main-Class>org.bimserver.JarBimServer</Real-Main-Class>
+						</manifestEntries>
 					</archive>
 				</configuration>
 				<executions>
