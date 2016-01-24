@@ -79,8 +79,6 @@ public class JarBimServer {
 	 	try {
 	 		LOGGER.debug("Setting resourcebase to www");
 	 		bimServer.getEmbeddedWebServer().getContext().setResourceBase("www");
-	 		LOGGER.debug("Loading plugins");
-	 		bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(Paths.get("plugins"));
 			bimServer.start();
 			LOGGER.info("Server started successfully");
 		} catch (Exception e) {
