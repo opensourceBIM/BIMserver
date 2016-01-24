@@ -48,7 +48,6 @@ import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryPart;
-import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.geometry.Matrix;
@@ -118,18 +117,16 @@ public class StreamingGeometryGenerator {
 		private RenderEngineFilter renderEngineFilter;
 		private RenderEngineFilter renderEngineFilterTransformed = new RenderEngineFilter(true);
 		private StreamingSerializerPlugin ifcSerializerPlugin;
-		private Map<IdEObject, IdEObject> bigMap;
 		private GenerateGeometryResult generateGeometryResult;
 		private ObjectProvider objectProvider;
 		private QueryContext queryContext;
 
-		public Runner(EClass eClass, RenderEnginePlugin renderEnginePlugin, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider, StreamingSerializerPlugin ifcSerializerPlugin, Map<IdEObject, IdEObject> bigMap, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext) {
+		public Runner(EClass eClass, RenderEnginePlugin renderEnginePlugin, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider, StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext) {
 			this.eClass = eClass;
 			this.renderEnginePlugin = renderEnginePlugin;
 			this.renderEngineSettings = renderEngineSettings;
 			this.objectProvider = objectProvider;
 			this.ifcSerializerPlugin = ifcSerializerPlugin;
-			this.bigMap = bigMap;
 			this.renderEngineFilter = renderEngineFilter;
 			this.generateGeometryResult = generateGeometryResult;
 			this.queryContext = queryContext;
@@ -138,13 +135,7 @@ public class StreamingGeometryGenerator {
 		@Override
 		public void run() {
 			StreamingSerializer ifcSerializer = ifcSerializerPlugin.createSerializer(new PluginConfiguration());
-			RenderEngine renderEngine = null;
-			try {
-				renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration(), queryContext.getPackageMetaData().getSchema().getEPackageName());
-			} catch (RenderEngineException e) {
-				LOGGER.error("", e);
-			}
-			try {
+			try (RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration(), queryContext.getPackageMetaData().getSchema().getEPackageName())) {
 				renderEngine.init();
 				final Set<HashMapVirtualObject> oids = new HashSet<>();
 				ObjectProviderProxy proxy = new ObjectProviderProxy(objectProvider, new ObjectListener() {
@@ -285,14 +276,8 @@ public class StreamingGeometryGenerator {
 									geometryInfo.save();
 									totalBytes.addAndGet(size);
 
-									if (bigMap == null) {
-										ifcProduct.setReference(geometryFeature, geometryInfo.getOid(), 0);
-										ifcProduct.saveOverwrite();
-									} else {
-										bigMap.get(ifcProduct).eSet(geometryFeature, geometryInfo);
-										ifcProduct.setReference(geometryFeature, geometryInfo.getOid(), 0);
-//										databaseSession.store(bigMap.get(ifcProduct), pid, rid);
-									}
+									ifcProduct.setReference(geometryFeature, geometryInfo.getOid(), 0);
+									ifcProduct.saveOverwrite();
 								}
 							} catch (EntityNotFoundException e) {
 								// As soon as we find a representation that is not Curve2D, then we should show a "INFO" message in the log to indicate there could be something wrong
@@ -321,12 +306,6 @@ public class StreamingGeometryGenerator {
 				}
 			} catch (SerializerException | RenderEngineException | IOException e) {
 				LOGGER.error("", e);
-			} finally {
-				try {
-					renderEngine.close();
-				} catch (RenderEngineException e) {
-					LOGGER.error("", e);
-				}
 			}
 		}
 	}
@@ -422,7 +401,7 @@ public class StreamingGeometryGenerator {
 					
 					queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
 					
-					Runner runner = new Runner(eClass, renderEnginePlugin, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, null, renderEngineFilter, generateGeometryResult, queryContext);
+					Runner runner = new Runner(eClass, renderEnginePlugin, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext);
 					executor.submit(runner);
 					jobsTotal.incrementAndGet();
 				}

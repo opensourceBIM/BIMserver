@@ -332,7 +332,9 @@ public class GeometryGenerator {
 			} catch (SerializerException | IOException | InterruptedException | PluginException e) {
 				LOGGER.error("", e);
 			} finally {
-				pool.release(renderEngine);
+				if (pool != null && renderEngine != null) {
+					pool.release(renderEngine);
+				}
 			}
 		}
 	}

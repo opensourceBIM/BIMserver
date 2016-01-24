@@ -418,8 +418,9 @@ public class PluginManager implements PluginManagerInterface {
 		for (Path file : PathUtils.list(directory)) {
 			if (file.getFileName().toString().toLowerCase().endsWith(".jar")) {
 				try {
-					// TODO
-					loadPluginsFromJar(null, file, null, null);
+					PluginBundleVersionIdentifier pluginBundleVersionIdentifier = PluginBundleVersionIdentifier.fromFileName(file.getFileName().toString());
+
+					loadPluginsFromJar(pluginBundleVersionIdentifier, file, extractPluginBundleFromJar(file), extractPluginBundleVersionFromJar(file));
 				} catch (PluginException e) {
 					LOGGER.error("", e);
 				}
@@ -879,9 +880,9 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public void unregisterNewRevisionHandler(ServiceDescriptor serviceDescriptor) {
+	public void unregisterNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor) {
 		if (notificationsManagerInterface != null) {
-			notificationsManagerInterface.unregisterInternalNewRevisionHandler(serviceDescriptor);
+			notificationsManagerInterface.unregisterInternalNewRevisionHandler(uoid, serviceDescriptor);
 		}
 	}
 

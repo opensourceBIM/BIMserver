@@ -657,7 +657,7 @@ public class Express2EMF {
 		} else if (entityName.equals("IfcTriangulatedFaceSet") && attribName.equals("NormalIndex")) {
 			finalType = EcorePackage.eINSTANCE.getEInt();
 		} else {
-			System.out.println("Unimplemented " + entityName + "." + attribName);
+			throw new RuntimeException("Unimplemented " + entityName + "." + attribName);
 		}
 		EClass containerClass = (EClass) schemaPack.getEClassifier("ListOf" + finalType.getName());
 		if (containerClass == null) {

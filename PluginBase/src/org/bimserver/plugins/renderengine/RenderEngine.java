@@ -20,7 +20,7 @@ package org.bimserver.plugins.renderengine;
 import java.io.File;
 import java.io.InputStream;
 
-public interface RenderEngine {
+public interface RenderEngine extends AutoCloseable {
 	RenderEngineModel openModel(File ifcFile) throws RenderEngineException;
 	RenderEngineModel openModel(InputStream inputStream, int size) throws RenderEngineException;
 	RenderEngineModel openModel(InputStream inputStream) throws RenderEngineException;

@@ -127,7 +127,7 @@ public class SharedJsonSerializer implements StreamingReader {
 			print("\"_t\":\"" + object.eClass().getName() + "\",");
 			print("\"_s\":1");
 			for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
-				if (eStructuralFeature.getEAnnotation("nolazyload") == null && (eStructuralFeature.getEAnnotation("hidden") == null | includeHidden)) {
+				if (eStructuralFeature.getEAnnotation("nolazyload") == null && (eStructuralFeature.getEAnnotation("hidden") == null || includeHidden)) {
 					if (eStructuralFeature instanceof EReference) {
 						Object value = object.eGet(eStructuralFeature);
 						if (value != null) {

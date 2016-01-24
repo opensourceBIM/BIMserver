@@ -69,9 +69,12 @@ public class VersionChecker {
 		}
 	}
 
-	public VersionChecker(ResourceFetcher resourceFetcher) {
+	public VersionChecker(ResourceFetcher resourceFetcher) throws VersionCheckException {
 		try {
 			Path pom = resourceFetcher.getFile("pom.xml");
+			if (pom == null) {
+				throw new VersionCheckException("No pom.xml found");
+			}
 
 			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 			if (Files.exists(pom)) {
@@ -101,12 +104,8 @@ public class VersionChecker {
 			} else {
 				LOGGER.warn("No version info");
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (XmlPullParserException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			throw new VersionCheckException(e);
 		}
 	}
 
