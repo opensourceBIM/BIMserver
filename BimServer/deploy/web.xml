@@ -31,13 +31,4 @@
 	<listener>
 		<listener-class>org.bimserver.ServerInitializer</listener-class>
 	</listener>
-	<servlet>
-		<servlet-name>RootServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.RootServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>RootServlet</servlet-name>
-		<url-pattern>/*</url-pattern>
-	</servlet-mapping>
 </web-app>
