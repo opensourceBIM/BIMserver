@@ -47,6 +47,18 @@
 					<webXml>web.xml</webXml>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat8-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<path>/${project.build.finalName}</path>
+					<update>true</update>
+					<url>${TOMCAT_HOST}</url>
+					<username>${TOMCAT_USERNAME}</username>
+					<password>${TOMCAT_PASSWORD}</password>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
