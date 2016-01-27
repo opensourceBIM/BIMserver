@@ -84,7 +84,7 @@
 					<artifactId>tomcat7-maven-plugin</artifactId>
 					<version>2.2</version>
 					<configuration>
-						<path>/${project.build.finalName}</path>
+						<path>/</path>
 						<update>true</update>
 						<url>${TOMCAT_HOST}</url>
 						<username>${TOMCAT_USERNAME}</username>
