@@ -59,7 +59,7 @@ public class RenderEnginePools {
 				return map.get(className);
 			} else {
 				// Maybe this plugin has been installed after startup, let's have a look in the PluginManager
-				RenderEnginePlugin renderEnginePlugin = bimServer.getPluginManager().getRenderEngine(className, true);
+				RenderEnginePlugin renderEnginePlugin = bimServer.getPluginManager().getRenderEnginePlugin(className, true);
 				if (renderEnginePlugin == null) {
 					throw new PluginException("No render engine found for className " + className);
 				} else {

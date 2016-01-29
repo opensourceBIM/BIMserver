@@ -740,11 +740,7 @@ public class PluginManager implements PluginManagerInterface {
 			Set<PluginContext> set = implementations.get(pluginClass);
 			for (PluginContext pluginContext : set) {
 				try {
-					Plugin plugin = pluginContext.getPlugin();
-					if (!pluginContext.isInitialized()) {
-						plugin.init(this);
-						pluginContext.setInitialized(true);
-					}
+					pluginContext.initialize();
 				} catch (Throwable e) {
 					LOGGER.error("", e);
 					pluginContext.setEnabled(false, false);
@@ -789,7 +785,7 @@ public class PluginManager implements PluginManagerInterface {
 		return getPluginByClassName(ObjectIDMPlugin.class, className, onlyEnabled);
 	}
 
-	public RenderEnginePlugin getRenderEngine(String className, boolean onlyEnabled) {
+	public RenderEnginePlugin getRenderEnginePlugin(String className, boolean onlyEnabled) {
 		return getPluginByClassName(RenderEnginePlugin.class, className, onlyEnabled);
 	}
 

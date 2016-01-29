@@ -26,6 +26,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import org.bimserver.models.store.Parameter;
+import org.bimserver.shared.exceptions.PluginException;
 
 public class PluginContext {
 
@@ -143,5 +144,12 @@ public class PluginContext {
 
 	public Class<?> getPluginInterface() {
 		return pluginInterface;
+	}
+
+	public void initialize() throws PluginException {
+		if (!isInitialized()) {
+			plugin.init(pluginManager);
+			setInitialized(true);
+		}
 	}
 }

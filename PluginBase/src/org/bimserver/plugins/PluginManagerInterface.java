@@ -29,6 +29,7 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewExtendedDataOnProjectHandler;
 import org.bimserver.plugins.services.NewExtendedDataOnRevisionHandler;
@@ -36,6 +37,7 @@ import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceFactory;
+import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public interface PluginManagerInterface {
@@ -55,6 +57,8 @@ public interface PluginManagerInterface {
 	String getCompleteClassPath();
 
 	DeserializerPlugin getDeserializerPlugin(String string, boolean enabled);
+	
+	RenderEnginePlugin getRenderEnginePlugin(String string, boolean enabled);
 
 	DeserializerPlugin requireDeserializer(String string) throws DeserializeException;
 
@@ -73,4 +77,6 @@ public interface PluginManagerInterface {
 	MetaDataManager getMetaDataManager();
 
 	ObjectIDM getDefaultObjectIDM() throws ObjectIDMException;
+
+	PluginBundle loadPluginsFromEclipseProject(Path projectRoot) throws PluginException;
 }

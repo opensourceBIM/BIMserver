@@ -69,7 +69,7 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 			LOGGER.error("", t);
 		}
 	}
-	
+
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		LOGGER.info("WebSocket context initialized");
