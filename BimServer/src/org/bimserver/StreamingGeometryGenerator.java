@@ -341,7 +341,7 @@ public class StreamingGeometryGenerator {
 			if (defaultRenderEngine == null) {
 				throw new UserException("No default render engine has been selected for this user");
 			}
-			final RenderEnginePlugin renderEnginePlugin = bimServer.getPluginManager().getRenderEngine(defaultRenderEngine.getPluginDescriptor().getPluginClassName(), true);
+			final RenderEnginePlugin renderEnginePlugin = bimServer.getPluginManager().getRenderEnginePlugin(defaultRenderEngine.getPluginDescriptor().getPluginClassName(), true);
 			if (renderEnginePlugin == null) {
 				throw new UserException("No (enabled) render engine found of type " + defaultRenderEngine.getPluginDescriptor().getPluginClassName());
 			}

@@ -126,7 +126,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 						if (serializerPluginConfiguration instanceof SerializerPluginConfiguration) {
 							RenderEnginePluginConfiguration renderEngine = ((SerializerPluginConfiguration)serializerPluginConfiguration).getRenderEngine();
 							if (renderEngine != null) {
-								renderEnginePlugin = getBimServer().getPluginManager().getRenderEngine(renderEngine.getPluginDescriptor().getPluginClassName(), true);
+								renderEnginePlugin = getBimServer().getPluginManager().getRenderEnginePlugin(renderEngine.getPluginDescriptor().getPluginClassName(), true);
 							}
 							checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, renderEnginePlugin, downloadParameters);
 						} else if (serializerPluginConfiguration instanceof MessagingSerializerPluginConfiguration) {

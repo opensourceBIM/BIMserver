@@ -28,6 +28,7 @@ import org.bimserver.client.soap.SoapBimServerClientFactory;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
@@ -62,7 +63,7 @@ public class LocalDevSetup {
 		}
 	}
 	
-	public static final PluginManager setupPluginManager(String[] args) {
+	public static final PluginManagerInterface setupPluginManager(String[] args) {
 		try {
 			Path home = Paths.get("home");
 			
@@ -70,6 +71,9 @@ public class LocalDevSetup {
 				Files.createDirectory(home);
 			}
 			Path tmp = home.resolve("tmp");
+			if (!Files.exists(tmp)) {
+				Files.createDirectories(tmp);
+			}
 			PluginManager pluginManager = new PluginManager(tmp, null, System.getProperty("java.class.path"), null, null, null);
 
 			MetaDataManager metaDataManager = new MetaDataManager(tmp);

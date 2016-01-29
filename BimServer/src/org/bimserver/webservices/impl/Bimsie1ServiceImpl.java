@@ -473,13 +473,11 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 						}
 					}
 				}
-			} catch (BimserverDatabaseException e) {
-				LOGGER.error("", e);
 			} finally {
 				session.close();
 			}
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		}
 		return null;
 	}
