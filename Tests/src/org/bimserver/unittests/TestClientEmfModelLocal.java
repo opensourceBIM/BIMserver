@@ -32,15 +32,12 @@ import org.bimserver.BimServer;
 import org.bimserver.LocalDevBimServerStarter;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.ifc.step.serializer.Ifc4StepSerializer;
-import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SRevisionSummaryContainer;
 import org.bimserver.interfaces.objects.SRevisionSummaryType;
-import org.bimserver.plugins.PluginConfiguration;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
@@ -130,10 +127,9 @@ public class TestClientEmfModelLocal {
 	private void dumpToFile(SProject project, long roid) throws SerializerException {
 		try {
 			IfcModelInterface model = bimServerClient.getModel(project, roid, false, false);
-			IfcStepSerializer serializer = new Ifc4StepSerializer(new PluginConfiguration());
+			Serializer serializer = null;//new Ifc4StepSerializer(new PluginConfiguration());
 			
-			MetaDataManager metaDataManager = new MetaDataManager(bimServer.getPluginManager());
-			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
+			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
 			
 			serializer.init(model, null, bimServer.getPluginManager(), packageMetaData, false);
 			Path output = Paths.get("output");

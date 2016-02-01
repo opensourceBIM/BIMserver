@@ -41,8 +41,9 @@ public class TestManyRevisions {
 
 	private void start(String[] args) {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			Path home = Paths.get("home");
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
+			MetaDataManager metaDataManager = new MetaDataManager(home.resolve("tmp"));
 			pluginManager.setMetaDataManager(metaDataManager);
 			BimServerClientFactory factory = new JsonBimServerClientFactory(metaDataManager, "http://localhost:8080");
 			BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));

@@ -24,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.objects.SProject;
@@ -47,10 +48,10 @@ public class GetNrTriangles {
 			if (!Files.isDirectory(home)) {
 				Files.createDirectory(home);
 			}
-			PluginManager pluginManager = new PluginManager(home.resolve("tmp"), System.getProperty("java.class.path"), null, null, null);
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
 			pluginManager.loadAllPluginsFromEclipseWorkspace(Paths.get("../"), true);
 			
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			MetaDataManager metaDataManager = new MetaDataManager(home.resolve("tmp"));
 			pluginManager.setMetaDataManager(metaDataManager);
 			metaDataManager.init();
 			

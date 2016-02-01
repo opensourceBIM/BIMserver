@@ -19,6 +19,7 @@ package org.bimserver.unittests;
 
 import static org.junit.Assert.fail;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.bimserver.LocalDevPluginLoader;
@@ -42,11 +43,12 @@ public class TestIfcStepDeserializer {
 	@Test
 	public void testSpaceEndOfLineBeforeSemiColon() {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
+			Path home = Paths.get("home");
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			MetaDataManager metaDataManager = new MetaDataManager(home.resolve("tmp"));
 			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
 			deserializer.init(packageMetaData);

@@ -23,6 +23,7 @@ import java.nio.file.FileSystem;
 import java.nio.file.Path;
 
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.Schema;
 import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.deserializers.DeserializeException;
@@ -79,4 +80,6 @@ public interface PluginManagerInterface {
 	ObjectIDM getDefaultObjectIDM() throws ObjectIDMException;
 
 	PluginBundle loadPluginsFromEclipseProject(Path projectRoot) throws PluginException;
+
+	DeserializerPlugin getFirstDeserializer(String extension, Schema schema, boolean onlyEnabled) throws PluginException;
 }

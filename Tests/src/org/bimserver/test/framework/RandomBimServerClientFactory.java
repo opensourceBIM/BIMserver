@@ -1,5 +1,7 @@
 package org.bimserver.test.framework;
 
+import java.nio.file.Path;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -73,8 +75,9 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		ReflectorFactory reflectorFactory = factoryBuilder.newReflectorFactory();
 		
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			Path home = Paths.get("home");
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
+			MetaDataManager metaDataManager = new MetaDataManager(home.resolve("tmp"));
 			pluginManager.setMetaDataManager(metaDataManager);
 
 			jsonBimServerClientFactory = new JsonBimServerClientFactory("http://localhost:8080", servicesMap, new JsonSocketReflectorFactory(servicesMap), reflectorFactory, metaDataManager);

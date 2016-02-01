@@ -24,6 +24,7 @@ import java.nio.file.Paths;
 import org.bimserver.LocalDevSetup;
 import org.bimserver.emf.Schema;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.renderengine.IndexFormat;
@@ -41,12 +42,12 @@ public class TestGen {
 
 	private void start(String[] args) {
 		try {
-			PluginManager pluginManager = LocalDevSetup.setupPluginManager(args);
+			PluginManagerInterface pluginManager = LocalDevSetup.setupPluginManager(args);
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(null);
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			
-			RenderEnginePlugin renderEnginePlugin = pluginManager.getRenderEngine("org.bimserver.ifcengine.JvmRenderEnginePlugin", true);
+			RenderEnginePlugin renderEnginePlugin = pluginManager.getRenderEnginePlugin("org.bimserver.ifcengine.JvmRenderEnginePlugin", true);
 			RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(null, "ifc2x3tc1");
 			renderEngine.init();
 			RenderEngineModel renderEngineModel = renderEngine.openModel(new FileInputStream(Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc").toFile()));
