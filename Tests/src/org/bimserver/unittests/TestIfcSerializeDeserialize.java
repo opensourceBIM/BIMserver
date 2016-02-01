@@ -19,6 +19,7 @@ package org.bimserver.unittests;
 
 import static org.junit.Assert.fail;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.bimserver.LocalDevPluginLoader;
@@ -47,8 +48,9 @@ public class TestIfcSerializeDeserialize {
 	@Test
 	public void testSerializeDeserializer() throws IfcModelInterfaceException {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			Path home = Paths.get("home");
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
+			MetaDataManager metaDataManager = new MetaDataManager(home.resolve("tmp"));
 			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());

@@ -29,6 +29,7 @@ import java.util.GregorianCalendar;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.objects.SExtendedDataAddedToRevision;
@@ -116,10 +117,10 @@ public class CreateLog {
 			if (!Files.isDirectory(home)) {
 				Files.createDirectory(home);
 			}
-			PluginManager pluginManager = new PluginManager(home.resolve("tmp"), System.getProperty("java.class.path"), null, null, null);
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
 			pluginManager.loadAllPluginsFromEclipseWorkspace(Paths.get("../"), true);
 			
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			MetaDataManager metaDataManager = new MetaDataManager(home.resolve("tmp"));
 			pluginManager.setMetaDataManager(metaDataManager);
 			metaDataManager.init();
 

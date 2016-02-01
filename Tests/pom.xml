@@ -39,18 +39,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
-			<artifactId>PluginBase</artifactId>
-			<version>1.5.0-SNAPSHOT</version>
+			<artifactId>pluginbase</artifactId>
+			<version>1.5.22-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
-			<artifactId>IfcPlugins</artifactId>
-			<version>1.5.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.opensourcebim</groupId>
-			<artifactId>BimServer</artifactId>
-			<version>1.5.0-SNAPSHOT</version>
+			<artifactId>bimserver</artifactId>
+			<version>1.5.22-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

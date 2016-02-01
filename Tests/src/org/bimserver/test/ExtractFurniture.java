@@ -1,5 +1,7 @@
 package org.bimserver.test;
 
+import java.nio.file.Path;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -44,11 +46,12 @@ import org.bimserver.utils.CollectionUtils;
 public class ExtractFurniture {
 	public static void main(String[] args) {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(Paths.get("home"));
+			Path home = Paths.get("home");
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(null);
 			
-			MetaDataManager metaDataManager = new MetaDataManager(pluginManager);
+			MetaDataManager metaDataManager = new MetaDataManager(home.resolve("tmp"));
 			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
 			deserializer.init(packageMetaData);

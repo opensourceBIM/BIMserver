@@ -26,7 +26,7 @@ import org.bimserver.LocalDevSetup;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
@@ -39,7 +39,7 @@ public class Test {
 
 	private void start(String[] args) {
 		try {
-			PluginManager pluginManager = LocalDevSetup.setupPluginManager(args);
+			PluginManagerInterface pluginManager = LocalDevSetup.setupPluginManager(args);
 			DeserializerPlugin ifcDeserializerPlugin = pluginManager.getDeserializerPlugin("org.bimserver.ifc.step.deserializer.Ifc2x3tc1StepDeserializerPlugin", true);
 			Deserializer ifcDeserializer = ifcDeserializerPlugin.createDeserializer(null);
 			PackageMetaData packageMetaData = pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
