@@ -81,6 +81,9 @@ public class SSerializerPluginDescriptor extends SPluginDescriptor implements SD
 		if (sField.getName().equals("configurations")) {
 			return getConfigurations();
 		}
+		if (sField.getName().equals("identifier")) {
+			return getIdentifier();
+		}
 		if (sField.getName().equals("installForNewUsers")) {
 			return isInstallForNewUsers();
 		}
@@ -125,6 +128,10 @@ public class SSerializerPluginDescriptor extends SPluginDescriptor implements SD
 		}
 		if (sField.getName().equals("configurations")) {
 			setConfigurations((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("identifier")) {
+			setIdentifier((String)val);
 			return;
 		}
 		if (sField.getName().equals("installForNewUsers")) {

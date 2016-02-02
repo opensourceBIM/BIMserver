@@ -19,4 +19,8 @@ package org.bimserver.plugins;
 
 public abstract class PluginVersion {
 
+	public abstract String getVersion();
+	public abstract String getDescription();
+	public abstract String getName();
+	public abstract String getOrganization();
 }

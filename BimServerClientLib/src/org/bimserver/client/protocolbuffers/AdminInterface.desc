@@ -1,5 +1,5 @@
 
-ßQ
+þR
 AdminInterface.protoorg.bimserver.pbServiceInterface.proto"
 ClearOutputFileCacheRequest"C
 ClearOutputFileCacheResponse
@@ -9,133 +9,151 @@
 name (	"#
 EnablePluginRequest
 name (	"
-GetAllPluginsRequest"‰
+GetAllPluginsRequest"
 SDeserializerPluginDescriptor
 configurations (
 defaultName (	
 description (	
-enabled (
-installForNewUsers (
-location (	
-oid (
-pluginClassName (	 
-pluginInterfaceClassName	 (	
-rid
- (
+enabled (
 
-simpleName (	"‰
+identifier (	
+installForNewUsers (
+location (	
+oid (
+pluginClassName	 (	 
+pluginInterfaceClassName
+ (	
+rid (
+
+simpleName (	"
 SModelCheckerPluginDescriptor
 configurations (
 defaultName (	
 description (	
-enabled (
-installForNewUsers (
-location (	
-oid (
-pluginClassName (	 
-pluginInterfaceClassName	 (	
-rid
- (
+enabled (
 
-simpleName (	"‰
+identifier (	
+installForNewUsers (
+location (	
+oid (
+pluginClassName	 (	 
+pluginInterfaceClassName
+ (	
+rid (
+
+simpleName (	"
 SModelComparePluginDescriptor
 configurations (
 defaultName (	
 description (	
-enabled (
-installForNewUsers (
-location (	
-oid (
-pluginClassName (	 
-pluginInterfaceClassName	 (	
-rid
- (
+enabled (
 
-simpleName (	"ˆ
+identifier (	
+installForNewUsers (
+location (	
+oid (
+pluginClassName	 (	 
+pluginInterfaceClassName
+ (	
+rid (
+
+simpleName (	"œ
 SModelMergerPluginDescriptor
 configurations (
 defaultName (	
 description (	
-enabled (
-installForNewUsers (
-location (	
-oid (
-pluginClassName (	 
-pluginInterfaceClassName	 (	
-rid
- (
+enabled (
 
-simpleName (	"ˆ
+identifier (	
+installForNewUsers (
+location (	
+oid (
+pluginClassName	 (	 
+pluginInterfaceClassName
+ (	
+rid (
+
+simpleName (	"œ
 SQueryEnginePluginDescriptor
 configurations (
 defaultName (	
 description (	
-enabled (
-installForNewUsers (
-location (	
-oid (
-pluginClassName (	 
-pluginInterfaceClassName	 (	
-rid
- (
+enabled (
 
-simpleName (	"‰
+identifier (	
+installForNewUsers (
+location (	
+oid (
+pluginClassName	 (	 
+pluginInterfaceClassName
+ (	
+rid (
+
+simpleName (	"
 SRenderEnginePluginDescriptor
 configurations (
 defaultName (	
 description (	
-enabled (
-installForNewUsers (
-location (	
-oid (
-pluginClassName (	 
-pluginInterfaceClassName	 (	
-rid
- (
+enabled (
 
-simpleName (	"‡
+identifier (	
+installForNewUsers (
+location (	
+oid (
+pluginClassName	 (	 
+pluginInterfaceClassName
+ (	
+rid (
+
+simpleName (	"›
 SSerializerPluginDescriptor
 configurations (
 defaultName (	
 description (	
-enabled (
-installForNewUsers (
-location (	
-oid (
-pluginClassName (	 
-pluginInterfaceClassName	 (	
-rid
- (
+enabled (
 
-simpleName (	"„
+identifier (	
+installForNewUsers (
+location (	
+oid (
+pluginClassName	 (	 
+pluginInterfaceClassName
+ (	
+rid (
+
+simpleName (	"˜
 SServicePluginDescriptor
 configurations (
 defaultName (	
 description (	
-enabled (
-installForNewUsers (
-location (	
-oid (
-pluginClassName (	 
-pluginInterfaceClassName	 (	
-rid
- (
+enabled (
 
-simpleName (	"†
+identifier (	
+installForNewUsers (
+location (	
+oid (
+pluginClassName	 (	 
+pluginInterfaceClassName
+ (	
+rid (
+
+simpleName (	"š
 SWebModulePluginDescriptor
 configurations (
 defaultName (	
 description (	
-enabled (
-installForNewUsers (
-location (	
-oid (
-pluginClassName (	 
-pluginInterfaceClassName	 (	
-rid
- (
+enabled (
 
-simpleName (	"¦
+identifier (	
+installForNewUsers (
+location (	
+oid (
+pluginClassName	 (	 
+pluginInterfaceClassName
+ (	
+rid (
+
+simpleName (	"º
 SPluginDescriptor
 __actual_type (	X
 __SDeserializerPluginDescriptor (2/.org.bimserver.pb.SDeserializerPluginDescriptorX
@@ -151,15 +169,17 @@ simpleName (	"¦
 configurations (
 defaultName (	
 description (	
-enabled (
-installForNewUsers (
-location (	
-oid (
-pluginClassName (	 
-pluginInterfaceClassName (	
-rid (
+enabled (
 
-simpleName (	"a
+identifier (	
+installForNewUsers (
+location (	
+oid (
+pluginClassName (	 
+pluginInterfaceClassName (	
+rid (
+
+simpleName (	"a
 GetAllPluginsResponse
 errorMessage (	2
 value (2#.org.bimserver.pb.SPluginDescriptor"
@@ -350,16 +370,12 @@ SMigration
 value (2.org.bimserver.pb.SVersion"
 MigrateDatabaseRequest"*
 RegenerateGeometryRequest
-croid ("Œ
+croid ("d
 SetupRequest
-siteAddress (	
-
-smtpServer (	
-
-smtpSender (	
-	adminName (	
-adminUsername (	
-adminPassword (	"
+siteAddress (	
+	adminName (	
+adminUsername (	
+adminPassword (	"
 UpgradePossibleRequest">
 UpgradePossibleResponse
 errorMessage (	

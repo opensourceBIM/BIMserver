@@ -2465,13 +2465,22 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_DESCRIPTOR__CONFIGURATIONS = 7;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_DESCRIPTOR__IDENTIFIER = 8;
+
+	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = 8;
+	int PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = 9;
 
 	/**
 	 * The number of structural features of the '<em>Plugin Descriptor</em>' class.
@@ -2480,7 +2489,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 9;
+	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.
@@ -2563,6 +2572,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int SERIALIZER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
@@ -2663,6 +2681,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int DESERIALIZER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
@@ -3409,6 +3436,15 @@ public interface StorePackage extends EPackage {
 	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3764,6 +3800,15 @@ public interface StorePackage extends EPackage {
 	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3935,6 +3980,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int WEB_MODULE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEB_MODULE_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
@@ -4110,6 +4164,15 @@ public interface StorePackage extends EPackage {
 	int MODEL_MERGER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_MERGER_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4281,6 +4344,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
@@ -4908,6 +4980,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int SERVICE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
@@ -6734,6 +6815,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
@@ -9658,6 +9748,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPluginDescriptor_Configurations();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.bimserver.models.store.PluginDescriptor#getIdentifier()
+	 * @see #getPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getPluginDescriptor_Identifier();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#isInstallForNewUsers <em>Install For New Users</em>}'.
@@ -15110,6 +15211,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference PLUGIN_DESCRIPTOR__CONFIGURATIONS = eINSTANCE.getPluginDescriptor_Configurations();
+
+		/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_DESCRIPTOR__IDENTIFIER = eINSTANCE.getPluginDescriptor_Identifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Install For New Users</b></em>' attribute feature.

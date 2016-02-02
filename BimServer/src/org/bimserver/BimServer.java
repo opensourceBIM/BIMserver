@@ -79,6 +79,7 @@ import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;
+import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.renderengine.RenderEnginePools;
 import org.bimserver.schemaconverter.Ifc2x3tc1ToIfc4SchemaConverterFactory;
@@ -311,6 +312,7 @@ public class BimServer {
 							Plugin plugin = pluginContext.getPlugin();
 							
 							PluginDescriptor pluginDescriptor = session.create(PluginDescriptor.class);
+							pluginDescriptor.setIdentifier(pluginContext.getIdentifier());
 							pluginDescriptor.setPluginClassName(plugin.getClass().getName());
 							pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
 							pluginDescriptor.setDescription(pluginContext.getDescription());
@@ -338,7 +340,7 @@ public class BimServer {
 					@Override
 					public void pluginUninstalled(PluginContext pluginContext) {
 						// Reflect this change also in the database
-						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(pluginContext.getPlugin().getClass().getName()));
+						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_Identifier(), new StringLiteral(pluginContext.getIdentifier()));
 						DatabaseSession session = bimDatabase.createSession();
 						try {
 							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
@@ -524,12 +526,12 @@ public class BimServer {
 		return newDiskCacheManager;
 	}
 
-	private <T extends PluginConfiguration> T find(List<T> list, String name) {
+	private <T extends PluginConfiguration> T find(List<T> list, String identifier) {
 		for (T t : list) {
 			if (t.getPluginDescriptor() == null) {
 				// throw new RuntimeException("No PluginDescriptor!");
 			} else {
-				if (t.getPluginDescriptor().getPluginClassName().equals(name)) {
+				if (t.getPluginDescriptor().getIdentifier().equals(identifier)) {
 					return t;
 				}
 			}
@@ -555,8 +557,8 @@ public class BimServer {
 		}
 	}
 
-	private PluginDescriptor getPluginDescriptor(DatabaseSession session, String pluginClassName) throws BimserverDatabaseException {
-		return session.querySingle(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), pluginClassName);
+	private PluginDescriptor getPluginDescriptor(DatabaseSession session, String identifier) throws BimserverDatabaseException {
+		return session.querySingle(StorePackage.eINSTANCE.getPluginDescriptor_Identifier(), identifier);
 	}
 
 	public Class<?> getPluginInterface(Class<?> plugin) {
@@ -614,7 +616,7 @@ public class BimServer {
 			EClass pluginConfigurationClass = (EClass) listReference.getEType();
 			
 			List<PluginConfiguration> list = (List<PluginConfiguration>) userSettings.eGet(listReference);
-			PluginConfiguration pluginConfiguration = find(list, pluginContext.getPlugin().getClass().getName());
+			PluginConfiguration pluginConfiguration = find(list, pluginContext.getIdentifier());
 			if (pluginConfiguration == null) {
 				pluginConfiguration = (PluginConfiguration) session.create(pluginConfigurationClass);
 				list.add(pluginConfiguration);
@@ -639,7 +641,15 @@ public class BimServer {
 		}
 		
 		for (Entry<PluginContext, Plugin> pluginEntry : pluginManager.getAllPlugins(true).entrySet()) {
-			updateUserPlugin(session, user, getPluginDescriptor(session, pluginEntry.getValue().getClass().getName()), pluginEntry.getKey());
+			if (pluginEntry.getValue() instanceof WebModulePlugin || pluginEntry.getValue() instanceof ModelCheckerPlugin) {
+				// Non-user related types of plugins
+				continue;
+			}
+			PluginDescriptor pluginDescriptor = getPluginDescriptor(session, pluginEntry.getKey().getIdentifier());
+			if (pluginDescriptor == null)  {
+				throw new BimserverDatabaseException("No plugin descriptor found: " + pluginEntry.getKey().getIdentifier());
+			}
+			updateUserPlugin(session, user, pluginDescriptor, pluginEntry.getKey());
 		}
 		
 		session.store(userSettings);
@@ -691,10 +701,10 @@ public class BimServer {
 		return null;
 	}
 
-	private WebModulePluginConfiguration findWebModule(ServerSettings serverSettings, String name) {
-		for (WebModulePlugin webModulePlugin : pluginManager.getAllWebPlugins(true).values()) {
-			WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), webModulePlugin.getClass().getName());
-			if (webModulePlugin.getDefaultName().equals(name)) {
+	private WebModulePluginConfiguration findWebModule(ServerSettings serverSettings, String identifier) {
+		for (Entry<PluginContext, WebModulePlugin> entry : pluginManager.getAllWebPlugins(true).entrySet()) {
+			WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), identifier);
+			if (entry.getKey().getIdentifier().equals(identifier)) {
 				return webPluginConfiguration;
 			}
 		}
@@ -722,33 +732,37 @@ public class BimServer {
 
 			ServerSettings serverSettings = serverSettingsCache.getServerSettings();
 
-			for (Entry<PluginContext, WebModulePlugin> webModulePlugin : pluginManager.getAllWebPlugins(true).entrySet()) {
-				WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), webModulePlugin.getValue().getClass().getName());
+			for (Entry<PluginContext, WebModulePlugin> entry : pluginManager.getAllWebPlugins(true).entrySet()) {
+				WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), entry.getKey().getIdentifier());
 				if (webPluginConfiguration == null) {
 					webPluginConfiguration = session.create(WebModulePluginConfiguration.class);
 					serverSettings.getWebModules().add(webPluginConfiguration);
-					genericPluginConversion(webModulePlugin.getKey(), session, webPluginConfiguration, getPluginDescriptor(session, webModulePlugin.getValue().getClass().getName()));
+					PluginDescriptor pluginDescriptor = getPluginDescriptor(session, entry.getKey().getIdentifier());
+					if (pluginDescriptor == null) {
+						throw new BimserverDatabaseException("No plugin descriptor found: " + entry.getKey().getIdentifier());
+					}
+					genericPluginConversion(entry.getKey(), session, webPluginConfiguration, pluginDescriptor);
 				} else {
 					if (webPluginConfiguration == serverSettings.getWebModule()) {
-						setDefaultWebModule(webModulePlugin.getValue());
+						setDefaultWebModule(entry.getValue());
 					}
 				}
 			}
 
 			// Set the default
-			if (serverSettings.getWebModule() == null) {
-				WebModulePluginConfiguration bimviewsWebModule = findWebModule(serverSettings, "BIM Views");
-				if (bimviewsWebModule != null) {
-					serverSettings.setWebModule(bimviewsWebModule);
-					setDefaultWebModule(pluginManager.getWebModulePlugin(bimviewsWebModule.getPluginDescriptor().getPluginClassName(), true));
-				} else {
-					WebModulePluginConfiguration defaultWebModule = findWebModule(serverSettings, "org.bimserver.defaultwebmodule.DefaultWebModulePlugin");
-					if (defaultWebModule != null) {
-						serverSettings.setWebModule(defaultWebModule);
-						setDefaultWebModule(pluginManager.getWebModulePlugin(defaultWebModule.getPluginDescriptor().getPluginClassName(), true));
-					}
-				}
-			}
+//			if (serverSettings.getWebModule() == null) {
+//				WebModulePluginConfiguration bimviewsWebModule = findWebModule(serverSettings, "BIM Views");
+//				if (bimviewsWebModule != null) {
+//					serverSettings.setWebModule(bimviewsWebModule);
+//					setDefaultWebModule(pluginManager.getWebModulePlugin(bimviewsWebModule.getPluginDescriptor().getPluginClassName(), true));
+//				} else {
+//					WebModulePluginConfiguration defaultWebModule = findWebModule(serverSettings, "org.bimserver.defaultwebmodule.DefaultWebModulePlugin");
+//					if (defaultWebModule != null) {
+//						serverSettings.setWebModule(defaultWebModule);
+//						setDefaultWebModule(pluginManager.getWebModulePlugin(defaultWebModule.getPluginDescriptor().getPluginClassName(), true));
+//					}
+//				}
+//			}
 			session.store(serverSettings);
 
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral("system"));
@@ -780,7 +794,8 @@ public class BimServer {
 							contextPath = ((StringType) parameter.getValue()).getValue();
 						}
 					}
-					webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(webModulePluginConfiguration.getPluginDescriptor().getPluginClassName(), true));
+					String identifier = webModulePluginConfiguration.getPluginDescriptor().getIdentifier();
+					webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(identifier, true));
 				}
 				// if (serverSettingsCache.getServerSettings().getWebModule() !=
 				// null) {
@@ -819,10 +834,12 @@ public class BimServer {
 		Map<PluginContext, Plugin> allPlugins = pluginManager.getAllPlugins(false);
 		for (PluginContext pluginContext : allPlugins.keySet()) {
 			Plugin plugin = pluginContext.getPlugin();
-			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(plugin.getClass().getName()));
+			System.out.println(pluginContext.getIdentifier());
+			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_Identifier(), new StringLiteral(pluginContext.getIdentifier()));
 			Map<Long, PluginDescriptor> results = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
 			if (results.size() == 0) {
 				PluginDescriptor pluginDescriptor = session.create(PluginDescriptor.class);
+				pluginDescriptor.setIdentifier(pluginContext.getIdentifier());
 				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
 				pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
 				pluginDescriptor.setDescription(pluginContext.getDescription() + " " + pluginContext.getVersion());
@@ -831,6 +848,7 @@ public class BimServer {
 				pluginDescriptor.setEnabled(true);
 			} else if (results.size() == 1) {
 				PluginDescriptor pluginDescriptor = results.values().iterator().next();
+				pluginDescriptor.setIdentifier(pluginContext.getIdentifier());
 				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
 				pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
 				pluginDescriptor.setDescription(pluginContext.getDescription() + " " + pluginContext.getVersion());

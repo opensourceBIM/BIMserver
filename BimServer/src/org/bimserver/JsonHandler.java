@@ -117,6 +117,8 @@ public class JsonHandler {
 					throw new UserException("Missing parameter: " + method.getName() + " -> " + parameter.getName());
 				}
 			}
+		} else if (parameters.length > 0) {
+			throw new UserException("Missing 'parameters' field, expected " + parameters.length + " parameters");
 		}
 
 		PublicInterface service = getServiceInterface(httpRequest, bimServer, sService.getInterfaceClass(), methodName, jsonToken);

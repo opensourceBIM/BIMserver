@@ -6,6 +6,8 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc4.Ifc4Package;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
@@ -28,7 +30,8 @@ public class NewClassBulkChange implements Change {
 			String tableName = eClass.getEPackage().getName() + "_" + eClass.getName();
 			if (eClass.getEAnnotation("nodatabase") == null) {
 				try {
-					boolean created = database.createTable(eClass, databaseSession);
+					boolean transactional = !(eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE);
+					boolean created = database.createTable(eClass, databaseSession, transactional);
 					if (!created) {
 						throw new BimserverDatabaseException("Could not create table " + tableName);
 					}

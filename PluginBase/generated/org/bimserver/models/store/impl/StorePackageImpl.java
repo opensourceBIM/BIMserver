@@ -2948,8 +2948,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginDescriptor_InstallForNewUsers() {
+	public EAttribute getPluginDescriptor_Identifier() {
 		return (EAttribute) getPluginDescriptor().getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginDescriptor_InstallForNewUsers() {
+		return (EAttribute) getPluginDescriptor().getEStructuralFeatures().get(9);
 	}
 
 	/**

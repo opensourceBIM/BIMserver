@@ -19,8 +19,8 @@ package org.bimserver.plugins;
 
 import java.util.List;
 
-public abstract class PluginLocation {
-	public abstract List<PluginVersion> getAllVersions();
+public abstract class PluginLocation<T extends PluginVersion> {
+	public abstract List<T> getAllVersions();
 	
 	public abstract PluginBundleIdentifier getPluginIdentifier();
 }

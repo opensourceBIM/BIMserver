@@ -45,8 +45,9 @@ public class PluginContext {
 	private String description;
 	private boolean initialized;
 	private Class<?> pluginInterface;
+	private String identifier;
 
-	public PluginContext(PluginManagerInterface pluginManager, PluginBundle pluginBundle, Class<?> pluginInterface, ClassLoader classLoader, PluginSourceType pluginType, String description, URI location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation, List<Dependency> dependencies) throws IOException {
+	public PluginContext(PluginManagerInterface pluginManager, PluginBundle pluginBundle, Class<?> pluginInterface, ClassLoader classLoader, PluginSourceType pluginType, String description, URI location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation, List<Dependency> dependencies, String identifier2) throws IOException {
 		this.pluginManager = pluginManager;
 		this.pluginBundle = pluginBundle;
 		this.pluginInterface = pluginInterface;
@@ -58,6 +59,8 @@ public class PluginContext {
 		this.pluginImplementation = pluginImplementation;
 		this.classLocation = classLocation;
 		this.dependencies = dependencies;
+		identifier = identifier2;
+
 		switch (pluginType) {
 		case ECLIPSE_PROJECT:
 			fileSystem = FileSystems.getDefault();
@@ -151,5 +154,9 @@ public class PluginContext {
 			plugin.init(pluginManager);
 			setInitialized(true);
 		}
+	}
+
+	public String getIdentifier() {
+		return identifier;
 	}
 }

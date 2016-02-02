@@ -385,11 +385,11 @@ public class AsyncAdminInterface {
 		});
 	}
 	
-	public void setup(final java.lang.String siteAddress, final java.lang.String smtpServer, final java.lang.String smtpSender, final java.lang.String adminName, final java.lang.String adminUsername, final java.lang.String adminPassword, final SetupCallback callback) {
+	public void setup(final java.lang.String siteAddress, final java.lang.String adminName, final java.lang.String adminUsername, final java.lang.String adminPassword, final SetupCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.setup(siteAddress, smtpServer, smtpSender, adminName, adminUsername, adminPassword);
+					syncService.setup(siteAddress, adminName, adminUsername, adminPassword);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

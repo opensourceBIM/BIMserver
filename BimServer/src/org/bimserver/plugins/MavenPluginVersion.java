@@ -57,8 +57,8 @@ public class MavenPluginVersion extends PluginVersion {
 		return artifact;
 	}
 	
-	public Version getVersion() {
-		return version;
+	public String getVersion() {
+		return version.toString();
 	}
 
 	public void addDependency(MavenDependency mavenDependency) {
@@ -75,5 +75,20 @@ public class MavenPluginVersion extends PluginVersion {
 	
 	public Model getModel() {
 		return model;
+	}
+
+	@Override
+	public String getDescription() {
+		return getModel().getDescription();
+	}
+
+	@Override
+	public String getName() {
+		return getModel().getName();
+	}
+
+	@Override
+	public String getOrganization() {
+		return getModel().getOrganization().getName();
 	}
 }

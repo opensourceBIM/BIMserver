@@ -18,7 +18,9 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bimserver.BimServer;
@@ -28,8 +30,10 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.plugins.MavenPluginLocation;
+import org.bimserver.plugins.GitHubPluginRepository;
 import org.bimserver.plugins.PluginBundle;
+import org.bimserver.plugins.PluginBundleIdentifier;
+import org.bimserver.plugins.PluginLocation;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
@@ -53,22 +57,34 @@ public class GetInstalledPluginBundles extends BimDatabaseAction<List<SPluginBun
 
 		bimserverVersion = new DefaultArtifactVersion(bimServer.getVersionChecker().getLocalVersion().getFullString());
 
+		GitHubPluginRepository repository = new GitHubPluginRepository(bimServer.getMavenPluginRepository(), bimServer.getServerSettingsCache().getServerSettings().getServiceRepositoryUrl());
+
+		Map<PluginBundleIdentifier, PluginLocation<?>> repositoryKnownLocation = new HashMap<>();
+		for (PluginLocation<?> pluginLocation : repository.listPluginLocations()) {
+			repositoryKnownLocation.put(pluginLocation.getPluginIdentifier(), pluginLocation);
+		}
+		
 		for (PluginBundle pluginBundle : bimServer.getPluginManager().getPluginBundles()) {
 			SPluginBundleVersion installedVersion = pluginBundle.getPluginBundleVersion();
-			MavenPluginLocation mavenPluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(installedVersion.getRepository(), installedVersion.getGroupId(), installedVersion.getArtifactId());
-			
-			SPluginBundle sPluginBundle = GetAvailablePluginBundles.processMavenPluginLocation(mavenPluginLocation, strictVersionChecking, bimserverVersion);
-			if (sPluginBundle == null) {
-				// No versions found on maven
-				sPluginBundle = pluginBundle.getPluginBundle();
+
+			PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(installedVersion.getGroupId(), installedVersion.getArtifactId());
+			if (repositoryKnownLocation.containsKey(pluginBundleIdentifier)) {
+				PluginLocation<?> pluginLocation = repositoryKnownLocation.get(pluginBundleIdentifier);
+				
+				SPluginBundle sPluginBundle = GetAvailablePluginBundles.processPluginLocation(pluginLocation, strictVersionChecking, bimserverVersion);
+
+				if (sPluginBundle == null) {
+					// No versions found on repository
+					sPluginBundle = pluginBundle.getPluginBundle();
+				}
+				
+				if (!sPluginBundle.getAvailableVersions().contains(pluginBundle.getPluginBundleVersion())) {
+					sPluginBundle.getAvailableVersions().add(pluginBundle.getPluginBundleVersion());
+				}
+				sPluginBundle.setInstalledVersion(installedVersion);
+				
+				result.add(sPluginBundle);
 			}
-			
-			if (!sPluginBundle.getAvailableVersions().contains(pluginBundle.getPluginBundleVersion())) {
-				sPluginBundle.getAvailableVersions().add(pluginBundle.getPluginBundleVersion());
-			}
-			sPluginBundle.setInstalledVersion(installedVersion);
-			
-			result.add(sPluginBundle);
 		}
 
 		return result;

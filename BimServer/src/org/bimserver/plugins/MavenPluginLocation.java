@@ -63,7 +63,7 @@ import org.eclipse.aether.resolution.VersionRangeResolutionException;
 import org.eclipse.aether.resolution.VersionRangeResult;
 import org.eclipse.aether.version.Version;
 
-public class MavenPluginLocation extends PluginLocation {
+public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 	private String defaultrepository;
 	private String groupId;
@@ -101,8 +101,8 @@ public class MavenPluginLocation extends PluginLocation {
 	}
 	
 	@Override
-	public List<PluginVersion> getAllVersions() {
-		List<PluginVersion> pluginVersions = new ArrayList<>();
+	public List<MavenPluginVersion> getAllVersions() {
+		List<MavenPluginVersion> pluginVersions = new ArrayList<>();
 
 		Artifact artifact = new DefaultArtifact(groupId + ":" + artifactId + ":[0,)");
 
@@ -254,4 +254,5 @@ public class MavenPluginLocation extends PluginLocation {
 	public String getRepository() {
 		return repository;
 	}
+	
 }

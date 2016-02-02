@@ -177,6 +177,7 @@ public class NotificationsManager extends NotificationsClient {
 	}
 
 	public void handleIncoming(JsonObject request) throws UserException, ConvertException, IOException {
+		// TODO copied code from JsonHandler
 		String interfaceName = request.get("interface").getAsString();
 		String methodName = request.get("method").getAsString();
 		SService sService = servicesMap.getByName(interfaceName);
@@ -207,6 +208,8 @@ public class NotificationsManager extends NotificationsClient {
 					LOGGER.error("Missing parameters: " + method.getName() + " -> " + parameter.getName());
 				}
 			}
+		} else {
+			throw new UserException("Missing 'parameters' field");
 		}
 		
 		try {
