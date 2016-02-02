@@ -20,5 +20,9 @@
 			<directory>${project.build.outputDirectory}</directory>
 			<outputDirectory>/</outputDirectory>
 		</fileSet>
+		<fileSet>
+			<directory>../BimServer/emailtemplates</directory>
+			<outputDirectory>/emailtemplates</outputDirectory>
+		</fileSet>
 	</fileSets>
 </assembly>
