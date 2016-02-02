@@ -85,6 +85,11 @@
 			</exclusions>
 		</dependency>
 		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+		<dependency>
 			<groupId>org.eclipse.aether</groupId>
 			<artifactId>aether-spi</artifactId>
 			<version>1.0.2.v20150114</version>
