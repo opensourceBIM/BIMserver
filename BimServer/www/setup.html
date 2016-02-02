@@ -1,0 +1,387 @@
+<div class="setup container">
+	<div class="span6 fullwidth">
+	   	<img src="img/logo.gif"/>
+		<ul class="nav nav-pills">
+			<li role="presentation" class="active"><a class="welcomeBtn">Welcome</a></li>
+			<li role="presentation"><a class="adminBtn">Admin Account</a></li>
+			<li role="presentation"><a class="emailBtn">Email</a></li>
+			<li role="presentation"><a class="pluginsBtn">Plugins</a></li>
+			<li role="presentation"><a class="finishBtn">Finish</a></li>
+		</ul>
+		
+		<div class="setupContent">
+			<div class="contentdiv welcome">
+				<div class="well well-sm">
+					Welcome,<br/>
+					This wizard will help you setup your BIMserver.<br/>
+					Please fill in the address your BIMserver will be availble from. It will be prefilled, but this is not necessarily the right address. If you are using a domain name, make sure use it here.
+				</div>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="inputSiteAddress">Site address</label>
+						<input type="text" class="siteAddressInput form-control" id="inputSiteAddress"/>
+					</div>
+				</form>
+				<button class="btn btn-default adminBtn">Next</button>
+			</div>
+	
+			<div class="contentdiv admin">
+				<div class="well well-sm">
+					You have to setup one administrator account (you can add more later). If you want to be able to reset your password, make sure to provide a working email address (and setup a mail server in the next step).
+				</div>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="inputAdminName">Administrator name</label> <input type="text" class="adminNameInput form-control" id="inputAdminName" value="Administrator">
+					</div>
+					<div class="form-group">
+						<label for="inputAdminUsername">Administrator username</label>
+						<div class="input-group">
+							<span class="input-group-addon">@</span> <input type="text" class="adminUsernameInput form-control" id="inputAdminUsername" placeholder="Username (e-mail address)">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAdminPassword">Administrator password</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> <input type="password" class="adminPasswordInput form-control" id="inputAdminPassword">
+						</div>
+					</div>
+				</form>
+				<button class="btn btn-default emailBtn">Next</button>
+			</div>
+	
+			<div class="contentdiv email">
+				<div class="well well-sm">
+					Setting up email is optional. Emails can be send for:
+					<ul>
+						<li>New user registration</li>
+						<li>Password reset</li>
+						<li>New revision notifications</li>
+						<li>Compare results</li>
+					</ul>
+					You can use an existing company email server, setup your own mailserver (only recommended for experienced sysadmins), or use an online email provider like mailgun.
+				</div>
+				<form class="form-horizontal">
+					<div class="checkbox">
+						<label> <input class="emailCheckBox" type="checkbox"> Use an email server
+						</label>
+					</div>
+					<div class="emailDiv">
+						<div class="form-group">
+							<label class="control-label" for="smtpServer"><a rel="tooltip" data-original-title="SMTP server to use for sending emails" data-placement="right">SMTP
+									server</a></label> <input type="text" class="form-control smtpServer" id="smtpServer" placeholder="Address">
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="smtpUsername"><a rel="tooltip" data-original-title="SMTP username" data-placement="right">SMTP username</a></label> <input
+								type="text" class="form-control smtpUsername" id="smtpUsername" placeholder="SMTP username">
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="smtpPassword"><a rel="tooltip" data-original-title="SMTP password" data-placement="right">SMTP password</a></label> <input
+								type="password" class="form-control smtpPassword" id="smtpPassword" placeholder="SMTP password">
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="smtpPort"><a rel="tooltip" data-original-title="SMTP port" data-placement="right">SMTP port</a></label> <input type="text"
+								class="form-control smtpPort" id="smtpPort" placeholder="SMTP port" value="25">
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="smtpProtocol"><a rel="tooltip" data-original-title="SMTP protocol" data-placement="right">SMTP protocol</a></label> <select
+								class="form-control smtpProtocol" id="smtpProtocol">
+								<option value="SMTP">SMTP</option>
+								<option value="SMTPS">SMTPS</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="emailSenderAddress"><a rel="tooltip" data-original-title="Email address to send emails from" data-placement="right">E-mail
+									sender address</a></label> <input type="text" class="form-control emailSenderAddress" id="emailSenderAddress" placeholder="Name">
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="emailSenderName"><a rel="tooltip" data-original-title="Name to use for sending emails" data-placement="right">E-mail
+									sender name</a></label> <input type="text" class="form-control emailSenderName" id="emailSenderName" placeholder="Name">
+						</div>
+					</div>
+				</form>
+				<button class="btn btn-default pluginsBtn">Next</button>
+			</div>
+	
+			<div class="contentdiv plugins">
+				<div class="well well-sm">
+					A BIMserver without plugins will be pretty useless, so we have selected a few plugins that you might want to install. You can install more plugins after the setup.
+				</div>
+				<div class="media">
+					<div class="media-left media-middle">
+						<input type="checkbox"/>
+					</div>
+					<div class="media-left">
+						<div class="well" style="width: 260px; ; height: 153px; padding: 0px"><img class="media-object" height="150" src="img/bimviews.png"></div>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">BIMvie.ws</h4>
+						A web application that has the following features:
+						<ul>
+						<li>BIMserver administration (add users, install plugins, manage server settings, create projects etc...)</li>
+						<li>Project-tree viewer</li>
+						<li>3D viewer (BIMsurfer)</li>
+						<li>Object browser</li>
+						<li>Query tools</li>
+						<li>Upload/download models</li>
+						</ul>
+						
+						<span class="label label-warning">Not installing</span> Access to BIMserver functionality will be limited to the technical interfaces JSON, SOAP and Protocol Buffers and no GUI will be available if this plugin is not installed.
+					</div>
+				</div>
+				<div class="media">
+					<div class="media-left media-middle">
+						<input type="checkbox"/>
+					</div>
+					<div class="media-left">
+						<div class="well" style="width: 260px; height: 153px; padding: 10px"><img class="media-object" height="130" style="margin-left: auto; margin-right: auto" src="img/ifcopenshell_logo.png"></div>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">IfcOpenShell</h4>
+						The open source ifc toolkit and geometry engine.<br/>
+						
+						<span class="label label-warning">Not installing</span> Without this plugin BIMserver will not be able to convert IFC geometry to triangles, and thus no viewers will be able to visualize the model in 3D
+					</div>
+				</div>
+				<button class="btn btn-default finishBtn">Next</button>
+			</div>
+			
+			<div class="contentdiv finish">
+				<div class="well well-sm">
+					<div class="txt">Lalala</div>
+				</div>
+				<pre class="log ih"></pre>
+				<button type="button" class="setupButton btn btn-primary">Setup</button><br/>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+function Setup(cd, address) {
+	var o = this;
+	if (address.endsWith(":80")) {
+		address = address.substring(0, address.length - 3);
+	}
+	$(".setup .siteAddressInput").val(address);
+	
+	$(".emailCheckBox").change(function(){
+		$(".emailDiv").toggle($(this).is(":checked"));
+	});
+	
+	o.stage = 0;
+	
+	this.showWelcome = function(){
+		cd.find(".nav-pills .active").removeClass("active");
+		cd.find(".welcomeBtn").parent().addClass("active");
+		cd.find(".contentdiv").hide();
+		cd.find(".welcome").show();
+	};
+
+	this.showAdmin = function(){
+		cd.find(".nav-pills .active").removeClass("active");
+		cd.find(".adminBtn").parent().addClass("active");
+		cd.find(".contentdiv").hide();
+		cd.find(".admin").show();
+	};
+
+	this.showEmail = function(){
+		cd.find(".nav-pills .active").removeClass("active");
+		cd.find(".emailBtn").parent().addClass("active");
+		cd.find(".contentdiv").hide();
+		cd.find(".email").show();
+	};
+	
+	this.showPlugins = function(){
+		cd.find(".nav-pills .active").removeClass("active");
+		cd.find(".pluginsBtn").parent().addClass("active");
+		cd.find(".contentdiv").hide();
+		cd.find(".plugins").show();
+	};
+
+	this.showFinish = function(){
+		cd.find(".nav-pills .active").removeClass("active");
+		cd.find(".finishBtn").parent().addClass("active");
+		cd.find(".contentdiv").hide();
+		cd.find(".finish").show();
+	};
+	
+	cd.find(".welcomeBtn").click(o.showWelcome);
+	cd.find(".adminBtn").click(o.showAdmin);
+	cd.find(".emailBtn").click(o.showEmail);
+	cd.find(".pluginsBtn").click(o.showPlugins);
+	cd.find(".finishBtn").click(o.showFinish);
+	cd.find(".welcome").show();
+	
+	this.logError = function(message){
+		cd.find(".finish pre").append("<span class=\"error\">" + message + "</span>\n");
+	};
+	
+	this.logInfo = function(message){
+		cd.find(".finish pre").append("<span class=\"info\">" + message + "</span>\n");
+	};
+
+	this.logSuccess = function(message){
+		cd.find(".finish pre").append("<span class=\"success\">" + message + "</span>\n");
+	};
+	
+	this.abort = function(){
+		cd.find(".finish .well").show();
+		cd.find(".setupButton").show();
+		o.logError("Setup aborted");
+	};
+	
+	this.stage1 = function(next){
+		cd.find(".finish .well").hide();
+		cd.find(".finish pre").show();
+		cd.find(".setupButton").hide();
+		
+		cd.find(".finish pre").html("Setting up...\n");
+		
+		o.logInfo("Setting up admin account...");
+		
+		Global.api.call("AdminInterface", "setup", {
+			siteAddress: $(".setup .siteAddressInput").val(),
+			adminName: $(".setup .adminNameInput").val(),
+			adminUsername: $(".setup .adminUsernameInput").val(),
+			adminPassword: $(".setup .adminPasswordInput").val()
+		}, function(){
+			o.logSuccess("Admin account successfully setup");
+			o.stage = 1;
+			next();
+		}, function(message){
+			o.logError(message);
+			o.abort();
+		});
+	};
+	
+	this.stage2 = function(){
+		o.logInfo("Setting up email...");
+		Global.api.call("Bimsie1AuthInterface", "login", {username: $(".setup .adminUsernameInput").val(), password: $(".setup .adminPasswordInput").val()}, function(data){
+			Global.api.call("SettingsInterface", "getServerSettings", {}, function(serverSettings){
+				serverSettings.smtpServer = $(".setup .smtpServer").val();
+				serverSettings.smtpProtocol = $(".setup .smtpProtocol").val();
+				serverSettings.smtpPort = $(".setup .smtpPort").val();
+				serverSettings.smtpUsername = $(".setup .smtpUsername").val();
+				serverSettings.smtpPassword = $(".setup .smtpPassword").val();
+				serverSettings.emailSenderAddress = $(".setup .emailSenderAddress").val();
+				serverSettings.emailSenderName = $(".setup .emailSenderName").val();
+				Global.bimServerApi.callWithFullIndication("SettingsInterface", "setServerSettings", {serverSettings: serverSettings}, function(data){
+					o.logSuccess("Email successfully setup");
+					o.stage3();
+				});			
+			});
+		}, function(message){
+			o.logError(message);
+			o.abort();
+		});
+	};
+	
+	this.nostage2 = function(){
+		o.logInfo("Skipping email setup...");
+		Global.api.call("Bimsie1AuthInterface", "login", {username: $(".setup .adminUsernameInput").val(), password: $(".setup .adminPasswordInput").val()}, function(data){
+			o.stage3();
+		}, function(message){
+			o.logError(message);
+			o.abort();
+		});
+	};
+	
+	this.installPluginBundle = function(requiredPlugins, indexInPluginBundles, pluginBundles, callback) {
+		if (index >= pluginBundles.length) {
+			return;
+		}
+		var pluginBundle = pluginBundles[indexInPluginBundles];
+		var latestVersion = pluginBundle.latestVersion;
+		var index = requiredPlugins.indexOf(latestVersion.artifactId);
+		if (index != -1) {
+			o.logInfo("Installing " + pluginBundle.name + "...");
+			Global.api.call("PluginInterface", "getPluginInformation", {
+				repository: latestVersion.repository,
+				groupId: latestVersion.groupId,
+				artifactId: latestVersion.artifactId,
+				version: latestVersion.version
+			}, function(plugins){
+				plugins.forEach(function(plugin){
+					plugin.enabled = true;
+					plugin.installForAllUsers = true;
+					plugin.installForNewUsers = true;
+				});
+				Global.api.call("PluginInterface", "installPluginBundle", {
+					repository: latestVersion.repository,
+					groupId: latestVersion.groupId,
+					artifactId: latestVersion.artifactId,
+					version: latestVersion.version,
+					plugins: plugins
+				}, function(){
+					requiredPlugins.splice(index, 1);
+					o.logSuccess("Successfully installed " + pluginBundle.name);
+					if (requiredPlugins.length == 0) {
+						callback();
+						return;
+					}
+					o.installPluginBundle(requiredPlugins, indexInPluginBundles + 1, pluginBundles, callback);
+				});
+			});
+		} else {
+			o.installPluginBundle(requiredPlugins, indexInPluginBundles + 1, pluginBundles, callback);
+		}
+	}
+	
+	function installRequiredPlugins(requiredPlugins, callback) {
+		Global.api.call("SettingsInterface", "setPluginStrictVersionChecking", {strict: false}, function(){
+			Global.api.call("PluginInterface", "getInstalledPluginBundles", {}, function(bundles){
+				bundles.forEach(function(bundle){
+					var installedVersion = bundle.installedVersion;
+					var index = requiredPlugins.indexOf(installedVersion.artifactId);
+					if (index != -1) {
+						o.logInfo("Already installed " + installedVersion.artifactId);
+						requiredPlugins.splice(index, 1);
+					}
+				});
+				if (requiredPlugins.length > 0) {
+					Global.api.call("PluginInterface", "getAvailablePluginBundles", {}, function(pluginBundles){
+						o.installPluginBundle(requiredPlugins, 0, pluginBundles, callback);
+					});
+				} else {
+					callback();
+				}
+			});
+        });
+	}
+	
+	this.stage3 = function(){
+		o.logInfo("Installing plugins...");
+		
+		installRequiredPlugins(["bimviews", "ifcopenshellplugin", "binaryserializers", "ifcplugins"], function(){
+			o.logSuccess("All plugins successfully installed");
+			var link = $("<a>Open BIMvie.ws</a>");
+			link.click(function(){
+				document.location = "/bimviews";
+			});
+			cd.find(".finish pre").append("<br/>");
+			cd.find(".finish pre").append(link);
+		});
+	};
+	
+	this.finalStage = function(){
+		Global.api.resolveUser(function(user){
+			var address = $(".setup .siteAddressInput").val();
+		});
+	};
+	
+	this.setup = function(event){
+		event.preventDefault(); // Required because the button is a "submit" button -> page refresh
+		if (o.stage == 0) {
+			o.stage1($(".setup .emailDiv").is(":visible") ? o.stage2 : o.nostage2);
+		} else {
+			o.stage2();
+		}
+	};
+	
+	cd.find(".welcome input").enterpress(o.showAdmin);
+	cd.find(".admin input").enterpress(o.showEmail);
+	cd.find(".email input").enterpress(o.showPlugins);
+	
+	$("[rel=tooltip]").tooltip();
+	$(".setup .setupButton").click(o.setup);
+}
+</script>

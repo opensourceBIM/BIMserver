@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<base href="/" />
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/main.css" type="text/css" media="screen"/>
+<script type='text/javascript' src='js/String.js'></script>
+<script type='text/javascript' src='js/jquery-2.2.0.min.js'></script>
+<script type='text/javascript' src='js/jquery.enterpress.js'></script>
+<script type='text/javascript' src='js/bootstrap.min.js'></script>
+<script type='text/javascript' src='js/main.js'></script>
+<script type='text/javascript' src='js/basicapi.js'></script>
+<title>BIMserver</title>
+</head>
+<body style="margin: 0; padding: 0">
+	<div class="indexStatus statusWrapper">
+		<div class="alert status">
+			<div class="message"></div>
+		</div>
+	</div>
+	<div class="my-fluid-container" style="padding: 15px; padding-bottom: 0px; margin-left: auto; margin-right: auto;">
+		<div class="row" style="margin-left: -15px; margin-right: -15px;">
+			<div class="indexcontainer col-md-12" style="padding-left: 20px; padding-right: 20px;">
+				<div
+					style="text-align: center; color: #31708f; background-color: #d9edf7; border-color: #bce8f1; padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.42857143;">
+					Loading...</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var Global = {};
+		
+		$.getJSON("x.getbimserveraddress", function(data){
+			Global.api = new BasicApi(data.address)
+
+			Global.api.call("AdminInterface", "getServerInfo", {}, function(serverInfo){
+				var state = serverInfo.serverState;
+				if (state == "NOT_SETUP") {
+					$(".indexcontainer").load("setup.html", function(){
+						new Setup($(this), window.location.origin);
+					});
+				} else {
+					$(".indexcontainer").load("status.html", function(){
+						new Status($(this));
+					});
+				}
+			});
+		}).fail(function(){
+		});
+
+	</script>
+</body>
+</html>
