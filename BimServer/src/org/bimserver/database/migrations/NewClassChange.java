@@ -21,6 +21,8 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc4.Ifc4Package;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +42,8 @@ public class NewClassChange implements Change {
 		if (eClass.getEAnnotation("nodatabase") == null) {
 			LOGGER.info("Creating table: " + tableName);
 			try {
-				boolean created = database.createTable(getEClass(), databaseSession);
+				boolean transactional = !(getEClass().getEPackage() == Ifc2x3tc1Package.eINSTANCE || getEClass().getEPackage() == Ifc4Package.eINSTANCE);
+				boolean created = database.createTable(getEClass(), databaseSession, transactional);
 				if (!created) {
 					throw new BimserverDatabaseException("Could not create table " + tableName);
 				}

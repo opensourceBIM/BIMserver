@@ -231,9 +231,8 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	}
 
 	@Override
-	public void setup(String siteAddress, String smtpServer, String smtpSender, String adminName, String adminUsername, String adminPassword) throws ServerException, UserException {
+	public void setup(String siteAddress, String adminName, String adminUsername, String adminPassword) throws ServerException, UserException {
 		SettingsInterface settingsInterface = getServiceMap().get(SettingsInterface.class);
-		settingsInterface.setSmtpServer(smtpServer);
 		if (!siteAddress.startsWith("http://") && !siteAddress.startsWith("https://")) {
 			throw new UserException("Site address should start with \"http://\" or \"https://\"");
 		}
@@ -241,7 +240,6 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 			throw new UserException("Site address should not have duplicate protocols");
 		}
 		settingsInterface.setSiteAddress(siteAddress);
-		settingsInterface.setEmailSenderAddress(smtpSender);
 
 		if (adminUsername.trim().isEmpty()) {
 			throw new UserException("Admin Username cannot be empty");

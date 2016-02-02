@@ -33,6 +33,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.ServerIfcModel;
 import org.bimserver.database.actions.BimDatabaseAction;
@@ -2036,6 +2037,8 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				long oid = buffer.getLong();
 				return (T) get(oid, OldQuery.getDefault());
 			}
+		} else {
+			throw new UnsupportedOperationException();
 		}
 		return null;
 	}

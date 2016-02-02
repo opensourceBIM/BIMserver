@@ -97,7 +97,7 @@ public class AdminInterfaceAdaptor implements org.bimserver.shared.interfaces.Ad
 	public void regenerateGeometry(java.lang.Long croid) throws UserException, ServerException {
 	}
 	
-	public void setup(java.lang.String siteAddress, java.lang.String smtpServer, java.lang.String smtpSender, java.lang.String adminName, java.lang.String adminUsername, java.lang.String adminPassword) throws UserException, ServerException {
+	public void setup(java.lang.String siteAddress, java.lang.String adminName, java.lang.String adminUsername, java.lang.String adminPassword) throws UserException, ServerException {
 	}
 	
 	public java.lang.Boolean upgradePossible() throws UserException, ServerException {

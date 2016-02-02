@@ -75,8 +75,8 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	private static final boolean MONITOR_CURSOR_STACK_TRACES = false;
 	private final AtomicLong cursorCounter = new AtomicLong();
 	private final Map<Long, StackTraceElement[]> openCursors = new ConcurrentHashMap<>();
-	private boolean useTransactions = true;
-	private boolean defer = false;
+	private boolean useTransactions = false;
+	private boolean defer = true;
 
 	public BerkeleyKeyValueStore(Path dataDir) throws DatabaseInitException {
 		if (Files.isDirectory(dataDir)) {
@@ -142,14 +142,14 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		return null;
 	}
 
-	public boolean createTable(String tableName, DatabaseSession databaseSession) throws BimserverDatabaseException {
+	public boolean createTable(String tableName, DatabaseSession databaseSession, boolean transactional) throws BimserverDatabaseException {
 		if (tables.containsKey(tableName)) {
 			throw new BimserverDatabaseException("Table " + tableName + " already created");
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(true);
-		databaseConfig.setDeferredWrite(defer);
-		databaseConfig.setTransactional(useTransactions);
+		databaseConfig.setDeferredWrite(!(transactional && useTransactions));
+		databaseConfig.setTransactional(transactional && useTransactions);
 		databaseConfig.setSortedDuplicates(false);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
 		if (database == null) {
@@ -160,14 +160,14 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		return true;
 	}
 
-	public boolean createIndexTable(String tableName, DatabaseSession databaseSession) throws BimserverDatabaseException {
+	public boolean createIndexTable(String tableName, DatabaseSession databaseSession, boolean transactional) throws BimserverDatabaseException {
 		if (tables.containsKey(tableName)) {
 			throw new BimserverDatabaseException("Table " + tableName + " already created");
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(true);
-		databaseConfig.setDeferredWrite(defer);
-		databaseConfig.setTransactional(useTransactions);
+		databaseConfig.setDeferredWrite(!(transactional && useTransactions));
+		databaseConfig.setTransactional(transactional && useTransactions);
 		databaseConfig.setSortedDuplicates(true);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
 		if (database == null) {
@@ -251,7 +251,8 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseEntry key = new DatabaseEntry(keyBytes);
 		DatabaseEntry value = new DatabaseEntry();
 		try {
-			OperationStatus operationStatus = getDatabase(tableName).get(getTransaction(databaseSession), key, value, LockMode.DEFAULT);
+			Database database = getDatabase(tableName);
+			OperationStatus operationStatus = database.get(database.getConfig().getTransactional() ? getTransaction(databaseSession) : null, key, value, LockMode.DEFAULT);
 			if (operationStatus == OperationStatus.SUCCESS) {
 				return value.getData();
 			}
@@ -458,7 +459,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseEntry dbValue = new DatabaseEntry(value, offset, length);
 		try {
 			Database database = getDatabase(tableName);
-			database.put(getTransaction(databaseSession), dbKey, dbValue);
+			database.put(database.getConfig().getTransactional() ? getTransaction(databaseSession) : null, dbKey, dbValue);
 		} catch (LockConflictException e) {
 			throw new BimserverLockConflictException(e);
 		} catch (DatabaseException e) {

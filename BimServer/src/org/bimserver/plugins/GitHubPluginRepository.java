@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bimserver.utils.NetUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,6 +34,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class GitHubPluginRepository {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(GitHubPluginLocation.class);
 	private final MavenPluginRepository mavenPluginRepository;
 	private final String url;
 
@@ -45,8 +48,8 @@ public class GitHubPluginRepository {
 		this.url = url + "/plugins.json";
 	}
 
-	public List<PluginLocation> listPluginLocations() {
-		List<PluginLocation> pluginLocations = new ArrayList<>();
+	public List<PluginLocation<?>> listPluginLocations() {
+		List<PluginLocation<?>> pluginLocations = new ArrayList<>();
 		try {
 			String content = NetUtils.getContent(new URL(url), 5000);
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -58,6 +61,12 @@ public class GitHubPluginRepository {
 					ObjectNode mavenNode = (ObjectNode) pluginObject.get("maven");
 					MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(mavenNode.get("defaultrepository").asText(), mavenNode.get("groupId").asText(), mavenNode.get("artifactId").asText());
 					pluginLocations.add(mavenPluginLocation);
+				} else if (pluginObject.has("github")) {
+					LOGGER.warn("GitHub plugins have been disabled because of GitHub API limits");
+//					ObjectNode gitHubNode = (ObjectNode) pluginObject.get("github");
+//					pluginLocations.add(new GitHubPluginLocation(gitHubNode.get("repository").asText(), gitHubNode.get("groupId").asText(), gitHubNode.get("artifactId").asText()));
+				} else {
+					LOGGER.info("Unknown plugin type " + pluginObject.toString());
 				}
 			}
 		} catch (MalformedURLException e) {

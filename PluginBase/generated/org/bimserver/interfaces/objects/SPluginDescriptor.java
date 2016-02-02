@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SSerializerPluginDescriptor.class, SQueryEnginePluginDescriptor.class, SWebModulePluginDescriptor.class, SModelComparePluginDescriptor.class, SRenderEnginePluginDescriptor.class, SModelMergerPluginDescriptor.class, SModelCheckerPluginDescriptor.class, SDeserializerPluginDescriptor.class, SServicePluginDescriptor.class})
+@XmlSeeAlso(value={SModelCheckerPluginDescriptor.class, SWebModulePluginDescriptor.class, SSerializerPluginDescriptor.class, SModelComparePluginDescriptor.class, SQueryEnginePluginDescriptor.class, SServicePluginDescriptor.class, SDeserializerPluginDescriptor.class, SRenderEnginePluginDescriptor.class, SModelMergerPluginDescriptor.class})
 public class SPluginDescriptor implements SDataBase
 {
 	private long oid = -1;
@@ -41,6 +41,7 @@ public class SPluginDescriptor implements SDataBase
 	private java.lang.Boolean enabled;
 	private java.lang.String pluginInterfaceClassName;
 	private List<Long> configurations = new ArrayList<Long>();
+	private java.lang.String identifier;
 	private boolean installForNewUsers;
 
 	public long getOid() {
@@ -93,6 +94,9 @@ public class SPluginDescriptor implements SDataBase
 		if (sField.getName().equals("configurations")) {
 			return getConfigurations();
 		}
+		if (sField.getName().equals("identifier")) {
+			return getIdentifier();
+		}
 		if (sField.getName().equals("installForNewUsers")) {
 			return isInstallForNewUsers();
 		}
@@ -137,6 +141,10 @@ public class SPluginDescriptor implements SDataBase
 		}
 		if (sField.getName().equals("configurations")) {
 			setConfigurations((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("identifier")) {
+			setIdentifier((String)val);
 			return;
 		}
 		if (sField.getName().equals("installForNewUsers")) {
@@ -216,6 +224,14 @@ public class SPluginDescriptor implements SDataBase
 
 	public void setConfigurations(List<Long> configurations) {
 		this.configurations = configurations;
+	}
+	
+	public java.lang.String getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(java.lang.String identifier) {
+		this.identifier = identifier;
 	}
 	
 	public boolean isInstallForNewUsers() {

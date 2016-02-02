@@ -127,9 +127,9 @@ public class Database implements BimDatabase {
 		DatabaseSession databaseSession = createSession();
 		try {
 			if (getKeyValueStore().isNew()) {
-				keyValueStore.createTable(CLASS_LOOKUP_TABLE, null);
-				keyValueStore.createTable(Database.STORE_PROJECT_NAME, null);
-				keyValueStore.createTable(Registry.REGISTRY_TABLE, null);
+				keyValueStore.createTable(CLASS_LOOKUP_TABLE, null, false);
+				keyValueStore.createTable(Database.STORE_PROJECT_NAME, null, false);
+				keyValueStore.createTable(Registry.REGISTRY_TABLE, null, false);
 				setDatabaseVersion(-1, databaseSession);
 				created = new Date();
 				registry.save(DATE_CREATED, created, databaseSession);
@@ -384,8 +384,8 @@ public class Database implements BimDatabase {
 		return migrator;
 	}
 
-	public boolean createTable(EClass eClass, DatabaseSession databaseSession) throws BimserverDatabaseException {
-		boolean createTable = keyValueStore.createTable(eClass.getEPackage().getName() + "_" + eClass.getName(), databaseSession);
+	public boolean createTable(EClass eClass, DatabaseSession databaseSession, boolean transactional) throws BimserverDatabaseException {
+		boolean createTable = keyValueStore.createTable(eClass.getEPackage().getName() + "_" + eClass.getName(), databaseSession, transactional);
 		if (createTable) {
 			tableId++;
 			try {
@@ -398,8 +398,8 @@ public class Database implements BimDatabase {
 		return false;
 	}
 
-	public boolean createIndexTable(EClass eClass, EStructuralFeature eStructuralFeature, DatabaseSession databaseSession) throws BimserverDatabaseException {
-		boolean createTable = keyValueStore.createIndexTable(eClass.getEPackage().getName() + "_" + eClass.getName() + "_" + eStructuralFeature.getName(), databaseSession);
+	public boolean createIndexTable(EClass eClass, EStructuralFeature eStructuralFeature, DatabaseSession databaseSession, boolean transactional) throws BimserverDatabaseException {
+		boolean createTable = keyValueStore.createIndexTable(eClass.getEPackage().getName() + "_" + eClass.getName() + "_" + eStructuralFeature.getName(), databaseSession, transactional);
 		return createTable;
 	}
 

@@ -27,7 +27,7 @@ public interface KeyValueStore {
 
 	boolean containsTable(String tableName);
 
-	boolean createTable(String tableName, DatabaseSession databaseSession) throws BimserverDatabaseException;
+	boolean createTable(String tableName, DatabaseSession databaseSession, boolean transactional) throws BimserverDatabaseException;
 
 	boolean openTable(String tableName) throws BimserverDatabaseException;
 
@@ -78,7 +78,7 @@ public interface KeyValueStore {
 
 	void dumpOpenCursors();
 
-	boolean createIndexTable(String tableName, DatabaseSession databaseSession) throws BimserverDatabaseException;
+	boolean createIndexTable(String tableName, DatabaseSession databaseSession, boolean transactional) throws BimserverDatabaseException;
 
 	void openIndexTable(String indexTableName) throws BimserverDatabaseException;
 

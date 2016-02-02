@@ -125,8 +125,12 @@ public class RootServlet extends HttpServlet {
 				if (modulePath.indexOf("/", 1) != -1) {
 					modulePath = modulePath.substring(0, modulePath.indexOf("/", 1));
 				}
+				int originalLength = modulePath.length();
+				if (modulePath.startsWith("/")) {
+					modulePath = modulePath.substring(1);
+				}
 				if (bimServer.getWebModules().containsKey(modulePath)) {
-					String substring = requestUri.substring(modulePath.length());
+					String substring = requestUri.substring(originalLength);
 					if (bimServer.getWebModules().get(modulePath).service(substring, response)) {
 						return;
 					}

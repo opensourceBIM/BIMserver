@@ -64,6 +64,16 @@
 			<version>1.0.2.v20150114</version>
 		</dependency>
 		<dependency>
+			<groupId>com.jcabi</groupId>
+			<artifactId>jcabi-github</artifactId>
+			<version>0.23</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>1.7.14</version>
+		</dependency>
+		<dependency>
 			<groupId>org.eclipse.aether</groupId>
 			<artifactId>aether-transport-http</artifactId>
 			<version>1.0.2.v20150114</version>

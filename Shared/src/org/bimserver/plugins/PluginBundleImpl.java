@@ -25,7 +25,7 @@ public class PluginBundleImpl implements PluginBundle, Iterable<PluginContext> {
 	}
 	
 	public void add(PluginContext pluginContext) {
-		pluginsContexts.put(pluginContext.getPlugin().getClass().getName(), pluginContext);
+		pluginsContexts.put(pluginContext.getIdentifier(), pluginContext);
 	}
 
 	@Override

@@ -85,7 +85,7 @@ public class ServerInfoManager {
 						}
 					}
 				}
-				if (settings.getSiteAddress().isEmpty() || settings.getSmtpServer().isEmpty() || !adminFound) {
+				if (settings.getSiteAddress().isEmpty() || !adminFound) {
 					setServerState(ServerState.NOT_SETUP);
 				} else {
 					setServerState(ServerState.RUNNING);

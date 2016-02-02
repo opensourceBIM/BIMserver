@@ -68,6 +68,9 @@
 	<logger name="org.quartz" level="warn" additivity="false">
 		<appender-ref ref="STDERR" />
 	</logger>
+	<logger name="com.jcabi.github" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
 	<logger name="org.eclipse.aether" level="warn" additivity="false">
 		<appender-ref ref="STDERR" />
 	</logger>

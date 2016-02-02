@@ -21,6 +21,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0019 extends Migration {
 
@@ -34,7 +35,9 @@ public class Step0019 extends Migration {
 		schema.addIndex(projectClass.getEStructuralFeature("name"));
 
 		EClass pluginDescriptor = schema.getEClass("store", "PluginDescriptor");
+		schema.createEAttribute(pluginDescriptor, "identifier", EcorePackage.eINSTANCE.getEString());
 		schema.addIndex(pluginDescriptor.getEStructuralFeature("pluginClassName"));
+		schema.addIndex(pluginDescriptor.getEStructuralFeature("identifier"));
 	}
 
 	@Override
