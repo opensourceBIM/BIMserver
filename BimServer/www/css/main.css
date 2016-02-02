@@ -1,0 +1,49 @@
+.statusWrapper {
+	position: fixed;
+	top: 10px;
+	width: 100%;
+	text-align: center;
+	height: 0px;
+	z-index: 50;
+}
+
+.indexStatus {
+	margin: 10px;
+}
+
+.ih {
+	display: none;
+}
+
+a {
+	cursor: pointer;
+}
+
+.contentdiv {
+	display: none;
+	padding-top: 10px;
+}
+
+.setupContent .form-horizontal {
+	margin: 15px;
+}
+
+.emailDiv {
+	display: none;
+}
+
+.nav-pills {
+	height: 30px;
+}
+
+.nav-pills li a {
+	padding: 5px 10px;
+}
+
+.error {
+	color: red
+}
+
+.success {
+	color: green;
+}
