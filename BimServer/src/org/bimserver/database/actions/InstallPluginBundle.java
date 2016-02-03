@@ -15,9 +15,9 @@ import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class InstallPlugin extends BimDatabaseAction<Void> {
+public class InstallPluginBundle extends BimDatabaseAction<Void> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(InstallPlugin.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(InstallPluginBundle.class);
 	private BimServer bimServer;
 	private String groupId;
 	private String artifactId;
@@ -25,7 +25,7 @@ public class InstallPlugin extends BimDatabaseAction<Void> {
 	private String repository;
 	private List<SPluginInformation> plugins;
 
-	public InstallPlugin(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String repository, String groupId, String artifactId, String version, List<SPluginInformation> plugins) {
+	public InstallPluginBundle(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String repository, String groupId, String artifactId, String version, List<SPluginInformation> plugins) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.repository = repository;

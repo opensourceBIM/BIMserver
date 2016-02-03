@@ -634,6 +634,13 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "groupId", partName = "uninstallPluginBundle.groupId") String groupId, 
 		@WebParam(name = "artifactId", partName = "uninstallPluginBundle.artifactId") String artifactId, 
 		@WebParam(name = "version", partName = "uninstallPluginBundle.version") String version) throws UserException, ServerException;
+
+	@WebMethod(action = "updatePluginBundle")
+	void updatePluginBundle(
+		@WebParam(name = "repository", partName = "uninstallPluginBundle.repository") String repository, 
+		@WebParam(name = "groupId", partName = "uninstallPluginBundle.groupId") String groupId, 
+		@WebParam(name = "artifactId", partName = "uninstallPluginBundle.artifactId") String artifactId, 
+		@WebParam(name = "version", partName = "uninstallPluginBundle.version") String version) throws UserException, ServerException;
 	
 	@WebMethod(action = "getPluginInformation")
 	List<SPluginInformation> getPluginInformation(

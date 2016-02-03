@@ -62,7 +62,7 @@ import org.bimserver.database.actions.GetRenderEngineByNameDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByIdDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByNameDatabaseAction;
-import org.bimserver.database.actions.InstallPlugin;
+import org.bimserver.database.actions.InstallPluginBundle;
 import org.bimserver.database.actions.SetPluginSettingsDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
 import org.bimserver.database.actions.UninstallPlugin;
@@ -71,6 +71,7 @@ import org.bimserver.database.actions.UpdateDeserializerDatabaseAction;
 import org.bimserver.database.actions.UpdateModelCompareDatabaseAction;
 import org.bimserver.database.actions.UpdateModelMergerDatabaseAction;
 import org.bimserver.database.actions.UpdateObjectIDMDatabaseAction;
+import org.bimserver.database.actions.UpdatePluginBundle;
 import org.bimserver.database.actions.UpdateQueryEngineDatabaseAction;
 import org.bimserver.database.actions.UpdateRenderEngineDatabaseAction;
 import org.bimserver.database.actions.UpdateSerializerDatabaseAction;
@@ -1339,7 +1340,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			session.executeAndCommitAction(new InstallPlugin(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version, plugins));
+			session.executeAndCommitAction(new InstallPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version, plugins));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -1347,6 +1348,18 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 	}
 
+	public void updatePluginBundle(String repository, String groupId, String artifactId, String version) throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			session.executeAndCommitAction(new UpdatePluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public List<SPluginBundle> getInstalledPluginBundles() throws UserException, ServerException {
 		requireRealUserAuthentication();

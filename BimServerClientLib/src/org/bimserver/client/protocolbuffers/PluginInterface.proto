@@ -192,6 +192,8 @@ service PluginInterface {
 
 	rpc updateObjectIDM (UpdateObjectIDMRequest) returns (VoidResponse);
 
+	rpc updatePluginBundle (UpdatePluginBundleRequest) returns (VoidResponse);
+
 	rpc updateQueryEngine (UpdateQueryEngineRequest) returns (VoidResponse);
 
 	rpc updateRenderEngine (UpdateRenderEngineRequest) returns (VoidResponse);
@@ -1052,6 +1054,13 @@ message UpdateModelMergerRequest {
 
 message UpdateObjectIDMRequest {
 	optional SObjectIDMPluginConfiguration objectIDM = 1;
+}
+
+message UpdatePluginBundleRequest {
+	optional string repository = 1;
+	optional string groupId = 2;
+	optional string artifactId = 3;
+	optional string version = 4;
 }
 
 message UpdateQueryEngineRequest {

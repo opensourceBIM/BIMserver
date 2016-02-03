@@ -439,6 +439,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface UpdatePluginBundleCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface UpdateQueryEngineCallback {
 		void success();
 		void error(Throwable e);
@@ -1464,6 +1469,19 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					syncService.updateObjectIDM(objectIDM);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void updatePluginBundle(final java.lang.String repository, final java.lang.String groupId, final java.lang.String artifactId, final java.lang.String version, final UpdatePluginBundleCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.updatePluginBundle(repository, groupId, artifactId, version);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

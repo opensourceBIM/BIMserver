@@ -317,6 +317,9 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	public void updateObjectIDM(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration objectIDM) throws UserException, ServerException {
 	}
 	
+	public void updatePluginBundle(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version) throws UserException, ServerException {
+	}
+	
 	public void updateQueryEngine(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration queryEngine) throws UserException, ServerException {
 	}
 	
