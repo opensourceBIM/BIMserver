@@ -371,7 +371,7 @@ function Setup(cd, address) {
 	this.setup = function(event){
 		event.preventDefault(); // Required because the button is a "submit" button -> page refresh
 		if (o.stage == 0) {
-			o.stage1($(".setup .emailDiv").is(":visible") ? o.stage2 : o.nostage2);
+			o.stage1(cd.find(".setup .email").is(":visible") ? o.stage2 : o.nostage2);
 		} else {
 			o.stage2();
 		}

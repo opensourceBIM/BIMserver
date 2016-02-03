@@ -1066,7 +1066,7 @@ public class PluginManager implements PluginManagerInterface {
 		return (MessagingStreamingSerializerPlugin) getPlugin(className, onlyEnabled);
 	}
 
-	public List<SPluginInformation> getPluginInformation(Path file) throws PluginException, FileNotFoundException, IOException, JAXBException {
+	public List<SPluginInformation> getPluginInformationFromJar(Path file) throws PluginException, FileNotFoundException, IOException, JAXBException {
 		try (JarFile jarFile = new JarFile(file.toFile())) {
 			ZipEntry entry = jarFile.getEntry("plugin/plugin.xml");
 			if (entry == null) {
@@ -1089,6 +1089,24 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
+	public List<SPluginInformation> getPluginInformationFromPluginFile(Path file) throws PluginException, FileNotFoundException, IOException, JAXBException {
+		List<SPluginInformation> list = new ArrayList<>();
+		try (InputStream pluginStream = Files.newInputStream(file)) {
+			PluginDescriptor pluginDescriptor = getPluginDescriptor(pluginStream);
+			if (pluginDescriptor == null) {
+				throw new PluginException("No plugin descriptor could be created");
+			}
+			for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
+				SPluginInformation sPluginInformation = new SPluginInformation();
+				sPluginInformation.setName(pluginImplementation.getImplementationClass());
+				sPluginInformation.setDescription(pluginImplementation.getDescription());
+				sPluginInformation.setType(getPluginTypeFromClass(pluginImplementation.getInterfaceClass()));
+				list.add(sPluginInformation);
+			}
+		}
+		return list;
+	}
+	
 	public SPluginType getPluginTypeFromClass(String className) {
 		switch (className) {
 		case "org.bimserver.plugins.deserializers.DeserializerPlugin":

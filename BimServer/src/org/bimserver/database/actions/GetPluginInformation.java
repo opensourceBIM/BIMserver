@@ -38,9 +38,17 @@ public class GetPluginInformation extends BimDatabaseAction<List<SPluginInformat
 		MavenPluginLocation mavenPluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(repository, groupId, artifactId);
 		
 		try {
-			Path jarFile = mavenPluginLocation.getVersionJar(version);
-			
-			return bimServer.getPluginManager().getPluginInformation(jarFile);
+			Path pluginXml = mavenPluginLocation.getVersionPluginXml(version);
+			if (pluginXml == null) {
+				Path jar = mavenPluginLocation.getVersionJar(version);
+				if (jar != null) {
+					return bimServer.getPluginManager().getPluginInformationFromJar(jar);
+				}
+			} else {
+				return bimServer.getPluginManager().getPluginInformationFromPluginFile(pluginXml);
+				
+			}
+			throw new UserException("No JAR or plugin.xml found on maven repository");
 		} catch (Exception e) {
 			throw new UserException(e);
 		}
