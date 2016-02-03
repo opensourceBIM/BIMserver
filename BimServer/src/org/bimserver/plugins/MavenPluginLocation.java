@@ -174,6 +174,17 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		return resolveArtifact.getArtifact().getFile().toPath();
 	}
 
+	public Path getVersionPluginXml(String version) throws ArtifactResolutionException {
+		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "plugin", "xml", version.toString());
+		
+		ArtifactRequest request = new ArtifactRequest();
+		request.setArtifact(versionArtifact);
+		request.setRepositories(mavenPluginRepository.getRepositories());
+		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+		
+		return resolveArtifact.getArtifact().getFile().toPath();
+	}
+
 	@Override
 	public PluginBundleIdentifier getPluginIdentifier() {
 		return new PluginBundleIdentifier(groupId, artifactId);
