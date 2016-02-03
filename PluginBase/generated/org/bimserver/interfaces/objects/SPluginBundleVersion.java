@@ -36,6 +36,7 @@ public class SPluginBundleVersion implements SDataBase
 	private java.lang.String repository;
 	private java.lang.String groupId;
 	private java.lang.String artifactId;
+	private byte[] icon;
 
 	public long getOid() {
 		return this.oid;
@@ -84,6 +85,9 @@ public class SPluginBundleVersion implements SDataBase
 		if (sField.getName().equals("artifactId")) {
 			return getArtifactId();
 		}
+		if (sField.getName().equals("icon")) {
+			return getIcon();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -120,6 +124,10 @@ public class SPluginBundleVersion implements SDataBase
 		}
 		if (sField.getName().equals("artifactId")) {
 			setArtifactId((String)val);
+			return;
+		}
+		if (sField.getName().equals("icon")) {
+			setIcon((byte[])val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -187,6 +195,14 @@ public class SPluginBundleVersion implements SDataBase
 
 	public void setArtifactId(java.lang.String artifactId) {
 		this.artifactId = artifactId;
+	}
+	
+	public byte[] getIcon() {
+		return icon;
+	}
+
+	public void setIcon(byte[] icon) {
+		this.icon = icon;
 	}
 	
 	@Override

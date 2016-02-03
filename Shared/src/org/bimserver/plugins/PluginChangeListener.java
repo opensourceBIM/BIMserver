@@ -21,7 +21,9 @@ import org.bimserver.interfaces.objects.SPluginInformation;
  *****************************************************************************/
 
 public interface PluginChangeListener {
-	void pluginInstalled(PluginContext pluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException;
+	void pluginInstalled(long pluginBundleVersionId, PluginContext pluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException;
 	void pluginStateChanged(PluginContext pluginContext, boolean enabled);
 	void pluginUninstalled(PluginContext pluginContext);
+	long pluginBundleInstalled(PluginBundle pluginBundle);
+	void pluginBundleUninstalled(PluginBundle pluginBundle);
 }

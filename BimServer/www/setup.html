@@ -264,10 +264,13 @@ function Setup(cd, address) {
 				serverSettings.smtpPassword = $(".setup .smtpPassword").val();
 				serverSettings.emailSenderAddress = $(".setup .emailSenderAddress").val();
 				serverSettings.emailSenderName = $(".setup .emailSenderName").val();
-				Global.bimServerApi.callWithFullIndication("SettingsInterface", "setServerSettings", {serverSettings: serverSettings}, function(data){
+				Global.api.call("SettingsInterface", "setServerSettings", {serverSettings: serverSettings}, function(data){
 					o.logSuccess("Email successfully setup");
 					o.stage3();
 				});			
+			}, function(message){
+				o.logError(message);
+				o.abort();
 			});
 		}, function(message){
 			o.logError(message);
@@ -319,7 +322,13 @@ function Setup(cd, address) {
 						return;
 					}
 					o.installPluginBundle(requiredPlugins, indexInPluginBundles + 1, pluginBundles, callback);
+				}, function(message){
+					o.logError(message);
+					o.abort();
 				});
+			}, function(message){
+				o.logError(message);
+				o.abort();
 			});
 		} else {
 			o.installPluginBundle(requiredPlugins, indexInPluginBundles + 1, pluginBundles, callback);
@@ -340,11 +349,20 @@ function Setup(cd, address) {
 				if (requiredPlugins.length > 0) {
 					Global.api.call("PluginInterface", "getAvailablePluginBundles", {}, function(pluginBundles){
 						o.installPluginBundle(requiredPlugins, 0, pluginBundles, callback);
+					}, function(message){
+						o.logError(message);
+						o.abort();
 					});
 				} else {
 					callback();
 				}
+			}, function(message){
+				o.logError(message);
+				o.abort();
 			});
+        }, function(message){
+			o.logError(message);
+			o.abort();
         });
 	}
 	
@@ -371,7 +389,7 @@ function Setup(cd, address) {
 	this.setup = function(event){
 		event.preventDefault(); // Required because the button is a "submit" button -> page refresh
 		if (o.stage == 0) {
-			o.stage1(cd.find(".setup .email").is(":visible") ? o.stage2 : o.nostage2);
+			o.stage1(cd.find(".setup .emailCheckBox").is(":checked") ? o.stage2 : o.nostage2);
 		} else {
 			o.stage2();
 		}

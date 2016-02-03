@@ -1,5 +1,5 @@
 
-˛R
+¥U
 AdminInterface.protoorg.bimserver.pbServiceInterface.proto"
 ClearOutputFileCacheRequest"C
 ClearOutputFileCacheResponse
@@ -9,7 +9,7 @@
 name (	"#
 EnablePluginRequest
 name (	"
-GetAllPluginsRequest"ù
+GetAllPluginsRequest"º
 SDeserializerPluginDescriptor
 configurations (
 defaultName (	
@@ -19,13 +19,14 @@
 identifier (	
 installForNewUsers (
 location (	
-oid (
-pluginClassName	 (	 
-pluginInterfaceClassName
- (	
-rid (
+oid (
+pluginBundleVersionId	 (
+pluginClassName
+ (	 
+pluginInterfaceClassName (	
+rid (
 
-simpleName (	"ù
+simpleName (	"º
 SModelCheckerPluginDescriptor
 configurations (
 defaultName (	
@@ -35,13 +36,14 @@ simpleName (	"ù
 identifier (	
 installForNewUsers (
 location (	
-oid (
-pluginClassName	 (	 
-pluginInterfaceClassName
- (	
-rid (
+oid (
+pluginBundleVersionId	 (
+pluginClassName
+ (	 
+pluginInterfaceClassName (	
+rid (
 
-simpleName (	"ù
+simpleName (	"º
 SModelComparePluginDescriptor
 configurations (
 defaultName (	
@@ -51,13 +53,14 @@ simpleName (	"ù
 identifier (	
 installForNewUsers (
 location (	
-oid (
-pluginClassName	 (	 
-pluginInterfaceClassName
- (	
-rid (
+oid (
+pluginBundleVersionId	 (
+pluginClassName
+ (	 
+pluginInterfaceClassName (	
+rid (
 
-simpleName (	"ú
+simpleName (	"ª
 SModelMergerPluginDescriptor
 configurations (
 defaultName (	
@@ -67,13 +70,14 @@ simpleName (	"ú
 identifier (	
 installForNewUsers (
 location (	
-oid (
-pluginClassName	 (	 
-pluginInterfaceClassName
- (	
-rid (
+oid (
+pluginBundleVersionId	 (
+pluginClassName
+ (	 
+pluginInterfaceClassName (	
+rid (
 
-simpleName (	"ú
+simpleName (	"ª
 SQueryEnginePluginDescriptor
 configurations (
 defaultName (	
@@ -83,13 +87,14 @@ simpleName (	"ú
 identifier (	
 installForNewUsers (
 location (	
-oid (
-pluginClassName	 (	 
-pluginInterfaceClassName
- (	
-rid (
+oid (
+pluginBundleVersionId	 (
+pluginClassName
+ (	 
+pluginInterfaceClassName (	
+rid (
 
-simpleName (	"ù
+simpleName (	"º
 SRenderEnginePluginDescriptor
 configurations (
 defaultName (	
@@ -99,13 +104,14 @@ simpleName (	"ù
 identifier (	
 installForNewUsers (
 location (	
-oid (
-pluginClassName	 (	 
-pluginInterfaceClassName
- (	
-rid (
+oid (
+pluginBundleVersionId	 (
+pluginClassName
+ (	 
+pluginInterfaceClassName (	
+rid (
 
-simpleName (	"õ
+simpleName (	"∫
 SSerializerPluginDescriptor
 configurations (
 defaultName (	
@@ -115,13 +121,14 @@ simpleName (	"õ
 identifier (	
 installForNewUsers (
 location (	
-oid (
-pluginClassName	 (	 
-pluginInterfaceClassName
- (	
-rid (
+oid (
+pluginBundleVersionId	 (
+pluginClassName
+ (	 
+pluginInterfaceClassName (	
+rid (
 
-simpleName (	"ò
+simpleName (	"∑
 SServicePluginDescriptor
 configurations (
 defaultName (	
@@ -131,13 +138,14 @@ simpleName (	"ò
 identifier (	
 installForNewUsers (
 location (	
-oid (
-pluginClassName	 (	 
-pluginInterfaceClassName
- (	
-rid (
+oid (
+pluginBundleVersionId	 (
+pluginClassName
+ (	 
+pluginInterfaceClassName (	
+rid (
 
-simpleName (	"ö
+simpleName (	"π
 SWebModulePluginDescriptor
 configurations (
 defaultName (	
@@ -147,13 +155,14 @@ simpleName (	"ö
 identifier (	
 installForNewUsers (
 location (	
-oid (
-pluginClassName	 (	 
-pluginInterfaceClassName
- (	
-rid (
+oid (
+pluginBundleVersionId	 (
+pluginClassName
+ (	 
+pluginInterfaceClassName (	
+rid (
 
-simpleName (	"∫
+simpleName (	"Ÿ
 SPluginDescriptor
 __actual_type (	X
 __SDeserializerPluginDescriptor (2/.org.bimserver.pb.SDeserializerPluginDescriptorX
@@ -174,12 +183,13 @@ simpleName (	"∫
 identifier (	
 installForNewUsers (
 location (	
-oid (
-pluginClassName (	 
-pluginInterfaceClassName (	
-rid (
+oid (
+pluginBundleVersionId (
+pluginClassName (	 
+pluginInterfaceClassName (	
+rid (
 
-simpleName (	"a
+simpleName (	"a
 GetAllPluginsResponse
 errorMessage (	2
 value (2#.org.bimserver.pb.SPluginDescriptor"

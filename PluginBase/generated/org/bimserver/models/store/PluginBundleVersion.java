@@ -34,6 +34,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getRepository <em>Repository</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getGroupId <em>Group Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getArtifactId <em>Artifact Id</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getIcon <em>Icon</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getPluginBundleVersion()
@@ -226,5 +227,31 @@ public interface PluginBundleVersion extends IdEObject {
 	 * @generated
 	 */
 	void setArtifactId(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Icon</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Icon</em>' attribute.
+	 * @see #setIcon(byte[])
+	 * @see org.bimserver.models.store.StorePackage#getPluginBundleVersion_Icon()
+	 * @model
+	 * @generated
+	 */
+	byte[] getIcon();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginBundleVersion#getIcon <em>Icon</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Icon</em>' attribute.
+	 * @see #getIcon()
+	 * @generated
+	 */
+	void setIcon(byte[] value);
 
 } // PluginBundleVersion

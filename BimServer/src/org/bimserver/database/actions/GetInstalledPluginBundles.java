@@ -39,7 +39,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GetInstalledPluginBundles extends BimDatabaseAction<List<SPluginBundle>> {
+public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<SPluginBundle>> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GetInstalledPluginBundles.class);
 	private BimServer bimServer;
 	private boolean strictVersionChecking;
@@ -71,7 +71,7 @@ public class GetInstalledPluginBundles extends BimDatabaseAction<List<SPluginBun
 			if (repositoryKnownLocation.containsKey(pluginBundleIdentifier)) {
 				PluginLocation<?> pluginLocation = repositoryKnownLocation.get(pluginBundleIdentifier);
 				
-				SPluginBundle sPluginBundle = GetAvailablePluginBundles.processPluginLocation(pluginLocation, strictVersionChecking, bimserverVersion);
+				SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictVersionChecking, bimserverVersion);
 
 				if (sPluginBundle == null) {
 					// No versions found on repository

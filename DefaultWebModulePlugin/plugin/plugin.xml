@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<PluginDescriptor>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.web.WebModulePlugin</interfaceClass>
-		<implementationJson>defaultwmp.json</implementationJson>
-		<enabled>true</enabled>
-	</PluginImplementation>
-</PluginDescriptor>

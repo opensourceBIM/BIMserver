@@ -42,6 +42,7 @@ import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SPluginBundle;
+import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
@@ -615,6 +616,10 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getInstalledPluginBundles")
 	List<SPluginBundle> getInstalledPluginBundles() throws UserException, ServerException;
 
+	@WebMethod(action = "getInstalledPluginBundle")
+	SPluginBundleVersion getInstalledPluginBundle(
+		@WebParam(name = "oid", partName = "getInstalledPluginBundle.oid") Long oid) throws UserException, ServerException;
+	
 	@WebMethod(action = "installPluginBundle")
 	void installPluginBundle(
 		@WebParam(name = "repository", partName = "installPluginBundle.repository") String repository, 

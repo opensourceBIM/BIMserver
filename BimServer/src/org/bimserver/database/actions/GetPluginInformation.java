@@ -12,6 +12,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.MavenPluginLocation;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.aether.resolution.ArtifactResolutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,17 +39,13 @@ public class GetPluginInformation extends BimDatabaseAction<List<SPluginInformat
 		MavenPluginLocation mavenPluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(repository, groupId, artifactId);
 		
 		try {
-			Path pluginXml = mavenPluginLocation.getVersionPluginXml(version);
-			if (pluginXml == null) {
-				Path jar = mavenPluginLocation.getVersionJar(version);
-				if (jar != null) {
-					return bimServer.getPluginManager().getPluginInformationFromJar(jar);
-				}
-			} else {
+			try {
+				Path pluginXml = mavenPluginLocation.getVersionPluginXml(version);
 				return bimServer.getPluginManager().getPluginInformationFromPluginFile(pluginXml);
-				
+			} catch (ArtifactResolutionException e) {
+				Path jar = mavenPluginLocation.getVersionJar(version);
+				return bimServer.getPluginManager().getPluginInformationFromJar(jar);
 			}
-			throw new UserException("No JAR or plugin.xml found on maven repository");
 		} catch (Exception e) {
 			throw new UserException(e);
 		}

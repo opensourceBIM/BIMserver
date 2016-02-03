@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getRepository <em>Repository</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getGroupId <em>Group Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getArtifactId <em>Artifact Id</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getIcon <em>Icon</em>}</li>
  * </ul>
  *
  * @generated
@@ -197,6 +198,24 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 */
 	public void setArtifactId(String newArtifactId) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ARTIFACT_ID, newArtifactId);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public byte[] getIcon() {
+		return (byte[]) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ICON, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIcon(byte[] newIcon) {
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ICON, newIcon);
 	}
 
 } //PluginBundleVersionImpl

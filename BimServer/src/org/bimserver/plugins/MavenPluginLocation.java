@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 /******************************************************************************
@@ -164,7 +165,18 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 	}
 
 	public Path getVersionJar(String version) throws ArtifactResolutionException {
-		Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":" + version.toString());
+		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "jar", version.toString());
+		
+		ArtifactRequest request = new ArtifactRequest();
+		request.setArtifact(versionArtifact);
+		request.setRepositories(mavenPluginRepository.getRepositories());
+		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+		
+		return resolveArtifact.getArtifact().getFile().toPath();
+	}
+
+	public Path getVersionIcon(String version) throws ArtifactResolutionException {
+		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "icon", "png", version.toString());
 		
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(versionArtifact);
@@ -185,6 +197,17 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		return resolveArtifact.getArtifact().getFile().toPath();
 	}
 
+	private File getVersionPom(String version) throws ArtifactResolutionException {
+		Artifact pomArtifact = new DefaultArtifact(groupId, artifactId, "pom", version.toString());
+
+		ArtifactRequest request = new ArtifactRequest();
+		request.setArtifact(pomArtifact);
+		request.setRepositories(mavenPluginRepository.getRepositories());
+		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+		
+		return resolveArtifact.getArtifact().getFile();
+	}
+	
 	@Override
 	public PluginBundleIdentifier getPluginIdentifier() {
 		return new PluginBundleIdentifier(groupId, artifactId);
@@ -192,7 +215,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 	public SPluginBundle getPluginBundle(String version) {
 		try {
-			Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":pom:" + version);
+			Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "pom", version);
 			
 			ArtifactRequest request = new ArtifactRequest();
 			request.setArtifact(versionArtifact);
@@ -224,27 +247,27 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 	
 	public SPluginBundleVersion getPluginBundleVersion(String version) {
 		try {
-			Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":pom:" + version.toString());
-			
-			ArtifactRequest request = new ArtifactRequest();
-			request.setArtifact(versionArtifact);
-			request.setRepositories(mavenPluginRepository.getRepositories());
-			ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
-			Artifact artifact = resolveArtifact.getArtifact();
-	
-			File pomFile = resolveArtifact.getArtifact().getFile();
+			File pomFile = getVersionPom(version);
 			
 			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 
 			Model model = mavenreader.read(new FileReader(pomFile));
 			SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
 			sPluginBundleVersion.setType(SPluginBundleType.MAVEN);
-			sPluginBundleVersion.setGroupId(artifact.getGroupId());
-			sPluginBundleVersion.setArtifactId(artifact.getArtifactId());
+			sPluginBundleVersion.setGroupId(groupId);
+			sPluginBundleVersion.setArtifactId(artifactId);
 			sPluginBundleVersion.setVersion(version);
 			sPluginBundleVersion.setDescription(model.getDescription());
 			sPluginBundleVersion.setRepository(defaultrepository);
 			sPluginBundleVersion.setMismatch(false);
+			
+			try {
+				Path icon = getVersionIcon(version);
+				sPluginBundleVersion.setIcon(Files.readAllBytes(icon));
+			} catch (ArtifactResolutionException e) {
+				// Not a problem
+			}
+
 			return sPluginBundleVersion;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

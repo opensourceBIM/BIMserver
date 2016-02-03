@@ -17,6 +17,7 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.store.PluginBundleVersion;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.StorePackage;
@@ -41,6 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getConfigurations <em>Configurations</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#isInstallForNewUsers <em>Install For New Users</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getPluginBundleVersion <em>Plugin Bundle Version</em>}</li>
  * </ul>
  *
  * @generated
@@ -245,6 +247,24 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 */
 	public void setInstallForNewUsers(boolean newInstallForNewUsers) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS, newInstallForNewUsers);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PluginBundleVersion getPluginBundleVersion() {
+		return (PluginBundleVersion) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPluginBundleVersion(PluginBundleVersion newPluginBundleVersion) {
+		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION, newPluginBundleVersion);
 	}
 
 } //PluginDescriptorImpl

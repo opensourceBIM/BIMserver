@@ -87,6 +87,9 @@ public class SModelComparePluginDescriptor extends SPluginDescriptor implements 
 		if (sField.getName().equals("installForNewUsers")) {
 			return isInstallForNewUsers();
 		}
+		if (sField.getName().equals("pluginBundleVersionId")) {
+			return getPluginBundleVersionId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -136,6 +139,10 @@ public class SModelComparePluginDescriptor extends SPluginDescriptor implements 
 		}
 		if (sField.getName().equals("installForNewUsers")) {
 			setInstallForNewUsers((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("pluginBundleVersionId")) {
+			setPluginBundleVersionId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
