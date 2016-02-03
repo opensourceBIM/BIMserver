@@ -43,6 +43,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.endpoints.EndPointManager;
 import org.bimserver.interfaces.SConverter;
+import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.longaction.LongActionManager;
@@ -59,6 +60,7 @@ import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ParameterDefinition;
+import org.bimserver.models.store.PluginBundleVersion;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.ServerInfo;
@@ -75,6 +77,7 @@ import org.bimserver.notifications.NotificationsManager;
 import org.bimserver.pb.server.ProtocolBuffersServer;
 import org.bimserver.plugins.MavenPluginRepository;
 import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.PluginBundle;
 import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManager;
@@ -279,7 +282,7 @@ public class BimServer {
 			}
 
 			try {
-				pluginManager.addPluginChangeListener(new PluginChangeListener() {
+				pluginManager.setPluginChangeListener(new PluginChangeListener() {
 					@Override
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
 						// Reflect this change also in the database
@@ -307,7 +310,7 @@ public class BimServer {
 					}
 
 					@Override
-					public void pluginInstalled(PluginContext pluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException {
+					public void pluginInstalled(long pluginBundleVersionId, PluginContext pluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException {
 						try (DatabaseSession session = bimDatabase.createSession()) {
 							Plugin plugin = pluginContext.getPlugin();
 							
@@ -320,6 +323,7 @@ public class BimServer {
 							pluginDescriptor.setPluginInterfaceClassName(getPluginInterface(plugin.getClass()).getName());
 							pluginDescriptor.setEnabled(sPluginInformation.isEnabled());
 							pluginDescriptor.setInstallForNewUsers(sPluginInformation.isInstallForNewUsers());
+							pluginDescriptor.setPluginBundleVersion(session.get(pluginBundleVersionId, OldQuery.getDefault()));
 
 							if (sPluginInformation.isInstallForAllUsers()) {
 								IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), OldQuery.getDefault());
@@ -364,6 +368,38 @@ public class BimServer {
 						} finally {
 							session.close();
 						}
+					}
+
+					@Override
+					public long pluginBundleInstalled(PluginBundle pluginBundle) {
+						try (DatabaseSession session = bimDatabase.createSession()) {
+							SPluginBundleVersion sPluginBundleVersion = pluginBundle.getPluginBundleVersion();
+							
+							PluginBundleVersion pluginBundleVersion = session.create(PluginBundleVersion.class);
+							pluginBundleVersion.setArtifactId(sPluginBundleVersion.getArtifactId());
+							pluginBundleVersion.setDescription(sPluginBundleVersion.getArtifactId());
+							pluginBundleVersion.setGroupId(sPluginBundleVersion.getGroupId());
+							pluginBundleVersion.setIcon(sPluginBundleVersion.getIcon());
+							pluginBundleVersion.setMismatch(sPluginBundleVersion.isMismatch());
+							pluginBundleVersion.setRepository(sPluginBundleVersion.getRepository());
+							pluginBundleVersion.setType(getSConverter().convertFromSObject(sPluginBundleVersion.getType()));
+							pluginBundleVersion.setVersion(sPluginBundleVersion.getVersion());
+							
+							session.commit();
+							return pluginBundleVersion.getOid();
+						} catch (BimserverDatabaseException e) {
+							LOGGER.error("", e);
+						} catch (ServiceException e) {
+							LOGGER.error("", e);
+						}
+						return -1;
+					}
+
+					@Override
+					public void pluginBundleUninstalled(PluginBundle pluginBundle) {
+						try (DatabaseSession session = bimDatabase.createSession()) {
+							// TODO
+						}						
 					}
 				});
 			} catch (Exception e) {

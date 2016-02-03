@@ -20041,6 +20041,8 @@
         <eAnnotations source="singleindex"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="installForNewUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pluginBundleVersion"
+          eType="#/4/PluginBundleVersion"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SerializerPluginDescriptor" eSuperTypes="#/4/PluginDescriptor"/>
     <eClassifiers xsi:type="ecore:EClass" name="DeserializerPluginDescriptor" eSuperTypes="#/4/PluginDescriptor"/>
@@ -20576,6 +20578,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="repository" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="artifactId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="PluginBundleType">
       <eLiterals name="MAVEN"/>

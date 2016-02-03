@@ -38,9 +38,6 @@ public class PluginDescriptor {
 	@XmlElement(name="PluginImplementation")
 	private List<PluginImplementation> implementations = new ArrayList<PluginImplementation>();
 	
-	@XmlElement(name="LogoSmall")
-	private String logoSmall;
-	
 //	@XmlElementWrapper(name="dependencies")
 //	@XmlElement(name="Dependency")
 //	private List<Dependency> dependencies = new ArrayList<Dependency>();
@@ -86,13 +83,5 @@ public class PluginDescriptor {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public String getLogoSmall() {
-		return logoSmall;
-	}
-
-	public void setLogoSmall(String logoSmall) {
-		this.logoSmall = logoSmall;
 	}
 }

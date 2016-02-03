@@ -188,6 +188,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SPluginBundleVersion getInstalledPluginBundle(java.lang.Long oid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SPluginBundle> getInstalledPluginBundles() throws UserException, ServerException {
 		return null;
 	}

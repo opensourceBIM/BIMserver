@@ -2483,13 +2483,22 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = 9;
 
 	/**
+	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = 10;
+
+	/**
 	 * The number of structural features of the '<em>Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 10;
+	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 11;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.
@@ -2590,6 +2599,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int SERIALIZER_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
 
 	/**
 	 * The number of structural features of the '<em>Serializer Plugin Descriptor</em>' class.
@@ -2699,6 +2717,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int DESERIALIZER_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
 
 	/**
 	 * The number of structural features of the '<em>Deserializer Plugin Descriptor</em>' class.
@@ -3454,6 +3481,15 @@ public interface StorePackage extends EPackage {
 	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
 
 	/**
+	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
+
+	/**
 	 * The number of structural features of the '<em>Render Engine Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3818,6 +3854,15 @@ public interface StorePackage extends EPackage {
 	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
 
 	/**
+	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
+
+	/**
 	 * The number of structural features of the '<em>Query Engine Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3998,6 +4043,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int WEB_MODULE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEB_MODULE_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
 
 	/**
 	 * The number of structural features of the '<em>Web Module Plugin Descriptor</em>' class.
@@ -4182,6 +4236,15 @@ public interface StorePackage extends EPackage {
 	int MODEL_MERGER_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
 
 	/**
+	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_MERGER_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
+
+	/**
 	 * The number of structural features of the '<em>Model Merger Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4362,6 +4425,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
 
 	/**
 	 * The number of structural features of the '<em>Model Compare Plugin Descriptor</em>' class.
@@ -4998,6 +5070,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int SERVICE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
 
 	/**
 	 * The number of structural features of the '<em>Service Plugin Descriptor</em>' class.
@@ -6835,6 +6916,15 @@ public interface StorePackage extends EPackage {
 	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
 
 	/**
+	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
+
+	/**
 	 * The number of structural features of the '<em>Model Checker Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7128,13 +7218,22 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_BUNDLE_VERSION__ARTIFACT_ID = 6;
 
 	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_BUNDLE_VERSION__ICON = 7;
+
+	/**
 	 * The number of structural features of the '<em>Plugin Bundle Version</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_BUNDLE_VERSION_FEATURE_COUNT = 7;
+	int PLUGIN_BUNDLE_VERSION_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginBundleImpl <em>Plugin Bundle</em>}' class.
@@ -9770,6 +9869,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPluginDescriptor_InstallForNewUsers();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.PluginDescriptor#getPluginBundleVersion <em>Plugin Bundle Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Plugin Bundle Version</em>'.
+	 * @see org.bimserver.models.store.PluginDescriptor#getPluginBundleVersion()
+	 * @see #getPluginDescriptor()
+	 * @generated
+	 */
+	EReference getPluginDescriptor_PluginBundleVersion();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.SerializerPluginDescriptor <em>Serializer Plugin Descriptor</em>}'.
@@ -13131,6 +13241,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getPluginBundleVersion_ArtifactId();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginBundleVersion#getIcon <em>Icon</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Icon</em>'.
+	 * @see org.bimserver.models.store.PluginBundleVersion#getIcon()
+	 * @see #getPluginBundleVersion()
+	 * @generated
+	 */
+	EAttribute getPluginBundleVersion_Icon();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginBundle <em>Plugin Bundle</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15227,6 +15348,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = eINSTANCE.getPluginDescriptor_InstallForNewUsers();
+
+		/**
+		 * The meta object literal for the '<em><b>Plugin Bundle Version</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = eINSTANCE.getPluginDescriptor_PluginBundleVersion();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.
@@ -17869,6 +17998,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLUGIN_BUNDLE_VERSION__ARTIFACT_ID = eINSTANCE.getPluginBundleVersion_ArtifactId();
+
+		/**
+		 * The meta object literal for the '<em><b>Icon</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_BUNDLE_VERSION__ICON = eINSTANCE.getPluginBundleVersion_Icon();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginBundleImpl <em>Plugin Bundle</em>}' class.

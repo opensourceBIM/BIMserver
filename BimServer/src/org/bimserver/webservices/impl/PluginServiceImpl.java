@@ -47,6 +47,7 @@ import org.bimserver.database.actions.DeleteRenderEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
 import org.bimserver.database.actions.GetAvailablePluginBundles;
 import org.bimserver.database.actions.GetByIdDatabaseAction;
+import org.bimserver.database.actions.GetInstalledPluginBundle;
 import org.bimserver.database.actions.GetInstalledPluginBundles;
 import org.bimserver.database.actions.GetMessagingSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByIdDatabaseAction;
@@ -90,6 +91,7 @@ import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SPluginBundle;
+import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
@@ -1377,6 +1379,19 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			return session.executeAndCommitAction(new GetPluginInformation(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public SPluginBundleVersion getInstalledPluginBundle(Long oid) throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetInstalledPluginBundle(session, getInternalAccessMethod(), getBimServer(), oid));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

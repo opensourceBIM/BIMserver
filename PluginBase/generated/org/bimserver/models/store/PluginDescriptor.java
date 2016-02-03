@@ -38,6 +38,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getConfigurations <em>Configurations</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#isInstallForNewUsers <em>Install For New Users</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginDescriptor#getPluginBundleVersion <em>Plugin Bundle Version</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getPluginDescriptor()
@@ -297,5 +298,31 @@ public interface PluginDescriptor extends IdEObject {
 	 * @generated
 	 */
 	void setInstallForNewUsers(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Plugin Bundle Version</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Plugin Bundle Version</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Plugin Bundle Version</em>' reference.
+	 * @see #setPluginBundleVersion(PluginBundleVersion)
+	 * @see org.bimserver.models.store.StorePackage#getPluginDescriptor_PluginBundleVersion()
+	 * @model
+	 * @generated
+	 */
+	PluginBundleVersion getPluginBundleVersion();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginDescriptor#getPluginBundleVersion <em>Plugin Bundle Version</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Plugin Bundle Version</em>' reference.
+	 * @see #getPluginBundleVersion()
+	 * @generated
+	 */
+	void setPluginBundleVersion(PluginBundleVersion value);
 
 } // PluginDescriptor

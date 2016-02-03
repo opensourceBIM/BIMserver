@@ -1,5 +1,9 @@
 package org.bimserver.database.actions;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -42,10 +46,11 @@ import org.bimserver.plugins.PluginLocation;
 import org.bimserver.plugins.PluginVersion;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.aether.resolution.ArtifactResolutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GetAvailablePluginBundles extends BimDatabaseAction<List<SPluginBundle>> {
+public class GetAvailablePluginBundles extends PluginBundleDatabaseAction<List<SPluginBundle>> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GetAvailablePluginBundles.class);
 	private BimServer bimServer;
 	private boolean strictVersionChecking;
@@ -69,128 +74,13 @@ public class GetAvailablePluginBundles extends BimDatabaseAction<List<SPluginBun
 			PluginBundle pluginBundle = bimServer.getPluginManager().getPluginBundle(pluginLocation.getPluginIdentifier());
 			// Skipping all plugin bundles that already have an installed version
 			if (pluginBundle == null) {
-				if (pluginLocation instanceof MavenPluginLocation) {
-					MavenPluginLocation mavenPluginLocation = (MavenPluginLocation) pluginLocation;
-					SPluginBundle processMavenPluginLocation = processMavenPluginLocation(mavenPluginLocation, strictVersionChecking, bimserverVersion);
-					if (processMavenPluginLocation != null) {
-						result.add(processMavenPluginLocation);
-					}
-				} else if (pluginLocation instanceof GitHubPluginLocation) {
-					GitHubPluginLocation gitHubPluginLocation = (GitHubPluginLocation)pluginLocation;
-					SPluginBundle processMavenPluginLocation = processGitHubPluginLocation(gitHubPluginLocation, strictVersionChecking, bimserverVersion);
-					if (processMavenPluginLocation != null) {
-						result.add(processMavenPluginLocation);
-					}
+				SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictVersionChecking, bimserverVersion);
+				if (sPluginBundle != null) {
+					result.add(sPluginBundle);
 				}
 			}
 		}
 
 		return result;
-	}
-
-	public static SPluginBundle processPluginLocation(PluginLocation<?> pluginLocation, boolean strictVersionChecking, DefaultArtifactVersion bimserverVersion) {
-		if (pluginLocation instanceof MavenPluginLocation) {
-			return processMavenPluginLocation((MavenPluginLocation) pluginLocation, strictVersionChecking, bimserverVersion);
-		} else if (pluginLocation instanceof GitHubPluginLocation) {
-			return processGitHubPluginLocation((GitHubPluginLocation) pluginLocation, strictVersionChecking, bimserverVersion);
-		}
-		return null;
-	}
-	
-	public static SPluginBundle processGitHubPluginLocation(GitHubPluginLocation gitHubPluginLocation, boolean strictVersionChecking2, DefaultArtifactVersion bimserverVersion2) {
-		SPluginBundle pluginUpdateInformation = new SPluginBundle();
-		boolean usefulBundle = false;
-		for (GitHubPluginVersion pluginVersion : gitHubPluginLocation.getAllVersions()) {
-			SPluginBundleVersion sPluginVersion = new SPluginBundleVersion();
-			boolean useful = true;
-//			for (MavenDependency mavenDependency : pluginVersion.getDependencies()) {
-//				if (mavenDependency.getArtifact().getGroupId().equals("org.opensourcebim")) {
-//					String artifactId = mavenDependency.getArtifact().getArtifactId();
-//					// shared and pluginbase always have the same version
-//					// as this BIMserver, so if any of them is a dependency
-//					// for the plugin, it's version has to be ok
-//					if (artifactId.equals("shared") || artifactId.equals("pluginbase")) {
-//						VersionRange versionRange = VersionRange.createFromVersion(mavenDependency.getArtifact().getVersion());
-//						if (versionRange.containsVersion(bimserverVersion)) {
-//
-//						} else {
-//							sPluginVersion.setMismatch(true);
-//							if (strictVersionChecking) {
-//								useful = false;
-//								LOGGER.info("Skipping version " + mavenPluginVersion.getArtifact().getVersion() + " or artifact " + mavenPluginVersion.getArtifact().getArtifactId());
-//							}
-//						}
-//					}
-//				}
-//			}
-			if (useful) {
-				usefulBundle = true;
-
-				sPluginVersion.setArtifactId(gitHubPluginLocation.getArtifactId());
-				sPluginVersion.setGroupId(gitHubPluginLocation.getGroupId());
-				sPluginVersion.setRepository(gitHubPluginLocation.getRepository());
-				sPluginVersion.setType(SPluginBundleType.MAVEN);
-				sPluginVersion.setVersion(pluginVersion.getVersion());
-				sPluginVersion.setDescription(pluginVersion.getDescription());
-				pluginUpdateInformation.setName(pluginVersion.getName());
-				pluginUpdateInformation.setOrganization(pluginVersion.getOrganization());
-				pluginUpdateInformation.setLatestVersion(sPluginVersion);
-				pluginUpdateInformation.getAvailableVersions().add(sPluginVersion);
-			}
-		}
-		if (usefulBundle) {
-			return pluginUpdateInformation;
-		}
-		return null;
-	}
-
-	public static SPluginBundle processMavenPluginLocation(MavenPluginLocation mavenPluginLocation, boolean strictVersionChecking, ArtifactVersion bimserverVersion) {
-		SPluginBundle pluginUpdateInformation = new SPluginBundle();
-		boolean usefulBundle = false;
-		for (PluginVersion pluginVersion : mavenPluginLocation.getAllVersions()) {
-			if (pluginVersion instanceof MavenPluginVersion) {
-				SPluginBundleVersion sPluginVersion = new SPluginBundleVersion();
-				boolean useful = true;
-				MavenPluginVersion mavenPluginVersion = (MavenPluginVersion) pluginVersion;
-				for (MavenDependency mavenDependency : mavenPluginVersion.getDependencies()) {
-					if (mavenDependency.getArtifact().getGroupId().equals("org.opensourcebim")) {
-						String artifactId = mavenDependency.getArtifact().getArtifactId();
-						// shared and pluginbase always have the same version
-						// as this BIMserver, so if any of them is a dependency
-						// for the plugin, it's version has to be ok
-						if (artifactId.equals("shared") || artifactId.equals("pluginbase")) {
-							VersionRange versionRange = VersionRange.createFromVersion(mavenDependency.getArtifact().getVersion());
-							if (versionRange.containsVersion(bimserverVersion)) {
-
-							} else {
-								sPluginVersion.setMismatch(true);
-								if (strictVersionChecking) {
-									useful = false;
-									LOGGER.info("Skipping version " + mavenPluginVersion.getArtifact().getVersion() + " or artifact " + mavenPluginVersion.getArtifact().getArtifactId());
-								}
-							}
-						}
-					}
-				}
-				if (useful) {
-					usefulBundle = true;
-
-					sPluginVersion.setArtifactId(mavenPluginLocation.getArtifactId());
-					sPluginVersion.setGroupId(mavenPluginLocation.getGroupId());
-					sPluginVersion.setRepository(mavenPluginLocation.getRepository());
-					sPluginVersion.setType(SPluginBundleType.MAVEN);
-					sPluginVersion.setVersion(mavenPluginVersion.getVersion().toString());
-					sPluginVersion.setDescription(mavenPluginVersion.getModel().getDescription());
-					pluginUpdateInformation.setName(mavenPluginVersion.getModel().getName());
-					pluginUpdateInformation.setOrganization(mavenPluginVersion.getModel().getOrganization().getName());
-					pluginUpdateInformation.setLatestVersion(sPluginVersion);
-					pluginUpdateInformation.getAvailableVersions().add(sPluginVersion);
-				}
-			}
-		}
-		if (usefulBundle) {
-			return pluginUpdateInformation;
-		}
-		return null;
 	}
 }

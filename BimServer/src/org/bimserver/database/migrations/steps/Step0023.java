@@ -56,6 +56,7 @@ public class Step0023 extends Migration {
 		schema.createEAttribute(pluginBundleVersionClass, "repository", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(pluginBundleVersionClass, "groupId", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(pluginBundleVersionClass, "artifactId", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(pluginBundleVersionClass, "icon", EcorePackage.eINSTANCE.getEByteArray());
 
 		EClass pluginBundle = schema.createEClass("store", "PluginBundle");
 		schema.createEAttribute(pluginBundle, "organization", EcorePackage.eINSTANCE.getEString());
@@ -77,6 +78,8 @@ public class Step0023 extends Migration {
 		
 		EClass serverSettingsClass = schema.getEClass("store", "ServerSettings");
 		schema.createEAttribute(serverSettingsClass, "pluginStrictVersionChecking", EcorePackage.eINSTANCE.getEBoolean());
+		
+		schema.createEReference(pluginDescriptor, "pluginBundleVersion", pluginBundleVersionClass, Multiplicity.SINGLE);
 	}
 
 	@Override

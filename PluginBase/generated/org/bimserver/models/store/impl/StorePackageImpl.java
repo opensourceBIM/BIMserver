@@ -2966,6 +2966,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPluginDescriptor_PluginBundleVersion() {
+		return (EReference) getPluginDescriptor().getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSerializerPluginDescriptor() {
 		if (serializerPluginDescriptorEClass == null) {
 			serializerPluginDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(30);
@@ -5986,6 +5995,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getPluginBundleVersion_ArtifactId() {
 		return (EAttribute) getPluginBundleVersion().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginBundleVersion_Icon() {
+		return (EAttribute) getPluginBundleVersion().getEStructuralFeatures().get(7);
 	}
 
 	/**

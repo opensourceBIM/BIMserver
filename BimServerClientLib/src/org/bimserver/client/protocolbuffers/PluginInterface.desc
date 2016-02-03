@@ -1,5 +1,5 @@
 
-ÑÀ
+∑Õ
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"∏
  SDeserializerPluginConfiguration
 description (	
@@ -236,19 +236,21 @@ settingsId ("p
 GetAllWebModulesResponse
 errorMessage (	>
 value (2/.org.bimserver.pb.SWebModulePluginConfiguration""
- GetAvailablePluginBundlesRequest"‘
+ GetAvailablePluginBundlesRequest"‚
 SPluginBundleVersion
 
 artifactId (	
 description (	
-groupId (	
-mismatch (
-oid (
+groupId (	
+icon (
+mismatch (
+oid (
 
-repository (	
-rid (1
-type (2#.org.bimserver.pb.SPluginBundleType
-version	 (	"ë
+repository (	
+rid (1
+type	 (2#.org.bimserver.pb.SPluginBundleType
+version
+ (	"ë
 SPluginBundleA
 availableVersions (2&.org.bimserver.pb.SPluginBundleVersion@
 installedVersion (2&.org.bimserver.pb.SPluginBundleVersion=
@@ -287,7 +289,12 @@ repository (	
 GetDefaultWebModuleRequest"s
 GetDefaultWebModuleResponse
 errorMessage (	>
-value (2/.org.bimserver.pb.SWebModulePluginConfiguration""
+value (2/.org.bimserver.pb.SWebModulePluginConfiguration".
+GetInstalledPluginBundleRequest
+oid ("o
+ GetInstalledPluginBundleResponse
+errorMessage (	5
+value (2&.org.bimserver.pb.SPluginBundleVersion""
  GetInstalledPluginBundlesRequest"i
 !GetInstalledPluginBundlesResponse
 errorMessage (	.
@@ -553,7 +560,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2‹L
+SPrimitiveEnum_BYTE_ARRAY2‡M
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -600,7 +607,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 getDefaultQueryEngine..org.bimserver.pb.GetDefaultQueryEngineRequest/.org.bimserver.pb.GetDefaultQueryEngineResponse{
 getDefaultRenderEngine/.org.bimserver.pb.GetDefaultRenderEngineRequest0.org.bimserver.pb.GetDefaultRenderEngineResponseu
 getDefaultSerializer-.org.bimserver.pb.GetDefaultSerializerRequest..org.bimserver.pb.GetDefaultSerializerResponser
-getDefaultWebModule,.org.bimserver.pb.GetDefaultWebModuleRequest-.org.bimserver.pb.GetDefaultWebModuleResponseÑ
+getDefaultWebModule,.org.bimserver.pb.GetDefaultWebModuleRequest-.org.bimserver.pb.GetDefaultWebModuleResponseÅ
+getInstalledPluginBundle1.org.bimserver.pb.GetInstalledPluginBundleRequest2.org.bimserver.pb.GetInstalledPluginBundleResponseÑ
 getInstalledPluginBundles2.org.bimserver.pb.GetInstalledPluginBundlesRequest3.org.bimserver.pb.GetInstalledPluginBundlesResponse{
 getInternalServiceById/.org.bimserver.pb.GetInternalServiceByIdRequest0.org.bimserver.pb.GetInternalServiceByIdResponseÆ
 'getMessagingSerializerByPluginClassName@.org.bimserver.pb.GetMessagingSerializerByPluginClassNameRequestA.org.bimserver.pb.GetMessagingSerializerByPluginClassNameResponser

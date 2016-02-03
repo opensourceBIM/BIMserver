@@ -127,13 +127,13 @@ public class PluginManager implements PluginManagerInterface {
 	private final Map<Plugin, PluginContext> pluginToPluginContext = new HashMap<>();
 	private final Map<PluginBundleIdentifier, PluginBundle> pluginBundleIdentifierToPluginBundle = new HashMap<>();
 	private final Map<PluginBundleVersionIdentifier, PluginBundle> pluginBundleVersionIdentifierToPluginBundle = new HashMap<>();
-	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<>();
 	private final Path tempDir;
 	private final String baseClassPath;
 	private final ServiceFactory serviceFactory;
 	private final NotificationsManagerInterface notificationsManagerInterface;
 	private final SServicesMap servicesMap;
 	private final Path pluginsDir;
+	private PluginChangeListener pluginChangeListener;
 	private BimServerClientFactory bimServerClientFactory;
 	private MetaDataManager metaDataManager;
 
@@ -308,6 +308,12 @@ public class PluginManager implements PluginManagerInterface {
 		sPluginBundleVersion.setType(SPluginBundleType.LOCAL);
 		sPluginBundleVersion.setMismatch(false); // TODO
 
+		Path icon = projectRoot.resolve("icon.png");
+		if (Files.exists(icon)) {
+			byte[] iconBytes = Files.readAllBytes(icon);
+			sPluginBundleVersion.setIcon(iconBytes);
+		}
+		
 		sPluginBundle.setInstalledVersion(sPluginBundleVersion);
 
 		return loadPlugins(pluginBundleVersionIdentifier, resourceLoader, pluginClassloader, projectRoot.toUri(), projectRoot.resolve("target/classes").toString(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT, bimServerDependencies, sPluginBundle, sPluginBundleVersion);
@@ -483,7 +489,7 @@ public class PluginManager implements PluginManagerInterface {
 		return pluginBundle;
 	}
 
-	private PluginDescriptor getPluginDescriptor(InputStream inputStream) throws JAXBException {
+	public PluginDescriptor getPluginDescriptor(InputStream inputStream) throws JAXBException {
 		JAXBContext jaxbContext = JAXBContext.newInstance(PluginDescriptor.class);
 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 		PluginDescriptor pluginDescriptor = (PluginDescriptor) unmarshaller.unmarshal(inputStream);
@@ -741,20 +747,8 @@ public class PluginManager implements PluginManagerInterface {
 		return getPlugin(className, true) != null;
 	}
 
-	public void addPluginChangeListener(PluginChangeListener pluginChangeListener) {
-		pluginChangeListeners.add(pluginChangeListener);
-	}
-
-	public void notifyPluginStateChange(PluginContext pluginContext, boolean enabled) {
-		for (PluginChangeListener pluginChangeListener : pluginChangeListeners) {
-			pluginChangeListener.pluginStateChanged(pluginContext, enabled);
-		}
-	}
-
-	public void notifyPluginInstalled(PluginContext pluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException {
-		for (PluginChangeListener pluginChangeListener : pluginChangeListeners) {
-			pluginChangeListener.pluginInstalled(pluginContext, sPluginInformation);
-		}
+	public void setPluginChangeListener(PluginChangeListener pluginChangeListener) {
+		this.pluginChangeListener = pluginChangeListener;
 	}
 
 	public Collection<DeserializerPlugin> getAllDeserializerPlugins(String extension, boolean onlyEnabled) {
@@ -1168,10 +1162,11 @@ public class PluginManager implements PluginManagerInterface {
 		// anything goes wrong in the notifications, the plugin bundle will be
 		// uninstalled
 		try {
+			long pluginBundleVersionId = pluginChangeListener.pluginBundleInstalled(pluginBundle);
 			for (SPluginInformation sPluginInformation : plugins) {
 				if (sPluginInformation.isEnabled()) {
 					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getName());
-					notifyPluginInstalled(pluginContext, sPluginInformation);
+					pluginChangeListener.pluginInstalled(pluginBundleVersionId, pluginContext, sPluginInformation);
 				}
 			}
 			return pluginBundle;
@@ -1198,16 +1193,12 @@ public class PluginManager implements PluginManagerInterface {
 			Files.delete(target);
 			
 			for (PluginContext pluginContext : pluginBundle) {
-				notifyPluginUninstalled(pluginContext);
+				pluginChangeListener.pluginUninstalled(pluginContext);
 			}
+			pluginChangeListener.pluginBundleUninstalled(pluginBundle);
+
 		} catch (IOException e) {
 			LOGGER.error("", e);
-		}
-	}
-
-	private void notifyPluginUninstalled(PluginContext pluginContext) {
-		for (PluginChangeListener pluginChangeListener : pluginChangeListeners) {
-			pluginChangeListener.pluginUninstalled(pluginContext);
 		}
 	}
 
@@ -1224,5 +1215,12 @@ public class PluginManager implements PluginManagerInterface {
 		// TODO add a mechanism that can be used to ask a database what the
 		// default plugin is
 		return null;
+	}
+
+	@Override
+	public void notifyPluginStateChange(PluginContext pluginContext, boolean enabled) {
+		if (pluginChangeListener != null) {
+			pluginChangeListener.pluginStateChanged(pluginContext, enabled);
+		}
 	}
 }
