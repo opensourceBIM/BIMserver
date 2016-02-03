@@ -74,7 +74,7 @@ public class LocalDevSetup {
 			if (!Files.exists(tmp)) {
 				Files.createDirectories(tmp);
 			}
-			PluginManager pluginManager = new PluginManager(tmp, null, System.getProperty("java.class.path"), null, null, null);
+			PluginManager pluginManager = new PluginManager(tmp, home.resolve("plugins"), home.resolve("maven"), System.getProperty("java.class.path"), null, null, null);
 
 			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
@@ -102,7 +102,7 @@ public class LocalDevSetup {
 				Files.createDirectory(home);
 			}
 			Path tmp = home.resolve("tmp");
-			PluginManager pluginManager = new PluginManager(tmp, null, System.getProperty("java.class.path"), null, null, null);
+			PluginManager pluginManager = new PluginManager(tmp, home.resolve("plugins"), home.resolve("maven"), System.getProperty("java.class.path"), null, null, null);
 			pluginManager.loadAllPluginsFromEclipseWorkspace(Paths.get("../"), true);
 			
 			MetaDataManager metaDataManager = new MetaDataManager(tmp);

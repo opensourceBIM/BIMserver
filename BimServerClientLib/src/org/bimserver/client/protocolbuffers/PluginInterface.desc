@@ -1,5 +1,5 @@
 
-∑Õ
+Åœ
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"∏
  SDeserializerPluginConfiguration
 description (	
@@ -530,7 +530,14 @@ artifactId (	
 UpdateModelMergerRequestF
 modelMerger (21.org.bimserver.pb.SModelMergerPluginConfiguration"\
 UpdateObjectIDMRequestB
-	objectIDM (2/.org.bimserver.pb.SObjectIDMPluginConfiguration"b
+	objectIDM (2/.org.bimserver.pb.SObjectIDMPluginConfiguration"e
+UpdatePluginBundleRequest
+
+repository (	
+groupId (	
+
+artifactId (	
+version (	"b
 UpdateQueryEngineRequestF
 queryEngine (21.org.bimserver.pb.SQueryEnginePluginConfiguration"e
 UpdateRenderEngineRequestH
@@ -560,7 +567,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2‡M
+SPrimitiveEnum_BYTE_ARRAY2√N
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -643,7 +650,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 updateInternalService..org.bimserver.pb.UpdateInternalServiceRequest.org.bimserver.pb.VoidResponsea
 updateModelCompare+.org.bimserver.pb.UpdateModelCompareRequest.org.bimserver.pb.VoidResponse_
 updateModelMerger*.org.bimserver.pb.UpdateModelMergerRequest.org.bimserver.pb.VoidResponse[
-updateObjectIDM(.org.bimserver.pb.UpdateObjectIDMRequest.org.bimserver.pb.VoidResponse_
+updateObjectIDM(.org.bimserver.pb.UpdateObjectIDMRequest.org.bimserver.pb.VoidResponsea
+updatePluginBundle+.org.bimserver.pb.UpdatePluginBundleRequest.org.bimserver.pb.VoidResponse_
 updateQueryEngine*.org.bimserver.pb.UpdateQueryEngineRequest.org.bimserver.pb.VoidResponsea
 updateRenderEngine+.org.bimserver.pb.UpdateRenderEngineRequest.org.bimserver.pb.VoidResponse]
 updateSerializer).org.bimserver.pb.UpdateSerializerRequest.org.bimserver.pb.VoidResponseBBPluginInterfaceImplHà

@@ -78,7 +78,13 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 					sPluginBundle = pluginBundle.getPluginBundle();
 				}
 				
-				if (!sPluginBundle.getAvailableVersions().contains(pluginBundle.getPluginBundleVersion())) {
+				boolean found = false;
+				for (SPluginBundleVersion sPluginBundleVersion : sPluginBundle.getAvailableVersions()) {
+					if (sPluginBundleVersion.getVersion().equals(pluginBundle.getPluginBundleVersion().getVersion())) {
+						found = true;
+					}
+				}
+				if (!found) {
 					sPluginBundle.getAvailableVersions().add(pluginBundle.getPluginBundleVersion());
 				}
 				sPluginBundle.setInstalledVersion(installedVersion);

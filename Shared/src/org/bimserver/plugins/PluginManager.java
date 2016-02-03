@@ -36,7 +36,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -53,7 +52,6 @@ import javax.xml.bind.Unmarshaller;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
-import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SPluginBundle;
@@ -136,9 +134,11 @@ public class PluginManager implements PluginManagerInterface {
 	private PluginChangeListener pluginChangeListener;
 	private BimServerClientFactory bimServerClientFactory;
 	private MetaDataManager metaDataManager;
+	private Path mavenDir;
 
-	public PluginManager(Path tempDir, Path pluginsDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, SServicesMap servicesMap) {
+	public PluginManager(Path tempDir, Path pluginsDir, Path mavenDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, SServicesMap servicesMap) {
 		LOGGER.debug("Creating new PluginManager");
+		this.mavenDir = mavenDir;
 		this.pluginsDir = pluginsDir;
 		this.tempDir = tempDir;
 		this.baseClassPath = baseClassPath;
@@ -208,8 +208,6 @@ public class PluginManager implements PluginManagerInterface {
 
 		pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(new PluginBundleIdentifier(model.getGroupId(), model.getArtifactId()), model.getVersion());
 		
-		File localFile = new File("C:\\Users\\Ruben de Laat\\.m2\\repository");
-
 		List<org.apache.maven.model.Dependency> dependencies = model.getDependencies();
 		Iterator<org.apache.maven.model.Dependency> it = dependencies.iterator();
 
@@ -227,7 +225,7 @@ public class PluginManager implements PluginManagerInterface {
 
 				RepositorySystem system = locator.getService(RepositorySystem.class);
 
-				LocalRepository localRepo = new LocalRepository(localFile);
+				LocalRepository localRepo = new LocalRepository(mavenDir.toFile());
 				session.setLocalRepositoryManager(system.newLocalRepositoryManager(session, localRepo));
 
 				Dependency dependency2 = new Dependency(new DefaultArtifact(depend.getGroupId() + ":" + depend.getArtifactId() + ":" + depend.getVersion()), "compile");
@@ -338,13 +336,13 @@ public class PluginManager implements PluginManagerInterface {
 			Path pomFile = projectRoot.resolve("pom.xml");
 			Path packageFile = projectRoot.resolve("package.json");
 			
-			if (Files.exists(packageFile)) {
-				return loadJavaScriptProject(projectRoot, packageFile, pluginFolder, pluginDescriptor);
-			} else if (Files.exists(pomFile)) {
+//			if (Files.exists(packageFile)) {
+//				return loadJavaScriptProject(projectRoot, packageFile, pluginFolder, pluginDescriptor);
+//			} else if (Files.exists(pomFile)) {
 				return loadJavaProject(projectRoot, pomFile, pluginFolder, pluginDescriptor);
-			} else {
-				throw new PluginException("No pom.xml or package.json found in " + projectRoot.toString());
-			}
+//			} else {
+//				throw new PluginException("No pom.xml or package.json found in " + projectRoot.toString());
+//			}
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
@@ -1137,8 +1135,8 @@ public class PluginManager implements PluginManagerInterface {
 		return null;
 	}
 
-	public PluginBundle install(PluginBundleVersionIdentifier pluginVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, Path jarFile, List<SPluginInformation> plugins) throws Exception {
-		Path target = pluginsDir.resolve(pluginVersionIdentifier.getFileName());
+	public PluginBundle install(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, Path jarFile, List<SPluginInformation> plugins) throws Exception {
+		Path target = pluginsDir.resolve(pluginBundleVersionIdentifier.getFileName());
 		if (Files.exists(target)) {
 			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
 		}
@@ -1146,7 +1144,7 @@ public class PluginManager implements PluginManagerInterface {
 		PluginBundle pluginBundle = null;
 		// Stage 1, load all plugins from the JAR file and initialize them
 		try {
-			pluginBundle = loadPluginsFromJar(pluginVersionIdentifier, target, sPluginBundle, pluginBundleVersion);
+			pluginBundle = loadPluginsFromJar(pluginBundleVersionIdentifier, target, sPluginBundle, pluginBundleVersion);
 			for (SPluginInformation sPluginInformation : plugins) {
 				if (sPluginInformation.isEnabled()) {
 					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getName());
@@ -1171,7 +1169,7 @@ public class PluginManager implements PluginManagerInterface {
 			}
 			return pluginBundle;
 		} catch (Exception e) {
-			uninstall(pluginVersionIdentifier);
+			uninstall(pluginBundleVersionIdentifier);
 			LOGGER.error("", e);
 			throw e;
 		}
@@ -1221,6 +1219,69 @@ public class PluginManager implements PluginManagerInterface {
 	public void notifyPluginStateChange(PluginContext pluginContext, boolean enabled) {
 		if (pluginChangeListener != null) {
 			pluginChangeListener.pluginStateChanged(pluginContext, enabled);
+		}
+	}
+
+	public PluginBundle update(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, Path jarFile, List<SPluginInformation> plugins) throws Exception {
+		PluginBundle existingPluginBundle = pluginBundleVersionIdentifierToPluginBundle.get(pluginBundleVersionIdentifier);
+		try {
+			existingPluginBundle.close();
+			pluginBundleVersionIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier);
+			pluginBundleIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier.getPluginBundleIdentifier());
+
+			for (PluginContext pluginContext : existingPluginBundle) {
+				Set<PluginContext> set = implementations.get(pluginContext.getPluginInterface());
+				set.remove(pluginContext);
+			}
+			
+			Path target = pluginsDir.resolve(pluginBundleVersionIdentifier.getFileName());
+			Files.delete(target);
+			
+//			for (PluginContext pluginContext : existingPluginBundle) {
+//				pluginChangeListener.pluginUninstalled(pluginContext);
+//			}
+//			pluginChangeListener.pluginBundleUninstalled(existingPluginBundle);
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		}
+		
+		Path target = pluginsDir.resolve(pluginBundleVersionIdentifier.getFileName());
+		if (Files.exists(target)) {
+			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
+		}
+		Files.copy(jarFile, target);
+		PluginBundle pluginBundle = null;
+		// Stage 1, load all plugins from the JAR file and initialize them
+		try {
+			pluginBundle = loadPluginsFromJar(pluginBundleVersionIdentifier, target, sPluginBundle, pluginBundleVersion);
+			
+			for (SPluginInformation sPluginInformation : plugins) {
+				if (sPluginInformation.isEnabled()) {
+					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getName());
+					pluginContext.getPlugin().init(this);
+				}
+			}
+		} catch (Exception e) {
+			Files.delete(target);
+			LOGGER.error("", e);
+			throw e;
+		}
+		// Stage 2, if all went well, notify the listeners of this plugin, if
+		// anything goes wrong in the notifications, the plugin bundle will be
+		// uninstalled
+		try {
+			long pluginBundleVersionId = pluginChangeListener.pluginBundleInstalled(pluginBundle);
+			for (SPluginInformation sPluginInformation : plugins) {
+				if (sPluginInformation.isEnabled()) {
+					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getName());
+					pluginChangeListener.pluginInstalled(pluginBundleVersionId, pluginContext, sPluginInformation);
+				}
+			}
+			return pluginBundle;
+		} catch (Exception e) {
+			uninstall(pluginBundleVersionIdentifier);
+			LOGGER.error("", e);
+			throw e;
 		}
 	}
 }
