@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class PluginDescriptor {
 	
 	@XmlElement(name="PluginImplementation")
-	private List<PluginImplementation> implementations = new ArrayList<PluginImplementation>();
+	private List<AbstractPlugin> plugins = new ArrayList<>();
 	
 //	@XmlElementWrapper(name="dependencies")
 //	@XmlElement(name="Dependency")
@@ -50,18 +50,18 @@ public class PluginDescriptor {
 //		this.dependencies = dependencies;
 //	}
 
-	public void setImplementations(List<PluginImplementation> implementations) {
-		this.implementations = implementations;
+	public void setPlugins(List<AbstractPlugin> plugins) {
+		this.plugins = plugins;
 	}
 
-	public List<PluginImplementation> getImplementations() {
-		return implementations;
+	public List<AbstractPlugin> getPlugins() {
+		return plugins;
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		for (PluginImplementation pluginImplementation : implementations) {
+		for (AbstractPlugin pluginImplementation : plugins) {
 			sb.append(pluginImplementation.toString() + "\n");
 		}
 		return sb.toString();
@@ -71,8 +71,8 @@ public class PluginDescriptor {
 		PluginDescriptor descriptor = new PluginDescriptor();
 //		Dependency dependency = new Dependency();
 //		dependency.setPath("test");
-		PluginImplementation pluginImplementation = new PluginImplementation();
-		descriptor.getImplementations().add(pluginImplementation);
+		JavaPlugin pluginImplementation = new JavaPlugin();
+		descriptor.getPlugins().add(pluginImplementation);
 //		descriptor.getDependencies().add(dependency);
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(PluginDescriptor.class);

@@ -20,14 +20,12 @@ package org.bimserver.plugins;
 import org.bimserver.plugins.web.AbstractWebModulePlugin;
 import org.bimserver.shared.exceptions.PluginException;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 public class JsonWebModule extends AbstractWebModulePlugin {
 
-	private ObjectNode settings;
+	private WebModulePlugin webModulePlugin;
 
-	public JsonWebModule(ObjectNode settings) {
-		this.settings = settings;
+	public JsonWebModule(WebModulePlugin webModulePlugin) {
+		this.webModulePlugin = webModulePlugin;
 	}
 
 	@Override
@@ -37,16 +35,16 @@ public class JsonWebModule extends AbstractWebModulePlugin {
 
 	@Override
 	public String getDefaultName() {
-		return settings.get("defaultName").asText();
+		return webModulePlugin.getIdentifier();
 	}
 
 	@Override
 	public String getIdentifier() {
-		return settings.get("identifier").asText();
+		return webModulePlugin.getIdentifier();
 	}
 
 	@Override
 	public String getDefaultContextPath() {
-		return settings.get("defaultContextPath").asText();
+		return webModulePlugin.getIdentifier();
 	}
 }

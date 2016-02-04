@@ -65,7 +65,7 @@ public class PluginBundleImpl implements PluginBundle, Iterable<PluginContext> {
 	}
 
 	@Override
-	public PluginContext getPluginContext(String name) {
-		return pluginsContexts.get(name);
+	public PluginContext getPluginContext(String identifier) {
+		return pluginsContexts.get(identifier);
 	}
 }

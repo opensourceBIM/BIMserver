@@ -6116,7 +6116,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginInformation_InstallForAllUsers() {
+	public EAttribute getPluginInformation_Identifier() {
 		return (EAttribute) getPluginInformation().getEStructuralFeatures().get(4);
 	}
 
@@ -6125,8 +6125,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginInformation_InstallForNewUsers() {
+	public EAttribute getPluginInformation_InstallForAllUsers() {
 		return (EAttribute) getPluginInformation().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginInformation_InstallForNewUsers() {
+		return (EAttribute) getPluginInformation().getEStructuralFeatures().get(6);
 	}
 
 	/**

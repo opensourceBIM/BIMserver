@@ -7896,6 +7896,7 @@ public class SConverter {
 		result.setType(SPluginType.values()[input.getType().ordinal()]);
 		result.setDescription(input.getDescription());
 		result.setEnabled(input.isEnabled());
+		result.setIdentifier(input.getIdentifier());
 		result.setInstallForAllUsers(input.isInstallForAllUsers());
 		result.setInstallForNewUsers(input.isInstallForNewUsers());
 		return result;
@@ -7917,6 +7918,7 @@ public class SConverter {
 		result.setType(PluginType.values()[input.getType().ordinal()]);
 		result.setDescription(input.getDescription());
 		result.setEnabled(input.isEnabled());
+		result.setIdentifier(input.getIdentifier());
 		result.setInstallForAllUsers(input.isInstallForAllUsers());
 		result.setInstallForNewUsers(input.isInstallForNewUsers());
 		return result;
