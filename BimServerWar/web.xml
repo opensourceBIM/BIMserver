@@ -71,7 +71,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
-		<url-pattern>/getbimserveraddress</url-pattern>
+		<url-pattern>/x.getbimserveraddress</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
