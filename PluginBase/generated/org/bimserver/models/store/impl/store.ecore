@@ -373,8 +373,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="installForNewUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pluginBundleVersion" eType="#//PluginBundleVersion"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SerializerPluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DeserializerPluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EClass" name="RevisionSummaryType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -478,7 +476,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="supportUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="supportEmail" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RenderEnginePluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EEnum" name="ExtendedDataSchemaType">
     <eLiterals name="XSD"/>
     <eLiterals name="PDF" value="1"/>
@@ -517,22 +514,18 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//Project"
         eOpposite="#//Project/extendedData"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginConfiguration" eSuperTypes="#//PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
         eOpposite="#//UserSettings/queryEngines"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="WebModulePluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EClass" name="WebModulePluginConfiguration" eSuperTypes="#//PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="serverSettings" eType="#//ServerSettings"
         eOpposite="#//ServerSettings/webModules"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelMergerPluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EClass" name="ModelMergerPluginConfiguration" eSuperTypes="#//PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
         eOpposite="#//UserSettings/modelMergers"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelComparePluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EClass" name="ModelComparePluginConfiguration" eSuperTypes="#//PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
         eOpposite="#//UserSettings/modelCompares"/>
@@ -596,7 +589,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tokenString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expires" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ServicePluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EClass" name="InternalServicePluginConfiguration"
       eSuperTypes="#//PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="remoteAccessible" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -860,7 +852,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelCheckerPluginClassName"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelCheckerPluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EEnum" name="SmtpProtocol">
     <eLiterals name="SMTP"/>
     <eLiterals name="SMTPS" value="1"/>

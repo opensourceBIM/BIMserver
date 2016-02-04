@@ -29,13 +29,20 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 @XmlRootElement(name="PluginDescriptor")
 @XmlAccessorType(XmlAccessType.NONE)
+@XmlSeeAlso({JavaPlugin.class, WebModulePlugin.class})
 public class PluginDescriptor {
 	
-	@XmlElement(name="PluginImplementation")
+	@XmlElements({ 
+	    @XmlElement(name="JavaPlugin", type=JavaPlugin.class),
+	    @XmlElement(name="WebModulePlugin", type=WebModulePlugin.class)
+	})
 	private List<AbstractPlugin> plugins = new ArrayList<>();
 	
 //	@XmlElementWrapper(name="dependencies")

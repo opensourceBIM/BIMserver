@@ -21,6 +21,11 @@ public class PluginBundleIdentifier {
 	public String getArtifactId() {
 		return artifactId;
 	}
+	
+	@Override
+	public String toString() {
+		return groupId + ":" + artifactId;
+	}
 
 	@Override
 	public int hashCode() {

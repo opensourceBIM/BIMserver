@@ -270,24 +270,6 @@ public interface StoreFactory extends EFactory {
 	PluginDescriptor createPluginDescriptor();
 
 	/**
-	 * Returns a new object of class '<em>Serializer Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Serializer Plugin Descriptor</em>'.
-	 * @generated
-	 */
-	SerializerPluginDescriptor createSerializerPluginDescriptor();
-
-	/**
-	 * Returns a new object of class '<em>Deserializer Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Deserializer Plugin Descriptor</em>'.
-	 * @generated
-	 */
-	DeserializerPluginDescriptor createDeserializerPluginDescriptor();
-
-	/**
 	 * Returns a new object of class '<em>Revision Summary Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -414,15 +396,6 @@ public interface StoreFactory extends EFactory {
 	Version createVersion();
 
 	/**
-	 * Returns a new object of class '<em>Render Engine Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Render Engine Plugin Descriptor</em>'.
-	 * @generated
-	 */
-	RenderEnginePluginDescriptor createRenderEnginePluginDescriptor();
-
-	/**
 	 * Returns a new object of class '<em>File</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -450,15 +423,6 @@ public interface StoreFactory extends EFactory {
 	ExtendedData createExtendedData();
 
 	/**
-	 * Returns a new object of class '<em>Query Engine Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Query Engine Plugin Descriptor</em>'.
-	 * @generated
-	 */
-	QueryEnginePluginDescriptor createQueryEnginePluginDescriptor();
-
-	/**
 	 * Returns a new object of class '<em>Query Engine Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -466,15 +430,6 @@ public interface StoreFactory extends EFactory {
 	 * @generated
 	 */
 	QueryEnginePluginConfiguration createQueryEnginePluginConfiguration();
-
-	/**
-	 * Returns a new object of class '<em>Web Module Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Web Module Plugin Descriptor</em>'.
-	 * @generated
-	 */
-	WebModulePluginDescriptor createWebModulePluginDescriptor();
 
 	/**
 	 * Returns a new object of class '<em>Web Module Plugin Configuration</em>'.
@@ -486,15 +441,6 @@ public interface StoreFactory extends EFactory {
 	WebModulePluginConfiguration createWebModulePluginConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Model Merger Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Merger Plugin Descriptor</em>'.
-	 * @generated
-	 */
-	ModelMergerPluginDescriptor createModelMergerPluginDescriptor();
-
-	/**
 	 * Returns a new object of class '<em>Model Merger Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -502,15 +448,6 @@ public interface StoreFactory extends EFactory {
 	 * @generated
 	 */
 	ModelMergerPluginConfiguration createModelMergerPluginConfiguration();
-
-	/**
-	 * Returns a new object of class '<em>Model Compare Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Compare Plugin Descriptor</em>'.
-	 * @generated
-	 */
-	ModelComparePluginDescriptor createModelComparePluginDescriptor();
 
 	/**
 	 * Returns a new object of class '<em>Model Compare Plugin Configuration</em>'.
@@ -556,15 +493,6 @@ public interface StoreFactory extends EFactory {
 	 * @generated
 	 */
 	Token createToken();
-
-	/**
-	 * Returns a new object of class '<em>Service Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Service Plugin Descriptor</em>'.
-	 * @generated
-	 */
-	ServicePluginDescriptor createServicePluginDescriptor();
 
 	/**
 	 * Returns a new object of class '<em>Internal Service Plugin Configuration</em>'.
@@ -871,15 +799,6 @@ public interface StoreFactory extends EFactory {
 	 * @generated
 	 */
 	ModelCheckerInstance createModelCheckerInstance();
-
-	/**
-	 * Returns a new object of class '<em>Model Checker Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Checker Plugin Descriptor</em>'.
-	 * @generated
-	 */
-	ModelCheckerPluginDescriptor createModelCheckerPluginDescriptor();
 
 	/**
 	 * Returns a new object of class '<em>Messaging Serializer Plugin Configuration</em>'.

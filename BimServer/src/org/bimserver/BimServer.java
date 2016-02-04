@@ -333,6 +333,26 @@ public class BimServer {
 									}
 								}
 							}
+							
+							if (pluginContext.getPlugin() instanceof WebModulePlugin) {
+								ServerSettings serverSettings = getServerSettingsCache().getServerSettings();
+								WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), pluginContext.getIdentifier());
+								if (webPluginConfiguration == null) {
+									webPluginConfiguration = session.create(WebModulePluginConfiguration.class);
+									serverSettings.getWebModules().add(webPluginConfiguration);
+									genericPluginConversion(pluginContext, session, webPluginConfiguration, pluginDescriptor);
+									String contextPath = "";
+									
+									for (Parameter parameter : webPluginConfiguration.getSettings().getParameters()) {
+										if (parameter.getName().equals("contextPath")) {
+											contextPath = ((StringType) parameter.getValue()).getValue();
+										}
+									}
+									String identifier = webPluginConfiguration.getPluginDescriptor().getIdentifier();
+									webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(identifier, true));
+								}
+							}
+							
 							try {
 								session.commit();
 							} catch (ServiceException e) {

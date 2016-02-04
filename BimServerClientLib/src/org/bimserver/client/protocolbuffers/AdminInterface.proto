@@ -89,174 +89,20 @@ message EnablePluginRequest {
 message GetAllPluginsRequest {
 }
 
-message SDeserializerPluginDescriptor {
-	repeated int64 configurations = 1;
-	optional string defaultName = 2;
-	optional string description = 3;
-	optional bool enabled = 4;
-	optional string identifier = 5;
-	optional bool installForNewUsers = 6;
-	optional string location = 7;
-	optional int64 oid = 8;
-	optional int64 pluginBundleVersionId = 9;
-	optional string pluginClassName = 10;
-	optional string pluginInterfaceClassName = 11;
-	optional int32 rid = 12;
-	optional string simpleName = 13;
-}
-
-message SModelCheckerPluginDescriptor {
-	repeated int64 configurations = 1;
-	optional string defaultName = 2;
-	optional string description = 3;
-	optional bool enabled = 4;
-	optional string identifier = 5;
-	optional bool installForNewUsers = 6;
-	optional string location = 7;
-	optional int64 oid = 8;
-	optional int64 pluginBundleVersionId = 9;
-	optional string pluginClassName = 10;
-	optional string pluginInterfaceClassName = 11;
-	optional int32 rid = 12;
-	optional string simpleName = 13;
-}
-
-message SModelComparePluginDescriptor {
-	repeated int64 configurations = 1;
-	optional string defaultName = 2;
-	optional string description = 3;
-	optional bool enabled = 4;
-	optional string identifier = 5;
-	optional bool installForNewUsers = 6;
-	optional string location = 7;
-	optional int64 oid = 8;
-	optional int64 pluginBundleVersionId = 9;
-	optional string pluginClassName = 10;
-	optional string pluginInterfaceClassName = 11;
-	optional int32 rid = 12;
-	optional string simpleName = 13;
-}
-
-message SModelMergerPluginDescriptor {
-	repeated int64 configurations = 1;
-	optional string defaultName = 2;
-	optional string description = 3;
-	optional bool enabled = 4;
-	optional string identifier = 5;
-	optional bool installForNewUsers = 6;
-	optional string location = 7;
-	optional int64 oid = 8;
-	optional int64 pluginBundleVersionId = 9;
-	optional string pluginClassName = 10;
-	optional string pluginInterfaceClassName = 11;
-	optional int32 rid = 12;
-	optional string simpleName = 13;
-}
-
-message SQueryEnginePluginDescriptor {
-	repeated int64 configurations = 1;
-	optional string defaultName = 2;
-	optional string description = 3;
-	optional bool enabled = 4;
-	optional string identifier = 5;
-	optional bool installForNewUsers = 6;
-	optional string location = 7;
-	optional int64 oid = 8;
-	optional int64 pluginBundleVersionId = 9;
-	optional string pluginClassName = 10;
-	optional string pluginInterfaceClassName = 11;
-	optional int32 rid = 12;
-	optional string simpleName = 13;
-}
-
-message SRenderEnginePluginDescriptor {
-	repeated int64 configurations = 1;
-	optional string defaultName = 2;
-	optional string description = 3;
-	optional bool enabled = 4;
-	optional string identifier = 5;
-	optional bool installForNewUsers = 6;
-	optional string location = 7;
-	optional int64 oid = 8;
-	optional int64 pluginBundleVersionId = 9;
-	optional string pluginClassName = 10;
-	optional string pluginInterfaceClassName = 11;
-	optional int32 rid = 12;
-	optional string simpleName = 13;
-}
-
-message SSerializerPluginDescriptor {
-	repeated int64 configurations = 1;
-	optional string defaultName = 2;
-	optional string description = 3;
-	optional bool enabled = 4;
-	optional string identifier = 5;
-	optional bool installForNewUsers = 6;
-	optional string location = 7;
-	optional int64 oid = 8;
-	optional int64 pluginBundleVersionId = 9;
-	optional string pluginClassName = 10;
-	optional string pluginInterfaceClassName = 11;
-	optional int32 rid = 12;
-	optional string simpleName = 13;
-}
-
-message SServicePluginDescriptor {
-	repeated int64 configurations = 1;
-	optional string defaultName = 2;
-	optional string description = 3;
-	optional bool enabled = 4;
-	optional string identifier = 5;
-	optional bool installForNewUsers = 6;
-	optional string location = 7;
-	optional int64 oid = 8;
-	optional int64 pluginBundleVersionId = 9;
-	optional string pluginClassName = 10;
-	optional string pluginInterfaceClassName = 11;
-	optional int32 rid = 12;
-	optional string simpleName = 13;
-}
-
-message SWebModulePluginDescriptor {
-	repeated int64 configurations = 1;
-	optional string defaultName = 2;
-	optional string description = 3;
-	optional bool enabled = 4;
-	optional string identifier = 5;
-	optional bool installForNewUsers = 6;
-	optional string location = 7;
-	optional int64 oid = 8;
-	optional int64 pluginBundleVersionId = 9;
-	optional string pluginClassName = 10;
-	optional string pluginInterfaceClassName = 11;
-	optional int32 rid = 12;
-	optional string simpleName = 13;
-}
-
 message SPluginDescriptor {
-	required string __actual_type = 1;
-	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 2;
-	optional SModelCheckerPluginDescriptor __SModelCheckerPluginDescriptor = 3;
-	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 4;
-	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 5;
-	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 6;
-	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 7;
-	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 8;
-	optional SServicePluginDescriptor __SServicePluginDescriptor = 9;
-	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 10;
-	repeated int64 configurations = 11;
-	optional string defaultName = 12;
-	optional string description = 13;
-	optional bool enabled = 14;
-	optional string identifier = 15;
-	optional bool installForNewUsers = 16;
-	optional string location = 17;
-	optional int64 oid = 18;
-	optional int64 pluginBundleVersionId = 19;
-	optional string pluginClassName = 20;
-	optional string pluginInterfaceClassName = 21;
-	optional int32 rid = 22;
-	optional string simpleName = 23;
+	repeated int64 configurations = 1;
+	optional string defaultName = 2;
+	optional string description = 3;
+	optional bool enabled = 4;
+	optional string identifier = 5;
+	optional bool installForNewUsers = 6;
+	optional string location = 7;
+	optional int64 oid = 8;
+	optional int64 pluginBundleVersionId = 9;
+	optional string pluginClassName = 10;
+	optional string pluginInterfaceClassName = 11;
+	optional int32 rid = 12;
+	optional string simpleName = 13;
 }
 
 message GetAllPluginsResponse {

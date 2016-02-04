@@ -342,7 +342,9 @@ public class Starter extends JFrame {
 			boolean isMac = os.toLowerCase().contains("mac");
 			System.out.println("OS: " + os);
 //			String command = "";
-			
+
+			checkJavaVersion(jvmPath);
+
 			List<String> commands = new ArrayList<>();
 			
 			if (jvmPath.equalsIgnoreCase("default")) {
@@ -444,6 +446,88 @@ public class Starter extends JFrame {
 			exec = processBuilder.start();
 //			exec = Runtime.getRuntime().exec(command, null, destDir);
 
+			new Thread(new Runnable(){
+				@Override
+				public void run() {
+					BufferedInputStream inputStream = new BufferedInputStream(exec.getInputStream());
+					byte[] buffer = new byte[1024];
+					int red;
+					try {
+						red = inputStream.read(buffer);
+						while (red != -1) {
+							String s = new String(buffer, 0, red);
+							System.out.print(s);
+							red = inputStream.read(buffer);
+						}
+					} catch (IOException e) {
+					}
+				}}, "Sysin reader").start();
+			new Thread(new Runnable(){
+				@Override
+				public void run() {
+					BufferedInputStream errorStream = new BufferedInputStream(exec.getErrorStream());
+					byte[] buffer = new byte[1024];
+					int red;
+					try {
+						red = errorStream.read(buffer);
+						while (red != -1) {
+							String s = new String(buffer, 0, red);
+							System.out.print(s);
+							red = errorStream.read(buffer);
+						}
+					} catch (IOException e) {
+					}
+				}}, "Syserr reader").start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void checkJavaVersion(String jvmPath) {
+		List<String> commands = new ArrayList<>();
+		if (jvmPath.equalsIgnoreCase("default")) {
+			commands.add("java");
+		} else {
+			File jvm = new File(jvmPath);
+			if (jvm.exists()) {
+				File jre = new File(jvm, "jre");
+				if (!jre.exists()) {
+					jre = jvm;
+				}
+				commands.add(new File(jre, "bin" + File.separator + "java").getAbsolutePath());
+				File jreLib = new File(jre, "lib");
+				
+				System.out.println("Using " + jreLib.getAbsolutePath() + " for bootclasspath");
+				
+				String xbcp = "-Xbootclasspath:";
+				for (File file : jreLib.listFiles()) {
+					if (file.getName().endsWith(".jar")) {
+						if (file.getAbsolutePath().contains(" ")) {
+							xbcp += "\"" + file.getAbsolutePath() + "\"" + File.pathSeparator;
+						} else {
+							xbcp += file.getAbsolutePath() + File.pathSeparator;
+						}
+					}
+				}
+				if (jre != jvm) {
+					File toolsFile = new File(jvm, "lib" + File.separator + "tools.jar");
+					if (toolsFile.getAbsolutePath().contains(" ")) {
+						xbcp += "\"" + toolsFile.getAbsolutePath() + "\"";
+					} else {
+						xbcp += toolsFile.getAbsolutePath();
+					}
+				}
+				commands.add(xbcp);
+			} else {
+				System.out.println("Not using selected JVM (directory not found), using default JVM");
+			}
+		}
+		
+		commands.add("-version");
+		
+		ProcessBuilder processBuilder = new ProcessBuilder(commands);
+		try {
+			exec = processBuilder.start();
 			new Thread(new Runnable(){
 				@Override
 				public void run() {

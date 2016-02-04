@@ -197,7 +197,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		return resolveArtifact.getArtifact().getFile().toPath();
 	}
 
-	private File getVersionPom(String version) throws ArtifactResolutionException {
+	public Path getVersionPom(String version) throws ArtifactResolutionException {
 		Artifact pomArtifact = new DefaultArtifact(groupId, artifactId, "pom", version.toString());
 
 		ArtifactRequest request = new ArtifactRequest();
@@ -205,7 +205,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		request.setRepositories(mavenPluginRepository.getRepositories());
 		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 		
-		return resolveArtifact.getArtifact().getFile();
+		return resolveArtifact.getArtifact().getFile().toPath();
 	}
 	
 	@Override
@@ -247,11 +247,11 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 	
 	public SPluginBundleVersion getPluginBundleVersion(String version) {
 		try {
-			File pomFile = getVersionPom(version);
+			Path pomFile = getVersionPom(version);
 			
 			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 
-			Model model = mavenreader.read(new FileReader(pomFile));
+			Model model = mavenreader.read(new FileReader(pomFile.toFile()));
 			SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
 			sPluginBundleVersion.setType(SPluginBundleType.MAVEN);
 			sPluginBundleVersion.setGroupId(groupId);

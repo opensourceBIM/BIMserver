@@ -31,14 +31,7 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.Schema;
 import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
-import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
-import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
-import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
-import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
-import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
-import org.bimserver.interfaces.objects.SServicePluginDescriptor;
-import org.bimserver.interfaces.objects.SWebModulePluginDescriptor;
+import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
@@ -82,26 +75,26 @@ public class SerializerFactory {
 		this.bimServer = bimServer;
 	}
 
-	public List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() {
-		List<SSerializerPluginDescriptor> descriptors = new ArrayList<SSerializerPluginDescriptor>();
+	public List<SPluginDescriptor> getAllSerializerPluginDescriptors() {
+		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true).values()) {
 			descriptors.add(makeSerializerDescriptor(serializerPlugin));
 		}
 		return descriptors;
 	}
 
-	public List<SWebModulePluginDescriptor> getAllWebModulePluginDescriptors() {
-		List<SWebModulePluginDescriptor> descriptors = new ArrayList<SWebModulePluginDescriptor>();
+	public List<SPluginDescriptor> getAllWebModulePluginDescriptors() {
+		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
 		for (WebModulePlugin webModulePlugin : pluginManager.getAllWebPlugins(true).values()) {
 			descriptors.add(makeWebModuleDescriptor(webModulePlugin));
 		}
 		return descriptors;
 	}
 
-	public List<SServicePluginDescriptor> getAllServicePluginDescriptors() {
-		List<SServicePluginDescriptor> descriptors = new ArrayList<SServicePluginDescriptor>();
+	public List<SPluginDescriptor> getAllServicePluginDescriptors() {
+		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
 		for (ServicePlugin servicePlugin : pluginManager.getAllServicePlugins(true).values()) {
-			SServicePluginDescriptor descriptor = new SServicePluginDescriptor();
+			SPluginDescriptor descriptor = new SPluginDescriptor();
 			descriptor.setPluginClassName(servicePlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}
@@ -198,7 +191,7 @@ public class SerializerFactory {
 		return null;
 	}
 
-	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) {
+	public SPluginDescriptor getSerializerPluginDescriptor(String type) {
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true).values()) {
 			if (serializerPlugin.getClass().getName().equals(type)) {
 				return makeSerializerDescriptor(serializerPlugin);
@@ -207,15 +200,15 @@ public class SerializerFactory {
 		return null;
 	}
 
-	private SSerializerPluginDescriptor makeSerializerDescriptor(SerializerPlugin serializerPlugin) {
-		SSerializerPluginDescriptor descriptor = new SSerializerPluginDescriptor();
+	private SPluginDescriptor makeSerializerDescriptor(SerializerPlugin serializerPlugin) {
+		SPluginDescriptor descriptor = new SPluginDescriptor();
 		descriptor.setDefaultName(serializerPlugin.getDefaultName());
 		descriptor.setPluginClassName(serializerPlugin.getClass().getName());
 		return descriptor;
 	}
 
-	private SWebModulePluginDescriptor makeWebModuleDescriptor(WebModulePlugin webModulePlugin) {
-		SWebModulePluginDescriptor descriptor = new SWebModulePluginDescriptor();
+	private SPluginDescriptor makeWebModuleDescriptor(WebModulePlugin webModulePlugin) {
+		SPluginDescriptor descriptor = new SPluginDescriptor();
 		descriptor.setDefaultName(webModulePlugin.getDefaultName());
 		descriptor.setPluginClassName(webModulePlugin.getClass().getName());
 		return descriptor;
@@ -236,10 +229,10 @@ public class SerializerFactory {
 		return null;
 	}
 
-	public List<SRenderEnginePluginDescriptor> getAllRenderEnginePluginDescriptors() {
-		List<SRenderEnginePluginDescriptor> descriptors = new ArrayList<SRenderEnginePluginDescriptor>();
+	public List<SPluginDescriptor> getAllRenderEnginePluginDescriptors() {
+		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
 		for (RenderEnginePlugin renderEnginePlugin : pluginManager.getAllRenderEnginePlugins(true).values()) {
-			SRenderEnginePluginDescriptor descriptor = new SRenderEnginePluginDescriptor();
+			SPluginDescriptor descriptor = new SPluginDescriptor();
 			descriptor.setDefaultName(renderEnginePlugin.getDefaultName());
 			descriptor.setPluginClassName(renderEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);
@@ -247,10 +240,10 @@ public class SerializerFactory {
 		return descriptors;
 	}
 
-	public List<SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() {
-		List<SQueryEnginePluginDescriptor> descriptors = new ArrayList<SQueryEnginePluginDescriptor>();
+	public List<SPluginDescriptor> getAllQueryEnginePluginDescriptors() {
+		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
 		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true).values()) {
-			SQueryEnginePluginDescriptor descriptor = new SQueryEnginePluginDescriptor();
+			SPluginDescriptor descriptor = new SPluginDescriptor();
 			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
 			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);
@@ -258,10 +251,10 @@ public class SerializerFactory {
 		return descriptors;
 	}
 
-	public List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() {
-		List<SModelMergerPluginDescriptor> descriptors = new ArrayList<SModelMergerPluginDescriptor>();
+	public List<SPluginDescriptor> getAllModelMergerPluginDescriptors() {
+		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
 		for (ModelMergerPlugin queryEnginePlugin : pluginManager.getAllModelMergerPlugins(true).values()) {
-			SModelMergerPluginDescriptor descriptor = new SModelMergerPluginDescriptor();
+			SPluginDescriptor descriptor = new SPluginDescriptor();
 			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
 			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);
@@ -269,10 +262,10 @@ public class SerializerFactory {
 		return descriptors;
 	}
 
-	public List<SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() {
-		List<SModelComparePluginDescriptor> descriptors = new ArrayList<SModelComparePluginDescriptor>();
+	public List<SPluginDescriptor> getAllModelComparePluginDescriptors() {
+		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
 		for (ModelComparePlugin queryEnginePlugin : pluginManager.getAllModelComparePlugins(true).values()) {
-			SModelComparePluginDescriptor descriptor = new SModelComparePluginDescriptor();
+			SPluginDescriptor descriptor = new SPluginDescriptor();
 			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
 			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);
@@ -280,10 +273,10 @@ public class SerializerFactory {
 		return descriptors;
 	}
 
-	public List<SModelCheckerPluginDescriptor> getAllModelCheckerPluginDescriptors() {
-		List<SModelCheckerPluginDescriptor> descriptors = new ArrayList<SModelCheckerPluginDescriptor>();
+	public List<SPluginDescriptor> getAllModelCheckerPluginDescriptors() {
+		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
 		for (ModelCheckerPlugin queryEnginePlugin : pluginManager.getAllModelCheckerPlugins(true).values()) {
-			SModelCheckerPluginDescriptor descriptor = new SModelCheckerPluginDescriptor();
+			SPluginDescriptor descriptor = new SPluginDescriptor();
 			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
 			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);

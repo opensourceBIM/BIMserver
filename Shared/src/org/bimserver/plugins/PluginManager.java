@@ -49,6 +49,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import org.apache.maven.artifact.versioning.ArtifactVersion;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
+import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
@@ -1140,7 +1143,34 @@ public class PluginManager implements PluginManagerInterface {
 		return null;
 	}
 
-	public PluginBundle install(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, Path jarFile, List<SPluginInformation> plugins) throws Exception {
+	public PluginBundle install(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, Path jarFile, Path pomFile, List<SPluginInformation> plugins, boolean strictDependencyChecking) throws Exception {
+		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+		Model model = mavenreader.read(new FileReader(pomFile.toFile()));
+		
+		for (org.apache.maven.model.Dependency dependency : model.getDependencies()) {
+			if (dependency.getGroupId().equals("org.opensourcebim") && (dependency.getArtifactId().equals("shared") || dependency.getArtifactId().equals("pluginbase"))) {
+				// TODO Skip, we should also check the version though
+			} else {
+				PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(dependency.getGroupId(), dependency.getArtifactId());
+				if (pluginBundleIdentifierToPluginBundle.containsKey(pluginBundleIdentifier)) {
+					if (strictDependencyChecking) {
+						VersionRange versionRange = VersionRange.createFromVersion(dependency.getVersion());
+						String version = pluginBundleIdentifierToPluginBundle.get(pluginBundleIdentifier).getPluginBundleVersion().getVersion();
+						ArtifactVersion artifactVersion = new DefaultArtifactVersion(version);
+						if (versionRange.containsVersion(artifactVersion)) {
+							// OK
+						} else {
+							throw new Exception("Required dependency " + pluginBundleIdentifier + " is installed, but it's version (" + version + ") does not comply to the required version (" + dependency.getVersion() + ")");
+						}
+					} else {
+						LOGGER.info("Skipping strict dependency checking for dependency " + dependency.getArtifactId());
+					}
+				} else {
+					throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
+				}
+			}
+		}
+		
 		Path target = pluginsDir.resolve(pluginBundleVersionIdentifier.getFileName());
 		if (Files.exists(target)) {
 			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
@@ -1150,6 +1180,9 @@ public class PluginManager implements PluginManagerInterface {
 		// Stage 1, load all plugins from the JAR file and initialize them
 		try {
 			pluginBundle = loadPluginsFromJar(pluginBundleVersionIdentifier, target, sPluginBundle, pluginBundleVersion);
+			if (plugins.isEmpty()) {
+				LOGGER.warn("No plugins given to install for bundle " + sPluginBundle.getName());
+			}
 			for (SPluginInformation sPluginInformation : plugins) {
 				if (sPluginInformation.isEnabled()) {
 					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());

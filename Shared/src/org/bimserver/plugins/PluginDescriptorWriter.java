@@ -35,10 +35,17 @@ public class PluginDescriptorWriter {
 
 	private void start() {
 		PluginDescriptor pluginDescriptor = new PluginDescriptor();
+		
 		JavaPlugin pluginImplementation = new JavaPlugin();
 		pluginImplementation.setInterfaceClass("blabla");
 		pluginImplementation.setImplementationClass("blabla");
 		pluginDescriptor.getPlugins().add(pluginImplementation);
+		
+		WebModulePlugin webModulePlugin = new WebModulePlugin();
+		webModulePlugin.setDescription("test");
+		webModulePlugin.setIdentifier("kaka");
+		
+		pluginDescriptor.getPlugins().add(webModulePlugin);
 		
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(PluginDescriptor.class);

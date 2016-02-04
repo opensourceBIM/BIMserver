@@ -47,7 +47,7 @@ public class GitHubPluginRepository {
 		this.mavenPluginRepository = mavenPluginRepository;
 		this.url = url + "/plugins.json";
 	}
-
+	
 	public List<PluginLocation<?>> listPluginLocations() {
 		List<PluginLocation<?>> pluginLocations = new ArrayList<>();
 		try {
