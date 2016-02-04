@@ -37,7 +37,7 @@
 							<targetPath>/</targetPath>
 						</resource>
 						<resource>
-							<directory>www</directory>
+							<directory>../BimServer/www</directory>
 							<targetPath>/</targetPath>
 						</resource>
 						<resource>
