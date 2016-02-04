@@ -121,10 +121,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createDatabaseInformation();
 		case StorePackage.PLUGIN_DESCRIPTOR:
 			return (EObject) createPluginDescriptor();
-		case StorePackage.SERIALIZER_PLUGIN_DESCRIPTOR:
-			return (EObject) createSerializerPluginDescriptor();
-		case StorePackage.DESERIALIZER_PLUGIN_DESCRIPTOR:
-			return (EObject) createDeserializerPluginDescriptor();
 		case StorePackage.REVISION_SUMMARY_TYPE:
 			return (EObject) createRevisionSummaryType();
 		case StorePackage.REVISION_SUMMARY_CONTAINER:
@@ -153,28 +149,18 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createServerInfo();
 		case StorePackage.VERSION:
 			return (EObject) createVersion();
-		case StorePackage.RENDER_ENGINE_PLUGIN_DESCRIPTOR:
-			return (EObject) createRenderEnginePluginDescriptor();
 		case StorePackage.FILE:
 			return (EObject) createFile();
 		case StorePackage.EXTENDED_DATA_SCHEMA:
 			return (EObject) createExtendedDataSchema();
 		case StorePackage.EXTENDED_DATA:
 			return (EObject) createExtendedData();
-		case StorePackage.QUERY_ENGINE_PLUGIN_DESCRIPTOR:
-			return (EObject) createQueryEnginePluginDescriptor();
 		case StorePackage.QUERY_ENGINE_PLUGIN_CONFIGURATION:
 			return (EObject) createQueryEnginePluginConfiguration();
-		case StorePackage.WEB_MODULE_PLUGIN_DESCRIPTOR:
-			return (EObject) createWebModulePluginDescriptor();
 		case StorePackage.WEB_MODULE_PLUGIN_CONFIGURATION:
 			return (EObject) createWebModulePluginConfiguration();
-		case StorePackage.MODEL_MERGER_PLUGIN_DESCRIPTOR:
-			return (EObject) createModelMergerPluginDescriptor();
 		case StorePackage.MODEL_MERGER_PLUGIN_CONFIGURATION:
 			return (EObject) createModelMergerPluginConfiguration();
-		case StorePackage.MODEL_COMPARE_PLUGIN_DESCRIPTOR:
-			return (EObject) createModelComparePluginDescriptor();
 		case StorePackage.MODEL_COMPARE_PLUGIN_CONFIGURATION:
 			return (EObject) createModelComparePluginConfiguration();
 		case StorePackage.PROFILE_DESCRIPTOR:
@@ -185,8 +171,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createService();
 		case StorePackage.TOKEN:
 			return (EObject) createToken();
-		case StorePackage.SERVICE_PLUGIN_DESCRIPTOR:
-			return (EObject) createServicePluginDescriptor();
 		case StorePackage.INTERNAL_SERVICE_PLUGIN_CONFIGURATION:
 			return (EObject) createInternalServicePluginConfiguration();
 		case StorePackage.SERVICE_INTERFACE:
@@ -255,8 +239,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createModelCheckerResult();
 		case StorePackage.MODEL_CHECKER_INSTANCE:
 			return (EObject) createModelCheckerInstance();
-		case StorePackage.MODEL_CHECKER_PLUGIN_DESCRIPTOR:
-			return (EObject) createModelCheckerPluginDescriptor();
 		case StorePackage.MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION:
 			return (EObject) createMessagingSerializerPluginConfiguration();
 		case StorePackage.METRICS:
@@ -635,26 +617,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SerializerPluginDescriptor createSerializerPluginDescriptor() {
-		SerializerPluginDescriptorImpl serializerPluginDescriptor = new SerializerPluginDescriptorImpl();
-		return serializerPluginDescriptor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DeserializerPluginDescriptor createDeserializerPluginDescriptor() {
-		DeserializerPluginDescriptorImpl deserializerPluginDescriptor = new DeserializerPluginDescriptorImpl();
-		return deserializerPluginDescriptor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public RevisionSummaryType createRevisionSummaryType() {
 		RevisionSummaryTypeImpl revisionSummaryType = new RevisionSummaryTypeImpl();
 		return revisionSummaryType;
@@ -795,16 +757,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RenderEnginePluginDescriptor createRenderEnginePluginDescriptor() {
-		RenderEnginePluginDescriptorImpl renderEnginePluginDescriptor = new RenderEnginePluginDescriptorImpl();
-		return renderEnginePluginDescriptor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public File createFile() {
 		FileImpl file = new FileImpl();
 		return file;
@@ -835,29 +787,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QueryEnginePluginDescriptor createQueryEnginePluginDescriptor() {
-		QueryEnginePluginDescriptorImpl queryEnginePluginDescriptor = new QueryEnginePluginDescriptorImpl();
-		return queryEnginePluginDescriptor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public QueryEnginePluginConfiguration createQueryEnginePluginConfiguration() {
 		QueryEnginePluginConfigurationImpl queryEnginePluginConfiguration = new QueryEnginePluginConfigurationImpl();
 		return queryEnginePluginConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public WebModulePluginDescriptor createWebModulePluginDescriptor() {
-		WebModulePluginDescriptorImpl webModulePluginDescriptor = new WebModulePluginDescriptorImpl();
-		return webModulePluginDescriptor;
 	}
 
 	/**
@@ -875,29 +807,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelMergerPluginDescriptor createModelMergerPluginDescriptor() {
-		ModelMergerPluginDescriptorImpl modelMergerPluginDescriptor = new ModelMergerPluginDescriptorImpl();
-		return modelMergerPluginDescriptor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ModelMergerPluginConfiguration createModelMergerPluginConfiguration() {
 		ModelMergerPluginConfigurationImpl modelMergerPluginConfiguration = new ModelMergerPluginConfigurationImpl();
 		return modelMergerPluginConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelComparePluginDescriptor createModelComparePluginDescriptor() {
-		ModelComparePluginDescriptorImpl modelComparePluginDescriptor = new ModelComparePluginDescriptorImpl();
-		return modelComparePluginDescriptor;
 	}
 
 	/**
@@ -948,16 +860,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public Token createToken() {
 		TokenImpl token = new TokenImpl();
 		return token;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ServicePluginDescriptor createServicePluginDescriptor() {
-		ServicePluginDescriptorImpl servicePluginDescriptor = new ServicePluginDescriptorImpl();
-		return servicePluginDescriptor;
 	}
 
 	/**
@@ -1298,16 +1200,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ModelCheckerInstance createModelCheckerInstance() {
 		ModelCheckerInstanceImpl modelCheckerInstance = new ModelCheckerInstanceImpl();
 		return modelCheckerInstance;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelCheckerPluginDescriptor createModelCheckerPluginDescriptor() {
-		ModelCheckerPluginDescriptorImpl modelCheckerPluginDescriptor = new ModelCheckerPluginDescriptorImpl();
-		return modelCheckerPluginDescriptor;
 	}
 
 	/**

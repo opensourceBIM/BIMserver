@@ -56,6 +56,7 @@ import org.bimserver.database.actions.GetModelMergerByIdDatabaseAction;
 import org.bimserver.database.actions.GetModelMergerByNameDatabaseAction;
 import org.bimserver.database.actions.GetObjectIDMByIdDatabaseAction;
 import org.bimserver.database.actions.GetObjectIDMByNameDatabaseAction;
+import org.bimserver.database.actions.GetPluginBundle;
 import org.bimserver.database.actions.GetPluginInformation;
 import org.bimserver.database.actions.GetRenderEngineByIdDatabaseAction;
 import org.bimserver.database.actions.GetRenderEngineByNameDatabaseAction;
@@ -79,14 +80,10 @@ import org.bimserver.database.actions.UserSettingsSetter;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
-import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
-import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
@@ -96,14 +93,9 @@ import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
-import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
-import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
-import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.SWebModulePluginConfiguration;
-import org.bimserver.interfaces.objects.SWebModulePluginDescriptor;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
@@ -241,13 +233,13 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException {
+	public List<SPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException {
 		requireRealUserAuthentication();
 		return getBimServer().getSerializerFactory().getAllSerializerPluginDescriptors();
 	}
 
 	@Override
-	public List<SWebModulePluginDescriptor> getAllWebModulePluginDescriptors() throws UserException {
+	public List<SPluginDescriptor> getAllWebModulePluginDescriptors() throws UserException {
 		requireRealUserAuthentication();
 		return getBimServer().getSerializerFactory().getAllWebModulePluginDescriptors();
 	}
@@ -323,11 +315,11 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 	
 	@Override
-	public List<SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServerException, UserException {
+	public List<SPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		List<SDeserializerPluginDescriptor> descriptors = new ArrayList<SDeserializerPluginDescriptor>();
+		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
 		for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true).values()) {
-			SDeserializerPluginDescriptor descriptor = new SDeserializerPluginDescriptor();
+			SPluginDescriptor descriptor = new SPluginDescriptor();
 			descriptor.setDefaultName(deserializerPlugin.getDefaultName());
 			descriptor.setPluginClassName(deserializerPlugin.getClass().getName());
 			descriptors.add(descriptor);
@@ -336,37 +328,37 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 	
 	@Override
-	public List<SRenderEnginePluginDescriptor> getAllRenderEnginePluginDescriptors() throws ServerException, UserException {
+	public List<SPluginDescriptor> getAllRenderEnginePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		return getBimServer().getSerializerFactory().getAllRenderEnginePluginDescriptors();
 	}
 
 	@Override
-	public List<SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException {
+	public List<SPluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		return getBimServer().getSerializerFactory().getAllQueryEnginePluginDescriptors();
 	}
 
 	@Override
-	public List<SServicePluginDescriptor> getAllServicePluginDescriptors() throws ServerException, UserException {
+	public List<SPluginDescriptor> getAllServicePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		return getBimServer().getSerializerFactory().getAllServicePluginDescriptors();
 	}
 
 	@Override
-	public List<SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException {
+	public List<SPluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		return getBimServer().getSerializerFactory().getAllModelComparePluginDescriptors();
 	}
 
 	@Override
-	public List<SModelCheckerPluginDescriptor> getAllModelCheckerPluginDescriptors() throws ServerException, UserException {
+	public List<SPluginDescriptor> getAllModelCheckerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		return getBimServer().getSerializerFactory().getAllModelCheckerPluginDescriptors();
 	}
 
 	@Override
-	public List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException {
+	public List<SPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		return getBimServer().getSerializerFactory().getAllModelMergerPluginDescriptors();
 	}
@@ -1178,7 +1170,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) throws UserException {
+	public SPluginDescriptor getSerializerPluginDescriptor(String type) throws UserException {
 		requireRealUserAuthentication();
 		return getBimServer().getSerializerFactory().getSerializerPluginDescriptor(type);
 	}
@@ -1405,6 +1397,19 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			return session.executeAndCommitAction(new GetInstalledPluginBundle(session, getInternalAccessMethod(), getBimServer(), oid));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public SPluginBundle getPluginBundle(String repository, String groupId, String artifactId) throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

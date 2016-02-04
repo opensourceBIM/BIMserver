@@ -115,7 +115,7 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface GetAllDeserializerPluginDescriptorsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginDescriptor> result);
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
 	}
 	
@@ -135,12 +135,12 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface GetAllModelCheckerPluginDescriptorsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor> result);
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
 	}
 	
 	public interface GetAllModelComparePluginDescriptorsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SModelComparePluginDescriptor> result);
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
 	}
 	
@@ -150,7 +150,7 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface GetAllModelMergerPluginDescriptorsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginDescriptor> result);
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
 	}
 	
@@ -170,7 +170,7 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface GetAllQueryEnginePluginDescriptorsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor> result);
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
 	}
 	
@@ -180,7 +180,7 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface GetAllRenderEnginePluginDescriptorsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor> result);
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
 	}
 	
@@ -190,7 +190,7 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface GetAllSerializerPluginDescriptorsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SSerializerPluginDescriptor> result);
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
 	}
 	
@@ -205,12 +205,12 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface GetAllServicePluginDescriptorsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SServicePluginDescriptor> result);
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
 	}
 	
 	public interface GetAllWebModulePluginDescriptorsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SWebModulePluginDescriptor> result);
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
 	}
 	
@@ -309,6 +309,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetPluginBundleCallback {
+		void success(org.bimserver.interfaces.objects.SPluginBundle result);
+		void error(Throwable e);
+	}
+	
 	public interface GetPluginDescriptorCallback {
 		void success(org.bimserver.interfaces.objects.SPluginDescriptor result);
 		void error(Throwable e);
@@ -345,7 +350,7 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface GetSerializerPluginDescriptorCallback {
-		void success(org.bimserver.interfaces.objects.SSerializerPluginDescriptor result);
+		void success(org.bimserver.interfaces.objects.SPluginDescriptor result);
 		void error(Throwable e);
 	}
 	
@@ -1143,6 +1148,18 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getObjectIDMByName(objectIDMName));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getPluginBundle(final java.lang.String repository, final java.lang.String groupId, final java.lang.String artifactId, final GetPluginBundleCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getPluginBundle(repository, groupId, artifactId));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

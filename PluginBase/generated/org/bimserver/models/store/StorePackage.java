@@ -2501,242 +2501,6 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 11;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.SerializerPluginDescriptorImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSerializerPluginDescriptor()
-	 * @generated
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR = 26;
-
-	/**
-	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME = PLUGIN_DESCRIPTOR__DEFAULT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__DESCRIPTION = PLUGIN_DESCRIPTOR__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__LOCATION = PLUGIN_DESCRIPTOR__LOCATION;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
-
-	/**
-	 * The number of structural features of the '<em>Serializer Plugin Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.DeserializerPluginDescriptorImpl <em>Deserializer Plugin Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.DeserializerPluginDescriptorImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDeserializerPluginDescriptor()
-	 * @generated
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR = 27;
-
-	/**
-	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME = PLUGIN_DESCRIPTOR__DEFAULT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR__DESCRIPTION = PLUGIN_DESCRIPTOR__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR__LOCATION = PLUGIN_DESCRIPTOR__LOCATION;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
-
-	/**
-	 * The number of structural features of the '<em>Deserializer Plugin Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESERIALIZER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl <em>Revision Summary Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2744,7 +2508,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummaryType()
 	 * @generated
 	 */
-	int REVISION_SUMMARY_TYPE = 28;
+	int REVISION_SUMMARY_TYPE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2790,7 +2554,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummaryContainer()
 	 * @generated
 	 */
-	int REVISION_SUMMARY_CONTAINER = 29;
+	int REVISION_SUMMARY_CONTAINER = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2827,7 +2591,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummary()
 	 * @generated
 	 */
-	int REVISION_SUMMARY = 30;
+	int REVISION_SUMMARY = 28;
 
 	/**
 	 * The feature id for the '<em><b>List</b></em>' reference list.
@@ -2855,7 +2619,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongAction()
 	 * @generated
 	 */
-	int LONG_ACTION = 31;
+	int LONG_ACTION = 29;
 
 	/**
 	 * The feature id for the '<em><b>Identification</b></em>' attribute.
@@ -2919,7 +2683,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectIDMPluginDescriptor()
 	 * @generated
 	 */
-	int OBJECT_IDM_PLUGIN_DESCRIPTOR = 32;
+	int OBJECT_IDM_PLUGIN_DESCRIPTOR = 30;
 
 	/**
 	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
@@ -2947,7 +2711,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareItem()
 	 * @generated
 	 */
-	int COMPARE_ITEM = 33;
+	int COMPARE_ITEM = 31;
 
 	/**
 	 * The feature id for the '<em><b>Data Object</b></em>' reference.
@@ -2975,7 +2739,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectAdded()
 	 * @generated
 	 */
-	int OBJECT_ADDED = 34;
+	int OBJECT_ADDED = 32;
 
 	/**
 	 * The feature id for the '<em><b>Data Object</b></em>' reference.
@@ -3003,7 +2767,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectRemoved()
 	 * @generated
 	 */
-	int OBJECT_REMOVED = 35;
+	int OBJECT_REMOVED = 33;
 
 	/**
 	 * The feature id for the '<em><b>Data Object</b></em>' reference.
@@ -3031,7 +2795,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectModified()
 	 * @generated
 	 */
-	int OBJECT_MODIFIED = 36;
+	int OBJECT_MODIFIED = 34;
 
 	/**
 	 * The feature id for the '<em><b>Data Object</b></em>' reference.
@@ -3086,7 +2850,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareContainer()
 	 * @generated
 	 */
-	int COMPARE_CONTAINER = 37;
+	int COMPARE_CONTAINER = 35;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -3123,7 +2887,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareResult()
 	 * @generated
 	 */
-	int COMPARE_RESULT = 38;
+	int COMPARE_RESULT = 36;
 
 	/**
 	 * The feature id for the '<em><b>Items</b></em>' reference list.
@@ -3151,7 +2915,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongActionState()
 	 * @generated
 	 */
-	int LONG_ACTION_STATE = 39;
+	int LONG_ACTION_STATE = 37;
 
 	/**
 	 * The feature id for the '<em><b>Start</b></em>' attribute.
@@ -3251,7 +3015,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerInfo()
 	 * @generated
 	 */
-	int SERVER_INFO = 40;
+	int SERVER_INFO = 38;
 
 	/**
 	 * The feature id for the '<em><b>Server State</b></em>' attribute.
@@ -3297,7 +3061,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getVersion()
 	 * @generated
 	 */
-	int VERSION = 41;
+	int VERSION = 39;
 
 	/**
 	 * The feature id for the '<em><b>Major</b></em>' attribute.
@@ -3381,124 +3145,6 @@ public interface StorePackage extends EPackage {
 	int VERSION_FEATURE_COUNT = 8;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.RenderEnginePluginDescriptorImpl <em>Render Engine Plugin Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.RenderEnginePluginDescriptorImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRenderEnginePluginDescriptor()
-	 * @generated
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR = 42;
-
-	/**
-	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = PLUGIN_DESCRIPTOR__DEFAULT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__DESCRIPTION = PLUGIN_DESCRIPTOR__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__LOCATION = PLUGIN_DESCRIPTOR__LOCATION;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
-
-	/**
-	 * The number of structural features of the '<em>Render Engine Plugin Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDER_ENGINE_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.FileImpl <em>File</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3506,7 +3152,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getFile()
 	 * @generated
 	 */
-	int FILE = 43;
+	int FILE = 40;
 
 	/**
 	 * The feature id for the '<em><b>Data</b></em>' attribute.
@@ -3552,7 +3198,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchema()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA = 44;
+	int EXTENDED_DATA_SCHEMA = 41;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3661,7 +3307,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedData()
 	 * @generated
 	 */
-	int EXTENDED_DATA = 45;
+	int EXTENDED_DATA = 42;
 
 	/**
 	 * The feature id for the '<em><b>Url</b></em>' attribute.
@@ -3754,124 +3400,6 @@ public interface StorePackage extends EPackage {
 	int EXTENDED_DATA_FEATURE_COUNT = 9;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl <em>Query Engine Plugin Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getQueryEnginePluginDescriptor()
-	 * @generated
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR = 46;
-
-	/**
-	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = PLUGIN_DESCRIPTOR__DEFAULT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__DESCRIPTION = PLUGIN_DESCRIPTOR__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__LOCATION = PLUGIN_DESCRIPTOR__LOCATION;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
-
-	/**
-	 * The number of structural features of the '<em>Query Engine Plugin Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.QueryEnginePluginConfigurationImpl <em>Query Engine Plugin Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3879,7 +3407,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getQueryEnginePluginConfiguration()
 	 * @generated
 	 */
-	int QUERY_ENGINE_PLUGIN_CONFIGURATION = 47;
+	int QUERY_ENGINE_PLUGIN_CONFIGURATION = 43;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3945,124 +3473,6 @@ public interface StorePackage extends EPackage {
 	int QUERY_ENGINE_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.WebModulePluginDescriptorImpl <em>Web Module Plugin Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.WebModulePluginDescriptorImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getWebModulePluginDescriptor()
-	 * @generated
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR = 48;
-
-	/**
-	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = PLUGIN_DESCRIPTOR__DEFAULT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR__DESCRIPTION = PLUGIN_DESCRIPTOR__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR__LOCATION = PLUGIN_DESCRIPTOR__LOCATION;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
-
-	/**
-	 * The number of structural features of the '<em>Web Module Plugin Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WEB_MODULE_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.WebModulePluginConfigurationImpl <em>Web Module Plugin Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4070,7 +3480,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getWebModulePluginConfiguration()
 	 * @generated
 	 */
-	int WEB_MODULE_PLUGIN_CONFIGURATION = 49;
+	int WEB_MODULE_PLUGIN_CONFIGURATION = 44;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4136,124 +3546,6 @@ public interface StorePackage extends EPackage {
 	int WEB_MODULE_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.ModelMergerPluginDescriptorImpl <em>Model Merger Plugin Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.ModelMergerPluginDescriptorImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelMergerPluginDescriptor()
-	 * @generated
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR = 50;
-
-	/**
-	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR__DEFAULT_NAME = PLUGIN_DESCRIPTOR__DEFAULT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR__DESCRIPTION = PLUGIN_DESCRIPTOR__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR__LOCATION = PLUGIN_DESCRIPTOR__LOCATION;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
-
-	/**
-	 * The number of structural features of the '<em>Model Merger Plugin Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ModelMergerPluginConfigurationImpl <em>Model Merger Plugin Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4261,7 +3553,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelMergerPluginConfiguration()
 	 * @generated
 	 */
-	int MODEL_MERGER_PLUGIN_CONFIGURATION = 51;
+	int MODEL_MERGER_PLUGIN_CONFIGURATION = 45;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4327,124 +3619,6 @@ public interface StorePackage extends EPackage {
 	int MODEL_MERGER_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.ModelComparePluginDescriptorImpl <em>Model Compare Plugin Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.ModelComparePluginDescriptorImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelComparePluginDescriptor()
-	 * @generated
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR = 52;
-
-	/**
-	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = PLUGIN_DESCRIPTOR__DEFAULT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__DESCRIPTION = PLUGIN_DESCRIPTOR__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__LOCATION = PLUGIN_DESCRIPTOR__LOCATION;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
-
-	/**
-	 * The number of structural features of the '<em>Model Compare Plugin Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ModelComparePluginConfigurationImpl <em>Model Compare Plugin Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4452,7 +3626,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelComparePluginConfiguration()
 	 * @generated
 	 */
-	int MODEL_COMPARE_PLUGIN_CONFIGURATION = 53;
+	int MODEL_COMPARE_PLUGIN_CONFIGURATION = 46;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4525,7 +3699,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProfileDescriptor()
 	 * @generated
 	 */
-	int PROFILE_DESCRIPTOR = 54;
+	int PROFILE_DESCRIPTOR = 47;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4580,7 +3754,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceDescriptor()
 	 * @generated
 	 */
-	int SERVICE_DESCRIPTOR = 55;
+	int SERVICE_DESCRIPTOR = 48;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4734,7 +3908,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getService()
 	 * @generated
 	 */
-	int SERVICE = 56;
+	int SERVICE = 49;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4942,7 +4116,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getToken()
 	 * @generated
 	 */
-	int TOKEN = 57;
+	int TOKEN = 50;
 
 	/**
 	 * The feature id for the '<em><b>Token String</b></em>' attribute.
@@ -4972,124 +4146,6 @@ public interface StorePackage extends EPackage {
 	int TOKEN_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServicePluginDescriptorImpl <em>Service Plugin Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.ServicePluginDescriptorImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServicePluginDescriptor()
-	 * @generated
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR = 58;
-
-	/**
-	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = PLUGIN_DESCRIPTOR__DEFAULT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR__DESCRIPTION = PLUGIN_DESCRIPTOR__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR__LOCATION = PLUGIN_DESCRIPTOR__LOCATION;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
-
-	/**
-	 * The number of structural features of the '<em>Service Plugin Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.InternalServicePluginConfigurationImpl <em>Internal Service Plugin Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5097,7 +4153,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getInternalServicePluginConfiguration()
 	 * @generated
 	 */
-	int INTERNAL_SERVICE_PLUGIN_CONFIGURATION = 59;
+	int INTERNAL_SERVICE_PLUGIN_CONFIGURATION = 51;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5188,7 +4244,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceInterface()
 	 * @generated
 	 */
-	int SERVICE_INTERFACE = 60;
+	int SERVICE_INTERFACE = 52;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5234,7 +4290,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceMethod()
 	 * @generated
 	 */
-	int SERVICE_METHOD = 61;
+	int SERVICE_METHOD = 53;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5280,7 +4336,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceField()
 	 * @generated
 	 */
-	int SERVICE_FIELD = 62;
+	int SERVICE_FIELD = 54;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5335,7 +4391,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceType()
 	 * @generated
 	 */
-	int SERVICE_TYPE = 63;
+	int SERVICE_TYPE = 55;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5390,7 +4446,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceParameter()
 	 * @generated
 	 */
-	int SERVICE_PARAMETER = 64;
+	int SERVICE_PARAMETER = 56;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5445,7 +4501,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTypeDefinition()
 	 * @generated
 	 */
-	int TYPE_DEFINITION = 65;
+	int TYPE_DEFINITION = 57;
 
 	/**
 	 * The number of structural features of the '<em>Type Definition</em>' class.
@@ -5464,7 +4520,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectDefinition()
 	 * @generated
 	 */
-	int OBJECT_DEFINITION = 66;
+	int OBJECT_DEFINITION = 58;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' reference list.
@@ -5492,7 +4548,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveDefinition()
 	 * @generated
 	 */
-	int PRIMITIVE_DEFINITION = 67;
+	int PRIMITIVE_DEFINITION = 59;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -5520,7 +4576,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getArrayDefinition()
 	 * @generated
 	 */
-	int ARRAY_DEFINITION = 68;
+	int ARRAY_DEFINITION = 60;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -5548,7 +4604,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getParameterDefinition()
 	 * @generated
 	 */
-	int PARAMETER_DEFINITION = 69;
+	int PARAMETER_DEFINITION = 61;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5612,7 +4668,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 70;
+	int TYPE = 62;
 
 	/**
 	 * The number of structural features of the '<em>Type</em>' class.
@@ -5631,7 +4687,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectType()
 	 * @generated
 	 */
-	int OBJECT_TYPE = 71;
+	int OBJECT_TYPE = 63;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5668,7 +4724,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 72;
+	int PRIMITIVE_TYPE = 64;
 
 	/**
 	 * The number of structural features of the '<em>Primitive Type</em>' class.
@@ -5687,7 +4743,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongType()
 	 * @generated
 	 */
-	int LONG_TYPE = 73;
+	int LONG_TYPE = 65;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -5715,7 +4771,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getByteArrayType()
 	 * @generated
 	 */
-	int BYTE_ARRAY_TYPE = 74;
+	int BYTE_ARRAY_TYPE = 66;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -5743,7 +4799,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDoubleType()
 	 * @generated
 	 */
-	int DOUBLE_TYPE = 75;
+	int DOUBLE_TYPE = 67;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -5771,7 +4827,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getStringType()
 	 * @generated
 	 */
-	int STRING_TYPE = 76;
+	int STRING_TYPE = 68;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -5799,7 +4855,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getBooleanType()
 	 * @generated
 	 */
-	int BOOLEAN_TYPE = 77;
+	int BOOLEAN_TYPE = 69;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -5827,7 +4883,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getArrayType()
 	 * @generated
 	 */
-	int ARRAY_TYPE = 78;
+	int ARRAY_TYPE = 70;
 
 	/**
 	 * The feature id for the '<em><b>Values</b></em>' reference list.
@@ -5855,7 +4911,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 79;
+	int PARAMETER = 71;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5892,7 +4948,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getImmediateNotificationResult()
 	 * @generated
 	 */
-	int IMMEDIATE_NOTIFICATION_RESULT = 80;
+	int IMMEDIATE_NOTIFICATION_RESULT = 72;
 
 	/**
 	 * The feature id for the '<em><b>Result</b></em>' attribute.
@@ -5929,7 +4985,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRemoteServiceUpdate()
 	 * @generated
 	 */
-	int REMOTE_SERVICE_UPDATE = 81;
+	int REMOTE_SERVICE_UPDATE = 73;
 
 	/**
 	 * The number of structural features of the '<em>Remote Service Update</em>' class.
@@ -5948,7 +5004,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPercentageChange()
 	 * @generated
 	 */
-	int PERCENTAGE_CHANGE = 82;
+	int PERCENTAGE_CHANGE = 74;
 
 	/**
 	 * The feature id for the '<em><b>Percentage</b></em>' attribute.
@@ -5976,7 +5032,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSystemInfo()
 	 * @generated
 	 */
-	int SYSTEM_INFO = 83;
+	int SYSTEM_INFO = 75;
 
 	/**
 	 * The feature id for the '<em><b>Cpucores</b></em>' attribute.
@@ -6058,7 +5114,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getJavaInfo()
 	 * @generated
 	 */
-	int JAVA_INFO = 84;
+	int JAVA_INFO = 76;
 
 	/**
 	 * The feature id for the '<em><b>Heap Total</b></em>' attribute.
@@ -6284,7 +5340,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getBimServerInfo()
 	 * @generated
 	 */
-	int BIM_SERVER_INFO = 85;
+	int BIM_SERVER_INFO = 77;
 
 	/**
 	 * The feature id for the '<em><b>Current Version</b></em>' attribute.
@@ -6402,7 +5458,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProjectSmall()
 	 * @generated
 	 */
-	int PROJECT_SMALL = 86;
+	int PROJECT_SMALL = 78;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6493,7 +5549,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getIfcHeader()
 	 * @generated
 	 */
-	int IFC_HEADER = 87;
+	int IFC_HEADER = 79;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute list.
@@ -6602,7 +5658,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultItem()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_ITEM = 88;
+	int MODEL_CHECKER_RESULT_ITEM = 80;
 
 	/**
 	 * The number of structural features of the '<em>Model Checker Result Item</em>' class.
@@ -6621,7 +5677,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultHeader()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_HEADER = 89;
+	int MODEL_CHECKER_RESULT_HEADER = 81;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -6649,7 +5705,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultLine()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_LINE = 90;
+	int MODEL_CHECKER_RESULT_LINE = 82;
 
 	/**
 	 * The feature id for the '<em><b>Field Or Class</b></em>' attribute.
@@ -6713,7 +5769,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResult()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT = 91;
+	int MODEL_CHECKER_RESULT = 83;
 
 	/**
 	 * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -6750,7 +5806,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerInstance()
 	 * @generated
 	 */
-	int MODEL_CHECKER_INSTANCE = 92;
+	int MODEL_CHECKER_INSTANCE = 84;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6816,124 +5872,6 @@ public interface StorePackage extends EPackage {
 	int MODEL_CHECKER_INSTANCE_FEATURE_COUNT = 6;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.ModelCheckerPluginDescriptorImpl <em>Model Checker Plugin Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.ModelCheckerPluginDescriptorImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerPluginDescriptor()
-	 * @generated
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR = 93;
-
-	/**
-	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__DEFAULT_NAME = PLUGIN_DESCRIPTOR__DEFAULT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__DESCRIPTION = PLUGIN_DESCRIPTOR__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__LOCATION = PLUGIN_DESCRIPTOR__LOCATION;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__CONFIGURATIONS = PLUGIN_DESCRIPTOR__CONFIGURATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__IDENTIFIER = PLUGIN_DESCRIPTOR__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS;
-
-	/**
-	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION;
-
-	/**
-	 * The number of structural features of the '<em>Model Checker Plugin Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHECKER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.MessagingSerializerPluginConfigurationImpl <em>Messaging Serializer Plugin Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6941,7 +5879,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMessagingSerializerPluginConfiguration()
 	 * @generated
 	 */
-	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION = 94;
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION = 85;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -7014,7 +5952,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMetrics()
 	 * @generated
 	 */
-	int METRICS = 95;
+	int METRICS = 86;
 
 	/**
 	 * The feature id for the '<em><b>Interfaces</b></em>' reference list.
@@ -7042,7 +5980,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getInterfaceMetric()
 	 * @generated
 	 */
-	int INTERFACE_METRIC = 96;
+	int INTERFACE_METRIC = 87;
 
 	/**
 	 * The feature id for the '<em><b>Methods</b></em>' reference list.
@@ -7079,7 +6017,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMethodMetric()
 	 * @generated
 	 */
-	int METHOD_METRIC = 97;
+	int METHOD_METRIC = 88;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -7152,7 +6090,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundleVersion()
 	 * @generated
 	 */
-	int PLUGIN_BUNDLE_VERSION = 98;
+	int PLUGIN_BUNDLE_VERSION = 89;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -7243,7 +6181,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundle()
 	 * @generated
 	 */
-	int PLUGIN_BUNDLE = 99;
+	int PLUGIN_BUNDLE = 90;
 
 	/**
 	 * The feature id for the '<em><b>Organization</b></em>' attribute.
@@ -7307,7 +6245,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginInformation()
 	 * @generated
 	 */
-	int PLUGIN_INFORMATION = 100;
+	int PLUGIN_INFORMATION = 91;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -7389,7 +6327,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 101;
+	int USER_TYPE = 92;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -7399,7 +6337,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 102;
+	int SI_PREFIX = 93;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -7409,7 +6347,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 103;
+	int OBJECT_STATE = 94;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -7419,7 +6357,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 104;
+	int COMPARE_TYPE = 95;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -7429,7 +6367,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 105;
+	int ACTION_STATE = 96;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -7439,7 +6377,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 106;
+	int SERVER_STATE = 97;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -7449,7 +6387,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 107;
+	int EXTENDED_DATA_SCHEMA_TYPE = 98;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -7459,7 +6397,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 108;
+	int TRIGGER = 99;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
@@ -7469,7 +6407,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
 	 * @generated
 	 */
-	int SERVICE_SIMPLE_TYPE = 109;
+	int SERVICE_SIMPLE_TYPE = 100;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -7479,7 +6417,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 110;
+	int PRIMITIVE_ENUM = 101;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -7489,7 +6427,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 111;
+	int NOTIFICTION_RESULT_ENUM = 102;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -7499,7 +6437,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 112;
+	int PROGRESS_TOPIC_TYPE = 103;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ModelCheckerResultType <em>Model Checker Result Type</em>}' enum.
@@ -7509,7 +6447,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultType()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_TYPE = 113;
+	int MODEL_CHECKER_RESULT_TYPE = 104;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}' enum.
@@ -7519,7 +6457,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSmtpProtocol()
 	 * @generated
 	 */
-	int SMTP_PROTOCOL = 114;
+	int SMTP_PROTOCOL = 105;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginBundleType <em>Plugin Bundle Type</em>}' enum.
@@ -7529,7 +6467,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundleType()
 	 * @generated
 	 */
-	int PLUGIN_BUNDLE_TYPE = 115;
+	int PLUGIN_BUNDLE_TYPE = 106;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginType <em>Plugin Type</em>}' enum.
@@ -7539,7 +6477,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginType()
 	 * @generated
 	 */
-	int PLUGIN_TYPE = 116;
+	int PLUGIN_TYPE = 107;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -7549,7 +6487,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 117;
+	int DATA_HANDLER = 108;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -9891,26 +8829,6 @@ public interface StorePackage extends EPackage {
 	EReference getPluginDescriptor_PluginBundleVersion();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.SerializerPluginDescriptor <em>Serializer Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Serializer Plugin Descriptor</em>'.
-	 * @see org.bimserver.models.store.SerializerPluginDescriptor
-	 * @generated
-	 */
-	EClass getSerializerPluginDescriptor();
-
-	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.DeserializerPluginDescriptor <em>Deserializer Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Deserializer Plugin Descriptor</em>'.
-	 * @see org.bimserver.models.store.DeserializerPluginDescriptor
-	 * @generated
-	 */
-	EClass getDeserializerPluginDescriptor();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.RevisionSummaryType <em>Revision Summary Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10480,16 +9398,6 @@ public interface StorePackage extends EPackage {
 	EAttribute getVersion_SupportEmail();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.RenderEnginePluginDescriptor <em>Render Engine Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Render Engine Plugin Descriptor</em>'.
-	 * @see org.bimserver.models.store.RenderEnginePluginDescriptor
-	 * @generated
-	 */
-	EClass getRenderEnginePluginDescriptor();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.File <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10762,16 +9670,6 @@ public interface StorePackage extends EPackage {
 	EReference getExtendedData_Project();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.QueryEnginePluginDescriptor <em>Query Engine Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Query Engine Plugin Descriptor</em>'.
-	 * @see org.bimserver.models.store.QueryEnginePluginDescriptor
-	 * @generated
-	 */
-	EClass getQueryEnginePluginDescriptor();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.QueryEnginePluginConfiguration <em>Query Engine Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10791,16 +9689,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getQueryEnginePluginConfiguration_UserSettings();
-
-	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.WebModulePluginDescriptor <em>Web Module Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Web Module Plugin Descriptor</em>'.
-	 * @see org.bimserver.models.store.WebModulePluginDescriptor
-	 * @generated
-	 */
-	EClass getWebModulePluginDescriptor();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.WebModulePluginConfiguration <em>Web Module Plugin Configuration</em>}'.
@@ -10824,16 +9712,6 @@ public interface StorePackage extends EPackage {
 	EReference getWebModulePluginConfiguration_ServerSettings();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.ModelMergerPluginDescriptor <em>Model Merger Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Merger Plugin Descriptor</em>'.
-	 * @see org.bimserver.models.store.ModelMergerPluginDescriptor
-	 * @generated
-	 */
-	EClass getModelMergerPluginDescriptor();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ModelMergerPluginConfiguration <em>Model Merger Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10853,16 +9731,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelMergerPluginConfiguration_UserSettings();
-
-	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.ModelComparePluginDescriptor <em>Model Compare Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Compare Plugin Descriptor</em>'.
-	 * @see org.bimserver.models.store.ModelComparePluginDescriptor
-	 * @generated
-	 */
-	EClass getModelComparePluginDescriptor();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ModelComparePluginConfiguration <em>Model Compare Plugin Configuration</em>}'.
@@ -11386,16 +10254,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getToken_Expires();
-
-	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.ServicePluginDescriptor <em>Service Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Service Plugin Descriptor</em>'.
-	 * @see org.bimserver.models.store.ServicePluginDescriptor
-	 * @generated
-	 */
-	EClass getServicePluginDescriptor();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.InternalServicePluginConfiguration <em>Internal Service Plugin Configuration</em>}'.
@@ -13001,16 +11859,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModelCheckerInstance_ModelCheckerPluginClassName();
-
-	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.ModelCheckerPluginDescriptor <em>Model Checker Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Checker Plugin Descriptor</em>'.
-	 * @see org.bimserver.models.store.ModelCheckerPluginDescriptor
-	 * @generated
-	 */
-	EClass getModelCheckerPluginDescriptor();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.MessagingSerializerPluginConfiguration <em>Messaging Serializer Plugin Configuration</em>}'.
@@ -15378,26 +14226,6 @@ public interface StorePackage extends EPackage {
 		EReference PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = eINSTANCE.getPluginDescriptor_PluginBundleVersion();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.SerializerPluginDescriptorImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getSerializerPluginDescriptor()
-		 * @generated
-		 */
-		EClass SERIALIZER_PLUGIN_DESCRIPTOR = eINSTANCE.getSerializerPluginDescriptor();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DeserializerPluginDescriptorImpl <em>Deserializer Plugin Descriptor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.DeserializerPluginDescriptorImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getDeserializerPluginDescriptor()
-		 * @generated
-		 */
-		EClass DESERIALIZER_PLUGIN_DESCRIPTOR = eINSTANCE.getDeserializerPluginDescriptor();
-
-		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl <em>Revision Summary Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -15850,16 +14678,6 @@ public interface StorePackage extends EPackage {
 		EAttribute VERSION__SUPPORT_EMAIL = eINSTANCE.getVersion_SupportEmail();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RenderEnginePluginDescriptorImpl <em>Render Engine Plugin Descriptor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.RenderEnginePluginDescriptorImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getRenderEnginePluginDescriptor()
-		 * @generated
-		 */
-		EClass RENDER_ENGINE_PLUGIN_DESCRIPTOR = eINSTANCE.getRenderEnginePluginDescriptor();
-
-		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.FileImpl <em>File</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -16066,16 +14884,6 @@ public interface StorePackage extends EPackage {
 		EReference EXTENDED_DATA__PROJECT = eINSTANCE.getExtendedData_Project();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl <em>Query Engine Plugin Descriptor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getQueryEnginePluginDescriptor()
-		 * @generated
-		 */
-		EClass QUERY_ENGINE_PLUGIN_DESCRIPTOR = eINSTANCE.getQueryEnginePluginDescriptor();
-
-		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.QueryEnginePluginConfigurationImpl <em>Query Engine Plugin Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -16092,16 +14900,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference QUERY_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getQueryEnginePluginConfiguration_UserSettings();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.WebModulePluginDescriptorImpl <em>Web Module Plugin Descriptor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.WebModulePluginDescriptorImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getWebModulePluginDescriptor()
-		 * @generated
-		 */
-		EClass WEB_MODULE_PLUGIN_DESCRIPTOR = eINSTANCE.getWebModulePluginDescriptor();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.WebModulePluginConfigurationImpl <em>Web Module Plugin Configuration</em>}' class.
@@ -16122,16 +14920,6 @@ public interface StorePackage extends EPackage {
 		EReference WEB_MODULE_PLUGIN_CONFIGURATION__SERVER_SETTINGS = eINSTANCE.getWebModulePluginConfiguration_ServerSettings();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelMergerPluginDescriptorImpl <em>Model Merger Plugin Descriptor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.ModelMergerPluginDescriptorImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelMergerPluginDescriptor()
-		 * @generated
-		 */
-		EClass MODEL_MERGER_PLUGIN_DESCRIPTOR = eINSTANCE.getModelMergerPluginDescriptor();
-
-		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelMergerPluginConfigurationImpl <em>Model Merger Plugin Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -16148,16 +14936,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_MERGER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getModelMergerPluginConfiguration_UserSettings();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelComparePluginDescriptorImpl <em>Model Compare Plugin Descriptor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.ModelComparePluginDescriptorImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelComparePluginDescriptor()
-		 * @generated
-		 */
-		EClass MODEL_COMPARE_PLUGIN_DESCRIPTOR = eINSTANCE.getModelComparePluginDescriptor();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelComparePluginConfigurationImpl <em>Model Compare Plugin Configuration</em>}' class.
@@ -16552,16 +15330,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TOKEN__EXPIRES = eINSTANCE.getToken_Expires();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServicePluginDescriptorImpl <em>Service Plugin Descriptor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.ServicePluginDescriptorImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getServicePluginDescriptor()
-		 * @generated
-		 */
-		EClass SERVICE_PLUGIN_DESCRIPTOR = eINSTANCE.getServicePluginDescriptor();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.InternalServicePluginConfigurationImpl <em>Internal Service Plugin Configuration</em>}' class.
@@ -17822,16 +16590,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME = eINSTANCE.getModelCheckerInstance_ModelCheckerPluginClassName();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ModelCheckerPluginDescriptorImpl <em>Model Checker Plugin Descriptor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.ModelCheckerPluginDescriptorImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerPluginDescriptor()
-		 * @generated
-		 */
-		EClass MODEL_CHECKER_PLUGIN_DESCRIPTOR = eINSTANCE.getModelCheckerPluginDescriptor();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.MessagingSerializerPluginConfigurationImpl <em>Messaging Serializer Plugin Configuration</em>}' class.

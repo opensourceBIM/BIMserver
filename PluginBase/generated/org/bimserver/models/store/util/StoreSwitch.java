@@ -276,24 +276,6 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.SERIALIZER_PLUGIN_DESCRIPTOR: {
-			SerializerPluginDescriptor serializerPluginDescriptor = (SerializerPluginDescriptor) theEObject;
-			T result = caseSerializerPluginDescriptor(serializerPluginDescriptor);
-			if (result == null)
-				result = casePluginDescriptor(serializerPluginDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.DESERIALIZER_PLUGIN_DESCRIPTOR: {
-			DeserializerPluginDescriptor deserializerPluginDescriptor = (DeserializerPluginDescriptor) theEObject;
-			T result = caseDeserializerPluginDescriptor(deserializerPluginDescriptor);
-			if (result == null)
-				result = casePluginDescriptor(deserializerPluginDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case StorePackage.REVISION_SUMMARY_TYPE: {
 			RevisionSummaryType revisionSummaryType = (RevisionSummaryType) theEObject;
 			T result = caseRevisionSummaryType(revisionSummaryType);
@@ -398,15 +380,6 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.RENDER_ENGINE_PLUGIN_DESCRIPTOR: {
-			RenderEnginePluginDescriptor renderEnginePluginDescriptor = (RenderEnginePluginDescriptor) theEObject;
-			T result = caseRenderEnginePluginDescriptor(renderEnginePluginDescriptor);
-			if (result == null)
-				result = casePluginDescriptor(renderEnginePluginDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case StorePackage.FILE: {
 			File file = (File) theEObject;
 			T result = caseFile(file);
@@ -428,29 +401,11 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.QUERY_ENGINE_PLUGIN_DESCRIPTOR: {
-			QueryEnginePluginDescriptor queryEnginePluginDescriptor = (QueryEnginePluginDescriptor) theEObject;
-			T result = caseQueryEnginePluginDescriptor(queryEnginePluginDescriptor);
-			if (result == null)
-				result = casePluginDescriptor(queryEnginePluginDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case StorePackage.QUERY_ENGINE_PLUGIN_CONFIGURATION: {
 			QueryEnginePluginConfiguration queryEnginePluginConfiguration = (QueryEnginePluginConfiguration) theEObject;
 			T result = caseQueryEnginePluginConfiguration(queryEnginePluginConfiguration);
 			if (result == null)
 				result = casePluginConfiguration(queryEnginePluginConfiguration);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.WEB_MODULE_PLUGIN_DESCRIPTOR: {
-			WebModulePluginDescriptor webModulePluginDescriptor = (WebModulePluginDescriptor) theEObject;
-			T result = caseWebModulePluginDescriptor(webModulePluginDescriptor);
-			if (result == null)
-				result = casePluginDescriptor(webModulePluginDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -464,29 +419,11 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.MODEL_MERGER_PLUGIN_DESCRIPTOR: {
-			ModelMergerPluginDescriptor modelMergerPluginDescriptor = (ModelMergerPluginDescriptor) theEObject;
-			T result = caseModelMergerPluginDescriptor(modelMergerPluginDescriptor);
-			if (result == null)
-				result = casePluginDescriptor(modelMergerPluginDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case StorePackage.MODEL_MERGER_PLUGIN_CONFIGURATION: {
 			ModelMergerPluginConfiguration modelMergerPluginConfiguration = (ModelMergerPluginConfiguration) theEObject;
 			T result = caseModelMergerPluginConfiguration(modelMergerPluginConfiguration);
 			if (result == null)
 				result = casePluginConfiguration(modelMergerPluginConfiguration);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.MODEL_COMPARE_PLUGIN_DESCRIPTOR: {
-			ModelComparePluginDescriptor modelComparePluginDescriptor = (ModelComparePluginDescriptor) theEObject;
-			T result = caseModelComparePluginDescriptor(modelComparePluginDescriptor);
-			if (result == null)
-				result = casePluginDescriptor(modelComparePluginDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -524,15 +461,6 @@ public class StoreSwitch<T> extends Switch<T> {
 		case StorePackage.TOKEN: {
 			Token token = (Token) theEObject;
 			T result = caseToken(token);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.SERVICE_PLUGIN_DESCRIPTOR: {
-			ServicePluginDescriptor servicePluginDescriptor = (ServicePluginDescriptor) theEObject;
-			T result = caseServicePluginDescriptor(servicePluginDescriptor);
-			if (result == null)
-				result = casePluginDescriptor(servicePluginDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -811,15 +739,6 @@ public class StoreSwitch<T> extends Switch<T> {
 		case StorePackage.MODEL_CHECKER_INSTANCE: {
 			ModelCheckerInstance modelCheckerInstance = (ModelCheckerInstance) theEObject;
 			T result = caseModelCheckerInstance(modelCheckerInstance);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.MODEL_CHECKER_PLUGIN_DESCRIPTOR: {
-			ModelCheckerPluginDescriptor modelCheckerPluginDescriptor = (ModelCheckerPluginDescriptor) theEObject;
-			T result = caseModelCheckerPluginDescriptor(modelCheckerPluginDescriptor);
-			if (result == null)
-				result = casePluginDescriptor(modelCheckerPluginDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1271,36 +1190,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Serializer Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Serializer Plugin Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSerializerPluginDescriptor(SerializerPluginDescriptor object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Deserializer Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Deserializer Plugin Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDeserializerPluginDescriptor(DeserializerPluginDescriptor object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Revision Summary Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1511,21 +1400,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Render Engine Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Render Engine Plugin Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRenderEnginePluginDescriptor(RenderEnginePluginDescriptor object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>File</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1571,21 +1445,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Query Engine Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Query Engine Plugin Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseQueryEnginePluginDescriptor(QueryEnginePluginDescriptor object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Query Engine Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1597,21 +1456,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseQueryEnginePluginConfiguration(QueryEnginePluginConfiguration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Web Module Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Web Module Plugin Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseWebModulePluginDescriptor(WebModulePluginDescriptor object) {
 		return null;
 	}
 
@@ -1631,21 +1475,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Merger Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Merger Plugin Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelMergerPluginDescriptor(ModelMergerPluginDescriptor object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Model Merger Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1657,21 +1486,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelMergerPluginConfiguration(ModelMergerPluginConfiguration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Compare Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Compare Plugin Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelComparePluginDescriptor(ModelComparePluginDescriptor object) {
 		return null;
 	}
 
@@ -1747,21 +1561,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseToken(Token object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Service Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Service Plugin Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseServicePluginDescriptor(ServicePluginDescriptor object) {
 		return null;
 	}
 
@@ -2272,21 +2071,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelCheckerInstance(ModelCheckerInstance object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Checker Plugin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Checker Plugin Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelCheckerPluginDescriptor(ModelCheckerPluginDescriptor object) {
 		return null;
 	}
 

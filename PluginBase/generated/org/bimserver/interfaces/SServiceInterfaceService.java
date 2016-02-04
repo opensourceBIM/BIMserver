@@ -169,16 +169,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SPluginDescriptor();
 					}
 				}));
-				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SSerializerPluginDescriptor"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SSerializerPluginDescriptor();
-					}
-				}));
-				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SDeserializerPluginDescriptor"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SDeserializerPluginDescriptor();
-					}
-				}));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SRevisionSummaryType"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SRevisionSummaryType();
@@ -252,11 +242,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SVersion();
 					}
 				}));
-				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor();
-					}
-				}));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchemaType"), null));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SFile"), new SConstructor(){
 					public Object newInstance() {
@@ -273,19 +258,9 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SExtendedData();
 					}
 				}));
-				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor();
-					}
-				}));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration();
-					}
-				}));
-				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SWebModulePluginDescriptor"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SWebModulePluginDescriptor();
 					}
 				}));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SWebModulePluginConfiguration"), new SConstructor(){
@@ -293,19 +268,9 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SWebModulePluginConfiguration();
 					}
 				}));
-				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SModelMergerPluginDescriptor"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SModelMergerPluginDescriptor();
-					}
-				}));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SModelMergerPluginConfiguration"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SModelMergerPluginConfiguration();
-					}
-				}));
-				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SModelComparePluginDescriptor"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SModelComparePluginDescriptor();
 					}
 				}));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SModelComparePluginConfiguration"), new SConstructor(){
@@ -332,11 +297,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SToken"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SToken();
-					}
-				}));
-				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SServicePluginDescriptor"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SServicePluginDescriptor();
 					}
 				}));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SInternalServicePluginConfiguration"), new SConstructor(){
@@ -512,11 +472,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SModelCheckerInstance"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SModelCheckerInstance();
-					}
-				}));
-				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor();
 					}
 				}));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SSmtpProtocol"), null));

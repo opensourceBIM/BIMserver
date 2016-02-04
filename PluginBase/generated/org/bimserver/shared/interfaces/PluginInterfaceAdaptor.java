@@ -72,7 +72,7 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	public void deleteSerializer(java.lang.Long sid) throws UserException, ServerException {
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllDeserializerPluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -88,11 +88,11 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor> getAllModelCheckerPluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllModelCheckerPluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllModelComparePluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -100,7 +100,7 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllModelMergerPluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -116,7 +116,7 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllQueryEnginePluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -124,7 +124,7 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor> getAllRenderEnginePluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllRenderEnginePluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -132,7 +132,7 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -144,11 +144,11 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SServicePluginDescriptor> getAllServicePluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllServicePluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SWebModulePluginDescriptor> getAllWebModulePluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllWebModulePluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -228,6 +228,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SPluginBundle getPluginBundle(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SPluginDescriptor getPluginDescriptor(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
@@ -256,7 +260,7 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SSerializerPluginDescriptor getSerializerPluginDescriptor(java.lang.String type) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SPluginDescriptor getSerializerPluginDescriptor(java.lang.String type) throws UserException, ServerException {
 		return null;
 	}
 	

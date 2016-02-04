@@ -208,16 +208,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseSerializerPluginDescriptor(SerializerPluginDescriptor object) {
-			return createSerializerPluginDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseDeserializerPluginDescriptor(DeserializerPluginDescriptor object) {
-			return createDeserializerPluginDescriptorAdapter();
-		}
-
-		@Override
 		public Adapter caseRevisionSummaryType(RevisionSummaryType object) {
 			return createRevisionSummaryTypeAdapter();
 		}
@@ -288,11 +278,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseRenderEnginePluginDescriptor(RenderEnginePluginDescriptor object) {
-			return createRenderEnginePluginDescriptorAdapter();
-		}
-
-		@Override
 		public Adapter caseFile(File object) {
 			return createFileAdapter();
 		}
@@ -308,18 +293,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseQueryEnginePluginDescriptor(QueryEnginePluginDescriptor object) {
-			return createQueryEnginePluginDescriptorAdapter();
-		}
-
-		@Override
 		public Adapter caseQueryEnginePluginConfiguration(QueryEnginePluginConfiguration object) {
 			return createQueryEnginePluginConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseWebModulePluginDescriptor(WebModulePluginDescriptor object) {
-			return createWebModulePluginDescriptorAdapter();
 		}
 
 		@Override
@@ -328,18 +303,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseModelMergerPluginDescriptor(ModelMergerPluginDescriptor object) {
-			return createModelMergerPluginDescriptorAdapter();
-		}
-
-		@Override
 		public Adapter caseModelMergerPluginConfiguration(ModelMergerPluginConfiguration object) {
 			return createModelMergerPluginConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseModelComparePluginDescriptor(ModelComparePluginDescriptor object) {
-			return createModelComparePluginDescriptorAdapter();
 		}
 
 		@Override
@@ -365,11 +330,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseToken(Token object) {
 			return createTokenAdapter();
-		}
-
-		@Override
-		public Adapter caseServicePluginDescriptor(ServicePluginDescriptor object) {
-			return createServicePluginDescriptorAdapter();
 		}
 
 		@Override
@@ -540,11 +500,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseModelCheckerInstance(ModelCheckerInstance object) {
 			return createModelCheckerInstanceAdapter();
-		}
-
-		@Override
-		public Adapter caseModelCheckerPluginDescriptor(ModelCheckerPluginDescriptor object) {
-			return createModelCheckerPluginDescriptorAdapter();
 		}
 
 		@Override
@@ -966,34 +921,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.SerializerPluginDescriptor <em>Serializer Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.SerializerPluginDescriptor
-	 * @generated
-	 */
-	public Adapter createSerializerPluginDescriptorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.DeserializerPluginDescriptor <em>Deserializer Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.DeserializerPluginDescriptor
-	 * @generated
-	 */
-	public Adapter createDeserializerPluginDescriptorAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.RevisionSummaryType <em>Revision Summary Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1190,20 +1117,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.RenderEnginePluginDescriptor <em>Render Engine Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.RenderEnginePluginDescriptor
-	 * @generated
-	 */
-	public Adapter createRenderEnginePluginDescriptorAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.File <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1246,20 +1159,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.QueryEnginePluginDescriptor <em>Query Engine Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.QueryEnginePluginDescriptor
-	 * @generated
-	 */
-	public Adapter createQueryEnginePluginDescriptorAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.QueryEnginePluginConfiguration <em>Query Engine Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1270,20 +1169,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createQueryEnginePluginConfigurationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.WebModulePluginDescriptor <em>Web Module Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.WebModulePluginDescriptor
-	 * @generated
-	 */
-	public Adapter createWebModulePluginDescriptorAdapter() {
 		return null;
 	}
 
@@ -1302,20 +1187,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelMergerPluginDescriptor <em>Model Merger Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ModelMergerPluginDescriptor
-	 * @generated
-	 */
-	public Adapter createModelMergerPluginDescriptorAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelMergerPluginConfiguration <em>Model Merger Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1326,20 +1197,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelMergerPluginConfigurationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelComparePluginDescriptor <em>Model Compare Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ModelComparePluginDescriptor
-	 * @generated
-	 */
-	public Adapter createModelComparePluginDescriptorAdapter() {
 		return null;
 	}
 
@@ -1410,20 +1267,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTokenAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ServicePluginDescriptor <em>Service Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ServicePluginDescriptor
-	 * @generated
-	 */
-	public Adapter createServicePluginDescriptorAdapter() {
 		return null;
 	}
 
@@ -1900,20 +1743,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelCheckerInstanceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelCheckerPluginDescriptor <em>Model Checker Plugin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ModelCheckerPluginDescriptor
-	 * @generated
-	 */
-	public Adapter createModelCheckerPluginDescriptorAdapter() {
 		return null;
 	}
 

@@ -140,6 +140,8 @@ service PluginInterface {
 
 	rpc getObjectIDMByName (GetObjectIDMByNameRequest) returns (GetObjectIDMByNameResponse);
 
+	rpc getPluginBundle (GetPluginBundleRequest) returns (GetPluginBundleResponse);
+
 	rpc getPluginDescriptor (GetPluginDescriptorRequest) returns (GetPluginDescriptorResponse);
 
 	rpc getPluginInformation (GetPluginInformationRequest) returns (GetPluginInformationResponse);
@@ -370,7 +372,7 @@ message GetAllDeserializerPluginDescriptorsRequest {
 
 message GetAllDeserializerPluginDescriptorsResponse {
 	optional string errorMessage = 1;
-	repeated SDeserializerPluginDescriptor value = 2;
+	repeated SPluginDescriptor value = 2;
 }
 
 message GetAllDeserializersRequest {
@@ -406,7 +408,7 @@ message GetAllModelCheckerPluginDescriptorsRequest {
 
 message GetAllModelCheckerPluginDescriptorsResponse {
 	optional string errorMessage = 1;
-	repeated SModelCheckerPluginDescriptor value = 2;
+	repeated SPluginDescriptor value = 2;
 }
 
 message GetAllModelComparePluginDescriptorsRequest {
@@ -414,7 +416,7 @@ message GetAllModelComparePluginDescriptorsRequest {
 
 message GetAllModelComparePluginDescriptorsResponse {
 	optional string errorMessage = 1;
-	repeated SModelComparePluginDescriptor value = 2;
+	repeated SPluginDescriptor value = 2;
 }
 
 message GetAllModelComparesRequest {
@@ -431,7 +433,7 @@ message GetAllModelMergerPluginDescriptorsRequest {
 
 message GetAllModelMergerPluginDescriptorsResponse {
 	optional string errorMessage = 1;
-	repeated SModelMergerPluginDescriptor value = 2;
+	repeated SPluginDescriptor value = 2;
 }
 
 message GetAllModelMergersRequest {
@@ -471,7 +473,7 @@ message GetAllQueryEnginePluginDescriptorsRequest {
 
 message GetAllQueryEnginePluginDescriptorsResponse {
 	optional string errorMessage = 1;
-	repeated SQueryEnginePluginDescriptor value = 2;
+	repeated SPluginDescriptor value = 2;
 }
 
 message GetAllQueryEnginesRequest {
@@ -488,7 +490,7 @@ message GetAllRenderEnginePluginDescriptorsRequest {
 
 message GetAllRenderEnginePluginDescriptorsResponse {
 	optional string errorMessage = 1;
-	repeated SRenderEnginePluginDescriptor value = 2;
+	repeated SPluginDescriptor value = 2;
 }
 
 message GetAllRenderEnginesRequest {
@@ -505,7 +507,7 @@ message GetAllSerializerPluginDescriptorsRequest {
 
 message GetAllSerializerPluginDescriptorsResponse {
 	optional string errorMessage = 1;
-	repeated SSerializerPluginDescriptor value = 2;
+	repeated SPluginDescriptor value = 2;
 }
 
 message GetAllSerializersRequest {
@@ -532,7 +534,7 @@ message GetAllServicePluginDescriptorsRequest {
 
 message GetAllServicePluginDescriptorsResponse {
 	optional string errorMessage = 1;
-	repeated SServicePluginDescriptor value = 2;
+	repeated SPluginDescriptor value = 2;
 }
 
 message GetAllWebModulePluginDescriptorsRequest {
@@ -540,7 +542,7 @@ message GetAllWebModulePluginDescriptorsRequest {
 
 message GetAllWebModulePluginDescriptorsResponse {
 	optional string errorMessage = 1;
-	repeated SWebModulePluginDescriptor value = 2;
+	repeated SPluginDescriptor value = 2;
 }
 
 message GetAllWebModulesRequest {
@@ -756,6 +758,17 @@ message GetObjectIDMByNameResponse {
 	optional SObjectIDMPluginConfiguration value = 2;
 }
 
+message GetPluginBundleRequest {
+	optional string repository = 1;
+	optional string groupId = 2;
+	optional string artifactId = 3;
+}
+
+message GetPluginBundleResponse {
+	optional string errorMessage = 1;
+	optional SPluginBundle value = 2;
+}
+
 message GetPluginDescriptorRequest {
 	optional int64 oid = 1;
 }
@@ -789,12 +802,13 @@ enum SPluginType{
 message SPluginInformation {
 	optional string description = 1;
 	optional bool enabled = 2;
-	optional bool installForAllUsers = 3;
-	optional bool installForNewUsers = 4;
-	optional string name = 5;
-	optional int64 oid = 6;
-	optional int32 rid = 7;
-	optional SPluginType type = 8;
+	optional string identifier = 3;
+	optional bool installForAllUsers = 4;
+	optional bool installForNewUsers = 5;
+	optional string name = 6;
+	optional int64 oid = 7;
+	optional int32 rid = 8;
+	optional SPluginType type = 9;
 }
 
 message GetPluginInformationResponse {
@@ -958,7 +972,7 @@ message GetSerializerPluginDescriptorRequest {
 
 message GetSerializerPluginDescriptorResponse {
 	optional string errorMessage = 1;
-	optional SSerializerPluginDescriptor value = 2;
+	optional SPluginDescriptor value = 2;
 }
 
 message GetWebModuleByIdRequest {

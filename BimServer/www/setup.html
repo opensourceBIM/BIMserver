@@ -108,7 +108,7 @@
 				</div>
 				<div class="media">
 					<div class="media-left media-middle">
-						<input type="checkbox"/>
+						<input type="checkbox" class="bimviews"/>
 					</div>
 					<div class="media-left">
 						<div class="well" style="width: 260px; ; height: 153px; padding: 0px"><img class="media-object" height="150" src="img/bimviews.png"></div>
@@ -130,7 +130,7 @@
 				</div>
 				<div class="media">
 					<div class="media-left media-middle">
-						<input type="checkbox"/>
+						<input type="checkbox" class="ifcopenshellplugin"/>
 					</div>
 					<div class="media-left">
 						<div class="well" style="width: 260px; height: 153px; padding: 10px"><img class="media-object" height="130" style="margin-left: auto; margin-right: auto" src="img/ifcopenshell_logo.png"></div>
@@ -147,7 +147,7 @@
 			
 			<div class="contentdiv finish">
 				<div class="well well-sm">
-					<div class="txt">Lalala</div>
+					<div class="txt">Click the "Setup" button to finish the setup process</div>
 				</div>
 				<pre class="log ih"></pre>
 				<button type="button" class="setupButton btn btn-primary">Setup</button><br/>
@@ -288,14 +288,10 @@ function Setup(cd, address) {
 		});
 	};
 	
-	this.installPluginBundle = function(requiredPlugins, indexInPluginBundles, pluginBundles, callback) {
-		if (index >= pluginBundles.length) {
-			return;
-		}
-		var pluginBundle = pluginBundles[indexInPluginBundles];
-		var latestVersion = pluginBundle.latestVersion;
-		var index = requiredPlugins.indexOf(latestVersion.artifactId);
-		if (index != -1) {
+	this.installPluginBundle = function(requiredPlugins, callback) {
+		var next = Object.keys(requiredPlugins)[0];
+		Global.api.call("PluginInterface", "getPluginBundle", requiredPlugins[next], function(pluginBundle){
+			var latestVersion = pluginBundle.latestVersion;
 			o.logInfo("Installing " + pluginBundle.name + "...");
 			Global.api.call("PluginInterface", "getPluginInformation", {
 				repository: latestVersion.repository,
@@ -303,6 +299,7 @@ function Setup(cd, address) {
 				artifactId: latestVersion.artifactId,
 				version: latestVersion.version
 			}, function(plugins){
+				console.log(plugins);
 				plugins.forEach(function(plugin){
 					plugin.enabled = true;
 					plugin.installForAllUsers = true;
@@ -315,13 +312,14 @@ function Setup(cd, address) {
 					version: latestVersion.version,
 					plugins: plugins
 				}, function(){
-					requiredPlugins.splice(index, 1);
-					o.logSuccess("Successfully installed " + pluginBundle.name);
-					if (requiredPlugins.length == 0) {
+					delete requiredPlugins[latestVersion.artifactId];
+					o.logSuccess("Successfully installed " + pluginBundle.name + " (" + latestVersion.groupId + ":" + latestVersion.artifactId + ":" + latestVersion.version + ")\n");
+					if (Object.keys(requiredPlugins).length == 0) {
 						callback();
 						return;
+					} else {
+						o.installPluginBundle(requiredPlugins, callback);
 					}
-					o.installPluginBundle(requiredPlugins, indexInPluginBundles + 1, pluginBundles, callback);
 				}, function(message){
 					o.logError(message);
 					o.abort();
@@ -330,29 +328,28 @@ function Setup(cd, address) {
 				o.logError(message);
 				o.abort();
 			});
-		} else {
-			o.installPluginBundle(requiredPlugins, indexInPluginBundles + 1, pluginBundles, callback);
-		}
+		}, function(message){
+			o.logError(message);
+			o.abort();
+		});
 	}
 	
 	function installRequiredPlugins(requiredPlugins, callback) {
+		var scratchmap = {};
+		Object.keys(requiredPlugins).forEach(function(key, index) {
+			scratchmap[key] = requiredPlugins[key];
+		});
 		Global.api.call("SettingsInterface", "setPluginStrictVersionChecking", {strict: false}, function(){
 			Global.api.call("PluginInterface", "getInstalledPluginBundles", {}, function(bundles){
 				bundles.forEach(function(bundle){
 					var installedVersion = bundle.installedVersion;
-					var index = requiredPlugins.indexOf(installedVersion.artifactId);
-					if (index != -1) {
+					if (scratchmap[installedVersion.artifactId] != null) {
 						o.logInfo("Already installed " + installedVersion.artifactId);
-						requiredPlugins.splice(index, 1);
+						delete scratchmap[installedVersion.artifactId];
 					}
 				});
-				if (requiredPlugins.length > 0) {
-					Global.api.call("PluginInterface", "getAvailablePluginBundles", {}, function(pluginBundles){
-						o.installPluginBundle(requiredPlugins, 0, pluginBundles, callback);
-					}, function(message){
-						o.logError(message);
-						o.abort();
-					});
+				if (Object.keys(scratchmap).length > 0) {
+					o.installPluginBundle(scratchmap, callback);
 				} else {
 					callback();
 				}
@@ -367,16 +364,43 @@ function Setup(cd, address) {
 	}
 	
 	this.stage3 = function(){
-		o.logInfo("Installing plugins...");
+		o.logInfo("Installing plugins...\n");
 		
-		installRequiredPlugins(["bimviews", "ifcopenshellplugin", "binaryserializers", "ifcplugins"], function(){
+		var pluginsToInstall = {
+			ifcplugins: {repository: "http://central.maven.org/maven2", groupId: "org.opensourcebim", artifactId: "ifcplugins"},
+			binaryserializers: {repository: "http://central.maven.org/maven2", groupId: "org.opensourcebim", artifactId: "binaryserializers"}
+		};
+		cd.find(".plugins input[type=\"checkbox\"]:checked").each(function(index, checkbox){
+			var artifactId = $(checkbox).attr("class");
+			if (artifactId == "bimviews") {
+				pluginsToInstall["bimserverapi"] = {
+					repository: "http://central.maven.org/maven2",
+					groupId: "org.opensourcebim",
+					artifactId: "bimserverapi"
+				};
+				pluginsToInstall["bimsurfer"] = {
+					repository: "http://central.maven.org/maven2",
+					groupId: "org.opensourcebim",
+					artifactId: "bimsurfer"
+				};
+			}
+			pluginsToInstall[artifactId] = {
+				repository: "http://central.maven.org/maven2",
+				groupId: "org.opensourcebim",
+				artifactId: artifactId
+			};
+		});
+		
+		installRequiredPlugins(pluginsToInstall, function(){
 			o.logSuccess("All plugins successfully installed");
-			var link = $("<a>Open BIMvie.ws</a>");
-			link.click(function(){
-				document.location = "/bimviews";
-			});
-			cd.find(".finish pre").append("<br/>");
-			cd.find(".finish pre").append(link);
+			if (pluginsToInstall["bimviews"] != null) {
+				var link = $("<a>Open BIMvie.ws</a>");
+				link.click(function(){
+					document.location = "/bimviews";
+				});
+				cd.find(".finish pre").append("<br/>");
+				cd.find(".finish pre").append(link);
+			}
 		});
 	};
 	

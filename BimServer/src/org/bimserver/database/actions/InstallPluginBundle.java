@@ -40,9 +40,10 @@ public class InstallPluginBundle extends BimDatabaseAction<Void> {
 		MavenPluginLocation mavenPluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(repository, groupId, artifactId);
 		
 		try {
+			Path pomFile = mavenPluginLocation.getVersionPom(version);
 			Path jarFile = mavenPluginLocation.getVersionJar(version);
 			
-			bimServer.getPluginManager().install(mavenPluginLocation.getPluginVersionIdentifier(version), mavenPluginLocation.getPluginBundle(version), mavenPluginLocation.getPluginBundleVersion(version), jarFile, plugins);
+			bimServer.getPluginManager().install(mavenPluginLocation.getPluginVersionIdentifier(version), mavenPluginLocation.getPluginBundle(version), mavenPluginLocation.getPluginBundleVersion(version), jarFile, pomFile, plugins, false);
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			throw new UserException(e);

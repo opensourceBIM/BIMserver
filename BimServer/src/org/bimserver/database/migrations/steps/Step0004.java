@@ -65,8 +65,6 @@ public class Step0004 extends Migration {
 		EClass project = schema.getEClass("store", "Project");
 		schema.createEReference(project, "modelCheckers", modelCheckerInstance, Multiplicity.MANY);
 		
-		schema.createEClass("store", "ModelCheckerPluginDescriptor", schema.getEClass("store", "PluginDescriptor"));
-		
 		EClass internalServicePluginConfiguration = schema.getEClass("store", "InternalServicePluginConfiguration");
 		schema.createEAttribute(internalServicePluginConfiguration, "publicProfile", EcorePackage.eINSTANCE.getEBoolean());
 		

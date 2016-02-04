@@ -327,9 +327,6 @@ public class Step0000 extends Migration {
 		pluginDescriptorPluginConfiguration.setEOpposite(pluginConfigurationPluginDescriptor);
 		pluginConfigurationPluginDescriptor.setEOpposite(pluginDescriptorPluginConfiguration);
 		
-		schema.createEClass(storePackage, "SerializerPluginDescriptor", pluginDescriptor);
-		schema.createEClass(storePackage, "DeserializerPluginDescriptor", pluginDescriptor);
-
 		EClass revisionSummaryTypeClass = schema.createEClass(storePackage, "RevisionSummaryType");
 		schema.createEAttribute(revisionSummaryTypeClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(revisionSummaryTypeClass, "count", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
@@ -419,7 +416,6 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(versionInfoClass, "supportEmail", ecorePackage.getEString(), Multiplicity.SINGLE);
 
 		schema.createEReference(concreteRevisionClass, "user", user, Multiplicity.SINGLE);
-		schema.createEClass(storePackage, "RenderEnginePluginDescriptor", pluginDescriptor);
 
 		EEnum extendedDataSchemaType = schema.createEEnum(storePackage, "ExtendedDataSchemaType");
 		schema.createEEnumLiteral(extendedDataSchemaType, "XSD");
@@ -475,8 +471,6 @@ public class Step0000 extends Migration {
 		projectExtendedData.setEOpposite(extendedDataProject);
 		extendedDataProject.setEOpposite(projectExtendedData);
 		
-		schema.createEClass(storePackage, "QueryEnginePluginDescriptor", pluginDescriptor);
-		
 		EClass queryEnginePluginConfiguration = schema.createEClass(storePackage, "QueryEnginePluginConfiguration", pluginConfiguration);
 
 		EReference queryEngineSettingsReference = schema.createEReference(queryEnginePluginConfiguration, "userSettings", userSettings, Multiplicity.SINGLE);
@@ -485,8 +479,6 @@ public class Step0000 extends Migration {
 		queryEngineSettingsReference.setEOpposite(settingsQueryEnginesReference);
 		settingsQueryEnginesReference.setEOpposite(queryEngineSettingsReference);
 
-		schema.createEClass(storePackage, "WebModulePluginDescriptor", pluginDescriptor);
-		
 		EClass webModulePluginConfiguration = schema.createEClass(storePackage, "WebModulePluginConfiguration", pluginConfiguration);
 		
 		EReference webModulePluginSettingsReference = schema.createEReference(webModulePluginConfiguration, "serverSettings", serverSettings, Multiplicity.SINGLE);
@@ -494,8 +486,6 @@ public class Step0000 extends Migration {
 		
 		webModulePluginSettingsReference.setEOpposite(settingsWebReference);
 		settingsWebReference.setEOpposite(webModulePluginSettingsReference);
-
-		schema.createEClass(storePackage, "ModelMergerPluginDescriptor", pluginDescriptor);
 		
 		EClass modelMergerPluginConfiguration = schema.createEClass(storePackage, "ModelMergerPluginConfiguration", pluginConfiguration);
 
@@ -504,8 +494,6 @@ public class Step0000 extends Migration {
 		
 		modelMergerSettingsReference.setEOpposite(settingsModelMergersReference);
 		settingsModelMergersReference.setEOpposite(modelMergerSettingsReference);
-		
-		schema.createEClass(storePackage, "ModelComparePluginDescriptor", pluginDescriptor);
 
 		EClass modelComparePluginConfiguration = schema.createEClass(storePackage, "ModelComparePluginConfiguration", pluginConfiguration);
 
@@ -586,8 +574,6 @@ public class Step0000 extends Migration {
 		EClass tokenClass = schema.createEClass("store", "Token");
 		schema.createEAttribute(tokenClass, "tokenString", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(tokenClass, "expires", EcorePackage.eINSTANCE.getELong(), Multiplicity.SINGLE);
-		
-		schema.createEClass(storePackage, "ServicePluginDescriptor", pluginDescriptor);
 		
 		EClass internalServicePluginConfiguration = schema.createEClass(storePackage, "InternalServicePluginConfiguration", pluginConfiguration);
 		schema.createEAttribute(internalServicePluginConfiguration, "remoteAccessible", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);

@@ -29,14 +29,10 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SModelCheckerPluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
-import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
-import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
@@ -46,14 +42,9 @@ import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
-import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
-import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
-import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.SWebModulePluginConfiguration;
-import org.bimserver.interfaces.objects.SWebModulePluginDescriptor;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -124,7 +115,7 @@ public interface PluginInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllSerializerPluginDescriptors")
-	List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws ServerException, UserException;
+	List<SPluginDescriptor> getAllSerializerPluginDescriptors() throws ServerException, UserException;
 
 	@WebMethod(action = "getPluginDescriptor")
 	SPluginDescriptor getPluginDescriptor(
@@ -135,56 +126,56 @@ public interface PluginInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllWebModulePluginDescriptors")
-	List<SWebModulePluginDescriptor> getAllWebModulePluginDescriptors() throws ServerException, UserException;
+	List<SPluginDescriptor> getAllWebModulePluginDescriptors() throws ServerException, UserException;
 	
 	/**
 	 * @return List of all SerializerPluginDescriptors
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllRenderEnginePluginDescriptors")
-	List<SRenderEnginePluginDescriptor> getAllRenderEnginePluginDescriptors() throws ServerException, UserException;
+	List<SPluginDescriptor> getAllRenderEnginePluginDescriptors() throws ServerException, UserException;
 
 	/**
 	 * @return List of all DeserializerPluginDescriptors
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllDeserializerPluginDescriptors")
-	List<SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServerException, UserException;
+	List<SPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServerException, UserException;
 
 	/**
 	 * @return List of all QueryEnginePluginDescriptors
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllQueryEnginePluginDescriptors")
-	List<SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException;
+	List<SPluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException;
 
 	/**
 	 * @return List of all getAllServicePluginDescriptors
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllServicePluginDescriptors")
-	List<SServicePluginDescriptor> getAllServicePluginDescriptors() throws ServerException, UserException;
+	List<SPluginDescriptor> getAllServicePluginDescriptors() throws ServerException, UserException;
 	
 	/**
 	 * @return List of all SModelComparePluginDescriptor
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllModelComparePluginDescriptors")
-	List<SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException;
+	List<SPluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException;
 
 	/**
 	 * @return List of all SModelComparePluginDescriptor
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllModelCheckerPluginDescriptors")
-	List<SModelCheckerPluginDescriptor> getAllModelCheckerPluginDescriptors() throws ServerException, UserException;
+	List<SPluginDescriptor> getAllModelCheckerPluginDescriptors() throws ServerException, UserException;
 
 	/**
 	 * @return List of all SModelMergerPluginDescriptor
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllModelMergerPluginDescriptors")
-	List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException;
+	List<SPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException;
 	
 	/**
 	 * @param serializerName Name of the Serializer
@@ -571,7 +562,7 @@ public interface PluginInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getSerializerPluginDescriptor")
-	SSerializerPluginDescriptor getSerializerPluginDescriptor(
+	SPluginDescriptor getSerializerPluginDescriptor(
 		@WebParam(name = "type", partName = "getSerializerPluginDescriptor.type") String type) throws ServerException, UserException;
 	
 	/**
@@ -613,6 +604,12 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getAvailablePluginBundles")
 	List<SPluginBundle> getAvailablePluginBundles() throws UserException, ServerException;
 
+	@WebMethod(action = "getPluginBundle")
+	SPluginBundle getPluginBundle(
+		@WebParam(name = "repository", partName = "getPluginBundle.repository") String repository, 
+		@WebParam(name = "groupId", partName = "getPluginBundle.groupId") String groupId, 
+		@WebParam(name = "artifactId", partName = "getPluginBundle.artifactId") String artifactId) throws UserException, ServerException;
+	
 	@WebMethod(action = "getInstalledPluginBundles")
 	List<SPluginBundle> getInstalledPluginBundles() throws UserException, ServerException;
 
