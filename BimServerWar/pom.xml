@@ -37,6 +37,10 @@
 							<targetPath>/</targetPath>
 						</resource>
 						<resource>
+							<directory>www</directory>
+							<targetPath>/</targetPath>
+						</resource>
+						<resource>
 							<directory>../BimServer/deploy</directory>
 							<targetPath>WEB-INF</targetPath>
 							<excludes>
