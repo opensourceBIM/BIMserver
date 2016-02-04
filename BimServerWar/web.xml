@@ -71,7 +71,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
-		<url-pattern>/x.getbimserveraddress</url-pattern>
+		<url-pattern>*.getbimserveraddress</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
@@ -80,6 +80,14 @@
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
 		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>*.woff</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>*.ttf</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
