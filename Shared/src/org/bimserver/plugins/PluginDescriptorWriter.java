@@ -35,12 +35,10 @@ public class PluginDescriptorWriter {
 
 	private void start() {
 		PluginDescriptor pluginDescriptor = new PluginDescriptor();
-		PluginImplementation pluginImplementation = new PluginImplementation();
+		JavaPlugin pluginImplementation = new JavaPlugin();
 		pluginImplementation.setInterfaceClass("blabla");
 		pluginImplementation.setImplementationClass("blabla");
-		pluginImplementation.setEnabled(true);
-		pluginImplementation.getRequires().add("test");
-		pluginDescriptor.getImplementations().add(pluginImplementation);
+		pluginDescriptor.getPlugins().add(pluginImplementation);
 		
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(PluginDescriptor.class);

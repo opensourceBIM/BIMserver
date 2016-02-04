@@ -31,6 +31,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.PluginInformation#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginInformation#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginInformation#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginInformation#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginInformation#isInstallForAllUsers <em>Install For All Users</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginInformation#isInstallForNewUsers <em>Install For New Users</em>}</li>
  * </ul>
@@ -147,6 +148,32 @@ public interface PluginInformation extends IdEObject {
 	 * @generated
 	 */
 	void setEnabled(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Identifier</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Identifier</em>' attribute.
+	 * @see #setIdentifier(String)
+	 * @see org.bimserver.models.store.StorePackage#getPluginInformation_Identifier()
+	 * @model
+	 * @generated
+	 */
+	String getIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginInformation#getIdentifier <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Identifier</em>' attribute.
+	 * @see #getIdentifier()
+	 * @generated
+	 */
+	void setIdentifier(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Install For All Users</b></em>' attribute.

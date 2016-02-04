@@ -70,6 +70,7 @@ public class Step0023 extends Migration {
 		schema.createEAttribute(pluginInformation, "type", pluginType);
 		schema.createEAttribute(pluginInformation, "description", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(pluginInformation, "enabled", EcorePackage.eINSTANCE.getEBoolean());
+		schema.createEAttribute(pluginInformation, "identifier", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(pluginInformation, "installForAllUsers", EcorePackage.eINSTANCE.getEBoolean());
 		schema.createEAttribute(pluginInformation, "installForNewUsers", EcorePackage.eINSTANCE.getEBoolean());
 		

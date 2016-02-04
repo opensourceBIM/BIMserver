@@ -7346,13 +7346,22 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_INFORMATION__ENABLED = 3;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_INFORMATION__IDENTIFIER = 4;
+
+	/**
 	 * The feature id for the '<em><b>Install For All Users</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_INFORMATION__INSTALL_FOR_ALL_USERS = 4;
+	int PLUGIN_INFORMATION__INSTALL_FOR_ALL_USERS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
@@ -7361,7 +7370,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_INFORMATION__INSTALL_FOR_NEW_USERS = 5;
+	int PLUGIN_INFORMATION__INSTALL_FOR_NEW_USERS = 6;
 
 	/**
 	 * The number of structural features of the '<em>Plugin Information</em>' class.
@@ -7370,7 +7379,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_INFORMATION_FEATURE_COUNT = 6;
+	int PLUGIN_INFORMATION_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
@@ -13371,6 +13380,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getPluginInformation_Enabled();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginInformation#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.bimserver.models.store.PluginInformation#getIdentifier()
+	 * @see #getPluginInformation()
+	 * @generated
+	 */
+	EAttribute getPluginInformation_Identifier();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginInformation#isInstallForAllUsers <em>Install For All Users</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18098,6 +18118,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLUGIN_INFORMATION__ENABLED = eINSTANCE.getPluginInformation_Enabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_INFORMATION__IDENTIFIER = eINSTANCE.getPluginInformation_Identifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Install For All Users</b></em>' attribute feature.

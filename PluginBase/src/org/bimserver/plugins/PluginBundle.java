@@ -20,5 +20,5 @@ public interface PluginBundle extends Iterable<PluginContext> {
 
 	void addCloseable(Closeable closeable);
 
-	PluginContext getPluginContext(String name);
+	PluginContext getPluginContext(String identifier);
 }

@@ -35,7 +35,6 @@ public class PluginContext {
 	private final PluginSourceType pluginType;
 	private final URI location;
 	private final Plugin plugin;
-	private final PluginImplementation pluginImplementation;
 	private final String classLocation;
 	private boolean enabled = true;
 	private FileSystem fileSystem;
@@ -47,7 +46,7 @@ public class PluginContext {
 	private Class<?> pluginInterface;
 	private String identifier;
 
-	public PluginContext(PluginManagerInterface pluginManager, PluginBundle pluginBundle, Class<?> pluginInterface, ClassLoader classLoader, PluginSourceType pluginType, String description, URI location, Plugin plugin, PluginImplementation pluginImplementation, String classLocation, List<Dependency> dependencies, String identifier2) throws IOException {
+	public PluginContext(PluginManagerInterface pluginManager, PluginBundle pluginBundle, Class<?> pluginInterface, ClassLoader classLoader, PluginSourceType pluginType, String description, URI location, Plugin plugin, String classLocation, List<Dependency> dependencies, String identifier) throws IOException {
 		this.pluginManager = pluginManager;
 		this.pluginBundle = pluginBundle;
 		this.pluginInterface = pluginInterface;
@@ -56,10 +55,9 @@ public class PluginContext {
 		this.description = description;
 		this.location = location;
 		this.plugin = plugin;
-		this.pluginImplementation = pluginImplementation;
 		this.classLocation = classLocation;
 		this.dependencies = dependencies;
-		identifier = identifier2;
+		this.identifier = identifier;
 
 		switch (pluginType) {
 		case ECLIPSE_PROJECT:
@@ -116,10 +114,6 @@ public class PluginContext {
 		return pluginManager.getParameter(this, name);
 	}
 	
-	public PluginImplementation getPluginImplementation() {
-		return pluginImplementation;
-	}
-
 	public List<Dependency> getDependencies() {
 		return dependencies;
 	}
