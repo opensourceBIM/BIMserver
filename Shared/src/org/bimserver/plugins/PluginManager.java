@@ -462,7 +462,7 @@ public class PluginManager implements PluginManagerInterface {
 						}
 					} else if (pluginImplementation.getImplementationJson() != null) {
 						ObjectMapper objectMapper = new ObjectMapper();
-						ObjectNode settings = objectMapper.readValue(resourceLoader.load(pluginImplementation.getImplementationJson()), ObjectNode.class);
+						ObjectNode settings = objectMapper.readValue(resourceLoader.load("plugin/" + pluginImplementation.getImplementationJson()), ObjectNode.class);
 						JsonWebModule jsonWebModule = new JsonWebModule(settings);
 						loadPlugin(pluginBundle, interfaceClass, location, classLocation, jsonWebModule, classLoader, pluginType, pluginImplementation, dependencies, settings.get("identifier").asText());
 					}
