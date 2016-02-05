@@ -253,6 +253,8 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 			Model model = mavenreader.read(new FileReader(pomFile.toFile()));
 			SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
+			sPluginBundleVersion.setOrganization(model.getOrganization().getName());
+			sPluginBundleVersion.setName(model.getName());
 			sPluginBundleVersion.setType(SPluginBundleType.MAVEN);
 			sPluginBundleVersion.setGroupId(groupId);
 			sPluginBundleVersion.setArtifactId(artifactId);

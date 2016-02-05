@@ -118,6 +118,8 @@ public abstract class PluginBundleDatabaseAction<T> extends BimDatabaseAction<T>
 				if (useful) {
 					usefulBundle = true;
 
+					sPluginBundleVersion.setName(mavenPluginVersion.getModel().getName());
+					sPluginBundleVersion.setOrganization(mavenPluginVersion.getModel().getOrganization().getName());
 					sPluginBundleVersion.setArtifactId(mavenPluginLocation.getArtifactId());
 					sPluginBundleVersion.setGroupId(mavenPluginLocation.getGroupId());
 					sPluginBundleVersion.setRepository(mavenPluginLocation.getRepository());

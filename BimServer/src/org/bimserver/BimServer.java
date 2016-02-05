@@ -318,8 +318,8 @@ public class BimServer {
 							PluginDescriptor pluginDescriptor = session.create(PluginDescriptor.class);
 							pluginDescriptor.setIdentifier(pluginContext.getIdentifier());
 							pluginDescriptor.setPluginClassName(plugin.getClass().getName());
-							pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
 							pluginDescriptor.setDescription(pluginContext.getDescription());
+							pluginDescriptor.setName(sPluginInformation.getName());
 							pluginDescriptor.setLocation(pluginContext.getLocation().toString());
 							pluginDescriptor.setPluginInterfaceClassName(getPluginInterface(plugin.getClass()).getName());
 							pluginDescriptor.setEnabled(sPluginInformation.isEnabled());
@@ -396,6 +396,8 @@ public class BimServer {
 						try (DatabaseSession session = bimDatabase.createSession()) {
 							SPluginBundleVersion sPluginBundleVersion = pluginBundle.getPluginBundleVersion();
 							
+							// SConverter should be used here, but it does not seem to trigger the database session in the rights way, just copying over field for now
+							
 							PluginBundleVersion pluginBundleVersion = session.create(PluginBundleVersion.class);
 							pluginBundleVersion.setArtifactId(sPluginBundleVersion.getArtifactId());
 							pluginBundleVersion.setDescription(sPluginBundleVersion.getArtifactId());
@@ -405,6 +407,8 @@ public class BimServer {
 							pluginBundleVersion.setRepository(sPluginBundleVersion.getRepository());
 							pluginBundleVersion.setType(getSConverter().convertFromSObject(sPluginBundleVersion.getType()));
 							pluginBundleVersion.setVersion(sPluginBundleVersion.getVersion());
+							pluginBundleVersion.setOrganization(sPluginBundleVersion.getOrganization());
+							pluginBundleVersion.setName(sPluginBundleVersion.getName());
 							
 							session.commit();
 							return pluginBundleVersion.getOid();
@@ -905,8 +909,8 @@ public class BimServer {
 				PluginDescriptor pluginDescriptor = session.create(PluginDescriptor.class);
 				pluginDescriptor.setIdentifier(pluginContext.getIdentifier());
 				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
-				pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
-				pluginDescriptor.setDescription(pluginContext.getDescription() + " " + pluginContext.getVersion());
+				pluginDescriptor.setName(plugin.getClass().getSimpleName());
+				pluginDescriptor.setDescription(pluginContext.getDescription());
 				pluginDescriptor.setLocation(pluginContext.getLocation().toString());
 				pluginDescriptor.setPluginInterfaceClassName(getPluginInterface(plugin.getClass()).getName());
 				pluginDescriptor.setEnabled(true);
@@ -914,8 +918,8 @@ public class BimServer {
 				PluginDescriptor pluginDescriptor = results.values().iterator().next();
 				pluginDescriptor.setIdentifier(pluginContext.getIdentifier());
 				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
-				pluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
-				pluginDescriptor.setDescription(pluginContext.getDescription() + " " + pluginContext.getVersion());
+				pluginDescriptor.setName(plugin.getClass().getSimpleName());
+				pluginDescriptor.setDescription(pluginContext.getDescription());
 				pluginDescriptor.setLocation(pluginContext.getLocation().toString());
 				pluginDescriptor.setPluginInterfaceClassName(getPluginInterface(plugin.getClass()).getName());
 				session.store(pluginDescriptor);

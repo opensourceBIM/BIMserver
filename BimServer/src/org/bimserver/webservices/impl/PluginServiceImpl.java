@@ -45,6 +45,7 @@ import org.bimserver.database.actions.DeleteObjectIDMDatabaseAction;
 import org.bimserver.database.actions.DeleteQueryEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteRenderEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
+import org.bimserver.database.actions.GetAllPluginDescriptorsDatabaseAction;
 import org.bimserver.database.actions.GetAvailablePluginBundles;
 import org.bimserver.database.actions.GetByIdDatabaseAction;
 import org.bimserver.database.actions.GetInstalledPluginBundle;
@@ -116,10 +117,16 @@ import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
+import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
+import org.bimserver.plugins.modelcompare.ModelComparePlugin;
+import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
+import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
+import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.schemaconverter.SchemaConverterFactory;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -225,23 +232,37 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetObjectIDMByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		} finally {
 			session.close();
 		}
-		return null;
 	}
 
 	@Override
-	public List<SPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException {
+	public List<SPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException, ServerException {
 		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllSerializerPluginDescriptors();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), SerializerPlugin.class.getName()));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
-	public List<SPluginDescriptor> getAllWebModulePluginDescriptors() throws UserException {
+	public List<SPluginDescriptor> getAllWebModulePluginDescriptors() throws UserException, ServerException {
 		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllWebModulePluginDescriptors();
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), WebModulePlugin.class.getName()));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 	
 	@Override
@@ -317,26 +338,40 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
-		for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true).values()) {
-			SPluginDescriptor descriptor = new SPluginDescriptor();
-			descriptor.setDefaultName(deserializerPlugin.getDefaultName());
-			descriptor.setPluginClassName(deserializerPlugin.getClass().getName());
-			descriptors.add(descriptor);
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), DeserializerPlugin.class.getName()));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
 		}
-		return descriptors;
 	}
 	
 	@Override
 	public List<SPluginDescriptor> getAllRenderEnginePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllRenderEnginePluginDescriptors();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), RenderEnginePlugin.class.getName()));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public List<SPluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllQueryEnginePluginDescriptors();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), QueryEnginePlugin.class.getName()));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
@@ -348,19 +383,41 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllModelComparePluginDescriptors();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), ModelComparePlugin.class.getName()));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public List<SPluginDescriptor> getAllModelCheckerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllModelCheckerPluginDescriptors();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), ModelCheckerPlugin.class.getName()));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public List<SPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllModelMergerPluginDescriptors();
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), ModelMergerPlugin.class.getName()));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
@@ -1168,13 +1225,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 		return false;
 	}
-
-	@Override
-	public SPluginDescriptor getSerializerPluginDescriptor(String type) throws UserException {
-		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getSerializerPluginDescriptor(type);
-	}
-	
 
 	@Override
 	public SInternalServicePluginConfiguration getInternalServiceById(Long oid) throws ServerException, UserException {

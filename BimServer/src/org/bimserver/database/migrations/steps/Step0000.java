@@ -313,8 +313,7 @@ public class Step0000 extends Migration {
 		schema.createEReference(databaseInformationClass, "categories", databaseInformationCategoryClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		EClass pluginDescriptor = schema.createEClass(storePackage, "PluginDescriptor");
-		schema.createEAttribute(pluginDescriptor, "simpleName", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(pluginDescriptor, "defaultName", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginDescriptor, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(pluginDescriptor, "pluginClassName", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(pluginDescriptor, "description", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(pluginDescriptor, "location", ecorePackage.getEString(), Multiplicity.SINGLE);

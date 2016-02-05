@@ -304,16 +304,8 @@ public class PluginManager implements PluginManagerInterface {
 		sPluginBundle.setOrganization(model.getOrganization().getName());
 		sPluginBundle.setName(model.getName());
 		
-		SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
-		sPluginBundleVersion.setType(SPluginBundleType.MAVEN);
-		sPluginBundleVersion.setGroupId(model.getGroupId());
-		sPluginBundleVersion.setArtifactId(model.getArtifactId());
-		sPluginBundleVersion.setVersion(model.getVersion());
-		sPluginBundleVersion.setDescription(model.getDescription());
-		sPluginBundleVersion.setRepository("local");
-		sPluginBundleVersion.setType(SPluginBundleType.LOCAL);
-		sPluginBundleVersion.setMismatch(false); // TODO
-
+		SPluginBundleVersion sPluginBundleVersion = createPluginBundleVersionFromMavenModel(model);
+		
 		Path icon = projectRoot.resolve("icon.png");
 		if (Files.exists(icon)) {
 			byte[] iconBytes = Files.readAllBytes(icon);
@@ -586,20 +578,27 @@ public class PluginManager implements PluginManagerInterface {
 			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 
 			Model model = mavenreader.read(jarFile.getInputStream(pomEntry));
-			SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
-			sPluginBundleVersion.setType(SPluginBundleType.MAVEN);
-			sPluginBundleVersion.setGroupId(model.getGroupId());
-			sPluginBundleVersion.setArtifactId(model.getArtifactId());
-			sPluginBundleVersion.setVersion(model.getVersion());
-			sPluginBundleVersion.setDescription(model.getDescription());
-			sPluginBundleVersion.setRepository("local");
-			sPluginBundleVersion.setMismatch(false); // TODO
+			SPluginBundleVersion sPluginBundleVersion = createPluginBundleVersionFromMavenModel(model);
 			return sPluginBundleVersion;
 		} catch (IOException e) {
 			throw new PluginException(e);
 		} catch (XmlPullParserException e) {
 			throw new PluginException(e);
 		}
+	}
+
+	private SPluginBundleVersion createPluginBundleVersionFromMavenModel(Model model) {
+		SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
+		sPluginBundleVersion.setType(SPluginBundleType.MAVEN);
+		sPluginBundleVersion.setGroupId(model.getGroupId());
+		sPluginBundleVersion.setArtifactId(model.getArtifactId());
+		sPluginBundleVersion.setVersion(model.getVersion());
+		sPluginBundleVersion.setDescription(model.getDescription());
+		sPluginBundleVersion.setRepository("local");
+		sPluginBundleVersion.setMismatch(false); // TODO
+		sPluginBundleVersion.setOrganization(model.getOrganization().getName());
+		sPluginBundleVersion.setName(model.getName());
+		return sPluginBundleVersion;
 	}
 
 	public PluginBundle loadPluginsFromJar(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, Path file, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion) throws PluginException {
@@ -1119,7 +1118,12 @@ public class PluginManager implements PluginManagerInterface {
 			if (pluginImplementation instanceof JavaPlugin) {
 				JavaPlugin javaPlugin = (JavaPlugin)pluginImplementation;
 				SPluginInformation sPluginInformation = new SPluginInformation();
-				sPluginInformation.setName(javaPlugin.getImplementationClass());
+				String name = javaPlugin.getName();
+				// TODO when all plugins have a name, this code can go
+				if (name == null) {
+					name = javaPlugin.getImplementationClass();
+				}
+				sPluginInformation.setName(name);
 				sPluginInformation.setDescription(javaPlugin.getDescription());
 				sPluginInformation.setEnabled(true);
 
@@ -1132,7 +1136,7 @@ public class PluginManager implements PluginManagerInterface {
 				org.bimserver.plugins.WebModulePlugin webModulePlugin = (org.bimserver.plugins.WebModulePlugin)pluginImplementation;
 				SPluginInformation sPluginInformation = new SPluginInformation();
 				sPluginInformation.setIdentifier(webModulePlugin.getIdentifier());
-				sPluginInformation.setName(webModulePlugin.getIdentifier());
+				sPluginInformation.setName(webModulePlugin.getName());
 				sPluginInformation.setDescription(webModulePlugin.getDescription());
 				sPluginInformation.setType(SPluginType.WEB_MODULE);
 				sPluginInformation.setEnabled(true);

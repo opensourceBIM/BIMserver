@@ -580,11 +580,13 @@ message SPluginBundleVersion {
 	optional string groupId = 3;
 	optional bytes icon = 4;
 	optional bool mismatch = 5;
-	optional int64 oid = 6;
-	optional string repository = 7;
-	optional int32 rid = 8;
-	optional SPluginBundleType type = 9;
-	optional string version = 10;
+	optional string name = 6;
+	optional int64 oid = 7;
+	optional string organization = 8;
+	optional string repository = 9;
+	optional int32 rid = 10;
+	optional SPluginBundleType type = 11;
+	optional string version = 12;
 }
 
 message SPluginBundle {

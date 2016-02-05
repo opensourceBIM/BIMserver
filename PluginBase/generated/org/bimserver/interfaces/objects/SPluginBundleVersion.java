@@ -37,6 +37,8 @@ public class SPluginBundleVersion implements SDataBase
 	private java.lang.String groupId;
 	private java.lang.String artifactId;
 	private byte[] icon;
+	private java.lang.String organization;
+	private java.lang.String name;
 
 	public long getOid() {
 		return this.oid;
@@ -88,6 +90,12 @@ public class SPluginBundleVersion implements SDataBase
 		if (sField.getName().equals("icon")) {
 			return getIcon();
 		}
+		if (sField.getName().equals("organization")) {
+			return getOrganization();
+		}
+		if (sField.getName().equals("name")) {
+			return getName();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -128,6 +136,14 @@ public class SPluginBundleVersion implements SDataBase
 		}
 		if (sField.getName().equals("icon")) {
 			setIcon((byte[])val);
+			return;
+		}
+		if (sField.getName().equals("organization")) {
+			setOrganization((String)val);
+			return;
+		}
+		if (sField.getName().equals("name")) {
+			setName((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -203,6 +219,22 @@ public class SPluginBundleVersion implements SDataBase
 
 	public void setIcon(byte[] icon) {
 		this.icon = icon;
+	}
+	
+	public java.lang.String getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(java.lang.String organization) {
+		this.organization = organization;
+	}
+	
+	public java.lang.String getName() {
+		return name;
+	}
+
+	public void setName(java.lang.String name) {
+		this.name = name;
 	}
 	
 	@Override

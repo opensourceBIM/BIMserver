@@ -35,6 +35,8 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getGroupId <em>Group Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getArtifactId <em>Artifact Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getIcon <em>Icon</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getOrganization <em>Organization</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getPluginBundleVersion()
@@ -253,5 +255,57 @@ public interface PluginBundleVersion extends IdEObject {
 	 * @generated
 	 */
 	void setIcon(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Organization</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Organization</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Organization</em>' attribute.
+	 * @see #setOrganization(String)
+	 * @see org.bimserver.models.store.StorePackage#getPluginBundleVersion_Organization()
+	 * @model
+	 * @generated
+	 */
+	String getOrganization();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginBundleVersion#getOrganization <em>Organization</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Organization</em>' attribute.
+	 * @see #getOrganization()
+	 * @generated
+	 */
+	void setOrganization(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.bimserver.models.store.StorePackage#getPluginBundleVersion_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginBundleVersion#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 } // PluginBundleVersion

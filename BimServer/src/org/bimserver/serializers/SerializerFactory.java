@@ -75,22 +75,6 @@ public class SerializerFactory {
 		this.bimServer = bimServer;
 	}
 
-	public List<SPluginDescriptor> getAllSerializerPluginDescriptors() {
-		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
-		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true).values()) {
-			descriptors.add(makeSerializerDescriptor(serializerPlugin));
-		}
-		return descriptors;
-	}
-
-	public List<SPluginDescriptor> getAllWebModulePluginDescriptors() {
-		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
-		for (WebModulePlugin webModulePlugin : pluginManager.getAllWebPlugins(true).values()) {
-			descriptors.add(makeWebModuleDescriptor(webModulePlugin));
-		}
-		return descriptors;
-	}
-
 	public List<SPluginDescriptor> getAllServicePluginDescriptors() {
 		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
 		for (ServicePlugin servicePlugin : pluginManager.getAllServicePlugins(true).values()) {
@@ -191,29 +175,6 @@ public class SerializerFactory {
 		return null;
 	}
 
-	public SPluginDescriptor getSerializerPluginDescriptor(String type) {
-		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true).values()) {
-			if (serializerPlugin.getClass().getName().equals(type)) {
-				return makeSerializerDescriptor(serializerPlugin);
-			}
-		}
-		return null;
-	}
-
-	private SPluginDescriptor makeSerializerDescriptor(SerializerPlugin serializerPlugin) {
-		SPluginDescriptor descriptor = new SPluginDescriptor();
-		descriptor.setDefaultName(serializerPlugin.getDefaultName());
-		descriptor.setPluginClassName(serializerPlugin.getClass().getName());
-		return descriptor;
-	}
-
-	private SPluginDescriptor makeWebModuleDescriptor(WebModulePlugin webModulePlugin) {
-		SPluginDescriptor descriptor = new SPluginDescriptor();
-		descriptor.setDefaultName(webModulePlugin.getDefaultName());
-		descriptor.setPluginClassName(webModulePlugin.getClass().getName());
-		return descriptor;
-	}
-
 	public String getExtension(Long serializerOid) {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
@@ -227,60 +188,5 @@ public class SerializerFactory {
 			session.close();
 		}
 		return null;
-	}
-
-	public List<SPluginDescriptor> getAllRenderEnginePluginDescriptors() {
-		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
-		for (RenderEnginePlugin renderEnginePlugin : pluginManager.getAllRenderEnginePlugins(true).values()) {
-			SPluginDescriptor descriptor = new SPluginDescriptor();
-			descriptor.setDefaultName(renderEnginePlugin.getDefaultName());
-			descriptor.setPluginClassName(renderEnginePlugin.getClass().getName());
-			descriptors.add(descriptor);
-		}
-		return descriptors;
-	}
-
-	public List<SPluginDescriptor> getAllQueryEnginePluginDescriptors() {
-		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
-		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true).values()) {
-			SPluginDescriptor descriptor = new SPluginDescriptor();
-			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
-			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
-			descriptors.add(descriptor);
-		}
-		return descriptors;
-	}
-
-	public List<SPluginDescriptor> getAllModelMergerPluginDescriptors() {
-		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
-		for (ModelMergerPlugin queryEnginePlugin : pluginManager.getAllModelMergerPlugins(true).values()) {
-			SPluginDescriptor descriptor = new SPluginDescriptor();
-			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
-			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
-			descriptors.add(descriptor);
-		}
-		return descriptors;
-	}
-
-	public List<SPluginDescriptor> getAllModelComparePluginDescriptors() {
-		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
-		for (ModelComparePlugin queryEnginePlugin : pluginManager.getAllModelComparePlugins(true).values()) {
-			SPluginDescriptor descriptor = new SPluginDescriptor();
-			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
-			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
-			descriptors.add(descriptor);
-		}
-		return descriptors;
-	}
-
-	public List<SPluginDescriptor> getAllModelCheckerPluginDescriptors() {
-		List<SPluginDescriptor> descriptors = new ArrayList<SPluginDescriptor>();
-		for (ModelCheckerPlugin queryEnginePlugin : pluginManager.getAllModelCheckerPlugins(true).values()) {
-			SPluginDescriptor descriptor = new SPluginDescriptor();
-			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
-			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
-			descriptors.add(descriptor);
-		}
-		return descriptors;
 	}
 }
