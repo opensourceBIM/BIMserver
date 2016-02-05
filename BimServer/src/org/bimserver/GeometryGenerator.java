@@ -154,7 +154,7 @@ public class GeometryGenerator {
 				renderEngine.init();
 				ifcSerializer.init(targetModel, null, bimServer.getPluginManager(), model.getPackageMetaData(), true);
 
-				boolean debug = true;
+				boolean debug = false;
 				InputStream in = null;
 				if (debug) {
 					File file = new File((eClass == null ? "all" : eClass.getName()) + ".ifc");

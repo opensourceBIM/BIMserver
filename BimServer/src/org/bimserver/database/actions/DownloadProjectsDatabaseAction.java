@@ -125,10 +125,14 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 			}
 		}
 		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, getDatabaseSession());
-		try {
-			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
-		} catch (MergeException e) {
-			throw new UserException(e);
+		if (ifcModelSet.size() == 1) {
+			ifcModel = ifcModelSet.iterator().next();
+		} else {
+			try {
+				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
+			} catch (MergeException e) {
+				throw new UserException(e);
+			}
 		}
 		if (ifcHeader != null) {
 			ifcHeader.load();

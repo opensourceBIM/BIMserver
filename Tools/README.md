@@ -1,1 +1,0 @@
-This projects contains a few tools, mainly for research purposes.

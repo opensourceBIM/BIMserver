@@ -91,11 +91,16 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 		}
 
 		IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, pidRoidMap);
-		try {
-			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
-		} catch (MergeException e) {
-			throw new UserException(e);
+		if (ifcModelSet.size() > 1) {
+			try {
+				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
+			} catch (MergeException e) {
+				throw new UserException(e);
+			}
+		} else {
+			ifcModel = ifcModelSet.iterator().next();
 		}
+		
 		if (eObject == null) {
 			throw new UserException("Object not found in this project/revision");
 		}

@@ -1,5 +1,6 @@
 package org.bimserver.plugins;
 
+import java.io.ByteArrayInputStream;
 import java.io.Closeable;
 
 /******************************************************************************
@@ -148,31 +149,35 @@ public class PluginManager implements PluginManagerInterface {
 		this.serviceFactory = serviceFactory;
 		this.notificationsManagerInterface = notificationsManagerInterface;
 		this.servicesMap = servicesMap;
-
-		if (pluginsDir != null) {
-			if (!Files.isDirectory(pluginsDir)) {
-				try {
-					Files.createDirectories(pluginsDir);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			} else {
-				try {
-					for (Path file : PathUtils.list(pluginsDir)) {
-						try {
-							PluginBundleVersionIdentifier pluginBundleVersionIdentifier = PluginBundleVersionIdentifier.fromFileName(file.getFileName().toString());
-							loadPluginsFromJar(pluginBundleVersionIdentifier, file, extractPluginBundleFromJar(file), extractPluginBundleVersionFromJar(file));
-							LOGGER.info("Loading " + pluginBundleVersionIdentifier.getHumanReadable());
-						} catch (PluginException e) {
-							LOGGER.error("", e);
-						}
-					}
-				} catch (IOException e) {
-					LOGGER.error("", e);
-				}
-			}
-		}
 	}
+	
+//	public void installLocalPlugins() {
+//		if (pluginsDir != null) {
+//			if (!Files.isDirectory(pluginsDir)) {
+//				try {
+//					Files.createDirectories(pluginsDir);
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//			} else {
+//				try {
+//					for (Path file : PathUtils.list(pluginsDir)) {
+//						try {
+//							PluginBundleVersionIdentifier pluginBundleVersionIdentifier = PluginBundleVersionIdentifier.fromFileName(file.getFileName().toString());
+//							SPluginBundle extractPluginBundleFromJar = extractPluginBundleFromJar(file);
+//							install(pluginBundleVersionIdentifier, pluginBundleVersionIdentifier.getPluginBundleIdentifier(), pluginBundleVersionIdentifier, file, pomFile, plugins, false);
+////							loadPluginsFromJar(pluginBundleVersionIdentifier, file, extractPluginBundleFromJar(file), extractPluginBundleVersionFromJar(file));
+//							LOGGER.info("Loading " + pluginBundleVersionIdentifier.getHumanReadable());
+//						} catch (PluginException e) {
+//							LOGGER.error("", e);
+//						}
+//					}
+//				} catch (IOException e) {
+//					LOGGER.error("", e);
+//				}
+//			}
+//		}
+//	}
 
 	public void loadPluginsFromEclipseProjectNoExceptions(Path projectRoot) {
 		try {
@@ -337,15 +342,46 @@ public class PluginManager implements PluginManagerInterface {
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(Files.newInputStream(pluginFile));
 			
 			Path pomFile = projectRoot.resolve("pom.xml");
-			Path packageFile = projectRoot.resolve("package.json");
+//			Path packageFile = projectRoot.resolve("package.json");
 			
 //			if (Files.exists(packageFile)) {
 //				return loadJavaScriptProject(projectRoot, packageFile, pluginFolder, pluginDescriptor);
 //			} else if (Files.exists(pomFile)) {
-				return loadJavaProject(projectRoot, pomFile, pluginFolder, pluginDescriptor);
+			PluginBundle pluginBundle = loadJavaProject(projectRoot, pomFile, pluginFolder, pluginDescriptor);
 //			} else {
 //				throw new PluginException("No pom.xml or package.json found in " + projectRoot.toString());
 //			}
+				
+			List<SPluginInformation> plugins = new ArrayList<>();
+			processPluginDescriptor(pluginDescriptor, plugins);
+			
+			for (SPluginInformation sPluginInformation : plugins) {
+				if (sPluginInformation.isEnabled()) {
+					// For local plugins, we assume to install for all users
+					sPluginInformation.setInstallForAllUsers(true);
+					sPluginInformation.setInstallForNewUsers(true);
+					
+					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
+					if (pluginContext == null) {
+						throw new PluginException("No plugin context found for " + sPluginInformation.getIdentifier());
+					}
+					pluginContext.getPlugin().init(this);
+				}
+			}
+			
+			try {
+				long pluginBundleVersionId = pluginChangeListener.pluginBundleInstalled(pluginBundle);
+				for (SPluginInformation sPluginInformation : plugins) {
+					if (sPluginInformation.isEnabled()) {
+						PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
+						pluginChangeListener.pluginInstalled(pluginBundleVersionId, pluginContext, sPluginInformation);
+					}
+				}
+			} catch (Exception e) {
+				LOGGER.error("", e);
+				throw new PluginException(e);
+			}
+			return pluginBundle;
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
@@ -482,13 +518,21 @@ public class PluginManager implements PluginManagerInterface {
 		return pluginBundle;
 	}
 
-	public PluginDescriptor getPluginDescriptor(InputStream inputStream) throws JAXBException {
-		JAXBContext jaxbContext = JAXBContext.newInstance(PluginDescriptor.class);
-		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-		PluginDescriptor pluginDescriptor = (PluginDescriptor) unmarshaller.unmarshal(inputStream);
-		return pluginDescriptor;
+	public PluginDescriptor getPluginDescriptor(InputStream inputStream) throws JAXBException, IOException {
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(PluginDescriptor.class);
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			PluginDescriptor pluginDescriptor = (PluginDescriptor) unmarshaller.unmarshal(inputStream);
+			return pluginDescriptor;
+		} finally {
+			inputStream.close();
+		}
 	}
 
+	public PluginDescriptor getPluginDescriptor(byte[] bytes) throws JAXBException, IOException {
+		return getPluginDescriptor(new ByteArrayInputStream(bytes));
+	}
+	
 	public void loadAllPluginsFromDirectoryOfJars(Path directory) throws PluginException, IOException {
 		LOGGER.debug("Loading all plugins from " + directory.toString());
 		if (!Files.isDirectory(directory)) {
@@ -1077,6 +1121,7 @@ public class PluginManager implements PluginManagerInterface {
 				SPluginInformation sPluginInformation = new SPluginInformation();
 				sPluginInformation.setName(javaPlugin.getImplementationClass());
 				sPluginInformation.setDescription(javaPlugin.getDescription());
+				sPluginInformation.setEnabled(true);
 
 				// For java plugins we use the implementation class as identifier
 				sPluginInformation.setIdentifier(javaPlugin.getImplementationClass());
@@ -1090,6 +1135,7 @@ public class PluginManager implements PluginManagerInterface {
 				sPluginInformation.setName(webModulePlugin.getIdentifier());
 				sPluginInformation.setDescription(webModulePlugin.getDescription());
 				sPluginInformation.setType(SPluginType.WEB_MODULE);
+				sPluginInformation.setEnabled(true);
 				list.add(sPluginInformation);
 			}
 		}

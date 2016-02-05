@@ -84,10 +84,14 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 			ifcModelSet.add(subModel);
 		}
 		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, getDatabaseSession());
-		try {
-			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
-		} catch (MergeException e) {
-			throw new UserException(e);
+		if (ifcModelSet.size() > 1) {
+			try {
+				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
+			} catch (MergeException e) {
+				throw new UserException(e);
+			}
+		} else {
+			ifcModel = ifcModelSet.iterator().next();
 		}
 		List<DataObject> dataObjects = new ArrayList<DataObject>();
 		for (Long oid : ifcModel.keySet()) {
