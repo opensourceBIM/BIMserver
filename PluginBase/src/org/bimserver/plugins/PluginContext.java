@@ -158,14 +158,14 @@ public class PluginContext {
 	}
 
 	public ObjectIDM getDefaultObjectIDM() throws ObjectIDMException {
-		return null;
+		return pluginManager.getDefaultObjectIDM();
 	}
 
 	public Path getTempDir() {
-		return null;
+		return pluginManager.getTempDir().resolve(getPluginBundle().getPluginBundleVersion().getGroupId() + "." + getPluginBundle().getPluginBundleVersion().getArtifactId());
 	}
 
 	public MetaDataManager getMetaDataManager() {
-		return null;
+		return pluginManager.getMetaDataManager();
 	}
 }
