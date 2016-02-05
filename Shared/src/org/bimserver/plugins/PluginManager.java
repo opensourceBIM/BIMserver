@@ -295,7 +295,7 @@ public class PluginManager implements PluginManagerInterface {
 		sPluginBundle.setOrganization(model.getOrganization().getName());
 		sPluginBundle.setName(model.getName());
 		
-		SPluginBundleVersion sPluginBundleVersion = createPluginBundleVersionFromMavenModel(model);
+		SPluginBundleVersion sPluginBundleVersion = createPluginBundleVersionFromMavenModel(model, true);
 		
 		Path icon = projectRoot.resolve("icon.png");
 		if (Files.exists(icon)) {
@@ -516,23 +516,23 @@ public class PluginManager implements PluginManagerInterface {
 		return getPluginDescriptor(new ByteArrayInputStream(bytes));
 	}
 	
-	public void loadAllPluginsFromDirectoryOfJars(Path directory) throws PluginException, IOException {
-		LOGGER.debug("Loading all plugins from " + directory.toString());
-		if (!Files.isDirectory(directory)) {
-			throw new PluginException("No directory: " + directory.toString());
-		}
-		for (Path file : PathUtils.list(directory)) {
-			if (file.getFileName().toString().toLowerCase().endsWith(".jar")) {
-				try {
-					PluginBundleVersionIdentifier pluginBundleVersionIdentifier = PluginBundleVersionIdentifier.fromFileName(file.getFileName().toString());
-
-					loadPluginsFromJar(pluginBundleVersionIdentifier, file, extractPluginBundleFromJar(file), extractPluginBundleVersionFromJar(file));
-				} catch (PluginException e) {
-					LOGGER.error("", e);
-				}
-			}
-		}
-	}
+//	public void loadAllPluginsFromDirectoryOfJars(Path directory) throws PluginException, IOException {
+//		LOGGER.debug("Loading all plugins from " + directory.toString());
+//		if (!Files.isDirectory(directory)) {
+//			throw new PluginException("No directory: " + directory.toString());
+//		}
+//		for (Path file : PathUtils.list(directory)) {
+//			if (file.getFileName().toString().toLowerCase().endsWith(".jar")) {
+//				try {
+//					PluginBundleVersionIdentifier pluginBundleVersionIdentifier = PluginBundleVersionIdentifier.fromFileName(file.getFileName().toString());
+//
+//					loadPluginsFromJar(pluginBundleVersionIdentifier, file, extractPluginBundleFromJar(file), extractPluginBundleVersionFromJar(file));
+//				} catch (PluginException e) {
+//					LOGGER.error("", e);
+//				}
+//			}
+//		}
+//	}
 
 	public SPluginBundle extractPluginBundleFromJar(Path jarFilePath) throws PluginException {
 		String filename = jarFilePath.getFileName().toString();
@@ -557,7 +557,7 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 	
-	public SPluginBundleVersion extractPluginBundleVersionFromJar(Path jarFilePath) throws PluginException {
+	public SPluginBundleVersion extractPluginBundleVersionFromJar(Path jarFilePath, boolean isLocal) throws PluginException {
 		String filename = jarFilePath.getFileName().toString();
 		PluginBundleVersionIdentifier pluginBundleVersionIdentifier = PluginBundleVersionIdentifier.fromFileName(filename);
 		PluginBundleIdentifier pluginBundleIdentifier = pluginBundleVersionIdentifier.getPluginBundleIdentifier();
@@ -569,7 +569,7 @@ public class PluginManager implements PluginManagerInterface {
 			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 
 			Model model = mavenreader.read(jarFile.getInputStream(pomEntry));
-			SPluginBundleVersion sPluginBundleVersion = createPluginBundleVersionFromMavenModel(model);
+			SPluginBundleVersion sPluginBundleVersion = createPluginBundleVersionFromMavenModel(model, isLocal);
 			return sPluginBundleVersion;
 		} catch (IOException e) {
 			throw new PluginException(e);
@@ -578,9 +578,9 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	private SPluginBundleVersion createPluginBundleVersionFromMavenModel(Model model) {
+	private SPluginBundleVersion createPluginBundleVersionFromMavenModel(Model model, boolean isLocal) {
 		SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
-		sPluginBundleVersion.setType(SPluginBundleType.MAVEN);
+		sPluginBundleVersion.setType(isLocal ? SPluginBundleType.LOCAL : SPluginBundleType.MAVEN);
 		sPluginBundleVersion.setGroupId(model.getGroupId());
 		sPluginBundleVersion.setArtifactId(model.getArtifactId());
 		sPluginBundleVersion.setVersion(model.getVersion());
