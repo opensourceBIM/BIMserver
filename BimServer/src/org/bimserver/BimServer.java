@@ -230,7 +230,8 @@ public class BimServer {
 			if (!Files.exists(tmp)) {
 				Files.createDirectories(tmp);
 			}
-			pluginManager = new PluginManager(tmp, config.getHomeDir().resolve("plugins"), config.getHomeDir().resolve("maven"), config.getClassPath(), serviceFactory, internalServicesManager, servicesMap);
+			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(config.getHomeDir().resolve("maven"));
+			pluginManager = new PluginManager(tmp, config.getHomeDir().resolve("plugins"), mavenPluginRepository, config.getClassPath(), serviceFactory, internalServicesManager, servicesMap);
 			metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
 			LOGGER.debug("PluginManager created");

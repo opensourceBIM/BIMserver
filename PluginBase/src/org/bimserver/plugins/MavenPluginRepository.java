@@ -25,6 +25,10 @@ public class MavenPluginRepository {
 	private final RemoteRepository remoteRepository;
 	private String defaultRepository;
 	
+	public MavenPluginRepository(Path localRepoFile) {
+		this(localRepoFile, "http://central.maven.org/maven2");
+	}
+	
 	public MavenPluginRepository(Path localRepoFile, String defaultRepository) {
 		this.defaultRepository = defaultRepository;
 		system = newRepositorySystem();
@@ -32,12 +36,12 @@ public class MavenPluginRepository {
 		remoteRepository = new RemoteRepository.Builder("central", "default", defaultRepository).build();
 		repositories = new ArrayList<RemoteRepository>(Arrays.asList(remoteRepository));
 	}
-
+	
 	public MavenPluginLocation getPluginLocation(String defaultrepository, String groupId, String artifactId) {
 		return new MavenPluginLocation(this, defaultrepository, groupId, artifactId);
 	}
 	
-	public RepositorySystem newRepositorySystem() {
+	private RepositorySystem newRepositorySystem() {
 		DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
 		locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
 		locator.addService(TransporterFactory.class, FileTransporterFactory.class);
@@ -53,7 +57,7 @@ public class MavenPluginRepository {
 		return locator.getService(RepositorySystem.class);
 	}
 
-	public DefaultRepositorySystemSession newRepositorySystemSession(RepositorySystem system, Path localRepoFile) {
+	private DefaultRepositorySystemSession newRepositorySystemSession(RepositorySystem system, Path localRepoFile) {
 		DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
 
 		LocalRepository localRepo = new LocalRepository(localRepoFile.toFile());

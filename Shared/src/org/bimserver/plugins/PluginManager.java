@@ -55,7 +55,6 @@ import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
-import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SPluginBundle;
@@ -97,23 +96,18 @@ import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.utils.PathUtils;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
-import org.eclipse.aether.DefaultRepositorySystemSession;
-import org.eclipse.aether.RepositorySystem;
 import org.eclipse.aether.artifact.Artifact;
 import org.eclipse.aether.artifact.DefaultArtifact;
 import org.eclipse.aether.collection.CollectRequest;
 import org.eclipse.aether.collection.DependencyCollectionException;
-import org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory;
 import org.eclipse.aether.graph.Dependency;
 import org.eclipse.aether.graph.DependencyNode;
-import org.eclipse.aether.impl.DefaultServiceLocator;
-import org.eclipse.aether.repository.LocalRepository;
 import org.eclipse.aether.resolution.DependencyRequest;
 import org.eclipse.aether.resolution.DependencyResolutionException;
-import org.eclipse.aether.spi.connector.RepositoryConnectorFactory;
 import org.eclipse.aether.util.graph.visitor.PreorderNodeListGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -138,11 +132,11 @@ public class PluginManager implements PluginManagerInterface {
 	private PluginChangeListener pluginChangeListener;
 	private BimServerClientFactory bimServerClientFactory;
 	private MetaDataManager metaDataManager;
-	private Path mavenDir;
+	private MavenPluginRepository mavenPluginRepository;
 
-	public PluginManager(Path tempDir, Path pluginsDir, Path mavenDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, SServicesMap servicesMap) {
+	public PluginManager(Path tempDir, Path pluginsDir, MavenPluginRepository mavenPluginRepository, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, SServicesMap servicesMap) {
+		this.mavenPluginRepository = mavenPluginRepository;
 		LOGGER.debug("Creating new PluginManager");
-		this.mavenDir = mavenDir;
 		this.pluginsDir = pluginsDir;
 		this.tempDir = tempDir;
 		this.baseClassPath = baseClassPath;
@@ -232,19 +226,6 @@ public class PluginManager implements PluginManagerInterface {
 		while (it.hasNext()) {
 			org.apache.maven.model.Dependency depend = it.next();
 			try {
-				DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
-
-				DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
-				locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
-				// locator.addService( TransporterFactory.class,
-				// FileTransporterFactory.class );
-				// locator.addService( TransporterFactory.class,
-				// HttpTransporterFactory.class );
-
-				RepositorySystem system = locator.getService(RepositorySystem.class);
-
-				LocalRepository localRepo = new LocalRepository(mavenDir.toFile());
-				session.setLocalRepositoryManager(system.newLocalRepositoryManager(session, localRepo));
 
 				Dependency dependency2 = new Dependency(new DefaultArtifact(depend.getGroupId() + ":" + depend.getArtifactId() + ":" + depend.getVersion()), "compile");
 				// RemoteRepository central = new
@@ -253,7 +234,7 @@ public class PluginManager implements PluginManagerInterface {
 
 				CollectRequest collectRequest = new CollectRequest();
 				collectRequest.setRoot(dependency2);
-				DependencyNode node = system.collectDependencies(session, collectRequest).getRoot();
+				DependencyNode node = mavenPluginRepository.getSystem().collectDependencies(mavenPluginRepository.getSession(), collectRequest).getRoot();
 
 				DependencyRequest dependencyRequest = new DependencyRequest();
 				dependencyRequest.setRoot(node);
@@ -263,7 +244,7 @@ public class PluginManager implements PluginManagerInterface {
 				bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("Shared/target/classes")));
 
 				try {
-					system.resolveDependencies(session, dependencyRequest);
+					mavenPluginRepository.getSystem().resolveDependencies(mavenPluginRepository.getSession(), dependencyRequest);
 				} catch (DependencyResolutionException e) {
 					// Ignore
 				}
@@ -1328,6 +1309,9 @@ public class PluginManager implements PluginManagerInterface {
 
 	public PluginBundle update(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, Path jarFile, List<SPluginInformation> plugins) throws Exception {
 		PluginBundle existingPluginBundle = pluginBundleVersionIdentifierToPluginBundle.get(pluginBundleVersionIdentifier);
+		if (existingPluginBundle == null) {
+			throw new UserException("No previous version of plugin bundle " + pluginBundleVersionIdentifier + " found");
+		}
 		try {
 			existingPluginBundle.close();
 			pluginBundleVersionIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier);

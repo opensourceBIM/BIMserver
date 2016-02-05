@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.bimserver.plugins.MavenPluginRepository;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.exceptions.PluginException;
 import org.slf4j.Logger;
@@ -53,7 +54,8 @@ public class LocalDevPluginLoader {
 				e.printStackTrace();
 			}
 		}
-		PluginManager pluginManager = new PluginManager(home.resolve("tmp"), home.resolve("plugins"), home.resolve("maven"), System.getProperty("java.class.path"), null, null, null);
+		MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(home.resolve("maven"));
+		PluginManager pluginManager = new PluginManager(home.resolve("tmp"), home.resolve("plugins"), mavenPluginRepository, System.getProperty("java.class.path"), null, null, null);
 		loadPlugins(pluginManager, pluginDirectories);
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;

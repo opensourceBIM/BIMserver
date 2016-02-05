@@ -46,6 +46,11 @@ public class PluginBundleVersionIdentifier {
 		return null;
 	}
 
+	@Override
+	public String toString() {
+		return getHumanReadable();
+	}
+	
 	public String getHumanReadable() {
 		return pluginBundleIdentifier.getHumanReadable() + ":" + version;
 	}
