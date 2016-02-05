@@ -26,6 +26,7 @@ import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.client.soap.SoapBimServerClientFactory;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.plugins.MavenPluginRepository;
 import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.PluginManagerInterface;
@@ -74,7 +75,8 @@ public class LocalDevSetup {
 			if (!Files.exists(tmp)) {
 				Files.createDirectories(tmp);
 			}
-			PluginManager pluginManager = new PluginManager(tmp, home.resolve("plugins"), home.resolve("maven"), System.getProperty("java.class.path"), null, null, null);
+			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(home.resolve("maven"));
+			PluginManager pluginManager = new PluginManager(tmp, home.resolve("plugins"), mavenPluginRepository, System.getProperty("java.class.path"), null, null, null);
 
 			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
@@ -102,7 +104,8 @@ public class LocalDevSetup {
 				Files.createDirectory(home);
 			}
 			Path tmp = home.resolve("tmp");
-			PluginManager pluginManager = new PluginManager(tmp, home.resolve("plugins"), home.resolve("maven"), System.getProperty("java.class.path"), null, null, null);
+			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(home.resolve("maven"));
+			PluginManager pluginManager = new PluginManager(tmp, home.resolve("plugins"), mavenPluginRepository, System.getProperty("java.class.path"), null, null, null);
 			pluginManager.loadAllPluginsFromEclipseWorkspace(Paths.get("../"), true);
 			
 			MetaDataManager metaDataManager = new MetaDataManager(tmp);
