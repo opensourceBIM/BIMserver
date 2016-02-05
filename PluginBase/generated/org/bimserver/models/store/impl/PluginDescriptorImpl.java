@@ -32,8 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getSimpleName <em>Simple Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getDefaultName <em>Default Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getPluginClassName <em>Plugin Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getLocation <em>Location</em>}</li>
@@ -82,8 +81,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSimpleName() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__SIMPLE_NAME, true);
+	public String getName() {
+		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__NAME, true);
 	}
 
 	/**
@@ -91,26 +90,8 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSimpleName(String newSimpleName) {
-		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__SIMPLE_NAME, newSimpleName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDefaultName() {
-		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__DEFAULT_NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDefaultName(String newDefaultName) {
-		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__DEFAULT_NAME, newDefaultName);
+	public void setName(String newName) {
+		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__NAME, newName);
 	}
 
 	/**

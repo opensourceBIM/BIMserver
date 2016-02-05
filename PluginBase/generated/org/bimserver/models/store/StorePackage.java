@@ -2393,22 +2393,13 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_DESCRIPTOR = 25;
 
 	/**
-	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__SIMPLE_NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLUGIN_DESCRIPTOR__DEFAULT_NAME = 1;
+	int PLUGIN_DESCRIPTOR__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
@@ -2417,7 +2408,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = 2;
+	int PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -2426,7 +2417,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__DESCRIPTION = 3;
+	int PLUGIN_DESCRIPTOR__DESCRIPTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -2435,7 +2426,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__LOCATION = 4;
+	int PLUGIN_DESCRIPTOR__LOCATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -2444,7 +2435,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__ENABLED = 5;
+	int PLUGIN_DESCRIPTOR__ENABLED = 4;
 
 	/**
 	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
@@ -2453,7 +2444,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = 6;
+	int PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = 5;
 
 	/**
 	 * The feature id for the '<em><b>Configurations</b></em>' reference list.
@@ -2462,7 +2453,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__CONFIGURATIONS = 7;
+	int PLUGIN_DESCRIPTOR__CONFIGURATIONS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -2471,7 +2462,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__IDENTIFIER = 8;
+	int PLUGIN_DESCRIPTOR__IDENTIFIER = 7;
 
 	/**
 	 * The feature id for the '<em><b>Install For New Users</b></em>' attribute.
@@ -2480,7 +2471,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = 9;
+	int PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Plugin Bundle Version</b></em>' reference.
@@ -2489,7 +2480,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = 10;
+	int PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION = 9;
 
 	/**
 	 * The number of structural features of the '<em>Plugin Descriptor</em>' class.
@@ -2498,7 +2489,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 11;
+	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl <em>Revision Summary Type</em>}' class.
@@ -6165,13 +6156,31 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_BUNDLE_VERSION__ICON = 7;
 
 	/**
+	 * The feature id for the '<em><b>Organization</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_BUNDLE_VERSION__ORGANIZATION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_BUNDLE_VERSION__NAME = 9;
+
+	/**
 	 * The number of structural features of the '<em>Plugin Bundle Version</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_BUNDLE_VERSION_FEATURE_COUNT = 8;
+	int PLUGIN_BUNDLE_VERSION_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginBundleImpl <em>Plugin Bundle</em>}' class.
@@ -8708,26 +8717,15 @@ public interface StorePackage extends EPackage {
 	EClass getPluginDescriptor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#getSimpleName <em>Simple Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Simple Name</em>'.
-	 * @see org.bimserver.models.store.PluginDescriptor#getSimpleName()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.PluginDescriptor#getName()
 	 * @see #getPluginDescriptor()
 	 * @generated
 	 */
-	EAttribute getPluginDescriptor_SimpleName();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#getDefaultName <em>Default Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Default Name</em>'.
-	 * @see org.bimserver.models.store.PluginDescriptor#getDefaultName()
-	 * @see #getPluginDescriptor()
-	 * @generated
-	 */
-	EAttribute getPluginDescriptor_DefaultName();
+	EAttribute getPluginDescriptor_Name();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#getPluginClassName <em>Plugin Class Name</em>}'.
@@ -12109,6 +12107,28 @@ public interface StorePackage extends EPackage {
 	EAttribute getPluginBundleVersion_Icon();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginBundleVersion#getOrganization <em>Organization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Organization</em>'.
+	 * @see org.bimserver.models.store.PluginBundleVersion#getOrganization()
+	 * @see #getPluginBundleVersion()
+	 * @generated
+	 */
+	EAttribute getPluginBundleVersion_Organization();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginBundleVersion#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.PluginBundleVersion#getName()
+	 * @see #getPluginBundleVersion()
+	 * @generated
+	 */
+	EAttribute getPluginBundleVersion_Name();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginBundle <em>Plugin Bundle</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14138,20 +14158,12 @@ public interface StorePackage extends EPackage {
 		EClass PLUGIN_DESCRIPTOR = eINSTANCE.getPluginDescriptor();
 
 		/**
-		 * The meta object literal for the '<em><b>Simple Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN_DESCRIPTOR__SIMPLE_NAME = eINSTANCE.getPluginDescriptor_SimpleName();
-
-		/**
-		 * The meta object literal for the '<em><b>Default Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLUGIN_DESCRIPTOR__DEFAULT_NAME = eINSTANCE.getPluginDescriptor_DefaultName();
+		EAttribute PLUGIN_DESCRIPTOR__NAME = eINSTANCE.getPluginDescriptor_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Plugin Class Name</b></em>' attribute feature.
@@ -16784,6 +16796,22 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLUGIN_BUNDLE_VERSION__ICON = eINSTANCE.getPluginBundleVersion_Icon();
+
+		/**
+		 * The meta object literal for the '<em><b>Organization</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_BUNDLE_VERSION__ORGANIZATION = eINSTANCE.getPluginBundleVersion_Organization();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_BUNDLE_VERSION__NAME = eINSTANCE.getPluginBundleVersion_Name();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginBundleImpl <em>Plugin Bundle</em>}' class.

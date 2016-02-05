@@ -40,6 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getGroupId <em>Group Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getArtifactId <em>Artifact Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getIcon <em>Icon</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getOrganization <em>Organization</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -216,6 +218,42 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 */
 	public void setIcon(byte[] newIcon) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ICON, newIcon);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getOrganization() {
+		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ORGANIZATION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOrganization(String newOrganization) {
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ORGANIZATION, newOrganization);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__NAME, newName);
 	}
 
 } //PluginBundleVersionImpl

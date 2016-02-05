@@ -1251,18 +1251,6 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void getSerializerPluginDescriptor(final java.lang.String type, final GetSerializerPluginDescriptorCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getSerializerPluginDescriptor(type));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getWebModuleById(final java.lang.Long oid, final GetWebModuleByIdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){

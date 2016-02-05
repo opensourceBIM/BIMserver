@@ -31,8 +31,7 @@ public class SPluginDescriptor implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	private java.lang.String simpleName;
-	private java.lang.String defaultName;
+	private java.lang.String name;
 	private java.lang.String pluginClassName;
 	private java.lang.String description;
 	private java.lang.String location;
@@ -69,11 +68,8 @@ public class SPluginDescriptor implements SDataBase
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("simpleName")) {
-			return getSimpleName();
-		}
-		if (sField.getName().equals("defaultName")) {
-			return getDefaultName();
+		if (sField.getName().equals("name")) {
+			return getName();
 		}
 		if (sField.getName().equals("pluginClassName")) {
 			return getPluginClassName();
@@ -113,12 +109,8 @@ public class SPluginDescriptor implements SDataBase
 	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("simpleName")) {
-			setSimpleName((String)val);
-			return;
-		}
-		if (sField.getName().equals("defaultName")) {
-			setDefaultName((String)val);
+		if (sField.getName().equals("name")) {
+			setName((String)val);
 			return;
 		}
 		if (sField.getName().equals("pluginClassName")) {
@@ -168,20 +160,12 @@ public class SPluginDescriptor implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public java.lang.String getSimpleName() {
-		return simpleName;
+	public java.lang.String getName() {
+		return name;
 	}
 
-	public void setSimpleName(java.lang.String simpleName) {
-		this.simpleName = simpleName;
-	}
-	
-	public java.lang.String getDefaultName() {
-		return defaultName;
-	}
-
-	public void setDefaultName(java.lang.String defaultName) {
-		this.defaultName = defaultName;
+	public void setName(java.lang.String name) {
+		this.name = name;
 	}
 	
 	public java.lang.String getPluginClassName() {

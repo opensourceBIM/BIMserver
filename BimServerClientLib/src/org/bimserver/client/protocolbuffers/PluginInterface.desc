@@ -1,5 +1,5 @@
 
-ÁÐ
+åÐ
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"¸
  SDeserializerPluginConfiguration
 description (	
@@ -236,21 +236,23 @@ settingsId ("p
 GetAllWebModulesResponse
 errorMessage (	>
 value (2/.org.bimserver.pb.SWebModulePluginConfiguration""
- GetAvailablePluginBundlesRequest"â
+ GetAvailablePluginBundlesRequest"†
 SPluginBundleVersion
 
 artifactId (	
 description (	
 groupId (	
 icon (
-mismatch (
-oid (
+mismatch (
+name (	
+oid (
+organization (	
 
-repository (	
-rid (1
-type	 (2#.org.bimserver.pb.SPluginBundleType
-version
- (	"‘
+repository	 (	
+rid
+ (1
+type (2#.org.bimserver.pb.SPluginBundleType
+version (	"‘
 SPluginBundleA
 availableVersions (2&.org.bimserver.pb.SPluginBundleVersion@
 installedVersion (2&.org.bimserver.pb.SPluginBundleVersion=

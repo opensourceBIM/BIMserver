@@ -57,6 +57,8 @@ public class Step0023 extends Migration {
 		schema.createEAttribute(pluginBundleVersionClass, "groupId", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(pluginBundleVersionClass, "artifactId", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(pluginBundleVersionClass, "icon", EcorePackage.eINSTANCE.getEByteArray());
+		schema.createEAttribute(pluginBundleVersionClass, "organization", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(pluginBundleVersionClass, "name", EcorePackage.eINSTANCE.getEString());
 
 		EClass pluginBundle = schema.createEClass("store", "PluginBundle");
 		schema.createEAttribute(pluginBundle, "organization", EcorePackage.eINSTANCE.getEString());
