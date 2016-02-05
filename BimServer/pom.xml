@@ -58,12 +58,6 @@
 			<artifactId>jul-to-slf4j</artifactId>
 			<version>1.7.14</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.json</artifactId>
-			<version>1.0.4</version>
-		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-server</artifactId>
