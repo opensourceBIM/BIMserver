@@ -149,6 +149,16 @@ public class PluginManager implements PluginManagerInterface {
 		this.serviceFactory = serviceFactory;
 		this.notificationsManagerInterface = notificationsManagerInterface;
 		this.servicesMap = servicesMap;
+
+		if (pluginsDir != null) {
+			if (!Files.isDirectory(pluginsDir)) {
+				try {
+					Files.createDirectories(pluginsDir);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 //	public void installLocalPlugins() {
