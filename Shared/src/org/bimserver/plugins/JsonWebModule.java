@@ -29,13 +29,8 @@ public class JsonWebModule extends AbstractWebModulePlugin {
 	}
 
 	@Override
-	public void init(PluginManagerInterface pluginManager) throws PluginException {
-		super.init(pluginManager);
-	}
-
-	@Override
-	public String getDefaultName() {
-		return webModulePlugin.getIdentifier();
+	public void init(PluginContext pluginContext) throws PluginException {
+		super.init(pluginContext);
 	}
 
 	@Override

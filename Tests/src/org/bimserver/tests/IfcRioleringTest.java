@@ -36,6 +36,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.shared.exceptions.PluginException;
+import org.bimserver.utils.DeserializerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,7 +57,7 @@ public class IfcRioleringTest {
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			try {
-				model = deserializer.read(src);
+				model = DeserializerUtils.readFromFile(deserializer, src);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

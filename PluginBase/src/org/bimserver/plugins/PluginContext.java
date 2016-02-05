@@ -25,7 +25,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.Parameter;
+import org.bimserver.plugins.objectidms.ObjectIDM;
+import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.shared.exceptions.PluginException;
 
 public class PluginContext {
@@ -145,12 +148,24 @@ public class PluginContext {
 
 	public void initialize() throws PluginException {
 		if (!isInitialized()) {
-			plugin.init(pluginManager);
+			plugin.init(this);
 			setInitialized(true);
 		}
 	}
 
 	public String getIdentifier() {
 		return identifier;
+	}
+
+	public ObjectIDM getDefaultObjectIDM() throws ObjectIDMException {
+		return null;
+	}
+
+	public Path getTempDir() {
+		return null;
+	}
+
+	public MetaDataManager getMetaDataManager() {
+		return null;
 	}
 }

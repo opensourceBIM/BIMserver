@@ -36,6 +36,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.shared.exceptions.PluginException;
+import org.bimserver.utils.DeserializerUtils;
 
 public class GuidHighlighterTester {
 
@@ -79,7 +80,7 @@ public class GuidHighlighterTester {
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			try {
-				IfcModelInterface model = deserializer.read(file);
+				IfcModelInterface model = DeserializerUtils.readFromFile(deserializer, file);
 				return model;
 			} catch (Exception e) {
 				e.printStackTrace();

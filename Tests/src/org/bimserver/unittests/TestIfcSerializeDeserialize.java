@@ -19,6 +19,8 @@ package org.bimserver.unittests;
 
 import static org.junit.Assert.fail;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -42,6 +44,8 @@ import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.PluginException;
+import org.bimserver.utils.DeserializerUtils;
+import org.bimserver.utils.SerializerUtils;
 import org.junit.Test;
 
 public class TestIfcSerializeDeserialize {
@@ -59,13 +63,13 @@ public class TestIfcSerializeDeserialize {
 			IfcModel model = new BasicIfcModel(packageMetaData, null);
 			IfcWall wall = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
 			wall.setName("Test with 'quote and \\backslash");
-			serializer.init(model, null, pluginManager, packageMetaData, false);
-			serializer.writeToFile(Paths.get("output/test.ifc"), null);
+			serializer.init(model, null, pluginManager, false);
+			SerializerUtils.writeToFile(serializer, Paths.get("output/test.ifc"));
 			
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(packageMetaData);
-			IfcModelInterface modelInterface = deserializer.read(Paths.get("output/test.ifc"));
+			IfcModelInterface modelInterface = DeserializerUtils.readFromFile(deserializer, Paths.get("output/test.ifc"));
 			
 			IdEObject object = modelInterface.iterator().next();
 			System.out.println(((IfcWall)object).getName());
@@ -76,6 +80,11 @@ public class TestIfcSerializeDeserialize {
 		} catch (SerializerException e) {
 			e.printStackTrace();
 		} catch (DeserializeException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

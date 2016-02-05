@@ -1,5 +1,8 @@
 package org.bimserver.test.framework.actions;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -31,6 +34,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
 import org.bimserver.test.framework.VirtualUser;
+import org.bimserver.utils.SerializerUtils;
 
 public class DownloadModelLowLevel extends Action {
 
@@ -50,11 +54,15 @@ public class DownloadModelLowLevel extends Action {
 				SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 				Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 				model.generateMinimalExpressIds();
-				serializer.init(model, null, pluginManager, null, false);
-				serializer.writeToFile(getTestFramework().getTestConfiguration().getOutputFolder().resolve("test.ifc"), null);
+				serializer.init(model, null, pluginManager, false);
+				SerializerUtils.writeToFile(serializer, getTestFramework().getTestConfiguration().getOutputFolder().resolve("test.ifc"));
 			} catch (BimServerClientException e1) {
 				e1.printStackTrace();
 			} catch (SerializerException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}

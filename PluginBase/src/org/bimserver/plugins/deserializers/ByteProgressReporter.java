@@ -18,5 +18,8 @@ package org.bimserver.plugins.deserializers;
  *****************************************************************************/
 
 public interface ByteProgressReporter {
+	/**
+	 * @param byteNumber The total amount of bytes that have been processed
+	 */
 	void progress(long byteNumber);
 }

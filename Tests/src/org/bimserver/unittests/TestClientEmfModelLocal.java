@@ -49,6 +49,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
+import org.bimserver.utils.SerializerUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -131,12 +132,13 @@ public class TestClientEmfModelLocal {
 			
 			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
 			
-			serializer.init(model, null, bimServer.getPluginManager(), packageMetaData, false);
+			serializer.init(model, null, bimServer.getPluginManager(), false);
 			Path output = Paths.get("output");
 			if (!Files.exists(output)) {
 				Files.createDirectory(output);
 			}
-			serializer.writeToFile(output.resolve(roid + ".ifc"), null);
+			
+			SerializerUtils.writeToFile(serializer, output.resolve(roid + ".ifc"));
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
 		} catch (UserException e) {

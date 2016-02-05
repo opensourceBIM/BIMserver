@@ -1,5 +1,8 @@
 package org.bimserver.tests;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -45,6 +48,7 @@ import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.PluginException;
+import org.bimserver.utils.SerializerUtils;
 
 import nl.tue.buildingsmart.schema.SchemaDefinition;
 
@@ -56,9 +60,13 @@ public class GuidHighlighter {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			try {
-				serializer.init(model, null, null, null, false);
-				serializer.writeToFile(outputFile, null);
+				serializer.init(model, null, null, false);
+				SerializerUtils.writeToFile(serializer, outputFile);
 			} catch (SerializerException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} catch (PluginException e1) {

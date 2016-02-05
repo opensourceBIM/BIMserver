@@ -65,6 +65,7 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
+import org.bimserver.utils.DeserializerUtils;
 import org.eclipse.emf.common.util.EList;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -344,7 +345,7 @@ public class TestLowLevelChanges {
 			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
 			deserializer.init(packageMetaData);
-			IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), "test.ifc", 0);
+			IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), "test.ifc", 0, null);
 			return model;
 		} catch (PluginException e) {
 			e.printStackTrace();

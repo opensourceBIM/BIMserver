@@ -604,7 +604,7 @@ public class BimServer {
 	private void genericPluginConversion(PluginContext pluginContext, DatabaseSession session, PluginConfiguration pluginConfiguration, PluginDescriptor pluginDescriptor) throws BimserverDatabaseException {
 		try {
 			Plugin plugin = pluginContext.getPlugin();
-			pluginConfiguration.setName(plugin.getDefaultName());
+			pluginConfiguration.setName(pluginDescriptor.getName());
 			pluginConfiguration.setPluginDescriptor(pluginDescriptor);
 
 			// For the opposite of setPluginDescriptor

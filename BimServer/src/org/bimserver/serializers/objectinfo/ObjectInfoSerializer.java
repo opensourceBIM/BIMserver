@@ -32,11 +32,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class ObjectInfoSerializer extends EmfSerializer {
 
 	@Override
-	public void reset() {
-		setMode(Mode.BODY);
-	}
-	
-	@Override
 	public boolean write(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			PrintWriter out = new PrintWriter(outputStream);

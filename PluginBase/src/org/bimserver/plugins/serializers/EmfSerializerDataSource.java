@@ -25,9 +25,11 @@ import java.io.OutputStream;
 public class EmfSerializerDataSource extends ExtendedDataSource {
 
 	private final Serializer serializer;
+	private String modelName;
 
-	public EmfSerializerDataSource(Serializer serializer) {
+	public EmfSerializerDataSource(Serializer serializer, String modelName) {
 		this.serializer = serializer;
+		this.modelName = modelName;
 	}
 
 	@Override
@@ -37,12 +39,12 @@ public class EmfSerializerDataSource extends ExtendedDataSource {
 
 	@Override
 	public InputStream getInputStream() throws IOException {
-		return serializer.getInputStream();
+		return new SerializerInputstream(serializer);
 	}
 
 	@Override
 	public String getName() {
-		return serializer.getModel().getModelMetaData().getName();
+		return modelName;
 	}
 
 	@Override

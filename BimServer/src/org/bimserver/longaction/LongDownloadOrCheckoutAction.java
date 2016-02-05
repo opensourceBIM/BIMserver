@@ -81,10 +81,10 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 					if (getBimServer().getDiskCacheManager().contains(downloadParameters)) {
 						checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters));
 					} else {
-						checkoutResult.setFile(new DataHandler(new CacheStoringEmfSerializerDataSource(serializer, getBimServer().getDiskCacheManager().startCaching(downloadParameters))));
+						checkoutResult.setFile(new DataHandler(new CacheStoringEmfSerializerDataSource(serializer, model.getModelMetaData().getName(), getBimServer().getDiskCacheManager().startCaching(downloadParameters))));
 					}
 				} else {
-					checkoutResult.setFile(new DataHandler(new EmfSerializerDataSource(serializer)));
+					checkoutResult.setFile(new DataHandler(new EmfSerializerDataSource(serializer, model.getModelMetaData().getName())));
 				}
 			} catch (SerializerException e) {
 				LOGGER.error("", e);

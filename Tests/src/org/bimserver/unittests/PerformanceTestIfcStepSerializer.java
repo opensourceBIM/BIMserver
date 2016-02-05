@@ -19,6 +19,8 @@ package org.bimserver.unittests;
 
 import static org.junit.Assert.fail;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
@@ -38,6 +40,7 @@ import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.PluginException;
+import org.bimserver.utils.SerializerUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -72,14 +75,19 @@ public class PerformanceTestIfcStepSerializer {
 					}
 				}
 			}
-			serializer.init(model, null, pluginManager, packageMetaData, false);
+			serializer.init(model, null, pluginManager, false);
 			long start = System.nanoTime();
-			serializer.writeToFile(Paths.get("output/test.ifc"), null);
+			SerializerUtils.writeToFile(serializer, Paths.get("output/test.ifc"));
 			System.out.println("Serialize took: " + ((System.nanoTime() - start) / 1000000) + "ms");
 		} catch (PluginException e) {
 			e.printStackTrace();
 			fail(e.getMessage());
 		} catch (SerializerException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

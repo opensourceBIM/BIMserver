@@ -18,6 +18,8 @@ package org.bimserver.tests;
  *****************************************************************************/
 
 import java.awt.BorderLayout;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +50,8 @@ import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.PluginException;
+import org.bimserver.utils.DeserializerUtils;
+import org.bimserver.utils.SerializerUtils;
 import org.bimserver.utils.SwingUtil;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
@@ -63,10 +67,10 @@ public class Visualise extends JFrame {
 			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("application/ifc");
 			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
-			IfcModelInterface model1 = deserializer.read(TestFile.EXPORT1.getFile());
-			IfcModelInterface model1b = deserializer.read(TestFile.EXPORT1.getFile());
-			IfcModelInterface model2 = deserializer.read(TestFile.EXPORT3.getFile());
-			IfcModelInterface model2b = deserializer.read(TestFile.EXPORT3.getFile());
+			IfcModelInterface model1 = DeserializerUtils.readFromFile(deserializer, TestFile.EXPORT3.getFile());
+			IfcModelInterface model1b = DeserializerUtils.readFromFile(deserializer, TestFile.EXPORT3.getFile());
+			IfcModelInterface model2 = DeserializerUtils.readFromFile(deserializer, TestFile.EXPORT3.getFile());
+			IfcModelInterface model2b = DeserializerUtils.readFromFile(deserializer, TestFile.EXPORT3.getFile());
 			model1.setObjectOids();
 			model1b.setObjectOids();
 			model2.setObjectOids();
@@ -77,8 +81,8 @@ public class Visualise extends JFrame {
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-			serializer.init(merged, null, null, null, false);
-			serializer.writeToFile(Paths.get("merged.ifc"), null);
+			serializer.init(merged, null, null, false);
+			SerializerUtils.writeToFile(serializer, Paths.get("merged.ifc"));
 			new Visualise().start(model1b, "Model 1");
 			new Visualise().start(model2b, "Model 2");
 			new Visualise().start(merged, "Merged");
@@ -89,6 +93,10 @@ public class Visualise extends JFrame {
 		} catch (DeserializeException e) {
 			e.printStackTrace();
 		} catch (IfcModelInterfaceException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
