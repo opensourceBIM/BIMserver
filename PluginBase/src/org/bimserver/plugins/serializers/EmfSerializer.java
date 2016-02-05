@@ -42,30 +42,22 @@ public abstract class EmfSerializer implements Serializer, StreamingReader {
 	private PluginManagerInterface pluginManager;
 	private boolean normalizeOids;
 	private int expressIdCounter = 1;
-	private PackageMetaData packageMetaData;
 
 	protected static enum Mode {
 		HEADER, BODY, FOOTER, FINISHED
 	}
 
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManagerInterface pluginManager, PackageMetaData packageMetaData, boolean normalizeOids) throws SerializerException {
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManagerInterface pluginManager, boolean normalizeOids) throws SerializerException {
 		this.model = model;
 		this.projectInfo = projectInfo;
-		this.packageMetaData = packageMetaData;
 		this.normalizeOids = normalizeOids;
 		this.setPluginManager(pluginManager);
-		reset();
 	}
 	
 	public PackageMetaData getPackageMetaData() {
-		return packageMetaData;
+		return model.getPackageMetaData();
 	}
 	
-	@Override
-	public boolean allowCaching() {
-		return true;
-	}
-
 	public ProjectInfo getProjectInfo() {
 		return projectInfo;
 	}
@@ -100,7 +92,6 @@ public abstract class EmfSerializer implements Serializer, StreamingReader {
 	}
 
 	public InputStream getInputStream() throws IOException {
-		reset();
 		return new SerializerInputstream(this);
 	}
 

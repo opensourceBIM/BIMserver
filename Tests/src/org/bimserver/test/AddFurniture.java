@@ -1,5 +1,8 @@
 package org.bimserver.test;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2015  BIMserver.org
  * 
@@ -50,6 +53,8 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.utils.CollectionUtils;
+import org.bimserver.utils.DeserializerUtils;
+import org.bimserver.utils.SerializerUtils;
 
 public class AddFurniture {
 	public static void main(String[] args) {
@@ -60,11 +65,11 @@ public class AddFurniture {
 			Deserializer deserializer = deserializerPlugin.createDeserializer(null);
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 			
-			IfcModelInterface model = deserializer.read(Paths.get("../TestData/data/AC9R1-Haus-G-H-Ver2-2x3.ifc"));
+			IfcModelInterface model = DeserializerUtils.readFromFile(deserializer, Paths.get("../TestData/data/AC9R1-Haus-G-H-Ver2-2x3.ifc"));
 
 			deserializer = deserializerPlugin.createDeserializer(null);
 			deserializer.init(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
-			IfcModelInterface furnishingModel = deserializer.read(Paths.get	("test.ifc"));
+			IfcModelInterface furnishingModel = DeserializerUtils.readFromFile(deserializer, Paths.get("test.ifc"));
 			
 			model.fixOids(new IncrementingOidProvider());
 			long oid = model.getHighestOid();
@@ -144,8 +149,8 @@ public class AddFurniture {
 
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(null);
-			serializer.init(model, null, pluginManager, null, true);
-			serializer.writeToFile(Paths.get("withfurn.ifc"), null);
+			serializer.init(model, null, pluginManager, true);
+			SerializerUtils.writeToFile(serializer, Paths.get("withfurn.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();
 		} catch (DeserializeException e) {
@@ -153,6 +158,11 @@ public class AddFurniture {
 		} catch (IfcModelInterfaceException e) {
 			e.printStackTrace();
 		} catch (SerializerException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

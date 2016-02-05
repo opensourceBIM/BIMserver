@@ -40,7 +40,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.apache.commons.io.IOUtils;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IdEObject;
@@ -77,6 +76,7 @@ import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerInputstream;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.exceptions.PluginException;
@@ -152,18 +152,18 @@ public class GeometryGenerator {
 				pool = bimServer.getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), renderEnginePluginClassName);
 				renderEngine = pool.request();
 				renderEngine.init();
-				ifcSerializer.init(targetModel, null, bimServer.getPluginManager(), model.getPackageMetaData(), true);
+				ifcSerializer.init(targetModel, null, bimServer.getPluginManager(), true);
 
 				boolean debug = false;
 				InputStream in = null;
 				if (debug) {
 					File file = new File((eClass == null ? "all" : eClass.getName()) + ".ifc");
 					FileOutputStream fos = new FileOutputStream(file);
-					IOUtils.copy(ifcSerializer.getInputStream(), fos);
+					ifcSerializer.writeToOutputStream(fos, null);
 					fos.close();
 					in = new FileInputStream(file);
 				} else {
-					in = ifcSerializer.getInputStream();
+					in = new SerializerInputstream(ifcSerializer);
 				}
 				RenderEngineModel renderEngineModel = renderEngine.openModel(in);
 				try {

@@ -21,7 +21,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginManagerInterface;
+import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.shared.exceptions.PluginException;
@@ -32,19 +32,14 @@ public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
 	private SchemaFieldIgnoreMap objectIDM;
 
 	@Override
-	public void init(PluginManagerInterface pluginManager) throws PluginException {
-		PackageMetaData packageMetaData = pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
+	public void init(PluginContext pluginContext) throws PluginException {
+		PackageMetaData packageMetaData = pluginContext.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
 		objectIDM = new SchemaFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), packageMetaData);
 	}
 
 	@Override
 	public ObjectIDM getObjectIDM(PluginConfiguration pluginConfiguration) {
 		return objectIDM;
-	}
-
-	@Override
-	public String getDefaultName() {
-		return "default";
 	}
 
 	@Override

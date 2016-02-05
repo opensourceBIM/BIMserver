@@ -45,25 +45,20 @@ public abstract class AbstractService extends ServicePlugin {
 	private String name;
 	private PluginContext pluginContext;
 
-	public AbstractService(String name) {
-		this.name = name;
+	public AbstractService(String title) {
+		this.name = title;
 	}
 	
 	@Override
-	public void init(PluginManagerInterface pluginManager) throws PluginException {
-		super.init(pluginManager);
-		pluginContext = pluginManager.getPluginContext(this);
+	public void init(PluginContext pluginContext) throws PluginException {
+		this.pluginContext = pluginContext;
+		super.init(pluginContext);
 	}
 
 	public PluginContext getPluginContext() {
 		return pluginContext;
 	}
 	
-	@Override
-	public String getDefaultName() {
-		return name;
-	}
-
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
 		return null;

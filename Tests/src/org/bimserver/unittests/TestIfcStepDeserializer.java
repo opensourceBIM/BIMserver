@@ -19,6 +19,8 @@ package org.bimserver.unittests;
 
 import static org.junit.Assert.fail;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -37,6 +39,8 @@ import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.tests.TestFile;
+import org.bimserver.utils.DeserializerUtils;
+import org.bimserver.utils.SerializerUtils;
 import org.junit.Test;
 
 public class TestIfcStepDeserializer {
@@ -52,12 +56,12 @@ public class TestIfcStepDeserializer {
 			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
 			deserializer.init(packageMetaData);
-			IfcModelInterface modelInterface = deserializer.read(TestFile.AC11.getFile());
+			IfcModelInterface modelInterface = DeserializerUtils.readFromFile(deserializer, TestFile.AC11.getFile());
 			
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-			serializer.init(modelInterface, null, pluginManager, packageMetaData, false);
-			serializer.writeToFile(Paths.get("output/test.ifc"), null);
+			serializer.init(modelInterface, null, pluginManager, false);
+			SerializerUtils.writeToFile(serializer, Paths.get("output/test.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();
 			fail(e.getMessage());
@@ -65,6 +69,10 @@ public class TestIfcStepDeserializer {
 			e.printStackTrace();
 			fail(e.getMessage());
 		} catch (SerializerException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

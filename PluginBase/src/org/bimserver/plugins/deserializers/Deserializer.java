@@ -18,15 +18,27 @@ package org.bimserver.plugins.deserializers;
  *****************************************************************************/
 
 import java.io.InputStream;
-import java.nio.file.Path;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 
 public interface Deserializer {
+	/**
+	 * Initialize this deserializer with the given model meta data
+	 * 
+	 * @param packageMetaData
+	 */
 	void init(PackageMetaData packageMetaData);
-	IfcModelInterface read(Path file, ByteProgressReporter progressReporter) throws DeserializeException;
+
+	/**
+	 * Deserialize a stream to a model.
+	 * 
+	 * @param inputStream The inputstream
+	 * @param fileName Name of the "file". This will usually be the original filename of the file, if there even was a file. This is mainly used to determine the content of the file, for example when uploaden IFC-ZIP files
+	 * @param fileSize File size of the original file, some deserializers use this to determine memory allocations strategies
+	 * @param progressReporter An interface you can report progress to
+	 * @return The deserialized model
+	 * @throws DeserializeException
+	 */
 	IfcModelInterface read(InputStream inputStream, String fileName, long fileSize, ByteProgressReporter progressReporter) throws DeserializeException;
-	IfcModelInterface read(Path file) throws DeserializeException;
-	IfcModelInterface read(InputStream inputStream, String fileName, long fileSize) throws DeserializeException;
 }

@@ -1,5 +1,7 @@
 package org.bimserver.test;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 
 /******************************************************************************
@@ -42,6 +44,8 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.utils.CollectionUtils;
+import org.bimserver.utils.DeserializerUtils;
+import org.bimserver.utils.SerializerUtils;
 
 public class ExtractFurniture {
 	public static void main(String[] args) {
@@ -55,7 +59,7 @@ public class ExtractFurniture {
 			PackageMetaData packageMetaData = metaDataManager.getPackageMetaData("ifc2x3tc1");
 			
 			deserializer.init(packageMetaData);
-			IfcModelInterface model = deserializer.read(Paths.get("../TestData/data/ADT-FZK-Haus-2005-2006.ifc"));
+			IfcModelInterface model = DeserializerUtils.readFromFile(deserializer, Paths.get("../TestData/data/ADT-FZK-Haus-2005-2006.ifc"));
 			model.fixOids(new IncrementingOidProvider());
 			
 			IfcFurnishingElement picknick = (IfcFurnishingElement) model.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
@@ -67,8 +71,8 @@ public class ExtractFurniture {
 			
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(null);
-			serializer.init(newModel, null, pluginManager, packageMetaData, true);
-			serializer.writeToFile(Paths.get("test.ifc"), null);
+			serializer.init(newModel, null, pluginManager, true);
+			SerializerUtils.writeToFile(serializer, Paths.get("test.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();
 		} catch (DeserializeException e) {
@@ -76,6 +80,10 @@ public class ExtractFurniture {
 		} catch (IfcModelInterfaceException e) {
 			e.printStackTrace();
 		} catch (SerializerException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

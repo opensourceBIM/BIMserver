@@ -35,7 +35,7 @@ public interface SerializerPlugin extends Plugin {
 	Serializer createSerializer(PluginConfiguration plugin);
 
 	/**
-	 * @return The schema supported by this serializer
+	 * @return The schemas supported by this serializer
 	 */
 	Set<Schema> getSupportedSchemas();
 	

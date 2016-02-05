@@ -23,6 +23,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
+import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
@@ -53,7 +54,7 @@ public abstract class ServicePlugin implements Plugin {
 	}
 	
 	@Override
-	public void init(PluginManagerInterface pluginManager) throws PluginException {
+	public void init(PluginContext pluginContext) throws PluginException {
 		this.pluginManager = pluginManager;
 	}
 	
@@ -78,7 +79,7 @@ public abstract class ServicePlugin implements Plugin {
 	public abstract void unregister(SInternalServicePluginConfiguration internalService);
 	
 	@Override
-	public SPluginType getPluginType() {
+	public final SPluginType getPluginType() {
 		return SPluginType.SERVICE;
 	}
 }

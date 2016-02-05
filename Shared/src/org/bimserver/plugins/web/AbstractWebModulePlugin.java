@@ -40,7 +40,6 @@ import org.bimserver.models.store.PrimitiveEnum;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StringType;
 import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.PluginSourceType;
 import org.bimserver.shared.exceptions.PluginException;
 import org.slf4j.Logger;
@@ -61,8 +60,8 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	}
 	
 	@Override
-	public void init(PluginManagerInterface pluginManager) throws PluginException {
-		pluginContext = pluginManager.getPluginContext(this);
+	public void init(PluginContext pluginContext) throws PluginException {
+		this.pluginContext = pluginContext;
 	}
 	
 	private static Date makeExpiresDate() {

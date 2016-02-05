@@ -348,7 +348,7 @@ public class PluginManager implements PluginManagerInterface {
 					if (pluginContext == null) {
 						throw new PluginException("No plugin context found for " + sPluginInformation.getIdentifier());
 					}
-					pluginContext.getPlugin().init(this);
+					pluginContext.getPlugin().init(pluginContext);
 				}
 			}
 			
@@ -1230,7 +1230,7 @@ public class PluginManager implements PluginManagerInterface {
 					if (pluginContext == null) {
 						throw new Exception("No plugin context found for " + sPluginInformation.getIdentifier());
 					}
-					pluginContext.getPlugin().init(this);
+					pluginContext.getPlugin().init(pluginContext);
 				}
 			}
 		} catch (Exception e) {
@@ -1346,7 +1346,7 @@ public class PluginManager implements PluginManagerInterface {
 			for (SPluginInformation sPluginInformation : plugins) {
 				if (sPluginInformation.isEnabled()) {
 					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
-					pluginContext.getPlugin().init(this);
+					pluginContext.getPlugin().init(pluginContext);
 				}
 			}
 		} catch (Exception e) {

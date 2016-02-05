@@ -19,6 +19,8 @@ package org.bimserver.unittests;
 
 import static org.junit.Assert.fail;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -36,6 +38,7 @@ import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.PluginException;
+import org.bimserver.utils.SerializerUtils;
 import org.junit.Test;
 
 public class TestIfcStepSerializer {
@@ -53,12 +56,16 @@ public class TestIfcStepSerializer {
 			IfcModel model = new BasicIfcModel(packageMetaData, null);
 			IfcWall wall = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
 			wall.setName("Test with 'quotes");
-			serializer.init(model, null, pluginManager, packageMetaData, false);
-			serializer.writeToFile(Paths.get("output/test.ifc"), null);
+			serializer.init(model, null, pluginManager, false);
+			SerializerUtils.writeToFile(serializer, Paths.get("output/test.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();
 			fail(e.getMessage());
 		} catch (SerializerException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
