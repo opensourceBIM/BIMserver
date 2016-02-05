@@ -63,6 +63,7 @@ import org.bimserver.models.store.ParameterDefinition;
 import org.bimserver.models.store.PluginBundleVersion;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServerState;
@@ -644,6 +645,7 @@ public class BimServer {
 			}
 			
 			Class<?> pluginInterface = getPluginInterface(pluginContext.getPlugin().getClass());
+			String originalPluginInterfaceName = pluginInterface.getSimpleName();
 			String pluginInterfaceName = pluginInterface.getSimpleName();
 			if (pluginInterfaceName.endsWith("Plugin")) {
 				pluginInterfaceName = pluginInterfaceName.substring(0, pluginInterfaceName.length() - 6);
@@ -675,6 +677,11 @@ public class BimServer {
 			PluginConfiguration pluginConfiguration = find(list, pluginContext.getIdentifier());
 			if (pluginConfiguration == null) {
 				pluginConfiguration = (PluginConfiguration) session.create(pluginConfigurationClass);
+				if (pluginConfiguration instanceof SerializerPluginConfiguration) {
+					boolean streaming = originalPluginInterfaceName.equals("StreamingSerializerPlugin") || originalPluginInterfaceName.equals("MessagingStreamingSerializerPlugin");
+					((SerializerPluginConfiguration) pluginConfiguration).setStreaming(streaming);
+				}
+
 				list.add(pluginConfiguration);
 				genericPluginConversion(pluginContext, session, pluginConfiguration, pluginDescriptor);
 			}
@@ -703,9 +710,11 @@ public class BimServer {
 			}
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(session, pluginEntry.getKey().getIdentifier());
 			if (pluginDescriptor == null)  {
-				throw new BimserverDatabaseException("No plugin descriptor found: " + pluginEntry.getKey().getIdentifier());
+				LOGGER.error("No plugin descriptor found: " + pluginEntry.getKey().getIdentifier());
+//				throw new BimserverDatabaseException("No plugin descriptor found: " + pluginEntry.getKey().getIdentifier());
+			} else {
+				updateUserPlugin(session, user, pluginDescriptor, pluginEntry.getKey());
 			}
-			updateUserPlugin(session, user, pluginDescriptor, pluginEntry.getKey());
 		}
 		
 		session.store(userSettings);
@@ -784,7 +793,7 @@ public class BimServer {
 			}
 
 			session = bimDatabase.createSession();
-			createDatabaseObjects(session);
+//			createDatabaseObjects(session);
 
 			ServerSettings serverSettings = serverSettingsCache.getServerSettings();
 
@@ -877,8 +886,8 @@ public class BimServer {
 			pluginManager.setBimServerClientFactory(bimServerClientFactory);
 		} catch (BimserverLockConflictException e) {
 			throw new BimserverDatabaseException(e);
-		} catch (PluginException e) {
-			throw new BimserverDatabaseException(e);
+//		} catch (PluginException e) {
+//			throw new BimserverDatabaseException(e);
 		}
 	}
 
@@ -890,7 +899,6 @@ public class BimServer {
 		Map<PluginContext, Plugin> allPlugins = pluginManager.getAllPlugins(false);
 		for (PluginContext pluginContext : allPlugins.keySet()) {
 			Plugin plugin = pluginContext.getPlugin();
-			System.out.println(pluginContext.getIdentifier());
 			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_Identifier(), new StringLiteral(pluginContext.getIdentifier()));
 			Map<Long, PluginDescriptor> results = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
 			if (results.size() == 0) {

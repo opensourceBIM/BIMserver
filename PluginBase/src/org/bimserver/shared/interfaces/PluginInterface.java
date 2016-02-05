@@ -609,7 +609,7 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "repository", partName = "getPluginBundle.repository") String repository, 
 		@WebParam(name = "groupId", partName = "getPluginBundle.groupId") String groupId, 
 		@WebParam(name = "artifactId", partName = "getPluginBundle.artifactId") String artifactId) throws UserException, ServerException;
-	
+
 	@WebMethod(action = "getInstalledPluginBundles")
 	List<SPluginBundle> getInstalledPluginBundles() throws UserException, ServerException;
 
