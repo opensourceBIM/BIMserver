@@ -88,6 +88,10 @@
 			type: "IfcFillAreaStyle",
 			field: "FillStyles"
 		},
+		IfcTextStyle: {
+			type: "IfcTextStyle",
+			fields: ["TextCharacterAppearance", "TextStyle", "TextFontStyle"]
+		},
 		IfcRepresentationItem: {
 			type: "IfcRepresentationItem",
 			field: "StyledByItem",
@@ -97,7 +101,7 @@
 				include: {
 					type: "IfcPresentationStyleAssignment",
 					field: "Styles",
-					includes: ["IfcFillAreaStyle", "IfcSurfaceStyle"]
+					includes: ["IfcFillAreaStyle", "IfcSurfaceStyle", "IfcTextStyle"]
 				}
 			}
 		},

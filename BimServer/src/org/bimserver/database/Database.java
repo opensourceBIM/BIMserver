@@ -53,7 +53,6 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.BinUtils;
-import org.bimserver.utils.DoubleHashMap;
 import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -74,7 +73,8 @@ public class Database implements BimDatabase {
 	private static final String DATE_CREATED = "DATE_CREATED";
 	private final Map<String, EPackage> emfPackages = new LinkedHashMap<String, EPackage>();
 	private final KeyValueStore keyValueStore;
-	private final DoubleHashMap<Short, EClass> classifiers = new DoubleHashMap<Short, EClass>();
+	private final EClass[] cidToEclass;
+	private final Map<EClass, Short> eClassToCid = new HashMap<EClass, Short>();
 	private final List<String> realClasses = new ArrayList<String>();
 	private final Map<EClass, AtomicLong> oidCounters = new HashMap<EClass, AtomicLong>();
 	private final AtomicInteger pidCounter = new AtomicInteger(1);
@@ -95,6 +95,7 @@ public class Database implements BimDatabase {
 	public static final int APPLICATION_SCHEMA_VERSION = 23;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore, MetaDataManager metaDataManager) throws DatabaseInitException {
+		this.cidToEclass = new EClass[10000]; 
 		this.bimServer = bimServer;
 		this.keyValueStore = keyValueStore;
 		this.metaDataManager = metaDataManager;
@@ -185,9 +186,11 @@ public class Database implements BimDatabase {
 				initInternalStructure(databaseSession);
 				initCounters(databaseSession);
 			}
-			for (EClass eClass : classifiers.keyBSet()) {
-				if (eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE) {
-					realClasses.add(eClass.getName());
+			for (EClass eClass : cidToEclass) {
+				if (eClass != null) {
+					if (eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE) {
+						realClasses.add(eClass.getName());
+					}
 				}
 			}
 			databaseSession.commit();
@@ -292,7 +295,8 @@ public class Database implements BimDatabase {
 				}
 				
 				Short cid = BinUtils.byteArrayToShort(record.getKey());
-				classifiers.put(cid, eClass);
+				cidToEclass[cid] = eClass;
+				eClassToCid.put(eClass, cid);
 				record = recordIterator.next();
 			}
 		} finally {
@@ -301,7 +305,7 @@ public class Database implements BimDatabase {
 	}
 
 	public void initCounters(DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
-		for (EClass eClass : classifiers.keyBSet()) {
+		for (EClass eClass : eClassToCid.keySet()) {
 			RecordIterator iterator = keyValueStore.getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), databaseSession);
 			try {
 				Record record = iterator.last();
@@ -353,15 +357,15 @@ public class Database implements BimDatabase {
 	}
 
 	public Set<EClass> getClasses() {
-		return classifiers.keyBSet();
+		return eClassToCid.keySet();
 	}
 
 	public EClass getEClassForCid(short cid) {
-		return classifiers.getB(cid);
+		return cidToEclass[cid];
 	}
 
 	public Short getCidOfEClass(EClass eClass) {
-		return classifiers.getA(eClass);
+		return eClassToCid.get(eClass);
 	}
 
 	public Registry getRegistry() {

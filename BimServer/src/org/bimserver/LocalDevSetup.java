@@ -104,6 +104,9 @@ public class LocalDevSetup {
 				Files.createDirectory(home);
 			}
 			Path tmp = home.resolve("tmp");
+			if (!Files.isDirectory(tmp)) {
+				Files.createDirectory(tmp);
+			}
 			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(home.resolve("maven"));
 			PluginManager pluginManager = new PluginManager(tmp, home.resolve("plugins"), mavenPluginRepository, System.getProperty("java.class.path"), null, null, null);
 			pluginManager.loadAllPluginsFromEclipseWorkspace(Paths.get("../"), true);

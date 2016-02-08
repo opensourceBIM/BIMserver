@@ -47,13 +47,14 @@ public class QueryPartStackFrame extends StackFrame {
 		this.partialQuery = partialQuery;
 		this.reusable = reusable;
 		if (partialQuery.hasOids()) {
-			List<Long> oidsList = partialQuery.getOids();
+			Set<Long> oidsList = partialQuery.getOids();
 			this.oids = new HashMap<EClass, List<Long>>();
 			if (oidsList.size() == 0) {
 				throw new QueryException("\"oids\" parameter of type array is of size 0");
 			}
-			for (int i=0; i<oidsList.size(); i++) {
-				long oid = oidsList.get(i);
+			Iterator<Long> iterator = oidsList.iterator();
+			while (iterator.hasNext()) {
+				long oid = iterator.next();
 				EClass eClass = queryObjectProvider.getDatabaseSession().getEClassForOid(oid);
 				List<Long> list = this.oids.get(eClass);
 				if (list == null) {

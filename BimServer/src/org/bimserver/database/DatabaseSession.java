@@ -234,6 +234,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			}
 			if (bimTransaction != null) {
 				bimTransaction.commit();
+				database.getKeyValueStore().sync();
 			}
 			database.incrementCommittedWrites(writes);
 			close();
