@@ -99,6 +99,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface DeletePluginConfigurationCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface DeleteQueryEngineCallback {
 		void success();
 		void error(Throwable e);
@@ -346,11 +351,6 @@ public class AsyncPluginInterface {
 	
 	public interface GetSerializerByPluginClassNameCallback {
 		void success(org.bimserver.interfaces.objects.SSerializerPluginConfiguration result);
-		void error(Throwable e);
-	}
-	
-	public interface GetSerializerPluginDescriptorCallback {
-		void success(org.bimserver.interfaces.objects.SPluginDescriptor result);
 		void error(Throwable e);
 	}
 	
@@ -640,6 +640,19 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					syncService.deleteObjectIDM(oid);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void deletePluginConfiguration(final java.lang.Long oid, final DeletePluginConfigurationCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.deletePluginConfiguration(oid);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

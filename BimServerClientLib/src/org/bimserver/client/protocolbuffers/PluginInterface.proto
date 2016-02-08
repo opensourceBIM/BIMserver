@@ -56,6 +56,8 @@ service PluginInterface {
 
 	rpc deleteObjectIDM (DeleteObjectIDMRequest) returns (VoidResponse);
 
+	rpc deletePluginConfiguration (DeletePluginConfigurationRequest) returns (VoidResponse);
+
 	rpc deleteQueryEngine (DeleteQueryEngineRequest) returns (VoidResponse);
 
 	rpc deleteRenderEngine (DeleteRenderEngineRequest) returns (VoidResponse);
@@ -155,8 +157,6 @@ service PluginInterface {
 	rpc getRenderEngineByName (GetRenderEngineByNameRequest) returns (GetRenderEngineByNameResponse);
 
 	rpc getSerializerByPluginClassName (GetSerializerByPluginClassNameRequest) returns (GetSerializerByPluginClassNameResponse);
-
-	rpc getSerializerPluginDescriptor (GetSerializerPluginDescriptorRequest) returns (GetSerializerPluginDescriptorResponse);
 
 	rpc getWebModuleById (GetWebModuleByIdRequest) returns (GetWebModuleByIdResponse);
 
@@ -352,6 +352,10 @@ message DeleteModelMergerRequest {
 }
 
 message DeleteObjectIDMRequest {
+	optional int64 oid = 1;
+}
+
+message DeletePluginConfigurationRequest {
 	optional int64 oid = 1;
 }
 
@@ -966,15 +970,6 @@ message GetSerializerByPluginClassNameRequest {
 message GetSerializerByPluginClassNameResponse {
 	optional string errorMessage = 1;
 	optional SSerializerPluginConfiguration value = 2;
-}
-
-message GetSerializerPluginDescriptorRequest {
-	optional string type = 1;
-}
-
-message GetSerializerPluginDescriptorResponse {
-	optional string errorMessage = 1;
-	optional SPluginDescriptor value = 2;
 }
 
 message GetWebModuleByIdRequest {

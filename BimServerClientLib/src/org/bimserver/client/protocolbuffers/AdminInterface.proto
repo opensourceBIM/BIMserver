@@ -91,18 +91,17 @@ message GetAllPluginsRequest {
 
 message SPluginDescriptor {
 	repeated int64 configurations = 1;
-	optional string defaultName = 2;
-	optional string description = 3;
-	optional bool enabled = 4;
-	optional string identifier = 5;
-	optional bool installForNewUsers = 6;
-	optional string location = 7;
+	optional string description = 2;
+	optional bool enabled = 3;
+	optional string identifier = 4;
+	optional bool installForNewUsers = 5;
+	optional string location = 6;
+	optional string name = 7;
 	optional int64 oid = 8;
 	optional int64 pluginBundleVersionId = 9;
 	optional string pluginClassName = 10;
 	optional string pluginInterfaceClassName = 11;
 	optional int32 rid = 12;
-	optional string simpleName = 13;
 }
 
 message GetAllPluginsResponse {

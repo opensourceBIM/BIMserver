@@ -37,7 +37,7 @@ public abstract class EmfSerializer implements Serializer, StreamingReader {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializer.class);
 	protected IfcModelInterface model;
-	private Mode mode;
+	private Mode mode = Mode.HEADER;
 	private ProjectInfo projectInfo;
 	private PluginManagerInterface pluginManager;
 	private boolean normalizeOids;

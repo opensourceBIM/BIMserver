@@ -30,8 +30,11 @@ import org.bimserver.models.geometry.*;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.OldQuery;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SConverter {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SConverter.class);
 <%
 	try {
 	Object[] argumentsArray = (Object[])argument;
@@ -148,12 +151,22 @@ public class SConverter {
 %>
 		return result;
 	}
+
 	public <%=eClass.getName()%> convertFromSObject(S<%=eClass.getName()%> input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		<%=eClass.getName()%> result = convertFromSObject(input, <%=StringUtils.firstUpperCase(eClass.getEPackage().getName())%>Factory.eINSTANCE.create<%=eClass.getName()%>(), session);
 		<% if (eClass.getEAnnotation("nodatabase") == null) { %>
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		<% } %>
+		return result;
+	}
+
+	public <%=eClass.getName()%> convertFromSObject(S<%=eClass.getName()%> input) throws BimserverDatabaseException {
+		<%=eClass.getName()%> result = convertFromSObject(input, <%=StringUtils.firstUpperCase(eClass.getEPackage().getName())%>Factory.eINSTANCE.create<%=eClass.getName()%>(), null);
 		return result;
 	}
 

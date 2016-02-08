@@ -120,8 +120,10 @@ public class ReferenceCounter {
 			AbstractEList list = (AbstractEList) getIdEObject().eGet(geteReference());
 			int index = list.indexOf(getReferredObject());
 			if (index != -1) {
-				if (!list.contains(mainObject)) {
+				try {
 					list.set(index, mainObject);
+				} catch (IllegalArgumentException e) {
+//					e.printStackTrace();
 				}
 			}
 

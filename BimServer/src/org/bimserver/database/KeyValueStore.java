@@ -29,7 +29,7 @@ public interface KeyValueStore {
 
 	boolean createTable(String tableName, DatabaseSession databaseSession, boolean transactional) throws BimserverDatabaseException;
 
-	boolean openTable(String tableName) throws BimserverDatabaseException;
+	boolean openTable(String tableName, boolean transactional) throws BimserverDatabaseException;
 
 	void store(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException;
 
@@ -80,7 +80,7 @@ public interface KeyValueStore {
 
 	boolean createIndexTable(String tableName, DatabaseSession databaseSession, boolean transactional) throws BimserverDatabaseException;
 
-	void openIndexTable(String indexTableName) throws BimserverDatabaseException;
+	void openIndexTable(String indexTableName, boolean transactional) throws BimserverDatabaseException;
 
 	List<byte[]> getDuplicates(String tableName, byte[] keyBytes, DatabaseSession databaseSession) throws BimserverDatabaseException;
 
