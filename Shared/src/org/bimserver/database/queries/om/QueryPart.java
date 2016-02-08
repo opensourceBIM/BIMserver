@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EClass;
 
 public class QueryPart extends PartOfQuery implements CanInclude {
 	private List<EClass> types;
-	private List<Long> oids;
+	private Set<Long> oids;
 	private Set<String> guids;
 	private Map<String, Object> properties;
 	private PackageMetaData packageMetaData;
@@ -53,7 +53,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 
 	public void addOid(long oid) {
 		if (oids == null) {
-			oids = new ArrayList<>();
+			oids = new HashSet<>();
 		}
 		oids.add(oid);
 	}
@@ -69,7 +69,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 		return types;
 	}
 	
-	public List<Long> getOids() {
+	public Set<Long> getOids() {
 		return oids;
 	}
 	

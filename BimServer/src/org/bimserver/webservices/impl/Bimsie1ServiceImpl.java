@@ -1,5 +1,7 @@
 package org.bimserver.webservices.impl;
 
+import java.util.ArrayList;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -81,6 +83,7 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -459,22 +462,43 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 		try {
 			requireAuthenticationAndRunningServer();
 			DatabaseSession session = getBimServer().getDatabase().createSession();
+			List<DeserializerPluginConfiguration> list = new ArrayList<>();
 			try {
 				Project project = session.get(poid, OldQuery.getDefault());
-				for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true).values()) {
-					if (deserializerPlugin.canHandleExtension(extension)) {
-						UserSettings userSettings = getUserSettings(session);
-						for (DeserializerPluginConfiguration deserializer : userSettings.getDeserializers()) {
-							if (deserializer.getPluginDescriptor().getPluginClassName().equals(deserializerPlugin.getClass().getName())) {
-								if (deserializerPlugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
-									return getBimServer().getSConverter().convertToSObject(deserializer);
-								}
+				UserSettings userSettings = getUserSettings(session);
+				for (DeserializerPluginConfiguration deserializer : userSettings.getDeserializers()) {
+					Plugin plugin = getBimServer().getPluginManager().getPlugin(deserializer.getPluginDescriptor().getIdentifier(), true);
+					if (plugin instanceof DeserializerPlugin) {
+						DeserializerPlugin deserializerPlugin = (DeserializerPlugin)plugin;
+						if (deserializerPlugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
+							if (deserializerPlugin.canHandleExtension(extension)) {
 							}
-						}
+							list.add(deserializer);
+						}						
+					} else if (plugin instanceof StreamingDeserializerPlugin) {
+						StreamingDeserializerPlugin streamingDeserializerPlugin = (StreamingDeserializerPlugin)plugin;
+						if (streamingDeserializerPlugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
+							if (streamingDeserializerPlugin.canHandleExtension(extension)) {
+							}
+							list.add(deserializer);
+						}						
 					}
 				}
 			} finally {
 				session.close();
+			}
+			if (list.size() == 1) {
+				return getBimServer().getSConverter().convertToSObject(list.get(0));
+			} else if (list.size() > 1) {
+				for (DeserializerPluginConfiguration deserializerPluginConfiguration : list) {
+					Plugin plugin = getBimServer().getPluginManager().getPlugin(deserializerPluginConfiguration.getPluginDescriptor().getIdentifier(), true);
+					// Prefer the streaming version
+					if (plugin instanceof StreamingDeserializerPlugin) {
+						return getBimServer().getSConverter().convertToSObject(deserializerPluginConfiguration);
+					}
+				}
+				// Just return the first one
+				return getBimServer().getSConverter().convertToSObject(list.get(0));
 			}
 		} catch (Exception e) {
 			return handleException(e);

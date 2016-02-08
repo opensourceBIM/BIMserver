@@ -39,6 +39,9 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 	private QueryObjectProvider queryObjectProvider;
 	private PackageMetaData packageMetaData;
 	private QueryContext reusable;
+	
+	// TODO make not static (use factory somewhere), and check concurrency
+	private static final Map<Long, Map<EClass, Long>> reusableQueryContexts = new HashMap<>();
 
 	public ConcreteRevisionStackFrame(QueryObjectProvider queryObjectProvider, ConcreteRevision concreteRevision) {
 		this.queryObjectProvider = queryObjectProvider;
@@ -47,10 +50,16 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 		Revision revision = concreteRevision.getRevisions().get(0);
 		
 		reusable = new QueryContext(queryObjectProvider.getDatabaseSession(), packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), revision.getOid(), highestStopId);
-		updateOidCounters(reusable, concreteRevision, queryObjectProvider.getDatabaseSession());
+//		synchronized (getClass()) {
+//			if (reusableQueryContexts.containsKey(concreteRevision.getOid())) {
+//				reusable.setOidCounters(reusableQueryContexts.get(concreteRevision.getOid()));
+//			} else {
+				reusableQueryContexts.put(concreteRevision.getOid(), updateOidCounters(reusable, concreteRevision, queryObjectProvider.getDatabaseSession()));
+//			}
+//		}
 	}
 	
-	private void updateOidCounters(QueryContext reusable, ConcreteRevision subRevision, DatabaseSession databaseSession) {
+	private Map<EClass, Long> updateOidCounters(QueryContext reusable, ConcreteRevision subRevision, DatabaseSession databaseSession) {
 		if (subRevision.getOidCounters() != null) {
 			Map<EClass, Long> oidCounters = new HashMap<>();
 			ByteBuffer buffer = ByteBuffer.wrap(subRevision.getOidCounters());
@@ -61,7 +70,9 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 				oidCounters.put(eClass, oid);
 			}
 			reusable.setOidCounters(oidCounters);
+			return oidCounters;
 		}
+		return null;
 	}
 
 	@Override

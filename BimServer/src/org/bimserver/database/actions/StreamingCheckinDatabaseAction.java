@@ -36,6 +36,7 @@ import org.bimserver.SummaryMap;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.queries.QueryObjectProvider;
+import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
@@ -187,76 +188,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			concreteRevision.setOidCounters(buffer.array());
 
 			setProgress("Generating inverses/opposites", 0);
-			int inverseFixes = 0;
 			
-			int c = 0;
-			int writes = 0;
-			Set<Long> unq = new HashSet<>();
-			for (EClass eClass : deserializer.getSummaryMap().keySet()) {
-				if (packageMetaData.hasInverses(eClass)) {
-					Query query = new Query("test", packageMetaData);
-					QueryPart queryPart = query.createQueryPart();
-					queryPart.addType(eClass, true);
-					QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), bimServer, query, Collections.singleton(newRoid), packageMetaData);
-					HashMapVirtualObject next = queryObjectProvider.next();
-					while (next != null) {
-						for (EReference eReference : packageMetaData.getAllHasInverseReferences(eClass)) {
-							Object reference = next.eGet(eReference);
-							if (reference != null) {
-								if (eReference.isMany()) {
-									List<Long> references = (List<Long>)reference;
-									for (Long refOid : references) {
-										HashMapVirtualObject referencedObject = getByOid(packageMetaData, getDatabaseSession(), newRoid, refOid);
-										EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);
-										if (oppositeReference.isMany()) {
-											Object existingList = referencedObject.eGet(oppositeReference);
-											if (existingList != null) {
-												int currentSize = ((List<?>)existingList).size();
-												referencedObject.setListItemReference(oppositeReference, currentSize + 1, next.eClass(), next.getOid(), 0);
-												inverseFixes++;
-											} else {
-												referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
-												inverseFixes++;
-											}
-										} else {
-											referencedObject.setReference(oppositeReference, next.getOid(), 0);
-											inverseFixes++;
-										}
-										referencedObject.saveOverwrite();
-										unq.add(referencedObject.getOid());
-										writes++;
-									}
-								} else {
-									Long refOid = (Long)reference;
-									HashMapVirtualObject referencedObject = getByOid(packageMetaData, getDatabaseSession(), newRoid, refOid);
-									EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);
-									if (oppositeReference.isMany()) {
-										Object existingList = referencedObject.eGet(oppositeReference);
-										if (existingList != null) {
-											int currentSize = ((List<?>)existingList).size();
-											referencedObject.setListItemReference(oppositeReference, currentSize + 1, next.eClass(), next.getOid(), 0);
-											inverseFixes++;
-										} else {
-											referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
-											inverseFixes++;
-										}
-									} else {
-										referencedObject.setReference(oppositeReference, next.getOid(), 0);
-										unq.add(referencedObject.getOid());
-										inverseFixes++;
-									}
-									referencedObject.saveOverwrite();
-									writes++;
-								}
-							}
-						}
-						next = queryObjectProvider.next();
-					}
-					setProgress("Generating inverses/opposites", (int) (100.0 * c / deserializer.getSummaryMap().keySet().size()));
-					c++;
-				}
-			}
-			LOGGER.info("Inverse/opposite fixes: " + inverseFixes + ", writes: " + writes + ", unq: " + unq.size());
+			fixInverses(packageMetaData, newRoid);
 
 			ProgressListener progressListener = new ProgressListener() {
 				@Override
@@ -374,6 +307,72 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			throw new UserException(e);
 		}
 		return concreteRevision;
+	}
+
+	private void fixInverses(PackageMetaData packageMetaData, long newRoid) throws QueryException, JsonParseException, JsonMappingException, IOException, BimserverDatabaseException {
+		// TODO remove cache, this is essentially a big part of the model in memory again
+		Map<Long, HashMapVirtualObject> cache = new HashMap<Long, HashMapVirtualObject>();
+		Query query = new Query("test", packageMetaData);
+		
+		for (EClass eClass : deserializer.getSummaryMap().keySet()) {
+			if (packageMetaData.hasInverses(eClass)) {
+				QueryPart queryPart = query.createQueryPart();
+				queryPart.addType(eClass, true);
+				for (EReference eReference : packageMetaData.getAllHasInverseReferences(eClass)) {
+					Include include = queryPart.createInclude();
+					include.addType(eClass, true);
+					include.addField(eReference.getName());
+				}
+			}
+		}
+		
+		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), bimServer, query, Collections.singleton(newRoid), packageMetaData);
+		HashMapVirtualObject next = queryObjectProvider.next();
+//		EClass lastEClass = null;
+		while (next != null) {
+			if (packageMetaData.hasInverses(next.eClass())) {
+				for (EReference eReference : packageMetaData.getAllHasInverseReferences(next.eClass())) {
+					Object reference = next.eGet(eReference);
+					if (reference != null) {
+						if (eReference.isMany()) {
+							List<Long> references = (List<Long>)reference;
+							for (Long refOid : references) {
+								fixInverses(packageMetaData, newRoid, cache, next, eReference, refOid);
+							}
+						} else {
+							fixInverses(packageMetaData, newRoid, cache, next, eReference, (Long)reference);
+						}
+					}
+				}
+//				setProgress("Generating inverses/opposites", (int) (100.0 * c / deserializer.getSummaryMap().keySet().size()));
+//				if (next.eClass() != lastEClass) {
+//					lastEClass = next.eClass();
+//				}
+			}
+			next = queryObjectProvider.next();
+		}
+	}
+
+	private void fixInverses(PackageMetaData packageMetaData, long newRoid, Map<Long, HashMapVirtualObject> cache, HashMapVirtualObject next, EReference eReference, long refOid)
+			throws JsonParseException, JsonMappingException, IOException, QueryException, BimserverDatabaseException {
+		HashMapVirtualObject referencedObject = cache.get(refOid);
+		if (referencedObject == null) {
+			referencedObject = getByOid(packageMetaData, getDatabaseSession(), newRoid, refOid);
+			cache.put(refOid, referencedObject);
+		}
+		EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);
+		if (oppositeReference.isMany()) {
+			Object existingList = referencedObject.eGet(oppositeReference);
+			if (existingList != null) {
+				int currentSize = ((List<?>)existingList).size();
+				referencedObject.setListItemReference(oppositeReference, currentSize, next.eClass(), next.getOid(), 0);
+			} else {
+				referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
+			}
+		} else {
+			referencedObject.setReference(oppositeReference, next.getOid(), 0);
+		}
+		referencedObject.saveOverwrite();
 	}
 
 	public String getFileName() {

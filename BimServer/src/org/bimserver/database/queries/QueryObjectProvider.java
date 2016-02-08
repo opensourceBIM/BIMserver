@@ -178,7 +178,7 @@ public class QueryObjectProvider implements ObjectProvider {
 					}
 				}
 			} else {
-				return true;
+				return (queryPart.getGuids() == null && queryPart.getOids() == null && queryPart.getInBoundingBox() == null && queryPart.getProperties() == null);
 			}
 		}
 		return false;
