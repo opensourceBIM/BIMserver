@@ -63,6 +63,9 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	public void deleteObjectIDM(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
+	public void deletePluginConfiguration(java.lang.Long oid) throws UserException, ServerException {
+	}
+	
 	public void deleteQueryEngine(java.lang.Long iid) throws UserException, ServerException {
 	}
 	
@@ -257,10 +260,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getSerializerByPluginClassName(java.lang.String pluginClassName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SPluginDescriptor getSerializerPluginDescriptor(java.lang.String type) throws UserException, ServerException {
 		return null;
 	}
 	

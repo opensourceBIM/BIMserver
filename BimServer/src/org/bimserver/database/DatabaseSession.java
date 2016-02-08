@@ -668,10 +668,14 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				if (progressHandler != null) {
 					progressHandler.retry(i + 1);
 				}
-				bimTransaction.rollback();
+				if (bimTransaction != null) {
+					bimTransaction.rollback();
+				}
 				objectCache.clear();
 				objectsToCommit.clear();
-				bimTransaction = database.getKeyValueStore().startTransaction();
+				if (bimTransaction != null) {
+					bimTransaction = database.getKeyValueStore().startTransaction();
+				}
 			} catch (BimserverLockConflictException e) {
 				LOGGER.info("BimserverLockConflictException");
 				bimTransaction.rollback();

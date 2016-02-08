@@ -1,5 +1,5 @@
 
-Â–
+Àœ
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"∏
  SDeserializerPluginConfiguration
 description (	
@@ -118,6 +118,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 DeleteModelMergerRequest
 iid ("%
 DeleteObjectIDMRequest
+oid ("/
+ DeletePluginConfigurationRequest
 oid ("'
 DeleteQueryEngineRequest
 iid ("(
@@ -481,12 +483,7 @@ parameters (2.org.bimserver.pb.SParameter
 pluginClassName (	"
 &GetSerializerByPluginClassNameResponse
 errorMessage (	?
-value (20.org.bimserver.pb.SSerializerPluginConfiguration"4
-$GetSerializerPluginDescriptorRequest
-type (	"q
-%GetSerializerPluginDescriptorResponse
-errorMessage (	2
-value (2#.org.bimserver.pb.SPluginDescriptor"&
+value (20.org.bimserver.pb.SSerializerPluginConfiguration"&
 GetWebModuleByIdRequest
 oid ("p
 GetWebModuleByIdResponse
@@ -580,7 +577,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2´O
+SPrimitiveEnum_BYTE_ARRAY2âO
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -595,7 +592,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 deleteModelChecker+.org.bimserver.pb.DeleteModelCheckerRequest.org.bimserver.pb.VoidResponsea
 deleteModelCompare+.org.bimserver.pb.DeleteModelCompareRequest.org.bimserver.pb.VoidResponse_
 deleteModelMerger*.org.bimserver.pb.DeleteModelMergerRequest.org.bimserver.pb.VoidResponse[
-deleteObjectIDM(.org.bimserver.pb.DeleteObjectIDMRequest.org.bimserver.pb.VoidResponse_
+deleteObjectIDM(.org.bimserver.pb.DeleteObjectIDMRequest.org.bimserver.pb.VoidResponseo
+deletePluginConfiguration2.org.bimserver.pb.DeletePluginConfigurationRequest.org.bimserver.pb.VoidResponse_
 deleteQueryEngine*.org.bimserver.pb.DeleteQueryEngineRequest.org.bimserver.pb.VoidResponsea
 deleteRenderEngine+.org.bimserver.pb.DeleteRenderEngineRequest.org.bimserver.pb.VoidResponse]
 deleteSerializer).org.bimserver.pb.DeleteSerializerRequest.org.bimserver.pb.VoidResponse¢
@@ -645,8 +643,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 getPluginSettings*.org.bimserver.pb.GetPluginSettingsRequest+.org.bimserver.pb.GetPluginSettingsResponser
 getRenderEngineById,.org.bimserver.pb.GetRenderEngineByIdRequest-.org.bimserver.pb.GetRenderEngineByIdResponsex
 getRenderEngineByName..org.bimserver.pb.GetRenderEngineByNameRequest/.org.bimserver.pb.GetRenderEngineByNameResponseì
-getSerializerByPluginClassName7.org.bimserver.pb.GetSerializerByPluginClassNameRequest8.org.bimserver.pb.GetSerializerByPluginClassNameResponseê
-getSerializerPluginDescriptor6.org.bimserver.pb.GetSerializerPluginDescriptorRequest7.org.bimserver.pb.GetSerializerPluginDescriptorResponsei
+getSerializerByPluginClassName7.org.bimserver.pb.GetSerializerByPluginClassNameRequest8.org.bimserver.pb.GetSerializerByPluginClassNameResponsei
 getWebModuleById).org.bimserver.pb.GetWebModuleByIdRequest*.org.bimserver.pb.GetWebModuleByIdResponseo
 getWebModuleByName+.org.bimserver.pb.GetWebModuleByNameRequest,.org.bimserver.pb.GetWebModuleByNameResponser
 hasActiveSerializer,.org.bimserver.pb.HasActiveSerializerRequest-.org.bimserver.pb.HasActiveSerializerResponsec

@@ -26,8 +26,2626 @@ import org.bimserver.models.geometry.*;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.OldQuery;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SConverter {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SConverter.class);
+		public SAccessMethod convertToSObject(AccessMethod input) {
+			return SAccessMethod.values()[input.ordinal()];
+		}
+		
+		public AccessMethod convertFromSObject(SAccessMethod input) {
+			return AccessMethod.values()[input.ordinal()];
+		}
+
+	public Set<SLogAction> convertToSSetLogAction(Collection<LogAction> input) {
+		Set<SLogAction> result = new HashSet<SLogAction>();
+		for (LogAction o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<LogAction> convertFromSSetLogAction(Collection<SLogAction> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<LogAction> result = new HashSet<LogAction>();
+		for (SLogAction o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SLogAction> convertToSListLogAction(Collection<LogAction> input) {
+		List<SLogAction> result = new ArrayList<SLogAction>();
+		for (LogAction o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<LogAction> convertFromSListLogAction(Collection<SLogAction> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<LogAction> result = new ArrayList<LogAction>();
+		for (SLogAction o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SLogAction convertToSObject(LogAction input) {
+		if (input == null) {
+			return null;
+		}
+		
+		if (input instanceof DatabaseCreated) {
+			return convertToSObject((DatabaseCreated)input);
+		}
+		else if (input instanceof ExtendedDataAddedToRevision) {
+			return convertToSObject((ExtendedDataAddedToRevision)input);
+		}
+		else if (input instanceof RemoteServiceCalled) {
+			return convertToSObject((RemoteServiceCalled)input);
+		}
+		else if (input instanceof NewObjectIDMUploaded) {
+			return convertToSObject((NewObjectIDMUploaded)input);
+		}
+		else if (input instanceof Download) {
+			return convertToSObject((Download)input);
+		}
+		else if (input instanceof ServerStarted) {
+			return convertToSObject((ServerStarted)input);
+		}
+		else if (input instanceof RevisionBranched) {
+			return convertToSObject((RevisionBranched)input);
+		}
+		else if (input instanceof CheckoutRelated) {
+			return convertToSObject((CheckoutRelated)input);
+		}
+		else if (input instanceof ExtendedDataAddedToProject) {
+			return convertToSObject((ExtendedDataAddedToProject)input);
+		}
+		else if (input instanceof SettingsSaved) {
+			return convertToSObject((SettingsSaved)input);
+		}
+		else if (input instanceof RevisionRelated) {
+			return convertToSObject((RevisionRelated)input);
+		}
+		else if (input instanceof UserRelated) {
+			return convertToSObject((UserRelated)input);
+		}
+		else if (input instanceof ProjectRelated) {
+			return convertToSObject((ProjectRelated)input);
+		}
+		else if (input instanceof GeoTagUpdated) {
+			return convertToSObject((GeoTagUpdated)input);
+		}
+		SLogAction result = new SLogAction();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		return result;
+	}
+
+	public LogAction convertFromSObject(SLogAction input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		LogAction result = convertFromSObject(input, LogFactory.eINSTANCE.createLogAction(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public LogAction convertFromSObject(SLogAction input) throws BimserverDatabaseException {
+		LogAction result = convertFromSObject(input, LogFactory.eINSTANCE.createLogAction(), null);
+		return result;
+	}
+
+	public LogAction convertFromSObject(SLogAction input, LogAction result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		if (input instanceof SDatabaseCreated) {
+			return convertFromSObject((SDatabaseCreated)input, session);
+		}
+		else if (input instanceof SExtendedDataAddedToRevision) {
+			return convertFromSObject((SExtendedDataAddedToRevision)input, session);
+		}
+		else if (input instanceof SRemoteServiceCalled) {
+			return convertFromSObject((SRemoteServiceCalled)input, session);
+		}
+		else if (input instanceof SNewObjectIDMUploaded) {
+			return convertFromSObject((SNewObjectIDMUploaded)input, session);
+		}
+		else if (input instanceof SDownload) {
+			return convertFromSObject((SDownload)input, session);
+		}
+		else if (input instanceof SServerStarted) {
+			return convertFromSObject((SServerStarted)input, session);
+		}
+		else if (input instanceof SRevisionBranched) {
+			return convertFromSObject((SRevisionBranched)input, session);
+		}
+		else if (input instanceof SCheckoutRelated) {
+			return convertFromSObject((SCheckoutRelated)input, session);
+		}
+		else if (input instanceof SExtendedDataAddedToProject) {
+			return convertFromSObject((SExtendedDataAddedToProject)input, session);
+		}
+		else if (input instanceof SSettingsSaved) {
+			return convertFromSObject((SSettingsSaved)input, session);
+		}
+		else if (input instanceof SRevisionRelated) {
+			return convertFromSObject((SRevisionRelated)input, session);
+		}
+		else if (input instanceof SUserRelated) {
+			return convertFromSObject((SUserRelated)input, session);
+		}
+		else if (input instanceof SProjectRelated) {
+			return convertFromSObject((SProjectRelated)input, session);
+		}
+		else if (input instanceof SGeoTagUpdated) {
+			return convertFromSObject((SGeoTagUpdated)input, session);
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SServerLog> convertToSSetServerLog(Collection<ServerLog> input) {
+		Set<SServerLog> result = new HashSet<SServerLog>();
+		for (ServerLog o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ServerLog> convertFromSSetServerLog(Collection<SServerLog> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ServerLog> result = new HashSet<ServerLog>();
+		for (SServerLog o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SServerLog> convertToSListServerLog(Collection<ServerLog> input) {
+		List<SServerLog> result = new ArrayList<SServerLog>();
+		for (ServerLog o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ServerLog> convertFromSListServerLog(Collection<SServerLog> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ServerLog> result = new ArrayList<ServerLog>();
+		for (SServerLog o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SServerLog convertToSObject(ServerLog input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SServerLog result = new SServerLog();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		List<Long> listactions = new ArrayList<Long>();
+		for (LogAction v : input.getActions()) {
+			listactions.add(v.getOid());
+		}
+		result.setActions(listactions);
+		return result;
+	}
+
+	public ServerLog convertFromSObject(SServerLog input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		ServerLog result = convertFromSObject(input, LogFactory.eINSTANCE.createServerLog(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public ServerLog convertFromSObject(SServerLog input) throws BimserverDatabaseException {
+		ServerLog result = convertFromSObject(input, LogFactory.eINSTANCE.createServerLog(), null);
+		return result;
+	}
+
+	public ServerLog convertFromSObject(SServerLog input, ServerLog result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		List<LogAction> listactions = result.getActions();
+		for (long oid : input.getActions()) {
+			listactions.add((LogAction)session.get(LogPackage.eINSTANCE.getLogAction(), oid, OldQuery.getDefault()));
+		}
+		return result;
+	}
+
+	public Set<SProjectRelated> convertToSSetProjectRelated(Collection<ProjectRelated> input) {
+		Set<SProjectRelated> result = new HashSet<SProjectRelated>();
+		for (ProjectRelated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ProjectRelated> convertFromSSetProjectRelated(Collection<SProjectRelated> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ProjectRelated> result = new HashSet<ProjectRelated>();
+		for (SProjectRelated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SProjectRelated> convertToSListProjectRelated(Collection<ProjectRelated> input) {
+		List<SProjectRelated> result = new ArrayList<SProjectRelated>();
+		for (ProjectRelated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ProjectRelated> convertFromSListProjectRelated(Collection<SProjectRelated> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ProjectRelated> result = new ArrayList<ProjectRelated>();
+		for (SProjectRelated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SProjectRelated convertToSObject(ProjectRelated input) {
+		if (input == null) {
+			return null;
+		}
+		
+		if (input instanceof ProjectUpdated) {
+			return convertToSObject((ProjectUpdated)input);
+		}
+		else if (input instanceof ProjectUndeleted) {
+			return convertToSObject((ProjectUndeleted)input);
+		}
+		else if (input instanceof NewProjectAdded) {
+			return convertToSObject((NewProjectAdded)input);
+		}
+		else if (input instanceof ProjectDeleted) {
+			return convertToSObject((ProjectDeleted)input);
+		}
+		SProjectRelated result = new SProjectRelated();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Project projectVal = input.getProject();
+		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
+		return result;
+	}
+
+	public ProjectRelated convertFromSObject(SProjectRelated input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		ProjectRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectRelated(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public ProjectRelated convertFromSObject(SProjectRelated input) throws BimserverDatabaseException {
+		ProjectRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectRelated(), null);
+		return result;
+	}
+
+	public ProjectRelated convertFromSObject(SProjectRelated input, ProjectRelated result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		if (input instanceof SProjectUpdated) {
+			return convertFromSObject((SProjectUpdated)input, session);
+		}
+		else if (input instanceof SProjectUndeleted) {
+			return convertFromSObject((SProjectUndeleted)input, session);
+		}
+		else if (input instanceof SNewProjectAdded) {
+			return convertFromSObject((SNewProjectAdded)input, session);
+		}
+		else if (input instanceof SProjectDeleted) {
+			return convertFromSObject((SProjectDeleted)input, session);
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SCheckoutRelated> convertToSSetCheckoutRelated(Collection<CheckoutRelated> input) {
+		Set<SCheckoutRelated> result = new HashSet<SCheckoutRelated>();
+		for (CheckoutRelated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<CheckoutRelated> convertFromSSetCheckoutRelated(Collection<SCheckoutRelated> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<CheckoutRelated> result = new HashSet<CheckoutRelated>();
+		for (SCheckoutRelated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SCheckoutRelated> convertToSListCheckoutRelated(Collection<CheckoutRelated> input) {
+		List<SCheckoutRelated> result = new ArrayList<SCheckoutRelated>();
+		for (CheckoutRelated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<CheckoutRelated> convertFromSListCheckoutRelated(Collection<SCheckoutRelated> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<CheckoutRelated> result = new ArrayList<CheckoutRelated>();
+		for (SCheckoutRelated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SCheckoutRelated convertToSObject(CheckoutRelated input) {
+		if (input == null) {
+			return null;
+		}
+		
+		if (input instanceof NewCheckoutAdded) {
+			return convertToSObject((NewCheckoutAdded)input);
+		}
+		SCheckoutRelated result = new SCheckoutRelated();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Checkout checkoutVal = input.getCheckout();
+		result.setCheckoutId(checkoutVal == null ? -1 : checkoutVal.getOid());
+		return result;
+	}
+
+	public CheckoutRelated convertFromSObject(SCheckoutRelated input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		CheckoutRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createCheckoutRelated(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public CheckoutRelated convertFromSObject(SCheckoutRelated input) throws BimserverDatabaseException {
+		CheckoutRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createCheckoutRelated(), null);
+		return result;
+	}
+
+	public CheckoutRelated convertFromSObject(SCheckoutRelated input, CheckoutRelated result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		if (input instanceof SNewCheckoutAdded) {
+			return convertFromSObject((SNewCheckoutAdded)input, session);
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setCheckout((Checkout)session.get(StorePackage.eINSTANCE.getCheckout(), input.getCheckoutId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SRevisionRelated> convertToSSetRevisionRelated(Collection<RevisionRelated> input) {
+		Set<SRevisionRelated> result = new HashSet<SRevisionRelated>();
+		for (RevisionRelated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<RevisionRelated> convertFromSSetRevisionRelated(Collection<SRevisionRelated> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<RevisionRelated> result = new HashSet<RevisionRelated>();
+		for (SRevisionRelated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SRevisionRelated> convertToSListRevisionRelated(Collection<RevisionRelated> input) {
+		List<SRevisionRelated> result = new ArrayList<SRevisionRelated>();
+		for (RevisionRelated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<RevisionRelated> convertFromSListRevisionRelated(Collection<SRevisionRelated> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<RevisionRelated> result = new ArrayList<RevisionRelated>();
+		for (SRevisionRelated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SRevisionRelated convertToSObject(RevisionRelated input) {
+		if (input == null) {
+			return null;
+		}
+		
+		if (input instanceof NewRevisionAdded) {
+			return convertToSObject((NewRevisionAdded)input);
+		}
+		else if (input instanceof RevisionUpdated) {
+			return convertToSObject((RevisionUpdated)input);
+		}
+		SRevisionRelated result = new SRevisionRelated();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Revision revisionVal = input.getRevision();
+		result.setRevisionId(revisionVal == null ? -1 : revisionVal.getOid());
+		return result;
+	}
+
+	public RevisionRelated convertFromSObject(SRevisionRelated input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		RevisionRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createRevisionRelated(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public RevisionRelated convertFromSObject(SRevisionRelated input) throws BimserverDatabaseException {
+		RevisionRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createRevisionRelated(), null);
+		return result;
+	}
+
+	public RevisionRelated convertFromSObject(SRevisionRelated input, RevisionRelated result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		if (input instanceof SNewRevisionAdded) {
+			return convertFromSObject((SNewRevisionAdded)input, session);
+		}
+		else if (input instanceof SRevisionUpdated) {
+			return convertFromSObject((SRevisionUpdated)input, session);
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SUserRelated> convertToSSetUserRelated(Collection<UserRelated> input) {
+		Set<SUserRelated> result = new HashSet<SUserRelated>();
+		for (UserRelated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<UserRelated> convertFromSSetUserRelated(Collection<SUserRelated> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<UserRelated> result = new HashSet<UserRelated>();
+		for (SUserRelated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SUserRelated> convertToSListUserRelated(Collection<UserRelated> input) {
+		List<SUserRelated> result = new ArrayList<SUserRelated>();
+		for (UserRelated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<UserRelated> convertFromSListUserRelated(Collection<SUserRelated> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<UserRelated> result = new ArrayList<UserRelated>();
+		for (SUserRelated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SUserRelated convertToSObject(UserRelated input) {
+		if (input == null) {
+			return null;
+		}
+		
+		if (input instanceof UserUndeleted) {
+			return convertToSObject((UserUndeleted)input);
+		}
+		else if (input instanceof NewUserAdded) {
+			return convertToSObject((NewUserAdded)input);
+		}
+		else if (input instanceof PasswordChanged) {
+			return convertToSObject((PasswordChanged)input);
+		}
+		else if (input instanceof UserRemovedFromProject) {
+			return convertToSObject((UserRemovedFromProject)input);
+		}
+		else if (input instanceof PasswordReset) {
+			return convertToSObject((PasswordReset)input);
+		}
+		else if (input instanceof UserDeleted) {
+			return convertToSObject((UserDeleted)input);
+		}
+		else if (input instanceof UserChanged) {
+			return convertToSObject((UserChanged)input);
+		}
+		else if (input instanceof UserAddedToProject) {
+			return convertToSObject((UserAddedToProject)input);
+		}
+		SUserRelated result = new SUserRelated();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		return result;
+	}
+
+	public UserRelated convertFromSObject(SUserRelated input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		UserRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createUserRelated(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public UserRelated convertFromSObject(SUserRelated input) throws BimserverDatabaseException {
+		UserRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createUserRelated(), null);
+		return result;
+	}
+
+	public UserRelated convertFromSObject(SUserRelated input, UserRelated result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		if (input instanceof SUserUndeleted) {
+			return convertFromSObject((SUserUndeleted)input, session);
+		}
+		else if (input instanceof SNewUserAdded) {
+			return convertFromSObject((SNewUserAdded)input, session);
+		}
+		else if (input instanceof SPasswordChanged) {
+			return convertFromSObject((SPasswordChanged)input, session);
+		}
+		else if (input instanceof SUserRemovedFromProject) {
+			return convertFromSObject((SUserRemovedFromProject)input, session);
+		}
+		else if (input instanceof SPasswordReset) {
+			return convertFromSObject((SPasswordReset)input, session);
+		}
+		else if (input instanceof SUserDeleted) {
+			return convertFromSObject((SUserDeleted)input, session);
+		}
+		else if (input instanceof SUserChanged) {
+			return convertFromSObject((SUserChanged)input, session);
+		}
+		else if (input instanceof SUserAddedToProject) {
+			return convertFromSObject((SUserAddedToProject)input, session);
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SNewUserAdded> convertToSSetNewUserAdded(Collection<NewUserAdded> input) {
+		Set<SNewUserAdded> result = new HashSet<SNewUserAdded>();
+		for (NewUserAdded o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<NewUserAdded> convertFromSSetNewUserAdded(Collection<SNewUserAdded> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<NewUserAdded> result = new HashSet<NewUserAdded>();
+		for (SNewUserAdded o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SNewUserAdded> convertToSListNewUserAdded(Collection<NewUserAdded> input) {
+		List<SNewUserAdded> result = new ArrayList<SNewUserAdded>();
+		for (NewUserAdded o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<NewUserAdded> convertFromSListNewUserAdded(Collection<SNewUserAdded> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<NewUserAdded> result = new ArrayList<NewUserAdded>();
+		for (SNewUserAdded o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SNewUserAdded convertToSObject(NewUserAdded input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SNewUserAdded result = new SNewUserAdded();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		return result;
+	}
+
+	public NewUserAdded convertFromSObject(SNewUserAdded input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		NewUserAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewUserAdded(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public NewUserAdded convertFromSObject(SNewUserAdded input) throws BimserverDatabaseException {
+		NewUserAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewUserAdded(), null);
+		return result;
+	}
+
+	public NewUserAdded convertFromSObject(SNewUserAdded input, NewUserAdded result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SNewProjectAdded> convertToSSetNewProjectAdded(Collection<NewProjectAdded> input) {
+		Set<SNewProjectAdded> result = new HashSet<SNewProjectAdded>();
+		for (NewProjectAdded o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<NewProjectAdded> convertFromSSetNewProjectAdded(Collection<SNewProjectAdded> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<NewProjectAdded> result = new HashSet<NewProjectAdded>();
+		for (SNewProjectAdded o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SNewProjectAdded> convertToSListNewProjectAdded(Collection<NewProjectAdded> input) {
+		List<SNewProjectAdded> result = new ArrayList<SNewProjectAdded>();
+		for (NewProjectAdded o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<NewProjectAdded> convertFromSListNewProjectAdded(Collection<SNewProjectAdded> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<NewProjectAdded> result = new ArrayList<NewProjectAdded>();
+		for (SNewProjectAdded o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SNewProjectAdded convertToSObject(NewProjectAdded input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SNewProjectAdded result = new SNewProjectAdded();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Project projectVal = input.getProject();
+		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
+		Project parentProjectVal = input.getParentProject();
+		result.setParentProjectId(parentProjectVal == null ? -1 : parentProjectVal.getOid());
+		return result;
+	}
+
+	public NewProjectAdded convertFromSObject(SNewProjectAdded input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		NewProjectAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewProjectAdded(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public NewProjectAdded convertFromSObject(SNewProjectAdded input) throws BimserverDatabaseException {
+		NewProjectAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewProjectAdded(), null);
+		return result;
+	}
+
+	public NewProjectAdded convertFromSObject(SNewProjectAdded input, NewProjectAdded result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
+		result.setParentProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getParentProjectId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SRevisionBranched> convertToSSetRevisionBranched(Collection<RevisionBranched> input) {
+		Set<SRevisionBranched> result = new HashSet<SRevisionBranched>();
+		for (RevisionBranched o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<RevisionBranched> convertFromSSetRevisionBranched(Collection<SRevisionBranched> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<RevisionBranched> result = new HashSet<RevisionBranched>();
+		for (SRevisionBranched o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SRevisionBranched> convertToSListRevisionBranched(Collection<RevisionBranched> input) {
+		List<SRevisionBranched> result = new ArrayList<SRevisionBranched>();
+		for (RevisionBranched o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<RevisionBranched> convertFromSListRevisionBranched(Collection<SRevisionBranched> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<RevisionBranched> result = new ArrayList<RevisionBranched>();
+		for (SRevisionBranched o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SRevisionBranched convertToSObject(RevisionBranched input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SRevisionBranched result = new SRevisionBranched();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Revision oldrevisionVal = input.getOldrevision();
+		result.setOldrevisionId(oldrevisionVal == null ? -1 : oldrevisionVal.getOid());
+		Revision newrevisionVal = input.getNewrevision();
+		result.setNewrevisionId(newrevisionVal == null ? -1 : newrevisionVal.getOid());
+		return result;
+	}
+
+	public RevisionBranched convertFromSObject(SRevisionBranched input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		RevisionBranched result = convertFromSObject(input, LogFactory.eINSTANCE.createRevisionBranched(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public RevisionBranched convertFromSObject(SRevisionBranched input) throws BimserverDatabaseException {
+		RevisionBranched result = convertFromSObject(input, LogFactory.eINSTANCE.createRevisionBranched(), null);
+		return result;
+	}
+
+	public RevisionBranched convertFromSObject(SRevisionBranched input, RevisionBranched result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setOldrevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getOldrevisionId(), OldQuery.getDefault()));
+		result.setNewrevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getNewrevisionId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SNewRevisionAdded> convertToSSetNewRevisionAdded(Collection<NewRevisionAdded> input) {
+		Set<SNewRevisionAdded> result = new HashSet<SNewRevisionAdded>();
+		for (NewRevisionAdded o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<NewRevisionAdded> convertFromSSetNewRevisionAdded(Collection<SNewRevisionAdded> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<NewRevisionAdded> result = new HashSet<NewRevisionAdded>();
+		for (SNewRevisionAdded o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SNewRevisionAdded> convertToSListNewRevisionAdded(Collection<NewRevisionAdded> input) {
+		List<SNewRevisionAdded> result = new ArrayList<SNewRevisionAdded>();
+		for (NewRevisionAdded o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<NewRevisionAdded> convertFromSListNewRevisionAdded(Collection<SNewRevisionAdded> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<NewRevisionAdded> result = new ArrayList<NewRevisionAdded>();
+		for (SNewRevisionAdded o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SNewRevisionAdded convertToSObject(NewRevisionAdded input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SNewRevisionAdded result = new SNewRevisionAdded();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Revision revisionVal = input.getRevision();
+		result.setRevisionId(revisionVal == null ? -1 : revisionVal.getOid());
+		Project projectVal = input.getProject();
+		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
+		return result;
+	}
+
+	public NewRevisionAdded convertFromSObject(SNewRevisionAdded input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		NewRevisionAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewRevisionAdded(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public NewRevisionAdded convertFromSObject(SNewRevisionAdded input) throws BimserverDatabaseException {
+		NewRevisionAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewRevisionAdded(), null);
+		return result;
+	}
+
+	public NewRevisionAdded convertFromSObject(SNewRevisionAdded input, NewRevisionAdded result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SNewCheckoutAdded> convertToSSetNewCheckoutAdded(Collection<NewCheckoutAdded> input) {
+		Set<SNewCheckoutAdded> result = new HashSet<SNewCheckoutAdded>();
+		for (NewCheckoutAdded o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<NewCheckoutAdded> convertFromSSetNewCheckoutAdded(Collection<SNewCheckoutAdded> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<NewCheckoutAdded> result = new HashSet<NewCheckoutAdded>();
+		for (SNewCheckoutAdded o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SNewCheckoutAdded> convertToSListNewCheckoutAdded(Collection<NewCheckoutAdded> input) {
+		List<SNewCheckoutAdded> result = new ArrayList<SNewCheckoutAdded>();
+		for (NewCheckoutAdded o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<NewCheckoutAdded> convertFromSListNewCheckoutAdded(Collection<SNewCheckoutAdded> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<NewCheckoutAdded> result = new ArrayList<NewCheckoutAdded>();
+		for (SNewCheckoutAdded o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SNewCheckoutAdded convertToSObject(NewCheckoutAdded input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SNewCheckoutAdded result = new SNewCheckoutAdded();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Checkout checkoutVal = input.getCheckout();
+		result.setCheckoutId(checkoutVal == null ? -1 : checkoutVal.getOid());
+		return result;
+	}
+
+	public NewCheckoutAdded convertFromSObject(SNewCheckoutAdded input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		NewCheckoutAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewCheckoutAdded(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public NewCheckoutAdded convertFromSObject(SNewCheckoutAdded input) throws BimserverDatabaseException {
+		NewCheckoutAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewCheckoutAdded(), null);
+		return result;
+	}
+
+	public NewCheckoutAdded convertFromSObject(SNewCheckoutAdded input, NewCheckoutAdded result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setCheckout((Checkout)session.get(StorePackage.eINSTANCE.getCheckout(), input.getCheckoutId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SSettingsSaved> convertToSSetSettingsSaved(Collection<SettingsSaved> input) {
+		Set<SSettingsSaved> result = new HashSet<SSettingsSaved>();
+		for (SettingsSaved o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<SettingsSaved> convertFromSSetSettingsSaved(Collection<SSettingsSaved> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<SettingsSaved> result = new HashSet<SettingsSaved>();
+		for (SSettingsSaved o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SSettingsSaved> convertToSListSettingsSaved(Collection<SettingsSaved> input) {
+		List<SSettingsSaved> result = new ArrayList<SSettingsSaved>();
+		for (SettingsSaved o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<SettingsSaved> convertFromSListSettingsSaved(Collection<SSettingsSaved> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<SettingsSaved> result = new ArrayList<SettingsSaved>();
+		for (SSettingsSaved o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SSettingsSaved convertToSObject(SettingsSaved input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SSettingsSaved result = new SSettingsSaved();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		return result;
+	}
+
+	public SettingsSaved convertFromSObject(SSettingsSaved input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		SettingsSaved result = convertFromSObject(input, LogFactory.eINSTANCE.createSettingsSaved(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public SettingsSaved convertFromSObject(SSettingsSaved input) throws BimserverDatabaseException {
+		SettingsSaved result = convertFromSObject(input, LogFactory.eINSTANCE.createSettingsSaved(), null);
+		return result;
+	}
+
+	public SettingsSaved convertFromSObject(SSettingsSaved input, SettingsSaved result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SUserAddedToProject> convertToSSetUserAddedToProject(Collection<UserAddedToProject> input) {
+		Set<SUserAddedToProject> result = new HashSet<SUserAddedToProject>();
+		for (UserAddedToProject o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<UserAddedToProject> convertFromSSetUserAddedToProject(Collection<SUserAddedToProject> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<UserAddedToProject> result = new HashSet<UserAddedToProject>();
+		for (SUserAddedToProject o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SUserAddedToProject> convertToSListUserAddedToProject(Collection<UserAddedToProject> input) {
+		List<SUserAddedToProject> result = new ArrayList<SUserAddedToProject>();
+		for (UserAddedToProject o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<UserAddedToProject> convertFromSListUserAddedToProject(Collection<SUserAddedToProject> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<UserAddedToProject> result = new ArrayList<UserAddedToProject>();
+		for (SUserAddedToProject o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SUserAddedToProject convertToSObject(UserAddedToProject input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SUserAddedToProject result = new SUserAddedToProject();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		Project projectVal = input.getProject();
+		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
+		return result;
+	}
+
+	public UserAddedToProject convertFromSObject(SUserAddedToProject input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		UserAddedToProject result = convertFromSObject(input, LogFactory.eINSTANCE.createUserAddedToProject(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public UserAddedToProject convertFromSObject(SUserAddedToProject input) throws BimserverDatabaseException {
+		UserAddedToProject result = convertFromSObject(input, LogFactory.eINSTANCE.createUserAddedToProject(), null);
+		return result;
+	}
+
+	public UserAddedToProject convertFromSObject(SUserAddedToProject input, UserAddedToProject result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SNewObjectIDMUploaded> convertToSSetNewObjectIDMUploaded(Collection<NewObjectIDMUploaded> input) {
+		Set<SNewObjectIDMUploaded> result = new HashSet<SNewObjectIDMUploaded>();
+		for (NewObjectIDMUploaded o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<NewObjectIDMUploaded> convertFromSSetNewObjectIDMUploaded(Collection<SNewObjectIDMUploaded> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<NewObjectIDMUploaded> result = new HashSet<NewObjectIDMUploaded>();
+		for (SNewObjectIDMUploaded o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SNewObjectIDMUploaded> convertToSListNewObjectIDMUploaded(Collection<NewObjectIDMUploaded> input) {
+		List<SNewObjectIDMUploaded> result = new ArrayList<SNewObjectIDMUploaded>();
+		for (NewObjectIDMUploaded o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<NewObjectIDMUploaded> convertFromSListNewObjectIDMUploaded(Collection<SNewObjectIDMUploaded> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<NewObjectIDMUploaded> result = new ArrayList<NewObjectIDMUploaded>();
+		for (SNewObjectIDMUploaded o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SNewObjectIDMUploaded convertToSObject(NewObjectIDMUploaded input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SNewObjectIDMUploaded result = new SNewObjectIDMUploaded();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		return result;
+	}
+
+	public NewObjectIDMUploaded convertFromSObject(SNewObjectIDMUploaded input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		NewObjectIDMUploaded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewObjectIDMUploaded(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public NewObjectIDMUploaded convertFromSObject(SNewObjectIDMUploaded input) throws BimserverDatabaseException {
+		NewObjectIDMUploaded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewObjectIDMUploaded(), null);
+		return result;
+	}
+
+	public NewObjectIDMUploaded convertFromSObject(SNewObjectIDMUploaded input, NewObjectIDMUploaded result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SDownload> convertToSSetDownload(Collection<Download> input) {
+		Set<SDownload> result = new HashSet<SDownload>();
+		for (Download o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<Download> convertFromSSetDownload(Collection<SDownload> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<Download> result = new HashSet<Download>();
+		for (SDownload o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SDownload> convertToSListDownload(Collection<Download> input) {
+		List<SDownload> result = new ArrayList<SDownload>();
+		for (Download o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<Download> convertFromSListDownload(Collection<SDownload> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<Download> result = new ArrayList<Download>();
+		for (SDownload o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SDownload convertToSObject(Download input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SDownload result = new SDownload();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		return result;
+	}
+
+	public Download convertFromSObject(SDownload input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		Download result = convertFromSObject(input, LogFactory.eINSTANCE.createDownload(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public Download convertFromSObject(SDownload input) throws BimserverDatabaseException {
+		Download result = convertFromSObject(input, LogFactory.eINSTANCE.createDownload(), null);
+		return result;
+	}
+
+	public Download convertFromSObject(SDownload input, Download result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SUserRemovedFromProject> convertToSSetUserRemovedFromProject(Collection<UserRemovedFromProject> input) {
+		Set<SUserRemovedFromProject> result = new HashSet<SUserRemovedFromProject>();
+		for (UserRemovedFromProject o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<UserRemovedFromProject> convertFromSSetUserRemovedFromProject(Collection<SUserRemovedFromProject> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<UserRemovedFromProject> result = new HashSet<UserRemovedFromProject>();
+		for (SUserRemovedFromProject o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SUserRemovedFromProject> convertToSListUserRemovedFromProject(Collection<UserRemovedFromProject> input) {
+		List<SUserRemovedFromProject> result = new ArrayList<SUserRemovedFromProject>();
+		for (UserRemovedFromProject o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<UserRemovedFromProject> convertFromSListUserRemovedFromProject(Collection<SUserRemovedFromProject> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<UserRemovedFromProject> result = new ArrayList<UserRemovedFromProject>();
+		for (SUserRemovedFromProject o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SUserRemovedFromProject convertToSObject(UserRemovedFromProject input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SUserRemovedFromProject result = new SUserRemovedFromProject();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		Project projectVal = input.getProject();
+		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
+		return result;
+	}
+
+	public UserRemovedFromProject convertFromSObject(SUserRemovedFromProject input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		UserRemovedFromProject result = convertFromSObject(input, LogFactory.eINSTANCE.createUserRemovedFromProject(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public UserRemovedFromProject convertFromSObject(SUserRemovedFromProject input) throws BimserverDatabaseException {
+		UserRemovedFromProject result = convertFromSObject(input, LogFactory.eINSTANCE.createUserRemovedFromProject(), null);
+		return result;
+	}
+
+	public UserRemovedFromProject convertFromSObject(SUserRemovedFromProject input, UserRemovedFromProject result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SProjectDeleted> convertToSSetProjectDeleted(Collection<ProjectDeleted> input) {
+		Set<SProjectDeleted> result = new HashSet<SProjectDeleted>();
+		for (ProjectDeleted o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ProjectDeleted> convertFromSSetProjectDeleted(Collection<SProjectDeleted> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ProjectDeleted> result = new HashSet<ProjectDeleted>();
+		for (SProjectDeleted o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SProjectDeleted> convertToSListProjectDeleted(Collection<ProjectDeleted> input) {
+		List<SProjectDeleted> result = new ArrayList<SProjectDeleted>();
+		for (ProjectDeleted o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ProjectDeleted> convertFromSListProjectDeleted(Collection<SProjectDeleted> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ProjectDeleted> result = new ArrayList<ProjectDeleted>();
+		for (SProjectDeleted o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SProjectDeleted convertToSObject(ProjectDeleted input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SProjectDeleted result = new SProjectDeleted();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Project projectVal = input.getProject();
+		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
+		return result;
+	}
+
+	public ProjectDeleted convertFromSObject(SProjectDeleted input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		ProjectDeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectDeleted(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public ProjectDeleted convertFromSObject(SProjectDeleted input) throws BimserverDatabaseException {
+		ProjectDeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectDeleted(), null);
+		return result;
+	}
+
+	public ProjectDeleted convertFromSObject(SProjectDeleted input, ProjectDeleted result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SUserDeleted> convertToSSetUserDeleted(Collection<UserDeleted> input) {
+		Set<SUserDeleted> result = new HashSet<SUserDeleted>();
+		for (UserDeleted o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<UserDeleted> convertFromSSetUserDeleted(Collection<SUserDeleted> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<UserDeleted> result = new HashSet<UserDeleted>();
+		for (SUserDeleted o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SUserDeleted> convertToSListUserDeleted(Collection<UserDeleted> input) {
+		List<SUserDeleted> result = new ArrayList<SUserDeleted>();
+		for (UserDeleted o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<UserDeleted> convertFromSListUserDeleted(Collection<SUserDeleted> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<UserDeleted> result = new ArrayList<UserDeleted>();
+		for (SUserDeleted o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SUserDeleted convertToSObject(UserDeleted input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SUserDeleted result = new SUserDeleted();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		return result;
+	}
+
+	public UserDeleted convertFromSObject(SUserDeleted input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		UserDeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createUserDeleted(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public UserDeleted convertFromSObject(SUserDeleted input) throws BimserverDatabaseException {
+		UserDeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createUserDeleted(), null);
+		return result;
+	}
+
+	public UserDeleted convertFromSObject(SUserDeleted input, UserDeleted result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SPasswordReset> convertToSSetPasswordReset(Collection<PasswordReset> input) {
+		Set<SPasswordReset> result = new HashSet<SPasswordReset>();
+		for (PasswordReset o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<PasswordReset> convertFromSSetPasswordReset(Collection<SPasswordReset> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<PasswordReset> result = new HashSet<PasswordReset>();
+		for (SPasswordReset o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SPasswordReset> convertToSListPasswordReset(Collection<PasswordReset> input) {
+		List<SPasswordReset> result = new ArrayList<SPasswordReset>();
+		for (PasswordReset o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<PasswordReset> convertFromSListPasswordReset(Collection<SPasswordReset> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<PasswordReset> result = new ArrayList<PasswordReset>();
+		for (SPasswordReset o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SPasswordReset convertToSObject(PasswordReset input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SPasswordReset result = new SPasswordReset();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		return result;
+	}
+
+	public PasswordReset convertFromSObject(SPasswordReset input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		PasswordReset result = convertFromSObject(input, LogFactory.eINSTANCE.createPasswordReset(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public PasswordReset convertFromSObject(SPasswordReset input) throws BimserverDatabaseException {
+		PasswordReset result = convertFromSObject(input, LogFactory.eINSTANCE.createPasswordReset(), null);
+		return result;
+	}
+
+	public PasswordReset convertFromSObject(SPasswordReset input, PasswordReset result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SDatabaseCreated> convertToSSetDatabaseCreated(Collection<DatabaseCreated> input) {
+		Set<SDatabaseCreated> result = new HashSet<SDatabaseCreated>();
+		for (DatabaseCreated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<DatabaseCreated> convertFromSSetDatabaseCreated(Collection<SDatabaseCreated> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<DatabaseCreated> result = new HashSet<DatabaseCreated>();
+		for (SDatabaseCreated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SDatabaseCreated> convertToSListDatabaseCreated(Collection<DatabaseCreated> input) {
+		List<SDatabaseCreated> result = new ArrayList<SDatabaseCreated>();
+		for (DatabaseCreated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<DatabaseCreated> convertFromSListDatabaseCreated(Collection<SDatabaseCreated> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<DatabaseCreated> result = new ArrayList<DatabaseCreated>();
+		for (SDatabaseCreated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SDatabaseCreated convertToSObject(DatabaseCreated input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SDatabaseCreated result = new SDatabaseCreated();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setPath(input.getPath());
+		result.setVersion(input.getVersion());
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		return result;
+	}
+
+	public DatabaseCreated convertFromSObject(SDatabaseCreated input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		DatabaseCreated result = convertFromSObject(input, LogFactory.eINSTANCE.createDatabaseCreated(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public DatabaseCreated convertFromSObject(SDatabaseCreated input) throws BimserverDatabaseException {
+		DatabaseCreated result = convertFromSObject(input, LogFactory.eINSTANCE.createDatabaseCreated(), null);
+		return result;
+	}
+
+	public DatabaseCreated convertFromSObject(SDatabaseCreated input, DatabaseCreated result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setPath(input.getPath());
+		result.setVersion(input.getVersion());
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SServerStarted> convertToSSetServerStarted(Collection<ServerStarted> input) {
+		Set<SServerStarted> result = new HashSet<SServerStarted>();
+		for (ServerStarted o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ServerStarted> convertFromSSetServerStarted(Collection<SServerStarted> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ServerStarted> result = new HashSet<ServerStarted>();
+		for (SServerStarted o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SServerStarted> convertToSListServerStarted(Collection<ServerStarted> input) {
+		List<SServerStarted> result = new ArrayList<SServerStarted>();
+		for (ServerStarted o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ServerStarted> convertFromSListServerStarted(Collection<SServerStarted> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ServerStarted> result = new ArrayList<ServerStarted>();
+		for (SServerStarted o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SServerStarted convertToSObject(ServerStarted input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SServerStarted result = new SServerStarted();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		return result;
+	}
+
+	public ServerStarted convertFromSObject(SServerStarted input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		ServerStarted result = convertFromSObject(input, LogFactory.eINSTANCE.createServerStarted(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public ServerStarted convertFromSObject(SServerStarted input) throws BimserverDatabaseException {
+		ServerStarted result = convertFromSObject(input, LogFactory.eINSTANCE.createServerStarted(), null);
+		return result;
+	}
+
+	public ServerStarted convertFromSObject(SServerStarted input, ServerStarted result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SProjectUpdated> convertToSSetProjectUpdated(Collection<ProjectUpdated> input) {
+		Set<SProjectUpdated> result = new HashSet<SProjectUpdated>();
+		for (ProjectUpdated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ProjectUpdated> convertFromSSetProjectUpdated(Collection<SProjectUpdated> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ProjectUpdated> result = new HashSet<ProjectUpdated>();
+		for (SProjectUpdated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SProjectUpdated> convertToSListProjectUpdated(Collection<ProjectUpdated> input) {
+		List<SProjectUpdated> result = new ArrayList<SProjectUpdated>();
+		for (ProjectUpdated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ProjectUpdated> convertFromSListProjectUpdated(Collection<SProjectUpdated> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ProjectUpdated> result = new ArrayList<ProjectUpdated>();
+		for (SProjectUpdated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SProjectUpdated convertToSObject(ProjectUpdated input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SProjectUpdated result = new SProjectUpdated();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Project projectVal = input.getProject();
+		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
+		return result;
+	}
+
+	public ProjectUpdated convertFromSObject(SProjectUpdated input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		ProjectUpdated result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectUpdated(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public ProjectUpdated convertFromSObject(SProjectUpdated input) throws BimserverDatabaseException {
+		ProjectUpdated result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectUpdated(), null);
+		return result;
+	}
+
+	public ProjectUpdated convertFromSObject(SProjectUpdated input, ProjectUpdated result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SUserUndeleted> convertToSSetUserUndeleted(Collection<UserUndeleted> input) {
+		Set<SUserUndeleted> result = new HashSet<SUserUndeleted>();
+		for (UserUndeleted o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<UserUndeleted> convertFromSSetUserUndeleted(Collection<SUserUndeleted> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<UserUndeleted> result = new HashSet<UserUndeleted>();
+		for (SUserUndeleted o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SUserUndeleted> convertToSListUserUndeleted(Collection<UserUndeleted> input) {
+		List<SUserUndeleted> result = new ArrayList<SUserUndeleted>();
+		for (UserUndeleted o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<UserUndeleted> convertFromSListUserUndeleted(Collection<SUserUndeleted> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<UserUndeleted> result = new ArrayList<UserUndeleted>();
+		for (SUserUndeleted o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SUserUndeleted convertToSObject(UserUndeleted input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SUserUndeleted result = new SUserUndeleted();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		return result;
+	}
+
+	public UserUndeleted convertFromSObject(SUserUndeleted input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		UserUndeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createUserUndeleted(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public UserUndeleted convertFromSObject(SUserUndeleted input) throws BimserverDatabaseException {
+		UserUndeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createUserUndeleted(), null);
+		return result;
+	}
+
+	public UserUndeleted convertFromSObject(SUserUndeleted input, UserUndeleted result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SProjectUndeleted> convertToSSetProjectUndeleted(Collection<ProjectUndeleted> input) {
+		Set<SProjectUndeleted> result = new HashSet<SProjectUndeleted>();
+		for (ProjectUndeleted o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ProjectUndeleted> convertFromSSetProjectUndeleted(Collection<SProjectUndeleted> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ProjectUndeleted> result = new HashSet<ProjectUndeleted>();
+		for (SProjectUndeleted o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SProjectUndeleted> convertToSListProjectUndeleted(Collection<ProjectUndeleted> input) {
+		List<SProjectUndeleted> result = new ArrayList<SProjectUndeleted>();
+		for (ProjectUndeleted o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ProjectUndeleted> convertFromSListProjectUndeleted(Collection<SProjectUndeleted> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ProjectUndeleted> result = new ArrayList<ProjectUndeleted>();
+		for (SProjectUndeleted o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SProjectUndeleted convertToSObject(ProjectUndeleted input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SProjectUndeleted result = new SProjectUndeleted();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Project projectVal = input.getProject();
+		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
+		return result;
+	}
+
+	public ProjectUndeleted convertFromSObject(SProjectUndeleted input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		ProjectUndeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectUndeleted(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public ProjectUndeleted convertFromSObject(SProjectUndeleted input) throws BimserverDatabaseException {
+		ProjectUndeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectUndeleted(), null);
+		return result;
+	}
+
+	public ProjectUndeleted convertFromSObject(SProjectUndeleted input, ProjectUndeleted result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SRevisionUpdated> convertToSSetRevisionUpdated(Collection<RevisionUpdated> input) {
+		Set<SRevisionUpdated> result = new HashSet<SRevisionUpdated>();
+		for (RevisionUpdated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<RevisionUpdated> convertFromSSetRevisionUpdated(Collection<SRevisionUpdated> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<RevisionUpdated> result = new HashSet<RevisionUpdated>();
+		for (SRevisionUpdated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SRevisionUpdated> convertToSListRevisionUpdated(Collection<RevisionUpdated> input) {
+		List<SRevisionUpdated> result = new ArrayList<SRevisionUpdated>();
+		for (RevisionUpdated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<RevisionUpdated> convertFromSListRevisionUpdated(Collection<SRevisionUpdated> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<RevisionUpdated> result = new ArrayList<RevisionUpdated>();
+		for (SRevisionUpdated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SRevisionUpdated convertToSObject(RevisionUpdated input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SRevisionUpdated result = new SRevisionUpdated();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Revision revisionVal = input.getRevision();
+		result.setRevisionId(revisionVal == null ? -1 : revisionVal.getOid());
+		return result;
+	}
+
+	public RevisionUpdated convertFromSObject(SRevisionUpdated input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		RevisionUpdated result = convertFromSObject(input, LogFactory.eINSTANCE.createRevisionUpdated(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public RevisionUpdated convertFromSObject(SRevisionUpdated input) throws BimserverDatabaseException {
+		RevisionUpdated result = convertFromSObject(input, LogFactory.eINSTANCE.createRevisionUpdated(), null);
+		return result;
+	}
+
+	public RevisionUpdated convertFromSObject(SRevisionUpdated input, RevisionUpdated result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SGeoTagUpdated> convertToSSetGeoTagUpdated(Collection<GeoTagUpdated> input) {
+		Set<SGeoTagUpdated> result = new HashSet<SGeoTagUpdated>();
+		for (GeoTagUpdated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<GeoTagUpdated> convertFromSSetGeoTagUpdated(Collection<SGeoTagUpdated> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<GeoTagUpdated> result = new HashSet<GeoTagUpdated>();
+		for (SGeoTagUpdated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SGeoTagUpdated> convertToSListGeoTagUpdated(Collection<GeoTagUpdated> input) {
+		List<SGeoTagUpdated> result = new ArrayList<SGeoTagUpdated>();
+		for (GeoTagUpdated o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<GeoTagUpdated> convertFromSListGeoTagUpdated(Collection<SGeoTagUpdated> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<GeoTagUpdated> result = new ArrayList<GeoTagUpdated>();
+		for (SGeoTagUpdated o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SGeoTagUpdated convertToSObject(GeoTagUpdated input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SGeoTagUpdated result = new SGeoTagUpdated();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		GeoTag geoTagVal = input.getGeoTag();
+		result.setGeoTagId(geoTagVal == null ? -1 : geoTagVal.getOid());
+		return result;
+	}
+
+	public GeoTagUpdated convertFromSObject(SGeoTagUpdated input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		GeoTagUpdated result = convertFromSObject(input, LogFactory.eINSTANCE.createGeoTagUpdated(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public GeoTagUpdated convertFromSObject(SGeoTagUpdated input) throws BimserverDatabaseException {
+		GeoTagUpdated result = convertFromSObject(input, LogFactory.eINSTANCE.createGeoTagUpdated(), null);
+		return result;
+	}
+
+	public GeoTagUpdated convertFromSObject(SGeoTagUpdated input, GeoTagUpdated result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setGeoTag((GeoTag)session.get(StorePackage.eINSTANCE.getGeoTag(), input.getGeoTagId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SPasswordChanged> convertToSSetPasswordChanged(Collection<PasswordChanged> input) {
+		Set<SPasswordChanged> result = new HashSet<SPasswordChanged>();
+		for (PasswordChanged o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<PasswordChanged> convertFromSSetPasswordChanged(Collection<SPasswordChanged> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<PasswordChanged> result = new HashSet<PasswordChanged>();
+		for (SPasswordChanged o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SPasswordChanged> convertToSListPasswordChanged(Collection<PasswordChanged> input) {
+		List<SPasswordChanged> result = new ArrayList<SPasswordChanged>();
+		for (PasswordChanged o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<PasswordChanged> convertFromSListPasswordChanged(Collection<SPasswordChanged> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<PasswordChanged> result = new ArrayList<PasswordChanged>();
+		for (SPasswordChanged o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SPasswordChanged convertToSObject(PasswordChanged input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SPasswordChanged result = new SPasswordChanged();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		return result;
+	}
+
+	public PasswordChanged convertFromSObject(SPasswordChanged input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		PasswordChanged result = convertFromSObject(input, LogFactory.eINSTANCE.createPasswordChanged(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public PasswordChanged convertFromSObject(SPasswordChanged input) throws BimserverDatabaseException {
+		PasswordChanged result = convertFromSObject(input, LogFactory.eINSTANCE.createPasswordChanged(), null);
+		return result;
+	}
+
+	public PasswordChanged convertFromSObject(SPasswordChanged input, PasswordChanged result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SUserChanged> convertToSSetUserChanged(Collection<UserChanged> input) {
+		Set<SUserChanged> result = new HashSet<SUserChanged>();
+		for (UserChanged o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<UserChanged> convertFromSSetUserChanged(Collection<SUserChanged> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<UserChanged> result = new HashSet<UserChanged>();
+		for (SUserChanged o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SUserChanged> convertToSListUserChanged(Collection<UserChanged> input) {
+		List<SUserChanged> result = new ArrayList<SUserChanged>();
+		for (UserChanged o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<UserChanged> convertFromSListUserChanged(Collection<SUserChanged> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<UserChanged> result = new ArrayList<UserChanged>();
+		for (SUserChanged o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SUserChanged convertToSObject(UserChanged input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SUserChanged result = new SUserChanged();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		return result;
+	}
+
+	public UserChanged convertFromSObject(SUserChanged input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		UserChanged result = convertFromSObject(input, LogFactory.eINSTANCE.createUserChanged(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public UserChanged convertFromSObject(SUserChanged input) throws BimserverDatabaseException {
+		UserChanged result = convertFromSObject(input, LogFactory.eINSTANCE.createUserChanged(), null);
+		return result;
+	}
+
+	public UserChanged convertFromSObject(SUserChanged input, UserChanged result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SExtendedDataAddedToRevision> convertToSSetExtendedDataAddedToRevision(Collection<ExtendedDataAddedToRevision> input) {
+		Set<SExtendedDataAddedToRevision> result = new HashSet<SExtendedDataAddedToRevision>();
+		for (ExtendedDataAddedToRevision o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ExtendedDataAddedToRevision> convertFromSSetExtendedDataAddedToRevision(Collection<SExtendedDataAddedToRevision> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ExtendedDataAddedToRevision> result = new HashSet<ExtendedDataAddedToRevision>();
+		for (SExtendedDataAddedToRevision o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SExtendedDataAddedToRevision> convertToSListExtendedDataAddedToRevision(Collection<ExtendedDataAddedToRevision> input) {
+		List<SExtendedDataAddedToRevision> result = new ArrayList<SExtendedDataAddedToRevision>();
+		for (ExtendedDataAddedToRevision o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ExtendedDataAddedToRevision> convertFromSListExtendedDataAddedToRevision(Collection<SExtendedDataAddedToRevision> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ExtendedDataAddedToRevision> result = new ArrayList<ExtendedDataAddedToRevision>();
+		for (SExtendedDataAddedToRevision o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SExtendedDataAddedToRevision convertToSObject(ExtendedDataAddedToRevision input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SExtendedDataAddedToRevision result = new SExtendedDataAddedToRevision();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Revision revisionVal = input.getRevision();
+		result.setRevisionId(revisionVal == null ? -1 : revisionVal.getOid());
+		ExtendedData extendedDataVal = input.getExtendedData();
+		result.setExtendedDataId(extendedDataVal == null ? -1 : extendedDataVal.getOid());
+		return result;
+	}
+
+	public ExtendedDataAddedToRevision convertFromSObject(SExtendedDataAddedToRevision input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		ExtendedDataAddedToRevision result = convertFromSObject(input, LogFactory.eINSTANCE.createExtendedDataAddedToRevision(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public ExtendedDataAddedToRevision convertFromSObject(SExtendedDataAddedToRevision input) throws BimserverDatabaseException {
+		ExtendedDataAddedToRevision result = convertFromSObject(input, LogFactory.eINSTANCE.createExtendedDataAddedToRevision(), null);
+		return result;
+	}
+
+	public ExtendedDataAddedToRevision convertFromSObject(SExtendedDataAddedToRevision input, ExtendedDataAddedToRevision result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
+		result.setExtendedData((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), input.getExtendedDataId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SExtendedDataAddedToProject> convertToSSetExtendedDataAddedToProject(Collection<ExtendedDataAddedToProject> input) {
+		Set<SExtendedDataAddedToProject> result = new HashSet<SExtendedDataAddedToProject>();
+		for (ExtendedDataAddedToProject o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ExtendedDataAddedToProject> convertFromSSetExtendedDataAddedToProject(Collection<SExtendedDataAddedToProject> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ExtendedDataAddedToProject> result = new HashSet<ExtendedDataAddedToProject>();
+		for (SExtendedDataAddedToProject o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SExtendedDataAddedToProject> convertToSListExtendedDataAddedToProject(Collection<ExtendedDataAddedToProject> input) {
+		List<SExtendedDataAddedToProject> result = new ArrayList<SExtendedDataAddedToProject>();
+		for (ExtendedDataAddedToProject o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ExtendedDataAddedToProject> convertFromSListExtendedDataAddedToProject(Collection<SExtendedDataAddedToProject> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ExtendedDataAddedToProject> result = new ArrayList<ExtendedDataAddedToProject>();
+		for (SExtendedDataAddedToProject o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SExtendedDataAddedToProject convertToSObject(ExtendedDataAddedToProject input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SExtendedDataAddedToProject result = new SExtendedDataAddedToProject();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Project projectVal = input.getProject();
+		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
+		ExtendedData extendedDataVal = input.getExtendedData();
+		result.setExtendedDataId(extendedDataVal == null ? -1 : extendedDataVal.getOid());
+		return result;
+	}
+
+	public ExtendedDataAddedToProject convertFromSObject(SExtendedDataAddedToProject input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		ExtendedDataAddedToProject result = convertFromSObject(input, LogFactory.eINSTANCE.createExtendedDataAddedToProject(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public ExtendedDataAddedToProject convertFromSObject(SExtendedDataAddedToProject input) throws BimserverDatabaseException {
+		ExtendedDataAddedToProject result = convertFromSObject(input, LogFactory.eINSTANCE.createExtendedDataAddedToProject(), null);
+		return result;
+	}
+
+	public ExtendedDataAddedToProject convertFromSObject(SExtendedDataAddedToProject input, ExtendedDataAddedToProject result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
+		result.setExtendedData((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), input.getExtendedDataId(), OldQuery.getDefault()));
+		return result;
+	}
+
+	public Set<SRemoteServiceCalled> convertToSSetRemoteServiceCalled(Collection<RemoteServiceCalled> input) {
+		Set<SRemoteServiceCalled> result = new HashSet<SRemoteServiceCalled>();
+		for (RemoteServiceCalled o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<RemoteServiceCalled> convertFromSSetRemoteServiceCalled(Collection<SRemoteServiceCalled> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<RemoteServiceCalled> result = new HashSet<RemoteServiceCalled>();
+		for (SRemoteServiceCalled o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SRemoteServiceCalled> convertToSListRemoteServiceCalled(Collection<RemoteServiceCalled> input) {
+		List<SRemoteServiceCalled> result = new ArrayList<SRemoteServiceCalled>();
+		for (RemoteServiceCalled o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<RemoteServiceCalled> convertFromSListRemoteServiceCalled(Collection<SRemoteServiceCalled> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<RemoteServiceCalled> result = new ArrayList<RemoteServiceCalled>();
+		for (SRemoteServiceCalled o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SRemoteServiceCalled convertToSObject(RemoteServiceCalled input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SRemoteServiceCalled result = new SRemoteServiceCalled();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setDate(input.getDate());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setState(SNotifictionResultEnum.values()[input.getState().ordinal()]);
+		result.setPercentage(input.getPercentage());
+		result.getInfos().addAll(input.getInfos());
+		result.getWarnings().addAll(input.getWarnings());
+		result.getErrors().addAll(input.getErrors());
+		User executorVal = input.getExecutor();
+		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
+		Service serviceVal = input.getService();
+		result.setServiceId(serviceVal == null ? -1 : serviceVal.getOid());
+		return result;
+	}
+
+	public RemoteServiceCalled convertFromSObject(SRemoteServiceCalled input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		RemoteServiceCalled result = convertFromSObject(input, LogFactory.eINSTANCE.createRemoteServiceCalled(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public RemoteServiceCalled convertFromSObject(SRemoteServiceCalled input) throws BimserverDatabaseException {
+		RemoteServiceCalled result = convertFromSObject(input, LogFactory.eINSTANCE.createRemoteServiceCalled(), null);
+		return result;
+	}
+
+	public RemoteServiceCalled convertFromSObject(SRemoteServiceCalled input, RemoteServiceCalled result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setDate(input.getDate());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setState(NotifictionResultEnum.values()[input.getState().ordinal()]);
+		result.setPercentage(input.getPercentage());
+		result.getInfos().addAll(input.getInfos());
+		result.getWarnings().addAll(input.getWarnings());
+		result.getErrors().addAll(input.getErrors());
+		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
+		result.setService((Service)session.get(StorePackage.eINSTANCE.getService(), input.getServiceId(), OldQuery.getDefault()));
+		return result;
+	}
 		public SUserType convertToSObject(UserType input) {
 			return SUserType.values()[input.ordinal()];
 		}
@@ -155,12 +2773,22 @@ public class SConverter {
 		result.setModelCheckers(listmodelCheckers);
 		return result;
 	}
+
 	public Project convertFromSObject(SProject input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		Project result = convertFromSObject(input, StoreFactory.eINSTANCE.createProject(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public Project convertFromSObject(SProject input) throws BimserverDatabaseException {
+		Project result = convertFromSObject(input, StoreFactory.eINSTANCE.createProject(), null);
 		return result;
 	}
 
@@ -307,12 +2935,22 @@ public class SConverter {
 		result.setLogs(listlogs);
 		return result;
 	}
+
 	public User convertFromSObject(SUser input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		User result = convertFromSObject(input, StoreFactory.eINSTANCE.createUser(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public User convertFromSObject(SUser input) throws BimserverDatabaseException {
+		User result = convertFromSObject(input, StoreFactory.eINSTANCE.createUser(), null);
 		return result;
 	}
 
@@ -438,12 +3076,22 @@ public class SConverter {
 		result.setServiceId(serviceVal == null ? -1 : serviceVal.getOid());
 		return result;
 	}
+
 	public Revision convertFromSObject(SRevision input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		Revision result = convertFromSObject(input, StoreFactory.eINSTANCE.createRevision(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public Revision convertFromSObject(SRevision input) throws BimserverDatabaseException {
+		Revision result = convertFromSObject(input, StoreFactory.eINSTANCE.createRevision(), null);
 		return result;
 	}
 
@@ -548,12 +3196,22 @@ public class SConverter {
 		result.setMaxBounds(convertToSObject(maxBoundsVal));
 		return result;
 	}
+
 	public ConcreteRevision convertFromSObject(SConcreteRevision input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ConcreteRevision result = convertFromSObject(input, StoreFactory.eINSTANCE.createConcreteRevision(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ConcreteRevision convertFromSObject(SConcreteRevision input) throws BimserverDatabaseException {
+		ConcreteRevision result = convertFromSObject(input, StoreFactory.eINSTANCE.createConcreteRevision(), null);
 		return result;
 	}
 
@@ -634,12 +3292,22 @@ public class SConverter {
 		result.setProjects(listprojects);
 		return result;
 	}
+
 	public GeoTag convertFromSObject(SGeoTag input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		GeoTag result = convertFromSObject(input, StoreFactory.eINSTANCE.createGeoTag(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public GeoTag convertFromSObject(SGeoTag input) throws BimserverDatabaseException {
+		GeoTag result = convertFromSObject(input, StoreFactory.eINSTANCE.createGeoTag(), null);
 		return result;
 	}
 
@@ -717,12 +3385,22 @@ public class SConverter {
 		result.setLogs(listlogs);
 		return result;
 	}
+
 	public Checkout convertFromSObject(SCheckout input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		Checkout result = convertFromSObject(input, StoreFactory.eINSTANCE.createCheckout(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public Checkout convertFromSObject(SCheckout input) throws BimserverDatabaseException {
+		Checkout result = convertFromSObject(input, StoreFactory.eINSTANCE.createCheckout(), null);
 		return result;
 	}
 
@@ -817,12 +3495,22 @@ public class SConverter {
 		result.setWebModuleId(webModuleVal == null ? -1 : webModuleVal.getOid());
 		return result;
 	}
+
 	public ServerSettings convertFromSObject(SServerSettings input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ServerSettings result = convertFromSObject(input, StoreFactory.eINSTANCE.createServerSettings(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ServerSettings convertFromSObject(SServerSettings input) throws BimserverDatabaseException {
+		ServerSettings result = convertFromSObject(input, StoreFactory.eINSTANCE.createServerSettings(), null);
 		return result;
 	}
 
@@ -962,12 +3650,22 @@ public class SConverter {
 		result.setMessagingSerializerPlugins(listmessagingSerializerPlugins);
 		return result;
 	}
+
 	public UserSettings convertFromSObject(SUserSettings input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		UserSettings result = convertFromSObject(input, StoreFactory.eINSTANCE.createUserSettings(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public UserSettings convertFromSObject(SUserSettings input) throws BimserverDatabaseException {
+		UserSettings result = convertFromSObject(input, StoreFactory.eINSTANCE.createUserSettings(), null);
 		return result;
 	}
 
@@ -1099,12 +3797,22 @@ public class SConverter {
 		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
 		return result;
 	}
+
 	public PluginConfiguration convertFromSObject(SPluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		PluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginConfiguration(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public PluginConfiguration convertFromSObject(SPluginConfiguration input) throws BimserverDatabaseException {
+		PluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginConfiguration(), null);
 		return result;
 	}
 
@@ -1206,12 +3914,22 @@ public class SConverter {
 		result.setRenderEngineId(renderEngineVal == null ? -1 : renderEngineVal.getOid());
 		return result;
 	}
+
 	public SerializerPluginConfiguration convertFromSObject(SSerializerPluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		SerializerPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createSerializerPluginConfiguration(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public SerializerPluginConfiguration convertFromSObject(SSerializerPluginConfiguration input) throws BimserverDatabaseException {
+		SerializerPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createSerializerPluginConfiguration(), null);
 		return result;
 	}
 
@@ -1287,12 +4005,22 @@ public class SConverter {
 		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
+
 	public ObjectIDMPluginConfiguration convertFromSObject(SObjectIDMPluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ObjectIDMPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectIDMPluginConfiguration(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ObjectIDMPluginConfiguration convertFromSObject(SObjectIDMPluginConfiguration input) throws BimserverDatabaseException {
+		ObjectIDMPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectIDMPluginConfiguration(), null);
 		return result;
 	}
 
@@ -1369,12 +4097,22 @@ public class SConverter {
 		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
+
 	public RenderEnginePluginConfiguration convertFromSObject(SRenderEnginePluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		RenderEnginePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createRenderEnginePluginConfiguration(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public RenderEnginePluginConfiguration convertFromSObject(SRenderEnginePluginConfiguration input) throws BimserverDatabaseException {
+		RenderEnginePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createRenderEnginePluginConfiguration(), null);
 		return result;
 	}
 
@@ -1446,12 +4184,22 @@ public class SConverter {
 		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
+
 	public DeserializerPluginConfiguration convertFromSObject(SDeserializerPluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		DeserializerPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createDeserializerPluginConfiguration(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public DeserializerPluginConfiguration convertFromSObject(SDeserializerPluginConfiguration input) throws BimserverDatabaseException {
+		DeserializerPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createDeserializerPluginConfiguration(), null);
 		return result;
 	}
 
@@ -1516,12 +4264,22 @@ public class SConverter {
 		result.setFile(input.getFile());
 		return result;
 	}
+
 	public DownloadResult convertFromSObject(SDownloadResult input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		DownloadResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createDownloadResult(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public DownloadResult convertFromSObject(SDownloadResult input) throws BimserverDatabaseException {
+		DownloadResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createDownloadResult(), null);
 		return result;
 	}
 
@@ -1583,12 +4341,22 @@ public class SConverter {
 		result.setFile(input.getFile());
 		return result;
 	}
+
 	public CheckoutResult convertFromSObject(SCheckoutResult input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		CheckoutResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createCheckoutResult(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public CheckoutResult convertFromSObject(SCheckoutResult input) throws BimserverDatabaseException {
+		CheckoutResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createCheckoutResult(), null);
 		return result;
 	}
 
@@ -1654,12 +4422,22 @@ public class SConverter {
 		result.setFieldName(input.getFieldName());
 		return result;
 	}
+
 	public DataValue convertFromSObject(SDataValue input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		DataValue result = convertFromSObject(input, StoreFactory.eINSTANCE.createDataValue(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public DataValue convertFromSObject(SDataValue input) throws BimserverDatabaseException {
+		DataValue result = convertFromSObject(input, StoreFactory.eINSTANCE.createDataValue(), null);
 		return result;
 	}
 
@@ -1730,12 +4508,22 @@ public class SConverter {
 		result.setValues(listvalues);
 		return result;
 	}
+
 	public DataObject convertFromSObject(SDataObject input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		DataObject result = convertFromSObject(input, StoreFactory.eINSTANCE.createDataObject(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public DataObject convertFromSObject(SDataObject input) throws BimserverDatabaseException {
+		DataObject result = convertFromSObject(input, StoreFactory.eINSTANCE.createDataObject(), null);
 		return result;
 	}
 
@@ -1804,12 +4592,22 @@ public class SConverter {
 		result.setUserId(userVal == null ? -1 : userVal.getOid());
 		return result;
 	}
+
 	public UserSession convertFromSObject(SUserSession input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		UserSession result = convertFromSObject(input, StoreFactory.eINSTANCE.createUserSession(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public UserSession convertFromSObject(SUserSession input) throws BimserverDatabaseException {
+		UserSession result = convertFromSObject(input, StoreFactory.eINSTANCE.createUserSession(), null);
 		return result;
 	}
 
@@ -1873,12 +4671,22 @@ public class SConverter {
 		result.setExecuted(input.getExecuted());
 		return result;
 	}
+
 	public Migration convertFromSObject(SMigration input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		Migration result = convertFromSObject(input, StoreFactory.eINSTANCE.createMigration(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public Migration convertFromSObject(SMigration input) throws BimserverDatabaseException {
+		Migration result = convertFromSObject(input, StoreFactory.eINSTANCE.createMigration(), null);
 		return result;
 	}
 
@@ -1937,12 +4745,22 @@ public class SConverter {
 		result.setGuid(input.getGuid());
 		return result;
 	}
+
 	public ReferenceDataValue convertFromSObject(SReferenceDataValue input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ReferenceDataValue result = convertFromSObject(input, StoreFactory.eINSTANCE.createReferenceDataValue(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ReferenceDataValue convertFromSObject(SReferenceDataValue input) throws BimserverDatabaseException {
+		ReferenceDataValue result = convertFromSObject(input, StoreFactory.eINSTANCE.createReferenceDataValue(), null);
 		return result;
 	}
 
@@ -2004,12 +4822,22 @@ public class SConverter {
 		result.setValues(listvalues);
 		return result;
 	}
+
 	public ListDataValue convertFromSObject(SListDataValue input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ListDataValue result = convertFromSObject(input, StoreFactory.eINSTANCE.createListDataValue(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ListDataValue convertFromSObject(SListDataValue input) throws BimserverDatabaseException {
+		ListDataValue result = convertFromSObject(input, StoreFactory.eINSTANCE.createListDataValue(), null);
 		return result;
 	}
 
@@ -2069,12 +4897,22 @@ public class SConverter {
 		result.setStringValue(input.getStringValue());
 		return result;
 	}
+
 	public SimpleDataValue convertFromSObject(SSimpleDataValue input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		SimpleDataValue result = convertFromSObject(input, StoreFactory.eINSTANCE.createSimpleDataValue(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public SimpleDataValue convertFromSObject(SSimpleDataValue input) throws BimserverDatabaseException {
+		SimpleDataValue result = convertFromSObject(input, StoreFactory.eINSTANCE.createSimpleDataValue(), null);
 		return result;
 	}
 
@@ -2131,12 +4969,22 @@ public class SConverter {
 		result.setValue(input.getValue());
 		return result;
 	}
+
 	public DatabaseInformationItem convertFromSObject(SDatabaseInformationItem input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		DatabaseInformationItem result = convertFromSObject(input, StoreFactory.eINSTANCE.createDatabaseInformationItem(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public DatabaseInformationItem convertFromSObject(SDatabaseInformationItem input) throws BimserverDatabaseException {
+		DatabaseInformationItem result = convertFromSObject(input, StoreFactory.eINSTANCE.createDatabaseInformationItem(), null);
 		return result;
 	}
 
@@ -2197,12 +5045,22 @@ public class SConverter {
 		result.setItems(listitems);
 		return result;
 	}
+
 	public DatabaseInformationCategory convertFromSObject(SDatabaseInformationCategory input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		DatabaseInformationCategory result = convertFromSObject(input, StoreFactory.eINSTANCE.createDatabaseInformationCategory(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public DatabaseInformationCategory convertFromSObject(SDatabaseInformationCategory input) throws BimserverDatabaseException {
+		DatabaseInformationCategory result = convertFromSObject(input, StoreFactory.eINSTANCE.createDatabaseInformationCategory(), null);
 		return result;
 	}
 
@@ -2274,12 +5132,22 @@ public class SConverter {
 		result.setCategories(listcategories);
 		return result;
 	}
+
 	public DatabaseInformation convertFromSObject(SDatabaseInformation input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		DatabaseInformation result = convertFromSObject(input, StoreFactory.eINSTANCE.createDatabaseInformation(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public DatabaseInformation convertFromSObject(SDatabaseInformation input) throws BimserverDatabaseException {
+		DatabaseInformation result = convertFromSObject(input, StoreFactory.eINSTANCE.createDatabaseInformation(), null);
 		return result;
 	}
 
@@ -2360,12 +5228,22 @@ public class SConverter {
 		result.setPluginBundleVersionId(pluginBundleVersionVal == null ? -1 : pluginBundleVersionVal.getOid());
 		return result;
 	}
+
 	public PluginDescriptor convertFromSObject(SPluginDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		PluginDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginDescriptor(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public PluginDescriptor convertFromSObject(SPluginDescriptor input) throws BimserverDatabaseException {
+		PluginDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginDescriptor(), null);
 		return result;
 	}
 
@@ -2434,12 +5312,22 @@ public class SConverter {
 		result.setSchema(input.getSchema());
 		return result;
 	}
+
 	public RevisionSummaryType convertFromSObject(SRevisionSummaryType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		RevisionSummaryType result = convertFromSObject(input, StoreFactory.eINSTANCE.createRevisionSummaryType(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public RevisionSummaryType convertFromSObject(SRevisionSummaryType input) throws BimserverDatabaseException {
+		RevisionSummaryType result = convertFromSObject(input, StoreFactory.eINSTANCE.createRevisionSummaryType(), null);
 		return result;
 	}
 
@@ -2501,12 +5389,22 @@ public class SConverter {
 		result.setTypes(listtypes);
 		return result;
 	}
+
 	public RevisionSummaryContainer convertFromSObject(SRevisionSummaryContainer input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		RevisionSummaryContainer result = convertFromSObject(input, StoreFactory.eINSTANCE.createRevisionSummaryContainer(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public RevisionSummaryContainer convertFromSObject(SRevisionSummaryContainer input) throws BimserverDatabaseException {
+		RevisionSummaryContainer result = convertFromSObject(input, StoreFactory.eINSTANCE.createRevisionSummaryContainer(), null);
 		return result;
 	}
 
@@ -2569,12 +5467,22 @@ public class SConverter {
 		result.setList(listlist);
 		return result;
 	}
+
 	public RevisionSummary convertFromSObject(SRevisionSummary input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		RevisionSummary result = convertFromSObject(input, StoreFactory.eINSTANCE.createRevisionSummary(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public RevisionSummary convertFromSObject(SRevisionSummary input) throws BimserverDatabaseException {
+		RevisionSummary result = convertFromSObject(input, StoreFactory.eINSTANCE.createRevisionSummary(), null);
 		return result;
 	}
 
@@ -2637,12 +5545,22 @@ public class SConverter {
 		result.setUserId(userVal == null ? -1 : userVal.getOid());
 		return result;
 	}
+
 	public LongAction convertFromSObject(SLongAction input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		LongAction result = convertFromSObject(input, StoreFactory.eINSTANCE.createLongAction(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public LongAction convertFromSObject(SLongAction input) throws BimserverDatabaseException {
+		LongAction result = convertFromSObject(input, StoreFactory.eINSTANCE.createLongAction(), null);
 		return result;
 	}
 
@@ -2701,12 +5619,22 @@ public class SConverter {
 		result.setClassName(input.getClassName());
 		return result;
 	}
+
 	public ObjectIDMPluginDescriptor convertFromSObject(SObjectIDMPluginDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ObjectIDMPluginDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectIDMPluginDescriptor(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ObjectIDMPluginDescriptor convertFromSObject(SObjectIDMPluginDescriptor input) throws BimserverDatabaseException {
+		ObjectIDMPluginDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectIDMPluginDescriptor(), null);
 		return result;
 	}
 
@@ -2778,12 +5706,22 @@ public class SConverter {
 		result.setDataObject(convertToSObject(dataObjectVal));
 		return result;
 	}
+
 	public CompareItem convertFromSObject(SCompareItem input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		CompareItem result = convertFromSObject(input, StoreFactory.eINSTANCE.createCompareItem(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public CompareItem convertFromSObject(SCompareItem input) throws BimserverDatabaseException {
+		CompareItem result = convertFromSObject(input, StoreFactory.eINSTANCE.createCompareItem(), null);
 		return result;
 	}
 
@@ -2848,12 +5786,22 @@ public class SConverter {
 		result.setDataObject(convertToSObject(dataObjectVal));
 		return result;
 	}
+
 	public ObjectAdded convertFromSObject(SObjectAdded input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ObjectAdded result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectAdded(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ObjectAdded convertFromSObject(SObjectAdded input) throws BimserverDatabaseException {
+		ObjectAdded result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectAdded(), null);
 		return result;
 	}
 
@@ -2909,12 +5857,22 @@ public class SConverter {
 		result.setDataObject(convertToSObject(dataObjectVal));
 		return result;
 	}
+
 	public ObjectRemoved convertFromSObject(SObjectRemoved input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ObjectRemoved result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectRemoved(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ObjectRemoved convertFromSObject(SObjectRemoved input) throws BimserverDatabaseException {
+		ObjectRemoved result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectRemoved(), null);
 		return result;
 	}
 
@@ -2973,12 +5931,22 @@ public class SConverter {
 		result.setDataObject(convertToSObject(dataObjectVal));
 		return result;
 	}
+
 	public ObjectModified convertFromSObject(SObjectModified input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ObjectModified result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectModified(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ObjectModified convertFromSObject(SObjectModified input) throws BimserverDatabaseException {
+		ObjectModified result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectModified(), null);
 		return result;
 	}
 
@@ -3041,12 +6009,22 @@ public class SConverter {
 		result.setItems(listitems);
 		return result;
 	}
+
 	public CompareContainer convertFromSObject(SCompareContainer input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		CompareContainer result = convertFromSObject(input, StoreFactory.eINSTANCE.createCompareContainer(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public CompareContainer convertFromSObject(SCompareContainer input) throws BimserverDatabaseException {
+		CompareContainer result = convertFromSObject(input, StoreFactory.eINSTANCE.createCompareContainer(), null);
 		return result;
 	}
 
@@ -3109,12 +6087,22 @@ public class SConverter {
 		result.setItems(listitems);
 		return result;
 	}
+
 	public CompareResult convertFromSObject(SCompareResult input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		CompareResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createCompareResult(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public CompareResult convertFromSObject(SCompareResult input) throws BimserverDatabaseException {
+		CompareResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createCompareResult(), null);
 		return result;
 	}
 
@@ -3187,12 +6175,22 @@ public class SConverter {
 		result.getInfos().addAll(input.getInfos());
 		return result;
 	}
+
 	public LongActionState convertFromSObject(SLongActionState input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		LongActionState result = convertFromSObject(input, StoreFactory.eINSTANCE.createLongActionState(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public LongActionState convertFromSObject(SLongActionState input) throws BimserverDatabaseException {
+		LongActionState result = convertFromSObject(input, StoreFactory.eINSTANCE.createLongActionState(), null);
 		return result;
 	}
 
@@ -3265,12 +6263,22 @@ public class SConverter {
 		result.setVersion(convertToSObject(versionVal));
 		return result;
 	}
+
 	public ServerInfo convertFromSObject(SServerInfo input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ServerInfo result = convertFromSObject(input, StoreFactory.eINSTANCE.createServerInfo(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ServerInfo convertFromSObject(SServerInfo input) throws BimserverDatabaseException {
+		ServerInfo result = convertFromSObject(input, StoreFactory.eINSTANCE.createServerInfo(), null);
 		return result;
 	}
 
@@ -3334,12 +6342,22 @@ public class SConverter {
 		result.setSupportEmail(input.getSupportEmail());
 		return result;
 	}
+
 	public Version convertFromSObject(SVersion input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		Version result = convertFromSObject(input, StoreFactory.eINSTANCE.createVersion(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public Version convertFromSObject(SVersion input) throws BimserverDatabaseException {
+		Version result = convertFromSObject(input, StoreFactory.eINSTANCE.createVersion(), null);
 		return result;
 	}
 
@@ -3410,12 +6428,22 @@ public class SConverter {
 		result.setMime(input.getMime());
 		return result;
 	}
+
 	public File convertFromSObject(SFile input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		File result = convertFromSObject(input, StoreFactory.eINSTANCE.createFile(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public File convertFromSObject(SFile input) throws BimserverDatabaseException {
+		File result = convertFromSObject(input, StoreFactory.eINSTANCE.createFile(), null);
 		return result;
 	}
 
@@ -3490,12 +6518,22 @@ public class SConverter {
 		result.setExtendedData(listextendedData);
 		return result;
 	}
+
 	public ExtendedDataSchema convertFromSObject(SExtendedDataSchema input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ExtendedDataSchema result = convertFromSObject(input, StoreFactory.eINSTANCE.createExtendedDataSchema(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ExtendedDataSchema convertFromSObject(SExtendedDataSchema input) throws BimserverDatabaseException {
+		ExtendedDataSchema result = convertFromSObject(input, StoreFactory.eINSTANCE.createExtendedDataSchema(), null);
 		return result;
 	}
 
@@ -3578,12 +6616,22 @@ public class SConverter {
 		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
 		return result;
 	}
+
 	public ExtendedData convertFromSObject(SExtendedData input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ExtendedData result = convertFromSObject(input, StoreFactory.eINSTANCE.createExtendedData(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ExtendedData convertFromSObject(SExtendedData input) throws BimserverDatabaseException {
+		ExtendedData result = convertFromSObject(input, StoreFactory.eINSTANCE.createExtendedData(), null);
 		return result;
 	}
 
@@ -3654,12 +6702,22 @@ public class SConverter {
 		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
+
 	public QueryEnginePluginConfiguration convertFromSObject(SQueryEnginePluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		QueryEnginePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createQueryEnginePluginConfiguration(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public QueryEnginePluginConfiguration convertFromSObject(SQueryEnginePluginConfiguration input) throws BimserverDatabaseException {
+		QueryEnginePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createQueryEnginePluginConfiguration(), null);
 		return result;
 	}
 
@@ -3727,12 +6785,22 @@ public class SConverter {
 		result.setServerSettingsId(serverSettingsVal == null ? -1 : serverSettingsVal.getOid());
 		return result;
 	}
+
 	public WebModulePluginConfiguration convertFromSObject(SWebModulePluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		WebModulePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createWebModulePluginConfiguration(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public WebModulePluginConfiguration convertFromSObject(SWebModulePluginConfiguration input) throws BimserverDatabaseException {
+		WebModulePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createWebModulePluginConfiguration(), null);
 		return result;
 	}
 
@@ -3800,12 +6868,22 @@ public class SConverter {
 		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
+
 	public ModelMergerPluginConfiguration convertFromSObject(SModelMergerPluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ModelMergerPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelMergerPluginConfiguration(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ModelMergerPluginConfiguration convertFromSObject(SModelMergerPluginConfiguration input) throws BimserverDatabaseException {
+		ModelMergerPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelMergerPluginConfiguration(), null);
 		return result;
 	}
 
@@ -3873,12 +6951,22 @@ public class SConverter {
 		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
+
 	public ModelComparePluginConfiguration convertFromSObject(SModelComparePluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ModelComparePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelComparePluginConfiguration(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ModelComparePluginConfiguration convertFromSObject(SModelComparePluginConfiguration input) throws BimserverDatabaseException {
+		ModelComparePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelComparePluginConfiguration(), null);
 		return result;
 	}
 
@@ -3946,9 +7034,19 @@ public class SConverter {
 		result.setIdentifier(input.getIdentifier());
 		return result;
 	}
+
 	public ProfileDescriptor convertFromSObject(SProfileDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ProfileDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createProfileDescriptor(), session);
 		
+		return result;
+	}
+
+	public ProfileDescriptor convertFromSObject(SProfileDescriptor input) throws BimserverDatabaseException {
+		ProfileDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createProfileDescriptor(), null);
 		return result;
 	}
 
@@ -4018,9 +7116,19 @@ public class SConverter {
 		result.setNewProfileUrl(input.getNewProfileUrl());
 		return result;
 	}
+
 	public ServiceDescriptor convertFromSObject(SServiceDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ServiceDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceDescriptor(), session);
 		
+		return result;
+	}
+
+	public ServiceDescriptor convertFromSObject(SServiceDescriptor input) throws BimserverDatabaseException {
+		ServiceDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceDescriptor(), null);
 		return result;
 	}
 
@@ -4119,12 +7227,22 @@ public class SConverter {
 		result.setModelCheckers(listmodelCheckers);
 		return result;
 	}
+
 	public Service convertFromSObject(SService input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		Service result = convertFromSObject(input, StoreFactory.eINSTANCE.createService(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public Service convertFromSObject(SService input) throws BimserverDatabaseException {
+		Service result = convertFromSObject(input, StoreFactory.eINSTANCE.createService(), null);
 		return result;
 	}
 
@@ -4203,12 +7321,22 @@ public class SConverter {
 		result.setExpires(input.getExpires());
 		return result;
 	}
+
 	public Token convertFromSObject(SToken input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		Token result = convertFromSObject(input, StoreFactory.eINSTANCE.createToken(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public Token convertFromSObject(SToken input) throws BimserverDatabaseException {
+		Token result = convertFromSObject(input, StoreFactory.eINSTANCE.createToken(), null);
 		return result;
 	}
 
@@ -4274,12 +7402,22 @@ public class SConverter {
 		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
+
 	public InternalServicePluginConfiguration convertFromSObject(SInternalServicePluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		InternalServicePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createInternalServicePluginConfiguration(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public InternalServicePluginConfiguration convertFromSObject(SInternalServicePluginConfiguration input) throws BimserverDatabaseException {
+		InternalServicePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createInternalServicePluginConfiguration(), null);
 		return result;
 	}
 
@@ -4341,9 +7479,19 @@ public class SConverter {
 		result.setSimpleName(input.getSimpleName());
 		return result;
 	}
+
 	public ServiceInterface convertFromSObject(SServiceInterface input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ServiceInterface result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceInterface(), session);
 		
+		return result;
+	}
+
+	public ServiceInterface convertFromSObject(SServiceInterface input) throws BimserverDatabaseException {
+		ServiceInterface result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceInterface(), null);
 		return result;
 	}
 
@@ -4400,9 +7548,19 @@ public class SConverter {
 		result.setReturnDoc(input.getReturnDoc());
 		return result;
 	}
+
 	public ServiceMethod convertFromSObject(SServiceMethod input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ServiceMethod result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceMethod(), session);
 		
+		return result;
+	}
+
+	public ServiceMethod convertFromSObject(SServiceMethod input) throws BimserverDatabaseException {
+		ServiceMethod result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceMethod(), null);
 		return result;
 	}
 
@@ -4469,9 +7627,19 @@ public class SConverter {
 		result.setGenericType(convertToSObject(genericTypeVal));
 		return result;
 	}
+
 	public ServiceField convertFromSObject(SServiceField input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ServiceField result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceField(), session);
 		
+		return result;
+	}
+
+	public ServiceField convertFromSObject(SServiceField input) throws BimserverDatabaseException {
+		ServiceField result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceField(), null);
 		return result;
 	}
 
@@ -4536,12 +7704,22 @@ public class SConverter {
 		result.setFields(listfields);
 		return result;
 	}
+
 	public ServiceType convertFromSObject(SServiceType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ServiceType result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceType(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ServiceType convertFromSObject(SServiceType input) throws BimserverDatabaseException {
+		ServiceType result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceType(), null);
 		return result;
 	}
 
@@ -4605,9 +7783,19 @@ public class SConverter {
 		result.setGenericType(convertToSObject(genericTypeVal));
 		return result;
 	}
+
 	public ServiceParameter convertFromSObject(SServiceParameter input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ServiceParameter result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceParameter(), session);
 		
+		return result;
+	}
+
+	public ServiceParameter convertFromSObject(SServiceParameter input) throws BimserverDatabaseException {
+		ServiceParameter result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceParameter(), null);
 		return result;
 	}
 
@@ -4678,9 +7866,19 @@ public class SConverter {
 		STypeDefinition result = new STypeDefinition();
 		return result;
 	}
+
 	public TypeDefinition convertFromSObject(STypeDefinition input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		TypeDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createTypeDefinition(), session);
 		
+		return result;
+	}
+
+	public TypeDefinition convertFromSObject(STypeDefinition input) throws BimserverDatabaseException {
+		TypeDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createTypeDefinition(), null);
 		return result;
 	}
 
@@ -4745,9 +7943,19 @@ public class SConverter {
 		result.setParameters(listparameters);
 		return result;
 	}
+
 	public ObjectDefinition convertFromSObject(SObjectDefinition input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ObjectDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectDefinition(), session);
 		
+		return result;
+	}
+
+	public ObjectDefinition convertFromSObject(SObjectDefinition input) throws BimserverDatabaseException {
+		ObjectDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectDefinition(), null);
 		return result;
 	}
 
@@ -4803,9 +8011,19 @@ public class SConverter {
 		result.setType(SPrimitiveEnum.values()[input.getType().ordinal()]);
 		return result;
 	}
+
 	public PrimitiveDefinition convertFromSObject(SPrimitiveDefinition input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		PrimitiveDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createPrimitiveDefinition(), session);
 		
+		return result;
+	}
+
+	public PrimitiveDefinition convertFromSObject(SPrimitiveDefinition input) throws BimserverDatabaseException {
+		PrimitiveDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createPrimitiveDefinition(), null);
 		return result;
 	}
 
@@ -4859,9 +8077,19 @@ public class SConverter {
 		result.setType(convertToSObject(typeVal));
 		return result;
 	}
+
 	public ArrayDefinition convertFromSObject(SArrayDefinition input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ArrayDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createArrayDefinition(), session);
 		
+		return result;
+	}
+
+	public ArrayDefinition convertFromSObject(SArrayDefinition input) throws BimserverDatabaseException {
+		ArrayDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createArrayDefinition(), null);
 		return result;
 	}
 
@@ -4920,9 +8148,19 @@ public class SConverter {
 		result.setDefaultValueId(defaultValueVal == null ? -1 : defaultValueVal.getOid());
 		return result;
 	}
+
 	public ParameterDefinition convertFromSObject(SParameterDefinition input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ParameterDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createParameterDefinition(), session);
 		
+		return result;
+	}
+
+	public ParameterDefinition convertFromSObject(SParameterDefinition input) throws BimserverDatabaseException {
+		ParameterDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createParameterDefinition(), null);
 		return result;
 	}
 
@@ -4989,12 +8227,22 @@ public class SConverter {
 		result.setRid(input.getRid());
 		return result;
 	}
+
 	public Type convertFromSObject(SType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		Type result = convertFromSObject(input, StoreFactory.eINSTANCE.createType(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public Type convertFromSObject(SType input) throws BimserverDatabaseException {
+		Type result = convertFromSObject(input, StoreFactory.eINSTANCE.createType(), null);
 		return result;
 	}
 
@@ -5062,12 +8310,22 @@ public class SConverter {
 		result.setParameters(listparameters);
 		return result;
 	}
+
 	public ObjectType convertFromSObject(SObjectType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ObjectType result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectType(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ObjectType convertFromSObject(SObjectType input) throws BimserverDatabaseException {
+		ObjectType result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectType(), null);
 		return result;
 	}
 
@@ -5140,12 +8398,22 @@ public class SConverter {
 		result.setRid(input.getRid());
 		return result;
 	}
+
 	public PrimitiveType convertFromSObject(SPrimitiveType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		PrimitiveType result = convertFromSObject(input, StoreFactory.eINSTANCE.createPrimitiveType(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public PrimitiveType convertFromSObject(SPrimitiveType input) throws BimserverDatabaseException {
+		PrimitiveType result = convertFromSObject(input, StoreFactory.eINSTANCE.createPrimitiveType(), null);
 		return result;
 	}
 
@@ -5214,12 +8482,22 @@ public class SConverter {
 		result.setValue(input.getValue());
 		return result;
 	}
+
 	public LongType convertFromSObject(SLongType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		LongType result = convertFromSObject(input, StoreFactory.eINSTANCE.createLongType(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public LongType convertFromSObject(SLongType input) throws BimserverDatabaseException {
+		LongType result = convertFromSObject(input, StoreFactory.eINSTANCE.createLongType(), null);
 		return result;
 	}
 
@@ -5274,12 +8552,22 @@ public class SConverter {
 		result.setValue(input.getValue());
 		return result;
 	}
+
 	public ByteArrayType convertFromSObject(SByteArrayType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ByteArrayType result = convertFromSObject(input, StoreFactory.eINSTANCE.createByteArrayType(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ByteArrayType convertFromSObject(SByteArrayType input) throws BimserverDatabaseException {
+		ByteArrayType result = convertFromSObject(input, StoreFactory.eINSTANCE.createByteArrayType(), null);
 		return result;
 	}
 
@@ -5334,12 +8622,22 @@ public class SConverter {
 		result.setValue(input.getValue());
 		return result;
 	}
+
 	public DoubleType convertFromSObject(SDoubleType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		DoubleType result = convertFromSObject(input, StoreFactory.eINSTANCE.createDoubleType(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public DoubleType convertFromSObject(SDoubleType input) throws BimserverDatabaseException {
+		DoubleType result = convertFromSObject(input, StoreFactory.eINSTANCE.createDoubleType(), null);
 		return result;
 	}
 
@@ -5394,12 +8692,22 @@ public class SConverter {
 		result.setValue(input.getValue());
 		return result;
 	}
+
 	public StringType convertFromSObject(SStringType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		StringType result = convertFromSObject(input, StoreFactory.eINSTANCE.createStringType(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public StringType convertFromSObject(SStringType input) throws BimserverDatabaseException {
+		StringType result = convertFromSObject(input, StoreFactory.eINSTANCE.createStringType(), null);
 		return result;
 	}
 
@@ -5454,12 +8762,22 @@ public class SConverter {
 		result.setValue(input.isValue());
 		return result;
 	}
+
 	public BooleanType convertFromSObject(SBooleanType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		BooleanType result = convertFromSObject(input, StoreFactory.eINSTANCE.createBooleanType(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public BooleanType convertFromSObject(SBooleanType input) throws BimserverDatabaseException {
+		BooleanType result = convertFromSObject(input, StoreFactory.eINSTANCE.createBooleanType(), null);
 		return result;
 	}
 
@@ -5518,12 +8836,22 @@ public class SConverter {
 		result.setValues(listvalues);
 		return result;
 	}
+
 	public ArrayType convertFromSObject(SArrayType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ArrayType result = convertFromSObject(input, StoreFactory.eINSTANCE.createArrayType(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ArrayType convertFromSObject(SArrayType input) throws BimserverDatabaseException {
+		ArrayType result = convertFromSObject(input, StoreFactory.eINSTANCE.createArrayType(), null);
 		return result;
 	}
 
@@ -5583,12 +8911,22 @@ public class SConverter {
 		result.setValue(convertToSObject(valueVal));
 		return result;
 	}
+
 	public Parameter convertFromSObject(SParameter input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		Parameter result = convertFromSObject(input, StoreFactory.eINSTANCE.createParameter(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public Parameter convertFromSObject(SParameter input) throws BimserverDatabaseException {
+		Parameter result = convertFromSObject(input, StoreFactory.eINSTANCE.createParameter(), null);
 		return result;
 	}
 
@@ -5652,12 +8990,22 @@ public class SConverter {
 		result.setDescription(input.getDescription());
 		return result;
 	}
+
 	public ImmediateNotificationResult convertFromSObject(SImmediateNotificationResult input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ImmediateNotificationResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createImmediateNotificationResult(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ImmediateNotificationResult convertFromSObject(SImmediateNotificationResult input) throws BimserverDatabaseException {
+		ImmediateNotificationResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createImmediateNotificationResult(), null);
 		return result;
 	}
 
@@ -5715,12 +9063,22 @@ public class SConverter {
 		result.setRid(input.getRid());
 		return result;
 	}
+
 	public RemoteServiceUpdate convertFromSObject(SRemoteServiceUpdate input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		RemoteServiceUpdate result = convertFromSObject(input, StoreFactory.eINSTANCE.createRemoteServiceUpdate(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public RemoteServiceUpdate convertFromSObject(SRemoteServiceUpdate input) throws BimserverDatabaseException {
+		RemoteServiceUpdate result = convertFromSObject(input, StoreFactory.eINSTANCE.createRemoteServiceUpdate(), null);
 		return result;
 	}
 
@@ -5777,12 +9135,22 @@ public class SConverter {
 		result.setPercentage(input.getPercentage());
 		return result;
 	}
+
 	public PercentageChange convertFromSObject(SPercentageChange input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		PercentageChange result = convertFromSObject(input, StoreFactory.eINSTANCE.createPercentageChange(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public PercentageChange convertFromSObject(SPercentageChange input) throws BimserverDatabaseException {
+		PercentageChange result = convertFromSObject(input, StoreFactory.eINSTANCE.createPercentageChange(), null);
 		return result;
 	}
 
@@ -5843,12 +9211,22 @@ public class SConverter {
 		result.setUserDir(input.getUserDir());
 		return result;
 	}
+
 	public SystemInfo convertFromSObject(SSystemInfo input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		SystemInfo result = convertFromSObject(input, StoreFactory.eINSTANCE.createSystemInfo(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public SystemInfo convertFromSObject(SSystemInfo input) throws BimserverDatabaseException {
+		SystemInfo result = convertFromSObject(input, StoreFactory.eINSTANCE.createSystemInfo(), null);
 		return result;
 	}
 
@@ -5931,12 +9309,22 @@ public class SConverter {
 		result.setJavaLineSeparator(input.getJavaLineSeparator());
 		return result;
 	}
+
 	public JavaInfo convertFromSObject(SJavaInfo input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		JavaInfo result = convertFromSObject(input, StoreFactory.eINSTANCE.createJavaInfo(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public JavaInfo convertFromSObject(SJavaInfo input) throws BimserverDatabaseException {
+		JavaInfo result = convertFromSObject(input, StoreFactory.eINSTANCE.createJavaInfo(), null);
 		return result;
 	}
 
@@ -6023,12 +9411,22 @@ public class SConverter {
 		result.setStarted(input.getStarted());
 		return result;
 	}
+
 	public BimServerInfo convertFromSObject(SBimServerInfo input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		BimServerInfo result = convertFromSObject(input, StoreFactory.eINSTANCE.createBimServerInfo(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public BimServerInfo convertFromSObject(SBimServerInfo input) throws BimserverDatabaseException {
+		BimServerInfo result = convertFromSObject(input, StoreFactory.eINSTANCE.createBimServerInfo(), null);
 		return result;
 	}
 
@@ -6107,12 +9505,22 @@ public class SConverter {
 		result.setSchema(input.getSchema());
 		return result;
 	}
+
 	public ProjectSmall convertFromSObject(SProjectSmall input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ProjectSmall result = convertFromSObject(input, StoreFactory.eINSTANCE.createProjectSmall(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ProjectSmall convertFromSObject(SProjectSmall input) throws BimserverDatabaseException {
+		ProjectSmall result = convertFromSObject(input, StoreFactory.eINSTANCE.createProjectSmall(), null);
 		return result;
 	}
 
@@ -6183,12 +9591,22 @@ public class SConverter {
 		result.setAuthorization(input.getAuthorization());
 		return result;
 	}
+
 	public IfcHeader convertFromSObject(SIfcHeader input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		IfcHeader result = convertFromSObject(input, StoreFactory.eINSTANCE.createIfcHeader(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public IfcHeader convertFromSObject(SIfcHeader input) throws BimserverDatabaseException {
+		IfcHeader result = convertFromSObject(input, StoreFactory.eINSTANCE.createIfcHeader(), null);
 		return result;
 	}
 
@@ -6257,12 +9675,22 @@ public class SConverter {
 		result.setRid(input.getRid());
 		return result;
 	}
+
 	public ModelCheckerResultItem convertFromSObject(SModelCheckerResultItem input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ModelCheckerResultItem result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerResultItem(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ModelCheckerResultItem convertFromSObject(SModelCheckerResultItem input) throws BimserverDatabaseException {
+		ModelCheckerResultItem result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerResultItem(), null);
 		return result;
 	}
 
@@ -6322,12 +9750,22 @@ public class SConverter {
 		result.setText(input.getText());
 		return result;
 	}
+
 	public ModelCheckerResultHeader convertFromSObject(SModelCheckerResultHeader input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ModelCheckerResultHeader result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerResultHeader(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ModelCheckerResultHeader convertFromSObject(SModelCheckerResultHeader input) throws BimserverDatabaseException {
+		ModelCheckerResultHeader result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerResultHeader(), null);
 		return result;
 	}
 
@@ -6393,12 +9831,22 @@ public class SConverter {
 		result.setObjectId(input.getObjectId());
 		return result;
 	}
+
 	public ModelCheckerResultLine convertFromSObject(SModelCheckerResultLine input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ModelCheckerResultLine result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerResultLine(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ModelCheckerResultLine convertFromSObject(SModelCheckerResultLine input) throws BimserverDatabaseException {
+		ModelCheckerResultLine result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerResultLine(), null);
 		return result;
 	}
 
@@ -6462,12 +9910,22 @@ public class SConverter {
 		result.setItems(listitems);
 		return result;
 	}
+
 	public ModelCheckerResult convertFromSObject(SModelCheckerResult input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ModelCheckerResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerResult(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ModelCheckerResult convertFromSObject(SModelCheckerResult input) throws BimserverDatabaseException {
+		ModelCheckerResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerResult(), null);
 		return result;
 	}
 
@@ -6531,12 +9989,22 @@ public class SConverter {
 		result.setModelCheckerPluginClassName(input.getModelCheckerPluginClassName());
 		return result;
 	}
+
 	public ModelCheckerInstance convertFromSObject(SModelCheckerInstance input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		ModelCheckerInstance result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerInstance(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public ModelCheckerInstance convertFromSObject(SModelCheckerInstance input) throws BimserverDatabaseException {
+		ModelCheckerInstance result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerInstance(), null);
 		return result;
 	}
 
@@ -6611,12 +10079,22 @@ public class SConverter {
 		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
+
 	public MessagingSerializerPluginConfiguration convertFromSObject(SMessagingSerializerPluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		MessagingSerializerPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createMessagingSerializerPluginConfiguration(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public MessagingSerializerPluginConfiguration convertFromSObject(SMessagingSerializerPluginConfiguration input) throws BimserverDatabaseException {
+		MessagingSerializerPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createMessagingSerializerPluginConfiguration(), null);
 		return result;
 	}
 
@@ -6680,12 +10158,22 @@ public class SConverter {
 		result.setInterfaces(listinterfaces);
 		return result;
 	}
+
 	public Metrics convertFromSObject(SMetrics input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		Metrics result = convertFromSObject(input, StoreFactory.eINSTANCE.createMetrics(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public Metrics convertFromSObject(SMetrics input) throws BimserverDatabaseException {
+		Metrics result = convertFromSObject(input, StoreFactory.eINSTANCE.createMetrics(), null);
 		return result;
 	}
 
@@ -6748,12 +10236,22 @@ public class SConverter {
 		result.setMethods(listmethods);
 		return result;
 	}
+
 	public InterfaceMetric convertFromSObject(SInterfaceMetric input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		InterfaceMetric result = convertFromSObject(input, StoreFactory.eINSTANCE.createInterfaceMetric(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public InterfaceMetric convertFromSObject(SInterfaceMetric input) throws BimserverDatabaseException {
+		InterfaceMetric result = convertFromSObject(input, StoreFactory.eINSTANCE.createInterfaceMetric(), null);
 		return result;
 	}
 
@@ -6817,12 +10315,22 @@ public class SConverter {
 		result.setLongestMs(input.getLongestMs());
 		return result;
 	}
+
 	public MethodMetric convertFromSObject(SMethodMetric input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		MethodMetric result = convertFromSObject(input, StoreFactory.eINSTANCE.createMethodMetric(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public MethodMetric convertFromSObject(SMethodMetric input) throws BimserverDatabaseException {
+		MethodMetric result = convertFromSObject(input, StoreFactory.eINSTANCE.createMethodMetric(), null);
 		return result;
 	}
 
@@ -6891,12 +10399,22 @@ public class SConverter {
 		result.setName(input.getName());
 		return result;
 	}
+
 	public PluginBundleVersion convertFromSObject(SPluginBundleVersion input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		PluginBundleVersion result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginBundleVersion(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public PluginBundleVersion convertFromSObject(SPluginBundleVersion input) throws BimserverDatabaseException {
+		PluginBundleVersion result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginBundleVersion(), null);
 		return result;
 	}
 
@@ -6984,12 +10502,22 @@ public class SConverter {
 		result.setInstalledVersion(convertToSObject(installedVersionVal));
 		return result;
 	}
+
 	public PluginBundle convertFromSObject(SPluginBundle input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		PluginBundle result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginBundle(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public PluginBundle convertFromSObject(SPluginBundle input) throws BimserverDatabaseException {
+		PluginBundle result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginBundle(), null);
 		return result;
 	}
 
@@ -7057,12 +10585,22 @@ public class SConverter {
 		result.setInstallForNewUsers(input.isInstallForNewUsers());
 		return result;
 	}
+
 	public PluginInformation convertFromSObject(SPluginInformation input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		PluginInformation result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginInformation(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public PluginInformation convertFromSObject(SPluginInformation input) throws BimserverDatabaseException {
+		PluginInformation result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginInformation(), null);
 		return result;
 	}
 
@@ -7077,2311 +10615,6 @@ public class SConverter {
 		result.setIdentifier(input.getIdentifier());
 		result.setInstallForAllUsers(input.isInstallForAllUsers());
 		result.setInstallForNewUsers(input.isInstallForNewUsers());
-		return result;
-	}
-		public SAccessMethod convertToSObject(AccessMethod input) {
-			return SAccessMethod.values()[input.ordinal()];
-		}
-		
-		public AccessMethod convertFromSObject(SAccessMethod input) {
-			return AccessMethod.values()[input.ordinal()];
-		}
-
-	public Set<SLogAction> convertToSSetLogAction(Collection<LogAction> input) {
-		Set<SLogAction> result = new HashSet<SLogAction>();
-		for (LogAction o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<LogAction> convertFromSSetLogAction(Collection<SLogAction> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<LogAction> result = new HashSet<LogAction>();
-		for (SLogAction o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SLogAction> convertToSListLogAction(Collection<LogAction> input) {
-		List<SLogAction> result = new ArrayList<SLogAction>();
-		for (LogAction o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<LogAction> convertFromSListLogAction(Collection<SLogAction> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<LogAction> result = new ArrayList<LogAction>();
-		for (SLogAction o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SLogAction convertToSObject(LogAction input) {
-		if (input == null) {
-			return null;
-		}
-		
-		if (input instanceof DatabaseCreated) {
-			return convertToSObject((DatabaseCreated)input);
-		}
-		else if (input instanceof ExtendedDataAddedToRevision) {
-			return convertToSObject((ExtendedDataAddedToRevision)input);
-		}
-		else if (input instanceof RemoteServiceCalled) {
-			return convertToSObject((RemoteServiceCalled)input);
-		}
-		else if (input instanceof NewObjectIDMUploaded) {
-			return convertToSObject((NewObjectIDMUploaded)input);
-		}
-		else if (input instanceof Download) {
-			return convertToSObject((Download)input);
-		}
-		else if (input instanceof ServerStarted) {
-			return convertToSObject((ServerStarted)input);
-		}
-		else if (input instanceof RevisionBranched) {
-			return convertToSObject((RevisionBranched)input);
-		}
-		else if (input instanceof CheckoutRelated) {
-			return convertToSObject((CheckoutRelated)input);
-		}
-		else if (input instanceof ExtendedDataAddedToProject) {
-			return convertToSObject((ExtendedDataAddedToProject)input);
-		}
-		else if (input instanceof SettingsSaved) {
-			return convertToSObject((SettingsSaved)input);
-		}
-		else if (input instanceof RevisionRelated) {
-			return convertToSObject((RevisionRelated)input);
-		}
-		else if (input instanceof UserRelated) {
-			return convertToSObject((UserRelated)input);
-		}
-		else if (input instanceof ProjectRelated) {
-			return convertToSObject((ProjectRelated)input);
-		}
-		else if (input instanceof GeoTagUpdated) {
-			return convertToSObject((GeoTagUpdated)input);
-		}
-		SLogAction result = new SLogAction();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		return result;
-	}
-	public LogAction convertFromSObject(SLogAction input, DatabaseSession session) throws BimserverDatabaseException {
-		LogAction result = convertFromSObject(input, LogFactory.eINSTANCE.createLogAction(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public LogAction convertFromSObject(SLogAction input, LogAction result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		if (input instanceof SDatabaseCreated) {
-			return convertFromSObject((SDatabaseCreated)input, session);
-		}
-		else if (input instanceof SExtendedDataAddedToRevision) {
-			return convertFromSObject((SExtendedDataAddedToRevision)input, session);
-		}
-		else if (input instanceof SRemoteServiceCalled) {
-			return convertFromSObject((SRemoteServiceCalled)input, session);
-		}
-		else if (input instanceof SNewObjectIDMUploaded) {
-			return convertFromSObject((SNewObjectIDMUploaded)input, session);
-		}
-		else if (input instanceof SDownload) {
-			return convertFromSObject((SDownload)input, session);
-		}
-		else if (input instanceof SServerStarted) {
-			return convertFromSObject((SServerStarted)input, session);
-		}
-		else if (input instanceof SRevisionBranched) {
-			return convertFromSObject((SRevisionBranched)input, session);
-		}
-		else if (input instanceof SCheckoutRelated) {
-			return convertFromSObject((SCheckoutRelated)input, session);
-		}
-		else if (input instanceof SExtendedDataAddedToProject) {
-			return convertFromSObject((SExtendedDataAddedToProject)input, session);
-		}
-		else if (input instanceof SSettingsSaved) {
-			return convertFromSObject((SSettingsSaved)input, session);
-		}
-		else if (input instanceof SRevisionRelated) {
-			return convertFromSObject((SRevisionRelated)input, session);
-		}
-		else if (input instanceof SUserRelated) {
-			return convertFromSObject((SUserRelated)input, session);
-		}
-		else if (input instanceof SProjectRelated) {
-			return convertFromSObject((SProjectRelated)input, session);
-		}
-		else if (input instanceof SGeoTagUpdated) {
-			return convertFromSObject((SGeoTagUpdated)input, session);
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SServerLog> convertToSSetServerLog(Collection<ServerLog> input) {
-		Set<SServerLog> result = new HashSet<SServerLog>();
-		for (ServerLog o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<ServerLog> convertFromSSetServerLog(Collection<SServerLog> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<ServerLog> result = new HashSet<ServerLog>();
-		for (SServerLog o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SServerLog> convertToSListServerLog(Collection<ServerLog> input) {
-		List<SServerLog> result = new ArrayList<SServerLog>();
-		for (ServerLog o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<ServerLog> convertFromSListServerLog(Collection<SServerLog> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<ServerLog> result = new ArrayList<ServerLog>();
-		for (SServerLog o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SServerLog convertToSObject(ServerLog input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SServerLog result = new SServerLog();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		List<Long> listactions = new ArrayList<Long>();
-		for (LogAction v : input.getActions()) {
-			listactions.add(v.getOid());
-		}
-		result.setActions(listactions);
-		return result;
-	}
-	public ServerLog convertFromSObject(SServerLog input, DatabaseSession session) throws BimserverDatabaseException {
-		ServerLog result = convertFromSObject(input, LogFactory.eINSTANCE.createServerLog(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public ServerLog convertFromSObject(SServerLog input, ServerLog result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		List<LogAction> listactions = result.getActions();
-		for (long oid : input.getActions()) {
-			listactions.add((LogAction)session.get(LogPackage.eINSTANCE.getLogAction(), oid, OldQuery.getDefault()));
-		}
-		return result;
-	}
-
-	public Set<SProjectRelated> convertToSSetProjectRelated(Collection<ProjectRelated> input) {
-		Set<SProjectRelated> result = new HashSet<SProjectRelated>();
-		for (ProjectRelated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<ProjectRelated> convertFromSSetProjectRelated(Collection<SProjectRelated> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<ProjectRelated> result = new HashSet<ProjectRelated>();
-		for (SProjectRelated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SProjectRelated> convertToSListProjectRelated(Collection<ProjectRelated> input) {
-		List<SProjectRelated> result = new ArrayList<SProjectRelated>();
-		for (ProjectRelated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<ProjectRelated> convertFromSListProjectRelated(Collection<SProjectRelated> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<ProjectRelated> result = new ArrayList<ProjectRelated>();
-		for (SProjectRelated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SProjectRelated convertToSObject(ProjectRelated input) {
-		if (input == null) {
-			return null;
-		}
-		
-		if (input instanceof ProjectUpdated) {
-			return convertToSObject((ProjectUpdated)input);
-		}
-		else if (input instanceof ProjectUndeleted) {
-			return convertToSObject((ProjectUndeleted)input);
-		}
-		else if (input instanceof NewProjectAdded) {
-			return convertToSObject((NewProjectAdded)input);
-		}
-		else if (input instanceof ProjectDeleted) {
-			return convertToSObject((ProjectDeleted)input);
-		}
-		SProjectRelated result = new SProjectRelated();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Project projectVal = input.getProject();
-		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
-		return result;
-	}
-	public ProjectRelated convertFromSObject(SProjectRelated input, DatabaseSession session) throws BimserverDatabaseException {
-		ProjectRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectRelated(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public ProjectRelated convertFromSObject(SProjectRelated input, ProjectRelated result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		if (input instanceof SProjectUpdated) {
-			return convertFromSObject((SProjectUpdated)input, session);
-		}
-		else if (input instanceof SProjectUndeleted) {
-			return convertFromSObject((SProjectUndeleted)input, session);
-		}
-		else if (input instanceof SNewProjectAdded) {
-			return convertFromSObject((SNewProjectAdded)input, session);
-		}
-		else if (input instanceof SProjectDeleted) {
-			return convertFromSObject((SProjectDeleted)input, session);
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SCheckoutRelated> convertToSSetCheckoutRelated(Collection<CheckoutRelated> input) {
-		Set<SCheckoutRelated> result = new HashSet<SCheckoutRelated>();
-		for (CheckoutRelated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<CheckoutRelated> convertFromSSetCheckoutRelated(Collection<SCheckoutRelated> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<CheckoutRelated> result = new HashSet<CheckoutRelated>();
-		for (SCheckoutRelated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SCheckoutRelated> convertToSListCheckoutRelated(Collection<CheckoutRelated> input) {
-		List<SCheckoutRelated> result = new ArrayList<SCheckoutRelated>();
-		for (CheckoutRelated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<CheckoutRelated> convertFromSListCheckoutRelated(Collection<SCheckoutRelated> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<CheckoutRelated> result = new ArrayList<CheckoutRelated>();
-		for (SCheckoutRelated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SCheckoutRelated convertToSObject(CheckoutRelated input) {
-		if (input == null) {
-			return null;
-		}
-		
-		if (input instanceof NewCheckoutAdded) {
-			return convertToSObject((NewCheckoutAdded)input);
-		}
-		SCheckoutRelated result = new SCheckoutRelated();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Checkout checkoutVal = input.getCheckout();
-		result.setCheckoutId(checkoutVal == null ? -1 : checkoutVal.getOid());
-		return result;
-	}
-	public CheckoutRelated convertFromSObject(SCheckoutRelated input, DatabaseSession session) throws BimserverDatabaseException {
-		CheckoutRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createCheckoutRelated(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public CheckoutRelated convertFromSObject(SCheckoutRelated input, CheckoutRelated result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		if (input instanceof SNewCheckoutAdded) {
-			return convertFromSObject((SNewCheckoutAdded)input, session);
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setCheckout((Checkout)session.get(StorePackage.eINSTANCE.getCheckout(), input.getCheckoutId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SRevisionRelated> convertToSSetRevisionRelated(Collection<RevisionRelated> input) {
-		Set<SRevisionRelated> result = new HashSet<SRevisionRelated>();
-		for (RevisionRelated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<RevisionRelated> convertFromSSetRevisionRelated(Collection<SRevisionRelated> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<RevisionRelated> result = new HashSet<RevisionRelated>();
-		for (SRevisionRelated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SRevisionRelated> convertToSListRevisionRelated(Collection<RevisionRelated> input) {
-		List<SRevisionRelated> result = new ArrayList<SRevisionRelated>();
-		for (RevisionRelated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<RevisionRelated> convertFromSListRevisionRelated(Collection<SRevisionRelated> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<RevisionRelated> result = new ArrayList<RevisionRelated>();
-		for (SRevisionRelated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SRevisionRelated convertToSObject(RevisionRelated input) {
-		if (input == null) {
-			return null;
-		}
-		
-		if (input instanceof NewRevisionAdded) {
-			return convertToSObject((NewRevisionAdded)input);
-		}
-		else if (input instanceof RevisionUpdated) {
-			return convertToSObject((RevisionUpdated)input);
-		}
-		SRevisionRelated result = new SRevisionRelated();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Revision revisionVal = input.getRevision();
-		result.setRevisionId(revisionVal == null ? -1 : revisionVal.getOid());
-		return result;
-	}
-	public RevisionRelated convertFromSObject(SRevisionRelated input, DatabaseSession session) throws BimserverDatabaseException {
-		RevisionRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createRevisionRelated(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public RevisionRelated convertFromSObject(SRevisionRelated input, RevisionRelated result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		if (input instanceof SNewRevisionAdded) {
-			return convertFromSObject((SNewRevisionAdded)input, session);
-		}
-		else if (input instanceof SRevisionUpdated) {
-			return convertFromSObject((SRevisionUpdated)input, session);
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SUserRelated> convertToSSetUserRelated(Collection<UserRelated> input) {
-		Set<SUserRelated> result = new HashSet<SUserRelated>();
-		for (UserRelated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<UserRelated> convertFromSSetUserRelated(Collection<SUserRelated> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<UserRelated> result = new HashSet<UserRelated>();
-		for (SUserRelated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SUserRelated> convertToSListUserRelated(Collection<UserRelated> input) {
-		List<SUserRelated> result = new ArrayList<SUserRelated>();
-		for (UserRelated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<UserRelated> convertFromSListUserRelated(Collection<SUserRelated> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<UserRelated> result = new ArrayList<UserRelated>();
-		for (SUserRelated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SUserRelated convertToSObject(UserRelated input) {
-		if (input == null) {
-			return null;
-		}
-		
-		if (input instanceof UserUndeleted) {
-			return convertToSObject((UserUndeleted)input);
-		}
-		else if (input instanceof NewUserAdded) {
-			return convertToSObject((NewUserAdded)input);
-		}
-		else if (input instanceof PasswordChanged) {
-			return convertToSObject((PasswordChanged)input);
-		}
-		else if (input instanceof UserRemovedFromProject) {
-			return convertToSObject((UserRemovedFromProject)input);
-		}
-		else if (input instanceof PasswordReset) {
-			return convertToSObject((PasswordReset)input);
-		}
-		else if (input instanceof UserDeleted) {
-			return convertToSObject((UserDeleted)input);
-		}
-		else if (input instanceof UserChanged) {
-			return convertToSObject((UserChanged)input);
-		}
-		else if (input instanceof UserAddedToProject) {
-			return convertToSObject((UserAddedToProject)input);
-		}
-		SUserRelated result = new SUserRelated();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		User userVal = input.getUser();
-		result.setUserId(userVal == null ? -1 : userVal.getOid());
-		return result;
-	}
-	public UserRelated convertFromSObject(SUserRelated input, DatabaseSession session) throws BimserverDatabaseException {
-		UserRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createUserRelated(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public UserRelated convertFromSObject(SUserRelated input, UserRelated result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		if (input instanceof SUserUndeleted) {
-			return convertFromSObject((SUserUndeleted)input, session);
-		}
-		else if (input instanceof SNewUserAdded) {
-			return convertFromSObject((SNewUserAdded)input, session);
-		}
-		else if (input instanceof SPasswordChanged) {
-			return convertFromSObject((SPasswordChanged)input, session);
-		}
-		else if (input instanceof SUserRemovedFromProject) {
-			return convertFromSObject((SUserRemovedFromProject)input, session);
-		}
-		else if (input instanceof SPasswordReset) {
-			return convertFromSObject((SPasswordReset)input, session);
-		}
-		else if (input instanceof SUserDeleted) {
-			return convertFromSObject((SUserDeleted)input, session);
-		}
-		else if (input instanceof SUserChanged) {
-			return convertFromSObject((SUserChanged)input, session);
-		}
-		else if (input instanceof SUserAddedToProject) {
-			return convertFromSObject((SUserAddedToProject)input, session);
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SNewUserAdded> convertToSSetNewUserAdded(Collection<NewUserAdded> input) {
-		Set<SNewUserAdded> result = new HashSet<SNewUserAdded>();
-		for (NewUserAdded o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<NewUserAdded> convertFromSSetNewUserAdded(Collection<SNewUserAdded> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<NewUserAdded> result = new HashSet<NewUserAdded>();
-		for (SNewUserAdded o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SNewUserAdded> convertToSListNewUserAdded(Collection<NewUserAdded> input) {
-		List<SNewUserAdded> result = new ArrayList<SNewUserAdded>();
-		for (NewUserAdded o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<NewUserAdded> convertFromSListNewUserAdded(Collection<SNewUserAdded> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<NewUserAdded> result = new ArrayList<NewUserAdded>();
-		for (SNewUserAdded o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SNewUserAdded convertToSObject(NewUserAdded input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SNewUserAdded result = new SNewUserAdded();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		User userVal = input.getUser();
-		result.setUserId(userVal == null ? -1 : userVal.getOid());
-		return result;
-	}
-	public NewUserAdded convertFromSObject(SNewUserAdded input, DatabaseSession session) throws BimserverDatabaseException {
-		NewUserAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewUserAdded(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public NewUserAdded convertFromSObject(SNewUserAdded input, NewUserAdded result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SNewProjectAdded> convertToSSetNewProjectAdded(Collection<NewProjectAdded> input) {
-		Set<SNewProjectAdded> result = new HashSet<SNewProjectAdded>();
-		for (NewProjectAdded o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<NewProjectAdded> convertFromSSetNewProjectAdded(Collection<SNewProjectAdded> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<NewProjectAdded> result = new HashSet<NewProjectAdded>();
-		for (SNewProjectAdded o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SNewProjectAdded> convertToSListNewProjectAdded(Collection<NewProjectAdded> input) {
-		List<SNewProjectAdded> result = new ArrayList<SNewProjectAdded>();
-		for (NewProjectAdded o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<NewProjectAdded> convertFromSListNewProjectAdded(Collection<SNewProjectAdded> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<NewProjectAdded> result = new ArrayList<NewProjectAdded>();
-		for (SNewProjectAdded o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SNewProjectAdded convertToSObject(NewProjectAdded input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SNewProjectAdded result = new SNewProjectAdded();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Project projectVal = input.getProject();
-		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
-		Project parentProjectVal = input.getParentProject();
-		result.setParentProjectId(parentProjectVal == null ? -1 : parentProjectVal.getOid());
-		return result;
-	}
-	public NewProjectAdded convertFromSObject(SNewProjectAdded input, DatabaseSession session) throws BimserverDatabaseException {
-		NewProjectAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewProjectAdded(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public NewProjectAdded convertFromSObject(SNewProjectAdded input, NewProjectAdded result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
-		result.setParentProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getParentProjectId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SRevisionBranched> convertToSSetRevisionBranched(Collection<RevisionBranched> input) {
-		Set<SRevisionBranched> result = new HashSet<SRevisionBranched>();
-		for (RevisionBranched o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<RevisionBranched> convertFromSSetRevisionBranched(Collection<SRevisionBranched> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<RevisionBranched> result = new HashSet<RevisionBranched>();
-		for (SRevisionBranched o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SRevisionBranched> convertToSListRevisionBranched(Collection<RevisionBranched> input) {
-		List<SRevisionBranched> result = new ArrayList<SRevisionBranched>();
-		for (RevisionBranched o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<RevisionBranched> convertFromSListRevisionBranched(Collection<SRevisionBranched> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<RevisionBranched> result = new ArrayList<RevisionBranched>();
-		for (SRevisionBranched o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SRevisionBranched convertToSObject(RevisionBranched input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SRevisionBranched result = new SRevisionBranched();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Revision oldrevisionVal = input.getOldrevision();
-		result.setOldrevisionId(oldrevisionVal == null ? -1 : oldrevisionVal.getOid());
-		Revision newrevisionVal = input.getNewrevision();
-		result.setNewrevisionId(newrevisionVal == null ? -1 : newrevisionVal.getOid());
-		return result;
-	}
-	public RevisionBranched convertFromSObject(SRevisionBranched input, DatabaseSession session) throws BimserverDatabaseException {
-		RevisionBranched result = convertFromSObject(input, LogFactory.eINSTANCE.createRevisionBranched(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public RevisionBranched convertFromSObject(SRevisionBranched input, RevisionBranched result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setOldrevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getOldrevisionId(), OldQuery.getDefault()));
-		result.setNewrevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getNewrevisionId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SNewRevisionAdded> convertToSSetNewRevisionAdded(Collection<NewRevisionAdded> input) {
-		Set<SNewRevisionAdded> result = new HashSet<SNewRevisionAdded>();
-		for (NewRevisionAdded o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<NewRevisionAdded> convertFromSSetNewRevisionAdded(Collection<SNewRevisionAdded> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<NewRevisionAdded> result = new HashSet<NewRevisionAdded>();
-		for (SNewRevisionAdded o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SNewRevisionAdded> convertToSListNewRevisionAdded(Collection<NewRevisionAdded> input) {
-		List<SNewRevisionAdded> result = new ArrayList<SNewRevisionAdded>();
-		for (NewRevisionAdded o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<NewRevisionAdded> convertFromSListNewRevisionAdded(Collection<SNewRevisionAdded> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<NewRevisionAdded> result = new ArrayList<NewRevisionAdded>();
-		for (SNewRevisionAdded o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SNewRevisionAdded convertToSObject(NewRevisionAdded input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SNewRevisionAdded result = new SNewRevisionAdded();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Revision revisionVal = input.getRevision();
-		result.setRevisionId(revisionVal == null ? -1 : revisionVal.getOid());
-		Project projectVal = input.getProject();
-		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
-		return result;
-	}
-	public NewRevisionAdded convertFromSObject(SNewRevisionAdded input, DatabaseSession session) throws BimserverDatabaseException {
-		NewRevisionAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewRevisionAdded(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public NewRevisionAdded convertFromSObject(SNewRevisionAdded input, NewRevisionAdded result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SNewCheckoutAdded> convertToSSetNewCheckoutAdded(Collection<NewCheckoutAdded> input) {
-		Set<SNewCheckoutAdded> result = new HashSet<SNewCheckoutAdded>();
-		for (NewCheckoutAdded o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<NewCheckoutAdded> convertFromSSetNewCheckoutAdded(Collection<SNewCheckoutAdded> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<NewCheckoutAdded> result = new HashSet<NewCheckoutAdded>();
-		for (SNewCheckoutAdded o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SNewCheckoutAdded> convertToSListNewCheckoutAdded(Collection<NewCheckoutAdded> input) {
-		List<SNewCheckoutAdded> result = new ArrayList<SNewCheckoutAdded>();
-		for (NewCheckoutAdded o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<NewCheckoutAdded> convertFromSListNewCheckoutAdded(Collection<SNewCheckoutAdded> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<NewCheckoutAdded> result = new ArrayList<NewCheckoutAdded>();
-		for (SNewCheckoutAdded o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SNewCheckoutAdded convertToSObject(NewCheckoutAdded input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SNewCheckoutAdded result = new SNewCheckoutAdded();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Checkout checkoutVal = input.getCheckout();
-		result.setCheckoutId(checkoutVal == null ? -1 : checkoutVal.getOid());
-		return result;
-	}
-	public NewCheckoutAdded convertFromSObject(SNewCheckoutAdded input, DatabaseSession session) throws BimserverDatabaseException {
-		NewCheckoutAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewCheckoutAdded(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public NewCheckoutAdded convertFromSObject(SNewCheckoutAdded input, NewCheckoutAdded result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setCheckout((Checkout)session.get(StorePackage.eINSTANCE.getCheckout(), input.getCheckoutId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SSettingsSaved> convertToSSetSettingsSaved(Collection<SettingsSaved> input) {
-		Set<SSettingsSaved> result = new HashSet<SSettingsSaved>();
-		for (SettingsSaved o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<SettingsSaved> convertFromSSetSettingsSaved(Collection<SSettingsSaved> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<SettingsSaved> result = new HashSet<SettingsSaved>();
-		for (SSettingsSaved o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SSettingsSaved> convertToSListSettingsSaved(Collection<SettingsSaved> input) {
-		List<SSettingsSaved> result = new ArrayList<SSettingsSaved>();
-		for (SettingsSaved o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<SettingsSaved> convertFromSListSettingsSaved(Collection<SSettingsSaved> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<SettingsSaved> result = new ArrayList<SettingsSaved>();
-		for (SSettingsSaved o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SSettingsSaved convertToSObject(SettingsSaved input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SSettingsSaved result = new SSettingsSaved();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		return result;
-	}
-	public SettingsSaved convertFromSObject(SSettingsSaved input, DatabaseSession session) throws BimserverDatabaseException {
-		SettingsSaved result = convertFromSObject(input, LogFactory.eINSTANCE.createSettingsSaved(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public SettingsSaved convertFromSObject(SSettingsSaved input, SettingsSaved result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SUserAddedToProject> convertToSSetUserAddedToProject(Collection<UserAddedToProject> input) {
-		Set<SUserAddedToProject> result = new HashSet<SUserAddedToProject>();
-		for (UserAddedToProject o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<UserAddedToProject> convertFromSSetUserAddedToProject(Collection<SUserAddedToProject> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<UserAddedToProject> result = new HashSet<UserAddedToProject>();
-		for (SUserAddedToProject o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SUserAddedToProject> convertToSListUserAddedToProject(Collection<UserAddedToProject> input) {
-		List<SUserAddedToProject> result = new ArrayList<SUserAddedToProject>();
-		for (UserAddedToProject o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<UserAddedToProject> convertFromSListUserAddedToProject(Collection<SUserAddedToProject> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<UserAddedToProject> result = new ArrayList<UserAddedToProject>();
-		for (SUserAddedToProject o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SUserAddedToProject convertToSObject(UserAddedToProject input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SUserAddedToProject result = new SUserAddedToProject();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		User userVal = input.getUser();
-		result.setUserId(userVal == null ? -1 : userVal.getOid());
-		Project projectVal = input.getProject();
-		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
-		return result;
-	}
-	public UserAddedToProject convertFromSObject(SUserAddedToProject input, DatabaseSession session) throws BimserverDatabaseException {
-		UserAddedToProject result = convertFromSObject(input, LogFactory.eINSTANCE.createUserAddedToProject(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public UserAddedToProject convertFromSObject(SUserAddedToProject input, UserAddedToProject result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SNewObjectIDMUploaded> convertToSSetNewObjectIDMUploaded(Collection<NewObjectIDMUploaded> input) {
-		Set<SNewObjectIDMUploaded> result = new HashSet<SNewObjectIDMUploaded>();
-		for (NewObjectIDMUploaded o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<NewObjectIDMUploaded> convertFromSSetNewObjectIDMUploaded(Collection<SNewObjectIDMUploaded> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<NewObjectIDMUploaded> result = new HashSet<NewObjectIDMUploaded>();
-		for (SNewObjectIDMUploaded o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SNewObjectIDMUploaded> convertToSListNewObjectIDMUploaded(Collection<NewObjectIDMUploaded> input) {
-		List<SNewObjectIDMUploaded> result = new ArrayList<SNewObjectIDMUploaded>();
-		for (NewObjectIDMUploaded o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<NewObjectIDMUploaded> convertFromSListNewObjectIDMUploaded(Collection<SNewObjectIDMUploaded> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<NewObjectIDMUploaded> result = new ArrayList<NewObjectIDMUploaded>();
-		for (SNewObjectIDMUploaded o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SNewObjectIDMUploaded convertToSObject(NewObjectIDMUploaded input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SNewObjectIDMUploaded result = new SNewObjectIDMUploaded();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		return result;
-	}
-	public NewObjectIDMUploaded convertFromSObject(SNewObjectIDMUploaded input, DatabaseSession session) throws BimserverDatabaseException {
-		NewObjectIDMUploaded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewObjectIDMUploaded(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public NewObjectIDMUploaded convertFromSObject(SNewObjectIDMUploaded input, NewObjectIDMUploaded result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SDownload> convertToSSetDownload(Collection<Download> input) {
-		Set<SDownload> result = new HashSet<SDownload>();
-		for (Download o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<Download> convertFromSSetDownload(Collection<SDownload> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<Download> result = new HashSet<Download>();
-		for (SDownload o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SDownload> convertToSListDownload(Collection<Download> input) {
-		List<SDownload> result = new ArrayList<SDownload>();
-		for (Download o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<Download> convertFromSListDownload(Collection<SDownload> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<Download> result = new ArrayList<Download>();
-		for (SDownload o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SDownload convertToSObject(Download input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SDownload result = new SDownload();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		return result;
-	}
-	public Download convertFromSObject(SDownload input, DatabaseSession session) throws BimserverDatabaseException {
-		Download result = convertFromSObject(input, LogFactory.eINSTANCE.createDownload(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public Download convertFromSObject(SDownload input, Download result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SUserRemovedFromProject> convertToSSetUserRemovedFromProject(Collection<UserRemovedFromProject> input) {
-		Set<SUserRemovedFromProject> result = new HashSet<SUserRemovedFromProject>();
-		for (UserRemovedFromProject o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<UserRemovedFromProject> convertFromSSetUserRemovedFromProject(Collection<SUserRemovedFromProject> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<UserRemovedFromProject> result = new HashSet<UserRemovedFromProject>();
-		for (SUserRemovedFromProject o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SUserRemovedFromProject> convertToSListUserRemovedFromProject(Collection<UserRemovedFromProject> input) {
-		List<SUserRemovedFromProject> result = new ArrayList<SUserRemovedFromProject>();
-		for (UserRemovedFromProject o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<UserRemovedFromProject> convertFromSListUserRemovedFromProject(Collection<SUserRemovedFromProject> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<UserRemovedFromProject> result = new ArrayList<UserRemovedFromProject>();
-		for (SUserRemovedFromProject o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SUserRemovedFromProject convertToSObject(UserRemovedFromProject input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SUserRemovedFromProject result = new SUserRemovedFromProject();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		User userVal = input.getUser();
-		result.setUserId(userVal == null ? -1 : userVal.getOid());
-		Project projectVal = input.getProject();
-		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
-		return result;
-	}
-	public UserRemovedFromProject convertFromSObject(SUserRemovedFromProject input, DatabaseSession session) throws BimserverDatabaseException {
-		UserRemovedFromProject result = convertFromSObject(input, LogFactory.eINSTANCE.createUserRemovedFromProject(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public UserRemovedFromProject convertFromSObject(SUserRemovedFromProject input, UserRemovedFromProject result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SProjectDeleted> convertToSSetProjectDeleted(Collection<ProjectDeleted> input) {
-		Set<SProjectDeleted> result = new HashSet<SProjectDeleted>();
-		for (ProjectDeleted o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<ProjectDeleted> convertFromSSetProjectDeleted(Collection<SProjectDeleted> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<ProjectDeleted> result = new HashSet<ProjectDeleted>();
-		for (SProjectDeleted o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SProjectDeleted> convertToSListProjectDeleted(Collection<ProjectDeleted> input) {
-		List<SProjectDeleted> result = new ArrayList<SProjectDeleted>();
-		for (ProjectDeleted o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<ProjectDeleted> convertFromSListProjectDeleted(Collection<SProjectDeleted> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<ProjectDeleted> result = new ArrayList<ProjectDeleted>();
-		for (SProjectDeleted o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SProjectDeleted convertToSObject(ProjectDeleted input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SProjectDeleted result = new SProjectDeleted();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Project projectVal = input.getProject();
-		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
-		return result;
-	}
-	public ProjectDeleted convertFromSObject(SProjectDeleted input, DatabaseSession session) throws BimserverDatabaseException {
-		ProjectDeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectDeleted(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public ProjectDeleted convertFromSObject(SProjectDeleted input, ProjectDeleted result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SUserDeleted> convertToSSetUserDeleted(Collection<UserDeleted> input) {
-		Set<SUserDeleted> result = new HashSet<SUserDeleted>();
-		for (UserDeleted o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<UserDeleted> convertFromSSetUserDeleted(Collection<SUserDeleted> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<UserDeleted> result = new HashSet<UserDeleted>();
-		for (SUserDeleted o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SUserDeleted> convertToSListUserDeleted(Collection<UserDeleted> input) {
-		List<SUserDeleted> result = new ArrayList<SUserDeleted>();
-		for (UserDeleted o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<UserDeleted> convertFromSListUserDeleted(Collection<SUserDeleted> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<UserDeleted> result = new ArrayList<UserDeleted>();
-		for (SUserDeleted o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SUserDeleted convertToSObject(UserDeleted input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SUserDeleted result = new SUserDeleted();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		User userVal = input.getUser();
-		result.setUserId(userVal == null ? -1 : userVal.getOid());
-		return result;
-	}
-	public UserDeleted convertFromSObject(SUserDeleted input, DatabaseSession session) throws BimserverDatabaseException {
-		UserDeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createUserDeleted(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public UserDeleted convertFromSObject(SUserDeleted input, UserDeleted result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SPasswordReset> convertToSSetPasswordReset(Collection<PasswordReset> input) {
-		Set<SPasswordReset> result = new HashSet<SPasswordReset>();
-		for (PasswordReset o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<PasswordReset> convertFromSSetPasswordReset(Collection<SPasswordReset> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<PasswordReset> result = new HashSet<PasswordReset>();
-		for (SPasswordReset o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SPasswordReset> convertToSListPasswordReset(Collection<PasswordReset> input) {
-		List<SPasswordReset> result = new ArrayList<SPasswordReset>();
-		for (PasswordReset o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<PasswordReset> convertFromSListPasswordReset(Collection<SPasswordReset> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<PasswordReset> result = new ArrayList<PasswordReset>();
-		for (SPasswordReset o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SPasswordReset convertToSObject(PasswordReset input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SPasswordReset result = new SPasswordReset();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		User userVal = input.getUser();
-		result.setUserId(userVal == null ? -1 : userVal.getOid());
-		return result;
-	}
-	public PasswordReset convertFromSObject(SPasswordReset input, DatabaseSession session) throws BimserverDatabaseException {
-		PasswordReset result = convertFromSObject(input, LogFactory.eINSTANCE.createPasswordReset(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public PasswordReset convertFromSObject(SPasswordReset input, PasswordReset result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SDatabaseCreated> convertToSSetDatabaseCreated(Collection<DatabaseCreated> input) {
-		Set<SDatabaseCreated> result = new HashSet<SDatabaseCreated>();
-		for (DatabaseCreated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<DatabaseCreated> convertFromSSetDatabaseCreated(Collection<SDatabaseCreated> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<DatabaseCreated> result = new HashSet<DatabaseCreated>();
-		for (SDatabaseCreated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SDatabaseCreated> convertToSListDatabaseCreated(Collection<DatabaseCreated> input) {
-		List<SDatabaseCreated> result = new ArrayList<SDatabaseCreated>();
-		for (DatabaseCreated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<DatabaseCreated> convertFromSListDatabaseCreated(Collection<SDatabaseCreated> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<DatabaseCreated> result = new ArrayList<DatabaseCreated>();
-		for (SDatabaseCreated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SDatabaseCreated convertToSObject(DatabaseCreated input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SDatabaseCreated result = new SDatabaseCreated();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setPath(input.getPath());
-		result.setVersion(input.getVersion());
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		return result;
-	}
-	public DatabaseCreated convertFromSObject(SDatabaseCreated input, DatabaseSession session) throws BimserverDatabaseException {
-		DatabaseCreated result = convertFromSObject(input, LogFactory.eINSTANCE.createDatabaseCreated(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public DatabaseCreated convertFromSObject(SDatabaseCreated input, DatabaseCreated result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setPath(input.getPath());
-		result.setVersion(input.getVersion());
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SServerStarted> convertToSSetServerStarted(Collection<ServerStarted> input) {
-		Set<SServerStarted> result = new HashSet<SServerStarted>();
-		for (ServerStarted o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<ServerStarted> convertFromSSetServerStarted(Collection<SServerStarted> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<ServerStarted> result = new HashSet<ServerStarted>();
-		for (SServerStarted o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SServerStarted> convertToSListServerStarted(Collection<ServerStarted> input) {
-		List<SServerStarted> result = new ArrayList<SServerStarted>();
-		for (ServerStarted o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<ServerStarted> convertFromSListServerStarted(Collection<SServerStarted> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<ServerStarted> result = new ArrayList<ServerStarted>();
-		for (SServerStarted o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SServerStarted convertToSObject(ServerStarted input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SServerStarted result = new SServerStarted();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		return result;
-	}
-	public ServerStarted convertFromSObject(SServerStarted input, DatabaseSession session) throws BimserverDatabaseException {
-		ServerStarted result = convertFromSObject(input, LogFactory.eINSTANCE.createServerStarted(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public ServerStarted convertFromSObject(SServerStarted input, ServerStarted result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SProjectUpdated> convertToSSetProjectUpdated(Collection<ProjectUpdated> input) {
-		Set<SProjectUpdated> result = new HashSet<SProjectUpdated>();
-		for (ProjectUpdated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<ProjectUpdated> convertFromSSetProjectUpdated(Collection<SProjectUpdated> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<ProjectUpdated> result = new HashSet<ProjectUpdated>();
-		for (SProjectUpdated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SProjectUpdated> convertToSListProjectUpdated(Collection<ProjectUpdated> input) {
-		List<SProjectUpdated> result = new ArrayList<SProjectUpdated>();
-		for (ProjectUpdated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<ProjectUpdated> convertFromSListProjectUpdated(Collection<SProjectUpdated> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<ProjectUpdated> result = new ArrayList<ProjectUpdated>();
-		for (SProjectUpdated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SProjectUpdated convertToSObject(ProjectUpdated input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SProjectUpdated result = new SProjectUpdated();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Project projectVal = input.getProject();
-		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
-		return result;
-	}
-	public ProjectUpdated convertFromSObject(SProjectUpdated input, DatabaseSession session) throws BimserverDatabaseException {
-		ProjectUpdated result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectUpdated(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public ProjectUpdated convertFromSObject(SProjectUpdated input, ProjectUpdated result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SUserUndeleted> convertToSSetUserUndeleted(Collection<UserUndeleted> input) {
-		Set<SUserUndeleted> result = new HashSet<SUserUndeleted>();
-		for (UserUndeleted o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<UserUndeleted> convertFromSSetUserUndeleted(Collection<SUserUndeleted> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<UserUndeleted> result = new HashSet<UserUndeleted>();
-		for (SUserUndeleted o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SUserUndeleted> convertToSListUserUndeleted(Collection<UserUndeleted> input) {
-		List<SUserUndeleted> result = new ArrayList<SUserUndeleted>();
-		for (UserUndeleted o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<UserUndeleted> convertFromSListUserUndeleted(Collection<SUserUndeleted> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<UserUndeleted> result = new ArrayList<UserUndeleted>();
-		for (SUserUndeleted o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SUserUndeleted convertToSObject(UserUndeleted input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SUserUndeleted result = new SUserUndeleted();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		User userVal = input.getUser();
-		result.setUserId(userVal == null ? -1 : userVal.getOid());
-		return result;
-	}
-	public UserUndeleted convertFromSObject(SUserUndeleted input, DatabaseSession session) throws BimserverDatabaseException {
-		UserUndeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createUserUndeleted(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public UserUndeleted convertFromSObject(SUserUndeleted input, UserUndeleted result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SProjectUndeleted> convertToSSetProjectUndeleted(Collection<ProjectUndeleted> input) {
-		Set<SProjectUndeleted> result = new HashSet<SProjectUndeleted>();
-		for (ProjectUndeleted o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<ProjectUndeleted> convertFromSSetProjectUndeleted(Collection<SProjectUndeleted> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<ProjectUndeleted> result = new HashSet<ProjectUndeleted>();
-		for (SProjectUndeleted o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SProjectUndeleted> convertToSListProjectUndeleted(Collection<ProjectUndeleted> input) {
-		List<SProjectUndeleted> result = new ArrayList<SProjectUndeleted>();
-		for (ProjectUndeleted o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<ProjectUndeleted> convertFromSListProjectUndeleted(Collection<SProjectUndeleted> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<ProjectUndeleted> result = new ArrayList<ProjectUndeleted>();
-		for (SProjectUndeleted o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SProjectUndeleted convertToSObject(ProjectUndeleted input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SProjectUndeleted result = new SProjectUndeleted();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Project projectVal = input.getProject();
-		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
-		return result;
-	}
-	public ProjectUndeleted convertFromSObject(SProjectUndeleted input, DatabaseSession session) throws BimserverDatabaseException {
-		ProjectUndeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectUndeleted(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public ProjectUndeleted convertFromSObject(SProjectUndeleted input, ProjectUndeleted result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SRevisionUpdated> convertToSSetRevisionUpdated(Collection<RevisionUpdated> input) {
-		Set<SRevisionUpdated> result = new HashSet<SRevisionUpdated>();
-		for (RevisionUpdated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<RevisionUpdated> convertFromSSetRevisionUpdated(Collection<SRevisionUpdated> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<RevisionUpdated> result = new HashSet<RevisionUpdated>();
-		for (SRevisionUpdated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SRevisionUpdated> convertToSListRevisionUpdated(Collection<RevisionUpdated> input) {
-		List<SRevisionUpdated> result = new ArrayList<SRevisionUpdated>();
-		for (RevisionUpdated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<RevisionUpdated> convertFromSListRevisionUpdated(Collection<SRevisionUpdated> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<RevisionUpdated> result = new ArrayList<RevisionUpdated>();
-		for (SRevisionUpdated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SRevisionUpdated convertToSObject(RevisionUpdated input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SRevisionUpdated result = new SRevisionUpdated();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Revision revisionVal = input.getRevision();
-		result.setRevisionId(revisionVal == null ? -1 : revisionVal.getOid());
-		return result;
-	}
-	public RevisionUpdated convertFromSObject(SRevisionUpdated input, DatabaseSession session) throws BimserverDatabaseException {
-		RevisionUpdated result = convertFromSObject(input, LogFactory.eINSTANCE.createRevisionUpdated(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public RevisionUpdated convertFromSObject(SRevisionUpdated input, RevisionUpdated result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SGeoTagUpdated> convertToSSetGeoTagUpdated(Collection<GeoTagUpdated> input) {
-		Set<SGeoTagUpdated> result = new HashSet<SGeoTagUpdated>();
-		for (GeoTagUpdated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<GeoTagUpdated> convertFromSSetGeoTagUpdated(Collection<SGeoTagUpdated> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<GeoTagUpdated> result = new HashSet<GeoTagUpdated>();
-		for (SGeoTagUpdated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SGeoTagUpdated> convertToSListGeoTagUpdated(Collection<GeoTagUpdated> input) {
-		List<SGeoTagUpdated> result = new ArrayList<SGeoTagUpdated>();
-		for (GeoTagUpdated o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<GeoTagUpdated> convertFromSListGeoTagUpdated(Collection<SGeoTagUpdated> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<GeoTagUpdated> result = new ArrayList<GeoTagUpdated>();
-		for (SGeoTagUpdated o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SGeoTagUpdated convertToSObject(GeoTagUpdated input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SGeoTagUpdated result = new SGeoTagUpdated();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		GeoTag geoTagVal = input.getGeoTag();
-		result.setGeoTagId(geoTagVal == null ? -1 : geoTagVal.getOid());
-		return result;
-	}
-	public GeoTagUpdated convertFromSObject(SGeoTagUpdated input, DatabaseSession session) throws BimserverDatabaseException {
-		GeoTagUpdated result = convertFromSObject(input, LogFactory.eINSTANCE.createGeoTagUpdated(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public GeoTagUpdated convertFromSObject(SGeoTagUpdated input, GeoTagUpdated result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setGeoTag((GeoTag)session.get(StorePackage.eINSTANCE.getGeoTag(), input.getGeoTagId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SPasswordChanged> convertToSSetPasswordChanged(Collection<PasswordChanged> input) {
-		Set<SPasswordChanged> result = new HashSet<SPasswordChanged>();
-		for (PasswordChanged o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<PasswordChanged> convertFromSSetPasswordChanged(Collection<SPasswordChanged> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<PasswordChanged> result = new HashSet<PasswordChanged>();
-		for (SPasswordChanged o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SPasswordChanged> convertToSListPasswordChanged(Collection<PasswordChanged> input) {
-		List<SPasswordChanged> result = new ArrayList<SPasswordChanged>();
-		for (PasswordChanged o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<PasswordChanged> convertFromSListPasswordChanged(Collection<SPasswordChanged> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<PasswordChanged> result = new ArrayList<PasswordChanged>();
-		for (SPasswordChanged o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SPasswordChanged convertToSObject(PasswordChanged input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SPasswordChanged result = new SPasswordChanged();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		User userVal = input.getUser();
-		result.setUserId(userVal == null ? -1 : userVal.getOid());
-		return result;
-	}
-	public PasswordChanged convertFromSObject(SPasswordChanged input, DatabaseSession session) throws BimserverDatabaseException {
-		PasswordChanged result = convertFromSObject(input, LogFactory.eINSTANCE.createPasswordChanged(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public PasswordChanged convertFromSObject(SPasswordChanged input, PasswordChanged result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SUserChanged> convertToSSetUserChanged(Collection<UserChanged> input) {
-		Set<SUserChanged> result = new HashSet<SUserChanged>();
-		for (UserChanged o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<UserChanged> convertFromSSetUserChanged(Collection<SUserChanged> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<UserChanged> result = new HashSet<UserChanged>();
-		for (SUserChanged o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SUserChanged> convertToSListUserChanged(Collection<UserChanged> input) {
-		List<SUserChanged> result = new ArrayList<SUserChanged>();
-		for (UserChanged o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<UserChanged> convertFromSListUserChanged(Collection<SUserChanged> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<UserChanged> result = new ArrayList<UserChanged>();
-		for (SUserChanged o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SUserChanged convertToSObject(UserChanged input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SUserChanged result = new SUserChanged();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		User userVal = input.getUser();
-		result.setUserId(userVal == null ? -1 : userVal.getOid());
-		return result;
-	}
-	public UserChanged convertFromSObject(SUserChanged input, DatabaseSession session) throws BimserverDatabaseException {
-		UserChanged result = convertFromSObject(input, LogFactory.eINSTANCE.createUserChanged(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public UserChanged convertFromSObject(SUserChanged input, UserChanged result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SExtendedDataAddedToRevision> convertToSSetExtendedDataAddedToRevision(Collection<ExtendedDataAddedToRevision> input) {
-		Set<SExtendedDataAddedToRevision> result = new HashSet<SExtendedDataAddedToRevision>();
-		for (ExtendedDataAddedToRevision o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<ExtendedDataAddedToRevision> convertFromSSetExtendedDataAddedToRevision(Collection<SExtendedDataAddedToRevision> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<ExtendedDataAddedToRevision> result = new HashSet<ExtendedDataAddedToRevision>();
-		for (SExtendedDataAddedToRevision o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SExtendedDataAddedToRevision> convertToSListExtendedDataAddedToRevision(Collection<ExtendedDataAddedToRevision> input) {
-		List<SExtendedDataAddedToRevision> result = new ArrayList<SExtendedDataAddedToRevision>();
-		for (ExtendedDataAddedToRevision o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<ExtendedDataAddedToRevision> convertFromSListExtendedDataAddedToRevision(Collection<SExtendedDataAddedToRevision> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<ExtendedDataAddedToRevision> result = new ArrayList<ExtendedDataAddedToRevision>();
-		for (SExtendedDataAddedToRevision o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SExtendedDataAddedToRevision convertToSObject(ExtendedDataAddedToRevision input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SExtendedDataAddedToRevision result = new SExtendedDataAddedToRevision();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Revision revisionVal = input.getRevision();
-		result.setRevisionId(revisionVal == null ? -1 : revisionVal.getOid());
-		ExtendedData extendedDataVal = input.getExtendedData();
-		result.setExtendedDataId(extendedDataVal == null ? -1 : extendedDataVal.getOid());
-		return result;
-	}
-	public ExtendedDataAddedToRevision convertFromSObject(SExtendedDataAddedToRevision input, DatabaseSession session) throws BimserverDatabaseException {
-		ExtendedDataAddedToRevision result = convertFromSObject(input, LogFactory.eINSTANCE.createExtendedDataAddedToRevision(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public ExtendedDataAddedToRevision convertFromSObject(SExtendedDataAddedToRevision input, ExtendedDataAddedToRevision result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), OldQuery.getDefault()));
-		result.setExtendedData((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), input.getExtendedDataId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SExtendedDataAddedToProject> convertToSSetExtendedDataAddedToProject(Collection<ExtendedDataAddedToProject> input) {
-		Set<SExtendedDataAddedToProject> result = new HashSet<SExtendedDataAddedToProject>();
-		for (ExtendedDataAddedToProject o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<ExtendedDataAddedToProject> convertFromSSetExtendedDataAddedToProject(Collection<SExtendedDataAddedToProject> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<ExtendedDataAddedToProject> result = new HashSet<ExtendedDataAddedToProject>();
-		for (SExtendedDataAddedToProject o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SExtendedDataAddedToProject> convertToSListExtendedDataAddedToProject(Collection<ExtendedDataAddedToProject> input) {
-		List<SExtendedDataAddedToProject> result = new ArrayList<SExtendedDataAddedToProject>();
-		for (ExtendedDataAddedToProject o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<ExtendedDataAddedToProject> convertFromSListExtendedDataAddedToProject(Collection<SExtendedDataAddedToProject> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<ExtendedDataAddedToProject> result = new ArrayList<ExtendedDataAddedToProject>();
-		for (SExtendedDataAddedToProject o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SExtendedDataAddedToProject convertToSObject(ExtendedDataAddedToProject input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SExtendedDataAddedToProject result = new SExtendedDataAddedToProject();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Project projectVal = input.getProject();
-		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
-		ExtendedData extendedDataVal = input.getExtendedData();
-		result.setExtendedDataId(extendedDataVal == null ? -1 : extendedDataVal.getOid());
-		return result;
-	}
-	public ExtendedDataAddedToProject convertFromSObject(SExtendedDataAddedToProject input, DatabaseSession session) throws BimserverDatabaseException {
-		ExtendedDataAddedToProject result = convertFromSObject(input, LogFactory.eINSTANCE.createExtendedDataAddedToProject(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public ExtendedDataAddedToProject convertFromSObject(SExtendedDataAddedToProject input, ExtendedDataAddedToProject result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
-		result.setExtendedData((ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), input.getExtendedDataId(), OldQuery.getDefault()));
-		return result;
-	}
-
-	public Set<SRemoteServiceCalled> convertToSSetRemoteServiceCalled(Collection<RemoteServiceCalled> input) {
-		Set<SRemoteServiceCalled> result = new HashSet<SRemoteServiceCalled>();
-		for (RemoteServiceCalled o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<RemoteServiceCalled> convertFromSSetRemoteServiceCalled(Collection<SRemoteServiceCalled> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<RemoteServiceCalled> result = new HashSet<RemoteServiceCalled>();
-		for (SRemoteServiceCalled o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SRemoteServiceCalled> convertToSListRemoteServiceCalled(Collection<RemoteServiceCalled> input) {
-		List<SRemoteServiceCalled> result = new ArrayList<SRemoteServiceCalled>();
-		for (RemoteServiceCalled o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<RemoteServiceCalled> convertFromSListRemoteServiceCalled(Collection<SRemoteServiceCalled> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<RemoteServiceCalled> result = new ArrayList<RemoteServiceCalled>();
-		for (SRemoteServiceCalled o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SRemoteServiceCalled convertToSObject(RemoteServiceCalled input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SRemoteServiceCalled result = new SRemoteServiceCalled();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setDate(input.getDate());
-		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setState(SNotifictionResultEnum.values()[input.getState().ordinal()]);
-		result.setPercentage(input.getPercentage());
-		result.getInfos().addAll(input.getInfos());
-		result.getWarnings().addAll(input.getWarnings());
-		result.getErrors().addAll(input.getErrors());
-		User executorVal = input.getExecutor();
-		result.setExecutorId(executorVal == null ? -1 : executorVal.getOid());
-		Service serviceVal = input.getService();
-		result.setServiceId(serviceVal == null ? -1 : serviceVal.getOid());
-		return result;
-	}
-	public RemoteServiceCalled convertFromSObject(SRemoteServiceCalled input, DatabaseSession session) throws BimserverDatabaseException {
-		RemoteServiceCalled result = convertFromSObject(input, LogFactory.eINSTANCE.createRemoteServiceCalled(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public RemoteServiceCalled convertFromSObject(SRemoteServiceCalled input, RemoteServiceCalled result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setDate(input.getDate());
-		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
-		result.setState(NotifictionResultEnum.values()[input.getState().ordinal()]);
-		result.setPercentage(input.getPercentage());
-		result.getInfos().addAll(input.getInfos());
-		result.getWarnings().addAll(input.getWarnings());
-		result.getErrors().addAll(input.getErrors());
-		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), OldQuery.getDefault()));
-		result.setService((Service)session.get(StorePackage.eINSTANCE.getService(), input.getServiceId(), OldQuery.getDefault()));
 		return result;
 	}
 
@@ -9439,12 +10672,22 @@ public class SConverter {
 		result.setDataId(dataVal == null ? -1 : dataVal.getOid());
 		return result;
 	}
+
 	public GeometryInfo convertFromSObject(SGeometryInfo input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		GeometryInfo result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryInfo(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public GeometryInfo convertFromSObject(SGeometryInfo input) throws BimserverDatabaseException {
+		GeometryInfo result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryInfo(), null);
 		return result;
 	}
 
@@ -9509,12 +10752,22 @@ public class SConverter {
 		result.setZ(input.getZ());
 		return result;
 	}
+
 	public Vector3f convertFromSObject(SVector3f input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		Vector3f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector3f(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public Vector3f convertFromSObject(SVector3f input) throws BimserverDatabaseException {
+		Vector3f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector3f(), null);
 		return result;
 	}
 
@@ -9575,12 +10828,22 @@ public class SConverter {
 		result.setMaterialIndices(input.getMaterialIndices());
 		return result;
 	}
+
 	public GeometryData convertFromSObject(SGeometryData input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
 		GeometryData result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryData(), session);
 		
 		((IdEObjectImpl)result).setOid(input.getOid());
 		((IdEObjectImpl)result).setRid(input.getRid());
 		
+		return result;
+	}
+
+	public GeometryData convertFromSObject(SGeometryData input) throws BimserverDatabaseException {
+		GeometryData result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryData(), null);
 		return result;
 	}
 

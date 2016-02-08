@@ -134,9 +134,9 @@ public class Database implements BimDatabase {
 				created = new Date();
 				registry.save(DATE_CREATED, created, databaseSession);
 			} else {
-				keyValueStore.openTable(CLASS_LOOKUP_TABLE);
-				keyValueStore.openTable(Database.STORE_PROJECT_NAME);
-				keyValueStore.openTable(Registry.REGISTRY_TABLE);
+				keyValueStore.openTable(CLASS_LOOKUP_TABLE, false);
+				keyValueStore.openTable(Database.STORE_PROJECT_NAME, false);
+				keyValueStore.openTable(Registry.REGISTRY_TABLE, false);
 				created = registry.readDate(DATE_CREATED, databaseSession);
 				if (created == null) {
 					created = new Date();
@@ -277,13 +277,15 @@ public class Database implements BimDatabase {
 				String packageName = packageAndClassName.substring(0, packageAndClassName.indexOf("_"));
 				String className = packageAndClassName.substring(packageAndClassName.indexOf("_") + 1);
 				EClass eClass = (EClass) getEClassifier(packageName, className);
-				keyValueStore.openTable(packageAndClassName);
+				boolean transactional = !(eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE);
+
+				keyValueStore.openTable(packageAndClassName, transactional);
 				
 				for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 					if (eStructuralFeature.getEAnnotation("singleindex") != null) {
 						String indexTableName = eClass.getEPackage().getName() + "_" + eClass.getName() + "_" + eStructuralFeature.getName();
 						try {
-							keyValueStore.openIndexTable(indexTableName);
+							keyValueStore.openIndexTable(indexTableName, transactional);
 						} catch (DatabaseNotFoundException e) {
 						}
 					}

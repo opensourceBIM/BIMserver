@@ -450,6 +450,14 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "sid", partName = "deleteSerializer.sid") Long sid) throws ServerException, UserException;
 
 	/**
+	 * @param sid ObjectID of the Serializer to delete
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "deletePluginConfiguration")
+	void deletePluginConfiguration(
+		@WebParam(name = "oid", partName = "deletePluginConfiguration.oid") Long oid) throws ServerException, UserException;
+	
+	/**
 	 * @param iid ObjectID of the RenderEngine to delete
 	 * @throws ServerException, UserException
 	 */
