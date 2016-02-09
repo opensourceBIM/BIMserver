@@ -1,5 +1,7 @@
 package org.bimserver;
 
+import java.nio.file.Path;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -28,7 +30,7 @@ public class EmbeddedWebServer {
 	private WebAppContext context;
 	private Server server;
 
-	public EmbeddedWebServer(BimServer bimServer, boolean localDev) {
+	public EmbeddedWebServer(BimServer bimServer, Path developmentBaseDir, boolean localDev) {
 		server = new Server();
 //		Disabled 26-04-2015, I am pretty sure we don't use session anymore at all
 //		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random()); // Should be SecureRandom, but this makes startup slow on certain systems
@@ -44,7 +46,7 @@ public class EmbeddedWebServer {
 		}
 		context.getServletContext().setAttribute("bimserver", bimServer);
 		if (context.getResourceBase() == null) {
-			context.setResourceBase("../BimServer/www");
+			context.setResourceBase(developmentBaseDir.resolve("www").toAbsolutePath().toString());
 		}
 	}
 	

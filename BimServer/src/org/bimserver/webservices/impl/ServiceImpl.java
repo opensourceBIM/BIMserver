@@ -247,9 +247,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			username = user.getName();
 			userUsername = user.getUsername();
 			Path homeDirIncoming = getBimServer().getHomeDir().resolve("incoming");
-			if (!Files.isDirectory(homeDirIncoming)) {
-				Files.createDirectory(homeDirIncoming);
-			}
 			Path userDirIncoming = homeDirIncoming.resolve(userUsername);
 			if (!Files.exists(userDirIncoming)) {
 				Files.createDirectories(userDirIncoming);

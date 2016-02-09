@@ -37,6 +37,7 @@ public class LocalDevBimServerStarter {
 		config.setLocalDev(true);
 		config.setPort(port);
 		config.setStartCommandLine(true);
+		config.setDevelopmentBaseDir(Paths.get("../BimServer"));
 		bimServer = new BimServer(config);
 		bimServer.getVersionChecker().getLocalVersion().setDate(new Date());
 		try {

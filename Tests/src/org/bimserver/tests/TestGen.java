@@ -19,6 +19,9 @@ package org.bimserver.tests;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.bimserver.LocalDevSetup;
@@ -50,7 +53,8 @@ public class TestGen {
 			RenderEnginePlugin renderEnginePlugin = pluginManager.getRenderEnginePlugin("org.bimserver.ifcengine.JvmRenderEnginePlugin", true);
 			RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(null, "ifc2x3tc1");
 			renderEngine.init();
-			RenderEngineModel renderEngineModel = renderEngine.openModel(new FileInputStream(Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc").toFile()));
+			Path path = Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
+			RenderEngineModel renderEngineModel = renderEngine.openModel(new FileInputStream(path.toFile()), Files.size(path));
 			RenderEngineSettings settings = new RenderEngineSettings();
 			settings.setPrecision(Precision.SINGLE);
 			settings.setIndexFormat(IndexFormat.AUTO_DETECT);
@@ -68,6 +72,8 @@ public class TestGen {
 		} catch (PluginException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

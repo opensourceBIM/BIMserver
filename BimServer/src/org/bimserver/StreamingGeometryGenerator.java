@@ -71,6 +71,7 @@ import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.plugins.serializers.OidConvertingSerializer;
 import org.bimserver.plugins.serializers.StreamingSerializer;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
+import org.bimserver.renderengine.RenderEngineLease;
 import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
@@ -181,8 +182,7 @@ public class StreamingGeometryGenerator {
 			StreamingSerializer ifcSerializer = ifcSerializerPlugin.createSerializer(new PluginConfiguration());
 			RenderEngine renderEngine = null;
 			try {
-				renderEngine = renderEnginePool.request();
-				renderEngine.init();
+				renderEngine = renderEnginePool.borrowObject();
 				final Set<HashMapVirtualObject> oids = new HashSet<>();
 				ObjectProviderProxy proxy = new ObjectProviderProxy(objectProvider, new ObjectListener() {
 					@Override
@@ -359,7 +359,7 @@ public class StreamingGeometryGenerator {
 					in.close();
 					renderEngineModel.close();
 					if (renderEngine != null) {
-						renderEnginePool.release(renderEngine);
+						renderEnginePool.returnObject(renderEngine);
 					}
 					jobsDone.incrementAndGet();
 					updateProgress();
