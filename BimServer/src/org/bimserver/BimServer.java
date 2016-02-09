@@ -230,6 +230,11 @@ public class BimServer {
 			if (!Files.exists(tmp)) {
 				Files.createDirectories(tmp);
 			}
+			Path homeDirIncoming = config.getHomeDir().resolve("incoming");
+			if (!Files.exists(homeDirIncoming)) {
+				Files.createDirectory(homeDirIncoming);
+			}
+
 			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(config.getHomeDir().resolve("maven"));
 			pluginManager = new PluginManager(tmp, config.getHomeDir().resolve("plugins"), mavenPluginRepository, config.getClassPath(), serviceFactory, internalServicesManager, servicesMap);
 			metaDataManager = new MetaDataManager(tmp);
@@ -242,7 +247,7 @@ public class BimServer {
 			compareCache = new CompareCache();
 			LOGGER.debug("Compare cache created");
 			if (config.isStartEmbeddedWebServer()) {
-				embeddedWebServer = new EmbeddedWebServer(this, config.isLocalDev());
+				embeddedWebServer = new EmbeddedWebServer(this, config.getDevelopmentBaseDir(), config.isLocalDev());
 				LOGGER.debug("Embedded webserver created");
 			}
 

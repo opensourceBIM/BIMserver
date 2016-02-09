@@ -43,11 +43,12 @@ public class RenderEnginePools {
 			HashMap<String, RenderEnginePool> map = new HashMap<>();
 			pools.put(schema, map);
 			for (RenderEnginePlugin renderEnginePlugin : renderEnginePlugins) {
-				map.put(renderEnginePlugin.getClass().getName(), new RenderEnginePool(nrRenderEngineProcesses, new RenderEngineFactory(){
+				RenderEnginePool renderEnginePool = new RenderEnginePool(nrRenderEngineProcesses, new RenderEngineFactory(){
 					@Override
 					public RenderEngine createRenderEngine() throws RenderEngineException {
 						return renderEnginePlugin.createRenderEngine(new PluginConfiguration(), schema.name());
-					}}));
+					}});
+				map.put(renderEnginePlugin.getClass().getName(), renderEnginePool);
 			}
 		}
 	}

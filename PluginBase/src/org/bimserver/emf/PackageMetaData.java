@@ -109,6 +109,13 @@ public class PackageMetaData implements ObjectFactory {
 				} else {
 					LOGGER.error("Unimplemented schema: " + schema);
 				}
+				for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+					if (eClassifier instanceof EClass) {
+						EClass eClass = (EClass)eClassifier;
+						buildUseForSerializationSet(eClass);
+						buildUseForDatabaseStorage(eClass);
+					}
+				}
 				schemaPath = tempDir.resolve(schema.name() + ".exp");
 				if (!Files.exists(schemaPath)) {
 					Files.write(schemaPath, schemaDefinition.getSchemaData());
@@ -117,6 +124,7 @@ public class PackageMetaData implements ObjectFactory {
 				LOGGER.error("", e);
 			}
 		}
+		
 		initUnsettedLengths();
 	}
 	
@@ -221,11 +229,7 @@ public class PackageMetaData implements ObjectFactory {
 		if (this.getSchemaDefinition() == null) {
 			return true;
 		}
-		Set<EStructuralFeature> set = useForSerialization.get(eClass);
-		if (set == null) {
-			set = buildUseForSerializationSet(eClass);
-		}
-		return set.contains(eStructuralFeature);
+		return useForSerialization.get(eClass).contains(eStructuralFeature);
 	}
 
 	public boolean useForDatabaseStorage(EClass eClass, EStructuralFeature eStructuralFeature) {
@@ -234,7 +238,7 @@ public class PackageMetaData implements ObjectFactory {
 		}
 		Set<EStructuralFeature> set = useForDatabaseStorage.get(eClass);
 		if (set == null) {
-			set = buildUseForDatabaseStorage(eClass);
+			return true;
 		}
 		return set.contains(eStructuralFeature);
 	}
@@ -403,22 +407,14 @@ public class PackageMetaData implements ObjectFactory {
 	}
 
 	public int getNrSerializableFeatures(EClass eClass) {
-		Set<EStructuralFeature> set = useForSerialization.get(eClass);
-		if (set == null) {
-			set = buildUseForSerializationSet(eClass);
-		}
-		return set.size();
+		return useForSerialization.get(eClass).size();
 	}
 
 	public int getNrDatabaseFeatures(EClass eClass) {
-		Set<EStructuralFeature> set = useForDatabaseStorage.get(eClass);
-		if (set == null) {
-			set = buildUseForDatabaseStorage(eClass);
-		}
-		return set.size();
+		return useForDatabaseStorage.get(eClass).size();
 	}
 
-	private synchronized Set<EStructuralFeature> buildUseForSerializationSet(EClass eClass) {
+	private void buildUseForSerializationSet(EClass eClass) {
 		if (this.getSchemaDefinition() != null) {
 			if (!useForSerialization.containsKey(eClass)) {
 				HashSet<EStructuralFeature> set = new HashSet<>();
@@ -434,21 +430,21 @@ public class PackageMetaData implements ObjectFactory {
 //							}
 //						}
 //					}
-					Attribute attribute = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
-					if (attribute != null && attribute instanceof ExplicitAttribute) {
-						if (!entityBN.isDerived(eStructuralFeature.getName()) || entityBN.isDerivedOverride(eStructuralFeature.getName())) {
-							set.add(eStructuralFeature);
+					if (entityBN != null) {
+						Attribute attribute = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
+						if (attribute != null && attribute instanceof ExplicitAttribute) {
+							if (!entityBN.isDerived(eStructuralFeature.getName()) || entityBN.isDerivedOverride(eStructuralFeature.getName())) {
+								set.add(eStructuralFeature);
+							}
 						}
 					}
 				}
 				useForSerialization.put(eClass, set);
-				return set;
 			}
 		}
-		return null;
 	}
 
-	private synchronized Set<EStructuralFeature> buildUseForDatabaseStorage(EClass eClass) {
+	private void buildUseForDatabaseStorage(EClass eClass) {
 		if (this.getSchemaDefinition() != null) {
 			HashSet<EStructuralFeature> set = new HashSet<>();
 			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
@@ -485,9 +481,7 @@ public class PackageMetaData implements ObjectFactory {
 				}
 			}
 			useForDatabaseStorage.put(eClass, set);
-			return set;
 		}
-		return null;
 	}
 
 	public int getUnsettedLength(EClass eClass) {

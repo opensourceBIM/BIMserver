@@ -112,11 +112,13 @@ public abstract class Channel implements ServiceHolder {
 		String address = baseAddress + "/upload";
 		HttpPost httppost = new HttpPost(address);
 		try {
+			Long topicId = getServiceInterface().initiateCheckin(poid, deserializerOid);
 			// TODO find some GzipInputStream variant that _compresses_ instead of _decompresses_ using deflate for now
 			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
 			
 			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
 			
+			multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("deserializerOid", new StringBody("" + deserializerOid, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("merge", new StringBody("" + merge, ContentType.DEFAULT_TEXT));
@@ -146,7 +148,7 @@ public abstract class Channel implements ServiceHolder {
 								throw new ServerException(message);
 							}
 						} else {
-							return jsonObject.get("checkinid").getAsLong();
+							return jsonObject.get("topicId").getAsLong();
 						}
 					}
 				} finally {
@@ -154,9 +156,11 @@ public abstract class Channel implements ServiceHolder {
 				}
 			}
 		} catch (ClientProtocolException e) {
-			LOGGER.error("", e);
+			throw new ServerException(e);
 		} catch (IOException e) {
-			LOGGER.error("", e);
+			throw new ServerException(e);
+		} catch (PublicInterfaceNotFoundException e) {
+			throw new ServerException(e);
 		} finally {
 			httppost.releaseConnection();
 		}

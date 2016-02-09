@@ -58,7 +58,7 @@ public class ProgressTopic extends Topic {
 			sendMessage |= state.getState() == ActionState.FINISHED;
 			sendMessage |= state.getState() == ActionState.AS_ERROR;
 			sendMessage |= lastProgress != null && lastProgress.getStage() != state.getStage();
-			sendMessage |= lastProgress != null && !lastProgress.getTitle().equals(state.getTitle());
+			sendMessage |= lastProgress != null && ((lastProgress.getTitle() == null && state.getTitle() != null) || !lastProgress.getTitle().equals(state.getTitle()));
 
 			if (sendMessage) {
 				try {
