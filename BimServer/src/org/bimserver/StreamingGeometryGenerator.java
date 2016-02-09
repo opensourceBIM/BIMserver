@@ -30,7 +30,6 @@ import java.nio.IntBuffer;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -67,22 +66,21 @@ import org.bimserver.plugins.renderengine.RenderEngineFilter;
 import org.bimserver.plugins.renderengine.RenderEngineGeometry;
 import org.bimserver.plugins.renderengine.RenderEngineInstance;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
-import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
 import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.plugins.serializers.OidConvertingSerializer;
-import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.StreamingSerializer;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
+import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.QueryContext;
+import org.bimserver.shared.QueryException;
 import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.WrappedVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Formatters;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -114,7 +112,6 @@ public class StreamingGeometryGenerator {
 	public class Runner implements Runnable {
 
 		private EClass eClass;
-		private RenderEnginePlugin renderEnginePlugin;
 		private RenderEngineSettings renderEngineSettings;
 		private RenderEngineFilter renderEngineFilter;
 		private RenderEngineFilter renderEngineFilterTransformed = new RenderEngineFilter(true);
@@ -122,10 +119,13 @@ public class StreamingGeometryGenerator {
 		private GenerateGeometryResult generateGeometryResult;
 		private ObjectProvider objectProvider;
 		private QueryContext queryContext;
+		private DatabaseSession databaseSession;
+		private RenderEnginePool renderEnginePool;
 
-		public Runner(EClass eClass, RenderEnginePlugin renderEnginePlugin, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider, StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext) {
+		public Runner(EClass eClass, RenderEnginePool renderEnginePool, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider, StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext) {
 			this.eClass = eClass;
-			this.renderEnginePlugin = renderEnginePlugin;
+			this.renderEnginePool = renderEnginePool;
+			this.databaseSession = databaseSession;
 			this.renderEngineSettings = renderEngineSettings;
 			this.objectProvider = objectProvider;
 			this.ifcSerializerPlugin = ifcSerializerPlugin;
@@ -136,8 +136,52 @@ public class StreamingGeometryGenerator {
 		
 		@Override
 		public void run() {
+			try {
+				HashMapVirtualObject next;
+				next = objectProvider.next();
+				Query query = new Query("test", packageMetaData);
+				QueryPart queryPart = query.createQueryPart();
+				while (next != null) {
+					queryPart.addOid(next.getOid());
+//						for (EReference eReference : next.eClass().getEAllReferences()) {
+//							Object ref = next.eGet(eReference);
+//							if (ref != null) {
+//								if (eReference.isMany()) {
+//									List<?> list = (List<?>)ref;
+//									int index = 0;
+//									for (Object o : list) {
+//										if (o != null) {
+//											if (o instanceof Long) {
+//												if (next.useFeatureForSerialization(eReference, index)) {
+//													queryPart.addOid((Long)o);
+//												}
+//											}
+//										} else {
+//											System.out.println();
+//										}
+//										index++;
+//									}
+//								} else {
+//									if (ref instanceof Long) {
+//										if (next.useFeatureForSerialization(eReference)) {
+//											queryPart.addOid((Long)ref);
+//										}
+//									}
+//								}
+//							}
+//						}
+					next = objectProvider.next();
+				}
+				
+				objectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
+			} catch (BimserverDatabaseException | IOException | QueryException e1) {
+				e1.printStackTrace();
+			}
+
 			StreamingSerializer ifcSerializer = ifcSerializerPlugin.createSerializer(new PluginConfiguration());
-			try (RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration(), queryContext.getPackageMetaData().getSchema().getEPackageName())) {
+			RenderEngine renderEngine = null;
+			try {
+				renderEngine = renderEnginePool.request();
 				renderEngine.init();
 				final Set<HashMapVirtualObject> oids = new HashSet<>();
 				ObjectProviderProxy proxy = new ObjectProviderProxy(objectProvider, new ObjectListener() {
@@ -314,6 +358,9 @@ public class StreamingGeometryGenerator {
 				} finally {
 					in.close();
 					renderEngineModel.close();
+					if (renderEngine != null) {
+						renderEnginePool.release(renderEngine);
+					}
 					jobsDone.incrementAndGet();
 					updateProgress();
 				}
@@ -354,10 +401,6 @@ public class StreamingGeometryGenerator {
 			if (defaultRenderEngine == null) {
 				throw new UserException("No default render engine has been selected for this user");
 			}
-			final RenderEnginePlugin renderEnginePlugin = bimServer.getPluginManager().getRenderEnginePlugin(defaultRenderEngine.getPluginDescriptor().getPluginClassName(), true);
-			if (renderEnginePlugin == null) {
-				throw new UserException("No (enabled) render engine found of type " + defaultRenderEngine.getPluginDescriptor().getPluginClassName());
-			}
 
 			int maxSimultanousThreads = Math.min(bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses(), Runtime.getRuntime().availableProcessors());
 			if (maxSimultanousThreads < 1) {
@@ -373,78 +416,43 @@ public class StreamingGeometryGenerator {
 			
 			final RenderEngineFilter renderEngineFilter = new RenderEngineFilter();
 
+			RenderEnginePool renderEnginePool = bimServer.getRenderEnginePools().getRenderEnginePool(packageMetaData.getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName());
+			
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(queryContext.getOidCounters().size()));
 			for (EClass eClass : queryContext.getOidCounters().keySet()) {
-					if (packageMetaData.getEClass("IfcProduct").isSuperTypeOf(eClass)) {
-						Query query = new Query("test", packageMetaData);
-						QueryPart queryPart = query.createQueryPart();
-						queryPart.addType(eClass, false);
-						JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
-						queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:ContainedInStructure"));
-						queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:OwnerHistory"));
-						Include representation = jsonQueryObjectModelConverter.getDefineFromFile("validifc:Representation");
-						queryPart.addInclude(representation);
-						Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile("validifc:ObjectPlacement");
-						queryPart.addInclude(objectPlacement);
-						if (packageMetaData.getEClass("IfcWall").isSuperTypeOf(eClass)) {
-							Include ifcWall = queryPart.createInclude();
-							ifcWall.addType(packageMetaData.getEClass(eClass.getName()), false);
-							ifcWall.addField("HasOpenings");
-							Include hasOpenings = ifcWall.createInclude();
-							hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
-							hasOpenings.addField("RelatedOpeningElement");
-							hasOpenings.addInclude(representation);
-							hasOpenings.addInclude(objectPlacement);
-		//						Include relatedOpeningElement = hasOpenings.createInclude();
-		//						relatedOpeningElement.addType(packageMetaData.getEClass("IfcOpeningElement"), false);
-		//						relatedOpeningElement.addField("HasFillings");
-		//						Include hasFillings = relatedOpeningElement.createInclude();
-		//						hasFillings.addType(packageMetaData.getEClass("IfcRelFillsElement"), false);
-		//						hasFillings.addField("RelatedBuildingElement");
-						}
-						QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
-						
-						HashMapVirtualObject next = queryObjectProvider.next();
-						query = new Query("test", packageMetaData);
-						queryPart = query.createQueryPart();
-						while (next != null) {
-							queryPart.addOid(next.getOid());
-		//						for (EReference eReference : next.eClass().getEAllReferences()) {
-		//							Object ref = next.eGet(eReference);
-		//							if (ref != null) {
-		//								if (eReference.isMany()) {
-		//									List<?> list = (List<?>)ref;
-		//									int index = 0;
-		//									for (Object o : list) {
-		//										if (o != null) {
-		//											if (o instanceof Long) {
-		//												if (next.useFeatureForSerialization(eReference, index)) {
-		//													queryPart.addOid((Long)o);
-		//												}
-		//											}
-		//										} else {
-		//											System.out.println();
-		//										}
-		//										index++;
-		//									}
-		//								} else {
-		//									if (ref instanceof Long) {
-		//										if (next.useFeatureForSerialization(eReference)) {
-		//											queryPart.addOid((Long)ref);
-		//										}
-		//									}
-		//								}
-		//							}
-		//						}
-							next = queryObjectProvider.next();
-						}
-						
-						queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
-						
-						Runner runner = new Runner(eClass, renderEnginePlugin, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext);
-						executor.submit(runner);
-						jobsTotal.incrementAndGet();
+				if (packageMetaData.getEClass("IfcProduct").isSuperTypeOf(eClass)) {
+					Query query = new Query("test", packageMetaData);
+					QueryPart queryPart = query.createQueryPart();
+					queryPart.addType(eClass, false);
+					JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
+					queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:ContainedInStructure"));
+					queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:OwnerHistory"));
+					Include representation = jsonQueryObjectModelConverter.getDefineFromFile("validifc:Representation");
+					queryPart.addInclude(representation);
+					Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile("validifc:ObjectPlacement");
+					queryPart.addInclude(objectPlacement);
+					if (packageMetaData.getEClass("IfcWall").isSuperTypeOf(eClass)) {
+						Include ifcWall = queryPart.createInclude();
+						ifcWall.addType(packageMetaData.getEClass(eClass.getName()), false);
+						ifcWall.addField("HasOpenings");
+						Include hasOpenings = ifcWall.createInclude();
+						hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
+						hasOpenings.addField("RelatedOpeningElement");
+						hasOpenings.addInclude(representation);
+						hasOpenings.addInclude(objectPlacement);
+	//						Include relatedOpeningElement = hasOpenings.createInclude();
+	//						relatedOpeningElement.addType(packageMetaData.getEClass("IfcOpeningElement"), false);
+	//						relatedOpeningElement.addField("HasFillings");
+	//						Include hasFillings = relatedOpeningElement.createInclude();
+	//						hasFillings.addType(packageMetaData.getEClass("IfcRelFillsElement"), false);
+	//						hasFillings.addField("RelatedBuildingElement");
 					}
+					QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
+					
+					Runner runner = new Runner(eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext);
+					executor.submit(runner);
+					jobsTotal.incrementAndGet();
+				}
 			}
 			
 			executor.shutdown();

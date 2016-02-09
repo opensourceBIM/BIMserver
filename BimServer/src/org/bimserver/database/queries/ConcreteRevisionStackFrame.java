@@ -48,18 +48,22 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 		int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 		packageMetaData = queryObjectProvider.getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 		Revision revision = concreteRevision.getRevisions().get(0);
-		
+
 		reusable = new QueryContext(queryObjectProvider.getDatabaseSession(), packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), revision.getOid(), highestStopId);
-//		synchronized (getClass()) {
+		synchronized (getClass()) {
 //			if (reusableQueryContexts.containsKey(concreteRevision.getOid())) {
+//				System.out.println("Reusing for " + concreteRevision.getOid());
 //				reusable.setOidCounters(reusableQueryContexts.get(concreteRevision.getOid()));
 //			} else {
-				reusableQueryContexts.put(concreteRevision.getOid(), updateOidCounters(reusable, concreteRevision, queryObjectProvider.getDatabaseSession()));
+//				System.out.println("Creating new for " + concreteRevision.getOid());
+				Map<EClass, Long> updateOidCounters = updateOidCounters(concreteRevision, queryObjectProvider.getDatabaseSession());
+				reusable.setOidCounters(updateOidCounters);
+//				reusableQueryContexts.put(concreteRevision.getOid(), updateOidCounters);
 //			}
-//		}
+		}
 	}
 	
-	private Map<EClass, Long> updateOidCounters(QueryContext reusable, ConcreteRevision subRevision, DatabaseSession databaseSession) {
+	private Map<EClass, Long> updateOidCounters(ConcreteRevision subRevision, DatabaseSession databaseSession) {
 		if (subRevision.getOidCounters() != null) {
 			Map<EClass, Long> oidCounters = new HashMap<>();
 			ByteBuffer buffer = ByteBuffer.wrap(subRevision.getOidCounters());
@@ -69,7 +73,6 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 				EClass eClass = databaseSession.getEClass(cid);
 				oidCounters.put(eClass, oid);
 			}
-			reusable.setOidCounters(oidCounters);
 			return oidCounters;
 		}
 		return null;

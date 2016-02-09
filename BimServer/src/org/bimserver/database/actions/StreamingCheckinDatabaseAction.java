@@ -23,7 +23,6 @@ import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -100,7 +99,6 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		return first;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {
@@ -187,7 +185,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			concreteRevision = result.getConcreteRevision();
 			concreteRevision.setOidCounters(buffer.array());
 
-			setProgress("Generating inverses/opposites", 0);
+			setProgress("Generating inverses/opposites...", 0);
 			
 			fixInverses(packageMetaData, newRoid);
 
@@ -198,7 +196,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				}
 			};
 			StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(bimServer, progressListener);
-			setProgress("Generating geometry", 0);
+			setProgress("Generating geometry...", 0);
 
 			GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext);
 			
