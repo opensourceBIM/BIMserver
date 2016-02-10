@@ -22,6 +22,7 @@ import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
+import org.bimserver.plugins.deserializers.DatabaseInterface;
 
 public interface KeyValueStore {
 

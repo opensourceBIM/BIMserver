@@ -70,7 +70,7 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 			PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(installedVersion.getGroupId(), installedVersion.getArtifactId());
 			if (repositoryKnownLocation.containsKey(pluginBundleIdentifier)) {
 				PluginLocation<?> pluginLocation = repositoryKnownLocation.get(pluginBundleIdentifier);
-				
+
 				SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictVersionChecking, bimserverVersion);
 
 				if (sPluginBundle == null) {
@@ -90,6 +90,8 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 				sPluginBundle.setInstalledVersion(installedVersion);
 				
 				result.add(sPluginBundle);
+			} else {
+				// TODO newly developed plugin on local machine?
 			}
 		}
 

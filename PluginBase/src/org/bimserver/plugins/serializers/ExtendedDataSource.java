@@ -25,5 +25,5 @@ import javax.activation.DataSource;
 import org.bimserver.BimserverDatabaseException;
 
 public abstract class ExtendedDataSource implements DataSource {
-	public abstract void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException, IOException, BimserverDatabaseException;
+	public abstract void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException, IOException, BimserverDatabaseException, Exception;
 }

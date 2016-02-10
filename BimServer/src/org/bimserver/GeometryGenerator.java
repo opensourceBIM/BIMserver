@@ -205,8 +205,8 @@ public class GeometryGenerator {
 										geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
 									}
 
-									geometryInfo.setMinBounds(createVector3f(packageMetaData, model, Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
-									geometryInfo.setMaxBounds(createVector3f(packageMetaData, model, Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
+									geometryInfo.setMinBounds(createVector3f(packageMetaData, model, Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+									geometryInfo.setMaxBounds(createVector3f(packageMetaData, model, -Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
 
 									try {
 										double area = renderEngineInstance.getArea();
@@ -849,7 +849,7 @@ public class GeometryGenerator {
 		}
 	}
 
-	private Vector3f createVector3f(PackageMetaData packageMetaData, IfcModelInterface model, float defaultValue, DatabaseSession session, boolean store, int pid, int rid) throws BimserverDatabaseException, IfcModelInterfaceException {
+	private Vector3f createVector3f(PackageMetaData packageMetaData, IfcModelInterface model, double defaultValue, DatabaseSession session, boolean store, int pid, int rid) throws BimserverDatabaseException, IfcModelInterfaceException {
 		Vector3f vector3f = null;
 		if (store) {
 			vector3f = model.createAndAdd(GeometryPackage.eINSTANCE.getVector3f(), session.newOid(GeometryPackage.eINSTANCE.getVector3f()));

@@ -322,7 +322,7 @@ public class DownloadServlet extends SubServlet {
 		}
 	}
 
-	private void processDataSource(OutputStream outputStream, DataSource dataSource, ProgressReporter progressReporter) throws IOException, SerializerException, BimserverDatabaseException {
+	private void processDataSource(OutputStream outputStream, DataSource dataSource, ProgressReporter progressReporter) throws Exception {
 		if (dataSource instanceof ExtendedDataSource) {
 			((ExtendedDataSource) dataSource).writeToOutputStream(outputStream, progressReporter);
 		} else {

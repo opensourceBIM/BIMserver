@@ -79,7 +79,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 	@Override
 	public Integer clearOutputFileCache() {
-		return getBimServer().getDiskCacheManager().cleanup();
+		return getBimServer().getNewDiskCacheManager().cleanup();
 	}
 
 	@Override

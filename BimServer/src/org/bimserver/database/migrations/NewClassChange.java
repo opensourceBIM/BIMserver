@@ -40,9 +40,9 @@ public class NewClassChange implements Change {
 	public void change(Database database, DatabaseSession databaseSession) throws BimserverDatabaseException {
 		String tableName = getEClass().getEPackage().getName() + "_" + getEClass().getName();
 		if (eClass.getEAnnotation("nodatabase") == null) {
-			LOGGER.info("Creating table: " + tableName);
+			boolean transactional = !(eClass.getEPackage().getName().equals(Ifc2x3tc1Package.eINSTANCE.getName()) || eClass.getEPackage().getName().equals(Ifc4Package.eINSTANCE.getName()));
+			LOGGER.info("Creating " + (transactional ? "transactional" : "non transactional") + " table: " + tableName);
 			try {
-				boolean transactional = !(getEClass().getEPackage() == Ifc2x3tc1Package.eINSTANCE || getEClass().getEPackage() == Ifc4Package.eINSTANCE);
 				boolean created = database.createTable(getEClass(), databaseSession, transactional);
 				if (!created) {
 					throw new BimserverDatabaseException("Could not create table " + tableName);

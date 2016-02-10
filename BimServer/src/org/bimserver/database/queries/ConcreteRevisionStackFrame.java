@@ -19,6 +19,7 @@ package org.bimserver.database.queries;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,9 +37,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 public class ConcreteRevisionStackFrame extends StackFrame {
 
-	private QueryObjectProvider queryObjectProvider;
-	private PackageMetaData packageMetaData;
-	private QueryContext reusable;
+	private final QueryObjectProvider queryObjectProvider;
+	private final PackageMetaData packageMetaData;
+	private final QueryContext queryContext;
 	
 	// TODO make not static (use factory somewhere), and check concurrency
 	private static final Map<Long, Map<EClass, Long>> reusableQueryContexts = new HashMap<>();
@@ -49,28 +50,32 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 		packageMetaData = queryObjectProvider.getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 		Revision revision = concreteRevision.getRevisions().get(0);
 
-		reusable = new QueryContext(queryObjectProvider.getDatabaseSession(), packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), revision.getOid(), highestStopId);
-		synchronized (getClass()) {
-//			if (reusableQueryContexts.containsKey(concreteRevision.getOid())) {
-//				System.out.println("Reusing for " + concreteRevision.getOid());
-//				reusable.setOidCounters(reusableQueryContexts.get(concreteRevision.getOid()));
-//			} else {
-//				System.out.println("Creating new for " + concreteRevision.getOid());
-				Map<EClass, Long> updateOidCounters = updateOidCounters(concreteRevision, queryObjectProvider.getDatabaseSession());
-				reusable.setOidCounters(updateOidCounters);
-//				reusableQueryContexts.put(concreteRevision.getOid(), updateOidCounters);
-//			}
+		queryContext = new QueryContext(queryObjectProvider.getDatabaseSession(), packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), revision.getOid(), highestStopId);
+		if (concreteRevision.getOidCounters() != null) {
+			synchronized (getClass()) {
+				if (reusableQueryContexts.containsKey(concreteRevision.getOid())) {
+					queryContext.setOidCounters(reusableQueryContexts.get(concreteRevision.getOid()));
+				} else {
+					Map<EClass, Long> updateOidCounters = updateOidCounters(concreteRevision, queryObjectProvider.getDatabaseSession());
+					queryContext.setOidCounters(updateOidCounters);
+					reusableQueryContexts.put(concreteRevision.getOid(), updateOidCounters);
+				}
+			}
 		}
+	}
+	
+	public static void clearCache(long croid) {
+		reusableQueryContexts.remove(croid);
 	}
 	
 	private Map<EClass, Long> updateOidCounters(ConcreteRevision subRevision, DatabaseSession databaseSession) {
 		if (subRevision.getOidCounters() != null) {
-			Map<EClass, Long> oidCounters = new HashMap<>();
+			Map<EClass, Long> oidCounters = new HashMap<>(subRevision.getOidCounters().length / 8);
 			ByteBuffer buffer = ByteBuffer.wrap(subRevision.getOidCounters());
-			for (int i=0; i<buffer.capacity() / 10; i++) {
-				short cid = buffer.getShort();
+			buffer.order(ByteOrder.LITTLE_ENDIAN);
+			for (int i=0; i<buffer.capacity() / 8; i++) {
 				long oid = buffer.getLong();
-				EClass eClass = databaseSession.getEClass(cid);
+				EClass eClass = databaseSession.getEClass((short)oid);
 				oidCounters.put(eClass, oid);
 			}
 			return oidCounters;
@@ -80,7 +85,7 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 
 	@Override
 	public boolean process() throws BimserverDatabaseException, JsonParseException, JsonMappingException, IOException {
-		queryObjectProvider.push(new QueryStackFrame(queryObjectProvider, reusable));
+		queryObjectProvider.push(new QueryStackFrame(queryObjectProvider, queryContext));
 		return true;
 	}
 }

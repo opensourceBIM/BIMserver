@@ -97,6 +97,9 @@ public class NewDiskCacheManager {
 			}
 			Path file = cacheDir.resolve(cacheKey);
 			if (!Files.exists(file)) {
+				// This is an inconsistency that can only happen when users remove cached files manually while BIMserver is running
+				cachedFileNames.remove(file.getFileName().toString());
+				busyCaching.remove(downloadDescriptor.getCacheKey());
 				LOGGER.error("File " + file.getFileName().toString() + " not found in cache");
 			} else {
 				LOGGER.info("Reading from cache " + cacheKey);

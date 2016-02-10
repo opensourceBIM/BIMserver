@@ -75,4 +75,10 @@ public class NewDiskCacheOutputStream extends RemovableFileOutputStream {
 	public String getName() {
 		return file.getFileName().toString();
 	}
+
+	@Override
+	public void cancel() throws IOException {
+		super.close();
+		remove();
+	}
 }

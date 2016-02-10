@@ -18,6 +18,7 @@ package org.bimserver.database.migrations;
  *****************************************************************************/
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -93,7 +94,9 @@ public class NewReferenceChange implements Change {
 								if (eReference.isMany()) {
 									newBuffer.putInt(0);
 								} else {
+									buffer.order(ByteOrder.LITTLE_ENDIAN);
 									newBuffer.putShort((short)-1);
+									buffer.order(ByteOrder.BIG_ENDIAN);
 								}
 							}
 							

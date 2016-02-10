@@ -20,6 +20,7 @@ package org.bimserver.database.queries;
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Date;
 
 import org.bimserver.BimserverDatabaseException;
@@ -179,7 +180,9 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 									}
 								} else if (feature.getEType() instanceof EClass) {
 									// EReference eReference = (EReference) feature;
+									buffer.order(ByteOrder.LITTLE_ENDIAN);
 									short cid = buffer.getShort();
+									buffer.order(ByteOrder.BIG_ENDIAN);
 									if (cid == -1) {
 										// null, do nothing
 									} else if (cid < 0) {
@@ -198,6 +201,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 										if (referenceClass == null) {
 											throw new BimserverDatabaseException("No eClass found for cid " + cid);
 										}
+										buffer.position(buffer.position() - 2);
 										newValue = readReference(buffer, feature, referenceClass);
 										if ((Long)newValue != -1) {
 											if (queryObjectProvider.hasReadOrIsGoingToRead(((Long)newValue)) || queryObjectProvider.hasReadOrIsGoingToRead(referenceClass)) {
@@ -241,7 +245,9 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			buffer.position(buffer.position() + 1);
 			return -1;
 		}
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		long oid = buffer.getLong();
+		buffer.order(ByteOrder.BIG_ENDIAN);
 		return oid;
 	}
 
@@ -330,7 +336,9 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 						}
 						idEObject.setListItem(feature, i, newObject);
 					} else {
+						buffer.order(ByteOrder.LITTLE_ENDIAN);
 						short cid = buffer.getShort();
+						buffer.order(ByteOrder.BIG_ENDIAN);
 						if (cid == -1) {
 							// null, do nothing
 						} else if (cid < 0) {
@@ -350,6 +358,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 							if (referenceClass == null) {
 								throw new BimserverDatabaseException("Cannot find class with cid " + cid);
 							}
+							buffer.position(buffer.position() - 2);
 							long rf = readReference(buffer, feature, referenceClass);
 							idEObject.setListItemReference(feature, i, referenceClass, rf, -1);
 							if (rf != -1) {

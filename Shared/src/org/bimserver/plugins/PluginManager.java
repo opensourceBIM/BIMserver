@@ -121,8 +121,11 @@ public class PluginManager implements PluginManagerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<>();
 	private final Map<Plugin, PluginContext> pluginToPluginContext = new HashMap<>();
+	
 	private final Map<PluginBundleIdentifier, PluginBundle> pluginBundleIdentifierToPluginBundle = new HashMap<>();
 	private final Map<PluginBundleVersionIdentifier, PluginBundle> pluginBundleVersionIdentifierToPluginBundle = new HashMap<>();
+	private final Map<PluginBundleIdentifier, PluginBundleVersionIdentifier> pluginBundleIdentifierToCurrentPluginBundleVersionIdentifier = new HashMap<>();
+	
 	private final Path tempDir;
 	private final String baseClassPath;
 	private final ServiceFactory serviceFactory;
@@ -497,6 +500,7 @@ public class PluginManager implements PluginManagerInterface {
 		}
 		pluginBundleIdentifierToPluginBundle.put(pluginBundleVersionIdentifier.getPluginBundleIdentifier(), pluginBundle);
 		pluginBundleVersionIdentifierToPluginBundle.put(pluginBundleVersionIdentifier, pluginBundle);
+		pluginBundleIdentifierToCurrentPluginBundleVersionIdentifier.put(pluginBundleVersionIdentifier.getPluginBundleIdentifier(), pluginBundleVersionIdentifier);
 
 		return pluginBundle;
 	}
@@ -1266,6 +1270,7 @@ public class PluginManager implements PluginManagerInterface {
 			pluginBundle.close();
 			pluginBundleVersionIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier);
 			pluginBundleIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier.getPluginBundleIdentifier());
+			pluginBundleIdentifierToCurrentPluginBundleVersionIdentifier.remove(pluginBundleVersionIdentifier.getPluginBundleIdentifier());
 
 			for (PluginContext pluginContext : pluginBundle) {
 				Set<PluginContext> set = implementations.get(pluginContext.getPluginInterface());
@@ -1308,22 +1313,31 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	public PluginBundle update(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, Path jarFile, List<SPluginInformation> plugins) throws Exception {
-		PluginBundle existingPluginBundle = pluginBundleVersionIdentifierToPluginBundle.get(pluginBundleVersionIdentifier);
+		PluginBundle existingPluginBundle = pluginBundleIdentifierToPluginBundle.get(pluginBundleVersionIdentifier.getPluginBundleIdentifier());
 		if (existingPluginBundle == null) {
-			throw new UserException("No previous version of plugin bundle " + pluginBundleVersionIdentifier + " found");
+			throw new UserException("No previous version of plugin bundle " + pluginBundleVersionIdentifier.getPluginBundleIdentifier() + " found");
 		}
 		try {
 			existingPluginBundle.close();
-			pluginBundleVersionIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier);
-			pluginBundleIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier.getPluginBundleIdentifier());
-
+			
+			if (pluginBundleIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier.getPluginBundleIdentifier()) == null) {
+				LOGGER.warn("Previous version of " + pluginBundleVersionIdentifier.getPluginBundleIdentifier() + " not found");
+			}
+			PluginBundleVersionIdentifier currentVersion = pluginBundleIdentifierToCurrentPluginBundleVersionIdentifier.get(pluginBundleVersionIdentifier);
+			if (pluginBundleIdentifierToCurrentPluginBundleVersionIdentifier.remove(pluginBundleVersionIdentifier.getPluginBundleIdentifier()) == null) {
+				LOGGER.warn("Previous version of " + pluginBundleVersionIdentifier.getPluginBundleIdentifier() + " not found");
+			}
+			if (pluginBundleVersionIdentifierToPluginBundle.remove(currentVersion) == null) {
+				LOGGER.warn("Previous version of " + pluginBundleVersionIdentifier.getPluginBundleIdentifier() + " not found");
+			}
+			
 			for (PluginContext pluginContext : existingPluginBundle) {
 				Set<PluginContext> set = implementations.get(pluginContext.getPluginInterface());
 				set.remove(pluginContext);
 			}
 			
-			Path target = pluginsDir.resolve(pluginBundleVersionIdentifier.getFileName());
-			Files.delete(target);
+//			Path target = pluginsDir.resolve(pluginBundleVersionIdentifier.getFileName());
+//			Files.delete(target);
 			
 //			for (PluginContext pluginContext : existingPluginBundle) {
 //				pluginChangeListener.pluginUninstalled(pluginContext);

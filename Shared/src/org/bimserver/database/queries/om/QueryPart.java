@@ -124,6 +124,10 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 		return oids != null;
 	}
 
+	public boolean hasGuids() {
+		return guids != null;
+	}
+
 	public boolean hasTypes() {
 		return types != null;
 	}
@@ -133,9 +137,14 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 		StringBuilder sb = new StringBuilder();
 		return sb.toString();
 	}
+	
+	public boolean hasProperties() {
+		return properties != null;
+	}
 
 	public void dump(int indent, StringBuilder sb) {
 		if (indent > 10) {
+			// TODO this is also used for caching...
 			sb.append("..trimmed\n");
 			return;
 		}
@@ -151,12 +160,32 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 				sb.append(indent(indent + 1) + oid + "\n");
 			}
 		}
+		if (hasGuids()) {
+			sb.append(indent(indent) + "guids\n");
+			for (String guid : getGuids()) {
+				sb.append(indent(indent + 1) + guid + "\n");
+			}
+		}
 		if (hasIncludes()) {
 			sb.append(indent(indent) + "includes\n");
 			for (Include include : getIncludes()) {
 				include.dump(indent + 1, sb);
 			}
 		}
+		if (hasInBoundingBox()) {
+			sb.append(indent(indent) + "inBoundingBox\n");
+			inBoundingBox.dump(indent + 1, sb);
+		}
+		if (hasProperties()) {
+			sb.append(indent(indent) + "properties\n");
+			for (String key : properties.keySet()) {
+				sb.append(indent(indent + 1) + key + ": " + properties.get(key));
+			}
+		}
+	}
+	
+	public boolean hasInBoundingBox() {
+		return inBoundingBox != null;
 	}
 
 	public Include createInclude() {

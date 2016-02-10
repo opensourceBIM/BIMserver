@@ -18,6 +18,7 @@ package org.bimserver.shared;
  *****************************************************************************/
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 import org.bimserver.BimserverDatabaseException;
 import org.eclipse.emf.ecore.EClass;
@@ -30,7 +31,9 @@ public class ByteBufferWrappedVirtualObject extends AbstractByteBufferVirtualObj
 	public ByteBufferWrappedVirtualObject(QueryContext reusable, EClass eClass) {
 		super(10);
 		this.eClass = eClass;
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		buffer.putShort((short) -reusable.getDatabaseInterface().getCidOfEClass(eClass));
+		buffer.order(ByteOrder.BIG_ENDIAN);
 	}
 
 	@Override

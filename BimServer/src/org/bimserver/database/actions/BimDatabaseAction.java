@@ -93,7 +93,7 @@ public abstract class BimDatabaseAction<T> {
 	}
 
 	public User getUserByUserName(String username) throws BimserverDatabaseException, BimserverLockConflictException {
-		return (User) databaseSession.querySingle(StorePackage.eINSTANCE.getUser_Username(), username);
+		return (User) databaseSession.querySingle(StorePackage.eINSTANCE.getUser_Username(), username, OldQuery.getDefault().getPid(), OldQuery.getDefault().getRid());
 	}
 
 	public Revision getRevisionByRoid(long roid) throws BimserverDatabaseException {

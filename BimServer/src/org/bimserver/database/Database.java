@@ -95,7 +95,7 @@ public class Database implements BimDatabase {
 	public static final int APPLICATION_SCHEMA_VERSION = 23;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore, MetaDataManager metaDataManager) throws DatabaseInitException {
-		this.cidToEclass = new EClass[10000]; 
+		this.cidToEclass = new EClass[Short.MAX_VALUE]; 
 		this.bimServer = bimServer;
 		this.keyValueStore = keyValueStore;
 		this.metaDataManager = metaDataManager;
@@ -230,7 +230,7 @@ public class Database implements BimDatabase {
 		settings.setAllowOnlyWhitelisted(false);
 		settings.setGenerateGeometryOnCheckin(true);
 		settings.setReuseGeometry(true);
-		settings.setRenderEngineProcesses(1);
+		settings.setRenderEngineProcesses(Runtime.getRuntime().availableProcessors());
 		settings.setSessionTimeOutSeconds(60 * 60 * 24 * 30); // 1 month
 		settings.getWhitelistedDomains().add("localhost");
 		settings.getWhitelistedDomains().add("localhost:8080");
@@ -405,8 +405,7 @@ public class Database implements BimDatabase {
 	}
 
 	public boolean createIndexTable(EClass eClass, EStructuralFeature eStructuralFeature, DatabaseSession databaseSession, boolean transactional) throws BimserverDatabaseException {
-		boolean createTable = keyValueStore.createIndexTable(eClass.getEPackage().getName() + "_" + eClass.getName() + "_" + eStructuralFeature.getName(), databaseSession, transactional);
-		return createTable;
+		return keyValueStore.createIndexTable(eClass.getEPackage().getName() + "_" + eClass.getName() + "_" + eStructuralFeature.getName(), databaseSession, transactional);
 	}
 
 	public MetaDataManager getMetaDataManager() {
@@ -431,9 +430,6 @@ public class Database implements BimDatabase {
 	}
 	
 	public EClass getEClassForOid(long oid) throws BimserverDatabaseException {
-//		ByteBuffer buffer = ByteBuffer.wrap(new byte[8]);
-//		buffer.putLong(oid);
-//		short cid = buffer.getShort(6);
 		short cid = (short)oid;
 		EClass eClass = getEClassForCid(cid);
 		if (eClass == null) {

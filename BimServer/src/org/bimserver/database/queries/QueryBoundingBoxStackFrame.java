@@ -97,12 +97,12 @@ public class QueryBoundingBoxStackFrame extends DatabaseReadingStackFrame implem
 				HashMapVirtualObject geometryInfo = getByOid(geometryInfoId);
 				HashMapWrappedVirtualObject minBounds = (HashMapWrappedVirtualObject) geometryInfo.get("minBounds");
 				HashMapWrappedVirtualObject maxBounds = (HashMapWrappedVirtualObject) geometryInfo.get("maxBounds");
-				float minX = (float) minBounds.eGet("x");
-				float minY = (float) minBounds.eGet("y");
-				float minZ = (float) minBounds.eGet("z");
-				float maxX = (float) maxBounds.eGet("x");
-				float maxY = (float) maxBounds.eGet("y");
-				float maxZ = (float) maxBounds.eGet("z");
+				double minX = (double) minBounds.eGet("x");
+				double minY = (double) minBounds.eGet("y");
+				double minZ = (double) minBounds.eGet("z");
+				double maxX = (double) maxBounds.eGet("x");
+				double maxY = (double) maxBounds.eGet("y");
+				double maxZ = (double) maxBounds.eGet("z");
 				if (
 						minX > inBoundingBox.getX() &&
 						minY > inBoundingBox.getY() &&
@@ -110,7 +110,6 @@ public class QueryBoundingBoxStackFrame extends DatabaseReadingStackFrame implem
 						maxX < inBoundingBox.getX() + inBoundingBox.getWidth() &&
 						maxY < inBoundingBox.getY() + inBoundingBox.getHeight() &&
 						maxZ < inBoundingBox.getZ() + inBoundingBox.getDepth()) {
-					
 				} else {
 					currentObject = null;
 				}

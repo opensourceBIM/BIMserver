@@ -19,6 +19,7 @@ package org.bimserver.database.queries.om;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -37,6 +38,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class JsonQueryObjectModelConverter {
+	private static final Map<String, Include> CACHED_DEFINES = new HashMap<>();
 	private PackageMetaData packageMetaData;
 
 	public JsonQueryObjectModelConverter(PackageMetaData packageMetaData) {
@@ -252,7 +254,12 @@ public class JsonQueryObjectModelConverter {
 		return include;
 	}
 
+	// TODO thread safety and cache invalidation on file updates
 	public Include getDefineFromFile(String includeName) throws QueryException {
+		Include include = CACHED_DEFINES.get(includeName);
+		if (include != null) {
+			return include;
+		}
 		String namespaceString = includeName.substring(0, includeName.indexOf(":"));
 		String singleIncludeName = includeName.substring(includeName.indexOf(":") + 1);
 		URL resource = getClass().getResource("../json/" + namespaceString + ".json");
@@ -265,11 +272,12 @@ public class JsonQueryObjectModelConverter {
 			ObjectNode predefinedQuery = objectMapper.readValue(resource, ObjectNode.class);
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
 			Query namespace = converter.parseJson(includeName, predefinedQuery);
-			Include define2 = namespace.getDefine(singleIncludeName);
-			if (define2 == null) {
+			Include define = namespace.getDefine(singleIncludeName);
+			if (define == null) {
 				throw new QueryException("Could not find '" + singleIncludeName + "' in defines in namespace " + namespace.getName());
 			}
-			return define2;
+			CACHED_DEFINES.put(includeName, define);
+			return define;
 		} catch (JsonParseException e) {
 			throw new QueryException(e);
 		} catch (JsonMappingException e) {

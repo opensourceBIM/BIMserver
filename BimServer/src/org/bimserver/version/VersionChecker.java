@@ -76,20 +76,24 @@ public class VersionChecker {
 				throw new VersionCheckException("No pom.xml found");
 			}
 
-			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 			if (Files.exists(pom)) {
 				String version = null;
+				MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 				if (pom != null) {
-					Model model = mavenreader.read(new FileReader(pom.toFile()));
-					version = model.getVersion();
+					try (FileReader fileReader = new FileReader(pom.toFile())) {
+						Model model = mavenreader.read(fileReader);
+						version = model.getVersion();
+					}
 				}					
 
 				if (version == null) {
 					// Only on development environments we have to get the version from the parent pom file
 					Path parentPom = resourceFetcher.getFile("../pom.xml");
 					if (parentPom != null) {
-						Model parentModel = mavenreader.read(new FileReader(parentPom.toFile()));
-						version = parentModel.getVersion();
+						try (FileReader fileReader = new FileReader(parentPom.toFile())) {
+							Model parentModel = mavenreader.read(fileReader);
+							version = parentModel.getVersion();
+						}
 					} else {
 						LOGGER.error("No parent pom.xml found");
 					}

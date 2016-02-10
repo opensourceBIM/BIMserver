@@ -20,6 +20,7 @@ package org.bimserver.database;
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -33,7 +34,6 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.ServerIfcModel;
 import org.bimserver.database.actions.BimDatabaseAction;
@@ -189,36 +189,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				}
 				ByteBuffer valueBuffer = convertObjectToByteArray(object, reusableBuffer, getMetaDataManager().getPackageMetaData(object.eClass().getEPackage().getName()));
 				int valueBufferPosition = valueBuffer.position();
-				boolean hasAtLeastOneIndex = false;
-				for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
-					if (eStructuralFeature.getEAnnotation("singleindex") != null) {
-						hasAtLeastOneIndex = true;
-						break;
-					}
-				}
-				if (hasAtLeastOneIndex) {
-					ByteBuffer oldKeyBuffer = ByteBuffer.allocate(16);
-					oldKeyBuffer.putInt(object.getPid());
-					oldKeyBuffer.putLong(object.getOid());
-					oldKeyBuffer.putInt(-(object.getRid() - 1));
-					byte[] oldData = database.getKeyValueStore().get(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), oldKeyBuffer.array(), this);
-					for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
-						if (eStructuralFeature.getEAnnotation("singleindex") != null) {
-							String indexTableName = object.eClass().getEPackage().getName() + "_" + object.eClass().getName() + "_" + eStructuralFeature.getName();
-							byte[] featureBytes = extractFeatureBytes(this, valueBuffer, object.eClass(), eStructuralFeature);
-							
-							if (oldData != null) {
-								ByteBuffer oldValue = ByteBuffer.wrap(oldData);
-								byte[] featureBytesOldIndex = extractFeatureBytes(this, oldValue, object.eClass(), eStructuralFeature);
-								database.getKeyValueStore().delete(indexTableName, featureBytesOldIndex, oldKeyBuffer.array(), this);
-							}
-							
-							if (featureBytes != null) {
-								database.getKeyValueStore().store(indexTableName, featureBytes, keyBuffer.array(), this);
-							}
-						}
-					}
-				}
+				processPossibleIndices(keyBuffer, object.getPid(), object.getRid(), object.getOid(), object.eClass(), valueBuffer);
 				if (object.eClass().getEAnnotation("nolazyload") == null && !overwriteEnabled) {
 					database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(), valueBuffer.array(), 0, valueBufferPosition, this);
 				} else {
@@ -245,6 +216,61 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			throw e;
 		} catch (ServiceException e) {
 			throw e;
+		}
+	}
+
+	private void processPossibleIndices(ByteBuffer keyBuffer, int pid, int rid, long oid, EClass eClass, ByteBuffer valueBuffer) throws BimserverLockConflictException, BimserverDatabaseException {
+		boolean hasAtLeastOneIndex = false;
+		for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+			if (eStructuralFeature.getEAnnotation("singleindex") != null) {
+				hasAtLeastOneIndex = true;
+				break;
+			}
+		}
+		if (hasAtLeastOneIndex) {
+			byte[] oldData = null;
+			ByteBuffer oldKeyBuffer = null;
+			boolean perRecordVersioning = perRecordVersioning(eClass);
+			if (perRecordVersioning) {
+				oldKeyBuffer = ByteBuffer.allocate(16);
+				oldKeyBuffer.putInt(pid);
+				oldKeyBuffer.putLong(oid);
+				oldKeyBuffer.putInt(-(rid - 1));
+				oldData = database.getKeyValueStore().get(eClass.getEPackage().getName() + "_" + eClass.getName(), oldKeyBuffer.array(), this);
+			}
+			
+			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+				if (eStructuralFeature.getEAnnotation("singleindex") != null) {
+					String indexTableName = eClass.getEPackage().getName() + "_" + eClass.getName() + "_" + eStructuralFeature.getName();
+					if (perRecordVersioning && oldData != null) {
+						ByteBuffer oldValue = ByteBuffer.wrap(oldData);
+						
+						byte[] featureBytesOldIndex = extractFeatureBytes(this, oldValue, eClass, eStructuralFeature);
+						
+						if (!perRecordVersioning) {
+							ByteBuffer oldFeatureBuffer = ByteBuffer.allocate(featureBytesOldIndex.length + 8);
+							oldFeatureBuffer.putInt(pid);
+							oldFeatureBuffer.putInt(-(rid - 1));
+							oldFeatureBuffer.put(featureBytesOldIndex);
+							featureBytesOldIndex = oldFeatureBuffer.array();
+						}
+						
+						database.getKeyValueStore().delete(indexTableName, featureBytesOldIndex, oldKeyBuffer.array(), this);
+					}
+					
+					byte[] featureBytes = extractFeatureBytes(this, valueBuffer, eClass, eStructuralFeature);
+					if (featureBytes != null) {
+						if (!perRecordVersioning) {
+							ByteBuffer featureBuffer = ByteBuffer.allocate(featureBytes.length + 8);
+							featureBuffer.putInt(pid);
+							featureBuffer.putInt(-rid);
+							featureBuffer.put(featureBytes);
+							featureBytes = featureBuffer.array();
+						}
+						database.getKeyValueStore().store(indexTableName, featureBytes, keyBuffer.array(), this);
+					}
+				}
+			}
 		}
 	}
 
@@ -331,12 +357,13 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 										}
 									} else if (feature.getEType() instanceof EClass) {
 										// EReference eReference = (EReference) feature;
+										buffer.order(ByteOrder.LITTLE_ENDIAN);
 										short cid = buffer.getShort();
+										buffer.order(ByteOrder.BIG_ENDIAN);
 										if (cid == -1) {
 											// null, do nothing
 										} else if (cid < 0) {
-											// negative cid means value is embedded in
-											// record
+											// non minus one and negative cid means value is embedded in record
 											EClass referenceClass = database.getEClassForCid((short) (-cid));
 											if (feature.getEAnnotation("dbembed") != null) {
 												newValue = readEmbeddedValue(feature, buffer, referenceClass, query);
@@ -344,12 +371,13 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 												newValue = readWrappedValue(feature, buffer, referenceClass, query);
 											}
 										} else if (cid > 0) {
-											// positive cid means value is reference to
-											// other record
+											// positive cid means value is reference to other record
 											EClass referenceClass = database.getEClassForCid(cid);
 											if (referenceClass == null) {
 												throw new BimserverDatabaseException("No eClass found for cid " + cid);
 											}
+											// readReference is going to read a long, which includes the 2 bytes for the cid
+											buffer.position(buffer.position() - 2);
 											newValue = readReference(originalQueryClass, buffer, model, idEObject, feature, referenceClass, query, todoList);
 											// if (eReference.getEOpposite() != null &&
 											// ((IdEObjectImpl)
@@ -421,7 +449,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 					} else {
 						IdEObject referencedObject = null;
 						
+						buffer.order(ByteOrder.LITTLE_ENDIAN);
 						short cid = buffer.getShort();
+						buffer.order(ByteOrder.BIG_ENDIAN);
 						if (cid == -1) {
 							// null, do nothing
 						} else if (cid < 0) {
@@ -441,6 +471,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 							if (referenceClass == null) {
 								throw new BimserverDatabaseException("Cannot find class with cid " + cid);
 							}
+							buffer.position(buffer.position() - 2);
 							referencedObject = readReference(originalQueryClass, buffer, model, idEObject, feature, referenceClass, query, todoList);
 						}
 						if (referencedObject != null) {
@@ -540,7 +571,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 							}
 						} else if (feature.getEType() instanceof EClass) {
 							if (value == null) {
+								buffer.order(ByteOrder.LITTLE_ENDIAN);
 								buffer.putShort((short) -1);
+								buffer.order(ByteOrder.BIG_ENDIAN);
 							} else {
 								IdEObject referencedObject = (IdEObject) value;
 								EClass referencedClass = referencedObject.eClass();
@@ -574,7 +607,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			buffer.putInt(list.size());
 			for (Object o : list) {
 				if (o == null) {
+					buffer.order(ByteOrder.LITTLE_ENDIAN);
 					buffer.putShort((short) -1);
+					buffer.order(ByteOrder.BIG_ENDIAN);
 				} else {
 					IdEObject listObject = (IdEObject) o;
 					if (listObject.eClass().getEAnnotation("wrapped") != null || listObject.eClass().getEStructuralFeature("wrappedValue") != null) {
@@ -1045,11 +1080,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 								size += getWrappedValueSize(v, eReference, packageMetaData);
 							}
 						} else {
-							if (val == null) {
-								size += 2;
-							} else {
-								size += getWrappedValueSize(val, eReference, packageMetaData);
-							}
+							size += getWrappedValueSize(val, eReference, packageMetaData);
 						}
 					}
 				}
@@ -1385,37 +1416,39 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		}
 		if (val instanceof EObject) {
 			IdEObject eObject = (IdEObject) val;
-			int refSize = 10;
 			if (eReference.getEAnnotation("twodimensionalarray") != null) {
-				refSize = 4;
+				int refSize = 4;
 				EStructuralFeature eStructuralFeature = eObject.eClass().getEStructuralFeature("List");
 				List<?> l = (List<?>)eObject.eGet(eStructuralFeature);
 				for (Object o : l) {
 					if (o instanceof EObject) {
-						refSize += 10;
+						refSize += 8;
 					} else {
 						refSize += getPrimitiveSize((EDataType) eStructuralFeature.getEType(), o);
 					}
 				}
-			}
-			if (eReference.getEAnnotation("dbembed") != null) {
-				refSize = 2;
+				return refSize;
+			} else if (eReference.getEAnnotation("dbembed") != null) {
+				int refSize = 2;
 				refSize += getExactSize(eObject, packageMetaData, false);
-			}
-			if (eObject.eClass().getEAnnotation("wrapped") != null) {
+				return refSize;
+			} else if (eObject.eClass().getEAnnotation("wrapped") != null) {
 				IdEObject wrappedValue = (IdEObject) val;
 				EStructuralFeature wrappedValueFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValue");
 				Object wrappedVal = eObject.eGet(wrappedValueFeature);
-				refSize = 2 + getPrimitiveSize((EDataType) wrappedValueFeature.getEType(), wrappedVal);
+				int refSize = 2 + getPrimitiveSize((EDataType) wrappedValueFeature.getEType(), wrappedVal);
 				if (wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
 					EStructuralFeature wrappedStringFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValueAsString");
 					String str = (String) eObject.eGet(wrappedStringFeature);
 					refSize += getPrimitiveSize(EcorePackage.eINSTANCE.getEString(), str);
 				}
+				return refSize;
+			} else {
+				return 8;
 			}
-			return refSize;
+		} else {
+			throw new RuntimeException("Programming error, cannot happen");
 		}
-		return 10;
 	}
 
 	public boolean perRecordVersioning(IdEObject idEObject) {
@@ -1612,13 +1645,15 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				} else {
 					int listSize = buffer.getInt();
 					for (int i = 0; i < listSize; i++) {
+						buffer.order(ByteOrder.LITTLE_ENDIAN);
 						short cid = buffer.getShort();
+						buffer.order(ByteOrder.BIG_ENDIAN);
 						if (cid != -1) {
 							if (wrappedValue) {
 								EClass eClass = (EClass) feature.getEType();
 								fakePrimitiveRead(eClass.getEStructuralFeature("wrappedValue").getEType(), buffer);
 							} else {
-								buffer.position(buffer.position() + 8);
+								buffer.position(buffer.position() + 6);
 							}
 						}
 					}
@@ -1636,12 +1671,14 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 					buffer.position(buffer.position() + 1);
 				} else {
+					buffer.order(ByteOrder.LITTLE_ENDIAN);
 					short cid = buffer.getShort();
+					buffer.order(ByteOrder.BIG_ENDIAN);
 					if (wrappedValue) {
 						fakePrimitiveRead(feature.getEType(), buffer);
 					} else {
 						if (cid != -1) {
-							buffer.position(buffer.position() + 8);
+							buffer.position(buffer.position() + 6);
 						}
 					}
 				}
@@ -1681,11 +1718,14 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 
 	private IdEObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModelInterface model, IdEObject object, EStructuralFeature feature, EClass eClass,
 			QueryInterface query, TodoList todoList) throws BimserverDatabaseException {
+		// TODO next bit seems to make no sense, why detect a deleted record when reading a reference??
 		if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 			buffer.position(buffer.position() + 1);
 			return null;
 		}
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		long oid = buffer.getLong();
+		buffer.order(ByteOrder.BIG_ENDIAN);
 		IdEObject foundInCache = objectCache.get(oid);
 		if (foundInCache != null) {
 			return foundInCache;
@@ -1886,20 +1926,22 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 
 	private void writeReference(IdEObject object, Object value, ByteBuffer buffer, EStructuralFeature feature) throws BimserverDatabaseException {
-		Short cid = database.getCidOfEClass(((EObject) value).eClass());
-		buffer.putShort(cid);
 		IdEObject idEObject = (IdEObject) value;
 		if (idEObject.getOid() < 0) {
 			throw new BimserverDatabaseException("Writing a reference with oid " + idEObject.getOid() + ", this is not supposed to happen, referenced: " + idEObject.getOid() + " " + value + " from " + object.getOid() + " " + object);
 		}
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		buffer.putLong(idEObject.getOid());
+		buffer.order(ByteOrder.BIG_ENDIAN);
 	}
 
 	private void writeEmbeddedValue(int pid, int rid, Object value, ByteBuffer buffer, PackageMetaData packageMetaData) throws BimserverDatabaseException {
 		IdEObject wrappedValue = (IdEObject) value;
 
 		Short cid = database.getCidOfEClass(wrappedValue.eClass());
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		buffer.putShort((short) -cid);
+		buffer.order(ByteOrder.BIG_ENDIAN);
 		
 		for (EStructuralFeature eStructuralFeature : wrappedValue.eClass().getEAllStructuralFeatures()) {
 			if (eStructuralFeature.isMany()) {
@@ -1914,7 +1956,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		IdEObject wrappedValue = (IdEObject) value;
 		EStructuralFeature eStructuralFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValue");
 		Short cid = database.getCidOfEClass(wrappedValue.eClass());
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		buffer.putShort((short) -cid);
+		buffer.order(ByteOrder.BIG_ENDIAN);
 		writePrimitiveValue(eStructuralFeature, wrappedValue.eGet(eStructuralFeature), buffer);
 		if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
 			EStructuralFeature fe = wrappedValue.eClass().getEStructuralFeature("wrappedValueAsString");
@@ -2023,8 +2067,12 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		return database.getCounter(eClass);
 	}
 
-	@SuppressWarnings("unchecked")
 	public <T extends IdEObject> T querySingle(EAttribute attribute, Object value) throws BimserverLockConflictException, BimserverDatabaseException {
+		return querySingle(attribute, value, OldQuery.getDefault().getPid(), OldQuery.getDefault().getRid());
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <T extends IdEObject> T querySingle(EAttribute attribute, Object value, int pid, int rid) throws BimserverLockConflictException, BimserverDatabaseException {
 		if (attribute.getEAnnotation("singleindex") != null) {
 			String indexTableName = attribute.getEContainingClass().getEPackage().getName() + "_" + attribute.getEContainingClass().getName() + "_" + attribute.getName();
 			byte[] queryBytes = null;
@@ -2034,6 +2082,14 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				queryBytes = BinUtils.intToByteArray((Integer)value);
 			} else {
 				throw new BimserverDatabaseException("Unsupported type " + value);
+			}
+			boolean perRecordVersioning = perRecordVersioning(attribute.getEContainingClass());
+			if (!perRecordVersioning) {
+				ByteBuffer valueBuffer = ByteBuffer.allocate(queryBytes.length + 8);
+				valueBuffer.putInt(pid);
+				valueBuffer.putInt(-rid);
+				valueBuffer.put(queryBytes);
+				queryBytes = valueBuffer.array();
 			}
 			byte[] firstDuplicate = database.getKeyValueStore().get(indexTableName, queryBytes, this);
 			if (firstDuplicate != null) {
@@ -2113,6 +2169,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		EClass eClass = object.eClass();
 		ByteBuffer keyBuffer = createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
 		database.getKeyValueStore().storeNoOverwrite(eClass.getEPackage().getName() + "_" + eClass.getName(), keyBuffer.array(), valueBuffer.array(), 0, valueBuffer.position(), this);
+		
+		processPossibleIndices(keyBuffer, object.getPid(), object.getRid(), object.getOid(), object.eClass(), valueBuffer);
+		
 		database.incrementCommittedWrites(1);
 		return valueBuffer.position();
 	}
@@ -2129,5 +2188,10 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 
 	public KeyValueStore getKeyValueStore() {
 		return database.getKeyValueStore();
+	}
+
+	@Override
+	public byte[] get(String tableName, byte[] key) throws BimserverLockConflictException, BimserverDatabaseException {
+		return database.getKeyValueStore().get(tableName, key, this);
 	}
 }

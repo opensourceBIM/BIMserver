@@ -48,6 +48,14 @@ public class MultiplexingOutputStream extends OutputStream {
 		b.close();
 	}
 	
+	public OutputStream getA() {
+		return a;
+	}
+	
+	public OutputStream getB() {
+		return b;
+	}
+	
 	@Override
 	public void flush() throws IOException {
 		a.flush();

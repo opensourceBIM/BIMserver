@@ -18,6 +18,7 @@ package org.bimserver.database;
  *****************************************************************************/
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -126,10 +127,11 @@ public class OldQuery implements QueryInterface {
 		if (subRevision.getOidCounters() != null) {
 			Map<EClass, Long> oidCounters = new HashMap<>();
 			ByteBuffer buffer = ByteBuffer.wrap(subRevision.getOidCounters());
-			for (int i=0; i<buffer.capacity() / 10; i++) {
-				short cid = buffer.getShort();
+			for (int i=0; i<buffer.capacity() / 8; i++) {
+				buffer.order(ByteOrder.LITTLE_ENDIAN);
 				long oid = buffer.getLong();
-				EClass eClass = databaseSession.getEClass(cid);
+				buffer.order(ByteOrder.BIG_ENDIAN);
+				EClass eClass = databaseSession.getEClass((short)oid);
 				oidCounters.put(eClass, oid);
 			}
 			setOidCounters(oidCounters);
