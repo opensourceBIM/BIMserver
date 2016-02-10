@@ -28,4 +28,5 @@ public interface DatabaseInterface {
 	long newOid(EClass eClass);
 	int save(VirtualObject virtualObject) throws BimserverDatabaseException;
 	int saveOverwrite(VirtualObject virtualObject) throws BimserverDatabaseException;
+	byte[] get(String tableName, byte[] key) throws BimserverDatabaseException;
 }

@@ -20,6 +20,7 @@ package org.bimserver.database.actions;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -34,6 +35,7 @@ import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.SummaryMap;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
+import org.bimserver.database.queries.ConcreteRevisionStackFrame;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.Query;
@@ -127,10 +129,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
 
 			// TODO checksum
-			// TODO generate geometry
 			// TODO modelcheckers
 			// TODO test ifc4
-			// TODO store right size
 
 //			long size = 0;
 //			if (getModel() != null) {
@@ -170,12 +170,12 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 					s++;
 				}
 			}
-			ByteBuffer buffer = ByteBuffer.allocate(10 * s);
+			ByteBuffer buffer = ByteBuffer.allocate(8 * s);
+			buffer.order(ByteOrder.LITTLE_ENDIAN);
 			for (EClass eClass : eClasses) {
 				long oid = startOids.get(eClass);
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
 					oidCounters.put(eClass, oid);
-					buffer.putShort(getDatabaseSession().getCid(eClass));
 					buffer.putLong(oid);
 				}
 			}
@@ -192,7 +192,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			ProgressListener progressListener = new ProgressListener() {
 				@Override
 				public void updateProgress(String state, int percentage) {
-					setProgress("Generating geometry", percentage);
+					setProgress("Generating geometry...", percentage);
 				}
 			};
 			StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(bimServer, progressListener);
@@ -212,21 +212,22 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 					s++;
 				}
 			}
-			buffer = ByteBuffer.allocate(10 * s);
+			buffer = ByteBuffer.allocate(8 * s);
+			buffer.order(ByteOrder.LITTLE_ENDIAN);
 			for (EClass eClass : eClasses) {
 				long oid = startOids.get(eClass);
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
-					buffer.putShort(getDatabaseSession().getCid(eClass));
 					buffer.putLong(oid);
 				}
 			}
-			buffer.putShort(getDatabaseSession().getCid(GeometryPackage.eINSTANCE.getGeometryInfo()));
 			buffer.putLong(startOids.get(GeometryPackage.eINSTANCE.getGeometryInfo()));
-			buffer.putShort(getDatabaseSession().getCid(GeometryPackage.eINSTANCE.getGeometryData()));
 			buffer.putLong(startOids.get(GeometryPackage.eINSTANCE.getGeometryData()));
 			
 			concreteRevision = result.getConcreteRevision();
 			concreteRevision.setOidCounters(buffer.array());
+			
+			// Clear the cache, we don't want it to cache incomplete oidcounters
+			ConcreteRevisionStackFrame.clearCache(concreteRevision.getOid());
 			
 			result.getConcreteRevision().setSize(size);
 			for (Revision revision : result.getRevisions()) {
@@ -349,6 +350,10 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			}
 			next = queryObjectProvider.next();
 		}
+		
+		for (HashMapVirtualObject referencedObject : cache.values()) {
+			referencedObject.saveOverwrite();
+		}
 	}
 
 	private void fixInverses(PackageMetaData packageMetaData, long newRoid, Map<Long, HashMapVirtualObject> cache, HashMapVirtualObject next, EReference eReference, long refOid)
@@ -370,7 +375,6 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		} else {
 			referencedObject.setReference(oppositeReference, next.getOid(), 0);
 		}
-		referencedObject.saveOverwrite();
 	}
 
 	public String getFileName() {

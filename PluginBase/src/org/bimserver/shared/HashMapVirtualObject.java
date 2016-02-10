@@ -18,6 +18,7 @@ package org.bimserver.shared;
  *****************************************************************************/
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -90,31 +91,34 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		}
 		if (val instanceof VirtualObject) {
 			VirtualObject eObject = (VirtualObject) val;
-			int refSize = 10;
 			if (eReference.getEAnnotation("twodimensionalarray") != null) {
-				refSize = 4;
+				int refSize = 4;
 				EStructuralFeature eStructuralFeature = eObject.eClass().getEStructuralFeature("List");
 				List<?> l = (List<?>)eObject.eGet(eStructuralFeature);
 				for (Object o : l) {
 					if (o instanceof VirtualObject) {
-						refSize += 10;
+						refSize += 8;
 					} else {
 						refSize += getPrimitiveSize((EDataType) eStructuralFeature.getEType(), o);
 					}
 				}
-			}
-			if (eObject.eClass().getEAnnotation("wrapped") != null) {
+				return refSize;
+			} else if (eObject.eClass().getEAnnotation("wrapped") != null) {
 				VirtualObject wrappedValue = (VirtualObject) val;
 				EStructuralFeature wrappedValueFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValue");
 				Object wrappedVal = eObject.eGet(wrappedValueFeature);
-				refSize = 2 + getPrimitiveSize((EDataType) wrappedValueFeature.getEType(), wrappedVal);
+				return 2 + getPrimitiveSize((EDataType) wrappedValueFeature.getEType(), wrappedVal);
+			} else {
+				return 8;
 			}
-			return refSize;
 		} else if (val instanceof WrappedVirtualObject) {
 			WrappedVirtualObject wrappedVirtualObject = (WrappedVirtualObject)val;
 			return wrappedVirtualObject.getSize();
+		} else if (val instanceof Long) {
+			return 8;
+		} else {
+			throw new RuntimeException("Programming error, should not happen " + val);
 		}
-		return 10;
 	}
 
 	private int getExactSize(VirtualObject virtualObject) {
@@ -142,11 +146,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 								size += getWrappedValueSize(v, eReference);
 							}
 						} else {
-							if (val == null) {
-								size += 2;
-							} else {
-								size += getWrappedValueSize(val, eReference);
-							}
+							size += getWrappedValueSize(val, eReference);
 						}
 					}
 				}
@@ -222,7 +222,9 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 							}
 						} else if (feature.getEType() instanceof EClass) {
 							if (value == null) {
+								buffer.order(ByteOrder.LITTLE_ENDIAN);
 								buffer.putShort((short) -1);
+								buffer.order(ByteOrder.BIG_ENDIAN);
 							} else if (value instanceof VirtualObject) {
 								writeWrappedValue(getPid(), getRid(), (VirtualObject) value, buffer, getPackageMetaData());
 							} else if (value instanceof WrappedVirtualObject) {
@@ -263,7 +265,9 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	private void writeWrappedValue(int pid, int rid, VirtualObject wrappedValue, ByteBuffer buffer, PackageMetaData packageMetaData) throws BimserverDatabaseException {
 		EStructuralFeature eStructuralFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValue");
 		Short cid = getDatabaseInterface().getCidOfEClass(wrappedValue.eClass());
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		buffer.putShort((short) -cid);
+		buffer.order(ByteOrder.BIG_ENDIAN);
 		writePrimitiveValue(eStructuralFeature, wrappedValue.eGet(eStructuralFeature), buffer);
 		if (wrappedValue.eClass().getName().equals("IfcGloballyUniqueId")) {
 			EClass eClass = packageMetaData.getEClass("IfcGloballyUniqueId");
@@ -276,7 +280,9 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 
 	private void writeWrappedValue(int pid, int rid, WrappedVirtualObject wrappedValue, ByteBuffer buffer, PackageMetaData packageMetaData) throws BimserverDatabaseException {
 		Short cid = getDatabaseInterface().getCidOfEClass(wrappedValue.eClass());
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		buffer.putShort((short) -cid);
+		buffer.order(ByteOrder.BIG_ENDIAN);
 		for (EStructuralFeature eStructuralFeature : wrappedValue.eClass().getEAllStructuralFeatures()) {
 			writePrimitiveValue(eStructuralFeature, wrappedValue.eGet(eStructuralFeature), buffer);
 		}
@@ -287,12 +293,12 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	}
 
 	private void writeReference(long referenceOid, ByteBuffer buffer, EStructuralFeature feature) throws BimserverDatabaseException {
-		Short cid = getDatabaseInterface().getCidOfEClass(getDatabaseInterface().getEClassForOid((referenceOid)));
-		buffer.putShort(cid);
 		if (referenceOid < 0) {
 			throw new BimserverDatabaseException("Writing a reference with oid " + referenceOid + ", this is not supposed to happen, referenced: " + referenceOid + " " + referenceOid + " from " + getOid() + " " + this);
 		}
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		buffer.putLong(referenceOid);
+		buffer.order(ByteOrder.BIG_ENDIAN);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -305,7 +311,9 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 			buffer.putInt(list.size());
 			for (Object o : list) {
 				if (o == null) {
+					buffer.order(ByteOrder.LITTLE_ENDIAN);
 					buffer.putShort((short) -1);
+					buffer.order(ByteOrder.BIG_ENDIAN);
 				} else {
 					if (o instanceof VirtualObject) {
 						VirtualObject listObject = (VirtualObject)o;

@@ -17,7 +17,7 @@ package org.bimserver.database.queries.om;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public class InBoundingBox {
+public class InBoundingBox extends PartOfQuery {
 	private double x;
 	private double y;
 	private double z;
@@ -56,5 +56,9 @@ public class InBoundingBox {
 	
 	public double getZ() {
 		return z;
+	}
+	
+	public void dump(int indent, StringBuilder sb) {
+		sb.append(indent(indent) + "x: " + x + ", y: " + y + ", z: " + z + ", width: " + width + ", height: " + height + ", depth: " + depth);
 	}
 }

@@ -33,6 +33,10 @@ public abstract class RemovableFileOutputStream extends FileOutputStream {
 	}
 	
 	public void remove() throws IOException {
-		Files.delete(file);
+		if (Files.exists(file)) {
+			Files.delete(file);
+		}
 	}
+
+	public abstract void cancel() throws IOException;
 }

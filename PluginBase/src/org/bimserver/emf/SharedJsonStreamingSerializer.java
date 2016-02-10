@@ -361,12 +361,7 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 	}
 
 	@Override
-	public boolean write(OutputStream out) {
-		try {
-			return write(out, null);
-		} catch (SerializerException e) {
-			LOGGER.error("", e);
-		}
-		return false;
+	public boolean write(OutputStream out) throws SerializerException {
+		return write(out, null);
 	}
 }

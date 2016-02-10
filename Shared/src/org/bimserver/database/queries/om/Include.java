@@ -151,6 +151,12 @@ public class Include extends PartOfQuery implements CanInclude {
 				include.dump(indent + 1, sb);
 			}
 		}
+		if (hasOutputTypes()) {
+			sb.append(indent(indent) + "outputTypes\n");
+			for (EClass outputType : getOutputTypes()) {
+				sb.append(indent(indent + 1) + outputType.getName() + "\n");
+			}
+		}
 	}
 
 	public Include createInclude() {

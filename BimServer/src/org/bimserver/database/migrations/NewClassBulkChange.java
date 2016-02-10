@@ -25,12 +25,12 @@ public class NewClassBulkChange implements Change {
 
 	@Override
 	public void change(Database database, DatabaseSession databaseSession) throws BimserverDatabaseException {
-		LOGGER.info("Creating " + eClasses.size() + " tables for package " + ePackage.getName());
+		boolean transactional = !(ePackage.getName().equals(Ifc2x3tc1Package.eINSTANCE.getName()) || ePackage.getName().equals(Ifc4Package.eINSTANCE.getName()));
+		LOGGER.info("Creating " + eClasses.size() + " " + (transactional ? "transactional" : "non transactional")  + " tables for package " + ePackage.getName());
 		for (EClass eClass : eClasses) {
 			String tableName = eClass.getEPackage().getName() + "_" + eClass.getName();
 			if (eClass.getEAnnotation("nodatabase") == null) {
 				try {
-					boolean transactional = !(eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE);
 					boolean created = database.createTable(eClass, databaseSession, transactional);
 					if (!created) {
 						throw new BimserverDatabaseException("Could not create table " + tableName);

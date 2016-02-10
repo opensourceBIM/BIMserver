@@ -66,17 +66,17 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	private Environment environment;
 	private long committedWrites;
 	private long reads;
-	private final Map<String, Database> tables = new HashMap<String, Database>();
+	private final Map<String, TableWrapper> tables = new HashMap<>();
 	private boolean isNew;
 	private TransactionConfig transactionConfig;
-	private CursorConfig cursorConfig;
+	private CursorConfig safeCursorConfig;
 	private long lastPrintedReads = 0;
 	private long lastPrintedCommittedWrites = 0;
 	private static final boolean MONITOR_CURSOR_STACK_TRACES = false;
 	private final AtomicLong cursorCounter = new AtomicLong();
 	private final Map<Long, StackTraceElement[]> openCursors = new ConcurrentHashMap<>();
 	private boolean useTransactions = true;
-	private boolean defer = true;
+	private CursorConfig unsafeCursorConfig;
 
 	public BerkeleyKeyValueStore(Path dataDir) throws DatabaseInitException {
 		if (Files.isDirectory(dataDir)) {
@@ -123,8 +123,11 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		transactionConfig = new TransactionConfig();
 		transactionConfig.setReadCommitted(true);
 
-		cursorConfig = new CursorConfig();
-		cursorConfig.setReadCommitted(true);
+		safeCursorConfig = new CursorConfig();
+		safeCursorConfig.setReadCommitted(true);
+
+		unsafeCursorConfig = new CursorConfig();
+		unsafeCursorConfig.setReadUncommitted(true);
 	}
 
 	public boolean isNew() {
@@ -148,14 +151,15 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(true);
-		databaseConfig.setDeferredWrite(!(transactional && useTransactions));
-		databaseConfig.setTransactional(transactional && useTransactions);
+		boolean finalTransactional = transactional && useTransactions;
+		databaseConfig.setDeferredWrite(!finalTransactional);
+		databaseConfig.setTransactional(finalTransactional);
 		databaseConfig.setSortedDuplicates(false);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
 		if (database == null) {
 			return false;
 		}
-		tables.put(tableName, database);
+		tables.put(tableName, new TableWrapper(database, finalTransactional));
 		
 		return true;
 	}
@@ -166,14 +170,15 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(true);
-		databaseConfig.setDeferredWrite(!(transactional && useTransactions));
-		databaseConfig.setTransactional(transactional && useTransactions);
+		boolean finalTransactional = transactional && useTransactions;
+		databaseConfig.setDeferredWrite(!finalTransactional);
+		databaseConfig.setTransactional(finalTransactional);
 		databaseConfig.setSortedDuplicates(true);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
 		if (database == null) {
 			return false;
 		}
-		tables.put(tableName, database);
+		tables.put(tableName, new TableWrapper(database, finalTransactional));
 		
 		return true;
 	}
@@ -184,14 +189,15 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(false);
-		databaseConfig.setDeferredWrite(!(transactional && useTransactions));
-		databaseConfig.setTransactional(transactional && useTransactions);
+		boolean finalTransactional = transactional && useTransactions;
+		databaseConfig.setDeferredWrite(!finalTransactional);
+		databaseConfig.setTransactional(finalTransactional);
 		databaseConfig.setSortedDuplicates(false);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
 		if (database == null) {
 			throw new BimserverDatabaseException("Table " + tableName + " not found in database");
 		}
-		tables.put(tableName, database);
+		tables.put(tableName, new TableWrapper(database, finalTransactional));
 		return true;
 	}
 
@@ -201,22 +207,27 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(false);
-		databaseConfig.setDeferredWrite(!(transactional && useTransactions));
-		databaseConfig.setTransactional(transactional && useTransactions);
+		boolean finalTransactional = transactional && useTransactions;
+		databaseConfig.setDeferredWrite(!finalTransactional);
+		databaseConfig.setTransactional(finalTransactional);
 		databaseConfig.setSortedDuplicates(true);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
 		if (database == null) {
 			throw new BimserverDatabaseException("Table " + tableName + " not found in database");
 		}
-		tables.put(tableName, database);
+		tables.put(tableName, new TableWrapper(database, finalTransactional));
 	}
 	
 	private Database getDatabase(String tableName) throws BimserverDatabaseException {
-		Database database = tables.get(tableName);
-		if (database == null) {
+		return getTableWrapper(tableName).getDatabase();
+	}
+
+	private TableWrapper getTableWrapper(String tableName) throws BimserverDatabaseException {
+		TableWrapper tableWrapper = tables.get(tableName);
+		if (tableWrapper == null) {
 			throw new BimserverDatabaseException("Table " + tableName + " not found");
 		}
-		return database;
+		return tableWrapper;
 	}
 
 	private Transaction getTransaction(DatabaseSession databaseSession) {
@@ -230,9 +241,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	}
 
 	public void close() {
-		for (Database database : tables.values()) {
+		for (TableWrapper tableWrapper : tables.values()) {
 			try {
-				database.close();
+				tableWrapper.getDatabase().close();
 			} catch (DatabaseException e) {
 				LOGGER.error("", e);
 			}
@@ -246,13 +257,33 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		}
 	}
 
+	public LockMode getLockMode(TableWrapper tableWrapper) {
+		if (tableWrapper.isTransactional()) {
+			return LockMode.READ_COMMITTED;
+		} else {
+			return LockMode.READ_UNCOMMITTED;
+		}
+	}
+	
+	public Transaction getTransaction(DatabaseSession databaseSession, TableWrapper tableWrapper) {
+		return tableWrapper.isTransactional() ? getTransaction(databaseSession) : null;
+	}
+	
+	public CursorConfig getCursorConfig(TableWrapper tableWrapper) {
+		if (tableWrapper.isTransactional()) {
+			return safeCursorConfig;
+		} else {
+			return unsafeCursorConfig;
+		}
+	}
+	
 	@Override
 	public byte[] get(String tableName, byte[] keyBytes, DatabaseSession databaseSession) throws BimserverDatabaseException {
 		DatabaseEntry key = new DatabaseEntry(keyBytes);
 		DatabaseEntry value = new DatabaseEntry();
 		try {
-			Database database = getDatabase(tableName);
-			OperationStatus operationStatus = database.get(database.getConfig().getTransactional() ? getTransaction(databaseSession) : null, key, value, LockMode.DEFAULT);
+			TableWrapper tableWrapper = getTableWrapper(tableName);
+			OperationStatus operationStatus = tableWrapper.getDatabase().get(getTransaction(databaseSession, tableWrapper), key, value, getLockMode(tableWrapper));
 			if (operationStatus == OperationStatus.SUCCESS) {
 				return value.getData();
 			}
@@ -267,7 +298,8 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseEntry key = new DatabaseEntry(keyBytes);
 		DatabaseEntry value = new DatabaseEntry();
 		try {
-			Cursor cursor = getDatabase(tableName).openCursor(getTransaction(databaseSession), cursorConfig);
+			TableWrapper tableWrapper = getTableWrapper(tableName);
+			Cursor cursor = tableWrapper.getDatabase().openCursor(getTransaction(databaseSession, tableWrapper), getCursorConfig(tableWrapper));
 			try {
 				OperationStatus operationStatus = cursor.getSearchKey(key, value, LockMode.DEFAULT);
 				List<byte[]> result = new ArrayList<byte[]>();
@@ -313,8 +345,8 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	public RecordIterator getRecordIterator(String tableName, DatabaseSession databaseSession) throws BimserverDatabaseException {
 		Cursor cursor = null;
 		try {
-			Database database = getDatabase(tableName);
-			cursor = database.openCursor(database.getConfig().getTransactional() ? getTransaction(databaseSession) : null, cursorConfig);
+			TableWrapper tableWrapper = getTableWrapper(tableName);
+			cursor = tableWrapper.getDatabase().openCursor(getTransaction(databaseSession, tableWrapper), getCursorConfig(tableWrapper));
 			BerkeleyRecordIterator berkeleyRecordIterator = new BerkeleyRecordIterator(cursor, this, cursorCounter.incrementAndGet());
 			if (MONITOR_CURSOR_STACK_TRACES) {
 				openCursors.put(berkeleyRecordIterator.getCursorId(), new Exception().getStackTrace());
@@ -330,8 +362,8 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	public SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
 		Cursor cursor = null;
 		try {
-			Database database = getDatabase(tableName);
-			cursor = database.openCursor(database.getConfig().getTransactional() ? getTransaction(databaseSession) : null, cursorConfig);
+			TableWrapper tableWrapper = getTableWrapper(tableName);
+			cursor = tableWrapper.getDatabase().openCursor(getTransaction(databaseSession, tableWrapper), getCursorConfig(tableWrapper));
 			BerkeleySearchingRecordIterator berkeleySearchingRecordIterator = new BerkeleySearchingRecordIterator(cursor, this, cursorCounter.incrementAndGet(), mustStartWith, startSearchingAt);
 			if (MONITOR_CURSOR_STACK_TRACES) {
 				openCursors.put(berkeleySearchingRecordIterator.getCursorId(), new Exception().getStackTrace());
@@ -381,7 +413,8 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	public void delete(String tableName, byte[] key, DatabaseSession databaseSession) throws BimserverLockConflictException {
 		DatabaseEntry entry = new DatabaseEntry(key);
 		try {
-			getDatabase(tableName).delete(getTransaction(databaseSession), entry);
+			TableWrapper tableWrapper = getTableWrapper(tableName);
+			tableWrapper.getDatabase().delete(getTransaction(databaseSession, tableWrapper), entry);
 		} catch (LockConflictException e) {
 			throw new BimserverLockConflictException(e);
 		} catch (DatabaseException e) {
@@ -398,7 +431,8 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	@Override
 	public void delete(String indexTableName, byte[] featureBytesOldIndex, byte[] array, DatabaseSession databaseSession) throws BimserverLockConflictException {
 		try {
-			Cursor cursor = getDatabase(indexTableName).openCursor(getTransaction(databaseSession), cursorConfig);
+			TableWrapper tableWrapper = getTableWrapper(indexTableName);
+			Cursor cursor = tableWrapper.getDatabase().openCursor(getTransaction(databaseSession, tableWrapper), getCursorConfig(tableWrapper));
 			try {
 				if (cursor.getSearchBoth(new DatabaseEntry(featureBytesOldIndex), new DatabaseEntry(array), LockMode.DEFAULT) == OperationStatus.SUCCESS) {
 					cursor.delete();
@@ -461,8 +495,8 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseEntry dbKey = new DatabaseEntry(key);
 		DatabaseEntry dbValue = new DatabaseEntry(value, offset, length);
 		try {
-			Database database = getDatabase(tableName);
-			database.put(database.getConfig().getTransactional() ? getTransaction(databaseSession) : null, dbKey, dbValue);
+			TableWrapper tableWrapper = getTableWrapper(tableName);
+			tableWrapper.getDatabase().put(getTransaction(databaseSession, tableWrapper), dbKey, dbValue);
 		} catch (LockConflictException e) {
 			throw new BimserverLockConflictException(e);
 		} catch (DatabaseException e) {
@@ -480,8 +514,8 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseEntry dbKey = new DatabaseEntry(key);
 		DatabaseEntry dbValue = new DatabaseEntry(value, index, length);
 		try {
-			Database database = getDatabase(tableName);
-			OperationStatus putNoOverwrite = database.putNoOverwrite(database.getConfig().getTransactional() ? getTransaction(databaseSession) : null, dbKey, dbValue);
+			TableWrapper tableWrapper = getTableWrapper(tableName);
+			OperationStatus putNoOverwrite = tableWrapper.getDatabase().putNoOverwrite(getTransaction(databaseSession, tableWrapper), dbKey, dbValue);
 			if (putNoOverwrite == OperationStatus.KEYEXIST) {
 				ByteBuffer keyBuffer = ByteBuffer.wrap(key);
 				if (key.length == 16) {

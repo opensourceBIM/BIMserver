@@ -18,6 +18,7 @@ package org.bimserver.shared;
  *****************************************************************************/
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.PackageMetaData;
@@ -59,7 +60,9 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 		} else {
 			if (feature instanceof EReference) {
 				ensureCapacity(buffer.position(), 2);
+				buffer.order(ByteOrder.LITTLE_ENDIAN);
 				buffer.putShort((short)-1);
+				buffer.order(ByteOrder.BIG_ENDIAN);
 			} else if (feature.getEType() instanceof EEnum) {
 				writeEnum(feature, null);
 			} else {
@@ -78,7 +81,9 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 			} else if (feature.getEType() instanceof EClass) {
 				if (value == null) {
 					ensureCapacity(buffer.position(), 2);
+					buffer.order(ByteOrder.LITTLE_ENDIAN);
 					buffer.putShort((short) -1);
+					buffer.order(ByteOrder.BIG_ENDIAN);
 				} else if (value instanceof WrappedVirtualObject) {
 					ByteBuffer otherBuffer = ((WrappedVirtualObject) value).write();
 					ensureCapacity(buffer.position(), otherBuffer.position());
@@ -210,15 +215,15 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 		} else {
 			pos = bufferPosition;
 		}
-		ensureCapacity(pos, 10);
-		Short cid = getDatabaseInterface().getCidOfEClass(referenceEClass);
-		buffer.putShort(pos, cid);
+		ensureCapacity(pos, 8);
 		if (referencedOid < 0) {
 			throw new BimserverDatabaseException("Writing a reference with oid " + referencedOid + ", this is not supposed to happen, referenced: " + referencedOid + " " + referencedOid + " from " + getOid() + " " + this);
 		}
-		buffer.putLong(pos + 2, referencedOid);
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
+		buffer.putLong(pos, referencedOid);
+		buffer.order(ByteOrder.BIG_ENDIAN);
 		if (bufferPosition == -1) {
-			buffer.position(buffer.position() + 10);
+			buffer.position(buffer.position() + 8);
 		}
 	}
 
@@ -229,8 +234,7 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 	@Override
 	public int reserveSpaceForReference(EStructuralFeature feature) {
 		int pos = buffer.position();
-		ensureCapacity(pos, 10);
-		buffer.putShort((short)-1);
+		ensureCapacity(pos, 8);
 		buffer.putLong(-1);
 		incrementFeatureCounter(feature);
 		return pos;
@@ -243,8 +247,7 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 		}
 		currentListSize++;
 		int position = buffer.position();
-		ensureCapacity(position, 10);
-		buffer.putShort((short)-1);
+		ensureCapacity(position, 8);
 		buffer.putLong(-1);
 		return position;
 	}
@@ -269,15 +272,15 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 			incrementFeatureCounter(feature);
 		}
 		int pos = bufferPosition == -1 ? buffer.position() : bufferPosition;
-		ensureCapacity(pos, 10);
-		Short cid = getDatabaseInterface().getCidOfEClass(getDatabaseInterface().getEClassForOid((referenceOid)));
-		buffer.putShort(pos, cid);
+		ensureCapacity(pos, 8);
 		if (referenceOid < 0) {
 			throw new BimserverDatabaseException("Writing a reference with oid " + referenceOid + ", this is not supposed to happen, referenced: " + referenceOid + " " + referenceOid + " from " + getOid() + " " + this);
 		}
-		buffer.putLong(pos + 2, referenceOid);
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
+		buffer.putLong(pos, referenceOid);
+		buffer.order(ByteOrder.BIG_ENDIAN);
 		if (bufferPosition == -1) {
-			buffer.position(buffer.position() + 10);
+			buffer.position(buffer.position() + 8);
 		}
 	}
 
@@ -303,7 +306,6 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 
 	@Override
 	public boolean useFeatureForSerialization(EStructuralFeature feature, int index) {
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException();
 	}
 }

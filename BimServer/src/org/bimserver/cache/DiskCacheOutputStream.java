@@ -76,4 +76,10 @@ public class DiskCacheOutputStream extends RemovableFileOutputStream {
 	public String getName() {
 		return file.getFileName().toString();
 	}
+
+	@Override
+	public void cancel() {
+		// TODO Auto-generated method stub
+		
+	}
 }

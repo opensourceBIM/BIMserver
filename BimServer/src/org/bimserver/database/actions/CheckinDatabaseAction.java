@@ -18,6 +18,7 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
@@ -200,11 +201,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 					s++;
 				}
 			}
-			ByteBuffer buffer = ByteBuffer.allocate(10 * s);
+			ByteBuffer buffer = ByteBuffer.allocate(8 * s);
+			buffer.order(ByteOrder.LITTLE_ENDIAN);
 			for (EClass eClass : eClasses) {
 				long oid = startOids.get(eClass);
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
-					buffer.putShort(getDatabaseSession().getCid(eClass));
 					buffer.putLong(oid);
 				}
 			}
