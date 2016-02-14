@@ -1025,7 +1025,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 			Set<Schema> schemaOr = new HashSet<>();
 			
-			if (uniqueSchemas.size() == 0) {
+			if (uniqueSchemas.isEmpty()) {
 				// Wierd, no schemas
 			} else if (uniqueSchemas.size() == 1) {
 				// Easy, just add it, and see if there are converter targets and add those too

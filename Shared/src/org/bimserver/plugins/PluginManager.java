@@ -796,7 +796,7 @@ public class PluginManager implements PluginManagerInterface {
 
 	public DeserializerPlugin requireDeserializer(String extension) throws DeserializeException {
 		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(extension, true);
-		if (allDeserializerPlugins.size() == 0) {
+		if (allDeserializerPlugins.isEmpty()) {
 			throw new DeserializeException("No deserializers found for type '" + extension + "'");
 		} else {
 			return allDeserializerPlugins.iterator().next();
@@ -880,7 +880,7 @@ public class PluginManager implements PluginManagerInterface {
 				iterator.remove();
 			}
 		}
-		if (allDeserializerPlugins.size() == 0) {
+		if (allDeserializerPlugins.isEmpty()) {
 			throw new PluginException("No deserializers with extension " + extension + " found");
 		}
 		return allDeserializerPlugins.iterator().next();

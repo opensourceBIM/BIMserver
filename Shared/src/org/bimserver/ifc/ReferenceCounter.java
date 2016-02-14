@@ -180,7 +180,7 @@ public class ReferenceCounter {
 				for (Object o : list) {
 					IdEObject refObject = (IdEObject) o;
 					references.get(refObject).remove(idEObject);
-					if (references.get(refObject).size() == 0) {
+					if (references.get(refObject).isEmpty()) {
 						totalRemoved += removeInternal(refObject);
 					}
 				}
@@ -188,7 +188,7 @@ public class ReferenceCounter {
 				IdEObject refObject = (IdEObject) idEObject.eGet(eReference);
 				if (references.containsKey(refObject)) {
 					references.get(refObject).remove(idEObject);
-					if (references.get(refObject).size() == 0) {
+					if (references.get(refObject).isEmpty()) {
 						totalRemoved += removeInternal(refObject);
 					}
 				}

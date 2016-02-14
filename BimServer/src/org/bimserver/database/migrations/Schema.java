@@ -138,7 +138,7 @@ public class Schema {
 
 	public EEnumLiteral createEEnumLiteral(EEnum eEnum, String name) {
 		EEnumLiteral eEnumLiteral = EcoreFactory.eINSTANCE.createEEnumLiteral();
-		if (eEnum.getELiterals().size() == 0) {
+		if (eEnum.getELiterals().isEmpty()) {
 			eEnumLiteral.setValue(0);
 		} else {
 			int largestValue = Integer.MIN_VALUE;

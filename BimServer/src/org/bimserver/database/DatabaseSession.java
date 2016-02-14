@@ -1543,7 +1543,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	public <T extends IdEObject> T querySingle(Condition condition, Class<T> clazz, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
 		Collection<T> values = query(condition, clazz, query).values();
-		if (values.size() == 0) {
+		if (values.isEmpty()) {
 			return null;
 		}
 		return values.iterator().next();
@@ -2021,7 +2021,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	public <T extends IdEObject> T getSingle(EClass eClass, QueryInterface query) throws BimserverDatabaseException {
 		IfcModelInterface model = createModel(query);
 		List<T> all = getAllOfType(model, eClass, query).getAll((Class<T>) eClass.getInstanceClass());
-		if (all.size() > 0) {
+		if (!all.isEmpty()) {
 			return all.get(0);
 		}
 		return null;

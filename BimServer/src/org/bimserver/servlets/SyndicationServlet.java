@@ -141,7 +141,7 @@ public class SyndicationServlet extends SubServlet {
 				entry.setDescription(description);
 				entries.add(entry);
 			}
-			if (allProjects.size() == 0) {
+			if (allProjects.isEmpty()) {
 				SyndEntry entry = new SyndEntryImpl();
 				entry.setTitle("No projects found");
 				entry.setLink(request.getContextPath() + "/main.jsp");

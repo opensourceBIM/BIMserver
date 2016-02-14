@@ -178,7 +178,7 @@ public class GeometryGenerator {
 					}
 					for (IdEObject ifcProduct : allWithSubTypes) {
 						IdEObject representation = (IdEObject) ifcProduct.eGet(representationFeature);
-						if (representation != null && ((List<?>) representation.eGet(representationsFeature)).size() > 0) {
+						if (representation != null && ((List<?>) !representation.eGet(representationsFeature)).isEmpty()) {
 							List<?> representations = (List<?>) representation.eGet(representationsFeature);
 							try {
 								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
@@ -395,12 +395,12 @@ public class GeometryGenerator {
 				Set<EClass> classes = new HashSet<>();
 				for (IdEObject object : model.getAllWithSubTypes(packageMetaData.getEClass("IfcProduct"))) {
 					IdEObject representation = (IdEObject)object.eGet(representationFeature);
-					if (representation != null && ((List<?>)representation.eGet(representationsFeature)).size() > 0) {
+					if (representation != null && ((List<?>) !representation.eGet(representationsFeature)).isEmpty()) {
 						classes.add(object.eClass());
 					}
 				}
 				
-				if (classes.size() == 0) {
+				if (classes.isEmpty()) {
 					return null;
 				}
 				

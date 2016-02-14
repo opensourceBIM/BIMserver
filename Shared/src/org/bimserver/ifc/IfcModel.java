@@ -463,7 +463,7 @@ public abstract class IfcModel implements IfcModelInterface {
 			Object referencedObject = idEObject.eGet(eReference);
 			if (eReference.isMany()) {
 				List list = (List) referencedObject;
-				if (list.size() > 0) {
+				if (!list.isEmpty()) {
 					printIndention(indention + 1);
 					System.out.println(eReference.getName() + ": ");
 					for (Object o : list) {

@@ -194,7 +194,7 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	public boolean isDirectory() {
-		return files.size() != 0;
+		return !files.isEmpty();
 	}
 
 	public String getName() {

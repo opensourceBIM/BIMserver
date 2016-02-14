@@ -192,7 +192,7 @@ public class GenericWebServiceServlet extends SubServlet {
 			String[] pathValues = values.split(" ");
 			for (String value : pathValues) {
 				String theValue = value.trim();
-				if (theValue.length() > 0) {
+				if (!theValue.isEmpty()) {
 					list.add(theValue);
 				}
 			}

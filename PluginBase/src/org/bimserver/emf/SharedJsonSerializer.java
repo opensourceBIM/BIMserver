@@ -286,7 +286,7 @@ public class SharedJsonSerializer implements StreamingReader {
 	}
 	
 	public static Writer quote(String string, Writer w) throws IOException {
-        if (string == null || string.length() == 0) {
+        if (string == null || string.isEmpty()) {
             w.write("\"\"");
             return w;
         }
