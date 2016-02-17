@@ -38,7 +38,7 @@ public class IfcPrinter {
 				System.out.println("\t" + reference.getName() + "(" + reference.getEReferenceType().getName() + "): ");
 				if (object.eGet(reference) instanceof EObjectResolvingEList) {
 					EObjectResolvingEList<EObject> referencedObjectList = (EObjectResolvingEList<EObject>)object.eGet(reference);
-					if (referencedObjectList != null && referencedObjectList.size() > 0) {
+					if (referencedObjectList != null && !referencedObjectList.isEmpty()) {
 						if (reference.getEReferenceType().getEStructuralFeature("wrappedValue") != null) {
 							for (Object obj : referencedObjectList) {
 								Object wrappedValue = ((EObject)obj).eGet(reference.getEReferenceType().getEStructuralFeature("wrappedValue"));

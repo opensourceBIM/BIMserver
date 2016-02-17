@@ -86,7 +86,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		long incrSize = 0;
 		EList<ConcreteRevision> concreteRevisions = revision.getConcreteRevisions();
-		if (concreteRevisions.size() == 0) {
+		if (concreteRevisions.isEmpty()) {
 			throw new ServerException("No concrete revisions in revision");
 		}
 		for (ConcreteRevision subRevision : concreteRevisions) {

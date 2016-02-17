@@ -165,7 +165,7 @@ public class JsonConverter {
 					}
 					return newObject;
 				} else {
-					if (jsonObject.entrySet().size() != 0) {
+					if (!jsonObject.entrySet().isEmpty()) {
 						throw new ConvertException("Missing __type field in " + jsonObject.toString());
 					} else {
 						return null;

@@ -49,7 +49,7 @@ public class QueryPartStackFrame extends StackFrame {
 		if (partialQuery.hasOids()) {
 			Set<Long> oidsList = partialQuery.getOids();
 			this.oids = new HashMap<EClass, List<Long>>();
-			if (oidsList.size() == 0) {
+			if (oidsList.isEmpty()) {
 				throw new QueryException("\"oids\" parameter of type array is of size 0");
 			}
 			Iterator<Long> iterator = oidsList.iterator();

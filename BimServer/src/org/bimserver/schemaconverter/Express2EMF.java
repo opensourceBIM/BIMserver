@@ -720,9 +720,9 @@ public class Express2EMF {
 		Iterator<EntityDefinition> entIter = schema.getEntities().iterator();
 		while (entIter.hasNext()) {
 			EntityDefinition ent = entIter.next();
-			if (ent.getSupertypes().size() > 0) {
+			if (!ent.getSupertypes().isEmpty()) {
 				EClass cls = getOrCreateEClass(ent.getName());
-				if (ent.getSupertypes().size() > 0) {
+				if (!ent.getSupertypes().isEmpty()) {
 					EClass parent = getOrCreateEClass(ent.getSupertypes().get(0).getName());
 					if (!directSubTypes.containsKey(parent)) {
 						directSubTypes.put(parent, new HashSet<EClass>());

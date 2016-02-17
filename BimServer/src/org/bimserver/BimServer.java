@@ -299,7 +299,7 @@ public class BimServer {
 						DatabaseSession session = bimDatabase.createSession();
 						try {
 							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
-							if (pluginsFound.size() == 0) {
+							if (pluginsFound.isEmpty()) {
 								LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getClass().getName() + " not found");
 							} else if (pluginsFound.size() == 1) {
 								PluginDescriptor pluginConfiguration = pluginsFound.values().iterator().next();
@@ -377,7 +377,7 @@ public class BimServer {
 						DatabaseSession session = bimDatabase.createSession();
 						try {
 							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
-							if (pluginsFound.size() == 0) {
+							if (pluginsFound.isEmpty()) {
 								LOGGER.error("Error removing plugin-state in database, plugin " + pluginContext.getPlugin().getClass().getName() + " not found");
 							} else if (pluginsFound.size() == 1) {
 								PluginDescriptor pluginDescriptor = pluginsFound.values().iterator().next();
@@ -922,7 +922,7 @@ public class BimServer {
 			Plugin plugin = pluginContext.getPlugin();
 			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_Identifier(), new StringLiteral(pluginContext.getIdentifier()));
 			Map<Long, PluginDescriptor> results = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
-			if (results.size() == 0) {
+			if (results.isEmpty()) {
 				PluginDescriptor pluginDescriptor = session.create(PluginDescriptor.class);
 				pluginDescriptor.setIdentifier(pluginContext.getIdentifier());
 				pluginDescriptor.setPluginClassName(plugin.getClass().getName());

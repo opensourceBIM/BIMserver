@@ -30,7 +30,7 @@ public class StartFrame extends StackFrame {
 
 	public StartFrame(QueryObjectProvider queryObjectProvider, Set<Long> roids) throws QueryException {
 		this.queryObjectProvider = queryObjectProvider;
-		if (roids.size() == 0) {
+		if (roids.isEmpty()) {
 			throw new QueryException("At least one roid required");
 		}
 		this.roidsIterator = roids.iterator();
