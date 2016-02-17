@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.30</version>
+		<version>1.5.31-SNAPSHOT</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -121,7 +121,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bimserverclientlib</artifactId>
-			<version>1.5.30</version>
+			<version>1.5.31-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>
