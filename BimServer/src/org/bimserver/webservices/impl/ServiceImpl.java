@@ -33,6 +33,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.activation.DataHandler;
@@ -159,6 +160,7 @@ import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
+import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
@@ -1115,7 +1117,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public List<SServiceDescriptor> getAllLocalServiceDescriptors() throws ServerException, UserException {
-		return sort(getBimServer().getSConverter().convertToSListServiceDescriptor(getBimServer().getInternalServicesManager().getInternalServices(getAuthorization().getUoid()).values()));
+		Map<String, ServiceDescriptor> internalServices = getBimServer().getInternalServicesManager().getInternalServices(getAuthorization().getUoid());
+		if (internalServices == null) {
+			return new ArrayList<>();
+		}
+		return sort(getBimServer().getSConverter().convertToSListServiceDescriptor(internalServices.values()));
 	}
 	
 	@Override
