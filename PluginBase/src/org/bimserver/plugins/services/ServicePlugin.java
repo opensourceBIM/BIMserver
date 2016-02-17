@@ -24,7 +24,6 @@ import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.PluginException;
@@ -35,39 +34,39 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 public abstract class ServicePlugin implements Plugin {
 
 	public abstract String getTitle();
-	private PluginManagerInterface pluginManager;
+	private PluginContext pluginContext;
 	
 	public ServiceInterface getServiceInterface(String token) throws UserException {
-		return pluginManager.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+		return pluginContext.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 	}
 
 	protected void registerNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
-		pluginManager.registerNewRevisionHandler(uoid, serviceDescriptor, newRevisionHandler);
+		pluginContext.registerNewRevisionHandler(uoid, serviceDescriptor, newRevisionHandler);
 	}
 
 	protected void unregisterNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor) {
-		pluginManager.unregisterNewRevisionHandler(uoid, serviceDescriptor);
+		pluginContext.unregisterNewRevisionHandler(uoid, serviceDescriptor);
 	}
 	
 	protected BimServerClientInterface getLocalBimServerClientInterface(AuthenticationInfo tokenAuthentication) throws ServiceException, ChannelConnectionException {
-		return pluginManager.getLocalBimServerClientInterface(tokenAuthentication);
+		return pluginContext.getLocalBimServerClientInterface(tokenAuthentication);
 	}
 	
 	@Override
 	public void init(PluginContext pluginContext) throws PluginException {
-		this.pluginManager = pluginManager;
+		this.pluginContext = pluginContext;
 	}
 	
-	public PluginManagerInterface getPluginManager() {
-		return pluginManager;
-	}
-
 	public void registerNewExtendedDataOnProjectHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler) {
-		pluginManager.registerNewExtendedDataOnProjectHandler(uoid, serviceDescriptor, newExtendedDataHandler);
+		pluginContext.registerNewExtendedDataOnProjectHandler(uoid, serviceDescriptor, newExtendedDataHandler);
+	}
+	
+	public PluginContext getPluginContext() {
+		return pluginContext;
 	}
 
 	public void registerNewExtendedDataOnRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
-		pluginManager.registerNewExtendedDataOnRevisionHandler(uoid, serviceDescriptor, newExtendedDataHandler);
+		pluginContext.registerNewExtendedDataOnRevisionHandler(uoid, serviceDescriptor, newExtendedDataHandler);
 	}
 	
 	/**

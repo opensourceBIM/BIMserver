@@ -43,6 +43,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.endpoints.EndPointManager;
 import org.bimserver.interfaces.SConverter;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.interfaces.objects.SVersion;
@@ -84,6 +85,7 @@ import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
+import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.renderengine.RenderEnginePools;
 import org.bimserver.schemaconverter.Ifc2x3tc1ToIfc4SchemaConverterFactory;
@@ -701,6 +703,15 @@ public class BimServer {
 					userSettings.eSet(defaultReference, list.get(0));
 				}
 			}
+			
+			if (pluginInterfaceName.equals("Service")) {
+				ServicePlugin servicePlugin = getPluginManager().getServicePlugin(pluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+				SInternalServicePluginConfiguration sInternalService = (SInternalServicePluginConfiguration) getSConverter().convertToSObject(pluginConfiguration);
+				
+				servicePlugin.unregister(sInternalService);
+				servicePlugin.register(user.getOid(), sInternalService, new org.bimserver.plugins.PluginConfiguration(pluginConfiguration.getSettings()));
+			}
+			
 			session.store(userSettings);
 		}
 	}

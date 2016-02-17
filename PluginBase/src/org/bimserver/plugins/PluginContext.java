@@ -27,9 +27,21 @@ import java.util.List;
 
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.Parameter;
+import org.bimserver.models.store.ServiceDescriptor;
+import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.Deserializer;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
+import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.NewExtendedDataOnProjectHandler;
+import org.bimserver.plugins.services.NewExtendedDataOnRevisionHandler;
+import org.bimserver.plugins.services.NewRevisionHandler;
+import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.PluginException;
+import org.bimserver.shared.exceptions.ServiceException;
 
 public class PluginContext {
 
@@ -167,5 +179,37 @@ public class PluginContext {
 
 	public MetaDataManager getMetaDataManager() {
 		return pluginManager.getMetaDataManager();
+	}
+
+	public ServiceFactory getServiceFactory() {
+		return pluginManager.getServiceFactory();
+	}
+
+	public void registerNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler) {
+		pluginManager.registerNewRevisionHandler(uoid, serviceDescriptor, newRevisionHandler);
+	}
+
+	public void unregisterNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor) {
+		pluginManager.unregisterNewRevisionHandler(uoid, serviceDescriptor);
+	}
+
+	public BimServerClientInterface getLocalBimServerClientInterface(AuthenticationInfo tokenAuthentication) throws ServiceException, ChannelConnectionException {
+		return pluginManager.getLocalBimServerClientInterface(tokenAuthentication);
+	}
+
+	public void registerNewExtendedDataOnProjectHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler) {
+		pluginManager.registerNewExtendedDataOnProjectHandler(uoid, serviceDescriptor, newExtendedDataHandler);
+	}
+
+	public void registerNewExtendedDataOnRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler) {
+		pluginManager.registerNewExtendedDataOnRevisionHandler(uoid, serviceDescriptor, newExtendedDataHandler);
+	}
+
+	public DeserializerPlugin requireDeserializer(String extension) throws DeserializeException {
+		return pluginManager.requireDeserializer(extension);
+	}
+
+	public DeserializerPlugin getDeserializerPlugin(String string, boolean b) {
+		return pluginManager.getDeserializerPlugin(string, b);
 	}
 }
