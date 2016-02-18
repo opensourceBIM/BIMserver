@@ -47,6 +47,7 @@ public class RenderEnginePool extends GenericObjectPool<RenderEngine> {
 		super(new PooledObjectFactory<RenderEngine>() {
 			@Override
 			public void activateObject(PooledObject<RenderEngine> arg0) throws Exception {
+				arg0.getObject().init();
 			}
 
 			@Override

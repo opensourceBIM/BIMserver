@@ -1,10 +1,13 @@
 package org.bimserver;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -16,10 +19,13 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.jar.JarFile;
 
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.maven.model.Model;
+import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.cache.NewDiskCacheManager;
@@ -44,8 +50,10 @@ import org.bimserver.emf.MetaDataManager;
 import org.bimserver.endpoints.EndPointManager;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
+import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.interfaces.objects.SPluginInformation;
+import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.mail.MailSystem;
@@ -55,12 +63,14 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.ServerStarted;
 import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.DoubleType;
+import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.LongType;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ParameterDefinition;
+import org.bimserver.models.store.PluginBundleType;
 import org.bimserver.models.store.PluginBundleVersion;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
@@ -80,6 +90,8 @@ import org.bimserver.pb.server.ProtocolBuffersServer;
 import org.bimserver.plugins.MavenPluginRepository;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginBundle;
+import org.bimserver.plugins.PluginBundleIdentifier;
+import org.bimserver.plugins.PluginBundleVersionIdentifier;
 import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManager;
@@ -110,6 +122,10 @@ import org.bimserver.version.VersionChecker;
 import org.bimserver.webservices.LongTransactionManager;
 import org.bimserver.webservices.PublicInterfaceFactory;
 import org.bimserver.webservices.authorization.SystemAuthorization;
+import org.eclipse.aether.artifact.Artifact;
+import org.eclipse.aether.artifact.DefaultArtifact;
+import org.eclipse.aether.resolution.ArtifactRequest;
+import org.eclipse.aether.resolution.ArtifactResult;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -565,6 +581,37 @@ public class BimServer {
 				commandLine = new CommandLine(this);
 				commandLine.start();
 			}
+			
+			try (DatabaseSession session = bimDatabase.createSession()) {
+				IfcModelInterface pluginBundleVersions = session.getAllOfType(StorePackage.eINSTANCE.getPluginBundleVersion(), OldQuery.getDefault());
+				for (PluginBundleVersion pluginBundleVersion : pluginBundleVersions.getAll(PluginBundleVersion.class)) {
+					if (pluginBundleVersion.getType() == PluginBundleType.MAVEN) {
+						PluginBundleVersionIdentifier pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(pluginBundleVersion.getGroupId(), pluginBundleVersion.getArtifactId(), pluginBundleVersion.getVersion());
+						
+						IfcModelInterface pluginDescriptors = session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), OldQuery.getDefault());
+						
+						List<SPluginInformation> plugins = new ArrayList<>();
+						
+						for (PluginDescriptor pluginDescriptor : pluginDescriptors.getAll(PluginDescriptor.class)) {
+							if (pluginDescriptor.getPluginBundleVersion() == pluginBundleVersion && pluginDescriptor.getEnabled()) {
+								SPluginInformation sPluginInformation = new SPluginInformation();
+								
+								sPluginInformation.setEnabled(true);
+								sPluginInformation.setDescription(pluginDescriptor.getDescription());
+								sPluginInformation.setIdentifier(pluginDescriptor.getIdentifier());
+								sPluginInformation.setInstallForAllUsers(pluginDescriptor.isInstallForNewUsers());
+								sPluginInformation.setInstallForNewUsers(pluginDescriptor.isInstallForNewUsers());
+								sPluginInformation.setName(pluginDescriptor.getName());
+								sPluginInformation.setType(pluginManager.getPluginTypeFromClass(pluginDescriptor.getPluginClassName()));
+								
+								plugins.add(sPluginInformation);
+							}
+						}
+						
+						pluginManager.loadFromPluginDir(pluginBundleVersionIdentifier, getSConverter().convertToSObject(pluginBundleVersion), plugins);
+					}
+				}
+			}
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 			serverInfoManager.setErrorMessage(e.getMessage());
@@ -669,6 +716,7 @@ public class BimServer {
 			if (pluginInterfaceName.equals("StreamingDeserializer")) {
 				pluginInterfaceName = "Deserializer";
 			}
+			
 			if (pluginInterfaceName.equals("ModelChecker") || pluginInterfaceName.equals("WebModule")) {
 				// ModelChecker and WebModule are not coupled to UserSettings but to
 				// ServerSettings
@@ -697,19 +745,15 @@ public class BimServer {
 				list.add(pluginConfiguration);
 				genericPluginConversion(pluginContext, session, pluginConfiguration, pluginDescriptor);
 			}
+
+			if (pluginInterfaceName.equals("Service")) {
+				activateService(user.getOid(), (InternalServicePluginConfiguration) pluginConfiguration);
+			}
 			
 			if (defaultReference != null) {
 				if (userSettings.eGet(defaultReference) == null && !list.isEmpty()) {
 					userSettings.eSet(defaultReference, list.get(0));
 				}
-			}
-			
-			if (pluginInterfaceName.equals("Service")) {
-				ServicePlugin servicePlugin = getPluginManager().getServicePlugin(pluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-				SInternalServicePluginConfiguration sInternalService = (SInternalServicePluginConfiguration) getSConverter().convertToSObject(pluginConfiguration);
-				
-				servicePlugin.unregister(sInternalService);
-				servicePlugin.register(user.getOid(), sInternalService, new org.bimserver.plugins.PluginConfiguration(pluginConfiguration.getSettings()));
 			}
 			
 			session.store(userSettings);
@@ -815,7 +859,7 @@ public class BimServer {
 
 			session = bimDatabase.createSession();
 //			createDatabaseObjects(session);
-
+			
 			ServerSettings serverSettings = serverSettingsCache.getServerSettings();
 
 			for (Entry<PluginContext, WebModulePlugin> entry : pluginManager.getAllWebPlugins(true).entrySet()) {
@@ -909,6 +953,40 @@ public class BimServer {
 			throw new BimserverDatabaseException(e);
 //		} catch (PluginException e) {
 //			throw new BimserverDatabaseException(e);
+		}
+	}
+
+	/**
+	 * Load all users from the database and their configured services. Registers each service.
+	 * 
+	 * @param session
+	 * @throws BimserverDatabaseException
+	 * @throws BimserverLockConflictException
+	 */
+	public void activateServices() throws BimserverDatabaseException, BimserverLockConflictException {
+		try (DatabaseSession session = bimDatabase.createSession()) {
+			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), OldQuery.getDefault());
+			for (User user : allOfType.getAll(User.class)) {
+				updateUserSettings(session, user);
+				UserSettings userSettings = user.getUserSettings();
+	
+				for (InternalServicePluginConfiguration internalServicePluginConfiguration : userSettings.getServices()) {
+					activateService(user.getOid(), internalServicePluginConfiguration);
+				}
+			}
+		}
+	}
+	
+	public void activateService(long uoid, InternalServicePluginConfiguration internalServicePluginConfiguration) {
+		ServicePlugin servicePlugin = getPluginManager().getServicePlugin(internalServicePluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+		
+		if (servicePlugin == null) {
+			LOGGER.warn("Plugin " + internalServicePluginConfiguration.getPluginDescriptor().getPluginClassName() + " not found");
+		} else {
+			SInternalServicePluginConfiguration sInternalService = (SInternalServicePluginConfiguration) getSConverter().convertToSObject(internalServicePluginConfiguration);
+			
+			servicePlugin.unregister(sInternalService);
+			servicePlugin.register(uoid, sInternalService, new org.bimserver.plugins.PluginConfiguration(internalServicePluginConfiguration.getSettings()));
 		}
 	}
 
