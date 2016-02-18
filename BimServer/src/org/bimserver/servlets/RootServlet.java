@@ -115,7 +115,7 @@ public class RootServlet extends HttpServlet {
 			} else if (requestUri.startsWith("/download/") || requestUri.equals("/download")) {
 				downloadServlet.service(request, response);
 			} else {
-				if (requestUri.equals("") || requestUri.equals("/") || requestUri == null) {
+				if (requestUri == null || requestUri.equals("") || requestUri.equals("/")) {
 					requestUri = "/index.html";
 				}
 				String modulePath = requestUri;
