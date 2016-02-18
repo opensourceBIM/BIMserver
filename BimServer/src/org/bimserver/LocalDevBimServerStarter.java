@@ -53,6 +53,7 @@ public class LocalDevBimServerStarter {
 				settingsInterface.setCacheOutputFiles(false);
 				settingsInterface.setPluginStrictVersionChecking(false);
 			}
+			bimServer.activateServices();
 		} catch (PluginException e) {
 			LOGGER.error("", e);
 		} catch (ServiceException e) {

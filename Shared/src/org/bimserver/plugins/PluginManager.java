@@ -1188,6 +1188,73 @@ public class PluginManager implements PluginManagerInterface {
 		return null;
 	}
 
+	public PluginBundle loadFromPluginDir(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundleVersion pluginBundleVersion, List<SPluginInformation> plugins) throws Exception {
+		Path target = pluginsDir.resolve(pluginBundleVersionIdentifier.getFileName());
+		if (!Files.exists(target)) {
+			throw new PluginException(target.toString() + " not found");
+		}
+
+		SPluginBundle sPluginBundle = new SPluginBundle();
+
+		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+
+		try (JarFile jarFile = new JarFile(target.toFile())) {
+			ZipEntry entry = jarFile.getEntry("META-INF/maven/" + pluginBundleVersion.getGroupId() + "/" + pluginBundleVersion.getArtifactId() + "/pom.xml");
+			Model model = mavenreader.read(jarFile.getInputStream(entry));
+			
+			sPluginBundle.setOrganization(model.getOrganization().getName());
+			sPluginBundle.setName(model.getName());
+			
+			return loadPlugin(pluginBundleVersionIdentifier, target, sPluginBundle, pluginBundleVersion, plugins);
+		}
+	}
+	
+	public PluginBundle loadPlugin(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, Path target, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, List<SPluginInformation> plugins) throws Exception {
+		PluginBundle pluginBundle = null;
+		// Stage 1, load all plugins from the JAR file and initialize them
+		try {
+			pluginBundle = loadPluginsFromJar(pluginBundleVersionIdentifier, target, sPluginBundle, pluginBundleVersion);
+			if (plugins.isEmpty()) {
+				LOGGER.warn("No plugins given to install for bundle " + sPluginBundle.getName());
+			}
+			for (SPluginInformation sPluginInformation : plugins) {
+				if (sPluginInformation.isEnabled()) {
+					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
+					if (pluginContext == null) {
+						throw new Exception("No plugin context found for " + sPluginInformation.getIdentifier());
+					}
+					pluginContext.getPlugin().init(pluginContext);
+				}
+			}
+		} catch (Exception e) {
+			if (pluginBundle != null) {
+				pluginBundle.close();
+			}
+			pluginBundleVersionIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier);
+			pluginBundleIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier.getPluginBundleIdentifier());
+			Files.delete(target);
+			LOGGER.error("", e);
+			throw e;
+		}
+		// Stage 2, if all went well, notify the listeners of this plugin, if
+		// anything goes wrong in the notifications, the plugin bundle will be
+		// uninstalled
+		try {
+			long pluginBundleVersionId = pluginChangeListener.pluginBundleInstalled(pluginBundle);
+			for (SPluginInformation sPluginInformation : plugins) {
+				if (sPluginInformation.isEnabled()) {
+					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
+					pluginChangeListener.pluginInstalled(pluginBundleVersionId, pluginContext, sPluginInformation);
+				}
+			}
+			return pluginBundle;
+		} catch (Exception e) {
+			uninstall(pluginBundleVersionIdentifier);
+			LOGGER.error("", e);
+			throw e;
+		}
+	}
+	
 	public PluginBundle install(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, Path jarFile, Path pomFile, List<SPluginInformation> plugins, boolean strictDependencyChecking) throws Exception {
 		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 		Model model = mavenreader.read(new FileReader(pomFile.toFile()));
@@ -1221,47 +1288,8 @@ public class PluginManager implements PluginManagerInterface {
 			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
 		}
 		Files.copy(jarFile, target);
-		PluginBundle pluginBundle = null;
-		// Stage 1, load all plugins from the JAR file and initialize them
-		try {
-			pluginBundle = loadPluginsFromJar(pluginBundleVersionIdentifier, target, sPluginBundle, pluginBundleVersion);
-			if (plugins.isEmpty()) {
-				LOGGER.warn("No plugins given to install for bundle " + sPluginBundle.getName());
-			}
-			for (SPluginInformation sPluginInformation : plugins) {
-				if (sPluginInformation.isEnabled()) {
-					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
-					if (pluginContext == null) {
-						throw new Exception("No plugin context found for " + sPluginInformation.getIdentifier());
-					}
-					pluginContext.getPlugin().init(pluginContext);
-				}
-			}
-		} catch (Exception e) {
-			pluginBundle.close();
-			pluginBundleVersionIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier);
-			pluginBundleIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier.getPluginBundleIdentifier());
-			Files.delete(target);
-			LOGGER.error("", e);
-			throw e;
-		}
-		// Stage 2, if all went well, notify the listeners of this plugin, if
-		// anything goes wrong in the notifications, the plugin bundle will be
-		// uninstalled
-		try {
-			long pluginBundleVersionId = pluginChangeListener.pluginBundleInstalled(pluginBundle);
-			for (SPluginInformation sPluginInformation : plugins) {
-				if (sPluginInformation.isEnabled()) {
-					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
-					pluginChangeListener.pluginInstalled(pluginBundleVersionId, pluginContext, sPluginInformation);
-				}
-			}
-			return pluginBundle;
-		} catch (Exception e) {
-			uninstall(pluginBundleVersionIdentifier);
-			LOGGER.error("", e);
-			throw e;
-		}
+
+		return loadPlugin(pluginBundleVersionIdentifier, target, sPluginBundle, pluginBundleVersion, plugins);
 	}
 
 	public void uninstall(PluginBundleVersionIdentifier pluginBundleVersionIdentifier) {
