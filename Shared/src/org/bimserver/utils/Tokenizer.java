@@ -50,7 +50,7 @@ public class Tokenizer {
 	public Tokenizer zoomIn(String startChar, String endChar) throws TokenizeException {
 		String trimmed = toString().trim();
 		if (!trimmed.startsWith(startChar)) {
-			throw new TokenizeException("No " + startChar + " found in " + input.substring(leftPositionInclude, rightPositionInclude));
+			throw new TokenizeException("No '" + startChar + "' found in '" + input.substring(leftPositionInclude, rightPositionInclude) + "'");
 		}
 		String specialChar = "'";
 		int leftIndex = input.indexOf(startChar, leftPositionInclude);
@@ -75,7 +75,7 @@ public class Tokenizer {
 			}
 		}
 		if (rightIndex == -1 || rightIndex < leftPositionInclude) {
-			throw new TokenizeException("No " + endChar + " found in " + input.substring(leftPositionInclude, rightPositionInclude));
+			throw new TokenizeException("No '" + endChar + "' found in '" + input.substring(leftPositionInclude, rightPositionInclude) + "'");
 		}
 		zoomStack.push(new Pair(endChar, this.rightPositionInclude));
 		this.leftPositionInclude = leftIndex + startChar.length();
