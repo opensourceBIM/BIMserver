@@ -35,11 +35,6 @@ public interface StreamingSerializerPlugin extends Plugin {
 	StreamingSerializer createSerializer(PluginConfiguration plugin);
 
 	/**
-	 * @return Whether this plugin will be needing geometry
-	 */
-	boolean needsGeometry();
-	
-	/**
 	 * @return The schema supported by this serializer
 	 */
 	Set<Schema> getSupportedSchemas();

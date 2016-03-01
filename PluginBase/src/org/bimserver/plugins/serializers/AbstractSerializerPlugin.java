@@ -1,5 +1,7 @@
 package org.bimserver.plugins.serializers;
 
+import org.bimserver.interfaces.objects.SPluginType;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
