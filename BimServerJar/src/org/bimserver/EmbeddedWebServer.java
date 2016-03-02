@@ -25,7 +25,7 @@ import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EmbeddedWebServer {
+public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmbeddedWebServer.class);
 	private WebAppContext context;
 	private Server server;
@@ -68,5 +68,10 @@ public class EmbeddedWebServer {
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
+	}
+
+	@Override
+	public void setResourceBase(String resourceBase) {
+		getContext().setResourceBase(resourceBase);
 	}
 }

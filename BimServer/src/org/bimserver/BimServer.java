@@ -1,7 +1,5 @@
 package org.bimserver;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.nio.file.Files;
@@ -19,13 +17,10 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.jar.JarFile;
 
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.maven.model.Model;
-import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.cache.NewDiskCacheManager;
@@ -50,10 +45,8 @@ import org.bimserver.emf.MetaDataManager;
 import org.bimserver.endpoints.EndPointManager;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
-import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.interfaces.objects.SPluginInformation;
-import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.mail.MailSystem;
@@ -90,7 +83,6 @@ import org.bimserver.pb.server.ProtocolBuffersServer;
 import org.bimserver.plugins.MavenPluginRepository;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginBundle;
-import org.bimserver.plugins.PluginBundleIdentifier;
 import org.bimserver.plugins.PluginBundleVersionIdentifier;
 import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
@@ -122,10 +114,6 @@ import org.bimserver.version.VersionChecker;
 import org.bimserver.webservices.LongTransactionManager;
 import org.bimserver.webservices.PublicInterfaceFactory;
 import org.bimserver.webservices.authorization.SystemAuthorization;
-import org.eclipse.aether.artifact.Artifact;
-import org.eclipse.aether.artifact.DefaultArtifact;
-import org.eclipse.aether.resolution.ArtifactRequest;
-import org.eclipse.aether.resolution.ArtifactResult;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -163,7 +151,7 @@ public class BimServer {
 	private CompareCache compareCache;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
 	private SServicesMap servicesMap;
-	private EmbeddedWebServer embeddedWebServer;
+	private EmbeddedWebServerInterface embeddedWebServer;
 	private final BimServerConfig config;
 	private ProtocolBuffersServer protocolBuffersServer;
 	private JsonHandler jsonHandler;
@@ -265,7 +253,7 @@ public class BimServer {
 			compareCache = new CompareCache();
 			LOGGER.debug("Compare cache created");
 			if (config.isStartEmbeddedWebServer()) {
-				embeddedWebServer = new EmbeddedWebServer(this, config.getDevelopmentBaseDir(), config.isLocalDev());
+//				embeddedWebServer = new EmbeddedWebServer(this, config.getDevelopmentBaseDir(), config.isLocalDev());
 				LOGGER.debug("Embedded webserver created");
 			}
 
@@ -1211,7 +1199,7 @@ public class BimServer {
 		return config;
 	}
 
-	public EmbeddedWebServer getEmbeddedWebServer() {
+	public EmbeddedWebServerInterface getEmbeddedWebServer() {
 		return embeddedWebServer;
 	}
 
@@ -1257,5 +1245,9 @@ public class BimServer {
 
 	public MetricsRegistry getMetricsRegistry() {
 		return metricsRegistry;
+	}
+
+	public void setEmbeddedWebServer(EmbeddedWebServerInterface embeddedWebServer) {
+		this.embeddedWebServer = embeddedWebServer;
 	}
 }
