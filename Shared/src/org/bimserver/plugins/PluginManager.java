@@ -37,6 +37,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -106,6 +107,12 @@ import org.eclipse.aether.collection.CollectRequest;
 import org.eclipse.aether.collection.DependencyCollectionException;
 import org.eclipse.aether.graph.Dependency;
 import org.eclipse.aether.graph.DependencyNode;
+import org.eclipse.aether.resolution.ArtifactDescriptorException;
+import org.eclipse.aether.resolution.ArtifactDescriptorRequest;
+import org.eclipse.aether.resolution.ArtifactDescriptorResult;
+import org.eclipse.aether.resolution.ArtifactRequest;
+import org.eclipse.aether.resolution.ArtifactResolutionException;
+import org.eclipse.aether.resolution.ArtifactResult;
 import org.eclipse.aether.resolution.DependencyRequest;
 import org.eclipse.aether.resolution.DependencyResolutionException;
 import org.eclipse.aether.util.graph.visitor.PreorderNodeListGenerator;
@@ -219,32 +226,51 @@ public class PluginManager implements PluginManagerInterface {
 			}
 		};
 
-		List<org.bimserver.plugins.Dependency> bimServerDependencies = new ArrayList<>();
+		Set<org.bimserver.plugins.Dependency> bimServerDependencies = new HashSet<>();
 
 		pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(new PluginBundleIdentifier(model.getGroupId(), model.getArtifactId()), model.getVersion());
 		
 		List<org.apache.maven.model.Dependency> dependencies = model.getDependencies();
 		Iterator<org.apache.maven.model.Dependency> it = dependencies.iterator();
 
+		Path workspaceDir = Paths.get("..");
+		bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("PluginBase/target/classes")));
+		bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("Shared/target/classes")));
+
 		while (it.hasNext()) {
 			org.apache.maven.model.Dependency depend = it.next();
 			try {
 
-				Dependency dependency2 = new Dependency(new DefaultArtifact(depend.getGroupId() + ":" + depend.getArtifactId() + ":" + depend.getVersion()), "compile");
+				Dependency dependency2 = new Dependency(new DefaultArtifact(depend.getGroupId() + ":" + depend.getArtifactId() + ":jar:" + depend.getVersion()), "compile");
 				// RemoteRepository central = new
 				// RemoteRepository.Builder("central", "default",
 				// "http://repo1.maven.org/maven2/").build();
 
+				if (!dependency2.getArtifact().isSnapshot()) {
+					if (dependency2.getArtifact().getFile() != null) {
+						bimServerDependencies.add(new org.bimserver.plugins.Dependency(dependency2.getArtifact().getFile().toPath()));
+					} else {
+						ArtifactRequest request = new ArtifactRequest();
+						request.setArtifact(dependency2.getArtifact());
+						request.setRepositories(mavenPluginRepository.getRepositories());
+						ArtifactResult resolveArtifact;
+						try {
+							resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+							if (resolveArtifact.getArtifact().getFile() != null) {
+								bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
+							}
+						} catch (ArtifactResolutionException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				
 				CollectRequest collectRequest = new CollectRequest();
 				collectRequest.setRoot(dependency2);
 				DependencyNode node = mavenPluginRepository.getSystem().collectDependencies(mavenPluginRepository.getSession(), collectRequest).getRoot();
 
 				DependencyRequest dependencyRequest = new DependencyRequest();
 				dependencyRequest.setRoot(node);
-
-				Path workspaceDir = Paths.get("..");
-				bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("PluginBase/target/classes")));
-				bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("Shared/target/classes")));
 
 				try {
 					mavenPluginRepository.getSystem().resolveDependencies(mavenPluginRepository.getSession(), dependencyRequest);
@@ -458,7 +484,7 @@ public class PluginManager implements PluginManagerInterface {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private PluginBundle loadPlugins(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, ResourceLoader resourceLoader, ClassLoader classLoader, URI location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType,
-			List<org.bimserver.plugins.Dependency> dependencies, SPluginBundle sPluginBundle, SPluginBundleVersion sPluginBundleVersion) throws PluginException {
+			Set<org.bimserver.plugins.Dependency> dependencies, SPluginBundle sPluginBundle, SPluginBundleVersion sPluginBundleVersion) throws PluginException {
 		PluginBundle pluginBundle = new PluginBundleImpl(pluginBundleVersionIdentifier, sPluginBundle, sPluginBundleVersion);
 		
 		if (classLoader != null && classLoader instanceof Closeable) {
@@ -627,7 +653,7 @@ public class PluginManager implements PluginManagerInterface {
 				}
 			};
 
-			return loadPlugins(pluginBundleVersionIdentifier, resourceLoader, jarClassLoader, jarUri, file.toAbsolutePath().toString(), pluginDescriptor, PluginSourceType.JAR_FILE, new ArrayList<org.bimserver.plugins.Dependency>(), sPluginBundle, pluginBundleVersion);
+			return loadPlugins(pluginBundleVersionIdentifier, resourceLoader, jarClassLoader, jarUri, file.toAbsolutePath().toString(), pluginDescriptor, PluginSourceType.JAR_FILE, new HashSet<org.bimserver.plugins.Dependency>(), sPluginBundle, pluginBundleVersion);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
@@ -815,7 +841,7 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	public PluginContext loadPlugin(PluginBundle pluginBundle, Class<? extends Plugin> interfaceClass, URI location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType,
-			AbstractPlugin pluginImplementation, List<org.bimserver.plugins.Dependency> dependencies, String identifier) throws PluginException {
+			AbstractPlugin pluginImplementation, Set<org.bimserver.plugins.Dependency> dependencies, String identifier) throws PluginException {
 		LOGGER.debug("Loading plugin " + plugin.getClass().getSimpleName() + " of type " + interfaceClass.getSimpleName());
 		if (!Plugin.class.isAssignableFrom(interfaceClass)) {
 			throw new PluginException("Given interface class (" + interfaceClass.getName() + ") must be a subclass of " + Plugin.class.getName());

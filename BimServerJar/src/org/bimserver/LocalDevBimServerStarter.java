@@ -40,6 +40,7 @@ public class LocalDevBimServerStarter {
 		config.setDevelopmentBaseDir(Paths.get("../BimServer"));
 		bimServer = new BimServer(config);
 		bimServer.getVersionChecker().getLocalVersion().setDate(new Date());
+		bimServer.setEmbeddedWebServer(new EmbeddedWebServer(bimServer, config.getDevelopmentBaseDir(), config.isLocalDev()));
 		try {
 			if (pluginDirectories == null || pluginDirectories.length == 0) {
 				LOGGER.warn("No plugin directories given, this BIMserver will probably not work as expected, see https://github.com/opensourceBIM/BIMserver/wiki/Eclipse#adding-the-plugins-property");

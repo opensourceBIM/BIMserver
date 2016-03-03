@@ -70,6 +70,10 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 		}
 	}
 
+	public static void setServletContext(ServletContext servletContext) {
+		Jsr356Impl.servletContext = servletContext;
+	}
+	
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		LOGGER.info("WebSocket context initialized");
