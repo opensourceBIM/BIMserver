@@ -27,6 +27,9 @@
 							<includes>
 								<include>pom.xml</include>
 							</includes>
+							<excludes>
+								<exclude>web.xml</exclude>
+							</excludes>
 							<targetPath>WEB-INF</targetPath>
 						</resource>
 						<resource>
@@ -34,6 +37,9 @@
 							<includes>
 								<include>license.txt</include>
 							</includes>
+							<excludes>
+								<exclude>web.xml</exclude>
+							</excludes>
 							<targetPath>/</targetPath>
 						</resource>
 						<resource>
