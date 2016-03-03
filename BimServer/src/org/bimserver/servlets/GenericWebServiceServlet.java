@@ -339,20 +339,18 @@ public class GenericWebServiceServlet extends SubServlet {
 		});
 		BusFactory.setDefaultBus(bus);
 
-		if (getBimServer().getServicesMap() != null) {
-			for (Class<? extends PublicInterface> clazz : getBimServer().getServicesMap().getInterfaceClasses()) {
-				JaxWsServerFactoryBean serverFactoryBean = new JaxWsServerFactoryBean();
-				Map<String, Object> properties = new HashMap<String, Object>();
-				properties.put("mtom-enabled", Boolean.TRUE);
-				serverFactoryBean.setBindingId(bindingId);
-				serverFactoryBean.setProperties(properties);
-				serverFactoryBean.setServiceClass(clazz);
-				serverFactoryBean.getOutFaultInterceptors().add(new StatusCodeModifyingFaultInterceptor());
-				serverFactoryBean.setInvoker(new CustomInvoker(getBimServer().getServiceFactory(), clazz));
-				serverFactoryBean.setAddress((bindingId == WSDLConstants.NS_SOAP11 ? "/soap11/" : "/soap12/") + clazz.getSimpleName()); // equals check allowed, just keep using the constant
-				serverFactoryBean.setTransportId("http://schemas.xmlsoap.org/soap/http");
-				serverFactoryBean.create();
-			}
+		for (Class<? extends PublicInterface> clazz : getBimServer().getServicesMap().getInterfaceClasses()) {
+			JaxWsServerFactoryBean serverFactoryBean = new JaxWsServerFactoryBean();
+			Map<String, Object> properties = new HashMap<String, Object>();
+			properties.put("mtom-enabled", Boolean.TRUE);
+			serverFactoryBean.setBindingId(bindingId);
+			serverFactoryBean.setProperties(properties);
+			serverFactoryBean.setServiceClass(clazz);
+			serverFactoryBean.getOutFaultInterceptors().add(new StatusCodeModifyingFaultInterceptor());
+			serverFactoryBean.setInvoker(new CustomInvoker(getBimServer().getServiceFactory(), clazz));
+			serverFactoryBean.setAddress((bindingId == WSDLConstants.NS_SOAP11 ? "/soap11/" : "/soap12/") + clazz.getSimpleName()); // equals check allowed, just keep using the constant
+			serverFactoryBean.setTransportId("http://schemas.xmlsoap.org/soap/http");
+			serverFactoryBean.create();
 		}
 	}
 }
