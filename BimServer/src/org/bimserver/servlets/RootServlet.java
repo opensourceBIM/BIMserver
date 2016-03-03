@@ -96,7 +96,13 @@ public class RootServlet extends HttpServlet {
 				String siteAddress = bimServer.getServerSettingsCache().getServerSettings().getSiteAddress();
 				if (siteAddress == null || siteAddress.trim().isEmpty()) {
 					// Only when in setup-mode
-					siteAddress = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+					String forwardedFor = request.getHeader("X-Forwarded-For");
+					if (forwardedFor != null) {
+						LOGGER.info("X-Forwarded-For: " + forwardedFor);
+						siteAddress = forwardedFor;
+					} else {
+						siteAddress = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+					}
 				}
 				if (siteAddress.contains("http://")) {
 					siteAddress = siteAddress.replace("http://", request.getScheme() + "://");
