@@ -26,6 +26,7 @@
 							<directory>..</directory>
 							<includes>
 								<include>pom.xml</include>
+								<include>web.xml</include>
 							</includes>
 							<targetPath>WEB-INF</targetPath>
 						</resource>
