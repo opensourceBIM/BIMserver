@@ -50,6 +50,13 @@
 								<exclude>web.xml</exclude>
 							</excludes>
 						</resource>
+						<resource>
+							<directory>.</directory>
+							<targetPath>WEB-INF</targetPath>
+							<includes>
+								<include>web.xml</include>
+							</includes>
+						</resource>
 					</webResources>
 					<webXml>web.xml</webXml>
 				</configuration>
