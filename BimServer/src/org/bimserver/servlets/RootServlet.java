@@ -119,19 +119,23 @@ public class RootServlet extends HttpServlet {
 					requestUri = "/index.html";
 				}
 				String modulePath = requestUri;
-				if (modulePath.indexOf("/", 1) != -1) {
-					modulePath = modulePath.substring(0, modulePath.indexOf("/", 1));
-				}
-				int originalLength = modulePath.length();
-				if (modulePath.startsWith("/")) {
-					modulePath = modulePath.substring(1);
-				}
-				if (bimServer.getWebModules().containsKey(modulePath)) {
-					String substring = requestUri.substring(originalLength);
-					if (bimServer.getWebModules().get(modulePath).service(substring, response)) {
-						return;
+				if (modulePath.startsWith("/apps/")) {
+					int originalLength = modulePath.length();
+					modulePath = modulePath.substring(6);
+					if (modulePath.indexOf("/", 1) != -1) {
+						modulePath = modulePath.substring(0, modulePath.indexOf("/", 1));
+					}
+					if (modulePath.startsWith("/")) {
+						modulePath = modulePath.substring(1);
+					}
+					if (bimServer.getWebModules().containsKey(modulePath)) {
+						String substring = requestUri.substring(6 + modulePath.length());
+						if (bimServer.getWebModules().get(modulePath).service(substring, response)) {
+							return;
+						}
 					}
 				}
+
 				if (bimServer.getDefaultWebModule() != null) {
 					if (bimServer.getDefaultWebModule().service(requestUri, response)) {
 						return;

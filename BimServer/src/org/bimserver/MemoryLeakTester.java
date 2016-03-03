@@ -37,7 +37,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MemoryLeakTester {
-	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimServerStarter.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(MemoryLeakTester.class);
 	private BimServer bimServer;
 	
 	public static void main(String[] args) {

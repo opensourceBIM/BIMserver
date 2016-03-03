@@ -29,7 +29,6 @@ import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
-import org.bimserver.LocalDevBimServerStarter;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
@@ -66,9 +65,9 @@ public class TestClientEmfModelLocal {
 				FileUtils.deleteDirectory(home);
 			}
 
-			LocalDevBimServerStarter localDevBimWebServerStarter = new LocalDevBimServerStarter();
-			localDevBimWebServerStarter.start(1, "localhost", 8082, 8085, null);
-			bimServer = localDevBimWebServerStarter.getBimServer();
+//			LocalDevBimServerStarter localDevBimWebServerStarter = new LocalDevBimServerStarter();
+//			localDevBimWebServerStarter.start(1, "localhost", 8082, 8085, null);
+//			bimServer = localDevBimWebServerStarter.getBimServer();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

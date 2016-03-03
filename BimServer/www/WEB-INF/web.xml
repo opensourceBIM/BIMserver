@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_ID" version="2.4"
-	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<display-name>BIMserver</display-name>
 	<welcome-file-list>
@@ -33,18 +32,73 @@
 		<servlet-class>org.bimserver.servlets.RootServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/soap11</url-pattern>
 	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>StreamingServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.StreamingServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
 	<servlet-mapping>
-		<servlet-name>StreamingServlet</servlet-name>
-		<url-pattern>/stream/*</url-pattern>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/soap12</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/syndication</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/json</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/download</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/apps/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>*.version</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>*.getbimserveraddress</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>*.css</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>*.woff</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>*.ttf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>*.js</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>*.png</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>*.gif</url-pattern>
 	</servlet-mapping>
 </web-app>

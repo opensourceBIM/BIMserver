@@ -24,12 +24,12 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Set;
 
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.deserializers.DeserializeException;
-import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
@@ -54,14 +54,14 @@ public class PluginContext {
 	private boolean enabled = true;
 	private FileSystem fileSystem;
 	private Path rootPath;
-	private List<Dependency> dependencies;
+	private Set<Dependency> dependencies;
 	private PluginBundle pluginBundle;
 	private String description;
 	private boolean initialized;
 	private Class<?> pluginInterface;
 	private String identifier;
 
-	public PluginContext(PluginManagerInterface pluginManager, PluginBundle pluginBundle, Class<?> pluginInterface, ClassLoader classLoader, PluginSourceType pluginType, String description, URI location, Plugin plugin, String classLocation, List<Dependency> dependencies, String identifier) throws IOException {
+	public PluginContext(PluginManagerInterface pluginManager, PluginBundle pluginBundle, Class<?> pluginInterface, ClassLoader classLoader, PluginSourceType pluginType, String description, URI location, Plugin plugin, String classLocation, Set<Dependency> dependencies, String identifier) throws IOException {
 		this.pluginManager = pluginManager;
 		this.pluginBundle = pluginBundle;
 		this.pluginInterface = pluginInterface;
@@ -129,7 +129,7 @@ public class PluginContext {
 		return pluginManager.getParameter(this, name);
 	}
 	
-	public List<Dependency> getDependencies() {
+	public Set<Dependency> getDependencies() {
 		return dependencies;
 	}
 

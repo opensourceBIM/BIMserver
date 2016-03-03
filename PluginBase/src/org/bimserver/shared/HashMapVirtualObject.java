@@ -475,7 +475,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 
 	public boolean has(String key) {
 		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(key);
-		return map.containsKey(eStructuralFeature);
+		return map.containsKey(eStructuralFeature) && map.get(eStructuralFeature) != null;
 	}
 
 	@SuppressWarnings("unchecked")

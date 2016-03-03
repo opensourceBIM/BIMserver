@@ -2,6 +2,12 @@ package org.bimserver;
 
 import java.nio.file.Path;
 
+import javax.servlet.ServletException;
+import javax.websocket.DeploymentException;
+import javax.websocket.server.ServerContainer;
+
+import org.bimserver.servlets.websockets.jsr356.Jsr356Impl;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -21,7 +27,9 @@ import java.nio.file.Path;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
+import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,24 +40,38 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 
 	public EmbeddedWebServer(BimServer bimServer, Path developmentBaseDir, boolean localDev) {
 		server = new Server();
-//		Disabled 26-04-2015, I am pretty sure we don't use session anymore at all
-//		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random()); // Should be SecureRandom, but this makes startup slow on certain systems
-//		server.setSessionIdManager(hashSessionIdManager);
+		// Disabled 26-04-2015, I am pretty sure we don't use session anymore at
+		// all
+		// HashSessionIdManager hashSessionIdManager = new
+		// HashSessionIdManager(new Random()); // Should be SecureRandom, but
+		// this makes startup slow on certain systems
+		// server.setSessionIdManager(hashSessionIdManager);
 		ServerConnector socketConnector = new ServerConnector(server);
 		socketConnector.setPort(bimServer.getConfig().getPort());
 		server.addConnector(socketConnector);
 		context = new WebAppContext(server, "", "/");
 		context.setTempDirectory(bimServer.getHomeDir().resolve("jettytmp").toFile());
+
+		try {
+			org.eclipse.jetty.websocket.jsr356.server.ServerContainer configureContext = WebSocketServerContainerInitializer.configureContext(context);
+			Jsr356Impl.setServletContext(context.getServletContext());
+			configureContext.addEndpoint(Jsr356Impl.class);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (DeploymentException e) {
+			e.printStackTrace();
+		}
+		
 		if (localDev) {
 			// TODO document why
-			context.setDefaultsDescriptor("www/WEB-INF/webdefault.xml");
+			context.setDefaultsDescriptor("../BimServer/www/WEB-INF/webdefault.xml");
 		}
 		context.getServletContext().setAttribute("bimserver", bimServer);
 		if (context.getResourceBase() == null) {
 			context.setResourceBase(developmentBaseDir.resolve("www").toAbsolutePath().toString());
 		}
 	}
-	
+
 	public void start() {
 		try {
 			server.start();
@@ -57,7 +79,7 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 			LOGGER.error("", e);
 		}
 	}
-	
+
 	public WebAppContext getContext() {
 		return context;
 	}
