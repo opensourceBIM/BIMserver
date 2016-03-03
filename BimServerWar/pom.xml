@@ -28,7 +28,7 @@
 								<include>pom.xml</include>
 							</includes>
 							<excludes>
-								<exclude>web.xml</exclude>
+								<exclude>**/web.xml</exclude>
 							</excludes>
 							<targetPath>WEB-INF</targetPath>
 						</resource>
@@ -38,14 +38,14 @@
 								<include>license.txt</include>
 							</includes>
 							<excludes>
-								<exclude>web.xml</exclude>
+								<exclude>**/web.xml</exclude>
 							</excludes>
 							<targetPath>/</targetPath>
 						</resource>
 						<resource>
 							<directory>../BimServer/www</directory>
 							<excludes>
-								<exclude>web.xml</exclude>
+								<exclude>**/web.xml</exclude>
 							</excludes>
 							<targetPath>/</targetPath>
 						</resource>
@@ -53,7 +53,7 @@
 							<directory>../BimServer/deploy</directory>
 							<targetPath>WEB-INF</targetPath>
 							<excludes>
-								<exclude>web.xml</exclude>
+								<exclude>**/web.xml</exclude>
 							</excludes>
 						</resource>
 						<resource>
