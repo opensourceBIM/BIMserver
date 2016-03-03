@@ -26,7 +26,6 @@
 							<directory>..</directory>
 							<includes>
 								<include>pom.xml</include>
-								<include>web.xml</include>
 							</includes>
 							<targetPath>WEB-INF</targetPath>
 						</resource>
@@ -39,6 +38,9 @@
 						</resource>
 						<resource>
 							<directory>../BimServer/www</directory>
+							<excludes>
+								<exclude>WEB-INF/*</exclude>
+							</excludes>
 							<targetPath>/</targetPath>
 						</resource>
 						<resource>
