@@ -47,6 +47,9 @@ public class RootServlet extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		bimServer = (BimServer) getServletContext().getAttribute("bimserver");
+		if (bimServer == null) {
+			throw new ServletException("No bimserver context attribute");
+		}
 		jsonApiServlet = new JsonApiServlet(bimServer, getServletContext());
 		syndicationServlet = new SyndicationServlet(bimServer, getServletContext());
 		uploadServlet = new UploadServlet(bimServer, getServletContext());
