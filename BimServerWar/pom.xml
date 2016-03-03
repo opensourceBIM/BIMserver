@@ -39,7 +39,7 @@
 						<resource>
 							<directory>../BimServer/www</directory>
 							<excludes>
-								<exclude>WEB-INF/*</exclude>
+								<exclude>web.xml</exclude>
 							</excludes>
 							<targetPath>/</targetPath>
 						</resource>
