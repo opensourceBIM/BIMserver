@@ -99,7 +99,11 @@ public class RootServlet extends HttpServlet {
 					String forwardedProtocol = request.getHeader("X-Forwarded-Proto");
 					if (forwardedProtocol != null) {
 						LOGGER.info("X-Forwarded-Proto " + forwardedProtocol);
-						siteAddress = forwardedProtocol + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+						String port = "" + request.getServerPort();
+						if (request.getHeader("X-Forwarded-Port") != null) {
+							port = request.getHeader("X-Forwarded-Port");
+						}
+						siteAddress = forwardedProtocol + "://" + request.getServerName() + ":" + port + request.getContextPath();
 					} else {
 						siteAddress = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 					}
