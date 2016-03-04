@@ -72,7 +72,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bimserver</artifactId>
-			<version>1.5.33-SNAPSHOT</version>
+			<version>1.5.32</version>
 		</dependency>
 	</dependencies>
 </project>
