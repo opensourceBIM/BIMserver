@@ -107,9 +107,6 @@ import org.eclipse.aether.collection.CollectRequest;
 import org.eclipse.aether.collection.DependencyCollectionException;
 import org.eclipse.aether.graph.Dependency;
 import org.eclipse.aether.graph.DependencyNode;
-import org.eclipse.aether.resolution.ArtifactDescriptorException;
-import org.eclipse.aether.resolution.ArtifactDescriptorRequest;
-import org.eclipse.aether.resolution.ArtifactDescriptorResult;
 import org.eclipse.aether.resolution.ArtifactRequest;
 import org.eclipse.aether.resolution.ArtifactResolutionException;
 import org.eclipse.aether.resolution.ArtifactResult;
@@ -1304,7 +1301,9 @@ public class PluginManager implements PluginManagerInterface {
 						LOGGER.info("Skipping strict dependency checking for dependency " + dependency.getArtifactId());
 					}
 				} else {
-					throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
+					if (pluginBundleIdentifier.getGroupId().equals("org.opensourcebim")) {
+						throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
+					}
 				}
 			}
 		}
