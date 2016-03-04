@@ -18,6 +18,8 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
@@ -63,6 +65,14 @@ public class GetAvailablePluginBundles extends PluginBundleDatabaseAction<List<S
 			}
 		}
 
+		Collections.sort(result, new Comparator<SPluginBundle>(){
+
+			@Override
+			public int compare(SPluginBundle o1, SPluginBundle o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+		});
+		
 		return result;
 	}
 }

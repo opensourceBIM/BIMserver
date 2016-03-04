@@ -1250,6 +1250,7 @@ public class PluginManager implements PluginManagerInterface {
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			if (pluginBundle != null) {
 				pluginBundle.close();
 			}
@@ -1376,12 +1377,12 @@ public class PluginManager implements PluginManagerInterface {
 			if (pluginBundleIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier.getPluginBundleIdentifier()) == null) {
 				LOGGER.warn("Previous version of " + pluginBundleVersionIdentifier.getPluginBundleIdentifier() + " not found");
 			}
-			PluginBundleVersionIdentifier currentVersion = pluginBundleIdentifierToCurrentPluginBundleVersionIdentifier.get(pluginBundleVersionIdentifier);
+			PluginBundleVersionIdentifier currentVersion = pluginBundleIdentifierToCurrentPluginBundleVersionIdentifier.get(pluginBundleVersionIdentifier.getPluginBundleIdentifier());
 			if (pluginBundleIdentifierToCurrentPluginBundleVersionIdentifier.remove(pluginBundleVersionIdentifier.getPluginBundleIdentifier()) == null) {
 				LOGGER.warn("Previous version of " + pluginBundleVersionIdentifier.getPluginBundleIdentifier() + " not found");
 			}
 			if (pluginBundleVersionIdentifierToPluginBundle.remove(currentVersion) == null) {
-				LOGGER.warn("Previous version of " + pluginBundleVersionIdentifier.getPluginBundleIdentifier() + " not found");
+				LOGGER.warn("Previous version (" + currentVersion + ") of " + pluginBundleVersionIdentifier.getPluginBundleIdentifier() + " not found");
 			}
 			
 			for (PluginContext pluginContext : existingPluginBundle) {
@@ -1389,13 +1390,12 @@ public class PluginManager implements PluginManagerInterface {
 				set.remove(pluginContext);
 			}
 			
-//			Path target = pluginsDir.resolve(pluginBundleVersionIdentifier.getFileName());
-//			Files.delete(target);
+			Path target = pluginsDir.resolve(currentVersion.getFileName());
+			Files.delete(target);
 			
 //			for (PluginContext pluginContext : existingPluginBundle) {
 //				pluginChangeListener.pluginUninstalled(pluginContext);
 //			}
-//			pluginChangeListener.pluginBundleUninstalled(existingPluginBundle);
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
@@ -1425,13 +1425,13 @@ public class PluginManager implements PluginManagerInterface {
 		// anything goes wrong in the notifications, the plugin bundle will be
 		// uninstalled
 		try {
-			long pluginBundleVersionId = pluginChangeListener.pluginBundleInstalled(pluginBundle);
-			for (SPluginInformation sPluginInformation : plugins) {
-				if (sPluginInformation.isEnabled()) {
-					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
-					pluginChangeListener.pluginInstalled(pluginBundleVersionId, pluginContext, sPluginInformation);
-				}
-			}
+			pluginChangeListener.pluginBundleUpdated(pluginBundle);
+//			for (SPluginInformation sPluginInformation : plugins) {
+//				if (sPluginInformation.isEnabled()) {
+//					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
+//					pluginChangeListener.pluginInstalled(pluginBundleVersionId, pluginContext, sPluginInformation);
+//				}
+//			}
 			return pluginBundle;
 		} catch (Exception e) {
 			uninstall(pluginBundleVersionIdentifier);
