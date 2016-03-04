@@ -364,16 +364,20 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			cache.put(refOid, referencedObject);
 		}
 		EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);
-		if (oppositeReference.isMany()) {
-			Object existingList = referencedObject.eGet(oppositeReference);
-			if (existingList != null) {
-				int currentSize = ((List<?>)existingList).size();
-				referencedObject.setListItemReference(oppositeReference, currentSize, next.eClass(), next.getOid(), 0);
-			} else {
-				referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
-			}
+		if (oppositeReference == null) {
+			LOGGER.error("No opposite " + eReference.getName() + " found");
 		} else {
-			referencedObject.setReference(oppositeReference, next.getOid(), 0);
+			if (oppositeReference.isMany()) {
+				Object existingList = referencedObject.eGet(oppositeReference);
+				if (existingList != null) {
+					int currentSize = ((List<?>)existingList).size();
+					referencedObject.setListItemReference(oppositeReference, currentSize, next.eClass(), next.getOid(), 0);
+				} else {
+					referencedObject.setListItemReference(oppositeReference, 0, next.eClass(), next.getOid(), 0);
+				}
+			} else {
+				referencedObject.setReference(oppositeReference, next.getOid(), 0);
+			}
 		}
 	}
 
