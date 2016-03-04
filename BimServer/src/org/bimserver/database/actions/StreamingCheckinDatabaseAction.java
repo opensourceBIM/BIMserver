@@ -365,7 +365,11 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		}
 		EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);
 		if (oppositeReference == null) {
-			LOGGER.error("No opposite " + eReference.getName() + " found");
+			if (eReference.getName().equals("RelatedElements") && referencedObject.eClass().getName().equals("IfcSpace")) {
+				// Ignore, IfcSpace should have  a field called RelatedElements, but it doesn't.
+			} else {
+				LOGGER.error("No opposite " + eReference.getName() + " found");
+			}
 		} else {
 			if (oppositeReference.isMany()) {
 				Object existingList = referencedObject.eGet(oppositeReference);
