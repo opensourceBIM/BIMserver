@@ -25,5 +25,6 @@ public interface PluginChangeListener {
 	void pluginStateChanged(PluginContext pluginContext, boolean enabled);
 	void pluginUninstalled(PluginContext pluginContext);
 	long pluginBundleInstalled(PluginBundle pluginBundle);
+	void pluginBundleUpdated(PluginBundle pluginBundle);
 	void pluginBundleUninstalled(PluginBundle pluginBundle);
 }

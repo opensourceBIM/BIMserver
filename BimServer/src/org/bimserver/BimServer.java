@@ -323,6 +323,40 @@ public class BimServer {
 					}
 
 					@Override
+					public void pluginBundleUpdated(PluginBundle pluginBundle) {
+						SPluginBundleVersion sPluginBundleVersion = pluginBundle.getPluginBundleVersion();
+						try (DatabaseSession session = bimDatabase.createSession()) {
+							PluginBundleVersion current = null;
+							IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getPluginBundleVersion(), OldQuery.getDefault());
+							for (PluginBundleVersion pbv : allOfType.getAll(PluginBundleVersion.class)) {
+								if (pbv.getGroupId().equals(pluginBundle.getPluginBundleVersion().getGroupId()) && pbv.getArtifactId().equals(pluginBundle.getPluginBundleVersion().getArtifactId())) {
+									// Current pluginBundle found
+									current = pbv;
+								}
+							}
+							
+							if (current != null) {
+								current.setDescription(sPluginBundleVersion.getArtifactId());
+								current.setIcon(sPluginBundleVersion.getIcon());
+								current.setMismatch(sPluginBundleVersion.isMismatch());
+								current.setRepository(sPluginBundleVersion.getRepository());
+								current.setType(getSConverter().convertFromSObject(sPluginBundleVersion.getType()));
+								current.setVersion(sPluginBundleVersion.getVersion());
+								current.setOrganization(sPluginBundleVersion.getOrganization());
+								current.setName(sPluginBundleVersion.getName());
+								
+								session.store(current);
+								
+								session.commit();
+							}
+						} catch (BimserverDatabaseException e) {
+							LOGGER.error("", e);
+						} catch (ServiceException e) {
+							LOGGER.error("", e);
+						}
+					}
+					
+					@Override
 					public void pluginInstalled(long pluginBundleVersionId, PluginContext pluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException {
 						try (DatabaseSession session = bimDatabase.createSession()) {
 							Plugin plugin = pluginContext.getPlugin();
@@ -406,11 +440,26 @@ public class BimServer {
 					@Override
 					public long pluginBundleInstalled(PluginBundle pluginBundle) {
 						try (DatabaseSession session = bimDatabase.createSession()) {
+							PluginBundleVersion current = null;
+							IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getPluginBundleVersion(), OldQuery.getDefault());
+							for (PluginBundleVersion pbv : allOfType.getAll(PluginBundleVersion.class)) {
+								if (pbv.getGroupId().equals(pluginBundle.getPluginBundleVersion().getGroupId()) && pbv.getArtifactId().equals(pluginBundle.getPluginBundleVersion().getArtifactId())) {
+									// Current pluginBundle found
+									current = pbv;
+								}
+							}
+
+							PluginBundleVersion pluginBundleVersion = null;
+							if (current != null) {
+								pluginBundleVersion = current;
+								session.store(pluginBundleVersion);
+							} else {
+								pluginBundleVersion = session.create(PluginBundleVersion.class);
+							}
 							SPluginBundleVersion sPluginBundleVersion = pluginBundle.getPluginBundleVersion();
 							
 							// SConverter should be used here, but it does not seem to trigger the database session in the rights way, just copying over field for now
 							
-							PluginBundleVersion pluginBundleVersion = session.create(PluginBundleVersion.class);
 							pluginBundleVersion.setArtifactId(sPluginBundleVersion.getArtifactId());
 							pluginBundleVersion.setDescription(sPluginBundleVersion.getArtifactId());
 							pluginBundleVersion.setGroupId(sPluginBundleVersion.getGroupId());
