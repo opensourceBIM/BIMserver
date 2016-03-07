@@ -130,7 +130,6 @@ public class RootServlet extends HttpServlet {
 				}
 				String modulePath = requestUri;
 				if (modulePath.startsWith("/apps/")) {
-					int originalLength = modulePath.length();
 					modulePath = modulePath.substring(6);
 					if (modulePath.indexOf("/", 1) != -1) {
 						modulePath = modulePath.substring(0, modulePath.indexOf("/", 1));
