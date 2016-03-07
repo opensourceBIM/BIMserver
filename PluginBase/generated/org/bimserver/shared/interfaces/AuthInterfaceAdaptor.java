@@ -29,7 +29,7 @@ public class AuthInterfaceAdaptor implements org.bimserver.shared.interfaces.Aut
 		return null;
 	}
 	
-	public void requestPasswordChange(java.lang.String username, java.lang.String resetUrl) throws UserException, ServerException {
+	public void requestPasswordChange(java.lang.String username, java.lang.String resetUrl, java.lang.Boolean includeSiteAddress) throws UserException, ServerException {
 	}
 	
 	public void setHash(java.lang.Long uoid, byte[] hash, byte[] salt) throws UserException, ServerException {

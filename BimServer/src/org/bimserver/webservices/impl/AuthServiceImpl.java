@@ -58,11 +58,11 @@ public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface
 	}
 	
 	@Override
-	public void requestPasswordChange(String username, String resetUrl) throws ServerException, UserException {
+	public void requestPasswordChange(String username, String resetUrl, Boolean includeSiteAddress) throws ServerException, UserException {
 		// No authentication required because you should be able to do this wihout logging in...
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, getInternalAccessMethod(), getBimServer(), username, resetUrl);
+			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, getInternalAccessMethod(), getBimServer(), username, resetUrl, includeSiteAddress);
 			session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			handleException(e);

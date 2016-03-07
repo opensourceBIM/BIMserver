@@ -80,11 +80,11 @@ public class AsyncAuthInterface {
 		});
 	}
 	
-	public void requestPasswordChange(final java.lang.String username, final java.lang.String resetUrl, final RequestPasswordChangeCallback callback) {
+	public void requestPasswordChange(final java.lang.String username, final java.lang.String resetUrl, final java.lang.Boolean includeSiteAddress, final RequestPasswordChangeCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.requestPasswordChange(username, resetUrl);
+					syncService.requestPasswordChange(username, resetUrl, includeSiteAddress);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

@@ -61,6 +61,7 @@ message GetLoggedInUserResponse {
 message RequestPasswordChangeRequest {
 	optional string username = 1;
 	optional string resetUrl = 2;
+	optional bool includeSiteAddress = 3;
 }
 
 message SetHashRequest {
