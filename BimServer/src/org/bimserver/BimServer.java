@@ -357,6 +357,62 @@ public class BimServer {
 					}
 					
 					@Override
+					public void pluginUpdated(long pluginBundleVersionId, PluginContext newPluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException {
+						try (DatabaseSession session = bimDatabase.createSession()) {
+							Plugin plugin = newPluginContext.getPlugin();
+							
+							Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_Identifier(), new StringLiteral(newPluginContext.getIdentifier()));
+							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
+							for (PluginDescriptor pluginDescriptor : pluginsFound.values()) {
+								pluginDescriptor.setIdentifier(newPluginContext.getIdentifier());
+								pluginDescriptor.setPluginClassName(plugin.getClass().getName());
+								pluginDescriptor.setDescription(newPluginContext.getDescription());
+								pluginDescriptor.setName(sPluginInformation.getName());
+								pluginDescriptor.setLocation(newPluginContext.getLocation().toString());
+								pluginDescriptor.setPluginInterfaceClassName(getPluginInterface(plugin.getClass()).getName());
+								pluginDescriptor.setEnabled(sPluginInformation.isEnabled());
+								pluginDescriptor.setInstallForNewUsers(sPluginInformation.isInstallForNewUsers());
+								pluginDescriptor.setPluginBundleVersion(session.get(pluginBundleVersionId, OldQuery.getDefault()));
+								session.store(pluginDescriptor);
+
+								if (sPluginInformation.isInstallForAllUsers()) {
+									IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), OldQuery.getDefault());
+									for (User user : allOfType.getAll(User.class)) {
+										if (user.getState() == ObjectState.ACTIVE) {
+											updateUserPlugin(session, user, pluginDescriptor, newPluginContext);
+										}
+									}
+								}
+								
+								if (newPluginContext.getPlugin() instanceof WebModulePlugin) {
+									ServerSettings serverSettings = getServerSettingsCache().getServerSettings();
+									WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), newPluginContext.getIdentifier());
+									if (webPluginConfiguration == null) {
+										webPluginConfiguration = session.create(WebModulePluginConfiguration.class);
+										serverSettings.getWebModules().add(webPluginConfiguration);
+										genericPluginConversion(newPluginContext, session, webPluginConfiguration, pluginDescriptor);
+										String contextPath = "";
+										
+										for (Parameter parameter : webPluginConfiguration.getSettings().getParameters()) {
+											if (parameter.getName().equals("contextPath")) {
+												contextPath = ((StringType) parameter.getValue()).getValue();
+											}
+										}
+										String identifier = webPluginConfiguration.getPluginDescriptor().getIdentifier();
+										webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(identifier, true));
+									}
+								}
+							}
+
+							try {
+								session.commit();
+							} catch (ServiceException e) {
+								LOGGER.error("", e);
+							}
+						}
+					}
+					
+					@Override
 					public void pluginInstalled(long pluginBundleVersionId, PluginContext pluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException {
 						try (DatabaseSession session = bimDatabase.createSession()) {
 							Plugin plugin = pluginContext.getPlugin();

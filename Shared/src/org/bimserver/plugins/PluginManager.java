@@ -1415,6 +1415,10 @@ public class PluginManager implements PluginManagerInterface {
 					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
 					pluginContext.getPlugin().init(pluginContext);
 				}
+				
+				for (PluginContext pluginContext : existingPluginBundle) {
+					pluginChangeListener.pluginUpdated(pluginBundle.getPluginBundleVersion().getOid(), pluginContext, sPluginInformation);
+				}
 			}
 		} catch (Exception e) {
 			Files.delete(target);
