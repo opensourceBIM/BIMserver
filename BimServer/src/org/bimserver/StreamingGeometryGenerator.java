@@ -317,6 +317,8 @@ public class StreamingGeometryGenerator {
 									for (int i = 0; i < geometry.getIndices().length; i++) {
 										processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3, generateGeometryResult);
 									}
+									
+									calculateObb(geometryInfo, tranformationMatrix, geometry.getIndices(), geometry.getVertices(), generateGeometryResult);
 
 									geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), geometryData.getOid(), 0);
 
@@ -377,6 +379,10 @@ public class StreamingGeometryGenerator {
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
+		}
+
+		private void calculateObb(VirtualObject geometryInfo, double[] tranformationMatrix, int[] indices, float[] vertices, GenerateGeometryResult generateGeometryResult2) {
+			
 		}
 	}
 

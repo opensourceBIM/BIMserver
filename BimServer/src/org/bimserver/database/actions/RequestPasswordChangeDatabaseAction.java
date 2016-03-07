@@ -46,12 +46,14 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 	private final BimServer bimServer;
 	private final String username;
 	private String resetUrl;
+	private Boolean includeSiteAddress;
 
-	public RequestPasswordChangeDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String username, String resetUrl) {
+	public RequestPasswordChangeDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String username, String resetUrl, Boolean includeSiteAddress) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.username = username;
 		this.resetUrl = resetUrl;
+		this.includeSiteAddress = includeSiteAddress;
 	}
 
 	@Override
@@ -83,8 +85,10 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 						Map<String, Object> context = new HashMap<String, Object>();
 						context.put("name", user.getName());
 						context.put("username", user.getUsername());
-						context.put("siteaddress", bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
-						context.put("validationlink", resetUrl + "&username=" + user.getUsername() + "&uoid=" + user.getOid() + "&validationtoken=" + token + "&address=" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
+						if (includeSiteAddress) {
+							context.put("siteaddress", bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
+						}
+						context.put("validationlink", resetUrl + "&username=" + user.getUsername() + "&uoid=" + user.getOid() + "&validationtoken=" + token + (includeSiteAddress ? ("&address=" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress()) : ""));
 						body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_BODY);
 						subject = bimServer.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_SUBJECT);
 						message.setContent(body, "text/html");

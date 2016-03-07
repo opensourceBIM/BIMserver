@@ -1,5 +1,5 @@
 
-¿	
+Û	
 AuthInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.proto"O
 ChangePasswordRequest
 uoid (
@@ -11,10 +11,11 @@
 GetLoggedInUserRequest"W
 GetLoggedInUserResponse
 errorMessage (	&
-value (2.org.bimserver.pb.SUser"B
+value (2.org.bimserver.pb.SUser"^
 RequestPasswordChangeRequest
 username (	
-resetUrl (	":
+resetUrl (	
+includeSiteAddress (":
 SetHashRequest
 uoid (
 hash (

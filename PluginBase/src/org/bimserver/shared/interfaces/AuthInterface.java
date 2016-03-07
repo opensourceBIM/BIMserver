@@ -75,7 +75,8 @@ public interface AuthInterface extends PublicInterface {
 	@WebMethod(action = "requestPasswordChange")
 	void requestPasswordChange(
 		@WebParam(name = "username", partName = "requestPasswordChange.username") String username,
-		@WebParam(name = "resetUrl", partName = "requestPasswordChange.resetUrl") String resetUrl) throws ServerException, UserException;
+		@WebParam(name = "resetUrl", partName = "requestPasswordChange.resetUrl") String resetUrl,
+		@WebParam(name = "includeSiteAddress", partName = "requestPasswordChange.includeSiteAddress") Boolean includeSiteAddress) throws ServerException, UserException;
 
 //	@WebMethod(action = "createToken")
 //	String createToken(

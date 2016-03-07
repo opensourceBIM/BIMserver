@@ -80,7 +80,7 @@ public class AsyncBimServerAuthInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.requestPasswordChange(username, resetUrl);
+					syncService.requestPasswordChange(username, resetUrl, false);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);
