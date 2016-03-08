@@ -23,7 +23,6 @@ import java.util.List;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GeometryGeneratingException;
-import org.bimserver.GeometryGenerator;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
@@ -35,7 +34,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EClass;
@@ -52,28 +50,32 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 	}
 	
 	protected void checkGeometry(PluginConfiguration serializerPluginConfiguration, PluginManager pluginManager, IfcModelInterface model, Project project, ConcreteRevision concreteRevision, Revision revision) throws BimserverDatabaseException, GeometryGeneratingException {
+		boolean needsGeometry = false;
 		Plugin plugin = pluginManager.getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-//		if (needsGeometry) {
-//			if (!revision.isHasGeometry()) {
+		if (plugin instanceof SerializerPlugin) {
+			needsGeometry = ((SerializerPlugin)plugin).needsGeometry();
+		}
+		if (needsGeometry) {
+			if (!revision.isHasGeometry()) {
 //				setProgress("Generating geometry...", -1);
-//				// TODO When generating geometry for a partial model download (by types for example), this will fail (for example walls have no openings)
+				// TODO When generating geometry for a partial model download (by types for example), this will fail (for example walls have no openings)
 //				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), false, null);
-//			} else {
-//				EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
-//				List<IdEObject> allWithSubTypes = new ArrayList<>(model.getAllWithSubTypes(productClass));
-//				for (IdEObject ifcProduct : allWithSubTypes) {
-//					ifcProduct.forceLoad();
-//					GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(productClass.getEStructuralFeature("geometry"));
-//					if (geometryInfo != null) {
-//						geometryInfo.forceLoad();
-//						geometryInfo.getData().forceLoad();
-//						geometryInfo.getTransformation();
-//						geometryInfo.getMinBounds().forceLoad();
-//						geometryInfo.getMaxBounds().forceLoad();
-//					}
-//				}
-//			}
-//		}
+			} else {
+				EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
+				List<IdEObject> allWithSubTypes = new ArrayList<>(model.getAllWithSubTypes(productClass));
+				for (IdEObject ifcProduct : allWithSubTypes) {
+					ifcProduct.forceLoad();
+					GeometryInfo geometryInfo = (GeometryInfo) ifcProduct.eGet(productClass.getEStructuralFeature("geometry"));
+					if (geometryInfo != null) {
+						geometryInfo.forceLoad();
+						geometryInfo.getData().forceLoad();
+						geometryInfo.getTransformation();
+						geometryInfo.getMinBounds().forceLoad();
+						geometryInfo.getMaxBounds().forceLoad();
+					}
+				}
+			}
+		}
 	}
 
 	public BimServer getBimServer() {
