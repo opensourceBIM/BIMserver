@@ -232,6 +232,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			result.getConcreteRevision().setSize(size);
 			for (Revision revision : result.getRevisions()) {
 				revision.setSize(size);
+				revision.setHasGeometry(true);
 			}
 			
 			IfcHeader ifcHeader = deserializer.getIfcHeader();

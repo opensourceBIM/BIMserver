@@ -43,4 +43,9 @@ public interface SerializerPlugin extends Plugin {
 	default public SPluginType getPluginType() {
 		return SPluginType.SERIALIZER;
 	}
+	
+	/**
+	 * @return Whether this plugin will be needing geometry
+	 */
+	boolean needsGeometry();
 }
