@@ -2,6 +2,7 @@ package org.bimserver;
 
 import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.SecureRandom;
@@ -562,7 +563,12 @@ public class BimServer {
 			packages.add(Ifc2x3tc1Package.eINSTANCE);
 			packages.add(Ifc4Package.eINSTANCE);
 			templateEngine = new TemplateEngine();
-			templateEngine.init(config.getResourceFetcher().getResource("emailtemplates/"));
+			URL emailTemplates = config.getResourceFetcher().getResource("emailtemplates/");
+			if (emailTemplates != null) {
+				templateEngine.init(emailTemplates);
+			} else {
+				LOGGER.info("No email templates found");
+			}
 			Path databaseDir = config.getHomeDir().resolve("database");
 			BerkeleyKeyValueStore keyValueStore = new BerkeleyKeyValueStore(databaseDir);
 
