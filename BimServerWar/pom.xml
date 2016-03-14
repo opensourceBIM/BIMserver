@@ -64,6 +64,7 @@
 							</includes>
 						</resource>
 					</webResources>
+					<webXml>web.xml</webXml>
 				</configuration>
 			</plugin>
 		</plugins>
