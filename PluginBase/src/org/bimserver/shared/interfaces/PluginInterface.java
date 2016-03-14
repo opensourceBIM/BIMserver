@@ -185,6 +185,9 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getWebModuleByName")
 	SWebModulePluginConfiguration getWebModuleByName(
 		@WebParam(name = "name", partName = "getWebModuleByName.name") String name) throws ServerException, UserException;
+
+	@WebMethod(action = "listAllWebModules")
+	List<SWebModulePluginConfiguration> listAllWebModules() throws ServerException, UserException;
 	
 	/**
 	 * @param name Name of the RenderEngine

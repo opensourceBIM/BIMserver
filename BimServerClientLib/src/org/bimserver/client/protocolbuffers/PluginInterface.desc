@@ -1,5 +1,5 @@
 
-ËÏ
+ÈÑ
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"¸
  SDeserializerPluginConfiguration
 description (	
@@ -506,7 +506,11 @@ repository (	
 
 artifactId (	
 version (	5
-plugins (2$.org.bimserver.pb.SPluginInformation",
+plugins (2$.org.bimserver.pb.SPluginInformation"
+ListAllWebModulesRequest"q
+ListAllWebModulesResponse
+errorMessage (	>
+value (2/.org.bimserver.pb.SWebModulePluginConfiguration",
 SetDefaultModelCompareRequest
 oid ("+
 SetDefaultModelMergerRequest
@@ -577,7 +581,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2‰O
+SPrimitiveEnum_BYTE_ARRAY2÷O
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -647,7 +651,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 getWebModuleById).org.bimserver.pb.GetWebModuleByIdRequest*.org.bimserver.pb.GetWebModuleByIdResponseo
 getWebModuleByName+.org.bimserver.pb.GetWebModuleByNameRequest,.org.bimserver.pb.GetWebModuleByNameResponser
 hasActiveSerializer,.org.bimserver.pb.HasActiveSerializerRequest-.org.bimserver.pb.HasActiveSerializerResponsec
-installPluginBundle,.org.bimserver.pb.InstallPluginBundleRequest.org.bimserver.pb.VoidResponsei
+installPluginBundle,.org.bimserver.pb.InstallPluginBundleRequest.org.bimserver.pb.VoidResponsel
+listAllWebModules*.org.bimserver.pb.ListAllWebModulesRequest+.org.bimserver.pb.ListAllWebModulesResponsei
 setDefaultModelCompare/.org.bimserver.pb.SetDefaultModelCompareRequest.org.bimserver.pb.VoidResponseg
 setDefaultModelMerger..org.bimserver.pb.SetDefaultModelMergerRequest.org.bimserver.pb.VoidResponsec
 setDefaultObjectIDM,.org.bimserver.pb.SetDefaultObjectIDMRequest.org.bimserver.pb.VoidResponseg

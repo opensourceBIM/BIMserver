@@ -43,7 +43,7 @@
 					});
 				} else {
 					$(".indexcontainer").load("status.html", function(){
-						new Status($(this));
+						new Status($(this), serverInfo);
 					});
 				}
 			});

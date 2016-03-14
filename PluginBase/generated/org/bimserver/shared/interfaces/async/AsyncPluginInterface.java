@@ -374,6 +374,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface ListAllWebModulesCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SWebModulePluginConfiguration> result);
+		void error(Throwable e);
+	}
+	
 	public interface SetDefaultModelCompareCallback {
 		void success();
 		void error(Throwable e);
@@ -1306,6 +1311,18 @@ public class AsyncPluginInterface {
 				try {
 					syncService.installPluginBundle(repository, groupId, artifactId, version, plugins);
 					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void listAllWebModules(final ListAllWebModulesCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.listAllWebModules());
 				} catch (Throwable e) {
 					callback.error(e);
 				}

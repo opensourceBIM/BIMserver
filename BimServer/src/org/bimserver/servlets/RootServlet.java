@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
+import org.bimserver.plugins.web.WebModulePlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -139,8 +140,15 @@ public class RootServlet extends HttpServlet {
 					}
 					if (bimServer.getWebModules().containsKey(modulePath)) {
 						String substring = requestUri.substring(6 + modulePath.length());
-						if (bimServer.getWebModules().get(modulePath).service(substring, response)) {
+						WebModulePlugin webModulePlugin = bimServer.getWebModules().get(modulePath);
+						if (webModulePlugin == null) {
+							response.setStatus(404);
+							response.getWriter().println("No webmodule " + modulePath + " found");
 							return;
+						} else {
+							if (webModulePlugin.service(substring, response)) {
+								return;
+							}
 						}
 					}
 				}

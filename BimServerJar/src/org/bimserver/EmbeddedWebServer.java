@@ -63,7 +63,7 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 		
 		if (localDev) {
 			// TODO document why
-			context.setDefaultsDescriptor("../BimServer/www/WEB-INF/webdefault.xml");
+//			context.setDefaultsDescriptor("../BimServer/www/WEB-INF/webdefault.xml");
 		}
 		
 		context.addServlet(RootServlet.class, "/*");

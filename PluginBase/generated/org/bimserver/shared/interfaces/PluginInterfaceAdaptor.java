@@ -278,6 +278,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	public void installPluginBundle(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version, java.util.List<org.bimserver.interfaces.objects.SPluginInformation> plugins) throws UserException, ServerException {
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SWebModulePluginConfiguration> listAllWebModules() throws UserException, ServerException {
+		return null;
+	}
+	
 	public void setDefaultModelCompare(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
