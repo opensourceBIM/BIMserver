@@ -281,7 +281,7 @@ public class PluginManager implements PluginManagerInterface {
 				for (Artifact artifact : nlg.getArtifacts(false)) {
 					Path jarFile = Paths.get(artifact.getFile().getAbsolutePath());
 
-					LOGGER.info("Loading " + jarFile);
+					LOGGER.debug("Loading " + jarFile);
 
 					// Path path =
 					// projectRoot.getParent().resolve(nlg.getClassPath());

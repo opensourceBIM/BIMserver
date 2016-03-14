@@ -66,6 +66,7 @@ import org.bimserver.database.actions.GetSerializerByPluginClassNameDatabaseActi
 import org.bimserver.database.actions.GetWebModuleByIdDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByNameDatabaseAction;
 import org.bimserver.database.actions.InstallPluginBundle;
+import org.bimserver.database.actions.ListWebModulesDatabaseAction;
 import org.bimserver.database.actions.SetPluginSettingsDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
 import org.bimserver.database.actions.UninstallPlugin;
@@ -338,6 +339,19 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		return null;
 	}
 
+	@Override
+	public List<SWebModulePluginConfiguration> listAllWebModules() throws ServerException, UserException {
+		requireAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return getBimServer().getSConverter().convertToSListWebModulePluginConfiguration(session.executeAndCommitAction(new ListWebModulesDatabaseAction(session, getInternalAccessMethod())));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public SObjectIDMPluginConfiguration getObjectIDMByName(String ObjectIDMName) throws ServerException, UserException {
 		requireRealUserAuthentication();
