@@ -55,6 +55,7 @@
 		<module>PluginBase</module>
 		<module>Shared</module>
 		<module>BimServerWar</module>
+		<module>BimServerJar</module>
 	</modules>
 	<build>
 		<pluginManagement>
