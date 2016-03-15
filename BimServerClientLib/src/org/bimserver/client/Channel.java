@@ -148,7 +148,11 @@ public abstract class Channel implements ServiceHolder {
 								throw new ServerException(message);
 							}
 						} else {
-							return jsonObject.get("topicId").getAsLong();
+							if (jsonObject.has("topicId")) {
+								return jsonObject.get("topicId").getAsLong();
+							} else {
+								throw new ServerException("No topicId found in response: " + jsonObject.toString());
+							}
 						}
 					}
 				} finally {
