@@ -554,7 +554,19 @@ public class StreamingGeometryGenerator {
 		double x = vertices[index];
 		double y = vertices[index + 1];
 		double z = vertices[index + 2];
+		
 		double[] result = new double[4];
+		
+//		double[] rotationMatrix = new double[16];
+//		Matrix.setIdentityM(rotationMatrix, 0);
+//		Matrix.rotateM(rotationMatrix, 0, -37.5d, 0d, 0d, 1d);
+//		
+//		Matrix.multiplyMV(result, 0, rotationMatrix, 0, new double[] { x, y, z, 1 }, 0);
+//
+//		x = result[0];
+//		y = result[1];
+//		z = result[2];
+		
 		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new double[] { x, y, z, 1 }, 0);
 		x = result[0];
 		y = result[1];
