@@ -28,6 +28,7 @@ public class Matrix {
 	
     /** Temporary memory for operations that need temporary matrix data. */
     private final static float[] sTemp = new float[32];
+    private final static double[] sTempD = new double[32];
 
     /**
      * Multiply two 4x4 matrices together and store the result in a third 4x4
@@ -69,6 +70,30 @@ public class Matrix {
     	result[resultOffset + 10] = rhs[8] * lhs[2] + rhs[9] * lhs[6] + rhs[10] * lhs[10] + rhs[11] * lhs[14];
     	result[resultOffset + 11] = rhs[8] * lhs[3] + rhs[9] * lhs[7] + rhs[10] * lhs[11] + rhs[11] * lhs[15];
 
+    	result[resultOffset + 12] = rhs[12] * lhs[0] + rhs[13] * lhs[4] + rhs[14] * lhs[8] + rhs[15] * lhs[12];
+    	result[resultOffset + 13] = rhs[12] * lhs[1] + rhs[13] * lhs[5] + rhs[14] * lhs[9] + rhs[15] * lhs[13];
+    	result[resultOffset + 14] = rhs[12] * lhs[2] + rhs[13] * lhs[6] + rhs[14] * lhs[10] + rhs[15] * lhs[14];
+    	result[resultOffset + 15] = rhs[12] * lhs[3] + rhs[13] * lhs[7] + rhs[14] * lhs[11] + rhs[15] * lhs[15];
+    	
+    }
+
+    public static void multiplyMM(double[] result, int resultOffset,
+    		double[] lhs, int lhsOffset, double[] rhs, int rhsOffset) {
+    	result[resultOffset + 0] = rhs[0] * lhs[0] + rhs[1] * lhs[4] + rhs[2] * lhs[8] + rhs[3] * lhs[12];
+    	result[resultOffset + 1] = rhs[0] * lhs[1] + rhs[1] * lhs[5] + rhs[2] * lhs[9] + rhs[3] * lhs[13];
+    	result[resultOffset + 2] = rhs[0] * lhs[2] + rhs[1] * lhs[6] + rhs[2] * lhs[10] + rhs[3] * lhs[14];
+    	result[resultOffset + 3] = rhs[0] * lhs[3] + rhs[1] * lhs[7] + rhs[2] * lhs[11] + rhs[3] * lhs[15];
+    	
+    	result[resultOffset + 4] = rhs[4] * lhs[0] + rhs[5] * lhs[4] + rhs[6] * lhs[8] + rhs[7] * lhs[12];
+    	result[resultOffset + 5] = rhs[4] * lhs[1] + rhs[5] * lhs[5] + rhs[6] * lhs[9] + rhs[7] * lhs[13];
+    	result[resultOffset + 6] = rhs[4] * lhs[2] + rhs[5] * lhs[6] + rhs[6] * lhs[10] + rhs[7] * lhs[14];
+    	result[resultOffset + 7] = rhs[4] * lhs[3] + rhs[5] * lhs[7] + rhs[6] * lhs[11] + rhs[7] * lhs[15];
+    	
+    	result[resultOffset + 8] = rhs[8] * lhs[0] + rhs[9] * lhs[4] + rhs[10] * lhs[8] + rhs[11] * lhs[12];
+    	result[resultOffset + 9] = rhs[8] * lhs[1] + rhs[9] * lhs[5] + rhs[10] * lhs[9] + rhs[11] * lhs[13];
+    	result[resultOffset + 10] = rhs[8] * lhs[2] + rhs[9] * lhs[6] + rhs[10] * lhs[10] + rhs[11] * lhs[14];
+    	result[resultOffset + 11] = rhs[8] * lhs[3] + rhs[9] * lhs[7] + rhs[10] * lhs[11] + rhs[11] * lhs[15];
+    	
     	result[resultOffset + 12] = rhs[12] * lhs[0] + rhs[13] * lhs[4] + rhs[14] * lhs[8] + rhs[15] * lhs[12];
     	result[resultOffset + 13] = rhs[12] * lhs[1] + rhs[13] * lhs[5] + rhs[14] * lhs[9] + rhs[15] * lhs[13];
     	result[resultOffset + 14] = rhs[12] * lhs[2] + rhs[13] * lhs[6] + rhs[14] * lhs[10] + rhs[15] * lhs[14];
@@ -449,6 +474,10 @@ public class Matrix {
         return (float) Math.sqrt(x * x + y * y + z * z);
     }
 
+    public static double length(double x, double y, double z) {
+    	return Math.sqrt(x * x + y * y + z * z);
+    }
+
     /**
      * Sets matrix m to the identity matrix.
      * @param sm returns the result
@@ -589,6 +618,15 @@ public class Matrix {
         }
     }
 
+    public static void rotateM(double[] rm, int rmOffset,
+    		double[] m, int mOffset,
+    		double a, double x, double y, double z) {
+    	synchronized(sTempD) {
+    		setRotateM(sTempD, 0, a, x, y, z);
+    		multiplyMM(rm, rmOffset, m, mOffset, sTempD, 0);
+    	}
+    }
+
     /**
      * Rotates matrix m in place by angle a (in degrees)
      * around the axis (x, y, z)
@@ -606,6 +644,15 @@ public class Matrix {
             multiplyMM(sTemp, 16, m, mOffset, sTemp, 0);
             System.arraycopy(sTemp, 16, m, mOffset, 16);
         }
+    }
+
+    public static void rotateM(double[] m, int mOffset,
+    		double a, double x, double y, double z) {
+    	synchronized(sTempD) {
+    		setRotateM(sTempD, 0, a, x, y, z);
+    		multiplyMM(sTempD, 16, m, mOffset, sTempD, 0);
+    		System.arraycopy(sTempD, 16, m, mOffset, 16);
+    	}
     }
 
     /**
@@ -674,6 +721,64 @@ public class Matrix {
         }
     }
 
+    public static void setRotateM(double[] rm, int rmOffset,
+    		double a, double x, double y, double z) {
+        rm[rmOffset + 3] = 0;
+        rm[rmOffset + 7] = 0;
+        rm[rmOffset + 11]= 0;
+        rm[rmOffset + 12]= 0;
+        rm[rmOffset + 13]= 0;
+        rm[rmOffset + 14]= 0;
+        rm[rmOffset + 15]= 1;
+        a *= (double) (Math.PI / 180.0f);
+        double s = (float) Math.sin(a);
+        double c = (float) Math.cos(a);
+        if (1.0f == x && 0.0f == y && 0.0f == z) {
+            rm[rmOffset + 5] = c;   rm[rmOffset + 10]= c;
+            rm[rmOffset + 6] = s;   rm[rmOffset + 9] = -s;
+            rm[rmOffset + 1] = 0;   rm[rmOffset + 2] = 0;
+            rm[rmOffset + 4] = 0;   rm[rmOffset + 8] = 0;
+            rm[rmOffset + 0] = 1;
+        } else if (0.0f == x && 1.0f == y && 0.0f == z) {
+            rm[rmOffset + 0] = c;   rm[rmOffset + 10]= c;
+            rm[rmOffset + 8] = s;   rm[rmOffset + 2] = -s;
+            rm[rmOffset + 1] = 0;   rm[rmOffset + 4] = 0;
+            rm[rmOffset + 6] = 0;   rm[rmOffset + 9] = 0;
+            rm[rmOffset + 5] = 1;
+        } else if (0.0f == x && 0.0f == y && 1.0f == z) {
+            rm[rmOffset + 0] = c;   rm[rmOffset + 5] = c;
+            rm[rmOffset + 1] = s;   rm[rmOffset + 4] = -s;
+            rm[rmOffset + 2] = 0;   rm[rmOffset + 6] = 0;
+            rm[rmOffset + 8] = 0;   rm[rmOffset + 9] = 0;
+            rm[rmOffset + 10]= 1;
+        } else {
+        	double len = length(x, y, z);
+            if (1.0f != len) {
+            	double recipLen = 1.0f / len;
+                x *= recipLen;
+                y *= recipLen;
+                z *= recipLen;
+            }
+            double nc = 1.0f - c;
+            double xy = x * y;
+            double yz = y * z;
+            double zx = z * x;
+            double xs = x * s;
+            double ys = y * s;
+            double zs = z * s;
+            rm[rmOffset +  0] = x*x*nc +  c;
+            rm[rmOffset +  4] =  xy*nc - zs;
+            rm[rmOffset +  8] =  zx*nc + ys;
+            rm[rmOffset +  1] =  xy*nc + zs;
+            rm[rmOffset +  5] = y*y*nc +  c;
+            rm[rmOffset +  9] =  yz*nc - xs;
+            rm[rmOffset +  2] =  zx*nc - ys;
+            rm[rmOffset +  6] =  yz*nc + xs;
+            rm[rmOffset + 10] = z*z*nc +  c;
+        }
+    }
+
+    
     /**
      * Converts Euler angles to a rotation matrix
      * @param rm returns the result
