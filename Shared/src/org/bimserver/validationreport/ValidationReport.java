@@ -126,4 +126,8 @@ public class ValidationReport {
 	public void add(Type type, long oid, String key, String is, String shouldBe) {
 		items.add(new Line(type, oid, key, is, shouldBe));
 	}
+
+	public void add(Type type, long oid, String key, Object is, String shouldBe) {
+		items.add(new Line(type, oid, key, is.toString(), shouldBe));
+	}
 }
