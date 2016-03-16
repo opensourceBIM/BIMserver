@@ -33,6 +33,10 @@ public abstract class AbstractAddExtendedDataService extends AbstractService {
 		this.namespace = namespace;
 	}
 	
+	public String getNamespace() {
+		return namespace;
+	}
+	
 	public void addExtendedData(byte[] data, String filename, String title, String mime, BimServerClientInterface bimServerClientInterface, long roid) {
 		try {
 			SFile file = new SFile();

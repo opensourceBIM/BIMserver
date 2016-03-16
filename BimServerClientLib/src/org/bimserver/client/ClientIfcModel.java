@@ -46,6 +46,7 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
+import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
@@ -60,6 +61,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -310,9 +312,12 @@ public class ClientIfcModel extends IfcModel {
 			include.addType(geometryInfoClass, false);
 			include.addField("data");
 			
+			Map<Long, Long> geometryInfoOidToOid = new HashMap<>();
+			
 			for (IfcProduct ifcProduct : getAllWithSubTypes(IfcProduct.class)) {
 				GeometryInfo geometry = ifcProduct.getGeometry();
 				if (geometry != null) {
+					geometryInfoOidToOid.put(geometry.getOid(), ifcProduct.getOid());
 					queryPart.addOid(geometry.getOid());
 				}
 			}
@@ -322,7 +327,7 @@ public class ClientIfcModel extends IfcModel {
 			waitForDonePreparing(topicId);
 			InputStream inputStream = bimServerClient.getDownloadData(topicId, serializerOid);
 			try {
-				processGeometryInputStream(inputStream);
+				processGeometryInputStream(inputStream, geometryInfoOidToOid);
 			} finally {
 				inputStream.close();
 			}
@@ -343,7 +348,7 @@ public class ClientIfcModel extends IfcModel {
 		}
 	}
 
-	private void processGeometryInputStream(InputStream inputStream) throws IOException, GeometryException, IfcModelInterfaceException {
+	private void processGeometryInputStream(InputStream inputStream, Map<Long, Long> geometryInfoOidToOid) throws IOException, GeometryException, IfcModelInterfaceException {
 		try (LittleEndianDataInputStream dataInputStream = new LittleEndianDataInputStream(inputStream)) {
 			boolean done = false;
 			while (!done) {
@@ -362,24 +367,31 @@ public class ClientIfcModel extends IfcModel {
 						dataInputStream.read(new byte[skip]);
 					}
 					for (int i=0; i<6; i++) {
-						dataInputStream.readFloat();
+						dataInputStream.readDouble();
 					}
 				} else if (type == 5) {
-					dataInputStream.read(new byte[3]);
+					dataInputStream.read(new byte[7]);
 					dataInputStream.readLong(); // roid
 					long geometryInfoOid = dataInputStream.readLong();
 					GeometryInfo geometryInfo = (GeometryInfo) get(geometryInfoOid);
+					if (geometryInfo == null) {
+						geometryInfo = create(GeometryInfo.class);
+					}
 					add(geometryInfoOid, geometryInfo);
 					
+					Long ifcProductOid = geometryInfoOidToOid.get(geometryInfoOid);
+					IfcProduct ifcProduct = (IfcProduct) get(ifcProductOid);
+					ifcProduct.setGeometry(geometryInfo);
+					
 					org.bimserver.models.geometry.Vector3f minBounds = GeometryFactory.eINSTANCE.createVector3f();
-					minBounds.setX(dataInputStream.readFloat());
-					minBounds.setY(dataInputStream.readFloat());
-					minBounds.setZ(dataInputStream.readFloat());
+					minBounds.setX(dataInputStream.readDouble());
+					minBounds.setY(dataInputStream.readDouble());
+					minBounds.setZ(dataInputStream.readDouble());
 					
 					org.bimserver.models.geometry.Vector3f maxBounds = GeometryFactory.eINSTANCE.createVector3f();
-					maxBounds.setX(dataInputStream.readFloat());
-					maxBounds.setY(dataInputStream.readFloat());
-					maxBounds.setZ(dataInputStream.readFloat());
+					maxBounds.setX(dataInputStream.readDouble());
+					maxBounds.setY(dataInputStream.readDouble());
+					maxBounds.setZ(dataInputStream.readDouble());
 					
 					geometryInfo.setMinBounds(minBounds);
 					geometryInfo.setMaxBounds(maxBounds);
@@ -428,6 +440,8 @@ public class ClientIfcModel extends IfcModel {
 					geometryData.setNormals(materials);
 				} else if (type == 6) {
 					done = true;
+				} else {
+					LOGGER.error("Unimplemented type: " + type);
 				}
 			}
 		}
@@ -610,7 +624,14 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException {
-		return create((EClass)Ifc2x3tc1Package.eINSTANCE.getEClassifier(clazz.getSimpleName()));
+		EClassifier eClassifier = Ifc2x3tc1Package.eINSTANCE.getEClassifier(clazz.getSimpleName());
+		if (eClassifier == null) {
+			eClassifier = GeometryPackage.eINSTANCE.getEClassifier(clazz.getSimpleName());
+		}
+		if (eClassifier == null) {
+			throw new IfcModelInterfaceException("EClass not found " + clazz);
+		}
+		return create((EClass)eClassifier);
 	}
 	
 	@SuppressWarnings("unchecked")

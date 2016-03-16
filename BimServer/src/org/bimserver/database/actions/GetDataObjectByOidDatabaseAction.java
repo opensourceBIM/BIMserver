@@ -159,7 +159,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 						}
 					} else {
 						SimpleDataValue dataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
-						if (eGet != null) {
+						if (eObject.eIsSet(eStructuralFeature)) {
 							if (eGet instanceof byte[]) {
 								dataValue.setStringValue(new String(((byte[])eGet), Charsets.UTF_8));
 							} else {
