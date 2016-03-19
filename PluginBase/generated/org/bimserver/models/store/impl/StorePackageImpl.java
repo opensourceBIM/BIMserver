@@ -4523,7 +4523,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameterDefinition_Required() {
+	public EAttribute getParameterDefinition_Identifier() {
 		return (EAttribute) getParameterDefinition().getEStructuralFeatures().get(1);
 	}
 
@@ -4532,7 +4532,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameterDefinition_Description() {
+	public EAttribute getParameterDefinition_Required() {
 		return (EAttribute) getParameterDefinition().getEStructuralFeatures().get(2);
 	}
 
@@ -4541,8 +4541,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getParameterDefinition_Description() {
+		return (EAttribute) getParameterDefinition().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getParameterDefinition_Type() {
-		return (EReference) getParameterDefinition().getEStructuralFeatures().get(3);
+		return (EReference) getParameterDefinition().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -4551,7 +4560,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getParameterDefinition_DefaultValue() {
-		return (EReference) getParameterDefinition().getEStructuralFeatures().get(4);
+		return (EReference) getParameterDefinition().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -4751,7 +4760,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameter_Name() {
+	public EAttribute getParameter_Identifier() {
 		return (EAttribute) getParameter().getEStructuralFeatures().get(0);
 	}
 
@@ -4760,8 +4769,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getParameter_Name() {
+		return (EAttribute) getParameter().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getParameter_Value() {
-		return (EReference) getParameter().getEStructuralFeatures().get(1);
+		return (EReference) getParameter().getEStructuralFeatures().get(2);
 	}
 
 	/**

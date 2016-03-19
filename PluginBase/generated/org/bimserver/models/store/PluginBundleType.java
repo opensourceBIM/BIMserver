@@ -50,14 +50,15 @@ public enum PluginBundleType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GITHUB(1, "GITHUB", "GITHUB"), /**
-									* The '<em><b>LOCAL</b></em>' literal object.
-									* <!-- begin-user-doc -->
-									* <!-- end-user-doc -->
-									* @see #LOCAL_VALUE
-									* @generated
-									* @ordered
-									*/
+	GITHUB(1, "GITHUB", "GITHUB"),
+	/**
+	 * The '<em><b>LOCAL</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #LOCAL_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	LOCAL(2, "LOCAL", "LOCAL");
 
 	/**

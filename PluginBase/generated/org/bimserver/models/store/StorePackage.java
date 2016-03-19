@@ -4607,13 +4607,22 @@ public interface StorePackage extends EPackage {
 	int PARAMETER_DEFINITION__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_DEFINITION__IDENTIFIER = 1;
+
+	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_DEFINITION__REQUIRED = 1;
+	int PARAMETER_DEFINITION__REQUIRED = 2;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -4622,7 +4631,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_DEFINITION__DESCRIPTION = 2;
+	int PARAMETER_DEFINITION__DESCRIPTION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -4631,7 +4640,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_DEFINITION__TYPE = 3;
+	int PARAMETER_DEFINITION__TYPE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' reference.
@@ -4640,7 +4649,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_DEFINITION__DEFAULT_VALUE = 4;
+	int PARAMETER_DEFINITION__DEFAULT_VALUE = 5;
 
 	/**
 	 * The number of structural features of the '<em>Parameter Definition</em>' class.
@@ -4649,7 +4658,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_DEFINITION_FEATURE_COUNT = 5;
+	int PARAMETER_DEFINITION_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.TypeImpl <em>Type</em>}' class.
@@ -4905,13 +4914,22 @@ public interface StorePackage extends EPackage {
 	int PARAMETER = 71;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__IDENTIFIER = 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__NAME = 0;
+	int PARAMETER__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' reference.
@@ -4920,7 +4938,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__VALUE = 1;
+	int PARAMETER__VALUE = 2;
 
 	/**
 	 * The number of structural features of the '<em>Parameter</em>' class.
@@ -4929,7 +4947,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_FEATURE_COUNT = 2;
+	int PARAMETER_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ImmediateNotificationResultImpl <em>Immediate Notification Result</em>}' class.
@@ -10639,6 +10657,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getParameterDefinition_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ParameterDefinition#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.bimserver.models.store.ParameterDefinition#getIdentifier()
+	 * @see #getParameterDefinition()
+	 * @generated
+	 */
+	EAttribute getParameterDefinition_Identifier();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ParameterDefinition#isRequired <em>Required</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10869,6 +10898,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getParameter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Parameter#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.bimserver.models.store.Parameter#getIdentifier()
+	 * @see #getParameter()
+	 * @generated
+	 */
+	EAttribute getParameter_Identifier();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Parameter#getName <em>Name</em>}'.
@@ -15654,6 +15694,14 @@ public interface StorePackage extends EPackage {
 		EAttribute PARAMETER_DEFINITION__NAME = eINSTANCE.getParameterDefinition_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAMETER_DEFINITION__IDENTIFIER = eINSTANCE.getParameterDefinition_Identifier();
+
+		/**
 		 * The meta object literal for the '<em><b>Required</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -15848,6 +15896,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass PARAMETER = eINSTANCE.getParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAMETER__IDENTIFIER = eINSTANCE.getParameter_Identifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

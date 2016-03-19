@@ -1,5 +1,5 @@
 
-ÈÑ
+óÑ
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"¸
  SDeserializerPluginConfiguration
 description (	
@@ -389,35 +389,24 @@ identifier (	
 errorMessage (	3
 value (2$.org.bimserver.pb.SPluginInformation"/
  GetPluginObjectDefinitionRequest
-oid ("C
-SArrayDefinition/
-type (2!.org.bimserver.pb.STypeDefinition"F
-SPrimitiveDefinition.
-type (2 .org.bimserver.pb.SPrimitiveEnum"ò
-STypeDefinition
-__actual_type (	>
-__SArrayDefinition (2".org.bimserver.pb.SArrayDefinition@
-__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinitionF
-__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition"”
-SParameterDefinition
-defaultValueId (
-description (	
-name (	
-required (/
-type (2!.org.bimserver.pb.STypeDefinition"O
-SObjectDefinition:
-
-parameters (2&.org.bimserver.pb.SParameterDefinition"m
-!GetPluginObjectDefinitionResponse
-errorMessage (	2
-value (2#.org.bimserver.pb.SObjectDefinition"(
-GetPluginSettingsRequest
-poid ("O
+oid ("O
 
 SArrayType
 oid (
 rid ('
-values (2.org.bimserver.pb.SType"7
+values (2.org.bimserver.pb.SType"\
+
+SParameter
+name (	
+oid (
+rid (&
+value (2.org.bimserver.pb.SType"g
+SObjectType
+name (	
+oid (0
+
+parameters (2.org.bimserver.pb.SParameter
+rid ("7
 SBooleanType
 oid (
 rid (
@@ -453,19 +442,32 @@ SArrayType
 __SObjectType (2.org.bimserver.pb.SObjectType:
 __SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType
 oid (
-rid ("\
+rid ("C
+SArrayDefinition/
+type (2!.org.bimserver.pb.STypeDefinition"F
+SPrimitiveDefinition.
+type (2 .org.bimserver.pb.SPrimitiveEnum"ò
+STypeDefinition
+__actual_type (	>
+__SArrayDefinition (2".org.bimserver.pb.SArrayDefinition@
+__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinitionF
+__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition"¿
+SParameterDefinition-
+defaultValue (2.org.bimserver.pb.SType
+description (	
 
-SParameter
-name (	
-oid (
-rid (&
-value (2.org.bimserver.pb.SType"g
-SObjectType
-name (	
-oid (0
+identifier (	
+name (	
+required (/
+type (2!.org.bimserver.pb.STypeDefinition"O
+SObjectDefinition:
 
-parameters (2.org.bimserver.pb.SParameter
-rid ("_
+parameters (2&.org.bimserver.pb.SParameterDefinition"m
+!GetPluginObjectDefinitionResponse
+errorMessage (	2
+value (2#.org.bimserver.pb.SObjectDefinition"(
+GetPluginSettingsRequest
+poid ("_
 GetPluginSettingsResponse
 errorMessage (	,
 value (2.org.bimserver.pb.SObjectType")

@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.bimserver.models.store.impl.ParameterImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ParameterImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ParameterImpl#getValue <em>Value</em>}</li>
  * </ul>
@@ -64,6 +65,24 @@ public class ParameterImpl extends IdEObjectImpl implements Parameter {
 	@Override
 	protected int eStaticFeatureCount() {
 		return 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getIdentifier() {
+		return (String) eGet(StorePackage.Literals.PARAMETER__IDENTIFIER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(String newIdentifier) {
+		eSet(StorePackage.Literals.PARAMETER__IDENTIFIER, newIdentifier);
 	}
 
 	/**

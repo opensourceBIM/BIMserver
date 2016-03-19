@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#isRequired <em>Required</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#getType <em>Type</em>}</li>
@@ -86,6 +87,24 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 */
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.PARAMETER_DEFINITION__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getIdentifier() {
+		return (String) eGet(StorePackage.Literals.PARAMETER_DEFINITION__IDENTIFIER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(String newIdentifier) {
+		eSet(StorePackage.Literals.PARAMETER_DEFINITION__IDENTIFIER, newIdentifier);
 	}
 
 	/**
