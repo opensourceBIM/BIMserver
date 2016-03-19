@@ -828,54 +828,24 @@ message GetPluginObjectDefinitionRequest {
 	optional int64 oid = 1;
 }
 
-message SArrayDefinition {
-	optional STypeDefinition type = 1;
-}
-
-enum SPrimitiveEnum{
-	SPrimitiveEnum_LONG = 0;
-	SPrimitiveEnum_DOUBLE = 1;
-	SPrimitiveEnum_BOOLEAN = 2;
-	SPrimitiveEnum_STRING = 3;
-	SPrimitiveEnum_BYTE_ARRAY = 4;
-}
-
-message SPrimitiveDefinition {
-	optional SPrimitiveEnum type = 1;
-}
-
-message STypeDefinition {
-	required string __actual_type = 1;
-	optional SArrayDefinition __SArrayDefinition = 2;
-	optional SObjectDefinition __SObjectDefinition = 3;
-	optional SPrimitiveDefinition __SPrimitiveDefinition = 4;
-}
-
-message SParameterDefinition {
-	optional int64 defaultValueId = 1;
-	optional string description = 2;
-	optional string name = 3;
-	optional bool required = 4;
-	optional STypeDefinition type = 5;
-}
-
-message SObjectDefinition {
-	repeated SParameterDefinition parameters = 1;
-}
-
-message GetPluginObjectDefinitionResponse {
-	optional string errorMessage = 1;
-	optional SObjectDefinition value = 2;
-}
-
-message GetPluginSettingsRequest {
-	optional int64 poid = 1;
-}
-
 message SArrayType {
 	optional int64 oid = 1;
 	optional int32 rid = 2;
 	repeated SType values = 3;
+}
+
+message SParameter {
+	optional string name = 1;
+	optional int64 oid = 2;
+	optional int32 rid = 3;
+	optional SType value = 4;
+}
+
+message SObjectType {
+	optional string name = 1;
+	optional int64 oid = 2;
+	repeated SParameter parameters = 3;
+	optional int32 rid = 4;
 }
 
 message SBooleanType {
@@ -928,18 +898,49 @@ message SType {
 	optional int32 rid = 6;
 }
 
-message SParameter {
-	optional string name = 1;
-	optional int64 oid = 2;
-	optional int32 rid = 3;
-	optional SType value = 4;
+message SArrayDefinition {
+	optional STypeDefinition type = 1;
 }
 
-message SObjectType {
-	optional string name = 1;
-	optional int64 oid = 2;
-	repeated SParameter parameters = 3;
-	optional int32 rid = 4;
+enum SPrimitiveEnum{
+	SPrimitiveEnum_LONG = 0;
+	SPrimitiveEnum_DOUBLE = 1;
+	SPrimitiveEnum_BOOLEAN = 2;
+	SPrimitiveEnum_STRING = 3;
+	SPrimitiveEnum_BYTE_ARRAY = 4;
+}
+
+message SPrimitiveDefinition {
+	optional SPrimitiveEnum type = 1;
+}
+
+message STypeDefinition {
+	required string __actual_type = 1;
+	optional SArrayDefinition __SArrayDefinition = 2;
+	optional SObjectDefinition __SObjectDefinition = 3;
+	optional SPrimitiveDefinition __SPrimitiveDefinition = 4;
+}
+
+message SParameterDefinition {
+	optional SType defaultValue = 1;
+	optional string description = 2;
+	optional string identifier = 3;
+	optional string name = 4;
+	optional bool required = 5;
+	optional STypeDefinition type = 6;
+}
+
+message SObjectDefinition {
+	repeated SParameterDefinition parameters = 1;
+}
+
+message GetPluginObjectDefinitionResponse {
+	optional string errorMessage = 1;
+	optional SObjectDefinition value = 2;
+}
+
+message GetPluginSettingsRequest {
+	optional int64 poid = 1;
 }
 
 message GetPluginSettingsResponse {

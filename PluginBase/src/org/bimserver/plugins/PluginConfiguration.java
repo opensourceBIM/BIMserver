@@ -51,18 +51,18 @@ public class PluginConfiguration {
 		for (SParameter parameter : settings.getParameters()) {
 			SType value = parameter.getValue();
 			if (value instanceof SBooleanType) {
-				values.put(parameter.getName(), ((SBooleanType)value).isValue());
+				values.put(parameter.getIdentifier(), ((SBooleanType)value).isValue());
 			} else if (value instanceof SStringType) {
-				values.put(parameter.getName(), ((SStringType)value).getValue());
+				values.put(parameter.getIdentifier(), ((SStringType)value).getValue());
 			} else if (value instanceof SLongType) {
-				values.put(parameter.getName(), ((SLongType)value).getValue());
+				values.put(parameter.getIdentifier(), ((SLongType)value).getValue());
 			} else if (value instanceof SDoubleType) {
-				values.put(parameter.getName(), ((SDoubleType)value).getValue());
+				values.put(parameter.getIdentifier(), ((SDoubleType)value).getValue());
 			} else if (value instanceof SArrayType) {
 				// TODO
-				values.put(parameter.getName(), ((SArrayType)value).getValues());
+				values.put(parameter.getIdentifier(), ((SArrayType)value).getValues());
 			} else if (value instanceof SByteArrayType) {
-				values.put(parameter.getName(), ((SByteArrayType)value).getValue());
+				values.put(parameter.getIdentifier(), ((SByteArrayType)value).getValue());
 			} else if (value instanceof SObjectType) {
 				// TODO
 			} else {
@@ -77,18 +77,18 @@ public class PluginConfiguration {
 			Type value = parameter.getValue();
 			if (value != null) {
 				if (value instanceof BooleanType) {
-					values.put(parameter.getName(), ((BooleanType)value).isValue());
+					values.put(parameter.getIdentifier(), ((BooleanType)value).isValue());
 				} else if (value instanceof StringType) {
-					values.put(parameter.getName(), ((StringType)value).getValue());
+					values.put(parameter.getIdentifier(), ((StringType)value).getValue());
 				} else if (value instanceof LongType) {
-					values.put(parameter.getName(), ((LongType)value).getValue());
+					values.put(parameter.getIdentifier(), ((LongType)value).getValue());
 				} else if (value instanceof ByteArrayType) {
-					values.put(parameter.getName(), ((ByteArrayType)value).getValue());
+					values.put(parameter.getIdentifier(), ((ByteArrayType)value).getValue());
 				} else if (value instanceof DoubleType) {
-					values.put(parameter.getName(), ((DoubleType)value).getValue());
+					values.put(parameter.getIdentifier(), ((DoubleType)value).getValue());
 				} else if (value instanceof ArrayType) {
 					// TODO
-					values.put(parameter.getName(), ((ArrayType)value).getValues());
+					values.put(parameter.getIdentifier(), ((ArrayType)value).getValues());
 				} else if (value instanceof ObjectType) {
 					// TODO
 				} else {
@@ -123,5 +123,9 @@ public class PluginConfiguration {
 	
 	public Long getLong(String name) {
 		return (Long)get(name);
+	}
+
+	public boolean has(String fullIdentifier) {
+		return values.containsKey(fullIdentifier);
 	}
 }

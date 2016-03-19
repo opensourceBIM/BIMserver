@@ -29,6 +29,7 @@ public class SParameter implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	private java.lang.String identifier;
 	private java.lang.String name;
 	private SType value;
 
@@ -58,6 +59,9 @@ public class SParameter implements SDataBase
 	}
 
 	public Object sGet(SField sField) {
+		if (sField.getName().equals("identifier")) {
+			return getIdentifier();
+		}
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
@@ -74,6 +78,10 @@ public class SParameter implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("identifier")) {
+			setIdentifier((String)val);
+			return;
+		}
 		if (sField.getName().equals("name")) {
 			setName((String)val);
 			return;
@@ -91,6 +99,14 @@ public class SParameter implements SDataBase
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
+	public java.lang.String getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(java.lang.String identifier) {
+		this.identifier = identifier;
 	}
 	
 	public java.lang.String getName() {

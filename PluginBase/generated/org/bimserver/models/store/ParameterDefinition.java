@@ -28,6 +28,7 @@ import org.bimserver.emf.IdEObject;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ParameterDefinition#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#isRequired <em>Required</em>}</li>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#getType <em>Type</em>}</li>
@@ -65,6 +66,32 @@ public interface ParameterDefinition extends IdEObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Identifier</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Identifier</em>' attribute.
+	 * @see #setIdentifier(String)
+	 * @see org.bimserver.models.store.StorePackage#getParameterDefinition_Identifier()
+	 * @model
+	 * @generated
+	 */
+	String getIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ParameterDefinition#getIdentifier <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Identifier</em>' attribute.
+	 * @see #getIdentifier()
+	 * @generated
+	 */
+	void setIdentifier(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Required</b></em>' attribute.

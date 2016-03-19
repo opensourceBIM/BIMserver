@@ -663,6 +663,7 @@ public class Step0000 extends Migration {
 		parameterDefinition.getEAnnotations().add(createNoDatabaseAnnotation());
 		
 		schema.createEAttribute(parameterDefinition, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(parameterDefinition, "identifier", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(parameterDefinition, "required", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		schema.createEAttribute(parameterDefinition, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEReference(parameterDefinition, "type", typeDefinition, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
@@ -686,10 +687,11 @@ public class Step0000 extends Migration {
 		
 		schema.createEAttribute(objectType, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEReference(objectType, "parameters", parameter, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
+		schema.createEAttribute(parameter, "identifier", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(parameter, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEReference(parameter, "value", type, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
 
-		schema.createEReference(parameterDefinition, "defaultValue", type, Multiplicity.SINGLE);
+		schema.createEReference(parameterDefinition, "defaultValue", type, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		schema.createEReference(arrayType, "values", type, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		

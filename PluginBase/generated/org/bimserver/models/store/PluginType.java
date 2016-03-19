@@ -40,86 +40,96 @@ public enum PluginType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SERIALIZER(0, "SERIALIZER", "SERIALIZER"), /**
-												* The '<em><b>DESERIALIZER</b></em>' literal object.
-												* <!-- begin-user-doc -->
-												* <!-- end-user-doc -->
-												* @see #DESERIALIZER_VALUE
-												* @generated
-												* @ordered
-												*/
-	DESERIALIZER(1, "DESERIALIZER", "DESERIALIZER"), /**
-														* The '<em><b>RENDER ENGINE</b></em>' literal object.
-														* <!-- begin-user-doc -->
-														* <!-- end-user-doc -->
-														* @see #RENDER_ENGINE_VALUE
-														* @generated
-														* @ordered
-														*/
-	RENDER_ENGINE(2, "RENDER_ENGINE", "RENDER_ENGINE"), /**
-														* The '<em><b>QUERY ENGINE</b></em>' literal object.
-														* <!-- begin-user-doc -->
-														* <!-- end-user-doc -->
-														* @see #QUERY_ENGINE_VALUE
-														* @generated
-														* @ordered
-														*/
-	QUERY_ENGINE(3, "QUERY_ENGINE", "QUERY_ENGINE"), /**
-														* The '<em><b>OBJECT IDM</b></em>' literal object.
-														* <!-- begin-user-doc -->
-														* <!-- end-user-doc -->
-														* @see #OBJECT_IDM_VALUE
-														* @generated
-														* @ordered
-														*/
-	OBJECT_IDM(4, "OBJECT_IDM", "OBJECT_IDM"), /**
-												* The '<em><b>WEB MODULE</b></em>' literal object.
-												* <!-- begin-user-doc -->
-												* <!-- end-user-doc -->
-												* @see #WEB_MODULE_VALUE
-												* @generated
-												* @ordered
-												*/
-	WEB_MODULE(5, "WEB_MODULE", "WEB_MODULE"), /**
-												* The '<em><b>MODEL MERGER</b></em>' literal object.
-												* <!-- begin-user-doc -->
-												* <!-- end-user-doc -->
-												* @see #MODEL_MERGER_VALUE
-												* @generated
-												* @ordered
-												*/
-	MODEL_MERGER(6, "MODEL_MERGER", "MODEL_MERGER"), /**
-														* The '<em><b>MODEL COMPARE</b></em>' literal object.
-														* <!-- begin-user-doc -->
-														* <!-- end-user-doc -->
-														* @see #MODEL_COMPARE_VALUE
-														* @generated
-														* @ordered
-														*/
-	MODEL_COMPARE(7, "MODEL_COMPARE", "MODEL_COMPARE"), /**
-														* The '<em><b>MODEL CHECKER</b></em>' literal object.
-														* <!-- begin-user-doc -->
-														* <!-- end-user-doc -->
-														* @see #MODEL_CHECKER_VALUE
-														* @generated
-														* @ordered
-														*/
-	MODEL_CHECKER(8, "MODEL_CHECKER", "MODEL_CHECKER"), /**
-														* The '<em><b>STILL IMAGE RENDER</b></em>' literal object.
-														* <!-- begin-user-doc -->
-														* <!-- end-user-doc -->
-														* @see #STILL_IMAGE_RENDER_VALUE
-														* @generated
-														* @ordered
-														*/
-	STILL_IMAGE_RENDER(9, "STILL_IMAGE_RENDER", "STILL_IMAGE_RENDER"), /**
-																		* The '<em><b>SERVICE</b></em>' literal object.
-																		* <!-- begin-user-doc -->
-																		* <!-- end-user-doc -->
-																		* @see #SERVICE_VALUE
-																		* @generated
-																		* @ordered
-																		*/
+	SERIALIZER(0, "SERIALIZER", "SERIALIZER"),
+	/**
+	 * The '<em><b>DESERIALIZER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #DESERIALIZER_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	DESERIALIZER(1, "DESERIALIZER", "DESERIALIZER"),
+	/**
+	 * The '<em><b>RENDER ENGINE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #RENDER_ENGINE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	RENDER_ENGINE(2, "RENDER_ENGINE", "RENDER_ENGINE"),
+	/**
+	 * The '<em><b>QUERY ENGINE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #QUERY_ENGINE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	QUERY_ENGINE(3, "QUERY_ENGINE", "QUERY_ENGINE"),
+	/**
+	 * The '<em><b>OBJECT IDM</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #OBJECT_IDM_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	OBJECT_IDM(4, "OBJECT_IDM", "OBJECT_IDM"),
+	/**
+	 * The '<em><b>WEB MODULE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #WEB_MODULE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	WEB_MODULE(5, "WEB_MODULE", "WEB_MODULE"),
+	/**
+	 * The '<em><b>MODEL MERGER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #MODEL_MERGER_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	MODEL_MERGER(6, "MODEL_MERGER", "MODEL_MERGER"),
+	/**
+	 * The '<em><b>MODEL COMPARE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #MODEL_COMPARE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	MODEL_COMPARE(7, "MODEL_COMPARE", "MODEL_COMPARE"),
+	/**
+	 * The '<em><b>MODEL CHECKER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #MODEL_CHECKER_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	MODEL_CHECKER(8, "MODEL_CHECKER", "MODEL_CHECKER"),
+	/**
+	 * The '<em><b>STILL IMAGE RENDER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #STILL_IMAGE_RENDER_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	STILL_IMAGE_RENDER(9, "STILL_IMAGE_RENDER", "STILL_IMAGE_RENDER"),
+	/**
+	 * The '<em><b>SERVICE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #SERVICE_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	SERVICE(10, "SERVICE", "SERVICE");
 
 	/**

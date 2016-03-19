@@ -895,6 +895,7 @@ public class BimServer {
 			for (ParameterDefinition parameterDefinition : settingsDefinition.getParameters()) {
 				Parameter parameter = session.create(Parameter.class);
 				parameter.setName(parameterDefinition.getName());
+				parameter.setIdentifier(parameterDefinition.getIdentifier());
 				if (parameterDefinition.getDefaultValue() != null) {
 					Type value = cloneAndAdd(session, parameterDefinition.getDefaultValue());
 					parameter.setValue(value);

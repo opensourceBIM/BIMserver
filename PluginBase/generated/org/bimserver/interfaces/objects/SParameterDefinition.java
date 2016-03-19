@@ -28,10 +28,11 @@ public class SParameterDefinition implements SBase
 	@XmlTransient
 	private static SClass sClass;
 	private java.lang.String name;
+	private java.lang.String identifier;
 	private boolean required;
 	private java.lang.String description;
 	private STypeDefinition type;
-	private long defaultValueId = -1;
+	private SType defaultValue;
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -46,6 +47,9 @@ public class SParameterDefinition implements SBase
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
+		if (sField.getName().equals("identifier")) {
+			return getIdentifier();
+		}
 		if (sField.getName().equals("required")) {
 			return isRequired();
 		}
@@ -55,8 +59,8 @@ public class SParameterDefinition implements SBase
 		if (sField.getName().equals("type")) {
 			return getType();
 		}
-		if (sField.getName().equals("defaultValueId")) {
-			return getDefaultValueId();
+		if (sField.getName().equals("defaultValue")) {
+			return getDefaultValue();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
@@ -64,6 +68,10 @@ public class SParameterDefinition implements SBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
+			return;
+		}
+		if (sField.getName().equals("identifier")) {
+			setIdentifier((String)val);
 			return;
 		}
 		if (sField.getName().equals("required")) {
@@ -78,8 +86,8 @@ public class SParameterDefinition implements SBase
 			setType((STypeDefinition)val);
 			return;
 		}
-		if (sField.getName().equals("defaultValueId")) {
-			setDefaultValueId((Long)val);
+		if (sField.getName().equals("defaultValue")) {
+			setDefaultValue((SType)val);
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
@@ -91,6 +99,14 @@ public class SParameterDefinition implements SBase
 
 	public void setName(java.lang.String name) {
 		this.name = name;
+	}
+	
+	public java.lang.String getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(java.lang.String identifier) {
+		this.identifier = identifier;
 	}
 	
 	public boolean isRequired() {
@@ -118,12 +134,13 @@ public class SParameterDefinition implements SBase
 	}
 	
 	
-	public long getDefaultValueId() {
-		return defaultValueId;
+	public SType getDefaultValue() {
+		return defaultValue;
 	}
 
-	public void setDefaultValueId(long defaultValueId) {
-		this.defaultValueId = defaultValueId;
+	public void setDefaultValue(SType defaultValue) {
+		this.defaultValue = defaultValue;
 	}
+	
 	
 }
