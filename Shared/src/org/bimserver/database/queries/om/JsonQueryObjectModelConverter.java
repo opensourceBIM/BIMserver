@@ -271,10 +271,10 @@ public class JsonQueryObjectModelConverter {
 		try {
 			ObjectNode predefinedQuery = objectMapper.readValue(resource, ObjectNode.class);
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
-			Query namespace = converter.parseJson(includeName, predefinedQuery);
-			Include define = namespace.getDefine(singleIncludeName);
+			Query query = converter.parseJson(namespaceString, predefinedQuery);
+			Include define = query.getDefine(singleIncludeName);
 			if (define == null) {
-				throw new QueryException("Could not find '" + singleIncludeName + "' in defines in namespace " + namespace.getName());
+				throw new QueryException("Could not find '" + singleIncludeName + "' in defines in namespace " + query.getName());
 			}
 			CACHED_DEFINES.put(includeName, define);
 			return define;

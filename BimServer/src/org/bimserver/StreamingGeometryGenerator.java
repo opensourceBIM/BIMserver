@@ -242,14 +242,15 @@ public class StreamingGeometryGenerator {
 								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(expressId);
 								RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
 								boolean translate = true;
-								if (geometry == null || geometry.getIndices().length == 0) {
-									renderEngineModel.setFilter(renderEngineFilterTransformed);
-									geometry = renderEngineInstance.generateGeometry();
-									if (geometry != null) {
-										translate = false;
-									}
-									renderEngineModel.setFilter(renderEngineFilter);
-								}
+//								if (geometry == null || geometry.getIndices().length == 0) {
+//									LOGGER.info("Running again...");
+//									renderEngineModel.setFilter(renderEngineFilterTransformed);
+//									geometry = renderEngineInstance.generateGeometry();
+//									if (geometry != null) {
+//										translate = false;
+//									}
+//									renderEngineModel.setFilter(renderEngineFilter);
+//								}
 								if (geometry != null && geometry.getNrIndices() > 0) {
 									VirtualObject geometryInfo = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryInfo());
 									
@@ -452,7 +453,7 @@ public class StreamingGeometryGenerator {
 							queryPart.addType(eClass, false);
 							int x = 0;
 							queryPart.addOid(next.getOid());
-							while (next != null && x < 29) {
+							while (next != null && x < 99) {
 								next = queryObjectProvider2.next();
 								if (next != null) {
 									if (next.eClass() == eClass) {
