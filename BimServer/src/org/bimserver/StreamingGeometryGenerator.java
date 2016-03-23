@@ -195,7 +195,7 @@ public class StreamingGeometryGenerator {
 				});
 				ifcSerializer.init(proxy, null, null, bimServer.getPluginManager(), packageMetaData);
 
-				boolean debug = false;
+				boolean debug = true;
 				InputStream in = null;
 				if (debug) {
 					String basefilenamename = "all";

@@ -76,13 +76,18 @@
 				}
 			}]
 		},
+		IfcSurfaceStyleRendering: {
+			type: "IfcSurfaceStyleRendering",
+			fields: ["SurfaceColour", "DiffuseColour", "TransmissionColour", "DiffuseTransmissionColour", "ReflectionColour", "SpecularColour", "SpecularHighlight"]
+		},
+		IfcSurfaceStyleShading: {
+			type: "IfcSurfaceStyleShading",
+			fields: ["SurfaceColour"]
+		},
 		IfcSurfaceStyle: {
 			type: "IfcSurfaceStyle",
 			field: "Styles",
-			include: {
-				type: "IfcSurfaceStyleRendering",
-				fields: ["SurfaceColour", "DiffuseColour", "TransmissionColour", "DiffuseTransmissionColour", "ReflectionColour", "SpecularColour", "SpecularHighlight"]
-			}
+			includes: ["IfcSurfaceStyleRendering", "IfcSurfaceStyleShading"]
 		},
 		IfcFillAreaStyle: {
 			type: "IfcFillAreaStyle",
@@ -105,10 +110,14 @@
 				}
 			}
 		},
+		IfcBoundingBox: {
+			type: "IfcBoundingBox",
+			field: "Corner"
+		},
 		IfcRepresentation: {
 			type: "IfcRepresentation",
 			fields: ["Items", "ContextOfItems"],
-			includes: ["IfcRepresentationItem", "IfcPolyline", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcMappedItem", "IfcFacetedBrep", "IfcPolygonalBoundedHalfSpace", "IfcBooleanResult", "IfcExtrudedAreaSolid"]
+			includes: ["IfcRepresentationItem", "IfcPolyline", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcMappedItem", "IfcFacetedBrep", "IfcPolygonalBoundedHalfSpace", "IfcBooleanResult", "IfcExtrudedAreaSolid", "IfcBoundingBox"]
 		},
 		Representation: {
 			type: "IfcProduct",

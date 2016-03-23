@@ -332,7 +332,7 @@ public class SharedJsonDeserializer {
 											if (model.contains(refOid)) {
 												object.eSet(eStructuralFeature, model.get(refOid));
 											} else {
-												waitingList.add(refOid, new SingleWaitingObject(-1, object, eStructuralFeature));
+												waitingList.add(refOid, new SingleWaitingObject(-1, object, (EReference) eStructuralFeature));
 											}
 										}												
 									}
@@ -381,7 +381,7 @@ public class SharedJsonDeserializer {
 					}
 				}
 			} else {
-				waitingList.add(refOid, new ListWaitingObject(-1, object, eStructuralFeature, index));
+				waitingList.add(refOid, new ListWaitingObject(-1, object, (EReference) eStructuralFeature, index));
 			}
 		}
 	}

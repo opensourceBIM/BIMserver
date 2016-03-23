@@ -55,13 +55,13 @@ public class WaitingList<T> {
 	@SuppressWarnings("unchecked")
 	public void updateNode(T expressId, EClass ec, IdEObject eObject) throws DeserializeException {
 		for (WaitingObject waitingObject : waitingObjects.get(expressId)) {
-			if (waitingObject.getStructuralFeature().isMany()) {
-				AbstractEList<EObject> list = (AbstractEList<EObject>) waitingObject.getObject().eGet(waitingObject.getStructuralFeature());
+			if (waitingObject.getEReference().isMany()) {
+				AbstractEList<EObject> list = (AbstractEList<EObject>) waitingObject.getObject().eGet(waitingObject.getEReference());
 				if (waitingObject instanceof SingleWaitingObject) {
 					list.addUnique(eObject);
 				} else {
 					ListWaitingObject listWaitingObject = (ListWaitingObject)waitingObject;
-					if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
+					if (((EClass) waitingObject.getEReference().getEType()).isSuperTypeOf(eObject.eClass())) {
 						while (list.size() <= listWaitingObject.getIndex()) {
 							EObject create = ec.getEPackage().getEFactoryInstance().create(eObject.eClass());
 							((IdEObjectImpl)create).setOid(-2);
@@ -69,16 +69,16 @@ public class WaitingList<T> {
 						}
 						list.setUnique(listWaitingObject.getIndex(), eObject);
 					} else {
-						throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "
-								+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
+						throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getEReference().getName() + " of "
+								+ waitingObject.getEReference().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
 					}
 				}
 			} else {
-				if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
-					waitingObject.getObject().eSet(waitingObject.getStructuralFeature(), eObject);
+				if (((EClass) waitingObject.getEReference().getEType()).isSuperTypeOf(eObject.eClass())) {
+					waitingObject.getObject().eSet(waitingObject.getEReference(), eObject);
 				} else {
-					throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "
-							+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName() + "/" + eObject.getOid());
+					throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getEReference().getName() + " of "
+							+ waitingObject.getEReference().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName() + "/" + eObject.getOid());
 				}
 			}
 		}
