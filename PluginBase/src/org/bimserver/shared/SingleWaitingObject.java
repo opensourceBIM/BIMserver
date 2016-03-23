@@ -18,11 +18,11 @@ package org.bimserver.shared;
  *****************************************************************************/
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EReference;
 
 public class SingleWaitingObject extends WaitingObject {
 
-	public SingleWaitingObject(int lineNumber, EObject object, EStructuralFeature structuralFeature) {
-		super(lineNumber, object, structuralFeature);
+	public SingleWaitingObject(int lineNumber, EObject object, EReference eReference) {
+		super(lineNumber, object, eReference);
 	}
 }

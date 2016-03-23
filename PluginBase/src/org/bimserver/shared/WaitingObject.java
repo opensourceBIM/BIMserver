@@ -18,29 +18,30 @@ package org.bimserver.shared;
  *****************************************************************************/
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class WaitingObject {
 	// The object that has a missing reference
 	private final EObject object;
 
-	// The structural feature (usually a reference) on which to 'connect' the object on
-	private final EStructuralFeature structuralFeature;
+	// The structural feature on which to 'connect' the object on
+	private final EReference eReference;
 
 	private int lineNumber;
 	
-	public WaitingObject(int lineNumber, EObject object, EStructuralFeature structuralFeature) {
+	public WaitingObject(int lineNumber, EObject object, EReference eReference) {
 		this.lineNumber = lineNumber;
 		this.object = object;
-		this.structuralFeature = structuralFeature;
+		this.eReference = eReference;
 	}
 
 	public EObject getObject() {
 		return object;
 	}
 
-	public EStructuralFeature getStructuralFeature() {
-		return structuralFeature;
+	public EReference getEReference() {
+		return eReference;
 	}
 	
 	public int getLineNumber() {
@@ -49,6 +50,6 @@ public class WaitingObject {
 	
 	@Override
 	public String toString() {
-		return getObject() + " " + getStructuralFeature().getName();
+		return getObject() + " " + getEReference().getName();
 	}
 }
