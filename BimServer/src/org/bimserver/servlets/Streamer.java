@@ -157,7 +157,7 @@ public class Streamer implements EndPoint {
 	}
 
 	public void onClose() {
-		LOGGER.info("onClose, unregistering endpoint " + this.getEndPointId());
+		LOGGER.debug("onClose, unregistering endpoint " + this.getEndPointId());
 		bimServer.getEndPointManager().unregister(this);
 	}
 

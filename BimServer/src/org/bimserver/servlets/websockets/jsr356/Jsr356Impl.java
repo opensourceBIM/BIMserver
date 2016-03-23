@@ -59,7 +59,7 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	
 	@OnOpen
 	public void onOpen(Session websocketSession, EndpointConfig config) {
-		LOGGER.info("WebSocket open");
+		LOGGER.debug("WebSocket open");
 		try {
 			this.websocketSession = websocketSession;
 			BimServer bimServer = (BimServer) servletContext.getAttribute("bimserver");

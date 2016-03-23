@@ -292,7 +292,11 @@ public class DownloadServlet extends SubServlet {
 							processDataSource(outputStream, dataSource, progressReporter);
 						}
 					} catch (SerializerException s) {
-						LOGGER.error("", s);
+						if (s.getCause() != null && s.getCause() instanceof IOException) {
+							
+						} else {
+							LOGGER.error("", s);
+						}
 
 						LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
 						ds.setStart(new Date());

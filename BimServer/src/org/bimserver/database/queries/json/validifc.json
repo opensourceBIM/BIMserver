@@ -97,27 +97,50 @@
 			type: "IfcTextStyle",
 			fields: ["TextCharacterAppearance", "TextStyle", "TextFontStyle"]
 		},
+		IfcPresentationStyleAssignment: {
+			type: "IfcPresentationStyleAssignment",
+			field: "Styles",
+			includes: ["IfcFillAreaStyle", "IfcSurfaceStyle", "IfcTextStyle"]
+		},
+		IfcStyledItem: {
+			type: "IfcStyledItem",
+			fields: ["Item", "Styles"],
+			includes: ["IfcPresentationStyleAssignment", "IfcRepresentationItem"]
+		},
 		IfcRepresentationItem: {
 			type: "IfcRepresentationItem",
 			field: "StyledByItem",
-			include: {
-				type: "IfcStyledItem",
-				field: "Styles",
-				include: {
-					type: "IfcPresentationStyleAssignment",
-					field: "Styles",
-					includes: ["IfcFillAreaStyle", "IfcSurfaceStyle", "IfcTextStyle"]
-				}
-			}
+			include: "IfcStyledItem"
 		},
 		IfcBoundingBox: {
 			type: "IfcBoundingBox",
 			field: "Corner"
 		},
+		IfcOpenShell: {
+			type: "IfcOpenShell",
+			field: "CfsFaces",
+			include: {
+				type: "IfcFace",
+				field: "Bounds",
+				include: {
+					type: "IfcFaceBound",
+					field: "Bound",
+					include: {
+						type: "IfcPolyLoop",
+						field: "Polygon"
+					}
+				}
+			}
+		},
+		IfcShellBasedSurfaceModel: {
+			type: "IfcShellBasedSurfaceModel",
+			field: "SbsmBoundary",
+			include: "IfcOpenShell"
+		},
 		IfcRepresentation: {
 			type: "IfcRepresentation",
 			fields: ["Items", "ContextOfItems"],
-			includes: ["IfcRepresentationItem", "IfcPolyline", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcMappedItem", "IfcFacetedBrep", "IfcPolygonalBoundedHalfSpace", "IfcBooleanResult", "IfcExtrudedAreaSolid", "IfcBoundingBox"]
+			includes: ["IfcRepresentationItem", "IfcPolyline", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcMappedItem", "IfcFacetedBrep", "IfcPolygonalBoundedHalfSpace", "IfcBooleanResult", "IfcExtrudedAreaSolid", "IfcBoundingBox", "IfcShellBasedSurfaceModel"]
 		},
 		Representation: {
 			type: "IfcProduct",
