@@ -22,6 +22,7 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.FileBasedReflectorFactoryBuilder;
@@ -45,13 +46,18 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 	 * 
 	 * @param metaDataManager A MetaDataManager that can be shared over multiple factories
 	 * @param address Address of the remote server, must have the format "protocol://address:port[/contextpath]", for example "http://localhost:8080"
+	 * @throws BimServerClientException 
 	 */
-	public JsonBimServerClientFactory(MetaDataManager metaDataManager, String address) {
+	public JsonBimServerClientFactory(MetaDataManager metaDataManager, String address) throws BimServerClientException {
 		super(metaDataManager);
 		this.address = address;
 		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(getServicesMap());
 		FileBasedReflectorFactoryBuilder reflectorBuilder = new FileBasedReflectorFactoryBuilder();
 		reflectorFactory = reflectorBuilder.newReflectorFactory();
+	}
+
+	public JsonBimServerClientFactory(String address) throws BimServerClientException {
+		this(null, address);
 	}
 
 	@Override

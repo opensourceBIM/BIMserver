@@ -45,6 +45,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class QueryObjectProvider implements ObjectProvider {
+	private static final int MAX_STACK_FRAMES_PROCESSED = 10000000;
+	private static final int MAX_STACK_SIZE = 100000;
 	private static final Logger LOGGER = LoggerFactory.getLogger(QueryObjectProvider.class);
 	private DatabaseSession databaseSession;
 	private BimServer bimServer;
@@ -97,9 +99,9 @@ public class QueryObjectProvider implements ObjectProvider {
 		}
 		try {
 			while (!stack.isEmpty()) {
-				if (stack.size() > 10000) {
+				if (stack.size() > MAX_STACK_SIZE) {
 					dumpEndQuery();
-					throw new BimserverDatabaseException("Query stack size > 1000, probably a bug, please report");
+					throw new BimserverDatabaseException("Query stack size > 10000, probably a bug, please report");
 				}
 				StackFrame stackFrame = stack.peek();
 				if (stackFrame.isDone()) {
@@ -107,15 +109,17 @@ public class QueryObjectProvider implements ObjectProvider {
 					continue;
 				}
 				stackFramesProcessed++;
-				if (stackFramesProcessed > 10000000) {
+				if (stackFramesProcessed > MAX_STACK_FRAMES_PROCESSED) {
 					dumpEndQuery();
-					throw new BimserverDatabaseException("Too many stack frames processed, probably a bug, please report");
+					throw new BimserverDatabaseException("Too many stack frames processed ( > " + MAX_STACK_FRAMES_PROCESSED + "), probably a bug, please report");
 				}
 				boolean done = stackFrame.process();
 				stackFrame.setDone(done);
 				if (stackFrame instanceof ObjectProvidingStackFrame) {
 					HashMapVirtualObject currentObject = ((ObjectProvidingStackFrame) stackFrame).getCurrentObject();
 					if (currentObject != null) {
+						if (currentObject.eClass().getName().equals("IfcWallStandardCase")) {
+						}
 						if (!oidsRead.contains(currentObject.getOid())) {
 							oidsRead.add(currentObject.getOid());
 							return currentObject;

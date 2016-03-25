@@ -47,21 +47,21 @@ public class TestSplit {
 			
 			IfcModelInterface model = client.getModel(project, project.getLastRevisionId(), true, false);
 			for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-				Long topicId = client.getBimsie1ServiceInterface().downloadByOids(Collections.singleton(project.getLastRevisionId()), Collections.singleton(ifcProduct.getOid()), serializer.getOid(), true, false);
-				System.out.println(topicId);
-				InputStream downloadData = client.getDownloadData(topicId, serializer.getOid());
-				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-				org.apache.commons.io.IOUtils.copy(downloadData, byteArrayOutputStream);
-				downloadData.close();
-				System.out.println(new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8));
-				System.out.println();
+//				Long topicId = client.getBimsie1ServiceInterface().downloadByOids(Collections.singleton(project.getLastRevisionId()), Collections.singleton(ifcProduct.getOid()), serializer.getOid(), true, false);
+//				System.out.println(topicId);
+//				InputStream downloadData = client.getDownloadData(topicId, serializer.getOid());
+//				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//				org.apache.commons.io.IOUtils.copy(downloadData, byteArrayOutputStream);
+//				downloadData.close();
+//				System.out.println(new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8));
+//				System.out.println();
 			}
 		} catch (ServerException | UserException | PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
 		}
 	}
 }

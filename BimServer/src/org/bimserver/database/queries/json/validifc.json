@@ -93,9 +93,14 @@
 			type: "IfcFillAreaStyle",
 			field: "FillStyles"
 		},
+		TextCharacterAppearance: {
+			type: "IfcTextStyleForDefinedFont",
+			fields: ["Colour", "BackgroundColour"]
+		},
 		IfcTextStyle: {
 			type: "IfcTextStyle",
-			fields: ["TextCharacterAppearance", "TextStyle", "TextFontStyle"]
+			fields: ["TextCharacterAppearance", "TextStyle", "TextFontStyle"],
+			includes: ["TextCharacterAppearance"]
 		},
 		IfcPresentationStyleAssignment: {
 			type: "IfcPresentationStyleAssignment",
@@ -137,10 +142,15 @@
 			field: "SbsmBoundary",
 			include: "IfcOpenShell"
 		},
+		IfcTextLiteralWithExtent: {
+			type: "IfcTextLiteralWithExtent",
+			fields: ["Placement", "Extent"],
+			includes: ["IfcAxis2Placement2D", "IfcAxis2Placement3D"]
+		},
 		IfcRepresentation: {
 			type: "IfcRepresentation",
 			fields: ["Items", "ContextOfItems"],
-			includes: ["IfcRepresentationItem", "IfcPolyline", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcMappedItem", "IfcFacetedBrep", "IfcPolygonalBoundedHalfSpace", "IfcBooleanResult", "IfcExtrudedAreaSolid", "IfcBoundingBox", "IfcShellBasedSurfaceModel"]
+			includes: ["IfcRepresentationItem", "IfcPolyline", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcMappedItem", "IfcFacetedBrep", "IfcPolygonalBoundedHalfSpace", "IfcBooleanResult", "IfcExtrudedAreaSolid", "IfcBoundingBox", "IfcShellBasedSurfaceModel", "IfcTextLiteralWithExtent"]
 		},
 		Representation: {
 			type: "IfcProduct",

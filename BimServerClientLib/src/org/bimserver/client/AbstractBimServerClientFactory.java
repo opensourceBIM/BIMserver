@@ -1,5 +1,10 @@
 package org.bimserver.client;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -27,6 +32,7 @@ import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.reflector.ReflectorFactoryImpl1;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
@@ -58,11 +64,18 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		initHttpClient();
 	}
 
-	public AbstractBimServerClientFactory(MetaDataManager metaDataManager) {
+	public AbstractBimServerClientFactory(MetaDataManager metaDataManager) throws BimServerClientException {
 		if (metaDataManager == null) {
-			throw new IllegalArgumentException("MetaDataManager cannot be null");
+			try {
+				this.metaDataManager = new MetaDataManager(Files.createTempDirectory("bimserver-tmp"));
+				this.metaDataManager.init();
+			} catch (IOException e) {
+				throw new BimServerClientException("Problem creating tmp directory");
+			}
+//			throw new IllegalArgumentException("MetaDataManager cannot be null");
+		} else {
+			this.metaDataManager = metaDataManager;
 		}
-		this.metaDataManager = metaDataManager;
 		this.servicesMap = new SServicesMap();
 		servicesMap.setReflectorFactory(new ReflectorFactoryImpl1());
 		SService serviceInterface = new SServiceInterfaceService(servicesMap, null, ServiceInterface.class);

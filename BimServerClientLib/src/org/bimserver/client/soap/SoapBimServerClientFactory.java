@@ -22,6 +22,7 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SServicesMap;
 
@@ -34,7 +35,7 @@ public class SoapBimServerClientFactory extends AbstractBimServerClientFactory {
 		this.address = address;
 	}
 	
-	public SoapBimServerClientFactory(MetaDataManager metaDataManager, String address) {
+	public SoapBimServerClientFactory(MetaDataManager metaDataManager, String address) throws BimServerClientException {
 		super(metaDataManager);
 		this.address = address;
 	}

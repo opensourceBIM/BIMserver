@@ -30,6 +30,7 @@ public abstract class AbstractSerializerPlugin implements SerializerPlugin {
 		ObjectDefinition objectDefinition = StoreFactory.eINSTANCE.createObjectDefinition();
 
 		ParameterDefinition extensionParameter = StoreFactory.eINSTANCE.createParameterDefinition();
+		extensionParameter.setIdentifier(EXTENSION);
 		extensionParameter.setName(EXTENSION);
 		extensionParameter.setDescription("Extension of the downloaded file");
 		PrimitiveDefinition stringType = StoreFactory.eINSTANCE.createPrimitiveDefinition();
@@ -41,6 +42,7 @@ public abstract class AbstractSerializerPlugin implements SerializerPlugin {
 		objectDefinition.getParameters().add(extensionParameter);
 
 		ParameterDefinition contentTypeParameter = StoreFactory.eINSTANCE.createParameterDefinition();
+		contentTypeParameter.setIdentifier(CONTENT_TYPE);
 		contentTypeParameter.setName(CONTENT_TYPE);
 		contentTypeParameter.setDescription("Content-Type in the HTTP header of the downloaded file");
 		contentTypeParameter.setType(stringType);

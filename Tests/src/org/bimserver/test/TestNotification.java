@@ -42,16 +42,16 @@ public class TestNotification {
 			SSerializerPluginConfiguration geometrySerializer = client.getBimsie1ServiceInterface().getSerializerByName("JsonGeometrySerializer");
 			
 			for (int i=0; i<100; i++) {
-				final CountDownLatch countDownLatch = new CountDownLatch(1);
-				final Long downloadByTypes = client.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(project.getLastRevisionId()), "ifc2x3tc1", Collections.singleton("IfcWindow"), geometrySerializer.getOid(), true, false, false, false);
-				final ProgressHandler progressHandler = new ProgressHandler() {
-					@Override
-					public void progress(SLongActionState state) {
-						if (state.getProgress() == 100) {
-							countDownLatch.countDown();
-						}
-					}
-				};
+//				final CountDownLatch countDownLatch = new CountDownLatch(1);
+//				final Long downloadByTypes = client.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(project.getLastRevisionId()), "ifc2x3tc1", Collections.singleton("IfcWindow"), geometrySerializer.getOid(), true, false, false, false);
+//				final ProgressHandler progressHandler = new ProgressHandler() {
+//					@Override
+//					public void progress(SLongActionState state) {
+//						if (state.getProgress() == 100) {
+//							countDownLatch.countDown();
+//						}
+//					}
+//				};
 //				client.getNotificationsManager().registerProgressHandler(downloadByTypes, progressHandler);
 //				try {
 //					countDownLatch.await(20, TimeUnit.SECONDS);

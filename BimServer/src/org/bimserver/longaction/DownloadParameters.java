@@ -32,7 +32,7 @@ import org.bimserver.models.store.Revision;
 
 public class DownloadParameters extends LongActionKey {
 	public enum DownloadType {
-		DOWNLOAD_REVISION, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS, DOWNLOAD_COMPARE, DOWNLOAD_QUERY, DOWNLOAD_BY_NAMES, DOWNLOAD_JSON_QUERY, DOWNLOAD_BY_NEW_JSON_QUERY
+		DOWNLOAD_PROJECTS, DOWNLOAD_COMPARE, DOWNLOAD_BY_NEW_JSON_QUERY
 	};
 
 	private final DownloadType downloadType;
@@ -314,17 +314,8 @@ public class DownloadParameters extends LongActionKey {
 
 	public String getFileNameWithoutExtension() {
 		switch (downloadType) {
-		case DOWNLOAD_REVISION:
-			return getRoidsString();
-		case DOWNLOAD_BY_GUIDS:
-			return getRoidsString() + "-" + getGuidsString();
-		case DOWNLOAD_BY_NAMES:
-			return getRoidsString() + "-" + getNamesString();
-		case DOWNLOAD_BY_OIDS:
-			return getRoidsString() + "-" + getOidsString();
-		case DOWNLOAD_OF_TYPE:
-			return getRoidsString() + "-" + classNames;
 		case DOWNLOAD_PROJECTS:
+		{
 			DatabaseSession session = bimServer.getDatabase().createSession();
 			StringBuilder fileName = new StringBuilder();
 			for (long roid : roids) {
@@ -340,14 +331,27 @@ public class DownloadParameters extends LongActionKey {
 			}
 			fileName.delete(fileName.length() - 1, fileName.length());
 			return fileName.toString();
+		}
 		case DOWNLOAD_COMPARE:
 			return "compare";
-		case DOWNLOAD_JSON_QUERY:
-			return getRoidsString();
-		case DOWNLOAD_QUERY:
-			return "query";
 		case DOWNLOAD_BY_NEW_JSON_QUERY:
-			return "test";
+		{
+			DatabaseSession session = bimServer.getDatabase().createSession();
+			StringBuilder fileName = new StringBuilder();
+			for (long roid : roids) {
+				Revision revision;
+				try {
+					revision = session.get(session.getEClassForName("store", "Revision"), roid, OldQuery.getDefault());
+					for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
+						fileName.append(concreteRevision.getProject().getName() + "-");
+					}
+				} catch (BimserverDatabaseException e) {
+					e.printStackTrace();
+				}
+			}
+			fileName.delete(fileName.length() - 1, fileName.length());
+			return fileName.toString();
+		}
 		default:
 			break;
 		}

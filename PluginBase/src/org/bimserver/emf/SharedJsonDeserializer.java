@@ -71,12 +71,12 @@ public class SharedJsonDeserializer {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public IfcModelInterface read(InputStream in, IfcModelInterface model) throws DeserializeException {
+	public IfcModelInterface read(InputStream in, IfcModelInterface model, boolean checkWaitingList) throws DeserializeException {
 		if (model.getPackageMetaData().getSchemaDefinition() == null) {
 			throw new DeserializeException("No SchemaDefinition available");
 		}
 		WaitingList<Long> waitingList = new WaitingList<Long>();
-		final boolean log = true;
+		final boolean log = false;
 		if (log) {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			try {
@@ -147,7 +147,7 @@ public class SharedJsonDeserializer {
 				}
 			}
 		}
-		if (waitingList.size() > 0) {
+		if (checkWaitingList && waitingList.size() > 0) {
 			try {
 				waitingList.dumpIfNotEmpty();
 			} catch (BimServerClientException e) {

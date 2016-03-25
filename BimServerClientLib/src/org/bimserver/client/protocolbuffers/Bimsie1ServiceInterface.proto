@@ -47,21 +47,7 @@ service Bimsie1ServiceInterface {
 
 	rpc deleteProject (DeleteProjectRequest) returns (DeleteProjectResponse);
 
-	rpc download (DownloadRequest) returns (DownloadResponse);
-
-	rpc downloadByGuids (DownloadByGuidsRequest) returns (DownloadByGuidsResponse);
-
-	rpc downloadByJsonQuery (DownloadByJsonQueryRequest) returns (DownloadByJsonQueryResponse);
-
-	rpc downloadByNames (DownloadByNamesRequest) returns (DownloadByNamesResponse);
-
 	rpc downloadByNewJsonQuery (DownloadByNewJsonQueryRequest) returns (DownloadByNewJsonQueryResponse);
-
-	rpc downloadByOids (DownloadByOidsRequest) returns (DownloadByOidsResponse);
-
-	rpc downloadByTypes (DownloadByTypesRequest) returns (DownloadByTypesResponse);
-
-	rpc downloadQuery (DownloadQueryRequest) returns (DownloadQueryResponse);
 
 	rpc downloadRevisions (DownloadRevisionsRequest) returns (DownloadRevisionsResponse);
 
@@ -185,56 +171,6 @@ message DeleteProjectResponse {
 	optional bool value = 2;
 }
 
-message DownloadRequest {
-	optional int64 roid = 1;
-	optional int64 serializerOid = 2;
-	optional bool showOwn = 3;
-	optional bool sync = 4;
-}
-
-message DownloadResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadByGuidsRequest {
-	repeated int64 roids = 1;
-	repeated string guids = 2;
-	optional int64 serializerOid = 3;
-	optional bool deep = 4;
-	optional bool sync = 5;
-}
-
-message DownloadByGuidsResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadByJsonQueryRequest {
-	repeated int64 roids = 1;
-	optional string jsonQuery = 2;
-	optional int64 serializerOid = 3;
-	optional bool sync = 4;
-}
-
-message DownloadByJsonQueryResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadByNamesRequest {
-	repeated int64 roids = 1;
-	repeated string names = 2;
-	optional int64 serializerOid = 3;
-	optional bool deep = 4;
-	optional bool sync = 5;
-}
-
-message DownloadByNamesResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
 message DownloadByNewJsonQueryRequest {
 	repeated int64 roids = 1;
 	optional string query = 2;
@@ -243,48 +179,6 @@ message DownloadByNewJsonQueryRequest {
 }
 
 message DownloadByNewJsonQueryResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadByOidsRequest {
-	repeated int64 roids = 1;
-	repeated int64 oids = 2;
-	optional int64 serializerOid = 3;
-	optional bool sync = 4;
-	optional bool deep = 5;
-}
-
-message DownloadByOidsResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadByTypesRequest {
-	repeated int64 roids = 1;
-	optional string schema = 2;
-	repeated string classNames = 3;
-	optional int64 serializerOid = 4;
-	optional bool includeAllSubtypes = 5;
-	optional bool useObjectIDM = 6;
-	optional bool deep = 7;
-	optional bool sync = 8;
-}
-
-message DownloadByTypesResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadQueryRequest {
-	optional int64 roid = 1;
-	optional int64 qeid = 2;
-	optional string code = 3;
-	optional bool sync = 4;
-	optional int64 serializerOid = 5;
-}
-
-message DownloadQueryResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
 }

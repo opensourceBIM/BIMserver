@@ -129,12 +129,12 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "download")
-	Long download(
-		@WebParam(name = "roid", partName = "download.roid") Long roid,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-		@WebParam(name = "showOwn", partName = "download.showOwn") Boolean showOwn,
-		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
+//	@WebMethod(action = "download")
+//	Long download(
+//		@WebParam(name = "roid", partName = "download.roid") Long roid,
+//		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+//		@WebParam(name = "showOwn", partName = "download.showOwn") Boolean showOwn,
+//		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 	
 	/**
 	 * Download a model in a serialized format by giving a set of revisions and a set of Object IDs
@@ -145,13 +145,13 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "downloadByOids")
-	Long downloadByOids(
-		@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
-		@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
-		@WebParam(name = "serializerOid", partName = "downloadCompareResults.serializerOid") Long serializerOid,
-		@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync,
-		@WebParam(name = "deep", partName = "downloadCompareResults.deep") Boolean deep) throws ServerException, UserException;
+//	@WebMethod(action = "downloadByOids")
+//	Long downloadByOids(
+//		@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
+//		@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
+//		@WebParam(name = "serializerOid", partName = "downloadCompareResults.serializerOid") Long serializerOid,
+//		@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync,
+//		@WebParam(name = "deep", partName = "downloadCompareResults.deep") Boolean deep) throws ServerException, UserException;
 
 	/**
 	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
@@ -163,16 +163,16 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "downloadByTypes")
-	Long downloadByTypes(
-		@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
-		@WebParam(name = "schema", partName = "downloadByTypes.schema") String schema,
-		@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
-		@WebParam(name = "serializerOid", partName = "downloadByTypes.serializerOid") Long serializerOid,
-		@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
-		@WebParam(name = "useObjectIDM", partName = "downloadByTypes.useObjectIDM") Boolean useObjectIDM,
-		@WebParam(name = "deep", partName = "downloadByTypes.deep") Boolean deep,
-		@WebParam(name = "sync", partName = "downloadByTypes.sync") Boolean sync) throws ServerException, UserException;
+//	@WebMethod(action = "downloadByTypes")
+//	Long downloadByTypes(
+//		@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
+//		@WebParam(name = "schema", partName = "downloadByTypes.schema") String schema,
+//		@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
+//		@WebParam(name = "serializerOid", partName = "downloadByTypes.serializerOid") Long serializerOid,
+//		@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
+//		@WebParam(name = "useObjectIDM", partName = "downloadByTypes.useObjectIDM") Boolean useObjectIDM,
+//		@WebParam(name = "deep", partName = "downloadByTypes.deep") Boolean deep,
+//		@WebParam(name = "sync", partName = "downloadByTypes.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
@@ -184,12 +184,12 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @return A topicId, which you can use for the Bimsie1NotificationRegistryInterface.getProgress method
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "downloadByJsonQuery")
-	Long downloadByJsonQuery(
-		@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
-		@WebParam(name = "jsonQuery", partName = "downloadByTypes.jsonQuery") String jsonQuery,
-		@WebParam(name = "serializerOid", partName = "downloadByTypes.serializerOid") Long serializerOid,
-		@WebParam(name = "sync", partName = "downloadByTypes.sync") Boolean sync) throws ServerException, UserException;
+//	@WebMethod(action = "downloadByJsonQuery")
+//	Long downloadByJsonQuery(
+//		@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
+//		@WebParam(name = "jsonQuery", partName = "downloadByTypes.jsonQuery") String jsonQuery,
+//		@WebParam(name = "serializerOid", partName = "downloadByTypes.serializerOid") Long serializerOid,
+//		@WebParam(name = "sync", partName = "downloadByTypes.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
@@ -217,13 +217,13 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "downloadByGuids")
-	Long downloadByGuids(
-		@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
-		@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
-		@WebParam(name = "serializerOid", partName = "downloadByGuids.serializerOid") Long serializerOid,
-		@WebParam(name = "deep", partName = "downloadByGuids.deep") Boolean deep,
-		@WebParam(name = "sync", partName = "downloadByGuids.sync") Boolean sync) throws ServerException, UserException;
+//	@WebMethod(action = "downloadByGuids")
+//	Long downloadByGuids(
+//		@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
+//		@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
+//		@WebParam(name = "serializerOid", partName = "downloadByGuids.serializerOid") Long serializerOid,
+//		@WebParam(name = "deep", partName = "downloadByGuids.deep") Boolean deep,
+//		@WebParam(name = "sync", partName = "downloadByGuids.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Download a model in a serialized format by giving a set of revisions and a set of names to filter on
@@ -234,13 +234,13 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "downloadByNames")
-	Long downloadByNames(
-		@WebParam(name = "roids", partName = "downloadByNames.roids") Set<Long> roids,
-		@WebParam(name = "names", partName = "downloadByNames.names") Set<String> names,
-		@WebParam(name = "serializerOid", partName = "downloadByNames.serializerOid") Long serializerOid,
-		@WebParam(name = "deep", partName = "downloadByNames.deep") Boolean deep,
-		@WebParam(name = "sync", partName = "downloadByNames.sync") Boolean sync) throws ServerException, UserException;
+//	@WebMethod(action = "downloadByNames")
+//	Long downloadByNames(
+//		@WebParam(name = "roids", partName = "downloadByNames.roids") Set<Long> roids,
+//		@WebParam(name = "names", partName = "downloadByNames.names") Set<String> names,
+//		@WebParam(name = "serializerOid", partName = "downloadByNames.serializerOid") Long serializerOid,
+//		@WebParam(name = "deep", partName = "downloadByNames.deep") Boolean deep,
+//		@WebParam(name = "sync", partName = "downloadByNames.sync") Boolean sync) throws ServerException, UserException;
 	
 	/**
 	 * Download a model in a serialized format by giving a set of revisions
@@ -262,13 +262,13 @@ public interface Bimsie1ServiceInterface extends PublicInterface {
 	 * @return SRunResult
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "downloadQuery")
-	Long downloadQuery(
-		@WebParam(name = "roid", partName = "downloadQuery.roid") Long roid, 
-		@WebParam(name = "qeid", partName = "downloadQuery.qeid") Long qeid, 
-		@WebParam(name = "code", partName = "downloadQuery.code") String code,
-		@WebParam(name = "sync", partName = "downloadQuery.sync") Boolean sync,
-		@WebParam(name = "serializerOid", partName = "downloadQuery.serializerOid") Long serializerOid) throws ServerException, UserException;
+//	@WebMethod(action = "downloadQuery")
+//	Long downloadQuery(
+//		@WebParam(name = "roid", partName = "downloadQuery.roid") Long roid, 
+//		@WebParam(name = "qeid", partName = "downloadQuery.qeid") Long qeid, 
+//		@WebParam(name = "code", partName = "downloadQuery.code") String code,
+//		@WebParam(name = "sync", partName = "downloadQuery.sync") Boolean sync,
+//		@WebParam(name = "serializerOid", partName = "downloadQuery.serializerOid") Long serializerOid) throws ServerException, UserException;
 
 	/**
 	 * Get the data for a download/checkout

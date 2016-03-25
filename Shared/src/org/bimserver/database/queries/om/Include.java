@@ -51,6 +51,9 @@ public class Include extends PartOfQuery implements CanInclude {
 				throw new QueryException("Class \"" + eClass.getName() + "\" does not have the field \"" + fieldName + "\"");
 			}
 			if (feature == null) {
+				if (!(eClass.getEStructuralFeature(fieldName) instanceof EReference)) {
+					throw new QueryException(fieldName + " is not a reference");
+				}
 				feature = (EReference) eClass.getEStructuralFeature(fieldName);
 			} else {
 				if (feature != eClass.getEStructuralFeature(fieldName)) {

@@ -1,5 +1,5 @@
 
-˚W
+ÊH
 Bimsie1ServiceInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.proto"g
  AddExtendedDataToRevisionRequest
 roid (5
@@ -45,78 +45,13 @@ parentPoid (
 poid ("<
 DeleteProjectResponse
 errorMessage (	
-value ("U
-DownloadRequest
-roid (
-serializerOid (
-showOwn (
-sync ("7
-DownloadResponse
-errorMessage (	
-value ("i
-DownloadByGuidsRequest
-roids (
-guids (	
-serializerOid (
-deep (
-sync (">
-DownloadByGuidsResponse
-errorMessage (	
-value ("c
-DownloadByJsonQueryRequest
-roids (
-	jsonQuery (	
-serializerOid (
-sync ("B
-DownloadByJsonQueryResponse
-errorMessage (	
-value ("i
-DownloadByNamesRequest
-roids (
-names (	
-serializerOid (
-deep (
-sync (">
-DownloadByNamesResponse
-errorMessage (	
-value ("b
+value ("b
 DownloadByNewJsonQueryRequest
 roids (
 query (	
 serializerOid (
 sync ("E
 DownloadByNewJsonQueryResponse
-errorMessage (	
-value ("g
-DownloadByOidsRequest
-roids (
-oids (
-serializerOid (
-sync (
-deep ("=
-DownloadByOidsResponse
-errorMessage (	
-value ("∞
-DownloadByTypesRequest
-roids (
-schema (	
-
-classNames (	
-serializerOid (
-includeAllSubtypes (
-useObjectIDM (
-deep (
-sync (">
-DownloadByTypesResponse
-errorMessage (	
-value ("e
-DownloadQueryRequest
-roid (
-qeid (
-code (	
-sync (
-serializerOid ("<
-DownloadQueryResponse
 errorMessage (	
 value ("N
 DownloadRevisionsRequest
@@ -255,7 +190,7 @@ revisionNr (
 poid (">
 UndeleteProjectResponse
 errorMessage (	
-value (2ç%
+value (2«
 Bimsie1ServiceInterfaceo
 addExtendedDataToRevision2.org.bimserver.pb.AddExtendedDataToRevisionRequest.org.bimserver.pb.VoidResponseW
 
@@ -266,15 +201,8 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 checkin .org.bimserver.pb.CheckinRequest!.org.bimserver.pb.CheckinResponsec
 checkinFromUrl'.org.bimserver.pb.CheckinFromUrlRequest(.org.bimserver.pb.CheckinFromUrlResponseQ
 checkout!.org.bimserver.pb.CheckoutRequest".org.bimserver.pb.CheckoutResponse`
-deleteProject&.org.bimserver.pb.DeleteProjectRequest'.org.bimserver.pb.DeleteProjectResponseQ
-download!.org.bimserver.pb.DownloadRequest".org.bimserver.pb.DownloadResponsef
-downloadByGuids(.org.bimserver.pb.DownloadByGuidsRequest).org.bimserver.pb.DownloadByGuidsResponser
-downloadByJsonQuery,.org.bimserver.pb.DownloadByJsonQueryRequest-.org.bimserver.pb.DownloadByJsonQueryResponsef
-downloadByNames(.org.bimserver.pb.DownloadByNamesRequest).org.bimserver.pb.DownloadByNamesResponse{
-downloadByNewJsonQuery/.org.bimserver.pb.DownloadByNewJsonQueryRequest0.org.bimserver.pb.DownloadByNewJsonQueryResponsec
-downloadByOids'.org.bimserver.pb.DownloadByOidsRequest(.org.bimserver.pb.DownloadByOidsResponsef
-downloadByTypes(.org.bimserver.pb.DownloadByTypesRequest).org.bimserver.pb.DownloadByTypesResponse`
-downloadQuery&.org.bimserver.pb.DownloadQueryRequest'.org.bimserver.pb.DownloadQueryResponsel
+deleteProject&.org.bimserver.pb.DeleteProjectRequest'.org.bimserver.pb.DeleteProjectResponse{
+downloadByNewJsonQuery/.org.bimserver.pb.DownloadByNewJsonQueryRequest0.org.bimserver.pb.DownloadByNewJsonQueryResponsel
 downloadRevisions*.org.bimserver.pb.DownloadRevisionsRequest+.org.bimserver.pb.DownloadRevisionsResponseç
 getAllExtendedDataOfRevision5.org.bimserver.pb.GetAllExtendedDataOfRevisionRequest6.org.bimserver.pb.GetAllExtendedDataOfRevisionResponsec
 getAllProjects'.org.bimserver.pb.GetAllProjectsRequest(.org.bimserver.pb.GetAllProjectsResponser

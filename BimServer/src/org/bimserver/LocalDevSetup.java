@@ -34,6 +34,7 @@ import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.slf4j.Logger;
@@ -127,6 +128,8 @@ public class LocalDevSetup {
 			LOGGER.error("", e);
 		} catch (IOException e) {
 			LOGGER.error("", e);
+		} catch (BimServerClientException e) {
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -146,6 +149,8 @@ public class LocalDevSetup {
 			LOGGER.error("", e);
 		} catch (ChannelConnectionException e) {
 			LOGGER.error("", e);
+		} catch (BimServerClientException e) {
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -164,6 +169,8 @@ public class LocalDevSetup {
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		} catch (ChannelConnectionException e) {
+			LOGGER.error("", e);
+		} catch (BimServerClientException e) {
 			LOGGER.error("", e);
 		}
 		return null;

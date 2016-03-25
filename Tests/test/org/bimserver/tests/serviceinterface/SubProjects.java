@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
@@ -52,7 +53,7 @@ public class SubProjects extends TestWithEmbeddedServer {
 			// Download the latest revision (the one we just checked in)
 //			Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(mainProject.getLastRevisionId()),
 //					Collections.singleton("IfcWall"), serializer.getOid(), true, false, true, true);
-			Long topicId = bimServerClient.getBimsie1ServiceInterface().download(mainProject.getLastRevisionId(), serializer.getOid(), true, true);
+			Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(mainProject.getLastRevisionId()), serializer.getOid(), true);
 			IOUtils.copy(bimServerClient.getDownloadData(topicId, serializer.getOid()), new FileOutputStream(new File("out.ifc")));
 			long e = System.nanoTime();
 			System.out.println(((e - s) / 1000000) + " ms");
