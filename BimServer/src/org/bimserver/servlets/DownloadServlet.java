@@ -21,6 +21,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -180,33 +181,33 @@ public class DownloadServlet extends SubServlet {
 					if (request.getParameter("checkout") != null) {
 						topicId = serviceMap.getBimsie1ServiceInterface().checkout(roid, serializer.getOid(), true);
 					} else {
-						if (request.getParameter("classses") != null) {
-							Set<String> classes = new HashSet<String>();
-							for (String className : request.getParameter("classses").split(";")) {
-								classes.add(className);
-							}
-							Set<Long> roids = new HashSet<Long>();
-							roids.add(roid);
-							topicId = serviceMap.getBimsie1ServiceInterface().downloadByTypes(roids, "ifc2x3tc1", classes, serializer.getOid(), false, true, true, true);
-						} else if (request.getParameter("oids") != null) {
-							Set<Long> oids = new HashSet<Long>();
-							for (String oidString : request.getParameter("oids").split(";")) {
-								oids.add(Long.parseLong(oidString));
-							}
-							Set<Long> roids = new HashSet<Long>();
-							roids.add(roid);
-							topicId = serviceMap.getBimsie1ServiceInterface().downloadByOids(roids, oids, serializer.getOid(), true, true);
-						} else if (request.getParameter("guids") != null) {
-							Set<String> guids = new HashSet<String>();
-							for (String guid : request.getParameter("guids").split(";")) {
-								guids.add(guid);
-							}
-							Set<Long> roids = new HashSet<Long>();
-							roids.add(roid);
-							topicId = serviceMap.getBimsie1ServiceInterface().downloadByGuids(roids, guids, serializer.getOid(), false, true);
-						} else {
-							topicId = serviceMap.getBimsie1ServiceInterface().download(roid, serializer.getOid(), true, true);
-						}
+//						if (request.getParameter("classses") != null) {
+//							Set<String> classes = new HashSet<String>();
+//							for (String className : request.getParameter("classses").split(";")) {
+//								classes.add(className);
+//							}
+//							Set<Long> roids = new HashSet<Long>();
+//							roids.add(roid);
+//							topicId = serviceMap.getBimsie1ServiceInterface().downloadByTypes(roids, "ifc2x3tc1", classes, serializer.getOid(), false, true, true, true);
+//						} else if (request.getParameter("oids") != null) {
+//							Set<Long> oids = new HashSet<Long>();
+//							for (String oidString : request.getParameter("oids").split(";")) {
+//								oids.add(Long.parseLong(oidString));
+//							}
+//							Set<Long> roids = new HashSet<Long>();
+//							roids.add(roid);
+//							topicId = serviceMap.getBimsie1ServiceInterface().downloadByOids(roids, oids, serializer.getOid(), true, true);
+//						} else if (request.getParameter("guids") != null) {
+//							Set<String> guids = new HashSet<String>();
+//							for (String guid : request.getParameter("guids").split(";")) {
+//								guids.add(guid);
+//							}
+//							Set<Long> roids = new HashSet<Long>();
+//							roids.add(roid);
+//							topicId = serviceMap.getBimsie1ServiceInterface().downloadByGuids(roids, guids, serializer.getOid(), false, true);
+//						} else {
+							topicId = serviceMap.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(roid), serializer.getOid(), true);
+//						}
 					}
 				}
 				if (topicId == -1) {

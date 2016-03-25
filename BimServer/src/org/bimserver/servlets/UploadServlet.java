@@ -130,12 +130,12 @@ public class UploadServlet extends SubServlet {
 							if (token != null) {
 								if (topicId == -1) {
 									ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-									long checkinId = service.checkin(poid, comment, deserializerOid, -1L, name, ifcFile, merge, sync);
-									result.put("checkinid", checkinId);
+									long newTopicId = service.checkin(poid, comment, deserializerOid, -1L, name, ifcFile, merge, sync);
+									result.put("topicId", newTopicId);
 								} else {
 									ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-									long checkinId = service.checkinInitiated(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge, true);
-									result.put("checkinid", checkinId);
+									long newTopicId = service.checkinInitiated(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge, true);
+									result.put("topicId", newTopicId);
 								}
 							}
 						} else {

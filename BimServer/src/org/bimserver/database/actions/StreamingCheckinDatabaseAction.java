@@ -185,7 +185,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			concreteRevision = result.getConcreteRevision();
 			concreteRevision.setOidCounters(buffer.array());
 
-			setProgress("Generating inverses/opposites...", 0);
+			setProgress("Generating inverses/opposites...", -1);
 			
 			fixInverses(packageMetaData, newRoid);
 

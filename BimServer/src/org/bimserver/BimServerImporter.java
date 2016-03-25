@@ -49,6 +49,7 @@ import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -238,6 +239,8 @@ public class BimServerImporter {
 			LOGGER.error("", e);
 		} catch (IOException e) {
 			LOGGER.error("", e);
+		} catch (BimServerClientException e1) {
+			LOGGER.error("", e1);
 		}
 	}
 

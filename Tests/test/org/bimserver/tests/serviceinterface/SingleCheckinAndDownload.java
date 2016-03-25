@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -61,7 +62,7 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 				
 				// Download the latest revision  (the one we just checked in)
 				if (useChannel) {
-					Long topicId = bimServerClient.getBimsie1ServiceInterface().download(newProject.getLastRevisionId(), serializer.getOid(), true, true);
+					Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), serializer.getOid(), true);
 					SLongActionState downloadState = bimServerClient.getRegistry().getProgress(topicId);
 					if (downloadState.getState() == SActionState.FINISHED) {
 						InputStream inputStream = bimServerClient.getBimsie1ServiceInterface().getDownloadData(topicId).getFile().getInputStream();
@@ -69,7 +70,7 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 						System.out.println("Success");
 					}
 				} else {
-					Long topicId = bimServerClient.getBimsie1ServiceInterface().download(newProject.getLastRevisionId(), serializer.getOid(), true, false); // Note: sync: false
+					Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), serializer.getOid(), false); // Note: sync: false
 					InputStream downloadData = bimServerClient.getDownloadData(topicId, serializer.getOid());
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
 					IOUtils.copy(downloadData, baos);

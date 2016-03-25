@@ -74,42 +74,7 @@ public class AsyncBimsie1ServiceInterface {
 		void error(Throwable e);
 	}
 	
-	public interface DownloadCallback {
-		void success(java.lang.Long result);
-		void error(Throwable e);
-	}
-	
-	public interface DownloadByGuidsCallback {
-		void success(java.lang.Long result);
-		void error(Throwable e);
-	}
-	
-	public interface DownloadByJsonQueryCallback {
-		void success(java.lang.Long result);
-		void error(Throwable e);
-	}
-	
-	public interface DownloadByNamesCallback {
-		void success(java.lang.Long result);
-		void error(Throwable e);
-	}
-	
 	public interface DownloadByNewJsonQueryCallback {
-		void success(java.lang.Long result);
-		void error(Throwable e);
-	}
-	
-	public interface DownloadByOidsCallback {
-		void success(java.lang.Long result);
-		void error(Throwable e);
-	}
-	
-	public interface DownloadByTypesCallback {
-		void success(java.lang.Long result);
-		void error(Throwable e);
-	}
-	
-	public interface DownloadQueryCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
@@ -350,95 +315,11 @@ public class AsyncBimsie1ServiceInterface {
 		});
 	}
 	
-	public void download(final java.lang.Long roid, final java.lang.Long serializerOid, final java.lang.Boolean showOwn, final java.lang.Boolean sync, final DownloadCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.download(roid, serializerOid, showOwn, sync));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadByGuids(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> guids, final java.lang.Long serializerOid, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByGuidsCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadByGuids(roids, guids, serializerOid, deep, sync));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadByJsonQuery(final java.util.Set<java.lang.Long> roids, final java.lang.String jsonQuery, final java.lang.Long serializerOid, final java.lang.Boolean sync, final DownloadByJsonQueryCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadByJsonQuery(roids, jsonQuery, serializerOid, sync));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadByNames(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> names, final java.lang.Long serializerOid, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByNamesCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadByNames(roids, names, serializerOid, deep, sync));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void downloadByNewJsonQuery(final java.util.Set<java.lang.Long> roids, final java.lang.String query, final java.lang.Long serializerOid, final java.lang.Boolean sync, final DownloadByNewJsonQueryCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
 					callback.success(syncService.downloadByNewJsonQuery(roids, query, serializerOid, sync));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadByOids(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.Long> oids, final java.lang.Long serializerOid, final java.lang.Boolean sync, final java.lang.Boolean deep, final DownloadByOidsCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadByOids(roids, oids, serializerOid, sync, deep));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadByTypes(final java.util.Set<java.lang.Long> roids, final java.lang.String schema, final java.util.Set<java.lang.String> classNames, final java.lang.Long serializerOid, final java.lang.Boolean includeAllSubtypes, final java.lang.Boolean useObjectIDM, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByTypesCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadByTypes(roids, schema, classNames, serializerOid, includeAllSubtypes, useObjectIDM, deep, sync));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadQuery(final java.lang.Long roid, final java.lang.Long qeid, final java.lang.String code, final java.lang.Boolean sync, final java.lang.Long serializerOid, final DownloadQueryCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadQuery(roid, qeid, code, sync, serializerOid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

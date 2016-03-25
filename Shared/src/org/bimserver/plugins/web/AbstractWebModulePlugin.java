@@ -141,6 +141,7 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 		stringDefinition.setType(PrimitiveEnum.STRING);
 		
 		ParameterDefinition contextPathParameter = StoreFactory.eINSTANCE.createParameterDefinition();
+		contextPathParameter.setIdentifier("contextPath");
 		contextPathParameter.setName("contextPath");
 		contextPathParameter.setDescription("Context Path to run this Web Module on");
 		StringType defaultValue = StoreFactory.eINSTANCE.createStringType();

@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -119,7 +120,7 @@ public class TestSimultaniousDownloadWithCaching {
 						try {
 							ServiceMap serviceMap2 = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL);
 							SSerializerPluginConfiguration serializerPluginConfiguration = serviceMap.getBimsie1ServiceInterface().getSerializerByName("Ifc2x3");
-							Long download = serviceMap2.getBimsie1ServiceInterface().download(projectUpdate.getLastRevisionId(), serializerPluginConfiguration.getOid(), true, true);
+							Long download = serviceMap2.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(projectUpdate.getLastRevisionId()), serializerPluginConfiguration.getOid(), true);
 							SDownloadResult downloadData = serviceMap2.getBimsie1ServiceInterface().getDownloadData(download);
 							if (downloadData.getFile().getDataSource() instanceof CacheStoringEmfSerializerDataSource) {
 								CacheStoringEmfSerializerDataSource c = (CacheStoringEmfSerializerDataSource)downloadData.getFile().getDataSource();

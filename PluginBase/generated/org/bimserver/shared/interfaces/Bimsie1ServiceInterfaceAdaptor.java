@@ -56,35 +56,7 @@ public class Bimsie1ServiceInterfaceAdaptor implements org.bimserver.shared.inte
 		return null;
 	}
 	
-	public java.lang.Long download(java.lang.Long roid, java.lang.Long serializerOid, java.lang.Boolean showOwn, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadByGuids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> guids, java.lang.Long serializerOid, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadByJsonQuery(java.util.Set<java.lang.Long> roids, java.lang.String jsonQuery, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadByNames(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> names, java.lang.Long serializerOid, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.lang.Long downloadByNewJsonQuery(java.util.Set<java.lang.Long> roids, java.lang.String query, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadByOids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.Long> oids, java.lang.Long serializerOid, java.lang.Boolean sync, java.lang.Boolean deep) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadByTypes(java.util.Set<java.lang.Long> roids, java.lang.String schema, java.util.Set<java.lang.String> classNames, java.lang.Long serializerOid, java.lang.Boolean includeAllSubtypes, java.lang.Boolean useObjectIDM, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadQuery(java.lang.Long roid, java.lang.Long qeid, java.lang.String code, java.lang.Boolean sync, java.lang.Long serializerOid) throws UserException, ServerException {
 		return null;
 	}
 	

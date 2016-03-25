@@ -30,6 +30,7 @@ import org.bimserver.interfaces.objects.SJavaInfo;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.utils.Formatters;
@@ -50,8 +51,8 @@ public class TestBigFilesRemote {
 		System.out.println("Username: " + username);
 		System.out.println("Password: " + password);
 		System.out.println("Basepath: " + basepath);
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory(null, address);
 		try {
+			JsonBimServerClientFactory factory = new JsonBimServerClientFactory(null, address);
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo(args[1], args[2]));
 			
 			String[] fileNames = new String[]{
@@ -93,6 +94,8 @@ public class TestBigFilesRemote {
 		} catch (ChannelConnectionException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
+		} catch (BimServerClientException e) {
 			e.printStackTrace();
 		}
 	}

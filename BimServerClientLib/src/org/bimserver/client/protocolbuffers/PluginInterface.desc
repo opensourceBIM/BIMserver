@@ -1,5 +1,5 @@
 
-Û—
+á“
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"∏
  SDeserializerPluginConfiguration
 description (	
@@ -394,13 +394,15 @@ identifier (	
 SArrayType
 oid (
 rid ('
-values (2.org.bimserver.pb.SType"\
+values (2.org.bimserver.pb.SType"p
 
-SParameter
-name (	
-oid (
-rid (&
-value (2.org.bimserver.pb.SType"g
+SParameter
+
+identifier (	
+name (	
+oid (
+rid (&
+value (2.org.bimserver.pb.SType"g
 SObjectType
 name (	
 oid (0

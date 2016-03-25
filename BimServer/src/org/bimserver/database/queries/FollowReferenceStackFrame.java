@@ -104,4 +104,9 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 		}
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return "FollowReferenceStackFrame (" + fromReference.getName() + ")";
+	}
 }

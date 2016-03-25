@@ -34,7 +34,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class GitHubPluginRepository {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(GitHubPluginLocation.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(GitHubPluginRepository.class);
 	private final MavenPluginRepository mavenPluginRepository;
 	private final String url;
 

@@ -22,16 +22,9 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.actions.BimDatabaseAction;
-import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
-import org.bimserver.database.actions.DownloadByJsonQueryDatabaseAction;
-import org.bimserver.database.actions.DownloadByNamesDatabaseAction;
 import org.bimserver.database.actions.DownloadByNewJsonQueryDatabaseAction;
-import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
-import org.bimserver.database.actions.DownloadByTypesDatabaseAction;
 import org.bimserver.database.actions.DownloadCompareDatabaseAction;
-import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
-import org.bimserver.database.actions.DownloadQueryDatabaseAction;
 import org.bimserver.database.actions.ProgressListener;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -105,24 +98,6 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 
 		session = getBimServer().getDatabase().createSession();
 		switch (downloadParameters.getDownloadType()) {
-		case DOWNLOAD_REVISION:
-			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getIgnoreUoid(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM);
-			break;
-		case DOWNLOAD_BY_OIDS:
-			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, downloadParameters.getDeep());
-			break;
-		case DOWNLOAD_BY_GUIDS:
-			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, downloadParameters.getDeep());
-			break;
-		case DOWNLOAD_BY_NAMES:
-			action = new DownloadByNamesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getNames(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, downloadParameters.getDeep());
-			break;
-		case DOWNLOAD_OF_TYPE:
-			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getSchema(), downloadParameters.getClassNames(), downloadParameters.getSerializerOid(), downloadParameters.isIncludeAllSubtypes(), downloadParameters.getUseObjectIDM(), getAuthorization(), objectIDM, downloadParameters.getDeep());
-			break;
-		case DOWNLOAD_JSON_QUERY:
-			action = new DownloadByJsonQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getJsonQuery(), downloadParameters.getSerializerOid(), getAuthorization());
-			break;
 		case DOWNLOAD_BY_NEW_JSON_QUERY:
 			action = new DownloadByNewJsonQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getJsonQuery(), downloadParameters.getSerializerOid(), getAuthorization());
 			break;
@@ -131,9 +106,6 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			break;
 		case DOWNLOAD_COMPARE:
 			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getModelCompareIdentifier(), downloadParameters.getCompareType(), getAuthorization(), objectIDM);
-			break;
-		case DOWNLOAD_QUERY:
-			action = new DownloadQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getQeid(), downloadParameters.getSerializerOid(), downloadParameters.getCode(), getAuthorization(), objectIDM);
 			break;
 		}
 		action.addProgressListener(this);

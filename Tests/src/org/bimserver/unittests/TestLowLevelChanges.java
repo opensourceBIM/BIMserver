@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -334,7 +335,7 @@ public class TestLowLevelChanges {
 	private IfcModelInterface getSingleRevision(long roid) throws ServiceException, DeserializeException, IOException {
 		SRevision revision = bimsie1ServiceInterface.getRevision(roid);
 		SSerializerPluginConfiguration serializerByContentType = bimsie1Interface.getSerializerByContentType("application/ifc");
-		long topicId = bimsie1Interface.download(revision.getOid(), serializerByContentType.getOid(), true, true);
+		long topicId = bimsie1Interface.downloadRevisions(Collections.singleton(revision.getOid()), serializerByContentType.getOid(), true);
 		SDownloadResult downloadData = bimsie1Interface.getDownloadData(topicId);
 		DataHandler dataHandler = downloadData.getFile();
 		try {

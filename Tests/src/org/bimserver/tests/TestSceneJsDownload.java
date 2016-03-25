@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -48,7 +49,7 @@ public class TestSceneJsDownload {
 				SProject project = projects.get(0);
 				if (project.getLastRevisionId() != -1) {
 					long start = System.nanoTime();
-					Long download = bimServerClient.getBimsie1ServiceInterface().download(project.getLastRevisionId(), serializerByContentType.getOid(), true, true);
+					Long download = bimServerClient.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(project.getLastRevisionId()), serializerByContentType.getOid(), true);
 					System.out.println(((System.nanoTime() - start) / 1000000) + " ms");
 					start = System.nanoTime();
 					InputStream inputStream = bimServerClient.getDownloadData(download, serializerByContentType.getOid());

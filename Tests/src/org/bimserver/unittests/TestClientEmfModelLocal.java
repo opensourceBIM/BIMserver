@@ -92,9 +92,9 @@ public class TestClientEmfModelLocal {
 	public void test() {
 		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		protocolBuffersMetaData.load(bimServer.getServicesMap(), ProtocolBuffersBimServerClientFactory.class);
-		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData, null);
-		UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 		try {
+			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData, null);
+			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 			bimServerClient = factory.create(usernamePasswordAuthenticationInfo);
 		} catch (ChannelConnectionException e1) {
 			e1.printStackTrace();
@@ -103,6 +103,8 @@ public class TestClientEmfModelLocal {
 		} catch (UserException e) {
 			e.printStackTrace();
 		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (BimServerClientException e) {
 			e.printStackTrace();
 		}
 		try {

@@ -45,6 +45,7 @@ import org.bimserver.interfaces.objects.SUserChanged;
 import org.bimserver.interfaces.objects.SUserRemovedFromProject;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -63,8 +64,8 @@ public class GetLogs {
 	}
 
 	private void start() {
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory(null, "[ADD]");
 		try {
+			JsonBimServerClientFactory factory = new JsonBimServerClientFactory(null, "[ADD]");
 			client = factory.create(new UsernamePasswordAuthenticationInfo("[ADD]", "[ADD]"));
 			List<SLogAction> logs = client.getAdminInterface().getLogs();
 			Path file = Paths.get("log.txt");
@@ -122,6 +123,8 @@ public class GetLogs {
 		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (BimServerClientException e) {
 			e.printStackTrace();
 		}
 	}

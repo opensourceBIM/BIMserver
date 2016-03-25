@@ -835,10 +835,11 @@ message SArrayType {
 }
 
 message SParameter {
-	optional string name = 1;
-	optional int64 oid = 2;
-	optional int32 rid = 3;
-	optional SType value = 4;
+	optional string identifier = 1;
+	optional string name = 2;
+	optional int64 oid = 3;
+	optional int32 rid = 4;
+	optional SType value = 5;
 }
 
 message SObjectType {

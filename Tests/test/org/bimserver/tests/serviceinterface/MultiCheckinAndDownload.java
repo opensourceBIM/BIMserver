@@ -3,6 +3,7 @@ package org.bimserver.tests.serviceinterface;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.util.Collections;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -48,7 +49,7 @@ public class MultiCheckinAndDownload extends TestWithEmbeddedServer {
 					newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
 					
 					// Download the latest revision  (the one we just checked in)
-					Long topicId = bimServerClient.getBimsie1ServiceInterface().download(newProject.getLastRevisionId(), serializer.getOid(), true, true);
+					Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), serializer.getOid(), true);
 					SLongActionState downloadState = bimServerClient.getRegistry().getProgress(topicId);
 					if (downloadState.getState() == SActionState.FINISHED) {
 						// Success
