@@ -38,7 +38,7 @@
 				var state = serverInfo.serverState;
 				if (state == "NOT_SETUP") {
 					$(".indexcontainer").load("setup.html", function(){
-						new Setup($(this), window.location.origin);
+						new Setup($(this), window.location.href);
 					});
 				} else {
 					$(".indexcontainer").load("status.html", function(){

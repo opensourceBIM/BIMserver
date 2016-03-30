@@ -390,7 +390,7 @@ public class Starter extends JFrame {
 //			if (debug ) {
 //				command += " -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y";
 //			}
-			String cp = "classes" + File.pathSeparator;
+			String cp = "." + File.pathSeparator;
 			boolean escapeCompletePath = isMac;
 //			if (escapeCompletePath) {
 //				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
