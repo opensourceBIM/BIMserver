@@ -262,8 +262,13 @@ public class JsonQueryObjectModelConverter {
 		}
 		String namespaceString = includeName.substring(0, includeName.indexOf(":"));
 		String singleIncludeName = includeName.substring(includeName.indexOf(":") + 1);
-		URL resource = getClass().getResource("../json/" + namespaceString + ".json");
-		if (resource == null) {
+		URL resource;
+		try {
+			resource = getClass().getClassLoader().loadClass("org.bimserver.database.queries.StartFrame").getResource("json/" + namespaceString + ".json");
+			if (resource == null) {
+				throw new QueryException("Could not find '" + namespaceString + "' namespace in predefined queries");
+			}
+		} catch (ClassNotFoundException e1) {
 			throw new QueryException("Could not find '" + namespaceString + "' namespace in predefined queries");
 		}
 		ObjectMapper objectMapper = new ObjectMapper();
