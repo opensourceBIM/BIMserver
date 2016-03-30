@@ -1,6 +1,7 @@
 package org.bimserver;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.ServletException;
 import javax.websocket.DeploymentException;
@@ -70,7 +71,11 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 		
 		context.getServletContext().setAttribute("bimserver", bimServer);
 		if (context.getResourceBase() == null) {
-			context.setResourceBase(developmentBaseDir.resolve("www").toAbsolutePath().toString());
+			if (developmentBaseDir == null) {
+				context.setResourceBase(Paths.get("www").toAbsolutePath().toString());
+			} else {
+				context.setResourceBase(developmentBaseDir.resolve("www").toAbsolutePath().toString());
+			}
 		}
 	}
 

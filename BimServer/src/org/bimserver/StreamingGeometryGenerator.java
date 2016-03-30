@@ -382,10 +382,10 @@ public class StreamingGeometryGenerator {
 						IOUtils.copy(new ByteArrayInputStream(bytes), fos);
 						fos.close();
 					}
-					LOGGER.error("Original query: " + originalQuery, e);
+//					LOGGER.error("Original query: " + originalQuery, e);
 				}
 			} catch (Exception e) {
-				LOGGER.error("Original query: " + originalQuery, e);
+//				LOGGER.error("Original query: " + originalQuery, e);
 			}
 		}
 
