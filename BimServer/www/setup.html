@@ -396,7 +396,7 @@ function Setup(cd, address) {
 			if (pluginsToInstall["bimviews"] != null) {
 				var link = $("<a>Open BIMvie.ws</a>");
 				link.click(function(){
-					document.location = "/apps/bimviews";
+					document.location = $(".setup .siteAddressInput").val() + "/apps/bimviews";
 				});
 				cd.find(".finish pre").append("<br/>");
 				cd.find(".finish pre").append(link);

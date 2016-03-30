@@ -172,7 +172,7 @@ public class FileJarClassLoader extends JarClassLoader implements Closeable {
 		try {
 			Lazy<InputStream> lazyInputStream = findPath(fileName);
 			if (lazyInputStream == null) {
-				throw new ClassNotFoundException();
+				throw new ClassNotFoundException(name);
 			}
 			InputStream inputStream = lazyInputStream.get();
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -201,9 +201,9 @@ public class FileJarClassLoader extends JarClassLoader implements Closeable {
 			}				
 			return defineClass;
 		} catch (FileNotFoundException e) {
-			throw new ClassNotFoundException();
+			throw new ClassNotFoundException(name);
 		} catch (IOException e) {
-			throw new ClassNotFoundException();
+			throw new ClassNotFoundException(name);
 		}
 	}
 
