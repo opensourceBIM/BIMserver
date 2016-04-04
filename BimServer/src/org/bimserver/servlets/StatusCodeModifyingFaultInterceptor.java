@@ -1,5 +1,7 @@
 package org.bimserver.servlets;
 
+import javax.servlet.http.HttpServletResponse;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -21,6 +23,7 @@ import org.apache.cxf.binding.soap.SoapMessage;
 import org.apache.cxf.binding.soap.interceptor.AbstractSoapInterceptor;
 import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.phase.Phase;
+import org.apache.cxf.transport.http.AbstractHTTPDestination;
 
 /**
  *	Normally when SOAP faults are returned, the HTTP status code should be 500, but this class will change it to 200, because the Apache CXF JS client requires it to be 200.
@@ -33,6 +36,9 @@ public class StatusCodeModifyingFaultInterceptor extends AbstractSoapInterceptor
 	
 	@Override
 	public void handleMessage(SoapMessage message) throws Fault {
-		message.put(SoapMessage.RESPONSE_CODE, 200);
+		HttpServletResponse response = (HttpServletResponse) message.getExchange()
+				.getInMessage().get(AbstractHTTPDestination.HTTP_RESPONSE);
+		response.setStatus(200);
+//		message.put(SoapMessage.RESPONSE_CODE, 200);
 	}
 }
