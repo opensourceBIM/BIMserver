@@ -338,7 +338,9 @@ public class GenericWebServiceServlet extends SubServlet {
 			}
 		});
 		BusFactory.setDefaultBus(bus);
-
+		
+//		org.apache.cxf.javascript.JavascriptQueryHandlerRegistry
+		
 		for (Class<? extends PublicInterface> clazz : getBimServer().getServicesMap().getInterfaceClasses()) {
 			JaxWsServerFactoryBean serverFactoryBean = new JaxWsServerFactoryBean();
 			Map<String, Object> properties = new HashMap<String, Object>();
