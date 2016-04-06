@@ -27,12 +27,12 @@ function Status(cd, serverInfo) {
 	
 	Global.api.call("PluginInterface", "listAllWebModules", {}, function(webModules){
 		webModules.forEach(function(webModule){
+			var tr = $("<tr>");
+			cd.find(".webModules table tbody").append(tr);
 			Global.api.call("PluginInterface", "getPluginDescriptor", {oid: webModule.pluginDescriptorId}, function(pluginDescriptor){
-				var tr = $("<tr>");
 				tr.append("<td><a href=\"apps/" + pluginDescriptor.identifier + "\">" + pluginDescriptor.identifier + "</a></td>");
 				tr.append("<td>" + pluginDescriptor.name + "</td>");
 				tr.append("<td>" + pluginDescriptor.description + "</td>");
-				cd.find(".webModules table tbody").append(tr);
 			});
 		});
 	});
