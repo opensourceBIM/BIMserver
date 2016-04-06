@@ -352,6 +352,9 @@ public class PluginManager implements PluginManagerInterface {
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(Files.newInputStream(pluginFile));
 			
 			Path pomFile = projectRoot.resolve("pom.xml");
+			if (!Files.exists(pomFile)) {
+				throw new PluginException("No pom.xml found in " + projectRoot);
+			}
 //			Path packageFile = projectRoot.resolve("package.json");
 			
 //			if (Files.exists(packageFile)) {
