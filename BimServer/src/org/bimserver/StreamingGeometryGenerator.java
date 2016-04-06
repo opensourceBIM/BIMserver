@@ -366,7 +366,7 @@ public class StreamingGeometryGenerator {
 						updateProgress();
 					}
 				} catch (Exception e) {
-					boolean debug = true;
+					boolean debug = false;
 					if (debug) {
 						String basefilenamename = "all";
 						if (eClass != null) {
