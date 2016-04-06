@@ -20,6 +20,7 @@ package org.bimserver.webservices.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -344,7 +345,13 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return getBimServer().getSConverter().convertToSListWebModulePluginConfiguration(session.executeAndCommitAction(new ListWebModulesDatabaseAction(session, getInternalAccessMethod())));
+			List<SWebModulePluginConfiguration> list = getBimServer().getSConverter().convertToSListWebModulePluginConfiguration(session.executeAndCommitAction(new ListWebModulesDatabaseAction(session, getInternalAccessMethod())));
+			Collections.sort(list, new Comparator<SWebModulePluginConfiguration>(){
+				@Override
+				public int compare(SWebModulePluginConfiguration o1, SWebModulePluginConfiguration o2) {
+					return o1.getName().compareTo(o2.getName());
+				}});
+			return list;
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
