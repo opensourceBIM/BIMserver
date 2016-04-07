@@ -44,6 +44,8 @@ service PluginInterface {
 
 	rpc addSerializer (AddSerializerRequest) returns (VoidResponse);
 
+	rpc clearMavenCache (ClearMavenCacheRequest) returns (VoidResponse);
+
 	rpc deleteDeserializer (DeleteDeserializerRequest) returns (VoidResponse);
 
 	rpc deleteInternalService (DeleteInternalServiceRequest) returns (VoidResponse);
@@ -331,6 +333,9 @@ message SSerializerPluginConfiguration {
 
 message AddSerializerRequest {
 	optional SSerializerPluginConfiguration serializer = 1;
+}
+
+message ClearMavenCacheRequest {
 }
 
 message DeleteDeserializerRequest {

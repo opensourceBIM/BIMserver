@@ -45,6 +45,9 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	public void addSerializer(org.bimserver.interfaces.objects.SSerializerPluginConfiguration serializer) throws UserException, ServerException {
 	}
 	
+	public void clearMavenCache() throws UserException, ServerException {
+	}
+	
 	public void deleteDeserializer(java.lang.Long sid) throws UserException, ServerException {
 	}
 	

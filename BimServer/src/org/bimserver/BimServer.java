@@ -324,7 +324,7 @@ public class BimServer {
 					}
 
 					@Override
-					public void pluginBundleUpdated(PluginBundle pluginBundle) {
+					public long pluginBundleUpdated(PluginBundle pluginBundle) {
 						SPluginBundleVersion sPluginBundleVersion = pluginBundle.getPluginBundleVersion();
 						try (DatabaseSession session = bimDatabase.createSession()) {
 							PluginBundleVersion current = null;
@@ -350,11 +350,13 @@ public class BimServer {
 								
 								session.commit();
 							}
+							return current.getOid();
 						} catch (BimserverDatabaseException e) {
 							LOGGER.error("", e);
 						} catch (ServiceException e) {
 							LOGGER.error("", e);
 						}
+						return -1;
 					}
 					
 					@Override
@@ -373,7 +375,8 @@ public class BimServer {
 								pluginDescriptor.setPluginInterfaceClassName(getPluginInterface(plugin.getClass()).getName());
 								pluginDescriptor.setEnabled(sPluginInformation.isEnabled());
 								pluginDescriptor.setInstallForNewUsers(sPluginInformation.isInstallForNewUsers());
-								pluginDescriptor.setPluginBundleVersion(session.get(pluginBundleVersionId, OldQuery.getDefault()));
+								PluginBundleVersion value = session.get(pluginBundleVersionId, OldQuery.getDefault());
+								pluginDescriptor.setPluginBundleVersion(value);
 								session.store(pluginDescriptor);
 
 								if (sPluginInformation.isInstallForAllUsers()) {

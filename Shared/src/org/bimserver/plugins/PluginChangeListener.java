@@ -25,7 +25,7 @@ public interface PluginChangeListener {
 	void pluginStateChanged(PluginContext pluginContext, boolean enabled);
 	void pluginUninstalled(PluginContext pluginContext);
 	long pluginBundleInstalled(PluginBundle pluginBundle);
-	void pluginBundleUpdated(PluginBundle pluginBundle);
+	long pluginBundleUpdated(PluginBundle pluginBundle);
 	void pluginBundleUninstalled(PluginBundle pluginBundle);
 	void pluginUpdated(long pluginBundleVersionId, PluginContext newPluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException;
 }

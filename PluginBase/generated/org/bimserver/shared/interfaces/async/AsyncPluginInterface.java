@@ -69,6 +69,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface ClearMavenCacheCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface DeleteDeserializerCallback {
 		void success();
 		void error(Throwable e);
@@ -567,6 +572,19 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					syncService.addSerializer(serializer);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void clearMavenCache(final ClearMavenCacheCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.clearMavenCache();
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
