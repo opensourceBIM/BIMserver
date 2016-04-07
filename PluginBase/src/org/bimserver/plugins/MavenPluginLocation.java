@@ -116,7 +116,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 			VersionRangeResult rangeResult = mavenPluginRepository.getSystem().resolveVersionRange(mavenPluginRepository.getSession(), rangeRequest);
 			List<Version> versions = rangeResult.getVersions();
 			if (!versions.isEmpty()) {
-				for (int i=versions.size() - 1; i>versions.size() - 4; i--) {
+				for (int i=versions.size() - 1; i>Math.max(0, versions.size() - 4); i--) {
 					Version version = versions.get(i);
 					ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
 					
