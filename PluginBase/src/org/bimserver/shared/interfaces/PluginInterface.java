@@ -647,4 +647,14 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "groupId", partName = "getPluginInformation.groupId") String groupId, 
 		@WebParam(name = "artifactId", partName = "getPluginInformation.artifactId") String artifactId, 
 		@WebParam(name = "version", partName = "getPluginInformation.version") String version) throws UserException, ServerException;
+	
+	/**
+	 * Removes the maven cache, can be usefull if you don't want to wait the default update period (which is 1 day) for new plugins
+	 * 
+	 * @throws UserException
+	 * @throws ServerException
+	 */
+	@WebMethod(action = "clearMavenCache")
+	void clearMavenCache() throws UserException, ServerException;
+	
 }

@@ -1,5 +1,7 @@
 package org.bimserver.webservices.impl;
 
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -1507,6 +1509,15 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			return handleException(e);
 		} finally {
 			session.close();
+		}
+	}
+
+	@Override
+	public void clearMavenCache() throws UserException, ServerException {
+		try {
+			getBimServer().getMavenPluginRepository().clearCache();
+		} catch (IOException e) {
+			throw new ServerException(e);
 		}
 	}
 }

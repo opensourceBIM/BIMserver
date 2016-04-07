@@ -238,7 +238,11 @@ public class PluginManager implements PluginManagerInterface {
 		while (it.hasNext()) {
 			org.apache.maven.model.Dependency depend = it.next();
 			try {
-
+				if (depend.getGroupId().equals("org.opensourcebim") && (depend.getArtifactId().equals("shared") || depend.getArtifactId().equals("pluginbase"))) {
+					// Skip this one, because we have already
+					// TODO we might want to check the version though
+					continue;
+				}
 				Dependency dependency2 = new Dependency(new DefaultArtifact(depend.getGroupId() + ":" + depend.getArtifactId() + ":jar:" + depend.getVersion()), "compile");
 				// RemoteRepository central = new
 				// RemoteRepository.Builder("central", "default",
@@ -1476,10 +1480,6 @@ public class PluginManager implements PluginManagerInterface {
 					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
 					pluginContext.getPlugin().init(pluginContext);
 				}
-				
-				for (PluginContext pluginContext : existingPluginBundle) {
-					pluginChangeListener.pluginUpdated(pluginBundle.getPluginBundleVersion().getOid(), pluginContext, sPluginInformation);
-				}
 			}
 		} catch (Exception e) {
 			Files.delete(target);
@@ -1490,13 +1490,14 @@ public class PluginManager implements PluginManagerInterface {
 		// anything goes wrong in the notifications, the plugin bundle will be
 		// uninstalled
 		try {
-			pluginChangeListener.pluginBundleUpdated(pluginBundle);
-//			for (SPluginInformation sPluginInformation : plugins) {
-//				if (sPluginInformation.isEnabled()) {
-//					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
-//					pluginChangeListener.pluginInstalled(pluginBundleVersionId, pluginContext, sPluginInformation);
-//				}
-//			}
+			long pluginBundleVersionId = pluginChangeListener.pluginBundleUpdated(pluginBundle);
+			
+			for (SPluginInformation sPluginInformation : plugins) {
+				if (sPluginInformation.isEnabled()) {
+					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
+					pluginChangeListener.pluginUpdated(pluginBundleVersionId, pluginContext, sPluginInformation);
+				}
+			}
 			return pluginBundle;
 		} catch (Exception e) {
 			uninstall(pluginBundleVersionIdentifier);

@@ -50,8 +50,7 @@ public class UpdatePluginBundle extends BimDatabaseAction<Void> {
 					Path pluginXml = mavenPluginLocation.getVersionPluginXml(version);
 					plugins = bimServer.getPluginManager().getPluginInformationFromPluginFile(pluginXml);
 				} catch (ArtifactResolutionException e) {
-					Path jar = mavenPluginLocation.getVersionJar(version);
-					plugins = bimServer.getPluginManager().getPluginInformationFromJar(jar);
+					plugins = bimServer.getPluginManager().getPluginInformationFromJar(jarFile);
 				}
 
 				IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), OldQuery.getDefault());

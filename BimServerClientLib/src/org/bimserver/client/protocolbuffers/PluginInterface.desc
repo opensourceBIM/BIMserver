@@ -1,5 +1,5 @@
 
-‡Ò
+þÒ
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"¸
  SDeserializerPluginConfiguration
 description (	
@@ -106,7 +106,8 @@ settingsId	 (
 userSettingsId ("\
 AddSerializerRequestD
 
-serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
+serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"
+ClearMavenCacheRequest"(
 DeleteDeserializerRequest
 sid ("+
 DeleteInternalServiceRequest
@@ -585,7 +586,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2÷O
+SPrimitiveEnum_BYTE_ARRAY2ÔP
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -594,7 +595,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 addObjectIDM%.org.bimserver.pb.AddObjectIDMRequest.org.bimserver.pb.VoidResponseY
 addQueryEngine'.org.bimserver.pb.AddQueryEngineRequest.org.bimserver.pb.VoidResponse[
 addRenderEngine(.org.bimserver.pb.AddRenderEngineRequest.org.bimserver.pb.VoidResponseW
-addSerializer&.org.bimserver.pb.AddSerializerRequest.org.bimserver.pb.VoidResponsea
+addSerializer&.org.bimserver.pb.AddSerializerRequest.org.bimserver.pb.VoidResponse[
+clearMavenCache(.org.bimserver.pb.ClearMavenCacheRequest.org.bimserver.pb.VoidResponsea
 deleteDeserializer+.org.bimserver.pb.DeleteDeserializerRequest.org.bimserver.pb.VoidResponseg
 deleteInternalService..org.bimserver.pb.DeleteInternalServiceRequest.org.bimserver.pb.VoidResponsea
 deleteModelChecker+.org.bimserver.pb.DeleteModelCheckerRequest.org.bimserver.pb.VoidResponsea
