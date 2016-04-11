@@ -1,5 +1,8 @@
 package org.bimserver.longaction;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -54,6 +57,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.base.Joiner;
 
 public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey>{
 
@@ -90,7 +94,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 			
 			// TODO projectinfo should contain info for multiple projects/revisions, not just one
 			
-			StringBuilder filename = new StringBuilder();
+			List<String> projectNames = new ArrayList<>();
 			for (Long roid : roids) {
 				Revision revision = databaseSession.get(roid, OldQuery.getDefault());
 				ConcreteRevision concreteRevision = revision.getConcreteRevisions().get(0);
@@ -98,11 +102,11 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 				projectInfo.setMaxBounds(getBimServer().getSConverter().convertToSObject(concreteRevision.getMaxBounds()));
 				projectInfo.setName("" + roids.iterator().next());
 				packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
-				filename.append(revision.getProject().getName());
+				projectNames.add(revision.getProject().getName() + "." + revision.getId());
 				break;
 			}
 			
-			this.filename = filename.toString();
+			this.filename = Joiner.on("-").join(projectNames);
 
 			PluginConfiguration serializerPluginConfiguration = databaseSession.get(serializerOid, OldQuery.getDefault());
 			if (serializerPluginConfiguration == null) {
