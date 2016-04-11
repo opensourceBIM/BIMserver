@@ -18,6 +18,7 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -47,6 +48,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.base.Joiner;
 
 public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
@@ -63,6 +65,12 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 	@SuppressWarnings("unchecked")
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		List<String> projectNames = new ArrayList<>();
+		for (long roid : roids) {
+			Revision revision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
+			projectNames.add(revision.getProject().getName() + "." + revision.getId());
+		}
+		String name = Joiner.on("-").join(projectNames);
 		long roid = roids.iterator().next();
 		Revision revision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
 		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
@@ -70,54 +78,52 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 		ObjectNode queryObject;
 		try {
 			queryObject = new ObjectMapper().readValue(json, ObjectNode.class);
-		Query query = converter.parseJson("query", (ObjectNode) queryObject);
-
-		IfcModelInterface ifcModel = new ServerIfcModel(packageMetaData, null, getDatabaseSession());
-
-		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, roids, packageMetaData);
-		HashMapVirtualObject next = queryObjectProvider.next();
-		while (next != null) {
-			IdEObject newObject = packageMetaData.create(next.eClass());
-			for (EAttribute eAttribute : newObject.eClass().getEAllAttributes()) {
-				newObject.eSet(eAttribute, next.eGet(eAttribute));
+			Query query = converter.parseJson("query", (ObjectNode) queryObject);
+	
+			IfcModelInterface ifcModel = new ServerIfcModel(packageMetaData, null, getDatabaseSession());
+	
+			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, roids, packageMetaData);
+			HashMapVirtualObject next = queryObjectProvider.next();
+			while (next != null) {
+				IdEObject newObject = packageMetaData.create(next.eClass());
+				for (EAttribute eAttribute : newObject.eClass().getEAllAttributes()) {
+					newObject.eSet(eAttribute, next.eGet(eAttribute));
+				}
+				ifcModel.add(next.getOid(), newObject);
+				next = queryObjectProvider.next();
 			}
-			ifcModel.add(next.getOid(), newObject);
+	
+			queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, roids, packageMetaData);
 			next = queryObjectProvider.next();
-		}
-
-		queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, roids, packageMetaData);
-		next = queryObjectProvider.next();
-		while (next != null) {
-			IdEObject idEObject = ifcModel.get(next.getOid());
-			for (EReference eReference : idEObject.eClass().getEAllReferences()) {
-				if (eReference.isMany()) {
-					List<Long> refOids = (List<Long>)next.eGet(eReference);
-					List<IdEObject> list = (List<IdEObject>)idEObject.eGet(eReference);
-					if (refOids != null) {
-						for (Long refOid : refOids) {
-							IdEObject ref = ifcModel.get(refOid);
-							if (ref != null) {
-								list.add(ref);
+			while (next != null) {
+				IdEObject idEObject = ifcModel.get(next.getOid());
+				for (EReference eReference : idEObject.eClass().getEAllReferences()) {
+					if (eReference.isMany()) {
+						List<Long> refOids = (List<Long>)next.eGet(eReference);
+						List<IdEObject> list = (List<IdEObject>)idEObject.eGet(eReference);
+						if (refOids != null) {
+							for (Long refOid : refOids) {
+								IdEObject ref = ifcModel.get(refOid);
+								if (ref != null) {
+									list.add(ref);
+								}
 							}
 						}
+					} else {
+						long refOid = (long) next.eGet(eReference);
+						idEObject.eSet(eReference, ifcModel.get(refOid));
 					}
-				} else {
-					long refOid = (long) next.eGet(eReference);
-					idEObject.eSet(eReference, ifcModel.get(refOid));
 				}
+				next = queryObjectProvider.next();
 			}
-			next = queryObjectProvider.next();
-		}
-		
-		String name = "";
-		ifcModel.getModelMetaData().setName(name);
-		ifcModel.getModelMetaData().setRevisionId(1);
-		if (getAuthorization().getUoid() != -1) {
-			ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(getAuthorization().getUoid()).getName());
-		}
-		ifcModel.getModelMetaData().setDate(new Date());
-		return ifcModel;
-
+			
+			ifcModel.getModelMetaData().setName(name);
+			ifcModel.getModelMetaData().setRevisionId(1);
+			if (getAuthorization().getUoid() != -1) {
+				ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(getAuthorization().getUoid()).getName());
+			}
+			ifcModel.getModelMetaData().setDate(new Date());
+			return ifcModel;
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} catch (IfcModelInterfaceException e) {
