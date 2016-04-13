@@ -126,7 +126,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 //				checkCheckSum(project);
 //			}
 			
-			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
+			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
 
 			// TODO checksum
 			// TODO modelcheckers

@@ -22,7 +22,6 @@ import java.io.ByteArrayOutputStream;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -77,7 +76,6 @@ import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.QueryContext;
-import org.bimserver.shared.QueryException;
 import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.WrappedVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
@@ -470,11 +468,17 @@ public class StreamingGeometryGenerator {
 								}
 							}
 							JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
-							queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:ContainedInStructure"));
-							queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:OwnerHistory"));
-							Include representation = jsonQueryObjectModelConverter.getDefineFromFile("validifc:Representation");
+							
+							String queryNameSpace = "validifc";
+							if (packageMetaData.getSchema() == Schema.IFC4) {
+								queryNameSpace = "ifc4stdlib";
+							}
+							
+							queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure"));
+							queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory"));
+							Include representation = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation");
 							queryPart.addInclude(representation);
-							Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile("validifc:ObjectPlacement");
+							Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement");
 							queryPart.addInclude(objectPlacement);
 							if (packageMetaData.getEClass("IfcWall").isSuperTypeOf(eClass)) {
 								Include ifcWall = queryPart.createInclude();

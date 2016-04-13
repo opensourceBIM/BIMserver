@@ -1,16 +1,13 @@
 package org.bimserver.interfaces;
 
 
-import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.meta.SClass;
-import org.bimserver.shared.meta.SConstructor;
-import org.bimserver.shared.meta.SServicesMap;
-import org.bimserver.shared.meta.SourceCodeFetcher;
+import org.bimserver.shared.meta.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.bimserver.shared.interfaces.PublicInterface;
 
 /******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
+ * Copyright (C) 2009-2016  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -23,7 +20,7 @@ import org.slf4j.LoggerFactory;
  * GNU Affero General Public License for more details.
  * 
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
 
@@ -493,6 +490,23 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SMethodMetric"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SMethodMetric();
+					}
+				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SPluginBundleVersion"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SPluginBundleVersion();
+					}
+				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SPluginBundleType"), null));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SPluginType"), null));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SPluginBundle"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SPluginBundle();
+					}
+				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SPluginInformation"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SPluginInformation();
 					}
 				}));
 			super.init();

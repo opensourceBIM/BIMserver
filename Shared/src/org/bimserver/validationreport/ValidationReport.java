@@ -35,8 +35,9 @@ import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.base.Charsets;
 
-public class ValidationReport {
+public class ValidationReport implements IssueInterface {
 
 	private final List<Item> items = new ArrayList<Item>();
 
@@ -129,5 +130,15 @@ public class ValidationReport {
 
 	public void add(Type type, long oid, String key, Object is, String shouldBe) {
 		items.add(new Line(type, oid, key, is.toString(), shouldBe));
+	}
+
+	@Override
+	public byte[] getBytes() {
+		return new ObjectMapper().toString().getBytes(Charsets.UTF_8);
+	}
+
+	@Override
+	public void validate() throws IssueValidationException {
+		// Nothing to validate
 	}
 }

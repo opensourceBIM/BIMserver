@@ -289,7 +289,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 						StreamingDeserializerPlugin streaminDeserializerPlugin = (StreamingDeserializerPlugin) plugin;
 						ObjectType settings = deserializerPluginConfiguration.getSettings();
 						StreamingDeserializer streamingDeserializer = streaminDeserializerPlugin.createDeserializer(new PluginConfiguration(settings));
-						streamingDeserializer.init(getBimServer().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
+						streamingDeserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
 						OutputStream outputStream = Files.newOutputStream(file);
 						InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), outputStream);
 						StreamingCheckinDatabaseAction checkinDatabaseAction = new StreamingCheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), comment, fileName, inputStream, streamingDeserializer);

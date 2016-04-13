@@ -34,7 +34,7 @@ import com.google.common.base.Charsets;
 
 public class SPackageGeneratorWrapper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SConverterGeneratorWrapper.class);
-	private File sourceFolder = new File("../Shared/generated");
+	private File sourceFolder = new File("../PluginBase/generated");
 	private File packageFolder = new File(sourceFolder, "org" + File.separator + "bimserver" + File.separator + "shared" + File.separator + "meta");
 
 //	public static void main(String[] args) {
