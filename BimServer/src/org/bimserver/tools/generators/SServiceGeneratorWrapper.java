@@ -33,7 +33,7 @@ import com.google.common.base.Charsets;
 
 public class SServiceGeneratorWrapper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SServiceGeneratorWrapper.class);
-	private File sourceFolder = new File("../Shared/generated");
+	private File sourceFolder = new File("../PluginBase/generated");
 	private File packageFolder = new File(sourceFolder, "org" + File.separator + "bimserver" + File.separator + "interfaces");
 
 	public SServiceGeneratorWrapper() {

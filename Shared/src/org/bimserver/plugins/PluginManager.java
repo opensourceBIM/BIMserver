@@ -108,6 +108,7 @@ import org.eclipse.aether.collection.CollectRequest;
 import org.eclipse.aether.collection.DependencyCollectionException;
 import org.eclipse.aether.graph.Dependency;
 import org.eclipse.aether.graph.DependencyNode;
+import org.eclipse.aether.internal.impl.SimpleLocalRepositoryManagerFactory;
 import org.eclipse.aether.resolution.ArtifactRequest;
 import org.eclipse.aether.resolution.ArtifactResolutionException;
 import org.eclipse.aether.resolution.ArtifactResult;
@@ -244,9 +245,6 @@ public class PluginManager implements PluginManagerInterface {
 					continue;
 				}
 				Dependency dependency2 = new Dependency(new DefaultArtifact(depend.getGroupId() + ":" + depend.getArtifactId() + ":jar:" + depend.getVersion()), "compile");
-				// RemoteRepository central = new
-				// RemoteRepository.Builder("central", "default",
-				// "http://repo1.maven.org/maven2/").build();
 
 				if (!dependency2.getArtifact().isSnapshot()) {
 					if (dependency2.getArtifact().getFile() != null) {
@@ -255,16 +253,36 @@ public class PluginManager implements PluginManagerInterface {
 						ArtifactRequest request = new ArtifactRequest();
 						request.setArtifact(dependency2.getArtifact());
 						request.setRepositories(mavenPluginRepository.getRepositories());
-						ArtifactResult resolveArtifact;
 						try {
-							resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+							ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 							if (resolveArtifact.getArtifact().getFile() != null) {
 								bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
+							} else {
+								// TODO error?
 							}
 						} catch (ArtifactResolutionException e) {
 							e.printStackTrace();
 						}
 					}
+				} else {
+					// Snapshot projects linked in Eclipse
+					System.out.println();
+					
+					ArtifactRequest request = new ArtifactRequest();
+					request.setArtifact(dependency2.getArtifact());
+					request.setRepositories(mavenPluginRepository.getLocalRepositories());
+					try {
+						ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+						if (resolveArtifact.getArtifact().getFile() != null) {
+							bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
+						} else {
+							// TODO error?
+						}
+					} catch (ArtifactResolutionException e) {
+						e.printStackTrace();
+					}
+
+//					bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
 				}
 				
 				CollectRequest collectRequest = new CollectRequest();

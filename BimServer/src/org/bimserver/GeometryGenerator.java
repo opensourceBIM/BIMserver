@@ -412,14 +412,14 @@ public class GeometryGenerator {
 
 				final Map<IdEObject, IdEObject> bigMap = new HashMap<IdEObject, IdEObject>();
 
-				HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(packageMetaData.getEPackage()), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
+				HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(packageMetaData.getEPackage()), model.getPackageMetaData());
 				OidProvider oidProvider = new OidProvider(){
 					@Override
 					public long newOid(EClass eClass) {
 						return databaseSession.newOid(eClass);
 					}};
 				for (final EClass eClass : classes) {
-					final BasicIfcModel targetModel = new BasicIfcModel(pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1"), null);
+					final BasicIfcModel targetModel = new BasicIfcModel(model.getPackageMetaData(), null);
 					ModelHelper modelHelper = new ModelHelper(bimServer.getMetaDataManager(), targetModel);
 					modelHelper.setOidProvider(oidProvider);
 					modelHelper.setObjectIDM(idm);

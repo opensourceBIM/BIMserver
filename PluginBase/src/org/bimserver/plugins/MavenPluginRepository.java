@@ -25,9 +25,11 @@ public class MavenPluginRepository {
 	private final RepositorySystem system;
 	private final RepositorySystemSession session;
 	private final List<RemoteRepository> repositories;
+	private List<RemoteRepository> localRepositories;
 	private final RemoteRepository remoteRepository;
 	private String defaultRepository;
 	private Path localRepoFile;
+	private RemoteRepository local;
 	
 	public MavenPluginRepository(Path localRepoFile) {
 		this(localRepoFile, "http://central.maven.org/maven2");
@@ -42,7 +44,14 @@ public class MavenPluginRepository {
 		builder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
 		remoteRepository = builder.build();
 		repositories = new ArrayList<RemoteRepository>(Arrays.asList(remoteRepository));
+		local = new RemoteRepository.Builder("local", "default", "file:" + localRepoFile).build();
+		localRepositories = new ArrayList<RemoteRepository>();
+		localRepositories.add(local);
 	}
+
+	public RemoteRepository getLocal() {
+		return local;
+	}	
 	
 	public MavenPluginLocation getPluginLocation(String defaultrepository, String groupId, String artifactId) {
 		return new MavenPluginLocation(this, defaultrepository, groupId, artifactId);
@@ -91,5 +100,9 @@ public class MavenPluginRepository {
 
 	public void clearCache() throws IOException {
 		FileUtils.deleteDirectory(this.localRepoFile.toFile());
+	}
+
+	public List<RemoteRepository> getLocalRepositories() {
+		return localRepositories;
 	}
 }
