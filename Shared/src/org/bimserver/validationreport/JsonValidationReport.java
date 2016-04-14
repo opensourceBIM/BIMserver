@@ -18,7 +18,9 @@ package org.bimserver.validationreport;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
@@ -37,9 +39,13 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Charsets;
 
-public class ValidationReport implements IssueInterface {
+public class JsonValidationReport implements IssueInterface {
 
 	private final List<Item> items = new ArrayList<Item>();
+	private final Map<String, Boolean> checkResults = new HashMap<>();
+
+	public JsonValidationReport() {
+	}
 
 	public void addHeader(String value) {
 		items.add(new Header(value));
@@ -58,9 +64,14 @@ public class ValidationReport implements IssueInterface {
 	public ObjectNode toJson(ObjectMapper objectMapper) {
 		ObjectNode result = objectMapper.createObjectNode();
 		ArrayNode itemsJson = objectMapper.createArrayNode();
+		ObjectNode checks = objectMapper.createObjectNode();
+		result.set("checks", checks);
 		result.set("items", itemsJson);
 		for (Item item : items) {
 			itemsJson.add(item.toJson(objectMapper));
+		}
+		for (String identifier : checkResults.keySet()) {
+			checks.put(identifier, checkResults.get(identifier));
 		}
 		return result;
 	}
@@ -124,21 +135,32 @@ public class ValidationReport implements IssueInterface {
 		return items;
 	}
 	
-	public void add(Type type, long oid, String key, String is, String shouldBe) {
-		items.add(new Line(type, oid, key, is, shouldBe));
+	public void add(Type messageType, String type, String guid, long oid, String key, String is, String shouldBe) {
+		items.add(new Line(messageType, oid, key, is, shouldBe));
 	}
 
-	public void add(Type type, long oid, String key, Object is, String shouldBe) {
-		items.add(new Line(type, oid, key, is.toString(), shouldBe));
+	public void add(Type messageType, String type, String guid, Long oid, String key, Object is, String shouldBe) {
+		items.add(new Line(messageType, oid, key, is == null ? "" : is.toString(), shouldBe));
+	}
+	
+	@Override
+	public void add(Type messageType, String message, Object is, String shouldBe) throws IssueException {
+		add(messageType, null, null, null, message, is, shouldBe);
 	}
 
 	@Override
 	public byte[] getBytes() {
-		return new ObjectMapper().toString().getBytes(Charsets.UTF_8);
+		ObjectMapper objectMapper = new ObjectMapper();
+		return toJson(objectMapper).toString().getBytes(Charsets.UTF_8);
 	}
 
 	@Override
 	public void validate() throws IssueValidationException {
 		// Nothing to validate
+	}
+
+	@Override
+	public void setCheckValid(String identifier, boolean valid) {
+		checkResults.put(identifier, valid);
 	}
 }
