@@ -23,7 +23,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -393,6 +396,17 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	@Override
 	public void close() throws Exception {
 		// TODO Auto-generated method stub
-		
+	}
+
+	public void downloadExtendedData(long edid, Path outputFile) throws IOException {
+		try (InputStream downloadData = channel.getDownloadData(baseAddress, token, edid)) {
+			Files.copy(downloadData, outputFile, StandardCopyOption.REPLACE_EXISTING);
+		}
+	}
+
+	public void downloadExtendedData(long edid, OutputStream outputStream) throws IOException {
+		try (InputStream downloadData = channel.getDownloadData(baseAddress, token, edid)) {
+			IOUtils.copy(downloadData, outputStream);
+		}
 	}
 }

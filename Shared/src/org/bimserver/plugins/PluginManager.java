@@ -266,8 +266,6 @@ public class PluginManager implements PluginManagerInterface {
 					}
 				} else {
 					// Snapshot projects linked in Eclipse
-					System.out.println();
-					
 					ArtifactRequest request = new ArtifactRequest();
 					request.setArtifact(dependency2.getArtifact());
 					request.setRepositories(mavenPluginRepository.getLocalRepositories());
@@ -301,6 +299,7 @@ public class PluginManager implements PluginManagerInterface {
 				PreorderNodeListGenerator nlg = new PreorderNodeListGenerator();
 				node.accept(nlg);
 
+				DelegatingClassLoader depDelLoader = new DelegatingClassLoader(previous);
 				for (Artifact artifact : nlg.getArtifacts(false)) {
 					Path jarFile = Paths.get(artifact.getFile().getAbsolutePath());
 
@@ -309,14 +308,13 @@ public class PluginManager implements PluginManagerInterface {
 					// Path path =
 					// projectRoot.getParent().resolve(nlg.getClassPath());
 
-					DelegatingClassLoader depDelLoader = new DelegatingClassLoader(previous);
 					loadDependencies(jarFile, depDelLoader);
-					EclipsePluginClassloader depLoader = new EclipsePluginClassloader(depDelLoader, projectRoot);
+//					EclipsePluginClassloader depLoader = new EclipsePluginClassloader(depDelLoader, projectRoot);
 
 					bimServerDependencies.add(new org.bimserver.plugins.Dependency(jarFile));
 
-					previous = depLoader;
 				}
+				previous = depDelLoader;
 			} catch (DependencyCollectionException e) {
 				e.printStackTrace();
 			}
@@ -326,7 +324,7 @@ public class PluginManager implements PluginManagerInterface {
 		// Path libFolder = projectRoot.resolve("lib");
 		// loadDependencies(libFolder, delegatingClassLoader);
 		EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
-		// pluginClassloader.dumpStructure(0);
+		pluginClassloader.dumpStructure(0);
 
 		ResourceLoader resourceLoader = new ResourceLoader() {
 			@Override

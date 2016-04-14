@@ -171,7 +171,7 @@ public abstract class Channel implements ServiceHolder {
 		return -1;
 	}
 
-	public InputStream getDownloadData(String  baseAddress, String token, long topicId, long serializerOid) throws IOException {
+	public InputStream getDownloadData(String baseAddress, String token, long topicId, long serializerOid) throws IOException {
 		String address = baseAddress + "/download?token=" + token + "&topicId=" + topicId + "&serializerOid=" + serializerOid;
 		HttpPost httppost = new HttpPost(address);
 		try {
@@ -190,6 +190,25 @@ public abstract class Channel implements ServiceHolder {
 		return null;
 	}
 
+	public InputStream getDownloadData(String baseAddress, String token, long edid) throws IOException {
+		String address = baseAddress + "/download?token=" + token + "&action=extendeddata&edid=" + edid;
+		HttpPost httppost = new HttpPost(address);
+		try {
+			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				return httpResponse.getEntity().getContent();
+			} else {
+				LOGGER.error(httpResponse.getStatusLine().getStatusCode() + " - " + httpResponse.getStatusLine().getReasonPhrase());
+				httppost.releaseConnection();
+			}
+		} catch (ClientProtocolException e) {
+			LOGGER.error("", e);
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		}
+		return null;
+	}
+	
 	public <T extends PublicInterface> T get(Class<T> class1) throws PublicInterfaceNotFoundException {
 		T t = get(class1.getName());
 		if (t == null) {

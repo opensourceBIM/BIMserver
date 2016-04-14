@@ -610,6 +610,9 @@ public class Bimsie1ServiceImpl extends GenericServiceImpl implements Bimsie1Ser
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
+			if (revision == null) {
+				throw new UserException("No revision found with roid " + roid);
+			}
 			return getBimServer().getSConverter().convertToSListExtendedData(revision.getExtendedData());
 		} catch (Exception e) {
 			return handleException(e);
