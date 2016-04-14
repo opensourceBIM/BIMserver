@@ -27,9 +27,13 @@ public class Line extends Item {
 	private Type type;
 	private long oid = -1;
 
-	public Line(Type type, long oid, String fieldOrClass, String value, String shouldBe) {
+	public Line(Type type, Long oid, String fieldOrClass, String value, String shouldBe) {
 		this.type = type;
-		this.oid = oid;
+		if (oid == null) {
+			this.oid = -1;
+		} else {
+			this.oid = oid;
+		}
 		this.fieldOrClass = fieldOrClass;
 		this.value = value;
 		this.shouldBe = shouldBe;
