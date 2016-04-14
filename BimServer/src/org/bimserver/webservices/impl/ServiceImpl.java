@@ -1406,6 +1406,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
+			if (revision == null) {
+				throw new UserException("No revision found for roid " + roid);
+			}
 			getBimServer().getNotificationsManager().notify(new NewRevisionNotification(getBimServer(), revision.getProject().getOid(), revision.getOid(), soid));
 		} catch (Exception e) {
 			handleException(e);
