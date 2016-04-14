@@ -19,6 +19,7 @@ package org.bimserver.shared;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.List;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.PackageMetaData;
@@ -51,18 +52,38 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 		buffer.put(new byte[unsettedLength]);
 	}
 
-	public void eUnset(EStructuralFeature feature) throws BimserverDatabaseException {
+	private boolean useUnsetBit(EStructuralFeature feature) {
+		// TODO non-unsettable boolean values can also be stored in these bits
 		if (feature.isUnsettable()) {
+			return true;
+		} else {
+			if (feature.isMany()) {
+				return true;
+			}
+			if (feature.getDefaultValue() == null || (feature.getDefaultValue() != null && feature.getDefaultValue() == null)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void eUnset(EStructuralFeature feature) throws BimserverDatabaseException {
+		if (useUnsetBit(feature)) {
 			int pos = featureCounter / 8;
 			byte b = buffer.get(pos);
 			b |= (1 << (featureCounter % 8));
 			buffer.put(pos, b);
 		} else {
 			if (feature instanceof EReference) {
-				ensureCapacity(buffer.position(), 2);
-				buffer.order(ByteOrder.LITTLE_ENDIAN);
-				buffer.putShort((short)-1);
-				buffer.order(ByteOrder.BIG_ENDIAN);
+				if (feature.isMany()) {
+					ensureCapacity(buffer.position(), 4);
+					buffer.putInt(0);
+				} else {
+					ensureCapacity(buffer.position(), 2);
+					buffer.order(ByteOrder.LITTLE_ENDIAN);
+					buffer.putShort((short)-1);
+					buffer.order(ByteOrder.BIG_ENDIAN);
+				}
 			} else if (feature.getEType() instanceof EEnum) {
 				writeEnum(feature, null);
 			} else {
@@ -143,6 +164,11 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 		} else if (featureCounter < nrFeatures) {
 			throw new BimserverDatabaseException("Not all features seem to have been set on " + this.eClass.getName() + " " + featureCounter + " / " + nrFeatures);
 		}
+		
+		if (eClass.getName().equals("IfcShapeRepresentation") && buffer.position() == 27) {
+			System.out.println();
+		}
+		
 		return buffer;
 //
 //		if (buffer.position() != bufferSize) {

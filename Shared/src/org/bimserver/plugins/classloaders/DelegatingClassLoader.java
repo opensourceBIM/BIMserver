@@ -23,7 +23,7 @@ import java.util.Set;
 
 import org.bimserver.utils.StringUtils;
 
-public class DelegatingClassLoader extends ClassLoader {
+public class DelegatingClassLoader extends PublicFindClassClassLoader {
 	private final Set<PublicFindClassClassLoader> jarClassLoaders = new LinkedHashSet<PublicFindClassClassLoader>();
 	
 	public DelegatingClassLoader(ClassLoader parentClassLoader) {
@@ -63,7 +63,7 @@ public class DelegatingClassLoader extends ClassLoader {
 	}
 	
 	@Override
-	protected Class<?> findClass(String name) throws ClassNotFoundException {
+	public Class<?> findClass(String name) throws ClassNotFoundException {
 		for (PublicFindClassClassLoader jarClassLoader : jarClassLoaders) {
 			try {
 				Class<?> findClass = jarClassLoader.findClass(name);
@@ -77,7 +77,7 @@ public class DelegatingClassLoader extends ClassLoader {
 	}
 
 	@Override
-	protected URL findResource(String name) {
+	public URL findResource(String name) {
 		for (PublicFindClassClassLoader jarClassLoader : jarClassLoaders) {
 			URL resource = jarClassLoader.findResource(name);
 			if (resource != null) {
