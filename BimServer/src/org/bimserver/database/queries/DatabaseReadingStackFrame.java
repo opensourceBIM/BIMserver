@@ -150,6 +150,10 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			
 			int fieldCounter = 0;
 			
+			if (eClass.getName().equals("IfcShapeRepresentation") && buffer.capacity() == 27) {
+				System.out.println();
+			}
+			
 			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 				try {
 					if (getPackageMetaData().useForDatabaseStorage(eClass, feature)) {
@@ -227,7 +231,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 				} catch (StringIndexOutOfBoundsException e) {
 					throw new BimserverDatabaseException("Reading " + eClass.getName() + "." + feature.getName(), e);
 				} catch (BufferUnderflowException e) {
-					throw new BimserverDatabaseException("Reading " + eClass.getName() + "." + feature.getName(), e);
+					throw new BimserverDatabaseException("Reading " + eClass.getName() + "." + feature.getName() + " " + buffer.capacity(), e);
 				} catch (BufferOverflowException e) {
 					throw new BimserverDatabaseException("Reading " + eClass.getName() + "." + feature.getName(), e);
 				}
@@ -325,6 +329,9 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 				buffer.position(buffer.position() + 1);
 			} else {
+				if (buffer.position() + 4 > buffer.capacity()) {
+					System.out.println();
+				}
 				int listSize = buffer.getInt();
 
 				for (int i = 0; i < listSize; i++) {
