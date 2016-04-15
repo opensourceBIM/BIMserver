@@ -1,5 +1,7 @@
 package org.bimserver.database.actions;
 
+import org.bimserver.BimServer;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -23,24 +25,33 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.Plugin;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
 public class AddInternalServiceDatabaseAction extends AddDatabaseAction<InternalServicePluginConfiguration> {
 
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public AddInternalServiceDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, InternalServicePluginConfiguration eService) {
+	public AddInternalServiceDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, InternalServicePluginConfiguration eService) {
 		super(databaseSession, accessMethod, eService);
+		this.bimServer = bimServer;
 		this.authorization = authorization;
 	}
 	
 	@Override
 	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
-		user.getUserSettings().getServices().add(getIdEObject());
+		InternalServicePluginConfiguration idEObject = getIdEObject();
+		idEObject.setUserSettings(user.getUserSettings());
+		Plugin plugin = bimServer.getPluginManager().getPlugin(idEObject.getPluginDescriptor().getIdentifier(), true);
+		ObjectType settings = bimServer.convertSettings(getDatabaseSession(), plugin);
+		user.getUserSettings().getServices().add(idEObject);
+		idEObject.setSettings(settings);
 		getDatabaseSession().store(user.getUserSettings());
 		return super.execute();
 	}

@@ -1471,8 +1471,10 @@ public class PluginManager implements PluginManagerInterface {
 				set.remove(pluginContext);
 			}
 			
-			Path target = pluginsDir.resolve(currentVersion.getFileName());
-			Files.delete(target);
+			if (existingPluginBundle.getPluginBundle().getInstalledVersion().getType() == SPluginBundleType.MAVEN) {
+				Path target = pluginsDir.resolve(currentVersion.getFileName());
+				Files.delete(target);
+			}
 			
 //			for (PluginContext pluginContext : existingPluginBundle) {
 //				pluginChangeListener.pluginUninstalled(pluginContext);

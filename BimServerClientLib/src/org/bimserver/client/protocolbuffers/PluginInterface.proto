@@ -28,21 +28,21 @@ option java_outer_classname = "PluginInterfaceImpl";
 option optimize_for = SPEED;
 
 service PluginInterface {
-	rpc addDeserializer (AddDeserializerRequest) returns (VoidResponse);
+	rpc addDeserializer (AddDeserializerRequest) returns (AddDeserializerResponse);
 
-	rpc addInternalService (AddInternalServiceRequest) returns (VoidResponse);
+	rpc addInternalService (AddInternalServiceRequest) returns (AddInternalServiceResponse);
 
-	rpc addModelCompare (AddModelCompareRequest) returns (VoidResponse);
+	rpc addModelCompare (AddModelCompareRequest) returns (AddModelCompareResponse);
 
-	rpc addModelMerger (AddModelMergerRequest) returns (VoidResponse);
+	rpc addModelMerger (AddModelMergerRequest) returns (AddModelMergerResponse);
 
-	rpc addObjectIDM (AddObjectIDMRequest) returns (VoidResponse);
+	rpc addObjectIDM (AddObjectIDMRequest) returns (AddObjectIDMResponse);
 
-	rpc addQueryEngine (AddQueryEngineRequest) returns (VoidResponse);
+	rpc addQueryEngine (AddQueryEngineRequest) returns (AddQueryEngineResponse);
 
-	rpc addRenderEngine (AddRenderEngineRequest) returns (VoidResponse);
+	rpc addRenderEngine (AddRenderEngineRequest) returns (AddRenderEngineResponse);
 
-	rpc addSerializer (AddSerializerRequest) returns (VoidResponse);
+	rpc addSerializer (AddSerializerRequest) returns (AddSerializerResponse);
 
 	rpc clearMavenCache (ClearMavenCacheRequest) returns (VoidResponse);
 
@@ -223,6 +223,11 @@ message AddDeserializerRequest {
 	optional SDeserializerPluginConfiguration deserializer = 1;
 }
 
+message AddDeserializerResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
 message SInternalServicePluginConfiguration {
 	optional string description = 1;
 	optional bool enabled = 2;
@@ -240,6 +245,11 @@ message AddInternalServiceRequest {
 	optional SInternalServicePluginConfiguration internalService = 1;
 }
 
+message AddInternalServiceResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
 message SModelComparePluginConfiguration {
 	optional string description = 1;
 	optional bool enabled = 2;
@@ -255,6 +265,11 @@ message AddModelCompareRequest {
 	optional SModelComparePluginConfiguration modelCompare = 1;
 }
 
+message AddModelCompareResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
 message SModelMergerPluginConfiguration {
 	optional string description = 1;
 	optional bool enabled = 2;
@@ -268,6 +283,11 @@ message SModelMergerPluginConfiguration {
 
 message AddModelMergerRequest {
 	optional SModelMergerPluginConfiguration modelMerger = 1;
+}
+
+message AddModelMergerResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
 }
 
 message SObjectIDMPluginConfiguration {
@@ -286,6 +306,11 @@ message AddObjectIDMRequest {
 	optional SObjectIDMPluginConfiguration objectIDM = 1;
 }
 
+message AddObjectIDMResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
 message SQueryEnginePluginConfiguration {
 	optional string description = 1;
 	optional bool enabled = 2;
@@ -299,6 +324,11 @@ message SQueryEnginePluginConfiguration {
 
 message AddQueryEngineRequest {
 	optional SQueryEnginePluginConfiguration queryEngine = 1;
+}
+
+message AddQueryEngineResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
 }
 
 message SRenderEnginePluginConfiguration {
@@ -317,6 +347,11 @@ message AddRenderEngineRequest {
 	optional SRenderEnginePluginConfiguration renderEngine = 1;
 }
 
+message AddRenderEngineResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
 message SSerializerPluginConfiguration {
 	optional string description = 1;
 	optional bool enabled = 2;
@@ -333,6 +368,11 @@ message SSerializerPluginConfiguration {
 
 message AddSerializerRequest {
 	optional SSerializerPluginConfiguration serializer = 1;
+}
+
+message AddSerializerResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
 }
 
 message ClearMavenCacheRequest {

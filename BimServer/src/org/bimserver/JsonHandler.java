@@ -87,6 +87,9 @@ public class JsonHandler {
 	private void processSingleRequest(JsonObject request, String jsonToken, HttpServletRequest httpRequest, JsonWriter writer) throws Exception {
 		long s = System.nanoTime();
 		String interfaceName = request.get("interface").getAsString();
+		if (!request.has("method")) {
+			throw new UserException("No \"method\" parameter found in request");
+		}
 		String methodName = request.get("method").getAsString();
 		SService sService = bimServer.getServicesMap().getByName(interfaceName);
 		if (sService == null) {

@@ -421,7 +421,15 @@ public class BimServer {
 						try (DatabaseSession session = bimDatabase.createSession()) {
 							Plugin plugin = pluginContext.getPlugin();
 							
-							PluginDescriptor pluginDescriptor = session.create(PluginDescriptor.class);
+							Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_Identifier(), new StringLiteral(pluginContext.getIdentifier()));
+							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
+							PluginDescriptor pluginDescriptor = null;
+							if (pluginsFound.size() > 0) {
+								pluginDescriptor = pluginsFound.values().iterator().next(); 
+							} else {
+								pluginDescriptor = session.create(PluginDescriptor.class);
+							}
+							
 							pluginDescriptor.setIdentifier(pluginContext.getIdentifier());
 							pluginDescriptor.setPluginClassName(plugin.getClass().getName());
 							pluginDescriptor.setDescription(pluginContext.getDescription());
@@ -891,7 +899,7 @@ public class BimServer {
 		return renderEnginePools;
 	}
 
-	private ObjectType convertSettings(DatabaseSession session, Plugin plugin) throws BimserverDatabaseException {
+	public ObjectType convertSettings(DatabaseSession session, Plugin plugin) throws BimserverDatabaseException {
 		ObjectType settings = session.create(ObjectType.class);
 		ObjectDefinition settingsDefinition = plugin.getSettingsDefinition();
 		if (plugin.getSettingsDefinition() != null) {
@@ -909,7 +917,7 @@ public class BimServer {
 		return settings;
 	}
 
-	private Type cloneAndAdd(DatabaseSession session, Type input) throws BimserverDatabaseException {
+	public Type cloneAndAdd(DatabaseSession session, Type input) throws BimserverDatabaseException {
 		if (input instanceof BooleanType) {
 			BooleanType booleanType = session.create(BooleanType.class);
 			booleanType.setValue(((BooleanType) input).isValue());

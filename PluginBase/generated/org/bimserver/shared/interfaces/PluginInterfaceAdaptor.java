@@ -21,28 +21,36 @@ import org.bimserver.shared.exceptions.ServerException;
 
 public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.PluginInterface {
 
-	public void addDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws UserException, ServerException {
+	public java.lang.Long addDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws UserException, ServerException {
+		return null;
 	}
 	
-	public void addInternalService(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration internalService) throws UserException, ServerException {
+	public java.lang.Long addInternalService(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration internalService) throws UserException, ServerException {
+		return null;
 	}
 	
-	public void addModelCompare(org.bimserver.interfaces.objects.SModelComparePluginConfiguration modelCompare) throws UserException, ServerException {
+	public java.lang.Long addModelCompare(org.bimserver.interfaces.objects.SModelComparePluginConfiguration modelCompare) throws UserException, ServerException {
+		return null;
 	}
 	
-	public void addModelMerger(org.bimserver.interfaces.objects.SModelMergerPluginConfiguration modelMerger) throws UserException, ServerException {
+	public java.lang.Long addModelMerger(org.bimserver.interfaces.objects.SModelMergerPluginConfiguration modelMerger) throws UserException, ServerException {
+		return null;
 	}
 	
-	public void addObjectIDM(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration objectIDM) throws UserException, ServerException {
+	public java.lang.Long addObjectIDM(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration objectIDM) throws UserException, ServerException {
+		return null;
 	}
 	
-	public void addQueryEngine(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration queryEngine) throws UserException, ServerException {
+	public java.lang.Long addQueryEngine(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration queryEngine) throws UserException, ServerException {
+		return null;
 	}
 	
-	public void addRenderEngine(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration renderEngine) throws UserException, ServerException {
+	public java.lang.Long addRenderEngine(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration renderEngine) throws UserException, ServerException {
+		return null;
 	}
 	
-	public void addSerializer(org.bimserver.interfaces.objects.SSerializerPluginConfiguration serializer) throws UserException, ServerException {
+	public java.lang.Long addSerializer(org.bimserver.interfaces.objects.SSerializerPluginConfiguration serializer) throws UserException, ServerException {
+		return null;
 	}
 	
 	public void clearMavenCache() throws UserException, ServerException {
