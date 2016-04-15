@@ -311,7 +311,7 @@ public interface PluginInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "addSerializer")
-	void addSerializer(
+	Long addSerializer(
 		@WebParam(name = "serializer", partName = "addSerializer.serializer") SSerializerPluginConfiguration serializer) throws ServerException, UserException;
 
 	/**
@@ -319,7 +319,7 @@ public interface PluginInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "addRenderEngine")
-	void addRenderEngine(
+	Long addRenderEngine(
 		@WebParam(name = "renderEngine", partName = "addRenderEngine.renderEngine") SRenderEnginePluginConfiguration renderEngine) throws ServerException, UserException;
 
 	/**
@@ -327,7 +327,7 @@ public interface PluginInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "addQueryEngine")
-	void addQueryEngine(
+	Long addQueryEngine(
 		@WebParam(name = "queryEngine", partName = "addQueryEngine.queryEngine") SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException;
 
 	/**
@@ -335,7 +335,7 @@ public interface PluginInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "addModelMerger")
-	void addModelMerger(
+	Long addModelMerger(
 		@WebParam(name = "modelMerger", partName = "addModelMerger.modelMerger") SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException;
 
 	/**
@@ -343,7 +343,7 @@ public interface PluginInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "addModelCompare")
-	void addModelCompare(
+	Long addModelCompare(
 		@WebParam(name = "modelCompare", partName = "addModelCompare.modelCompare") SModelComparePluginConfiguration modelCompare) throws ServerException, UserException;
 
 	/**
@@ -351,7 +351,7 @@ public interface PluginInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "addDeserializer")
-	void addDeserializer(
+	Long addDeserializer(
 		@WebParam(name = "deserializer", partName = "addDeserializer.deserializer") SDeserializerPluginConfiguration deserializer) throws ServerException, UserException;
 
 	/**
@@ -425,7 +425,7 @@ public interface PluginInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "addObjectIDM")
-	void addObjectIDM(
+	Long addObjectIDM(
 		@WebParam(name = "objectIDM", partName = "addObjectIDM.objectIDM") SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException;
 	
 	/**
@@ -529,7 +529,7 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getPluginSettings")
 	SObjectType getPluginSettings(
 		@WebParam(name = "poid", partName = "getPluginSettings.poid") Long poid) throws ServerException, UserException;
-	
+
 	/**
 	 * @param onlyEnabled Whether to only include enabled deserializers
 	 * @return A list of all available deserializers
@@ -585,7 +585,7 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "internalService", partName = "updateInternalService.internalService") SInternalServicePluginConfiguration internalService) throws ServerException, UserException;
 	
 	@WebMethod(action="addInternalService")
-	void addInternalService(
+	Long addInternalService(
 		@WebParam(name = "internalService", partName = "addInternalService.internalService") SInternalServicePluginConfiguration internalService) throws ServerException, UserException;
 	
 	@WebMethod(action="deleteInternalService")

@@ -39,6 +39,20 @@ public class JsonWebModule extends AbstractWebModulePlugin {
 	}
 
 	@Override
+	public String getInternalPath() {
+		String internalPath = webModulePlugin.getInternalPath();
+		if (internalPath == null) {
+			internalPath = "";
+		}
+		if (internalPath.length() > 0) {
+			if (!internalPath.endsWith("/")) {
+				internalPath = internalPath + "/";
+			}
+		}
+		return internalPath;
+	}
+	
+	@Override
 	public String getDefaultContextPath() {
 		return webModulePlugin.getIdentifier();
 	}

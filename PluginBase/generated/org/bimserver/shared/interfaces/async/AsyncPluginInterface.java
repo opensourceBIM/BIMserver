@@ -30,42 +30,42 @@ public class AsyncPluginInterface {
 	}
 
 	public interface AddDeserializerCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
 	public interface AddInternalServiceCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
 	public interface AddModelCompareCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
 	public interface AddModelMergerCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
 	public interface AddObjectIDMCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
 	public interface AddQueryEngineCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
 	public interface AddRenderEngineCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
 	public interface AddSerializerCallback {
-		void success();
+		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
@@ -480,8 +480,7 @@ public class AsyncPluginInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addDeserializer(deserializer);
-					callback.success();
+					callback.success(syncService.addDeserializer(deserializer));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -493,8 +492,7 @@ public class AsyncPluginInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addInternalService(internalService);
-					callback.success();
+					callback.success(syncService.addInternalService(internalService));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -506,8 +504,7 @@ public class AsyncPluginInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addModelCompare(modelCompare);
-					callback.success();
+					callback.success(syncService.addModelCompare(modelCompare));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -519,8 +516,7 @@ public class AsyncPluginInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addModelMerger(modelMerger);
-					callback.success();
+					callback.success(syncService.addModelMerger(modelMerger));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -532,8 +528,7 @@ public class AsyncPluginInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addObjectIDM(objectIDM);
-					callback.success();
+					callback.success(syncService.addObjectIDM(objectIDM));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -545,8 +540,7 @@ public class AsyncPluginInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addQueryEngine(queryEngine);
-					callback.success();
+					callback.success(syncService.addQueryEngine(queryEngine));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -558,8 +552,7 @@ public class AsyncPluginInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addRenderEngine(renderEngine);
-					callback.success();
+					callback.success(syncService.addRenderEngine(renderEngine));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -571,8 +564,7 @@ public class AsyncPluginInterface {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.addSerializer(serializer);
-					callback.success();
+					callback.success(syncService.addSerializer(serializer));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

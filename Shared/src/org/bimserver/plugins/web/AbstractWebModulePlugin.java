@@ -98,7 +98,7 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 			if (!requestUri.equals("index.html")) {
 				response.setHeader("Expires", FAR_FUTURE_EXPIRE_DATE);
 			}
-			Path resolved = pluginContext.getRootPath().resolve(getSubDir() + requestUri);
+			Path resolved = pluginContext.getRootPath().resolve(getInternalPath() + requestUri);
 			InputStream resourceAsInputStream = Files.newInputStream(resolved);
 //			LOGGER.info("Getting " + getSubDir() + path + " results in: " + resourceAsInputStream);
 			if (resourceAsInputStream != null) {
@@ -119,14 +119,15 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 		return false;
 	}
 
-	public String getSubDir() {
-		return "";
-	}
-	
 	/**
 	 * @return An identifier for this specific WebModule that will be used in the version-string that can be used for caching purposes
 	 */
 	public abstract String getIdentifier();
+
+	/**
+	 * @return 
+	 */
+	public abstract String getInternalPath();
 	
 	/**
 	 * @return The context path on which to serve this webmodule

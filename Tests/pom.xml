@@ -40,12 +40,12 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>pluginbase</artifactId>
-			<version>1.5.44-SNAPSHOT</version>
+			<version>1.5.45-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bimserver</artifactId>
-			<version>1.5.44-SNAPSHOT</version>
+			<version>1.5.45-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
