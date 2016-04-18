@@ -405,6 +405,13 @@ public class BimServer {
 									}
 									String identifier = webPluginConfiguration.getPluginDescriptor().getIdentifier();
 									webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(identifier, true));
+								} else if (newPluginContext.getPlugin() instanceof ServicePlugin) {
+									IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), OldQuery.getDefault());
+									for (InternalServicePluginConfiguration internalServicePluginConfiguration : allOfType.getAll(InternalServicePluginConfiguration.class)) {
+										if (internalServicePluginConfiguration.getPluginDescriptor().getIdentifier().equals(newPluginContext.getIdentifier())) {
+											activateService(internalServicePluginConfiguration.getUserSettings().getOid(), internalServicePluginConfiguration);
+										}
+									}
 								}
 							}
 
@@ -850,6 +857,8 @@ public class BimServer {
 				if (pluginConfiguration instanceof SerializerPluginConfiguration) {
 					boolean streaming = originalPluginInterfaceName.equals("StreamingSerializerPlugin") || originalPluginInterfaceName.equals("MessagingStreamingSerializerPlugin");
 					((SerializerPluginConfiguration) pluginConfiguration).setStreaming(streaming);
+				} else if (pluginConfiguration instanceof InternalServicePluginConfiguration) {
+					((InternalServicePluginConfiguration)pluginConfiguration).setUserSettings(userSettings);
 				}
 
 				list.add(pluginConfiguration);
