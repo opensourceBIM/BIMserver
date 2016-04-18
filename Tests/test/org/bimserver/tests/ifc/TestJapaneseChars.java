@@ -21,10 +21,10 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// Find a deserializer to use
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 
 			File[] files = new File[]{
 				new File("../TestData/data/ac16_sjis.ifc"),
@@ -37,8 +37,8 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 			
 			for (File file : files) {
 				bimServerClient.checkin(newProject.getOid(), "initial", deserializer.getOid(), false, true, Paths.get("../TestData/data/revit2013_unicode.ifc"));
-				newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
-				SSerializerPluginConfiguration serializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
+				newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+				SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
 				bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("bimserver_" + file.getName()));
 			}
 		} catch (Throwable e) {

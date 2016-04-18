@@ -1,16 +1,6 @@
 
-Î×
-PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"¸
- SDeserializerPluginConfiguration
-description (	
-enabled (
-name (	
-oid (
-pluginDescriptorId (
-rid (
-
-settingsId (
-userSettingsId ("b
+àÒ
+PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"b
 AddDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration">
 AddDeserializerResponse
@@ -79,17 +69,7 @@ settingsId (
 	objectIDM (2/.org.bimserver.pb.SObjectIDMPluginConfiguration";
 AddObjectIDMResponse
 errorMessage (	
-value ("·
-SQueryEnginePluginConfiguration
-description (	
-enabled (
-name (	
-oid (
-pluginDescriptorId (
-rid (
-
-settingsId (
-userSettingsId ("_
+value ("_
 AddQueryEngineRequestF
 queryEngine (21.org.bimserver.pb.SQueryEnginePluginConfiguration"=
 AddQueryEngineResponse
@@ -110,21 +90,7 @@ settingsId (
 renderEngine (22.org.bimserver.pb.SRenderEnginePluginConfiguration">
 AddRenderEngineResponse
 errorMessage (	
-value ("ö
-SSerializerPluginConfiguration
-description (	
-enabled (
-name (	
-objectIDMId (
-oid (
-pluginDescriptorId (
-renderEngineId (
-rid (
-
-settingsId	 (
-	streaming
- (
-userSettingsId ("\
+value ("\
 AddSerializerRequestD
 
 serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"<

@@ -63,7 +63,7 @@ public class TestManyUsersAndLogin {
 			for (int i=0; i<nrProjects; i++) {
 				long s = System.nanoTime();
 				try {
-					SProject project = client.getBimsie1ServiceInterface().addProject("test" + i, "ifc2x3tc1");
+					SProject project = client.getServiceInterface().addProject("test" + i, "ifc2x3tc1");
 					projectIds.add(project.getOid());
 				} catch (Exception e) {
 					
@@ -93,7 +93,7 @@ public class TestManyUsersAndLogin {
 			int loginAttempts = 100;
 			for (int i=0; i<loginAttempts; i++) {
 				long s = System.nanoTime();
-				client.getBimsie1AuthInterface().login("test" + new Random().nextInt(nrUsers) + "@bimserver.org", "password");
+				client.getAuthInterface().login("test" + new Random().nextInt(nrUsers) + "@bimserver.org", "password");
 				long e = System.nanoTime();
 				totalLoginTime += (e - s);
 			}

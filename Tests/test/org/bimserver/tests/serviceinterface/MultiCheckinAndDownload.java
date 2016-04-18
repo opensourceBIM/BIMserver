@@ -28,13 +28,13 @@ public class MultiCheckinAndDownload extends TestWithEmbeddedServer {
 			long s = System.nanoTime();
 			for (int i=0; i<3; i++) {
 				// Create a new project
-				SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+				SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 				
 				// This is the file we will be checking in
 				File ifcFile = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 				
 				// Find a deserializer to use
-				SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+				SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 				
 				// Checkin
 				Long progressId = bimServerClient.getServiceInterface().checkin(newProject.getOid(), "test", deserializer.getOid(), ifcFile.length(), ifcFile.getName(), new DataHandler(new FileDataSource(ifcFile)), false, true);
@@ -43,13 +43,13 @@ public class MultiCheckinAndDownload extends TestWithEmbeddedServer {
 				SLongActionState longActionState = bimServerClient.getRegistry().getProgress(progressId);
 				if (longActionState.getState() == SActionState.FINISHED) {
 					// Find a serializer
-					SSerializerPluginConfiguration serializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
+					SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
 					
 					// Get the project details
-					newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
+					newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 					
 					// Download the latest revision  (the one we just checked in)
-					Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), serializer.getOid(), true);
+					Long topicId = bimServerClient.getServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), serializer.getOid(), true);
 					SLongActionState downloadState = bimServerClient.getRegistry().getProgress(topicId);
 					if (downloadState.getState() == SActionState.FINISHED) {
 						// Success

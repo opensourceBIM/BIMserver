@@ -27,7 +27,7 @@ public class TestSoap {
 	public static void main(String[] args) {
 		try {
 			BimServerClientInterface client = LocalDevSetup.setupSoap("http://localhost:8080");
-			for (SProject project : client.getBimsie1ServiceInterface().getAllProjects(true, true)) {
+			for (SProject project : client.getServiceInterface().getAllProjects(true, true)) {
 				System.out.println(project.getName());
 			}
 		} catch (ServiceException e) {

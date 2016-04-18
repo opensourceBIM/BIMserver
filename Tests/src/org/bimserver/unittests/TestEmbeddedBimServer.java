@@ -43,11 +43,11 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.PluginException;
+import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
 import org.bimserver.tests.TestFile;
 import org.bimserver.webservices.ServiceMap;
 import org.bimserver.webservices.impl.ServiceImpl;
@@ -134,13 +134,15 @@ public class TestEmbeddedBimServer {
 		try {
 			ServiceMap serviceMap = bimServer.getServiceFactory().get(AccessMethod.INTERNAL);
 			ServiceInterface service = serviceMap.get(ServiceInterface.class);
-			serviceMap.get(Bimsie1AuthInterface.class).login(username, password);
-			SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test " + new Random().nextInt(), "ifc4");
+			serviceMap.get(AuthInterface.class).login(username, password);
+			SProject project = serviceMap.getServiceInterface().addProject("test " + new Random().nextInt(), "ifc4");
 			Path sourceFile = TestFile.AC11.getFile();
 			service.checkin(project.getOid(), "test", -1L, Files.size(sourceFile), "test", new DataHandler(new FileDataSource(sourceFile.toFile())), false, true); // TODO
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
@@ -155,12 +157,12 @@ public class TestEmbeddedBimServer {
 		try {
 			ServiceMap serviceMap = bimServer.getServiceFactory().get(AccessMethod.INTERNAL);
 			ServiceInterface service = serviceMap.get(ServiceInterface.class);
-			String token = serviceMap.get(Bimsie1AuthInterface.class).login(username, password);
+			String token = serviceMap.get(AuthInterface.class).login(username, password);
 			service = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 			BimDatabase database = bimServer.getDatabase();
 			DatabaseSession session = database.createSession();
 			SProject firstProjectWithRevisions = null;
-			for (SProject project : serviceMap.getBimsie1ServiceInterface().getAllProjects(false, true)) {
+			for (SProject project : serviceMap.getServiceInterface().getAllProjects(false, true)) {
 				System.out.println(project.getName());
 				if (!project.getRevisions().isEmpty() && firstProjectWithRevisions == null) {
 					firstProjectWithRevisions = project;
@@ -177,6 +179,8 @@ public class TestEmbeddedBimServer {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

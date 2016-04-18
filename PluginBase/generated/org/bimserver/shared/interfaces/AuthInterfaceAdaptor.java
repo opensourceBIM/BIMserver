@@ -25,8 +25,27 @@ public class AuthInterfaceAdaptor implements org.bimserver.shared.interfaces.Aut
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SAccessMethod getAccessMethod() throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SUser getLoggedInUser() throws UserException, ServerException {
 		return null;
+	}
+	
+	public java.lang.Boolean isLoggedIn() throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.lang.String login(java.lang.String username, java.lang.String password) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.lang.String loginUserToken(java.lang.String token) throws UserException, ServerException {
+		return null;
+	}
+	
+	public void logout() throws UserException, ServerException {
 	}
 	
 	public void requestPasswordChange(java.lang.String username, java.lang.String resetUrl, java.lang.Boolean includeSiteAddress) throws UserException, ServerException {

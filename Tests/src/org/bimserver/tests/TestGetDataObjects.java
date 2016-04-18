@@ -34,7 +34,7 @@ public class TestGetDataObjects {
 		try {
 			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 			long roid = 65539;
-			List<SDataObject> dataObjects = client.getBimsie1LowLevelInterface().getDataObjects(roid);
+			List<SDataObject> dataObjects = client.getLowLevelInterface().getDataObjects(roid);
 			System.out.println(dataObjects.size());
 			for (SDataObject sDataObject : dataObjects) {
 				System.out.println(sDataObject.getGuid());

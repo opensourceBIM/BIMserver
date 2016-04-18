@@ -24,11 +24,11 @@ import "AuthInterface.proto";
 import "PluginInterface.proto";
 option java_generic_services = true;
 
-option java_outer_classname = "Bimsie1ServiceInterfaceImpl";
+option java_outer_classname = "ServiceInterfaceImpl";
 
 option optimize_for = SPEED;
 
-service Bimsie1ServiceInterface {
+service ServiceInterface {
 	rpc addExtendedDataToRevision (AddExtendedDataToRevisionRequest) returns (VoidResponse);
 
 	rpc addProject (AddProjectRequest) returns (AddProjectResponse);

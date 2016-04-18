@@ -1,4 +1,4 @@
-package org.bimserver.shared.interfaces.bimsie1;
+package org.bimserver.shared.interfaces;
 
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
@@ -30,11 +30,10 @@ import javax.jws.soap.SOAPBinding.Use;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.PublicInterface;
 
-@WebService(name = "Bimsie1LowLevelInterface", targetNamespace="org.buildingsmart.bimsie1")
+@WebService(name = "LowLevelInterface", targetNamespace="org.bimserver")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
-public interface Bimsie1LowLevelInterface extends PublicInterface {
+public interface LowLevelInterface extends PublicInterface {
 	/**
 	 * Start a new transaction. You can commit the transaction with commitTransaction
 	 * 

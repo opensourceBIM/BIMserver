@@ -22,15 +22,15 @@ import "MetaInterface.proto";
 import "SettingsInterface.proto";
 import "AuthInterface.proto";
 import "PluginInterface.proto";
-import "Bimsie1ServiceInterface.proto";
-import "Bimsie1NotificationInterface.proto";
+import "ServiceInterface.proto";
+import "NotificationInterface.proto";
 option java_generic_services = true;
 
-option java_outer_classname = "Bimsie1RemoteServiceInterfaceImpl";
+option java_outer_classname = "RemoteServiceInterfaceImpl";
 
 option optimize_for = SPEED;
 
-service Bimsie1RemoteServiceInterface {
+service RemoteServiceInterface {
 	rpc getPrivateProfiles (GetPrivateProfilesRequest) returns (GetPrivateProfilesResponse);
 
 	rpc getPublicProfiles (GetPublicProfilesRequest) returns (GetPublicProfilesResponse);

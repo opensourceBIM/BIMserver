@@ -22,14 +22,14 @@ import "MetaInterface.proto";
 import "SettingsInterface.proto";
 import "AuthInterface.proto";
 import "PluginInterface.proto";
-import "Bimsie1ServiceInterface.proto";
+import "ServiceInterface.proto";
 option java_generic_services = true;
 
-option java_outer_classname = "Bimsie1NotificationInterfaceImpl";
+option java_outer_classname = "NotificationInterfaceImpl";
 
 option optimize_for = SPEED;
 
-service Bimsie1NotificationInterface {
+service NotificationInterface {
 	rpc closedProgressOnProjectTopic (ClosedProgressOnProjectTopicRequest) returns (VoidResponse);
 
 	rpc closedProgressOnRevisionTopic (ClosedProgressOnRevisionTopicRequest) returns (VoidResponse);

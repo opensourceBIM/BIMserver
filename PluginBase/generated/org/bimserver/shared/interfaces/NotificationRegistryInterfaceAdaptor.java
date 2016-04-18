@@ -19,7 +19,7 @@ package org.bimserver.shared.interfaces;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
-public class Bimsie1NotificationRegistryInterfaceAdaptor implements org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface {
+public class NotificationRegistryInterfaceAdaptor implements org.bimserver.shared.interfaces.NotificationRegistryInterface {
 
 	public org.bimserver.interfaces.objects.SLongActionState getProgress(java.lang.Long topicId) throws UserException, ServerException {
 		return null;

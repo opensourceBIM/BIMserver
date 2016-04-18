@@ -36,13 +36,13 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.webservices.ServiceMap;
 
-public class Bimsie1RemoteServiceImpl extends GenericServiceImpl implements Bimsie1RemoteServiceInterface {
+public class RemoteServiceImpl extends GenericServiceImpl implements RemoteServiceInterface {
 	private BimServer bimServer;
 
-	public Bimsie1RemoteServiceImpl(BimServer bimServer, ServiceMap serviceMapInterface) {
+	public RemoteServiceImpl(BimServer bimServer, ServiceMap serviceMapInterface) {
 		super(serviceMapInterface);
 		this.bimServer = bimServer;
 	}
@@ -104,7 +104,7 @@ public class Bimsie1RemoteServiceImpl extends GenericServiceImpl implements Bims
 	
 	@Override
 	public void newRevision(Long poid, Long roid, Long soid, String serviceIdentifier, String profileIdentifier, String userToken, String token, String apiUrl) throws UserException, ServerException {
-		Bimsie1RemoteServiceInterface localRemoteServiceInterface = bimServer.getInternalServicesManager().getLocalRemoteServiceInterface(serviceIdentifier);
+		RemoteServiceInterface localRemoteServiceInterface = bimServer.getInternalServicesManager().getLocalRemoteServiceInterface(serviceIdentifier);
 		if (localRemoteServiceInterface == null) {
 			throw new UserException("No local remote service found " + serviceIdentifier);
 		}

@@ -27,16 +27,16 @@ public class MoveObject extends TestWithEmbeddedServer{
 			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// Get the appropriate deserializer
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 
 			// Checkin the file
 			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 
 			// Refresh project info
-			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 
 			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAllWithSubTypes(IfcFurnishingElement.class)) {
@@ -56,7 +56,7 @@ public class MoveObject extends TestWithEmbeddedServer{
 				}
 			}
 			long newRoid = model.commit("Moved all furniture 50 meters up");
-			SSerializerPluginConfiguration ifcSerializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
+			SSerializerPluginConfiguration ifcSerializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
 			bimServerClient.download(newRoid, ifcSerializer.getOid(), Paths.get("movedf.ifc"));
 		} catch (Throwable e) {
 			e.printStackTrace();

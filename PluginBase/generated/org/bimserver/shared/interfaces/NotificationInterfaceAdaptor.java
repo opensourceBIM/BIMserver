@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2016  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -14,13 +14,12 @@ package org.bimserver.shared.interfaces;
  * GNU Affero General Public License for more details.
  * 
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
+import org.bimserver.shared.exceptions.ServerException;
 
-public class NotificationInterfaceAdaptor implements Bimsie1NotificationInterface {
+public class NotificationInterfaceAdaptor implements org.bimserver.shared.interfaces.NotificationInterface {
 
 	public void closedProgressOnProjectTopic(java.lang.Long poid, java.lang.Long topicId) throws UserException, ServerException {
 	}

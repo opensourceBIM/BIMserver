@@ -69,15 +69,15 @@ public class TestBigFilesRemote {
 			for (String fileName : fileNames) {
 				String projectName = fileName.substring(0, fileName.lastIndexOf(".ifc"));
 				
-				List<SProject> projectsByName = client.getBimsie1ServiceInterface().getProjectsByName(projectName);
+				List<SProject> projectsByName = client.getServiceInterface().getProjectsByName(projectName);
 				SProject project = null;
 				if (projectsByName.size() == 1) {
 					project = projectsByName.get(0);
 				} else {
 					System.out.println("Creating project " + fileName);
-					project = client.getBimsie1ServiceInterface().addProject(projectName, "ifc2x3tc1");
+					project = client.getServiceInterface().addProject(projectName, "ifc2x3tc1");
 				}
-				SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+				SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 				
 				System.out.println(dateFormat.format(new Date()));
 				SDatabaseInformation databaseInformation = client.getAdminInterface().getDatabaseInformation();

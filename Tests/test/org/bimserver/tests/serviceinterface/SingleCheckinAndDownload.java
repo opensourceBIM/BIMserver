@@ -35,18 +35,18 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 			boolean useChannel = false; // Using the channel is slower
 
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// This is the file we will be checking in
 			Path ifcFile = Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 			
 			// Find a deserializer to use
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 			
 			// Checkin
 			Long progressId = -1L;
 			if (useChannel) {
-				progressId = bimServerClient.getBimsie1ServiceInterface().checkin(newProject.getOid(), "test", deserializer.getOid(), ifcFile.toFile().length(), ifcFile.getFileName().toString(), new DataHandler(new FileDataSource(ifcFile.toFile())), true);
+				progressId = bimServerClient.getServiceInterface().checkin(newProject.getOid(), "test", deserializer.getOid(), ifcFile.toFile().length(), ifcFile.getFileName().toString(), new DataHandler(new FileDataSource(ifcFile.toFile())), true, true);
 			} else {
 				progressId = bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, ifcFile);
 			}
@@ -55,22 +55,22 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 			SLongActionState longActionState = bimServerClient.getRegistry().getProgress(progressId);
 			if (longActionState.getState() == SActionState.FINISHED) {
 				// Find a serializer
-				SSerializerPluginConfiguration serializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
+				SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
 				
 				// Get the project details
-				newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
+				newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 				
 				// Download the latest revision  (the one we just checked in)
 				if (useChannel) {
-					Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), serializer.getOid(), true);
+					Long topicId = bimServerClient.getServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), serializer.getOid(), true);
 					SLongActionState downloadState = bimServerClient.getRegistry().getProgress(topicId);
 					if (downloadState.getState() == SActionState.FINISHED) {
-						InputStream inputStream = bimServerClient.getBimsie1ServiceInterface().getDownloadData(topicId).getFile().getInputStream();
+						InputStream inputStream = bimServerClient.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();
 						IOUtils.copy(inputStream, new ByteArrayOutputStream());
 						System.out.println("Success");
 					}
 				} else {
-					Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), serializer.getOid(), false); // Note: sync: false
+					Long topicId = bimServerClient.getServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), serializer.getOid(), false); // Note: sync: false
 					InputStream downloadData = bimServerClient.getDownloadData(topicId, serializer.getOid());
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
 					IOUtils.copy(downloadData, baos);

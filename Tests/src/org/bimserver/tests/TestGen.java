@@ -26,7 +26,6 @@ import java.nio.file.Paths;
 
 import org.bimserver.LocalDevSetup;
 import org.bimserver.emf.Schema;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;

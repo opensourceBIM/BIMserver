@@ -22,12 +22,8 @@ import java.io.FileFilter;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
-import org.bimserver.shared.InterfaceList;
-import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CopyAdminAndBIMsieInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CopyAdminAndBIMsieInterface.class);
@@ -40,42 +36,6 @@ public class CopyAdminAndBIMsieInterface {
 	public static void main(String[] args) {
 		CopyAdminAndBIMsieInterface copyAdminAndBIMsieInterface = new CopyAdminAndBIMsieInterface();
 		copyAdminAndBIMsieInterface.copyAdminInterface();
-		copyAdminAndBIMsieInterface.copyBimsieInterface();
-	}
-
-	protected void copyBimsieInterface() {
-		SServicesMap servicesMap = InterfaceList.createBimsie1SServicesMap();
-		try {
-			FileUtils.writeStringToFile(new File(bimsie, "js/services.json"), servicesMap.toJson(new ObjectMapper()).toString());
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		}
-		try {
-			FileUtils.copyFile(new File(bootstrap, "console.html"), new File(bimsie, "index.html"));
-
-			FileUtils.copyDirectory(new File(bootstrap, "js"), new File(bimsie, "js"), new FileFilter() {
-				@Override
-				public boolean accept(File pathname) {
-					if (pathname.getName().equals("settings.js") || pathname.getName().equals("consolesettings.js")) {
-						return false;
-					}
-					return true;
-				}
-			});
-			FileUtils.copyDirectory(new File(bootstrap, "img"), new File(bimsie, "img"), new FileFilter() {
-				@Override
-				public boolean accept(File pathname) {
-					if (pathname.getName().equals("consolelogo.png") || pathname.getName().equals("consolelogolarge.png")) {
-						return false;
-					}
-					return true;
-				}
-			});
-			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(bimsie, "css"));
-			FileUtils.copyDirectory(new File(bootstrap, "fonts"), new File(bimsie, "fonts"));
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		}
 	}
 
 	private void copyAdminInterface() {

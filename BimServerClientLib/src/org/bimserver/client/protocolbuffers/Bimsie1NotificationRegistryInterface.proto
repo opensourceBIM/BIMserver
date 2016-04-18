@@ -22,18 +22,18 @@ import "MetaInterface.proto";
 import "SettingsInterface.proto";
 import "AuthInterface.proto";
 import "PluginInterface.proto";
-import "Bimsie1ServiceInterface.proto";
-import "Bimsie1NotificationInterface.proto";
-import "Bimsie1RemoteServiceInterface.proto";
-import "Bimsie1AuthInterface.proto";
-import "Bimsie1LowLevelInterface.proto";
+import "ServiceInterface.proto";
+import "NotificationInterface.proto";
+import "RemoteServiceInterface.proto";
+import "AuthInterface.proto";
+import "LowLevelInterface.proto";
 option java_generic_services = true;
 
-option java_outer_classname = "Bimsie1NotificationRegistryInterfaceImpl";
+option java_outer_classname = "NotificationRegistryInterfaceImpl";
 
 option optimize_for = SPEED;
 
-service Bimsie1NotificationRegistryInterface {
+service NotificationRegistryInterface {
 	rpc getProgress (GetProgressRequest) returns (GetProgressResponse);
 
 	rpc getProgressTopicsOnProject (GetProgressTopicsOnProjectRequest) returns (GetProgressTopicsOnProjectResponse);

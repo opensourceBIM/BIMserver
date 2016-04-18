@@ -46,12 +46,12 @@ import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.notifications.TopicRegisterException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
+import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.webservices.ServiceMap;
 import org.slf4j.LoggerFactory;
 
-public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl implements Bimsie1NotificationRegistryInterface {
-	public Bimsie1NotificationRegistryServiceImpl(ServiceMap serviceMap) {
+public class NotificationRegistryServiceImpl extends GenericServiceImpl implements NotificationRegistryInterface {
+	public NotificationRegistryServiceImpl(ServiceMap serviceMap) {
 		super(serviceMap);
 	}
 
@@ -72,11 +72,11 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 			progressTopic.register(endPoint);
 			LongActionState lastProgress = progressTopic.getLastProgress();
 			if (lastProgress != null && lastProgress.getState() == ActionState.FINISHED) {
-				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).debug("Sending update directly for topic " + progressTopic.getKey().getId());
+				LoggerFactory.getLogger(NotificationRegistryInterface.class).debug("Sending update directly for topic " + progressTopic.getKey().getId());
 				// TODO!!
 //				progressTopic.stageProgressUpdate(ate, title)updateProgress(lastProgress);
 			} else {
-				LoggerFactory.getLogger(Bimsie1NotificationRegistryInterface.class).debug("NOT Sending update directly for topic " + progressTopic.getKey().getId());
+				LoggerFactory.getLogger(NotificationRegistryInterface.class).debug("NOT Sending update directly for topic " + progressTopic.getKey().getId());
 			}
 		} catch (TopicRegisterException e) {
 			throw new UserException(e);

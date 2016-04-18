@@ -72,9 +72,9 @@ public class LoadFullDirectory {
 		try {
 			System.out.println("Creating project " + projectName);
 			if (parent == null) {
-				project = client.getBimsie1ServiceInterface().addProject(projectName, "ifc2x3tc1");
+				project = client.getServiceInterface().addProject(projectName, "ifc2x3tc1");
 			} else {
-				project = client.getBimsie1ServiceInterface().addProjectAsSubProject(projectName, parent.getOid(), "ifc2x3tc1");
+				project = client.getServiceInterface().addProjectAsSubProject(projectName, parent.getOid(), "ifc2x3tc1");
 			}
 		} catch (ServerException e) {
 			e.printStackTrace();
@@ -82,14 +82,14 @@ public class LoadFullDirectory {
 			if (e.getMessage().equals("Project name must be unique")) {
 				if (parent == null) {
 					try {
-						project = client.getBimsie1ServiceInterface().getProjectsByName(projectName).get(0);
+						project = client.getServiceInterface().getProjectsByName(projectName).get(0);
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				} else {
 					for (Long oid : parent.getSubProjects()) {
 						try {
-							SProject p2 = client.getBimsie1ServiceInterface().getProjectByPoid(oid);
+							SProject p2 = client.getServiceInterface().getProjectByPoid(oid);
 							if (p2.getName().equals(projectName)) {
 								project = p2;
 							}
@@ -114,7 +114,7 @@ public class LoadFullDirectory {
 				System.out.println("Loading file " + filename);
 				if (filename.endsWith(".ifc") || filename.endsWith(".xml") || filename.endsWith(".zip") || filename.endsWith(".ifczip")) {
 					try {
-						SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension(extension, project.getOid());
+						SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension(extension, project.getOid());
 						client.getServiceInterface().checkin(project.getOid(), filename, deserializer.getOid(), Files.size(p), filename, new DataHandler(new FileDataSource(p.toFile())), false, true);
 					} catch (ServerException e) {
 						e.printStackTrace();

@@ -133,7 +133,7 @@ public class BimServerImporter {
 					createUser(databaseSession, user.getOid());
 				}
 				LOGGER.info("Projects...");
-				for (SProject project : remoteClient.getBimsie1ServiceInterface().getAllProjects(false, false)) {
+				for (SProject project : remoteClient.getServiceInterface().getAllProjects(false, false)) {
 					createProject(databaseSession, project.getOid());
 				}
 				LOGGER.info("Done");
@@ -153,8 +153,8 @@ public class BimServerImporter {
 			Path incoming = Paths.get(path);
 			final Map<GregorianCalendar, Key> comments = new TreeMap<>();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
-			for (SProject project : remoteClient.getBimsie1ServiceInterface().getAllProjects(false, false)) {
-				for (SRevision revision : remoteClient.getBimsie1ServiceInterface().getAllRevisionsOfProject(project.getOid())) {
+			for (SProject project : remoteClient.getServiceInterface().getAllProjects(false, false)) {
+				for (SRevision revision : remoteClient.getServiceInterface().getAllRevisionsOfProject(project.getOid())) {
 					GregorianCalendar gregorianCalendar = new GregorianCalendar();
 					gregorianCalendar.setTime(revision.getDate());
 					if (!revision.getComment().startsWith("generated for")) {
@@ -195,9 +195,9 @@ public class BimServerImporter {
 						LOGGER.info("Checking in: " + key.file.getFileName().toString() + " " + Formatters.bytesToString(key.file.toFile().length()));
 						Project sProject = projects.get(key.poid);
 						try {
-							SDeserializerPluginConfiguration desserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", sProject.getOid());
+							SDeserializerPluginConfiguration desserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", sProject.getOid());
 							client.checkin(sProject.getOid(), key.comment, desserializer.getOid(), false, true, key.file);
-							SProject updatedProject = client.getBimsie1ServiceInterface().getProjectByPoid(sProject.getOid());
+							SProject updatedProject = client.getServiceInterface().getProjectByPoid(sProject.getOid());
 							DatabaseSession databaseSession = database.createSession();
 							try {
 								LOGGER.info("Done");
@@ -245,7 +245,7 @@ public class BimServerImporter {
 	}
 
 	private Project createProject(DatabaseSession databaseSession, long poid) throws BimserverDatabaseException, ServerException, UserException, PublicInterfaceNotFoundException {
-		SProject project = remoteClient.getBimsie1ServiceInterface().getProjectByPoid(poid);
+		SProject project = remoteClient.getServiceInterface().getProjectByPoid(poid);
 		if (projects.containsKey(project.getOid())) {
 			return projects.get(project.getOid());
 		}

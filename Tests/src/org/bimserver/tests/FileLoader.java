@@ -51,8 +51,8 @@ public class FileLoader {
 						System.out.println(file.getFileName());
 						SProject project;
 						try {
-							project = client.getBimsie1ServiceInterface().addProject(file.getFileName().toString(), "ifc2x3tc1");
-							SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+							project = client.getServiceInterface().addProject(file.getFileName().toString(), "ifc2x3tc1");
+							SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 							client.checkin(project.getOid(), file.getFileName().toString(), deserializer.getOid(), false, true, file);
 						} catch (ServerException e) {
 							e.printStackTrace();

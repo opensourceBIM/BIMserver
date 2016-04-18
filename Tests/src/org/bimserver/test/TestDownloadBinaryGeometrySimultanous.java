@@ -59,8 +59,8 @@ public class TestDownloadBinaryGeometrySimultanous {
 	private void start() {
 		try {
 			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
-			final SSerializerPluginConfiguration serializer = client.getBimsie1ServiceInterface().getSerializerByName("BinaryGeometrySerializer");
-			SProject project = client.getBimsie1ServiceInterface().getProjectByPoid(131073L);
+			final SSerializerPluginConfiguration serializer = client.getServiceInterface().getSerializerByName("BinaryGeometrySerializer");
+			SProject project = client.getServiceInterface().getProjectByPoid(131073L);
 			for (int i=0; i<10; i++) {
 				Thread.sleep(200);
 				new Runner(client, serializer, project, i).start();

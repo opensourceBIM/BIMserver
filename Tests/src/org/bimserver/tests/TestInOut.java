@@ -82,12 +82,12 @@ public class TestInOut {
 				settingsInterface.setCacheOutputFiles(false);
 			}
 			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
-			SProject project = client.getBimsie1ServiceInterface().addProject("test", "ifc2x3tc1");
-			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+			SProject project = client.getServiceInterface().addProject("test", "ifc2x3tc1");
+			SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 			Path inputFile = Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
 			client.checkin(project.getOid(), "test", deserializer.getOid(), false, true, inputFile);
-			project = client.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
-			SSerializerPluginConfiguration serializer = client.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
+			project = client.getServiceInterface().getProjectByPoid(project.getOid());
+			SSerializerPluginConfiguration serializer = client.getServiceInterface().getSerializerByContentType("application/ifc");
 			Path outputFile = Paths.get("output.ifc");
 			client.download(project.getLastRevisionId(), serializer.getOid(), outputFile);
 			

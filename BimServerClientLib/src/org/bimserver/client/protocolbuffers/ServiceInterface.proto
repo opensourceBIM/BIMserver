@@ -27,11 +27,17 @@ service ServiceInterface {
 
 	rpc addExtendedDataToProject (AddExtendedDataToProjectRequest) returns (VoidResponse);
 
+	rpc addExtendedDataToRevision (AddExtendedDataToRevisionRequest) returns (VoidResponse);
+
 	rpc addLocalServiceToProject (AddLocalServiceToProjectRequest) returns (VoidResponse);
 
 	rpc addModelChecker (AddModelCheckerRequest) returns (AddModelCheckerResponse);
 
 	rpc addModelCheckerToProject (AddModelCheckerToProjectRequest) returns (VoidResponse);
+
+	rpc addProject (AddProjectRequest) returns (AddProjectResponse);
+
+	rpc addProjectAsSubProject (AddProjectAsSubProjectRequest) returns (AddProjectAsSubProjectResponse);
 
 	rpc addServiceToProject (AddServiceToProjectRequest) returns (AddServiceToProjectResponse);
 
@@ -43,6 +49,10 @@ service ServiceInterface {
 
 	rpc addUserWithPassword (AddUserWithPasswordRequest) returns (AddUserWithPasswordResponse);
 
+	rpc branchToExistingProject (BranchToExistingProjectRequest) returns (BranchToExistingProjectResponse);
+
+	rpc branchToNewProject (BranchToNewProjectRequest) returns (BranchToNewProjectResponse);
+
 	rpc changeUserType (ChangeUserTypeRequest) returns (VoidResponse);
 
 	rpc checkin (CheckinRequest) returns (CheckinResponse);
@@ -51,15 +61,23 @@ service ServiceInterface {
 
 	rpc checkinInitiated (CheckinInitiatedRequest) returns (CheckinInitiatedResponse);
 
+	rpc checkout (CheckoutRequest) returns (CheckoutResponse);
+
 	rpc cleanupLongAction (CleanupLongActionRequest) returns (VoidResponse);
 
 	rpc compare (CompareRequest) returns (CompareResponse);
+
+	rpc deleteProject (DeleteProjectRequest) returns (DeleteProjectResponse);
 
 	rpc deleteService (DeleteServiceRequest) returns (VoidResponse);
 
 	rpc deleteUser (DeleteUserRequest) returns (DeleteUserResponse);
 
+	rpc downloadByNewJsonQuery (DownloadByNewJsonQueryRequest) returns (DownloadByNewJsonQueryResponse);
+
 	rpc downloadCompareResults (DownloadCompareResultsRequest) returns (DownloadCompareResultsResponse);
+
+	rpc downloadRevisions (DownloadRevisionsRequest) returns (DownloadRevisionsResponse);
 
 	rpc getAllAuthorizedUsersOfProject (GetAllAuthorizedUsersOfProjectRequest) returns (GetAllAuthorizedUsersOfProjectResponse);
 
@@ -70,6 +88,8 @@ service ServiceInterface {
 	rpc getAllCheckoutsOfProjectAndSubProjects (GetAllCheckoutsOfProjectAndSubProjectsRequest) returns (GetAllCheckoutsOfProjectAndSubProjectsResponse);
 
 	rpc getAllCheckoutsOfRevision (GetAllCheckoutsOfRevisionRequest) returns (GetAllCheckoutsOfRevisionResponse);
+
+	rpc getAllExtendedDataOfRevision (GetAllExtendedDataOfRevisionRequest) returns (GetAllExtendedDataOfRevisionResponse);
 
 	rpc getAllExtendedDataSchemas (GetAllExtendedDataSchemasRequest) returns (GetAllExtendedDataSchemasResponse);
 
@@ -87,6 +107,10 @@ service ServiceInterface {
 
 	rpc getAllPrivateProfiles (GetAllPrivateProfilesRequest) returns (GetAllPrivateProfilesResponse);
 
+	rpc getAllProjects (GetAllProjectsRequest) returns (GetAllProjectsResponse);
+
+	rpc getAllProjectsSmall (GetAllProjectsSmallRequest) returns (GetAllProjectsSmallResponse);
+
 	rpc getAllPublicProfiles (GetAllPublicProfilesRequest) returns (GetAllPublicProfilesResponse);
 
 	rpc getAllReadableProjects (GetAllReadableProjectsRequest) returns (GetAllReadableProjectsResponse);
@@ -98,6 +122,8 @@ service ServiceInterface {
 	rpc getAllRepositoryModelCheckers (GetAllRepositoryModelCheckersRequest) returns (GetAllRepositoryModelCheckersResponse);
 
 	rpc getAllRevisionsByUser (GetAllRevisionsByUserRequest) returns (GetAllRevisionsByUserResponse);
+
+	rpc getAllRevisionsOfProject (GetAllRevisionsOfProjectRequest) returns (GetAllRevisionsOfProjectResponse);
 
 	rpc getAllServiceDescriptors (GetAllServiceDescriptorsRequest) returns (GetAllServiceDescriptorsResponse);
 
@@ -117,6 +143,18 @@ service ServiceInterface {
 
 	rpc getCheckoutWarnings (GetCheckoutWarningsRequest) returns (GetCheckoutWarningsResponse);
 
+	rpc getDeserializerById (GetDeserializerByIdRequest) returns (GetDeserializerByIdResponse);
+
+	rpc getDeserializerByName (GetDeserializerByNameRequest) returns (GetDeserializerByNameResponse);
+
+	rpc getDownloadData (GetDownloadDataRequest) returns (GetDownloadDataResponse);
+
+	rpc getExtendedData (GetExtendedDataRequest) returns (GetExtendedDataResponse);
+
+	rpc getExtendedDataSchemaById (GetExtendedDataSchemaByIdRequest) returns (GetExtendedDataSchemaByIdResponse);
+
+	rpc getExtendedDataSchemaByNamespace (GetExtendedDataSchemaByNamespaceRequest) returns (GetExtendedDataSchemaByNamespaceResponse);
+
 	rpc getExtendedDataSchemaFromRepository (GetExtendedDataSchemaFromRepositoryRequest) returns (GetExtendedDataSchemaFromRepositoryResponse);
 
 	rpc getFile (GetFileRequest) returns (GetFileResponse);
@@ -133,15 +171,37 @@ service ServiceInterface {
 
 	rpc getOidByGuid (GetOidByGuidRequest) returns (GetOidByGuidResponse);
 
+	rpc getProjectByPoid (GetProjectByPoidRequest) returns (GetProjectByPoidResponse);
+
+	rpc getProjectSmallByPoid (GetProjectSmallByPoidRequest) returns (GetProjectSmallByPoidResponse);
+
+	rpc getProjectsByName (GetProjectsByNameRequest) returns (GetProjectsByNameResponse);
+
+	rpc getQueryEngineById (GetQueryEngineByIdRequest) returns (GetQueryEngineByIdResponse);
+
+	rpc getQueryEngineByName (GetQueryEngineByNameRequest) returns (GetQueryEngineByNameResponse);
+
 	rpc getQueryEngineExample (GetQueryEngineExampleRequest) returns (GetQueryEngineExampleResponse);
 
 	rpc getQueryEngineExampleKeys (GetQueryEngineExampleKeysRequest) returns (GetQueryEngineExampleKeysResponse);
 
+	rpc getRevision (GetRevisionRequest) returns (GetRevisionResponse);
+
 	rpc getRevisionSummary (GetRevisionSummaryRequest) returns (GetRevisionSummaryResponse);
+
+	rpc getSerializerByContentType (GetSerializerByContentTypeRequest) returns (GetSerializerByContentTypeResponse);
+
+	rpc getSerializerById (GetSerializerByIdRequest) returns (GetSerializerByIdResponse);
+
+	rpc getSerializerByName (GetSerializerByNameRequest) returns (GetSerializerByNameResponse);
 
 	rpc getService (GetServiceRequest) returns (GetServiceResponse);
 
 	rpc getServiceDescriptor (GetServiceDescriptorRequest) returns (GetServiceDescriptorResponse);
+
+	rpc getSubProjects (GetSubProjectsRequest) returns (GetSubProjectsResponse);
+
+	rpc getSuggestedDeserializerForExtension (GetSuggestedDeserializerForExtensionRequest) returns (GetSuggestedDeserializerForExtensionResponse);
 
 	rpc getUserByUoid (GetUserByUoidRequest) returns (GetUserByUoidResponse);
 
@@ -173,9 +233,13 @@ service ServiceInterface {
 
 	rpc shareRevision (ShareRevisionRequest) returns (ShareRevisionResponse);
 
+	rpc terminateLongRunningAction (TerminateLongRunningActionRequest) returns (VoidResponse);
+
 	rpc triggerNewExtendedData (TriggerNewExtendedDataRequest) returns (VoidResponse);
 
 	rpc triggerNewRevision (TriggerNewRevisionRequest) returns (VoidResponse);
+
+	rpc undeleteProject (UndeleteProjectRequest) returns (UndeleteProjectResponse);
 
 	rpc undeleteUser (UndeleteUserRequest) returns (UndeleteUserResponse);
 
@@ -248,6 +312,11 @@ message SExtendedData {
 
 message AddExtendedDataToProjectRequest {
 	optional int64 poid = 1;
+	optional SExtendedData extendedData = 2;
+}
+
+message AddExtendedDataToRevisionRequest {
+	optional int64 roid = 1;
 	optional SExtendedData extendedData = 2;
 }
 
@@ -324,6 +393,79 @@ message AddModelCheckerToProjectRequest {
 	optional int64 modelCheckerOid = 2;
 }
 
+message AddProjectRequest {
+	optional string projectName = 1;
+	optional string schema = 2;
+}
+
+enum SSIPrefix{
+	SSIPrefix_meter = 0;
+	SSIPrefix_attometer = 1;
+	SSIPrefix_femtometer = 2;
+	SSIPrefix_picometer = 3;
+	SSIPrefix_nanometer = 4;
+	SSIPrefix_micrometer = 5;
+	SSIPrefix_millimeter = 6;
+	SSIPrefix_centimeter = 7;
+	SSIPrefix_decimeter = 8;
+	SSIPrefix_decameter = 9;
+	SSIPrefix_hectometer = 10;
+	SSIPrefix_kilometer = 11;
+	SSIPrefix_megameter = 12;
+	SSIPrefix_gigameter = 13;
+	SSIPrefix_terameter = 14;
+	SSIPrefix_petameter = 15;
+	SSIPrefix_exameter = 16;
+}
+
+enum SObjectState{
+	SObjectState_ACTIVE = 0;
+	SObjectState_DELETED = 1;
+}
+
+message SProject {
+	repeated int64 checkouts = 1;
+	repeated int64 concreteRevisions = 2;
+	optional int64 createdById = 3;
+	optional int64 createdDate = 4;
+	optional string description = 5;
+	optional SSIPrefix exportLengthMeasurePrefix = 6;
+	repeated int64 extendedData = 7;
+	optional int64 geoTagId = 8;
+	repeated int64 hasAuthorizedUsers = 9;
+	optional int32 id = 10;
+	optional int64 lastConcreteRevisionId = 11;
+	optional int64 lastRevisionId = 12;
+	repeated int64 logs = 13;
+	repeated int64 modelCheckers = 14;
+	optional string name = 15;
+	optional int64 oid = 16;
+	optional int64 parentId = 17;
+	repeated int64 revisions = 18;
+	optional int32 rid = 19;
+	optional string schema = 20;
+	optional bool sendEmailOnNewRevision = 21;
+	repeated int64 services = 22;
+	optional SObjectState state = 23;
+	repeated int64 subProjects = 24;
+}
+
+message AddProjectResponse {
+	optional string errorMessage = 1;
+	optional SProject value = 2;
+}
+
+message AddProjectAsSubProjectRequest {
+	optional string projectName = 1;
+	optional int64 parentPoid = 2;
+	optional string schema = 3;
+}
+
+message AddProjectAsSubProjectResponse {
+	optional string errorMessage = 1;
+	optional SProject value = 2;
+}
+
 message AddServiceToProjectRequest {
 	optional int64 poid = 1;
 	optional SService sService = 2;
@@ -347,11 +489,6 @@ message AddUserRequest {
 	optional SUserType type = 3;
 	optional bool selfRegistration = 4;
 	optional string resetUrl = 5;
-}
-
-enum SObjectState{
-	SObjectState_ACTIVE = 0;
-	SObjectState_DELETED = 1;
 }
 
 message SUser {
@@ -412,6 +549,30 @@ message AddUserWithPasswordResponse {
 	optional SUser value = 2;
 }
 
+message BranchToExistingProjectRequest {
+	optional int64 roid = 1;
+	optional int64 destPoid = 2;
+	optional string comment = 3;
+	optional bool sync = 4;
+}
+
+message BranchToExistingProjectResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message BranchToNewProjectRequest {
+	optional int64 roid = 1;
+	optional string projectName = 2;
+	optional string comment = 3;
+	optional bool sync = 4;
+}
+
+message BranchToNewProjectResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
 message ChangeUserTypeRequest {
 	optional int64 uoid = 1;
 	optional SUserType userType = 2;
@@ -461,6 +622,17 @@ message CheckinInitiatedRequest {
 }
 
 message CheckinInitiatedResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message CheckoutRequest {
+	optional int64 roid = 1;
+	optional int64 serializerOid = 2;
+	optional bool sync = 3;
+}
+
+message CheckoutResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
 }
@@ -573,6 +745,15 @@ message CompareResponse {
 	optional SCompareResult value = 2;
 }
 
+message DeleteProjectRequest {
+	optional int64 poid = 1;
+}
+
+message DeleteProjectResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
 message DeleteServiceRequest {
 	optional int64 oid = 1;
 }
@@ -586,6 +767,18 @@ message DeleteUserResponse {
 	optional bool value = 2;
 }
 
+message DownloadByNewJsonQueryRequest {
+	repeated int64 roids = 1;
+	optional string query = 2;
+	optional int64 serializerOid = 3;
+	optional bool sync = 4;
+}
+
+message DownloadByNewJsonQueryResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
 message DownloadCompareResultsRequest {
 	optional int64 serializerOid = 1;
 	optional int64 roid1 = 2;
@@ -596,6 +789,17 @@ message DownloadCompareResultsRequest {
 }
 
 message DownloadCompareResultsResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message DownloadRevisionsRequest {
+	repeated int64 roids = 1;
+	optional int64 serializerOid = 2;
+	optional bool sync = 3;
+}
+
+message DownloadRevisionsResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
 }
@@ -678,6 +882,15 @@ message GetAllCheckoutsOfRevisionResponse {
 	repeated SCheckout value = 2;
 }
 
+message GetAllExtendedDataOfRevisionRequest {
+	optional int64 roid = 1;
+}
+
+message GetAllExtendedDataOfRevisionResponse {
+	optional string errorMessage = 1;
+	repeated SExtendedData value = 2;
+}
+
 message GetAllExtendedDataSchemasRequest {
 }
 
@@ -749,53 +962,6 @@ message GetAllNonAuthorizedProjectsOfUserRequest {
 	optional int64 uoid = 1;
 }
 
-enum SSIPrefix{
-	SSIPrefix_meter = 0;
-	SSIPrefix_attometer = 1;
-	SSIPrefix_femtometer = 2;
-	SSIPrefix_picometer = 3;
-	SSIPrefix_nanometer = 4;
-	SSIPrefix_micrometer = 5;
-	SSIPrefix_millimeter = 6;
-	SSIPrefix_centimeter = 7;
-	SSIPrefix_decimeter = 8;
-	SSIPrefix_decameter = 9;
-	SSIPrefix_hectometer = 10;
-	SSIPrefix_kilometer = 11;
-	SSIPrefix_megameter = 12;
-	SSIPrefix_gigameter = 13;
-	SSIPrefix_terameter = 14;
-	SSIPrefix_petameter = 15;
-	SSIPrefix_exameter = 16;
-}
-
-message SProject {
-	repeated int64 checkouts = 1;
-	repeated int64 concreteRevisions = 2;
-	optional int64 createdById = 3;
-	optional int64 createdDate = 4;
-	optional string description = 5;
-	optional SSIPrefix exportLengthMeasurePrefix = 6;
-	repeated int64 extendedData = 7;
-	optional int64 geoTagId = 8;
-	repeated int64 hasAuthorizedUsers = 9;
-	optional int32 id = 10;
-	optional int64 lastConcreteRevisionId = 11;
-	optional int64 lastRevisionId = 12;
-	repeated int64 logs = 13;
-	repeated int64 modelCheckers = 14;
-	optional string name = 15;
-	optional int64 oid = 16;
-	optional int64 parentId = 17;
-	repeated int64 revisions = 18;
-	optional int32 rid = 19;
-	optional string schema = 20;
-	optional bool sendEmailOnNewRevision = 21;
-	repeated int64 services = 22;
-	optional SObjectState state = 23;
-	repeated int64 subProjects = 24;
-}
-
 message GetAllNonAuthorizedProjectsOfUserResponse {
 	optional string errorMessage = 1;
 	repeated SProject value = 2;
@@ -821,6 +987,37 @@ message GetAllPrivateProfilesResponse {
 	repeated SProfileDescriptor value = 2;
 }
 
+message GetAllProjectsRequest {
+	optional bool onlyTopLevel = 1;
+	optional bool onlyActive = 2;
+}
+
+message GetAllProjectsResponse {
+	optional string errorMessage = 1;
+	repeated SProject value = 2;
+}
+
+message GetAllProjectsSmallRequest {
+}
+
+message SProjectSmall {
+	optional bool hasCheckinRights = 1;
+	optional int64 lastRevisionId = 2;
+	optional string name = 3;
+	optional int32 nrRevisions = 4;
+	optional int32 nrSubProjects = 5;
+	optional int64 oid = 6;
+	optional int64 parentId = 7;
+	optional int32 rid = 8;
+	optional string schema = 9;
+	optional SObjectState state = 10;
+}
+
+message GetAllProjectsSmallResponse {
+	optional string errorMessage = 1;
+	repeated SProjectSmall value = 2;
+}
+
 message GetAllPublicProfilesRequest {
 	optional string notificationsUrl = 1;
 	optional string serviceIdentifier = 2;
@@ -841,19 +1038,6 @@ message GetAllReadableProjectsResponse {
 
 message GetAllRelatedProjectsRequest {
 	optional int64 poid = 1;
-}
-
-message SProjectSmall {
-	optional bool hasCheckinRights = 1;
-	optional int64 lastRevisionId = 2;
-	optional string name = 3;
-	optional int32 nrRevisions = 4;
-	optional int32 nrSubProjects = 5;
-	optional int64 oid = 6;
-	optional int64 parentId = 7;
-	optional int32 rid = 8;
-	optional string schema = 9;
-	optional SObjectState state = 10;
 }
 
 message GetAllRelatedProjectsResponse {
@@ -882,6 +1066,15 @@ message GetAllRevisionsByUserRequest {
 }
 
 message GetAllRevisionsByUserResponse {
+	optional string errorMessage = 1;
+	repeated SRevision value = 2;
+}
+
+message GetAllRevisionsOfProjectRequest {
+	optional int64 poid = 1;
+}
+
+message GetAllRevisionsOfProjectResponse {
 	optional string errorMessage = 1;
 	repeated SRevision value = 2;
 }
@@ -962,6 +1155,89 @@ message GetCheckoutWarningsRequest {
 message GetCheckoutWarningsResponse {
 	optional string errorMessage = 1;
 	repeated string value = 2;
+}
+
+message GetDeserializerByIdRequest {
+	optional int64 oid = 1;
+}
+
+message SDeserializerPluginConfiguration {
+	optional string description = 1;
+	optional bool enabled = 2;
+	optional string name = 3;
+	optional int64 oid = 4;
+	optional int64 pluginDescriptorId = 5;
+	optional int32 rid = 6;
+	optional int64 settingsId = 7;
+	optional int64 userSettingsId = 8;
+}
+
+message GetDeserializerByIdResponse {
+	optional string errorMessage = 1;
+	optional SDeserializerPluginConfiguration value = 2;
+}
+
+message GetDeserializerByNameRequest {
+	optional string deserializerName = 1;
+}
+
+message GetDeserializerByNameResponse {
+	optional string errorMessage = 1;
+	optional SDeserializerPluginConfiguration value = 2;
+}
+
+message GetDownloadDataRequest {
+	optional int64 topicId = 1;
+}
+
+message SCheckoutResult {
+	optional bytes file = 1;
+	optional int64 oid = 2;
+	optional string projectName = 3;
+	optional int32 revisionNr = 4;
+	optional int32 rid = 5;
+}
+
+message SDownloadResult {
+	required string __actual_type = 1;
+	optional SCheckoutResult __SCheckoutResult = 2;
+	optional bytes file = 3;
+	optional int64 oid = 4;
+	optional string projectName = 5;
+	optional int32 revisionNr = 6;
+	optional int32 rid = 7;
+}
+
+message GetDownloadDataResponse {
+	optional string errorMessage = 1;
+	optional SDownloadResult value = 2;
+}
+
+message GetExtendedDataRequest {
+	optional int64 oid = 1;
+}
+
+message GetExtendedDataResponse {
+	optional string errorMessage = 1;
+	optional SExtendedData value = 2;
+}
+
+message GetExtendedDataSchemaByIdRequest {
+	optional int64 oid = 1;
+}
+
+message GetExtendedDataSchemaByIdResponse {
+	optional string errorMessage = 1;
+	optional SExtendedDataSchema value = 2;
+}
+
+message GetExtendedDataSchemaByNamespaceRequest {
+	optional string namespace = 1;
+}
+
+message GetExtendedDataSchemaByNamespaceResponse {
+	optional string errorMessage = 1;
+	optional SExtendedDataSchema value = 2;
 }
 
 message GetExtendedDataSchemaFromRepositoryRequest {
@@ -1095,6 +1371,62 @@ message GetOidByGuidResponse {
 	optional int64 value = 2;
 }
 
+message GetProjectByPoidRequest {
+	optional int64 poid = 1;
+}
+
+message GetProjectByPoidResponse {
+	optional string errorMessage = 1;
+	optional SProject value = 2;
+}
+
+message GetProjectSmallByPoidRequest {
+	optional int64 poid = 1;
+}
+
+message GetProjectSmallByPoidResponse {
+	optional string errorMessage = 1;
+	optional SProjectSmall value = 2;
+}
+
+message GetProjectsByNameRequest {
+	optional string name = 1;
+}
+
+message GetProjectsByNameResponse {
+	optional string errorMessage = 1;
+	repeated SProject value = 2;
+}
+
+message GetQueryEngineByIdRequest {
+	optional int64 oid = 1;
+}
+
+message SQueryEnginePluginConfiguration {
+	optional string description = 1;
+	optional bool enabled = 2;
+	optional string name = 3;
+	optional int64 oid = 4;
+	optional int64 pluginDescriptorId = 5;
+	optional int32 rid = 6;
+	optional int64 settingsId = 7;
+	optional int64 userSettingsId = 8;
+}
+
+message GetQueryEngineByIdResponse {
+	optional string errorMessage = 1;
+	optional SQueryEnginePluginConfiguration value = 2;
+}
+
+message GetQueryEngineByNameRequest {
+	optional string name = 1;
+}
+
+message GetQueryEngineByNameResponse {
+	optional string errorMessage = 1;
+	optional SQueryEnginePluginConfiguration value = 2;
+}
+
 message GetQueryEngineExampleRequest {
 	optional int64 qeid = 1;
 	optional string key = 2;
@@ -1112,6 +1444,15 @@ message GetQueryEngineExampleKeysRequest {
 message GetQueryEngineExampleKeysResponse {
 	optional string errorMessage = 1;
 	repeated string value = 2;
+}
+
+message GetRevisionRequest {
+	optional int64 roid = 1;
+}
+
+message GetRevisionResponse {
+	optional string errorMessage = 1;
+	optional SRevision value = 2;
 }
 
 message GetRevisionSummaryRequest {
@@ -1144,6 +1485,47 @@ message GetRevisionSummaryResponse {
 	optional SRevisionSummary value = 2;
 }
 
+message GetSerializerByContentTypeRequest {
+	optional string contentType = 1;
+}
+
+message SSerializerPluginConfiguration {
+	optional string description = 1;
+	optional bool enabled = 2;
+	optional string name = 3;
+	optional int64 objectIDMId = 4;
+	optional int64 oid = 5;
+	optional int64 pluginDescriptorId = 6;
+	optional int64 renderEngineId = 7;
+	optional int32 rid = 8;
+	optional int64 settingsId = 9;
+	optional bool streaming = 10;
+	optional int64 userSettingsId = 11;
+}
+
+message GetSerializerByContentTypeResponse {
+	optional string errorMessage = 1;
+	optional SSerializerPluginConfiguration value = 2;
+}
+
+message GetSerializerByIdRequest {
+	optional int64 oid = 1;
+}
+
+message GetSerializerByIdResponse {
+	optional string errorMessage = 1;
+	optional SSerializerPluginConfiguration value = 2;
+}
+
+message GetSerializerByNameRequest {
+	optional string serializerName = 1;
+}
+
+message GetSerializerByNameResponse {
+	optional string errorMessage = 1;
+	optional SSerializerPluginConfiguration value = 2;
+}
+
 message GetServiceRequest {
 	optional int64 soid = 1;
 }
@@ -1161,6 +1543,25 @@ message GetServiceDescriptorRequest {
 message GetServiceDescriptorResponse {
 	optional string errorMessage = 1;
 	optional SServiceDescriptor value = 2;
+}
+
+message GetSubProjectsRequest {
+	optional int64 poid = 1;
+}
+
+message GetSubProjectsResponse {
+	optional string errorMessage = 1;
+	repeated SProject value = 2;
+}
+
+message GetSuggestedDeserializerForExtensionRequest {
+	optional string extension = 1;
+	optional int64 poid = 2;
+}
+
+message GetSuggestedDeserializerForExtensionResponse {
+	optional string errorMessage = 1;
+	optional SDeserializerPluginConfiguration value = 2;
 }
 
 message GetUserByUoidRequest {
@@ -1621,6 +2022,10 @@ message ShareRevisionResponse {
 	optional string value = 2;
 }
 
+message TerminateLongRunningActionRequest {
+	optional int64 topicId = 1;
+}
+
 message TriggerNewExtendedDataRequest {
 	optional int64 edid = 1;
 	optional int64 soid = 2;
@@ -1629,6 +2034,15 @@ message TriggerNewExtendedDataRequest {
 message TriggerNewRevisionRequest {
 	optional int64 roid = 1;
 	optional int64 soid = 2;
+}
+
+message UndeleteProjectRequest {
+	optional int64 poid = 1;
+}
+
+message UndeleteProjectResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
 }
 
 message UndeleteUserRequest {

@@ -22,9 +22,9 @@ import "RemoteServiceInterface.proto";
 import "AdminInterface.proto";
 import "MetaInterface.proto";
 import "SettingsInterface.proto";
-import "Bimsie1AuthInterface.proto";
 import "AuthInterface.proto";
-import "Bimsie1LowLevelInterface.proto";
+import "AuthInterface.proto";
+import "LowLevelInterface.proto";
 import "PluginInterface.proto";
 option java_generic_services = true;
 

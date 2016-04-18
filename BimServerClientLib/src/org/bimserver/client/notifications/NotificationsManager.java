@@ -31,8 +31,8 @@ import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.Bimsie1NotificationInterfaceAdaptor;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationInterfaceAdaptor;
+import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.json.ConvertException;
 import org.bimserver.shared.json.JsonConverter;
 import org.bimserver.shared.meta.SMethod;
@@ -58,13 +58,13 @@ public class NotificationsManager extends NotificationsClient {
 	private BimServerClient bimServerClient;
 	private long endpointid;
 	private JsonConverter converter;
-	private Bimsie1NotificationInterface service;
+	private NotificationInterface service;
 	private WebSocketClient webSocketClient;
 	private WebSocketImpl webSocketImpl;
 
 	public NotificationsManager(BimServerClient bimServerClient) {
 		this.bimServerClient = bimServerClient;
-		this.service = new Bimsie1NotificationInterfaceAdaptor(){
+		this.service = new NotificationInterfaceAdaptor(){
 			@Override
 			public void progress(Long topicId, SLongActionState state) throws UserException, ServerException {
 				Set<ProgressHandler> set = progressListeners.get(topicId);
@@ -128,7 +128,7 @@ public class NotificationsManager extends NotificationsClient {
 		start();
 	}
 
-	public void unregisterNotifictionListener(Bimsie1NotificationInterface notificationInterface) {
+	public void unregisterNotifictionListener(NotificationInterface notificationInterface) {
 		
 	}
 

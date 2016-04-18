@@ -34,7 +34,6 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.utils.InputStreamDataSource;
 import org.slf4j.Logger;
@@ -82,7 +81,7 @@ public class DirectChannel extends Channel implements TokenChangeListener {
 	@Override
 	public InputStream getDownloadData(String baseAddress, String token, long download, long serializerOid) throws IOException {
 		try {
-			SDownloadResult downloadData = get(Bimsie1ServiceInterface.class).getDownloadData(download);
+			SDownloadResult downloadData = get(ServiceInterface.class).getDownloadData(download);
 			return downloadData.getFile().getInputStream();
 		} catch (ServerException e) {
 			LOGGER.error("", e);

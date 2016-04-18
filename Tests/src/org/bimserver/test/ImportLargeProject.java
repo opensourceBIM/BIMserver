@@ -28,7 +28,7 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
+import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class ImportLargeProject {
 	public static void main(String[] args) {
@@ -36,7 +36,7 @@ public class ImportLargeProject {
 		try {
 			Path baseFolder = Paths.get("C:\\Users\\Ruben de Laat\\Documents\\ttt");
 			
-			Bimsie1ServiceInterface serviceInterface = client.getBimsie1ServiceInterface();
+			ServiceInterface serviceInterface = client.getServiceInterface();
 			SProject mainProject = serviceInterface.addProject("Tekla Demo Model", "ifc2x3tc1");
 			SProject architectural = serviceInterface.addProjectAsSubProject("Architectural", mainProject.getOid(), "ifc2x3tc1");
 			SProject teklaHouseArchitectural = serviceInterface.addProjectAsSubProject("Tekla House Architectural", architectural.getOid(), "ifc2x3tc1");
@@ -70,7 +70,7 @@ public class ImportLargeProject {
 			SProject grid = serviceInterface.addProjectAsSubProject("Grid", mainProject.getOid(), "ifc2x3tc1");
 			SProject teklaHouseGrids = serviceInterface.addProjectAsSubProject("Tekla House Grids", grid.getOid(), "ifc2x3tc1");
 			
-			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", grid.getOid());
+			SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", grid.getOid());
 			
 			client.checkin(teklaHouseStructural.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House Structural.ifcZIP"));
 			client.checkin(teklaHouseGrids.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House Grids.ifc"));
@@ -91,7 +91,7 @@ public class ImportLargeProject {
 			client.checkin(teklaHouseMEPRoof.getOid(), "Initial", deserializer.getOid(), false, true, baseFolder.resolve("Tekla House MEP, Roof.ifc"));
 
 			mainProject = serviceInterface.getProjectByPoid(mainProject.getOid());
-			SSerializerPluginConfiguration serializer = client.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
+			SSerializerPluginConfiguration serializer = client.getServiceInterface().getSerializerByContentType("application/ifc");
 			client.download(mainProject.getLastRevisionId(), serializer.getOid(), Paths.get("output.ifc"));
 		} catch (ServiceException e) {
 			e.printStackTrace();

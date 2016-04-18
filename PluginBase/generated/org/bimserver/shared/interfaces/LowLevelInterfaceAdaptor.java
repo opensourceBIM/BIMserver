@@ -19,7 +19,7 @@ package org.bimserver.shared.interfaces;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
-public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface {
+public class LowLevelInterfaceAdaptor implements org.bimserver.shared.interfaces.LowLevelInterface {
 
 	public void abortTransaction(java.lang.Long tid) throws UserException, ServerException {
 	}

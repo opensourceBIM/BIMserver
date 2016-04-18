@@ -57,10 +57,10 @@ import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.interfaces.async.AsyncBimsie1RemoteServiceInterface;
-import org.bimserver.shared.interfaces.async.AsyncBimsie1RemoteServiceInterface.NewRevisionCallback;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.shared.interfaces.async.AsyncRemoteServiceInterface;
+import org.bimserver.shared.interfaces.async.AsyncRemoteServiceInterface.NewRevisionCallback;
 import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.webservices.authorization.AdminAuthorization;
 import org.bimserver.webservices.authorization.Authorization;
@@ -251,7 +251,7 @@ public class NewRevisionNotification extends Notification {
 					}
 				}
 				channel = notificationsManager.getChannel(service);
-				final Bimsie1RemoteServiceInterface remoteServiceInterface = channel.get(Bimsie1RemoteServiceInterface.class);
+				final RemoteServiceInterface remoteServiceInterface = channel.get(RemoteServiceInterface.class);
 				long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
 				long writeExtendedDataRoid = service.getWriteExtendedData() != null ? roid : -1;
 				@SuppressWarnings("unused")
@@ -274,7 +274,7 @@ public class NewRevisionNotification extends Notification {
 				ServiceInterface newService = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL).get(ServiceInterface.class);
 				((org.bimserver.webservices.impl.ServiceImpl)newService).setAuthorization(authorization); // TODO redundant?
 				
-				AsyncBimsie1RemoteServiceInterface asyncRemoteServiceInterface = new AsyncBimsie1RemoteServiceInterface(remoteServiceInterface, bimServer.getExecutorService());
+				AsyncRemoteServiceInterface asyncRemoteServiceInterface = new AsyncRemoteServiceInterface(remoteServiceInterface, bimServer.getExecutorService());
 				asyncRemoteServiceInterface.newRevision(poid, roid, service.getOid(), service.getServiceIdentifier(), service.getProfileIdentifier(), service.getToken(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), new NewRevisionCallback(){
 					@Override
 					public void success() {
