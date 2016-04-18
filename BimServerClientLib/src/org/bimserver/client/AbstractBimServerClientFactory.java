@@ -2,8 +2,6 @@ package org.bimserver.client;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
@@ -29,23 +27,20 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.reflector.ReflectorFactoryImpl1;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 
@@ -77,7 +72,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 			this.metaDataManager = metaDataManager;
 		}
 		this.servicesMap = new SServicesMap();
-		servicesMap.setReflectorFactory(new ReflectorFactoryImpl1());
+//		servicesMap.setReflectorFactory(new ReflectorFactoryImpl1());
 		SService serviceInterface = new SServiceInterfaceService(servicesMap, null, ServiceInterface.class);
 		addService(serviceInterface);
 		addService(new SService(servicesMap, null, MetaInterface.class));
@@ -85,12 +80,10 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		addService(new SService(servicesMap, null, AuthInterface.class));
 		addService(new SService(servicesMap, null, SettingsInterface.class));
 		addService(new SService(servicesMap, null, PluginInterface.class));
-		addService(new SService(servicesMap, null, Bimsie1NotificationInterface.class));
-		addService(new SService(servicesMap, null, Bimsie1RemoteServiceInterface.class));
-		addService(new SService(servicesMap, null, Bimsie1AuthInterface.class));
-		addService(new SService(servicesMap, null, Bimsie1LowLevelInterface.class));
-		addService(new SService(servicesMap, null, Bimsie1NotificationRegistryInterface.class));
-		addService(new SService(servicesMap, null, Bimsie1ServiceInterface.class));
+		addService(new SService(servicesMap, null, NotificationInterface.class));
+		addService(new SService(servicesMap, null, RemoteServiceInterface.class));
+		addService(new SService(servicesMap, null, LowLevelInterface.class));
+		addService(new SService(servicesMap, null, NotificationRegistryInterface.class));
 		servicesMap.initialize();
 		initHttpClient();
 	}

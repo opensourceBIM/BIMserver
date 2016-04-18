@@ -26,25 +26,25 @@ public class SingleCheckinAndDownloadSimplified extends TestWithEmbeddedServer {
 			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			// This is the file we will be checking in
 			Path ifcFile = Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 			
 			// Find a deserializer to use
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 			
 			// Checkin
 			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, ifcFile);
 			
 			// Find a serializer
-			SSerializerPluginConfiguration colladaSerializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/collada");
+			SSerializerPluginConfiguration colladaSerializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/collada");
 			
 			// Get the project details
-			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 			
 			// Download the latest revision  (the one we just checked in)
-			Long topicIdId = bimServerClient.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), colladaSerializer.getOid(), false); // Note: sync: false
+			Long topicIdId = bimServerClient.getServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), colladaSerializer.getOid(), false); // Note: sync: false
 			InputStream downloadData = bimServerClient.getDownloadData(topicIdId, colladaSerializer.getOid());
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			IOUtils.copy(downloadData, baos);

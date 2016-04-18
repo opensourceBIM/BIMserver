@@ -11,7 +11,7 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
@@ -22,15 +22,15 @@ public class SetWrappedBoolean extends TestWithEmbeddedServer {
 		try {
 			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			bimServerClient.getSettingsInterface().setCacheOutputFiles(false);
-			Bimsie1LowLevelInterface lowLevelInterface = bimServerClient.getBimsie1LowLevelInterface();
+			LowLevelInterface lowLevelInterface = bimServerClient.getLowLevelInterface();
 			
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
-			SDeserializerPluginConfiguration suggestedDeserializerForExtension = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+			SDeserializerPluginConfiguration suggestedDeserializerForExtension = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 			bimServerClient.checkin(newProject.getOid(), "initial", suggestedDeserializerForExtension.getOid(), false, true, Paths.get("../TestData/data/revit_quantities.ifc"));
-			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 			
-			SSerializerPluginConfiguration serializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByName("Ifc2x3");
+			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByName("Ifc2x3");
 			
 			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("test1.ifc"));
 
@@ -39,7 +39,7 @@ public class SetWrappedBoolean extends TestWithEmbeddedServer {
 			
 			IfcPropertySingleValue ifcPropertySingleValue = model.getAll(IfcPropertySingleValue.class).iterator().next();
 
-			bimServerClient.getBimsie1LowLevelInterface().setWrappedBooleanAttribute(tid, ifcPropertySingleValue.getOid(), "NominalValue", "IfcBoolean", true);
+			bimServerClient.getLowLevelInterface().setWrappedBooleanAttribute(tid, ifcPropertySingleValue.getOid(), "NominalValue", "IfcBoolean", true);
 
 			long roid = lowLevelInterface.commitTransaction(tid, "v2");
 			

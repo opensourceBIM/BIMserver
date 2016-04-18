@@ -62,11 +62,8 @@ import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
-import org.bimserver.utils.DeserializerUtils;
 import org.eclipse.emf.common.util.EList;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -75,12 +72,10 @@ import org.junit.Test;
 public class TestLowLevelChanges {
 
 	private static BimServer bimServer;
-	private static Bimsie1ServiceInterface bimsie1ServiceInterface;
-	private static Bimsie1LowLevelInterface bimsie1LowLevelInterface;
-	private static Bimsie1ServiceInterface bimsie1Interface;
+	private static ServiceInterface serviceInterface;
+	private static LowLevelInterface lowLevelInterface;
 	private static PluginManager pluginManager;
 	private static AuthInterface authInterface;
-	private static ServiceInterface serviceInterface;
 
 	@BeforeClass
 	public static void setup() {
@@ -107,7 +102,7 @@ public class TestLowLevelChanges {
 			// Convenience, setup the server to make sure it is in RUNNING state
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getService(AdminInterface.class).setup("http://localhost", "Administrator", "admin@bimserver.org", "admin");
-				bimServer.getService(Bimsie1AuthInterface.class).login("admin@bimserver.org", "admin");
+				bimServer.getService(AuthInterface.class).login("admin@bimserver.org", "admin");
 			}
 			
 			// Change a setting to normal users can create projects
@@ -126,10 +121,8 @@ public class TestLowLevelChanges {
 			e.printStackTrace();
 		}
 
-		bimsie1ServiceInterface = bimServer.getService(Bimsie1ServiceInterface.class);
 		serviceInterface = bimServer.getService(ServiceInterface.class);
-		bimsie1LowLevelInterface = bimServer.getService(Bimsie1LowLevelInterface.class);
-		bimsie1Interface = bimServer.getService(Bimsie1ServiceInterface.class);
+		lowLevelInterface = bimServer.getService(LowLevelInterface.class);
 		authInterface = bimServer.getService(AuthInterface.class);
 		pluginManager = bimServer.getPluginManager();
 		createUserAndLogin();
@@ -146,7 +139,7 @@ public class TestLowLevelChanges {
 			String username = "test" + nextInt + "@bimserver.org";
 			long addUser = serviceInterface.addUser(username, "User " + nextInt, SUserType.USER, false, "").getOid();
 			authInterface.changePassword(addUser, null, "test");
-			bimServer.getService(Bimsie1AuthInterface.class).login(username, "test");
+			bimServer.getService(AuthInterface.class).login(username, "test");
 			return addUser;
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -156,7 +149,7 @@ public class TestLowLevelChanges {
 
 	private long createProject() {
 		try {
-			SProject project = bimsie1ServiceInterface.addProject("Project " + new Random().nextInt(), "ifc4");
+			SProject project = serviceInterface.addProject("Project " + new Random().nextInt(), "ifc4");
 			return project.getOid();
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -177,9 +170,9 @@ public class TestLowLevelChanges {
 	public void testCreateObject() {
 		try {
 			long poid = createProject();
-			long tid = bimsie1LowLevelInterface.startTransaction(poid);
-			long wallOid = bimsie1LowLevelInterface.createObject(tid, "IfcWall", true);
-			long roid = bimsie1LowLevelInterface.commitTransaction(tid, "test");
+			long tid = lowLevelInterface.startTransaction(poid);
+			long wallOid = lowLevelInterface.createObject(tid, "IfcWall", true);
+			long roid = lowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
 				fail("1 object expected, found " + model.size());
@@ -199,11 +192,11 @@ public class TestLowLevelChanges {
 	public void testSetStringAttribute() {
 		try {
 			long poid = createProject();
-			long tid = bimsie1LowLevelInterface.startTransaction(poid);
-			long windowOid = bimsie1LowLevelInterface.createObject(tid, "IfcWindow", true);
+			long tid = lowLevelInterface.startTransaction(poid);
+			long windowOid = lowLevelInterface.createObject(tid, "IfcWindow", true);
 			String name = "TestX";
-			bimsie1LowLevelInterface.setStringAttribute(tid, windowOid, "Name", name);
-			long roid = bimsie1LowLevelInterface.commitTransaction(tid, "test");
+			lowLevelInterface.setStringAttribute(tid, windowOid, "Name", name);
+			long roid = lowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
 				fail("1 object expected, found " + model.size());
@@ -227,11 +220,11 @@ public class TestLowLevelChanges {
 	public void testSetFloatAttribute() {
 		try {
 			long poid = createProject();
-			long tid = bimsie1LowLevelInterface.startTransaction(poid);
-			long windowOid = bimsie1LowLevelInterface.createObject(tid, "IfcWindow", true);
+			long tid = lowLevelInterface.startTransaction(poid);
+			long windowOid = lowLevelInterface.createObject(tid, "IfcWindow", true);
 			double overallHeight = 200.5;
-			bimsie1LowLevelInterface.setDoubleAttribute(tid, windowOid, "OverallHeight", overallHeight);
-			long roid = bimsie1LowLevelInterface.commitTransaction(tid, "test");
+			lowLevelInterface.setDoubleAttribute(tid, windowOid, "OverallHeight", overallHeight);
+			long roid = lowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
 				fail("1 object expected, found " + model.size());
@@ -255,11 +248,11 @@ public class TestLowLevelChanges {
 	public void testSetReference() {
 		try {
 			long poid = createProject();
-			long tid = bimsie1LowLevelInterface.startTransaction(poid);
-			long siteId = bimsie1LowLevelInterface.createObject(tid, "IfcSite", true);
-			long ownerHistoryId = bimsie1LowLevelInterface.createObject(tid, "IfcOwnerHistory", true);
-			bimsie1LowLevelInterface.setReference(tid, siteId, "OwnerHistory", ownerHistoryId); // TODO test
-			long roid = bimsie1LowLevelInterface.commitTransaction(tid, "test");
+			long tid = lowLevelInterface.startTransaction(poid);
+			long siteId = lowLevelInterface.createObject(tid, "IfcSite", true);
+			long ownerHistoryId = lowLevelInterface.createObject(tid, "IfcOwnerHistory", true);
+			lowLevelInterface.setReference(tid, siteId, "OwnerHistory", ownerHistoryId); // TODO test
+			long roid = lowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 2) {
 				fail("2 objects expected, found " + model.size());
@@ -285,15 +278,15 @@ public class TestLowLevelChanges {
 	public void testAddFloatAttribute() {
 		try {
 			long poid = createProject();
-			Long tid = bimsie1LowLevelInterface.startTransaction(poid);
-			long cartesianPointId = bimsie1LowLevelInterface.createObject(tid, "IfcCartesianPoint", true);
+			Long tid = lowLevelInterface.startTransaction(poid);
+			long cartesianPointId = lowLevelInterface.createObject(tid, "IfcCartesianPoint", true);
 			double firstVal = 5.1;
-			bimsie1LowLevelInterface.addDoubleAttribute(tid, cartesianPointId, "Coordinates", firstVal);
+			lowLevelInterface.addDoubleAttribute(tid, cartesianPointId, "Coordinates", firstVal);
 			double secondVal = 6.2;
-			bimsie1LowLevelInterface.addDoubleAttribute(tid, cartesianPointId, "Coordinates", secondVal);
+			lowLevelInterface.addDoubleAttribute(tid, cartesianPointId, "Coordinates", secondVal);
 			double thirdVal = 7.3;
-			bimsie1LowLevelInterface.addDoubleAttribute(tid, cartesianPointId, "Coordinates", thirdVal);
-			long roid = bimsie1LowLevelInterface.commitTransaction(tid, "test");
+			lowLevelInterface.addDoubleAttribute(tid, cartesianPointId, "Coordinates", thirdVal);
+			long roid = lowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			List<IfcCartesianPoint> cartesianPoints = model.getAll(IfcCartesianPoint.class);
 			if (cartesianPoints.size() != 1) {
@@ -316,12 +309,12 @@ public class TestLowLevelChanges {
 	public void testRemoveObject() {
 		try {
 			long poid = createProject();
-			long tid = bimsie1LowLevelInterface.startTransaction(poid);
-			long windowId = bimsie1LowLevelInterface.createObject(tid, "IfcWindow", true);
-			bimsie1LowLevelInterface.commitTransaction(tid, "test");
-			tid = bimsie1LowLevelInterface.startTransaction(poid);
-			bimsie1LowLevelInterface.removeObject(tid, windowId);
-			long roid = bimsie1LowLevelInterface.commitTransaction(tid, "test");
+			long tid = lowLevelInterface.startTransaction(poid);
+			long windowId = lowLevelInterface.createObject(tid, "IfcWindow", true);
+			lowLevelInterface.commitTransaction(tid, "test");
+			tid = lowLevelInterface.startTransaction(poid);
+			lowLevelInterface.removeObject(tid, windowId);
+			long roid = lowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 0) {
 				fail("Model should be empty");
@@ -333,10 +326,10 @@ public class TestLowLevelChanges {
 	}
 	
 	private IfcModelInterface getSingleRevision(long roid) throws ServiceException, DeserializeException, IOException {
-		SRevision revision = bimsie1ServiceInterface.getRevision(roid);
-		SSerializerPluginConfiguration serializerByContentType = bimsie1Interface.getSerializerByContentType("application/ifc");
-		long topicId = bimsie1Interface.downloadRevisions(Collections.singleton(revision.getOid()), serializerByContentType.getOid(), true);
-		SDownloadResult downloadData = bimsie1Interface.getDownloadData(topicId);
+		SRevision revision = serviceInterface.getRevision(roid);
+		SSerializerPluginConfiguration serializerByContentType = serviceInterface.getSerializerByContentType("application/ifc");
+		long topicId = serviceInterface.downloadRevisions(Collections.singleton(revision.getOid()), serializerByContentType.getOid(), true);
+		SDownloadResult downloadData = serviceInterface.getDownloadData(topicId);
 		DataHandler dataHandler = downloadData.getFile();
 		try {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);

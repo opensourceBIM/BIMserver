@@ -26,10 +26,10 @@ public class SubProjects extends TestWithEmbeddedServer {
 
 			long s = System.nanoTime();
 			// Create a new project
-			SProject mainProject = bimServerClient.getBimsie1ServiceInterface().addProject("main" + Math.random(), "ifc2x3tc1");
-			SProject sub1 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub1" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
-			SProject sub2 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub2" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
-			SProject sub3 = bimServerClient.getBimsie1ServiceInterface().addProjectAsSubProject("Sub3" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
+			SProject mainProject = bimServerClient.getServiceInterface().addProject("main" + Math.random(), "ifc2x3tc1");
+			SProject sub1 = bimServerClient.getServiceInterface().addProjectAsSubProject("Sub1" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
+			SProject sub2 = bimServerClient.getServiceInterface().addProjectAsSubProject("Sub2" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
+			SProject sub3 = bimServerClient.getServiceInterface().addProjectAsSubProject("Sub3" + Math.random(), mainProject.getOid(), "ifc2x3tc1");
 
 			// This is the file we will be checking in
 			Path ifcFile1 = Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
@@ -37,7 +37,7 @@ public class SubProjects extends TestWithEmbeddedServer {
 			Path ifcFile3 = Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 
 			// Find a deserializer to use
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", mainProject.getOid());
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", mainProject.getOid());
 
 			// Checkin
 			bimServerClient.checkin(sub1.getOid(), "test", deserializer.getOid(), false, true, ifcFile1);
@@ -45,15 +45,15 @@ public class SubProjects extends TestWithEmbeddedServer {
 			bimServerClient.checkin(sub3.getOid(), "test", deserializer.getOid(), false, true, ifcFile3);
 
 			// Find a serializer
-			SSerializerPluginConfiguration serializer = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
+			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
 
 			// Get the project details
-			mainProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(mainProject.getOid());
+			mainProject = bimServerClient.getServiceInterface().getProjectByPoid(mainProject.getOid());
 
 			// Download the latest revision (the one we just checked in)
-//			Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(mainProject.getLastRevisionId()),
+//			Long topicId = bimServerClient.getServiceInterface().downloadByTypes(Collections.singleton(mainProject.getLastRevisionId()),
 //					Collections.singleton("IfcWall"), serializer.getOid(), true, false, true, true);
-			Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(mainProject.getLastRevisionId()), serializer.getOid(), true);
+			Long topicId = bimServerClient.getServiceInterface().downloadRevisions(Collections.singleton(mainProject.getLastRevisionId()), serializer.getOid(), true);
 			IOUtils.copy(bimServerClient.getDownloadData(topicId, serializer.getOid()), new FileOutputStream(new File("out.ifc")));
 			long e = System.nanoTime();
 			System.out.println(((e - s) / 1000000) + " ms");

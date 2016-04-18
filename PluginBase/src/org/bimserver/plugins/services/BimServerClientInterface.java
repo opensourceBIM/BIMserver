@@ -33,7 +33,7 @@ import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AuthInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 
 public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 
@@ -71,7 +71,7 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	Geometry getGeometry(long roid, IfcProduct ifcProduct);
 
 	AuthInterface getBimServerAuthInterface() throws PublicInterfaceNotFoundException;
-	Bimsie1RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException;
+	RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException;
 
 	/**
 	 * This will close all the connections, call this method as soon as you are done using this BimServerClient

@@ -42,14 +42,14 @@ public class TestSceneJsDownload {
 	private void start() {
 		try {
 			BimServerClientInterface bimServerClient = LocalDevSetup.setupJson("http://localhost:8080");
-			bimServerClient.getBimsie1AuthInterface().login("admin@bimserver.org", "admin");
-			SSerializerPluginConfiguration serializerByContentType = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/json");
-			List<SProject> projects = bimServerClient.getBimsie1ServiceInterface().getProjectsByName("test");
+			bimServerClient.getAuthInterface().login("admin@bimserver.org", "admin");
+			SSerializerPluginConfiguration serializerByContentType = bimServerClient.getServiceInterface().getSerializerByContentType("application/json");
+			List<SProject> projects = bimServerClient.getServiceInterface().getProjectsByName("test");
 			if (!projects.isEmpty()) {
 				SProject project = projects.get(0);
 				if (project.getLastRevisionId() != -1) {
 					long start = System.nanoTime();
-					Long download = bimServerClient.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(project.getLastRevisionId()), serializerByContentType.getOid(), true);
+					Long download = bimServerClient.getServiceInterface().downloadRevisions(Collections.singleton(project.getLastRevisionId()), serializerByContentType.getOid(), true);
 					System.out.println(((System.nanoTime() - start) / 1000000) + " ms");
 					start = System.nanoTime();
 					InputStream inputStream = bimServerClient.getDownloadData(download, serializerByContentType.getOid());

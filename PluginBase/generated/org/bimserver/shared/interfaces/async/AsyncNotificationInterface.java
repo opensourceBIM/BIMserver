@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.async;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2016  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -14,80 +14,79 @@ package org.bimserver.shared.interfaces.async;
  * GNU Affero General Public License for more details.
  * 
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
-
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class AsyncNotificationInterface {
 
 	private final ExecutorService executorService;
-	private final Bimsie1NotificationInterface syncService;
+	private final NotificationInterface syncService;
 
-	public AsyncNotificationInterface(Bimsie1NotificationInterface syncService, ExecutorService executorService) {
+	public AsyncNotificationInterface(NotificationInterface syncService, ExecutorService executorService) {
 		this.executorService = executorService;
 		this.syncService = syncService;
 	}
 
 	public interface ClosedProgressOnProjectTopicCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface ClosedProgressOnRevisionTopicCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface ClosedProgressOnServerTopicCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface NewExtendedDataCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface NewProgressOnProjectTopicCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface NewProgressOnRevisionTopicCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface NewProgressOnServerTopicCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface NewProgressTopicCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface NewProjectCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface NewRevisionCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface NewUserCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 	public interface ProgressCallback {
 		void success();
-		void error(Exception e);
+		void error(Throwable e);
 	}
 	
 
@@ -98,7 +97,7 @@ public class AsyncNotificationInterface {
 				try {
 					syncService.closedProgressOnProjectTopic(poid, topicId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -111,7 +110,7 @@ public class AsyncNotificationInterface {
 				try {
 					syncService.closedProgressOnRevisionTopic(poid, roid, topicId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -124,7 +123,7 @@ public class AsyncNotificationInterface {
 				try {
 					syncService.closedProgressOnServerTopic(topicId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -137,7 +136,7 @@ public class AsyncNotificationInterface {
 				try {
 					syncService.newExtendedData(roid, edid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -150,7 +149,7 @@ public class AsyncNotificationInterface {
 				try {
 					syncService.newProgressOnProjectTopic(poid, topicId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -163,7 +162,7 @@ public class AsyncNotificationInterface {
 				try {
 					syncService.newProgressOnRevisionTopic(poid, roid, topicId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -176,7 +175,7 @@ public class AsyncNotificationInterface {
 				try {
 					syncService.newProgressOnServerTopic(topicId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -189,7 +188,7 @@ public class AsyncNotificationInterface {
 				try {
 					syncService.newProgressTopic(topicId);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -202,7 +201,7 @@ public class AsyncNotificationInterface {
 				try {
 					syncService.newProject(poid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -215,7 +214,7 @@ public class AsyncNotificationInterface {
 				try {
 					syncService.newRevision(poid, roid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -228,7 +227,7 @@ public class AsyncNotificationInterface {
 				try {
 					syncService.newUser(uoid);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}
@@ -241,7 +240,7 @@ public class AsyncNotificationInterface {
 				try {
 					syncService.progress(topicId, state);
 					callback.success();
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					callback.error(e);
 				}
 			}

@@ -23,23 +23,20 @@ import java.util.Set;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 
 public class InterfaceList {
 	private static final Set<Class<? extends PublicInterface>> interfaces = new LinkedHashSet<Class<? extends PublicInterface>>();
-	private static final Set<Class<? extends PublicInterface>> bimsie1Interfaces = new LinkedHashSet<Class<? extends PublicInterface>>();
 	
 	static {
 		interfaces.add(ServiceInterface.class);
@@ -48,19 +45,10 @@ public class InterfaceList {
 		interfaces.add(SettingsInterface.class);
 		interfaces.add(AuthInterface.class);
 		interfaces.add(PluginInterface.class);
-		interfaces.add(Bimsie1ServiceInterface.class);
-		interfaces.add(Bimsie1NotificationInterface.class);
-		interfaces.add(Bimsie1RemoteServiceInterface.class);
-		interfaces.add(Bimsie1AuthInterface.class);
-		interfaces.add(Bimsie1LowLevelInterface.class);
-		interfaces.add(Bimsie1NotificationRegistryInterface.class);
-
-		bimsie1Interfaces.add(Bimsie1ServiceInterface.class);
-		bimsie1Interfaces.add(Bimsie1NotificationInterface.class);
-		bimsie1Interfaces.add(Bimsie1RemoteServiceInterface.class);
-		bimsie1Interfaces.add(Bimsie1AuthInterface.class);
-		bimsie1Interfaces.add(Bimsie1LowLevelInterface.class);
-		bimsie1Interfaces.add(Bimsie1NotificationRegistryInterface.class);
+		interfaces.add(NotificationInterface.class);
+		interfaces.add(RemoteServiceInterface.class);
+		interfaces.add(LowLevelInterface.class);
+		interfaces.add(NotificationRegistryInterface.class);
 	}
 
 	public static SServicesMap createSServicesMap() {
@@ -72,16 +60,6 @@ public class InterfaceList {
 			if (clazz != ServiceInterface.class) {
 				servicesMap.add(new SService(servicesMap, sourceCodeFetcher, clazz));
 			}
-		}
-		servicesMap.initialize();
-		return servicesMap;
-	}
-
-	public static SServicesMap createBimsie1SServicesMap() {
-		SServicesMap servicesMap = new SServicesMap();
-		CodeFetcher sourceCodeFetcher = new CodeFetcher();
-		for (Class<? extends PublicInterface> clazz : bimsie1Interfaces) {
-			servicesMap.add(new SService(servicesMap, sourceCodeFetcher, clazz));
 		}
 		servicesMap.initialize();
 		return servicesMap;

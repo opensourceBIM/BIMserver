@@ -50,15 +50,15 @@ public class EDelegatingList<E> extends AbstractEList<E> {
 		if (model.getModelState() != ModelState.LOADING) {
 			try {
 				if (newValue instanceof String) {
-					model.getBimServerClient().getBimsie1LowLevelInterface().addStringAttribute(model.getTransactionId(), subject.getOid(), feature.getName(), (String) newValue);
+					model.getBimServerClient().getLowLevelInterface().addStringAttribute(model.getTransactionId(), subject.getOid(), feature.getName(), (String) newValue);
 				} else if (newValue instanceof Double) {
-					model.getBimServerClient().getBimsie1LowLevelInterface().addDoubleAttribute(model.getTransactionId(), subject.getOid(), feature.getName(), (Double) newValue);
+					model.getBimServerClient().getLowLevelInterface().addDoubleAttribute(model.getTransactionId(), subject.getOid(), feature.getName(), (Double) newValue);
 				} else if (newValue instanceof Boolean) {
-					model.getBimServerClient().getBimsie1LowLevelInterface().addBooleanAttribute(model.getTransactionId(), subject.getOid(), feature.getName(), (Boolean) newValue);
+					model.getBimServerClient().getLowLevelInterface().addBooleanAttribute(model.getTransactionId(), subject.getOid(), feature.getName(), (Boolean) newValue);
 				} else if (newValue instanceof Integer) {
-					model.getBimServerClient().getBimsie1LowLevelInterface().addIntegerAttribute(model.getTransactionId(), subject.getOid(), feature.getName(), (Integer) newValue);
+					model.getBimServerClient().getLowLevelInterface().addIntegerAttribute(model.getTransactionId(), subject.getOid(), feature.getName(), (Integer) newValue);
 				} else if (newValue instanceof IdEObject) {
-					model.getBimServerClient().getBimsie1LowLevelInterface()
+					model.getBimServerClient().getLowLevelInterface()
 							.addReference(model.getTransactionId(), subject.getOid(), feature.getName(), ((IdEObject) newValue).getOid());
 				} else {
 					throw new RuntimeException("Unimplemented " + feature.getEType().getName() + " " + newValue);
@@ -79,15 +79,15 @@ public class EDelegatingList<E> extends AbstractEList<E> {
 		if (model.getModelState() != ModelState.LOADING) {
 			try {
 				if (newValue instanceof String) {
-					model.getBimServerClient().getBimsie1LowLevelInterface().setStringAttributeAtIndex(model.getTransactionId(), subject.getOid(), feature.getName(), index, (String) newValue);
+					model.getBimServerClient().getLowLevelInterface().setStringAttributeAtIndex(model.getTransactionId(), subject.getOid(), feature.getName(), index, (String) newValue);
 				} else if (newValue instanceof Double) {
-					model.getBimServerClient().getBimsie1LowLevelInterface().setDoubleAttributeAtIndex(model.getTransactionId(), subject.getOid(), feature.getName(), index, (Double) newValue);
+					model.getBimServerClient().getLowLevelInterface().setDoubleAttributeAtIndex(model.getTransactionId(), subject.getOid(), feature.getName(), index, (Double) newValue);
 				} else if (newValue instanceof Boolean) {
-					model.getBimServerClient().getBimsie1LowLevelInterface().setBooleanAttributeAtIndex(model.getTransactionId(), subject.getOid(), feature.getName(), index, (Boolean) newValue);
+					model.getBimServerClient().getLowLevelInterface().setBooleanAttributeAtIndex(model.getTransactionId(), subject.getOid(), feature.getName(), index, (Boolean) newValue);
 				} else if (newValue instanceof Integer) {
-					model.getBimServerClient().getBimsie1LowLevelInterface().setIntegerAttributeAtIndex(model.getTransactionId(), subject.getOid(), feature.getName(), index, (Integer) newValue);
+					model.getBimServerClient().getLowLevelInterface().setIntegerAttributeAtIndex(model.getTransactionId(), subject.getOid(), feature.getName(), index, (Integer) newValue);
 				} else if (newValue instanceof IdEObject) {
-					model.getBimServerClient().getBimsie1LowLevelInterface()
+					model.getBimServerClient().getLowLevelInterface()
 							.addReference(model.getTransactionId(), subject.getOid(), feature.getName(), ((IdEObject) newValue).getOid());
 				} else {
 					throw new RuntimeException("Unimplemented " + feature.getEType().getName() + " " + newValue);

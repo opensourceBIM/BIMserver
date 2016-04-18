@@ -52,9 +52,9 @@ import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
 import org.bimserver.utils.PathUtils;
 import org.bimserver.webservices.ServiceMap;
 
@@ -103,15 +103,15 @@ public class TestSimultaniousDownloadWithCaching {
 			final ServiceMap serviceMap = bimServer.getServiceFactory().get(AccessMethod.INTERNAL);
 			ServiceInterface serviceInterface = serviceMap.get(ServiceInterface.class);
 			SettingsInterface settingsInterface = serviceMap.get(SettingsInterface.class);
-			final Bimsie1AuthInterface authInterface = serviceMap.get(Bimsie1AuthInterface.class);
+			final AuthInterface authInterface = serviceMap.get(AuthInterface.class);
 			serviceInterface = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL).get(ServiceInterface.class);
 			settingsInterface.setCacheOutputFiles(true);
 			settingsInterface.setGenerateGeometryOnCheckin(false);
-			final SProject project = serviceMap.getBimsie1ServiceInterface().addProject("test", "ifc2x3tc1");
-			SDeserializerPluginConfiguration deserializerByName = serviceMap.getBimsie1ServiceInterface().getDeserializerByName("IfcStepDeserializer");
+			final SProject project = serviceMap.getServiceInterface().addProject("test", "ifc2x3tc1");
+			SDeserializerPluginConfiguration deserializerByName = serviceMap.getServiceInterface().getDeserializerByName("IfcStepDeserializer");
 			Path file = Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
 			serviceInterface.checkin(project.getOid(), "test", deserializerByName.getOid(), file.toFile().length(), file.getFileName().toString(), new DataHandler(new FileDataSource(file.toFile())), false, true);
-			final SProject projectUpdate = serviceMap.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
+			final SProject projectUpdate = serviceMap.getServiceInterface().getProjectByPoid(project.getOid());
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(20, 20, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(1000));
 			for (int i=0; i<20; i++) {
 				executor.execute(new Runnable(){
@@ -119,9 +119,9 @@ public class TestSimultaniousDownloadWithCaching {
 					public void run() {
 						try {
 							ServiceMap serviceMap2 = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL);
-							SSerializerPluginConfiguration serializerPluginConfiguration = serviceMap.getBimsie1ServiceInterface().getSerializerByName("Ifc2x3");
-							Long download = serviceMap2.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(projectUpdate.getLastRevisionId()), serializerPluginConfiguration.getOid(), true);
-							SDownloadResult downloadData = serviceMap2.getBimsie1ServiceInterface().getDownloadData(download);
+							SSerializerPluginConfiguration serializerPluginConfiguration = serviceMap.getServiceInterface().getSerializerByName("Ifc2x3");
+							Long download = serviceMap2.getServiceInterface().downloadRevisions(Collections.singleton(projectUpdate.getLastRevisionId()), serializerPluginConfiguration.getOid(), true);
+							SDownloadResult downloadData = serviceMap2.getServiceInterface().getDownloadData(download);
 							if (downloadData.getFile().getDataSource() instanceof CacheStoringEmfSerializerDataSource) {
 								CacheStoringEmfSerializerDataSource c = (CacheStoringEmfSerializerDataSource)downloadData.getFile().getDataSource();
 								try {
@@ -159,6 +159,8 @@ public class TestSimultaniousDownloadWithCaching {
 			e1.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e2) {
+			e2.printStackTrace();
 		}
 	}
 }

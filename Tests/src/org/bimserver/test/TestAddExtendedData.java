@@ -48,20 +48,20 @@ public class TestAddExtendedData {
 			
 			System.out.println(client.getServiceInterface().getFile(fileId));
 			
-			SProject project = client.getBimsie1ServiceInterface().addProject("test23", "ifc2x3tc1");
-			SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+			SProject project = client.getServiceInterface().addProject("test23", "ifc2x3tc1");
+			SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 			client.checkin(project.getOid(), "initial", deserializerForExtension.getOid(), false, true, Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
 			
-			project = client.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
+			project = client.getServiceInterface().getProjectByPoid(project.getOid());
 			
-			SExtendedDataSchema extendedDataSchemaByNamespace = client.getBimsie1ServiceInterface().getExtendedDataSchemaByNamespace("http://extend.bimserver.org/validationreport");
+			SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByNamespace("http://extend.bimserver.org/validationreport");
 			
 			SExtendedData extendedData = new SExtendedData();
 			extendedData.setFileId(fileId);
 			extendedData.setTitle("test3");
 			extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
 			
-			client.getBimsie1ServiceInterface().addExtendedDataToRevision(project.getLastRevisionId(), extendedData);
+			client.getServiceInterface().addExtendedDataToRevision(project.getLastRevisionId(), extendedData);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {

@@ -21,7 +21,7 @@ import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.services.NewExtendedDataOnProjectHandler;
 import org.bimserver.plugins.services.NewExtendedDataOnRevisionHandler;
 import org.bimserver.plugins.services.NewRevisionHandler;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 
 public interface NotificationsManagerInterface {
 
@@ -29,5 +29,5 @@ public interface NotificationsManagerInterface {
 	void registerInternalNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler);
 	void registerInternalNewExtendedDataOnProjectHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnProjectHandler newExtendedDataHandler);
 	void registerInternalNewExtendedDataOnRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor, NewExtendedDataOnRevisionHandler newExtendedDataHandler);
-	void register(long uoid, ServiceDescriptor serviceDescriptor, Bimsie1RemoteServiceInterface remoteServiceInterface);
+	void register(long uoid, ServiceDescriptor serviceDescriptor, RemoteServiceInterface remoteServiceInterface);
 }

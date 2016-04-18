@@ -36,11 +36,11 @@ public class RegenerateGeometry {
 	private void start() {
 		try {
 			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
-			List<SProject> allProjects = client.getBimsie1ServiceInterface().getAllProjects(false, true);
+			List<SProject> allProjects = client.getServiceInterface().getAllProjects(false, true);
 			Set<Long> croids = new HashSet<Long>();
 			for (SProject project : allProjects) {
 				for (Long roid : project.getRevisions()) {
-					SRevision revision = client.getBimsie1ServiceInterface().getRevision(roid);
+					SRevision revision = client.getServiceInterface().getRevision(roid);
 					for (long croid : revision.getConcreteRevisions()) {
 						croids.add(croid);
 					}

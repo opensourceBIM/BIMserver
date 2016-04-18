@@ -96,7 +96,7 @@ public class DownloadServlet extends SubServlet {
 			String action = request.getParameter("action");
 			if (action != null) {
 				if (action.equals("extendeddata")) {
-					SExtendedData sExtendedData = serviceMap.getBimsie1ServiceInterface().getExtendedData(Long.parseLong(request.getParameter("edid")));
+					SExtendedData sExtendedData = serviceMap.getServiceInterface().getExtendedData(Long.parseLong(request.getParameter("edid")));
 					SFile file = serviceMap.getServiceInterface().getFile(sExtendedData.getFileId());
 					if (file.getMime() != null) {
 						response.setContentType(file.getMime());
@@ -136,9 +136,9 @@ public class DownloadServlet extends SubServlet {
 				SSerializerPluginConfiguration serializer = null;
 				if (request.getParameter("serializerOid") != null) {
 					long serializerOid = Long.parseLong(request.getParameter("serializerOid"));
-					serializer = serviceMap.getBimsie1ServiceInterface().getSerializerById(serializerOid);
+					serializer = serviceMap.getServiceInterface().getSerializerById(serializerOid);
 				} else {
-					serializer = serviceMap.getBimsie1ServiceInterface().getSerializerByName(request.getParameter("serializerName"));
+					serializer = serviceMap.getServiceInterface().getSerializerByName(request.getParameter("serializerName"));
 				}
 				if (request.getParameter("multiple") != null) {
 					Set<Long> roids = new HashSet<Long>();
@@ -150,7 +150,7 @@ public class DownloadServlet extends SubServlet {
 							}
 						}
 					}
-					topicId = serviceMap.getBimsie1ServiceInterface().downloadRevisions(roids, serializer.getOid(), true);
+					topicId = serviceMap.getServiceInterface().downloadRevisions(roids, serializer.getOid(), true);
 				} else if (request.getParameter("compare") != null) {
 					SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
 					Long roid1 = Long.parseLong(request.getParameter("roid1"));
@@ -163,7 +163,7 @@ public class DownloadServlet extends SubServlet {
 					if (request.getParameter("roid") == null) {
 						if (request.getParameter("poid") != null) {
 							long poid = Long.parseLong(request.getParameter("poid"));
-							SProject projectByPoid = serviceMap.getBimsie1ServiceInterface().getProjectByPoid(poid);
+							SProject projectByPoid = serviceMap.getServiceInterface().getProjectByPoid(poid);
 							if (projectByPoid == null) {
 								throw new UserException("Project with oid " + poid + " not found");
 							}
@@ -178,7 +178,7 @@ public class DownloadServlet extends SubServlet {
 						roid = Long.parseLong(request.getParameter("roid"));
 					}
 					if (request.getParameter("checkout") != null) {
-						topicId = serviceMap.getBimsie1ServiceInterface().checkout(roid, serializer.getOid(), true);
+						topicId = serviceMap.getServiceInterface().checkout(roid, serializer.getOid(), true);
 					} else {
 //						if (request.getParameter("classses") != null) {
 //							Set<String> classes = new HashSet<String>();
@@ -187,7 +187,7 @@ public class DownloadServlet extends SubServlet {
 //							}
 //							Set<Long> roids = new HashSet<Long>();
 //							roids.add(roid);
-//							topicId = serviceMap.getBimsie1ServiceInterface().downloadByTypes(roids, "ifc2x3tc1", classes, serializer.getOid(), false, true, true, true);
+//							topicId = serviceMap.getServiceInterface().downloadByTypes(roids, "ifc2x3tc1", classes, serializer.getOid(), false, true, true, true);
 //						} else if (request.getParameter("oids") != null) {
 //							Set<Long> oids = new HashSet<Long>();
 //							for (String oidString : request.getParameter("oids").split(";")) {
@@ -195,7 +195,7 @@ public class DownloadServlet extends SubServlet {
 //							}
 //							Set<Long> roids = new HashSet<Long>();
 //							roids.add(roid);
-//							topicId = serviceMap.getBimsie1ServiceInterface().downloadByOids(roids, oids, serializer.getOid(), true, true);
+//							topicId = serviceMap.getServiceInterface().downloadByOids(roids, oids, serializer.getOid(), true, true);
 //						} else if (request.getParameter("guids") != null) {
 //							Set<String> guids = new HashSet<String>();
 //							for (String guid : request.getParameter("guids").split(";")) {
@@ -203,9 +203,9 @@ public class DownloadServlet extends SubServlet {
 //							}
 //							Set<Long> roids = new HashSet<Long>();
 //							roids.add(roid);
-//							topicId = serviceMap.getBimsie1ServiceInterface().downloadByGuids(roids, guids, serializer.getOid(), false, true);
+//							topicId = serviceMap.getServiceInterface().downloadByGuids(roids, guids, serializer.getOid(), false, true);
 //						} else {
-							topicId = serviceMap.getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(roid), serializer.getOid(), true);
+							topicId = serviceMap.getServiceInterface().downloadRevisions(Collections.singleton(roid), serializer.getOid(), true);
 //						}
 					}
 				}
@@ -213,7 +213,7 @@ public class DownloadServlet extends SubServlet {
 					response.getWriter().println("No valid topicId");
 					return;
 				}
-				SDownloadResult checkoutResult = serviceMap.getBimsie1ServiceInterface().getDownloadData(topicId);
+				SDownloadResult checkoutResult = serviceMap.getServiceInterface().getDownloadData(topicId);
 				if (checkoutResult == null) {
 					LOGGER.error("Invalid topicId: " + topicId);
 				} else {

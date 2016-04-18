@@ -262,7 +262,7 @@ function Setup(cd, address) {
 	
 	this.stage2 = function(){
 		o.logInfo("Setting up email...");
-		Global.api.call("Bimsie1AuthInterface", "login", {username: $(".setup .adminUsernameInput").val(), password: $(".setup .adminPasswordInput").val()}, function(data){
+		Global.api.call("AuthInterface", "login", {username: $(".setup .adminUsernameInput").val(), password: $(".setup .adminPasswordInput").val()}, function(data){
 			Global.api.call("SettingsInterface", "getServerSettings", {}, function(serverSettings){
 				serverSettings.smtpServer = $(".setup .smtpServer").val();
 				serverSettings.smtpProtocol = $(".setup .smtpProtocol").val();
@@ -287,7 +287,7 @@ function Setup(cd, address) {
 	
 	this.nostage2 = function(){
 		o.logInfo("Skipping email setup...");
-		Global.api.call("Bimsie1AuthInterface", "login", {username: $(".setup .adminUsernameInput").val(), password: $(".setup .adminPasswordInput").val()}, function(data){
+		Global.api.call("AuthInterface", "login", {username: $(".setup .adminUsernameInput").val(), password: $(".setup .adminPasswordInput").val()}, function(data){
 			o.stage3();
 		}, function(message){
 			o.logError(message);

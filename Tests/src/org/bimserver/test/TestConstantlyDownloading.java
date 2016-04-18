@@ -33,7 +33,7 @@ public class TestConstantlyDownloading {
 		try {
 			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 			for (int i=0; i<200; i++) {
-				SProject project = client.getBimsie1ServiceInterface().getProjectByPoid(poid);
+				SProject project = client.getServiceInterface().getProjectByPoid(poid);
 				long roid = project.getLastRevisionId();
 				SSerializerPluginConfiguration serializer = client.getPluginInterface().getSerializerByPluginClassName("org.bimserver.geometry.json.JsonGeometrySerializerPlugin");
 				System.out.println(i);

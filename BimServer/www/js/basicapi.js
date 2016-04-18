@@ -21,7 +21,7 @@ function BasicApi(serverAddress) {
 			data: JSON.stringify(request),
 			success: function(response){
 				if (response.response.exception == null) {
-					if (interface == "Bimsie1AuthInterface" && method == "login") {
+					if (interface == "AuthInterface" && method == "login") {
 						o.token = response.response.result;
 					}
 					callback(response.response.result);

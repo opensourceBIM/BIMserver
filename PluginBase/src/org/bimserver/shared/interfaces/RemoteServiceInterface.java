@@ -1,4 +1,4 @@
-package org.bimserver.shared.interfaces.bimsie1;
+package org.bimserver.shared.interfaces;
 
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
@@ -31,11 +31,10 @@ import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.PublicInterface;
 
-@WebService(name = "Bimsie1RemoteServiceInterface", targetNamespace="org.buildingsmart.bimsie1")
+@WebService(name = "RemoteServiceInterface", targetNamespace="org.bimserver")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
-public interface Bimsie1RemoteServiceInterface extends PublicInterface {
+public interface RemoteServiceInterface extends PublicInterface {
 	
 	/**
 	 * This method gets called when a new revision has been created

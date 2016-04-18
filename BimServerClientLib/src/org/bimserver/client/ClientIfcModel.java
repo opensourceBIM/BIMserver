@@ -59,7 +59,7 @@ import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -99,7 +99,7 @@ public class ClientIfcModel extends IfcModel {
 		this.includeGeometry = includeGeometry;
 		if (recordChanges) {
 			try {
-				tid = bimServerClient.getBimsie1LowLevelInterface().startTransaction(poid);
+				tid = bimServerClient.getLowLevelInterface().startTransaction(poid);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
@@ -119,7 +119,7 @@ public class ClientIfcModel extends IfcModel {
 		this.recordChanges = recordChanges;
 		if (recordChanges) {
 			try {
-				tid = bimServerClient.getBimsie1LowLevelInterface().startTransaction(poid);
+				tid = bimServerClient.getLowLevelInterface().startTransaction(poid);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
@@ -135,15 +135,15 @@ public class ClientIfcModel extends IfcModel {
 				if (getModelState() != ModelState.LOADING) {
 					try {
 						if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
-							bimServerClient.getBimsie1LowLevelInterface().addStringAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewStringValue());
+							bimServerClient.getLowLevelInterface().addStringAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewStringValue());
 						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
 							throw new UnsupportedOperationException();
 						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
-							bimServerClient.getBimsie1LowLevelInterface().addDoubleAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewDoubleValue());
+							bimServerClient.getLowLevelInterface().addDoubleAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewDoubleValue());
 						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
-							bimServerClient.getBimsie1LowLevelInterface().addBooleanAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewBooleanValue());
+							bimServerClient.getLowLevelInterface().addBooleanAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewBooleanValue());
 						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
-							bimServerClient.getBimsie1LowLevelInterface().addIntegerAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewIntValue());
+							bimServerClient.getLowLevelInterface().addIntegerAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewIntValue());
 						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
 							throw new UnsupportedOperationException();
 						} else if (eFeature.getEType() instanceof EEnum) {
@@ -151,7 +151,7 @@ public class ClientIfcModel extends IfcModel {
 						} else if (eFeature instanceof EReference) {
 							if (notification.getNewValue() == null) {
 							} else {
-								bimServerClient.getBimsie1LowLevelInterface().addReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) notification.getNewValue()).getOid());
+								bimServerClient.getLowLevelInterface().addReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) notification.getNewValue()).getOid());
 							}
 						} else {
 							throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + notification.getNewValue());
@@ -167,7 +167,7 @@ public class ClientIfcModel extends IfcModel {
 					try {
 						if (eFeature instanceof EReference) {
 							IdEObject oldValue = (IdEObject) notification.getOldValue();
-							bimServerClient.getBimsie1LowLevelInterface().removeReferenceByOid(getTransactionId(), idEObject.getOid(), eFeature.getName(), oldValue.getOid());
+							bimServerClient.getLowLevelInterface().removeReferenceByOid(getTransactionId(), idEObject.getOid(), eFeature.getName(), oldValue.getOid());
 						} else {
 							throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + notification.getNewValue());
 						}
@@ -251,7 +251,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	public long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
-		return bimServerClient.getBimsie1LowLevelInterface().commitTransaction(tid, comment);
+		return bimServerClient.getLowLevelInterface().commitTransaction(tid, comment);
 	}
 
 	public long getJsonSerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
@@ -288,7 +288,7 @@ public class ClientIfcModel extends IfcModel {
 			queryPart.setIncludeAllFields(true);
 			
 			ObjectNode queryNode = new JsonQueryObjectModelConverter(query.getPackageMetaData()).toJson(query);
-			Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), queryNode.toString(), getJsonSerializerOid(), false);
+			Long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), queryNode.toString(), getJsonSerializerOid(), false);
 			waitForDonePreparing(topicId);
 			try {
 				processDownload(topicId);
@@ -476,7 +476,7 @@ public class ClientIfcModel extends IfcModel {
 				queryPart.addType(eClass, false);
 				
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
-				long topicId = bimServerClient.getBimsie1ServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				
 				waitForDonePreparing(topicId);
 				
@@ -552,7 +552,7 @@ public class ClientIfcModel extends IfcModel {
 				
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 				
-				long topicId = bimServerClient.getBimsie1ServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
 				idEObjectImpl.setLoadingState(State.LOADED);
@@ -588,7 +588,7 @@ public class ClientIfcModel extends IfcModel {
 				queryPart.addType(eClass, true);
 				
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
-				long topicId = bimServerClient.getBimsie1ServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
@@ -647,7 +647,7 @@ public class ClientIfcModel extends IfcModel {
 				
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 				
-				long topicId = bimServerClient.getBimsie1ServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
@@ -690,7 +690,7 @@ public class ClientIfcModel extends IfcModel {
 		if (recordChanges) {
 			idEObject.eAdapters().add(adapter);
 			try {
-				Long oid = bimServerClient.getBimsie1LowLevelInterface().createObject(tid, eClass.getName(), true);
+				Long oid = bimServerClient.getLowLevelInterface().createObject(tid, eClass.getName(), true);
 				idEObject.setOid(oid);
 			} catch (Exception e) {
 				LOGGER.error("", e);
@@ -709,7 +709,7 @@ public class ClientIfcModel extends IfcModel {
 			if (getModelState() != ModelState.LOADING) {
 				try {
 					if (newValue != EStructuralFeature.Internal.DynamicValueHolder.NIL) {
-						Bimsie1LowLevelInterface lowLevelInterface = getBimServerClient().getBimsie1LowLevelInterface();
+						LowLevelInterface lowLevelInterface = getBimServerClient().getLowLevelInterface();
 						if (eFeature.getName().equals("wrappedValue")) {
 							// Wrapped objects get the same oid as their "parent" object, so we know which object the client wants to update. That's why we can use idEObject.getOid() here
 							// We are making this crazy hack ever crazier, let's iterate over our parents features, and see if there is one matching our wrapped type...
@@ -811,7 +811,7 @@ public class ClientIfcModel extends IfcModel {
 			}
 		});
 		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this, false);
-		SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("json", poid);
+		SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("json", poid);
 		bimServerClient.checkin(poid, comment, deserializer.getOid(), false, true, -1, "test", new SerializerInputstream(sharedJsonSerializer));
 	}
 	
@@ -822,7 +822,7 @@ public class ClientIfcModel extends IfcModel {
 	@Override
 	public void remove(IdEObject object) {
 		try {
-			bimServerClient.getBimsie1LowLevelInterface().removeObject(getTransactionId(), object.getOid());
+			bimServerClient.getLowLevelInterface().removeObject(getTransactionId(), object.getOid());
 		} catch (PublicInterfaceNotFoundException e) {
 			LOGGER.error("", e);
 		} catch (ServerException e) {
@@ -836,7 +836,7 @@ public class ClientIfcModel extends IfcModel {
 //	public void query(ObjectNode query) {
 //		try {
 //			modelState = ModelState.LOADING;
-//			Long downloadByTypes = bimServerClient.getBimsie1ServiceInterface().downloadByJsonQuery(Collections.singleton(roid), query.toString(), getJsonSerializerOid(), true);
+//			Long downloadByTypes = bimServerClient.getServiceInterface().downloadByJsonQuery(Collections.singleton(roid), query.toString(), getJsonSerializerOid(), true);
 //			processDownload(downloadByTypes);
 //			modelState = ModelState.NONE;
 //		} catch (Exception e) {
@@ -848,7 +848,7 @@ public class ClientIfcModel extends IfcModel {
 		try {
 			modelState = ModelState.LOADING;
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
-			Long topicId = bimServerClient.getBimsie1ServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+			Long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 			waitForDonePreparing(topicId);
 			processDownload(topicId);
 			modelState = ModelState.NONE;
@@ -862,7 +862,7 @@ public class ClientIfcModel extends IfcModel {
 //		SIfcHeader ifcHeader = super.getIfcHeader();
 //		if (ifcHeader == null) {
 //			try {
-//				SRevision revision = bimServerClient.getBimsie1ServiceInterface().getRevision(roid);
+//				SRevision revision = bimServerClient.getServiceInterface().getRevision(roid);
 //				if (revision.getConcreteRevisions().size() == 1) {
 //					ifcHeader = bimServerClient.getServiceInterface().getIfcHeader(revision.getConcreteRevisions().get(0));
 //					if (ifcHeader != null) {

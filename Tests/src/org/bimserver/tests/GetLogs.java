@@ -132,7 +132,7 @@ public class GetLogs {
 	private SRevision getRevision(long roid) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		SRevision revision = revisions.get(roid);
 		if (revision == null) {
-			revision = client.getBimsie1ServiceInterface().getRevision(roid);
+			revision = client.getServiceInterface().getRevision(roid);
 			revisions.put(roid, revision);
 		}
 		return revision;
@@ -141,7 +141,7 @@ public class GetLogs {
 	private SProject getProject(long poid) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		SProject project = projects.get(poid);
 		if (project == null) {
-			project = client.getBimsie1ServiceInterface().getProjectByPoid(poid);
+			project = client.getServiceInterface().getProjectByPoid(poid);
 			projects.put(poid, project);
 		}
 		return project;

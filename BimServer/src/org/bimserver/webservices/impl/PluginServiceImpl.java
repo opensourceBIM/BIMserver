@@ -1265,7 +1265,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	public Boolean hasActiveSerializer(String contentType) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			SSerializerPluginConfiguration serializer = getServiceMap().getBimsie1ServiceInterface().getSerializerByContentType(contentType);
+			SSerializerPluginConfiguration serializer = getServiceMap().getServiceInterface().getSerializerByContentType(contentType);
 			if (serializer != null) {
 				if (serializer.getEnabled()) {
 					SPluginDescriptor pluginDescriptor = getServiceMap().getPluginInterface().getPluginDescriptor(serializer.getPluginDescriptorId());

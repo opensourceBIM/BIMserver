@@ -19,13 +19,13 @@ public class UpdateProject extends TestWithEmbeddedServer {
 			// Create a new project
 			String originalName = "test " + Math.random();
 			String newName = "test " + Math.random();
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject(originalName, "ifc2x3tc1");
+			SProject newProject = bimServerClient.getServiceInterface().addProject(originalName, "ifc2x3tc1");
 
 			newProject.setName(newName);
 			
 			bimServerClient.getServiceInterface().updateProject(newProject);
 			
-			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 			
 			if (newProject.getName().equals(originalName)) {
 				fail("Project name not updated");

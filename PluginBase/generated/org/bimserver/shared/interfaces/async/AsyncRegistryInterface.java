@@ -18,14 +18,14 @@ package org.bimserver.shared.interfaces.async;
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
 
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
+import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 
 public class AsyncRegistryInterface {
 
 	private final ExecutorService executorService;
-	private final Bimsie1NotificationRegistryInterface syncService;
+	private final NotificationRegistryInterface syncService;
 
-	public AsyncRegistryInterface(Bimsie1NotificationRegistryInterface syncService, ExecutorService executorService) {
+	public AsyncRegistryInterface(NotificationRegistryInterface syncService, ExecutorService executorService) {
 		this.executorService = executorService;
 		this.syncService = syncService;
 	}

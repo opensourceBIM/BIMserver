@@ -44,7 +44,7 @@ public abstract class AbstractAddExtendedDataService extends AbstractService {
 			SExtendedData extendedData = new SExtendedData();
 			extendedData.setTitle(title);
 			file.setFilename(filename);
-			SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getBimsie1ServiceInterface().getExtendedDataSchemaByNamespace(namespace);
+			SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByNamespace(namespace);
 			
 			extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
 			file.setData(data);
@@ -53,7 +53,7 @@ public abstract class AbstractAddExtendedDataService extends AbstractService {
 			long fileId = bimServerClientInterface.getServiceInterface().uploadFile(file);
 			extendedData.setFileId(fileId);
 
-			bimServerClientInterface.getBimsie1ServiceInterface().addExtendedDataToRevision(roid, extendedData);
+			bimServerClientInterface.getServiceInterface().addExtendedDataToRevision(roid, extendedData);
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}

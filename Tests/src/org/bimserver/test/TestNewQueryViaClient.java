@@ -30,13 +30,13 @@ public class TestNewQueryViaClient {
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			String projectName = "Test " + new Random().nextInt();
-			SProject project = client.getBimsie1ServiceInterface().addProject(projectName, "ifc2x3tc1");
+			SProject project = client.getServiceInterface().addProject(projectName, "ifc2x3tc1");
 			
-			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+			SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 			
 			client.checkin(project.getOid(), "Test Model", deserializer.getOid(), false, true, Paths.get("C:/Git/TestFiles/TestData/data/AC11-FZK-Haus-IFC.ifc"));
 			
-			project = client.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
+			project = client.getServiceInterface().getProjectByPoid(project.getOid());
 			
 			System.out.println(project.getName());
 			

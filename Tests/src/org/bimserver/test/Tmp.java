@@ -37,16 +37,16 @@ public class Tmp {
 		
 		// Create a project
 		try {
-			SProject project = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+			SProject project = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 
 			// Look for a deserializer
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 			
 			// Checkin file
 			bimServerClient.checkin(project.getOid(), "test", deserializer.getOid(), false, true, Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 			
 			// Refresh project
-			project = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
+			project = bimServerClient.getServiceInterface().getProjectByPoid(project.getOid());
 			
 			// Load model without lazy loading (complete model at once)
 			IfcModelInterface model = bimServerClient.getModel(project, project.getLastRevisionId(), false, false);

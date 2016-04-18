@@ -24,8 +24,8 @@ import java.net.Socket;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
@@ -48,7 +48,7 @@ public class Handler extends Thread {
 	private boolean running;
 	private final SServicesMap servicesMap;
 
-	public Handler(NotificationsManager socketNotificationsClient, Socket socket, final Bimsie1NotificationInterface notificationInterface, ProtocolBuffersMetaData protocolBuffersMetaData, SServicesMap servicesMap) {
+	public Handler(NotificationsManager socketNotificationsClient, Socket socket, final NotificationInterface notificationInterface, ProtocolBuffersMetaData protocolBuffersMetaData, SServicesMap servicesMap) {
 		this.socketNotificationsClient = socketNotificationsClient;
 		this.socket = socket;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;

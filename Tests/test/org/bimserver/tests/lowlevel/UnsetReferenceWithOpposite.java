@@ -6,7 +6,7 @@ import java.util.Random;
 
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
@@ -21,9 +21,9 @@ public class UnsetReferenceWithOpposite extends TestWithEmbeddedServer {
 			// Get the service interface
 //			PluginInterface pluginInterface = bimServerClient.getPlugin();
 			
-			Bimsie1LowLevelInterface service = bimServerClient.getBimsie1LowLevelInterface();
+			LowLevelInterface service = bimServerClient.getLowLevelInterface();
 			
-			Long projectId = bimServerClient.getBimsie1ServiceInterface().addProject("PG-unsetReferenceTest" + new Random().nextInt(), "ifc2x3tc1").getOid();
+			Long projectId = bimServerClient.getServiceInterface().addProject("PG-unsetReferenceTest" + new Random().nextInt(), "ifc2x3tc1").getOid();
 			Long transactionId = service.startTransaction(projectId);
 
 			Long ifcRelContainedInSpatialStructureId = service.createObject(transactionId, "IfcRelContainedInSpatialStructure", true);

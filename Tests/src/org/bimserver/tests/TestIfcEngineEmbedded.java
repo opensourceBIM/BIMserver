@@ -82,11 +82,11 @@ public class TestIfcEngineEmbedded {
 				// Authenticate
 				client.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 				
-				SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", -1L);
+				SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", -1L);
 				
 				
 				// Create a project
-				SProject project = client.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+				SProject project = client.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 				
 				// This is the test file
 				Path testIfcFile = Paths.get("../TestData/data/" + filename);
@@ -95,10 +95,10 @@ public class TestIfcEngineEmbedded {
 				client.checkin(project.getOid(), "testing ifc engine", deserializer.getOid(), false, true, testIfcFile);
 
 				// Update local project
-				project = client.getBimsie1ServiceInterface().getProjectByPoid(project.getOid());
+				project = client.getServiceInterface().getProjectByPoid(project.getOid());
 
 				// Find collada serializer
-				SSerializerPluginConfiguration serializer = client.getBimsie1ServiceInterface().getSerializerByContentType("application/collada");
+				SSerializerPluginConfiguration serializer = client.getServiceInterface().getSerializerByContentType("application/collada");
 
 				// Download as collada			
 				client.download(project.getLastRevisionId(), serializer.getOid(), Paths.get(testIfcFile.getFileName().toString() + ".dae"));
@@ -173,7 +173,7 @@ public class TestIfcEngineEmbedded {
 			}
 			
 			// Get a deserializer
-			SDeserializerPluginConfiguration deserializer = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension("ifc", -1L);
+			SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", -1L);
 			if (deserializer == null) {
 				throw new Exception("No deserializer found for IFC-SPF. Make sure plugin directories are correctly configured");
 			}

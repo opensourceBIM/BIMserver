@@ -62,9 +62,9 @@ public class TestUploadDir {
 		if (Files.isDirectory(directory)) {
 			SProject project = null;
 			if (parentProject == null) {
-				project = client.getBimsie1ServiceInterface().addProject(directory.getFileName().toString(), "ifc2x3tc1");
+				project = client.getServiceInterface().addProject(directory.getFileName().toString(), "ifc2x3tc1");
 			} else {
-				project = client.getBimsie1ServiceInterface().addProjectAsSubProject(directory.getFileName().toString(), parentProject.getOid(), "ifc2x3tc1");
+				project = client.getServiceInterface().addProjectAsSubProject(directory.getFileName().toString(), parentProject.getOid(), "ifc2x3tc1");
 			}
 			for (Path file : PathUtils.list(directory)) {
 				process(file, project);
@@ -72,7 +72,7 @@ public class TestUploadDir {
 		} else {
 			String lowerCase = directory.getFileName().toString().toLowerCase();
 			if (lowerCase.endsWith("ifc") || lowerCase.endsWith("ifcxml") || lowerCase.endsWith("ifczip")) {
-				SDeserializerPluginConfiguration deserializerForExtension = client.getBimsie1ServiceInterface().getSuggestedDeserializerForExtension(directory.getFileName().toString().substring(directory.getFileName().toString().lastIndexOf(".") + 1), parentProject.getOid());
+				SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension(directory.getFileName().toString().substring(directory.getFileName().toString().lastIndexOf(".") + 1), parentProject.getOid());
 				System.out.println("Checking in " + directory.toString() + " - " + Formatters.bytesToString(directory.toFile().length()));
 				try {
 					client.checkin(parentProject.getOid(), "", deserializerForExtension.getOid(), false, true, directory);

@@ -1,7 +1,7 @@
 package org.bimserver.pb;
 
 /******************************************************************************
- * Copyright (C) 2009-2013  BIMserver.org
+ * Copyright (C) 2009-2016  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -14,9 +14,14 @@ package org.bimserver.pb;
  * GNU Affero General Public License for more details.
  * 
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import "ServiceInterface.proto";
+import "AdminInterface.proto";
+import "MetaInterface.proto";
+import "SettingsInterface.proto";
+import "AuthInterface.proto";
+import "PluginInterface.proto";
 option java_generic_services = true;
 
 option java_outer_classname = "NotificationInterfaceImpl";
@@ -110,17 +115,17 @@ enum SActionState{
 }
 
 message SLongActionState {
-	optional int32 progress = 1;
-	optional string title = 2;
+	optional int64 end = 1;
+	repeated string errors = 2;
 	repeated string infos = 3;
-	repeated string errors = 4;
-	optional int64 start = 5;
+	optional int64 oid = 4;
+	optional int32 progress = 5;
 	optional int32 rid = 6;
-	optional int64 oid = 7;
-	optional SActionState state = 8;
-	optional int32 stage = 9;
-	repeated string warnings = 10;
-	optional int64 end = 11;
+	optional int32 stage = 7;
+	optional int64 start = 8;
+	optional SActionState state = 9;
+	optional string title = 10;
+	repeated string warnings = 11;
 }
 
 message ProgressRequest {

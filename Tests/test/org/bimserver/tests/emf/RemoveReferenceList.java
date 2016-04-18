@@ -28,7 +28,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			bimServerClient.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 
 			// Create a new project
-			SProject newProject = bimServerClient.getBimsie1ServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			IfcModelInterface model = bimServerClient.newModel(newProject, true);
 			
@@ -49,9 +49,9 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			model.commit("initial");
 			
 			// refresh
-			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 
-			bimServerClient.download(newProject.getLastRevisionId(), bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc").getOid(), Paths.get("testX.ifc"));
+			bimServerClient.download(newProject.getLastRevisionId(), bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc").getOid(), Paths.get("testX.ifc"));
 
 			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, true);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
@@ -72,7 +72,7 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			model.commit("removed middle link");
 			
 			// refresh
-			newProject = bimServerClient.getBimsie1ServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 			model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
 				assertTrue("Size should be 2, is " + ifcFurnishingElement.getContainedInStructure().size(), ifcFurnishingElement.getContainedInStructure().size() == 2);

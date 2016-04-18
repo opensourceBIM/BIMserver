@@ -37,8 +37,8 @@ import org.bimserver.plugins.serializers.Writer;
 import org.bimserver.shared.StreamingSocketInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.utils.Formatters;
 import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
@@ -54,16 +54,16 @@ public class Streamer implements EndPoint {
 	private long uoid;
 	private long endpointid;
 	private BimServer bimServer;
-	private Bimsie1NotificationInterface notificationInterface;
-	private Bimsie1RemoteServiceInterface remoteServiceInterface;
+	private NotificationInterface notificationInterface;
+	private RemoteServiceInterface remoteServiceInterface;
 	private StreamingSocketInterface streamingSocketInterface;
 	private static final int BUFFER_SIZE = -1; // -1 means just send every message on it's own
 
 	public Streamer(StreamingSocketInterface streamingSocketInterface, BimServer bimServer) {
 		this.streamingSocketInterface = streamingSocketInterface;
 		this.bimServer = bimServer;
-		notificationInterface = bimServer.getReflectorFactory().createReflector(Bimsie1NotificationInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), streamingSocketInterface));
-		remoteServiceInterface = bimServer.getReflectorFactory().createReflector(Bimsie1RemoteServiceInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), streamingSocketInterface));
+		notificationInterface = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), streamingSocketInterface));
+		remoteServiceInterface = bimServer.getReflectorFactory().createReflector(RemoteServiceInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), streamingSocketInterface));
 	}
 
 	public void onOpen() {
@@ -167,12 +167,12 @@ public class Streamer implements EndPoint {
 	}
 
 	@Override
-	public Bimsie1NotificationInterface getNotificationInterface() {
+	public NotificationInterface getNotificationInterface() {
 		return notificationInterface;
 	}
 
 	@Override
-	public Bimsie1RemoteServiceInterface getRemoteServiceInterface() {
+	public RemoteServiceInterface getRemoteServiceInterface() {
 		return remoteServiceInterface;
 	}
 

@@ -1,6 +1,6 @@
 
-ûm
-Bimsie1LowLevelInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoBimsie1ServiceInterface.proto"Bimsie1NotificationInterface.proto#Bimsie1RemoteServiceInterface.protoBimsie1AuthInterface.proto"&
+ï¿½m
+LowLevelInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoServiceInterface.proto"NotificationInterface.proto#RemoteServiceInterface.protoAuthInterface.proto"&
 AbortTransactionRequest
 tid ("\
 AddBooleanAttributeRequest
@@ -356,8 +356,8 @@
 UnsetReferenceRequest
 tid (
 oid (
-referenceName (	2‹3
-Bimsie1LowLevelInterface]
+referenceName (	2ï¿½3
+LowLevelInterface]
 abortTransaction).org.bimserver.pb.AbortTransactionRequest.org.bimserver.pb.VoidResponsec
 addBooleanAttribute,.org.bimserver.pb.AddBooleanAttributeRequest.org.bimserver.pb.VoidResponsea
 addDoubleAttribute+.org.bimserver.pb.AddDoubleAttributeRequest.org.bimserver.pb.VoidResponsec
@@ -367,7 +367,7 @@
 commitTransaction*.org.bimserver.pb.CommitTransactionRequest+.org.bimserver.pb.CommitTransactionResponseH
 count.org.bimserver.pb.CountRequest.org.bimserver.pb.CountResponse]
 createObject%.org.bimserver.pb.CreateObjectRequest&.org.bimserver.pb.CreateObjectResponser
-getBooleanAttribute,.org.bimserver.pb.GetBooleanAttributeRequest-.org.bimserver.pb.GetBooleanAttributeResponse‡
+getBooleanAttribute,.org.bimserver.pb.GetBooleanAttributeRequest-.org.bimserver.pb.GetBooleanAttributeResponseï¿½
 getBooleanAttributeAtIndex3.org.bimserver.pb.GetBooleanAttributeAtIndexRequest4.org.bimserver.pb.GetBooleanAttributeAtIndexResponseu
 getBooleanAttributes-.org.bimserver.pb.GetBooleanAttributesRequest..org.bimserver.pb.GetBooleanAttributesResponsex
 getByteArrayAttribute..org.bimserver.pb.GetByteArrayAttributeRequest/.org.bimserver.pb.GetByteArrayAttributeResponse{
@@ -376,11 +376,11 @@
 getDataObjectByOid+.org.bimserver.pb.GetDataObjectByOidRequest,.org.bimserver.pb.GetDataObjectByOidResponsec
 getDataObjects'.org.bimserver.pb.GetDataObjectsRequest(.org.bimserver.pb.GetDataObjectsResponseu
 getDataObjectsByType-.org.bimserver.pb.GetDataObjectsByTypeRequest..org.bimserver.pb.GetDataObjectsByTypeResponseo
-getDoubleAttribute+.org.bimserver.pb.GetDoubleAttributeRequest,.org.bimserver.pb.GetDoubleAttributeResponse„
+getDoubleAttribute+.org.bimserver.pb.GetDoubleAttributeRequest,.org.bimserver.pb.GetDoubleAttributeResponseï¿½
 getDoubleAttributeAtIndex2.org.bimserver.pb.GetDoubleAttributeAtIndexRequest3.org.bimserver.pb.GetDoubleAttributeAtIndexResponser
 getDoubleAttributes,.org.bimserver.pb.GetDoubleAttributesRequest-.org.bimserver.pb.GetDoubleAttributesResponsei
 getEnumAttribute).org.bimserver.pb.GetEnumAttributeRequest*.org.bimserver.pb.GetEnumAttributeResponser
-getIntegerAttribute,.org.bimserver.pb.GetIntegerAttributeRequest-.org.bimserver.pb.GetIntegerAttributeResponse‡
+getIntegerAttribute,.org.bimserver.pb.GetIntegerAttributeRequest-.org.bimserver.pb.GetIntegerAttributeResponseï¿½
 getIntegerAttributeAtIndex3.org.bimserver.pb.GetIntegerAttributeAtIndexRequest4.org.bimserver.pb.GetIntegerAttributeAtIndexResponseu
 getIntegerAttributes-.org.bimserver.pb.GetIntegerAttributesRequest..org.bimserver.pb.GetIntegerAttributesResponsei
 getLongAttribute).org.bimserver.pb.GetLongAttributeRequest*.org.bimserver.pb.GetLongAttributeResponse~
@@ -418,4 +418,4 @@
 setWrappedStringAttribute2.org.bimserver.pb.SetWrappedStringAttributeRequest.org.bimserver.pb.VoidResponsei
 startTransaction).org.bimserver.pb.StartTransactionRequest*.org.bimserver.pb.StartTransactionResponseY
 unsetAttribute'.org.bimserver.pb.UnsetAttributeRequest.org.bimserver.pb.VoidResponseY
-unsetReference'.org.bimserver.pb.UnsetReferenceRequest.org.bimserver.pb.VoidResponseB#BBimsie1LowLevelInterfaceImplHˆ
+unsetReference'.org.bimserver.pb.UnsetReferenceRequest.org.bimserver.pb.VoidResponseB#BLowLevelInterfaceImplHï¿½

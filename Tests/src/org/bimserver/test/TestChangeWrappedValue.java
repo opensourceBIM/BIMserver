@@ -38,7 +38,7 @@ public class TestChangeWrappedValue {
 			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 			long poid = 2686977;
 			long roid = 720899;
-			SProject project = client.getBimsie1ServiceInterface().getProjectByPoid(poid);
+			SProject project = client.getServiceInterface().getProjectByPoid(poid);
 			IfcModelInterface model = client.getModel(project, roid, true, false);
 			
 			for (IfcPropertySingleValue prop : model.getAll(IfcPropertySingleValue.class)) {

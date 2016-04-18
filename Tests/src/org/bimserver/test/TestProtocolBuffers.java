@@ -26,7 +26,7 @@ public class TestProtocolBuffers {
 	public static void main(String[] args) {
 		try {
 			BimServerClientInterface client = LocalDevSetup.setupSoap("http://localhost:8080");
-			System.out.println(client.getBimsie1ServiceInterface().getAllProjects(true, true));
+			System.out.println(client.getServiceInterface().getAllProjects(true, true));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {

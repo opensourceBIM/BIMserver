@@ -29,7 +29,17 @@ option optimize_for = SPEED;
 service AuthInterface {
 	rpc changePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
 
+	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
+
 	rpc getLoggedInUser (GetLoggedInUserRequest) returns (GetLoggedInUserResponse);
+
+	rpc isLoggedIn (IsLoggedInRequest) returns (IsLoggedInResponse);
+
+	rpc login (LoginRequest) returns (LoginResponse);
+
+	rpc loginUserToken (LoginUserTokenRequest) returns (LoginUserTokenResponse);
+
+	rpc logout (LogoutRequest) returns (VoidResponse);
 
 	rpc requestPasswordChange (RequestPasswordChangeRequest) returns (VoidResponse);
 
@@ -50,12 +60,50 @@ message ChangePasswordResponse {
 	optional bool value = 2;
 }
 
+message GetAccessMethodRequest {
+}
+
+message GetAccessMethodResponse {
+	optional string errorMessage = 1;
+	optional SAccessMethod value = 2;
+}
+
 message GetLoggedInUserRequest {
 }
 
 message GetLoggedInUserResponse {
 	optional string errorMessage = 1;
 	optional SUser value = 2;
+}
+
+message IsLoggedInRequest {
+}
+
+message IsLoggedInResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message LoginRequest {
+	optional string username = 1;
+	optional string password = 2;
+}
+
+message LoginResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message LoginUserTokenRequest {
+	optional string token = 1;
+}
+
+message LoginUserTokenResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message LogoutRequest {
 }
 
 message RequestPasswordChangeRequest {

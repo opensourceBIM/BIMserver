@@ -23,7 +23,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -60,17 +59,15 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
@@ -117,7 +114,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	private void authenticate() throws ServerException, UserException {
 		try {
-			Bimsie1AuthInterface authInterface = channel.get(Bimsie1AuthInterface.class);
+			AuthInterface authInterface = channel.get(AuthInterface.class);
 			if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
 				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
 				setToken(authInterface.login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
@@ -199,20 +196,20 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return token != null;
 	}
 
-	public void unregisterNotificationListener(Bimsie1NotificationInterface notificationInterface) {
+	public void unregisterNotificationListener(NotificationInterface notificationInterface) {
 		notificationsManager.unregisterNotifictionListener(notificationInterface);
 	}
 
-	public Bimsie1NotificationInterface getNotificationInterface() throws PublicInterfaceNotFoundException {
-		return get(Bimsie1NotificationInterface.class);
+	public NotificationInterface getNotificationInterface() throws PublicInterfaceNotFoundException {
+		return get(NotificationInterface.class);
 	}
 
-	public Bimsie1RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException {
-		return get(Bimsie1RemoteServiceInterface.class);
+	public RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException {
+		return get(RemoteServiceInterface.class);
 	}
 	
-	public Bimsie1LowLevelInterface getBimsie1LowLevelInterface() throws PublicInterfaceNotFoundException {
-		return get(Bimsie1LowLevelInterface.class);
+	public LowLevelInterface getLowLevelInterface() throws PublicInterfaceNotFoundException {
+		return get(LowLevelInterface.class);
 	}
 	
 	public ServiceInterface getServiceInterface() throws PublicInterfaceNotFoundException {
@@ -223,10 +220,6 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return get(AdminInterface.class);
 	}
 	
-	public Bimsie1AuthInterface getBimsie1AuthInterface() throws PublicInterfaceNotFoundException {
-		return get(Bimsie1AuthInterface.class);
-	}
-
 	@Override
 	public AuthInterface getAuthInterface() throws PublicInterfaceNotFoundException {
 		return get(AuthInterface.class);
@@ -277,7 +270,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	public void download(long roid, long serializerOid, OutputStream outputStream) {
 		try {
-			Long topicId = getBimsie1ServiceInterface().downloadRevisions(Collections.singleton(roid), serializerOid, true);
+			Long topicId = getServiceInterface().downloadRevisions(Collections.singleton(roid), serializerOid, true);
 			InputStream inputStream = getDownloadData(topicId, serializerOid);
 			try {
 				IOUtils.copy(inputStream, outputStream);
@@ -327,16 +320,12 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 	
 	@Override
-	public Bimsie1NotificationRegistryInterface getRegistry() throws PublicInterfaceNotFoundException {
+	public NotificationRegistryInterface getRegistry() throws PublicInterfaceNotFoundException {
 		return channel.getRegistry();
 	}
 
 	public AuthInterface getBimServerAuthInterface() throws PublicInterfaceNotFoundException {
 		return channel.getBimServerAuthInterface();
-	}
-
-	public Bimsie1ServiceInterface getBimsie1ServiceInterface() throws PublicInterfaceNotFoundException {
-		return channel.getBimsie1ServiceInterface();
 	}
 
 	@Override
@@ -389,7 +378,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	
 	public long query(Query query, long roid, long serializerOid) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		ObjectNode queryNode = new JsonQueryObjectModelConverter(query.getPackageMetaData()).toJson(query);
-		Long topicId = getBimsie1ServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), queryNode.toString(), serializerOid, false);
+		Long topicId = getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), queryNode.toString(), serializerOid, false);
 		return topicId;
 	}
 

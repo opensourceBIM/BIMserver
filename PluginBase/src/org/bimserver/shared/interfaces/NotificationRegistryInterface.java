@@ -1,4 +1,4 @@
-package org.bimserver.shared.interfaces.bimsie1;
+package org.bimserver.shared.interfaces;
 
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
@@ -31,11 +31,10 @@ import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.PublicInterface;
 
-@WebService(name = "Bimsie1NotificationRegistryInterface", targetNamespace="org.buildingsmart.bimsie1")
+@WebService(name = "NotificationRegistryInterface", targetNamespace="org.bimserver")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
-public interface Bimsie1NotificationRegistryInterface extends PublicInterface {
+public interface NotificationRegistryInterface extends PublicInterface {
 	/**
 	 * Register a progress topic, remember to unregister with unregisterProgressTopic when done
 	 * 

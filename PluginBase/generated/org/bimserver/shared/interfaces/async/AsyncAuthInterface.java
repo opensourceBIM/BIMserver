@@ -34,8 +34,33 @@ public class AsyncAuthInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetAccessMethodCallback {
+		void success(org.bimserver.interfaces.objects.SAccessMethod result);
+		void error(Throwable e);
+	}
+	
 	public interface GetLoggedInUserCallback {
 		void success(org.bimserver.interfaces.objects.SUser result);
+		void error(Throwable e);
+	}
+	
+	public interface IsLoggedInCallback {
+		void success(java.lang.Boolean result);
+		void error(Throwable e);
+	}
+	
+	public interface LoginCallback {
+		void success(java.lang.String result);
+		void error(Throwable e);
+	}
+	
+	public interface LoginUserTokenCallback {
+		void success(java.lang.String result);
+		void error(Throwable e);
+	}
+	
+	public interface LogoutCallback {
+		void success();
 		void error(Throwable e);
 	}
 	
@@ -68,11 +93,72 @@ public class AsyncAuthInterface {
 		});
 	}
 	
+	public void getAccessMethod(final GetAccessMethodCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAccessMethod());
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getLoggedInUser(final GetLoggedInUserCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
 					callback.success(syncService.getLoggedInUser());
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void isLoggedIn(final IsLoggedInCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.isLoggedIn());
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void login(final java.lang.String username, final java.lang.String password, final LoginCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.login(username, password));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void loginUserToken(final java.lang.String token, final LoginUserTokenCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.loginUserToken(token));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void logout(final LogoutCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.logout();
+					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
 				}

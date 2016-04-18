@@ -32,13 +32,13 @@ public class TestGuid {
 	public static void main(String[] args) {
 		BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
 		try {
-			SProject project = client.getBimsie1ServiceInterface().addProject("testProject2", "ifc2x3tc1");
+			SProject project = client.getServiceInterface().addProject("testProject2", "ifc2x3tc1");
 			
-			Long tid = client.getBimsie1LowLevelInterface().startTransaction(project.getOid());
-			client.getBimsie1LowLevelInterface().createObject(tid, "IfcWall", false);
-			Long roid = client.getBimsie1LowLevelInterface().commitTransaction(tid, "test commit");
+			Long tid = client.getLowLevelInterface().startTransaction(project.getOid());
+			client.getLowLevelInterface().createObject(tid, "IfcWall", false);
+			Long roid = client.getLowLevelInterface().commitTransaction(tid, "test commit");
 			
-			SSerializerPluginConfiguration serializer = client.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
+			SSerializerPluginConfiguration serializer = client.getServiceInterface().getSerializerByContentType("application/ifc");
 			client.download(roid, serializer.getOid(), Paths.get("test2.ifc"));
 		} catch (ServerException | UserException | PublicInterfaceNotFoundException e) {
 			e.printStackTrace();

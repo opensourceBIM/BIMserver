@@ -25,6 +25,7 @@ import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
+import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -32,6 +33,58 @@ import org.bimserver.shared.exceptions.UserException;
 @WebService(name = "AuthInterface", targetNamespace="org.bimserver")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface AuthInterface extends PublicInterface {
+	/**
+	 * Login with a username/password combination
+	 * 
+	 * @param username The username (must be a valid e-mail address)
+	 * @param password The password
+	 * @return A token, use this token in subsequent calls. Read the documentation of the transport 
+	 * mechanism (SOAP, Protocol Buffers or JSON) to see how to send the token
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "login")
+	String login(
+		@WebParam(name = "username", partName = "login.username") String username,
+		@WebParam(name = "password", partName = "login.password") String password) throws ServerException, UserException;
+
+	/**
+	 * Logout
+	 * 
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "logout")
+	void logout() throws ServerException, UserException;
+	
+	/**
+	 * Check whether the server considers the user (token) as logged-in
+	 * 
+	 * @return Whether this ServiceInterface is logged-in
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "isLoggedIn")
+	Boolean isLoggedIn() throws ServerException, UserException;
+
+	/**
+	 * @return The method of access this ServiceInterface is using (SOAP, PB etc...)
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAccessMethod")
+	SAccessMethod getAccessMethod() throws ServerException, UserException;
+
+	/**
+	 * Login with a user-token
+	 * 
+	 * @param token
+	 * @return A token, use this token in subsequent calls. Read the documentation of the transport 
+	 * mechanism (SOAP, Protocol Buffers or JSON) to see how to send the token
+	 * @throws ServerException
+	 * @throws UserException
+	 */
+	@WebMethod(action = "loginUserToken")
+	String loginUserToken(
+		@WebParam(name = "token", partName = "loginUserToken.token") String token) throws ServerException, UserException;
+
+	
 	/**
 	 * @return The User that it currently loggedin on this ServiceInterface
 	 * @throws ServerException, UserException
