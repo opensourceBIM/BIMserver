@@ -116,7 +116,11 @@ public class RootServlet extends HttpServlet {
 			} else if (requestUri.startsWith("/soap11/") || requestUri.equals("/soap11")) {
 				soap11Servlet.service(request, response);
 			} else if (requestUri.startsWith("/soap12/") || requestUri.equals("/soap12")) {
-				soap12Servlet.service(request, response);
+				try {
+					soap12Servlet.service(request, response);
+				} catch (ClassCastException e) {
+					LOGGER.debug("", e);
+				}
 			} else if (requestUri.startsWith("/syndication/") || requestUri.equals("/syndication")) {
 				syndicationServlet.service(request, response);
 			} else if (requestUri.startsWith("/json/") || requestUri.equals("/json")) {
