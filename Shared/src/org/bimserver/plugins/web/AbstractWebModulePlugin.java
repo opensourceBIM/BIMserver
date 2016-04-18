@@ -45,6 +45,8 @@ import org.bimserver.shared.exceptions.PluginException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Charsets;
 
 public abstract class AbstractWebModulePlugin implements WebModulePlugin {
@@ -83,15 +85,28 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 				requestUri = "index.html";
 			}
 			if (requestUri.endsWith("plugin.version")) {
+				ObjectNode version = new ObjectMapper().createObjectNode();
+				version.put("groupId", pluginContext.getPluginBundle().getPluginBundleVersion().getGroupId());
+				version.put("artifactId", pluginContext.getPluginBundle().getPluginBundleVersion().getArtifactId());
+				version.put("version", pluginContext.getPluginBundle().getPluginBundleVersion().getVersion());
+				version.put("description", pluginContext.getPluginBundle().getPluginBundleVersion().getDescription());
+				version.put("icon", pluginContext.getPluginBundle().getPluginBundleVersion().getIcon());
+				version.put("name", pluginContext.getPluginBundle().getPluginBundleVersion().getName());
+				version.put("organization", pluginContext.getPluginBundle().getPluginBundleVersion().getOrganization());
+				
 				if (getPluginContext().getPluginType() == PluginSourceType.INTERNAL) {
 					// Probably the default plugin
 					return false;
 				} else if (getPluginContext().getPluginType() == PluginSourceType.ECLIPSE_PROJECT) {
 					// We don't want to cache in Eclipse, because we change files without changing the plugin version everytime
-					response.getOutputStream().write(("{\"version\":\"" + getIdentifier() + "-" + System.nanoTime() + "\"}").getBytes(Charsets.UTF_8));
+					version.put("nonce", System.nanoTime());
+					response.setContentType("application/json");
+					response.getOutputStream().write(version.toString().getBytes(Charsets.UTF_8));
 					return true;
 				} else if (getPluginContext().getPluginType() == PluginSourceType.JAR_FILE) {
-					response.getOutputStream().write(("{\"version\":\"" + getIdentifier() + "-" + pluginContext.getVersion() + "\"}").getBytes(Charsets.UTF_8));
+					version.put("nonce", pluginContext.getPluginBundle().getPluginBundleVersion().getVersion());
+					response.setContentType("application/json");
+					response.getOutputStream().write(version.toString().getBytes(Charsets.UTF_8));
 					return true;
 				}
 			}

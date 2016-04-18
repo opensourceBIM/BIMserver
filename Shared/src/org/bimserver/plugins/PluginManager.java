@@ -506,6 +506,7 @@ public class PluginManager implements PluginManagerInterface {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private PluginBundle loadPlugins(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, ResourceLoader resourceLoader, ClassLoader classLoader, URI location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType,
 			Set<org.bimserver.plugins.Dependency> dependencies, SPluginBundle sPluginBundle, SPluginBundleVersion sPluginBundleVersion) throws PluginException {
+		sPluginBundle.setInstalledVersion(sPluginBundleVersion);
 		PluginBundle pluginBundle = new PluginBundleImpl(pluginBundleVersionIdentifier, sPluginBundle, sPluginBundleVersion);
 		
 		if (classLoader != null && classLoader instanceof Closeable) {

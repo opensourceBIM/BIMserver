@@ -394,17 +394,17 @@ public class BimServer {
 									if (webPluginConfiguration == null) {
 										webPluginConfiguration = session.create(WebModulePluginConfiguration.class);
 										serverSettings.getWebModules().add(webPluginConfiguration);
-										genericPluginConversion(newPluginContext, session, webPluginConfiguration, pluginDescriptor);
-										String contextPath = "";
-										
-										for (Parameter parameter : webPluginConfiguration.getSettings().getParameters()) {
-											if (parameter.getName().equals("contextPath")) {
-												contextPath = ((StringType) parameter.getValue()).getValue();
-											}
-										}
-										String identifier = webPluginConfiguration.getPluginDescriptor().getIdentifier();
-										webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(identifier, true));
 									}
+									genericPluginConversion(newPluginContext, session, webPluginConfiguration, pluginDescriptor);
+									String contextPath = "";
+									
+									for (Parameter parameter : webPluginConfiguration.getSettings().getParameters()) {
+										if (parameter.getName().equals("contextPath")) {
+											contextPath = ((StringType) parameter.getValue()).getValue();
+										}
+									}
+									String identifier = webPluginConfiguration.getPluginDescriptor().getIdentifier();
+									webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(identifier, true));
 								}
 							}
 

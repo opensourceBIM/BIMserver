@@ -61,6 +61,22 @@ public class PluginBundleImpl implements PluginBundle, Iterable<PluginContext> {
 		SPluginBundle result = new SPluginBundle();
 		result.setName(sPluginBundle.getName());
 		result.setOrganization(sPluginBundle.getOrganization());
+		
+		if (sPluginBundle.getInstalledVersion() != null) {
+			SPluginBundleVersion installedVersion = new SPluginBundleVersion();
+			installedVersion.setArtifactId(sPluginBundle.getInstalledVersion().getArtifactId());
+			installedVersion.setDescription(sPluginBundle.getInstalledVersion().getDescription());
+			installedVersion.setGroupId(sPluginBundle.getInstalledVersion().getGroupId());
+			installedVersion.setIcon(sPluginBundle.getInstalledVersion().getIcon());
+			installedVersion.setMismatch(sPluginBundle.getInstalledVersion().isMismatch());
+			installedVersion.setName(sPluginBundle.getInstalledVersion().getName());
+			installedVersion.setOrganization(sPluginBundle.getInstalledVersion().getOrganization());
+			installedVersion.setRepository(sPluginBundle.getInstalledVersion().getRepository());
+			installedVersion.setType(sPluginBundle.getInstalledVersion().getType());
+			installedVersion.setVersion(sPluginBundle.getInstalledVersion().getVersion());
+			result.setInstalledVersion(installedVersion);
+		}
+		
 		return result;
 	}
 
