@@ -222,11 +222,11 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	}
 	
 	@Override
-	public void unregisterInternalNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor) {
+	public void unregisterInternalNewRevisionHandler(long uoid, String identifier) {
 		Map<String, ServiceDescriptor> map = uoidToInternalServices.get(uoid);
 		if (map != null) {
-			map.remove(serviceDescriptor.getIdentifier());
+			map.remove(identifier);
 		}
-		internalRemoteServiceInterfaces.remove(serviceDescriptor.getIdentifier());
+		internalRemoteServiceInterfaces.remove(identifier);
 	}
 }

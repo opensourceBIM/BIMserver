@@ -1036,7 +1036,7 @@ public class PluginManager implements PluginManagerInterface {
 
 	public void unregisterNewRevisionHandler(long uoid, ServiceDescriptor serviceDescriptor) {
 		if (notificationsManagerInterface != null) {
-			notificationsManagerInterface.unregisterInternalNewRevisionHandler(uoid, serviceDescriptor);
+			notificationsManagerInterface.unregisterInternalNewRevisionHandler(uoid, serviceDescriptor.getIdentifier());
 		}
 	}
 
@@ -1448,7 +1448,7 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	public PluginBundle update(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, Path jarFile, List<SPluginInformation> plugins) throws Exception {
+	public PluginBundle update(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, Path jarFile, Path pomFile, List<SPluginInformation> plugins) throws Exception {
 		PluginBundle existingPluginBundle = pluginBundleIdentifierToPluginBundle.get(pluginBundleVersionIdentifier.getPluginBundleIdentifier());
 		if (existingPluginBundle == null) {
 			throw new UserException("No previous version of plugin bundle " + pluginBundleVersionIdentifier.getPluginBundleIdentifier() + " found");
@@ -1489,10 +1489,54 @@ public class PluginManager implements PluginManagerInterface {
 			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
 		}
 		Files.copy(jarFile, target);
+		
+		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+
+		Model model = mavenreader.read(new FileReader(pomFile.toFile()));
+		
+		DelegatingClassLoader delegatingClassLoader = new DelegatingClassLoader(getClass().getClassLoader());
+		
+		for (org.apache.maven.model.Dependency dependency : model.getDependencies()) {
+			if (dependency.getGroupId().equals("org.opensourcebim") && (dependency.getArtifactId().equals("shared") || dependency.getArtifactId().equals("pluginbase"))) {
+				// TODO Skip, we should also check the version though
+			} else {
+				PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(dependency.getGroupId(), dependency.getArtifactId());
+				if (pluginBundleIdentifierToPluginBundle.containsKey(pluginBundleIdentifier)) {
+					if (false) {
+						VersionRange versionRange = VersionRange.createFromVersion(dependency.getVersion());
+						String version = pluginBundleIdentifierToPluginBundle.get(pluginBundleIdentifier).getPluginBundleVersion().getVersion();
+						ArtifactVersion artifactVersion = new DefaultArtifactVersion(version);
+						if (versionRange.containsVersion(artifactVersion)) {
+							// OK
+						} else {
+							throw new Exception("Required dependency " + pluginBundleIdentifier + " is installed, but it's version (" + version + ") does not comply to the required version (" + dependency.getVersion() + ")");
+						}
+					} else {
+						LOGGER.info("Skipping strict dependency checking for dependency " + dependency.getArtifactId());
+					}
+				} else {
+					if (pluginBundleIdentifier.getGroupId().equals("org.opensourcebim")) {
+						throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
+					} else {
+						MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(model.getRepositories().get(0).getUrl(), dependency.getGroupId(), dependency.getArtifactId());
+						
+						try {
+							Path depJarFile = mavenPluginLocation.getVersionJar(dependency.getVersion());
+							
+							FileJarClassLoader jarClassLoader = new FileJarClassLoader(this, delegatingClassLoader, depJarFile); 
+							delegatingClassLoader.add(jarClassLoader);
+						} catch (Exception e) {
+							
+						}
+					}
+				}
+			}
+		}
+		
 		PluginBundle pluginBundle = null;
 		// Stage 1, load all plugins from the JAR file and initialize them
 		try {
-			pluginBundle = loadPluginsFromJar(pluginBundleVersionIdentifier, target, sPluginBundle, pluginBundleVersion, getClass().getClassLoader());
+			pluginBundle = loadPluginsFromJar(pluginBundleVersionIdentifier, target, sPluginBundle, pluginBundleVersion, delegatingClassLoader);
 			
 			for (SPluginInformation sPluginInformation : plugins) {
 				if (sPluginInformation.isEnabled()) {

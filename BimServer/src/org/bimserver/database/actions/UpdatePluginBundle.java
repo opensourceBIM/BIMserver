@@ -13,7 +13,6 @@ import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.MavenPluginLocation;
-import org.bimserver.plugins.PluginDescriptor;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.aether.resolution.ArtifactResolutionException;
@@ -44,6 +43,7 @@ public class UpdatePluginBundle extends BimDatabaseAction<Void> {
 		
 		try {
 			Path jarFile = mavenPluginLocation.getVersionJar(version);
+			Path pomFile = mavenPluginLocation.getVersionPom(version);
 			try {
 				List<SPluginInformation> plugins = null;
 				try {
@@ -59,7 +59,7 @@ public class UpdatePluginBundle extends BimDatabaseAction<Void> {
 					// update plugin information with data from potentially existing plugins
 				}
 				
-				bimServer.getPluginManager().update(mavenPluginLocation.getPluginVersionIdentifier(version), mavenPluginLocation.getPluginBundle(version), mavenPluginLocation.getPluginBundleVersion(version), jarFile, plugins);
+				bimServer.getPluginManager().update(mavenPluginLocation.getPluginVersionIdentifier(version), mavenPluginLocation.getPluginBundle(version), mavenPluginLocation.getPluginBundleVersion(version), jarFile, pomFile, plugins);
 			} catch (Exception e) {
 				throw new UserException(e);
 			}
