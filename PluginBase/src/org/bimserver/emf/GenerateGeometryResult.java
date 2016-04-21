@@ -1,4 +1,4 @@
-package org.bimserver.plugins.services;
+package org.bimserver.emf;
 
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
@@ -17,16 +17,31 @@ package org.bimserver.plugins.services;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import org.bimserver.models.store.ServiceDescriptor;
+import org.bimserver.models.geometry.GeometryFactory;
+import org.bimserver.models.geometry.Vector3f;
 
-public abstract class AbstractModifyRevisionService extends AbstractService {
+public class GenerateGeometryResult {
 
-	public AbstractModifyRevisionService() {
-		super();
+	private Vector3f min;
+	private Vector3f max;
+
+	public GenerateGeometryResult() {
+		min = GeometryFactory.eINSTANCE.createVector3f();
+		min.setX(Float.POSITIVE_INFINITY);
+		min.setY(Float.POSITIVE_INFINITY);
+		min.setZ(Float.POSITIVE_INFINITY);
+		
+		max = GeometryFactory.eINSTANCE.createVector3f();
+		max.setX(Float.NEGATIVE_INFINITY);
+		max.setY(Float.NEGATIVE_INFINITY);
+		max.setZ(Float.NEGATIVE_INFINITY);
 	}
 	
-	@Override
-	public void addRequiredRights(ServiceDescriptor serviceDescriptor) {
-		serviceDescriptor.setWriteRevision(true);
+	public Vector3f getMinBounds() {
+		return min;
+	}
+
+	public Vector3f getMaxBounds() {
+		return max;
 	}
 }

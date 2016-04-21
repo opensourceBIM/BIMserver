@@ -29,6 +29,7 @@ import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcElement;
 import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
@@ -129,5 +130,35 @@ public class IfcUtils {
 			}
 		}
 		return list;
+	}
+
+	public static IfcProject getIfcProject(IfcProduct ifcProduct) {
+		if (ifcProduct instanceof IfcProject) {
+			return (IfcProject) ifcProduct;
+		}
+		for (IfcRelDecomposes ifcRelDecomposes : ifcProduct.getDecomposes()) {
+			IfcObjectDefinition relatingObject = ifcRelDecomposes.getRelatingObject();
+			if (relatingObject instanceof IfcProject) {
+				return (IfcProject)relatingObject;
+			} else if (relatingObject instanceof IfcProduct){
+				return getIfcProject((IfcProduct) relatingObject);
+			}
+		}
+		if (ifcProduct instanceof IfcElement) {
+			IfcElement ifcElement = (IfcElement)ifcProduct;
+			for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : ifcElement.getContainedInStructure()) {
+				IfcSpatialStructureElement relatingStructure = ifcRelContainedInSpatialStructure.getRelatingStructure();
+				if (relatingStructure instanceof IfcProject) {
+					return (IfcProject) relatingStructure;
+				} else if (relatingStructure instanceof IfcBuildingStorey) {
+					return getIfcProject(relatingStructure);
+				} else {
+					if (relatingStructure instanceof IfcSpace) {
+						return getIfcProject(relatingStructure);
+					}
+				}
+			}
+		}
+		return null;
 	}
 }

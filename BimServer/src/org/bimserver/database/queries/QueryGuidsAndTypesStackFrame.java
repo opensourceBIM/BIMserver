@@ -54,9 +54,15 @@ public class QueryGuidsAndTypesStackFrame extends DatabaseReadingStackFrame {
 		
 		oids = new HashSet<>();
 		for (String guid : guids) {
-			ObjectIdentifier oidOfGuid = getOidOfGuidAlternative(eClass, (EAttribute) eClass.getEStructuralFeature("GlobalId"), guid, reusable.getDatabaseInterface(), reusable.getPid(), reusable.getRid());
-			if (oidOfGuid != null) {
-				oids.add(oidOfGuid.getOid());
+			EAttribute globalIdFeature = (EAttribute) eClass.getEStructuralFeature("GlobalId");
+			if (globalIdFeature == null) {
+				converted = true;
+//				throw new BimserverDatabaseException(eClass.getName() + " does not have a GlobalId feature");
+			} else {
+				ObjectIdentifier oidOfGuid = getOidOfGuidAlternative(eClass, globalIdFeature, guid, reusable.getDatabaseInterface(), reusable.getPid(), reusable.getRid());
+				if (oidOfGuid != null) {
+					oids.add(oidOfGuid.getOid());
+				}
 			}
 		}
 		if (oids.isEmpty()) {

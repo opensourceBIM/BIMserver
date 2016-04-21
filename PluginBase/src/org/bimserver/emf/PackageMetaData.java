@@ -69,7 +69,7 @@ public class PackageMetaData implements ObjectFactory {
 	private final Map<EClass, Integer> unsettedLengths = new HashMap<EClass, Integer>();
 	private Path schemaPath;
 
-	public PackageMetaData(MetaDataManager metaDataManager, EPackage ePackage, Schema schema, Path tempDir) {
+	public PackageMetaData(EPackage ePackage, Schema schema, Path tempDir) {
 		this.ePackage = ePackage;
 		this.schema = schema;
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {

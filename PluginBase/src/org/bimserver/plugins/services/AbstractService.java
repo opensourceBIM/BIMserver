@@ -31,7 +31,6 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
@@ -42,11 +41,10 @@ import org.slf4j.LoggerFactory;
 
 public abstract class AbstractService extends ServicePlugin {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractService.class);
-	private String name;
 	private PluginContext pluginContext;
+	private String name;
 
-	public AbstractService(String title) {
-		this.name = title;
+	public AbstractService() {
 	}
 	
 	@Override
@@ -62,11 +60,6 @@ public abstract class AbstractService extends ServicePlugin {
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
 		return null;
-	}
-
-	@Override
-	public String getTitle() {
-		return name;
 	}
 
 	public enum ProgressType {
@@ -144,10 +137,12 @@ public abstract class AbstractService extends ServicePlugin {
 	
 	@Override
 	public void register(long uoid, SInternalServicePluginConfiguration internalService, final PluginConfiguration pluginConfiguration) {
+		name = internalService.getName();
 		ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
 		serviceDescriptor.setProviderName("BIMserver");
 		serviceDescriptor.setIdentifier("" + internalService.getOid());
-		serviceDescriptor.setName(name);
+		serviceDescriptor.setName(internalService.getName());
+		serviceDescriptor.setDescription(internalService.getDescription());
 		serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 		addRequiredRights(serviceDescriptor);
