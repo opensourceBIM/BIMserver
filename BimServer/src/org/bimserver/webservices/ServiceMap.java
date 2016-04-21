@@ -30,6 +30,7 @@ import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationInterfaceAdaptor;
 import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
@@ -109,6 +110,8 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 			publicInterface = new RemoteServiceImpl(bimServer, this);
 		} else if (clazz == NotificationRegistryInterface.class) {
 			publicInterface = new NotificationRegistryServiceImpl(this);
+		} else if (clazz == NotificationInterface.class) {
+			publicInterface = new NotificationInterfaceAdaptor();
 		} else if (clazz == PluginInterface.class) {
 			publicInterface = new PluginServiceImpl(this);
 		} else {

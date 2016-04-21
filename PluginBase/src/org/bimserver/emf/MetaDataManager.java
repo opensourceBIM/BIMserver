@@ -80,7 +80,7 @@ public class MetaDataManager {
 	}
 
 	public void addEPackage(EPackage ePackage, Schema schema) {
-		ePackages.put(ePackage.getName().toLowerCase(), new PackageMetaData(this, ePackage, schema, tempDir));
+		ePackages.put(ePackage.getName().toLowerCase(), new PackageMetaData(ePackage, schema, tempDir));
 	}
 
 	public Collection<PackageMetaData> getAll() {

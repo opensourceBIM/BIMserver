@@ -33,7 +33,6 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 
 public abstract class ServicePlugin implements Plugin {
 
-	public abstract String getTitle();
 	private PluginContext pluginContext;
 	
 	public ServiceInterface getServiceInterface(String token) throws UserException {
