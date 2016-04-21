@@ -160,7 +160,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			long newRoid = result.getRevisions().get(0).getOid();
 			QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId(), newRoid, -1); // TODO check
 			long size = deserializer.read(inputStream, fileName, fileSize, queryContext);
-
+			
 			Set<EClass> eClasses = deserializer.getSummaryMap().keySet();
 			Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
 			Map<EClass, Long> oidCounters = new HashMap<>();
@@ -231,8 +231,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			
 			result.getConcreteRevision().setSize(size);
 			for (Revision revision : result.getRevisions()) {
-				revision.setSize(size);
-				revision.setHasGeometry(true);
+				revision.setSize((revision.getSize() == null ? 0 : revision.getSize()) + concreteRevision.getSize());
 			}
 			
 			IfcHeader ifcHeader = deserializer.getIfcHeader();
