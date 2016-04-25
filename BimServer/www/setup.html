@@ -376,16 +376,12 @@ function Setup(cd, address) {
 		var pluginsToInstall = {
 			ifcplugins: {repository: "http://central.maven.org/maven2", groupId: "org.opensourcebim", artifactId: "ifcplugins"},
 			binaryserializers: {repository: "http://central.maven.org/maven2", groupId: "org.opensourcebim", artifactId: "binaryserializers"},
+			bimserverapi: {repository: "http://central.maven.org/maven2", groupId: "org.opensourcebim", artifactId: "bimserverapi"},
 			console: {repository: "http://central.maven.org/maven2", groupId: "org.opensourcebim", artifactId: "console"}
 		};
 		cd.find(".plugins input[type=\"checkbox\"]:checked").each(function(index, checkbox){
 			var artifactId = $(checkbox).attr("class");
 			if (artifactId == "bimviews") {
-				pluginsToInstall["bimserverapi"] = {
-					repository: "http://central.maven.org/maven2",
-					groupId: "org.opensourcebim",
-					artifactId: "bimserverapi"
-				};
 				pluginsToInstall["bimsurfer"] = {
 					repository: "http://central.maven.org/maven2",
 					groupId: "org.opensourcebim",
