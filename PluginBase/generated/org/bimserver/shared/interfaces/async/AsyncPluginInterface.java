@@ -1099,18 +1099,6 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void getMessagingSerializerByPluginClassName(final java.lang.String pluginClassName, final GetMessagingSerializerByPluginClassNameCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getMessagingSerializerByPluginClassName(pluginClassName));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getModelCompareById(final java.lang.Long oid, final GetModelCompareByIdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){

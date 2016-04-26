@@ -384,7 +384,20 @@ public class PackageMetaData implements ObjectFactory {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(EClass eClass) {
-		return (T) ePackage.getEFactoryInstance().create(eClass);
+		if (eClass.getEPackage() == ePackage) {
+			return (T) ePackage.getEFactoryInstance().create(eClass);
+		} else {
+			for (PackageMetaData dep : dependencies) {
+				if (dep.has(eClass)) {
+					return dep.create(eClass);
+				}
+			}
+		}
+		throw new RuntimeException("Mismatch");
+	}
+
+	private boolean has(EClass eClass) {
+		return eClass.getEPackage() == ePackage;
 	}
 
 	@SuppressWarnings("unchecked")
