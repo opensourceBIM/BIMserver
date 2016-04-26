@@ -40,10 +40,12 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.HashMapVirtualObject;
+import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.QueryException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -96,7 +98,12 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 			queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, roids, packageMetaData);
 			next = queryObjectProvider.next();
 			while (next != null) {
+				EClass eClassForOid = getDatabaseSession().getEClassForOid(next.getOid());
 				IdEObject idEObject = ifcModel.get(next.getOid());
+				if (idEObject.eClass() != next.eClass()) {
+					// Something is wrong
+					throw new RuntimeException("Classes not the same");
+				}
 				for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 					if (eReference.isMany()) {
 						List<Long> refOids = (List<Long>)next.eGet(eReference);
@@ -110,8 +117,15 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 							}
 						}
 					} else {
-						long refOid = (long) next.eGet(eReference);
-						idEObject.eSet(eReference, ifcModel.get(refOid));
+						Object r = next.eGet(eReference);
+						if (r instanceof Long) {
+							long refOid = (Long)r;
+							idEObject.eSet(eReference, ifcModel.get(refOid));
+						} else if (r instanceof HashMapWrappedVirtualObject) {
+							HashMapWrappedVirtualObject hashMapWrappedVirtualObject = (HashMapWrappedVirtualObject)r;
+							// TODO
+//							idEObject.eSet(eReference, ifcModel.get(refOid));
+						}
 					}
 				}
 				next = queryObjectProvider.next();

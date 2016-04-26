@@ -211,6 +211,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.StreamingDeserializer;
 import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -378,6 +379,13 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				longDownloadAction.waitForCompletion();
 			}
 			return longDownloadAction.getProgressTopic().getKey().getId();
+		} else if (plugin instanceof MessagingSerializerPlugin) {
+			requireAuthenticationAndRunningServer();
+			DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_BY_NEW_JSON_QUERY);
+			downloadParameters.setRoids(roids);
+			downloadParameters.setJsonQuery(jsonQuery);
+			downloadParameters.setSerializerOid(serializerOid);
+			return download(downloadParameters, sync);
 		} else if (plugin instanceof SerializerPlugin) {
 			requireAuthenticationAndRunningServer();
 			DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_BY_NEW_JSON_QUERY);

@@ -559,15 +559,6 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "pluginClassName", partName = "getSerializerByPluginClassName.pluginClassName") String pluginClassName) throws ServerException, UserException;
 
 	/**
-	 * @param contentType The ContentType
-	 * @return Serializer supporting the given ContentType
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getMessagingSerializerByPluginClassName")
-	SMessagingSerializerPluginConfiguration getMessagingSerializerByPluginClassName(
-			@WebParam(name = "pluginClassName", partName = "getMessagingSerializerByPluginClassName.pluginClassName") String pluginClassName) throws ServerException, UserException;
-	
-	/**
 	 * @param contentType Content type
 	 * @return Whether there is an active Serializer supporting the given ContentType
 	 * @throws ServerException, UserException

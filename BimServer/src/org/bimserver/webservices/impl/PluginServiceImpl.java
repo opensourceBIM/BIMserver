@@ -54,7 +54,6 @@ import org.bimserver.database.actions.GetAvailablePluginBundles;
 import org.bimserver.database.actions.GetByIdDatabaseAction;
 import org.bimserver.database.actions.GetInstalledPluginBundle;
 import org.bimserver.database.actions.GetInstalledPluginBundles;
-import org.bimserver.database.actions.GetMessagingSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByIdDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByNameDatabaseAction;
 import org.bimserver.database.actions.GetModelMergerByIdDatabaseAction;
@@ -1240,20 +1239,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByPluginClassNameDatabaseAction(session, getAuthorization(), getInternalAccessMethod(), pluginClassName)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-	
-	@Override
-	public SMessagingSerializerPluginConfiguration getMessagingSerializerByPluginClassName(String pluginClassName) throws ServerException, UserException {
-		// Not checking for real authentication here because a remote service should be able to use a serializer for download call
-		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetMessagingSerializerByPluginClassNameDatabaseAction(session, getAuthorization(), getInternalAccessMethod(), pluginClassName)));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
