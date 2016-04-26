@@ -96,7 +96,7 @@ public class LongActionManager {
 			longAction.stop();
 			actions.remove(topicId);
 		} else {
-			throw new UserException("No long action with id " + topicId + " found");
+			throw new UserException("No long running action with TopicId " + topicId + " found");
 		}
 	}
 
