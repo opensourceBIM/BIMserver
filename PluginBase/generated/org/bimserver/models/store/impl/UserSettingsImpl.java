@@ -53,7 +53,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultObjectIDM <em>Default Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getServices <em>Services</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getMessagingSerializerPlugins <em>Messaging Serializer Plugins</em>}</li>
  * </ul>
  *
  * @generated
@@ -274,16 +273,6 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	@SuppressWarnings("unchecked")
 	public EList<InternalServicePluginConfiguration> getServices() {
 		return (EList<InternalServicePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__SERVICES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<MessagingSerializerPluginConfiguration> getMessagingSerializerPlugins() {
-		return (EList<MessagingSerializerPluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__MESSAGING_SERIALIZER_PLUGINS, true);
 	}
 
 } //UserSettingsImpl

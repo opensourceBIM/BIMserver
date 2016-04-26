@@ -123,18 +123,18 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				try {
 					PluginConfiguration serializerPluginConfiguration = newSession.get(StorePackage.eINSTANCE.getPluginConfiguration(), downloadParameters.getSerializerOid(), OldQuery.getDefault());
 					if (serializerPluginConfiguration != null) {
-						if (serializerPluginConfiguration instanceof SerializerPluginConfiguration) {
-							RenderEnginePluginConfiguration renderEngine = ((SerializerPluginConfiguration)serializerPluginConfiguration).getRenderEngine();
-							if (renderEngine != null) {
-								renderEnginePlugin = getBimServer().getPluginManager().getRenderEnginePlugin(renderEngine.getPluginDescriptor().getPluginClassName(), true);
-							}
-							checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, renderEnginePlugin, downloadParameters);
-						} else if (serializerPluginConfiguration instanceof MessagingSerializerPluginConfiguration) {
+						if (serializerPluginConfiguration instanceof MessagingSerializerPluginConfiguration) {
 							try {
 								messagingSerializer = getBimServer().getSerializerFactory().createMessagingSerializer(getUserName(), ifcModel, downloadParameters);
 							} catch (SerializerException e) {
 								e.printStackTrace();
 							}
+						} else if (serializerPluginConfiguration instanceof SerializerPluginConfiguration) {
+							RenderEnginePluginConfiguration renderEngine = ((SerializerPluginConfiguration)serializerPluginConfiguration).getRenderEngine();
+							if (renderEngine != null) {
+								renderEnginePlugin = getBimServer().getPluginManager().getRenderEnginePlugin(renderEngine.getPluginDescriptor().getPluginClassName(), true);
+							}
+							checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, renderEnginePlugin, downloadParameters);
 						}
 					}
 				} catch (BimserverDatabaseException e) {

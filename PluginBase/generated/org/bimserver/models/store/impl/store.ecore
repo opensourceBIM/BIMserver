@@ -245,8 +245,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultObjectIDM" eType="#//ObjectIDMPluginConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
         eType="#//InternalServicePluginConfiguration" eOpposite="#//InternalServicePluginConfiguration/userSettings"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="messagingSerializerPlugins"
-        upperBound="-1" eType="#//MessagingSerializerPluginConfiguration" eOpposite="#//MessagingSerializerPluginConfiguration/userSettings"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -861,10 +859,7 @@
     <eLiterals name="STARTTLS" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MessagingSerializerPluginConfiguration"
-      eSuperTypes="#//PluginConfiguration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
-        eOpposite="#//UserSettings/messagingSerializerPlugins"/>
-  </eClassifiers>
+      eSuperTypes="#//SerializerPluginConfiguration"/>
   <eClassifiers xsi:type="ecore:EClass" name="Metrics">
     <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" upperBound="-1"
         eType="#//InterfaceMetric">

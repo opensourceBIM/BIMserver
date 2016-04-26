@@ -20,7 +20,9 @@ package org.bimserver.database.actions;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
@@ -33,6 +35,7 @@ import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
@@ -45,7 +48,6 @@ import org.bimserver.shared.QueryException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -73,7 +75,10 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 			projectNames.add(revision.getProject().getName() + "." + revision.getId());
 		}
 		String name = Joiner.on("-").join(projectNames);
+		
+		// TODO allow for multiple roids
 		long roid = roids.iterator().next();
+		
 		Revision revision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
 		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 		JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
@@ -82,12 +87,17 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 			queryObject = new ObjectMapper().readValue(json, ObjectNode.class);
 			Query query = converter.parseJson("query", (ObjectNode) queryObject);
 	
-			IfcModelInterface ifcModel = new ServerIfcModel(packageMetaData, null, getDatabaseSession());
+			Map<Integer, Long> pidRoidMap = new HashMap<>();
+			pidRoidMap.put(revision.getProject().getId(), roid);
+			IfcModelInterface ifcModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
 	
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, roids, packageMetaData);
 			HashMapVirtualObject next = queryObjectProvider.next();
 			while (next != null) {
 				IdEObject newObject = packageMetaData.create(next.eClass());
+				IdEObjectImpl idEObjectImpl = (IdEObjectImpl)newObject;
+				idEObjectImpl.setPid(revision.getProject().getId());
+				idEObjectImpl.setOid(next.getOid());
 				for (EAttribute eAttribute : newObject.eClass().getEAllAttributes()) {
 					newObject.eSet(eAttribute, next.eGet(eAttribute));
 				}
@@ -98,7 +108,6 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 			queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, roids, packageMetaData);
 			next = queryObjectProvider.next();
 			while (next != null) {
-				EClass eClassForOid = getDatabaseSession().getEClassForOid(next.getOid());
 				IdEObject idEObject = ifcModel.get(next.getOid());
 				if (idEObject.eClass() != next.eClass()) {
 					// Something is wrong
@@ -123,8 +132,11 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 							idEObject.eSet(eReference, ifcModel.get(refOid));
 						} else if (r instanceof HashMapWrappedVirtualObject) {
 							HashMapWrappedVirtualObject hashMapWrappedVirtualObject = (HashMapWrappedVirtualObject)r;
-							// TODO
-//							idEObject.eSet(eReference, ifcModel.get(refOid));
+							IdEObject embeddedObject = ifcModel.create(hashMapWrappedVirtualObject.eClass());
+							idEObject.eSet(eReference, embeddedObject);
+							for (EAttribute eAttribute : hashMapWrappedVirtualObject.eClass().getEAllAttributes()) {
+								embeddedObject.eSet(eAttribute, hashMapWrappedVirtualObject.eGet(eAttribute));
+							}
 						}
 					}
 				}

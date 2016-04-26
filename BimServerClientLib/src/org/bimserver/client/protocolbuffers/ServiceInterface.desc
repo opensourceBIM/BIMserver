@@ -1,5 +1,5 @@
 
-¢â
+…å
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -808,8 +808,8 @@ settingsId (
 errorMessage (	1
 value (2".org.bimserver.pb.SRevisionSummary"8
 !GetSerializerByContentTypeRequest
-contentType (	"ö
-SSerializerPluginConfiguration
+contentType (	"ÿ
+'SMessagingSerializerPluginConfiguration
 description (	
 enabled (
 name (	
@@ -822,7 +822,23 @@ settingsId (
 settingsId	 (
 	streaming
  (
-userSettingsId ("{
+userSettingsId ("û
+SSerializerPluginConfiguration
+__actual_type (	l
+)__SMessagingSerializerPluginConfiguration (29.org.bimserver.pb.SMessagingSerializerPluginConfiguration
+description (	
+enabled (
+name (	
+objectIDMId (
+oid (
+pluginDescriptorId (
+renderEngineId	 (
+rid
+ (
+
+settingsId (
+	streaming (
+userSettingsId ("{
 "GetSerializerByContentTypeResponse
 errorMessage (	?
 value (20.org.bimserver.pb.SSerializerPluginConfiguration"'
@@ -1167,7 +1183,7 @@ executorId (
 GetUserRelatedLogsResponse
 errorMessage (	+
 value (2.org.bimserver.pb.SLogAction"
-GetUserSettingsRequest"¬
+GetUserSettingsRequest"ˆ
 SUserSettings
 defaultModelCompareId (
 defaultModelMergerId (
@@ -1175,19 +1191,18 @@ executorId (
 defaultQueryEngineId (
 defaultRenderEngineId (
 defaultSerializerId (
-deserializers ("
-messagingSerializerPlugins (
-modelCompares	 (
-modelMergers
- (
+deserializers (
+modelCompares (
+modelMergers	 (
 
-objectIDMs (
-oid (
-queryEngines (
-renderEngines (
-rid (
-serializers (
-services ("_
+objectIDMs
+ (
+oid (
+queryEngines (
+renderEngines (
+rid (
+serializers (
+services ("_
 GetUserSettingsResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SUserSettings"'

@@ -2129,15 +2129,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUserSettings_MessagingSerializerPlugins() {
-		return (EReference) getUserSettings().getEStructuralFeatures().get(14);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPluginConfiguration() {
 		if (pluginConfigurationEClass == null) {
 			pluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(11);
@@ -5632,15 +5623,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 			messagingSerializerPluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(100);
 		}
 		return messagingSerializerPluginConfigurationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMessagingSerializerPluginConfiguration_UserSettings() {
-		return (EReference) getMessagingSerializerPluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**

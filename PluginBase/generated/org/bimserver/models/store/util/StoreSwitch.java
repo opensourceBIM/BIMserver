@@ -747,6 +747,8 @@ public class StoreSwitch<T> extends Switch<T> {
 			MessagingSerializerPluginConfiguration messagingSerializerPluginConfiguration = (MessagingSerializerPluginConfiguration) theEObject;
 			T result = caseMessagingSerializerPluginConfiguration(messagingSerializerPluginConfiguration);
 			if (result == null)
+				result = caseSerializerPluginConfiguration(messagingSerializerPluginConfiguration);
+			if (result == null)
 				result = casePluginConfiguration(messagingSerializerPluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);

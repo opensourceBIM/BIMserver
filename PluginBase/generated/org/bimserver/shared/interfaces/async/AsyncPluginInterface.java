@@ -284,11 +284,6 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
-	public interface GetMessagingSerializerByPluginClassNameCallback {
-		void success(org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration result);
-		void error(Throwable e);
-	}
-	
 	public interface GetModelCompareByIdCallback {
 		void success(org.bimserver.interfaces.objects.SModelComparePluginConfiguration result);
 		void error(Throwable e);

@@ -59,6 +59,7 @@ import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.LongType;
+import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.ObjectType;
@@ -827,9 +828,16 @@ public class BimServer {
 				pluginInterfaceName = pluginInterfaceName.substring(0, pluginInterfaceName.length() - 6);
 			}
 			
-			if (pluginInterfaceName.equals("MessagingStreamingSerializer") || pluginInterfaceName.equals("MessagingSerializer") || pluginInterfaceName.equals("StreamingSerializer")) {
-				pluginInterfaceName = "Serializer";
+			if (pluginInterfaceName.equals("MessagingSerializer")) {
+				System.out.println();
 			}
+			
+			if (pluginInterfaceName.equals("StreamingSerializer")) {
+				pluginInterfaceName = "Serializer";
+			} else if (pluginInterfaceName.equals("MessagingStreamingSerializer")) {
+				pluginInterfaceName = "MessagingSerializer";
+			}
+
 			if (pluginInterfaceName.equals("StreamingDeserializer")) {
 				pluginInterfaceName = "Deserializer";
 			}
@@ -842,13 +850,16 @@ public class BimServer {
 			
 			EClass userSettingsClass = StorePackage.eINSTANCE.getUserSettings();
 			String listRefName = StringUtils.firstLowerCase(pluginInterfaceName) + "s";
+			if (listRefName.equals("messagingSerializers")) {
+				listRefName = "serializers";
+			}
 			EReference listReference = (EReference) userSettingsClass.getEStructuralFeature(listRefName);
 			if (listReference == null) {
 				LOGGER.warn(listRefName + " not found");
 				return;
 			}
 			EReference defaultReference = (EReference) userSettingsClass.getEStructuralFeature("default" + pluginInterfaceName);
-			EClass pluginConfigurationClass = (EClass) listReference.getEType();
+			EClass pluginConfigurationClass = (EClass) StorePackage.eINSTANCE.getEClassifier(pluginInterfaceName + "PluginConfiguration");
 			
 			List<PluginConfiguration> list = (List<PluginConfiguration>) userSettings.eGet(listReference);
 			PluginConfiguration pluginConfiguration = find(list, pluginContext.getIdentifier());

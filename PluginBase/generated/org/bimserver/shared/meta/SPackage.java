@@ -35,9 +35,6 @@ public class SPackage {
 	private void init() {
 			try {
 	
-		Class.forName("org.bimserver.interfaces.objects.SGeometryInfo");
-		Class.forName("org.bimserver.interfaces.objects.SVector3f");
-		Class.forName("org.bimserver.interfaces.objects.SGeometryData");
 		Class.forName("org.bimserver.interfaces.objects.SUserType");
 		Class.forName("org.bimserver.interfaces.objects.SSIPrefix");
 		Class.forName("org.bimserver.interfaces.objects.SObjectState");
@@ -146,6 +143,9 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SPluginType");
 		Class.forName("org.bimserver.interfaces.objects.SPluginBundle");
 		Class.forName("org.bimserver.interfaces.objects.SPluginInformation");
+		Class.forName("org.bimserver.interfaces.objects.SGeometryInfo");
+		Class.forName("org.bimserver.interfaces.objects.SVector3f");
+		Class.forName("org.bimserver.interfaces.objects.SGeometryData");
 		Class.forName("org.bimserver.interfaces.objects.SAccessMethod");
 		Class.forName("org.bimserver.interfaces.objects.SLogAction");
 		Class.forName("org.bimserver.interfaces.objects.SServerLog");
