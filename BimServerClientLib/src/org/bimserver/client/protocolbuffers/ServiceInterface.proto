@@ -1489,7 +1489,7 @@ message GetSerializerByContentTypeRequest {
 	optional string contentType = 1;
 }
 
-message SSerializerPluginConfiguration {
+message SMessagingSerializerPluginConfiguration {
 	optional string description = 1;
 	optional bool enabled = 2;
 	optional string name = 3;
@@ -1501,6 +1501,22 @@ message SSerializerPluginConfiguration {
 	optional int64 settingsId = 9;
 	optional bool streaming = 10;
 	optional int64 userSettingsId = 11;
+}
+
+message SSerializerPluginConfiguration {
+	required string __actual_type = 1;
+	optional SMessagingSerializerPluginConfiguration __SMessagingSerializerPluginConfiguration = 2;
+	optional string description = 3;
+	optional bool enabled = 4;
+	optional string name = 5;
+	optional int64 objectIDMId = 6;
+	optional int64 oid = 7;
+	optional int64 pluginDescriptorId = 8;
+	optional int64 renderEngineId = 9;
+	optional int32 rid = 10;
+	optional int64 settingsId = 11;
+	optional bool streaming = 12;
+	optional int64 userSettingsId = 13;
 }
 
 message GetSerializerByContentTypeResponse {
@@ -1921,16 +1937,15 @@ message SUserSettings {
 	optional int64 defaultRenderEngineId = 5;
 	optional int64 defaultSerializerId = 6;
 	repeated int64 deserializers = 7;
-	repeated int64 messagingSerializerPlugins = 8;
-	repeated int64 modelCompares = 9;
-	repeated int64 modelMergers = 10;
-	repeated int64 objectIDMs = 11;
-	optional int64 oid = 12;
-	repeated int64 queryEngines = 13;
-	repeated int64 renderEngines = 14;
-	optional int32 rid = 15;
-	repeated int64 serializers = 16;
-	repeated int64 services = 17;
+	repeated int64 modelCompares = 8;
+	repeated int64 modelMergers = 9;
+	repeated int64 objectIDMs = 10;
+	optional int64 oid = 11;
+	repeated int64 queryEngines = 12;
+	repeated int64 renderEngines = 13;
+	optional int32 rid = 14;
+	repeated int64 serializers = 15;
+	repeated int64 services = 16;
 }
 
 message GetUserSettingsResponse {

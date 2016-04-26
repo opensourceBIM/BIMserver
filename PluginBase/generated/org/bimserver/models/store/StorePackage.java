@@ -1349,22 +1349,13 @@ public interface StorePackage extends EPackage {
 	int USER_SETTINGS__SERVICES = 13;
 
 	/**
-	 * The feature id for the '<em><b>Messaging Serializer Plugins</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_SETTINGS__MESSAGING_SERIALIZER_PLUGINS = 14;
-
-	/**
 	 * The number of structural features of the '<em>User Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SETTINGS_FEATURE_COUNT = 15;
+	int USER_SETTINGS_FEATURE_COUNT = 14;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginConfigurationImpl <em>Plugin Configuration</em>}' class.
@@ -5897,7 +5888,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__NAME = PLUGIN_CONFIGURATION__NAME;
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__NAME = SERIALIZER_PLUGIN_CONFIGURATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -5906,7 +5897,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__ENABLED = PLUGIN_CONFIGURATION__ENABLED;
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__ENABLED = SERIALIZER_PLUGIN_CONFIGURATION__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -5915,7 +5906,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__DESCRIPTION = SERIALIZER_PLUGIN_CONFIGURATION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Plugin Descriptor</b></em>' reference.
@@ -5924,7 +5915,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR = SERIALIZER_PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -5933,7 +5924,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__SETTINGS = PLUGIN_CONFIGURATION__SETTINGS;
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__SETTINGS = SERIALIZER_PLUGIN_CONFIGURATION__SETTINGS;
+
+	/**
+	 * The feature id for the '<em><b>Object IDM</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__OBJECT_IDM = SERIALIZER_PLUGIN_CONFIGURATION__OBJECT_IDM;
 
 	/**
 	 * The feature id for the '<em><b>User Settings</b></em>' reference.
@@ -5942,7 +5942,25 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = PLUGIN_CONFIGURATION_FEATURE_COUNT + 0;
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS;
+
+	/**
+	 * The feature id for the '<em><b>Render Engine</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE = SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE;
+
+	/**
+	 * The feature id for the '<em><b>Streaming</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__STREAMING = SERIALIZER_PLUGIN_CONFIGURATION__STREAMING;
 
 	/**
 	 * The number of structural features of the '<em>Messaging Serializer Plugin Configuration</em>' class.
@@ -5951,7 +5969,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 1;
+	int MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION_FEATURE_COUNT = SERIALIZER_PLUGIN_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.MetricsImpl <em>Metrics</em>}' class.
@@ -7981,17 +7999,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUserSettings_Services();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getMessagingSerializerPlugins <em>Messaging Serializer Plugins</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Messaging Serializer Plugins</em>'.
-	 * @see org.bimserver.models.store.UserSettings#getMessagingSerializerPlugins()
-	 * @see #getUserSettings()
-	 * @generated
-	 */
-	EReference getUserSettings_MessagingSerializerPlugins();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginConfiguration <em>Plugin Configuration</em>}'.
@@ -11909,17 +11916,6 @@ public interface StorePackage extends EPackage {
 	EClass getMessagingSerializerPluginConfiguration();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.MessagingSerializerPluginConfiguration#getUserSettings <em>User Settings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User Settings</em>'.
-	 * @see org.bimserver.models.store.MessagingSerializerPluginConfiguration#getUserSettings()
-	 * @see #getMessagingSerializerPluginConfiguration()
-	 * @generated
-	 */
-	EReference getMessagingSerializerPluginConfiguration_UserSettings();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Metrics <em>Metrics</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13600,14 +13596,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference USER_SETTINGS__SERVICES = eINSTANCE.getUserSettings_Services();
-
-		/**
-		 * The meta object literal for the '<em><b>Messaging Serializer Plugins</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USER_SETTINGS__MESSAGING_SERIALIZER_PLUGINS = eINSTANCE.getUserSettings_MessagingSerializerPlugins();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginConfigurationImpl <em>Plugin Configuration</em>}' class.
@@ -16668,14 +16656,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION = eINSTANCE.getMessagingSerializerPluginConfiguration();
-
-		/**
-		 * The meta object literal for the '<em><b>User Settings</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getMessagingSerializerPluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.MetricsImpl <em>Metrics</em>}' class.

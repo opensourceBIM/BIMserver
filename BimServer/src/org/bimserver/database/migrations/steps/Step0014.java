@@ -29,13 +29,8 @@ public class Step0014 extends Migration {
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
-		EClass serializerPluginConfiguration = schema.createEClass(schema.getEPackage("store"), "MessagingSerializerPluginConfiguration", schema.getEClass("store", "PluginConfiguration"));
-		EClass userSettings = schema.getEClass("store", "UserSettings");
-		EReference serializerSettingsReference = schema.createEReference(serializerPluginConfiguration, "userSettings", userSettings, Multiplicity.SINGLE);
-		EReference settingsSerializerReference = schema.createEReference(userSettings, "messagingSerializerPlugins", serializerPluginConfiguration, Multiplicity.MANY);
-		
-		settingsSerializerReference.setEOpposite(serializerSettingsReference);
-		serializerSettingsReference.setEOpposite(settingsSerializerReference);
+		schema.createEClass(schema.getEPackage("store"), "MessagingSerializerPluginConfiguration", schema.getEClass("store", "SerializerPluginConfiguration"));
+		schema.getEClass("store", "UserSettings");
 		
 		EClass serverSettings = schema.getEClass("store", "ServerSettings");
 		schema.createEAttribute(serverSettings, "allowCreateValidatedUser", EcorePackage.eINSTANCE.getEBoolean());

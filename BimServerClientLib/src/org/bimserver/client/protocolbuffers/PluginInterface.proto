@@ -130,8 +130,6 @@ service PluginInterface {
 
 	rpc getInternalServiceById (GetInternalServiceByIdRequest) returns (GetInternalServiceByIdResponse);
 
-	rpc getMessagingSerializerByPluginClassName (GetMessagingSerializerByPluginClassNameRequest) returns (GetMessagingSerializerByPluginClassNameResponse);
-
 	rpc getModelCompareById (GetModelCompareByIdRequest) returns (GetModelCompareByIdResponse);
 
 	rpc getModelCompareByName (GetModelCompareByNameRequest) returns (GetModelCompareByNameResponse);
@@ -699,26 +697,6 @@ message GetInternalServiceByIdRequest {
 message GetInternalServiceByIdResponse {
 	optional string errorMessage = 1;
 	optional SInternalServicePluginConfiguration value = 2;
-}
-
-message GetMessagingSerializerByPluginClassNameRequest {
-	optional string pluginClassName = 1;
-}
-
-message SMessagingSerializerPluginConfiguration {
-	optional string description = 1;
-	optional bool enabled = 2;
-	optional string name = 3;
-	optional int64 oid = 4;
-	optional int64 pluginDescriptorId = 5;
-	optional int32 rid = 6;
-	optional int64 settingsId = 7;
-	optional int64 userSettingsId = 8;
-}
-
-message GetMessagingSerializerByPluginClassNameResponse {
-	optional string errorMessage = 1;
-	optional SMessagingSerializerPluginConfiguration value = 2;
 }
 
 message GetModelCompareByIdRequest {

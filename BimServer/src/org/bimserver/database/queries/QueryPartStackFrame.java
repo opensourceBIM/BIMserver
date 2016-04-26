@@ -92,7 +92,10 @@ public class QueryPartStackFrame extends StackFrame {
 		if (typeIterator.hasNext()) {
 			EClass eClass = typeIterator.next();
 			if (oids != null) {
-				queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, oids.get(eClass)));
+				List<Long> oids2 = oids.get(eClass);
+				if (oids2 != null) {
+					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, oids2));
+				}
 			} else if (guids != null) {
 				queryObjectProvider.push(new QueryGuidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, guids));
 			} else if (properties != null) {

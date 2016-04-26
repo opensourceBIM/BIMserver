@@ -25,16 +25,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Messaging Serializer Plugin Configuration</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.store.impl.MessagingSerializerPluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
- * </ul>
  *
  * @generated
  */
-public class MessagingSerializerPluginConfigurationImpl extends PluginConfigurationImpl implements MessagingSerializerPluginConfiguration {
+public class MessagingSerializerPluginConfigurationImpl extends SerializerPluginConfigurationImpl implements MessagingSerializerPluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,24 +46,6 @@ public class MessagingSerializerPluginConfigurationImpl extends PluginConfigurat
 	@Override
 	protected EClass eStaticClass() {
 		return StorePackage.Literals.MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UserSettings getUserSettings() {
-		return (UserSettings) eGet(StorePackage.Literals.MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUserSettings(UserSettings newUserSettings) {
-		eSet(StorePackage.Literals.MESSAGING_SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}
 
 } //MessagingSerializerPluginConfigurationImpl

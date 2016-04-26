@@ -214,10 +214,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration getMessagingSerializerByPluginClassName(java.lang.String pluginClassName) throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SModelComparePluginConfiguration getModelCompareById(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}

@@ -21,44 +21,11 @@ package org.bimserver.models.store;
  * A representation of the model object '<em><b>Messaging Serializer Plugin Configuration</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.store.MessagingSerializerPluginConfiguration#getUserSettings <em>User Settings</em>}</li>
- * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getMessagingSerializerPluginConfiguration()
  * @model
  * @generated
  */
-public interface MessagingSerializerPluginConfiguration extends PluginConfiguration {
-	/**
-	 * Returns the value of the '<em><b>User Settings</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getMessagingSerializerPlugins <em>Messaging Serializer Plugins</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>User Settings</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>User Settings</em>' reference.
-	 * @see #setUserSettings(UserSettings)
-	 * @see org.bimserver.models.store.StorePackage#getMessagingSerializerPluginConfiguration_UserSettings()
-	 * @see org.bimserver.models.store.UserSettings#getMessagingSerializerPlugins
-	 * @model opposite="messagingSerializerPlugins"
-	 * @generated
-	 */
-	UserSettings getUserSettings();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.MessagingSerializerPluginConfiguration#getUserSettings <em>User Settings</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>User Settings</em>' reference.
-	 * @see #getUserSettings()
-	 * @generated
-	 */
-	void setUserSettings(UserSettings value);
+public interface MessagingSerializerPluginConfiguration extends SerializerPluginConfiguration {
 
 } // MessagingSerializerPluginConfiguration

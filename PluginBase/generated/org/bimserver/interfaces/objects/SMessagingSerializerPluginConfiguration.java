@@ -22,14 +22,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SMessagingSerializerPluginConfiguration extends SPluginConfiguration implements SDataBase
+public class SMessagingSerializerPluginConfiguration extends SSerializerPluginConfiguration implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private long userSettingsId = -1;
 
 	public long getOid() {
 		return this.oid;
@@ -72,8 +71,17 @@ public class SMessagingSerializerPluginConfiguration extends SPluginConfiguratio
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
 		}
+		if (sField.getName().equals("objectIDMId")) {
+			return getObjectIDMId();
+		}
 		if (sField.getName().equals("userSettingsId")) {
 			return getUserSettingsId();
+		}
+		if (sField.getName().equals("renderEngineId")) {
+			return getRenderEngineId();
+		}
+		if (sField.getName().equals("streaming")) {
+			return isStreaming();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -105,8 +113,20 @@ public class SMessagingSerializerPluginConfiguration extends SPluginConfiguratio
 			setSettingsId((Long)val);
 			return;
 		}
+		if (sField.getName().equals("objectIDMId")) {
+			setObjectIDMId((Long)val);
+			return;
+		}
 		if (sField.getName().equals("userSettingsId")) {
 			setUserSettingsId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("renderEngineId")) {
+			setRenderEngineId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("streaming")) {
+			setStreaming((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -118,14 +138,6 @@ public class SMessagingSerializerPluginConfiguration extends SPluginConfiguratio
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
-	}
-	
-	public long getUserSettingsId() {
-		return userSettingsId;
-	}
-
-	public void setUserSettingsId(long userSettingsId) {
-		this.userSettingsId = userSettingsId;
 	}
 	
 	@Override
