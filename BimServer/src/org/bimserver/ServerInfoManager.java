@@ -87,8 +87,6 @@ public class ServerInfoManager {
 				}
 				if (settings.getSiteAddress().isEmpty() || !adminFound) {
 					setServerState(ServerState.NOT_SETUP);
-				} else {
-					setServerState(ServerState.RUNNING);
 				}
 			} catch (BimserverDatabaseException e) {
 				LOGGER.error("", e);
