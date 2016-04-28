@@ -21,7 +21,9 @@ import java.io.ByteArrayOutputStream;
  *****************************************************************************/
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -200,6 +202,7 @@ public class StreamingGeometryGenerator {
 					bytes = baos.toByteArray();
 					InputStream in = new ByteArrayInputStream(bytes);
 					RenderEngineModel renderEngineModel = renderEngine.openModel(in);
+					boolean notFoundsObjects = false;
 					try {
 						if (!oids.isEmpty()) {
 							renderEngineModel.setSettings(renderEngineSettings);
@@ -219,6 +222,7 @@ public class StreamingGeometryGenerator {
 							
 							OidConvertingSerializer oidConvertingSerializer = (OidConvertingSerializer)ifcSerializer;
 							Map<Long, Integer> oidToEid = oidConvertingSerializer.getOidToEid();
+							
 							
 							for (HashMapVirtualObject ifcProduct : oids) {
 								Integer expressId = oidToEid.get(ifcProduct.getOid());
@@ -346,6 +350,7 @@ public class StreamingGeometryGenerator {
 	//										}
 	//									}
 										if (!ignoreNotFound) {
+											notFoundsObjects = true;
 											LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + (expressId) + "/" + ifcProduct.getOid());
 										}
 									} catch (BimserverDatabaseException | RenderEngineException e) {
@@ -355,6 +360,9 @@ public class StreamingGeometryGenerator {
 							}						
 						}
 					} finally {
+						if (notFoundsObjects) {
+							writeDebugFile(bytes);
+						}
 						in.close();
 						renderEngineModel.close();
 						if (renderEngine != null) {
@@ -364,27 +372,33 @@ public class StreamingGeometryGenerator {
 						updateProgress();
 					}
 				} catch (Exception e) {
-					boolean debug = false;
+					LOGGER.error("", e);
+					boolean debug = true;
 					if (debug) {
-						String basefilenamename = "all";
-						if (eClass != null) {
-							basefilenamename = eClass.getName();
-						}
-						File file = new File(basefilenamename + ".ifc");
-						int i=0;
-						while (file.exists()) {
-							file = new File(basefilenamename + "-" + i + ".ifc");
-							i++;
-						}
-						FileOutputStream fos = new FileOutputStream(file);
-						IOUtils.copy(new ByteArrayInputStream(bytes), fos);
-						fos.close();
+						writeDebugFile(bytes);
 					}
 //					LOGGER.error("Original query: " + originalQuery, e);
 				}
 			} catch (Exception e) {
+				LOGGER.error("", e);
 //				LOGGER.error("Original query: " + originalQuery, e);
 			}
+		}
+
+		private void writeDebugFile(byte[] bytes) throws FileNotFoundException, IOException {
+			String basefilenamename = "all";
+			if (eClass != null) {
+				basefilenamename = "debug/" + eClass.getName();
+			}
+			File file = new File(basefilenamename + ".ifc");
+			int i=0;
+			while (file.exists()) {
+				file = new File(basefilenamename + "-" + i + ".ifc");
+				i++;
+			}
+			FileOutputStream fos = new FileOutputStream(file);
+			IOUtils.copy(new ByteArrayInputStream(bytes), fos);
+			fos.close();
 		}
 
 		private void calculateObb(VirtualObject geometryInfo, double[] tranformationMatrix, int[] indices, float[] vertices, GenerateGeometryResult generateGeometryResult2) {
@@ -474,7 +488,13 @@ public class StreamingGeometryGenerator {
 								queryNameSpace = "ifc4stdlib";
 							}
 							
-							queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure"));
+							if (eClass.getName().equals("IfcAnnotation")) {
+								// IfcAnnotation also has the field ContainedInStructure, but that is it's own field (looks like a hack on the IFC-spec side)
+								queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcAnnotationContainedInStructure"));
+							} else {
+								queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure"));
+							}
+							queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes"));
 							queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory"));
 							Include representation = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation");
 							queryPart.addInclude(representation);
