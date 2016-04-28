@@ -1,5 +1,8 @@
 package org.bimserver.shared;
 
+import java.io.IOException;
+import java.util.concurrent.Future;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -22,6 +25,6 @@ import com.google.gson.JsonObject;
 public interface StreamingSocketInterface {
 
 	void send(JsonObject request);
-	void send(byte[] data, int start, int length);
+	Future<Void> send(byte[] data, int start, int length) throws IOException;
 	void sendBlocking(byte[] data, int start, int length);
 }
