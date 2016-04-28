@@ -33,17 +33,18 @@ public class RenderEnginePools {
 
 	private BimServer bimServer;
 	private final Map<Schema, Map<String, RenderEnginePool>> pools = new HashMap<>();
+	private RenderEnginePoolFactory renderEnginePoolFactory;
 
-	public RenderEnginePools(BimServer bimServer) throws RenderEngineException {
+	public RenderEnginePools(BimServer bimServer, RenderEnginePoolFactory renderEnginePoolFactory) throws RenderEngineException {
 		this.bimServer = bimServer;
-		int nrRenderEngineProcesses = this.bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses();
+		this.renderEnginePoolFactory = renderEnginePoolFactory;
 		
 		Collection<RenderEnginePlugin> renderEnginePlugins = bimServer.getPluginManager().getAllRenderEnginePlugins(true).values();
 		for (Schema schema : Schema.getIfcSchemas()) {
 			HashMap<String, RenderEnginePool> map = new HashMap<>();
 			pools.put(schema, map);
 			for (RenderEnginePlugin renderEnginePlugin : renderEnginePlugins) {
-				RenderEnginePool renderEnginePool = new RenderEnginePool(nrRenderEngineProcesses, new RenderEngineFactory(){
+				RenderEnginePool renderEnginePool = renderEnginePoolFactory.newRenderEnginePool(new RenderEngineFactory(){
 					@Override
 					public RenderEngine createRenderEngine() throws RenderEngineException {
 						return renderEnginePlugin.createRenderEngine(new PluginConfiguration(), schema.name());
@@ -64,8 +65,7 @@ public class RenderEnginePools {
 				if (renderEnginePlugin == null) {
 					throw new PluginException("No render engine found for className " + className);
 				} else {
-					int nrRenderEngineProcesses = this.bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses();
-					RenderEnginePool renderEnginePool = new RenderEnginePool(nrRenderEngineProcesses, new RenderEngineFactory(){
+					RenderEnginePool renderEnginePool = renderEnginePoolFactory.newRenderEnginePool(new RenderEngineFactory(){
 						@Override
 						public RenderEngine createRenderEngine() throws RenderEngineException {
 							return renderEnginePlugin.createRenderEngine(new PluginConfiguration(), schema.name());
