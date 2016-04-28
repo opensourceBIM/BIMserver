@@ -79,7 +79,5 @@ public class DiskCacheOutputStream extends RemovableFileOutputStream {
 
 	@Override
 	public void cancel() {
-		// TODO Auto-generated method stub
-		
 	}
 }
