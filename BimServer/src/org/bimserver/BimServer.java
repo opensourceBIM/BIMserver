@@ -59,7 +59,6 @@ import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.LongType;
-import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.ObjectType;
@@ -93,6 +92,8 @@ import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
+import org.bimserver.renderengine.NoPoolingRenderEnginePoolFactory;
+import org.bimserver.renderengine.RenderEnginePoolFactory;
 import org.bimserver.renderengine.RenderEnginePools;
 import org.bimserver.schemaconverter.Ifc2x3tc1ToIfc4SchemaConverterFactory;
 import org.bimserver.schemaconverter.Ifc4ToIfc2x3tc1SchemaConverterFactory;
@@ -655,7 +656,11 @@ public class BimServer {
 
 			serverInfoManager.update();
 
-			renderEnginePools = new RenderEnginePools(this);
+//			int renderEngineProcesses = getServerSettingsCache().getServerSettings().getRenderEngineProcesses();
+//			RenderEnginePoolFactory renderEnginePoolFactory = new CommonsPoolingRenderEnginePoolFactory(renderEngineProcesses);
+
+			RenderEnginePoolFactory renderEnginePoolFactory = new NoPoolingRenderEnginePoolFactory();
+			renderEnginePools = new RenderEnginePools(this, renderEnginePoolFactory);
 
 			if (serverInfoManager.getServerState() == ServerState.MIGRATION_REQUIRED) {
 				serverInfoManager.registerStateChangeListener(new StateChangeListener() {
@@ -730,6 +735,7 @@ public class BimServer {
 					}
 				}
 			}
+			getServerInfoManager().setServerState(ServerState.RUNNING);
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 			serverInfoManager.setErrorMessage(e.getMessage());
