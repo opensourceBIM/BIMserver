@@ -24,6 +24,8 @@ import java.io.Reader;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.GregorianCalendar;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
@@ -57,7 +59,7 @@ public class Streamer implements EndPoint {
 	private NotificationInterface notificationInterface;
 	private RemoteServiceInterface remoteServiceInterface;
 	private StreamingSocketInterface streamingSocketInterface;
-	private static final int BUFFER_SIZE = -1; // -1 means just send every message on it's own
+	private static final int BUFFER_SIZE = 4096; // -1 means just send every message on it's own
 
 	public Streamer(StreamingSocketInterface streamingSocketInterface, BimServer bimServer) {
 		this.streamingSocketInterface = streamingSocketInterface;
@@ -99,30 +101,46 @@ public class Streamer implements EndPoint {
 							int counter = 0;
 							long bytes = 0;
 							long start = System.nanoTime();
+							long totalQT = 0;
+							
+							// We use async websockets, but don't want to fill the websocket buffer with gigabytes of data that's not processed yet on the client
+							// We also don't want to waste any time waiting for the messages to be delivered
+							// This future acts as a 1-message buffer, so that we can fill the next buffer while sending the websocket message
+							Future<Void> future = null;
+							
 							do {
 								ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 								DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
 								dataOutputStream.writeInt(topicId);
 								dataOutputStream.writeInt(0); // fake nr messages, to be replaced later
+								long s = System.nanoTime();
 								writeMessage = writer.writeMessage(byteArrayOutputStream, null);
 								int messages = 1;
 								while (byteArrayOutputStream.size() < BUFFER_SIZE && writeMessage) {
 									messages++;
 									writeMessage = writer.writeMessage(byteArrayOutputStream, null);
 								}
+								long e = System.nanoTime();
+								totalQT += (e - s);
 								byte[] byteArray = byteArrayOutputStream.toByteArray();
 								ByteBuffer byteBuffer = ByteBuffer.wrap(byteArray);
 								byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
 								byteBuffer.putInt(4, messages);
+								
+								if (future != null) {
+									future.get();
+								}
+								
 								if (byteArrayOutputStream.size() > 8) {
 									bytes += byteArray.length;
-									streamingSocketInterface.send(byteArray, 0, byteArray.length);
+									future = streamingSocketInterface.send(byteArray, 0, byteArray.length);
 									counter++;
 								}
 							} while (writeMessage);
 							long end = System.nanoTime();
+							LOGGER.info("total qt: " + (totalQT / 1000000) + " ms");
 							LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
-						} catch (IOException | SerializerException e) {
+						} catch (IOException | SerializerException | InterruptedException | ExecutionException e) {
 							LOGGER.error("", e);
 						}
 					}
