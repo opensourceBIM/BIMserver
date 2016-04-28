@@ -1,5 +1,7 @@
 package org.bimserver.plugins.serializers;
 
+import java.io.BufferedOutputStream;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -20,15 +22,18 @@ package org.bimserver.plugins.serializers;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public abstract class RemovableFileOutputStream extends FileOutputStream {
+public abstract class RemovableFileOutputStream extends OutputStream {
 
 	private Path file;
+	private BufferedOutputStream bufferedOutputStream;
 
 	public RemovableFileOutputStream(Path file) throws FileNotFoundException {
-		super(file.toFile());
+		FileOutputStream fileOutputStream = new FileOutputStream(file.toFile());
+		bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
 		this.file = file;
 	}
 	
@@ -36,6 +41,21 @@ public abstract class RemovableFileOutputStream extends FileOutputStream {
 		if (Files.exists(file)) {
 			Files.delete(file);
 		}
+	}
+	
+	@Override
+	public void write(byte[] b, int off, int len) throws IOException {
+		bufferedOutputStream.write(b, off, len);
+	}
+	
+	@Override
+	public void write(int b) throws IOException {
+		bufferedOutputStream.write(b);
+	}
+	
+	@Override
+	public void close() throws IOException {
+		bufferedOutputStream.close();
 	}
 
 	public abstract void cancel() throws IOException;
