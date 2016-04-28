@@ -324,7 +324,7 @@ public class PluginManager implements PluginManagerInterface {
 		// Path libFolder = projectRoot.resolve("lib");
 		// loadDependencies(libFolder, delegatingClassLoader);
 		EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
-		pluginClassloader.dumpStructure(0);
+//		pluginClassloader.dumpStructure(0);
 
 		ResourceLoader resourceLoader = new ResourceLoader() {
 			@Override
