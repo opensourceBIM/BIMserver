@@ -451,10 +451,11 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ServerState">
     <eLiterals name="UNDEFINED"/>
     <eLiterals name="NOT_SETUP" value="1"/>
-    <eLiterals name="MIGRATION_REQUIRED" value="2"/>
-    <eLiterals name="MIGRATION_IMPOSSIBLE" value="3"/>
-    <eLiterals name="FATAL_ERROR" value="4"/>
-    <eLiterals name="RUNNING" value="5"/>
+    <eLiterals name="SETUP" value="2"/>
+    <eLiterals name="MIGRATION_REQUIRED" value="3"/>
+    <eLiterals name="MIGRATION_IMPOSSIBLE" value="4"/>
+    <eLiterals name="FATAL_ERROR" value="5"/>
+    <eLiterals name="RUNNING" value="6"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServerInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="serverState" eType="#//ServerState"/>

@@ -395,6 +395,7 @@ public class Step0000 extends Migration {
 		EEnum serverState = schema.createEEnum(storePackage, "ServerState");
 		schema.createEEnumLiteral(serverState, "UNDEFINED");
 		schema.createEEnumLiteral(serverState, "NOT_SETUP");
+		schema.createEEnumLiteral(serverState, "SETUP");
 		schema.createEEnumLiteral(serverState, "MIGRATION_REQUIRED");
 		schema.createEEnumLiteral(serverState, "MIGRATION_IMPOSSIBLE");
 		schema.createEEnumLiteral(serverState, "FATAL_ERROR");

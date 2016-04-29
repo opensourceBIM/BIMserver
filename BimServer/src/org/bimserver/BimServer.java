@@ -735,7 +735,9 @@ public class BimServer {
 					}
 				}
 			}
-			getServerInfoManager().setServerState(ServerState.RUNNING);
+			if (getServerInfoManager().getServerState() == ServerState.SETUP) {
+				getServerInfoManager().setServerState(ServerState.RUNNING);
+			}
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 			serverInfoManager.setErrorMessage(e.getMessage());
