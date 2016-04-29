@@ -235,7 +235,7 @@
 		},
 		IfcCompositeCurveSegment: {
 			type: "IfcCompositeCurveSegment",
-			field: "ParentCurve",
+			fields: ["ParentCurve", "UsingCurves"],
 			includes: ["IfcCompositeCurve", "IfcPolyline", "IfcTrimmedCurve", "IfcBSplineCurve", "IfcCircle", "IfcEllipse", "IfcLine", "IfcOffsetCurve2D", "IfcOffsetCurve3D"]
 		},
 		IfcCompositeCurve: {
@@ -243,10 +243,13 @@
 			field: "Segments",
 			include: "IfcCompositeCurveSegment"
 		},
+		IfcParameterValue: {
+			type: "IfcParameterValue"
+		},
 		IfcTrimmedCurve: {
 			type: "IfcTrimmedCurve",
 			fields: ["BasisCurve", "Trim1", "Trim2"],
-			includes: ["IfcCompositeCurve", "IfcPolyline", "IfcTrimmedCurve", "IfcBSplineCurve", "IfcCircle", "IfcEllipse", "IfcLine", "IfcOffsetCurve2D", "IfcOffsetCurve3D", "IfcCartesianPoint"]
+			includes: ["IfcCompositeCurve", "IfcPolyline", "IfcTrimmedCurve", "IfcBSplineCurve", "IfcCircle", "IfcEllipse", "IfcLine", "IfcOffsetCurve2D", "IfcOffsetCurve3D", "IfcCartesianPoint", "IfcParameterValue"]
 		},
 		IfcBSplineCurve: {
 			type: "IfcBSplineCurve"
@@ -353,10 +356,13 @@
 			field: "Position",
 			include: "IfcAxis2Placement3D"
 		},
+		Ifc2DCompositeCurve: {
+			type: "Ifc2DCompositeCurve"
+		},
 		IfcPolygonalBoundedHalfSpace: {
 			type: "IfcPolygonalBoundedHalfSpace",
 			fields: ["BaseSurface", "Position", "PolygonalBoundary"],
-			includes: ["IfcPlane", "IfcPolyline"]
+			includes: ["IfcPlane", "IfcPolyline", "IfcAxis2Placement3D", "IfcCompositeCurve", "IfcTrimmedCurve", "IfcBSplineCurve", "Ifc2DCompositeCurve"]
 		},
 		IfcBooleanResult: {
 			type: "IfcBooleanResult",

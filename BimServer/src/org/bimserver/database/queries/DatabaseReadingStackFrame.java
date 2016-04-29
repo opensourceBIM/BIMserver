@@ -110,6 +110,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		}
 		if (include.hasFields()) {
 			for (EStructuralFeature eStructuralFeature : include.getFields()) {
+				// TODO do we really have to iterate through the EAtrributes as well?
 				currentObject.addUseForSerialization(eStructuralFeature);
 			}
 		}
@@ -149,10 +150,6 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			buffer.get(unsetted);
 			
 			int fieldCounter = 0;
-			
-			if (eClass.getName().equals("IfcShapeRepresentation") && buffer.capacity() == 27) {
-				System.out.println();
-			}
 			
 			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 				try {
@@ -272,7 +269,6 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		HashMapWrappedVirtualObject eObject = new HashMapWrappedVirtualObject(reusable, eClass);
 		for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 			if (eStructuralFeature.isMany()) {
-				//
 			} else {
 				Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer);
 				eObject.setAttribute(eStructuralFeature, primitiveValue);
@@ -329,9 +325,6 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 				buffer.position(buffer.position() + 1);
 			} else {
-				if (buffer.position() + 4 > buffer.capacity()) {
-					System.out.println();
-				}
 				int listSize = buffer.getInt();
 
 				for (int i = 0; i < listSize; i++) {
@@ -357,6 +350,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 								throw new BimserverDatabaseException("No class found for cid " + (-cid));
 							}
 							idEObject.setListItem(feature, i, readWrappedValue(feature, buffer, referenceClass));
+							idEObject.addUseForSerialization(feature, i);
 						} else if (cid > 0) {
 							// positive cid means value is a
 							// reference

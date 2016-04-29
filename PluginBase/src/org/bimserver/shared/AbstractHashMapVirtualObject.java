@@ -1,5 +1,7 @@
 package org.bimserver.shared;
 
+import org.eclipse.emf.ecore.EClass;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -53,4 +55,6 @@ public abstract class AbstractHashMapVirtualObject {
 		}
 		throw new RuntimeException("Unimplemented: " + eDataType);
 	}
+
+	public abstract EClass eClass();
 }
