@@ -53,14 +53,23 @@ public enum ServerState implements Enumerator {
 	NOT_SETUP(1, "NOT_SETUP", "NOT_SETUP"),
 
 	/**
-	 * The '<em><b>MIGRATION REQUIRED</b></em>' literal object.
+	 * The '<em><b>SETUP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MIGRATION_REQUIRED_VALUE
+	 * @see #SETUP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MIGRATION_REQUIRED(2, "MIGRATION_REQUIRED", "MIGRATION_REQUIRED"),
+	SETUP(2, "SETUP", "SETUP"),
+	/**
+	* The '<em><b>MIGRATION REQUIRED</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #MIGRATION_REQUIRED_VALUE
+	* @generated
+	* @ordered
+	*/
+	MIGRATION_REQUIRED(3, "MIGRATION_REQUIRED", "MIGRATION_REQUIRED"),
 
 	/**
 	 * The '<em><b>MIGRATION IMPOSSIBLE</b></em>' literal object.
@@ -70,7 +79,7 @@ public enum ServerState implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MIGRATION_IMPOSSIBLE(3, "MIGRATION_IMPOSSIBLE", "MIGRATION_IMPOSSIBLE"),
+	MIGRATION_IMPOSSIBLE(4, "MIGRATION_IMPOSSIBLE", "MIGRATION_IMPOSSIBLE"),
 
 	/**
 	 * The '<em><b>FATAL ERROR</b></em>' literal object.
@@ -80,7 +89,7 @@ public enum ServerState implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FATAL_ERROR(4, "FATAL_ERROR", "FATAL_ERROR"),
+	FATAL_ERROR(5, "FATAL_ERROR", "FATAL_ERROR"),
 
 	/**
 	 * The '<em><b>RUNNING</b></em>' literal object.
@@ -90,7 +99,7 @@ public enum ServerState implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RUNNING(5, "RUNNING", "RUNNING");
+	RUNNING(6, "RUNNING", "RUNNING");
 
 	/**
 	 * The '<em><b>UNDEFINED</b></em>' literal value.
@@ -123,6 +132,21 @@ public enum ServerState implements Enumerator {
 	public static final int NOT_SETUP_VALUE = 1;
 
 	/**
+	 * The '<em><b>SETUP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SETUP</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SETUP
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SETUP_VALUE = 2;
+
+	/**
 	 * The '<em><b>MIGRATION REQUIRED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,7 +159,7 @@ public enum ServerState implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MIGRATION_REQUIRED_VALUE = 2;
+	public static final int MIGRATION_REQUIRED_VALUE = 3;
 
 	/**
 	 * The '<em><b>MIGRATION IMPOSSIBLE</b></em>' literal value.
@@ -150,7 +174,7 @@ public enum ServerState implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MIGRATION_IMPOSSIBLE_VALUE = 3;
+	public static final int MIGRATION_IMPOSSIBLE_VALUE = 4;
 
 	/**
 	 * The '<em><b>FATAL ERROR</b></em>' literal value.
@@ -165,7 +189,7 @@ public enum ServerState implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FATAL_ERROR_VALUE = 4;
+	public static final int FATAL_ERROR_VALUE = 5;
 
 	/**
 	 * The '<em><b>RUNNING</b></em>' literal value.
@@ -180,7 +204,7 @@ public enum ServerState implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RUNNING_VALUE = 5;
+	public static final int RUNNING_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Server State</b></em>' enumerators.
@@ -188,7 +212,7 @@ public enum ServerState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ServerState[] VALUES_ARRAY = new ServerState[] { UNDEFINED, NOT_SETUP, MIGRATION_REQUIRED, MIGRATION_IMPOSSIBLE, FATAL_ERROR, RUNNING, };
+	private static final ServerState[] VALUES_ARRAY = new ServerState[] { UNDEFINED, NOT_SETUP, SETUP, MIGRATION_REQUIRED, MIGRATION_IMPOSSIBLE, FATAL_ERROR, RUNNING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Server State</b></em>' enumerators.
@@ -248,6 +272,8 @@ public enum ServerState implements Enumerator {
 			return UNDEFINED;
 		case NOT_SETUP_VALUE:
 			return NOT_SETUP;
+		case SETUP_VALUE:
+			return SETUP;
 		case MIGRATION_REQUIRED_VALUE:
 			return MIGRATION_REQUIRED;
 		case MIGRATION_IMPOSSIBLE_VALUE:

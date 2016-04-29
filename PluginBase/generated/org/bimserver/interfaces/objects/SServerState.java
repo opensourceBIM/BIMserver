@@ -20,10 +20,11 @@ package org.bimserver.interfaces.objects;
 public enum SServerState {
 	UNDEFINED(0),
 	NOT_SETUP(1),
-	MIGRATION_REQUIRED(2),
-	MIGRATION_IMPOSSIBLE(3),
-	FATAL_ERROR(4),
-	RUNNING(5);
+	SETUP(2),
+	MIGRATION_REQUIRED(3),
+	MIGRATION_IMPOSSIBLE(4),
+	FATAL_ERROR(5),
+	RUNNING(6);
 	int ordinal;
 
 	SServerState(int ordinal) {

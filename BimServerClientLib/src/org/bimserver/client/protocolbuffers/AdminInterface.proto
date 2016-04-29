@@ -306,10 +306,11 @@ message GetServerInfoRequest {
 enum SServerState{
 	SServerState_UNDEFINED = 0;
 	SServerState_NOT_SETUP = 1;
-	SServerState_MIGRATION_REQUIRED = 2;
-	SServerState_MIGRATION_IMPOSSIBLE = 3;
-	SServerState_FATAL_ERROR = 4;
-	SServerState_RUNNING = 5;
+	SServerState_SETUP = 2;
+	SServerState_MIGRATION_REQUIRED = 3;
+	SServerState_MIGRATION_IMPOSSIBLE = 4;
+	SServerState_FATAL_ERROR = 5;
+	SServerState_RUNNING = 6;
 }
 
 message SServerInfo {
