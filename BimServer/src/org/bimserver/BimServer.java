@@ -834,10 +834,6 @@ public class BimServer {
 				pluginInterfaceName = pluginInterfaceName.substring(0, pluginInterfaceName.length() - 6);
 			}
 			
-			if (pluginInterfaceName.equals("MessagingSerializer")) {
-				System.out.println();
-			}
-			
 			if (pluginInterfaceName.equals("StreamingSerializer")) {
 				pluginInterfaceName = "Serializer";
 			} else if (pluginInterfaceName.equals("MessagingStreamingSerializer")) {
