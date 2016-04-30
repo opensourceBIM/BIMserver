@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.OptionsParser;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.PluginException;
@@ -44,15 +43,15 @@ public class LocalDevBimServerStarter {
 		try {
 			bimServer.start();
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
-//			try {
-//				AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
-//				adminInterface.setup("http://localhost:" + port, "Administrator", "admin@bimserver.org", "admin");
-//				SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
-//				settingsInterface.setCacheOutputFiles(false);
-//				settingsInterface.setPluginStrictVersionChecking(false);
-//			} catch (Exception e) {
-//				// Ignore
-//			}
+			try {
+				AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
+				adminInterface.setup("http://localhost:" + port, "Administrator", "admin@bimserver.org", "admin");
+				SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
+				settingsInterface.setCacheOutputFiles(false);
+				settingsInterface.setPluginStrictVersionChecking(false);
+			} catch (Exception e) {
+				// Ignore
+			}
 			bimServer.activateServices();
 		} catch (PluginException e) {
 			LOGGER.error("", e);

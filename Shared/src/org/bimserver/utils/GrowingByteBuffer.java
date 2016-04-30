@@ -44,7 +44,7 @@ public class GrowingByteBuffer {
 	public void ensureExtraCapacity(int nrExtraBytes) {
 		if (byteBuffer.capacity() <= byteBuffer.position() + nrExtraBytes) {
 			ByteBuffer oldBuffer = byteBuffer;
-			byteBuffer = ByteBuffer.allocate(oldBuffer.position() + 1 + nrExtraBytes);
+			byteBuffer = ByteBuffer.allocate(oldBuffer.position() * 2);
 			int oldPos = oldBuffer.position();
 			oldBuffer.position(0);
 			byteBuffer.put(oldBuffer.array(), 0, oldPos);
@@ -95,5 +95,10 @@ public class GrowingByteBuffer {
 
 	public void position(int i) {
 		byteBuffer.position(i);
+	}
+
+	public void put(byte[] b, int off, int len) {
+		ensureExtraCapacity(len);
+		byteBuffer.put(b, off, len);
 	}
 }
