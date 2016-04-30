@@ -373,10 +373,7 @@ public class StreamingGeometryGenerator {
 					}
 				} catch (Exception e) {
 					LOGGER.error("", e);
-					boolean debug = true;
-					if (debug) {
-						writeDebugFile(bytes);
-					}
+					writeDebugFile(bytes);
 //					LOGGER.error("Original query: " + originalQuery, e);
 				}
 			} catch (Exception e) {
@@ -386,19 +383,22 @@ public class StreamingGeometryGenerator {
 		}
 
 		private void writeDebugFile(byte[] bytes) throws FileNotFoundException, IOException {
-			String basefilenamename = "all";
-			if (eClass != null) {
-				basefilenamename = "debug/" + eClass.getName();
+			boolean debug = false;
+			if (debug) {
+				String basefilenamename = "all";
+				if (eClass != null) {
+					basefilenamename = "debug/" + eClass.getName();
+				}
+				File file = new File(basefilenamename + ".ifc");
+				int i=0;
+				while (file.exists()) {
+					file = new File(basefilenamename + "-" + i + ".ifc");
+					i++;
+				}
+				FileOutputStream fos = new FileOutputStream(file);
+				IOUtils.copy(new ByteArrayInputStream(bytes), fos);
+				fos.close();
 			}
-			File file = new File(basefilenamename + ".ifc");
-			int i=0;
-			while (file.exists()) {
-				file = new File(basefilenamename + "-" + i + ".ifc");
-				i++;
-			}
-			FileOutputStream fos = new FileOutputStream(file);
-			IOUtils.copy(new ByteArrayInputStream(bytes), fos);
-			fos.close();
 		}
 
 		private void calculateObb(VirtualObject geometryInfo, double[] tranformationMatrix, int[] indices, float[] vertices, GenerateGeometryResult generateGeometryResult2) {

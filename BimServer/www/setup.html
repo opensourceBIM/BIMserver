@@ -306,7 +306,6 @@ function Setup(cd, address) {
 				artifactId: latestVersion.artifactId,
 				version: latestVersion.version
 			}, function(plugins){
-				console.log(plugins);
 				plugins.forEach(function(plugin){
 					plugin.enabled = true;
 					plugin.installForAllUsers = true;
