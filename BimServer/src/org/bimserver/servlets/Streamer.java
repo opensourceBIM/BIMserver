@@ -22,7 +22,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.GregorianCalendar;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -107,33 +106,37 @@ public class Streamer implements EndPoint {
 							// We also don't want to waste any time waiting for the messages to be delivered
 							// This future acts as a 1-message buffer, so that we can fill the next buffer while sending the websocket message
 							Future<Void> future = null;
+
+							// TODO reuse buffer							
 							
+							ReusableByteArrayOutputStream byteArrayOutputStream = new ReusableByteArrayOutputStream();
+							DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+							dataOutputStream.writeInt(topicId);
+							dataOutputStream.writeInt(1); // fake nr messages, to be replaced later
 							do {
-								ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-								DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-								dataOutputStream.writeInt(topicId);
-								dataOutputStream.writeInt(0); // fake nr messages, to be replaced later
-								long s = System.nanoTime();
-								writeMessage = writer.writeMessage(byteArrayOutputStream, null);
-								int messages = 1;
-								while (byteArrayOutputStream.size() < BUFFER_SIZE && writeMessage) {
-									messages++;
-									writeMessage = writer.writeMessage(byteArrayOutputStream, null);
-								}
-								long e = System.nanoTime();
-								totalQT += (e - s);
-								byte[] byteArray = byteArrayOutputStream.toByteArray();
-								ByteBuffer byteBuffer = ByteBuffer.wrap(byteArray);
-								byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
-								byteBuffer.putInt(4, messages);
+								byteArrayOutputStream.setPosition(8);
+//								long s = System.nanoTime();
+								writeMessage = writer.writeMessage(dataOutputStream, null);
+//								int messages = 1;
+//								while (byteArrayOutputStream.size() < BUFFER_SIZE && writeMessage) {
+//									messages++;
+//									writeMessage = writer.writeMessage(byteArrayOutputStream, null);
+//								}
+//								long e = System.nanoTime();
+//								totalQT += (e - s);
+//								dataOutputStream.flush();
+//								byte[] byteArray = byteArrayOutputStream.toByteArray();
+//								ByteBuffer byteBuffer = ByteBuffer.wrap(byteArray);
+//								byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+//								byteBuffer.putInt(4, messages);
 								
 								if (future != null) {
 									future.get();
 								}
 								
-								if (byteArrayOutputStream.size() > 8) {
-									bytes += byteArray.length;
-									future = streamingSocketInterface.send(byteArray, 0, byteArray.length);
+								if (byteArrayOutputStream.usedSize() > 8) {
+									bytes += byteArrayOutputStream.usedSize();
+									future = streamingSocketInterface.send(byteArrayOutputStream.getByteArray(), 0, byteArrayOutputStream.usedSize());
 									counter++;
 								}
 							} while (writeMessage);
