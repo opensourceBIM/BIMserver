@@ -63,7 +63,7 @@ public class EmailMessage {
 			props.put("mail.smtp.starttls.enable","true");
 		}
 		
-		Session mailSession = Session.getDefaultInstance(props);
+		Session mailSession = Session.getInstance(props);
 		
 		Transport transport = null;
 		
