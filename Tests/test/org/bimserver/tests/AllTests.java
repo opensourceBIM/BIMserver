@@ -112,7 +112,7 @@ public class AllTests {
 			BimServerClientInterface client = bimServer.getBimServerClientFactory().create();
 
 			// Setup the server
-			client.getAdminInterface().setup("http://localhost:8080", "Administrator", "admin@bimserver.org", "admin");
+			client.getAdminInterface().setup("http://localhost:8080", "Administrator", "admin@bimserver.org", "admin", null, null, null);
 			
 			client.disconnect();
 		} catch (Exception e) {

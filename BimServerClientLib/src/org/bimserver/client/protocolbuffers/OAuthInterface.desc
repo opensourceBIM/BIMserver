@@ -1,0 +1,38 @@
+
+Ý
+OAuthInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoNotificationInterface.protoRemoteServiceInterface.protoLowLevelInterface.proto#NotificationRegistryInterface.proto"b
+GenerateForwardUrlRequest
+registrationEndpoint (	
+authorizeUrl (	
+	returnUrl (	"A
+GenerateForwardUrlResponse
+errorMessage (	
+value (	"
+ListRegisteredServersRequest"¼
+SOAuthServer
+apiUrl (	
+clientId (	
+clientSecret (	
+	expiresIn (
+issuedAt (	
+oid (
+registrationEndpoint (	
+registrationUrl (	
+rid	 ("d
+ListRegisteredServersResponse
+errorMessage (	-
+value (2.org.bimserver.pb.SOAuthServer"J
+RegisterApplicationRequest
+registrationEndpoint (	
+apiUrl (	"B
+RegisterApplicationResponse
+errorMessage (	
+value ("B
+SetAuthorizationCodeRequest
+applicationId (
+code (	2Ö
+OAuthInterfaceo
+generateForwardUrl+.org.bimserver.pb.GenerateForwardUrlRequest,.org.bimserver.pb.GenerateForwardUrlResponsex
+listRegisteredServers..org.bimserver.pb.ListRegisteredServersRequest/.org.bimserver.pb.ListRegisteredServersResponser
+registerApplication,.org.bimserver.pb.RegisterApplicationRequest-.org.bimserver.pb.RegisterApplicationResponsee
+setAuthorizationCode-.org.bimserver.pb.SetAuthorizationCodeRequest.org.bimserver.pb.VoidResponseBBOAuthInterfaceImplHˆ

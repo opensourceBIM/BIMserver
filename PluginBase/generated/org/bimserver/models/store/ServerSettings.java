@@ -55,6 +55,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getRenderEngineProcesses <em>Render Engine Processes</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isPluginStrictVersionChecking <em>Plugin Strict Version Checking</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getIcon <em>Icon</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getServerSettings()
@@ -753,5 +756,83 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setPluginStrictVersionChecking(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_Description()
+	 * @model
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Icon</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Icon</em>' attribute.
+	 * @see #setIcon(String)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_Icon()
+	 * @model
+	 * @generated
+	 */
+	String getIcon();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getIcon <em>Icon</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Icon</em>' attribute.
+	 * @see #getIcon()
+	 * @generated
+	 */
+	void setIcon(String value);
 
 } // ServerSettings

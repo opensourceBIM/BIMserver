@@ -705,6 +705,20 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass oAuthServerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oAuthAuthorizationCodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -1285,6 +1299,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getUser_Logs() {
 		return (EReference) getUser().getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUser_OAuthAuthorizationCodes() {
+		return (EReference) getUser().getEStructuralFeatures().get(19);
 	}
 
 	/**
@@ -1984,6 +2007,33 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getServerSettings_PluginStrictVersionChecking() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(26);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_Name() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(27);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_Description() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(28);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_Icon() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(29);
 	}
 
 	/**
@@ -3919,6 +3969,24 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getServiceDescriptor_NewProfileUrl() {
 		return (EAttribute) getServiceDescriptor().getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServiceDescriptor_RegisterUrl() {
+		return (EAttribute) getServiceDescriptor().getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServiceDescriptor_AuthorizeUrl() {
+		return (EAttribute) getServiceDescriptor().getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -5974,6 +6042,111 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getPluginInformation_InstallForNewUsers() {
 		return (EAttribute) getPluginInformation().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOAuthServer() {
+		if (oAuthServerEClass == null) {
+			oAuthServerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(109);
+		}
+		return oAuthServerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOAuthServer_RegistrationUrl() {
+		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOAuthServer_ClientId() {
+		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOAuthServer_ClientSecret() {
+		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOAuthServer_ExpiresIn() {
+		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOAuthServer_IssuedAt() {
+		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOAuthServer_ApiUrl() {
+		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOAuthServer_RegistrationEndpoint() {
+		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOAuthAuthorizationCode() {
+		if (oAuthAuthorizationCodeEClass == null) {
+			oAuthAuthorizationCodeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(110);
+		}
+		return oAuthAuthorizationCodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOAuthAuthorizationCode_OauthServer() {
+		return (EReference) getOAuthAuthorizationCode().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOAuthAuthorizationCode_Code() {
+		return (EAttribute) getOAuthAuthorizationCode().getEStructuralFeatures().get(1);
 	}
 
 	/**

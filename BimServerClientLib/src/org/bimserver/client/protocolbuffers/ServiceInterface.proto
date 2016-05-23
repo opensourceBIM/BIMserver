@@ -499,20 +499,21 @@ message SUser {
 	optional int64 lastSeen = 5;
 	repeated int64 logs = 6;
 	optional string name = 7;
-	optional int64 oid = 8;
-	optional bytes passwordHash = 9;
-	optional bytes passwordSalt = 10;
-	repeated int64 revisions = 11;
-	optional int32 rid = 12;
-	repeated int64 schemas = 13;
-	repeated int64 services = 14;
-	optional SObjectState state = 15;
-	optional string token = 16;
-	optional int64 userSettingsId = 17;
-	optional SUserType userType = 18;
-	optional string username = 19;
-	optional bytes validationToken = 20;
-	optional int64 validationTokenCreated = 21;
+	repeated int64 oAuthAuthorizationCodes = 8;
+	optional int64 oid = 9;
+	optional bytes passwordHash = 10;
+	optional bytes passwordSalt = 11;
+	repeated int64 revisions = 12;
+	optional int32 rid = 13;
+	repeated int64 schemas = 14;
+	repeated int64 services = 15;
+	optional SObjectState state = 16;
+	optional string token = 17;
+	optional int64 userSettingsId = 18;
+	optional SUserType userType = 19;
+	optional string username = 20;
+	optional bytes validationToken = 21;
+	optional int64 validationTokenCreated = 22;
 }
 
 message AddUserResponse {
@@ -919,21 +920,23 @@ message GetAllLocalServiceDescriptorsRequest {
 }
 
 message SServiceDescriptor {
-	optional string companyUrl = 1;
-	optional string description = 2;
-	optional string identifier = 3;
-	optional string name = 4;
-	optional string newProfileUrl = 5;
-	optional SAccessMethod notificationProtocol = 6;
-	optional string providerName = 7;
-	optional string readExtendedData = 8;
-	optional bool readRevision = 9;
-	optional string token = 10;
-	optional string tokenUrl = 11;
-	optional STrigger trigger = 12;
-	optional string url = 13;
-	optional string writeExtendedData = 14;
-	optional bool writeRevision = 15;
+	optional string authorizeUrl = 1;
+	optional string companyUrl = 2;
+	optional string description = 3;
+	optional string identifier = 4;
+	optional string name = 5;
+	optional string newProfileUrl = 6;
+	optional SAccessMethod notificationProtocol = 7;
+	optional string providerName = 8;
+	optional string readExtendedData = 9;
+	optional bool readRevision = 10;
+	optional string registerUrl = 11;
+	optional string token = 12;
+	optional string tokenUrl = 13;
+	optional STrigger trigger = 14;
+	optional string url = 15;
+	optional string writeExtendedData = 16;
+	optional bool writeRevision = 17;
 }
 
 message GetAllLocalServiceDescriptorsResponse {
@@ -979,7 +982,6 @@ message GetAllNonAuthorizedUsersOfProjectResponse {
 message GetAllPrivateProfilesRequest {
 	optional string notificationsUrl = 1;
 	optional string serviceIdentifier = 2;
-	optional string token = 3;
 }
 
 message GetAllPrivateProfilesResponse {

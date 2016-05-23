@@ -37,6 +37,7 @@ import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.NotificationRegistryInterface;
+import org.bimserver.shared.interfaces.OAuthInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -84,6 +85,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		addService(new SService(servicesMap, null, RemoteServiceInterface.class));
 		addService(new SService(servicesMap, null, LowLevelInterface.class));
 		addService(new SService(servicesMap, null, NotificationRegistryInterface.class));
+		addService(new SService(servicesMap, null, OAuthInterface.class));
 		servicesMap.initialize();
 		initHttpClient();
 	}

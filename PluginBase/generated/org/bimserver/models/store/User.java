@@ -50,6 +50,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.User#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getLogs <em>Logs</em>}</li>
+ *   <li>{@link org.bimserver.models.store.User#getOAuthAuthorizationCodes <em>OAuth Authorization Codes</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getUser()
@@ -509,5 +510,21 @@ public interface User extends IdEObject {
 	 * @generated
 	 */
 	EList<UserRelated> getLogs();
+
+	/**
+	 * Returns the value of the '<em><b>OAuth Authorization Codes</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.OAuthAuthorizationCode}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>OAuth Authorization Codes</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>OAuth Authorization Codes</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getUser_OAuthAuthorizationCodes()
+	 * @model
+	 * @generated
+	 */
+	EList<OAuthAuthorizationCode> getOAuthAuthorizationCodes();
 
 } // User

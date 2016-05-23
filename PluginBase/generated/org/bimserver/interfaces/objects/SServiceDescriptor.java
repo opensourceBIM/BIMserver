@@ -42,6 +42,8 @@ public class SServiceDescriptor implements SBase
 	private java.lang.String companyUrl;
 	private java.lang.String tokenUrl;
 	private java.lang.String newProfileUrl;
+	private java.lang.String registerUrl;
+	private java.lang.String authorizeUrl;
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -97,6 +99,12 @@ public class SServiceDescriptor implements SBase
 		}
 		if (sField.getName().equals("newProfileUrl")) {
 			return getNewProfileUrl();
+		}
+		if (sField.getName().equals("registerUrl")) {
+			return getRegisterUrl();
+		}
+		if (sField.getName().equals("authorizeUrl")) {
+			return getAuthorizeUrl();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
@@ -160,6 +168,14 @@ public class SServiceDescriptor implements SBase
 		}
 		if (sField.getName().equals("newProfileUrl")) {
 			setNewProfileUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("registerUrl")) {
+			setRegisterUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("authorizeUrl")) {
+			setAuthorizeUrl((String)val);
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
@@ -283,6 +299,22 @@ public class SServiceDescriptor implements SBase
 
 	public void setNewProfileUrl(java.lang.String newProfileUrl) {
 		this.newProfileUrl = newProfileUrl;
+	}
+	
+	public java.lang.String getRegisterUrl() {
+		return registerUrl;
+	}
+
+	public void setRegisterUrl(java.lang.String registerUrl) {
+		this.registerUrl = registerUrl;
+	}
+	
+	public java.lang.String getAuthorizeUrl() {
+		return authorizeUrl;
+	}
+
+	public void setAuthorizeUrl(java.lang.String authorizeUrl) {
+		this.authorizeUrl = authorizeUrl;
 	}
 	
 }

@@ -1121,11 +1121,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getAllPrivateProfiles(final java.lang.String notificationsUrl, final java.lang.String serviceIdentifier, final java.lang.String token, final GetAllPrivateProfilesCallback callback) {
+	public void getAllPrivateProfiles(final java.lang.String notificationsUrl, final java.lang.String serviceIdentifier, final GetAllPrivateProfilesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getAllPrivateProfiles(notificationsUrl, serviceIdentifier, token));
+					callback.success(syncService.getAllPrivateProfiles(notificationsUrl, serviceIdentifier));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

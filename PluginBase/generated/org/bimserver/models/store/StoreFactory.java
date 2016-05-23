@@ -864,6 +864,24 @@ public interface StoreFactory extends EFactory {
 	PluginInformation createPluginInformation();
 
 	/**
+	 * Returns a new object of class '<em>OAuth Server</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OAuth Server</em>'.
+	 * @generated
+	 */
+	OAuthServer createOAuthServer();
+
+	/**
+	 * Returns a new object of class '<em>OAuth Authorization Code</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OAuth Authorization Code</em>'.
+	 * @generated
+	 */
+	OAuthAuthorizationCode createOAuthAuthorizationCode();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

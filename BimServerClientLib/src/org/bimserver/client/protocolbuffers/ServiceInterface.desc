@@ -1,5 +1,5 @@
 
-…å
+Âå
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -141,7 +141,7 @@ parentPoid (
 name (	)
 type (2.org.bimserver.pb.SUserType
 selfRegistration (
-resetUrl (	"Ô
+resetUrl (	"õ
 SUser
 createdById (
 	createdOn (
@@ -149,22 +149,23 @@ parentPoid (
 hasRightsOn (
 lastSeen (
 logs (
-name (	
-oid (
-passwordHash	 (
-passwordSalt
- (
-	revisions (
-rid (
-schemas (
-services (-
-state (2.org.bimserver.pb.SObjectState
-token (	
-userSettingsId (-
-userType (2.org.bimserver.pb.SUserType
-username (	
-validationToken (
-validationTokenCreated ("O
+name (	
+oAuthAuthorizationCodes (
+oid	 (
+passwordHash
+ (
+passwordSalt (
+	revisions (
+rid (
+schemas (
+services (-
+state (2.org.bimserver.pb.SObjectState
+token (	
+userSettingsId (-
+userType (2.org.bimserver.pb.SUserType
+username (	
+validationToken (
+validationTokenCreated ("O
 AddUserResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"A
@@ -440,26 +441,28 @@ identifier (	
 GetAllLocalProfilesResponse
 errorMessage (	3
 value (2$.org.bimserver.pb.SProfileDescriptor"&
-$GetAllLocalServiceDescriptorsRequest"ˆ
-SServiceDescriptor
+$GetAllLocalServiceDescriptorsRequest"³
+SServiceDescriptor
+authorizeUrl (	
 
-companyUrl (	
-description (	
+companyUrl (	
+description (	
 
-identifier (	
-name (	
-newProfileUrl (	=
-notificationProtocol (2.org.bimserver.pb.SAccessMethod
-providerName (	
-readExtendedData (	
-readRevision	 (
-token
- (	
-tokenUrl (	+
-trigger (2.org.bimserver.pb.STrigger
-url (	
-writeExtendedData (	
-writeRevision ("r
+identifier (	
+name (	
+newProfileUrl (	=
+notificationProtocol (2.org.bimserver.pb.SAccessMethod
+providerName (	
+readExtendedData	 (	
+readRevision
+ (
+registerUrl (	
+token (	
+tokenUrl (	+
+trigger (2.org.bimserver.pb.STrigger
+url (	
+writeExtendedData (	
+writeRevision ("r
 %GetAllLocalServiceDescriptorsResponse
 errorMessage (	3
 value (2$.org.bimserver.pb.SServiceDescriptor"
@@ -481,11 +484,10 @@ $GetAllModelCheckersOfProjectResponse
 poid ("i
 )GetAllNonAuthorizedUsersOfProjectResponse
 errorMessage (	&
-value (2.org.bimserver.pb.SUser"b
+value (2.org.bimserver.pb.SUser"S
 GetAllPrivateProfilesRequest
 notificationsUrl (	
-serviceIdentifier (	
-token (	"j
+serviceIdentifier (	"j
 GetAllPrivateProfilesResponse
 errorMessage (	3
 value (2$.org.bimserver.pb.SProfileDescriptor"A
