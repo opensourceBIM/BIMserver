@@ -190,6 +190,8 @@ import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ModelCheckerInstance;
+import org.bimserver.models.store.OAuthAuthorizationCode;
+import org.bimserver.models.store.OAuthServer;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.Project;
@@ -1802,6 +1804,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				sServiceDescriptor.setTokenUrl(service.getString("tokenUrl"));
 				sServiceDescriptor.setNewProfileUrl(service.getString("newProfileUrl"));
 				sServiceDescriptor.setProviderName(service.getString("providerName"));
+				sServiceDescriptor.setRegisterUrl(service.getString("registerUrl"));
+				sServiceDescriptor.setAuthorizeUrl(service.getString("authorizeUrl"));
 
 				JSONObject rights = service.getJSONObject("rights");
 
@@ -1956,12 +1960,20 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public List<SProfileDescriptor> getAllPrivateProfiles(String notificationsUrl, String serviceIdentifier, String token) throws ServerException, UserException {
+	public List<SProfileDescriptor> getAllPrivateProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		try {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager());
 			BimServerClientInterface client = factory.create();
-			return client.getRemoteServiceInterface().getPrivateProfiles(serviceIdentifier, token);
+			
+			OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_ApiUrl(), notificationsUrl);
+			User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			for (OAuthAuthorizationCode oAuthAuthorizationCode : user.getOAuthAuthorizationCodes()) {
+				if (oAuthAuthorizationCode.getOauthServer() == oAuthServer) {
+					return client.getRemoteServiceInterface().getPrivateProfiles(serviceIdentifier, oAuthAuthorizationCode.getCode());
+				}
+			}
+			return null;
 		} catch (Exception e) {
 			return handleException(e);
 		}

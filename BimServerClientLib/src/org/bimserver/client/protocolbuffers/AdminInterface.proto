@@ -379,9 +379,12 @@ message RegenerateGeometryRequest {
 
 message SetupRequest {
 	optional string siteAddress = 1;
-	optional string adminName = 2;
-	optional string adminUsername = 3;
-	optional string adminPassword = 4;
+	optional string serverName = 2;
+	optional string serverDescription = 3;
+	optional string serverIcon = 4;
+	optional string adminName = 5;
+	optional string adminUsername = 6;
+	optional string adminPassword = 7;
 }
 
 message UpgradePossibleRequest {

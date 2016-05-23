@@ -98,6 +98,9 @@ public interface AdminInterface extends PublicInterface {
 	@WebMethod(action = "setup")
 	void setup(
 		@WebParam(name = "siteAddress", partName = "setup.siteAddress") String siteAddress,
+		@WebParam(name = "serverName", partName = "setup.serverName") String serverName,
+		@WebParam(name = "serverDescription", partName = "setup.serverDescription") String serverDescription,
+		@WebParam(name = "serverIcon", partName = "setup.serverIcon") String serverIcon,
 		@WebParam(name = "adminName", partName = "setup.adminName") String adminName,
 		@WebParam(name = "adminUsername", partName = "setup.adminUsername") String adminUsername,
 		@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword) throws ServerException, UserException;

@@ -12,14 +12,33 @@
 		<div class="setupContent">
 			<div class="contentdiv welcome">
 				<div class="well well-sm">
+					<p>
 					Welcome,<br/>
-					This wizard will help you setup your BIMserver.<br/>
-					Please fill in the address your BIMserver will be availble from. It will be prefilled, but this is not necessarily the right address. If you are using a domain name, make sure use it here.
+					This wizard will help you setup your BIMserver.</p>
+					<b>Address</b>
+					<p>The address your BIMserver will be available from. It will be pre-filled, but this is not necessarily the right address. If you are using a domain name, make sure to use it here.</p>
+					<b>Name/Description/Icon</b>
+					<p>Information that identifies this specific BIMserver instance. Remote servers will show this information for a user to identify this BIMserver.</p>
 				</div>
 				<form class="form-horizontal">
 					<div class="form-group">
 						<label for="inputSiteAddress">Site address</label>
 						<input type="text" class="siteAddressInput form-control" id="inputSiteAddress"/>
+					</div>
+					<div class="form-group">
+						<label for="inputServerName">Server name</label>
+						<input type="text" class="serverNameInput form-control" id="inputServerName" placeholder="My BIMserver"/>
+					</div>
+					<div class="form-group">
+						<label for="inputServerDescription">Server description</label>
+						<input type="text" class="serverDescriptionInput form-control" id="inputServerDescription"/>
+					</div>
+					<div class="form-group">
+						<label for="inputServerIcon">Server icon</label>
+						<input type="text" class="severIconInput form-control" id="inputServerIcon" value="/img/bimserver.png"/>
+						<div>
+							<img src="/img/bimserver.png"/>
+						</div>
 					</div>
 				</form>
 				<button class="btn btn-default adminBtn">Next</button>
@@ -247,6 +266,9 @@ function Setup(cd, address) {
 		}
 		Global.api.call("AdminInterface", "setup", {
 			siteAddress: address,
+			serverName: $(".setup .serverNameInput").val(),
+			serverDescription: $(".setup .serverDescriptionInput").val(),
+			serverIcon: $(".setup .severIconInput").val(),
 			adminName: $(".setup .adminNameInput").val(),
 			adminUsername: $(".setup .adminUsernameInput").val(),
 			adminPassword: $(".setup .adminPasswordInput").val()

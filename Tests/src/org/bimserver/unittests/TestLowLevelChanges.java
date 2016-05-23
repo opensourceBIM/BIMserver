@@ -101,7 +101,7 @@ public class TestLowLevelChanges {
 
 			// Convenience, setup the server to make sure it is in RUNNING state
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-				bimServer.getService(AdminInterface.class).setup("http://localhost", "Administrator", "admin@bimserver.org", "admin");
+				bimServer.getService(AdminInterface.class).setup("http://localhost", "Administrator", "admin@bimserver.org", "admin", null, null, null);
 				bimServer.getService(AuthInterface.class).login("admin@bimserver.org", "admin");
 			}
 			

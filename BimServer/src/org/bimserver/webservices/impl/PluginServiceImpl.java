@@ -86,7 +86,6 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
-import org.bimserver.interfaces.objects.SMessagingSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectDefinition;

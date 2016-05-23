@@ -62,13 +62,13 @@ public enum ServerState implements Enumerator {
 	 */
 	SETUP(2, "SETUP", "SETUP"),
 	/**
-	* The '<em><b>MIGRATION REQUIRED</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>MIGRATION REQUIRED</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #MIGRATION_REQUIRED_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #MIGRATION_REQUIRED_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	MIGRATION_REQUIRED(3, "MIGRATION_REQUIRED", "MIGRATION_REQUIRED"),
 
 	/**

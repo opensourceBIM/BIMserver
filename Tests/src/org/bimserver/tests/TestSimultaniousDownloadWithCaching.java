@@ -83,7 +83,7 @@ public class TestSimultaniousDownloadWithCaching {
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), null);
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-				bimServer.getService(AdminInterface.class).setup("http://localhost", "Administrator", "admin@bimserver.org", "admin");
+				bimServer.getService(AdminInterface.class).setup("http://localhost", "Administrator", "admin@bimserver.org", "admin", null, null, null);
 			}
 		} catch (PluginException e2) {
 			e2.printStackTrace();

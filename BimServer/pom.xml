@@ -133,5 +133,15 @@
 			<artifactId>cxf-rt-javascript</artifactId>
 			<version>3.1.6</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.oltu.oauth2</groupId>
+			<artifactId>org.apache.oltu.oauth2.client</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.oltu.oauth2</groupId>
+			<artifactId>org.apache.oltu.oauth2.dynamicreg.client</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 	</dependencies>
 </project>

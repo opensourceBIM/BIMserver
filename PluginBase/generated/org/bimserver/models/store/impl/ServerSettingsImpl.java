@@ -59,6 +59,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isAllowCreateValidatedUser <em>Allow Create Validated User</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getRenderEngineProcesses <em>Render Engine Processes</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isPluginStrictVersionChecking <em>Plugin Strict Version Checking</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getIcon <em>Icon</em>}</li>
  * </ul>
  *
  * @generated
@@ -561,6 +564,60 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setPluginStrictVersionChecking(boolean newPluginStrictVersionChecking) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__PLUGIN_STRICT_VERSION_CHECKING, newPluginStrictVersionChecking);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDescription() {
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__DESCRIPTION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__DESCRIPTION, newDescription);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getIcon() {
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__ICON, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIcon(String newIcon) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__ICON, newIcon);
 	}
 
 } //ServerSettingsImpl

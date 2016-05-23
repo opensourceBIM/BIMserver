@@ -1211,8 +1211,7 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getAllPrivateProfiles")
 	List<SProfileDescriptor> getAllPrivateProfiles(
 		@WebParam(name = "notificationsUrl", partName = "getAllPrivateProfiles.notificationsUrl") String notificationsUrl, 
-		@WebParam(name = "serviceIdentifier", partName = "getAllPrivateProfiles.serviceIdentifier") String serviceIdentifier,
-		@WebParam(name = "token", partName = "getAllPrivateProfiles.token") String token) throws ServerException, UserException;
+		@WebParam(name = "serviceIdentifier", partName = "getAllPrivateProfiles.serviceIdentifier") String serviceIdentifier) throws ServerException, UserException;
 	
 	/**
 	 * @param file
