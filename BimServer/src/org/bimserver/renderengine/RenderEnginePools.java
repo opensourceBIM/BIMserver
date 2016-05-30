@@ -39,22 +39,22 @@ public class RenderEnginePools {
 		this.bimServer = bimServer;
 		this.renderEnginePoolFactory = renderEnginePoolFactory;
 		
-		Collection<RenderEnginePlugin> renderEnginePlugins = bimServer.getPluginManager().getAllRenderEnginePlugins(true).values();
+//		Collection<RenderEnginePlugin> renderEnginePlugins = bimServer.getPluginManager().getAllRenderEnginePlugins(true).values();
 		for (Schema schema : Schema.getIfcSchemas()) {
 			HashMap<String, RenderEnginePool> map = new HashMap<>();
 			pools.put(schema, map);
-			for (RenderEnginePlugin renderEnginePlugin : renderEnginePlugins) {
-				RenderEnginePool renderEnginePool = renderEnginePoolFactory.newRenderEnginePool(new RenderEngineFactory(){
-					@Override
-					public RenderEngine createRenderEngine() throws RenderEngineException {
-						return renderEnginePlugin.createRenderEngine(new PluginConfiguration(), schema.name());
-					}});
-				map.put(renderEnginePlugin.getClass().getName(), renderEnginePool);
-			}
+//			for (RenderEnginePlugin renderEnginePlugin : renderEnginePlugins) {
+//				RenderEnginePool renderEnginePool = renderEnginePoolFactory.newRenderEnginePool(new RenderEngineFactory(){
+//					@Override
+//					public RenderEngine createRenderEngine() throws RenderEngineException {
+//						return renderEnginePlugin.createRenderEngine(pluginConfiguration, schema.name());
+//					}});
+//				map.put(renderEnginePlugin.getClass().getName(), renderEnginePool);
+//			}
 		}
 	}
 
-	public RenderEnginePool getRenderEnginePool(Schema schema, String className) throws PluginException {
+	public RenderEnginePool getRenderEnginePool(Schema schema, String className, PluginConfiguration pluginConfiguration) throws PluginException {
 		if (pools.containsKey(schema)) {
 			Map<String, RenderEnginePool> map = pools.get(schema);
 			if (map.containsKey(className)) {
@@ -68,7 +68,7 @@ public class RenderEnginePools {
 					RenderEnginePool renderEnginePool = renderEnginePoolFactory.newRenderEnginePool(new RenderEngineFactory(){
 						@Override
 						public RenderEngine createRenderEngine() throws RenderEngineException {
-							return renderEnginePlugin.createRenderEngine(new PluginConfiguration(), schema.name());
+							return renderEnginePlugin.createRenderEngine(pluginConfiguration, schema.name());
 						}});
 					map.put(className, renderEnginePool);
 					return renderEnginePool;

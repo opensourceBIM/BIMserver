@@ -382,7 +382,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		}
 
 		private void writeDebugFile(byte[] bytes) throws FileNotFoundException, IOException {
-			boolean debug = true;
+			boolean debug = false;
 			if (debug) {
 				String basefilenamename = "all";
 				if (eClass != null) {
@@ -453,7 +453,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			
 			final RenderEngineFilter renderEngineFilter = new RenderEngineFilter();
 
-			RenderEnginePool renderEnginePool = bimServer.getRenderEnginePools().getRenderEnginePool(packageMetaData.getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName());
+			RenderEnginePool renderEnginePool = bimServer.getRenderEnginePools().getRenderEnginePool(packageMetaData.getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
 			
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(10000000));
 			
