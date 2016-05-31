@@ -1,5 +1,7 @@
 package org.bimserver.plugins.renderengine;
 
+import java.util.Collection;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -28,6 +30,7 @@ public interface RenderEngineModel {
 	void setFormat(int format, int mask) throws RenderEngineException;
 	void setSettings(RenderEngineSettings settings) throws RenderEngineException;
 	RenderEngineInstance getInstanceFromExpressId(int oid) throws RenderEngineException;
+	Collection<RenderEngineInstance> listInstances() throws RenderEngineException;
 	void generateGeneralGeometry() throws RenderEngineException;
 	void close() throws RenderEngineException;
 	void setFilter(RenderEngineFilter renderEngineFilter) throws RenderEngineException;
