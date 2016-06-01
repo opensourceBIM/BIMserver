@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.54-SNAPSHOT</version>
+		<version>1.5.49</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -60,7 +60,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>pluginbase</artifactId>
-			<version>1.5.54-SNAPSHOT</version>
+			<version>1.5.49</version>
 		</dependency>
 	</dependencies>
 </project>
