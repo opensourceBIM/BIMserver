@@ -33,11 +33,13 @@ public class SOAuthServer implements SDataBase
 	private java.lang.String clientId;
 	private java.lang.String clientSecret;
 	private java.lang.String clientName;
+	private java.lang.String clientIcon;
 	private java.lang.String clientUrl;
 	private java.lang.String clientDescription;
 	private java.lang.String redirectUrl;
 	private long expiresIn;
 	private java.lang.String issuedAt;
+	private boolean incoming;
 	private java.lang.String apiUrl;
 	private java.lang.String registrationEndpoint;
 
@@ -79,6 +81,9 @@ public class SOAuthServer implements SDataBase
 		if (sField.getName().equals("clientName")) {
 			return getClientName();
 		}
+		if (sField.getName().equals("clientIcon")) {
+			return getClientIcon();
+		}
 		if (sField.getName().equals("clientUrl")) {
 			return getClientUrl();
 		}
@@ -93,6 +98,9 @@ public class SOAuthServer implements SDataBase
 		}
 		if (sField.getName().equals("issuedAt")) {
 			return getIssuedAt();
+		}
+		if (sField.getName().equals("incoming")) {
+			return isIncoming();
 		}
 		if (sField.getName().equals("apiUrl")) {
 			return getApiUrl();
@@ -126,6 +134,10 @@ public class SOAuthServer implements SDataBase
 			setClientName((String)val);
 			return;
 		}
+		if (sField.getName().equals("clientIcon")) {
+			setClientIcon((String)val);
+			return;
+		}
 		if (sField.getName().equals("clientUrl")) {
 			setClientUrl((String)val);
 			return;
@@ -144,6 +156,10 @@ public class SOAuthServer implements SDataBase
 		}
 		if (sField.getName().equals("issuedAt")) {
 			setIssuedAt((String)val);
+			return;
+		}
+		if (sField.getName().equals("incoming")) {
+			setIncoming((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("apiUrl")) {
@@ -197,6 +213,14 @@ public class SOAuthServer implements SDataBase
 		this.clientName = clientName;
 	}
 	
+	public java.lang.String getClientIcon() {
+		return clientIcon;
+	}
+
+	public void setClientIcon(java.lang.String clientIcon) {
+		this.clientIcon = clientIcon;
+	}
+	
 	public java.lang.String getClientUrl() {
 		return clientUrl;
 	}
@@ -235,6 +259,14 @@ public class SOAuthServer implements SDataBase
 
 	public void setIssuedAt(java.lang.String issuedAt) {
 		this.issuedAt = issuedAt;
+	}
+	
+	public boolean isIncoming() {
+		return incoming;
+	}
+
+	public void setIncoming(boolean incoming) {
+		this.incoming = incoming;
 	}
 	
 	public java.lang.String getApiUrl() {

@@ -43,6 +43,7 @@ public class OAuthRegistrationServlet extends SubServlet {
             	oAuthServer.setRedirectUrl(oauthRequest.getRedirectURI());
             	oAuthServer.setClientSecret("secret");
             	oAuthServer.setClientId("testid");
+            	oAuthServer.setIncoming(true);
             	session.commit();
             	OAuthResponse response = OAuthServerRegistrationResponse
             			.status(HttpServletResponse.SC_OK)

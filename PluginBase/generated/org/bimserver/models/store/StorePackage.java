@@ -6465,13 +6465,22 @@ public interface StorePackage extends EPackage {
 	int OAUTH_SERVER__CLIENT_NAME = 3;
 
 	/**
+	 * The feature id for the '<em><b>Client Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_SERVER__CLIENT_ICON = 4;
+
+	/**
 	 * The feature id for the '<em><b>Client Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OAUTH_SERVER__CLIENT_URL = 4;
+	int OAUTH_SERVER__CLIENT_URL = 5;
 
 	/**
 	 * The feature id for the '<em><b>Client Description</b></em>' attribute.
@@ -6480,7 +6489,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OAUTH_SERVER__CLIENT_DESCRIPTION = 5;
+	int OAUTH_SERVER__CLIENT_DESCRIPTION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Redirect Url</b></em>' attribute.
@@ -6489,7 +6498,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OAUTH_SERVER__REDIRECT_URL = 6;
+	int OAUTH_SERVER__REDIRECT_URL = 7;
 
 	/**
 	 * The feature id for the '<em><b>Expires In</b></em>' attribute.
@@ -6498,7 +6507,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OAUTH_SERVER__EXPIRES_IN = 7;
+	int OAUTH_SERVER__EXPIRES_IN = 8;
 
 	/**
 	 * The feature id for the '<em><b>Issued At</b></em>' attribute.
@@ -6507,7 +6516,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OAUTH_SERVER__ISSUED_AT = 8;
+	int OAUTH_SERVER__ISSUED_AT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Incoming</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_SERVER__INCOMING = 10;
 
 	/**
 	 * The feature id for the '<em><b>Api Url</b></em>' attribute.
@@ -6516,7 +6534,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OAUTH_SERVER__API_URL = 9;
+	int OAUTH_SERVER__API_URL = 11;
 
 	/**
 	 * The feature id for the '<em><b>Registration Endpoint</b></em>' attribute.
@@ -6525,7 +6543,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OAUTH_SERVER__REGISTRATION_ENDPOINT = 10;
+	int OAUTH_SERVER__REGISTRATION_ENDPOINT = 12;
 
 	/**
 	 * The number of structural features of the '<em>OAuth Server</em>' class.
@@ -6534,7 +6552,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OAUTH_SERVER_FEATURE_COUNT = 11;
+	int OAUTH_SERVER_FEATURE_COUNT = 13;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl <em>OAuth Authorization Code</em>}' class.
@@ -12646,6 +12664,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getOAuthServer_ClientName();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthServer#getClientIcon <em>Client Icon</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Client Icon</em>'.
+	 * @see org.bimserver.models.store.OAuthServer#getClientIcon()
+	 * @see #getOAuthServer()
+	 * @generated
+	 */
+	EAttribute getOAuthServer_ClientIcon();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthServer#getClientUrl <em>Client Url</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12699,6 +12728,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getOAuthServer_IssuedAt();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthServer#isIncoming <em>Incoming</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Incoming</em>'.
+	 * @see org.bimserver.models.store.OAuthServer#isIncoming()
+	 * @see #getOAuthServer()
+	 * @generated
+	 */
+	EAttribute getOAuthServer_Incoming();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthServer#getApiUrl <em>Api Url</em>}'.
@@ -17517,6 +17557,14 @@ public interface StorePackage extends EPackage {
 		EAttribute OAUTH_SERVER__CLIENT_NAME = eINSTANCE.getOAuthServer_ClientName();
 
 		/**
+		 * The meta object literal for the '<em><b>Client Icon</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OAUTH_SERVER__CLIENT_ICON = eINSTANCE.getOAuthServer_ClientIcon();
+
+		/**
 		 * The meta object literal for the '<em><b>Client Url</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -17555,6 +17603,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OAUTH_SERVER__ISSUED_AT = eINSTANCE.getOAuthServer_IssuedAt();
+
+		/**
+		 * The meta object literal for the '<em><b>Incoming</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OAUTH_SERVER__INCOMING = eINSTANCE.getOAuthServer_Incoming();
 
 		/**
 		 * The meta object literal for the '<em><b>Api Url</b></em>' attribute feature.

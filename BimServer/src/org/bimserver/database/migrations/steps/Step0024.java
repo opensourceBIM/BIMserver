@@ -16,11 +16,13 @@ public class Step0024 extends Migration {
 		schema.createEAttribute(oAuthServer, "clientId", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(oAuthServer, "clientSecret", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(oAuthServer, "clientName", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(oAuthServer, "clientIcon", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(oAuthServer, "clientUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(oAuthServer, "clientDescription", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(oAuthServer, "redirectUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(oAuthServer, "expiresIn", EcorePackage.eINSTANCE.getELong());
 		schema.createEAttribute(oAuthServer, "issuedAt", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(oAuthServer, "incoming", EcorePackage.eINSTANCE.getEBoolean());
 		schema.addIndex(schema.createEAttribute(oAuthServer, "apiUrl", EcorePackage.eINSTANCE.getEString()));
 		schema.addIndex(schema.createEAttribute(oAuthServer, "registrationEndpoint", EcorePackage.eINSTANCE.getEString()));
 		

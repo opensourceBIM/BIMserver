@@ -64,14 +64,19 @@ message GetOAuthServerByIdRequest {
 
 message SOAuthServer {
 	optional string apiUrl = 1;
-	optional string clientId = 2;
-	optional string clientSecret = 3;
-	optional int64 expiresIn = 4;
-	optional string issuedAt = 5;
-	optional int64 oid = 6;
-	optional string registrationEndpoint = 7;
-	optional string registrationUrl = 8;
-	optional int32 rid = 9;
+	optional string clientDescription = 2;
+	optional string clientId = 3;
+	optional string clientName = 4;
+	optional string clientSecret = 5;
+	optional string clientUrl = 6;
+	optional int64 expiresIn = 7;
+	optional bool incoming = 8;
+	optional string issuedAt = 9;
+	optional int64 oid = 10;
+	optional string redirectUrl = 11;
+	optional string registrationEndpoint = 12;
+	optional string registrationUrl = 13;
+	optional int32 rid = 14;
 }
 
 message GetOAuthServerByIdResponse {
