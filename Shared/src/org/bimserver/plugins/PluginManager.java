@@ -26,7 +26,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystemNotFoundException;
@@ -108,7 +107,6 @@ import org.eclipse.aether.collection.CollectRequest;
 import org.eclipse.aether.collection.DependencyCollectionException;
 import org.eclipse.aether.graph.Dependency;
 import org.eclipse.aether.graph.DependencyNode;
-import org.eclipse.aether.internal.impl.SimpleLocalRepositoryManagerFactory;
 import org.eclipse.aether.resolution.ArtifactRequest;
 import org.eclipse.aether.resolution.ArtifactResolutionException;
 import org.eclipse.aether.resolution.ArtifactResult;
@@ -1373,19 +1371,14 @@ public class PluginManager implements PluginManagerInterface {
 						LOGGER.info("Skipping strict dependency checking for dependency " + dependency.getArtifactId());
 					}
 				} else {
-					if (pluginBundleIdentifier.getGroupId().equals("org.opensourcebim")) {
-						throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
-					} else {
+					try {
 						MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(model.getRepositories().get(0).getUrl(), dependency.getGroupId(), dependency.getArtifactId());
+						Path depJarFile = mavenPluginLocation.getVersionJar(dependency.getVersion());
 						
-						try {
-							Path depJarFile = mavenPluginLocation.getVersionJar(dependency.getVersion());
-							
-							FileJarClassLoader jarClassLoader = new FileJarClassLoader(this, delegatingClassLoader, depJarFile); 
-							delegatingClassLoader.add(jarClassLoader);
-						} catch (Exception e) {
-							
-						}
+						FileJarClassLoader jarClassLoader = new FileJarClassLoader(this, delegatingClassLoader, depJarFile); 
+						delegatingClassLoader.add(jarClassLoader);
+					} catch (Exception e) {
+						throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
 					}
 				}
 			}
