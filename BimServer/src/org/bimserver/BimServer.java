@@ -863,7 +863,7 @@ public class BimServer {
 				return;
 			}
 			EReference defaultReference = (EReference) userSettingsClass.getEStructuralFeature("default" + pluginInterfaceName);
-			EClass pluginConfigurationClass = (EClass) StorePackage.eINSTANCE.getEClassifier(pluginInterfaceName + "PluginConfiguration");
+			EClass pluginConfigurationClass = (EClass) StorePackage.eINSTANCE.getEClassifier((pluginInterfaceName.equals("Service") ? "Internal" : "") + pluginInterfaceName + "PluginConfiguration");
 			
 			List<PluginConfiguration> list = (List<PluginConfiguration>) userSettings.eGet(listReference);
 			PluginConfiguration pluginConfiguration = find(list, pluginContext.getIdentifier());
