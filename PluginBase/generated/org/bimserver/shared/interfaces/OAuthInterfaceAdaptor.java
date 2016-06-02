@@ -25,6 +25,14 @@ public class OAuthInterfaceAdaptor implements org.bimserver.shared.interfaces.OA
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SOAuthServer getOAuthServerById(java.lang.Long oid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<org.bimserver.interfaces.objects.SOAuthAuthorizationCode> listAuthorizationCodes() throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SOAuthServer> listRegisteredServers() throws UserException, ServerException {
 		return null;
 	}

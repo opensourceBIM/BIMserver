@@ -32,6 +32,10 @@ public class SOAuthServer implements SDataBase
 	private java.lang.String registrationUrl;
 	private java.lang.String clientId;
 	private java.lang.String clientSecret;
+	private java.lang.String clientName;
+	private java.lang.String clientUrl;
+	private java.lang.String clientDescription;
+	private java.lang.String redirectUrl;
 	private long expiresIn;
 	private java.lang.String issuedAt;
 	private java.lang.String apiUrl;
@@ -72,6 +76,18 @@ public class SOAuthServer implements SDataBase
 		if (sField.getName().equals("clientSecret")) {
 			return getClientSecret();
 		}
+		if (sField.getName().equals("clientName")) {
+			return getClientName();
+		}
+		if (sField.getName().equals("clientUrl")) {
+			return getClientUrl();
+		}
+		if (sField.getName().equals("clientDescription")) {
+			return getClientDescription();
+		}
+		if (sField.getName().equals("redirectUrl")) {
+			return getRedirectUrl();
+		}
 		if (sField.getName().equals("expiresIn")) {
 			return getExpiresIn();
 		}
@@ -104,6 +120,22 @@ public class SOAuthServer implements SDataBase
 		}
 		if (sField.getName().equals("clientSecret")) {
 			setClientSecret((String)val);
+			return;
+		}
+		if (sField.getName().equals("clientName")) {
+			setClientName((String)val);
+			return;
+		}
+		if (sField.getName().equals("clientUrl")) {
+			setClientUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("clientDescription")) {
+			setClientDescription((String)val);
+			return;
+		}
+		if (sField.getName().equals("redirectUrl")) {
+			setRedirectUrl((String)val);
 			return;
 		}
 		if (sField.getName().equals("expiresIn")) {
@@ -155,6 +187,38 @@ public class SOAuthServer implements SDataBase
 
 	public void setClientSecret(java.lang.String clientSecret) {
 		this.clientSecret = clientSecret;
+	}
+	
+	public java.lang.String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(java.lang.String clientName) {
+		this.clientName = clientName;
+	}
+	
+	public java.lang.String getClientUrl() {
+		return clientUrl;
+	}
+
+	public void setClientUrl(java.lang.String clientUrl) {
+		this.clientUrl = clientUrl;
+	}
+	
+	public java.lang.String getClientDescription() {
+		return clientDescription;
+	}
+
+	public void setClientDescription(java.lang.String clientDescription) {
+		this.clientDescription = clientDescription;
+	}
+	
+	public java.lang.String getRedirectUrl() {
+		return redirectUrl;
+	}
+
+	public void setRedirectUrl(java.lang.String redirectUrl) {
+		this.redirectUrl = redirectUrl;
 	}
 	
 	public long getExpiresIn() {

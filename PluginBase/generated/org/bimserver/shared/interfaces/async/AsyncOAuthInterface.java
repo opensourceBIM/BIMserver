@@ -34,6 +34,16 @@ public class AsyncOAuthInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetOAuthServerByIdCallback {
+		void success(org.bimserver.interfaces.objects.SOAuthServer result);
+		void error(Throwable e);
+	}
+	
+	public interface ListAuthorizationCodesCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SOAuthAuthorizationCode> result);
+		void error(Throwable e);
+	}
+	
 	public interface ListRegisteredServersCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SOAuthServer> result);
 		void error(Throwable e);
@@ -56,6 +66,30 @@ public class AsyncOAuthInterface {
 			public void run(){
 				try {
 					callback.success(syncService.generateForwardUrl(registrationEndpoint, authorizeUrl, returnUrl));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getOAuthServerById(final java.lang.Long oid, final GetOAuthServerByIdCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getOAuthServerById(oid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void listAuthorizationCodes(final ListAuthorizationCodesCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.listAuthorizationCodes());
 				} catch (Throwable e) {
 					callback.error(e);
 				}

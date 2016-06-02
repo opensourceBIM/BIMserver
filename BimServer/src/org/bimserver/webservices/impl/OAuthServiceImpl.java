@@ -12,6 +12,7 @@ import org.apache.oltu.oauth2.ext.dynamicreg.common.OAuthRegistration;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.interfaces.objects.SOAuthAuthorizationCode;
 import org.bimserver.interfaces.objects.SOAuthServer;
 import org.bimserver.models.store.OAuthAuthorizationCode;
 import org.bimserver.models.store.OAuthServer;
@@ -104,6 +105,26 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 			session.commit();
     	} catch (Exception e) {
     		handleException(e);
+		}
+	}
+	
+	@Override
+	public List<SOAuthAuthorizationCode> listAuthorizationCodes() throws ServerException, UserException {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+			User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			return getBimServer().getSConverter().convertToSListOAuthAuthorizationCode(user.getOAuthAuthorizationCodes());
+    	} catch (Exception e) {
+    		return handleException(e);
+		}
+	}
+	
+	@Override
+	public SOAuthServer getOAuthServerById(Long oid) throws ServerException, UserException {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+			OAuthServer oAuthServer = session.get(oid, OldQuery.getDefault());
+			return getBimServer().getSConverter().convertToSObject(oAuthServer);
+		} catch (Exception e) {
+			return handleException(e);
 		}
 	}
 }
