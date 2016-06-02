@@ -34,6 +34,10 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getRegistrationUrl <em>Registration Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientId <em>Client Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientSecret <em>Client Secret</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientName <em>Client Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientUrl <em>Client Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientDescription <em>Client Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getRedirectUrl <em>Redirect Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getExpiresIn <em>Expires In</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getIssuedAt <em>Issued At</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getApiUrl <em>Api Url</em>}</li>
@@ -124,6 +128,78 @@ public class OAuthServerImpl extends IdEObjectImpl implements OAuthServer {
 	 */
 	public void setClientSecret(String newClientSecret) {
 		eSet(StorePackage.Literals.OAUTH_SERVER__CLIENT_SECRET, newClientSecret);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getClientName() {
+		return (String) eGet(StorePackage.Literals.OAUTH_SERVER__CLIENT_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClientName(String newClientName) {
+		eSet(StorePackage.Literals.OAUTH_SERVER__CLIENT_NAME, newClientName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getClientUrl() {
+		return (String) eGet(StorePackage.Literals.OAUTH_SERVER__CLIENT_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClientUrl(String newClientUrl) {
+		eSet(StorePackage.Literals.OAUTH_SERVER__CLIENT_URL, newClientUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getClientDescription() {
+		return (String) eGet(StorePackage.Literals.OAUTH_SERVER__CLIENT_DESCRIPTION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClientDescription(String newClientDescription) {
+		eSet(StorePackage.Literals.OAUTH_SERVER__CLIENT_DESCRIPTION, newClientDescription);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getRedirectUrl() {
+		return (String) eGet(StorePackage.Literals.OAUTH_SERVER__REDIRECT_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRedirectUrl(String newRedirectUrl) {
+		eSet(StorePackage.Literals.OAUTH_SERVER__REDIRECT_URL, newRedirectUrl);
 	}
 
 	/**

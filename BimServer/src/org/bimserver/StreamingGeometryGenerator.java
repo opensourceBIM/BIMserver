@@ -272,7 +272,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), geometry.getIndices().length / 3);
 
-											Set<Color4f> usedColors = new HashSet<>();
+//											Set<Color4f> usedColors = new HashSet<>();
 											
 											if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 												boolean hasMaterial = false;
@@ -289,16 +289,16 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 																vertex_colors[4 * k + l] = val;
 																color.set(l, val);
 															}
-															usedColors.add(color);
+//															usedColors.add(color);
 														}
 													}
 												}
 //												System.out.println(usedColors.size() + " different colors");
-												if (!usedColors.isEmpty()) {
-													for (Color4f c : usedColors) {
-														System.out.println(c);
-													}
-												}
+//												if (!usedColors.isEmpty()) {
+//													for (Color4f c : usedColors) {
+//														System.out.println(c);
+//													}
+//												}
 												if (hasMaterial) {
 													geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Materials(), floatArrayToByteArray(vertex_colors));
 												}

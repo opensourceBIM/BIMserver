@@ -20,6 +20,7 @@ package org.bimserver.servlets;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,23 +43,28 @@ public class RootServlet extends HttpServlet {
 	private JsonApiServlet jsonApiServlet;
 	private UploadServlet uploadServlet;
 	private DownloadServlet downloadServlet;
+	private OAuthAuthorizationServlet oAuthAuthorizationServlet;
+	private OAuthRegistrationServlet oAuthRegistrationServlet;
 	private BimServer bimServer;
 
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		bimServer = (BimServer) getServletContext().getAttribute("bimserver");
+		ServletContext servletContext = getServletContext();
+		bimServer = (BimServer) servletContext.getAttribute("bimserver");
 		if (bimServer == null) {
 			throw new ServletException("No bimserver context attribute");
 		}
-		jsonApiServlet = new JsonApiServlet(bimServer, getServletContext());
-		syndicationServlet = new SyndicationServlet(bimServer, getServletContext());
-		uploadServlet = new UploadServlet(bimServer, getServletContext());
-		downloadServlet = new DownloadServlet(bimServer, getServletContext());
-		soap11Servlet = new WebServiceServlet11(bimServer, getServletContext());
+		jsonApiServlet = new JsonApiServlet(bimServer, servletContext);
+		syndicationServlet = new SyndicationServlet(bimServer, servletContext);
+		uploadServlet = new UploadServlet(bimServer, servletContext);
+		downloadServlet = new DownloadServlet(bimServer, servletContext);
+		soap11Servlet = new WebServiceServlet11(bimServer, servletContext);
 		soap11Servlet.init(getServletConfig());
-		soap12Servlet = new WebServiceServlet12(bimServer, getServletContext());
+		soap12Servlet = new WebServiceServlet12(bimServer, servletContext);
 		soap12Servlet.init(getServletConfig());
+		oAuthAuthorizationServlet = new OAuthAuthorizationServlet(bimServer, servletContext);
+		oAuthRegistrationServlet = new OAuthRegistrationServlet(bimServer, servletContext);
 	}
 
 	@Override
@@ -125,6 +131,10 @@ public class RootServlet extends HttpServlet {
 				syndicationServlet.service(request, response);
 			} else if (requestUri.startsWith("/json/") || requestUri.equals("/json")) {
 				jsonApiServlet.service(request, response);
+			} else if (requestUri.startsWith("/oauth/register")) {
+				oAuthRegistrationServlet.service(request, response);
+			} else if (requestUri.startsWith("/oauth")) {
+				oAuthAuthorizationServlet.service(request, response);
 			} else if (requestUri.startsWith("/upload/") || requestUri.equals("/upload")) {
 				uploadServlet.service(request, response);
 			} else if (requestUri.startsWith("/download/") || requestUri.equals("/download")) {

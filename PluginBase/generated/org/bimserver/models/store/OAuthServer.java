@@ -30,6 +30,10 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.OAuthServer#getRegistrationUrl <em>Registration Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getClientId <em>Client Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getClientSecret <em>Client Secret</em>}</li>
+ *   <li>{@link org.bimserver.models.store.OAuthServer#getClientName <em>Client Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.OAuthServer#getClientUrl <em>Client Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.OAuthServer#getClientDescription <em>Client Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.OAuthServer#getRedirectUrl <em>Redirect Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getExpiresIn <em>Expires In</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getIssuedAt <em>Issued At</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getApiUrl <em>Api Url</em>}</li>
@@ -119,6 +123,110 @@ public interface OAuthServer extends IdEObject {
 	 * @generated
 	 */
 	void setClientSecret(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Client Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Client Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Client Name</em>' attribute.
+	 * @see #setClientName(String)
+	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_ClientName()
+	 * @model
+	 * @generated
+	 */
+	String getClientName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.OAuthServer#getClientName <em>Client Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Client Name</em>' attribute.
+	 * @see #getClientName()
+	 * @generated
+	 */
+	void setClientName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Client Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Client Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Client Url</em>' attribute.
+	 * @see #setClientUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_ClientUrl()
+	 * @model
+	 * @generated
+	 */
+	String getClientUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.OAuthServer#getClientUrl <em>Client Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Client Url</em>' attribute.
+	 * @see #getClientUrl()
+	 * @generated
+	 */
+	void setClientUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Client Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Client Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Client Description</em>' attribute.
+	 * @see #setClientDescription(String)
+	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_ClientDescription()
+	 * @model
+	 * @generated
+	 */
+	String getClientDescription();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.OAuthServer#getClientDescription <em>Client Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Client Description</em>' attribute.
+	 * @see #getClientDescription()
+	 * @generated
+	 */
+	void setClientDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Redirect Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Redirect Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Redirect Url</em>' attribute.
+	 * @see #setRedirectUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_RedirectUrl()
+	 * @model
+	 * @generated
+	 */
+	String getRedirectUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.OAuthServer#getRedirectUrl <em>Redirect Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Redirect Url</em>' attribute.
+	 * @see #getRedirectUrl()
+	 * @generated
+	 */
+	void setRedirectUrl(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Expires In</b></em>' attribute.

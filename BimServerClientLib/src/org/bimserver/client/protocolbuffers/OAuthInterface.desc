@@ -1,5 +1,5 @@
 
-Ý
+Å
 OAuthInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoNotificationInterface.protoRemoteServiceInterface.protoLowLevelInterface.proto#NotificationRegistryInterface.proto"b
 GenerateForwardUrlRequest
 registrationEndpoint (	
@@ -7,8 +7,9 @@
 	returnUrl (	"A
 GenerateForwardUrlResponse
 errorMessage (	
-value (	"
-ListRegisteredServersRequest"¼
+value (	"(
+GetOAuthServerByIdRequest
+oid ("¼
 SOAuthServer
 apiUrl (	
 clientId (	
@@ -18,7 +19,20 @@
 oid (
 registrationEndpoint (	
 registrationUrl (	
-rid	 ("d
+rid	 ("a
+GetOAuthServerByIdResponse
+errorMessage (	-
+value (2.org.bimserver.pb.SOAuthServer"
+ListAuthorizationCodesRequest"X
+SOAuthAuthorizationCode
+code (	
+oauthServerId (
+oid (
+rid ("p
+ListAuthorizationCodesResponse
+errorMessage (	8
+value (2).org.bimserver.pb.SOAuthAuthorizationCode"
+ListRegisteredServersRequest"d
 ListRegisteredServersResponse
 errorMessage (	-
 value (2.org.bimserver.pb.SOAuthServer"J
@@ -30,9 +44,11 @@
 value ("B
 SetAuthorizationCodeRequest
 applicationId (
-code (	2Ö
+code (	2Ä
 OAuthInterfaceo
-generateForwardUrl+.org.bimserver.pb.GenerateForwardUrlRequest,.org.bimserver.pb.GenerateForwardUrlResponsex
+generateForwardUrl+.org.bimserver.pb.GenerateForwardUrlRequest,.org.bimserver.pb.GenerateForwardUrlResponseo
+getOAuthServerById+.org.bimserver.pb.GetOAuthServerByIdRequest,.org.bimserver.pb.GetOAuthServerByIdResponse{
+listAuthorizationCodes/.org.bimserver.pb.ListAuthorizationCodesRequest0.org.bimserver.pb.ListAuthorizationCodesResponsex
 listRegisteredServers..org.bimserver.pb.ListRegisteredServersRequest/.org.bimserver.pb.ListRegisteredServersResponser
 registerApplication,.org.bimserver.pb.RegisterApplicationRequest-.org.bimserver.pb.RegisterApplicationResponsee
 setAuthorizationCode-.org.bimserver.pb.SetAuthorizationCodeRequest.org.bimserver.pb.VoidResponseBBOAuthInterfaceImplHˆ

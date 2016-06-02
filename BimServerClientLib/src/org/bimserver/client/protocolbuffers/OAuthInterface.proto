@@ -35,6 +35,10 @@ option optimize_for = SPEED;
 service OAuthInterface {
 	rpc generateForwardUrl (GenerateForwardUrlRequest) returns (GenerateForwardUrlResponse);
 
+	rpc getOAuthServerById (GetOAuthServerByIdRequest) returns (GetOAuthServerByIdResponse);
+
+	rpc listAuthorizationCodes (ListAuthorizationCodesRequest) returns (ListAuthorizationCodesResponse);
+
 	rpc listRegisteredServers (ListRegisteredServersRequest) returns (ListRegisteredServersResponse);
 
 	rpc registerApplication (RegisterApplicationRequest) returns (RegisterApplicationResponse);
@@ -54,7 +58,8 @@ message GenerateForwardUrlResponse {
 	optional string value = 2;
 }
 
-message ListRegisteredServersRequest {
+message GetOAuthServerByIdRequest {
+	optional int64 oid = 1;
 }
 
 message SOAuthServer {
@@ -67,6 +72,29 @@ message SOAuthServer {
 	optional string registrationEndpoint = 7;
 	optional string registrationUrl = 8;
 	optional int32 rid = 9;
+}
+
+message GetOAuthServerByIdResponse {
+	optional string errorMessage = 1;
+	optional SOAuthServer value = 2;
+}
+
+message ListAuthorizationCodesRequest {
+}
+
+message SOAuthAuthorizationCode {
+	optional string code = 1;
+	optional int64 oauthServerId = 2;
+	optional int64 oid = 3;
+	optional int32 rid = 4;
+}
+
+message ListAuthorizationCodesResponse {
+	optional string errorMessage = 1;
+	repeated SOAuthAuthorizationCode value = 2;
+}
+
+message ListRegisteredServersRequest {
 }
 
 message ListRegisteredServersResponse {

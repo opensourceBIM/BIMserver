@@ -10,6 +10,7 @@ import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
+import org.bimserver.interfaces.objects.SOAuthAuthorizationCode;
 import org.bimserver.interfaces.objects.SOAuthServer;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -47,4 +48,11 @@ public interface OAuthInterface extends PublicInterface {
 	void setAuthorizationCode(
 		@WebParam(name = "applicationId", partName = "setAuthorizationCode.applicationId") Long applicationId, 
 		@WebParam(name = "code", partName = "setAuthorizationCode.code") String code) throws UserException, ServerException;
+	
+	@WebMethod(action="getOAuthServerById")
+	SOAuthServer getOAuthServerById(
+		@WebParam(name = "oid", partName = "getOAuthServerById.oid") Long oid) throws ServerException, UserException;
+	
+	@WebMethod(action="listAuthorizationCodes")
+	List<SOAuthAuthorizationCode> listAuthorizationCodes() throws ServerException, UserException;
 }
