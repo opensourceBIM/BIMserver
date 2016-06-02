@@ -378,7 +378,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 			
 			final RenderEngineFilter renderEngineFilter = new RenderEngineFilter();
 
-			RenderEnginePool pool = bimServer.getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName());
+			RenderEnginePool pool = bimServer.getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
 			
 			if (maxSimultanousThreads == 1) {
 				Runner runner = new Runner(null, pool, databaseSession, settings, store, model, ifcSerializerPlugin, model, pid, rid, null, renderEngineFilter, generateGeometryResult);

@@ -219,7 +219,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							OidConvertingSerializer oidConvertingSerializer = (OidConvertingSerializer)ifcSerializer;
 							Map<Long, Integer> oidToEid = oidConvertingSerializer.getOidToEid();
 							
-							
 							for (HashMapVirtualObject ifcProduct : oids) {
 								Integer expressId = oidToEid.get(ifcProduct.getOid());
 								if (ifcProduct.eGet(representationFeature) != null) {
@@ -268,11 +267,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	
 											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), intArrayToByteArray(geometry.getIndices()));
 											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), floatArrayToByteArray(geometry.getVertices()));
-											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_MaterialIndices(), intArrayToByteArray(geometry.getMaterialIndices()));
+//											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_MaterialIndices(), intArrayToByteArray(geometry.getMaterialIndices()));
 											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Normals(), floatArrayToByteArray(geometry.getNormals()));
 											
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), geometry.getIndices().length / 3);
-	
+
+											Set<Color4f> usedColors = new HashSet<>();
+											
 											if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 												boolean hasMaterial = false;
 												float[] vertex_colors = new float[geometry.getVertices().length / 3 * 4];
@@ -282,10 +283,20 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 														int k = geometry.getIndices()[i * 3 + j];
 														if (c > -1) {
 															hasMaterial = true;
+															Color4f color = new Color4f();
 															for (int l = 0; l < 4; ++l) {
-																vertex_colors[4 * k + l] = geometry.getMaterials()[4 * c + l];
+																float val = geometry.getMaterials()[4 * c + l];
+																vertex_colors[4 * k + l] = val;
+																color.set(l, val);
 															}
+															usedColors.add(color);
 														}
+													}
+												}
+//												System.out.println(usedColors.size() + " different colors");
+												if (!usedColors.isEmpty()) {
+													for (Color4f c : usedColors) {
+														System.out.println(c);
 													}
 												}
 												if (hasMaterial) {
@@ -382,7 +393,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		}
 
 		private void writeDebugFile(byte[] bytes) throws FileNotFoundException, IOException {
-			boolean debug = true;
+			boolean debug = false;
 			if (debug) {
 				String basefilenamename = "all";
 				if (eClass != null) {
@@ -453,7 +464,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			
 			final RenderEngineFilter renderEngineFilter = new RenderEngineFilter();
 
-			RenderEnginePool renderEnginePool = bimServer.getRenderEnginePools().getRenderEnginePool(packageMetaData.getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName());
+			RenderEnginePool renderEnginePool = bimServer.getRenderEnginePools().getRenderEnginePool(packageMetaData.getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
 			
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(10000000));
 			
