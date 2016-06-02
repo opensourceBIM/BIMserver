@@ -35,11 +35,13 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientId <em>Client Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientSecret <em>Client Secret</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientName <em>Client Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientIcon <em>Client Icon</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientUrl <em>Client Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientDescription <em>Client Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getRedirectUrl <em>Redirect Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getExpiresIn <em>Expires In</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getIssuedAt <em>Issued At</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#isIncoming <em>Incoming</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getApiUrl <em>Api Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getRegistrationEndpoint <em>Registration Endpoint</em>}</li>
  * </ul>
@@ -153,6 +155,24 @@ public class OAuthServerImpl extends IdEObjectImpl implements OAuthServer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getClientIcon() {
+		return (String) eGet(StorePackage.Literals.OAUTH_SERVER__CLIENT_ICON, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClientIcon(String newClientIcon) {
+		eSet(StorePackage.Literals.OAUTH_SERVER__CLIENT_ICON, newClientIcon);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getClientUrl() {
 		return (String) eGet(StorePackage.Literals.OAUTH_SERVER__CLIENT_URL, true);
 	}
@@ -236,6 +256,24 @@ public class OAuthServerImpl extends IdEObjectImpl implements OAuthServer {
 	 */
 	public void setIssuedAt(String newIssuedAt) {
 		eSet(StorePackage.Literals.OAUTH_SERVER__ISSUED_AT, newIssuedAt);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIncoming() {
+		return (Boolean) eGet(StorePackage.Literals.OAUTH_SERVER__INCOMING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIncoming(boolean newIncoming) {
+		eSet(StorePackage.Literals.OAUTH_SERVER__INCOMING, newIncoming);
 	}
 
 	/**

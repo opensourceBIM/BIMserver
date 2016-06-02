@@ -1,5 +1,5 @@
 
-Å
+®
 OAuthInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoNotificationInterface.protoRemoteServiceInterface.protoLowLevelInterface.proto#NotificationRegistryInterface.proto"b
 GenerateForwardUrlRequest
 registrationEndpoint (	
@@ -9,17 +9,24 @@
 errorMessage (	
 value (	"(
 GetOAuthServerByIdRequest
-oid ("¼
+oid ("¥
 SOAuthServer
-apiUrl (	
-clientId (	
-clientSecret (	
-	expiresIn (
-issuedAt (	
-oid (
-registrationEndpoint (	
-registrationUrl (	
-rid	 ("a
+apiUrl (	
+clientDescription (	
+clientId (	
+
+clientName (	
+clientSecret (	
+	clientUrl (	
+	expiresIn (
+incoming (
+issuedAt	 (	
+oid
+ (
+redirectUrl (	
+registrationEndpoint (	
+registrationUrl (	
+rid ("a
 GetOAuthServerByIdResponse
 errorMessage (	-
 value (2.org.bimserver.pb.SOAuthServer"

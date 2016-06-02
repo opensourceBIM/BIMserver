@@ -6198,7 +6198,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOAuthServer_ClientUrl() {
+	public EAttribute getOAuthServer_ClientIcon() {
 		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(4);
 	}
 
@@ -6207,7 +6207,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOAuthServer_ClientDescription() {
+	public EAttribute getOAuthServer_ClientUrl() {
 		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(5);
 	}
 
@@ -6216,7 +6216,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOAuthServer_RedirectUrl() {
+	public EAttribute getOAuthServer_ClientDescription() {
 		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(6);
 	}
 
@@ -6225,7 +6225,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOAuthServer_ExpiresIn() {
+	public EAttribute getOAuthServer_RedirectUrl() {
 		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(7);
 	}
 
@@ -6234,7 +6234,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOAuthServer_IssuedAt() {
+	public EAttribute getOAuthServer_ExpiresIn() {
 		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(8);
 	}
 
@@ -6243,7 +6243,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOAuthServer_ApiUrl() {
+	public EAttribute getOAuthServer_IssuedAt() {
 		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(9);
 	}
 
@@ -6252,8 +6252,26 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOAuthServer_RegistrationEndpoint() {
+	public EAttribute getOAuthServer_Incoming() {
 		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOAuthServer_ApiUrl() {
+		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOAuthServer_RegistrationEndpoint() {
+		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(12);
 	}
 
 	/**

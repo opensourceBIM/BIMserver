@@ -42,13 +42,14 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
         		
         		ServerSettings serverSettings = getBimServer().getServerSettingsCache().getServerSettings();
         		
+				String redirectUrl = getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth";
 				OAuthClientRequest request = OAuthClientRegistrationRequest
 				    .location(registrationEndpoint, OAuthRegistration.Type.PUSH)
 				    .setName(serverSettings.getName())
-				    .setUrl(getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth")
+				    .setUrl(redirectUrl)
 				    .setDescription(serverSettings.getDescription())
 				    .setIcon(serverSettings.getIcon())
-				    .setRedirectURL(getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth")
+				    .setRedirectURL(redirectUrl)
 				    .buildJSONMessage();
 				OAuthRegistrationClient oauthclient = new OAuthRegistrationClient(new URLConnectionClient());
 				OAuthClientRegistrationResponse response = oauthclient.clientInfo(request);
@@ -60,6 +61,11 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 				oAuthServer.setIssuedAt(response.getIssuedAt());
 				oAuthServer.setExpiresIn(response.getExpiresIn());
 				oAuthServer.setRegistrationEndpoint(registrationEndpoint);
+				oAuthServer.setClientDescription(serverSettings.getDescription());
+				oAuthServer.setClientName(serverSettings.getName());
+				oAuthServer.setClientIcon(serverSettings.getIcon());
+				oAuthServer.setIncoming(false);
+				oAuthServer.setRedirectUrl(redirectUrl);
 				
 				session.commit();
 				return oAuthServer.getOid();

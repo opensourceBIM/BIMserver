@@ -31,11 +31,13 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.OAuthServer#getClientId <em>Client Id</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getClientSecret <em>Client Secret</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getClientName <em>Client Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.OAuthServer#getClientIcon <em>Client Icon</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getClientUrl <em>Client Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getClientDescription <em>Client Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getRedirectUrl <em>Redirect Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getExpiresIn <em>Expires In</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getIssuedAt <em>Issued At</em>}</li>
+ *   <li>{@link org.bimserver.models.store.OAuthServer#isIncoming <em>Incoming</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getApiUrl <em>Api Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getRegistrationEndpoint <em>Registration Endpoint</em>}</li>
  * </ul>
@@ -149,6 +151,32 @@ public interface OAuthServer extends IdEObject {
 	 * @generated
 	 */
 	void setClientName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Client Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Client Icon</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Client Icon</em>' attribute.
+	 * @see #setClientIcon(String)
+	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_ClientIcon()
+	 * @model
+	 * @generated
+	 */
+	String getClientIcon();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.OAuthServer#getClientIcon <em>Client Icon</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Client Icon</em>' attribute.
+	 * @see #getClientIcon()
+	 * @generated
+	 */
+	void setClientIcon(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Client Url</b></em>' attribute.
@@ -279,6 +307,32 @@ public interface OAuthServer extends IdEObject {
 	 * @generated
 	 */
 	void setIssuedAt(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Incoming</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Incoming</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Incoming</em>' attribute.
+	 * @see #setIncoming(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_Incoming()
+	 * @model
+	 * @generated
+	 */
+	boolean isIncoming();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.OAuthServer#isIncoming <em>Incoming</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Incoming</em>' attribute.
+	 * @see #isIncoming()
+	 * @generated
+	 */
+	void setIncoming(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Api Url</b></em>' attribute.
