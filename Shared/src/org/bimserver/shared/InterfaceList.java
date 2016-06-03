@@ -27,6 +27,7 @@ import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.NotificationRegistryInterface;
+import org.bimserver.shared.interfaces.OAuthInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
@@ -49,6 +50,7 @@ public class InterfaceList {
 		interfaces.add(RemoteServiceInterface.class);
 		interfaces.add(LowLevelInterface.class);
 		interfaces.add(NotificationRegistryInterface.class);
+		interfaces.add(OAuthInterface.class);
 	}
 
 	public static SServicesMap createSServicesMap() {

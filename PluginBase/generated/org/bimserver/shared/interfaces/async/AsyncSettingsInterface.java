@@ -149,6 +149,21 @@ public class AsyncSettingsInterface {
 		void error(Throwable e);
 	}
 	
+	public interface SetServerDescriptionCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
+	public interface SetServerIconCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
+	public interface SetServerNameCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface SetServerSettingsCallback {
 		void success();
 		void error(Throwable e);
@@ -466,6 +481,45 @@ public class AsyncSettingsInterface {
 			public void run(){
 				try {
 					syncService.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setServerDescription(final java.lang.String strict, final SetServerDescriptionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setServerDescription(strict);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setServerIcon(final java.lang.String serverIcon, final SetServerIconCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setServerIcon(serverIcon);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setServerName(final java.lang.String serverName, final SetServerNameCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setServerName(serverName);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

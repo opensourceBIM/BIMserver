@@ -31,6 +31,8 @@ public class Step0003 extends Migration {
 		schema.createEAttribute(serviceDescriptor, "companyUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(serviceDescriptor, "tokenUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(serviceDescriptor, "newProfileUrl", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(serviceDescriptor, "registerUrl", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(serviceDescriptor, "authorizeUrl", EcorePackage.eINSTANCE.getEString());
 	}
 
 	@Override

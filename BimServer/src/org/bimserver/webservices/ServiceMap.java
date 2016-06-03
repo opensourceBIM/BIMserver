@@ -32,6 +32,7 @@ import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.NotificationInterfaceAdaptor;
 import org.bimserver.shared.interfaces.NotificationRegistryInterface;
+import org.bimserver.shared.interfaces.OAuthInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
@@ -39,7 +40,6 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.interfaces.async.AsyncAdminInterface;
 import org.bimserver.shared.interfaces.async.AsyncAuthInterface;
-import org.bimserver.shared.interfaces.async.AsyncLowLevelInterface;
 import org.bimserver.shared.interfaces.async.AsyncMetaInterface;
 import org.bimserver.shared.interfaces.async.AsyncPluginInterface;
 import org.bimserver.shared.interfaces.async.AsyncRegistryInterface;
@@ -51,6 +51,7 @@ import org.bimserver.webservices.impl.AuthServiceImpl;
 import org.bimserver.webservices.impl.LowLevelServiceImpl;
 import org.bimserver.webservices.impl.MetaServiceImpl;
 import org.bimserver.webservices.impl.NotificationRegistryServiceImpl;
+import org.bimserver.webservices.impl.OAuthServiceImpl;
 import org.bimserver.webservices.impl.PluginServiceImpl;
 import org.bimserver.webservices.impl.RemoteServiceImpl;
 import org.bimserver.webservices.impl.ServiceImpl;
@@ -114,6 +115,8 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 			publicInterface = new NotificationInterfaceAdaptor();
 		} else if (clazz == PluginInterface.class) {
 			publicInterface = new PluginServiceImpl(this);
+		} else if (clazz == OAuthInterface.class) {
+			publicInterface = new OAuthServiceImpl(this);
 		} else {
 			throw new RuntimeException("Unknown interface: " + clazz.getName());
 		}

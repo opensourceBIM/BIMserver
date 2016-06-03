@@ -46,6 +46,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getCompanyUrl <em>Company Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getTokenUrl <em>Token Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getNewProfileUrl <em>New Profile Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getRegisterUrl <em>Register Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getAuthorizeUrl <em>Authorize Url</em>}</li>
  * </ul>
  *
  * @generated
@@ -348,6 +350,42 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 */
 	public void setNewProfileUrl(String newNewProfileUrl) {
 		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__NEW_PROFILE_URL, newNewProfileUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getRegisterUrl() {
+		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__REGISTER_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRegisterUrl(String newRegisterUrl) {
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__REGISTER_URL, newRegisterUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getAuthorizeUrl() {
+		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__AUTHORIZE_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAuthorizeUrl(String newAuthorizeUrl) {
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__AUTHORIZE_URL, newAuthorizeUrl);
 	}
 
 } //ServiceDescriptorImpl

@@ -150,7 +150,7 @@ public class TestIfcEngineEmbedded {
 			
 			// Setup the server
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-				client.getAdminInterface().setup("http://localhost:8080", "Administrator", "admin@bimserver.org", "admin");
+				client.getAdminInterface().setup("http://localhost:8080", "Administrator", "admin@bimserver.org", "admin", null, null, null);
 			}			
 
 			// Authenticate

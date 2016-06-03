@@ -470,13 +470,22 @@ public interface StorePackage extends EPackage {
 	int USER__LOGS = 18;
 
 	/**
+	 * The feature id for the '<em><b>OAuth Authorization Codes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__OAUTH_AUTHORIZATION_CODES = 19;
+
+	/**
 	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 19;
+	int USER_FEATURE_COUNT = 20;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -1204,13 +1213,40 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS__PLUGIN_STRICT_VERSION_CHECKING = 26;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__NAME = 27;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__DESCRIPTION = 28;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__ICON = 29;
+
+	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 27;
+	int SERVER_SETTINGS_FEATURE_COUNT = 30;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -3874,13 +3910,31 @@ public interface StorePackage extends EPackage {
 	int SERVICE_DESCRIPTOR__NEW_PROFILE_URL = 14;
 
 	/**
+	 * The feature id for the '<em><b>Register Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_DESCRIPTOR__REGISTER_URL = 15;
+
+	/**
+	 * The feature id for the '<em><b>Authorize Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_DESCRIPTOR__AUTHORIZE_URL = 16;
+
+	/**
 	 * The number of structural features of the '<em>Service Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_DESCRIPTOR_FEATURE_COUNT = 15;
+	int SERVICE_DESCRIPTOR_FEATURE_COUNT = 17;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceImpl <em>Service</em>}' class.
@@ -6365,6 +6419,125 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_INFORMATION_FEATURE_COUNT = 7;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.OAuthServerImpl <em>OAuth Server</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.OAuthServerImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getOAuthServer()
+	 * @generated
+	 */
+	int OAUTH_SERVER = 92;
+
+	/**
+	 * The feature id for the '<em><b>Registration Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_SERVER__REGISTRATION_URL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Client Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_SERVER__CLIENT_ID = 1;
+
+	/**
+	 * The feature id for the '<em><b>Client Secret</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_SERVER__CLIENT_SECRET = 2;
+
+	/**
+	 * The feature id for the '<em><b>Expires In</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_SERVER__EXPIRES_IN = 3;
+
+	/**
+	 * The feature id for the '<em><b>Issued At</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_SERVER__ISSUED_AT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Api Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_SERVER__API_URL = 5;
+
+	/**
+	 * The feature id for the '<em><b>Registration Endpoint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_SERVER__REGISTRATION_ENDPOINT = 6;
+
+	/**
+	 * The number of structural features of the '<em>OAuth Server</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_SERVER_FEATURE_COUNT = 7;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl <em>OAuth Authorization Code</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getOAuthAuthorizationCode()
+	 * @generated
+	 */
+	int OAUTH_AUTHORIZATION_CODE = 93;
+
+	/**
+	 * The feature id for the '<em><b>Oauth Server</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_AUTHORIZATION_CODE__OAUTH_SERVER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_AUTHORIZATION_CODE__CODE = 1;
+
+	/**
+	 * The number of structural features of the '<em>OAuth Authorization Code</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_AUTHORIZATION_CODE_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6372,7 +6545,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 92;
+	int USER_TYPE = 94;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -6382,7 +6555,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 93;
+	int SI_PREFIX = 95;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -6392,7 +6565,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 94;
+	int OBJECT_STATE = 96;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -6402,7 +6575,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 95;
+	int COMPARE_TYPE = 97;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -6412,7 +6585,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 96;
+	int ACTION_STATE = 98;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -6422,7 +6595,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 97;
+	int SERVER_STATE = 99;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -6432,7 +6605,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 98;
+	int EXTENDED_DATA_SCHEMA_TYPE = 100;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -6442,7 +6615,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 99;
+	int TRIGGER = 101;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
@@ -6452,7 +6625,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
 	 * @generated
 	 */
-	int SERVICE_SIMPLE_TYPE = 100;
+	int SERVICE_SIMPLE_TYPE = 102;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -6462,7 +6635,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 101;
+	int PRIMITIVE_ENUM = 103;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -6472,7 +6645,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 102;
+	int NOTIFICTION_RESULT_ENUM = 104;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -6482,7 +6655,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 103;
+	int PROGRESS_TOPIC_TYPE = 105;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ModelCheckerResultType <em>Model Checker Result Type</em>}' enum.
@@ -6492,7 +6665,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultType()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_TYPE = 104;
+	int MODEL_CHECKER_RESULT_TYPE = 106;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}' enum.
@@ -6502,7 +6675,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSmtpProtocol()
 	 * @generated
 	 */
-	int SMTP_PROTOCOL = 105;
+	int SMTP_PROTOCOL = 107;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginBundleType <em>Plugin Bundle Type</em>}' enum.
@@ -6512,7 +6685,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundleType()
 	 * @generated
 	 */
-	int PLUGIN_BUNDLE_TYPE = 106;
+	int PLUGIN_BUNDLE_TYPE = 108;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginType <em>Plugin Type</em>}' enum.
@@ -6522,7 +6695,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginType()
 	 * @generated
 	 */
-	int PLUGIN_TYPE = 107;
+	int PLUGIN_TYPE = 109;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -6532,7 +6705,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 108;
+	int DATA_HANDLER = 110;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -7004,6 +7177,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUser_Logs();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.User#getOAuthAuthorizationCodes <em>OAuth Authorization Codes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>OAuth Authorization Codes</em>'.
+	 * @see org.bimserver.models.store.User#getOAuthAuthorizationCodes()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EReference getUser_OAuthAuthorizationCodes();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Revision <em>Revision</em>}'.
@@ -7835,6 +8019,39 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServerSettings_PluginStrictVersionChecking();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#getName()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#getDescription()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getIcon <em>Icon</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Icon</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#getIcon()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_Icon();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.UserSettings <em>User Settings</em>}'.
@@ -10004,6 +10221,28 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServiceDescriptor_NewProfileUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceDescriptor#getRegisterUrl <em>Register Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Register Url</em>'.
+	 * @see org.bimserver.models.store.ServiceDescriptor#getRegisterUrl()
+	 * @see #getServiceDescriptor()
+	 * @generated
+	 */
+	EAttribute getServiceDescriptor_RegisterUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceDescriptor#getAuthorizeUrl <em>Authorize Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Authorize Url</em>'.
+	 * @see org.bimserver.models.store.ServiceDescriptor#getAuthorizeUrl()
+	 * @see #getServiceDescriptor()
+	 * @generated
+	 */
+	EAttribute getServiceDescriptor_AuthorizeUrl();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Service <em>Service</em>}'.
@@ -12317,6 +12556,125 @@ public interface StorePackage extends EPackage {
 	EAttribute getPluginInformation_InstallForNewUsers();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.OAuthServer <em>OAuth Server</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>OAuth Server</em>'.
+	 * @see org.bimserver.models.store.OAuthServer
+	 * @generated
+	 */
+	EClass getOAuthServer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthServer#getRegistrationUrl <em>Registration Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Registration Url</em>'.
+	 * @see org.bimserver.models.store.OAuthServer#getRegistrationUrl()
+	 * @see #getOAuthServer()
+	 * @generated
+	 */
+	EAttribute getOAuthServer_RegistrationUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthServer#getClientId <em>Client Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Client Id</em>'.
+	 * @see org.bimserver.models.store.OAuthServer#getClientId()
+	 * @see #getOAuthServer()
+	 * @generated
+	 */
+	EAttribute getOAuthServer_ClientId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthServer#getClientSecret <em>Client Secret</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Client Secret</em>'.
+	 * @see org.bimserver.models.store.OAuthServer#getClientSecret()
+	 * @see #getOAuthServer()
+	 * @generated
+	 */
+	EAttribute getOAuthServer_ClientSecret();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthServer#getExpiresIn <em>Expires In</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expires In</em>'.
+	 * @see org.bimserver.models.store.OAuthServer#getExpiresIn()
+	 * @see #getOAuthServer()
+	 * @generated
+	 */
+	EAttribute getOAuthServer_ExpiresIn();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthServer#getIssuedAt <em>Issued At</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Issued At</em>'.
+	 * @see org.bimserver.models.store.OAuthServer#getIssuedAt()
+	 * @see #getOAuthServer()
+	 * @generated
+	 */
+	EAttribute getOAuthServer_IssuedAt();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthServer#getApiUrl <em>Api Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Api Url</em>'.
+	 * @see org.bimserver.models.store.OAuthServer#getApiUrl()
+	 * @see #getOAuthServer()
+	 * @generated
+	 */
+	EAttribute getOAuthServer_ApiUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthServer#getRegistrationEndpoint <em>Registration Endpoint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Registration Endpoint</em>'.
+	 * @see org.bimserver.models.store.OAuthServer#getRegistrationEndpoint()
+	 * @see #getOAuthServer()
+	 * @generated
+	 */
+	EAttribute getOAuthServer_RegistrationEndpoint();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.OAuthAuthorizationCode <em>OAuth Authorization Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>OAuth Authorization Code</em>'.
+	 * @see org.bimserver.models.store.OAuthAuthorizationCode
+	 * @generated
+	 */
+	EClass getOAuthAuthorizationCode();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.OAuthAuthorizationCode#getOauthServer <em>Oauth Server</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Oauth Server</em>'.
+	 * @see org.bimserver.models.store.OAuthAuthorizationCode#getOauthServer()
+	 * @see #getOAuthAuthorizationCode()
+	 * @generated
+	 */
+	EReference getOAuthAuthorizationCode_OauthServer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthAuthorizationCode#getCode <em>Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Code</em>'.
+	 * @see org.bimserver.models.store.OAuthAuthorizationCode#getCode()
+	 * @see #getOAuthAuthorizationCode()
+	 * @generated
+	 */
+	EAttribute getOAuthAuthorizationCode_Code();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12856,6 +13214,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference USER__LOGS = eINSTANCE.getUser_Logs();
+
+		/**
+		 * The meta object literal for the '<em><b>OAuth Authorization Codes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER__OAUTH_AUTHORIZATION_CODES = eINSTANCE.getUser_OAuthAuthorizationCodes();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -13474,6 +13840,30 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVER_SETTINGS__PLUGIN_STRICT_VERSION_CHECKING = eINSTANCE.getServerSettings_PluginStrictVersionChecking();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__NAME = eINSTANCE.getServerSettings_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__DESCRIPTION = eINSTANCE.getServerSettings_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Icon</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__ICON = eINSTANCE.getServerSettings_Icon();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -15166,6 +15556,22 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVICE_DESCRIPTOR__NEW_PROFILE_URL = eINSTANCE.getServiceDescriptor_NewProfileUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Register Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_DESCRIPTOR__REGISTER_URL = eINSTANCE.getServiceDescriptor_RegisterUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Authorize Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_DESCRIPTOR__AUTHORIZE_URL = eINSTANCE.getServiceDescriptor_AuthorizeUrl();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceImpl <em>Service</em>}' class.
@@ -16964,6 +17370,98 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLUGIN_INFORMATION__INSTALL_FOR_NEW_USERS = eINSTANCE.getPluginInformation_InstallForNewUsers();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.OAuthServerImpl <em>OAuth Server</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.OAuthServerImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getOAuthServer()
+		 * @generated
+		 */
+		EClass OAUTH_SERVER = eINSTANCE.getOAuthServer();
+
+		/**
+		 * The meta object literal for the '<em><b>Registration Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OAUTH_SERVER__REGISTRATION_URL = eINSTANCE.getOAuthServer_RegistrationUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Client Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OAUTH_SERVER__CLIENT_ID = eINSTANCE.getOAuthServer_ClientId();
+
+		/**
+		 * The meta object literal for the '<em><b>Client Secret</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OAUTH_SERVER__CLIENT_SECRET = eINSTANCE.getOAuthServer_ClientSecret();
+
+		/**
+		 * The meta object literal for the '<em><b>Expires In</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OAUTH_SERVER__EXPIRES_IN = eINSTANCE.getOAuthServer_ExpiresIn();
+
+		/**
+		 * The meta object literal for the '<em><b>Issued At</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OAUTH_SERVER__ISSUED_AT = eINSTANCE.getOAuthServer_IssuedAt();
+
+		/**
+		 * The meta object literal for the '<em><b>Api Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OAUTH_SERVER__API_URL = eINSTANCE.getOAuthServer_ApiUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Registration Endpoint</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OAUTH_SERVER__REGISTRATION_ENDPOINT = eINSTANCE.getOAuthServer_RegistrationEndpoint();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl <em>OAuth Authorization Code</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getOAuthAuthorizationCode()
+		 * @generated
+		 */
+		EClass OAUTH_AUTHORIZATION_CODE = eINSTANCE.getOAuthAuthorizationCode();
+
+		/**
+		 * The meta object literal for the '<em><b>Oauth Server</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OAUTH_AUTHORIZATION_CODE__OAUTH_SERVER = eINSTANCE.getOAuthAuthorizationCode_OauthServer();
+
+		/**
+		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OAUTH_AUTHORIZATION_CODE__CODE = eINSTANCE.getOAuthAuthorizationCode_Code();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

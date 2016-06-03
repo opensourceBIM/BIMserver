@@ -253,6 +253,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createPluginBundle();
 		case StorePackage.PLUGIN_INFORMATION:
 			return (EObject) createPluginInformation();
+		case StorePackage.OAUTH_SERVER:
+			return (EObject) createOAuthServer();
+		case StorePackage.OAUTH_AUTHORIZATION_CODE:
+			return (EObject) createOAuthAuthorizationCode();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1270,6 +1274,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public PluginInformation createPluginInformation() {
 		PluginInformationImpl pluginInformation = new PluginInformationImpl();
 		return pluginInformation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OAuthServer createOAuthServer() {
+		OAuthServerImpl oAuthServer = new OAuthServerImpl();
+		return oAuthServer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OAuthAuthorizationCode createOAuthAuthorizationCode() {
+		OAuthAuthorizationCodeImpl oAuthAuthorizationCode = new OAuthAuthorizationCodeImpl();
+		return oAuthAuthorizationCode;
 	}
 
 	/**

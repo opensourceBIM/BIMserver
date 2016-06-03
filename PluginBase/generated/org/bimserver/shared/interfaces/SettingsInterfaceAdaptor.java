@@ -107,6 +107,15 @@ public class SettingsInterfaceAdaptor implements org.bimserver.shared.interfaces
 	public void setSendConfirmationEmailAfterRegistration(java.lang.Boolean sendConfirmationEmailAfterRegistration) throws UserException, ServerException {
 	}
 	
+	public void setServerDescription(java.lang.String strict) throws UserException, ServerException {
+	}
+	
+	public void setServerIcon(java.lang.String serverIcon) throws UserException, ServerException {
+	}
+	
+	public void setServerName(java.lang.String serverName) throws UserException, ServerException {
+	}
+	
 	public void setServerSettings(org.bimserver.interfaces.objects.SServerSettings serverSettings) throws UserException, ServerException {
 	}
 	

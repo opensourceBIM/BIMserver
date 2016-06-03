@@ -43,6 +43,8 @@ import org.bimserver.models.log.AccessMethod;
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getCompanyUrl <em>Company Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getTokenUrl <em>Token Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getNewProfileUrl <em>New Profile Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getRegisterUrl <em>Register Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getAuthorizeUrl <em>Authorize Url</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getServiceDescriptor()
@@ -446,5 +448,57 @@ public interface ServiceDescriptor extends IdEObject {
 	 * @generated
 	 */
 	void setNewProfileUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Register Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Register Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Register Url</em>' attribute.
+	 * @see #setRegisterUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getServiceDescriptor_RegisterUrl()
+	 * @model
+	 * @generated
+	 */
+	String getRegisterUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServiceDescriptor#getRegisterUrl <em>Register Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Register Url</em>' attribute.
+	 * @see #getRegisterUrl()
+	 * @generated
+	 */
+	void setRegisterUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Authorize Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Authorize Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Authorize Url</em>' attribute.
+	 * @see #setAuthorizeUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getServiceDescriptor_AuthorizeUrl()
+	 * @model
+	 * @generated
+	 */
+	String getAuthorizeUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServiceDescriptor#getAuthorizeUrl <em>Authorize Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Authorize Url</em>' attribute.
+	 * @see #getAuthorizeUrl()
+	 * @generated
+	 */
+	void setAuthorizeUrl(String value);
 
 } // ServiceDescriptor

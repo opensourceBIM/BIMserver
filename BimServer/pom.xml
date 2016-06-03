@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.48-SNAPSHOT</version>
+		<version>1.5.49-SNAPSHOT</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -101,7 +101,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bimserverclientlib</artifactId>
-			<version>1.5.48-SNAPSHOT</version>
+			<version>1.5.49-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -132,6 +132,16 @@
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-javascript</artifactId>
 			<version>3.1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.oltu.oauth2</groupId>
+			<artifactId>org.apache.oltu.oauth2.client</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.oltu.oauth2</groupId>
+			<artifactId>org.apache.oltu.oauth2.dynamicreg.client</artifactId>
+			<version>1.0.1</version>
 		</dependency>
 	</dependencies>
 </project>

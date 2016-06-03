@@ -74,6 +74,12 @@ service SettingsInterface {
 
 	rpc setSendConfirmationEmailAfterRegistration (SetSendConfirmationEmailAfterRegistrationRequest) returns (VoidResponse);
 
+	rpc setServerDescription (SetServerDescriptionRequest) returns (VoidResponse);
+
+	rpc setServerIcon (SetServerIconRequest) returns (VoidResponse);
+
+	rpc setServerName (SetServerNameRequest) returns (VoidResponse);
+
 	rpc setServerSettings (SetServerSettingsRequest) returns (VoidResponse);
 
 	rpc setServiceRepositoryUrl (SetServiceRepositoryUrlRequest) returns (VoidResponse);
@@ -118,29 +124,32 @@ message SServerSettings {
 	optional bool allowUsersToCreateTopLevelProjects = 4;
 	optional bool cacheOutputFiles = 5;
 	optional bool checkinMergingEnabled = 6;
-	optional string emailSenderAddress = 7;
-	optional string emailSenderName = 8;
-	optional bool generateGeometryOnCheckin = 9;
-	optional bool hideUserListForNonAdmin = 10;
-	optional int64 oid = 11;
-	optional bool pluginStrictVersionChecking = 12;
-	optional int32 protocolBuffersPort = 13;
-	optional int32 renderEngineProcesses = 14;
-	optional bool reuseGeometry = 15;
-	optional int32 rid = 16;
-	optional bool sendConfirmationEmailAfterRegistration = 17;
-	optional bool sendEmailOnNewRevision = 18;
-	optional string serviceRepositoryUrl = 19;
-	optional int32 sessionTimeOutSeconds = 20;
-	optional string siteAddress = 21;
-	optional string smtpPassword = 22;
-	optional int32 smtpPort = 23;
-	optional SSmtpProtocol smtpProtocol = 24;
-	optional string smtpServer = 25;
-	optional string smtpUsername = 26;
-	optional int64 webModuleId = 27;
-	repeated int64 webModules = 28;
-	repeated string whitelistedDomains = 29;
+	optional string description = 7;
+	optional string emailSenderAddress = 8;
+	optional string emailSenderName = 9;
+	optional bool generateGeometryOnCheckin = 10;
+	optional bool hideUserListForNonAdmin = 11;
+	optional string icon = 12;
+	optional string name = 13;
+	optional int64 oid = 14;
+	optional bool pluginStrictVersionChecking = 15;
+	optional int32 protocolBuffersPort = 16;
+	optional int32 renderEngineProcesses = 17;
+	optional bool reuseGeometry = 18;
+	optional int32 rid = 19;
+	optional bool sendConfirmationEmailAfterRegistration = 20;
+	optional bool sendEmailOnNewRevision = 21;
+	optional string serviceRepositoryUrl = 22;
+	optional int32 sessionTimeOutSeconds = 23;
+	optional string siteAddress = 24;
+	optional string smtpPassword = 25;
+	optional int32 smtpPort = 26;
+	optional SSmtpProtocol smtpProtocol = 27;
+	optional string smtpServer = 28;
+	optional string smtpUsername = 29;
+	optional int64 webModuleId = 30;
+	repeated int64 webModules = 31;
+	repeated string whitelistedDomains = 32;
 }
 
 message GetServerSettingsResponse {
@@ -274,6 +283,18 @@ message SetProtocolBuffersPortRequest {
 
 message SetSendConfirmationEmailAfterRegistrationRequest {
 	optional bool sendConfirmationEmailAfterRegistration = 1;
+}
+
+message SetServerDescriptionRequest {
+	optional string strict = 1;
+}
+
+message SetServerIconRequest {
+	optional string serverIcon = 1;
+}
+
+message SetServerNameRequest {
+	optional string serverName = 1;
 }
 
 message SetServerSettingsRequest {

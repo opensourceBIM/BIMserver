@@ -430,4 +430,67 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 			session.close();
 		}
 	}
+	
+	@Override
+	public void setServerName(final String serverName) throws ServerException, UserException {
+		if (getBimServer().getServerInfo().getServerState() != ServerState.NOT_SETUP) {
+			requireAdminAuthentication();
+		}
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
+				@Override
+				public void set(ServerSettings serverSettings) {
+					serverSettings.setName(serverName);
+				}
+			});
+			session.executeAndCommitAction(action);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void setServerDescription(final String serverDescription) throws ServerException, UserException {
+		if (getBimServer().getServerInfo().getServerState() != ServerState.NOT_SETUP) {
+			requireAdminAuthentication();
+		}
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
+				@Override
+				public void set(ServerSettings serverSettings) {
+					serverSettings.setDescription(serverDescription);
+				}
+			});
+			session.executeAndCommitAction(action);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void setServerIcon(final String serverIcon) throws ServerException, UserException {
+		if (getBimServer().getServerInfo().getServerState() != ServerState.NOT_SETUP) {
+			requireAdminAuthentication();
+		}
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
+				@Override
+				public void set(ServerSettings serverSettings) {
+					serverSettings.setIcon(serverIcon);
+				}
+			});
+			session.executeAndCommitAction(action);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
 }

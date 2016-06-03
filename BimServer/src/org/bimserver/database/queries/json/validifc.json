@@ -262,10 +262,17 @@
 		IfcRepresentation: {
 			type: "IfcRepresentation",
 			fields: ["Items", "ContextOfItems"],
-			includes: ["IfcRepresentationItem", "IfcStyledItem", "IfcPolyline", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcMappedItem", "IfcFacetedBrep", "IfcPolygonalBoundedHalfSpace", "IfcBooleanResult", "IfcExtrudedAreaSolid", "IfcBoundingBox", "IfcShellBasedSurfaceModel", "IfcTextLiteralWithExtent", "IfcGeometricCurveSet", "IfcTrimmedCurve"]
+			includes: ["IfcRepresentationItem", "IfcStyledItem", "IfcPolyline", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcMappedItem", "IfcFacetedBrep", "IfcPolygonalBoundedHalfSpace", "IfcBooleanResult", "IfcExtrudedAreaSolid", "IfcBoundingBox", "IfcShellBasedSurfaceModel", "IfcTextLiteralWithExtent", "IfcGeometricCurveSet", "IfcTrimmedCurve", "IfcFaceBasedSurfaceModel"]
 		},
 		IfcShapeRepresentation: {
-			type: "IfcShapeRepresentation"
+			type: "IfcShapeRepresentation",
+			field: "Items",
+			includes: ["IfcRepresentationItem", "IfcStyledItem", "IfcPolyline", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcMappedItem", "IfcFacetedBrep", "IfcPolygonalBoundedHalfSpace", "IfcBooleanResult", "IfcExtrudedAreaSolid", "IfcBoundingBox", "IfcShellBasedSurfaceModel", "IfcTextLiteralWithExtent", "IfcGeometricCurveSet", "IfcTrimmedCurve", "IfcFaceBasedSurfaceModel"]
+		},
+		IfcFaceBasedSurfaceModel: {
+			type: "IfcFaceBasedSurfaceModel",
+			field: "FbsmFaces",
+			includes: ["IfcConnectedFaceSet"] 
 		},
 		IfcTopologyRepresentation: {
 			type: "IfcTopologyRepresentation"
@@ -282,25 +289,26 @@
 				includes: ["IfcRepresentation", "IfcBooleanResult", "IfcShapeRepresentation", "IfcTopologyRepresentation", "IfcStyledRepresentation"]
 			}
 		},
-		IfcFacetedBrep: {
-			type: "IfcFacetedBrep",
-			field: "Outer",
+		IfcConnectedFaceSet: {
+			type: "IfcConnectedFaceSet",
+			field: "CfsFaces",
 			include: {
-				type: "IfcClosedShell",
-				field: "CfsFaces",
+				type: "IfcFace",
+				field: "Bounds",
 				include: {
-					type: "IfcFace",
-					field: "Bounds",
+					type: "IfcFaceBound",
+					field: "Bound",
 					include: {
-						type: "IfcFaceBound",
-						field: "Bound",
-						include: {
-							type: "IfcPolyLoop",
-							field: "Polygon"
-						}
+						type: "IfcPolyLoop",
+						field: "Polygon"
 					}
 				}
 			}
+		},
+		IfcFacetedBrep: {
+			type: "IfcFacetedBrep",
+			field: "Outer",
+			include: "IfcConnectedFaceSet"
 		},
 		IfcMappedItem: {
 			type: "IfcMappedItem",

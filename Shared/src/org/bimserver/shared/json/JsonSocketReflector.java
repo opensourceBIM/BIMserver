@@ -62,6 +62,7 @@ public class JsonSocketReflector extends JsonReflector {
 				request.addProperty("token", tokenHolder.getToken());
 			}
 			HttpPost httppost = new HttpPost(remoteAddress);
+			httppost.setHeader("Content-Type", "application/json");
 			httppost.setEntity(new StringEntity(request.toString(), Charsets.UTF_8));
 
 			if (LOGGER.isDebugEnabled()) {

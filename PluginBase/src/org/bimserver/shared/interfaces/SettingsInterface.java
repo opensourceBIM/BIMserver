@@ -258,4 +258,13 @@ public interface SettingsInterface extends PublicInterface {
 
 	@WebMethod(action = "isPluginStrictVersionChecking")
 	Boolean isPluginStrictVersionChecking() throws ServerException, UserException;
+
+	@WebMethod(action = "setServerName")
+	void setServerName(@WebParam(name = "serverName", partName = "setServerName.serverName") String serverName) throws ServerException, UserException;
+	
+	@WebMethod(action = "setServerDescription")
+	void setServerDescription(@WebParam(name = "strict", partName = "setServerDescription.strict") String serverDescription) throws ServerException, UserException;
+
+	@WebMethod(action = "setServerIcon")
+	void setServerIcon(@WebParam(name = "serverIcon", partName = "setServerIcon.serverIcon") String serverIcon) throws ServerException, UserException;
 }

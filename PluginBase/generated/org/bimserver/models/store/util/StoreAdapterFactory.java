@@ -538,6 +538,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseOAuthServer(OAuthServer object) {
+			return createOAuthServerAdapter();
+		}
+
+		@Override
+		public Adapter caseOAuthAuthorizationCode(OAuthAuthorizationCode object) {
+			return createOAuthAuthorizationCodeAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -1841,6 +1851,34 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPluginInformationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.OAuthServer <em>OAuth Server</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.OAuthServer
+	 * @generated
+	 */
+	public Adapter createOAuthServerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.OAuthAuthorizationCode <em>OAuth Authorization Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.OAuthAuthorizationCode
+	 * @generated
+	 */
+	public Adapter createOAuthAuthorizationCodeAdapter() {
 		return null;
 	}
 
