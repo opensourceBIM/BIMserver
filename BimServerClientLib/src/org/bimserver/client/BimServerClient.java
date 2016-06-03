@@ -27,6 +27,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Collections;
 import java.util.HashSet;
@@ -355,6 +356,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			SSerializerPluginConfiguration serializerByPluginClassName = getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin");
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			download(roid, serializerByPluginClassName.getOid(), outputStream);
+			Files.write(Paths.get("bin.bin"), outputStream.toByteArray());
 			ByteArrayInputStream bain = new ByteArrayInputStream(outputStream.toByteArray());
 			return new Geometry(bain, ifcProduct.getOid());
 		} catch (ServerException e) {
@@ -389,7 +391,6 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	@Override
 	public void close() throws Exception {
-		// TODO Auto-generated method stub
 	}
 
 	public void downloadExtendedData(long edid, Path outputFile) throws IOException {

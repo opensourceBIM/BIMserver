@@ -135,7 +135,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			this.queryContext = queryContext;
 			this.originalQuery = originalQuery;
 		}
-		
+
 		@Override
 		public void run() {
 			try {
