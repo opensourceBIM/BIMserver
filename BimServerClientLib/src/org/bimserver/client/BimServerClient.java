@@ -1,5 +1,7 @@
 package org.bimserver.client;
 
+import java.io.ByteArrayInputStream;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -353,12 +355,15 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			SSerializerPluginConfiguration serializerByPluginClassName = getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin");
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			download(roid, serializerByPluginClassName.getOid(), outputStream);
-			return null;
+			ByteArrayInputStream bain = new ByteArrayInputStream(outputStream.toByteArray());
+			return new Geometry(bain, ifcProduct.getOid());
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
