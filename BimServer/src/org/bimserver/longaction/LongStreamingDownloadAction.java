@@ -80,15 +80,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 		this.roids = roids;
 		
 		setProgressTopic(bimServer.getNotificationsManager().createProgressTopic(SProgressTopicType.DOWNLOAD, "Download"));
-	}
-
-	@Override
-	public String getDescription() {
-		return "description";
-	}
-
-	@Override
-	public void execute() {
+		
 		DatabaseSession databaseSession = getBimServer().getDatabase().createSession();
 		try {
 			PackageMetaData packageMetaData = null;
@@ -152,6 +144,16 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 		} catch (Exception e) {
 			error(e);
 		}
+	}
+
+	@Override
+	public String getDescription() {
+		return "description";
+	}
+
+	@Override
+	public void execute() {
+
 	}
 
 	public SCheckoutResult getCheckoutResult() throws SerializerException {

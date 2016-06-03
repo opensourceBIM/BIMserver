@@ -1961,6 +1961,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public List<SProfileDescriptor> getAllPrivateProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
+		if (notificationsUrl == null) {
+			throw new UserException("Missing notificationsUrl");
+		}
 		requireRealUserAuthentication();
 		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager());
