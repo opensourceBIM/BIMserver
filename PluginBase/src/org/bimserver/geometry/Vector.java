@@ -58,4 +58,26 @@ public class Vector {
 	public static void dump(String pre, float[] v) {
 		System.out.println(pre + ": " + v[0] + ", " + v[1] + ", " + v[2] + (v.length == 4 ? (", " + v[3]) : ""));
 	}
+	
+	public static float getArea(float[][] triangle) {
+		float[] ab = minus(triangle[1], triangle[0]);
+		float[] ac = minus(triangle[2], triangle[0]);
+		float[] cross = crossProduct(ab, ac);
+		return (float) (0.5f * Math.sqrt(cross[0] * cross[0] + cross[1] * cross[1] + cross[2] * cross[2]));
+	}
+	
+	public static void main(String[] args) {
+		float[][] triangle = new float[3][3];
+		triangle[0][0] = -5;
+		triangle[0][1] = 0;
+		triangle[0][2] = 0;
+		triangle[1][0] = 1;
+		triangle[1][1] = 0;
+		triangle[1][2] = 0;
+		triangle[2][0] = 0;
+		triangle[2][1] = 1;
+		triangle[2][2] = 0;
+		
+		System.out.println(getArea(triangle));
+	}
 }

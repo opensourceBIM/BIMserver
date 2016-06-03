@@ -25,15 +25,28 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.ifc2x3tc1.IfcBoolean;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcElement;
+import org.bimserver.models.ifc2x3tc1.IfcElementQuantity;
+import org.bimserver.models.ifc2x3tc1.IfcObject;
 import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
+import org.bimserver.models.ifc2x3tc1.IfcPhysicalQuantity;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
+import org.bimserver.models.ifc2x3tc1.IfcProperty;
+import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
+import org.bimserver.models.ifc2x3tc1.IfcPropertySetDefinition;
+import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
+import org.bimserver.models.ifc2x3tc1.IfcQuantityArea;
+import org.bimserver.models.ifc2x3tc1.IfcQuantityVolume;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
+import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
+import org.bimserver.models.ifc2x3tc1.IfcRelDefinesByProperties;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement;
+import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
@@ -160,5 +173,81 @@ public class IfcUtils {
 			}
 		}
 		return null;
+	}
+	
+	public static Tristate getBooleanProperty(IfcObject ifcObject) {
+		for (IfcRelDefines ifcRelDefines : ifcObject.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof IfcPropertySet) {
+					IfcPropertySet ifcPropertySet = (IfcPropertySet)propertySetDefinition;
+					for (IfcProperty ifcProperty : ifcPropertySet.getHasProperties()) {
+						if (ifcProperty instanceof IfcPropertySingleValue) {
+							IfcPropertySingleValue propertyValue = (IfcPropertySingleValue)ifcProperty;
+							if (ifcProperty.getName().equals("IsExternal")) {
+								IfcBoolean label = (IfcBoolean)propertyValue.getNominalValue();
+								return label.getWrappedValue();
+							}
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	
+	
+	public static List<String> listPropertyNames(IfcProduct ifcProduct) {
+		List<String> list = new ArrayList<>();
+		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof IfcPropertySet) {
+					IfcPropertySet ifcPropertySet = (IfcPropertySet)propertySetDefinition;
+					for (IfcProperty ifcProperty : ifcPropertySet.getHasProperties()) {
+						list.add(ifcProperty.getName());
+					}
+				}
+			}
+		}
+		return list;
+	}
+
+	public static Double getIfcQuantityVolume(IfcProduct ifcProduct, String name) {
+		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof IfcElementQuantity) {
+					if (propertySetDefinition.getName().equals("BaseQuantities")) {
+						IfcElementQuantity ifcElementQuantity = (IfcElementQuantity)propertySetDefinition;
+						for (IfcPhysicalQuantity ifcPhysicalQuantity : ifcElementQuantity.getQuantities()) {
+							if (ifcPhysicalQuantity instanceof IfcQuantityVolume) {
+								return ((IfcQuantityVolume)ifcPhysicalQuantity).getVolumeValue();
+							}
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static List<String> listElementQuantities(IfcProduct ifcProduct) {
+		List<String> list = new ArrayList<>();
+		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof IfcElementQuantity) {
+					IfcElementQuantity ifcElementQuantity = (IfcElementQuantity)propertySetDefinition;
+					list.add(ifcElementQuantity.getName());
+				}
+			}
+		}
+		return list;
 	}
 }
