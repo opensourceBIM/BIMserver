@@ -10,6 +10,7 @@ import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
+import org.bimserver.interfaces.objects.SAuthorization;
 import org.bimserver.interfaces.objects.SOAuthAuthorizationCode;
 import org.bimserver.interfaces.objects.SOAuthServer;
 import org.bimserver.shared.exceptions.ServerException;
@@ -38,6 +39,9 @@ public interface OAuthInterface extends PublicInterface {
 	@WebMethod(action="listRegisteredServers")
 	List<SOAuthServer> listRegisteredServers() throws ServerException, UserException;
 
+	@WebMethod(action="listRegisteredServersLocal")
+	List<SOAuthServer> listRegisteredServersLocal() throws ServerException, UserException;
+	
 	@WebMethod(action="generateForwardUrl")
 	String generateForwardUrl(
 		@WebParam(name = "registrationEndpoint", partName = "generateForwardUrl.registrationEndpoint") String registrationEndpoint, 
@@ -52,7 +56,28 @@ public interface OAuthInterface extends PublicInterface {
 	@WebMethod(action="getOAuthServerById")
 	SOAuthServer getOAuthServerById(
 		@WebParam(name = "oid", partName = "getOAuthServerById.oid") Long oid) throws ServerException, UserException;
+
+	@WebMethod(action="getOAuthServerByClientId")
+	SOAuthServer getOAuthServerByClientId(
+			@WebParam(name = "clientId", partName = "getOAuthServerByClientId.clientId") String clientId) throws ServerException, UserException;
 	
 	@WebMethod(action="listAuthorizationCodes")
 	List<SOAuthAuthorizationCode> listAuthorizationCodes() throws ServerException, UserException;
+
+	@WebMethod(action="authorize")
+	String authorize(
+		@WebParam(name = "oAuthServerOid", partName = "authorize.oAuthServerOid") Long oAuthServerOid, 
+		@WebParam(name = "authorization", partName = "authorize.authorization") SAuthorization authorization) throws ServerException, UserException;
+
+	@WebMethod(action="revokeApplication")
+	void revokeApplication(@WebParam(name = "oid", partName = "revoke.oid") Long oid) throws ServerException, UserException;
+
+	@WebMethod(action="listIssuedAuthorizationCodes")
+	List<SOAuthAuthorizationCode> listIssuedAuthorizationCodes() throws ServerException, UserException;
+	
+	@WebMethod(action="getAuthorizationById")
+	SAuthorization getAuthorizationById(@WebParam(name = "oid", partName = "getAuthorizationById.oid") Long oid) throws ServerException, UserException;
+
+	@WebMethod(action="revokeAuthorization")
+	void revokeAuthorization(@WebParam(name = "oid", partName = "revokeAuthorization.oid") Long oid) throws ServerException, UserException;
 }

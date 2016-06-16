@@ -19766,6 +19766,8 @@
           eType="#/3/UserRelated" eOpposite="#/3/UserRelated/user"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="oAuthAuthorizationCodes"
           upperBound="-1" eType="#/4/OAuthAuthorizationCode"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="oAuthIssuedAuthorizationCodes"
+          upperBound="-1" eType="#/4/OAuthAuthorizationCode"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Revision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -20622,15 +20624,19 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OAuthServer">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="registrationUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="singleindex"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientSecret" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientIcon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientIcon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="redirectUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expiresIn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="issuedAt" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="redirectUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="singleindex"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expiresAt" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="issuedAt" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="incoming" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="apiUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="singleindex"/>
@@ -20642,7 +20648,14 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OAuthAuthorizationCode">
       <eStructuralFeatures xsi:type="ecore:EReference" name="oauthServer" eType="#/4/OAuthServer"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="singleindex"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="authorization" eType="#/4/Authorization"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Authorization"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SingleProjectAuthorization" eSuperTypes="#/4/Authorization">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/4/Project"/>
     </eClassifiers>
   </ecore:EPackage>
 </xmi:XMI>

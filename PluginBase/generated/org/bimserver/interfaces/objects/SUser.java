@@ -52,6 +52,7 @@ public class SUser implements SDataBase
 	private List<Long> services = new ArrayList<Long>();
 	private List<Long> logs = new ArrayList<Long>();
 	private List<Long> oAuthAuthorizationCodes = new ArrayList<Long>();
+	private List<Long> oAuthIssuedAuthorizationCodes = new ArrayList<Long>();
 
 	public long getOid() {
 		return this.oid;
@@ -138,6 +139,9 @@ public class SUser implements SDataBase
 		}
 		if (sField.getName().equals("oAuthAuthorizationCodes")) {
 			return getOAuthAuthorizationCodes();
+		}
+		if (sField.getName().equals("oAuthIssuedAuthorizationCodes")) {
+			return getOAuthIssuedAuthorizationCodes();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -228,6 +232,10 @@ public class SUser implements SDataBase
 		}
 		if (sField.getName().equals("oAuthAuthorizationCodes")) {
 			setOAuthAuthorizationCodes((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("oAuthIssuedAuthorizationCodes")) {
+			setOAuthIssuedAuthorizationCodes((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -399,6 +407,14 @@ public class SUser implements SDataBase
 
 	public void setOAuthAuthorizationCodes(List<Long> oAuthAuthorizationCodes) {
 		this.oAuthAuthorizationCodes = oAuthAuthorizationCodes;
+	}
+	
+	public List<Long> getOAuthIssuedAuthorizationCodes() {
+		return oAuthIssuedAuthorizationCodes;
+	}
+
+	public void setOAuthIssuedAuthorizationCodes(List<Long> oAuthIssuedAuthorizationCodes) {
+		this.oAuthIssuedAuthorizationCodes = oAuthIssuedAuthorizationCodes;
 	}
 	
 	@Override

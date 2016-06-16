@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.store.impl;
 
+import java.util.Date;
 import org.bimserver.emf.IdEObjectImpl;
 
 import org.bimserver.models.store.OAuthServer;
@@ -39,7 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientUrl <em>Client Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getClientDescription <em>Client Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getRedirectUrl <em>Redirect Url</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getExpiresIn <em>Expires In</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getExpiresAt <em>Expires At</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getIssuedAt <em>Issued At</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#isIncoming <em>Incoming</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthServerImpl#getApiUrl <em>Api Url</em>}</li>
@@ -155,8 +156,8 @@ public class OAuthServerImpl extends IdEObjectImpl implements OAuthServer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getClientIcon() {
-		return (String) eGet(StorePackage.Literals.OAUTH_SERVER__CLIENT_ICON, true);
+	public byte[] getClientIcon() {
+		return (byte[]) eGet(StorePackage.Literals.OAUTH_SERVER__CLIENT_ICON, true);
 	}
 
 	/**
@@ -164,7 +165,7 @@ public class OAuthServerImpl extends IdEObjectImpl implements OAuthServer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClientIcon(String newClientIcon) {
+	public void setClientIcon(byte[] newClientIcon) {
 		eSet(StorePackage.Literals.OAUTH_SERVER__CLIENT_ICON, newClientIcon);
 	}
 
@@ -227,8 +228,8 @@ public class OAuthServerImpl extends IdEObjectImpl implements OAuthServer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getExpiresIn() {
-		return (Long) eGet(StorePackage.Literals.OAUTH_SERVER__EXPIRES_IN, true);
+	public Date getExpiresAt() {
+		return (Date) eGet(StorePackage.Literals.OAUTH_SERVER__EXPIRES_AT, true);
 	}
 
 	/**
@@ -236,8 +237,8 @@ public class OAuthServerImpl extends IdEObjectImpl implements OAuthServer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExpiresIn(long newExpiresIn) {
-		eSet(StorePackage.Literals.OAUTH_SERVER__EXPIRES_IN, newExpiresIn);
+	public void setExpiresAt(Date newExpiresAt) {
+		eSet(StorePackage.Literals.OAUTH_SERVER__EXPIRES_AT, newExpiresAt);
 	}
 
 	/**
@@ -245,8 +246,8 @@ public class OAuthServerImpl extends IdEObjectImpl implements OAuthServer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getIssuedAt() {
-		return (String) eGet(StorePackage.Literals.OAUTH_SERVER__ISSUED_AT, true);
+	public Date getIssuedAt() {
+		return (Date) eGet(StorePackage.Literals.OAUTH_SERVER__ISSUED_AT, true);
 	}
 
 	/**
@@ -254,7 +255,7 @@ public class OAuthServerImpl extends IdEObjectImpl implements OAuthServer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIssuedAt(String newIssuedAt) {
+	public void setIssuedAt(Date newIssuedAt) {
 		eSet(StorePackage.Literals.OAUTH_SERVER__ISSUED_AT, newIssuedAt);
 	}
 

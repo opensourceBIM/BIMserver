@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.store;
 
+import java.util.Date;
 import org.bimserver.emf.IdEObject;
 
 /**
@@ -35,7 +36,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.OAuthServer#getClientUrl <em>Client Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getClientDescription <em>Client Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getRedirectUrl <em>Redirect Url</em>}</li>
- *   <li>{@link org.bimserver.models.store.OAuthServer#getExpiresIn <em>Expires In</em>}</li>
+ *   <li>{@link org.bimserver.models.store.OAuthServer#getExpiresAt <em>Expires At</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getIssuedAt <em>Issued At</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#isIncoming <em>Incoming</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthServer#getApiUrl <em>Api Url</em>}</li>
@@ -161,12 +162,12 @@ public interface OAuthServer extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Client Icon</em>' attribute.
-	 * @see #setClientIcon(String)
+	 * @see #setClientIcon(byte[])
 	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_ClientIcon()
 	 * @model
 	 * @generated
 	 */
-	String getClientIcon();
+	byte[] getClientIcon();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.OAuthServer#getClientIcon <em>Client Icon</em>}' attribute.
@@ -176,7 +177,7 @@ public interface OAuthServer extends IdEObject {
 	 * @see #getClientIcon()
 	 * @generated
 	 */
-	void setClientIcon(String value);
+	void setClientIcon(byte[] value);
 
 	/**
 	 * Returns the value of the '<em><b>Client Url</b></em>' attribute.
@@ -257,30 +258,30 @@ public interface OAuthServer extends IdEObject {
 	void setRedirectUrl(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Expires In</b></em>' attribute.
+	 * Returns the value of the '<em><b>Expires At</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Expires In</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Expires At</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Expires In</em>' attribute.
-	 * @see #setExpiresIn(long)
-	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_ExpiresIn()
+	 * @return the value of the '<em>Expires At</em>' attribute.
+	 * @see #setExpiresAt(Date)
+	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_ExpiresAt()
 	 * @model
 	 * @generated
 	 */
-	long getExpiresIn();
+	Date getExpiresAt();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.OAuthServer#getExpiresIn <em>Expires In</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.OAuthServer#getExpiresAt <em>Expires At</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Expires In</em>' attribute.
-	 * @see #getExpiresIn()
+	 * @param value the new value of the '<em>Expires At</em>' attribute.
+	 * @see #getExpiresAt()
 	 * @generated
 	 */
-	void setExpiresIn(long value);
+	void setExpiresAt(Date value);
 
 	/**
 	 * Returns the value of the '<em><b>Issued At</b></em>' attribute.
@@ -291,12 +292,12 @@ public interface OAuthServer extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Issued At</em>' attribute.
-	 * @see #setIssuedAt(String)
+	 * @see #setIssuedAt(Date)
 	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_IssuedAt()
 	 * @model
 	 * @generated
 	 */
-	String getIssuedAt();
+	Date getIssuedAt();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.OAuthServer#getIssuedAt <em>Issued At</em>}' attribute.
@@ -306,7 +307,7 @@ public interface OAuthServer extends IdEObject {
 	 * @see #getIssuedAt()
 	 * @generated
 	 */
-	void setIssuedAt(String value);
+	void setIssuedAt(Date value);
 
 	/**
 	 * Returns the value of the '<em><b>Incoming</b></em>' attribute.

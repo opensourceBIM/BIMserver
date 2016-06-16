@@ -13,15 +13,15 @@ public class Step0024 extends Migration {
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
 		EClass oAuthServer = schema.createEClass("store", "OAuthServer");
 		schema.createEAttribute(oAuthServer, "registrationUrl", EcorePackage.eINSTANCE.getEString());
-		schema.createEAttribute(oAuthServer, "clientId", EcorePackage.eINSTANCE.getEString());
+		schema.addIndex(schema.createEAttribute(oAuthServer, "clientId", EcorePackage.eINSTANCE.getEString()));
 		schema.createEAttribute(oAuthServer, "clientSecret", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(oAuthServer, "clientName", EcorePackage.eINSTANCE.getEString());
-		schema.createEAttribute(oAuthServer, "clientIcon", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(oAuthServer, "clientIcon", EcorePackage.eINSTANCE.getEByteArray());
 		schema.createEAttribute(oAuthServer, "clientUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(oAuthServer, "clientDescription", EcorePackage.eINSTANCE.getEString());
-		schema.createEAttribute(oAuthServer, "redirectUrl", EcorePackage.eINSTANCE.getEString());
-		schema.createEAttribute(oAuthServer, "expiresIn", EcorePackage.eINSTANCE.getELong());
-		schema.createEAttribute(oAuthServer, "issuedAt", EcorePackage.eINSTANCE.getEString());
+		schema.addIndex(schema.createEAttribute(oAuthServer, "redirectUrl", EcorePackage.eINSTANCE.getEString()));
+		schema.createEAttribute(oAuthServer, "expiresAt", EcorePackage.eINSTANCE.getEDate());
+		schema.createEAttribute(oAuthServer, "issuedAt", EcorePackage.eINSTANCE.getEDate());
 		schema.createEAttribute(oAuthServer, "incoming", EcorePackage.eINSTANCE.getEBoolean());
 		schema.addIndex(schema.createEAttribute(oAuthServer, "apiUrl", EcorePackage.eINSTANCE.getEString()));
 		schema.addIndex(schema.createEAttribute(oAuthServer, "registrationEndpoint", EcorePackage.eINSTANCE.getEString()));
@@ -33,10 +33,18 @@ public class Step0024 extends Migration {
 		
 		EClass oauthAuthorizationCode = schema.createEClass("store", "OAuthAuthorizationCode");
 		schema.createEReference(oauthAuthorizationCode, "oauthServer", oAuthServer, Multiplicity.SINGLE);
-		schema.createEAttribute(oauthAuthorizationCode, "code", EcorePackage.eINSTANCE.getEString());
+		schema.addIndex(schema.createEAttribute(oauthAuthorizationCode, "code", EcorePackage.eINSTANCE.getEString()));
 		
 		EClass user = schema.getEClass("store", "User");
 		schema.createEReference(user, "oAuthAuthorizationCodes", oauthAuthorizationCode, Multiplicity.MANY);
+		schema.createEReference(user, "oAuthIssuedAuthorizationCodes", oauthAuthorizationCode, Multiplicity.MANY);
+		
+		EClass authorization = schema.createEClass("store", "Authorization");
+
+		EClass singleProjectAuthorization = schema.createEClass("store", "SingleProjectAuthorization", authorization);
+		schema.createEReference(singleProjectAuthorization, "project", schema.getEClass("store", "Project"), Multiplicity.SINGLE);
+		
+		schema.createEReference(oauthAuthorizationCode, "authorization", authorization, Multiplicity.SINGLE);
 	}
 
 	@Override

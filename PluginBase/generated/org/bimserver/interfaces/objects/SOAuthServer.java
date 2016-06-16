@@ -16,6 +16,7 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
+import java.util.Date;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,12 +34,12 @@ public class SOAuthServer implements SDataBase
 	private java.lang.String clientId;
 	private java.lang.String clientSecret;
 	private java.lang.String clientName;
-	private java.lang.String clientIcon;
+	private byte[] clientIcon;
 	private java.lang.String clientUrl;
 	private java.lang.String clientDescription;
 	private java.lang.String redirectUrl;
-	private long expiresIn;
-	private java.lang.String issuedAt;
+	private java.util.Date expiresAt;
+	private java.util.Date issuedAt;
 	private boolean incoming;
 	private java.lang.String apiUrl;
 	private java.lang.String registrationEndpoint;
@@ -93,8 +94,8 @@ public class SOAuthServer implements SDataBase
 		if (sField.getName().equals("redirectUrl")) {
 			return getRedirectUrl();
 		}
-		if (sField.getName().equals("expiresIn")) {
-			return getExpiresIn();
+		if (sField.getName().equals("expiresAt")) {
+			return getExpiresAt();
 		}
 		if (sField.getName().equals("issuedAt")) {
 			return getIssuedAt();
@@ -135,7 +136,7 @@ public class SOAuthServer implements SDataBase
 			return;
 		}
 		if (sField.getName().equals("clientIcon")) {
-			setClientIcon((String)val);
+			setClientIcon((byte[])val);
 			return;
 		}
 		if (sField.getName().equals("clientUrl")) {
@@ -150,12 +151,12 @@ public class SOAuthServer implements SDataBase
 			setRedirectUrl((String)val);
 			return;
 		}
-		if (sField.getName().equals("expiresIn")) {
-			setExpiresIn((Long)val);
+		if (sField.getName().equals("expiresAt")) {
+			setExpiresAt((Date)val);
 			return;
 		}
 		if (sField.getName().equals("issuedAt")) {
-			setIssuedAt((String)val);
+			setIssuedAt((Date)val);
 			return;
 		}
 		if (sField.getName().equals("incoming")) {
@@ -213,11 +214,11 @@ public class SOAuthServer implements SDataBase
 		this.clientName = clientName;
 	}
 	
-	public java.lang.String getClientIcon() {
+	public byte[] getClientIcon() {
 		return clientIcon;
 	}
 
-	public void setClientIcon(java.lang.String clientIcon) {
+	public void setClientIcon(byte[] clientIcon) {
 		this.clientIcon = clientIcon;
 	}
 	
@@ -245,19 +246,19 @@ public class SOAuthServer implements SDataBase
 		this.redirectUrl = redirectUrl;
 	}
 	
-	public long getExpiresIn() {
-		return expiresIn;
+	public java.util.Date getExpiresAt() {
+		return expiresAt;
 	}
 
-	public void setExpiresIn(long expiresIn) {
-		this.expiresIn = expiresIn;
+	public void setExpiresAt(java.util.Date expiresAt) {
+		this.expiresAt = expiresAt;
 	}
 	
-	public java.lang.String getIssuedAt() {
+	public java.util.Date getIssuedAt() {
 		return issuedAt;
 	}
 
-	public void setIssuedAt(java.lang.String issuedAt) {
+	public void setIssuedAt(java.util.Date issuedAt) {
 		this.issuedAt = issuedAt;
 	}
 	

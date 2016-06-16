@@ -257,6 +257,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createOAuthServer();
 		case StorePackage.OAUTH_AUTHORIZATION_CODE:
 			return (EObject) createOAuthAuthorizationCode();
+		case StorePackage.AUTHORIZATION:
+			return (EObject) createAuthorization();
+		case StorePackage.SINGLE_PROJECT_AUTHORIZATION:
+			return (EObject) createSingleProjectAuthorization();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1294,6 +1298,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public OAuthAuthorizationCode createOAuthAuthorizationCode() {
 		OAuthAuthorizationCodeImpl oAuthAuthorizationCode = new OAuthAuthorizationCodeImpl();
 		return oAuthAuthorizationCode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Authorization createAuthorization() {
+		AuthorizationImpl authorization = new AuthorizationImpl();
+		return authorization;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SingleProjectAuthorization createSingleProjectAuthorization() {
+		SingleProjectAuthorizationImpl singleProjectAuthorization = new SingleProjectAuthorizationImpl();
+		return singleProjectAuthorization;
 	}
 
 	/**

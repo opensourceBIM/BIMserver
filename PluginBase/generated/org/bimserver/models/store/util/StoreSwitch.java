@@ -810,6 +810,22 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case StorePackage.AUTHORIZATION: {
+			Authorization authorization = (Authorization) theEObject;
+			T result = caseAuthorization(authorization);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.SINGLE_PROJECT_AUTHORIZATION: {
+			SingleProjectAuthorization singleProjectAuthorization = (SingleProjectAuthorization) theEObject;
+			T result = caseSingleProjectAuthorization(singleProjectAuthorization);
+			if (result == null)
+				result = caseAuthorization(singleProjectAuthorization);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -2222,6 +2238,36 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOAuthAuthorizationCode(OAuthAuthorizationCode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Authorization</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Authorization</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAuthorization(Authorization object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Single Project Authorization</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Single Project Authorization</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSingleProjectAuthorization(SingleProjectAuthorization object) {
 		return null;
 	}
 

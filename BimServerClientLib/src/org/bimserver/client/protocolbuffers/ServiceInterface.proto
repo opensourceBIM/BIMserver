@@ -500,20 +500,21 @@ message SUser {
 	repeated int64 logs = 6;
 	optional string name = 7;
 	repeated int64 oAuthAuthorizationCodes = 8;
-	optional int64 oid = 9;
-	optional bytes passwordHash = 10;
-	optional bytes passwordSalt = 11;
-	repeated int64 revisions = 12;
-	optional int32 rid = 13;
-	repeated int64 schemas = 14;
-	repeated int64 services = 15;
-	optional SObjectState state = 16;
-	optional string token = 17;
-	optional int64 userSettingsId = 18;
-	optional SUserType userType = 19;
-	optional string username = 20;
-	optional bytes validationToken = 21;
-	optional int64 validationTokenCreated = 22;
+	repeated int64 oAuthIssuedAuthorizationCodes = 9;
+	optional int64 oid = 10;
+	optional bytes passwordHash = 11;
+	optional bytes passwordSalt = 12;
+	repeated int64 revisions = 13;
+	optional int32 rid = 14;
+	repeated int64 schemas = 15;
+	repeated int64 services = 16;
+	optional SObjectState state = 17;
+	optional string token = 18;
+	optional int64 userSettingsId = 19;
+	optional SUserType userType = 20;
+	optional string username = 21;
+	optional bytes validationToken = 22;
+	optional int64 validationTokenCreated = 23;
 }
 
 message AddUserResponse {

@@ -719,6 +719,20 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass authorizationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass singleProjectAuthorizationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -1318,6 +1332,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getUser_OAuthAuthorizationCodes() {
 		return (EReference) getUser().getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUser_OAuthIssuedAuthorizationCodes() {
+		return (EReference) getUser().getEStructuralFeatures().get(20);
 	}
 
 	/**
@@ -6234,7 +6257,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOAuthServer_ExpiresIn() {
+	public EAttribute getOAuthServer_ExpiresAt() {
 		return (EAttribute) getOAuthServer().getEStructuralFeatures().get(8);
 	}
 
@@ -6303,6 +6326,50 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getOAuthAuthorizationCode_Code() {
 		return (EAttribute) getOAuthAuthorizationCode().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOAuthAuthorizationCode_Authorization() {
+		return (EReference) getOAuthAuthorizationCode().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAuthorization() {
+		if (authorizationEClass == null) {
+			authorizationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI)
+					.getEClassifiers().get(111);
+		}
+		return authorizationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSingleProjectAuthorization() {
+		if (singleProjectAuthorizationEClass == null) {
+			singleProjectAuthorizationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI)
+					.getEClassifiers().get(112);
+		}
+		return singleProjectAuthorizationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSingleProjectAuthorization_Project() {
+		return (EReference) getSingleProjectAuthorization().getEStructuralFeatures().get(0);
 	}
 
 	/**
