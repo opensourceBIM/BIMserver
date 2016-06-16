@@ -52,6 +52,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.User;
 import org.bimserver.notifications.NewRevisionNotification;
+import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.StreamingDeserializer;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryContext;
@@ -81,7 +82,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	private InputStream inputStream;
 	private StreamingDeserializer deserializer;
 
-	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer) {
+	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer, long fileSize) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.poid = poid;
@@ -90,6 +91,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		this.fileName = fileName;
 		this.inputStream = inputStream;
 		this.deserializer = deserializer;
+		this.fileSize = fileSize;
 	}
 
 	public HashMapVirtualObject getByOid(PackageMetaData packageMetaData, DatabaseSession databaseSession, long roid, long oid) throws JsonParseException, JsonMappingException, IOException, QueryException, BimserverDatabaseException {
@@ -105,7 +107,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {
 			if (fileSize == -1) {
-				setProgress("Deserializing IFC file...", -1);
+//				setProgress("Deserializing IFC file...", -1);
 			} else {
 				setProgress("Deserializing IFC file...", 0);
 			}
@@ -159,6 +161,17 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 
 			long newRoid = result.getRevisions().get(0).getOid();
 			QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId(), newRoid, -1); // TODO check
+			
+			if (fileSize != -1) {
+				deserializer.setProgressReporter(new ByteProgressReporter() {
+					@Override
+					public void progress(long byteNumber) {
+						int perc = (int)(100.0 * byteNumber / fileSize);
+						setProgress("Deserializing...", perc);
+					}
+				});
+			}
+			
 			long size = deserializer.read(inputStream, fileName, fileSize, queryContext);
 			
 			Set<EClass> eClasses = deserializer.getSummaryMap().keySet();

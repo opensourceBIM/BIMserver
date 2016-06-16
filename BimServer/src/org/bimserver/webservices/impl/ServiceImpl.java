@@ -1,5 +1,7 @@
 package org.bimserver.webservices.impl;
 
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -208,6 +210,7 @@ import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.notifications.ProgressOnProjectTopic;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
+import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.StreamingDeserializer;
@@ -920,50 +923,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 			String cacheFileName = dateFormat.format(new Date()) + "-" + fileName;
 			Path file = userDirIncoming.resolve(cacheFileName);
-			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
-			if (deserializerPluginConfiguration == null) {
-				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
-			} else {
-				Plugin plugin = getBimServer().getPluginManager().getPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-				if (plugin != null) {
-					if (plugin instanceof DeserializerPlugin) {
-						DeserializerPlugin deserializerPlugin = (DeserializerPlugin)plugin;
-						ObjectType settings = deserializerPluginConfiguration.getSettings();
-						Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration(settings));
-						OutputStream outputStream = Files.newOutputStream(file);
-						InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), outputStream);
-						deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
-						
-						IfcModelInterface model = deserializer.read(inputStream, fileName, fileSize, null);
-						
-						CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
-						LongCheckinAction longAction = new LongCheckinAction(topicId, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
-						getBimServer().getLongActionManager().start(longAction);
-						if (sync) {
-							longAction.waitForCompletion();
-						}
-						return longAction.getProgressTopic().getKey().getId();
-					} else if (plugin instanceof StreamingDeserializerPlugin) {
-						StreamingDeserializerPlugin streaminDeserializerPlugin = (StreamingDeserializerPlugin) plugin;
-						ObjectType settings = deserializerPluginConfiguration.getSettings();
-						StreamingDeserializer streamingDeserializer = streaminDeserializerPlugin.createDeserializer(new PluginConfiguration(settings));
-						streamingDeserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
-						OutputStream outputStream = Files.newOutputStream(file);
-						InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), outputStream);
-						StreamingCheckinDatabaseAction checkinDatabaseAction = new StreamingCheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), comment, fileName, inputStream, streamingDeserializer);
-						LongStreamingCheckinAction longAction = new LongStreamingCheckinAction(topicId, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
-						getBimServer().getLongActionManager().start(longAction);
-						if (sync) {
-							longAction.waitForCompletion();
-						}
-						return longAction.getProgressTopic().getKey().getId();
-					} else {
-						throw new UserException("No (enabled) (streaming) deserializer found with oid " + deserializerOid);
-					}
-				} else {
-					throw new UserException("No (enabled) (streaming) deserializer found with oid " + deserializerOid);
-				}
-			}
+			return checkinInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler.getInputStream(), merge,
+					sync, session, username, userUsername, project, file);
 		} catch (UserException e) {
 			throw e;
 		} catch (Throwable e) {
@@ -971,6 +932,57 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			throw new ServerException(e);
 		} finally {
 			session.close();
+		}
+	}
+
+	private Long checkinInternal(Long topicId, final Long poid, final String comment, Long deserializerOid,
+			Long fileSize, String fileName, InputStream originalInputStream, Boolean merge, Boolean sync,
+			final DatabaseSession session, String username, String userUsername, Project project, Path file)
+					throws BimserverDatabaseException, UserException, IOException, DeserializeException,
+					CannotBeScheduledException {
+		DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
+		if (deserializerPluginConfiguration == null) {
+			throw new UserException("Deserializer with oid " + deserializerOid + " not found");
+		} else {
+			Plugin plugin = getBimServer().getPluginManager().getPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+			if (plugin != null) {
+				if (plugin instanceof DeserializerPlugin) {
+					DeserializerPlugin deserializerPlugin = (DeserializerPlugin)plugin;
+					ObjectType settings = deserializerPluginConfiguration.getSettings();
+					Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration(settings));
+					OutputStream outputStream = Files.newOutputStream(file);
+					InputStream inputStream = new MultiplexingInputStream(originalInputStream, outputStream);
+					deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
+					
+					IfcModelInterface model = deserializer.read(inputStream, fileName, fileSize, null);
+					
+					CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
+					LongCheckinAction longAction = new LongCheckinAction(topicId, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+					getBimServer().getLongActionManager().start(longAction);
+					if (sync) {
+						longAction.waitForCompletion();
+					}
+					return longAction.getProgressTopic().getKey().getId();
+				} else if (plugin instanceof StreamingDeserializerPlugin) {
+					StreamingDeserializerPlugin streaminDeserializerPlugin = (StreamingDeserializerPlugin) plugin;
+					ObjectType settings = deserializerPluginConfiguration.getSettings();
+					StreamingDeserializer streamingDeserializer = streaminDeserializerPlugin.createDeserializer(new PluginConfiguration(settings));
+					streamingDeserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
+					OutputStream outputStream = Files.newOutputStream(file);
+					InputStream inputStream = new MultiplexingInputStream(originalInputStream, outputStream);
+					StreamingCheckinDatabaseAction checkinDatabaseAction = new StreamingCheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), comment, fileName, inputStream, streamingDeserializer, fileSize);
+					LongStreamingCheckinAction longAction = new LongStreamingCheckinAction(topicId, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+					getBimServer().getLongActionManager().start(longAction);
+					if (sync) {
+						longAction.waitForCompletion();
+					}
+					return longAction.getProgressTopic().getKey().getId();
+				} else {
+					throw new UserException("No (enabled) (streaming) deserializer found with oid " + deserializerOid);
+				}
+			} else {
+				throw new UserException("No (enabled) (streaming) deserializer found with oid " + deserializerOid);
+			}
 		}
 	}
 	
@@ -1001,6 +1013,13 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				Files.createDirectory(userDirIncoming);
 			}
 			
+			Project project = session.get(poid, OldQuery.getDefault());
+			if (project == null) {
+				throw new UserException("No project found with poid " + poid);
+			}
+			
+			Long topicId = initiateCheckin(poid, deserializerOid);
+			
 			URL url = new URL(urlString);
 			URLConnection openConnection = url.openConnection();
 			InputStream input = openConnection.getInputStream();
@@ -1011,32 +1030,39 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				} else {
 					fileName = urlString;
 				}
+				if (fileName.contains("?")) {
+					fileName = fileName.substring(0, fileName.indexOf("?"));
+				}
 				fileName = URLDecoder.decode(fileName, Charsets.UTF_8.name());
 			} else {
 				fileName = dateFormat.format(new Date()) + "-" + fileName;
 			}
 			Path file = userDirIncoming.resolve(fileName);
-			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
-			if (deserializerPluginConfiguration == null) {
-				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
-			}
-			OutputStream outputStream = Files.newOutputStream(file);
-			InputStream inputStream = new MultiplexingInputStream(input, outputStream);
-			DeserializerPlugin deserializerPlugin = (DeserializerPlugin) getBimServer().getPluginManager().getPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-			ObjectType settings = deserializerPluginConfiguration.getSettings();
-
-			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration(settings));
-			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
-
-			IfcModelInterface model = deserializer.read(inputStream, fileName, 0, null);
 			
-			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
-			LongCheckinAction longAction = new LongCheckinAction(-1L, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
-			getBimServer().getLongActionManager().start(longAction);
-			if (sync) {
-				longAction.waitForCompletion();
-			}
-			return longAction.getProgressTopic().getKey().getId();
+			return checkinInternal(topicId, poid, comment, deserializerOid, (long)openConnection.getContentLength(), fileName, input, merge,
+					sync, session, username, userUsername, project, file);
+			
+//			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
+//			if (deserializerPluginConfiguration == null) {
+//				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
+//			}
+//			OutputStream outputStream = Files.newOutputStream(file);
+//			InputStream inputStream = new MultiplexingInputStream(input, outputStream);
+//			DeserializerPlugin deserializerPlugin = (DeserializerPlugin) getBimServer().getPluginManager().getPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+//			ObjectType settings = deserializerPluginConfiguration.getSettings();
+//
+//			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration(settings));
+//			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
+//
+//			IfcModelInterface model = deserializer.read(inputStream, fileName, 0, null);
+//			
+//			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
+//			LongCheckinAction longAction = new LongCheckinAction(-1L, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+//			getBimServer().getLongActionManager().start(longAction);
+//			if (sync) {
+//				longAction.waitForCompletion();
+//			}
+//			return longAction.getProgressTopic().getKey().getId();
 		} catch (UserException e) {
 			throw e;
 		} catch (Throwable e) {
