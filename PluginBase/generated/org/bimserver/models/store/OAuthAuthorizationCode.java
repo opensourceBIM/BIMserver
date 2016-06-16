@@ -29,6 +29,7 @@ import org.bimserver.emf.IdEObject;
  * <ul>
  *   <li>{@link org.bimserver.models.store.OAuthAuthorizationCode#getOauthServer <em>Oauth Server</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthAuthorizationCode#getCode <em>Code</em>}</li>
+ *   <li>{@link org.bimserver.models.store.OAuthAuthorizationCode#getAuthorization <em>Authorization</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getOAuthAuthorizationCode()
@@ -88,5 +89,31 @@ public interface OAuthAuthorizationCode extends IdEObject {
 	 * @generated
 	 */
 	void setCode(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Authorization</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Authorization</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Authorization</em>' reference.
+	 * @see #setAuthorization(Authorization)
+	 * @see org.bimserver.models.store.StorePackage#getOAuthAuthorizationCode_Authorization()
+	 * @model
+	 * @generated
+	 */
+	Authorization getAuthorization();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.OAuthAuthorizationCode#getAuthorization <em>Authorization</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Authorization</em>' reference.
+	 * @see #getAuthorization()
+	 * @generated
+	 */
+	void setAuthorization(Authorization value);
 
 } // OAuthAuthorizationCode

@@ -39,6 +39,17 @@ public class NetUtils {
 		in.close();
 		return new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8);
 	}
+
+	public static byte[] getContentAsBytes(URL url, int timeOut) throws IOException {
+		URLConnection openConnection = url.openConnection();
+		openConnection.setConnectTimeout(timeOut);
+		openConnection.setReadTimeout(timeOut);
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		InputStream in = openConnection.getInputStream();
+		IOUtils.copy(in, byteArrayOutputStream);
+		in.close();
+		return byteArrayOutputStream.toByteArray();
+	}
 	
 	public static void main(String[] args) {
 		try {

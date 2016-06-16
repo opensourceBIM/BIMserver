@@ -882,6 +882,24 @@ public interface StoreFactory extends EFactory {
 	OAuthAuthorizationCode createOAuthAuthorizationCode();
 
 	/**
+	 * Returns a new object of class '<em>Authorization</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Authorization</em>'.
+	 * @generated
+	 */
+	Authorization createAuthorization();
+
+	/**
+	 * Returns a new object of class '<em>Single Project Authorization</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Single Project Authorization</em>'.
+	 * @generated
+	 */
+	SingleProjectAuthorization createSingleProjectAuthorization();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

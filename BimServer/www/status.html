@@ -60,7 +60,7 @@ function Status(cd, serverInfo) {
 			var tr = $("<tr>");
 			cd.find(".webModules table tbody").append(tr);
 			Global.api.call("PluginInterface", "getPluginDescriptor", {oid: webModule.pluginDescriptorId}, function(pluginDescriptor){
-				tr.append("<td><a href=\"apps/" + pluginDescriptor.identifier + "\">" + pluginDescriptor.identifier + "</a></td>");
+				tr.append("<td><a href=\"apps/" + pluginDescriptor.identifier + "/\">" + pluginDescriptor.identifier + "</a></td>");
 				tr.append("<td>" + pluginDescriptor.name + "</td>");
 				tr.append("<td>" + pluginDescriptor.description + "</td>");
 			});

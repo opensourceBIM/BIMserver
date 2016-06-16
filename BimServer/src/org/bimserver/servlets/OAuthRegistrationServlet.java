@@ -1,12 +1,18 @@
 package org.bimserver.servlets;
 
 import java.io.IOException;
+import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.oltu.oauth2.as.issuer.MD5Generator;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.OAuthResponse;
@@ -17,7 +23,9 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.store.OAuthServer;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.utils.NetUtils;
 
 public class OAuthRegistrationServlet extends SubServlet {
 
@@ -36,21 +44,41 @@ public class OAuthRegistrationServlet extends SubServlet {
             oauthRequest.getRedirectURI();
 
             try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
-            	OAuthServer oAuthServer = session.create(OAuthServer.class);
-            	oAuthServer.setClientName(oauthRequest.getClientName());
-            	oAuthServer.setClientUrl(oauthRequest.getClientUrl());
-            	oAuthServer.setClientDescription(oauthRequest.getClientDescription());
-            	oAuthServer.setRedirectUrl(oauthRequest.getRedirectURI());
-            	oAuthServer.setClientSecret("secret");
-            	oAuthServer.setClientId("testid");
-            	oAuthServer.setIncoming(true);
-            	session.commit();
+            	OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_RedirectUrl(), oauthRequest.getRedirectURI());
+            	
+            	GregorianCalendar now = new GregorianCalendar();
+            	if (oAuthServer == null) {
+            		oAuthServer = session.create(OAuthServer.class);
+            		oAuthServer.setClientName(oauthRequest.getClientName());
+            		oAuthServer.setClientUrl(oauthRequest.getClientUrl());
+            		oAuthServer.setClientDescription(oauthRequest.getClientDescription());
+            		
+            		if (oauthRequest.getClientIcon() != null) {
+            			byte[] icon = NetUtils.getContentAsBytes(new URL(oauthRequest.getClientIcon()), 5000);
+            			oAuthServer.setClientIcon(icon);
+            		}
+            		oAuthServer.setRedirectUrl(oauthRequest.getRedirectURI());
+            		
+            		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            		
+            		GregorianCalendar expires = new GregorianCalendar();
+            		expires.add(Calendar.YEAR, 1);
+            		
+            		String secret = new MD5Generator().generateValue();
+            		
+            		oAuthServer.setIssuedAt(now.getTime());
+            		oAuthServer.setExpiresAt(expires.getTime());
+            		oAuthServer.setClientSecret(secret);
+            		oAuthServer.setClientId(oauthRequest.getClientName().replace(" ", "").toLowerCase());
+            		oAuthServer.setIncoming(true);
+            		session.commit();
+            	}
             	OAuthResponse response = OAuthServerRegistrationResponse
             			.status(HttpServletResponse.SC_OK)
             			.setClientId(oAuthServer.getClientId())
             			.setClientSecret(oAuthServer.getClientSecret())
-            			.setIssuedAt(oAuthServer.getIssuedAt())
-            			.setExpiresIn(oAuthServer.getExpiresIn())
+            			.setIssuedAt("" + oAuthServer.getIssuedAt().getTime())
+            			.setExpiresIn(oAuthServer.getExpiresAt().getTime() - now.getTimeInMillis())
             			.buildJSONMessage();
             	httpResponse.setStatus(response.getResponseStatus());
             	httpResponse.getWriter().write(response.getBody());

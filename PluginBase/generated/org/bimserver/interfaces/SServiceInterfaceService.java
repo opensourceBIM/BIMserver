@@ -519,6 +519,16 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SOAuthAuthorizationCode();
 					}
 				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SAuthorization"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SAuthorization();
+					}
+				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SSingleProjectAuthorization"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SSingleProjectAuthorization();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);

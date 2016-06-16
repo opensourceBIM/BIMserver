@@ -21,7 +21,19 @@ import org.bimserver.shared.exceptions.ServerException;
 
 public class OAuthInterfaceAdaptor implements org.bimserver.shared.interfaces.OAuthInterface {
 
+	public java.lang.String authorize(java.lang.Long oAuthServerOid, org.bimserver.interfaces.objects.SAuthorization authorization) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.String generateForwardUrl(java.lang.String registrationEndpoint, java.lang.String authorizeUrl, java.lang.String returnUrl) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SAuthorization getAuthorizationById(java.lang.Long oid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SOAuthServer getOAuthServerByClientId(java.lang.String clientId) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -33,12 +45,26 @@ public class OAuthInterfaceAdaptor implements org.bimserver.shared.interfaces.OA
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SOAuthAuthorizationCode> listIssuedAuthorizationCodes() throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SOAuthServer> listRegisteredServers() throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<org.bimserver.interfaces.objects.SOAuthServer> listRegisteredServersLocal() throws UserException, ServerException {
 		return null;
 	}
 	
 	public java.lang.Long registerApplication(java.lang.String registrationEndpoint, java.lang.String apiUrl) throws UserException, ServerException {
 		return null;
+	}
+	
+	public void revokeApplication(java.lang.Long oid) throws UserException, ServerException {
+	}
+	
+	public void revokeAuthorization(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
 	public void setAuthorizationCode(java.lang.Long applicationId, java.lang.String code) throws UserException, ServerException {

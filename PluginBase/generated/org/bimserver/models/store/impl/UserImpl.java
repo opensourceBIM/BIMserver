@@ -62,6 +62,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getOAuthAuthorizationCodes <em>OAuth Authorization Codes</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserImpl#getOAuthIssuedAuthorizationCodes <em>OAuth Issued Authorization Codes</em>}</li>
  * </ul>
  *
  * @generated
@@ -398,6 +399,16 @@ public class UserImpl extends IdEObjectImpl implements User {
 	@SuppressWarnings("unchecked")
 	public EList<OAuthAuthorizationCode> getOAuthAuthorizationCodes() {
 		return (EList<OAuthAuthorizationCode>) eGet(StorePackage.Literals.USER__OAUTH_AUTHORIZATION_CODES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<OAuthAuthorizationCode> getOAuthIssuedAuthorizationCodes() {
+		return (EList<OAuthAuthorizationCode>) eGet(StorePackage.Literals.USER__OAUTH_ISSUED_AUTHORIZATION_CODES, true);
 	}
 
 } //UserImpl

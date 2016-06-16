@@ -2099,7 +2099,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				return (T) get(oid, OldQuery.getDefault());
 			}
 		} else {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException(attribute.getContainerClass().getName() + "." + attribute.getName() + " does not have a \"singleindex\"");
 		}
 		return null;
 	}

@@ -33,18 +33,55 @@ option java_outer_classname = "OAuthInterfaceImpl";
 option optimize_for = SPEED;
 
 service OAuthInterface {
+	rpc authorize (AuthorizeRequest) returns (AuthorizeResponse);
+
 	rpc generateForwardUrl (GenerateForwardUrlRequest) returns (GenerateForwardUrlResponse);
+
+	rpc getAuthorizationById (GetAuthorizationByIdRequest) returns (GetAuthorizationByIdResponse);
+
+	rpc getOAuthServerByClientId (GetOAuthServerByClientIdRequest) returns (GetOAuthServerByClientIdResponse);
 
 	rpc getOAuthServerById (GetOAuthServerByIdRequest) returns (GetOAuthServerByIdResponse);
 
 	rpc listAuthorizationCodes (ListAuthorizationCodesRequest) returns (ListAuthorizationCodesResponse);
 
+	rpc listIssuedAuthorizationCodes (ListIssuedAuthorizationCodesRequest) returns (ListIssuedAuthorizationCodesResponse);
+
 	rpc listRegisteredServers (ListRegisteredServersRequest) returns (ListRegisteredServersResponse);
+
+	rpc listRegisteredServersLocal (ListRegisteredServersLocalRequest) returns (ListRegisteredServersLocalResponse);
 
 	rpc registerApplication (RegisterApplicationRequest) returns (RegisterApplicationResponse);
 
+	rpc revokeApplication (RevokeApplicationRequest) returns (VoidResponse);
+
+	rpc revokeAuthorization (RevokeAuthorizationRequest) returns (VoidResponse);
+
 	rpc setAuthorizationCode (SetAuthorizationCodeRequest) returns (VoidResponse);
 
+}
+
+message SSingleProjectAuthorization {
+	optional int64 oid = 1;
+	optional int64 projectId = 2;
+	optional int32 rid = 3;
+}
+
+message SAuthorization {
+	required string __actual_type = 1;
+	optional SSingleProjectAuthorization __SSingleProjectAuthorization = 2;
+	optional int64 oid = 3;
+	optional int32 rid = 4;
+}
+
+message AuthorizeRequest {
+	optional int64 oAuthServerOid = 1;
+	optional SAuthorization authorization = 2;
+}
+
+message AuthorizeResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
 }
 
 message GenerateForwardUrlRequest {
@@ -58,25 +95,44 @@ message GenerateForwardUrlResponse {
 	optional string value = 2;
 }
 
-message GetOAuthServerByIdRequest {
+message GetAuthorizationByIdRequest {
 	optional int64 oid = 1;
+}
+
+message GetAuthorizationByIdResponse {
+	optional string errorMessage = 1;
+	optional SAuthorization value = 2;
+}
+
+message GetOAuthServerByClientIdRequest {
+	optional string clientId = 1;
 }
 
 message SOAuthServer {
 	optional string apiUrl = 1;
 	optional string clientDescription = 2;
-	optional string clientId = 3;
-	optional string clientName = 4;
-	optional string clientSecret = 5;
-	optional string clientUrl = 6;
-	optional int64 expiresIn = 7;
-	optional bool incoming = 8;
-	optional string issuedAt = 9;
-	optional int64 oid = 10;
-	optional string redirectUrl = 11;
-	optional string registrationEndpoint = 12;
-	optional string registrationUrl = 13;
-	optional int32 rid = 14;
+	optional bytes clientIcon = 3;
+	optional string clientId = 4;
+	optional string clientName = 5;
+	optional string clientSecret = 6;
+	optional string clientUrl = 7;
+	optional int64 expiresAt = 8;
+	optional bool incoming = 9;
+	optional int64 issuedAt = 10;
+	optional int64 oid = 11;
+	optional string redirectUrl = 12;
+	optional string registrationEndpoint = 13;
+	optional string registrationUrl = 14;
+	optional int32 rid = 15;
+}
+
+message GetOAuthServerByClientIdResponse {
+	optional string errorMessage = 1;
+	optional SOAuthServer value = 2;
+}
+
+message GetOAuthServerByIdRequest {
+	optional int64 oid = 1;
 }
 
 message GetOAuthServerByIdResponse {
@@ -88,13 +144,22 @@ message ListAuthorizationCodesRequest {
 }
 
 message SOAuthAuthorizationCode {
-	optional string code = 1;
-	optional int64 oauthServerId = 2;
-	optional int64 oid = 3;
-	optional int32 rid = 4;
+	optional int64 authorizationId = 1;
+	optional string code = 2;
+	optional int64 oauthServerId = 3;
+	optional int64 oid = 4;
+	optional int32 rid = 5;
 }
 
 message ListAuthorizationCodesResponse {
+	optional string errorMessage = 1;
+	repeated SOAuthAuthorizationCode value = 2;
+}
+
+message ListIssuedAuthorizationCodesRequest {
+}
+
+message ListIssuedAuthorizationCodesResponse {
 	optional string errorMessage = 1;
 	repeated SOAuthAuthorizationCode value = 2;
 }
@@ -107,6 +172,14 @@ message ListRegisteredServersResponse {
 	repeated SOAuthServer value = 2;
 }
 
+message ListRegisteredServersLocalRequest {
+}
+
+message ListRegisteredServersLocalResponse {
+	optional string errorMessage = 1;
+	repeated SOAuthServer value = 2;
+}
+
 message RegisterApplicationRequest {
 	optional string registrationEndpoint = 1;
 	optional string apiUrl = 2;
@@ -115,6 +188,14 @@ message RegisterApplicationRequest {
 message RegisterApplicationResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
+}
+
+message RevokeApplicationRequest {
+	optional int64 oid = 1;
+}
+
+message RevokeAuthorizationRequest {
+	optional int64 oid = 1;
 }
 
 message SetAuthorizationCodeRequest {

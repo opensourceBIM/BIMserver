@@ -23,19 +23,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SObjectIDMPluginConfiguration.class, SModelComparePluginConfiguration.class, SWebModulePluginConfiguration.class, SSerializerPluginConfiguration.class, SDeserializerPluginConfiguration.class, SRenderEnginePluginConfiguration.class, SQueryEnginePluginConfiguration.class, SModelMergerPluginConfiguration.class, SInternalServicePluginConfiguration.class})
-public class SPluginConfiguration implements SDataBase
+@XmlSeeAlso(value={SSingleProjectAuthorization.class})
+public class SAuthorization implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private java.lang.String name;
-	private java.lang.Boolean enabled;
-	private java.lang.String description;
-	private long pluginDescriptorId = -1;
-	private long settingsId = -1;
 
 	public long getOid() {
 		return this.oid;
@@ -59,25 +54,10 @@ public class SPluginConfiguration implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPluginConfiguration.sClass = sClass;
+		SAuthorization.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("name")) {
-			return getName();
-		}
-		if (sField.getName().equals("enabled")) {
-			return getEnabled();
-		}
-		if (sField.getName().equals("description")) {
-			return getDescription();
-		}
-		if (sField.getName().equals("pluginDescriptorId")) {
-			return getPluginDescriptorId();
-		}
-		if (sField.getName().equals("settingsId")) {
-			return getSettingsId();
-		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -88,26 +68,6 @@ public class SPluginConfiguration implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("name")) {
-			setName((String)val);
-			return;
-		}
-		if (sField.getName().equals("enabled")) {
-			setEnabled((Boolean)val);
-			return;
-		}
-		if (sField.getName().equals("description")) {
-			setDescription((String)val);
-			return;
-		}
-		if (sField.getName().equals("pluginDescriptorId")) {
-			setPluginDescriptorId((Long)val);
-			return;
-		}
-		if (sField.getName().equals("settingsId")) {
-			setSettingsId((Long)val);
-			return;
-		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -117,46 +77,6 @@ public class SPluginConfiguration implements SDataBase
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
-	}
-	
-	public java.lang.String getName() {
-		return name;
-	}
-
-	public void setName(java.lang.String name) {
-		this.name = name;
-	}
-	
-	public java.lang.Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(java.lang.Boolean enabled) {
-		this.enabled = enabled;
-	}
-	
-	public java.lang.String getDescription() {
-		return description;
-	}
-
-	public void setDescription(java.lang.String description) {
-		this.description = description;
-	}
-	
-	public long getPluginDescriptorId() {
-		return pluginDescriptorId;
-	}
-
-	public void setPluginDescriptorId(long pluginDescriptorId) {
-		this.pluginDescriptorId = pluginDescriptorId;
-	}
-	
-	public long getSettingsId() {
-		return settingsId;
-	}
-
-	public void setSettingsId(long settingsId) {
-		this.settingsId = settingsId;
 	}
 	
 	@Override
@@ -175,7 +95,7 @@ public class SPluginConfiguration implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPluginConfiguration other = (SPluginConfiguration) obj;
+		SAuthorization other = (SAuthorization) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

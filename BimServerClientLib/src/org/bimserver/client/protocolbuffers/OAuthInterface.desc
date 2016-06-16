@@ -1,46 +1,82 @@
 
-Æ
-OAuthInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoNotificationInterface.protoRemoteServiceInterface.protoLowLevelInterface.proto#NotificationRegistryInterface.proto"b
+≈ 
+OAuthInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoNotificationInterface.protoRemoteServiceInterface.protoLowLevelInterface.proto#NotificationRegistryInterface.proto"J
+SSingleProjectAuthorization
+oid (
+	projectId (
+rid ("ó
+SAuthorization
+__actual_type (	T
+__SSingleProjectAuthorization (2-.org.bimserver.pb.SSingleProjectAuthorization
+oid (
+rid ("c
+AuthorizeRequest
+oAuthServerOid (7
+authorization (2 .org.bimserver.pb.SAuthorization"8
+AuthorizeResponse
+errorMessage (	
+value (	"b
 GenerateForwardUrlRequest
 registrationEndpoint (	
 authorizeUrl (	
 	returnUrl (	"A
 GenerateForwardUrlResponse
 errorMessage (	
-value (	"(
-GetOAuthServerByIdRequest
-oid ("•
+value (	"*
+GetAuthorizationByIdRequest
+oid ("e
+GetAuthorizationByIdResponse
+errorMessage (	/
+value (2 .org.bimserver.pb.SAuthorization"3
+GetOAuthServerByClientIdRequest
+clientId (	"π
 SOAuthServer
 apiUrl (	
-clientDescription (	
-clientId (	
+clientDescription (	
 
-clientName (	
-clientSecret (	
-	clientUrl (	
-	expiresIn (
-incoming (
-issuedAt	 (	
-oid
- (
-redirectUrl (	
-registrationEndpoint (	
-registrationUrl (	
-rid ("a
+clientIcon (
+clientId (	
+
+clientName (	
+clientSecret (	
+	clientUrl (	
+	expiresAt (
+incoming	 (
+issuedAt
+ (
+oid (
+redirectUrl (	
+registrationEndpoint (	
+registrationUrl (	
+rid ("g
+ GetOAuthServerByClientIdResponse
+errorMessage (	-
+value (2.org.bimserver.pb.SOAuthServer"(
+GetOAuthServerByIdRequest
+oid ("a
 GetOAuthServerByIdResponse
 errorMessage (	-
 value (2.org.bimserver.pb.SOAuthServer"
-ListAuthorizationCodesRequest"X
-SOAuthAuthorizationCode
-code (	
-oauthServerId (
-oid (
-rid ("p
+ListAuthorizationCodesRequest"q
+SOAuthAuthorizationCode
+authorizationId (
+code (	
+oauthServerId (
+oid (
+rid ("p
 ListAuthorizationCodesResponse
+errorMessage (	8
+value (2).org.bimserver.pb.SOAuthAuthorizationCode"%
+#ListIssuedAuthorizationCodesRequest"v
+$ListIssuedAuthorizationCodesResponse
 errorMessage (	8
 value (2).org.bimserver.pb.SOAuthAuthorizationCode"
 ListRegisteredServersRequest"d
 ListRegisteredServersResponse
+errorMessage (	-
+value (2.org.bimserver.pb.SOAuthServer"#
+!ListRegisteredServersLocalRequest"i
+"ListRegisteredServersLocalResponse
 errorMessage (	-
 value (2.org.bimserver.pb.SOAuthServer"J
 RegisterApplicationRequest
@@ -48,14 +84,25 @@ clientName (	
 apiUrl (	"B
 RegisterApplicationResponse
 errorMessage (	
-value ("B
+value ("'
+RevokeApplicationRequest
+oid (")
+RevokeAuthorizationRequest
+oid ("B
 SetAuthorizationCodeRequest
 applicationId (
-code (	2ƒ
-OAuthInterfaceo
-generateForwardUrl+.org.bimserver.pb.GenerateForwardUrlRequest,.org.bimserver.pb.GenerateForwardUrlResponseo
+code (	2ı
+OAuthInterfaceT
+	authorize".org.bimserver.pb.AuthorizeRequest#.org.bimserver.pb.AuthorizeResponseo
+generateForwardUrl+.org.bimserver.pb.GenerateForwardUrlRequest,.org.bimserver.pb.GenerateForwardUrlResponseu
+getAuthorizationById-.org.bimserver.pb.GetAuthorizationByIdRequest..org.bimserver.pb.GetAuthorizationByIdResponseÅ
+getOAuthServerByClientId1.org.bimserver.pb.GetOAuthServerByClientIdRequest2.org.bimserver.pb.GetOAuthServerByClientIdResponseo
 getOAuthServerById+.org.bimserver.pb.GetOAuthServerByIdRequest,.org.bimserver.pb.GetOAuthServerByIdResponse{
-listAuthorizationCodes/.org.bimserver.pb.ListAuthorizationCodesRequest0.org.bimserver.pb.ListAuthorizationCodesResponsex
-listRegisteredServers..org.bimserver.pb.ListRegisteredServersRequest/.org.bimserver.pb.ListRegisteredServersResponser
-registerApplication,.org.bimserver.pb.RegisterApplicationRequest-.org.bimserver.pb.RegisterApplicationResponsee
+listAuthorizationCodes/.org.bimserver.pb.ListAuthorizationCodesRequest0.org.bimserver.pb.ListAuthorizationCodesResponseç
+listIssuedAuthorizationCodes5.org.bimserver.pb.ListIssuedAuthorizationCodesRequest6.org.bimserver.pb.ListIssuedAuthorizationCodesResponsex
+listRegisteredServers..org.bimserver.pb.ListRegisteredServersRequest/.org.bimserver.pb.ListRegisteredServersResponseá
+listRegisteredServersLocal3.org.bimserver.pb.ListRegisteredServersLocalRequest4.org.bimserver.pb.ListRegisteredServersLocalResponser
+registerApplication,.org.bimserver.pb.RegisterApplicationRequest-.org.bimserver.pb.RegisterApplicationResponse_
+revokeApplication*.org.bimserver.pb.RevokeApplicationRequest.org.bimserver.pb.VoidResponsec
+revokeAuthorization,.org.bimserver.pb.RevokeAuthorizationRequest.org.bimserver.pb.VoidResponsee
 setAuthorizationCode-.org.bimserver.pb.SetAuthorizationCodeRequest.org.bimserver.pb.VoidResponseBBOAuthInterfaceImplHà
