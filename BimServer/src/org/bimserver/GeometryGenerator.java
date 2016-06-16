@@ -51,6 +51,8 @@ import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
+import org.bimserver.models.ifc2x3tc1.IfcBoundingBox;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
@@ -172,6 +174,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 						IdEObject representation = (IdEObject) ifcProduct.eGet(representationFeature);
 						if (representation != null && ((List<?>) representation.eGet(representationsFeature)).size() > 0) {
 							List<?> representations = (List<?>) representation.eGet(representationsFeature);
+							GeometryInfo geometryInfo = null;
 							try {
 								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
 								RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
@@ -185,7 +188,6 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 									renderEngineModel.setFilter(renderEngineFilter);
 								}
 								if (geometry != null && geometry.getNrIndices() > 0) {
-									GeometryInfo geometryInfo = null;
 									if (store) {
 										geometryInfo = model.createAndAdd(GeometryPackage.eINSTANCE.getGeometryInfo(), databaseSession.newOid(GeometryPackage.eINSTANCE.getGeometryInfo()));
 										databaseSession.store(geometryInfo, pid, rid);
@@ -225,7 +227,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 
 									geometryData.setIndices(intArrayToByteArray(geometry.getIndices()));
 									geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
-									geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
+//									geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
 									geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
 									
 									geometryInfo.setPrimitiveCount(geometry.getIndices().length / 3);
@@ -303,8 +305,20 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 										if (!"Curve2D".equals(ifcShapeRepresentation.getRepresentationType())) {
 											ignoreNotFound = false;
 										}
+//										if (ifcShapeRepresentation.getRepresentationType().equals("BoundingBox") && ifcProduct.eClass().getName().equals("IfcSpace")) {
+//											// We try to use the bounding box for geometry
+//											
+//											for (IfcRepresentationItem ifcRepresentationItem : ifcShapeRepresentation.getItems()) {
+//												if (ifcRepresentationItem instanceof IfcBoundingBox) {
+//													IfcBoundingBox ifcBoundingBox = (IfcBoundingBox)ifcRepresentationItem;
+//													createBoundingBoxGeometry(ifcBoundingBox, ifcProduct);
+//													ignoreNotFound = true;
+//												}
+//											}
+//										}
 									}
 								}
+								
 								if (!ignoreNotFound) {
 									LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + ifcProduct.getExpressId() + "/" + ifcProduct.getOid());
 								}
@@ -324,6 +338,89 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 				}
 			} catch (Exception e) {
 				LOGGER.error("", e);
+			}
+		}
+
+		private void createBoundingBoxGeometry(IfcBoundingBox ifcBoundingBox, IdEObject ifcProduct) throws IfcModelInterfaceException, BimserverDatabaseException {
+			System.out.println("bb " + ifcProduct.getOid());
+			GeometryInfo geometryInfo = model.createAndAdd(GeometryPackage.eINSTANCE.getGeometryInfo(), databaseSession.newOid(GeometryPackage.eINSTANCE.getGeometryInfo()));
+			databaseSession.store(geometryInfo, pid, rid);
+
+			geometryInfo.setMinBounds(createVector3f(packageMetaData, model, Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+			geometryInfo.setMaxBounds(createVector3f(packageMetaData, model, -Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+			
+			GeometryData geometryData = model.createAndAdd(GeometryPackage.eINSTANCE.getGeometryData(), databaseSession.newOid(GeometryPackage.eINSTANCE.getGeometryData()));
+			databaseSession.store(geometryData, pid, rid);
+			
+			int[] indices = new int[]{
+				0, 1, 2,
+				0, 2, 3,
+				5, 6, 1,
+				1, 6, 2,
+				2, 6, 7,
+				2, 7, 3,
+				5, 6, 7,
+				7, 4, 5,
+				1, 5, 4,
+				0, 1, 4,
+				7, 3, 0,
+				0, 4, 7
+			};
+			
+			float[] vertices = new float[]{
+				0, 0, 0,
+				(float)ifcBoundingBox.getXDim(), 0, 0,
+				(float)ifcBoundingBox.getXDim(), (float) ifcBoundingBox.getYDim(), 0,
+				0, (float)ifcBoundingBox.getYDim(), 0,
+				0, 0, (float) ifcBoundingBox.getZDim(),
+				(float)ifcBoundingBox.getXDim(), 0, (float) ifcBoundingBox.getZDim(),
+				(float)ifcBoundingBox.getXDim(), (float) ifcBoundingBox.getYDim(), (float) ifcBoundingBox.getZDim(),
+				0, (float)ifcBoundingBox.getYDim(), (float) ifcBoundingBox.getZDim()
+			};
+			
+			float[] normals = new float[]{
+				0, 0, 0,
+				0, 0, 0,
+				0, 0, 0,
+				0, 0, 0,
+				0, 0, 0,
+				0, 0, 0,
+				0, 0, 0,
+				0, 0, 0,
+				0, 0, 0,
+				0, 0, 0,
+				0, 0, 0,
+				0, 0, 0
+			};
+			
+			geometryData.setIndices(intArrayToByteArray(indices));
+			geometryData.setVertices(floatArrayToByteArray(vertices));
+			geometryData.setNormals(floatArrayToByteArray(normals));
+			
+			geometryInfo.setPrimitiveCount(12);
+			geometryInfo.setData(geometryData);
+			
+			double[] tranformationMatrix = new double[16];
+			Matrix.setIdentityM(tranformationMatrix, 0);
+			Matrix.translateM(tranformationMatrix, 0, ifcBoundingBox.getCorner().getCoordinates().get(0), ifcBoundingBox.getCorner().getCoordinates().get(1), ifcBoundingBox.getCorner().getCoordinates().get(2));
+//			if (translate && renderEngineInstance.getTransformationMatrix() != null) {
+//				tranformationMatrix = renderEngineInstance.getTransformationMatrix();
+//			}
+			
+			setTransformationMatrix(geometryInfo, tranformationMatrix);
+//			totalBytes.addAndGet(length);
+
+			if (bigMap == null) {
+				ifcProduct.eSet(geometryFeature, geometryInfo);
+				if (store) {
+					databaseSession.store(ifcProduct, pid, rid);
+				}
+			} else {
+				bigMap.get(ifcProduct).eSet(geometryFeature, geometryInfo);
+				ifcProduct.eSet(geometryFeature, geometryInfo); // ??
+				if (store) {
+					databaseSession.store(bigMap.get(ifcProduct), pid, rid);
+				}
 			}
 		}
 	}

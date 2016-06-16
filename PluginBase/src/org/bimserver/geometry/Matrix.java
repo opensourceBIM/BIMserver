@@ -599,6 +599,23 @@ public class Matrix {
     }
 
     /**
+     * Translates matrix m by x, y, and z in place.
+     * @param m matrix
+     * @param mOffset index into m where the matrix starts
+     * @param x translation factor x
+     * @param y translation factor y
+     * @param z translation factor z
+     */
+    public static void translateM(
+    		double[] m, int mOffset,
+    		double x, double y, double z) {
+    	for (int i=0 ; i<4 ; i++) {
+    		int mi = mOffset + i;
+    		m[12 + mi] += m[mi] * x + m[4 + mi] * y + m[8 + mi] * z;
+    	}
+    }
+    
+    /**
      * Rotates matrix m by angle a (in degrees) around the axis (x, y, z)
      * @param rm returns the result
      * @param rmOffset index into rm where the result matrix starts
