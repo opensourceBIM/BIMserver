@@ -48,6 +48,7 @@ import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryPart;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.geometry.Matrix;
@@ -182,12 +183,12 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				byte[] bytes = null;
 				try {
 					renderEngine = renderEnginePool.borrowObject();
-					final Set<HashMapVirtualObject> oids = new HashSet<>();
+					final Set<HashMapVirtualObject> objects = new HashSet<>();
 					ObjectProviderProxy proxy = new ObjectProviderProxy(objectProvider, new ObjectListener() {
 						@Override
 						public void newObject(HashMapVirtualObject next) {
 							if (eClass.isSuperTypeOf(next.eClass())) {
-								oids.add(next);
+								objects.add(next);
 							}
 						}
 					});
@@ -200,7 +201,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					RenderEngineModel renderEngineModel = renderEngine.openModel(in);
 					boolean notFoundsObjects = false;
 					try {
-						if (!oids.isEmpty()) {
+						if (!objects.isEmpty()) {
 							renderEngineModel.setSettings(renderEngineSettings);
 							renderEngineModel.setFilter(renderEngineFilter);
 	
@@ -208,7 +209,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 								renderEngineModel.generateGeneralGeometry();
 							} catch (RenderEngineException e) {
 								if (e.getCause() instanceof java.io.EOFException) {
-									if (oids.isEmpty() || eClass.getName().equals("IfcAnnotation")) {
+									if (objects.isEmpty() || eClass.getName().equals("IfcAnnotation")) {
 										// SKIP
 									} else {
 										LOGGER.error("Error in " + eClass.getName(), e);
@@ -219,7 +220,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							OidConvertingSerializer oidConvertingSerializer = (OidConvertingSerializer)ifcSerializer;
 							Map<Long, Integer> oidToEid = oidConvertingSerializer.getOidToEid();
 							
-							for (HashMapVirtualObject ifcProduct : oids) {
+							for (HashMapVirtualObject ifcProduct : objects) {
 								Integer expressId = oidToEid.get(ifcProduct.getOid());
 								if (ifcProduct.eGet(representationFeature) != null) {
 									try {
@@ -235,6 +236,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	//										}
 	//										renderEngineModel.setFilter(renderEngineFilter);
 	//									}
+										
 										if (geometry != null && geometry.getNrIndices() > 0) {
 											VirtualObject geometryInfo = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryInfo());
 											
@@ -343,6 +345,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	
 											ifcProduct.setReference(geometryFeature, geometryInfo.getOid(), 0);
 											ifcProduct.saveOverwrite();
+										} else {
+											// TODO
 										}
 										if (eClass.getName().equals("IfcBuildingElementProxy")) {
 											notFoundsObjects = true;
@@ -351,6 +355,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	//									e.printStackTrace();
 										// As soon as we find a representation that is not Curve2D, then we should show a "INFO" message in the log to indicate there could be something wrong
 										boolean ignoreNotFound = eClass.getName().equals("IfcAnnotation");
+										
 	//									for (Object rep : representations) {
 	//										if (rep instanceof IfcShapeRepresentation) {
 	//											IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation)rep;
