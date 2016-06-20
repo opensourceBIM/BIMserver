@@ -25,14 +25,9 @@ import org.apache.oltu.oauth2.common.utils.OAuthUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.OldQuery;
 import org.bimserver.models.store.OAuthAuthorizationCode;
-import org.bimserver.models.store.OAuthServer;
 import org.bimserver.models.store.SingleProjectAuthorization;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
-import org.bimserver.webservices.authorization.AuthenticationException;
-import org.bimserver.webservices.authorization.Authorization;
 
 public class OAuthAuthorizationServlet extends SubServlet {
 
@@ -44,22 +39,24 @@ public class OAuthAuthorizationServlet extends SubServlet {
 	public void service(HttpServletRequest request, HttpServletResponse httpServletResponse) throws ServletException, IOException {
 		OAuthAuthzRequest oauthRequest = null;
 
-		OAuthIssuerImpl oauthIssuerImpl = new OAuthIssuerImpl(new MD5Generator());
-		
 		String authType = request.getParameter("auth_type");
 		if (request.getParameter("token") == null) {
 			httpServletResponse.sendRedirect("/apps/bimviews/?page=OAuth&auth_type=" + authType + "&client_id=" + request.getParameter("client_id") + "&response_type=" + request.getParameter("response_type") + "&redirect_uri=" + request.getParameter("redirect_uri"));
 			return;
 		}
 
-		OAuthAuthorizationCode code = null;
+		OAuthAuthorizationCode oauthCode = null;
 		org.bimserver.models.store.Authorization authorization = null;
 		
 		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 //			OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_ClientId(), request.getParameter("client_id")));
 
-			code = session.querySingle(StorePackage.eINSTANCE.getOAuthAuthorizationCode_Code(), request.getAttribute("code"));
-			authorization = code.getAuthorization();
+			if (request.getParameter("code") != null) {
+				String code = (String) request.getParameter("code");
+				oauthCode = session.querySingle(StorePackage.eINSTANCE.getOAuthAuthorizationCode_Code(), code);
+				authorization = oauthCode.getAuthorization();
+				authorization.load();
+			}
 			
 //			String token = request.getParameter("token");
 //			Authorization authorization = Authorization.fromToken(getBimServer().getEncryptionKey(), token);
@@ -82,13 +79,13 @@ public class OAuthAuthorizationServlet extends SubServlet {
 			OAuthASResponse.OAuthAuthorizationResponseBuilder builder = OAuthASResponse.authorizationResponse(request, HttpServletResponse.SC_FOUND);
 
 			if (responseType.equals(ResponseType.CODE.toString())) {
-				builder.setCode(oauthIssuerImpl.authorizationCode());
+				builder.setCode(oauthCode.getCode());
 			}
-			if (responseType.equals(ResponseType.TOKEN.toString())) {
-				builder.setAccessToken(oauthIssuerImpl.accessToken());
-//				builder.setTokenType(OAuth.DEFAULT_TOKEN_TYPE.toString());
-				builder.setExpiresIn(3600l);
-			}
+//			if (responseType.equals(ResponseType.TOKEN.toString())) {
+//				builder.setAccessToken(oauthIssuerImpl.accessToken());
+////				builder.setTokenType(OAuth.DEFAULT_TOKEN_TYPE.toString());
+//				builder.setExpiresIn(3600l);
+//			}
 
 			String redirectURI = oauthRequest.getParam(OAuth.OAUTH_REDIRECT_URI);
 

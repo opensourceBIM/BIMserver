@@ -54,11 +54,12 @@ public class JsonHandler {
 		try {
 			jsonWriter.beginObject();
 			String token = incomingMessage.has("token") ? incomingMessage.get("token").getAsString() : null;
+			String oAuthCode = incomingMessage.has("oauthcode") ? incomingMessage.get("oauthcode").getAsString() : null;
 			if (incomingMessage.has("request")) {
 				jsonWriter.name("response");
-				processSingleRequest(incomingMessage.getAsJsonObject("request"), token, httpRequest, jsonWriter);
+				processSingleRequest(incomingMessage.getAsJsonObject("request"), token, oAuthCode, httpRequest, jsonWriter);
 			} else if (incomingMessage.has("requests")) {
-				processMultiRequest(incomingMessage.getAsJsonArray("requests"), token, httpRequest, jsonWriter);
+				processMultiRequest(incomingMessage.getAsJsonArray("requests"), token, oAuthCode, httpRequest, jsonWriter);
 			}
 		} catch (Throwable throwable) {
 			handleThrowable(jsonWriter, throwable);
@@ -71,12 +72,12 @@ public class JsonHandler {
 		}
 	}
 
-	private void processMultiRequest(JsonArray requests, String jsonToken, HttpServletRequest httpRequest, JsonWriter out) throws Exception {
+	private void processMultiRequest(JsonArray requests, String jsonToken, String oAuthCode, HttpServletRequest httpRequest, JsonWriter out) throws Exception {
 		out.name("responses");
 		out.beginArray();
 		for (int r = 0; r < requests.size(); r++) {
 			try {
-				processSingleRequest((JsonObject) requests.get(r), jsonToken, httpRequest, out);
+				processSingleRequest((JsonObject) requests.get(r), jsonToken, oAuthCode, httpRequest, out);
 			} catch (Exception e) {
 				handleThrowable(out, e);
 			}
@@ -84,7 +85,7 @@ public class JsonHandler {
 		out.endArray();
 	}
 
-	private void processSingleRequest(JsonObject request, String jsonToken, HttpServletRequest httpRequest, JsonWriter writer) throws Exception {
+	private void processSingleRequest(JsonObject request, String jsonToken, String oAuthCode, HttpServletRequest httpRequest, JsonWriter writer) throws Exception {
 		long s = System.nanoTime();
 		if (!request.has("interface")) {
 			throw new UserException("No \"interface\" parameter found in request");
@@ -127,7 +128,7 @@ public class JsonHandler {
 			throw new UserException("Missing 'parameters' field, expected " + parameters.length + " parameters");
 		}
 
-		PublicInterface service = getServiceInterface(httpRequest, bimServer, sService.getInterfaceClass(), methodName, jsonToken);
+		PublicInterface service = getServiceInterface(httpRequest, bimServer, sService.getInterfaceClass(), methodName, jsonToken, oAuthCode);
 		String oldThreadName = Thread.currentThread().getName();
 		Thread.currentThread().setName(interfaceName + "." + methodName);
 		try {
@@ -191,13 +192,16 @@ public class JsonHandler {
 		}
 	}
 
-	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, String methodName, String token)
+	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, String methodName, String token, String oAuthCode)
 			throws UserException, ServerException {
 		if (methodName.equals("login") || methodName.equals("autologin")) {
 			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
 		}
 		if (token == null) {
 			token = httpRequest == null ? null : (String) httpRequest.getSession().getAttribute("token");
+		}
+		if (token == null) {
+			token = oAuthCode;
 		}
 		if (token == null) {
 			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);

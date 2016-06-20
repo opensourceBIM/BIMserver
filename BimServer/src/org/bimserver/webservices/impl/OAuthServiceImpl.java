@@ -6,8 +6,6 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.oltu.oauth2.as.issuer.MD5Generator;
-import org.apache.oltu.oauth2.as.issuer.OAuthIssuerImpl;
 import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.common.message.types.ResponseType;
@@ -216,8 +214,6 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 
 	@Override
 	public String authorize(Long oAuthServerOid, SAuthorization authorization) throws ServerException, UserException {
-		OAuthIssuerImpl oauthIssuerImpl = new OAuthIssuerImpl(new MD5Generator());
-
 		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			if (authorization instanceof SSingleProjectAuthorization) {
 				User user = session.get(getCurrentUser().getOid(), OldQuery.getDefault());
@@ -226,8 +222,11 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 				SingleProjectAuthorization singleProjectAuthorization = session.create(SingleProjectAuthorization.class);
 				singleProjectAuthorization.setProject(session.get(sSingleProjectAuthorization.getProjectId(), OldQuery.getDefault()));
 				
+				org.bimserver.webservices.authorization.SingleProjectAuthorization singleProjectAuthorization2 = new org.bimserver.webservices.authorization.SingleProjectAuthorization(getBimServer(), user.getOid(), sSingleProjectAuthorization.getProjectId());
+				String token = singleProjectAuthorization2.asHexToken(getBimServer().getEncryptionKey());
+				
 				OAuthAuthorizationCode code = session.create(OAuthAuthorizationCode.class);
-				code.setCode(oauthIssuerImpl.authorizationCode());
+				code.setCode(token);
 //				code.setOauthServer(session.get(oAuthServerOid, OldQuery.getDefault()));
 				code.setAuthorization(singleProjectAuthorization);
 				
