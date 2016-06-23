@@ -68,10 +68,10 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 				oAuthServer.setClientId(response.getClientId());
 				oAuthServer.setClientSecret(response.getClientSecret());
 				
-				oAuthServer.setIssuedAt(new Date(response.getIssuedAt()));
+				oAuthServer.setIssuedAt(new Date(Long.parseLong(response.getIssuedAt())));
 				
 				GregorianCalendar expiresAt = new GregorianCalendar();
-				expiresAt.setTimeInMillis(expiresAt.getTimeInMillis() + response.getExpiresIn());
+				expiresAt.setTimeInMillis(new GregorianCalendar().getTimeInMillis() + response.getExpiresIn());
 				
 				oAuthServer.setExpiresAt(expiresAt.getTime());
 				oAuthServer.setRegistrationEndpoint(registrationEndpoint);
