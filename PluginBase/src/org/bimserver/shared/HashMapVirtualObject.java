@@ -325,9 +325,12 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 								writeWrappedValue(getPid(), getRid(), listObject, buffer, packageMetaData);
 							}
 						}
-					} else {
+					} else if (o instanceof Long){
 						long listObjectOid = (Long) o;
 						writeReference(listObjectOid, buffer, feature);
+					} else if (o instanceof HashMapWrappedVirtualObject) {
+						HashMapWrappedVirtualObject hashMapWrappedVirtualObject = (HashMapWrappedVirtualObject)o;
+						writeWrappedValue(-1, -1, hashMapWrappedVirtualObject, buffer, packageMetaData);
 					}
 				}
 			}

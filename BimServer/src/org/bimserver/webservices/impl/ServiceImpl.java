@@ -532,15 +532,15 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 						DeserializerPlugin deserializerPlugin = (DeserializerPlugin)plugin;
 						if (deserializerPlugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
 							if (deserializerPlugin.canHandleExtension(extension)) {
+								list.add(deserializer);
 							}
-							list.add(deserializer);
 						}						
 					} else if (plugin instanceof StreamingDeserializerPlugin) {
 						StreamingDeserializerPlugin streamingDeserializerPlugin = (StreamingDeserializerPlugin)plugin;
 						if (streamingDeserializerPlugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
 							if (streamingDeserializerPlugin.canHandleExtension(extension)) {
+								list.add(deserializer);
 							}
-							list.add(deserializer);
 						}						
 					}
 				}

@@ -213,6 +213,10 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 
 			GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext);
 			
+			for (Revision other : concreteRevision.getRevisions()) {
+				other.setHasGeometry(true);
+			}
+			
 			concreteRevision.setMinBounds(generateGeometry.getMinBounds());
 			concreteRevision.setMaxBounds(generateGeometry.getMaxBounds());
 
