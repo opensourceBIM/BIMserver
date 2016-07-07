@@ -1372,7 +1372,7 @@ public class PluginManager implements PluginManagerInterface {
 					}
 				} else {
 					try {
-						MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(model.getRepositories().get(0).getUrl(), dependency.getGroupId(), dependency.getArtifactId());
+						MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(dependency.getGroupId(), dependency.getArtifactId());
 						Path depJarFile = mavenPluginLocation.getVersionJar(dependency.getVersion());
 						
 						FileJarClassLoader jarClassLoader = new FileJarClassLoader(this, delegatingClassLoader, depJarFile); 
