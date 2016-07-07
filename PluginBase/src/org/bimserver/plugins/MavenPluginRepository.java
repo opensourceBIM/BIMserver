@@ -57,6 +57,10 @@ public class MavenPluginRepository {
 		return new MavenPluginLocation(this, defaultrepository, groupId, artifactId);
 	}
 	
+	public MavenPluginLocation getPluginLocation(String groupId, String artifactId) {
+		return new MavenPluginLocation(this, defaultRepository, groupId, artifactId);
+	}
+	
 	private RepositorySystem newRepositorySystem() {
 		DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
 		locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
