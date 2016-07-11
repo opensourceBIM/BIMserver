@@ -79,6 +79,7 @@ public class OAuthRegistrationServlet extends SubServlet {
             			.setClientSecret(oAuthServer.getClientSecret())
             			.setIssuedAt("" + oAuthServer.getIssuedAt().getTime())
             			.setExpiresIn(oAuthServer.getExpiresAt().getTime() - now.getTimeInMillis())
+            			.setParam("message", "OK")
             			.buildJSONMessage();
             	httpResponse.setStatus(response.getResponseStatus());
             	httpResponse.getWriter().write(response.getBody());
