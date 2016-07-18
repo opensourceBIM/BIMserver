@@ -130,7 +130,7 @@ public class GenericServiceImpl {
 			throw new ServerException("Database error", e);
 		}
 		LOGGER.error("", e);
-		throw new ServerException("Unknown error: " + e.getMessage(), e);
+		throw new ServerException("Unhandled exception (" + e.getClass().getName() + ")" + (e.getMessage() == null ? "" : (": " + e.getMessage())) + ". See the server log for more details", e);
 	}
 	
 	public SUser getCurrentUser() throws UserException, ServerException {
