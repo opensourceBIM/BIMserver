@@ -19,6 +19,7 @@ package org.bimserver.database.actions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -94,7 +95,7 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 			ifcModel = ifcModelSet.iterator().next();
 		}
 		List<DataObject> dataObjects = new ArrayList<DataObject>();
-		for (Long oid : ifcModel.keySet()) {
+		for (Long oid : new HashSet<>(ifcModel.keySet())) {
 			EObject eObject = ifcModel.get(oid);
 			if (eClass.isInstance(eObject)) {
 				DataObject dataObject = StoreFactory.eINSTANCE.createDataObject();

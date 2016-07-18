@@ -365,8 +365,8 @@ public class ClientIfcModel extends IfcModel {
 						throw new GeometryException("Protocol != BGS (" + protocol + ")");
 					}
 					byte formatVersion = dataInputStream.readByte();
-					if (formatVersion != 7) {
-						throw new GeometryException("Unsupported version " + formatVersion + " / 7");
+					if (formatVersion != 8) {
+						throw new GeometryException("Unsupported version " + formatVersion + " / 8");
 					}
 					int skip = 4 - (7 % 4);
 					if(skip != 0 && skip != 4) {
