@@ -16,11 +16,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="target/classes" path="generated">
+	<classpathentry including="**/*.java" kind="src" output="target/classes" path="generated">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="genclasses"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

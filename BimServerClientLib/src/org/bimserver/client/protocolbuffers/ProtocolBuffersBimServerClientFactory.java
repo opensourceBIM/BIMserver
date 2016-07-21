@@ -24,8 +24,9 @@ import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
-import org.bimserver.shared.reflector.FileBasedReflectorFactoryBuilder;
+import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 
 public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClientFactory {
@@ -36,13 +37,13 @@ public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClie
 	private final ReflectorFactory reflectorFactory;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
 
-	public ProtocolBuffersBimServerClientFactory(String address, int port, int httpPort, ProtocolBuffersMetaData protocolBuffersMetaData, MetaDataManager metaDataManager) throws BimServerClientException {
+	public ProtocolBuffersBimServerClientFactory(String address, int port, int httpPort, ProtocolBuffersMetaData protocolBuffersMetaData, MetaDataManager metaDataManager, SServicesMap serviceMap) throws BimServerClientException {
 		super(metaDataManager);
 		this.httpPort = httpPort;
 		this.address = address;
 		this.port = port;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
-		FileBasedReflectorFactoryBuilder factoryBuilder = new FileBasedReflectorFactoryBuilder();
+		RealtimeReflectorFactoryBuilder factoryBuilder = new RealtimeReflectorFactoryBuilder(serviceMap);
 		this.reflectorFactory = factoryBuilder.newReflectorFactory();
 	}
 

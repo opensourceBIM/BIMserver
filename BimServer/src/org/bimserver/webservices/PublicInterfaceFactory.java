@@ -32,13 +32,15 @@ import org.bimserver.webservices.authorization.Authorization;
 
 public class PublicInterfaceFactory implements ServiceFactory {
 	private final BimServer bimServer;
+	private ServiceMap serviceMap;
 
 	public PublicInterfaceFactory(BimServer bimServer) {
 		this.bimServer = bimServer;
 	}
 
 	public ServiceMap get(Authorization authorization, AccessMethod accessMethod) {
-		ServiceMap serviceMap = new ServiceMap(bimServer, authorization, accessMethod);
+		// TODO A lot of these are made, maybe we should cache them somehow...
+		serviceMap = new ServiceMap(bimServer, authorization, accessMethod);
 		return serviceMap;
 	}
 	
