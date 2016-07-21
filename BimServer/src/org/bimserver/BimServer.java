@@ -108,7 +108,7 @@ import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
-import org.bimserver.shared.reflector.FileBasedReflectorFactoryBuilder;
+import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.PathUtils;
@@ -686,7 +686,7 @@ public class BimServer {
 
 			mergerFactory = new MergerFactory(this);
 
-			FileBasedReflectorFactoryBuilder factoryBuilder = new FileBasedReflectorFactoryBuilder();
+			RealtimeReflectorFactoryBuilder factoryBuilder = new RealtimeReflectorFactoryBuilder(servicesMap);
 			reflectorFactory = factoryBuilder.newReflectorFactory();
 			if (reflectorFactory == null) {
 				throw new RuntimeException("No reflector factory!");
