@@ -38,6 +38,7 @@ import javax.websocket.server.ServerEndpoint;
 import org.bimserver.BimServer;
 import org.bimserver.servlets.Streamer;
 import org.bimserver.shared.StreamingSocketInterface;
+import org.eclipse.jetty.io.EofException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -116,7 +117,11 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 					streamer.onClose();
 				}
 			} catch (IOException e) {
-				LOGGER.error("", e);
+				if (e instanceof EofException) {
+					// Usually client disconnected by resfreshing etc... don't log this
+				} else {
+					LOGGER.error("", e);
+				}
 			}
 		}
 	}
