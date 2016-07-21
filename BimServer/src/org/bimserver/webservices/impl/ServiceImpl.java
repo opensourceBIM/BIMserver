@@ -1039,6 +1039,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 			Path file = userDirIncoming.resolve(fileName);
 			
+			if (fileName.contains(" ")) {
+				throw new UserException("A filename may not contain any spaces (" + fileName + ")");
+			}
+			
 			return checkinInternal(topicId, poid, comment, deserializerOid, (long)openConnection.getContentLength(), fileName, input, merge,
 					sync, session, username, userUsername, project, file);
 			
