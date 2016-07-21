@@ -185,8 +185,8 @@ public class CodeMigrator {
 
 		LOGGER.info("Protocol buffers file and classes generated");
 
-		RealtimeReflectorFactoryBuilder reflectorBuilder = new RealtimeReflectorFactoryBuilder(InterfaceList.createSServicesMap(), new File("../PluginBase/genclasses"));
-		reflectorBuilder.newReflectorFactory();
+//		RealtimeReflectorFactoryBuilder reflectorBuilder = new RealtimeReflectorFactoryBuilder(InterfaceList.createSServicesMap(), new File("../PluginBase/genclasses"));
+//		reflectorBuilder.newReflectorFactory();
 		
 		LOGGER.info("");
 		LOGGER.info("Migration successfull");
