@@ -48,7 +48,7 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterfaceAdaptor;
-import org.bimserver.shared.reflector.FileBasedReflectorFactoryBuilder;
+import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.bimserver.webservices.ServiceMap;
 import org.eclipse.emf.ecore.EClass;
@@ -170,8 +170,8 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 					if (factories.containsKey(apiUrl)) {
 						factory = factories.get(apiUrl);
 					} else {
-						FileBasedReflectorFactoryBuilder reflectorBuilder = new FileBasedReflectorFactoryBuilder();
-						ReflectorFactory reflectorFactory = reflectorBuilder.newReflectorFactory();
+						RealtimeReflectorFactoryBuilder factoryBuilder = new RealtimeReflectorFactoryBuilder(bimServer.getServicesMap());
+						ReflectorFactory reflectorFactory = factoryBuilder.newReflectorFactory();
 						factory = new JsonBimServerClientFactory(apiUrl, bimServer.getServicesMap(), new JsonSocketReflectorFactory(bimServer.getServicesMap()), reflectorFactory, bimServer.getMetaDataManager());
 						factories.put(apiUrl, factory);
 					}
