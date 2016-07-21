@@ -37,6 +37,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -162,7 +163,7 @@ public class LocalDevSetup {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
 			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
-			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory(address, 8000, 8000, null, metaDataManager);
+			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory(address, 8000, 8000, null, metaDataManager, new SServicesMap());
 			return factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 		} catch (PluginException e) {
 			LOGGER.error("", e);

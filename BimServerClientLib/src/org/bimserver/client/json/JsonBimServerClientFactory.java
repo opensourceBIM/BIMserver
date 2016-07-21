@@ -25,7 +25,7 @@ import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SServicesMap;
-import org.bimserver.shared.reflector.FileBasedReflectorFactoryBuilder;
+import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 
 public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
@@ -52,8 +52,8 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 		super(metaDataManager);
 		this.address = address;
 		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(getServicesMap());
-		FileBasedReflectorFactoryBuilder reflectorBuilder = new FileBasedReflectorFactoryBuilder();
-		reflectorFactory = reflectorBuilder.newReflectorFactory();
+		RealtimeReflectorFactoryBuilder factoryBuilder = new RealtimeReflectorFactoryBuilder(getServicesMap());
+		reflectorFactory = factoryBuilder.newReflectorFactory();
 	}
 
 	public JsonBimServerClientFactory(String address) throws BimServerClientException {

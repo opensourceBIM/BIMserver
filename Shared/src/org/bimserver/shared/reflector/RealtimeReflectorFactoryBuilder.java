@@ -1,26 +1,5 @@
 package org.bimserver.shared.reflector;
 
-/******************************************************************************
- * Copyright (C) 2009-2016  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
- *****************************************************************************/
-
-import java.io.File;
-import java.io.IOException;
-
-import org.apache.commons.io.FileUtils;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
@@ -44,15 +23,9 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 	private ClassPool pool;
 	private static int implementationCounter = 0;
 	private static final String GENERATED_CLASSES_PACKAGE = "org.bimserver.generated";
-	private File generatedClassesDir;
 
 	public RealtimeReflectorFactoryBuilder(SServicesMap servicesMap) {
 		this.servicesMap = servicesMap;
-	}
-	
-	public RealtimeReflectorFactoryBuilder(SServicesMap servicesMap, File generatedClassesDir) {
-		this.servicesMap = servicesMap;
-		this.generatedClassesDir = generatedClassesDir;
 	}
 
 	public ReflectorFactory newReflectorFactory() {
@@ -73,7 +46,6 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 			createCreateReflectorMethod1(reflectorFactoryImpl);
 			createCreateReflectorMethod2(reflectorFactoryImpl);
 			
-			writeClassFile(reflectorFactoryImpl);
 			Class<?> class1 = pool.toClass(reflectorFactoryImpl, getClass().getClassLoader(), getClass().getProtectionDomain());
 			return (ReflectorFactory) class1.newInstance();
 		} catch (Exception e) {
@@ -82,14 +54,6 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 		return null;
 	}
 
-	private void writeClassFile(CtClass ctClass) throws IOException, CannotCompileException {
-		if (generatedClassesDir != null) {
-			File dir = new File(generatedClassesDir, ctClass.getPackageName().replace(".", "/"));
-			FileUtils.forceMkdir(dir);
-			FileUtils.writeByteArrayToFile(new File(dir, ctClass.getSimpleName() + ".class"), ctClass.toBytecode());
-		}
-	}
-	
 	private void createCreateReflectorMethod2(CtClass reflectorFactoryImpl) throws NotFoundException, CannotCompileException {
 		CtClass[] parameters = new CtClass[2];
 		parameters[0] = pool.get(Class.class.getName());
@@ -179,7 +143,6 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 				method.setBody(methodBuilder.toString());
 				reflectorImplClass.addMethod(method);
 			}
-			writeClassFile(reflectorImplClass);
 			pool.toClass(reflectorImplClass, getClass().getClassLoader(), getClass().getProtectionDomain());
 		} catch (Exception e) {
 			LOGGER.error("", e);
@@ -234,7 +197,6 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 			method.setBody(methodBuilder.toString());
 			reflectorImplClass.addMethod(method);
 			
-			writeClassFile(reflectorImplClass);
 			pool.toClass(reflectorImplClass, getClass().getClassLoader(), getClass().getProtectionDomain());
 		} catch (Exception e) {
 			LOGGER.error("", e);
