@@ -31,7 +31,7 @@ public class EndPointManager {
 	
 	public long register(EndPoint endPoint) {
 		long id = idCounter.incrementAndGet();
-		endPoints.put(id, endPoint);
+		endPoints.forcePut(id, endPoint);
 		return id;
 	}
 
