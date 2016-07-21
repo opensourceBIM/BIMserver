@@ -10,6 +10,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
@@ -27,7 +28,7 @@ public class SetWrappedBoolean extends TestWithEmbeddedServer {
 			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			SDeserializerPluginConfiguration suggestedDeserializerForExtension = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
-			bimServerClient.checkin(newProject.getOid(), "initial", suggestedDeserializerForExtension.getOid(), false, true, Paths.get("../TestData/data/revit_quantities.ifc"));
+			bimServerClient.checkin(newProject.getOid(), "initial", suggestedDeserializerForExtension.getOid(), false, Flow.SYNC, Paths.get("../TestData/data/revit_quantities.ifc"));
 			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 			
 			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByName("Ifc2x3");

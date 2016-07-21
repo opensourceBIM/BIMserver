@@ -25,6 +25,7 @@ import javax.activation.DataHandler;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.TokenChangeListener;
@@ -69,9 +70,9 @@ public class DirectChannel extends Channel implements TokenChangeListener {
 	}
 	
 	@Override
-	public long checkin(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, boolean sync, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
+	public long checkin(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, Flow flow, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
 		try {
-			return get(ServiceInterface.class).checkin(poid, comment, deserializerOid, fileSize, filename, new DataHandler(new InputStreamDataSource(inputStream)), merge, sync);
+			return get(ServiceInterface.class).checkin(poid, comment, deserializerOid, fileSize, filename, new DataHandler(new InputStreamDataSource(inputStream)), merge, flow == Flow.SYNC);
 		} catch (PublicInterfaceNotFoundException e) {
 			LOGGER.error("", e);
 			return -1;

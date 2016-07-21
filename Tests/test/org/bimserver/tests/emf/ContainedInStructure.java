@@ -10,6 +10,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -32,7 +33,7 @@ public class ContainedInStructure extends TestWithEmbeddedServer {
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 
 			// Checkin the file
-			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
+			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
 
 			// Refresh project info
 			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());

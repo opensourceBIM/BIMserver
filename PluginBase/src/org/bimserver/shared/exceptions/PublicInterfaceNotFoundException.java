@@ -17,7 +17,7 @@ package org.bimserver.shared.exceptions;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public class PublicInterfaceNotFoundException extends Exception {
+public class PublicInterfaceNotFoundException extends RuntimeException {
 
 	private static final long serialVersionUID = -3543869186669827945L;
 

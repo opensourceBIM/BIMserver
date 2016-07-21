@@ -25,12 +25,19 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement;
+import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement2D;
+import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3tc1.IfcBoolean;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
+import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcElement;
 import org.bimserver.models.ifc2x3tc1.IfcElementQuantity;
+import org.bimserver.models.ifc2x3tc1.IfcGridPlacement;
+import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcObject;
 import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
+import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcPhysicalQuantity;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
@@ -38,7 +45,6 @@ import org.bimserver.models.ifc2x3tc1.IfcProperty;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySetDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
-import org.bimserver.models.ifc2x3tc1.IfcQuantityArea;
 import org.bimserver.models.ifc2x3tc1.IfcQuantityVolume;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
@@ -175,7 +181,7 @@ public class IfcUtils {
 		return null;
 	}
 	
-	public static Tristate getBooleanProperty(IfcObject ifcObject) {
+	public static Tristate getBooleanProperty(IfcObject ifcObject, String propertyName) {
 		for (IfcRelDefines ifcRelDefines : ifcObject.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
 				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
@@ -185,7 +191,7 @@ public class IfcUtils {
 					for (IfcProperty ifcProperty : ifcPropertySet.getHasProperties()) {
 						if (ifcProperty instanceof IfcPropertySingleValue) {
 							IfcPropertySingleValue propertyValue = (IfcPropertySingleValue)ifcProperty;
-							if (ifcProperty.getName().equals("IsExternal")) {
+							if (ifcProperty.getName().equals(propertyName)) {
 								IfcBoolean label = (IfcBoolean)propertyValue.getNominalValue();
 								return label.getWrappedValue();
 							}
@@ -197,8 +203,6 @@ public class IfcUtils {
 		return null;
 	}
 
-	
-	
 	public static List<String> listPropertyNames(IfcProduct ifcProduct) {
 		List<String> list = new ArrayList<>();
 		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
@@ -249,5 +253,40 @@ public class IfcUtils {
 			}
 		}
 		return list;
+	}
+
+	public static double[] getAbsolutePosition(IfcProduct ifcProduct) throws PlacementNotImplementedException {
+		return getAbsolutePosition(ifcProduct.getObjectPlacement());
+	}
+	
+	/**
+	 * Not finished, does not take into account the directions
+	 * 
+	 * @param ifcObjectPlacement
+	 * @return
+	 * @throws PlacementNotImplementedException
+	 */
+	public static double[] getAbsolutePosition(IfcObjectPlacement ifcObjectPlacement) throws PlacementNotImplementedException {
+		if (ifcObjectPlacement instanceof IfcGridPlacement) {
+			throw new PlacementNotImplementedException("IfcGridPlacement has not been implemented");
+		} else if (ifcObjectPlacement instanceof IfcLocalPlacement) {
+			IfcLocalPlacement ifcLocalPlacement = (IfcLocalPlacement)ifcObjectPlacement;
+			IfcAxis2Placement relativePlacement = ifcLocalPlacement.getRelativePlacement();
+			if (relativePlacement instanceof IfcAxis2Placement2D) {
+				throw new PlacementNotImplementedException("IfcAxis2Placement2D has not been implemented");
+			} else if (relativePlacement instanceof IfcAxis2Placement3D) {
+				IfcAxis2Placement3D ifcAxis2Placement3D = (IfcAxis2Placement3D)relativePlacement;
+				IfcObjectPlacement placementRelativeTo = ifcLocalPlacement.getPlacementRelTo();
+				if (placementRelativeTo == null) {
+					IfcCartesianPoint ifcCartesianPoint = ifcAxis2Placement3D.getLocation();
+					return new double[]{ifcCartesianPoint.getCoordinates().get(0), ifcCartesianPoint.getCoordinates().get(1), ifcCartesianPoint.getCoordinates().get(2)};
+				} else {
+					double[] relative = getAbsolutePosition(placementRelativeTo);
+					IfcCartesianPoint ifcCartesianPoint = ifcAxis2Placement3D.getLocation();
+					return new double[]{relative[0] + ifcCartesianPoint.getCoordinates().get(0), relative[1] + ifcCartesianPoint.getCoordinates().get(1), relative[2] + ifcCartesianPoint.getCoordinates().get(2)};
+				}
+			}
+		}
+		return new double[]{0d, 0d, 0d};
 	}
 }

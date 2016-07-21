@@ -26,6 +26,7 @@ import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -75,7 +76,7 @@ public class TestUploadDir {
 				SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension(directory.getFileName().toString().substring(directory.getFileName().toString().lastIndexOf(".") + 1), parentProject.getOid());
 				System.out.println("Checking in " + directory.toString() + " - " + Formatters.bytesToString(directory.toFile().length()));
 				try {
-					client.checkin(parentProject.getOid(), "", deserializerForExtension.getOid(), false, true, directory);
+					client.checkin(parentProject.getOid(), "", deserializerForExtension.getOid(), false, Flow.SYNC, directory);
 				} catch (UserException e) {
 					e.printStackTrace();
 				}

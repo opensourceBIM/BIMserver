@@ -27,6 +27,7 @@ import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
 
@@ -50,7 +51,7 @@ public class TestAddExtendedData {
 			
 			SProject project = client.getServiceInterface().addProject("test23", "ifc2x3tc1");
 			SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-			client.checkin(project.getOid(), "initial", deserializerForExtension.getOid(), false, true, Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
+			client.checkin(project.getOid(), "initial", deserializerForExtension.getOid(), false, Flow.SYNC, Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
 			
 			project = client.getServiceInterface().getProjectByPoid(project.getOid());
 			

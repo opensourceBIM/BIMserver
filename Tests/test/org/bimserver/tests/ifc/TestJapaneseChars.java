@@ -9,6 +9,7 @@ import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -36,7 +37,7 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 			};
 			
 			for (File file : files) {
-				bimServerClient.checkin(newProject.getOid(), "initial", deserializer.getOid(), false, true, Paths.get("../TestData/data/revit2013_unicode.ifc"));
+				bimServerClient.checkin(newProject.getOid(), "initial", deserializer.getOid(), false, Flow.SYNC, Paths.get("../TestData/data/revit2013_unicode.ifc"));
 				newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 				SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
 				bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("bimserver_" + file.getName()));

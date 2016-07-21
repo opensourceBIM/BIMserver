@@ -18,6 +18,7 @@ import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -48,7 +49,7 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 			if (useChannel) {
 				progressId = bimServerClient.getServiceInterface().checkin(newProject.getOid(), "test", deserializer.getOid(), ifcFile.toFile().length(), ifcFile.getFileName().toString(), new DataHandler(new FileDataSource(ifcFile.toFile())), true, true);
 			} else {
-				progressId = bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, ifcFile);
+				progressId = bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, ifcFile);
 			}
 			
 			// Get the status

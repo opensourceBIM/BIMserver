@@ -28,6 +28,7 @@ import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
@@ -54,7 +55,7 @@ public class TestManyRevisions {
 				int fn = 0;
 				for (int i=0; i<20; i++) {
 					System.out.println(i + ": " + files[fn].getFileName().toString());
-					client.checkin(project.getOid(), "comment" + i, deserializer.getOid(), false, true, files[fn]);
+					client.checkin(project.getOid(), "comment" + i, deserializer.getOid(), false, Flow.SYNC, files[fn]);
 					fn = 1 - fn;
 				}
 			} catch (ServerException | UserException | PublicInterfaceNotFoundException e) {
