@@ -145,4 +145,9 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 	public SServicesMap getServicesMap() {
 		return servicesMap;
 	}
+	
+	@Override
+	public void close() throws Exception {
+		httpClient.close();		
+	}
 }

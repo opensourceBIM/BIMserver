@@ -34,6 +34,7 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.ServiceHolder;
@@ -106,7 +107,7 @@ public abstract class Channel implements ServiceHolder {
 
 	public abstract void connect(TokenHolder tokenHolder) throws ChannelConnectionException;
 
-	public long checkin(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, boolean sync, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
+	public long checkin(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, Flow flow, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
 		String address = baseAddress + "/upload";
 		HttpPost httppost = new HttpPost(address);
 		try {
@@ -122,7 +123,7 @@ public abstract class Channel implements ServiceHolder {
 			multipartEntityBuilder.addPart("merge", new StringBody("" + merge, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("poid", new StringBody("" + poid, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("comment", new StringBody("" + comment, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("sync", new StringBody("" + sync, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("sync", new StringBody("" + (flow == Flow.SYNC), ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("compression", new StringBody("deflate", ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("data", data);
 			

@@ -20,7 +20,7 @@ package org.bimserver.shared;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 
-public interface BimServerClientFactory {
+public interface BimServerClientFactory extends AutoCloseable {
 	/**
 	 * Create a new BimServerClient and authenticate with the given authentication
 	 * 

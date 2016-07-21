@@ -53,8 +53,8 @@ import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.serializers.SerializerInputstream;
+import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.QueryException;
-import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -91,7 +91,7 @@ public class ClientIfcModel extends IfcModel {
 	private boolean recordChanges;
 	private boolean includeGeometry;
 
-	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep, PackageMetaData packageMetaData, boolean recordChanges, boolean includeGeometry) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
+	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep, PackageMetaData packageMetaData, boolean recordChanges, boolean includeGeometry) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		super(packageMetaData, null);
 		this.recordChanges = recordChanges;
 		this.bimServerClient = bimServerClient;
@@ -191,8 +191,6 @@ public class ClientIfcModel extends IfcModel {
 			LOGGER.error("", e);
 		} catch (UserException e) {
 			LOGGER.error("", e);
-		} catch (BimServerClientException e) {
-			LOGGER.error("", e);
 		} catch (PublicInterfaceNotFoundException e) {
 			LOGGER.error("", e);
 		} catch (QueryException e) {
@@ -280,7 +278,7 @@ public class ClientIfcModel extends IfcModel {
 		return binaryGeometrySerializerOid;
 	}
 	
-	private void loadDeep() throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException, QueryException {
+	private void loadDeep() throws ServerException, UserException, PublicInterfaceNotFoundException, QueryException {
 		if (modelState != ModelState.FULLY_LOADED && modelState != ModelState.LOADING) {
 			modelState = ModelState.LOADING;
 			Query query = new Query("test", getPackageMetaData());
@@ -453,7 +451,7 @@ public class ClientIfcModel extends IfcModel {
 		}
 	}
 
-	private void processDownload(Long download) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
+	private void processDownload(Long download) throws UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
 		InputStream downloadData = bimServerClient.getDownloadData(download, getJsonSerializerOid());
 		try {
 			new SharedJsonDeserializer(true).read(downloadData, this, false);
@@ -812,7 +810,7 @@ public class ClientIfcModel extends IfcModel {
 		});
 		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this, false);
 		SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("json", poid);
-		bimServerClient.checkin(poid, comment, deserializer.getOid(), false, true, -1, "test", new SerializerInputstream(sharedJsonSerializer));
+		bimServerClient.checkin(poid, comment, deserializer.getOid(), false, Flow.SYNC, -1, "test", new SerializerInputstream(sharedJsonSerializer));
 	}
 	
 	public void load(IdEObject object) {

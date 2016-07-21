@@ -47,7 +47,7 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	void download(long roid, long serializerOid, OutputStream outputStream);
 	void download(long roid, long serializerOid, Path file) throws IOException;
 	
-	long checkin(long poid, String string, long deserializerOid, boolean merge, boolean sync, Path file) throws IOException, UserException, ServerException;
+	long checkin(long poid, String string, long deserializerOid, boolean merge, Flow flow, Path file) throws IOException, UserException, ServerException;
 	
 	/**
 	 * Convenience method that given you the InputStream belonging to an already started download

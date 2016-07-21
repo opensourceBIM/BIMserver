@@ -43,6 +43,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.Flow;
 import org.bimserver.plugins.services.Geometry;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
@@ -188,7 +189,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return new ClientIfcModel(this, project.getOid(), roid, deep, getMetaDataManager().getPackageMetaData(project.getSchema()), recordChanges, false);
 	}
 
-	public ClientIfcModel getModel(SProject project, long roid, boolean deep, boolean recordChanges, boolean includeGeometry) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException {
+	public ClientIfcModel getModel(SProject project, long roid, boolean deep, boolean recordChanges, boolean includeGeometry) throws UserException, ServerException {
 		if (roid == -1) {
 			throw new UserException("Roid cannot be -1");
 		}
@@ -258,17 +259,17 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		tokenChangeListeners.add(tokenChangeListener);
 	}
 
-	public long checkin(long poid, String comment, long deserializerOid, boolean merge, boolean sync, Path file) throws IOException, UserException, ServerException {
+	public long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, Path file) throws IOException, UserException, ServerException {
 		FileInputStream fis = new FileInputStream(file.toFile());
-		long result = checkin(poid, comment, deserializerOid, merge, sync, file.toFile().length(), file.getFileName().toString(), fis);
-		if (sync) {
+		long result = checkin(poid, comment, deserializerOid, merge, flow, file.toFile().length(), file.getFileName().toString(), fis);
+		if (flow == Flow.SYNC) {
 			fis.close();
 		}
 		return result;
 	}
 
-	public long checkin(long poid, String comment, long deserializerOid, boolean merge, boolean sync, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException {
-		return channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, sync, fileSize, filename, inputStream);
+	public long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException {
+		return channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, fileSize, filename, inputStream);
 	}
 
 	public void download(long roid, long serializerOid, OutputStream outputStream) {
@@ -314,7 +315,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		if (t == null) {
 			throw new PublicInterfaceNotFoundException("No interface of type " + clazz.getSimpleName() + " registered on this channel");
 		}
-		return channel.get(clazz);
+		return t;
 	}
 	
 	@Override

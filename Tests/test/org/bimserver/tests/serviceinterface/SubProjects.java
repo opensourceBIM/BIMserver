@@ -13,6 +13,7 @@ import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -40,9 +41,9 @@ public class SubProjects extends TestWithEmbeddedServer {
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", mainProject.getOid());
 
 			// Checkin
-			bimServerClient.checkin(sub1.getOid(), "test", deserializer.getOid(), false, true, ifcFile1);
-			bimServerClient.checkin(sub2.getOid(), "test", deserializer.getOid(), false, true, ifcFile2);
-			bimServerClient.checkin(sub3.getOid(), "test", deserializer.getOid(), false, true, ifcFile3);
+			bimServerClient.checkin(sub1.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, ifcFile1);
+			bimServerClient.checkin(sub2.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, ifcFile2);
+			bimServerClient.checkin(sub3.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, ifcFile3);
 
 			// Find a serializer
 			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
