@@ -28,7 +28,6 @@ import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
-import org.bimserver.schemaconverter.Ifc4;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;

@@ -43,8 +43,6 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.serializers.CacheStoringStreamingSerializerDataSource;
 import org.bimserver.plugins.serializers.DoneListener;
-import org.bimserver.plugins.serializers.MessagingSerializer;
-import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializer;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializerPlugin;
 import org.bimserver.plugins.serializers.ProjectInfo;

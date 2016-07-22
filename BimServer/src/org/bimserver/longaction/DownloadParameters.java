@@ -151,54 +151,6 @@ public class DownloadParameters extends LongActionKey {
 		return downloadType;
 	}
 
-	private String getRoidsString() {
-		StringBuilder sb = new StringBuilder();
-		int i = 0;
-		for (Long roid : roids) {
-			sb.append(roid + "-");
-			i++;
-			if (i > 5) {
-				break;
-			}
-		}
-		if (sb.length() > 0) {
-			sb.delete(sb.length() - 1, sb.length());
-		}
-		return sb.toString();
-	}
-
-	private String getOidsString() {
-		StringBuilder sb = new StringBuilder();
-		int i = 0;
-		for (Long oid : oids) {
-			sb.append(oid + "-");
-			i++;
-			if (i > 5) {
-				break;
-			}
-		}
-		if (sb.length() > 0) {
-			sb.delete(sb.length() - 1, sb.length());
-		}
-		return sb.toString();
-	}
-
-	private String getGuidsString() {
-		StringBuilder sb = new StringBuilder();
-		int i = 0;
-		for (String guid : guids) {
-			sb.append(guid + "-");
-			i++;
-			if (i > 5) {
-				break;
-			}
-		}
-		if (sb.length() > 0) {
-			sb.delete(sb.length() - 1, sb.length());
-		}
-		return sb.toString();
-	}
-
 	/*
 	 * Changed the .hashCode methods on the enums to .name() (which is consistent between JVM restarts)
 	 */
@@ -291,22 +243,6 @@ public class DownloadParameters extends LongActionKey {
 		return true;
 	}
 
-	private String getNamesString() {
-		StringBuilder sb = new StringBuilder();
-		int i = 0;
-		for (String name : names) {
-			sb.append(name + "-");
-			i++;
-			if (i > 5) {
-				break;
-			}
-		}
-		if (sb.length() > 0) {
-			sb.delete(sb.length() - 1, sb.length());
-		}
-		return sb.toString();
-	}
-	
 	public String getFileName() {
 		String extension = bimServer.getSerializerFactory().getExtension(serializerOid);
 		return getFileNameWithoutExtension() + "." + extension;

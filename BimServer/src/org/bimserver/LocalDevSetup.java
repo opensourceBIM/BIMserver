@@ -157,13 +157,12 @@ public class LocalDevSetup {
 	}
 	
 	public static final BimServerClientInterface setupProtocolBuffers(String address) {
-		try {
-			Path home = Paths.get("home");
-			Path tmp = home.resolve("tmp");
+		Path home = Paths.get("home");
+		Path tmp = home.resolve("tmp");
+		MetaDataManager metaDataManager = new MetaDataManager(tmp);
+		try (BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory(address, 8000, 8000, null, metaDataManager, new SServicesMap())) {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
-			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
-			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory(address, 8000, 8000, null, metaDataManager, new SServicesMap());
 			return factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 		} catch (PluginException e) {
 			LOGGER.error("", e);
@@ -172,6 +171,8 @@ public class LocalDevSetup {
 		} catch (ChannelConnectionException e) {
 			LOGGER.error("", e);
 		} catch (BimServerClientException e) {
+			LOGGER.error("", e);
+		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 		return null;
