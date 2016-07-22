@@ -113,7 +113,6 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 				if (websocketSession.isOpen()) {
 					websocketSession.getBasicRemote().sendText(request.toString());
 				} else {
-					LOGGER.info("Connection is closed");
 					streamer.onClose();
 				}
 			} catch (IOException e) {

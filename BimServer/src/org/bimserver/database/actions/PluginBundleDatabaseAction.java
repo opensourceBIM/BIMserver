@@ -12,7 +12,6 @@ import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.interfaces.objects.SPluginBundleType;
 import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.plugins.GitHubPluginVersion;
 import org.bimserver.plugins.MavenDependency;
 import org.bimserver.plugins.MavenPluginLocation;
 import org.bimserver.plugins.MavenPluginVersion;

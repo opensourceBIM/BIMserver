@@ -1,6 +1,5 @@
 package org.bimserver.servlets;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.GregorianCalendar;
@@ -26,6 +25,7 @@ import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.io.LittleEndianDataOutputStream;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
@@ -39,7 +39,6 @@ public class Streamer implements EndPoint {
 	private NotificationInterface notificationInterface;
 	private RemoteServiceInterface remoteServiceInterface;
 	private StreamingSocketInterface streamingSocketInterface;
-	private static final int BUFFER_SIZE = 4096; // -1 means just send every message on it's own
 
 	public Streamer(StreamingSocketInterface streamingSocketInterface, BimServer bimServer) {
 		this.streamingSocketInterface = streamingSocketInterface;
@@ -62,7 +61,7 @@ public class Streamer implements EndPoint {
 			// Heartbeat, ignore
 		} else if (request.has("action")) {
 			if (request.get("action").getAsString().equals("download")) {
-				final int topicId = request.get("topicId").getAsInt();
+				final long topicId = request.get("topicId").getAsLong();
 				Thread thread = new Thread(){
 					@Override
 					public void run() {
@@ -73,7 +72,6 @@ public class Streamer implements EndPoint {
 								LongStreamingDownloadAction longStreamingDownloadAction = (LongStreamingDownloadAction)longAction;
 								writer = longStreamingDownloadAction.getMessagingStreamingSerializer();
 							} else {
-								
 								LongDownloadOrCheckoutAction longDownloadAction = (LongDownloadOrCheckoutAction) longAction;
 								writer = longDownloadAction.getMessagingSerializer();
 							}
@@ -90,12 +88,10 @@ public class Streamer implements EndPoint {
 
 							// TODO reuse buffer							
 							
-							ReusableByteArrayOutputStream byteArrayOutputStream = new ReusableByteArrayOutputStream();
-							DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-							dataOutputStream.writeInt(topicId);
-							dataOutputStream.writeInt(1); // fake nr messages, to be replaced later
 							do {
-								byteArrayOutputStream.setPosition(8);
+								ReusableByteArrayOutputStream byteArrayOutputStream = new ReusableByteArrayOutputStream();
+								LittleEndianDataOutputStream dataOutputStream = new LittleEndianDataOutputStream(byteArrayOutputStream);
+								dataOutputStream.writeLong(topicId);
 //								long s = System.nanoTime();
 								writeMessage = writer.writeMessage(dataOutputStream, null);
 //								int messages = 1;
@@ -115,7 +111,7 @@ public class Streamer implements EndPoint {
 									future.get();
 								}
 								
-								if (byteArrayOutputStream.usedSize() > 8) {
+								if (byteArrayOutputStream.usedSize() > 4) {
 									bytes += byteArrayOutputStream.usedSize();
 									future = streamingSocketInterface.send(byteArrayOutputStream.getByteArray(), 0, byteArrayOutputStream.usedSize());
 									counter++;

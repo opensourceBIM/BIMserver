@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.Random;
 
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.shared.QueryException;
 
 public class Query {
 	private final Map<String, Include> defines = new HashMap<>();

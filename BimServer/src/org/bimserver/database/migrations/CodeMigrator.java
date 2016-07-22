@@ -38,7 +38,6 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.meta.SourceCodeFetcher;
-import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
 import org.bimserver.tools.generators.AdaptorGeneratorWrapper;
 import org.bimserver.tools.generators.AsyncServiceGeneratorWrapper;
 import org.bimserver.tools.generators.DataObjectGeneratorWrapper;
