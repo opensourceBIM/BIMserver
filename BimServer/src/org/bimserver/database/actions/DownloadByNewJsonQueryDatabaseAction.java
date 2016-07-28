@@ -19,6 +19,7 @@ package org.bimserver.database.actions;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -40,8 +41,12 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.plugins.IfcModelSet;
+import org.bimserver.plugins.ModelHelper;
+import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.QueryException;
@@ -70,94 +75,123 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		List<String> projectNames = new ArrayList<>();
+		
+		setProgress("Querying database...", -1);
+		
 		for (long roid : roids) {
 			Revision revision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
 			projectNames.add(revision.getProject().getName() + "." + revision.getId());
 		}
 		String name = Joiner.on("-").join(projectNames);
+		PackageMetaData lastPackageMetaData = null;
+		Project lastProject = null;
 		
-		// TODO allow for multiple roids
-		long roid = roids.iterator().next();
+		IfcModelSet ifcModelSet = new IfcModelSet();
+		Map<Integer, Long> pidRoidMap = new HashMap<>();
+		for (long roid : roids) {
+			Revision revision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
+			lastProject = revision.getProject();
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
+			lastPackageMetaData = packageMetaData;
+			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
+			ObjectNode queryObject;
+			try {
+				queryObject = new ObjectMapper().readValue(json, ObjectNode.class);
+				Query query = converter.parseJson("query", (ObjectNode) queryObject);
 		
-		Revision revision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
-		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
-		JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
-		ObjectNode queryObject;
-		try {
-			queryObject = new ObjectMapper().readValue(json, ObjectNode.class);
-			Query query = converter.parseJson("query", (ObjectNode) queryObject);
-	
-			Map<Integer, Long> pidRoidMap = new HashMap<>();
-			pidRoidMap.put(revision.getProject().getId(), roid);
-			IfcModelInterface ifcModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
-	
-			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, roids, packageMetaData);
-			HashMapVirtualObject next = queryObjectProvider.next();
-			while (next != null) {
-				IdEObject newObject = packageMetaData.create(next.eClass());
-				IdEObjectImpl idEObjectImpl = (IdEObjectImpl)newObject;
-				idEObjectImpl.setPid(revision.getProject().getId());
-				idEObjectImpl.setOid(next.getOid());
-				for (EAttribute eAttribute : newObject.eClass().getEAllAttributes()) {
-					newObject.eSet(eAttribute, next.eGet(eAttribute));
+				pidRoidMap.put(revision.getProject().getId(), roid);
+				IfcModelInterface ifcModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
+
+				ifcModelSet.add(ifcModel);
+				
+				QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, Collections.singleton(roid), packageMetaData);
+				HashMapVirtualObject next = queryObjectProvider.next();
+				while (next != null) {
+					IdEObject newObject = packageMetaData.create(next.eClass());
+					IdEObjectImpl idEObjectImpl = (IdEObjectImpl)newObject;
+					idEObjectImpl.setPid(revision.getProject().getId());
+					idEObjectImpl.setOid(next.getOid());
+					for (EAttribute eAttribute : newObject.eClass().getEAllAttributes()) {
+						newObject.eSet(eAttribute, next.eGet(eAttribute));
+					}
+					ifcModel.add(next.getOid(), newObject);
+					next = queryObjectProvider.next();
 				}
-				ifcModel.add(next.getOid(), newObject);
+		
+				queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, Collections.singleton(roid), packageMetaData);
 				next = queryObjectProvider.next();
-			}
-	
-			queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, roids, packageMetaData);
-			next = queryObjectProvider.next();
-			while (next != null) {
-				IdEObject idEObject = ifcModel.get(next.getOid());
-				if (idEObject.eClass() != next.eClass()) {
-					// Something is wrong
-					throw new RuntimeException("Classes not the same");
-				}
-				for (EReference eReference : idEObject.eClass().getEAllReferences()) {
-					if (eReference.isMany()) {
-						List<Long> refOids = (List<Long>)next.eGet(eReference);
-						List<IdEObject> list = (List<IdEObject>)idEObject.eGet(eReference);
-						if (refOids != null) {
-							for (Long refOid : refOids) {
-								IdEObject ref = ifcModel.get(refOid);
-								if (ref != null) {
-									list.add(ref);
+				while (next != null) {
+					IdEObject idEObject = ifcModel.get(next.getOid());
+					if (idEObject.eClass() != next.eClass()) {
+						// Something is wrong
+						throw new RuntimeException("Classes not the same");
+					}
+					for (EReference eReference : idEObject.eClass().getEAllReferences()) {
+						if (eReference.isMany()) {
+							List<Long> refOids = (List<Long>)next.eGet(eReference);
+							List<IdEObject> list = (List<IdEObject>)idEObject.eGet(eReference);
+							if (refOids != null) {
+								for (Long refOid : refOids) {
+									IdEObject ref = ifcModel.get(refOid);
+									if (ref != null) {
+										list.add(ref);
+									}
+								}
+							}
+						} else {
+							Object r = next.eGet(eReference);
+							if (r instanceof Long) {
+								long refOid = (Long)r;
+								idEObject.eSet(eReference, ifcModel.get(refOid));
+							} else if (r instanceof HashMapWrappedVirtualObject) {
+								HashMapWrappedVirtualObject hashMapWrappedVirtualObject = (HashMapWrappedVirtualObject)r;
+								IdEObject embeddedObject = ifcModel.create(hashMapWrappedVirtualObject.eClass());
+								idEObject.eSet(eReference, embeddedObject);
+								for (EAttribute eAttribute : hashMapWrappedVirtualObject.eClass().getEAllAttributes()) {
+									embeddedObject.eSet(eAttribute, hashMapWrappedVirtualObject.eGet(eAttribute));
 								}
 							}
 						}
-					} else {
-						Object r = next.eGet(eReference);
-						if (r instanceof Long) {
-							long refOid = (Long)r;
-							idEObject.eSet(eReference, ifcModel.get(refOid));
-						} else if (r instanceof HashMapWrappedVirtualObject) {
-							HashMapWrappedVirtualObject hashMapWrappedVirtualObject = (HashMapWrappedVirtualObject)r;
-							IdEObject embeddedObject = ifcModel.create(hashMapWrappedVirtualObject.eClass());
-							idEObject.eSet(eReference, embeddedObject);
-							for (EAttribute eAttribute : hashMapWrappedVirtualObject.eClass().getEAllAttributes()) {
-								embeddedObject.eSet(eAttribute, hashMapWrappedVirtualObject.eGet(eAttribute));
-							}
-						}
 					}
+					next = queryObjectProvider.next();
 				}
-				next = queryObjectProvider.next();
+				
+				ifcModel.getModelMetaData().setName(name);
+				ifcModel.getModelMetaData().setRevisionId(1);
+				if (getAuthorization().getUoid() != -1) {
+					ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(getAuthorization().getUoid()).getName());
+				}
+				ifcModel.getModelMetaData().setDate(new Date());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (IfcModelInterfaceException e) {
+				e.printStackTrace();
+			} catch (QueryException e) {
+				e.printStackTrace();
 			}
-			
-			ifcModel.getModelMetaData().setName(name);
-			ifcModel.getModelMetaData().setRevisionId(1);
-			if (getAuthorization().getUoid() != -1) {
-				ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(getAuthorization().getUoid()).getName());
-			}
-			ifcModel.getModelMetaData().setDate(new Date());
-			return ifcModel;
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (IfcModelInterfaceException e) {
-			e.printStackTrace();
-		} catch (QueryException e) {
-			e.printStackTrace();
 		}
+		
+		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, 0, getDatabaseSession());
+		if (ifcModelSet.size() > 1) {
+			setProgress("Merging IFC data...", -1);
 
+			try {
+				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(lastProject, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
+			} catch (MergeException e) {
+				throw new UserException(e);
+			}
+		} else {
+			ifcModel = ifcModelSet.iterator().next();
+		}
+		ifcModel.getModelMetaData().setName(name);
+//		ifcModel.getModelMetaData().setRevisionId(project.getRevisions().indexOf(virtualRevision) + 1);
+		if (getAuthorization().getUoid() != -1) {
+			ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(getAuthorization().getUoid()).getName());
+		}
+		ifcModel.getModelMetaData().setDate(new Date());
+
+		return ifcModel;
+		
 //		for (Long roid : roids) {
 //			Revision virtualRevision = getRevisionByRoid(roid);
 //			pidRoidMap.put(virtualRevision.getProject().getId(), virtualRevision.getOid());
@@ -201,22 +235,6 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 //				}
 //			}
 //
-//			IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, size, getDatabaseSession());
-//			if (ifcModelSet.size() > 1) {
-//				try {
-//					ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
-//				} catch (MergeException e) {
-//					throw new UserException(e);
-//				}
-//			} else {
-//				ifcModel = ifcModelSet.iterator().next();
-//			}
-//			ifcModel.getModelMetaData().setName("Unknown");
-//			ifcModel.getModelMetaData().setRevisionId(project.getRevisions().indexOf(virtualRevision) + 1);
-//			if (getAuthorization().getUoid() != -1) {
-//				ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(getAuthorization().getUoid()).getName());
-//			}
-//			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 //		}
 		// TODO check, double merging??
 //		IfcModelInterface ifcModel = new BasicIfcModel(lastPackageMetaData, pidRoidMap);
@@ -232,7 +250,6 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 //		if (name.endsWith("-")) {
 //			name = name.substring(0, name.length()-1);
 //		}
-		return null;
 	}
 	
 	public int getProgress() {
