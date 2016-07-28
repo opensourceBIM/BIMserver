@@ -142,7 +142,6 @@ public class PluginBundleImpl extends IdEObjectImpl implements PluginBundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	public PluginBundleVersion getInstalledVersion() {
 		return (PluginBundleVersion) eGet(StorePackage.Literals.PLUGIN_BUNDLE__INSTALLED_VERSION, true);
 	}
