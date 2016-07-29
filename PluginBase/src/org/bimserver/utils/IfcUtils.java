@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.ifc2x3tc1.IfcAreaMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement2D;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
@@ -34,11 +35,15 @@ import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcElement;
 import org.bimserver.models.ifc2x3tc1.IfcElementQuantity;
 import org.bimserver.models.ifc2x3tc1.IfcGridPlacement;
+import org.bimserver.models.ifc2x3tc1.IfcIdentifier;
+import org.bimserver.models.ifc2x3tc1.IfcLabel;
+import org.bimserver.models.ifc2x3tc1.IfcLengthMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcObject;
 import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcPhysicalQuantity;
+import org.bimserver.models.ifc2x3tc1.IfcPlaneAngleMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcProperty;
@@ -52,6 +57,9 @@ import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefinesByProperties;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement;
+import org.bimserver.models.ifc2x3tc1.IfcText;
+import org.bimserver.models.ifc2x3tc1.IfcValue;
+import org.bimserver.models.ifc2x3tc1.IfcVolumeMeasure;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -194,6 +202,46 @@ public class IfcUtils {
 							if (ifcProperty.getName().equals(propertyName)) {
 								IfcBoolean label = (IfcBoolean)propertyValue.getNominalValue();
 								return label.getWrappedValue();
+							}
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public static String getStringProperty(IfcObject ifcObject, String propertyName) {
+		for (IfcRelDefines ifcRelDefines : ifcObject.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof IfcPropertySet) {
+					IfcPropertySet ifcPropertySet = (IfcPropertySet)propertySetDefinition;
+					for (IfcProperty ifcProperty : ifcPropertySet.getHasProperties()) {
+						if (ifcProperty instanceof IfcPropertySingleValue) {
+							IfcPropertySingleValue propertyValue = (IfcPropertySingleValue)ifcProperty;
+							if (ifcProperty.getName().equals(propertyName)) {
+								IfcValue nominalValue = propertyValue.getNominalValue();
+								if (nominalValue instanceof IfcLabel) {
+									return ((IfcLabel)nominalValue).getWrappedValue();
+								} else if (nominalValue instanceof IfcIdentifier) {
+									return ((IfcIdentifier)nominalValue).getWrappedValue();
+								} else if (nominalValue instanceof IfcBoolean) {
+									return ((IfcBoolean)nominalValue).getWrappedValue().toString();
+								} else if (nominalValue instanceof IfcText) {
+									return ((IfcText)nominalValue).getWrappedValue();
+								} else if (nominalValue instanceof IfcLengthMeasure) {
+									return String.valueOf(((IfcLengthMeasure)nominalValue).getWrappedValue());
+								} else if (nominalValue instanceof IfcPlaneAngleMeasure) {
+									return String.valueOf(((IfcPlaneAngleMeasure)nominalValue).getWrappedValue());
+								} else if (nominalValue instanceof IfcAreaMeasure) {
+									return String.valueOf(((IfcAreaMeasure)nominalValue).getWrappedValue());
+								} else if (nominalValue instanceof IfcVolumeMeasure) {
+									return String.valueOf(((IfcVolumeMeasure)nominalValue).getWrappedValue());
+								} else {
+									throw new RuntimeException(nominalValue.eClass().getName());
+								}
 							}
 						}
 					}
