@@ -24,6 +24,7 @@ import java.nio.ByteOrder;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -37,6 +38,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.queries.ConcreteRevisionStackFrame;
 import org.bimserver.database.queries.QueryObjectProvider;
+import org.bimserver.database.queries.QueryTypeStackFrame;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryPart;
@@ -172,6 +174,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				});
 			}
 			
+			// This will read the full stream of objects and write to the database directly
 			long size = deserializer.read(inputStream, fileName, fileSize, queryContext);
 			
 			Set<EClass> eClasses = deserializer.getSummaryMap().keySet();
@@ -330,10 +333,14 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		Map<Long, HashMapVirtualObject> cache = new HashMap<Long, HashMapVirtualObject>();
 		Query query = new Query("test", packageMetaData);
 		
+		int nrTypes = 0;
+		Set<EClass> uniqueTypes = new HashSet<>();
 		for (EClass eClass : deserializer.getSummaryMap().keySet()) {
 			if (packageMetaData.hasInverses(eClass)) {
 				QueryPart queryPart = query.createQueryPart();
 				queryPart.addType(eClass, true);
+				uniqueTypes.add(eClass);
+				nrTypes++;
 				for (EReference eReference : packageMetaData.getAllHasInverseReferences(eClass)) {
 					Include include = queryPart.createInclude();
 					include.addType(eClass, true);
@@ -344,8 +351,14 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		
 		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), bimServer, query, Collections.singleton(newRoid), packageMetaData);
 		HashMapVirtualObject next = queryObjectProvider.next();
-//		EClass lastEClass = null;
+		EClass lastEClass = null;
+		int currentType = 0;
 		while (next != null) {
+			if (next.eClass() != lastEClass && uniqueTypes.contains(next.eClass()) && queryObjectProvider.getStackFrame() instanceof QueryTypeStackFrame) {
+				lastEClass = next.eClass();
+				currentType++;
+				setProgress("Generating inverses", (100 * currentType / nrTypes));
+			}
 			if (packageMetaData.hasInverses(next.eClass())) {
 				for (EReference eReference : packageMetaData.getAllHasInverseReferences(next.eClass())) {
 					Object reference = next.eGet(eReference);
@@ -360,13 +373,11 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 						}
 					}
 				}
-//				setProgress("Generating inverses/opposites", (int) (100.0 * c / deserializer.getSummaryMap().keySet().size()));
-//				if (next.eClass() != lastEClass) {
-//					lastEClass = next.eClass();
-//				}
 			}
 			next = queryObjectProvider.next();
 		}
+		
+		setProgress("Storing data", -1);
 		
 		for (HashMapVirtualObject referencedObject : cache.values()) {
 			referencedObject.saveOverwrite();
@@ -424,5 +435,9 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 
 	public long getPoid() {
 		return poid;
+	}
+
+	public void close() throws IOException {
+		inputStream.close();
 	}
 }

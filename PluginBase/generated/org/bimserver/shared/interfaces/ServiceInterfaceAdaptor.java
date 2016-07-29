@@ -373,6 +373,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SProject getTopLevelProjectByName(java.lang.String name) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SUser getUserByUoid(java.lang.Long uoid) throws UserException, ServerException {
 		return null;
 	}
