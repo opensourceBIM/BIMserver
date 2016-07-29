@@ -203,6 +203,8 @@ service ServiceInterface {
 
 	rpc getSuggestedDeserializerForExtension (GetSuggestedDeserializerForExtensionRequest) returns (GetSuggestedDeserializerForExtensionResponse);
 
+	rpc getTopLevelProjectByName (GetTopLevelProjectByNameRequest) returns (GetTopLevelProjectByNameResponse);
+
 	rpc getUserByUoid (GetUserByUoidRequest) returns (GetUserByUoidResponse);
 
 	rpc getUserByUserName (GetUserByUserNameRequest) returns (GetUserByUserNameResponse);
@@ -1581,6 +1583,15 @@ message GetSuggestedDeserializerForExtensionRequest {
 message GetSuggestedDeserializerForExtensionResponse {
 	optional string errorMessage = 1;
 	optional SDeserializerPluginConfiguration value = 2;
+}
+
+message GetTopLevelProjectByNameRequest {
+	optional string name = 1;
+}
+
+message GetTopLevelProjectByNameResponse {
+	optional string errorMessage = 1;
+	optional SProject value = 2;
 }
 
 message GetUserByUoidRequest {

@@ -427,7 +427,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "destPoid", partName = "branchToExistingProject.destPoid") Long destPoid,
 		@WebParam(name = "comment", partName = "branchToExistingProject.comment") String comment,
 		@WebParam(name = "sync", partName = "branchToNewProject.sync") Boolean sync) throws ServerException, UserException;
-	
 
 	/**
 	 * @param name
@@ -437,7 +436,15 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getProjectsByName")
 	List<SProject> getProjectsByName(
 		@WebParam(name = "name", partName = "getProjectsByName.name") String name) throws ServerException, UserException;
-	
+
+	/**
+	 * @param name
+	 * @return Get the (top level) project with the given name, there can be only one, because top-level projects always are unique
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getTopLevelProjectByName")
+	SProject getTopLevelProjectByName(
+		@WebParam(name = "name", partName = "getTopLevelProjectByName.name") String name) throws ServerException, UserException;
 
 	/**
 	 * @param poid

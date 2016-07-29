@@ -114,6 +114,7 @@ import org.bimserver.database.actions.GetSerializerByContentTypeDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
+import org.bimserver.database.actions.GetTopLevelProjectByNameDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
 import org.bimserver.database.actions.GetVolumeDatabaseAction;
@@ -726,6 +727,20 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
+	public SProject getTopLevelProjectByName(String name) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			GetTopLevelProjectByNameDatabaseAction action = new GetTopLevelProjectByNameDatabaseAction(session, getInternalAccessMethod(), name, getAuthorization());
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
 	public List<SProject> getSubProjects(Long poid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -954,7 +969,12 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					InputStream inputStream = new MultiplexingInputStream(originalInputStream, outputStream);
 					deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
 					
-					IfcModelInterface model = deserializer.read(inputStream, fileName, fileSize, null);
+					IfcModelInterface model = null;
+					try {
+						model = deserializer.read(inputStream, fileName, fileSize, null);
+					} finally {
+						inputStream.close();
+					}
 					
 					CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
 					LongCheckinAction longAction = new LongCheckinAction(topicId, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
@@ -1790,14 +1810,15 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public SServiceDescriptor getServiceDescriptor(String baseUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(baseUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager());
-			BimServerClientInterface client = factory.create();
-			SServiceDescriptor service = client.getRemoteServiceInterface().getService(serviceIdentifier);
-			if (service == null) {
-				throw new UserException("No service found with identifier " + serviceIdentifier);
+			try (BimServerClientFactory factory = new JsonBimServerClientFactory(baseUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager())) {
+				BimServerClientInterface client = factory.create();
+				SServiceDescriptor service = client.getRemoteServiceInterface().getService(serviceIdentifier);
+				if (service == null) {
+					throw new UserException("No service found with identifier " + serviceIdentifier);
+				}
+				service.setUrl(baseUrl);
+				return service;
 			}
-			service.setUrl(baseUrl);
-			return service;
 		} catch (Exception e) {
 			return handleException(e);
 		}
@@ -1980,10 +2001,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager());
-			BimServerClientInterface client = factory.create();
-			return client.getRemoteServiceInterface().getPublicProfiles(serviceIdentifier);
+		try (BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager())){
+			try (BimServerClientInterface client = factory.create()) {
+				return client.getRemoteServiceInterface().getPublicProfiles(serviceIdentifier);
+			}
 		} catch (Exception e) {
 			return handleException(e);
 		}
@@ -1996,17 +2017,18 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 		requireRealUserAuthentication();
 		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager());
-			BimServerClientInterface client = factory.create();
-			
-			OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_ApiUrl(), notificationsUrl);
-			User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
-			for (OAuthAuthorizationCode oAuthAuthorizationCode : user.getOAuthAuthorizationCodes()) {
-				if (oAuthAuthorizationCode.getOauthServer() == oAuthServer) {
-					return client.getRemoteServiceInterface().getPrivateProfiles(serviceIdentifier, oAuthAuthorizationCode.getCode());
+			try (BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, getBimServer().getServicesMap(), getBimServer().getJsonSocketReflectorFactory(), getBimServer().getReflectorFactory(), getBimServer().getMetaDataManager())) {
+				BimServerClientInterface client = factory.create();
+				
+				OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_ApiUrl(), notificationsUrl);
+				User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+				for (OAuthAuthorizationCode oAuthAuthorizationCode : user.getOAuthAuthorizationCodes()) {
+					if (oAuthAuthorizationCode.getOauthServer() == oAuthServer) {
+						return client.getRemoteServiceInterface().getPrivateProfiles(serviceIdentifier, oAuthAuthorizationCode.getCode());
+					}
 				}
+				return null;
 			}
-			return null;
 		} catch (Exception e) {
 			return handleException(e);
 		}
