@@ -479,6 +479,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetTopLevelProjectByNameCallback {
+		void success(org.bimserver.interfaces.objects.SProject result);
+		void error(Throwable e);
+	}
+	
 	public interface GetUserByUoidCallback {
 		void success(org.bimserver.interfaces.objects.SUser result);
 		void error(Throwable e);
@@ -1702,6 +1707,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSuggestedDeserializerForExtension(extension, poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getTopLevelProjectByName(final java.lang.String name, final GetTopLevelProjectByNameCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getTopLevelProjectByName(name));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

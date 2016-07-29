@@ -58,6 +58,7 @@ public class QueryObjectProvider implements ObjectProvider {
 	private long stackFramesProcessed = 0;
 	private final Set<Long> goingToRead = new HashSet<>();
 	private Query query;
+	private StackFrame stackFrame;
 
 	public QueryObjectProvider(DatabaseSession databaseSession, BimServer bimServer, Query query, Set<Long> roids, PackageMetaData packageMetaData) throws JsonParseException, JsonMappingException, IOException, QueryException {
 		this.databaseSession = databaseSession;
@@ -103,7 +104,7 @@ public class QueryObjectProvider implements ObjectProvider {
 					dumpEndQuery();
 					throw new BimserverDatabaseException("Query stack size > 10000, probably a bug, please report");
 				}
-				StackFrame stackFrame = stack.peek();
+				stackFrame = stack.peek();
 				if (stackFrame.isDone()) {
 					stack.pop();
 					continue;
@@ -134,6 +135,10 @@ public class QueryObjectProvider implements ObjectProvider {
 		dumpEndQuery();
 		
 		return null;
+	}
+	
+	public StackFrame getStackFrame() {
+		return stackFrame;
 	}
 	
 	private void dumpEndQuery() {

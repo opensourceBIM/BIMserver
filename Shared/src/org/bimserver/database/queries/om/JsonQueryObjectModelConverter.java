@@ -78,6 +78,41 @@ public class JsonQueryObjectModelConverter {
 					oidsNode.add(oid);
 				}
 			}
+			if (queryPart.hasInBoundingBox()) {
+				ObjectNode inBoundingBoxNode = objectMapper.createObjectNode();
+				inBoundingBoxNode.put("x", queryPart.getInBoundingBox().getX());
+				inBoundingBoxNode.put("y", queryPart.getInBoundingBox().getY());
+				inBoundingBoxNode.put("z", queryPart.getInBoundingBox().getZ());
+				inBoundingBoxNode.put("width", queryPart.getInBoundingBox().getWidth());
+				inBoundingBoxNode.put("height", queryPart.getInBoundingBox().getHeight());
+				inBoundingBoxNode.put("depth", queryPart.getInBoundingBox().getDepth());
+				queryPartNode.set("inBoundingBox", inBoundingBoxNode);
+			}
+			if (queryPart.hasIncludes()) {
+				ArrayNode includesNode = objectMapper.createArrayNode();
+				for (Include include : queryPart.getIncludes()) {
+					ObjectNode includeNode = objectMapper.createObjectNode();
+					
+					ArrayNode typesNode = objectMapper.createArrayNode();
+					for (EClass type : include.getTypes()) {
+						typesNode.add(type.getName());
+					}
+					includeNode.set("types", typesNode);
+					
+					ArrayNode fieldsNode = objectMapper.createArrayNode();
+					for (EReference eReference : include.getFields()) {
+						fieldsNode.add(eReference.getName());
+					}
+					includeNode.set("fields", fieldsNode);
+					
+					if (include.hasOutputTypes() || include.hasIncludes()) {
+						throw new RuntimeException("Not implemented");
+					}
+					
+					includesNode.add(includeNode);
+				}
+				queryPartNode.set("includes", includesNode);
+			}
 			queryPartsNode.add(queryPartNode);
 		}
 		return queryNode;
@@ -173,7 +208,7 @@ public class JsonQueryObjectModelConverter {
 				for (int i=0; i<types.size(); i++) {
 					JsonNode typeNode = types.get(i);
 					if (typeNode.isTextual()) {
-						EClass eClass = packageMetaData.getEClass(typeNode.asText());
+						EClass eClass = packageMetaData.getEClassIncludingDependencies(typeNode.asText());
 						include.addType(eClass, false);
 					} else {
 						throw new QueryException("\"types\"[" + i + "] field mst be of type string");

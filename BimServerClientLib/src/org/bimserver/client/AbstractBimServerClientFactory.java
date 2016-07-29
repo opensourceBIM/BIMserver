@@ -97,7 +97,9 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 	public void initHttpClient() {
 		HttpClientBuilder builder = HttpClientBuilder.create();
 		
-		HttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
+		PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
+		connManager.setMaxTotal(100);
+		connManager.setDefaultMaxPerRoute(100);
 		builder.setConnectionManager(connManager);
 		
 //		builder.addInterceptorFirst(new HttpRequestInterceptor() {

@@ -1,5 +1,9 @@
 package org.bimserver.client;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -27,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.io.IOUtils;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
@@ -40,6 +45,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.SharedJsonDeserializer;
 import org.bimserver.emf.SharedJsonSerializer;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
@@ -316,7 +322,7 @@ public class ClientIfcModel extends IfcModel {
 			
 			for (IfcProduct ifcProduct : getAllWithSubTypes(IfcProduct.class)) {
 				GeometryInfo geometry = ifcProduct.getGeometry();
-				if (geometry != null) {
+				if (geometry != null && ifcProduct.getGeometry().getData() == null) {
 					geometryInfoOidToOid.put(geometry.getOid(), ifcProduct.getOid());
 					queryPart.addOid(geometry.getOid());
 				}
@@ -326,10 +332,22 @@ public class ClientIfcModel extends IfcModel {
 			// TODO use websocket notifications
 			waitForDonePreparing(topicId);
 			InputStream inputStream = bimServerClient.getDownloadData(topicId, serializerOid);
+			File file = new File("binary");
+			FileInputStream fis = null;
 			try {
-				processGeometryInputStream(inputStream, geometryInfoOidToOid);
+				FileOutputStream fos = new FileOutputStream(file);
+				IOUtils.copy(inputStream, fos);
+				fos.flush();
+				fos.close();
+				fis = new FileInputStream(file);
+				processGeometryInputStream(fis, geometryInfoOidToOid);
+				fis.close();
+			} catch (Throwable e) {
+				fis.close();
+				file.renameTo(new File("error"));
+				e.printStackTrace();
 			} finally {
-				inputStream.close();
+				fis.close();
 			}
 		}
 	}
@@ -384,6 +402,9 @@ public class ClientIfcModel extends IfcModel {
 					add(geometryInfoOid, geometryInfo);
 					
 					Long ifcProductOid = geometryInfoOidToOid.get(geometryInfoOid);
+					if (ifcProductOid == null) {
+						throw new GeometryException("Missing geometry info id: " + geometryInfoOid);
+					}
 					IfcProduct ifcProduct = (IfcProduct) get(ifcProductOid);
 					ifcProduct.setGeometry(geometryInfo);
 					
@@ -414,7 +435,7 @@ public class ClientIfcModel extends IfcModel {
 				} else if (type == 3) {
 					throw new GeometryException("Parts not supported");
 				} else if (type == 1) {
-					dataInputStream.read(new byte[3]);
+					dataInputStream.read(new byte[7]);
 					long geometryDataOid = dataInputStream.readLong();
 					
 					GeometryData geometryData = (GeometryData) get(geometryDataOid);
@@ -424,9 +445,13 @@ public class ClientIfcModel extends IfcModel {
 					}
 					
 					int nrIndices = dataInputStream.readInt();
-					byte[] indices = new byte[nrIndices * 4];
+					byte[] indices = new byte[nrIndices * 2];
 					dataInputStream.read(indices);
 					geometryData.setIndices(indices);
+					
+					if (nrIndices % 2 != 0) {
+						dataInputStream.readShort();
+					}
 					
 					int nrVertices = dataInputStream.readInt();
 					byte[] vertices = new byte[nrVertices * 4];
@@ -472,6 +497,11 @@ public class ClientIfcModel extends IfcModel {
 				Query query = new Query(getPackageMetaData());
 				QueryPart queryPart = query.createQueryPart();
 				queryPart.addType(eClass, false);
+				if (includeGeometry) {
+					Include include = queryPart.createInclude();
+					include.addType(eClass, false);
+					include.addField("geometry");
+				}
 				
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 				long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
@@ -486,7 +516,33 @@ public class ClientIfcModel extends IfcModel {
 				LOGGER.error("", e);
 			}
 		}
-		return super.getAll(eClass);
+		List<T> result = super.getAll(eClass);
+		try {
+			loadGeometry();
+		} catch (ServerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (QueryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (GeometryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IfcModelInterfaceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+
 	}
 
 	@Override
@@ -842,19 +898,28 @@ public class ClientIfcModel extends IfcModel {
 //		}
 //	}
 
-	public void queryNew(Query query) {
+	public void queryNew(Query query, IfcModelChangeListener ifcModelChangeListener) {
 		try {
 			modelState = ModelState.LOADING;
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
+			System.out.println(converter.toJson(query).toString());
 			Long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 			waitForDonePreparing(topicId);
+			
+			if (ifcModelChangeListener != null) {
+				addChangeListener(ifcModelChangeListener);
+			}
 			processDownload(topicId);
+			if (ifcModelChangeListener != null) {
+				removeChangeListener(ifcModelChangeListener);
+			}
+			
 			modelState = ModelState.NONE;
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 	}
-	
+
 //	@Override
 //	public SIfcHeader getIfcHeader() {
 //		SIfcHeader ifcHeader = super.getIfcHeader();

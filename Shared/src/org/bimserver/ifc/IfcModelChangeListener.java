@@ -1,5 +1,7 @@
 package org.bimserver.ifc;
 
+import org.bimserver.emf.IdEObject;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -18,5 +20,5 @@ package org.bimserver.ifc;
  *****************************************************************************/
 
 public interface IfcModelChangeListener {
-	void objectAdded();
+	void objectAdded(IdEObject idEObject);
 }

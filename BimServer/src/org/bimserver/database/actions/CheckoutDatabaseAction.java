@@ -29,6 +29,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.OldQuery.Deep;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.BasicIfcModel;
@@ -115,7 +116,7 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			OldQuery query = new OldQuery(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), revision.getOid(), null,  Deep.YES, highestStopId);
 			subModel.addChangeListener(new IfcModelChangeListener() {
 				@Override
-				public void objectAdded() {
+				public void objectAdded(IdEObject idEObject) {
 					total.incrementAndGet();
 					if (totalSize == 0) {
 						setProgress("Preparing checkout...", 0);
