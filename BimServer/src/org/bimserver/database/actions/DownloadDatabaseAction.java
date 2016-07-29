@@ -29,6 +29,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.OldQuery.Deep;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
@@ -108,7 +109,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), concreteRevision.getOid(), objectIDM, Deep.YES, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
-					public void objectAdded() {
+					public void objectAdded(IdEObject idEObject) {
 						total.incrementAndGet();
 						if (totalSize == 0) {
 							setProgress("Preparing download...", 0);

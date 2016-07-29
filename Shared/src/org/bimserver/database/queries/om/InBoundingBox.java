@@ -1,5 +1,7 @@
 package org.bimserver.database.queries.om;
 
+import org.bimserver.geometry.AxisAlignedBoundingBox;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -34,6 +36,15 @@ public class InBoundingBox extends PartOfQuery {
 		this.depth = depth;
 	}
 	
+	public InBoundingBox(AxisAlignedBoundingBox boundingBox) {
+		this.x = boundingBox.getMin()[0];
+		this.y = boundingBox.getMin()[1];
+		this.z = boundingBox.getMin()[2];
+		this.width = boundingBox.getMax()[0] - boundingBox.getMin()[0];
+		this.height = boundingBox.getMax()[1] - boundingBox.getMin()[1];
+		this.depth = boundingBox.getMax()[2] - boundingBox.getMin()[2];
+	}
+
 	public double getDepth() {
 		return depth;
 	}

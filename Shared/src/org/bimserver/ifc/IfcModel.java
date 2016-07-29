@@ -401,7 +401,7 @@ public abstract class IfcModel implements IfcModelInterface {
 				}
 			}
 			for (IfcModelChangeListener ifcModelChangeListener : changeListeners) {
-				ifcModelChangeListener.objectAdded();
+				ifcModelChangeListener.objectAdded(eObject);
 			}
 		}
 	}
@@ -766,6 +766,10 @@ public abstract class IfcModel implements IfcModelInterface {
 
 	public void addChangeListener(IfcModelChangeListener listener) {
 		changeListeners.add(listener);
+	}
+
+	public void removeChangeListener(IfcModelChangeListener ifcModelChangeListener) {
+		changeListeners.remove(ifcModelChangeListener);
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package org.bimserver.longaction;
 
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -82,6 +84,11 @@ public class LongStreamingCheckinAction extends LongAction<LongCheckinActionKey>
 			}
 			error(e);
 		} finally {
+			try {
+				checkinDatabaseAction.close();
+			} catch (IOException e) {
+				LOGGER.error("", e);
+			}
 			session.close();
 			if (getActionState() != ActionState.AS_ERROR) {
 				changeActionState(ActionState.FINISHED, "Checkin of " + fileName, 100);
