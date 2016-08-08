@@ -32,18 +32,22 @@ import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3tc1.IfcBoolean;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
+import org.bimserver.models.ifc2x3tc1.IfcElectricCurrentMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcElement;
 import org.bimserver.models.ifc2x3tc1.IfcElementQuantity;
 import org.bimserver.models.ifc2x3tc1.IfcGridPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcIdentifier;
+import org.bimserver.models.ifc2x3tc1.IfcInteger;
 import org.bimserver.models.ifc2x3tc1.IfcLabel;
 import org.bimserver.models.ifc2x3tc1.IfcLengthMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
+import org.bimserver.models.ifc2x3tc1.IfcLogical;
 import org.bimserver.models.ifc2x3tc1.IfcObject;
 import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcPhysicalQuantity;
 import org.bimserver.models.ifc2x3tc1.IfcPlaneAngleMeasure;
+import org.bimserver.models.ifc2x3tc1.IfcPowerMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcProperty;
@@ -51,6 +55,7 @@ import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySetDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
 import org.bimserver.models.ifc2x3tc1.IfcQuantityVolume;
+import org.bimserver.models.ifc2x3tc1.IfcReal;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
@@ -239,6 +244,16 @@ public class IfcUtils {
 									return String.valueOf(((IfcAreaMeasure)nominalValue).getWrappedValue());
 								} else if (nominalValue instanceof IfcVolumeMeasure) {
 									return String.valueOf(((IfcVolumeMeasure)nominalValue).getWrappedValue());
+								} else if (nominalValue instanceof IfcReal) {
+									return String.valueOf(((IfcReal)nominalValue).getWrappedValue());
+								} else if (nominalValue instanceof IfcPowerMeasure) {
+									return String.valueOf(((IfcPowerMeasure)nominalValue).getWrappedValue());
+								} else if (nominalValue instanceof IfcInteger) {
+									return String.valueOf(((IfcInteger)nominalValue).getWrappedValue());
+								} else if (nominalValue instanceof IfcElectricCurrentMeasure) {
+									return String.valueOf(((IfcElectricCurrentMeasure)nominalValue).getWrappedValue());
+								} else if (nominalValue instanceof IfcLogical) {
+									return String.valueOf(((IfcLogical)nominalValue).getWrappedValue());
 								} else {
 									throw new RuntimeException(nominalValue.eClass().getName());
 								}
