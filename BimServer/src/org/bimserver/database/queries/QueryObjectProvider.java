@@ -182,12 +182,12 @@ public class QueryObjectProvider implements ObjectProvider {
 		for (QueryPart queryPart : query.getQueryParts()) {
 			if (queryPart.hasTypes()) {
 				if (queryPart.getTypes().contains(eClass)) {
-					if (queryPart.getGuids() == null && queryPart.getOids() == null && queryPart.getInBoundingBox() == null && queryPart.getProperties() == null) {
+					if (queryPart.getGuids() == null && queryPart.getNames() == null && queryPart.getOids() == null && queryPart.getInBoundingBox() == null && queryPart.getProperties() == null) {
 						return true;
 					}
 				}
 			} else {
-				return (queryPart.getGuids() == null && queryPart.getOids() == null && queryPart.getInBoundingBox() == null && queryPart.getProperties() == null);
+				return (queryPart.getGuids() == null && queryPart.getNames() == null && queryPart.getOids() == null && queryPart.getInBoundingBox() == null && queryPart.getProperties() == null);
 			}
 		}
 		return false;

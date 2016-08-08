@@ -410,6 +410,14 @@ public class JsonQueryObjectModelConverter {
 				throw new QueryException("\"guid\" must be of type string");
 			}
 		}
+		if (objectNode.has("name")) {
+			JsonNode nameNode = objectNode.get("name");
+			if (nameNode.isTextual()) {
+				queryPart.addName(nameNode.asText());
+			} else {
+				throw new QueryException("\"name\" must be of type string");
+			}
+		}
 		if (objectNode.has("guids")) {
 			JsonNode guidsNode = objectNode.get("guids");
 			if (guidsNode instanceof ArrayNode) {
@@ -424,6 +432,22 @@ public class JsonQueryObjectModelConverter {
 				}
 			} else {
 				throw new QueryException("\"guids\" must be of type array");
+			}
+		}
+		if (objectNode.has("names")) {
+			JsonNode namesNode = objectNode.get("names");
+			if (namesNode instanceof ArrayNode) {
+				ArrayNode names = (ArrayNode)namesNode;
+				for (int i=0; i<names.size(); i++) {
+					JsonNode nameNode = names.get(i);
+					if (nameNode.isTextual()) {
+						queryPart.addName(nameNode.asText());
+					} else {
+						throw new QueryException("\"names\"[" + i + "] must be of type string");
+					}
+				}
+			} else {
+				throw new QueryException("\"names\" must be of type array");
 			}
 		}
 		if (objectNode.has("properties")) {
@@ -484,7 +508,7 @@ public class JsonQueryObjectModelConverter {
 		Iterator<String> fieldNames = objectNode.fieldNames();
 		while (fieldNames.hasNext()) {
 			String fieldName = fieldNames.next();
-			if (fieldName.equals("includeAllFields") || fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes") || fieldName.equals("includeAllSubtypes")) {
+			if (fieldName.equals("includeAllFields") || fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("name") || fieldName.equals("names") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes") || fieldName.equals("includeAllSubtypes")) {
 				// fine
 			} else {
 				throw new QueryException("Unknown field: \"" + fieldName + "\"");

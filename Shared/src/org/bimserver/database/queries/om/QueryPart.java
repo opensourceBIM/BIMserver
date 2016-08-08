@@ -31,6 +31,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 	private List<EClass> types;
 	private Set<Long> oids;
 	private Set<String> guids;
+	private Set<String> names;
 	private Map<String, Object> properties;
 	private PackageMetaData packageMetaData;
 	private InBoundingBox inBoundingBox;
@@ -192,5 +193,16 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 		Include include = new Include(packageMetaData);
 		addInclude(include);
 		return include;
+	}
+
+	public void addName(String name) {
+		if (names == null) {
+			names = new HashSet<>();
+		}
+		names.add(name);
+	}
+
+	public Set<String> getNames() {
+		return names;
 	}
 }

@@ -966,4 +966,19 @@ public class Matrix {
 		result[15] = input[15];
 		return result;
 	}
+
+	public static void dump(double[] matrix) {
+		for (int c=0; c<4; c++) {
+			for (int r=0; r<4; r++) {
+				System.out.print(matrix[r * 4 + c] + (r == 3 ? "" : ", "));
+			}
+			System.out.println();
+		}
+	}
+
+	public static double[] identity() {
+		double matrix[] = new double[16];
+		setIdentityM(matrix, 0);
+		return matrix;
+	}
 }

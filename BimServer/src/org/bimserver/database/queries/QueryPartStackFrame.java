@@ -39,6 +39,7 @@ public class QueryPartStackFrame extends StackFrame {
 	private QueryPart partialQuery;
 	private final Map<EClass, List<Long>> oids;
 	private final Set<String> guids;
+	private final Set<String> names;
 	private Map<String, Object> properties;
 	private InBoundingBox inBoundingBox;
 
@@ -80,6 +81,11 @@ public class QueryPartStackFrame extends StackFrame {
 		} else {
 			guids = null;
 		}
+		if (this.partialQuery.getNames() != null) {
+			this.names = partialQuery.getNames();
+		} else {
+			names = null;
+		}
 		this.properties = partialQuery.getProperties();
 		this.inBoundingBox = partialQuery.getInBoundingBox();
 	}
@@ -98,6 +104,8 @@ public class QueryPartStackFrame extends StackFrame {
 				}
 			} else if (guids != null) {
 				queryObjectProvider.push(new QueryGuidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, guids));
+			} else if (names != null) {
+				queryObjectProvider.push(new QueryNamesAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, names));
 			} else if (properties != null) {
 				queryObjectProvider.push(new QueryPropertiesAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, properties));
 			} else if (inBoundingBox != null) {
