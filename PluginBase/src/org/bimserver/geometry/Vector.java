@@ -36,6 +36,12 @@ public class Vector {
     public static float[] crossProduct(float[] u, float[] v){
         return new float[]{(u[Y]*v[Z]) - (u[Z]*v[Y]),(u[Z]*v[X]) - (u[X]*v[Z]),(u[X]*v[Y]) - (u[Y]*v[X])};
     }
+
+    // (cross product)
+    public static double[] crossProduct(double[] u, double[] v){
+        return new double[]{(u[Y]*v[Z]) - (u[Z]*v[Y]),(u[Z]*v[X]) - (u[X]*v[Z]),(u[X]*v[Y]) - (u[Y]*v[X])};
+    }
+
     //mangnatude or length
     public static float length(float[] u){
         return (float) Math.abs(Math.sqrt((u[X] *u[X]) + (u[Y] *u[Y]) + (u[Z] *u[Z])));

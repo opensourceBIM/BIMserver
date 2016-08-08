@@ -99,44 +99,44 @@ public class QueryGuidsAndTypesStackFrame extends DatabaseReadingStackFrame {
 		return null;
 	}
 	
-	public ObjectIdentifier getOidOfGuid(String schema, String guid, int pid, int rid) throws BimserverDatabaseException {
-		for (EClass eClass : reusable.getPackageMetaData().getAllSubClasses(reusable.getPackageMetaData().getEClass("IfcRoot"))) {
-			RecordIterator recordIterator = queryObjectProvider.getDatabaseSession().getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid),
-					BinUtils.intToByteArray(pid), queryObjectProvider.getDatabaseSession());
-			try {
-				Record record = recordIterator.next();
-				while (record != null) {
-					queryObjectProvider.incReads();
-					ByteBuffer buffer = ByteBuffer.wrap(record.getKey());
-					int pidOfRecord = buffer.getInt();
-					long oid = buffer.getLong();
-					int ridOfRecord = -buffer.getInt();
-					if (ridOfRecord == rid && pid == pidOfRecord) {
-						ByteBuffer value = ByteBuffer.wrap(record.getValue());
-
-						// Skip the unsettable part
-						value.position(value.position() + reusable.getPackageMetaData().getUnsettedLength(eClass));
-
-						if (value.capacity() > 1) {
-							int stringLength = value.getInt();
-							if (stringLength == -1) {
-								return null;
-							} else {
-								String s = BinUtils.readString(value, stringLength);
-								if (s.equals(guid)) {
-									return new ObjectIdentifier(oid, queryObjectProvider.getDatabaseSession().getCid(eClass));
-								}
-							}
-						}
-					}
-					record = recordIterator.next();
-				}
-			} finally {
-				recordIterator.close();
-			}
-		}
-		return null;
-	}
+//	public ObjectIdentifier getOidOfGuid(String schema, String guid, int pid, int rid) throws BimserverDatabaseException {
+//		for (EClass eClass : reusable.getPackageMetaData().getAllSubClasses(reusable.getPackageMetaData().getEClass("IfcRoot"))) {
+//			RecordIterator recordIterator = queryObjectProvider.getDatabaseSession().getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid),
+//					BinUtils.intToByteArray(pid), queryObjectProvider.getDatabaseSession());
+//			try {
+//				Record record = recordIterator.next();
+//				while (record != null) {
+//					queryObjectProvider.incReads();
+//					ByteBuffer buffer = ByteBuffer.wrap(record.getKey());
+//					int pidOfRecord = buffer.getInt();
+//					long oid = buffer.getLong();
+//					int ridOfRecord = -buffer.getInt();
+//					if (ridOfRecord == rid && pid == pidOfRecord) {
+//						ByteBuffer value = ByteBuffer.wrap(record.getValue());
+//
+//						// Skip the unsettable part
+//						value.position(value.position() + reusable.getPackageMetaData().getUnsettedLength(eClass));
+//
+//						if (value.capacity() > 1) {
+//							int stringLength = value.getInt();
+//							if (stringLength == -1) {
+//								return null;
+//							} else {
+//								String s = BinUtils.readString(value, stringLength);
+//								if (s.equals(guid)) {
+//									return new ObjectIdentifier(oid, queryObjectProvider.getDatabaseSession().getCid(eClass));
+//								}
+//							}
+//						}
+//					}
+//					record = recordIterator.next();
+//				}
+//			} finally {
+//				recordIterator.close();
+//			}
+//		}
+//		return null;
+//	}
 	
 	@Override
 	public boolean process() throws BimserverDatabaseException, QueryException {
