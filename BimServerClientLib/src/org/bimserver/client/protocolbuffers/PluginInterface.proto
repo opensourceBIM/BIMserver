@@ -166,6 +166,8 @@ service PluginInterface {
 
 	rpc installPluginBundle (InstallPluginBundleRequest) returns (VoidResponse);
 
+	rpc installPluginBundleFromFile (InstallPluginBundleFromFileRequest) returns (VoidResponse);
+
 	rpc listAllWebModules (ListAllWebModulesRequest) returns (ListAllWebModulesResponse);
 
 	rpc setDefaultModelCompare (SetDefaultModelCompareRequest) returns (VoidResponse);
@@ -996,6 +998,13 @@ message InstallPluginBundleRequest {
 	optional string artifactId = 3;
 	optional string version = 4;
 	repeated SPluginInformation plugins = 5;
+}
+
+message InstallPluginBundleFromFileRequest {
+	optional bytes data = 1;
+	optional string groupId = 2;
+	optional string artifactId = 3;
+	optional string version = 4;
 }
 
 message ListAllWebModulesRequest {

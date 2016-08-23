@@ -20,6 +20,7 @@ package org.bimserver.shared.interfaces;
 import java.util.List;
 import java.util.Set;
 
+import javax.activation.DataHandler;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -27,6 +28,7 @@ import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
+import javax.xml.bind.annotation.XmlMimeType;
 
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
@@ -616,6 +618,13 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "artifactId", partName = "installPluginBundle.artifactId") String artifactId, 
 		@WebParam(name = "version", partName = "installPluginBundle.version") String version,
 		@WebParam(name = "plugins", partName = "installPluginBundle.plugins") List<SPluginInformation> plugins) throws UserException, ServerException;
+
+	@WebMethod(action = "installPluginBundleFromFile")
+	void installPluginBundleFromFile(
+		@WebParam(name = "data", partName = "installPluginBundleFromFile.data") @XmlMimeType("application/octet-stream") DataHandler data,
+		@WebParam(name = "groupId", partName = "installPluginBundleFromFile.groupId") String groupId, 
+		@WebParam(name = "artifactId", partName = "installPluginBundleFromFile.artifactId") String artifactId, 
+		@WebParam(name = "version", partName = "installPluginBundleFromFile.version") String version) throws UserException, ServerException;
 
 	@WebMethod(action = "uninstallPluginBundle")
 	void uninstallPluginBundle(
