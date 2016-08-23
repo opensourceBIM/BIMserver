@@ -28,6 +28,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.activation.DataHandler;
+
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
@@ -1432,6 +1434,18 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 	}
 
+	public void installPluginBundleFromFile(DataHandler file, String groupId, String artifactId, String version) throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+//			session.executeAndCommitAction(new InstallPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version, plugins));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	public void updatePluginBundle(String repository, String groupId, String artifactId, String version) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
