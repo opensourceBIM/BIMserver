@@ -46,7 +46,9 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class QueryObjectProvider implements ObjectProvider {
 	private static final int MAX_STACK_FRAMES_PROCESSED = 10000000;
-	private static final int MAX_STACK_SIZE = 100000;
+	
+	// So far 100000 has proven to not be enough for some legit IFC files
+	private static final int MAX_STACK_SIZE = 1000000;
 	private static final Logger LOGGER = LoggerFactory.getLogger(QueryObjectProvider.class);
 	private DatabaseSession databaseSession;
 	private BimServer bimServer;
