@@ -29,6 +29,8 @@ import org.bimserver.shared.QueryException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
+import com.ctc.wstx.ent.EntityDecl;
+
 public class FollowReferenceStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
 
 	private long oid;
@@ -107,6 +109,12 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 	
 	@Override
 	public String toString() {
+		try {
+			EClass eClass = getQueryObjectProvider().getDatabaseSession().getEClassForOid(oid);
+			return "FollowReferenceStackFrame (" + eClass.getName() + "." + fromReference.getName() + ", " + oid + ")";
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		}
 		return "FollowReferenceStackFrame (" + fromReference.getName() + ")";
 	}
 }
