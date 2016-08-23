@@ -120,7 +120,9 @@ public class Streamer implements EndPoint {
 							long end = System.nanoTime();
 							LOGGER.info("total qt: " + (totalQT / 1000000) + " ms");
 							LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
-						} catch (IOException | SerializerException | InterruptedException | ExecutionException e) {
+						} catch (IOException e) {
+							// Probably closed/F5-ed browser
+						} catch (SerializerException | InterruptedException | ExecutionException e) {
 							LOGGER.error("", e);
 						}
 					}
