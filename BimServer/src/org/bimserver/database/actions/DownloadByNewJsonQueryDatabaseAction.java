@@ -52,6 +52,7 @@ import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.QueryException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
+import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 
@@ -71,7 +72,7 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 		this.json = json;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		List<String> projectNames = new ArrayList<>();
@@ -112,7 +113,20 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 					idEObjectImpl.setPid(revision.getProject().getId());
 					idEObjectImpl.setOid(next.getOid());
 					for (EAttribute eAttribute : newObject.eClass().getEAllAttributes()) {
-						newObject.eSet(eAttribute, next.eGet(eAttribute));
+						Object value = next.eGet(eAttribute);
+						if (eAttribute.isMany()) {
+							List<?> list = (List<?>)value;
+							if (list != null) {
+								AbstractEList targetList = (AbstractEList)newObject.eGet(eAttribute);
+								for (Object item : list) {
+									targetList.addUnique(item);
+								}
+							}
+						} else {
+							if (value != null || eAttribute.isUnsettable()) {
+								newObject.eSet(eAttribute, value);
+							}
+						}
 					}
 					ifcModel.add(next.getOid(), newObject);
 					next = queryObjectProvider.next();
@@ -128,13 +142,20 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 					}
 					for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 						if (eReference.isMany()) {
-							List<Long> refOids = (List<Long>)next.eGet(eReference);
-							List<IdEObject> list = (List<IdEObject>)idEObject.eGet(eReference);
+							List refOids = (List)next.eGet(eReference);
+							AbstractEList<IdEObject> list = (AbstractEList<IdEObject>)idEObject.eGet(eReference);
 							if (refOids != null) {
-								for (Long refOid : refOids) {
-									IdEObject ref = ifcModel.get(refOid);
-									if (ref != null) {
-										list.add(ref);
+								for (Object refOid : refOids) {
+									if (refOid instanceof Long) {
+										IdEObject ref = ifcModel.get((long) refOid);
+										if (ref != null) {
+											list.addUnique(ref);
+										}
+									} else if (refOid instanceof HashMapWrappedVirtualObject) {
+//										IdEObject ref = ifcModel.get(((HashMapWrappedVirtualObject) refOid).get);
+//										if (ref != null) {
+//											list.add(ref);
+//										}
 									}
 								}
 							}
