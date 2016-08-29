@@ -43,7 +43,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.jar.JarInputStream;
 import java.util.zip.ZipEntry;
 
 import javax.xml.bind.JAXBContext;
@@ -505,7 +507,7 @@ public class PluginManager implements PluginManagerInterface {
 	private PluginBundle loadPlugins(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, ResourceLoader resourceLoader, ClassLoader classLoader, URI location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType,
 			Set<org.bimserver.plugins.Dependency> dependencies, SPluginBundle sPluginBundle, SPluginBundleVersion sPluginBundleVersion) throws PluginException {
 		sPluginBundle.setInstalledVersion(sPluginBundleVersion);
-		PluginBundle pluginBundle = new PluginBundleImpl(pluginBundleVersionIdentifier, sPluginBundle, sPluginBundleVersion);
+		PluginBundle pluginBundle = new PluginBundleImpl(pluginBundleVersionIdentifier, sPluginBundle, sPluginBundleVersion, pluginDescriptor);
 		
 		if (classLoader != null && classLoader instanceof Closeable) {
 			pluginBundle.addCloseable((Closeable) classLoader);
@@ -1149,14 +1151,18 @@ public class PluginManager implements PluginManagerInterface {
 				throw new PluginException("No plugin/plugin.xml found in " + file.getFileName().toString());
 			}
 			InputStream pluginStream = jarFile.getInputStream(entry);
-			PluginDescriptor pluginDescriptor = getPluginDescriptor(pluginStream);
-			if (pluginDescriptor == null) {
-				throw new PluginException("No plugin descriptor could be created");
-			}
-			List<SPluginInformation> list = new ArrayList<>();
-			processPluginDescriptor(pluginDescriptor, list);
-			return list;
+			return getPluginInformationFromPluginFile(pluginStream);
 		}
+	}
+
+	public List<SPluginInformation> getPluginInformationFromPluginFile(InputStream inputStream) throws PluginException, FileNotFoundException, IOException, JAXBException {
+		PluginDescriptor pluginDescriptor = getPluginDescriptor(inputStream);
+		if (pluginDescriptor == null) {
+			throw new PluginException("No plugin descriptor could be created");
+		}
+		List<SPluginInformation> list = new ArrayList<>();
+		processPluginDescriptor(pluginDescriptor, list);
+		return list;
 	}
 
 	private void processPluginDescriptor(PluginDescriptor pluginDescriptor, List<SPluginInformation> list) {
@@ -1252,7 +1258,7 @@ public class PluginManager implements PluginManagerInterface {
 		try (JarFile jarFile = new JarFile(target.toFile())) {
 			ZipEntry entry = jarFile.getEntry("META-INF/maven/" + pluginBundleVersion.getGroupId() + "/" + pluginBundleVersion.getArtifactId() + "/pom.xml");
 			Model model = mavenreader.read(jarFile.getInputStream(entry));
-			
+
 			sPluginBundle.setOrganization(model.getOrganization().getName());
 			sPluginBundle.setName(model.getName());
 			
@@ -1345,10 +1351,30 @@ public class PluginManager implements PluginManagerInterface {
 			throw e;
 		}
 	}
+
+	public PluginBundle install(MavenPluginBundle mavenPluginBundle, boolean strictDependencyChecking) throws Exception {
+		return install(mavenPluginBundle, null, strictDependencyChecking);
+	}
 	
-	public PluginBundle install(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, Path jarFile, Path pomFile, List<SPluginInformation> plugins, boolean strictDependencyChecking) throws Exception {
+	public PluginBundle install(MavenPluginBundle mavenPluginBundle, List<SPluginInformation> plugins, boolean strictDependencyChecking) throws Exception {
+		PluginBundleVersionIdentifier pluginBundleVersionIdentifier = mavenPluginBundle.getPluginVersionIdentifier();
 		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
-		Model model = mavenreader.read(new FileReader(pomFile.toFile()));
+		Model model = mavenreader.read(mavenPluginBundle.getPomInputStream());
+		
+		if (plugins == null) {
+			JarInputStream jarInputStream = new JarInputStream(mavenPluginBundle.getJarInputStream());
+			JarEntry nextJarEntry = jarInputStream.getNextJarEntry();
+			while (nextJarEntry != null) {
+				if (nextJarEntry.getName().equals("plugin/plugin.xml")) {
+					// Install all plugins
+					PluginDescriptor pluginDescriptor = getPluginDescriptor(jarInputStream);
+					plugins = new ArrayList<>();
+					processPluginDescriptor(pluginDescriptor, plugins);
+					break;
+				}
+				nextJarEntry = jarInputStream.getNextJarEntry();
+			}
+		}
 		
 		DelegatingClassLoader delegatingClassLoader = new DelegatingClassLoader(getClass().getClassLoader());
 		
@@ -1360,12 +1386,12 @@ public class PluginManager implements PluginManagerInterface {
 				if (pluginBundleIdentifierToPluginBundle.containsKey(pluginBundleIdentifier)) {
 					if (strictDependencyChecking) {
 						VersionRange versionRange = VersionRange.createFromVersion(dependency.getVersion());
-						String version = pluginBundleIdentifierToPluginBundle.get(pluginBundleIdentifier).getPluginBundleVersion().getVersion();
-						ArtifactVersion artifactVersion = new DefaultArtifactVersion(version);
+//						String version = pluginBundleIdentifierToPluginBundle.get(pluginBundleIdentifier).getPluginBundleVersion().getVersion();
+						ArtifactVersion artifactVersion = new DefaultArtifactVersion(mavenPluginBundle.getVersion());
 						if (versionRange.containsVersion(artifactVersion)) {
 							// OK
 						} else {
-							throw new Exception("Required dependency " + pluginBundleIdentifier + " is installed, but it's version (" + version + ") does not comply to the required version (" + dependency.getVersion() + ")");
+							throw new Exception("Required dependency " + pluginBundleIdentifier + " is installed, but it's version (" + mavenPluginBundle.getVersion() + ") does not comply to the required version (" + dependency.getVersion() + ")");
 						}
 					} else {
 						LOGGER.info("Skipping strict dependency checking for dependency " + dependency.getArtifactId());
@@ -1388,10 +1414,57 @@ public class PluginManager implements PluginManagerInterface {
 		if (Files.exists(target)) {
 			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
 		}
-		Files.copy(jarFile, target);
+		Files.copy(mavenPluginBundle.getJarInputStream(), target);
 
-		return loadPlugin(pluginBundleVersionIdentifier, target, sPluginBundle, pluginBundleVersion, plugins, delegatingClassLoader);
+		return loadPlugin(pluginBundleVersionIdentifier, target, mavenPluginBundle.getPluginBundle(), mavenPluginBundle.getPluginBundleVersion(), plugins, delegatingClassLoader);
 	}
+	
+//	public PluginBundle install(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, List<SPluginInformation> plugins, boolean strictDependencyChecking) throws Exception {
+//		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+//		Model model = mavenreader.read(new FileReader(pomFile.toFile()));
+//		
+//		DelegatingClassLoader delegatingClassLoader = new DelegatingClassLoader(getClass().getClassLoader());
+//		
+//		for (org.apache.maven.model.Dependency dependency : model.getDependencies()) {
+//			if (dependency.getGroupId().equals("org.opensourcebim") && (dependency.getArtifactId().equals("shared") || dependency.getArtifactId().equals("pluginbase"))) {
+//				// TODO Skip, we should also check the version though
+//			} else {
+//				PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(dependency.getGroupId(), dependency.getArtifactId());
+//				if (pluginBundleIdentifierToPluginBundle.containsKey(pluginBundleIdentifier)) {
+//					if (strictDependencyChecking) {
+//						VersionRange versionRange = VersionRange.createFromVersion(dependency.getVersion());
+//						String version = pluginBundleIdentifierToPluginBundle.get(pluginBundleIdentifier).getPluginBundleVersion().getVersion();
+//						ArtifactVersion artifactVersion = new DefaultArtifactVersion(version);
+//						if (versionRange.containsVersion(artifactVersion)) {
+//							// OK
+//						} else {
+//							throw new Exception("Required dependency " + pluginBundleIdentifier + " is installed, but it's version (" + version + ") does not comply to the required version (" + dependency.getVersion() + ")");
+//						}
+//					} else {
+//						LOGGER.info("Skipping strict dependency checking for dependency " + dependency.getArtifactId());
+//					}
+//				} else {
+//					try {
+//						MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(dependency.getGroupId(), dependency.getArtifactId());
+//						Path depJarFile = mavenPluginLocation.getVersionJar(dependency.getVersion());
+//						
+//						FileJarClassLoader jarClassLoader = new FileJarClassLoader(this, delegatingClassLoader, depJarFile); 
+//						delegatingClassLoader.add(jarClassLoader);
+//					} catch (Exception e) {
+//						throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
+//					}
+//				}
+//			}
+//		}
+//		
+//		Path target = pluginsDir.resolve(pluginBundleVersionIdentifier.getFileName());
+//		if (Files.exists(target)) {
+//			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
+//		}
+//		Files.copy(jarFile, target);
+//
+//		return loadPlugin(pluginBundleVersionIdentifier, target, sPluginBundle, pluginBundleVersion, plugins, delegatingClassLoader);
+//	}
 
 	public void uninstall(PluginBundleVersionIdentifier pluginBundleVersionIdentifier) {
 		PluginBundle pluginBundle = pluginBundleVersionIdentifierToPluginBundle.get(pluginBundleVersionIdentifier);

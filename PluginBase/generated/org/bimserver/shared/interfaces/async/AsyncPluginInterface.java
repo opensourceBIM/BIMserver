@@ -379,6 +379,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface InstallPluginBundleFromUrlCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface ListAllWebModulesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SWebModulePluginConfiguration> result);
 		void error(Throwable e);
@@ -1316,11 +1321,24 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void installPluginBundleFromFile(final javax.activation.DataHandler data, final java.lang.String groupId, final java.lang.String artifactId, final java.lang.String version, final InstallPluginBundleFromFileCallback callback) {
+	public void installPluginBundleFromFile(final javax.activation.DataHandler data, final InstallPluginBundleFromFileCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.installPluginBundleFromFile(data, groupId, artifactId, version);
+					syncService.installPluginBundleFromFile(data);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void installPluginBundleFromUrl(final java.lang.String url, final InstallPluginBundleFromUrlCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.installPluginBundleFromUrl(url);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

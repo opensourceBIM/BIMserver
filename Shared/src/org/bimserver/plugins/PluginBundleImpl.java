@@ -17,11 +17,17 @@ public class PluginBundleImpl implements PluginBundle, Iterable<PluginContext> {
 	private SPluginBundleVersion pluginBundleVersion;
 	private PluginBundleVersionIdentifier pluginBundleVersionIdentifier;
 	private SPluginBundle sPluginBundle;
+	private PluginDescriptor pluginDescriptor;
 
-	public PluginBundleImpl(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion) {
+	public PluginBundleImpl(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundle sPluginBundle, SPluginBundleVersion pluginBundleVersion, PluginDescriptor pluginDescriptor) {
 		this.pluginBundleVersionIdentifier = pluginBundleVersionIdentifier;
 		this.sPluginBundle = sPluginBundle;
 		this.pluginBundleVersion = pluginBundleVersion;
+		this.pluginDescriptor = pluginDescriptor;
+	}
+	
+	public PluginDescriptor getPluginDescriptor() {
+		return pluginDescriptor;
 	}
 	
 	public void add(PluginContext pluginContext) {
