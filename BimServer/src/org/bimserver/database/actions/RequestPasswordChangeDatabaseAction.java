@@ -96,7 +96,7 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 						message.send();
 					} catch (Exception e) {
 						LOGGER.error(body);
-						throw new UserException(e);
+						throw new UserException(e.getMessage());
 					}
 				}
 			}

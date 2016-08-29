@@ -977,7 +977,6 @@ public class BimServer {
 	}
 
 	private void initDatabaseDependantItems() throws BimserverDatabaseException {
-		serverSettingsCache.init();
 		notificationsManager.init();
 
 		getSerializerFactory().init(pluginManager, bimDatabase, this);
