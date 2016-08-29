@@ -9,6 +9,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.plugins.MavenPluginBundle;
 import org.bimserver.plugins.MavenPluginLocation;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -38,12 +39,10 @@ public class InstallPluginBundle extends BimDatabaseAction<Void> {
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		MavenPluginLocation mavenPluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(repository, groupId, artifactId);
+		MavenPluginBundle mavenPluginBundle = mavenPluginLocation.getMavenPluginBundle(version);
 		
 		try {
-			Path pomFile = mavenPluginLocation.getVersionPom(version);
-			Path jarFile = mavenPluginLocation.getVersionJar(version);
-			
-			bimServer.getPluginManager().install(mavenPluginLocation.getPluginVersionIdentifier(version), mavenPluginLocation.getPluginBundle(version), mavenPluginLocation.getPluginBundleVersion(version), jarFile, pomFile, plugins, false);
+			bimServer.getPluginManager().install(mavenPluginBundle, plugins, false);
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			throw new UserException(e);

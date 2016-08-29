@@ -292,5 +292,9 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 	public String getRepository() {
 		return repository;
 	}
-	
+
+	public MavenPluginBundle getMavenPluginBundle(String version) {
+		RepositoryMavenPluginBundle repositoryMavenPluginBundle = new RepositoryMavenPluginBundle(this, version);
+		return repositoryMavenPluginBundle;
+	}
 }

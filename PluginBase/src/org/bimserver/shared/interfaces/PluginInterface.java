@@ -621,10 +621,11 @@ public interface PluginInterface extends PublicInterface {
 
 	@WebMethod(action = "installPluginBundleFromFile")
 	void installPluginBundleFromFile(
-		@WebParam(name = "data", partName = "installPluginBundleFromFile.data") @XmlMimeType("application/octet-stream") DataHandler data,
-		@WebParam(name = "groupId", partName = "installPluginBundleFromFile.groupId") String groupId, 
-		@WebParam(name = "artifactId", partName = "installPluginBundleFromFile.artifactId") String artifactId, 
-		@WebParam(name = "version", partName = "installPluginBundleFromFile.version") String version) throws UserException, ServerException;
+		@WebParam(name = "data", partName = "installPluginBundleFromFile.data") @XmlMimeType("application/octet-stream") DataHandler data) throws UserException, ServerException;
+
+	@WebMethod(action = "installPluginBundleFromUrl")
+	void installPluginBundleFromUrl(
+		@WebParam(name = "url", partName = "installPluginBundleFromUrl.url") String url) throws UserException, ServerException;
 
 	@WebMethod(action = "uninstallPluginBundle")
 	void uninstallPluginBundle(

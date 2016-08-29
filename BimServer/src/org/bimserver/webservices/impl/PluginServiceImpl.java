@@ -1,6 +1,8 @@
 package org.bimserver.webservices.impl;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URL;
 
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
@@ -30,6 +32,7 @@ import java.util.Set;
 
 import javax.activation.DataHandler;
 
+import org.apache.commons.io.IOUtils;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
@@ -70,6 +73,7 @@ import org.bimserver.database.actions.GetSerializerByPluginClassNameDatabaseActi
 import org.bimserver.database.actions.GetWebModuleByIdDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByNameDatabaseAction;
 import org.bimserver.database.actions.InstallPluginBundle;
+import org.bimserver.database.actions.InstallPluginBundleFromBytes;
 import org.bimserver.database.actions.ListWebModulesDatabaseAction;
 import org.bimserver.database.actions.SetPluginSettingsDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
@@ -136,6 +140,7 @@ import org.bimserver.schemaconverter.SchemaConverterFactory;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PluginInterface;
+import org.bimserver.utils.NetUtils;
 import org.bimserver.webservices.SPluginConfigurationComparator;
 import org.bimserver.webservices.ServiceMap;
 import org.eclipse.emf.common.util.EList;
@@ -1434,11 +1439,26 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 	}
 
-	public void installPluginBundleFromFile(DataHandler file, String groupId, String artifactId, String version) throws UserException, ServerException {
+	public void installPluginBundleFromFile(DataHandler file) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-//			session.executeAndCommitAction(new InstallPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version, plugins));
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			IOUtils.copy(file.getInputStream(), byteArrayOutputStream);
+			session.executeAndCommitAction(new InstallPluginBundleFromBytes(session, getInternalAccessMethod(), getBimServer(), byteArrayOutputStream.toByteArray()));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	public void installPluginBundleFromUrl(String url) throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			byte[] data = NetUtils.getContentAsBytes(new URL(url), 5000);
+			session.executeAndCommitAction(new InstallPluginBundleFromBytes(session, getInternalAccessMethod(), getBimServer(), data));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
