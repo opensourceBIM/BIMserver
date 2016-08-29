@@ -82,7 +82,7 @@ public class EmailMessage {
 			} else {
 				throw new RuntimeException("Unimplemented SMTP protocol: " + serverSettings.getSmtpProtocol());
 			}
-			transport.connect(serverSettings.getSmtpServer(), serverSettings.getSmtpUsername(), serverSettings.getSmtpPassword());
+			transport.connect(serverSettings.getSmtpServer(), serverSettings.getSmtpPort(), serverSettings.getSmtpUsername(), serverSettings.getSmtpPassword());
 
 			Message message = new MimeMessage(mailSession);
 			message.setSubject(subject);
