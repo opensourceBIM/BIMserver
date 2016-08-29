@@ -130,7 +130,7 @@ public class NewRevisionNotification extends Notification {
 		}
 	}
 	
-	private void sendEmail(DatabaseSession session, Project project, Revision revision) {
+	private void sendEmail(DatabaseSession session, Project project, Revision revision) throws UserException {
 		Set<User> users = getUsers(session, project);
 		for (User user : users) {
 			String body = null;
@@ -179,6 +179,7 @@ public class NewRevisionNotification extends Notification {
 			} catch (Exception e) {
 				LOGGER.error(body);
 				LOGGER.error("", e);
+				throw new UserException(e);
 			}
 		}
 	}

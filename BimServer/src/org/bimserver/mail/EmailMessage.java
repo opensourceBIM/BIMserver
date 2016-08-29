@@ -31,6 +31,7 @@ import javax.mail.internet.MimeMessage;
 import org.bimserver.BimServer;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.SmtpProtocol;
+import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,7 +53,7 @@ public class EmailMessage {
 		this.bimServer = bimServer;
 	}
 
-	public void send() throws MessagingException {
+	public void send() throws MessagingException, UserException {
 		Properties props = new Properties();
 		ServerSettings serverSettings = bimServer.getServerSettingsCache().getServerSettings();
 		props.put("mail.smtp.localhost", "bimserver.org");
@@ -93,6 +94,7 @@ public class EmailMessage {
 			transport.sendMessage(message, addressTo);
 		} catch (MessagingException e) {
 			LOGGER.error("Error sending email " + body + " " + e.getMessage());
+			throw new UserException("Error sending email " + body + " " + e.getMessage());
 		}
 	}
 
