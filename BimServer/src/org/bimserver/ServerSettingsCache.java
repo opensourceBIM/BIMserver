@@ -43,6 +43,7 @@ public class ServerSettingsCache {
 		DatabaseSession session = database.createSession();
 		try {
 			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), new OldQuery(session.getMetaDataManager().getPackageMetaData("store"), true));
+			LOGGER.info("SMTP port: " + serverSettings.getSmtpPort());
 			if (serverSettings.getSessionTimeOutSeconds() == 0) {
 				serverSettings.setSessionTimeOutSeconds(60 * 60 * 24 * 30);
 			}
