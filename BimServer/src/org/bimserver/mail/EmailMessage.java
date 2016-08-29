@@ -57,6 +57,8 @@ public class EmailMessage {
 		ServerSettings serverSettings = bimServer.getServerSettingsCache().getServerSettings();
 		props.put("mail.smtp.localhost", "bimserver.org");
 		String smtpProps = serverSettings.getSmtpProtocol() == SmtpProtocol.SMTPS ? "mail.smtps.port" : "mail.smtp.port";
+		props.put("mail.smtp.connectiontimeout", 10000);
+		props.put("mail.smtp.timeout", 10000);
 		props.put(smtpProps, serverSettings.getSmtpPort());
 		
 		if (serverSettings.getSmtpProtocol() == SmtpProtocol.STARTTLS) {
