@@ -193,6 +193,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 						} catch (Exception e) {
 							LOGGER.error(body);
 							LOGGER.error("", e);
+							throw new UserException(e);
 						}
 					}
 				});
