@@ -79,7 +79,6 @@ public class Streamer implements EndPoint {
 							int counter = 0;
 							long bytes = 0;
 							long start = System.nanoTime();
-							long totalQT = 0;
 							
 							// We use async websockets, but don't want to fill the websocket buffer with gigabytes of data that's not processed yet on the client
 							// We also don't want to waste any time waiting for the messages to be delivered
@@ -92,20 +91,7 @@ public class Streamer implements EndPoint {
 								ReusableByteArrayOutputStream byteArrayOutputStream = new ReusableByteArrayOutputStream();
 								LittleEndianDataOutputStream dataOutputStream = new LittleEndianDataOutputStream(byteArrayOutputStream);
 								dataOutputStream.writeLong(topicId);
-//								long s = System.nanoTime();
 								writeMessage = writer.writeMessage(dataOutputStream, null);
-//								int messages = 1;
-//								while (byteArrayOutputStream.size() < BUFFER_SIZE && writeMessage) {
-//									messages++;
-//									writeMessage = writer.writeMessage(byteArrayOutputStream, null);
-//								}
-//								long e = System.nanoTime();
-//								totalQT += (e - s);
-//								dataOutputStream.flush();
-//								byte[] byteArray = byteArrayOutputStream.toByteArray();
-//								ByteBuffer byteBuffer = ByteBuffer.wrap(byteArray);
-//								byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
-//								byteBuffer.putInt(4, messages);
 								
 								if (future != null) {
 									future.get();
@@ -118,7 +104,6 @@ public class Streamer implements EndPoint {
 								}
 							} while (writeMessage);
 							long end = System.nanoTime();
-							LOGGER.info("total qt: " + (totalQT / 1000000) + " ms");
 							LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
 						} catch (IOException e) {
 							// Probably closed/F5-ed browser
