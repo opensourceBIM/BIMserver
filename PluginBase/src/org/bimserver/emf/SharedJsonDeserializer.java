@@ -76,7 +76,7 @@ public class SharedJsonDeserializer {
 			throw new DeserializeException("No SchemaDefinition available");
 		}
 		WaitingList<Long> waitingList = new WaitingList<Long>();
-		final boolean log = true;
+		final boolean log = false;
 		if (log) {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			try {
