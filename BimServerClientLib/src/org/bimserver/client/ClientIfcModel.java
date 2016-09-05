@@ -1,9 +1,5 @@
 package org.bimserver.client;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -31,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.io.IOUtils;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
@@ -332,22 +327,11 @@ public class ClientIfcModel extends IfcModel {
 			// TODO use websocket notifications
 			waitForDonePreparing(topicId);
 			InputStream inputStream = bimServerClient.getDownloadData(topicId, serializerOid);
-			File file = new File("binary");
-			FileInputStream fis = null;
 			try {
-				FileOutputStream fos = new FileOutputStream(file);
-				IOUtils.copy(inputStream, fos);
-				fos.flush();
-				fos.close();
-				fis = new FileInputStream(file);
-				processGeometryInputStream(fis, geometryInfoOidToOid);
-				fis.close();
+				processGeometryInputStream(inputStream, geometryInfoOidToOid);
 			} catch (Throwable e) {
-				fis.close();
-				file.renameTo(new File("error"));
 				e.printStackTrace();
 			} finally {
-				fis.close();
 			}
 		}
 	}
