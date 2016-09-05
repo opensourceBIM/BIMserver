@@ -433,6 +433,7 @@ public class ClientIfcModel extends IfcModel {
 					}
 					geometryInfo.setData(geometryData);
 				} else if (type == 3) {
+					
 					throw new GeometryException("Parts not supported");
 				} else if (type == 1) {
 					dataInputStream.read(new byte[7]);
@@ -445,13 +446,9 @@ public class ClientIfcModel extends IfcModel {
 					}
 					
 					int nrIndices = dataInputStream.readInt();
-					byte[] indices = new byte[nrIndices * 2];
+					byte[] indices = new byte[nrIndices * 4];
 					dataInputStream.read(indices);
 					geometryData.setIndices(indices);
-					
-					if (nrIndices % 2 != 0) {
-						dataInputStream.readShort();
-					}
 					
 					int nrVertices = dataInputStream.readInt();
 					byte[] vertices = new byte[nrVertices * 4];
