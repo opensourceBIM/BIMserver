@@ -45,7 +45,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class QueryObjectProvider implements ObjectProvider {
-	private static final int MAX_STACK_FRAMES_PROCESSED = 10000000;
+	// So far 10000000 has proven to not be enough for some legit IFC files
+	private static final int MAX_STACK_FRAMES_PROCESSED = 100000000;
 	
 	// So far 100000 has proven to not be enough for some legit IFC files
 	private static final int MAX_STACK_SIZE = 1000000;
