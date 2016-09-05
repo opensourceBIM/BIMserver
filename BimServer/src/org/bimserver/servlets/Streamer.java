@@ -80,34 +80,20 @@ public class Streamer implements EndPoint {
 							long bytes = 0;
 							long start = System.nanoTime();
 							
-							// We use async websockets, but don't want to fill the websocket buffer with gigabytes of data that's not processed yet on the client
-							// We also don't want to waste any time waiting for the messages to be delivered
-							// This future acts as a 1-message buffer, so that we can fill the next buffer while sending the websocket message
-							Future<Void> future = null;
-
-							// TODO reuse buffer							
-							
 							do {
 								ReusableByteArrayOutputStream byteArrayOutputStream = new ReusableByteArrayOutputStream();
 								LittleEndianDataOutputStream dataOutputStream = new LittleEndianDataOutputStream(byteArrayOutputStream);
 								dataOutputStream.writeLong(topicId);
 								writeMessage = writer.writeMessage(dataOutputStream, null);
-								
-								if (future != null) {
-									future.get();
-								}
-								
-								if (byteArrayOutputStream.usedSize() > 4) {
-									bytes += byteArrayOutputStream.usedSize();
-									future = streamingSocketInterface.send(byteArrayOutputStream.getByteArray(), 0, byteArrayOutputStream.usedSize());
-									counter++;
-								}
+								bytes += byteArrayOutputStream.usedSize();
+								streamingSocketInterface.sendBlocking(byteArrayOutputStream.getByteArray(), 0, byteArrayOutputStream.usedSize());
+								counter++;
 							} while (writeMessage);
 							long end = System.nanoTime();
 							LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
 						} catch (IOException e) {
 							// Probably closed/F5-ed browser
-						} catch (SerializerException | InterruptedException | ExecutionException e) {
+						} catch (SerializerException e) {
 							LOGGER.error("", e);
 						}
 					}

@@ -25,6 +25,6 @@ import com.google.gson.JsonObject;
 public interface StreamingSocketInterface {
 
 	void send(JsonObject request);
-	Future<Void> send(byte[] data, int start, int length) throws IOException;
-	void sendBlocking(byte[] data, int start, int length);
+	Future<Void> send(byte[] data, int start, int length);
+	void sendBlocking(byte[] data, int start, int length) throws IOException;
 }
