@@ -121,16 +121,16 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	}
 
 	@Override
-	public Future<Void> send(byte[] data, int start, int length) throws IOException {
+	public Future<Void> send(byte[] data, int start, int length) {
 		synchronized (this) {
 			return websocketSession.getAsyncRemote().sendBinary(ByteBuffer.wrap(data, start, length));
 		}
 	}
 
 	@Override
-	public void sendBlocking(byte[] data, int start, int length) {
+	public void sendBlocking(byte[] data, int start, int length) throws IOException {
 		synchronized (this) {
-			websocketSession.getAsyncRemote().sendBinary(ByteBuffer.wrap(data, start, length));
+			websocketSession.getBasicRemote().sendBinary(ByteBuffer.wrap(data, start, length));
 		}
 	}
 }
