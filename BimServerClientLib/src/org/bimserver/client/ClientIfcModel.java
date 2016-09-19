@@ -359,6 +359,7 @@ public class ClientIfcModel extends IfcModel {
 			boolean done = false;
 			while (!done) {
 				byte type = dataInputStream.readByte();
+				System.out.println(type);
 				if (type == 0) {
 					String protocol = dataInputStream.readUTF();
 					if (!protocol.equals("BGS")) {
@@ -370,13 +371,13 @@ public class ClientIfcModel extends IfcModel {
 					}
 					int skip = 4 - (7 % 4);
 					if(skip != 0 && skip != 4) {
-						dataInputStream.read(new byte[skip]);
+						dataInputStream.readFully(new byte[skip]);
 					}
 					for (int i=0; i<6; i++) {
 						dataInputStream.readDouble();
 					}
 				} else if (type == 5) {
-					dataInputStream.read(new byte[7]);
+					dataInputStream.readFully(new byte[7]);
 					dataInputStream.readLong(); // roid
 					long geometryInfoOid = dataInputStream.readLong();
 					GeometryInfo geometryInfo = (GeometryInfo) get(geometryInfoOid);
@@ -417,10 +418,9 @@ public class ClientIfcModel extends IfcModel {
 					}
 					geometryInfo.setData(geometryData);
 				} else if (type == 3) {
-					
 					throw new GeometryException("Parts not supported");
 				} else if (type == 1) {
-					dataInputStream.read(new byte[7]);
+					dataInputStream.readFully(new byte[7]);
 					long geometryDataOid = dataInputStream.readLong();
 					
 					GeometryData geometryData = (GeometryData) get(geometryDataOid);
@@ -431,27 +431,27 @@ public class ClientIfcModel extends IfcModel {
 					
 					int nrIndices = dataInputStream.readInt();
 					byte[] indices = new byte[nrIndices * 4];
-					dataInputStream.read(indices);
+					dataInputStream.readFully(indices);
 					geometryData.setIndices(indices);
 					
 					int nrVertices = dataInputStream.readInt();
 					byte[] vertices = new byte[nrVertices * 4];
-					dataInputStream.read(vertices);
+					dataInputStream.readFully(vertices);
 					geometryData.setVertices(vertices);
 					
 					int nrNormals = dataInputStream.readInt();
 					byte[] normals = new byte[nrNormals * 4];
-					dataInputStream.read(normals);
+					dataInputStream.readFully(normals);
 					geometryData.setNormals(normals);
 					
 					int nrMaterials = dataInputStream.readInt();
 					byte[] materials = new byte[nrMaterials * 4];
-					dataInputStream.read(materials);
-					geometryData.setNormals(materials);
+					dataInputStream.readFully(materials);
+					geometryData.setMaterials(materials);
 				} else if (type == 6) {
 					done = true;
 				} else {
-					LOGGER.error("Unimplemented type: " + type);
+					throw new GeometryException("Unimplemented type: " + type);
 				}
 			}
 		}
