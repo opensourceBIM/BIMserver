@@ -41,6 +41,7 @@ import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.endpoints.EndPointManager;
@@ -497,10 +498,9 @@ public class BimServer {
 							} else if (pluginsFound.size() == 1) {
 								PluginDescriptor pluginDescriptor = pluginsFound.values().iterator().next();
 								for (PluginConfiguration pluginConfiguration : pluginDescriptor.getConfigurations()) {
-									pluginConfiguration.remove();
+									session.delete(pluginConfiguration, -1);
 								}
-								pluginDescriptor.remove();
-								session.store(pluginDescriptor);
+								session.delete(pluginDescriptor, -1);
 							} else {
 								LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getClass().getName());
 							}
@@ -560,9 +560,6 @@ public class BimServer {
 
 					@Override
 					public void pluginBundleUninstalled(PluginBundle pluginBundle) {
-						try (DatabaseSession session = bimDatabase.createSession()) {
-							// TODO
-						}						
 					}
 				});
 			} catch (Exception e) {
