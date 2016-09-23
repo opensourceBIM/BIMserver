@@ -108,6 +108,15 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 				}
 			}
 		}
+		if (include.hasDirectFields()) {
+			for (EReference eReference : include.getFieldsDirect()) {
+				Object ref = currentObject.get(eReference.getName());
+				if (ref != null) {
+					HashMapVirtualObject byOid = getByOid((Long)ref);
+					currentObject.setDirectReference(eReference, byOid);
+				}
+			}
+		}
 		if (include.hasFields()) {
 			for (EStructuralFeature eStructuralFeature : include.getFields()) {
 				// TODO do we really have to iterate through the EAtrributes as well?

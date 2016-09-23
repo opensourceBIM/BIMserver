@@ -182,8 +182,8 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
 				setProgress("Generating Geometry...", -1);
 				GenerateGeometryResult generateGeometry = new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
-				concreteRevision.setMinBounds(generateGeometry.getMinBounds());
-				concreteRevision.setMaxBounds(generateGeometry.getMaxBounds());
+				concreteRevision.setMinBounds(generateGeometry.getMinBoundsAsVector3f());
+				concreteRevision.setMaxBounds(generateGeometry.getMaxBoundsAsVector3f());
 				for (Revision other : concreteRevision.getRevisions()) {
 					other.setHasGeometry(true);
 				}

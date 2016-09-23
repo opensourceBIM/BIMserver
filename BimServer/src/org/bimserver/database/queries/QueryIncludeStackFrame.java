@@ -33,12 +33,15 @@ import org.bimserver.shared.WrappedVirtualObject;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
+import com.google.common.collect.Iterators;
+
 public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 
 	private Set<Short> outputFilterCids;
 	private Iterator<EReference> featureIterator;
 	private Include include;
 	private EReference feature;
+	private HashSet directFeatureSet;
 
 	public QueryIncludeStackFrame(QueryObjectProvider queryObjectProvider, QueryContext queryContext, CanInclude previousInclude, Include include, HashMapVirtualObject currentObject, QueryPart queryPart) throws QueryException, BimserverDatabaseException {
 		super(queryContext, queryObjectProvider, queryPart);
@@ -46,11 +49,20 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 		this.currentObject = currentObject;
 		
 		List<EReference> features = include.getFields();
-		if (features == null || features.isEmpty()) {
+		List<EReference> featuresDirect = include.getFieldsDirect();
+		
+		if ((features == null || features.isEmpty()) && (featuresDirect == null || featuresDirect.isEmpty())) {
 			setDone(true);
 			return;
 		}
-		featureIterator = features.iterator();
+		if (features == null) {
+			featureIterator = featuresDirect.iterator();
+			directFeatureSet = new HashSet<>(featuresDirect);
+		} else if (featuresDirect == null) {
+			featureIterator = features.iterator();
+		} else {
+			featureIterator = Iterators.concat(features.iterator(), featuresDirect.iterator());
+		}
 		if (include.getOutputTypes() != null) {
 			this.outputFilterCids = new HashSet<>();
 			for (EClass eClass : include.getOutputTypes()) {
@@ -70,7 +82,12 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 				List<Long> list = (List<Long>)value;
 				for (Object r : list) {
 					if (r instanceof Long) {
-						processReference((Long)r);
+						if (directFeatureSet != null && directFeatureSet.contains(feature)) {
+							// TODO not supported for now
+//							processDirectReference((Long)r);
+						} else {
+							processReference((Long)r);
+						}
 					} else {
 						// ??
 					}
@@ -78,7 +95,11 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 			} else {
 				if (value instanceof Long) {
 					long refOid = (Long) value;
-					processReference(refOid);
+					if (directFeatureSet != null && directFeatureSet.contains(feature)) {
+						processDirectReference(currentObject, feature, (Long)refOid);
+					} else {
+						processReference(refOid);
+					}
 				} else if (value instanceof WrappedVirtualObject) {
 					// ??
 				}
@@ -86,6 +107,11 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 		}
 		
 		return !featureIterator.hasNext();
+	}
+
+	private void processDirectReference(HashMapVirtualObject currentObject, EReference feature2, Long oid) throws BimserverDatabaseException {
+		HashMapVirtualObject byOid = getByOid(oid);
+		currentObject.setDirectReference(feature2, byOid);
 	}
 
 	private void processReference(long refOid) {

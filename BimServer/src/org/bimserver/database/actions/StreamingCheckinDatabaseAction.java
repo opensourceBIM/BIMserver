@@ -220,8 +220,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				other.setHasGeometry(true);
 			}
 			
-			concreteRevision.setMinBounds(generateGeometry.getMinBounds());
-			concreteRevision.setMaxBounds(generateGeometry.getMaxBounds());
+			concreteRevision.setMinBounds(generateGeometry.getMinBoundsAsVector3f());
+			concreteRevision.setMaxBounds(generateGeometry.getMaxBoundsAsVector3f());
 
 			setProgress("Doing other stuff...", -1);
 			

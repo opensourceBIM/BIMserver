@@ -258,7 +258,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 									}
 
 									for (int i = 0; i < geometry.getIndices().length; i++) {
-										processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3, generateGeometryResult);
+										processExtends(geometryInfo, doubleToFloat(tranformationMatrix), geometry.getVertices(), geometry.getIndices()[i] * 3, generateGeometryResult);
 									}
 
 									geometryInfo.setData(geometryData);
@@ -338,6 +338,14 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
+		}
+
+		private float[] doubleToFloat(double[] tranformationMatrix) {
+			float[] result = new float[tranformationMatrix.length];
+			for (int i=0; i<tranformationMatrix.length; i++) {
+				result[i] = (float) tranformationMatrix[i];
+			}
+			return result;
 		}
 
 		private void createBoundingBoxGeometry(IfcBoundingBox ifcBoundingBox, IdEObject ifcProduct) throws IfcModelInterfaceException, BimserverDatabaseException {
@@ -566,12 +574,13 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		return hashCode;
 	}
 
-	private void processExtends(GeometryInfo geometryInfo, double[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) {
-		double x = vertices[index];
-		double y = vertices[index + 1];
-		double z = vertices[index + 2];
-		double[] result = new double[4];
-		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new double[] { x, y, z, 1 }, 0);
+	private void processExtends(GeometryInfo geometryInfo, float[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) {
+		float x = vertices[index];
+		float y = vertices[index + 1];
+		float z = vertices[index + 2];
+
+		float[] result = new float[4];
+		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new float[] { x, y, z, 1 }, 0);
 		x = result[0];
 		y = result[1];
 		z = result[2];
@@ -582,12 +591,12 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		geometryInfo.getMaxBounds().setY(Math.max(y, geometryInfo.getMaxBounds().getY()));
 		geometryInfo.getMaxBounds().setZ(Math.max(z, geometryInfo.getMaxBounds().getZ()));
 
-		generateGeometryResult.getMinBounds().setX(Math.min(x, generateGeometryResult.getMinBounds().getX()));
-		generateGeometryResult.getMinBounds().setY(Math.min(y, generateGeometryResult.getMinBounds().getY()));
-		generateGeometryResult.getMinBounds().setZ(Math.min(z, generateGeometryResult.getMinBounds().getZ()));
-		generateGeometryResult.getMaxBounds().setX(Math.max(x, generateGeometryResult.getMaxBounds().getX()));
-		generateGeometryResult.getMaxBounds().setY(Math.max(y, generateGeometryResult.getMaxBounds().getY()));
-		generateGeometryResult.getMaxBounds().setZ(Math.max(z, generateGeometryResult.getMaxBounds().getZ()));
+		generateGeometryResult.setMinX(Math.min(x, generateGeometryResult.getMinX()));
+		generateGeometryResult.setMinY(Math.min(y, generateGeometryResult.getMinY()));
+		generateGeometryResult.setMinZ(Math.min(z, generateGeometryResult.getMinZ()));
+		generateGeometryResult.setMaxX(Math.max(x, generateGeometryResult.getMaxX()));
+		generateGeometryResult.setMaxY(Math.max(y, generateGeometryResult.getMaxY()));
+		generateGeometryResult.setMaxZ(Math.max(z, generateGeometryResult.getMaxZ()));
 	}
 
 	private void setTransformationMatrix(GeometryInfo geometryInfo, double[] transformationMatrix) {

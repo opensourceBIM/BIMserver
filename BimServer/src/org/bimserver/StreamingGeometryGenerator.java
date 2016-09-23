@@ -34,6 +34,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -55,6 +56,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.geometry.Matrix;
 import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -106,6 +108,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private ProgressListener progressListener;
 
 	private volatile boolean allJobsPushed;
+
+	private Object representationsFeature;
+
+	private EClass productRepresentationClass;
 
 	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener) {
 		this.bimServer = bimServer;
@@ -246,13 +252,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											WrappedVirtualObject minBounds = new HashMapWrappedVirtualObject(queryContext, GeometryPackage.eINSTANCE.getVector3f());
 											WrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(queryContext, GeometryPackage.eINSTANCE.getVector3f());
 											
-											minBounds.set("x", Double.POSITIVE_INFINITY);
-											minBounds.set("y", Double.POSITIVE_INFINITY);
-											minBounds.set("z", Double.POSITIVE_INFINITY);
+											minBounds.set("x", Float.POSITIVE_INFINITY);
+											minBounds.set("y", Float.POSITIVE_INFINITY);
+											minBounds.set("z", Float.POSITIVE_INFINITY);
 											
-											maxBounds.set("x", -Double.POSITIVE_INFINITY);
-											maxBounds.set("y", -Double.POSITIVE_INFINITY);
-											maxBounds.set("z", -Double.POSITIVE_INFINITY);
+											maxBounds.set("x", -Float.POSITIVE_INFINITY);
+											maxBounds.set("y", -Float.POSITIVE_INFINITY);
+											maxBounds.set("z", -Float.POSITIVE_INFINITY);
 											
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBounds(), minBounds);
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBounds(), maxBounds);
@@ -270,22 +276,24 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											
 											VirtualObject geometryData = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryData());
 	
-											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), intArrayToByteArray(geometry.getIndices()));
-											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), floatArrayToByteArray(geometry.getVertices()));
+											int[] indices = geometry.getIndices();
+											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), intArrayToByteArray(indices));
+											float[] vertices = geometry.getVertices();
+											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), floatArrayToByteArray(vertices));
 //												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_MaterialIndices(), intArrayToByteArray(geometry.getMaterialIndices()));
 											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Normals(), floatArrayToByteArray(geometry.getNormals()));
 											
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), geometry.getIndices().length / 3);
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indices.length / 3);
 
 //												Set<Color4f> usedColors = new HashSet<>();
 											
 											if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 												boolean hasMaterial = false;
-												float[] vertex_colors = new float[geometry.getVertices().length / 3 * 4];
+												float[] vertex_colors = new float[vertices.length / 3 * 4];
 												for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
 													int c = geometry.getMaterialIndices()[i];
 													for (int j = 0; j < 3; ++j) {
-														int k = geometry.getIndices()[i * 3 + j];
+														int k = indices[i * 3 + j];
 														if (c > -1) {
 															hasMaterial = true;
 															Color4f color = new Color4f();
@@ -316,11 +324,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 												Matrix.setIdentityM(tranformationMatrix, 0);
 											}
 	
-											for (int i = 0; i < geometry.getIndices().length; i++) {
-												processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3, generateGeometryResult);
+											for (int i = 0; i < indices.length; i++) {
+												processExtends(geometryInfo, tranformationMatrix, vertices, indices[i] * 3, generateGeometryResult);
 											}
 											
-											calculateObb(geometryInfo, tranformationMatrix, geometry.getIndices(), geometry.getVertices(), generateGeometryResult);
+											calculateObb(geometryInfo, tranformationMatrix, indices, vertices, generateGeometryResult);
 	
 											geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), geometryData.getOid(), 0);
 	
@@ -438,6 +446,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		productClass = packageMetaData.getEClass("IfcProduct");
 		geometryFeature = productClass.getEStructuralFeature("geometry");
 		representationFeature = productClass.getEStructuralFeature("Representation");
+		productRepresentationClass = packageMetaData.getEClass("IfcProductRepresentation");
+		representationsFeature = productRepresentationClass.getEStructuralFeature("Representations");
 
 		long start = System.nanoTime();
 		String pluginName = "";
@@ -483,64 +493,80 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					Query query2 = new Query("test", packageMetaData);
 					QueryPart queryPart2 = query2.createQueryPart();
 					queryPart2.addType(eClass, false);
+					Include include = queryPart2.createInclude();
+					include.addType(eClass, false);
+					include.addFieldDirect("Representation");
 					QueryObjectProvider queryObjectProvider2 = new QueryObjectProvider(databaseSession, bimServer, query2, Collections.singleton(queryContext.getRoid()), packageMetaData);
 					HashMapVirtualObject next = queryObjectProvider2.next();
 					while (next != null) {
-						if (next.eClass() == eClass && next.eGet(representationFeature) != null) {
-							Query query = new Query("test", packageMetaData);
-							QueryPart queryPart = query.createQueryPart();
-							queryPart.addType(eClass, false);
-							int x = 0;
-							queryPart.addOid(next.getOid());
-							while (next != null && x < 99) {
-								next = queryObjectProvider2.next();
-								if (next != null) {
-									if (next.eClass() == eClass) {
-										x++;
-										queryPart.addOid(next.getOid());
+						if (next.eClass() == eClass) {
+							HashMapVirtualObject representation = next.getDirectFeature(representationFeature);
+							if (representation != null) {
+								List<Long> representations = (List<Long>) representation.get("Representations");
+								if (!representations.isEmpty()) {
+									Query query = new Query("test", packageMetaData);
+									QueryPart queryPart = query.createQueryPart();
+									queryPart.addType(eClass, false);
+									int x = 0;
+									queryPart.addOid(next.getOid());
+									while (next != null && x < 10) {
+										next = queryObjectProvider2.next();
+										if (next != null) {
+											if (next.eClass() == eClass) {
+												representation = next.getDirectFeature(representationFeature);
+												if (representation != null) {
+													representations = (List<Long>) representation.get("Representations");
+													if (!representations.isEmpty()) {
+														queryPart.addOid(next.getOid());
+														x++;
+													}
+												}
+											}
+										}
 									}
+									JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
+									
+									String queryNameSpace = "validifc";
+									if (packageMetaData.getSchema() == Schema.IFC4) {
+										queryNameSpace = "ifc4stdlib";
+									}
+									
+									if (eClass.getName().equals("IfcAnnotation")) {
+										// IfcAnnotation also has the field ContainedInStructure, but that is it's own field (looks like a hack on the IFC-spec side)
+										queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcAnnotationContainedInStructure"));
+									} else {
+										queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure"));
+									}
+									queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes"));
+									queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory"));
+									Include representationInclude = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation");
+									queryPart.addInclude(representationInclude);
+									Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement");
+									queryPart.addInclude(objectPlacement);
+									if (packageMetaData.getEClass("IfcWall").isSuperTypeOf(eClass)) {
+										Include ifcWall = queryPart.createInclude();
+										ifcWall.addType(packageMetaData.getEClass(eClass.getName()), false);
+										ifcWall.addField("HasOpenings");
+										Include hasOpenings = ifcWall.createInclude();
+										hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
+										hasOpenings.addField("RelatedOpeningElement");
+										hasOpenings.addInclude(representationInclude);
+										hasOpenings.addInclude(objectPlacement);
+										//						Include relatedOpeningElement = hasOpenings.createInclude();
+										//						relatedOpeningElement.addType(packageMetaData.getEClass("IfcOpeningElement"), false);
+										//						relatedOpeningElement.addField("HasFillings");
+										//						Include hasFillings = relatedOpeningElement.createInclude();
+										//						hasFillings.addType(packageMetaData.getEClass("IfcRelFillsElement"), false);
+										//						hasFillings.addField("RelatedBuildingElement");
+									}
+									QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
+									
+									Runner runner = new Runner(eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, query);
+									executor.submit(runner);
+									jobsTotal.incrementAndGet();
+									
 								}
 							}
-							JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
-							
-							String queryNameSpace = "validifc";
-							if (packageMetaData.getSchema() == Schema.IFC4) {
-								queryNameSpace = "ifc4stdlib";
-							}
-							
-							if (eClass.getName().equals("IfcAnnotation")) {
-								// IfcAnnotation also has the field ContainedInStructure, but that is it's own field (looks like a hack on the IFC-spec side)
-								queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcAnnotationContainedInStructure"));
-							} else {
-								queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure"));
-							}
-							queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes"));
-							queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory"));
-							Include representation = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation");
-							queryPart.addInclude(representation);
-							Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement");
-							queryPart.addInclude(objectPlacement);
-							if (packageMetaData.getEClass("IfcWall").isSuperTypeOf(eClass)) {
-								Include ifcWall = queryPart.createInclude();
-								ifcWall.addType(packageMetaData.getEClass(eClass.getName()), false);
-								ifcWall.addField("HasOpenings");
-								Include hasOpenings = ifcWall.createInclude();
-								hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
-								hasOpenings.addField("RelatedOpeningElement");
-								hasOpenings.addInclude(representation);
-								hasOpenings.addInclude(objectPlacement);
-								//						Include relatedOpeningElement = hasOpenings.createInclude();
-								//						relatedOpeningElement.addType(packageMetaData.getEClass("IfcOpeningElement"), false);
-								//						relatedOpeningElement.addField("HasFillings");
-								//						Include hasFillings = relatedOpeningElement.createInclude();
-								//						hasFillings.addType(packageMetaData.getEClass("IfcRelFillsElement"), false);
-								//						hasFillings.addField("RelatedBuildingElement");
-							}
-							QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
-							
-							Runner runner = new Runner(eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, query);
-							executor.submit(runner);
-							jobsTotal.incrementAndGet();
 						}
 						next = queryObjectProvider2.next();
 					}
@@ -608,16 +634,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		
 		double[] result = new double[4];
 		
-//		double[] rotationMatrix = new double[16];
-//		Matrix.setIdentityM(rotationMatrix, 0);
-//		Matrix.rotateM(rotationMatrix, 0, -37.5d, 0d, 0d, 1d);
-//		
-//		Matrix.multiplyMV(result, 0, rotationMatrix, 0, new double[] { x, y, z, 1 }, 0);
-//
-//		x = result[0];
-//		y = result[1];
-//		z = result[2];
-		
 		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new double[] { x, y, z, 1 }, 0);
 		x = result[0];
 		y = result[1];
@@ -633,12 +649,20 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		maxBounds.set("y", Math.max(y, (double)maxBounds.eGet("y")));
 		maxBounds.set("z", Math.max(z, (double)maxBounds.eGet("z")));
 
-		generateGeometryResult.getMinBounds().setX(Math.min(x, generateGeometryResult.getMinBounds().getX()));
-		generateGeometryResult.getMinBounds().setY(Math.min(y, generateGeometryResult.getMinBounds().getY()));
-		generateGeometryResult.getMinBounds().setZ(Math.min(z, generateGeometryResult.getMinBounds().getZ()));
-		generateGeometryResult.getMaxBounds().setX(Math.max(x, generateGeometryResult.getMaxBounds().getX()));
-		generateGeometryResult.getMaxBounds().setY(Math.max(y, generateGeometryResult.getMaxBounds().getY()));
-		generateGeometryResult.getMaxBounds().setZ(Math.max(z, generateGeometryResult.getMaxBounds().getZ()));
+		generateGeometryResult.setMinX(Math.min(x, generateGeometryResult.getMinX()));
+		generateGeometryResult.setMinY(Math.min(y, generateGeometryResult.getMinY()));
+		generateGeometryResult.setMinZ(Math.min(z, generateGeometryResult.getMinZ()));
+		generateGeometryResult.setMaxX(Math.max(x, generateGeometryResult.getMaxX()));
+		generateGeometryResult.setMaxY(Math.max(y, generateGeometryResult.getMaxY()));
+		generateGeometryResult.setMaxZ(Math.max(z, generateGeometryResult.getMaxZ()));
+	}
+
+	private float[] doubleToFloat(double[] tranformationMatrix) {
+		float[] result = new float[tranformationMatrix.length];
+		for (int i=0; i<tranformationMatrix.length; i++) {
+			result[i] = (float) tranformationMatrix[i];
+		}
+		return result;
 	}
 
 	private void setTransformationMatrix(VirtualObject geometryInfo, double[] transformationMatrix) throws BimserverDatabaseException {

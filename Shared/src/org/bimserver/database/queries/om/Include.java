@@ -31,6 +31,7 @@ public class Include extends PartOfQuery implements CanInclude {
 	private Set<EClass> types;
 	private List<EClass> outputTypes;
 	private List<EReference> fields;
+	private List<EReference> fieldsDirect;
 	private List<Include> includes;
 	private PackageMetaData packageMetaData;
 	
@@ -62,9 +63,32 @@ public class Include extends PartOfQuery implements CanInclude {
 			}
 		}
 		if (fields == null) {
-			fields = new ArrayList<EReference>();
+			fields = new ArrayList<>();
 		}
 		fields.add(feature);
+	}
+	
+	public void addFieldDirect(String fieldName) throws QueryException {
+		EReference feature = null;
+		for (EClass eClass : types) {
+			if (eClass.getEStructuralFeature(fieldName) == null) {
+				throw new QueryException("Class \"" + eClass.getName() + "\" does not have the field \"" + fieldName + "\"");
+			}
+			if (feature == null) {
+				if (!(eClass.getEStructuralFeature(fieldName) instanceof EReference)) {
+					throw new QueryException(fieldName + " is not a reference");
+				}
+				feature = (EReference) eClass.getEStructuralFeature(fieldName);
+			} else {
+				if (feature != eClass.getEStructuralFeature(fieldName)) {
+					throw new QueryException("Classes \"" + eClass.getName() + "\" and \"" + feature.getEContainingClass().getName() + "\" have fields with the same name, but they are not logically the same");
+				}
+			}
+		}
+		if (fieldsDirect == null) {
+			fieldsDirect = new ArrayList<>();
+		}
+		fieldsDirect.add(feature);
 	}
 
 	public void addInclude(Include newInclude) {
@@ -76,6 +100,10 @@ public class Include extends PartOfQuery implements CanInclude {
 
 	public List<EReference> getFields() {
 		return fields;
+	}
+	
+	public List<EReference> getFieldsDirect() {
+		return fieldsDirect;
 	}
 	
 	public void addType(EClass eClass, boolean includeAllSubTypes) {
@@ -166,5 +194,9 @@ public class Include extends PartOfQuery implements CanInclude {
 		Include include = new Include(packageMetaData);
 		addInclude(include);
 		return include;
+	}
+
+	public boolean hasDirectFields() {
+		return fieldsDirect != null && !fieldsDirect.isEmpty();
 	}
 }
