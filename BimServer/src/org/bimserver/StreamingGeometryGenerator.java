@@ -28,6 +28,9 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.DoubleBuffer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -181,13 +184,14 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				RenderEngine renderEngine = null;
 				byte[] bytes = null;
 				try {
-					renderEngine = renderEnginePool.borrowObject();
 					final Set<HashMapVirtualObject> objects = new HashSet<>();
 					ObjectProviderProxy proxy = new ObjectProviderProxy(objectProvider, new ObjectListener() {
 						@Override
 						public void newObject(HashMapVirtualObject next) {
 							if (eClass.isSuperTypeOf(next.eClass())) {
-								objects.add(next);
+								if (next.eGet(representationFeature) != null) {
+									objects.add(next);
+								}
 							}
 						}
 					});
@@ -197,31 +201,31 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					IOUtils.copy(ifcSerializer.getInputStream(), baos);
 					bytes = baos.toByteArray();
 					InputStream in = new ByteArrayInputStream(bytes);
-					RenderEngineModel renderEngineModel = renderEngine.openModel(in);
 					boolean notFoundsObjects = false;
 					try {
 						if (!objects.isEmpty()) {
-							renderEngineModel.setSettings(renderEngineSettings);
-							renderEngineModel.setFilter(renderEngineFilter);
-	
-							try {
-								renderEngineModel.generateGeneralGeometry();
-							} catch (RenderEngineException e) {
-								if (e.getCause() instanceof java.io.EOFException) {
-									if (objects.isEmpty() || eClass.getName().equals("IfcAnnotation")) {
-										// SKIP
-									} else {
-										LOGGER.error("Error in " + eClass.getName(), e);
+							renderEngine = renderEnginePool.borrowObject();
+							try (RenderEngineModel renderEngineModel = renderEngine.openModel(in, bytes.length)) {
+								renderEngineModel.setSettings(renderEngineSettings);
+								renderEngineModel.setFilter(renderEngineFilter);
+		
+								try {
+									renderEngineModel.generateGeneralGeometry();
+								} catch (RenderEngineException e) {
+									if (e.getCause() instanceof java.io.EOFException) {
+										if (objects.isEmpty() || eClass.getName().equals("IfcAnnotation")) {
+											// SKIP
+										} else {
+											LOGGER.error("Error in " + eClass.getName(), e);
+										}
 									}
 								}
-							}
-							
-							OidConvertingSerializer oidConvertingSerializer = (OidConvertingSerializer)ifcSerializer;
-							Map<Long, Integer> oidToEid = oidConvertingSerializer.getOidToEid();
-							
-							for (HashMapVirtualObject ifcProduct : objects) {
-								Integer expressId = oidToEid.get(ifcProduct.getOid());
-								if (ifcProduct.eGet(representationFeature) != null) {
+								
+								OidConvertingSerializer oidConvertingSerializer = (OidConvertingSerializer)ifcSerializer;
+								Map<Long, Integer> oidToEid = oidConvertingSerializer.getOidToEid();
+								
+								for (HashMapVirtualObject ifcProduct : objects) {
+									Integer expressId = oidToEid.get(ifcProduct.getOid());
 									try {
 										RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(expressId);
 										RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
@@ -268,12 +272,12 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	
 											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), intArrayToByteArray(geometry.getIndices()));
 											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), floatArrayToByteArray(geometry.getVertices()));
-//											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_MaterialIndices(), intArrayToByteArray(geometry.getMaterialIndices()));
+//												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_MaterialIndices(), intArrayToByteArray(geometry.getMaterialIndices()));
 											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Normals(), floatArrayToByteArray(geometry.getNormals()));
 											
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), geometry.getIndices().length / 3);
 
-//											Set<Color4f> usedColors = new HashSet<>();
+//												Set<Color4f> usedColors = new HashSet<>();
 											
 											if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 												boolean hasMaterial = false;
@@ -290,16 +294,16 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 																vertex_colors[4 * k + l] = val;
 																color.set(l, val);
 															}
-//															usedColors.add(color);
+//																usedColors.add(color);
 														}
 													}
 												}
-//												System.out.println(usedColors.size() + " different colors");
-//												if (!usedColors.isEmpty()) {
-//													for (Color4f c : usedColors) {
-//														System.out.println(c);
+//													System.out.println(usedColors.size() + " different colors");
+//													if (!usedColors.isEmpty()) {
+//														for (Color4f c : usedColors) {
+//															System.out.println(c);
+//														}
 //													}
-//												}
 												if (hasMaterial) {
 													geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Materials(), floatArrayToByteArray(vertex_colors));
 												}
@@ -347,9 +351,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 										} else {
 											// TODO
 										}
-										if (eClass.getName().equals("IfcBuildingElementProxy")) {
-											notFoundsObjects = true;
-										}
 									} catch (EntityNotFoundException e) {
 	//									e.printStackTrace();
 										// As soon as we find a representation that is not Curve2D, then we should show a "INFO" message in the log to indicate there could be something wrong
@@ -371,14 +372,14 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 										LOGGER.error("", e);
 									}
 								}
-							}						
+							}
 						}
 					} finally {
-						if (notFoundsObjects) {
+//						if (notFoundsObjects) {
 							writeDebugFile(bytes);
-						}
+//							Thread.sleep(60000);
+//						}
 						in.close();
-						renderEngineModel.close();
 						if (renderEngine != null) {
 							renderEnginePool.returnObject(renderEngine);
 						}
@@ -399,17 +400,22 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		private void writeDebugFile(byte[] bytes) throws FileNotFoundException, IOException {
 			boolean debug = false;
 			if (debug) {
+				Path debugPath = Paths.get("debug");
+				if (!Files.exists(debugPath)) {
+					Files.createDirectories(debugPath);
+				}
 				String basefilenamename = "all";
 				if (eClass != null) {
-					basefilenamename = "debug/" + eClass.getName();
+					basefilenamename = eClass.getName();
 				}
-				File file = new File(basefilenamename + ".ifc");
+				Path file = debugPath.resolve(basefilenamename + ".ifc");
 				int i=0;
-				while (file.exists()) {
-					file = new File(basefilenamename + "-" + i + ".ifc");
+				while (Files.exists((file))) {
+					file = debugPath.resolve(basefilenamename + "-" + i + ".ifc");
 					i++;
 				}
-				FileOutputStream fos = new FileOutputStream(file);
+				LOGGER.info("Writing debug file to " + file.toAbsolutePath().toString());
+				FileOutputStream fos = new FileOutputStream(file.toFile());
 				IOUtils.copy(new ByteArrayInputStream(bytes), fos);
 				fos.close();
 			}
@@ -471,7 +477,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			RenderEnginePool renderEnginePool = bimServer.getRenderEnginePools().getRenderEnginePool(packageMetaData.getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
 			
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(10000000));
-			
+
 			for (EClass eClass : queryContext.getOidCounters().keySet()) {
 				if (packageMetaData.getEClass("IfcProduct").isSuperTypeOf(eClass)) {
 					Query query2 = new Query("test", packageMetaData);
@@ -480,7 +486,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					QueryObjectProvider queryObjectProvider2 = new QueryObjectProvider(databaseSession, bimServer, query2, Collections.singleton(queryContext.getRoid()), packageMetaData);
 					HashMapVirtualObject next = queryObjectProvider2.next();
 					while (next != null) {
-						if (next.eClass() == eClass) {
+						if (next.eClass() == eClass && next.eGet(representationFeature) != null) {
 							Query query = new Query("test", packageMetaData);
 							QueryPart queryPart = query.createQueryPart();
 							queryPart.addType(eClass, false);
