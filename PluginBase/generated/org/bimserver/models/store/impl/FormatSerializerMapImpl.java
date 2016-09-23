@@ -16,31 +16,36 @@
  */
 package org.bimserver.models.store.impl;
 
-import org.bimserver.models.store.ModelMergerPluginConfiguration;
+import org.bimserver.emf.IdEObjectImpl;
+
+import org.bimserver.models.store.FormatSerializerMap;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.UserSettings;
+
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Model Merger Plugin Configuration</b></em>'.
+ * An implementation of the model object '<em><b>Format Serializer Map</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.ModelMergerPluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.FormatSerializerMapImpl#getFormat <em>Format</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.FormatSerializerMapImpl#getSerializers <em>Serializers</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ModelMergerPluginConfigurationImpl extends PluginConfigurationImpl implements ModelMergerPluginConfiguration {
+public class FormatSerializerMapImpl extends IdEObjectImpl implements FormatSerializerMap {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelMergerPluginConfigurationImpl() {
+	protected FormatSerializerMapImpl() {
 		super();
 	}
 
@@ -51,7 +56,7 @@ public class ModelMergerPluginConfigurationImpl extends PluginConfigurationImpl 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StorePackage.Literals.MODEL_MERGER_PLUGIN_CONFIGURATION;
+		return StorePackage.Literals.FORMAT_SERIALIZER_MAP;
 	}
 
 	/**
@@ -59,8 +64,9 @@ public class ModelMergerPluginConfigurationImpl extends PluginConfigurationImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserSettings getUserSettings() {
-		return (UserSettings) eGet(StorePackage.Literals.MODEL_MERGER_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**
@@ -68,8 +74,27 @@ public class ModelMergerPluginConfigurationImpl extends PluginConfigurationImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUserSettings(UserSettings newUserSettings) {
-		eSet(StorePackage.Literals.MODEL_MERGER_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
+	public String getFormat() {
+		return (String) eGet(StorePackage.Literals.FORMAT_SERIALIZER_MAP__FORMAT, true);
 	}
 
-} //ModelMergerPluginConfigurationImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFormat(String newFormat) {
+		eSet(StorePackage.Literals.FORMAT_SERIALIZER_MAP__FORMAT, newFormat);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<SerializerPluginConfiguration> getSerializers() {
+		return (EList<SerializerPluginConfiguration>) eGet(StorePackage.Literals.FORMAT_SERIALIZER_MAP__SERIALIZERS, true);
+	}
+
+} //FormatSerializerMapImpl

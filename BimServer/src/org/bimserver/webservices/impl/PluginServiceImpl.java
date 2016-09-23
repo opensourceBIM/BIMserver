@@ -1048,22 +1048,20 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public List<SSerializerPluginConfiguration> getAllSerializersForRoids(Boolean onlyEnabled, Set<Long> roids) throws ServerException, UserException {
+	public List<SSerializerPluginConfiguration> getAllSerializersForPoids(Boolean onlyEnabled, Set<Long> poids) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			Set<Schema> uniqueSchemas = new HashSet<>();
-			for (Long roid : roids) {
-				Revision revision = session.get(roid, OldQuery.getDefault());
-				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-					uniqueSchemas.add(Schema.valueOf(concreteRevision.getProject().getSchema().toUpperCase()));
-				}
+			for (Long poid : poids) {
+				Project project = session.get(poid, OldQuery.getDefault());
+				uniqueSchemas.add(Schema.valueOf(project.getSchema().toUpperCase()));
 			}
 
 			Set<Schema> schemaOr = new HashSet<>();
 			
 			if (uniqueSchemas.size() == 0) {
-				// Wierd, no schemas
+				// Weird, no schemas
 			} else if (uniqueSchemas.size() == 1) {
 				// Easy, just add it, and see if there are converter targets and add those too
 				Schema schema = uniqueSchemas.iterator().next();
@@ -1117,6 +1115,27 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			}
 			Collections.sort(sSerializers, new SPluginConfigurationComparator());
 			return sSerializers;
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+	
+	@Override
+	public List<SSerializerPluginConfiguration> getAllSerializersForRoids(Boolean onlyEnabled, Set<Long> roids) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Set<Long> poids = new HashSet<>();
+			for (Long roid : roids) {
+				Revision revision = session.get(roid, OldQuery.getDefault());
+				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
+					poids.add(concreteRevision.getProject().getOid());
+				}
+			}
+			return getAllSerializersForPoids(onlyEnabled, poids);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

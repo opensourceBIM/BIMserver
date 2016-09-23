@@ -261,6 +261,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createAuthorization();
 		case StorePackage.SINGLE_PROJECT_AUTHORIZATION:
 			return (EObject) createSingleProjectAuthorization();
+		case StorePackage.NEW_SERVICE_DESCRIPTOR:
+			return (EObject) createNewServiceDescriptor();
+		case StorePackage.FORMAT_SERIALIZER_MAP:
+			return (EObject) createFormatSerializerMap();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1325,11 +1329,30 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public NewServiceDescriptor createNewServiceDescriptor() {
+		NewServiceDescriptorImpl newServiceDescriptor = new NewServiceDescriptorImpl();
+		return newServiceDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FormatSerializerMap createFormatSerializerMap() {
+		FormatSerializerMapImpl formatSerializerMap = new FormatSerializerMapImpl();
+		return formatSerializerMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UserType createUserTypeFromString(EDataType eDataType, String initialValue) {
 		UserType result = UserType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1350,8 +1373,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public SIPrefix createSIPrefixFromString(EDataType eDataType, String initialValue) {
 		SIPrefix result = SIPrefix.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1372,8 +1394,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ObjectState createObjectStateFromString(EDataType eDataType, String initialValue) {
 		ObjectState result = ObjectState.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1394,8 +1415,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public CompareType createCompareTypeFromString(EDataType eDataType, String initialValue) {
 		CompareType result = CompareType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1416,8 +1436,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ActionState createActionStateFromString(EDataType eDataType, String initialValue) {
 		ActionState result = ActionState.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1438,8 +1457,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ServerState createServerStateFromString(EDataType eDataType, String initialValue) {
 		ServerState result = ServerState.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1460,8 +1478,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ExtendedDataSchemaType createExtendedDataSchemaTypeFromString(EDataType eDataType, String initialValue) {
 		ExtendedDataSchemaType result = ExtendedDataSchemaType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1482,8 +1499,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public Trigger createTriggerFromString(EDataType eDataType, String initialValue) {
 		Trigger result = Trigger.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1504,8 +1520,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ServiceSimpleType createServiceSimpleTypeFromString(EDataType eDataType, String initialValue) {
 		ServiceSimpleType result = ServiceSimpleType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1526,8 +1541,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public PrimitiveEnum createPrimitiveEnumFromString(EDataType eDataType, String initialValue) {
 		PrimitiveEnum result = PrimitiveEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1548,8 +1562,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public NotifictionResultEnum createNotifictionResultEnumFromString(EDataType eDataType, String initialValue) {
 		NotifictionResultEnum result = NotifictionResultEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1570,8 +1583,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ProgressTopicType createProgressTopicTypeFromString(EDataType eDataType, String initialValue) {
 		ProgressTopicType result = ProgressTopicType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1592,8 +1604,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ModelCheckerResultType createModelCheckerResultTypeFromString(EDataType eDataType, String initialValue) {
 		ModelCheckerResultType result = ModelCheckerResultType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1614,8 +1625,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public SmtpProtocol createSmtpProtocolFromString(EDataType eDataType, String initialValue) {
 		SmtpProtocol result = SmtpProtocol.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1636,8 +1646,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public PluginBundleType createPluginBundleTypeFromString(EDataType eDataType, String initialValue) {
 		PluginBundleType result = PluginBundleType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -1658,8 +1667,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public PluginType createPluginTypeFromString(EDataType eDataType, String initialValue) {
 		PluginType result = PluginType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 

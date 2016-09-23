@@ -330,4 +330,8 @@ public class Schema {
 
 		eStructuralFeature.getEAnnotations().add(index);
 	}
+
+	public EReference createEReference(EClass eClass, String name, EClass referencedClass) {
+		return createEReference(eClass, name, referencedClass, Multiplicity.SINGLE);
+	}
 }

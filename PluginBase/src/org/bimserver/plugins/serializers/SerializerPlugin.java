@@ -38,6 +38,11 @@ public interface SerializerPlugin extends Plugin {
 	 * @return The schemas supported by this serializer
 	 */
 	Set<Schema> getSupportedSchemas();
+
+	/**
+	 * @return The output format this serializer outputs when the given Schema is used as the input. These formats have not been standardized, but a list is available on https://github.com/opensourceBIM/BIMserver/wiki/New-remote-service-interface#namespaces
+	 */
+	String getOutputFormat(Schema schema);
 	
 	@Override
 	default public SPluginType getPluginType() {

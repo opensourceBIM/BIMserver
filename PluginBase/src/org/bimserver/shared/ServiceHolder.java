@@ -18,12 +18,12 @@ package org.bimserver.shared;
  *****************************************************************************/
 
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
-
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
-import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
+import org.bimserver.shared.interfaces.NewServicesInterface;
+import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -39,4 +39,5 @@ public interface ServiceHolder {
 	MetaInterface getMeta() throws PublicInterfaceNotFoundException;
 	PluginInterface getPluginInterface() throws PublicInterfaceNotFoundException;
 	ServiceInterface getServiceInterface() throws PublicInterfaceNotFoundException;
+	NewServicesInterface getNewServicesInterface() throws PublicInterfaceNotFoundException;
 }

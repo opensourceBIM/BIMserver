@@ -182,6 +182,8 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SOAuthAuthorizationCode");
 		Class.forName("org.bimserver.interfaces.objects.SAuthorization");
 		Class.forName("org.bimserver.interfaces.objects.SSingleProjectAuthorization");
+		Class.forName("org.bimserver.interfaces.objects.SNewServiceDescriptor");
+		Class.forName("org.bimserver.interfaces.objects.SFormatSerializerMap");
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

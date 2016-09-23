@@ -43,4 +43,9 @@ public interface StreamingSerializerPlugin extends Plugin {
 	default SPluginType getPluginType() {
 		return SPluginType.SERIALIZER;
 	}
+
+	/**
+	 * @return The output format this serializer outputs when the given Schema is used as the input. These formats have not been standardized, but a list is available on https://github.com/opensourceBIM/BIMserver/wiki/New-remote-service-interface#namespaces
+	 */
+	String getOutputFormat(Schema schema);
 }

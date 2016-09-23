@@ -900,6 +900,24 @@ public interface StoreFactory extends EFactory {
 	SingleProjectAuthorization createSingleProjectAuthorization();
 
 	/**
+	 * Returns a new object of class '<em>New Service Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>New Service Descriptor</em>'.
+	 * @generated
+	 */
+	NewServiceDescriptor createNewServiceDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Format Serializer Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Format Serializer Map</em>'.
+	 * @generated
+	 */
+	FormatSerializerMap createFormatSerializerMap();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

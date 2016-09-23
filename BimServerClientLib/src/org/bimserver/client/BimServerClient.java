@@ -65,6 +65,7 @@ import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
+import org.bimserver.shared.interfaces.NewServicesInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
@@ -404,5 +405,10 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		try (InputStream downloadData = channel.getDownloadData(baseAddress, token, edid)) {
 			IOUtils.copy(downloadData, outputStream);
 		}
+	}
+
+	@Override
+	public NewServicesInterface getNewServicesInterface() throws PublicInterfaceNotFoundException {
+		return get(NewServicesInterface.class);
 	}
 }

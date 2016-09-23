@@ -558,6 +558,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseNewServiceDescriptor(NewServiceDescriptor object) {
+			return createNewServiceDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseFormatSerializerMap(FormatSerializerMap object) {
+			return createFormatSerializerMapAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -1917,6 +1927,34 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSingleProjectAuthorizationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.NewServiceDescriptor <em>New Service Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.NewServiceDescriptor
+	 * @generated
+	 */
+	public Adapter createNewServiceDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.FormatSerializerMap <em>Format Serializer Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.FormatSerializerMap
+	 * @generated
+	 */
+	public Adapter createFormatSerializerMapAdapter() {
 		return null;
 	}
 

@@ -17,6 +17,7 @@ package org.bimserver.pb;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import "ServiceInterface.proto";
+import "NewServicesInterface.proto";
 import "AdminInterface.proto";
 import "MetaInterface.proto";
 option java_generic_services = true;

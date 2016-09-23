@@ -29,6 +29,7 @@ import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
+import org.bimserver.shared.interfaces.NewServicesInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.NotificationInterfaceAdaptor;
 import org.bimserver.shared.interfaces.NotificationRegistryInterface;
@@ -50,6 +51,7 @@ import org.bimserver.webservices.impl.AdminServiceImpl;
 import org.bimserver.webservices.impl.AuthServiceImpl;
 import org.bimserver.webservices.impl.LowLevelServiceImpl;
 import org.bimserver.webservices.impl.MetaServiceImpl;
+import org.bimserver.webservices.impl.NewServicesImpl;
 import org.bimserver.webservices.impl.NotificationRegistryServiceImpl;
 import org.bimserver.webservices.impl.OAuthServiceImpl;
 import org.bimserver.webservices.impl.PluginServiceImpl;
@@ -97,6 +99,8 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 		}
 		if (clazz == ServiceInterface.class) {
 			publicInterface = new ServiceImpl(this);
+		} else if (clazz == NewServicesInterface.class) {
+			publicInterface = new NewServicesImpl(this);
 		} else if (clazz == AuthInterface.class) {
 			publicInterface = new AuthServiceImpl(this);
 		} else if (clazz == AdminInterface.class) {
@@ -180,6 +184,11 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 	@Override
 	public ServiceInterface getServiceInterface() throws PublicInterfaceNotFoundException {
 		return get(ServiceInterface.class);
+	}
+
+	@Override
+	public NewServicesInterface getNewServicesInterface() throws PublicInterfaceNotFoundException {
+		return get(NewServicesInterface.class);
 	}
 	
 	@Override

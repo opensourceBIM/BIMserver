@@ -87,6 +87,11 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "onlyEnabled", partName = "getAllSerializersForRoids.onlyEnabled") Boolean onlyEnabled,
 		@WebParam(name = "roids", partName = "getAllSerializersForRoids.roids") Set<Long> roids) throws ServerException, UserException;
 
+	@WebMethod(action = "getAllSerializersForPoids")
+	List<SSerializerPluginConfiguration> getAllSerializersForPoids(
+		@WebParam(name = "onlyEnabled", partName = "getAllSerializersForPoids.onlyEnabled") Boolean onlyEnabled, 
+		@WebParam(name = "poids", partName = "getAllSerializersForPoids.poids") Set<Long> poids) throws ServerException, UserException;
+	
 	@WebMethod(action="setDefaultWebModule")
 	void setDefaultWebModule(
 			@WebParam(name = "oid", partName = "setDefaultWebModule.oid") Long oid) throws UserException, ServerException;
@@ -656,5 +661,4 @@ public interface PluginInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "clearMavenCache")
 	void clearMavenCache() throws UserException, ServerException;
-	
 }

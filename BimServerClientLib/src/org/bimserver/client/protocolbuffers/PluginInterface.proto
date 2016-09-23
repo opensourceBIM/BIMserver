@@ -17,6 +17,7 @@ package org.bimserver.pb;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import "ServiceInterface.proto";
+import "NewServicesInterface.proto";
 import "AdminInterface.proto";
 import "MetaInterface.proto";
 import "SettingsInterface.proto";
@@ -99,6 +100,8 @@ service PluginInterface {
 	rpc getAllSerializerPluginDescriptors (GetAllSerializerPluginDescriptorsRequest) returns (GetAllSerializerPluginDescriptorsResponse);
 
 	rpc getAllSerializers (GetAllSerializersRequest) returns (GetAllSerializersResponse);
+
+	rpc getAllSerializersForPoids (GetAllSerializersForPoidsRequest) returns (GetAllSerializersForPoidsResponse);
 
 	rpc getAllSerializersForRoids (GetAllSerializersForRoidsRequest) returns (GetAllSerializersForRoidsResponse);
 
@@ -532,6 +535,16 @@ message GetAllSerializersRequest {
 }
 
 message GetAllSerializersResponse {
+	optional string errorMessage = 1;
+	repeated SSerializerPluginConfiguration value = 2;
+}
+
+message GetAllSerializersForPoidsRequest {
+	optional bool onlyEnabled = 1;
+	repeated int64 poids = 2;
+}
+
+message GetAllSerializersForPoidsResponse {
 	optional string errorMessage = 1;
 	repeated SSerializerPluginConfiguration value = 2;
 }

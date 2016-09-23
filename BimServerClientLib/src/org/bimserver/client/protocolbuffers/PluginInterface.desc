@@ -1,6 +1,6 @@
 
-‹–
-PluginInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"b
+√”
+PluginInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"b
 AddDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration">
 AddDeserializerResponse
@@ -198,6 +198,12 @@ $GetAllDeserializersForProjectRequest
 GetAllSerializersRequest
 onlyEnabled ("r
 GetAllSerializersResponse
+errorMessage (	?
+value (20.org.bimserver.pb.SSerializerPluginConfiguration"F
+ GetAllSerializersForPoidsRequest
+onlyEnabled (
+poids ("z
+!GetAllSerializersForPoidsResponse
 errorMessage (	?
 value (20.org.bimserver.pb.SSerializerPluginConfiguration"F
  GetAllSerializersForRoidsRequest
@@ -565,7 +571,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2ﬂQ
+SPrimitiveEnum_BYTE_ARRAY2ÊR
 PluginInterfacef
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest).org.bimserver.pb.AddDeserializerResponseo
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest,.org.bimserver.pb.AddInternalServiceResponsef
@@ -603,6 +609,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
 getAllRenderEngines,.org.bimserver.pb.GetAllRenderEnginesRequest-.org.bimserver.pb.GetAllRenderEnginesResponseú
 !getAllSerializerPluginDescriptors:.org.bimserver.pb.GetAllSerializerPluginDescriptorsRequest;.org.bimserver.pb.GetAllSerializerPluginDescriptorsResponsel
 getAllSerializers*.org.bimserver.pb.GetAllSerializersRequest+.org.bimserver.pb.GetAllSerializersResponseÑ
+getAllSerializersForPoids2.org.bimserver.pb.GetAllSerializersForPoidsRequest3.org.bimserver.pb.GetAllSerializersForPoidsResponseÑ
 getAllSerializersForRoids2.org.bimserver.pb.GetAllSerializersForRoidsRequest3.org.bimserver.pb.GetAllSerializersForRoidsResponseì
 getAllServicePluginDescriptors7.org.bimserver.pb.GetAllServicePluginDescriptorsRequest8.org.bimserver.pb.GetAllServicePluginDescriptorsResponseô
  getAllWebModulePluginDescriptors9.org.bimserver.pb.GetAllWebModulePluginDescriptorsRequest:.org.bimserver.pb.GetAllWebModulePluginDescriptorsResponsei

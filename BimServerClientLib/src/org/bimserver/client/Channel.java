@@ -46,6 +46,7 @@ import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
+import org.bimserver.shared.interfaces.NewServicesInterface;
 import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
@@ -254,6 +255,11 @@ public abstract class Channel implements ServiceHolder {
 	@Override
 	public ServiceInterface getServiceInterface() throws PublicInterfaceNotFoundException {
 		return get(ServiceInterface.class);
+	}
+	
+	@Override
+	public NewServicesInterface getNewServicesInterface() throws PublicInterfaceNotFoundException {
+		return get(NewServicesInterface.class);
 	}
 
 	protected boolean has(Class<? extends PublicInterface> interface1) {

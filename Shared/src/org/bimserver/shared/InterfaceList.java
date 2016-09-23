@@ -25,6 +25,7 @@ import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
+import org.bimserver.shared.interfaces.NewServicesInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.OAuthInterface;
@@ -41,6 +42,7 @@ public class InterfaceList {
 	
 	static {
 		interfaces.add(ServiceInterface.class);
+		interfaces.add(NewServicesInterface.class);
 		interfaces.add(AdminInterface.class);
 		interfaces.add(MetaInterface.class);
 		interfaces.add(SettingsInterface.class);

@@ -1,4 +1,4 @@
-package org.bimserver.interfaces.objects;
+package org.bimserver.shared.interfaces;
 
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
@@ -16,35 +16,17 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlTransient;
-import org.bimserver.shared.meta.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.exceptions.ServerException;
 
+public class NewServicesInterfaceAdaptor implements org.bimserver.shared.interfaces.NewServicesInterface {
 
-@XmlRootElement
-@XmlSeeAlso(value={SObjectDefinition.class, SPrimitiveDefinition.class, SArrayDefinition.class})
-public class STypeDefinition implements SBase
-{
-
-	@XmlTransient
-	private static SClass sClass;
-	
-	@XmlTransient
-	public SClass getSClass() {
-		return sClass;
+	public java.util.List<org.bimserver.interfaces.objects.SNewServiceDescriptor> listAllServiceDescriptors() throws UserException, ServerException {
+		return null;
 	}
 	
-	public static void setSClass(SClass sClass) {
-		STypeDefinition.sClass = sClass;
-	}
-
-	public Object sGet(SField sField) {
-		throw new RuntimeException("Field " + sField.getName() + " not found");
-	}
-
-	public void sSet(SField sField, Object val) {
-		throw new RuntimeException("Field " + sField.getName() + " not found");
+	public java.util.List<org.bimserver.interfaces.objects.SFormatSerializerMap> listAvailableOutputFormats(java.lang.Long poid) throws UserException, ServerException {
+		return null;
 	}
 	
 }

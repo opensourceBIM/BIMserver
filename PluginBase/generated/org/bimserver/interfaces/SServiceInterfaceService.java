@@ -529,6 +529,16 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SSingleProjectAuthorization();
 					}
 				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SNewServiceDescriptor"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SNewServiceDescriptor();
+					}
+				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SFormatSerializerMap"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SFormatSerializerMap();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);

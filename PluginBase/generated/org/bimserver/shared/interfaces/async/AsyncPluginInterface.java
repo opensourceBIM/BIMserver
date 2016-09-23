@@ -209,6 +209,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetAllSerializersForPoidsCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration> result);
+		void error(Throwable e);
+	}
+	
 	public interface GetAllSerializersForRoidsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration> result);
 		void error(Throwable e);
@@ -917,6 +922,18 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllSerializers(onlyEnabled));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllSerializersForPoids(final java.lang.Boolean onlyEnabled, final java.util.Set<java.lang.Long> poids, final GetAllSerializersForPoidsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllSerializersForPoids(onlyEnabled, poids));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

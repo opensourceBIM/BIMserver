@@ -16,23 +16,26 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import java.util.Date;
-import javax.xml.bind.annotation.XmlSeeAlso;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SPasswordReset.class, SPasswordChanged.class, SUserAddedToProject.class, SUserChanged.class, SUserRemovedFromProject.class, SNewUserAdded.class, SUserDeleted.class, SUserUndeleted.class})
-public class SUserRelated extends SLogAction implements SDataBase
+public class SNewServiceDescriptor implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private long userId = -1;
+	private java.lang.String name;
+	private java.lang.String description;
+	private java.lang.String provider;
+	private List<java.lang.String> inputs = new ArrayList<java.lang.String>();
+	private List<java.lang.String> outputs = new ArrayList<java.lang.String>();
 
 	public long getOid() {
 		return this.oid;
@@ -56,21 +59,24 @@ public class SUserRelated extends SLogAction implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SUserRelated.sClass = sClass;
+		SNewServiceDescriptor.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("date")) {
-			return getDate();
+		if (sField.getName().equals("name")) {
+			return getName();
 		}
-		if (sField.getName().equals("executorId")) {
-			return getExecutorId();
+		if (sField.getName().equals("description")) {
+			return getDescription();
 		}
-		if (sField.getName().equals("accessMethod")) {
-			return getAccessMethod();
+		if (sField.getName().equals("provider")) {
+			return getProvider();
 		}
-		if (sField.getName().equals("userId")) {
-			return getUserId();
+		if (sField.getName().equals("inputs")) {
+			return getInputs();
+		}
+		if (sField.getName().equals("outputs")) {
+			return getOutputs();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -80,22 +86,27 @@ public class SUserRelated extends SLogAction implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("date")) {
-			setDate((Date)val);
+		if (sField.getName().equals("name")) {
+			setName((String)val);
 			return;
 		}
-		if (sField.getName().equals("executorId")) {
-			setExecutorId((Long)val);
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
 			return;
 		}
-		if (sField.getName().equals("accessMethod")) {
-			setAccessMethod((SAccessMethod)val);
+		if (sField.getName().equals("provider")) {
+			setProvider((String)val);
 			return;
 		}
-		if (sField.getName().equals("userId")) {
-			setUserId((Long)val);
+		if (sField.getName().equals("inputs")) {
+			setInputs((List<String>)val);
+			return;
+		}
+		if (sField.getName().equals("outputs")) {
+			setOutputs((List<String>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -109,12 +120,46 @@ public class SUserRelated extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public long getUserId() {
-		return userId;
+	public java.lang.String getName() {
+		return name;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setName(java.lang.String name) {
+		this.name = name;
+	}
+	
+	public java.lang.String getDescription() {
+		return description;
+	}
+
+	public void setDescription(java.lang.String description) {
+		this.description = description;
+	}
+	
+	public java.lang.String getProvider() {
+		return provider;
+	}
+
+	public void setProvider(java.lang.String provider) {
+		this.provider = provider;
+	}
+	
+
+	public List<java.lang.String> getInputs() {
+		return inputs;
+	}
+
+	public void setInputs(List<java.lang.String> inputs) {
+		this.inputs = inputs;
+	}
+	
+
+	public List<java.lang.String> getOutputs() {
+		return outputs;
+	}
+
+	public void setOutputs(List<java.lang.String> outputs) {
+		this.outputs = outputs;
 	}
 	
 	@Override
@@ -133,7 +178,7 @@ public class SUserRelated extends SLogAction implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SUserRelated other = (SUserRelated) obj;
+		SNewServiceDescriptor other = (SNewServiceDescriptor) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

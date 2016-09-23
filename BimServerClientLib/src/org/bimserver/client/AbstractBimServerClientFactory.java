@@ -35,6 +35,7 @@ import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
+import org.bimserver.shared.interfaces.NewServicesInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.OAuthInterface;
@@ -79,6 +80,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		addService(new SService(servicesMap, null, MetaInterface.class));
 		addService(new SService(servicesMap, null, AdminInterface.class));
 		addService(new SService(servicesMap, null, AuthInterface.class));
+		addService(new SService(servicesMap, null, NewServicesInterface.class));
 		addService(new SService(servicesMap, null, SettingsInterface.class));
 		addService(new SService(servicesMap, null, PluginInterface.class));
 		addService(new SService(servicesMap, null, NotificationInterface.class));
