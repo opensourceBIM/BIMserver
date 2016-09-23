@@ -19,7 +19,7 @@ import java.util.Collection;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public interface RenderEngineModel {
+public interface RenderEngineModel extends AutoCloseable {
 	public static final int PRECISION = Precision.BIT;
 	public static final int INDEX_BITS = IndexFormat.BIT;
 	public static final int NORMALS = 32;
