@@ -1,6 +1,8 @@
 BIMserver
 =========
 
+> Note: To minimize cloning time of the main repository, we thrunk the git repository from 1.3GB to 600MB by removing some big files from the history. This means you'll have the clone the repository again if you have a copy on your machine, or git rebase.
+
 The Building Information Modelserver (short: BIMserver) enables you to centralize and manage the information of a construction (or other building related) project. The core is based on the open standard IFC. The BIMserver is nót a fileserver, but uses a model-driven architecture approach. This means that IFC data is interpreted by a core-object and stored in an underlying database. The main advantage of this approach is the possibility to query, merge and filter the BIM-model and generate IFC files on the fly.
 
 Due to the multi-user support, multiple people can work on their own part of the model, while the complete model is updated on the fly. Other users can get update notifications when the model (or a part of it) is updated. Furthermore the BIMserver will warn you when other users have changed something in the model while you were editing.
