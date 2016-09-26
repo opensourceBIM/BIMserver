@@ -8,6 +8,13 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
+	<session-config>
+		<session-timeout>1</session-timeout>
+		<cookie-config>
+			<max-age>0</max-age>
+		</cookie-config>
+	</session-config>
+
 	<filter>
 		<filter-name>cross-origin</filter-name>
 		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>

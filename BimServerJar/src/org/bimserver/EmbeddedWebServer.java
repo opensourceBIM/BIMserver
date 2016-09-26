@@ -40,12 +40,7 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 
 	public EmbeddedWebServer(BimServer bimServer, Path developmentBaseDir, boolean localDev) {
 		server = new Server();
-		// Disabled 26-04-2015, I am pretty sure we don't use session anymore at
-		// all
-		// HashSessionIdManager hashSessionIdManager = new
-		// HashSessionIdManager(new Random()); // Should be SecureRandom, but
-		// this makes startup slow on certain systems
-		// server.setSessionIdManager(hashSessionIdManager);
+
 		ServerConnector socketConnector = new ServerConnector(server);
 		socketConnector.setPort(bimServer.getConfig().getPort());
 		server.addConnector(socketConnector);
