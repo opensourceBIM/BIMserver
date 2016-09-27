@@ -258,7 +258,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 									}
 
 									for (int i = 0; i < geometry.getIndices().length; i++) {
-										processExtends(geometryInfo, doubleToFloat(tranformationMatrix), geometry.getVertices(), geometry.getIndices()[i] * 3, generateGeometryResult);
+										processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3, generateGeometryResult);
 									}
 
 									geometryInfo.setData(geometryData);
@@ -574,13 +574,13 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		return hashCode;
 	}
 
-	private void processExtends(GeometryInfo geometryInfo, float[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) {
-		float x = vertices[index];
-		float y = vertices[index + 1];
-		float z = vertices[index + 2];
+	private void processExtends(GeometryInfo geometryInfo, double[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) {
+		double x = vertices[index];
+		double y = vertices[index + 1];
+		double z = vertices[index + 2];
 
-		float[] result = new float[4];
-		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new float[] { x, y, z, 1 }, 0);
+		double[] result = new double[4];
+		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new double[] { x, y, z, 1 }, 0);
 		x = result[0];
 		y = result[1];
 		z = result[2];

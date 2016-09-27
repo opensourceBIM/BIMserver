@@ -252,13 +252,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											WrappedVirtualObject minBounds = new HashMapWrappedVirtualObject(queryContext, GeometryPackage.eINSTANCE.getVector3f());
 											WrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(queryContext, GeometryPackage.eINSTANCE.getVector3f());
 											
-											minBounds.set("x", Float.POSITIVE_INFINITY);
-											minBounds.set("y", Float.POSITIVE_INFINITY);
-											minBounds.set("z", Float.POSITIVE_INFINITY);
+											minBounds.set("x", Double.POSITIVE_INFINITY);
+											minBounds.set("y", Double.POSITIVE_INFINITY);
+											minBounds.set("z", Double.POSITIVE_INFINITY);
 											
-											maxBounds.set("x", -Float.POSITIVE_INFINITY);
-											maxBounds.set("y", -Float.POSITIVE_INFINITY);
-											maxBounds.set("z", -Float.POSITIVE_INFINITY);
+											maxBounds.set("x", -Double.POSITIVE_INFINITY);
+											maxBounds.set("y", -Double.POSITIVE_INFINITY);
+											maxBounds.set("z", -Double.POSITIVE_INFINITY);
 											
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBounds(), minBounds);
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBounds(), maxBounds);
