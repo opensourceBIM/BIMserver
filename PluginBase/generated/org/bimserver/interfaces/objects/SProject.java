@@ -54,6 +54,7 @@ public class SProject implements SDataBase
 	private List<Long> modelCheckers = new ArrayList<Long>();
 	private java.lang.String schema;
 	private boolean sendEmailOnNewRevision;
+	private List<Long> newServices = new ArrayList<Long>();
 
 	public long getOid() {
 		return this.oid;
@@ -146,6 +147,9 @@ public class SProject implements SDataBase
 		}
 		if (sField.getName().equals("sendEmailOnNewRevision")) {
 			return isSendEmailOnNewRevision();
+		}
+		if (sField.getName().equals("newServices")) {
+			return getNewServices();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -244,6 +248,10 @@ public class SProject implements SDataBase
 		}
 		if (sField.getName().equals("sendEmailOnNewRevision")) {
 			setSendEmailOnNewRevision((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("newServices")) {
+			setNewServices((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -431,6 +439,14 @@ public class SProject implements SDataBase
 
 	public void setSendEmailOnNewRevision(boolean sendEmailOnNewRevision) {
 		this.sendEmailOnNewRevision = sendEmailOnNewRevision;
+	}
+	
+	public List<Long> getNewServices() {
+		return newServices;
+	}
+
+	public void setNewServices(List<Long> newServices) {
+		this.newServices = newServices;
 	}
 	
 	@Override

@@ -16,15 +16,13 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SSerializerPluginConfiguration.class, SWebModulePluginConfiguration.class, SRenderEnginePluginConfiguration.class, SInternalServicePluginConfiguration.class, SQueryEnginePluginConfiguration.class, SObjectIDMPluginConfiguration.class, SDeserializerPluginConfiguration.class, SModelMergerPluginConfiguration.class, SModelComparePluginConfiguration.class})
-public class SPluginConfiguration implements SDataBase
+public class SNewService implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
@@ -32,10 +30,15 @@ public class SPluginConfiguration implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private java.lang.String name;
-	private java.lang.Boolean enabled;
+	private java.lang.String provider;
 	private java.lang.String description;
-	private long pluginDescriptorId = -1;
-	private long settingsId = -1;
+	private java.lang.String url;
+	private java.lang.String input;
+	private java.lang.String oauthCode;
+	private SServiceStatus status;
+	private long serializerId = -1;
+	private java.lang.String output;
+	private long actionId = -1;
 
 	public long getOid() {
 		return this.oid;
@@ -59,24 +62,39 @@ public class SPluginConfiguration implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPluginConfiguration.sClass = sClass;
+		SNewService.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
-		if (sField.getName().equals("enabled")) {
-			return getEnabled();
+		if (sField.getName().equals("provider")) {
+			return getProvider();
 		}
 		if (sField.getName().equals("description")) {
 			return getDescription();
 		}
-		if (sField.getName().equals("pluginDescriptorId")) {
-			return getPluginDescriptorId();
+		if (sField.getName().equals("url")) {
+			return getUrl();
 		}
-		if (sField.getName().equals("settingsId")) {
-			return getSettingsId();
+		if (sField.getName().equals("input")) {
+			return getInput();
+		}
+		if (sField.getName().equals("oauthCode")) {
+			return getOauthCode();
+		}
+		if (sField.getName().equals("status")) {
+			return getStatus();
+		}
+		if (sField.getName().equals("serializerId")) {
+			return getSerializerId();
+		}
+		if (sField.getName().equals("output")) {
+			return getOutput();
+		}
+		if (sField.getName().equals("actionId")) {
+			return getActionId();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -92,20 +110,40 @@ public class SPluginConfiguration implements SDataBase
 			setName((String)val);
 			return;
 		}
-		if (sField.getName().equals("enabled")) {
-			setEnabled((Boolean)val);
+		if (sField.getName().equals("provider")) {
+			setProvider((String)val);
 			return;
 		}
 		if (sField.getName().equals("description")) {
 			setDescription((String)val);
 			return;
 		}
-		if (sField.getName().equals("pluginDescriptorId")) {
-			setPluginDescriptorId((Long)val);
+		if (sField.getName().equals("url")) {
+			setUrl((String)val);
 			return;
 		}
-		if (sField.getName().equals("settingsId")) {
-			setSettingsId((Long)val);
+		if (sField.getName().equals("input")) {
+			setInput((String)val);
+			return;
+		}
+		if (sField.getName().equals("oauthCode")) {
+			setOauthCode((String)val);
+			return;
+		}
+		if (sField.getName().equals("status")) {
+			setStatus((SServiceStatus)val);
+			return;
+		}
+		if (sField.getName().equals("serializerId")) {
+			setSerializerId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("output")) {
+			setOutput((String)val);
+			return;
+		}
+		if (sField.getName().equals("actionId")) {
+			setActionId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -127,12 +165,12 @@ public class SPluginConfiguration implements SDataBase
 		this.name = name;
 	}
 	
-	public java.lang.Boolean getEnabled() {
-		return enabled;
+	public java.lang.String getProvider() {
+		return provider;
 	}
 
-	public void setEnabled(java.lang.Boolean enabled) {
-		this.enabled = enabled;
+	public void setProvider(java.lang.String provider) {
+		this.provider = provider;
 	}
 	
 	public java.lang.String getDescription() {
@@ -143,20 +181,60 @@ public class SPluginConfiguration implements SDataBase
 		this.description = description;
 	}
 	
-	public long getPluginDescriptorId() {
-		return pluginDescriptorId;
+	public java.lang.String getUrl() {
+		return url;
 	}
 
-	public void setPluginDescriptorId(long pluginDescriptorId) {
-		this.pluginDescriptorId = pluginDescriptorId;
+	public void setUrl(java.lang.String url) {
+		this.url = url;
 	}
 	
-	public long getSettingsId() {
-		return settingsId;
+	public java.lang.String getInput() {
+		return input;
 	}
 
-	public void setSettingsId(long settingsId) {
-		this.settingsId = settingsId;
+	public void setInput(java.lang.String input) {
+		this.input = input;
+	}
+	
+	public java.lang.String getOauthCode() {
+		return oauthCode;
+	}
+
+	public void setOauthCode(java.lang.String oauthCode) {
+		this.oauthCode = oauthCode;
+	}
+	
+	public SServiceStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(SServiceStatus status) {
+		this.status = status;
+	}
+	
+	public long getSerializerId() {
+		return serializerId;
+	}
+
+	public void setSerializerId(long serializerId) {
+		this.serializerId = serializerId;
+	}
+	
+	public java.lang.String getOutput() {
+		return output;
+	}
+
+	public void setOutput(java.lang.String output) {
+		this.output = output;
+	}
+	
+	public long getActionId() {
+		return actionId;
+	}
+
+	public void setActionId(long actionId) {
+		this.actionId = actionId;
 	}
 	
 	@Override
@@ -175,7 +253,7 @@ public class SPluginConfiguration implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPluginConfiguration other = (SPluginConfiguration) obj;
+		SNewService other = (SNewService) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

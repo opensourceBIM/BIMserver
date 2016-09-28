@@ -16,15 +16,13 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SStringType.class, SByteArrayType.class, SDoubleType.class, SLongType.class, SBooleanType.class})
-public class SPrimitiveType extends SType implements SDataBase
+public class SStoreExtendedData extends SAction implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
@@ -54,7 +52,7 @@ public class SPrimitiveType extends SType implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPrimitiveType.sClass = sClass;
+		SStoreExtendedData.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
@@ -95,7 +93,7 @@ public class SPrimitiveType extends SType implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPrimitiveType other = (SPrimitiveType) obj;
+		SStoreExtendedData other = (SStoreExtendedData) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

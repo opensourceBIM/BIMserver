@@ -41,6 +41,7 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		sNewServiceDescriptor.setDescription("Test Service");
 		sNewServiceDescriptor.setProvider("Test Service");
 		sNewServiceDescriptor.getInputs().add("IFC_STEP_2X3TC1");
+		sNewServiceDescriptor.getOutputs().add("BCF_1.0");
 		sNewServiceDescriptor.getOutputs().add("BCF_2.0");
 		list.add(sNewServiceDescriptor);
 

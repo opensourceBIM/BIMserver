@@ -280,13 +280,22 @@ public interface StorePackage extends EPackage {
 	int PROJECT__SEND_EMAIL_ON_NEW_REVISION = 21;
 
 	/**
+	 * The feature id for the '<em><b>New Services</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__NEW_SERVICES = 22;
+
+	/**
 	 * The number of structural features of the '<em>Project</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 22;
+	int PROJECT_FEATURE_COUNT = 23;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
@@ -6758,6 +6767,153 @@ public interface StorePackage extends EPackage {
 	int FORMAT_SERIALIZER_MAP_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ActionImpl <em>Action</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ActionImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getAction()
+	 * @generated
+	 */
+	int ACTION = 98;
+
+	/**
+	 * The number of structural features of the '<em>Action</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.StoreExtendedDataImpl <em>Extended Data</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.StoreExtendedDataImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getStoreExtendedData()
+	 * @generated
+	 */
+	int STORE_EXTENDED_DATA = 99;
+
+	/**
+	 * The number of structural features of the '<em>Extended Data</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_EXTENDED_DATA_FEATURE_COUNT = ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.NewServiceImpl <em>New Service</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.NewServiceImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewService()
+	 * @generated
+	 */
+	int NEW_SERVICE = 100;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Provider</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__PROVIDER = 1;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__DESCRIPTION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__URL = 3;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__INPUT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Oauth Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__OAUTH_CODE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__STATUS = 6;
+
+	/**
+	 * The feature id for the '<em><b>Serializer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__SERIALIZER = 7;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__OUTPUT = 8;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__ACTION = 9;
+
+	/**
+	 * The number of structural features of the '<em>New Service</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE_FEATURE_COUNT = 10;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6765,7 +6921,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 98;
+	int USER_TYPE = 101;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -6775,7 +6931,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 99;
+	int SI_PREFIX = 102;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -6785,7 +6941,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 100;
+	int OBJECT_STATE = 103;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -6795,7 +6951,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 101;
+	int COMPARE_TYPE = 104;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -6805,7 +6961,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 102;
+	int ACTION_STATE = 105;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -6815,7 +6971,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 103;
+	int SERVER_STATE = 106;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -6825,7 +6981,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 104;
+	int EXTENDED_DATA_SCHEMA_TYPE = 107;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -6835,7 +6991,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 105;
+	int TRIGGER = 108;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
@@ -6845,7 +7001,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
 	 * @generated
 	 */
-	int SERVICE_SIMPLE_TYPE = 106;
+	int SERVICE_SIMPLE_TYPE = 109;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -6855,7 +7011,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 107;
+	int PRIMITIVE_ENUM = 110;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -6865,7 +7021,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 108;
+	int NOTIFICTION_RESULT_ENUM = 111;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -6875,7 +7031,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 109;
+	int PROGRESS_TOPIC_TYPE = 112;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ModelCheckerResultType <em>Model Checker Result Type</em>}' enum.
@@ -6885,7 +7041,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultType()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_TYPE = 110;
+	int MODEL_CHECKER_RESULT_TYPE = 113;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}' enum.
@@ -6895,7 +7051,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSmtpProtocol()
 	 * @generated
 	 */
-	int SMTP_PROTOCOL = 111;
+	int SMTP_PROTOCOL = 114;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginBundleType <em>Plugin Bundle Type</em>}' enum.
@@ -6905,7 +7061,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundleType()
 	 * @generated
 	 */
-	int PLUGIN_BUNDLE_TYPE = 112;
+	int PLUGIN_BUNDLE_TYPE = 115;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginType <em>Plugin Type</em>}' enum.
@@ -6915,7 +7071,17 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginType()
 	 * @generated
 	 */
-	int PLUGIN_TYPE = 113;
+	int PLUGIN_TYPE = 116;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.ServiceStatus <em>Service Status</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.ServiceStatus
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceStatus()
+	 * @generated
+	 */
+	int SERVICE_STATUS = 117;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -6925,7 +7091,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 114;
+	int DATA_HANDLER = 118;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -7178,6 +7344,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getProject_SendEmailOnNewRevision();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Project#getNewServices <em>New Services</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>New Services</em>'.
+	 * @see org.bimserver.models.store.Project#getNewServices()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_NewServices();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.User <em>User</em>}'.
@@ -13111,6 +13288,146 @@ public interface StorePackage extends EPackage {
 	EReference getFormatSerializerMap_Serializers();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Action <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Action</em>'.
+	 * @see org.bimserver.models.store.Action
+	 * @generated
+	 */
+	EClass getAction();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.StoreExtendedData <em>Extended Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Extended Data</em>'.
+	 * @see org.bimserver.models.store.StoreExtendedData
+	 * @generated
+	 */
+	EClass getStoreExtendedData();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.NewService <em>New Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>New Service</em>'.
+	 * @see org.bimserver.models.store.NewService
+	 * @generated
+	 */
+	EClass getNewService();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.NewService#getName()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EAttribute getNewService_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getProvider <em>Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Provider</em>'.
+	 * @see org.bimserver.models.store.NewService#getProvider()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EAttribute getNewService_Provider();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.NewService#getDescription()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EAttribute getNewService_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getUrl <em>Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Url</em>'.
+	 * @see org.bimserver.models.store.NewService#getUrl()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EAttribute getNewService_Url();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getInput <em>Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Input</em>'.
+	 * @see org.bimserver.models.store.NewService#getInput()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EAttribute getNewService_Input();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getOauthCode <em>Oauth Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Oauth Code</em>'.
+	 * @see org.bimserver.models.store.NewService#getOauthCode()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EAttribute getNewService_OauthCode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getStatus <em>Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Status</em>'.
+	 * @see org.bimserver.models.store.NewService#getStatus()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EAttribute getNewService_Status();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.NewService#getSerializer <em>Serializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Serializer</em>'.
+	 * @see org.bimserver.models.store.NewService#getSerializer()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EReference getNewService_Serializer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getOutput <em>Output</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Output</em>'.
+	 * @see org.bimserver.models.store.NewService#getOutput()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EAttribute getNewService_Output();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.NewService#getAction <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Action</em>'.
+	 * @see org.bimserver.models.store.NewService#getAction()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EReference getNewService_Action();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13269,6 +13586,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getPluginType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.ServiceStatus <em>Service Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Service Status</em>'.
+	 * @see org.bimserver.models.store.ServiceStatus
+	 * @generated
+	 */
+	EEnum getServiceStatus();
 
 	/**
 	 * Returns the meta object for data type '{@link javax.activation.DataHandler <em>Data Handler</em>}'.
@@ -13488,6 +13815,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROJECT__SEND_EMAIL_ON_NEW_REVISION = eINSTANCE.getProject_SendEmailOnNewRevision();
+
+		/**
+		 * The meta object literal for the '<em><b>New Services</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT__NEW_SERVICES = eINSTANCE.getProject_NewServices();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
@@ -18068,6 +18403,116 @@ public interface StorePackage extends EPackage {
 		EReference FORMAT_SERIALIZER_MAP__SERIALIZERS = eINSTANCE.getFormatSerializerMap_Serializers();
 
 		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ActionImpl <em>Action</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ActionImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getAction()
+		 * @generated
+		 */
+		EClass ACTION = eINSTANCE.getAction();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.StoreExtendedDataImpl <em>Extended Data</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.StoreExtendedDataImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getStoreExtendedData()
+		 * @generated
+		 */
+		EClass STORE_EXTENDED_DATA = eINSTANCE.getStoreExtendedData();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.NewServiceImpl <em>New Service</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.NewServiceImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewService()
+		 * @generated
+		 */
+		EClass NEW_SERVICE = eINSTANCE.getNewService();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE__NAME = eINSTANCE.getNewService_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Provider</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE__PROVIDER = eINSTANCE.getNewService_Provider();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE__DESCRIPTION = eINSTANCE.getNewService_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE__URL = eINSTANCE.getNewService_Url();
+
+		/**
+		 * The meta object literal for the '<em><b>Input</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE__INPUT = eINSTANCE.getNewService_Input();
+
+		/**
+		 * The meta object literal for the '<em><b>Oauth Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE__OAUTH_CODE = eINSTANCE.getNewService_OauthCode();
+
+		/**
+		 * The meta object literal for the '<em><b>Status</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE__STATUS = eINSTANCE.getNewService_Status();
+
+		/**
+		 * The meta object literal for the '<em><b>Serializer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NEW_SERVICE__SERIALIZER = eINSTANCE.getNewService_Serializer();
+
+		/**
+		 * The meta object literal for the '<em><b>Output</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE__OUTPUT = eINSTANCE.getNewService_Output();
+
+		/**
+		 * The meta object literal for the '<em><b>Action</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NEW_SERVICE__ACTION = eINSTANCE.getNewService_Action();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -18226,6 +18671,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum PLUGIN_TYPE = eINSTANCE.getPluginType();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.ServiceStatus <em>Service Status</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.ServiceStatus
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceStatus()
+		 * @generated
+		 */
+		EEnum SERVICE_STATUS = eINSTANCE.getServiceStatus();
 
 		/**
 		 * The meta object literal for the '<em>Data Handler</em>' data type.

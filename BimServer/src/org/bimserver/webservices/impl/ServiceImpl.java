@@ -56,6 +56,7 @@ import org.bimserver.database.actions.AddExtendedDataToRevisionDatabaseAction;
 import org.bimserver.database.actions.AddLocalServiceToProjectDatabaseAction;
 import org.bimserver.database.actions.AddModelCheckerDatabaseAction;
 import org.bimserver.database.actions.AddModelCheckerToProjectDatabaseAction;
+import org.bimserver.database.actions.AddNewServiceToProjectDatabaseAction;
 import org.bimserver.database.actions.AddProjectDatabaseAction;
 import org.bimserver.database.actions.AddServiceToProjectDatabaseAction;
 import org.bimserver.database.actions.AddUserDatabaseAction;
@@ -76,6 +77,7 @@ import org.bimserver.database.actions.GetAllCheckoutsOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfRevisionDatabaseAction;
 import org.bimserver.database.actions.GetAllExtendedDataSchemasDatabaseAction;
 import org.bimserver.database.actions.GetAllModelCheckersDatabaseAction;
+import org.bimserver.database.actions.GetAllNewServicesOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedProjectsOfUserDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedUsersOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllProjectsDatabaseAction;
@@ -157,6 +159,7 @@ import org.bimserver.interfaces.objects.SGeometryInfo;
 import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SModelCheckerInstance;
+import org.bimserver.interfaces.objects.SNewService;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -193,6 +196,7 @@ import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ModelCheckerInstance;
+import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.OAuthAuthorizationCode;
 import org.bimserver.models.store.OAuthServer;
 import org.bimserver.models.store.ObjectState;
@@ -232,6 +236,7 @@ import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.utils.MultiplexingInputStream;
 import org.bimserver.utils.NetUtils;
 import org.bimserver.webservices.CheckoutComparator;
+import org.bimserver.webservices.SNewServiceComparator;
 import org.bimserver.webservices.SProjectComparator;
 import org.bimserver.webservices.SRevisionComparator;
 import org.bimserver.webservices.SServiceComparator;
@@ -1165,6 +1170,22 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 	}
 
+	@Override
+	public List<org.bimserver.interfaces.objects.SNewService> getAllNewServicesOfProject(Long poid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Set<NewService>> action = new GetAllNewServicesOfProjectDatabaseAction(session, getInternalAccessMethod(), poid);
+			List<SNewService> convertToSListRevision = getBimServer().getSConverter().convertToSListNewService(session.executeAndCommitAction(action));
+			Collections.sort(convertToSListRevision, new SNewServiceComparator());
+			return convertToSListRevision;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public List<SCheckout> getAllCheckoutsOfProject(Long poid) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -2395,6 +2416,20 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			BimDatabaseAction<Long> action = new GetNrPrimitivesDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, getAuthorization());
+			return session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public Long addNewServiceToProject(Long poid, SNewService sService) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			AddNewServiceToProjectDatabaseAction action = new AddNewServiceToProjectDatabaseAction(session, getInternalAccessMethod(), poid, getBimServer().getSConverter().convertFromSObject(sService, session), getAuthorization());
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			return handleException(e);

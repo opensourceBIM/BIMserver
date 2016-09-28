@@ -25,6 +25,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.ModelCheckerInstance;
+import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -65,6 +66,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getModelCheckers <em>Model Checkers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getNewServices <em>New Services</em>}</li>
  * </ul>
  *
  * @generated
@@ -421,6 +423,16 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	public void setSendEmailOnNewRevision(boolean newSendEmailOnNewRevision) {
 		eSet(StorePackage.Literals.PROJECT__SEND_EMAIL_ON_NEW_REVISION, newSendEmailOnNewRevision);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<NewService> getNewServices() {
+		return (EList<NewService>) eGet(StorePackage.Literals.PROJECT__NEW_SERVICES, true);
 	}
 
 } //ProjectImpl

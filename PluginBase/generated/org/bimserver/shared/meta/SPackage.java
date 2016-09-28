@@ -35,6 +35,9 @@ public class SPackage {
 	private void init() {
 			try {
 	
+		Class.forName("org.bimserver.interfaces.objects.SGeometryInfo");
+		Class.forName("org.bimserver.interfaces.objects.SVector3f");
+		Class.forName("org.bimserver.interfaces.objects.SGeometryData");
 		Class.forName("org.bimserver.interfaces.objects.SAccessMethod");
 		Class.forName("org.bimserver.interfaces.objects.SLogAction");
 		Class.forName("org.bimserver.interfaces.objects.SServerLog");
@@ -67,9 +70,6 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SExtendedDataAddedToRevision");
 		Class.forName("org.bimserver.interfaces.objects.SExtendedDataAddedToProject");
 		Class.forName("org.bimserver.interfaces.objects.SRemoteServiceCalled");
-		Class.forName("org.bimserver.interfaces.objects.SGeometryInfo");
-		Class.forName("org.bimserver.interfaces.objects.SVector3f");
-		Class.forName("org.bimserver.interfaces.objects.SGeometryData");
 		Class.forName("org.bimserver.interfaces.objects.SUserType");
 		Class.forName("org.bimserver.interfaces.objects.SSIPrefix");
 		Class.forName("org.bimserver.interfaces.objects.SObjectState");
@@ -184,6 +184,10 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SSingleProjectAuthorization");
 		Class.forName("org.bimserver.interfaces.objects.SNewServiceDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SFormatSerializerMap");
+		Class.forName("org.bimserver.interfaces.objects.SAction");
+		Class.forName("org.bimserver.interfaces.objects.SStoreExtendedData");
+		Class.forName("org.bimserver.interfaces.objects.SServiceStatus");
+		Class.forName("org.bimserver.interfaces.objects.SNewService");
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

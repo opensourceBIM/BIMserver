@@ -1,5 +1,5 @@
 
-ÉË
+ßÔ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -88,10 +88,30 @@ revisionId (
 value ("H
 AddModelCheckerToProjectRequest
 poid (
-modelCheckerOid ("8
+modelCheckerOid ("ı
+SNewService
+actionId (
+description (	
+input (	
+name (	
+	oauthCode (	
+oid (
+output (	
+provider (	
+rid	 (
+serializerId
+ (0
+status (2 .org.bimserver.pb.SServiceStatus
+url (	"^
+AddNewServiceToProjectRequest
+poid (/
+sService (2.org.bimserver.pb.SNewService"E
+AddNewServiceToProjectResponse
+errorMessage (	
+value ("8
 AddProjectRequest
 projectName (	
-schema (	"∑
+schema (	"Ã
 SProject
 	checkouts (
 concreteRevisions (
@@ -109,16 +129,17 @@ revisionId (
 lastRevisionId (
 logs (
 modelCheckers (
-name (	
-oid (
-parentId (
-	revisions (
-rid (
-schema (	
-sendEmailOnNewRevision (
-services (-
-state (2.org.bimserver.pb.SObjectState
-subProjects ("U
+name (	
+newServices (
+oid (
+parentId (
+	revisions (
+rid (
+schema (	
+sendEmailOnNewRevision (
+services (-
+state (2.org.bimserver.pb.SObjectState
+subProjects ("U
 AddProjectResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject"X
@@ -475,7 +496,12 @@ identifier (	
 poid ("t
 $GetAllModelCheckersOfProjectResponse
 errorMessage (	6
-value (2'.org.bimserver.pb.SModelCheckerInstance"8
+value (2'.org.bimserver.pb.SModelCheckerInstance"1
+!GetAllNewServicesOfProjectRequest
+poid ("h
+"GetAllNewServicesOfProjectResponse
+errorMessage (	,
+value (2.org.bimserver.pb.SNewService"8
 (GetAllNonAuthorizedProjectsOfUserRequest
 uoid ("l
 )GetAllNonAuthorizedProjectsOfUserResponse
@@ -1326,7 +1352,10 @@ serviceOid ("F
 STrigger
 STrigger_NEW_REVISION 
 STrigger_NEW_PROJECT
-STrigger_NEW_EXTENDED_DATA*¥
+STrigger_NEW_EXTENDED_DATA*J
+SServiceStatus
+SServiceStatus_NEW  
+SServiceStatus_AUTHENTICATED*¥
 	SSIPrefix
 SSIPrefix_meter 
 SSIPrefix_attometer
@@ -1363,14 +1392,15 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2Üj
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2çl
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
 addExtendedDataToRevision2.org.bimserver.pb.AddExtendedDataToRevisionRequest.org.bimserver.pb.VoidResponsem
 addLocalServiceToProject1.org.bimserver.pb.AddLocalServiceToProjectRequest.org.bimserver.pb.VoidResponsef
 addModelChecker(.org.bimserver.pb.AddModelCheckerRequest).org.bimserver.pb.AddModelCheckerResponsem
-addModelCheckerToProject1.org.bimserver.pb.AddModelCheckerToProjectRequest.org.bimserver.pb.VoidResponseW
+addModelCheckerToProject1.org.bimserver.pb.AddModelCheckerToProjectRequest.org.bimserver.pb.VoidResponse{
+addNewServiceToProject/.org.bimserver.pb.AddNewServiceToProjectRequest0.org.bimserver.pb.AddNewServiceToProjectResponseW
 
 addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectResponse{
 addProjectAsSubProject/.org.bimserver.pb.AddProjectAsSubProjectRequest0.org.bimserver.pb.AddProjectAsSubProjectResponser
@@ -1405,7 +1435,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getAllLocalProfiles,.org.bimserver.pb.GetAllLocalProfilesRequest-.org.bimserver.pb.GetAllLocalProfilesResponseê
 getAllLocalServiceDescriptors6.org.bimserver.pb.GetAllLocalServiceDescriptorsRequest7.org.bimserver.pb.GetAllLocalServiceDescriptorsResponser
 getAllModelCheckers,.org.bimserver.pb.GetAllModelCheckersRequest-.org.bimserver.pb.GetAllModelCheckersResponseç
-getAllModelCheckersOfProject5.org.bimserver.pb.GetAllModelCheckersOfProjectRequest6.org.bimserver.pb.GetAllModelCheckersOfProjectResponseú
+getAllModelCheckersOfProject5.org.bimserver.pb.GetAllModelCheckersOfProjectRequest6.org.bimserver.pb.GetAllModelCheckersOfProjectResponseá
+getAllNewServicesOfProject3.org.bimserver.pb.GetAllNewServicesOfProjectRequest4.org.bimserver.pb.GetAllNewServicesOfProjectResponseú
 !getAllNonAuthorizedProjectsOfUser:.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserRequest;.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserResponseú
 !getAllNonAuthorizedUsersOfProject:.org.bimserver.pb.GetAllNonAuthorizedUsersOfProjectRequest;.org.bimserver.pb.GetAllNonAuthorizedUsersOfProjectResponsex
 getAllPrivateProfiles..org.bimserver.pb.GetAllPrivateProfilesRequest/.org.bimserver.pb.GetAllPrivateProfilesResponsec

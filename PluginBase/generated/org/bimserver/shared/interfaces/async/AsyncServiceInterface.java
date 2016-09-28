@@ -59,6 +59,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface AddNewServiceToProjectCallback {
+		void success(java.lang.Long result);
+		void error(Throwable e);
+	}
+	
 	public interface AddProjectCallback {
 		void success(org.bimserver.interfaces.objects.SProject result);
 		void error(Throwable e);
@@ -221,6 +226,11 @@ public class AsyncServiceInterface {
 	
 	public interface GetAllModelCheckersOfProjectCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SModelCheckerInstance> result);
+		void error(Throwable e);
+	}
+	
+	public interface GetAllNewServicesOfProjectCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SNewService> result);
 		void error(Throwable e);
 	}
 	
@@ -702,6 +712,18 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void addNewServiceToProject(final java.lang.Long poid, final org.bimserver.interfaces.objects.SNewService sService, final AddNewServiceToProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.addNewServiceToProject(poid, sService));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void addProject(final java.lang.String projectName, final java.lang.String schema, final AddProjectCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1095,6 +1117,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllModelCheckersOfProject(poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllNewServicesOfProject(final java.lang.Long poid, final GetAllNewServicesOfProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllNewServicesOfProject(poid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

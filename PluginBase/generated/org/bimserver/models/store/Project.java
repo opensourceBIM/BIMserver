@@ -53,6 +53,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Project#getModelCheckers <em>Model Checkers</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Project#getNewServices <em>New Services</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getProject()
@@ -568,5 +569,21 @@ public interface Project extends IdEObject {
 	 * @generated
 	 */
 	void setSendEmailOnNewRevision(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>New Services</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.NewService}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>New Services</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>New Services</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getProject_NewServices()
+	 * @model
+	 * @generated
+	 */
+	EList<NewService> getNewServices();
 
 } // Project

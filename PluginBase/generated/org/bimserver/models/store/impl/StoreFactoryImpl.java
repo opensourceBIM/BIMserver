@@ -265,6 +265,12 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createNewServiceDescriptor();
 		case StorePackage.FORMAT_SERIALIZER_MAP:
 			return (EObject) createFormatSerializerMap();
+		case StorePackage.ACTION:
+			return (EObject) createAction();
+		case StorePackage.STORE_EXTENDED_DATA:
+			return (EObject) createStoreExtendedData();
+		case StorePackage.NEW_SERVICE:
+			return (EObject) createNewService();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -310,6 +316,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createPluginBundleTypeFromString(eDataType, initialValue);
 		case StorePackage.PLUGIN_TYPE:
 			return createPluginTypeFromString(eDataType, initialValue);
+		case StorePackage.SERVICE_STATUS:
+			return createServiceStatusFromString(eDataType, initialValue);
 		case StorePackage.DATA_HANDLER:
 			return createDataHandlerFromString(eDataType, initialValue);
 		default:
@@ -357,6 +365,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertPluginBundleTypeToString(eDataType, instanceValue);
 		case StorePackage.PLUGIN_TYPE:
 			return convertPluginTypeToString(eDataType, instanceValue);
+		case StorePackage.SERVICE_STATUS:
+			return convertServiceStatusToString(eDataType, instanceValue);
 		case StorePackage.DATA_HANDLER:
 			return convertDataHandlerToString(eDataType, instanceValue);
 		default:
@@ -1349,6 +1359,36 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Action createAction() {
+		ActionImpl action = new ActionImpl();
+		return action;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StoreExtendedData createStoreExtendedData() {
+		StoreExtendedDataImpl storeExtendedData = new StoreExtendedDataImpl();
+		return storeExtendedData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NewService createNewService() {
+		NewServiceImpl newService = new NewServiceImpl();
+		return newService;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UserType createUserTypeFromString(EDataType eDataType, String initialValue) {
 		UserType result = UserType.get(initialValue);
 		if (result == null)
@@ -1677,6 +1717,27 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertPluginTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServiceStatus createServiceStatusFromString(EDataType eDataType, String initialValue) {
+		ServiceStatus result = ServiceStatus.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertServiceStatusToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

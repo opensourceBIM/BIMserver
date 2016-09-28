@@ -43,6 +43,7 @@ import org.bimserver.interfaces.objects.SGeometryInfo;
 import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SModelCheckerInstance;
+import org.bimserver.interfaces.objects.SNewService;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SProjectSmall;
@@ -757,6 +758,18 @@ public interface ServiceInterface extends PublicInterface {
 	List<SService> getAllServicesOfProject(
 		@WebParam(name = "poid", partName = "getAllServicesOfProject.poid") Long poid) throws ServerException, UserException;
 
+	/**
+	 * Get a list of all the services attached to the given project
+	 * 
+	 * @param poid Project-ID of the Project
+	 * @return
+	 * @throws ServerException
+	 * @throws UserException
+	 */
+	@WebMethod(action = "getAllNewServicesOfProject")
+	List<SNewService> getAllNewServicesOfProject(
+			@WebParam(name = "poid", partName = "getAllNewServicesOfProject.poid") Long poid) throws ServerException, UserException;
+	
 	/**
 	 * Get a list of all the model checkers attached to the given Project
 	 * 
@@ -1517,4 +1530,16 @@ public interface ServiceInterface extends PublicInterface {
 
 	@WebMethod(action = "getNrPrimitives")
 	Long getNrPrimitives(@WebParam(name = "roid", partName = "getNrPrimitives.roid") Long roid) throws ServerException, UserException;
+	
+	/**
+	 * @param poid
+	 * @param sService
+	 * @return
+	 * @throws ServerException
+	 * @throws UserException
+	 */
+	@WebMethod(action="addNewServiceToProject")
+	Long addNewServiceToProject(
+		@WebParam(name = "poid", partName = "addServiceToProject.poid") Long poid, 
+		@WebParam(name = "sService", partName = "addServiceToProject.sService") org.bimserver.interfaces.objects.SNewService sService) throws ServerException, UserException;
 }

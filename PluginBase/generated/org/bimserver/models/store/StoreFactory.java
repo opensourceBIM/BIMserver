@@ -918,6 +918,33 @@ public interface StoreFactory extends EFactory {
 	FormatSerializerMap createFormatSerializerMap();
 
 	/**
+	 * Returns a new object of class '<em>Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action</em>'.
+	 * @generated
+	 */
+	Action createAction();
+
+	/**
+	 * Returns a new object of class '<em>Extended Data</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Extended Data</em>'.
+	 * @generated
+	 */
+	StoreExtendedData createStoreExtendedData();
+
+	/**
+	 * Returns a new object of class '<em>New Service</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>New Service</em>'.
+	 * @generated
+	 */
+	NewService createNewService();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
