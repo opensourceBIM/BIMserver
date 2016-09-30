@@ -1221,6 +1221,16 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "soid", partName = "getService.soid") Long soid) throws ServerException, UserException;
 
 	/**
+	 * @param soid
+	 * @return
+	 * @throws ServerException
+	 * @throws UserException
+	 */
+	@WebMethod(action="getNewService")
+	org.bimserver.interfaces.objects.SNewService getNewService(
+			@WebParam(name = "soid", partName = "getNewService.soid") Long soid) throws ServerException, UserException;
+	
+	/**
 	 * @param notificationsUrl
 	 * @param serviceIdentifier
 	 * @param token
@@ -1263,6 +1273,17 @@ public interface ServiceInterface extends PublicInterface {
 	void triggerNewRevision(
 		@WebParam(name = "roid", partName = "triggerNewRevision.roid") Long roid, 
 		@WebParam(name = "soid", partName = "triggerNewRevision.soid") Long soid) throws ServerException, UserException;
+
+	/**
+	 * @param roid
+	 * @param soid
+	 * @throws ServerException
+	 * @throws UserException
+	 */
+	@WebMethod(action = "triggerRevisionService")
+	void triggerRevisionService(
+			@WebParam(name = "roid", partName = "triggerRevisionService.roid") Long roid, 
+			@WebParam(name = "soid", partName = "triggerRevisionService.soid") Long soid) throws ServerException, UserException;
 
 	/**
 	 * @param edid

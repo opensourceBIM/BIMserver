@@ -37,21 +37,24 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 	public List<SNewServiceDescriptor> listAllServiceDescriptors() throws ServerException, UserException {
 		List<SNewServiceDescriptor> list = new ArrayList<>();
 		SNewServiceDescriptor sNewServiceDescriptor = new SNewServiceDescriptor();
-		sNewServiceDescriptor.setName("Test Service");
+		sNewServiceDescriptor.setName("Generates a few statistics about model as CSV");
 		sNewServiceDescriptor.setDescription("Test Service");
 		sNewServiceDescriptor.setProvider("Test Service");
-		sNewServiceDescriptor.getInputs().add("IFC_STEP_2X3TC1");
-		sNewServiceDescriptor.getOutputs().add("BCF_1.0");
-		sNewServiceDescriptor.getOutputs().add("BCF_2.0");
+		sNewServiceDescriptor.getInputs().add("IFC_JSON_2x3TC1");
+		sNewServiceDescriptor.getInputs().add("IFC_JSON_4");
+		sNewServiceDescriptor.getOutputs().add("text/csv");
+		sNewServiceDescriptor.setUrl("https://test.logic-labs.nl/stats.php");
 		list.add(sNewServiceDescriptor);
 
 		sNewServiceDescriptor = new SNewServiceDescriptor();
-		sNewServiceDescriptor.setName("Test Service 2");
+		sNewServiceDescriptor.setName("Fake clashdetection service");
 		sNewServiceDescriptor.setDescription("Test Service 2");
 		sNewServiceDescriptor.setProvider("Test Service 2");
 		sNewServiceDescriptor.getInputs().add("IFC_STEP_2X3TC1");
 		sNewServiceDescriptor.getInputs().add("IFC_STEP_4");
+		sNewServiceDescriptor.getOutputs().add("BCF_1.0");
 		sNewServiceDescriptor.getOutputs().add("BCF_2.0");
+		sNewServiceDescriptor.setUrl("https://test.logic-labs.nl/clashdetection.php");
 		list.add(sNewServiceDescriptor);
 
 		sNewServiceDescriptor = new SNewServiceDescriptor();
@@ -60,6 +63,7 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		sNewServiceDescriptor.setProvider("Test Service 3");
 		sNewServiceDescriptor.getInputs().add("DOES_NOT_EXIST");
 		sNewServiceDescriptor.getOutputs().add("BCF_2.0");
+		sNewServiceDescriptor.setUrl("https://test.logic-labs.nl/services.php");
 		list.add(sNewServiceDescriptor);
 		return list;
 	}

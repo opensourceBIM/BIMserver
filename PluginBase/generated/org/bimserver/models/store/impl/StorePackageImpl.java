@@ -6363,7 +6363,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNewServiceDescriptor_Inputs() {
+	public EAttribute getNewServiceDescriptor_Url() {
 		return (EAttribute) getNewServiceDescriptor().getEStructuralFeatures().get(3);
 	}
 
@@ -6372,8 +6372,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNewServiceDescriptor_Outputs() {
+	public EAttribute getNewServiceDescriptor_Inputs() {
 		return (EAttribute) getNewServiceDescriptor().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNewServiceDescriptor_Outputs() {
+		return (EAttribute) getNewServiceDescriptor().getEStructuralFeatures().get(5);
 	}
 
 	/**

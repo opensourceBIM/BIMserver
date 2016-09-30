@@ -6703,13 +6703,22 @@ public interface StorePackage extends EPackage {
 	int NEW_SERVICE_DESCRIPTOR__PROVIDER = 2;
 
 	/**
+	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE_DESCRIPTOR__URL = 3;
+
+	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_DESCRIPTOR__INPUTS = 3;
+	int NEW_SERVICE_DESCRIPTOR__INPUTS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' attribute list.
@@ -6718,7 +6727,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_DESCRIPTOR__OUTPUTS = 4;
+	int NEW_SERVICE_DESCRIPTOR__OUTPUTS = 5;
 
 	/**
 	 * The number of structural features of the '<em>New Service Descriptor</em>' class.
@@ -6727,7 +6736,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_DESCRIPTOR_FEATURE_COUNT = 5;
+	int NEW_SERVICE_DESCRIPTOR_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.FormatSerializerMapImpl <em>Format Serializer Map</em>}' class.
@@ -13234,6 +13243,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getNewServiceDescriptor_Provider();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewServiceDescriptor#getUrl <em>Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Url</em>'.
+	 * @see org.bimserver.models.store.NewServiceDescriptor#getUrl()
+	 * @see #getNewServiceDescriptor()
+	 * @generated
+	 */
+	EAttribute getNewServiceDescriptor_Url();
+
+	/**
 	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.NewServiceDescriptor#getInputs <em>Inputs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18359,6 +18379,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NEW_SERVICE_DESCRIPTOR__PROVIDER = eINSTANCE.getNewServiceDescriptor_Provider();
+
+		/**
+		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE_DESCRIPTOR__URL = eINSTANCE.getNewServiceDescriptor_Url();
 
 		/**
 		 * The meta object literal for the '<em><b>Inputs</b></em>' attribute list feature.

@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getProvider <em>Provider</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getOutputs <em>Outputs</em>}</li>
  * </ul>
@@ -124,6 +125,24 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 */
 	public void setProvider(String newProvider) {
 		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__PROVIDER, newProvider);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUrl() {
+		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUrl(String newUrl) {
+		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__URL, newUrl);
 	}
 
 	/**

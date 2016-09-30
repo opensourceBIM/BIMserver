@@ -1,5 +1,5 @@
 
-ßÔ
+¥Ú
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -753,7 +753,12 @@ SIfcHeader
 mcioid ("o
 GetModelCheckerInstanceResponse
 errorMessage (	6
-value (2'.org.bimserver.pb.SModelCheckerInstance"&
+value (2'.org.bimserver.pb.SModelCheckerInstance"$
+GetNewServiceRequest
+soid ("[
+GetNewServiceResponse
+errorMessage (	,
+value (2.org.bimserver.pb.SNewService"&
 GetNrPrimitivesRequest
 roid (">
 GetNrPrimitivesResponse
@@ -1300,6 +1305,9 @@ serviceOid ("F
 soid ("7
 TriggerNewRevisionRequest
 roid (
+soid (";
+TriggerRevisionServiceRequest
+roid (
 soid ("&
 UndeleteProjectRequest
 poid (">
@@ -1392,7 +1400,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2çl
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2⁄m
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1469,7 +1477,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponsef
 getGeometryInfo(.org.bimserver.pb.GetGeometryInfoRequest).org.bimserver.pb.GetGeometryInfoResponse]
 getIfcHeader%.org.bimserver.pb.GetIfcHeaderRequest&.org.bimserver.pb.GetIfcHeaderResponse~
-getModelCheckerInstance0.org.bimserver.pb.GetModelCheckerInstanceRequest1.org.bimserver.pb.GetModelCheckerInstanceResponsef
+getModelCheckerInstance0.org.bimserver.pb.GetModelCheckerInstanceRequest1.org.bimserver.pb.GetModelCheckerInstanceResponse`
+getNewService&.org.bimserver.pb.GetNewServiceRequest'.org.bimserver.pb.GetNewServiceResponsef
 getNrPrimitives(.org.bimserver.pb.GetNrPrimitivesRequest).org.bimserver.pb.GetNrPrimitivesResponse]
 getOidByGuid%.org.bimserver.pb.GetOidByGuidRequest&.org.bimserver.pb.GetOidByGuidResponsei
 getProjectByPoid).org.bimserver.pb.GetProjectByPoidRequest*.org.bimserver.pb.GetProjectByPoidResponsex
@@ -1508,7 +1517,8 @@ importData#.org.bimserver.pb.ImportDataRequest.org.bimserver.pb.VoidResponse
 shareRevision&.org.bimserver.pb.ShareRevisionRequest'.org.bimserver.pb.ShareRevisionResponseq
 terminateLongRunningAction3.org.bimserver.pb.TerminateLongRunningActionRequest.org.bimserver.pb.VoidResponsei
 triggerNewExtendedData/.org.bimserver.pb.TriggerNewExtendedDataRequest.org.bimserver.pb.VoidResponsea
-triggerNewRevision+.org.bimserver.pb.TriggerNewRevisionRequest.org.bimserver.pb.VoidResponsef
+triggerNewRevision+.org.bimserver.pb.TriggerNewRevisionRequest.org.bimserver.pb.VoidResponsei
+triggerRevisionService/.org.bimserver.pb.TriggerRevisionServiceRequest.org.bimserver.pb.VoidResponsef
 undeleteProject(.org.bimserver.pb.UndeleteProjectRequest).org.bimserver.pb.UndeleteProjectResponse]
 undeleteUser%.org.bimserver.pb.UndeleteUserRequest&.org.bimserver.pb.UndeleteUserResponseU
 updateGeoTag%.org.bimserver.pb.UpdateGeoTagRequest.org.bimserver.pb.VoidResponsea

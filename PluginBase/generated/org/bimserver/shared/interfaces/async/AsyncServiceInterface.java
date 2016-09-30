@@ -399,6 +399,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetNewServiceCallback {
+		void success(org.bimserver.interfaces.objects.SNewService result);
+		void error(Throwable e);
+	}
+	
 	public interface GetNrPrimitivesCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
@@ -580,6 +585,11 @@ public class AsyncServiceInterface {
 	}
 	
 	public interface TriggerNewRevisionCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
+	public interface TriggerRevisionServiceCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -1532,6 +1542,18 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void getNewService(final java.lang.Long soid, final GetNewServiceCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getNewService(soid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getNrPrimitives(final java.lang.Long roid, final GetNrPrimitivesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1977,6 +1999,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					syncService.triggerNewRevision(roid, soid);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void triggerRevisionService(final java.lang.Long roid, final java.lang.Long soid, final TriggerRevisionServiceCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.triggerRevisionService(roid, soid);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

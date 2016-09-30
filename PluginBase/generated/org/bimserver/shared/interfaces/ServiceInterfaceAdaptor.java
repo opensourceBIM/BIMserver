@@ -309,6 +309,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SNewService getNewService(java.lang.Long soid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.Long getNrPrimitives(java.lang.Long roid) throws UserException, ServerException {
 		return null;
 	}
@@ -446,6 +450,9 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	}
 	
 	public void triggerNewRevision(java.lang.Long roid, java.lang.Long soid) throws UserException, ServerException {
+	}
+	
+	public void triggerRevisionService(java.lang.Long roid, java.lang.Long soid) throws UserException, ServerException {
 	}
 	
 	public java.lang.Boolean undeleteProject(java.lang.Long poid) throws UserException, ServerException {

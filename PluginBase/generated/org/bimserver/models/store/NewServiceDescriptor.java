@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getProvider <em>Provider</em>}</li>
+ *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getUrl <em>Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getOutputs <em>Outputs</em>}</li>
  * </ul>
@@ -119,6 +120,32 @@ public interface NewServiceDescriptor extends IdEObject {
 	 * @generated
 	 */
 	void setProvider(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Url</em>' attribute.
+	 * @see #setUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getNewServiceDescriptor_Url()
+	 * @model
+	 * @generated
+	 */
+	String getUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.NewServiceDescriptor#getUrl <em>Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Url</em>' attribute.
+	 * @see #getUrl()
+	 * @generated
+	 */
+	void setUrl(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' attribute list.

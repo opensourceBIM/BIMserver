@@ -11257,6 +11257,7 @@ public class SConverter {
 		result.setName(input.getName());
 		result.setDescription(input.getDescription());
 		result.setProvider(input.getProvider());
+		result.setUrl(input.getUrl());
 		result.getInputs().addAll(input.getInputs());
 		result.getOutputs().addAll(input.getOutputs());
 		return result;
@@ -11287,6 +11288,7 @@ public class SConverter {
 		result.setName(input.getName());
 		result.setDescription(input.getDescription());
 		result.setProvider(input.getProvider());
+		result.setUrl(input.getUrl());
 		result.getInputs().addAll(input.getInputs());
 		result.getOutputs().addAll(input.getOutputs());
 		return result;

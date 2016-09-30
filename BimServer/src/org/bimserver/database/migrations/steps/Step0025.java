@@ -16,6 +16,7 @@ public class Step0025 extends Migration {
 		schema.createEAttribute(newServiceDescriptor, "name", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(newServiceDescriptor, "description", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(newServiceDescriptor, "provider", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(newServiceDescriptor, "url", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(newServiceDescriptor, "inputs", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
 		schema.createEAttribute(newServiceDescriptor, "outputs", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
 		

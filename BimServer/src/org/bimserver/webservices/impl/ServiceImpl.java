@@ -1,5 +1,6 @@
 package org.bimserver.webservices.impl;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /******************************************************************************
@@ -45,6 +46,13 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 import org.apache.commons.collections.comparators.ComparatorChain;
+import org.apache.commons.io.IOUtils;
+import org.apache.http.Header;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.bimserver.BimServerImporter;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -250,6 +258,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
+import com.google.common.io.ByteStreams;
 
 public class ServiceImpl extends GenericServiceImpl implements ServiceInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceImpl.class);
@@ -1977,6 +1986,19 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 	}
 
+	public org.bimserver.interfaces.objects.SNewService getNewService(Long soid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			org.bimserver.models.store.NewService externalProfile = session.get(StorePackage.eINSTANCE.getNewService(), soid, OldQuery.getDefault());
+			return getBimServer().getSConverter().convertToSObject(externalProfile);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public void addLocalServiceToProject(Long poid, org.bimserver.interfaces.objects.SService sService, Long internalServiceOid) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -2154,6 +2176,95 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				throw new UserException("No revision found for roid " + roid);
 			}
 			getBimServer().getNotificationsManager().notify(new NewRevisionNotification(getBimServer(), revision.getProject().getOid(), revision.getOid(), soid));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void triggerRevisionService(Long roid, Long soid) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
+			if (revision == null) {
+				throw new UserException("No revision found for roid " + roid);
+			}
+			NewService newService = session.get(StorePackage.eINSTANCE.getNewService(), soid, OldQuery.getDefault());
+			String url = newService.getUrl();
+			SerializerPluginConfiguration serializer = newService.getSerializer();
+			
+			Long topicId = downloadRevisions(Collections.singleton(roid), serializer.getOid(), true);
+			
+
+			CloseableHttpClient httpclient = HttpClients.createDefault();
+			HttpPost httpPost = new HttpPost(url);
+			
+			LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(topicId);
+			if (longAction == null) {
+				throw new UserException("No data found for topicId " + topicId);
+			}
+			SCheckoutResult result;
+			if (longAction instanceof LongStreamingDownloadAction) {
+				LongStreamingDownloadAction longStreamingDownloadAction = (LongStreamingDownloadAction)longAction;
+				if (longStreamingDownloadAction.getErrors().isEmpty()) {
+					try {
+						result = longStreamingDownloadAction.getCheckoutResult();
+					} catch (SerializerException e) {
+						throw new UserException(e);
+					}
+				} else {
+					LOGGER.error(longStreamingDownloadAction.getErrors().get(0));
+					throw new ServerException(longStreamingDownloadAction.getErrors().get(0));
+				}
+			} else {
+				LongDownloadOrCheckoutAction longDownloadAction = (LongDownloadOrCheckoutAction) longAction;
+				try {
+					longDownloadAction.waitForCompletion();
+					if (longDownloadAction.getErrors().isEmpty()) {
+						result = longDownloadAction.getCheckoutResult();
+					} else {
+						LOGGER.error(longDownloadAction.getErrors().get(0));
+						throw new ServerException(longDownloadAction.getErrors().get(0));
+					}
+				} catch (Exception e) {
+					LOGGER.error("", e);
+					throw new ServerException(e);
+				}
+			}
+
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			IOUtils.copy(result.getFile().getInputStream(), baos);
+			
+			httpPost.setEntity(new ByteArrayEntity(baos.toByteArray()));
+			CloseableHttpResponse response = httpclient.execute(httpPost);
+			
+			Header[] headers = response.getHeaders("Content-Disposition");
+			String filename = "unknown";
+			if (headers.length > 0) {
+				String contentDisposition = headers[0].getValue();
+				int indexOf = contentDisposition.indexOf("filename=") + 10;
+				filename = contentDisposition.substring(indexOf, contentDisposition.indexOf("\"", indexOf + 1));
+			}
+			
+			byte[] responseBytes = ByteStreams.toByteArray(response.getEntity().getContent());
+			System.out.println(new String(responseBytes));
+			
+			SFile file = new SFile();
+			file.setData(responseBytes);
+			file.setFilename(filename);
+			file.setMime(response.getHeaders("Content-Type")[0].getValue());
+			Long fileId = uploadFile(file);
+			
+			SExtendedData extendedData = new SExtendedData();
+			extendedData.setAdded(new Date());
+			extendedData.setRevisionId(roid);
+			extendedData.setTitle(newService.getName() + " Results");
+			extendedData.setSize(responseBytes.length);
+			extendedData.setFileId(fileId);
+			extendedData.setSchemaId(getExtendedDataSchemaByNamespace(newService.getOutput()).getOid());
+			addExtendedDataToRevision(roid, extendedData);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

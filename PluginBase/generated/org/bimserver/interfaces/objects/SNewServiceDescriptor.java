@@ -34,6 +34,7 @@ public class SNewServiceDescriptor implements SDataBase
 	private java.lang.String name;
 	private java.lang.String description;
 	private java.lang.String provider;
+	private java.lang.String url;
 	private List<java.lang.String> inputs = new ArrayList<java.lang.String>();
 	private List<java.lang.String> outputs = new ArrayList<java.lang.String>();
 
@@ -72,6 +73,9 @@ public class SNewServiceDescriptor implements SDataBase
 		if (sField.getName().equals("provider")) {
 			return getProvider();
 		}
+		if (sField.getName().equals("url")) {
+			return getUrl();
+		}
 		if (sField.getName().equals("inputs")) {
 			return getInputs();
 		}
@@ -99,6 +103,10 @@ public class SNewServiceDescriptor implements SDataBase
 		}
 		if (sField.getName().equals("provider")) {
 			setProvider((String)val);
+			return;
+		}
+		if (sField.getName().equals("url")) {
+			setUrl((String)val);
 			return;
 		}
 		if (sField.getName().equals("inputs")) {
@@ -142,6 +150,14 @@ public class SNewServiceDescriptor implements SDataBase
 
 	public void setProvider(java.lang.String provider) {
 		this.provider = provider;
+	}
+	
+	public java.lang.String getUrl() {
+		return url;
+	}
+
+	public void setUrl(java.lang.String url) {
+		this.url = url;
 	}
 	
 
