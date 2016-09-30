@@ -32,7 +32,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getProvider <em>Provider</em>}</li>
- *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getUrl <em>Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getAuthorizationUrl <em>Authorization Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getTokenUrl <em>Token Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getResourceUrl <em>Resource Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getOutputs <em>Outputs</em>}</li>
  * </ul>
@@ -122,30 +124,82 @@ public interface NewServiceDescriptor extends IdEObject {
 	void setProvider(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Url</b></em>' attribute.
+	 * Returns the value of the '<em><b>Authorization Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Url</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Authorization Url</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Url</em>' attribute.
-	 * @see #setUrl(String)
-	 * @see org.bimserver.models.store.StorePackage#getNewServiceDescriptor_Url()
+	 * @return the value of the '<em>Authorization Url</em>' attribute.
+	 * @see #setAuthorizationUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getNewServiceDescriptor_AuthorizationUrl()
 	 * @model
 	 * @generated
 	 */
-	String getUrl();
+	String getAuthorizationUrl();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.NewServiceDescriptor#getUrl <em>Url</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.NewServiceDescriptor#getAuthorizationUrl <em>Authorization Url</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Url</em>' attribute.
-	 * @see #getUrl()
+	 * @param value the new value of the '<em>Authorization Url</em>' attribute.
+	 * @see #getAuthorizationUrl()
 	 * @generated
 	 */
-	void setUrl(String value);
+	void setAuthorizationUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Token Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Token Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Token Url</em>' attribute.
+	 * @see #setTokenUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getNewServiceDescriptor_TokenUrl()
+	 * @model
+	 * @generated
+	 */
+	String getTokenUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.NewServiceDescriptor#getTokenUrl <em>Token Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Token Url</em>' attribute.
+	 * @see #getTokenUrl()
+	 * @generated
+	 */
+	void setTokenUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Resource Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Resource Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Resource Url</em>' attribute.
+	 * @see #setResourceUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getNewServiceDescriptor_ResourceUrl()
+	 * @model
+	 * @generated
+	 */
+	String getResourceUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.NewServiceDescriptor#getResourceUrl <em>Resource Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Resource Url</em>' attribute.
+	 * @see #getResourceUrl()
+	 * @generated
+	 */
+	void setResourceUrl(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' attribute list.

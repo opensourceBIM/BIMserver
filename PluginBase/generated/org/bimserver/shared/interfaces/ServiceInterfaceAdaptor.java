@@ -423,6 +423,9 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	public void removeModelCheckerFromProject(java.lang.Long poid, java.lang.Long modelCheckerOid) throws UserException, ServerException {
 	}
 	
+	public void removeNewServiceFromProject(java.lang.Long poid, java.lang.Long serviceOid) throws UserException, ServerException {
+	}
+	
 	public void removeServiceFromProject(java.lang.Long poid, java.lang.Long serviceOid) throws UserException, ServerException {
 	}
 	

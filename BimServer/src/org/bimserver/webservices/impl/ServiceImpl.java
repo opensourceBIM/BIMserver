@@ -129,6 +129,7 @@ import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
 import org.bimserver.database.actions.GetVolumeDatabaseAction;
 import org.bimserver.database.actions.RemoveModelCheckerFromProjectDatabaseAction;
+import org.bimserver.database.actions.RemoveNewServiceFromProjectDatabaseAction;
 import org.bimserver.database.actions.RemoveServiceFromProjectDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
@@ -2192,7 +2193,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				throw new UserException("No revision found for roid " + roid);
 			}
 			NewService newService = session.get(StorePackage.eINSTANCE.getNewService(), soid, OldQuery.getDefault());
-			String url = newService.getUrl();
+			String url = newService.getResourceUrl();
 			SerializerPluginConfiguration serializer = newService.getSerializer();
 			
 			Long topicId = downloadRevisions(Collections.singleton(roid), serializer.getOid(), true);
@@ -2460,6 +2461,20 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 	}
 
+	@Override
+	public void removeNewServiceFromProject(Long poid, Long serviceOid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Boolean> action = new RemoveNewServiceFromProjectDatabaseAction(getBimServer(), session, getInternalAccessMethod(), serviceOid, poid, getAuthorization());
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public void importData(String address, String username, String password, String path) {
 		new BimServerImporter(getBimServer(), address, username, password, path).start();

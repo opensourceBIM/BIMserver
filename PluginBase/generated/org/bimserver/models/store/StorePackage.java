@@ -6703,13 +6703,31 @@ public interface StorePackage extends EPackage {
 	int NEW_SERVICE_DESCRIPTOR__PROVIDER = 2;
 
 	/**
-	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * The feature id for the '<em><b>Authorization Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_DESCRIPTOR__URL = 3;
+	int NEW_SERVICE_DESCRIPTOR__AUTHORIZATION_URL = 3;
+
+	/**
+	 * The feature id for the '<em><b>Token Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE_DESCRIPTOR__TOKEN_URL = 4;
+
+	/**
+	 * The feature id for the '<em><b>Resource Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE_DESCRIPTOR__RESOURCE_URL = 5;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' attribute list.
@@ -6718,7 +6736,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_DESCRIPTOR__INPUTS = 4;
+	int NEW_SERVICE_DESCRIPTOR__INPUTS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' attribute list.
@@ -6727,7 +6745,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_DESCRIPTOR__OUTPUTS = 5;
+	int NEW_SERVICE_DESCRIPTOR__OUTPUTS = 7;
 
 	/**
 	 * The number of structural features of the '<em>New Service Descriptor</em>' class.
@@ -6736,7 +6754,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_DESCRIPTOR_FEATURE_COUNT = 6;
+	int NEW_SERVICE_DESCRIPTOR_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.FormatSerializerMapImpl <em>Format Serializer Map</em>}' class.
@@ -6851,13 +6869,31 @@ public interface StorePackage extends EPackage {
 	int NEW_SERVICE__DESCRIPTION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * The feature id for the '<em><b>Authorization Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__URL = 3;
+	int NEW_SERVICE__AUTHORIZATION_URL = 3;
+
+	/**
+	 * The feature id for the '<em><b>Token Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__TOKEN_URL = 4;
+
+	/**
+	 * The feature id for the '<em><b>Resource Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__RESOURCE_URL = 5;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' attribute.
@@ -6866,7 +6902,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__INPUT = 4;
+	int NEW_SERVICE__INPUT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Oauth Code</b></em>' attribute.
@@ -6875,7 +6911,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__OAUTH_CODE = 5;
+	int NEW_SERVICE__OAUTH_CODE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute.
@@ -6884,7 +6920,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__STATUS = 6;
+	int NEW_SERVICE__STATUS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Serializer</b></em>' reference.
@@ -6893,7 +6929,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__SERIALIZER = 7;
+	int NEW_SERVICE__SERIALIZER = 9;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' attribute.
@@ -6902,7 +6938,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__OUTPUT = 8;
+	int NEW_SERVICE__OUTPUT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Action</b></em>' reference.
@@ -6911,7 +6947,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__ACTION = 9;
+	int NEW_SERVICE__ACTION = 11;
 
 	/**
 	 * The number of structural features of the '<em>New Service</em>' class.
@@ -6920,7 +6956,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_FEATURE_COUNT = 10;
+	int NEW_SERVICE_FEATURE_COUNT = 12;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
@@ -13243,15 +13279,37 @@ public interface StorePackage extends EPackage {
 	EAttribute getNewServiceDescriptor_Provider();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewServiceDescriptor#getUrl <em>Url</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewServiceDescriptor#getAuthorizationUrl <em>Authorization Url</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Url</em>'.
-	 * @see org.bimserver.models.store.NewServiceDescriptor#getUrl()
+	 * @return the meta object for the attribute '<em>Authorization Url</em>'.
+	 * @see org.bimserver.models.store.NewServiceDescriptor#getAuthorizationUrl()
 	 * @see #getNewServiceDescriptor()
 	 * @generated
 	 */
-	EAttribute getNewServiceDescriptor_Url();
+	EAttribute getNewServiceDescriptor_AuthorizationUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewServiceDescriptor#getTokenUrl <em>Token Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Token Url</em>'.
+	 * @see org.bimserver.models.store.NewServiceDescriptor#getTokenUrl()
+	 * @see #getNewServiceDescriptor()
+	 * @generated
+	 */
+	EAttribute getNewServiceDescriptor_TokenUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewServiceDescriptor#getResourceUrl <em>Resource Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resource Url</em>'.
+	 * @see org.bimserver.models.store.NewServiceDescriptor#getResourceUrl()
+	 * @see #getNewServiceDescriptor()
+	 * @generated
+	 */
+	EAttribute getNewServiceDescriptor_ResourceUrl();
 
 	/**
 	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.NewServiceDescriptor#getInputs <em>Inputs</em>}'.
@@ -13371,15 +13429,37 @@ public interface StorePackage extends EPackage {
 	EAttribute getNewService_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getUrl <em>Url</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getAuthorizationUrl <em>Authorization Url</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Url</em>'.
-	 * @see org.bimserver.models.store.NewService#getUrl()
+	 * @return the meta object for the attribute '<em>Authorization Url</em>'.
+	 * @see org.bimserver.models.store.NewService#getAuthorizationUrl()
 	 * @see #getNewService()
 	 * @generated
 	 */
-	EAttribute getNewService_Url();
+	EAttribute getNewService_AuthorizationUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getTokenUrl <em>Token Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Token Url</em>'.
+	 * @see org.bimserver.models.store.NewService#getTokenUrl()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EAttribute getNewService_TokenUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getResourceUrl <em>Resource Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resource Url</em>'.
+	 * @see org.bimserver.models.store.NewService#getResourceUrl()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EAttribute getNewService_ResourceUrl();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getInput <em>Input</em>}'.
@@ -18381,12 +18461,28 @@ public interface StorePackage extends EPackage {
 		EAttribute NEW_SERVICE_DESCRIPTOR__PROVIDER = eINSTANCE.getNewServiceDescriptor_Provider();
 
 		/**
-		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Authorization Url</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NEW_SERVICE_DESCRIPTOR__URL = eINSTANCE.getNewServiceDescriptor_Url();
+		EAttribute NEW_SERVICE_DESCRIPTOR__AUTHORIZATION_URL = eINSTANCE.getNewServiceDescriptor_AuthorizationUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Token Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE_DESCRIPTOR__TOKEN_URL = eINSTANCE.getNewServiceDescriptor_TokenUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Resource Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE_DESCRIPTOR__RESOURCE_URL = eINSTANCE.getNewServiceDescriptor_ResourceUrl();
 
 		/**
 		 * The meta object literal for the '<em><b>Inputs</b></em>' attribute list feature.
@@ -18485,12 +18581,28 @@ public interface StorePackage extends EPackage {
 		EAttribute NEW_SERVICE__DESCRIPTION = eINSTANCE.getNewService_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Authorization Url</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NEW_SERVICE__URL = eINSTANCE.getNewService_Url();
+		EAttribute NEW_SERVICE__AUTHORIZATION_URL = eINSTANCE.getNewService_AuthorizationUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Token Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE__TOKEN_URL = eINSTANCE.getNewService_TokenUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Resource Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE__RESOURCE_URL = eINSTANCE.getNewService_ResourceUrl();
 
 		/**
 		 * The meta object literal for the '<em><b>Input</b></em>' attribute feature.

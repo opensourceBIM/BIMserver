@@ -37,7 +37,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getProvider <em>Provider</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getUrl <em>Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getAuthorizationUrl <em>Authorization Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getTokenUrl <em>Token Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getResourceUrl <em>Resource Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getInput <em>Input</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getOauthCode <em>Oauth Code</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getStatus <em>Status</em>}</li>
@@ -137,8 +139,8 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getUrl() {
-		return (String) eGet(StorePackage.Literals.NEW_SERVICE__URL, true);
+	public String getAuthorizationUrl() {
+		return (String) eGet(StorePackage.Literals.NEW_SERVICE__AUTHORIZATION_URL, true);
 	}
 
 	/**
@@ -146,8 +148,44 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUrl(String newUrl) {
-		eSet(StorePackage.Literals.NEW_SERVICE__URL, newUrl);
+	public void setAuthorizationUrl(String newAuthorizationUrl) {
+		eSet(StorePackage.Literals.NEW_SERVICE__AUTHORIZATION_URL, newAuthorizationUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTokenUrl() {
+		return (String) eGet(StorePackage.Literals.NEW_SERVICE__TOKEN_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTokenUrl(String newTokenUrl) {
+		eSet(StorePackage.Literals.NEW_SERVICE__TOKEN_URL, newTokenUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getResourceUrl() {
+		return (String) eGet(StorePackage.Literals.NEW_SERVICE__RESOURCE_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResourceUrl(String newResourceUrl) {
+		eSet(StorePackage.Literals.NEW_SERVICE__RESOURCE_URL, newResourceUrl);
 	}
 
 	/**

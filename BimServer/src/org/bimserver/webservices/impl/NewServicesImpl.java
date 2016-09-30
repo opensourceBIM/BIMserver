@@ -43,7 +43,9 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		sNewServiceDescriptor.getInputs().add("IFC_JSON_2x3TC1");
 		sNewServiceDescriptor.getInputs().add("IFC_JSON_4");
 		sNewServiceDescriptor.getOutputs().add("text/csv");
-		sNewServiceDescriptor.setUrl("https://test.logic-labs.nl/stats.php");
+		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/stats.php");
+		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
+		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
 		list.add(sNewServiceDescriptor);
 
 		sNewServiceDescriptor = new SNewServiceDescriptor();
@@ -54,7 +56,9 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		sNewServiceDescriptor.getInputs().add("IFC_STEP_4");
 		sNewServiceDescriptor.getOutputs().add("BCF_1.0");
 		sNewServiceDescriptor.getOutputs().add("BCF_2.0");
-		sNewServiceDescriptor.setUrl("https://test.logic-labs.nl/clashdetection.php");
+		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/clashdetection.php");
+		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
+		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
 		list.add(sNewServiceDescriptor);
 
 		sNewServiceDescriptor = new SNewServiceDescriptor();
@@ -63,7 +67,9 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		sNewServiceDescriptor.setProvider("Test Service 3");
 		sNewServiceDescriptor.getInputs().add("DOES_NOT_EXIST");
 		sNewServiceDescriptor.getOutputs().add("BCF_2.0");
-		sNewServiceDescriptor.setUrl("https://test.logic-labs.nl/services.php");
+		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services.php");
+		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
+		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
 		list.add(sNewServiceDescriptor);
 		return list;
 	}

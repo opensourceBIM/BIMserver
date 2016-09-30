@@ -1,5 +1,5 @@
 
-´ò
+ñó
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -1269,7 +1269,11 @@ objectIDMs
 value ("M
 $RemoveModelCheckerFromProjectRequest
 poid (
-modelCheckerOid ("C
+modelCheckerOid ("F
+"RemoveNewServiceFromProjectRequest
+poid (
+
+serviceOid ("C
 RemoveServiceFromProjectRequest
 poid (
 
@@ -1400,7 +1404,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2Úm
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2Ïn
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1508,7 +1512,8 @@ $getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserialize
 
 importData#.org.bimserver.pb.ImportDataRequest.org.bimserver.pb.VoidResponsef
 initiateCheckin(.org.bimserver.pb.InitiateCheckinRequest).org.bimserver.pb.InitiateCheckinResponsew
-removeModelCheckerFromProject6.org.bimserver.pb.RemoveModelCheckerFromProjectRequest.org.bimserver.pb.VoidResponsem
+removeModelCheckerFromProject6.org.bimserver.pb.RemoveModelCheckerFromProjectRequest.org.bimserver.pb.VoidResponses
+removeNewServiceFromProject4.org.bimserver.pb.RemoveNewServiceFromProjectRequest.org.bimserver.pb.VoidResponsem
 removeServiceFromProject1.org.bimserver.pb.RemoveServiceFromProjectRequest.org.bimserver.pb.VoidResponse}
  removeUserFromExtendedDataSchema9.org.bimserver.pb.RemoveUserFromExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsex
 removeUserFromProject..org.bimserver.pb.RemoveUserFromProjectRequest/.org.bimserver.pb.RemoveUserFromProjectResponse]

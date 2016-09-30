@@ -229,6 +229,8 @@ service ServiceInterface {
 
 	rpc removeModelCheckerFromProject (RemoveModelCheckerFromProjectRequest) returns (VoidResponse);
 
+	rpc removeNewServiceFromProject (RemoveNewServiceFromProjectRequest) returns (VoidResponse);
+
 	rpc removeServiceFromProject (RemoveServiceFromProjectRequest) returns (VoidResponse);
 
 	rpc removeUserFromExtendedDataSchema (RemoveUserFromExtendedDataSchemaRequest) returns (VoidResponse);
@@ -2063,6 +2065,11 @@ message InitiateCheckinResponse {
 message RemoveModelCheckerFromProjectRequest {
 	optional int64 poid = 1;
 	optional int64 modelCheckerOid = 2;
+}
+
+message RemoveNewServiceFromProjectRequest {
+	optional int64 poid = 1;
+	optional int64 serviceOid = 2;
 }
 
 message RemoveServiceFromProjectRequest {

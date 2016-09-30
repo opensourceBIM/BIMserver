@@ -32,7 +32,9 @@ public class SNewService implements SDataBase
 	private java.lang.String name;
 	private java.lang.String provider;
 	private java.lang.String description;
-	private java.lang.String url;
+	private java.lang.String authorizationUrl;
+	private java.lang.String tokenUrl;
+	private java.lang.String resourceUrl;
 	private java.lang.String input;
 	private java.lang.String oauthCode;
 	private SServiceStatus status;
@@ -75,8 +77,14 @@ public class SNewService implements SDataBase
 		if (sField.getName().equals("description")) {
 			return getDescription();
 		}
-		if (sField.getName().equals("url")) {
-			return getUrl();
+		if (sField.getName().equals("authorizationUrl")) {
+			return getAuthorizationUrl();
+		}
+		if (sField.getName().equals("tokenUrl")) {
+			return getTokenUrl();
+		}
+		if (sField.getName().equals("resourceUrl")) {
+			return getResourceUrl();
 		}
 		if (sField.getName().equals("input")) {
 			return getInput();
@@ -118,8 +126,16 @@ public class SNewService implements SDataBase
 			setDescription((String)val);
 			return;
 		}
-		if (sField.getName().equals("url")) {
-			setUrl((String)val);
+		if (sField.getName().equals("authorizationUrl")) {
+			setAuthorizationUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("tokenUrl")) {
+			setTokenUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("resourceUrl")) {
+			setResourceUrl((String)val);
 			return;
 		}
 		if (sField.getName().equals("input")) {
@@ -181,12 +197,28 @@ public class SNewService implements SDataBase
 		this.description = description;
 	}
 	
-	public java.lang.String getUrl() {
-		return url;
+	public java.lang.String getAuthorizationUrl() {
+		return authorizationUrl;
 	}
 
-	public void setUrl(java.lang.String url) {
-		this.url = url;
+	public void setAuthorizationUrl(java.lang.String authorizationUrl) {
+		this.authorizationUrl = authorizationUrl;
+	}
+	
+	public java.lang.String getTokenUrl() {
+		return tokenUrl;
+	}
+
+	public void setTokenUrl(java.lang.String tokenUrl) {
+		this.tokenUrl = tokenUrl;
+	}
+	
+	public java.lang.String getResourceUrl() {
+		return resourceUrl;
+	}
+
+	public void setResourceUrl(java.lang.String resourceUrl) {
+		this.resourceUrl = resourceUrl;
 	}
 	
 	public java.lang.String getInput() {

@@ -1484,8 +1484,21 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "removeServiceFromProject")
 	void removeServiceFromProject(
-			@WebParam(name = "poid", partName = "removeServiceFromProject.poid") Long poid, 
-			@WebParam(name = "serviceOid", partName = "removeServiceFromProject.serviceOid") Long serviceOid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "removeServiceFromProject.poid") Long poid, 
+		@WebParam(name = "serviceOid", partName = "removeServiceFromProject.serviceOid") Long serviceOid) throws ServerException, UserException;
+	
+	/**
+	 * Remove the given service from the given project
+	 * 
+	 * @param poid Project-ID
+	 * @param serviceOid Service-ID
+	 * @throws ServerException
+	 * @throws UserException
+	 */
+	@WebMethod(action = "removeNewServiceFromProject")
+	void removeNewServiceFromProject(
+		@WebParam(name = "poid", partName = "removeNewServiceFromProject.poid") Long poid, 
+		@WebParam(name = "serviceOid", partName = "removeNewServiceFromProject.serviceOid") Long serviceOid) throws ServerException, UserException;
 	
 	/**
 	 * Import data from another BIMserver, mainly used for migrations. EXPERIMENTAL CODE!

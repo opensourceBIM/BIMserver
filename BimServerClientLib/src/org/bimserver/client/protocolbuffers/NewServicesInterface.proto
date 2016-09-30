@@ -41,6 +41,7 @@ message SNewServiceDescriptor {
 	repeated string outputs = 5;
 	optional string provider = 6;
 	optional int32 rid = 7;
+	optional string url = 8;
 }
 
 message ListAllServiceDescriptorsResponse {

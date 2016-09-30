@@ -544,6 +544,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface RemoveNewServiceFromProjectCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface RemoveServiceFromProjectCallback {
 		void success();
 		void error(Throwable e);
@@ -1884,6 +1889,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					syncService.removeModelCheckerFromProject(poid, modelCheckerOid);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void removeNewServiceFromProject(final java.lang.Long poid, final java.lang.Long serviceOid, final RemoveNewServiceFromProjectCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.removeNewServiceFromProject(poid, serviceOid);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

@@ -36,7 +36,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getProvider <em>Provider</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getUrl <em>Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getAuthorizationUrl <em>Authorization Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getTokenUrl <em>Token Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getResourceUrl <em>Resource Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getOutputs <em>Outputs</em>}</li>
  * </ul>
@@ -132,8 +134,8 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getUrl() {
-		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__URL, true);
+	public String getAuthorizationUrl() {
+		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__AUTHORIZATION_URL, true);
 	}
 
 	/**
@@ -141,8 +143,44 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUrl(String newUrl) {
-		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__URL, newUrl);
+	public void setAuthorizationUrl(String newAuthorizationUrl) {
+		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__AUTHORIZATION_URL, newAuthorizationUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTokenUrl() {
+		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__TOKEN_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTokenUrl(String newTokenUrl) {
+		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__TOKEN_URL, newTokenUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getResourceUrl() {
+		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__RESOURCE_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResourceUrl(String newResourceUrl) {
+		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__RESOURCE_URL, newResourceUrl);
 	}
 
 	/**
