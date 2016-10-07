@@ -31,7 +31,7 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<descriptor>assembly.xml</descriptor>
-					<finalName>bimserverstarter-${pom.version}</finalName>
+					<finalName>bimserverstarter-${project.version}</finalName>
 					<archive>
 						<manifest>
 							<mainClass>org.bimserver.starter.Starter</mainClass>
