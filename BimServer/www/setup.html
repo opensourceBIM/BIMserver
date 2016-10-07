@@ -308,6 +308,19 @@ function Setup(cd, address) {
 	};
 	
 	this.nostage2 = function(){
+		Global.bimServerApi.call("ServiceInterface", "getAllRepositoryExtendedDataSchemas", {}, function(data){
+			var requests = [];
+			data.forEach(function(extendedDataSchema){
+				if (schemas[extendedDataSchema.namespace] == null) {
+					var request = [
+						"ServiceInterface", "addExtendedDataSchema", {extendedDataSchema: extendedDataSchema}
+					];
+					requests.push(request);
+				}
+			});
+			Global.bimServerApi.multiCall(requests, function(){
+			});
+		});
 		o.logInfo("Skipping email setup...");
 		Global.api.call("AuthInterface", "login", {username: $(".setup .adminUsernameInput").val(), password: $(".setup .adminPasswordInput").val()}, function(data){
 			o.stage3();

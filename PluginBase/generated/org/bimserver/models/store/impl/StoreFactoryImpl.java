@@ -296,8 +296,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createActionStateFromString(eDataType, initialValue);
 		case StorePackage.SERVER_STATE:
 			return createServerStateFromString(eDataType, initialValue);
-		case StorePackage.EXTENDED_DATA_SCHEMA_TYPE:
-			return createExtendedDataSchemaTypeFromString(eDataType, initialValue);
 		case StorePackage.TRIGGER:
 			return createTriggerFromString(eDataType, initialValue);
 		case StorePackage.SERVICE_SIMPLE_TYPE:
@@ -345,8 +343,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertActionStateToString(eDataType, instanceValue);
 		case StorePackage.SERVER_STATE:
 			return convertServerStateToString(eDataType, instanceValue);
-		case StorePackage.EXTENDED_DATA_SCHEMA_TYPE:
-			return convertExtendedDataSchemaTypeToString(eDataType, instanceValue);
 		case StorePackage.TRIGGER:
 			return convertTriggerToString(eDataType, instanceValue);
 		case StorePackage.SERVICE_SIMPLE_TYPE:
@@ -1507,27 +1503,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertServerStateToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExtendedDataSchemaType createExtendedDataSchemaTypeFromString(EDataType eDataType, String initialValue) {
-		ExtendedDataSchemaType result = ExtendedDataSchemaType.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertExtendedDataSchemaTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

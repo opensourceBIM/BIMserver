@@ -28,6 +28,7 @@ import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.ExtendedDataAddedToRevision;
 import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.File;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.notifications.NewExtendedDataOnRevisionNotification;
@@ -53,7 +54,8 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 		User actingUser = getUserByUoid(authorization.getUoid());
 		getIdEObject().setUser(actingUser);
 		getIdEObject().setAdded(new Date());
-		getIdEObject().setSize(getIdEObject().getFile().getData().length);
+		File file = getIdEObject().getFile();
+		getIdEObject().setSize(file.getData().length);
 		super.execute();
 		Revision revision = getRevisionByRoid(roid);
 		if (revision == null) {

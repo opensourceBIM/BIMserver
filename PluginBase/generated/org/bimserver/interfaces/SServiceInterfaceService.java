@@ -239,7 +239,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SVersion();
 					}
 				}));
-				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchemaType"), null));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SFile"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SFile();

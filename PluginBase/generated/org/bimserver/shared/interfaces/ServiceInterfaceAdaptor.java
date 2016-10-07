@@ -281,7 +281,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SExtendedDataSchema getExtendedDataSchemaByNamespace(java.lang.String namespace) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SExtendedDataSchema getExtendedDataSchemaByName(java.lang.String name) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -290,6 +290,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	}
 	
 	public org.bimserver.interfaces.objects.SFile getFile(java.lang.Long fileId) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SFile getFileMeta(java.lang.Long fileId) throws UserException, ServerException {
 		return null;
 	}
 	

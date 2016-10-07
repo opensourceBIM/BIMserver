@@ -106,7 +106,7 @@ import org.bimserver.database.actions.GetDeserializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetExtendedDataByIdDatabaseAction;
 import org.bimserver.database.actions.GetExtendedDataSchemaByIdDatabaseAction;
-import org.bimserver.database.actions.GetExtendedDataSchemaByNamespaceDatabaseAction;
+import org.bimserver.database.actions.GetExtendedDataSchemaByNameDatabaseAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
 import org.bimserver.database.actions.GetGeometryInfoDatabaseAction;
 import org.bimserver.database.actions.GetIfcHeaderDatabaseAction;
@@ -161,7 +161,6 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataAddedToRevision;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
-import org.bimserver.interfaces.objects.SExtendedDataSchemaType;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGeometryInfo;
@@ -875,7 +874,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 	}
 	
-	public SExtendedDataSchema getExtendedDataSchemaByNamespace(String nameSpace) throws UserException, ServerException {
+	public SExtendedDataSchema getExtendedDataSchemaByName(String nameSpace) throws UserException, ServerException {
 		// Not checking for real authentication here because a remote service should be able to use an exs
 		if (nameSpace == null) {
 			throw new UserException("NameSpace required");
@@ -883,7 +882,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetExtendedDataSchemaByNamespaceDatabaseAction(session, getInternalAccessMethod(), nameSpace)));
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetExtendedDataSchemaByNameDatabaseAction(session, getInternalAccessMethod(), nameSpace)));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1809,9 +1808,15 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			List<SExtendedDataSchema> serializers = getBimServer().getSConverter().convertToSListExtendedDataSchema(session.executeAndCommitAction(new GetAllExtendedDataSchemasDatabaseAction(session,
+			List<SExtendedDataSchema> schemas = getBimServer().getSConverter().convertToSListExtendedDataSchema(session.executeAndCommitAction(new GetAllExtendedDataSchemasDatabaseAction(session,
 					getInternalAccessMethod())));
-			return serializers;
+			Collections.sort(schemas, new Comparator<SExtendedDataSchema>() {
+				@Override
+				public int compare(SExtendedDataSchema o1, SExtendedDataSchema o2) {
+					return o1.getName().compareTo(o2.getName());
+				}
+			});
+			return schemas;
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1936,10 +1941,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				
 				SExtendedDataSchema sExtendedDataSchema = new SExtendedDataSchema();
 				sExtendedDataSchema.setName(extendedDataSchemaJson.getString("name"));
-				sExtendedDataSchema.setNamespace(extendedDataSchemaJson.getString("namespace"));
+				sExtendedDataSchema.setContentType(extendedDataSchemaJson.getString("contentType"));
 				sExtendedDataSchema.setUrl(extendedDataSchemaJson.getString("url"));
 				sExtendedDataSchema.setDescription(extendedDataSchemaJson.getString("description"));
-				sExtendedDataSchema.setType(SExtendedDataSchemaType.valueOf(extendedDataSchemaJson.getString("type")));
 
 				extendedDataSchemas.add(sExtendedDataSchema);
 			}
@@ -2116,9 +2120,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			SExtendedDataSchema sExtendedDataSchema = new SExtendedDataSchema();
 			sExtendedDataSchema.setName(root.getString("name"));
-			sExtendedDataSchema.setNamespace(root.getString("namespace"));
+			sExtendedDataSchema.setContentType(root.getString("contentType"));
 			sExtendedDataSchema.setUrl(root.getString("url"));
-			sExtendedDataSchema.setType(SExtendedDataSchemaType.valueOf(root.getString("type")));
 			return sExtendedDataSchema;
 		} catch (Exception e) {
 			return handleException(e);
@@ -2138,6 +2141,20 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 	}
 
+	@Override
+	public SFile getFileMeta(Long fileId) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			org.bimserver.models.store.File file = (org.bimserver.models.store.File)session.get(StorePackage.eINSTANCE.getFile(), fileId, OldQuery.getDefault());
+			file.setData(null);
+			return getBimServer().getSConverter().convertToSObject(file);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public Long uploadFile(SFile file) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -2264,7 +2281,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			extendedData.setTitle(newService.getName() + " Results");
 			extendedData.setSize(responseBytes.length);
 			extendedData.setFileId(fileId);
-			extendedData.setSchemaId(getExtendedDataSchemaByNamespace(newService.getOutput()).getOid());
+			extendedData.setSchemaId(getExtendedDataSchemaByName(newService.getOutput()).getOid());
 			addExtendedDataToRevision(roid, extendedData);
 		} catch (Exception e) {
 			handleException(e);

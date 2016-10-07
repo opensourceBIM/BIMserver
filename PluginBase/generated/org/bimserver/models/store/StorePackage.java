@@ -3218,13 +3218,22 @@ public interface StorePackage extends EPackage {
 	int FILE__MIME = 2;
 
 	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE__SIZE = 3;
+
+	/**
 	 * The number of structural features of the '<em>File</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_FEATURE_COUNT = 3;
+	int FILE_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl <em>Extended Data Schema</em>}' class.
@@ -3255,13 +3264,13 @@ public interface StorePackage extends EPackage {
 	int EXTENDED_DATA_SCHEMA__URL = 1;
 
 	/**
-	 * The feature id for the '<em><b>Namespace</b></em>' attribute.
+	 * The feature id for the '<em><b>Content Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__NAMESPACE = 2;
+	int EXTENDED_DATA_SCHEMA__CONTENT_TYPE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -3291,31 +3300,13 @@ public interface StorePackage extends EPackage {
 	int EXTENDED_DATA_SCHEMA__SIZE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Validate</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDED_DATA_SCHEMA__VALIDATE = 6;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDED_DATA_SCHEMA__TYPE = 7;
-
-	/**
 	 * The feature id for the '<em><b>Users</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__USERS = 8;
+	int EXTENDED_DATA_SCHEMA__USERS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
@@ -3324,7 +3315,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__EXTENDED_DATA = 9;
+	int EXTENDED_DATA_SCHEMA__EXTENDED_DATA = 7;
 
 	/**
 	 * The number of structural features of the '<em>Extended Data Schema</em>' class.
@@ -3333,7 +3324,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA_FEATURE_COUNT = 10;
+	int EXTENDED_DATA_SCHEMA_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ExtendedDataImpl <em>Extended Data</em>}' class.
@@ -7037,16 +7028,6 @@ public interface StorePackage extends EPackage {
 	int SERVER_STATE = 106;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.ExtendedDataSchemaType
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
-	 * @generated
-	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 107;
-
-	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7054,7 +7035,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 108;
+	int TRIGGER = 107;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
@@ -7064,7 +7045,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
 	 * @generated
 	 */
-	int SERVICE_SIMPLE_TYPE = 109;
+	int SERVICE_SIMPLE_TYPE = 108;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -7074,7 +7055,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 110;
+	int PRIMITIVE_ENUM = 109;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -7084,7 +7065,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 111;
+	int NOTIFICTION_RESULT_ENUM = 110;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -7094,7 +7075,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 112;
+	int PROGRESS_TOPIC_TYPE = 111;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ModelCheckerResultType <em>Model Checker Result Type</em>}' enum.
@@ -7104,7 +7085,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultType()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_TYPE = 113;
+	int MODEL_CHECKER_RESULT_TYPE = 112;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}' enum.
@@ -7114,7 +7095,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSmtpProtocol()
 	 * @generated
 	 */
-	int SMTP_PROTOCOL = 114;
+	int SMTP_PROTOCOL = 113;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginBundleType <em>Plugin Bundle Type</em>}' enum.
@@ -7124,7 +7105,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundleType()
 	 * @generated
 	 */
-	int PLUGIN_BUNDLE_TYPE = 115;
+	int PLUGIN_BUNDLE_TYPE = 114;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginType <em>Plugin Type</em>}' enum.
@@ -7134,7 +7115,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginType()
 	 * @generated
 	 */
-	int PLUGIN_TYPE = 116;
+	int PLUGIN_TYPE = 115;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceStatus <em>Service Status</em>}' enum.
@@ -7144,7 +7125,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceStatus()
 	 * @generated
 	 */
-	int SERVICE_STATUS = 117;
+	int SERVICE_STATUS = 116;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -7154,7 +7135,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 118;
+	int DATA_HANDLER = 117;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -10152,6 +10133,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getFile_Mime();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.File#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see org.bimserver.models.store.File#getSize()
+	 * @see #getFile()
+	 * @generated
+	 */
+	EAttribute getFile_Size();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ExtendedDataSchema <em>Extended Data Schema</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10184,15 +10176,15 @@ public interface StorePackage extends EPackage {
 	EAttribute getExtendedDataSchema_Url();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getNamespace <em>Namespace</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getContentType <em>Content Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Namespace</em>'.
-	 * @see org.bimserver.models.store.ExtendedDataSchema#getNamespace()
+	 * @return the meta object for the attribute '<em>Content Type</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getContentType()
 	 * @see #getExtendedDataSchema()
 	 * @generated
 	 */
-	EAttribute getExtendedDataSchema_Namespace();
+	EAttribute getExtendedDataSchema_ContentType();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getDescription <em>Description</em>}'.
@@ -10226,28 +10218,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getExtendedDataSchema_Size();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#isValidate <em>Validate</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Validate</em>'.
-	 * @see org.bimserver.models.store.ExtendedDataSchema#isValidate()
-	 * @see #getExtendedDataSchema()
-	 * @generated
-	 */
-	EAttribute getExtendedDataSchema_Validate();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see org.bimserver.models.store.ExtendedDataSchema#getType()
-	 * @see #getExtendedDataSchema()
-	 * @generated
-	 */
-	EAttribute getExtendedDataSchema_Type();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.ExtendedDataSchema#getUsers <em>Users</em>}'.
@@ -13628,16 +13598,6 @@ public interface StorePackage extends EPackage {
 	EEnum getServerState();
 
 	/**
-	 * Returns the meta object for enum '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Extended Data Schema Type</em>'.
-	 * @see org.bimserver.models.store.ExtendedDataSchemaType
-	 * @generated
-	 */
-	EEnum getExtendedDataSchemaType();
-
-	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16061,6 +16021,14 @@ public interface StorePackage extends EPackage {
 		EAttribute FILE__MIME = eINSTANCE.getFile_Mime();
 
 		/**
+		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILE__SIZE = eINSTANCE.getFile_Size();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl <em>Extended Data Schema</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -16087,12 +16055,12 @@ public interface StorePackage extends EPackage {
 		EAttribute EXTENDED_DATA_SCHEMA__URL = eINSTANCE.getExtendedDataSchema_Url();
 
 		/**
-		 * The meta object literal for the '<em><b>Namespace</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Content Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTENDED_DATA_SCHEMA__NAMESPACE = eINSTANCE.getExtendedDataSchema_Namespace();
+		EAttribute EXTENDED_DATA_SCHEMA__CONTENT_TYPE = eINSTANCE.getExtendedDataSchema_ContentType();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -16117,22 +16085,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXTENDED_DATA_SCHEMA__SIZE = eINSTANCE.getExtendedDataSchema_Size();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EXTENDED_DATA_SCHEMA__VALIDATE = eINSTANCE.getExtendedDataSchema_Validate();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EXTENDED_DATA_SCHEMA__TYPE = eINSTANCE.getExtendedDataSchema_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Users</b></em>' reference list feature.
@@ -18767,16 +18719,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum SERVER_STATE = eINSTANCE.getServerState();
-
-		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.ExtendedDataSchemaType
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
-		 * @generated
-		 */
-		EEnum EXTENDED_DATA_SCHEMA_TYPE = eINSTANCE.getExtendedDataSchemaType();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.

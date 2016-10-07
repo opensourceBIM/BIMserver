@@ -41,9 +41,10 @@ message SNewServiceDescriptor {
 	optional int64 oid = 5;
 	repeated string outputs = 6;
 	optional string provider = 7;
-	optional string resourceUrl = 8;
-	optional int32 rid = 9;
-	optional string tokenUrl = 10;
+	optional string registerUrl = 8;
+	optional string resourceUrl = 9;
+	optional int32 rid = 10;
+	optional string tokenUrl = 11;
 }
 
 message ListAllServiceDescriptorsResponse {

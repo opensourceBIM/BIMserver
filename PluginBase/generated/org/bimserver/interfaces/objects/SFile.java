@@ -32,6 +32,7 @@ public class SFile implements SDataBase
 	private byte[] data;
 	private java.lang.String filename;
 	private java.lang.String mime;
+	private long size;
 
 	public long getOid() {
 		return this.oid;
@@ -68,6 +69,9 @@ public class SFile implements SDataBase
 		if (sField.getName().equals("mime")) {
 			return getMime();
 		}
+		if (sField.getName().equals("size")) {
+			return getSize();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -88,6 +92,10 @@ public class SFile implements SDataBase
 		}
 		if (sField.getName().equals("mime")) {
 			setMime((String)val);
+			return;
+		}
+		if (sField.getName().equals("size")) {
+			setSize((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -123,6 +131,14 @@ public class SFile implements SDataBase
 
 	public void setMime(java.lang.String mime) {
 		this.mime = mime;
+	}
+	
+	public long getSize() {
+		return size;
+	}
+
+	public void setSize(long size) {
+		this.size = size;
 	}
 	
 	@Override

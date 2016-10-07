@@ -157,11 +157,13 @@ service ServiceInterface {
 
 	rpc getExtendedDataSchemaById (GetExtendedDataSchemaByIdRequest) returns (GetExtendedDataSchemaByIdResponse);
 
-	rpc getExtendedDataSchemaByNamespace (GetExtendedDataSchemaByNamespaceRequest) returns (GetExtendedDataSchemaByNamespaceResponse);
+	rpc getExtendedDataSchemaByName (GetExtendedDataSchemaByNameRequest) returns (GetExtendedDataSchemaByNameResponse);
 
 	rpc getExtendedDataSchemaFromRepository (GetExtendedDataSchemaFromRepositoryRequest) returns (GetExtendedDataSchemaFromRepositoryResponse);
 
 	rpc getFile (GetFileRequest) returns (GetFileResponse);
+
+	rpc getFileMeta (GetFileMetaRequest) returns (GetFileMetaResponse);
 
 	rpc getGeoTag (GetGeoTagRequest) returns (GetGeoTagResponse);
 
@@ -278,25 +280,17 @@ message VoidResponse {
 }
 
 message Void {
-}enum SExtendedDataSchemaType{
-	SExtendedDataSchemaType_XSD = 0;
-	SExtendedDataSchemaType_PDF = 1;
-	SExtendedDataSchemaType_TXT = 2;
-}
-
-message SExtendedDataSchema {
-	optional string description = 1;
-	repeated int64 extendedData = 2;
-	optional int64 fileId = 3;
-	optional string name = 4;
-	optional string namespace = 5;
+}message SExtendedDataSchema {
+	optional string contentType = 1;
+	optional string description = 2;
+	repeated int64 extendedData = 3;
+	optional int64 fileId = 4;
+	optional string name = 5;
 	optional int64 oid = 6;
 	optional int32 rid = 7;
 	optional int64 size = 8;
-	optional SExtendedDataSchemaType type = 9;
-	optional string url = 10;
-	repeated int64 users = 11;
-	optional bool validate = 12;
+	optional string url = 9;
+	repeated int64 users = 10;
 }
 
 message AddExtendedDataSchemaRequest {
@@ -420,11 +414,12 @@ message SNewService {
 	optional int64 oid = 7;
 	optional string output = 8;
 	optional string provider = 9;
-	optional string resourceUrl = 10;
-	optional int32 rid = 11;
-	optional int64 serializerId = 12;
-	optional SServiceStatus status = 13;
-	optional string tokenUrl = 14;
+	optional string registerUrl = 10;
+	optional string resourceUrl = 11;
+	optional int32 rid = 12;
+	optional int64 serializerId = 13;
+	optional SServiceStatus status = 14;
+	optional string tokenUrl = 15;
 }
 
 message AddNewServiceToProjectRequest {
@@ -1288,11 +1283,11 @@ message GetExtendedDataSchemaByIdResponse {
 	optional SExtendedDataSchema value = 2;
 }
 
-message GetExtendedDataSchemaByNamespaceRequest {
-	optional string namespace = 1;
+message GetExtendedDataSchemaByNameRequest {
+	optional string name = 1;
 }
 
-message GetExtendedDataSchemaByNamespaceResponse {
+message GetExtendedDataSchemaByNameResponse {
 	optional string errorMessage = 1;
 	optional SExtendedDataSchema value = 2;
 }
@@ -1319,6 +1314,15 @@ message SFile {
 }
 
 message GetFileResponse {
+	optional string errorMessage = 1;
+	optional SFile value = 2;
+}
+
+message GetFileMetaRequest {
+	optional int64 fileId = 1;
+}
+
+message GetFileMetaResponse {
 	optional string errorMessage = 1;
 	optional SFile value = 2;
 }

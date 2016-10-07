@@ -39,14 +39,11 @@ public class AddExtendedDataSchemaDatabaseAction extends AddDatabaseAction<Exten
 		if (getIdEObject().getName() == null || getIdEObject().getName().trim().equals("")) {
 			throw new UserException("Name cannot be empty");
 		}
-		if (getIdEObject().getNamespace() == null || getIdEObject().getNamespace().trim().equals("")) {
-			throw new UserException("Namespace cannot be empty");
+		if (getIdEObject().getContentType() == null || getIdEObject().getContentType().trim().equals("")) {
+			throw new UserException("ContentType cannot be empty");
 		}
 		if (getDatabaseSession().querySingle(new AttributeCondition(StorePackage.eINSTANCE.getExtendedDataSchema_Name(), new StringLiteral(getIdEObject().getName())), ExtendedDataSchema.class, OldQuery.getDefault()) != null) {
 			throw new UserException("ExtendedDataSchema name must be unique");
-		}
-		if (getDatabaseSession().querySingle(new AttributeCondition(StorePackage.eINSTANCE.getExtendedDataSchema_Namespace(), new StringLiteral(getIdEObject().getNamespace())), ExtendedDataSchema.class, OldQuery.getDefault()) != null) {
-			throw new UserException("ExtendedDataSchema namespace must be unique");
 		}
 		return super.execute();
 	}

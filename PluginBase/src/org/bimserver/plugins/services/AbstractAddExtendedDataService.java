@@ -43,7 +43,7 @@ public abstract class AbstractAddExtendedDataService extends AbstractService {
 			SExtendedData extendedData = new SExtendedData();
 			extendedData.setTitle(title);
 			file.setFilename(filename);
-			SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByNamespace(namespace);
+			SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByName(namespace);
 			
 			extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
 			file.setData(data);

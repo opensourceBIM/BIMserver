@@ -111,8 +111,11 @@ public class UploadServlet extends SubServlet {
 						if ("file".equals(action)) {
 							ServiceInterface serviceInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 							SFile file = new SFile();
-							file.setData(IOUtils.toByteArray(in));
+							byte[] data = IOUtils.toByteArray(in);
+							file.setData(data);
+							file.setSize(data.length);
 							file.setFilename(name);
+							file.setMime(item.getContentType());
 							result.put("fileId", serviceInterface.uploadFile(file));
 						} else if (poid != -1) {
 							InputStream realStream = null;

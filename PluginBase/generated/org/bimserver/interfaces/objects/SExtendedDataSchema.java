@@ -33,12 +33,10 @@ public class SExtendedDataSchema implements SDataBase
 	private static SClass sClass;
 	private java.lang.String name;
 	private java.lang.String url;
-	private java.lang.String namespace;
+	private java.lang.String contentType;
 	private java.lang.String description;
 	private long fileId = -1;
 	private long size;
-	private boolean validate;
-	private SExtendedDataSchemaType type;
 	private List<Long> users = new ArrayList<Long>();
 	private List<Long> extendedData = new ArrayList<Long>();
 
@@ -74,8 +72,8 @@ public class SExtendedDataSchema implements SDataBase
 		if (sField.getName().equals("url")) {
 			return getUrl();
 		}
-		if (sField.getName().equals("namespace")) {
-			return getNamespace();
+		if (sField.getName().equals("contentType")) {
+			return getContentType();
 		}
 		if (sField.getName().equals("description")) {
 			return getDescription();
@@ -85,12 +83,6 @@ public class SExtendedDataSchema implements SDataBase
 		}
 		if (sField.getName().equals("size")) {
 			return getSize();
-		}
-		if (sField.getName().equals("validate")) {
-			return isValidate();
-		}
-		if (sField.getName().equals("type")) {
-			return getType();
 		}
 		if (sField.getName().equals("users")) {
 			return getUsers();
@@ -117,8 +109,8 @@ public class SExtendedDataSchema implements SDataBase
 			setUrl((String)val);
 			return;
 		}
-		if (sField.getName().equals("namespace")) {
-			setNamespace((String)val);
+		if (sField.getName().equals("contentType")) {
+			setContentType((String)val);
 			return;
 		}
 		if (sField.getName().equals("description")) {
@@ -131,14 +123,6 @@ public class SExtendedDataSchema implements SDataBase
 		}
 		if (sField.getName().equals("size")) {
 			setSize((Long)val);
-			return;
-		}
-		if (sField.getName().equals("validate")) {
-			setValidate((Boolean)val);
-			return;
-		}
-		if (sField.getName().equals("type")) {
-			setType((SExtendedDataSchemaType)val);
 			return;
 		}
 		if (sField.getName().equals("users")) {
@@ -176,12 +160,12 @@ public class SExtendedDataSchema implements SDataBase
 		this.url = url;
 	}
 	
-	public java.lang.String getNamespace() {
-		return namespace;
+	public java.lang.String getContentType() {
+		return contentType;
 	}
 
-	public void setNamespace(java.lang.String namespace) {
-		this.namespace = namespace;
+	public void setContentType(java.lang.String contentType) {
+		this.contentType = contentType;
 	}
 	
 	public java.lang.String getDescription() {
@@ -206,22 +190,6 @@ public class SExtendedDataSchema implements SDataBase
 
 	public void setSize(long size) {
 		this.size = size;
-	}
-	
-	public boolean isValidate() {
-		return validate;
-	}
-
-	public void setValidate(boolean validate) {
-		this.validate = validate;
-	}
-	
-	public SExtendedDataSchemaType getType() {
-		return type;
-	}
-
-	public void setType(SExtendedDataSchemaType type) {
-		this.type = type;
 	}
 	
 	public List<Long> getUsers() {

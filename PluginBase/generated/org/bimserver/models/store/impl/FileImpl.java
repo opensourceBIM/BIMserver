@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.FileImpl#getData <em>Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.FileImpl#getFilename <em>Filename</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.FileImpl#getMime <em>Mime</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.FileImpl#getSize <em>Size</em>}</li>
  * </ul>
  *
  * @generated
@@ -118,6 +119,24 @@ public class FileImpl extends IdEObjectImpl implements File {
 	 */
 	public void setMime(String newMime) {
 		eSet(StorePackage.Literals.FILE__MIME, newMime);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getSize() {
+		return (Long) eGet(StorePackage.Literals.FILE__SIZE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSize(long newSize) {
+		eSet(StorePackage.Literals.FILE__SIZE, newSize);
 	}
 
 } //FileImpl

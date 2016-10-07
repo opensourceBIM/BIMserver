@@ -417,25 +417,19 @@ public class Step0000 extends Migration {
 
 		schema.createEReference(concreteRevisionClass, "user", user, Multiplicity.SINGLE);
 
-		EEnum extendedDataSchemaType = schema.createEEnum(storePackage, "ExtendedDataSchemaType");
-		schema.createEEnumLiteral(extendedDataSchemaType, "XSD");
-		schema.createEEnumLiteral(extendedDataSchemaType, "PDF");
-		schema.createEEnumLiteral(extendedDataSchemaType, "TXT");
-		
 		EClass file = schema.createEClass("store", "File");
 		schema.createEAttribute(file, "data", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 		schema.createEAttribute(file, "filename", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(file, "mime", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(file, "size", EcorePackage.eINSTANCE.getELong(), Multiplicity.SINGLE);
 		
 		EClass extendedDataSchema = schema.createEClass(storePackage, "ExtendedDataSchema");
 		schema.createEAttribute(extendedDataSchema, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(extendedDataSchema, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(extendedDataSchema, "namespace", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(extendedDataSchema, "contentType", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(extendedDataSchema, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEReference(extendedDataSchema, "file", file, Multiplicity.SINGLE);
 		schema.createEAttribute(extendedDataSchema, "size", EcorePackage.eINSTANCE.getELong(), Multiplicity.SINGLE);
-		schema.createEAttribute(extendedDataSchema, "validate", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
-		schema.createEAttribute(extendedDataSchema, "type", extendedDataSchemaType, Multiplicity.SINGLE);
 		
 		EClass extendedDataClass = schema.createEClass(storePackage, "ExtendedData");
 		schema.createEAttribute(extendedDataClass, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);

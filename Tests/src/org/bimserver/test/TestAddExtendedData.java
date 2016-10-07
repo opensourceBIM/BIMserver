@@ -55,7 +55,7 @@ public class TestAddExtendedData {
 			
 			project = client.getServiceInterface().getProjectByPoid(project.getOid());
 			
-			SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByNamespace("http://extend.bimserver.org/validationreport");
+			SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByName("http://extend.bimserver.org/validationreport");
 			
 			SExtendedData extendedData = new SExtendedData();
 			extendedData.setFileId(fileId);

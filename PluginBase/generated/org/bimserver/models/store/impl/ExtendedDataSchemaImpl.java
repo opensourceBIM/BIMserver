@@ -36,12 +36,10 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getUrl <em>Url</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getContentType <em>Content Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getFile <em>File</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getSize <em>Size</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#isValidate <em>Validate</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getUsers <em>Users</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
@@ -119,8 +117,8 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements ExtendedDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getNamespace() {
-		return (String) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__NAMESPACE, true);
+	public String getContentType() {
+		return (String) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__CONTENT_TYPE, true);
 	}
 
 	/**
@@ -128,8 +126,8 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements ExtendedDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNamespace(String newNamespace) {
-		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__NAMESPACE, newNamespace);
+	public void setContentType(String newContentType) {
+		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__CONTENT_TYPE, newContentType);
 	}
 
 	/**
@@ -184,42 +182,6 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements ExtendedDat
 	 */
 	public void setSize(long newSize) {
 		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__SIZE, newSize);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isValidate() {
-		return (Boolean) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__VALIDATE, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValidate(boolean newValidate) {
-		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__VALIDATE, newValidate);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExtendedDataSchemaType getType() {
-		return (ExtendedDataSchemaType) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__TYPE, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(ExtendedDataSchemaType newType) {
-		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__TYPE, newType);
 	}
 
 	/**

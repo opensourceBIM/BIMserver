@@ -523,9 +523,9 @@ public interface ServiceInterface extends PublicInterface {
 	Boolean deleteProject(
 		@WebParam(name = "poid", partName = "deleteProject.poid") Long poid) throws ServerException, UserException;
 
-	@WebMethod(action = "getExtendedDataSchemaByNamespace")
-	SExtendedDataSchema getExtendedDataSchemaByNamespace(
-		@WebParam(name = "namespace", partName = "getExtendedDataSchemaByNamespace.namespace") String namespace) throws UserException, ServerException;
+	@WebMethod(action = "getExtendedDataSchemaByName")
+	SExtendedDataSchema getExtendedDataSchemaByName(
+		@WebParam(name = "name", partName = "getExtendedDataSchemaByName.name") String name) throws UserException, ServerException;
 
 	@WebMethod(action = "getAllProjectsSmall")
 	List<SProjectSmall> getAllProjectsSmall() throws ServerException, UserException;
@@ -1262,6 +1262,16 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getFile")
 	SFile getFile(
 		@WebParam(name = "fileId", partName = "getFile.fileId") Long fileId) throws ServerException, UserException;
+
+	/**
+	 * @param fileId
+	 * @return
+	 * @throws ServerException
+	 * @throws UserException
+	 */
+	@WebMethod(action = "getFileMeta")
+	SFile getFileMeta(
+		@WebParam(name = "fileId", partName = "getFileMeta.fileId") Long fileId) throws ServerException, UserException;
 	
 	/**
 	 * @param roid

@@ -30,12 +30,10 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getUrl <em>Url</em>}</li>
- *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getContentType <em>Content Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getFile <em>File</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getSize <em>Size</em>}</li>
- *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#isValidate <em>Validate</em>}</li>
- *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getUsers <em>Users</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
@@ -99,30 +97,30 @@ public interface ExtendedDataSchema extends IdEObject {
 	void setUrl(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Namespace</b></em>' attribute.
+	 * Returns the value of the '<em><b>Content Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Namespace</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Content Type</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Namespace</em>' attribute.
-	 * @see #setNamespace(String)
-	 * @see org.bimserver.models.store.StorePackage#getExtendedDataSchema_Namespace()
+	 * @return the value of the '<em>Content Type</em>' attribute.
+	 * @see #setContentType(String)
+	 * @see org.bimserver.models.store.StorePackage#getExtendedDataSchema_ContentType()
 	 * @model
 	 * @generated
 	 */
-	String getNamespace();
+	String getContentType();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedDataSchema#getNamespace <em>Namespace</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedDataSchema#getContentType <em>Content Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Namespace</em>' attribute.
-	 * @see #getNamespace()
+	 * @param value the new value of the '<em>Content Type</em>' attribute.
+	 * @see #getContentType()
 	 * @generated
 	 */
-	void setNamespace(String value);
+	void setContentType(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -201,61 +199,6 @@ public interface ExtendedDataSchema extends IdEObject {
 	 * @generated
 	 */
 	void setSize(long value);
-
-	/**
-	 * Returns the value of the '<em><b>Validate</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Validate</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Validate</em>' attribute.
-	 * @see #setValidate(boolean)
-	 * @see org.bimserver.models.store.StorePackage#getExtendedDataSchema_Validate()
-	 * @model
-	 * @generated
-	 */
-	boolean isValidate();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedDataSchema#isValidate <em>Validate</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Validate</em>' attribute.
-	 * @see #isValidate()
-	 * @generated
-	 */
-	void setValidate(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.bimserver.models.store.ExtendedDataSchemaType}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see org.bimserver.models.store.ExtendedDataSchemaType
-	 * @see #setType(ExtendedDataSchemaType)
-	 * @see org.bimserver.models.store.StorePackage#getExtendedDataSchema_Type()
-	 * @model
-	 * @generated
-	 */
-	ExtendedDataSchemaType getType();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedDataSchema#getType <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see org.bimserver.models.store.ExtendedDataSchemaType
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(ExtendedDataSchemaType value);
 
 	/**
 	 * Returns the value of the '<em><b>Users</b></em>' reference list.

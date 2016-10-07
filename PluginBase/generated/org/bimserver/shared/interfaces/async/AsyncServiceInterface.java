@@ -364,7 +364,7 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
-	public interface GetExtendedDataSchemaByNamespaceCallback {
+	public interface GetExtendedDataSchemaByNameCallback {
 		void success(org.bimserver.interfaces.objects.SExtendedDataSchema result);
 		void error(Throwable e);
 	}
@@ -375,6 +375,11 @@ public class AsyncServiceInterface {
 	}
 	
 	public interface GetFileCallback {
+		void success(org.bimserver.interfaces.objects.SFile result);
+		void error(Throwable e);
+	}
+	
+	public interface GetFileMetaCallback {
 		void success(org.bimserver.interfaces.objects.SFile result);
 		void error(Throwable e);
 	}
@@ -1463,11 +1468,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getExtendedDataSchemaByNamespace(final java.lang.String namespace, final GetExtendedDataSchemaByNamespaceCallback callback) {
+	public void getExtendedDataSchemaByName(final java.lang.String name, final GetExtendedDataSchemaByNameCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getExtendedDataSchemaByNamespace(namespace));
+					callback.success(syncService.getExtendedDataSchemaByName(name));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -1492,6 +1497,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getFile(fileId));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getFileMeta(final java.lang.Long fileId, final GetFileMetaCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getFileMeta(fileId));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

@@ -1,23 +1,21 @@
 
-¥ô
+¬ô
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
-Void"€
+Void"·
 SExtendedDataSchema
-description (	
-extendedData (
-fileId (
-name (	
-	namespace (	
+contentType (	
+description (	
+extendedData (
+fileId (
+name (	
 oid (
 rid (
-size (7
-type	 (2).org.bimserver.pb.SExtendedDataSchemaType
-url
- (	
-users (
-validate ("a
+size (
+url	 (	
+users
+ ("a
 AddExtendedDataSchemaRequestA
 extendedDataSchema (2%.org.bimserver.pb.SExtendedDataSchema"D
 AddExtendedDataSchemaResponse
@@ -88,7 +86,7 @@ revisionId (
 value ("H
 AddModelCheckerToProjectRequest
 poid (
-modelCheckerOid ("©
+modelCheckerOid ("¾
 SNewService
 actionId (
 authorizationUrl (	
@@ -99,12 +97,13 @@ revisionId (
 oid (
 output (	
 provider	 (	
-resourceUrl
- (	
-rid (
-serializerId (0
-status (2 .org.bimserver.pb.SServiceStatus
-tokenUrl (	"^
+registerUrl
+ (	
+resourceUrl (	
+rid (
+serializerId (0
+status (2 .org.bimserver.pb.SServiceStatus
+tokenUrl (	"^
 AddNewServiceToProjectRequest
 poid (/
 sService (2.org.bimserver.pb.SNewService"E
@@ -668,10 +667,10 @@ revisionNr (
 oid ("o
 !GetExtendedDataSchemaByIdResponse
 errorMessage (	4
-value (2%.org.bimserver.pb.SExtendedDataSchema"<
-'GetExtendedDataSchemaByNamespaceRequest
-	namespace (	"v
-(GetExtendedDataSchemaByNamespaceResponse
+value (2%.org.bimserver.pb.SExtendedDataSchema"2
+"GetExtendedDataSchemaByNameRequest
+name (	"q
+#GetExtendedDataSchemaByNameResponse
 errorMessage (	4
 value (2%.org.bimserver.pb.SExtendedDataSchema"?
 *GetExtendedDataSchemaFromRepositoryRequest
@@ -688,6 +687,11 @@ revisionNr (
 oid (
 rid ("O
 GetFileResponse
+errorMessage (	&
+value (2.org.bimserver.pb.SFile"$
+GetFileMetaRequest
+fileId ("S
+GetFileMetaResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SFile" 
 GetGeoTagRequest
@@ -1350,11 +1354,7 @@ serviceOid ("F
 errorMessage (	
 value ("*
 ValidateModelCheckerRequest
-oid (*|
-SExtendedDataSchemaType
-SExtendedDataSchemaType_XSD 
-SExtendedDataSchemaType_PDF
-SExtendedDataSchemaType_TXT*×
+oid (*×
 SAccessMethod
 SAccessMethod_SOAP 
 SAccessMethod_WEB_INTERFACE
@@ -1406,7 +1406,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2Ïn
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2œo
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1476,10 +1476,11 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getDeserializerByName..org.bimserver.pb.GetDeserializerByNameRequest/.org.bimserver.pb.GetDeserializerByNameResponsef
 getDownloadData(.org.bimserver.pb.GetDownloadDataRequest).org.bimserver.pb.GetDownloadDataResponsef
 getExtendedData(.org.bimserver.pb.GetExtendedDataRequest).org.bimserver.pb.GetExtendedDataResponse„
-getExtendedDataSchemaById2.org.bimserver.pb.GetExtendedDataSchemaByIdRequest3.org.bimserver.pb.GetExtendedDataSchemaByIdResponse™
- getExtendedDataSchemaByNamespace9.org.bimserver.pb.GetExtendedDataSchemaByNamespaceRequest:.org.bimserver.pb.GetExtendedDataSchemaByNamespaceResponse¢
+getExtendedDataSchemaById2.org.bimserver.pb.GetExtendedDataSchemaByIdRequest3.org.bimserver.pb.GetExtendedDataSchemaByIdResponseŠ
+getExtendedDataSchemaByName4.org.bimserver.pb.GetExtendedDataSchemaByNameRequest5.org.bimserver.pb.GetExtendedDataSchemaByNameResponse¢
 #getExtendedDataSchemaFromRepository<.org.bimserver.pb.GetExtendedDataSchemaFromRepositoryRequest=.org.bimserver.pb.GetExtendedDataSchemaFromRepositoryResponseN
-getFile .org.bimserver.pb.GetFileRequest!.org.bimserver.pb.GetFileResponseT
+getFile .org.bimserver.pb.GetFileRequest!.org.bimserver.pb.GetFileResponseZ
+getFileMeta$.org.bimserver.pb.GetFileMetaRequest%.org.bimserver.pb.GetFileMetaResponseT
 	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponsef
 getGeometryInfo(.org.bimserver.pb.GetGeometryInfoRequest).org.bimserver.pb.GetGeometryInfoResponse]
 getIfcHeader%.org.bimserver.pb.GetIfcHeaderRequest&.org.bimserver.pb.GetIfcHeaderResponse~
