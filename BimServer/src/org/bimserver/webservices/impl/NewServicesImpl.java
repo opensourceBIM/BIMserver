@@ -45,6 +45,7 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		sNewServiceDescriptor.getOutputs().add("text/csv");
 		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/stats.php");
 		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
+		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
 		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
 		list.add(sNewServiceDescriptor);
 
@@ -58,6 +59,7 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		sNewServiceDescriptor.getOutputs().add("BCF_2.0");
 		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/clashdetection.php");
 		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
+		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
 		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
 		list.add(sNewServiceDescriptor);
 
@@ -69,6 +71,7 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		sNewServiceDescriptor.getOutputs().add("BCF_2.0");
 		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services.php");
 		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
+		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
 		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
 		list.add(sNewServiceDescriptor);
 		return list;

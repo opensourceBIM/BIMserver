@@ -6,7 +6,6 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.common.message.types.ResponseType;
 import org.apache.oltu.oauth2.ext.dynamicreg.client.OAuthRegistrationClient;
@@ -60,6 +59,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 				    .setIcon(serverSettings.getIcon())
 				    .setRedirectURL(redirectUrl)
 				    .buildJSONMessage();
+				System.out.println(request.getBody());
 				OAuthRegistrationClient oauthclient = new OAuthRegistrationClient(new URLConnectionClient());
 				OAuthClientRegistrationResponse response = oauthclient.clientInfo(request);
 

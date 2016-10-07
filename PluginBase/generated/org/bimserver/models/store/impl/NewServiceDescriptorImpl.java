@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getAuthorizationUrl <em>Authorization Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getTokenUrl <em>Token Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getResourceUrl <em>Resource Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getRegisterUrl <em>Register Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceDescriptorImpl#getOutputs <em>Outputs</em>}</li>
  * </ul>
@@ -181,6 +182,24 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 */
 	public void setResourceUrl(String newResourceUrl) {
 		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__RESOURCE_URL, newResourceUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getRegisterUrl() {
+		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__REGISTER_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRegisterUrl(String newRegisterUrl) {
+		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__REGISTER_URL, newRegisterUrl);
 	}
 
 	/**

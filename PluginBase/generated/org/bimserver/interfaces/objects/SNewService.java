@@ -35,6 +35,7 @@ public class SNewService implements SDataBase
 	private java.lang.String authorizationUrl;
 	private java.lang.String tokenUrl;
 	private java.lang.String resourceUrl;
+	private java.lang.String registerUrl;
 	private java.lang.String input;
 	private java.lang.String oauthCode;
 	private SServiceStatus status;
@@ -86,6 +87,9 @@ public class SNewService implements SDataBase
 		if (sField.getName().equals("resourceUrl")) {
 			return getResourceUrl();
 		}
+		if (sField.getName().equals("registerUrl")) {
+			return getRegisterUrl();
+		}
 		if (sField.getName().equals("input")) {
 			return getInput();
 		}
@@ -136,6 +140,10 @@ public class SNewService implements SDataBase
 		}
 		if (sField.getName().equals("resourceUrl")) {
 			setResourceUrl((String)val);
+			return;
+		}
+		if (sField.getName().equals("registerUrl")) {
+			setRegisterUrl((String)val);
 			return;
 		}
 		if (sField.getName().equals("input")) {
@@ -219,6 +227,14 @@ public class SNewService implements SDataBase
 
 	public void setResourceUrl(java.lang.String resourceUrl) {
 		this.resourceUrl = resourceUrl;
+	}
+	
+	public java.lang.String getRegisterUrl() {
+		return registerUrl;
+	}
+
+	public void setRegisterUrl(java.lang.String registerUrl) {
+		this.registerUrl = registerUrl;
 	}
 	
 	public java.lang.String getInput() {

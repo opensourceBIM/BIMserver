@@ -34,14 +34,16 @@ message ListAllServiceDescriptorsRequest {
 }
 
 message SNewServiceDescriptor {
-	optional string description = 1;
-	repeated string inputs = 2;
-	optional string name = 3;
-	optional int64 oid = 4;
-	repeated string outputs = 5;
-	optional string provider = 6;
-	optional int32 rid = 7;
-	optional string url = 8;
+	optional string authorizationUrl = 1;
+	optional string description = 2;
+	repeated string inputs = 3;
+	optional string name = 4;
+	optional int64 oid = 5;
+	repeated string outputs = 6;
+	optional string provider = 7;
+	optional string resourceUrl = 8;
+	optional int32 rid = 9;
+	optional string tokenUrl = 10;
 }
 
 message ListAllServiceDescriptorsResponse {

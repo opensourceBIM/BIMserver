@@ -33,6 +33,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.NewService#getAuthorizationUrl <em>Authorization Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewService#getTokenUrl <em>Token Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewService#getResourceUrl <em>Resource Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.NewService#getRegisterUrl <em>Register Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewService#getInput <em>Input</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewService#getOauthCode <em>Oauth Code</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewService#getStatus <em>Status</em>}</li>
@@ -202,6 +203,32 @@ public interface NewService extends IdEObject {
 	 * @generated
 	 */
 	void setResourceUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Register Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Register Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Register Url</em>' attribute.
+	 * @see #setRegisterUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getNewService_RegisterUrl()
+	 * @model
+	 * @generated
+	 */
+	String getRegisterUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.NewService#getRegisterUrl <em>Register Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Register Url</em>' attribute.
+	 * @see #getRegisterUrl()
+	 * @generated
+	 */
+	void setRegisterUrl(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Input</b></em>' attribute.

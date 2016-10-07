@@ -35,6 +35,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getAuthorizationUrl <em>Authorization Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getTokenUrl <em>Token Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getResourceUrl <em>Resource Url</em>}</li>
+ *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getRegisterUrl <em>Register Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewServiceDescriptor#getOutputs <em>Outputs</em>}</li>
  * </ul>
@@ -200,6 +201,32 @@ public interface NewServiceDescriptor extends IdEObject {
 	 * @generated
 	 */
 	void setResourceUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Register Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Register Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Register Url</em>' attribute.
+	 * @see #setRegisterUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getNewServiceDescriptor_RegisterUrl()
+	 * @model
+	 * @generated
+	 */
+	String getRegisterUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.NewServiceDescriptor#getRegisterUrl <em>Register Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Register Url</em>' attribute.
+	 * @see #getRegisterUrl()
+	 * @generated
+	 */
+	void setRegisterUrl(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' attribute list.

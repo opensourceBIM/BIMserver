@@ -1,16 +1,19 @@
 
-ï
+£
 NewServicesInterface.protoorg.bimserver.pbServiceInterface.proto""
- ListAllServiceDescriptorsRequest"”
-SNewServiceDescriptor
-description (	
-inputs (	
-name (	
-oid (
-outputs (	
-provider (	
-rid (
-url (	"q
+ ListAllServiceDescriptorsRequest"È
+SNewServiceDescriptor
+authorizationUrl (	
+description (	
+inputs (	
+name (	
+oid (
+outputs (	
+provider (	
+resourceUrl (	
+rid	 (
+tokenUrl
+ (	"q
 !ListAllServiceDescriptorsResponse
 errorMessage (	6
 value (2'.org.bimserver.pb.SNewServiceDescriptor"1

@@ -6730,13 +6730,22 @@ public interface StorePackage extends EPackage {
 	int NEW_SERVICE_DESCRIPTOR__RESOURCE_URL = 5;
 
 	/**
+	 * The feature id for the '<em><b>Register Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE_DESCRIPTOR__REGISTER_URL = 6;
+
+	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_DESCRIPTOR__INPUTS = 6;
+	int NEW_SERVICE_DESCRIPTOR__INPUTS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' attribute list.
@@ -6745,7 +6754,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_DESCRIPTOR__OUTPUTS = 7;
+	int NEW_SERVICE_DESCRIPTOR__OUTPUTS = 8;
 
 	/**
 	 * The number of structural features of the '<em>New Service Descriptor</em>' class.
@@ -6754,7 +6763,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_DESCRIPTOR_FEATURE_COUNT = 8;
+	int NEW_SERVICE_DESCRIPTOR_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.FormatSerializerMapImpl <em>Format Serializer Map</em>}' class.
@@ -6896,13 +6905,22 @@ public interface StorePackage extends EPackage {
 	int NEW_SERVICE__RESOURCE_URL = 5;
 
 	/**
+	 * The feature id for the '<em><b>Register Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__REGISTER_URL = 6;
+
+	/**
 	 * The feature id for the '<em><b>Input</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__INPUT = 6;
+	int NEW_SERVICE__INPUT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Oauth Code</b></em>' attribute.
@@ -6911,7 +6929,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__OAUTH_CODE = 7;
+	int NEW_SERVICE__OAUTH_CODE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute.
@@ -6920,7 +6938,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__STATUS = 8;
+	int NEW_SERVICE__STATUS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Serializer</b></em>' reference.
@@ -6929,7 +6947,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__SERIALIZER = 9;
+	int NEW_SERVICE__SERIALIZER = 10;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' attribute.
@@ -6938,7 +6956,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__OUTPUT = 10;
+	int NEW_SERVICE__OUTPUT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Action</b></em>' reference.
@@ -6947,7 +6965,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE__ACTION = 11;
+	int NEW_SERVICE__ACTION = 12;
 
 	/**
 	 * The number of structural features of the '<em>New Service</em>' class.
@@ -6956,7 +6974,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_FEATURE_COUNT = 12;
+	int NEW_SERVICE_FEATURE_COUNT = 13;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
@@ -13312,6 +13330,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getNewServiceDescriptor_ResourceUrl();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewServiceDescriptor#getRegisterUrl <em>Register Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Register Url</em>'.
+	 * @see org.bimserver.models.store.NewServiceDescriptor#getRegisterUrl()
+	 * @see #getNewServiceDescriptor()
+	 * @generated
+	 */
+	EAttribute getNewServiceDescriptor_RegisterUrl();
+
+	/**
 	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.NewServiceDescriptor#getInputs <em>Inputs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13460,6 +13489,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNewService_ResourceUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getRegisterUrl <em>Register Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Register Url</em>'.
+	 * @see org.bimserver.models.store.NewService#getRegisterUrl()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EAttribute getNewService_RegisterUrl();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.NewService#getInput <em>Input</em>}'.
@@ -18485,6 +18525,14 @@ public interface StorePackage extends EPackage {
 		EAttribute NEW_SERVICE_DESCRIPTOR__RESOURCE_URL = eINSTANCE.getNewServiceDescriptor_ResourceUrl();
 
 		/**
+		 * The meta object literal for the '<em><b>Register Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE_DESCRIPTOR__REGISTER_URL = eINSTANCE.getNewServiceDescriptor_RegisterUrl();
+
+		/**
 		 * The meta object literal for the '<em><b>Inputs</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -18603,6 +18651,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NEW_SERVICE__RESOURCE_URL = eINSTANCE.getNewService_ResourceUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Register Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_SERVICE__REGISTER_URL = eINSTANCE.getNewService_RegisterUrl();
 
 		/**
 		 * The meta object literal for the '<em><b>Input</b></em>' attribute feature.

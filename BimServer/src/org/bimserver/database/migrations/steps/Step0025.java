@@ -19,6 +19,7 @@ public class Step0025 extends Migration {
 		schema.createEAttribute(newServiceDescriptor, "authorizationUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(newServiceDescriptor, "tokenUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(newServiceDescriptor, "resourceUrl", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(newServiceDescriptor, "registerUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(newServiceDescriptor, "inputs", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
 		schema.createEAttribute(newServiceDescriptor, "outputs", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
 		
@@ -41,6 +42,7 @@ public class Step0025 extends Migration {
 		schema.createEAttribute(newServiceClass, "authorizationUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(newServiceClass, "tokenUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(newServiceClass, "resourceUrl", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(newServiceClass, "registerUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(newServiceClass, "input", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(newServiceClass, "oauthCode", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(newServiceClass, "status", serviceStatus);
