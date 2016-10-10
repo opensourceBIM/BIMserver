@@ -145,11 +145,15 @@ import org.bimserver.database.actions.UploadFileDatabaseAction;
 import org.bimserver.database.actions.UserHasCheckinRightsDatabaseAction;
 import org.bimserver.database.actions.UserHasRightsDatabaseAction;
 import org.bimserver.database.actions.ValidateModelCheckerDatabaseAction;
+import org.bimserver.database.queries.om.DefaultQueries;
+import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
+import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
@@ -374,7 +378,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
-	public Long downloadByNewJsonQuery(Set<Long> roids, String jsonQuery, Long serializerOid, Boolean sync) throws ServerException, UserException {
+	public Long download(Set<Long> roids, String jsonQuery, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		User user = null;
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		Plugin plugin = null;
@@ -419,18 +423,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public Long downloadRevisions(Set<Long> roids, Long serializerOid, Boolean sync) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_PROJECTS);
-		downloadParameters.setRoids(roids);
-		if (serializerOid == null) {
-			throw new UserException("No valid serializer selected");
-		}
-		downloadParameters.setSerializerOid(serializerOid);
-		return download(downloadParameters, sync);
-	}
-
-	@Override
 	public SSerializerPluginConfiguration getSerializerByName(String serializerName) throws ServerException, UserException {
 		requireAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -444,7 +436,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		return null;
 	}
 	
-
 	@Override
 	public SDeserializerPluginConfiguration getDeserializerByName(String deserializerName) throws ServerException, UserException {
 		requireAuthentication();
@@ -2213,8 +2204,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			String url = newService.getResourceUrl();
 			SerializerPluginConfiguration serializer = newService.getSerializer();
 			
-			Long topicId = downloadRevisions(Collections.singleton(roid), serializer.getOid(), true);
-			
+			PackageMetaData pmd = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
+			Query query = DefaultQueries.all(pmd);
+			Long topicId = download(Collections.singleton(roid), new JsonQueryObjectModelConverter(pmd).toJson(query).toString(), serializer.getOid(), true);
 
 			CloseableHttpClient httpclient = HttpClients.createDefault();
 			HttpPost httpPost = new HttpPost(url);

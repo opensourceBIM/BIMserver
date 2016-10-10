@@ -36,6 +36,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
+import org.bimserver.database.queries.om.DefaultQueries;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
@@ -328,7 +329,7 @@ public class TestLowLevelChanges {
 	private IfcModelInterface getSingleRevision(long roid) throws ServiceException, DeserializeException, IOException {
 		SRevision revision = serviceInterface.getRevision(roid);
 		SSerializerPluginConfiguration serializerByContentType = serviceInterface.getSerializerByContentType("application/ifc");
-		long topicId = serviceInterface.downloadRevisions(Collections.singleton(revision.getOid()), serializerByContentType.getOid(), true);
+		long topicId = serviceInterface.download(Collections.singleton(revision.getOid()), DefaultQueries.allAsString(), serializerByContentType.getOid(), true);
 		SDownloadResult downloadData = serviceInterface.getDownloadData(topicId);
 		DataHandler dataHandler = downloadData.getFile();
 		try {

@@ -38,6 +38,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
+import org.bimserver.database.queries.om.DefaultQueries;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
@@ -120,7 +121,7 @@ public class TestSimultaniousDownloadWithCaching {
 						try {
 							ServiceMap serviceMap2 = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL);
 							SSerializerPluginConfiguration serializerPluginConfiguration = serviceMap.getServiceInterface().getSerializerByName("Ifc2x3");
-							Long download = serviceMap2.getServiceInterface().downloadRevisions(Collections.singleton(projectUpdate.getLastRevisionId()), serializerPluginConfiguration.getOid(), true);
+							Long download = serviceMap2.getServiceInterface().download(Collections.singleton(projectUpdate.getLastRevisionId()), DefaultQueries.allAsString(), serializerPluginConfiguration.getOid(), true);
 							SDownloadResult downloadData = serviceMap2.getServiceInterface().getDownloadData(download);
 							if (downloadData.getFile().getDataSource() instanceof CacheStoringEmfSerializerDataSource) {
 								CacheStoringEmfSerializerDataSource c = (CacheStoringEmfSerializerDataSource)downloadData.getFile().getDataSource();

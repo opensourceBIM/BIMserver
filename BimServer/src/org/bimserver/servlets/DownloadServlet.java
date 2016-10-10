@@ -21,10 +21,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -36,11 +33,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.BimServer;
-import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SFile;
-import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
@@ -140,74 +135,8 @@ public class DownloadServlet extends SubServlet {
 				} else {
 					serializer = serviceMap.getServiceInterface().getSerializerByName(request.getParameter("serializerName"));
 				}
-				if (request.getParameter("multiple") != null) {
-					Set<Long> roids = new HashSet<Long>();
-					for (Object key : request.getParameterMap().keySet()) {
-						String keyString = (String) key;
-						if (keyString.startsWith("download_")) {
-							if (!request.getParameter(keyString).equals("[off]")) {
-								roids.add(Long.parseLong(request.getParameter(keyString)));
-							}
-						}
-					}
-					topicId = serviceMap.getServiceInterface().downloadRevisions(roids, serializer.getOid(), true);
-				} else if (request.getParameter("compare") != null) {
-					SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
-					Long roid1 = Long.parseLong(request.getParameter("roid1"));
-					Long roid2 = Long.parseLong(request.getParameter("roid2"));
-					topicId = serviceMap.getServiceInterface().downloadCompareResults(serializer.getOid(), roid1, roid2, Long.valueOf(request.getParameter("mcid")), sCompareType, true);
-				} else if (request.getParameter("topicId") != null) {
+				if (request.getParameter("topicId") != null) {
 					topicId = Long.parseLong(request.getParameter("topicId"));
-				} else {
-					long roid = -1;
-					if (request.getParameter("roid") == null) {
-						if (request.getParameter("poid") != null) {
-							long poid = Long.parseLong(request.getParameter("poid"));
-							SProject projectByPoid = serviceMap.getServiceInterface().getProjectByPoid(poid);
-							if (projectByPoid == null) {
-								throw new UserException("Project with oid " + poid + " not found");
-							}
-							roid = projectByPoid.getLastRevisionId();
-							if (roid == -1) {
-								throw new UserException("No revisions");
-							}
-						} else {
-							throw new UserException("A poid or roid is required for downloading");
-						}
-					} else {
-						roid = Long.parseLong(request.getParameter("roid"));
-					}
-					if (request.getParameter("checkout") != null) {
-						topicId = serviceMap.getServiceInterface().checkout(roid, serializer.getOid(), true);
-					} else {
-//						if (request.getParameter("classses") != null) {
-//							Set<String> classes = new HashSet<String>();
-//							for (String className : request.getParameter("classses").split(";")) {
-//								classes.add(className);
-//							}
-//							Set<Long> roids = new HashSet<Long>();
-//							roids.add(roid);
-//							topicId = serviceMap.getServiceInterface().downloadByTypes(roids, "ifc2x3tc1", classes, serializer.getOid(), false, true, true, true);
-//						} else if (request.getParameter("oids") != null) {
-//							Set<Long> oids = new HashSet<Long>();
-//							for (String oidString : request.getParameter("oids").split(";")) {
-//								oids.add(Long.parseLong(oidString));
-//							}
-//							Set<Long> roids = new HashSet<Long>();
-//							roids.add(roid);
-//							topicId = serviceMap.getServiceInterface().downloadByOids(roids, oids, serializer.getOid(), true, true);
-//						} else if (request.getParameter("guids") != null) {
-//							Set<String> guids = new HashSet<String>();
-//							for (String guid : request.getParameter("guids").split(";")) {
-//								guids.add(guid);
-//							}
-//							Set<Long> roids = new HashSet<Long>();
-//							roids.add(roid);
-//							topicId = serviceMap.getServiceInterface().downloadByGuids(roids, guids, serializer.getOid(), false, true);
-//						} else {
-							topicId = serviceMap.getServiceInterface().downloadRevisions(Collections.singleton(roid), serializer.getOid(), true);
-//						}
-					}
 				}
 				if (topicId == -1) {
 					response.getWriter().println("No valid topicId");

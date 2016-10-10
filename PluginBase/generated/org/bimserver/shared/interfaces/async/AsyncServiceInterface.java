@@ -159,17 +159,12 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
-	public interface DownloadByNewJsonQueryCallback {
+	public interface DownloadCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
 	public interface DownloadCompareResultsCallback {
-		void success(java.lang.Long result);
-		void error(Throwable e);
-	}
-	
-	public interface DownloadRevisionsCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
@@ -976,11 +971,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void downloadByNewJsonQuery(final java.util.Set<java.lang.Long> roids, final java.lang.String query, final java.lang.Long serializerOid, final java.lang.Boolean sync, final DownloadByNewJsonQueryCallback callback) {
+	public void download(final java.util.Set<java.lang.Long> roids, final java.lang.String query, final java.lang.Long serializerOid, final java.lang.Boolean sync, final DownloadCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.downloadByNewJsonQuery(roids, query, serializerOid, sync));
+					callback.success(syncService.download(roids, query, serializerOid, sync));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -993,18 +988,6 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.downloadCompareResults(serializerOid, roid1, roid2, mcid, type, sync));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadRevisions(final java.util.Set<java.lang.Long> roids, final java.lang.Long serializerOid, final java.lang.Boolean sync, final DownloadRevisionsCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadRevisions(roids, serializerOid, sync));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

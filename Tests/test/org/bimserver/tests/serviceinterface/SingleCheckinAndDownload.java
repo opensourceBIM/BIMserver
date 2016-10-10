@@ -12,6 +12,7 @@ import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
 import org.apache.commons.io.IOUtils;
+import org.bimserver.database.queries.om.DefaultQueries;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
@@ -63,7 +64,7 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 				
 				// Download the latest revision  (the one we just checked in)
 				if (useChannel) {
-					Long topicId = bimServerClient.getServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), serializer.getOid(), true);
+					Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(newProject.getLastRevisionId()), DefaultQueries.allAsString(), serializer.getOid(), true);
 					SLongActionState downloadState = bimServerClient.getRegistry().getProgress(topicId);
 					if (downloadState.getState() == SActionState.FINISHED) {
 						InputStream inputStream = bimServerClient.getServiceInterface().getDownloadData(topicId).getFile().getInputStream();
@@ -71,7 +72,7 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 						System.out.println("Success");
 					}
 				} else {
-					Long topicId = bimServerClient.getServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), serializer.getOid(), false); // Note: sync: false
+					Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(newProject.getLastRevisionId()), DefaultQueries.allAsString(), serializer.getOid(), false); // Note: sync: false
 					InputStream downloadData = bimServerClient.getDownloadData(topicId, serializer.getOid());
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
 					IOUtils.copy(downloadData, baos);

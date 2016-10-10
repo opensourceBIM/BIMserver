@@ -1,5 +1,5 @@
 
-¬τ
+τρ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -362,13 +362,13 @@ dataObject (2.org.bimserver.pb.SDataObject
 uoid ("9
 DeleteUserResponse
 errorMessage (	
-value ("b
-DownloadByNewJsonQueryRequest
+value ("T
+DownloadRequest
 roids (
 query (	
 serializerOid (
-sync ("E
-DownloadByNewJsonQueryResponse
+sync ("7
+DownloadResponse
 errorMessage (	
 value ("
 DownloadCompareResultsRequest
@@ -379,13 +379,6 @@ dataObject (2.org.bimserver.pb.SDataObject
 type (2.org.bimserver.pb.SCompareType
 sync ("E
 DownloadCompareResultsResponse
-errorMessage (	
-value ("N
-DownloadRevisionsRequest
-roids (
-serializerOid (
-sync ("@
-DownloadRevisionsResponse
 errorMessage (	
 value ("5
 %GetAllAuthorizedUsersOfProjectRequest
@@ -679,13 +672,14 @@ revisionNr (
 errorMessage (	4
 value (2%.org.bimserver.pb.SExtendedDataSchema" 
 GetFileRequest
-fileId ("O
+fileId ("]
 SFile
 data (
 filename (	
 mime (	
 oid (
-rid ("O
+rid (
+size ("O
 GetFileResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SFile"$
@@ -1406,7 +1400,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2o
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2„n
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1435,10 +1429,9 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 deleteProject&.org.bimserver.pb.DeleteProjectRequest'.org.bimserver.pb.DeleteProjectResponseW
 deleteService&.org.bimserver.pb.DeleteServiceRequest.org.bimserver.pb.VoidResponseW
 
-deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserResponse{
-downloadByNewJsonQuery/.org.bimserver.pb.DownloadByNewJsonQueryRequest0.org.bimserver.pb.DownloadByNewJsonQueryResponse{
-downloadCompareResults/.org.bimserver.pb.DownloadCompareResultsRequest0.org.bimserver.pb.DownloadCompareResultsResponsel
-downloadRevisions*.org.bimserver.pb.DownloadRevisionsRequest+.org.bimserver.pb.DownloadRevisionsResponse“
+deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserResponseQ
+download!.org.bimserver.pb.DownloadRequest".org.bimserver.pb.DownloadResponse{
+downloadCompareResults/.org.bimserver.pb.DownloadCompareResultsRequest0.org.bimserver.pb.DownloadCompareResultsResponse“
 getAllAuthorizedUsersOfProject7.org.bimserver.pb.GetAllAuthorizedUsersOfProjectRequest8.org.bimserver.pb.GetAllAuthorizedUsersOfProjectResponsex
 getAllCheckoutsByUser..org.bimserver.pb.GetAllCheckoutsByUserRequest/.org.bimserver.pb.GetAllCheckoutsByUserResponse
 getAllCheckoutsOfProject1.org.bimserver.pb.GetAllCheckoutsOfProjectRequest2.org.bimserver.pb.GetAllCheckoutsOfProjectResponse«

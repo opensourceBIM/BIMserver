@@ -8,6 +8,7 @@ import java.util.Collections;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
+import org.bimserver.database.queries.om.DefaultQueries;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
@@ -49,7 +50,7 @@ public class MultiCheckinAndDownload extends TestWithEmbeddedServer {
 					newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 					
 					// Download the latest revision  (the one we just checked in)
-					Long topicId = bimServerClient.getServiceInterface().downloadRevisions(Collections.singleton(newProject.getLastRevisionId()), serializer.getOid(), true);
+					Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(newProject.getLastRevisionId()), DefaultQueries.allAsString(), serializer.getOid(), true);
 					SLongActionState downloadState = bimServerClient.getRegistry().getProgress(topicId);
 					if (downloadState.getState() == SActionState.FINISHED) {
 						// Success

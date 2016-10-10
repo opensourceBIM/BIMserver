@@ -25,6 +25,7 @@ import java.util.Collections;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.LocalDevSetup;
+import org.bimserver.database.queries.om.DefaultQueries;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
@@ -40,11 +41,11 @@ public class TestJsonSerializerMultipleRevisions {
 			long roid1 = 65539;
 			long roid2 = 131075;
 			
-			Long download1 = client.getServiceInterface().downloadRevisions(Collections.singleton(roid1), jsonSerializer.getOid(), true);
+			Long download1 = client.getServiceInterface().download(Collections.singleton(roid1), DefaultQueries.allAsString(), jsonSerializer.getOid(), true);
 			InputStream downloadData1 = client.getDownloadData(download1, jsonSerializer.getOid());
 			IOUtils.copy(downloadData1, new FileOutputStream(Paths.get("roid1.json").toFile()));
 
-			Long download2 = client.getServiceInterface().downloadRevisions(Collections.singleton(roid2), jsonSerializer.getOid(), true);
+			Long download2 = client.getServiceInterface().download(Collections.singleton(roid2), DefaultQueries.allAsString(), jsonSerializer.getOid(), true);
 			InputStream downloadData2 = client.getDownloadData(download2, jsonSerializer.getOid());
 			IOUtils.copy(downloadData2, new FileOutputStream(Paths.get("roid2.json").toFile()));
 		} catch (ServiceException e) {

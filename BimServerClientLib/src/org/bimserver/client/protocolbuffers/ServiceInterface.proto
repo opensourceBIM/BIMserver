@@ -75,11 +75,9 @@ service ServiceInterface {
 
 	rpc deleteUser (DeleteUserRequest) returns (DeleteUserResponse);
 
-	rpc downloadByNewJsonQuery (DownloadByNewJsonQueryRequest) returns (DownloadByNewJsonQueryResponse);
+	rpc download (DownloadRequest) returns (DownloadResponse);
 
 	rpc downloadCompareResults (DownloadCompareResultsRequest) returns (DownloadCompareResultsResponse);
-
-	rpc downloadRevisions (DownloadRevisionsRequest) returns (DownloadRevisionsResponse);
 
 	rpc getAllAuthorizedUsersOfProject (GetAllAuthorizedUsersOfProjectRequest) returns (GetAllAuthorizedUsersOfProjectResponse);
 
@@ -809,14 +807,14 @@ message DeleteUserResponse {
 	optional bool value = 2;
 }
 
-message DownloadByNewJsonQueryRequest {
+message DownloadRequest {
 	repeated int64 roids = 1;
 	optional string query = 2;
 	optional int64 serializerOid = 3;
 	optional bool sync = 4;
 }
 
-message DownloadByNewJsonQueryResponse {
+message DownloadResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
 }
@@ -831,17 +829,6 @@ message DownloadCompareResultsRequest {
 }
 
 message DownloadCompareResultsResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadRevisionsRequest {
-	repeated int64 roids = 1;
-	optional int64 serializerOid = 2;
-	optional bool sync = 3;
-}
-
-message DownloadRevisionsResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
 }
@@ -1311,6 +1298,7 @@ message SFile {
 	optional string mime = 3;
 	optional int64 oid = 4;
 	optional int32 rid = 5;
+	optional int64 size = 6;
 }
 
 message GetFileResponse {

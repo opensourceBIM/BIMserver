@@ -27,6 +27,7 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.LocalDevSetup;
+import org.bimserver.database.queries.om.DefaultQueries;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -49,7 +50,7 @@ public class TestSceneJsDownload {
 				SProject project = projects.get(0);
 				if (project.getLastRevisionId() != -1) {
 					long start = System.nanoTime();
-					Long download = bimServerClient.getServiceInterface().downloadRevisions(Collections.singleton(project.getLastRevisionId()), serializerByContentType.getOid(), true);
+					Long download = bimServerClient.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()), DefaultQueries.allAsString(), serializerByContentType.getOid(), true);
 					System.out.println(((System.nanoTime() - start) / 1000000) + " ms");
 					start = System.nanoTime();
 					InputStream inputStream = bimServerClient.getDownloadData(download, serializerByContentType.getOid());

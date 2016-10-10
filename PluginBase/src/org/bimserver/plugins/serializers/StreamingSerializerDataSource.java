@@ -46,7 +46,7 @@ public class StreamingSerializerDataSource extends ExtendedDataSource {
 
 	@Override
 	public InputStream getInputStream() throws IOException {
-		return null;
+		return serializer.getInputStream();
 	}
 
 	@Override

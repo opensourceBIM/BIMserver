@@ -23,6 +23,7 @@ import java.io.OutputStream;
 import java.nio.file.Path;
 
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.shared.AuthenticationInfo;
@@ -77,4 +78,6 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	 * This will close all the connections, call this method as soon as you are done using this BimServerClient
 	 */
 	void disconnect();
+	
+	MetaDataManager getMetaDataManager();
 }

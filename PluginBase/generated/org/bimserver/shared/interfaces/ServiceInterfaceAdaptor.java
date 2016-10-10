@@ -117,15 +117,11 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public java.lang.Long downloadByNewJsonQuery(java.util.Set<java.lang.Long> roids, java.lang.String query, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
+	public java.lang.Long download(java.util.Set<java.lang.Long> roids, java.lang.String query, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
 	
 	public java.lang.Long downloadCompareResults(java.lang.Long serializerOid, java.lang.Long roid1, java.lang.Long roid2, java.lang.Long mcid, org.bimserver.interfaces.objects.SCompareType type, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadRevisions(java.util.Set<java.lang.Long> roids, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
 	

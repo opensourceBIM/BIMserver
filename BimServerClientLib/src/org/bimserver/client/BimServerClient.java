@@ -35,10 +35,12 @@ import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.notifications.NotificationsManager;
+import org.bimserver.database.queries.om.DefaultQueries;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
@@ -275,7 +277,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	public void download(long roid, long serializerOid, OutputStream outputStream) {
 		try {
-			Long topicId = getServiceInterface().downloadRevisions(Collections.singleton(roid), serializerOid, true);
+			Long topicId = getServiceInterface().download(Collections.singleton(roid), DefaultQueries.allAsString(), serializerOid, true);
 			InputStream inputStream = getDownloadData(topicId, serializerOid);
 			try {
 				IOUtils.copy(inputStream, outputStream);
@@ -387,7 +389,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	
 	public long query(Query query, long roid, long serializerOid) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		ObjectNode queryNode = new JsonQueryObjectModelConverter(query.getPackageMetaData()).toJson(query);
-		Long topicId = getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), queryNode.toString(), serializerOid, false);
+		Long topicId = getServiceInterface().download(Collections.singleton(roid), queryNode.toString(), serializerOid, false);
 		return topicId;
 	}
 

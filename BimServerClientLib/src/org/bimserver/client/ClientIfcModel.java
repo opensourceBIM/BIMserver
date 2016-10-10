@@ -287,7 +287,7 @@ public class ClientIfcModel extends IfcModel {
 			queryPart.setIncludeAllFields(true);
 			
 			ObjectNode queryNode = new JsonQueryObjectModelConverter(query.getPackageMetaData()).toJson(query);
-			Long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), queryNode.toString(), getJsonSerializerOid(), false);
+			Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), queryNode.toString(), getJsonSerializerOid(), false);
 			waitForDonePreparing(topicId);
 			try {
 				processDownload(topicId);
@@ -485,7 +485,7 @@ public class ClientIfcModel extends IfcModel {
 				}
 				
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
-				long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				
 				waitForDonePreparing(topicId);
 				
@@ -587,7 +587,7 @@ public class ClientIfcModel extends IfcModel {
 				
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 				
-				long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
 				idEObjectImpl.setLoadingState(State.LOADED);
@@ -623,7 +623,7 @@ public class ClientIfcModel extends IfcModel {
 				queryPart.addType(eClass, true);
 				
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
-				long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
@@ -682,7 +682,7 @@ public class ClientIfcModel extends IfcModel {
 				
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 				
-				long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
@@ -884,7 +884,7 @@ public class ClientIfcModel extends IfcModel {
 			modelState = ModelState.LOADING;
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 			System.out.println(converter.toJson(query).toString());
-			Long topicId = bimServerClient.getServiceInterface().downloadByNewJsonQuery(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+			Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 			waitForDonePreparing(topicId);
 			
 			if (ifcModelChangeListener != null) {
