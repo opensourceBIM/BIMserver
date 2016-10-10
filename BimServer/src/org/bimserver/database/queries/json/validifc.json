@@ -153,6 +153,18 @@
 			type: "IfcBoundingBox",
 			field: "Corner"
 		},
+		AllProperties: {
+			type: "IfcObject",
+			field: "IsDefinedBy",
+			include: {
+				type: "IfcRelDefinesByProperties",
+				field: "RelatingPropertyDefinition",
+				include: {
+					type: "IfcPropertySet",
+					field: "HasProperties"
+				}
+			}
+		},
 		IfcOpenShell: {
 			type: "IfcOpenShell",
 			field: "CfsFaces",
