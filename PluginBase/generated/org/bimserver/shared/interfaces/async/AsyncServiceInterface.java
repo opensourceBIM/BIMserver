@@ -99,6 +99,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface BcfToJsonCallback {
+		void success(java.lang.String result);
+		void error(Throwable e);
+	}
+	
 	public interface BranchToExistingProjectCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
@@ -817,6 +822,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.addUserWithPassword(username, password, name, type, selfRegistration, resetUrl));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void bcfToJson(final java.lang.Long extendedDataId, final BcfToJsonCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.bcfToJson(extendedDataId));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

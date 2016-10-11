@@ -173,5 +173,10 @@
 			<artifactId>org.apache.oltu.oauth2.dynamicreg.server</artifactId>
 			<version>1.0.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.opensourcebim</groupId>
+			<artifactId>bcf</artifactId>
+			<version>0.0.8-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

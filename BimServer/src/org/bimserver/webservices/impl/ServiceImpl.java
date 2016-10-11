@@ -1,5 +1,6 @@
 package org.bimserver.webservices.impl;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -258,6 +259,9 @@ import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
+import org.opensourcebim.bcf.BcfException;
+import org.opensourcebim.bcf.BcfFile;
+import org.opensourcebim.bcf.ReadOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -2571,5 +2575,19 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		} finally {
 			session.close();
 		}
+	}
+
+	@Override
+	public String bcfToJson(Long extendedDataId) throws ServerException, UserException {
+		SExtendedData extendedData = getExtendedData(extendedDataId);
+		long fileId = extendedData.getFileId();
+		SFile file = getFile(fileId);
+		try {
+			BcfFile bcfFile = BcfFile.read(new ByteArrayInputStream(file.getData()), new ReadOptions(false));
+			return bcfFile.toJson().toString();
+		} catch (BcfException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

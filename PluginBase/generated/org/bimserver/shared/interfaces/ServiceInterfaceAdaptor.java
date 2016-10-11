@@ -72,6 +72,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public java.lang.String bcfToJson(java.lang.Long extendedDataId) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.Long branchToExistingProject(java.lang.Long roid, java.lang.Long destPoid, java.lang.String comment, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}

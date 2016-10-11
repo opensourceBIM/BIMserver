@@ -1,5 +1,5 @@
 
-ôñ
+°ó
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -210,7 +210,12 @@ parentPoid (
 resetUrl (	"[
 AddUserWithPasswordResponse
 errorMessage (	&
-value (2.org.bimserver.pb.SUser"_
+value (2.org.bimserver.pb.SUser"*
+BcfToJsonRequest
+extendedDataId ("8
+BcfToJsonResponse
+errorMessage (	
+value (	"_
 BranchToExistingProjectRequest
 roid (
 destPoid (
@@ -1400,7 +1405,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2„n
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2Ún
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1416,7 +1421,8 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 addUser .org.bimserver.pb.AddUserRequest!.org.bimserver.pb.AddUserResponses
 addUserToExtendedDataSchema4.org.bimserver.pb.AddUserToExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsei
 addUserToProject).org.bimserver.pb.AddUserToProjectRequest*.org.bimserver.pb.AddUserToProjectResponser
-addUserWithPassword,.org.bimserver.pb.AddUserWithPasswordRequest-.org.bimserver.pb.AddUserWithPasswordResponse~
+addUserWithPassword,.org.bimserver.pb.AddUserWithPasswordRequest-.org.bimserver.pb.AddUserWithPasswordResponseT
+	bcfToJson".org.bimserver.pb.BcfToJsonRequest#.org.bimserver.pb.BcfToJsonResponse~
 branchToExistingProject0.org.bimserver.pb.BranchToExistingProjectRequest1.org.bimserver.pb.BranchToExistingProjectResponseo
 branchToNewProject+.org.bimserver.pb.BranchToNewProjectRequest,.org.bimserver.pb.BranchToNewProjectResponseY
 changeUserType'.org.bimserver.pb.ChangeUserTypeRequest.org.bimserver.pb.VoidResponseN

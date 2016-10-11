@@ -51,6 +51,8 @@ service ServiceInterface {
 
 	rpc addUserWithPassword (AddUserWithPasswordRequest) returns (AddUserWithPasswordResponse);
 
+	rpc bcfToJson (BcfToJsonRequest) returns (BcfToJsonResponse);
+
 	rpc branchToExistingProject (BranchToExistingProjectRequest) returns (BranchToExistingProjectResponse);
 
 	rpc branchToNewProject (BranchToNewProjectRequest) returns (BranchToNewProjectResponse);
@@ -587,6 +589,15 @@ message AddUserWithPasswordRequest {
 message AddUserWithPasswordResponse {
 	optional string errorMessage = 1;
 	optional SUser value = 2;
+}
+
+message BcfToJsonRequest {
+	optional int64 extendedDataId = 1;
+}
+
+message BcfToJsonResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
 }
 
 message BranchToExistingProjectRequest {
