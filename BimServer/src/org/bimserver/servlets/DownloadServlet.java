@@ -1,5 +1,7 @@
 package org.bimserver.servlets;
 
+import java.io.ByteArrayInputStream;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -32,6 +34,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
@@ -51,6 +54,11 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.ServiceMap;
+import org.bimserver.webservices.impl.BcfCache;
+import org.opensourcebim.bcf.BcfException;
+import org.opensourcebim.bcf.BcfFile;
+import org.opensourcebim.bcf.ReadOptions;
+import org.opensourcebim.bcf.TopicFolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -124,6 +132,36 @@ public class DownloadServlet extends SubServlet {
 							LOGGER.error("", e);
 						} catch (UserException e) {
 							LOGGER.error("", e);
+						}
+					}
+				} else if (action.equals("getBcfImage")) {
+					long extendedDataId = Long.parseLong(request.getParameter("extendedDataId"));
+					String topicGuid = request.getParameter("topicGuid");
+					String imageGuid = request.getParameter("imageGuid");
+					String name = request.getParameter("name");
+					BcfFile bcfFile = BcfCache.INSTANCE.get(extendedDataId);
+					if (bcfFile == null) {
+						SExtendedData extendedData = serviceMap.getServiceInterface().getExtendedData(extendedDataId);
+						long fileId = extendedData.getFileId();
+						SFile file = serviceMap.getServiceInterface().getFile(fileId);
+						try {
+							bcfFile = BcfFile.read(new ByteArrayInputStream(file.getData()), new ReadOptions(false));
+							BcfCache.INSTANCE.put(extendedDataId, bcfFile);
+						} catch (BcfException e) {
+							e.printStackTrace();
+						}
+					}
+					TopicFolder topicFolder = bcfFile.getTopicFolder(topicGuid);
+					if (topicFolder != null) {
+						byte[] data = topicFolder.getSnapshot(topicGuid + "/" + name);
+						if (data != null) {
+							response.setContentType("image/png");
+							IOUtils.write(data, outputStream);
+							if (outputStream instanceof GZIPOutputStream) {
+								((GZIPOutputStream) outputStream).finish();
+							}
+							outputStream.flush();
+							return;
 						}
 					}
 				}

@@ -2579,15 +2579,18 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public String bcfToJson(Long extendedDataId) throws ServerException, UserException {
-		SExtendedData extendedData = getExtendedData(extendedDataId);
-		long fileId = extendedData.getFileId();
-		SFile file = getFile(fileId);
-		try {
-			BcfFile bcfFile = BcfFile.read(new ByteArrayInputStream(file.getData()), new ReadOptions(false));
-			return bcfFile.toJson().toString();
-		} catch (BcfException e) {
-			e.printStackTrace();
+		BcfFile bcfFile = BcfCache.INSTANCE.get(extendedDataId);
+		if (bcfFile == null) {
+			SExtendedData extendedData = getExtendedData(extendedDataId);
+			long fileId = extendedData.getFileId();
+			SFile file = getFile(fileId);
+			try {
+				bcfFile = BcfFile.read(new ByteArrayInputStream(file.getData()), new ReadOptions(false));
+				BcfCache.INSTANCE.put(extendedDataId, bcfFile);
+			} catch (BcfException e) {
+				e.printStackTrace();
+			}
 		}
-		return null;
+		return bcfFile.toJson().toString();
 	}
 }

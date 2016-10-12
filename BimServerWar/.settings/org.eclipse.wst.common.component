@@ -15,6 +15,9 @@
         <dependent-module archiveName="pluginbase-1.5.59-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/PluginBase/PluginBase">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="bcf-0.0.9-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Bcf/Bcf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/BimServerWar/target/classes"/>
         <property name="context-root" value="bimserverwar"/>
     </wb-module>
