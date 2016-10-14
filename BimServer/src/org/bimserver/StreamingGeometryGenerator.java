@@ -503,7 +503,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							HashMapVirtualObject representation = next.getDirectFeature(representationFeature);
 							if (representation != null) {
 								List<Long> representations = (List<Long>) representation.get("Representations");
-								if (!representations.isEmpty()) {
+								if (representations != null && !representations.isEmpty()) {
 									Query query = new Query("test", packageMetaData);
 									QueryPart queryPart = query.createQueryPart();
 									queryPart.addType(eClass, false);
