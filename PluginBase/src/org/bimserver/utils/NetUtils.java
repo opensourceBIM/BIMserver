@@ -25,7 +25,15 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.entity.ContentType;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Charsets;
 
 public class NetUtils {
@@ -59,6 +67,22 @@ public class NetUtils {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public static ObjectNode post(String url, ObjectNode objectNode) throws IOException {
+		CloseableHttpClient httpclient = HttpClients.createDefault();
+		try {
+			ObjectMapper objectMapper = new ObjectMapper();
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			objectMapper.writeValue(out, objectNode);
+			HttpPost post = new HttpPost(url);
+			post.setEntity(new ByteArrayEntity(out.toByteArray(), ContentType.APPLICATION_JSON));
+			CloseableHttpResponse httpResponse = httpclient.execute(post);
+			ObjectNode response = objectMapper.readValue(httpResponse.getEntity().getContent(), ObjectNode.class);
+			return response;
+		} finally {
+		    httpclient.close();
 		}
 	}
 }

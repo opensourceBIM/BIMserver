@@ -54,6 +54,11 @@ public class AsyncOAuthInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetRemoteTokenCallback {
+		void success(java.lang.String result);
+		void error(Throwable e);
+	}
+	
 	public interface ListAuthorizationCodesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SOAuthAuthorizationCode> result);
 		void error(Throwable e);
@@ -156,6 +161,18 @@ public class AsyncOAuthInterface {
 		});
 	}
 	
+	public void getRemoteToken(final java.lang.Long soid, final java.lang.String code, final java.lang.Long serverId, final GetRemoteTokenCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getRemoteToken(soid, code, serverId));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void listAuthorizationCodes(final ListAuthorizationCodesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -204,11 +221,11 @@ public class AsyncOAuthInterface {
 		});
 	}
 	
-	public void registerApplication(final java.lang.String registrationEndpoint, final java.lang.String apiUrl, final RegisterApplicationCallback callback) {
+	public void registerApplication(final java.lang.String registrationEndpoint, final java.lang.String apiUrl, final java.lang.String redirectUrl, final RegisterApplicationCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.registerApplication(registrationEndpoint, apiUrl));
+					callback.success(syncService.registerApplication(registrationEndpoint, apiUrl, redirectUrl));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

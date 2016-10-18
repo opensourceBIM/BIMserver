@@ -20,9 +20,11 @@ import org.bimserver.interfaces.objects.SOAuthAuthorizationCode;
 import org.bimserver.interfaces.objects.SOAuthServer;
 import org.bimserver.interfaces.objects.SSingleProjectAuthorization;
 import org.bimserver.models.store.Authorization;
+import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.OAuthAuthorizationCode;
 import org.bimserver.models.store.OAuthServer;
 import org.bimserver.models.store.ServerSettings;
+import org.bimserver.models.store.ServiceStatus;
 import org.bimserver.models.store.SingleProjectAuthorization;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
@@ -32,6 +34,9 @@ import org.bimserver.shared.interfaces.OAuthInterface;
 import org.bimserver.utils.NetUtils;
 import org.bimserver.webservices.ServiceMap;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterface {
 
 	public OAuthServiceImpl(ServiceMap serviceMap) {
@@ -39,7 +44,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 	}
 
 	@Override
-	public Long registerApplication(String registrationEndpoint, String apiUrl) throws UserException, ServerException {
+	public Long registerApplication(String registrationEndpoint, String apiUrl, String redirectUrl) throws UserException, ServerException {
         try {
         	try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
         		OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_RegistrationEndpoint(), registrationEndpoint);
@@ -50,7 +55,6 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
         		
         		ServerSettings serverSettings = getBimServer().getServerSettingsCache().getServerSettings();
         		
-				String redirectUrl = getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth";
 				OAuthClientRequest request = OAuthClientRegistrationRequest
 				    .location(registrationEndpoint, OAuthRegistration.Type.PUSH)
 				    .setName(serverSettings.getName())
@@ -259,6 +263,33 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_ClientId(), clientId);
 			return getBimServer().getSConverter().convertToSObject(oAuthServer);
+		} catch (Exception e) {
+			return handleException(e);
+		}
+	}
+
+	@Override
+	public String getRemoteToken(Long soid, String code, Long serverId) throws ServerException, UserException {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+			NewService newService = session.get(soid, OldQuery.getDefault());
+			ObjectMapper objectMapper = new ObjectMapper();
+			ObjectNode objectNode = objectMapper.createObjectNode();
+			objectNode.put("grant_type", "authorization_code");
+			objectNode.put("code", code);
+			OAuthServer oAuthServer = session.get(serverId, OldQuery.getDefault());
+			objectNode.put("client_id", oAuthServer.getClientId());
+			objectNode.put("client_secret", oAuthServer.getClientSecret());
+			
+			ObjectNode post = NetUtils.post(newService.getTokenUrl(), objectNode);
+			
+			String accessToken = post.get("access_token").asText();
+			newService.setAccessToken(accessToken);
+			newService.setStatus(ServiceStatus.AUTHENTICATED);
+			
+			session.store(newService);
+			session.commit();
+
+			return accessToken;
 		} catch (Exception e) {
 			return handleException(e);
 		}

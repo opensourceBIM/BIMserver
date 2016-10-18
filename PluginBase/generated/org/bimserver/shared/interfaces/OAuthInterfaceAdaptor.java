@@ -41,6 +41,10 @@ public class OAuthInterfaceAdaptor implements org.bimserver.shared.interfaces.OA
 		return null;
 	}
 	
+	public java.lang.String getRemoteToken(java.lang.Long soid, java.lang.String code, java.lang.Long serverId) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SOAuthAuthorizationCode> listAuthorizationCodes() throws UserException, ServerException {
 		return null;
 	}
@@ -57,7 +61,7 @@ public class OAuthInterfaceAdaptor implements org.bimserver.shared.interfaces.OA
 		return null;
 	}
 	
-	public java.lang.Long registerApplication(java.lang.String registrationEndpoint, java.lang.String apiUrl) throws UserException, ServerException {
+	public java.lang.Long registerApplication(java.lang.String registrationEndpoint, java.lang.String apiUrl, java.lang.String redirectUrl) throws UserException, ServerException {
 		return null;
 	}
 	

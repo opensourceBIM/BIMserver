@@ -1,5 +1,5 @@
 
-· 
+·"
 OAuthInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoNotificationInterface.protoRemoteServiceInterface.protoLowLevelInterface.proto#NotificationRegistryInterface.proto"J
 SSingleProjectAuthorization
 oid (
@@ -56,7 +56,14 @@ clientName (	
 oid ("a
 GetOAuthServerByIdResponse
 errorMessage (	-
-value (2.org.bimserver.pb.SOAuthServer"
+value (2.org.bimserver.pb.SOAuthServer"E
+GetRemoteTokenRequest
+soid (
+code (	
+serverId ("=
+GetRemoteTokenResponse
+errorMessage (	
+value (	"
 ListAuthorizationCodesRequest"q
 SOAuthAuthorizationCode
 authorizationId (
@@ -78,10 +85,11 @@ $ListIssuedAuthorizationCodesResponse
 !ListRegisteredServersLocalRequest"i
 "ListRegisteredServersLocalResponse
 errorMessage (	-
-value (2.org.bimserver.pb.SOAuthServer"J
+value (2.org.bimserver.pb.SOAuthServer"_
 RegisterApplicationRequest
 registrationEndpoint (	
-apiUrl (	"B
+apiUrl (	
+redirectUrl (	"B
 RegisterApplicationResponse
 errorMessage (	
 value ("'
@@ -91,13 +99,14 @@ $ListIssuedAuthorizationCodesResponse
 oid ("B
 SetAuthorizationCodeRequest
 applicationId (
-code (	2ı
+code (	2⁄
 OAuthInterfaceT
 	authorize".org.bimserver.pb.AuthorizeRequest#.org.bimserver.pb.AuthorizeResponseo
 generateForwardUrl+.org.bimserver.pb.GenerateForwardUrlRequest,.org.bimserver.pb.GenerateForwardUrlResponseu
 getAuthorizationById-.org.bimserver.pb.GetAuthorizationByIdRequest..org.bimserver.pb.GetAuthorizationByIdResponseÅ
 getOAuthServerByClientId1.org.bimserver.pb.GetOAuthServerByClientIdRequest2.org.bimserver.pb.GetOAuthServerByClientIdResponseo
-getOAuthServerById+.org.bimserver.pb.GetOAuthServerByIdRequest,.org.bimserver.pb.GetOAuthServerByIdResponse{
+getOAuthServerById+.org.bimserver.pb.GetOAuthServerByIdRequest,.org.bimserver.pb.GetOAuthServerByIdResponsec
+getRemoteToken'.org.bimserver.pb.GetRemoteTokenRequest(.org.bimserver.pb.GetRemoteTokenResponse{
 listAuthorizationCodes/.org.bimserver.pb.ListAuthorizationCodesRequest0.org.bimserver.pb.ListAuthorizationCodesResponseç
 listIssuedAuthorizationCodes5.org.bimserver.pb.ListIssuedAuthorizationCodesRequest6.org.bimserver.pb.ListIssuedAuthorizationCodesResponsex
 listRegisteredServers..org.bimserver.pb.ListRegisteredServersRequest/.org.bimserver.pb.ListRegisteredServersResponseá

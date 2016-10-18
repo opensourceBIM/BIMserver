@@ -47,6 +47,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getSerializer <em>Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getAccessToken <em>Access Token</em>}</li>
  * </ul>
  *
  * @generated
@@ -313,6 +314,24 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 */
 	public void setAction(Action newAction) {
 		eSet(StorePackage.Literals.NEW_SERVICE__ACTION, newAction);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getAccessToken() {
+		return (String) eGet(StorePackage.Literals.NEW_SERVICE__ACCESS_TOKEN, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAccessToken(String newAccessToken) {
+		eSet(StorePackage.Literals.NEW_SERVICE__ACCESS_TOKEN, newAccessToken);
 	}
 
 } //NewServiceImpl

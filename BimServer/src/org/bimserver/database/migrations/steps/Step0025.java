@@ -49,6 +49,7 @@ public class Step0025 extends Migration {
 		schema.createEReference(newServiceClass, "serializer", schema.getEClass("store", "SerializerPluginConfiguration"));
 		schema.createEAttribute(newServiceClass, "output", EcorePackage.eINSTANCE.getEString());
 		schema.createEReference(newServiceClass, "action", actionClass);
+		schema.createEAttribute(newServiceClass, "accessToken", EcorePackage.eINSTANCE.getEString());
 		
 		schema.createEReference(schema.getEClass("store", "Project"), "newServices", newServiceClass, Multiplicity.MANY);
 	}

@@ -29,7 +29,8 @@ public interface OAuthInterface extends PublicInterface {
 	@WebMethod(action="registerApplication")
 	Long registerApplication(
 		@WebParam(name = "registrationEndpoint", partName = "registerApplication.registrationEndpoint") String registrationEndpoint,
-		@WebParam(name = "apiUrl", partName = "registerApplication.apiUrl") String apiUrl) throws UserException, ServerException;
+		@WebParam(name = "apiUrl", partName = "registerApplication.apiUrl") String apiUrl,
+		@WebParam(name = "redirectUrl", partName = "registerApplication.redirectUrl") String redirectUrl) throws UserException, ServerException;
 
 	/**
 	 * @return Returns a list of OAuthClient objects that contains the information that this BIMserver stores about the connections it has with remote servers
@@ -80,4 +81,10 @@ public interface OAuthInterface extends PublicInterface {
 
 	@WebMethod(action="revokeAuthorization")
 	void revokeAuthorization(@WebParam(name = "oid", partName = "revokeAuthorization.oid") Long oid) throws ServerException, UserException;
+	
+	@WebMethod(action="getRemoteToken")
+	String getRemoteToken(
+		@WebParam(name = "soid", partName = "getRemoteToken.soid") Long soid,
+		@WebParam(name = "code", partName = "getRemoteToken.code") String code,
+		@WebParam(name = "serverId", partName = "getRemoteToken.serverId") Long serverId) throws ServerException, UserException;
 }

@@ -405,21 +405,22 @@ enum SServiceStatus{
 }
 
 message SNewService {
-	optional int64 actionId = 1;
-	optional string authorizationUrl = 2;
-	optional string description = 3;
-	optional string input = 4;
-	optional string name = 5;
-	optional string oauthCode = 6;
-	optional int64 oid = 7;
-	optional string output = 8;
-	optional string provider = 9;
-	optional string registerUrl = 10;
-	optional string resourceUrl = 11;
-	optional int32 rid = 12;
-	optional int64 serializerId = 13;
-	optional SServiceStatus status = 14;
-	optional string tokenUrl = 15;
+	optional string accessToken = 1;
+	optional int64 actionId = 2;
+	optional string authorizationUrl = 3;
+	optional string description = 4;
+	optional string input = 5;
+	optional string name = 6;
+	optional string oauthCode = 7;
+	optional int64 oid = 8;
+	optional string output = 9;
+	optional string provider = 10;
+	optional string registerUrl = 11;
+	optional string resourceUrl = 12;
+	optional int32 rid = 13;
+	optional int64 serializerId = 14;
+	optional SServiceStatus status = 15;
+	optional string tokenUrl = 16;
 }
 
 message AddNewServiceToProjectRequest {

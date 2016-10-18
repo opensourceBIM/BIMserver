@@ -42,6 +42,7 @@ public class SNewService implements SDataBase
 	private long serializerId = -1;
 	private java.lang.String output;
 	private long actionId = -1;
+	private java.lang.String accessToken;
 
 	public long getOid() {
 		return this.oid;
@@ -108,6 +109,9 @@ public class SNewService implements SDataBase
 		if (sField.getName().equals("actionId")) {
 			return getActionId();
 		}
+		if (sField.getName().equals("accessToken")) {
+			return getAccessToken();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -168,6 +172,10 @@ public class SNewService implements SDataBase
 		}
 		if (sField.getName().equals("actionId")) {
 			setActionId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("accessToken")) {
+			setAccessToken((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -283,6 +291,14 @@ public class SNewService implements SDataBase
 
 	public void setActionId(long actionId) {
 		this.actionId = actionId;
+	}
+	
+	public java.lang.String getAccessToken() {
+		return accessToken;
+	}
+
+	public void setAccessToken(java.lang.String accessToken) {
+		this.accessToken = accessToken;
 	}
 	
 	@Override

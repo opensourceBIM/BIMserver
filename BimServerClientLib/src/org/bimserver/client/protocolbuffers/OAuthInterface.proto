@@ -44,6 +44,8 @@ service OAuthInterface {
 
 	rpc getOAuthServerById (GetOAuthServerByIdRequest) returns (GetOAuthServerByIdResponse);
 
+	rpc getRemoteToken (GetRemoteTokenRequest) returns (GetRemoteTokenResponse);
+
 	rpc listAuthorizationCodes (ListAuthorizationCodesRequest) returns (ListAuthorizationCodesResponse);
 
 	rpc listIssuedAuthorizationCodes (ListIssuedAuthorizationCodesRequest) returns (ListIssuedAuthorizationCodesResponse);
@@ -141,6 +143,17 @@ message GetOAuthServerByIdResponse {
 	optional SOAuthServer value = 2;
 }
 
+message GetRemoteTokenRequest {
+	optional int64 soid = 1;
+	optional string code = 2;
+	optional int64 serverId = 3;
+}
+
+message GetRemoteTokenResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
 message ListAuthorizationCodesRequest {
 }
 
@@ -184,6 +197,7 @@ message ListRegisteredServersLocalResponse {
 message RegisterApplicationRequest {
 	optional string registrationEndpoint = 1;
 	optional string apiUrl = 2;
+	optional string redirectUrl = 3;
 }
 
 message RegisterApplicationResponse {
