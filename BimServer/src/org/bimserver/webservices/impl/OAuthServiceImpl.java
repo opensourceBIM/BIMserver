@@ -63,7 +63,6 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 				    .setIcon(serverSettings.getIcon())
 				    .setRedirectURL(redirectUrl)
 				    .buildJSONMessage();
-				System.out.println(request.getBody());
 				OAuthRegistrationClient oauthclient = new OAuthRegistrationClient(new URLConnectionClient());
 				OAuthClientRegistrationResponse response = oauthclient.clientInfo(request);
 

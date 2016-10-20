@@ -58,9 +58,6 @@ public class GetAvailablePluginBundles extends PluginBundleDatabaseAction<List<S
 			PluginBundle pluginBundle = bimServer.getPluginManager().getPluginBundle(pluginLocation.getPluginIdentifier());
 			// Skipping all plugin bundles that already have an installed version
 			if (pluginBundle == null) {
-				if (pluginLocation.getPluginIdentifier().getArtifactId().equals("ifcvalidator")) {
-					System.out.println();
-				}
 				SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictVersionChecking, bimserverVersion);
 				if (sPluginBundle != null) {
 					result.add(sPluginBundle);
