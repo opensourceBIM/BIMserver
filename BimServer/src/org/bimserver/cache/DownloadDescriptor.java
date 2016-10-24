@@ -1,5 +1,8 @@
 package org.bimserver.cache;
 
+import java.io.IOException;
+import java.io.StringWriter;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -19,8 +22,14 @@ package org.bimserver.cache;
 
 import java.util.Set;
 
+import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
+import org.bimserver.emf.PackageMetaData;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Charsets;
 import com.google.common.hash.HashCode;
 import com.google.common.hash.HashFunction;
@@ -28,12 +37,18 @@ import com.google.common.hash.Hasher;
 import com.google.common.hash.Hashing;
 
 public class DownloadDescriptor {
+	private static final HashFunction hf = Hashing.md5();
+	private static final ObjectMapper objectMapper = new ObjectMapper();
 	private Set<Long> roids;
 	private Query query;
 	private long serializerOid;
 	private String fileNameWithoutExtension;
+	private PackageMetaData packageMetaData;
+	private String jsonQuery;
 
-	public DownloadDescriptor(Set<Long> roids, Query query, long serializerOid, String fileNameWithoutExtension) {
+	public DownloadDescriptor(PackageMetaData packageMetaData, String jsonQuery, Set<Long> roids, Query query, long serializerOid, String fileNameWithoutExtension) {
+		this.packageMetaData = packageMetaData;
+		this.jsonQuery = jsonQuery;
 		this.roids = roids;
 		this.query = query;
 		this.serializerOid = serializerOid;
@@ -41,15 +56,36 @@ public class DownloadDescriptor {
 	}
 	
 	public String getCacheKey() {
-		HashFunction hf = Hashing.md5();
 		Hasher hasher = hf.newHasher();
+		// TODO This serializerOid actually makes the cache a per-user cache... Maybe not the most useful feature
 		hasher.putLong(serializerOid);
 		for (long roid : roids) {
 			hasher.putLong(roid);
 		}
-		hasher.putString(query.toString(), Charsets.UTF_8);
-		HashCode hashcode = hasher.hash();
-		return hashcode.toString();
+		if (jsonQuery != null) {
+			// TODO This is based on the incoming JSON (if there is any), this should be replaced at some point by a canonical-form
+			hasher.putString(jsonQuery, Charsets.UTF_8);
+			HashCode hashcode = hasher.hash();
+			return hashcode.toString();
+		} else {
+			// TODO This does not work because the toJson function is not complete
+			ObjectNode json = new JsonQueryObjectModelConverter(packageMetaData).toJson(query);
+			try {
+				StringWriter stringWriter = new StringWriter();
+				objectMapper.writeValue(stringWriter, json);
+				System.out.println(query.toString());
+				hasher.putString(stringWriter.toString(), Charsets.UTF_8);
+				HashCode hashcode = hasher.hash();
+				return hashcode.toString();
+			} catch (JsonGenerationException e) {
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 
 	public String getFileNameWithoutExtension() {
