@@ -58,7 +58,7 @@ public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame imple
 			if (firstOid >= startOid) {
 				startOid = firstOid;
 			} else {
-				throw new QueryException("Querying oid " + firstOid + " which cannot be in this revision");
+//				throw new QueryException("Querying oid " + firstOid + " which cannot be in this revision");
 			}
 			ByteBuffer tmp = ByteBuffer.allocate(12);
 			tmp.putInt(getReusable().getPid());
