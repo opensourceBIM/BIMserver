@@ -110,6 +110,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private volatile boolean allJobsPushed;
 
 	private Object representationsFeature;
+	private int maxObjectsPerFile = 10;
 
 	private EClass productRepresentationClass;
 
@@ -509,7 +510,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 									queryPart.addType(eClass, false);
 									int x = 0;
 									queryPart.addOid(next.getOid());
-									while (next != null && x < 10) {
+									while (next != null && x < maxObjectsPerFile) {
 										next = queryObjectProvider2.next();
 										if (next != null) {
 											if (next.eClass() == eClass) {
@@ -543,11 +544,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 									queryPart.addInclude(representationInclude);
 									Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement");
 									queryPart.addInclude(objectPlacement);
-									if (packageMetaData.getEClass("IfcWall").isSuperTypeOf(eClass)) {
-										Include ifcWall = queryPart.createInclude();
-										ifcWall.addType(packageMetaData.getEClass(eClass.getName()), false);
-										ifcWall.addField("HasOpenings");
-										Include hasOpenings = ifcWall.createInclude();
+									if (packageMetaData.getEClass("IfcElement").isSuperTypeOf(eClass)) {
+										Include openingsInclude = queryPart.createInclude();
+										openingsInclude.addType(packageMetaData.getEClass(eClass.getName()), false);
+										openingsInclude.addField("HasOpenings");
+										Include hasOpenings = openingsInclude.createInclude();
 										hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
 										hasOpenings.addField("RelatedOpeningElement");
 										hasOpenings.addInclude(representationInclude);
