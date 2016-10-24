@@ -26,6 +26,10 @@ public class GrowingByteBuffer {
 		byteBuffer = ByteBuffer.allocate(initialCapacity);
 	}
 	
+	public int usedSize() {
+		return byteBuffer.position();
+	}
+	
 	public GrowingByteBuffer(ByteBuffer buffer) {
 		byteBuffer = ByteBuffer.wrap(buffer.array());
 		buffer.position(0);
@@ -101,5 +105,13 @@ public class GrowingByteBuffer {
 	public void put(byte[] b, int off, int len) {
 		ensureExtraCapacity(len);
 		byteBuffer.put(b, off, len);
+	}
+
+	public void putNoCheck(byte[] b, int off, int len) {
+		byteBuffer.put(b, off, len);
+	}
+
+	public void putNoCheck(byte b) {
+		byteBuffer.put(b);
 	}
 }

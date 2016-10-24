@@ -110,7 +110,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 				ObjectNode queryObject = new ObjectMapper().readValue(jsonQuery, ObjectNode.class);
 				Query query = converter.parseJson("query", (ObjectNode) queryObject);
 				
-				downloadDescriptor = new DownloadDescriptor(roids, query, serializerOid, this.filename);
+				downloadDescriptor = new DownloadDescriptor(packageMetaData, jsonQuery, roids, query, serializerOid, this.filename);
 				
 				if (getBimServer().getNewDiskCacheManager().contains(downloadDescriptor)) {
 					DataSource dataSource = getBimServer().getNewDiskCacheManager().get(downloadDescriptor);
