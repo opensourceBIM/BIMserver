@@ -526,7 +526,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 						IdEObject newObject = modelHelper.copy(idEObject, false, ModelHelper.createObjectIdm(idEObject.eClass()));
 						modelHelper.copyDecomposes(idEObject, newOwnerHistory);
 						bigMap.put(newObject, idEObject);
-						if (eClass.getName().equals("IfcWallStandardCase")) {
+						if (packageMetaData.getEClass("IfcElement").isSuperTypeOf(eClass)) {
 							EStructuralFeature hasOpeningsFeature = idEObject.eClass().getEStructuralFeature("HasOpenings");
 							for (IdEObject ifcRelVoidsElement : ((List<IdEObject>)idEObject.eGet(hasOpeningsFeature))) {
 								bigMap.put(modelHelper.copy(ifcRelVoidsElement, false), ifcRelVoidsElement);
