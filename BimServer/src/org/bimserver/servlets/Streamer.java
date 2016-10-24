@@ -3,8 +3,6 @@ package org.bimserver.servlets;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.GregorianCalendar;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
@@ -21,11 +19,11 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.utils.Formatters;
+import org.bimserver.utils.GrowingByteBuffer;
 import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.io.LittleEndianDataOutputStream;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
@@ -80,13 +78,15 @@ public class Streamer implements EndPoint {
 							long bytes = 0;
 							long start = System.nanoTime();
 							
+							// TODO whenever a large object has been sent, the large buffer stays in memory until websocket closes...
+							ReusableLittleEndianDataOutputStream byteArrayOutputStream = new ReusableLittleEndianDataOutputStream();
+							GrowingByteBuffer growingByteBuffer = byteArrayOutputStream.getGrowingByteBuffer();
 							do {
-								ReusableByteArrayOutputStream byteArrayOutputStream = new ReusableByteArrayOutputStream();
-								LittleEndianDataOutputStream dataOutputStream = new LittleEndianDataOutputStream(byteArrayOutputStream);
-								dataOutputStream.writeLong(topicId);
-								writeMessage = writer.writeMessage(dataOutputStream, null);
-								bytes += byteArrayOutputStream.usedSize();
-								streamingSocketInterface.sendBlocking(byteArrayOutputStream.getByteArray(), 0, byteArrayOutputStream.usedSize());
+								byteArrayOutputStream.reset();
+								byteArrayOutputStream.writeLong(topicId);
+								writeMessage = writer.writeMessage(byteArrayOutputStream, null);
+								bytes += growingByteBuffer.usedSize();
+								streamingSocketInterface.sendBlocking(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
 								counter++;
 							} while (writeMessage);
 							long end = System.nanoTime();
