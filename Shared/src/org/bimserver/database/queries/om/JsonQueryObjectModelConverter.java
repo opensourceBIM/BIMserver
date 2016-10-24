@@ -105,7 +105,11 @@ public class JsonQueryObjectModelConverter {
 					}
 					includeNode.set("fields", fieldsNode);
 					
-					if (include.hasOutputTypes() || include.hasIncludes()) {
+					if (include.hasOutputTypes()) {
+						throw new RuntimeException("Not implemented");
+					}
+					
+					if (include.hasIncludes()) {
 						throw new RuntimeException("Not implemented");
 					}
 					
