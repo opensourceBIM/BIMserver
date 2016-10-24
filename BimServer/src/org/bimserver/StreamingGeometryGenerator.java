@@ -2,25 +2,6 @@ package org.bimserver;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-
-/******************************************************************************
- * Copyright (C) 2009-2016  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
- *****************************************************************************/
-
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -56,7 +37,6 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.geometry.Matrix;
 import org.bimserver.models.geometry.GeometryPackage;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -101,6 +81,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private AtomicLong bytesSaved = new AtomicLong();
 	private AtomicLong totalBytes = new AtomicLong();
+	private AtomicLong saveableColorBytes = new AtomicLong();
 
 	private AtomicInteger jobsDone = new AtomicInteger();
 	private AtomicInteger jobsTotal = new AtomicInteger();
@@ -109,10 +90,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private volatile boolean allJobsPushed;
 
-	private Object representationsFeature;
 	private int maxObjectsPerFile = 10;
-
-	private EClass productRepresentationClass;
 
 	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener) {
 		this.bimServer = bimServer;
@@ -286,7 +264,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indices.length / 3);
 
-//												Set<Color4f> usedColors = new HashSet<>();
+											Set<Color4f> usedColors = new HashSet<>();
+											
+											int saveableColorBytes = 0;
 											
 											if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 												boolean hasMaterial = false;
@@ -303,16 +283,15 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 																vertex_colors[4 * k + l] = val;
 																color.set(l, val);
 															}
-//																usedColors.add(color);
+															usedColors.add(color);
 														}
 													}
 												}
-//													System.out.println(usedColors.size() + " different colors");
-//													if (!usedColors.isEmpty()) {
-//														for (Color4f c : usedColors) {
-//															System.out.println(c);
-//														}
-//													}
+												if (!usedColors.isEmpty()) {
+													if (usedColors.size() == 1) {
+														saveableColorBytes = (4 * vertex_colors.length) - 16;
+													}
+												}
 												if (hasMaterial) {
 													geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Materials(), floatArrayToByteArray(vertex_colors));
 												}
@@ -346,6 +325,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	//													LOGGER.info("More reuse might be possible " + size + " " + ifcProduct.eClass().getName() + ":" + ifcProduct.getOid() + " / " + sizes.get(size).eClass().getName() + ":" + sizes.get(size).getOid());
 	//												}
 													hashes.put(hash, geometryData.getOid());
+													StreamingGeometryGenerator.this.saveableColorBytes.addAndGet(saveableColorBytes);
 													geometryData.save();
 	//												sizes.put(size, ifcProduct);
 												}
@@ -447,8 +427,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		productClass = packageMetaData.getEClass("IfcProduct");
 		geometryFeature = productClass.getEStructuralFeature("geometry");
 		representationFeature = productClass.getEStructuralFeature("Representation");
-		productRepresentationClass = packageMetaData.getEClass("IfcProductRepresentation");
-		representationsFeature = productRepresentationClass.getEStructuralFeature("Representations");
 
 		long start = System.nanoTime();
 		String pluginName = "";
@@ -581,6 +559,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 			long end = System.nanoTime();
 			LOGGER.info("Rendertime: " + ((end - start) / 1000000) + "ms, " + "Reused: " + Formatters.bytesToString(bytesSaved.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(totalBytes.get() - bytesSaved.get()));
+			LOGGER.info("Saveable color data: " + Formatters.bytesToString(saveableColorBytes.get()));
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			throw new GeometryGeneratingException(e);
