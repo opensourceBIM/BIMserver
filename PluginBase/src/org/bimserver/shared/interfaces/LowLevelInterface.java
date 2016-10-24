@@ -919,6 +919,7 @@ public interface LowLevelInterface extends PublicInterface {
 	 * @return An SDataObject
 	 * @throws ServerException, UserException
 	 */
+	@Deprecated
 	@WebMethod(action = "getDataObjectByOid")
 	SDataObject getDataObjectByOid(
 		@WebParam(name = "roid", partName = "getDataObjectByOid.roid") Long roid,
@@ -932,6 +933,7 @@ public interface LowLevelInterface extends PublicInterface {
 	 * @return The object with the given GUID in the given Revision, of null if not found
 	 * @throws ServerException, UserException
 	 */
+	@Deprecated
 	@WebMethod(action = "getDataObjectByGuid")
 	SDataObject getDataObjectByGuid(
 		@WebParam(name = "roid", partName = "getDataObjectByGuid.roid") Long roid,
@@ -945,6 +947,7 @@ public interface LowLevelInterface extends PublicInterface {
 	 * @return A list of DataObjects from the given Revision matching the given class
 	 * @throws ServerException, UserException
 	 */
+	@Deprecated
 	@WebMethod(action = "getDataObjectsByType")
 	List<SDataObject> getDataObjectsByType(
 		@WebParam(name = "roid", partName = "getDataObjectsByType.roid") Long roid,
@@ -959,6 +962,7 @@ public interface LowLevelInterface extends PublicInterface {
 	 * @return A list of DataObjects from the given Revision
 	 * @throws ServerException, UserException
 	 */
+	@Deprecated
 	@WebMethod(action = "getDataObjects")
 	List<SDataObject> getDataObjects(
 		@WebParam(name = "roid", partName = "getDataObjects.roid") Long roid) throws ServerException, UserException;
