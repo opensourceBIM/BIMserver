@@ -11,6 +11,7 @@ import org.bimserver.longaction.LongAction;
 import org.bimserver.longaction.LongDownloadOrCheckoutAction;
 import org.bimserver.longaction.LongStreamingDownloadAction;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.Writer;
 import org.bimserver.shared.StreamingSocketInterface;
@@ -81,10 +82,20 @@ public class Streamer implements EndPoint {
 							// TODO whenever a large object has been sent, the large buffer stays in memory until websocket closes...
 							ReusableLittleEndianDataOutputStream byteArrayOutputStream = new ReusableLittleEndianDataOutputStream();
 							GrowingByteBuffer growingByteBuffer = byteArrayOutputStream.getGrowingByteBuffer();
+							ProgressReporter progressReporter = new ProgressReporter() {
+								@Override
+								public void update(long progress, long max) {
+									longAction.updateProgress("test", (int) ((progress * 100) / max));
+								}
+								
+								@Override
+								public void setTitle(String stage) {
+								}
+							};
 							do {
 								byteArrayOutputStream.reset();
 								byteArrayOutputStream.writeLong(topicId);
-								writeMessage = writer.writeMessage(byteArrayOutputStream, null);
+								writeMessage = writer.writeMessage(byteArrayOutputStream, progressReporter);
 								bytes += growingByteBuffer.usedSize();
 								streamingSocketInterface.sendBlocking(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
 								counter++;
