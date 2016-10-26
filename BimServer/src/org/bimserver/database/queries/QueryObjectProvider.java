@@ -28,12 +28,12 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
+import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.shared.HashMapVirtualObject;
-import org.bimserver.shared.QueryException;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +45,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class QueryObjectProvider implements ObjectProvider {
+
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
 	// So far 10000000 has proven to not be enough for some legit IFC files
 	private static final int MAX_STACK_FRAMES_PROCESSED = 100000000;
 	
@@ -63,10 +66,16 @@ public class QueryObjectProvider implements ObjectProvider {
 	private Query query;
 	private StackFrame stackFrame;
 
-	public QueryObjectProvider(DatabaseSession databaseSession, BimServer bimServer, Query query, Set<Long> roids, PackageMetaData packageMetaData) throws JsonParseException, JsonMappingException, IOException, QueryException {
+	private Set<Long> roids;
+
+	private PackageMetaData packageMetaData;
+
+	public QueryObjectProvider(DatabaseSession databaseSession, BimServer bimServer, Query query, Set<Long> roids, PackageMetaData packageMetaData) throws IOException, QueryException {
 		this.databaseSession = databaseSession;
 		this.bimServer = bimServer;
 		this.query = query;
+		this.roids = roids;
+		this.packageMetaData = packageMetaData;
 		
 		stack = new ArrayDeque<StackFrame>();
 		stack.push(new StartFrame(this, roids));
@@ -76,6 +85,11 @@ public class QueryObjectProvider implements ObjectProvider {
 				goingToRead.addAll(queryPart.getOids());
 			}
 		}
+	}
+
+	public QueryObjectProvider copy() throws IOException, QueryException {
+		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, roids, packageMetaData);
+		return queryObjectProvider;
 	}
 	
 	public static QueryObjectProvider fromJsonNode(DatabaseSession databaseSession, BimServer bimServer, JsonNode fullQuery, Set<Long> roids, PackageMetaData packageMetaData) throws JsonParseException, JsonMappingException, IOException, QueryException {
@@ -89,7 +103,7 @@ public class QueryObjectProvider implements ObjectProvider {
 	}
 	
 	public static QueryObjectProvider fromJsonString(DatabaseSession databaseSession, BimServer bimServer, String json, Set<Long> roids, PackageMetaData packageMetaData) throws JsonParseException, JsonMappingException, IOException, QueryException {
-		return fromJsonNode(databaseSession, bimServer, new ObjectMapper().readValue(json, ObjectNode.class), roids, packageMetaData);
+		return fromJsonNode(databaseSession, bimServer, OBJECT_MAPPER.readValue(json, ObjectNode.class), roids, packageMetaData);
 	}
 	
 	public Query getQuery() {

@@ -25,7 +25,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.shared.QueryException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
@@ -39,6 +38,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class JsonQueryObjectModelConverter {
 	private static final Map<String, Include> CACHED_DEFINES = new HashMap<>();
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private PackageMetaData packageMetaData;
 
 	public JsonQueryObjectModelConverter(PackageMetaData packageMetaData) {
@@ -46,40 +46,39 @@ public class JsonQueryObjectModelConverter {
 	}
 	
 	public ObjectNode toJson(Query query) {
-		ObjectMapper objectMapper = new ObjectMapper();
-		ObjectNode queryNode = objectMapper.createObjectNode();
+		ObjectNode queryNode = OBJECT_MAPPER.createObjectNode();
 		Map<String, Include> defines = query.getDefines();
-		ObjectNode definesNode = objectMapper.createObjectNode();
+		ObjectNode definesNode = OBJECT_MAPPER.createObjectNode();
 		queryNode.set("defines", definesNode);
 		for (String key : defines.keySet()) {
-			ObjectNode includeNode = objectMapper.createObjectNode();
+			ObjectNode includeNode = OBJECT_MAPPER.createObjectNode();
 			Include include = defines.get(key);
-			ArrayNode fieldsNode = objectMapper.createArrayNode();
+			ArrayNode fieldsNode = OBJECT_MAPPER.createArrayNode();
 			for (EReference eReference : include.getFields()) {
 				fieldsNode.add(eReference.getName());
 			}
 			definesNode.set(key, includeNode);
 		}
-		ArrayNode queryPartsNode = objectMapper.createArrayNode();
+		ArrayNode queryPartsNode = OBJECT_MAPPER.createArrayNode();
 		queryNode.set("queries", queryPartsNode);
 		for (QueryPart queryPart : query.getQueryParts()) {
-			ObjectNode queryPartNode = objectMapper.createObjectNode();
+			ObjectNode queryPartNode = OBJECT_MAPPER.createObjectNode();
 			if (queryPart.hasTypes()) {
-				ArrayNode typesNode = objectMapper.createArrayNode();
+				ArrayNode typesNode = OBJECT_MAPPER.createArrayNode();
 				queryPartNode.set("types", typesNode);
 				for (EClass type : queryPart.getTypes()) {
 					typesNode.add(type.getName());
 				}
 			}
 			if (queryPart.hasOids()) {
-				ArrayNode oidsNode = objectMapper.createArrayNode();
+				ArrayNode oidsNode = OBJECT_MAPPER.createArrayNode();
 				queryPartNode.set("oids", oidsNode);
 				for (long oid : queryPart.getOids()) {
 					oidsNode.add(oid);
 				}
 			}
 			if (queryPart.hasInBoundingBox()) {
-				ObjectNode inBoundingBoxNode = objectMapper.createObjectNode();
+				ObjectNode inBoundingBoxNode = OBJECT_MAPPER.createObjectNode();
 				inBoundingBoxNode.put("x", queryPart.getInBoundingBox().getX());
 				inBoundingBoxNode.put("y", queryPart.getInBoundingBox().getY());
 				inBoundingBoxNode.put("z", queryPart.getInBoundingBox().getZ());
@@ -89,17 +88,17 @@ public class JsonQueryObjectModelConverter {
 				queryPartNode.set("inBoundingBox", inBoundingBoxNode);
 			}
 			if (queryPart.hasIncludes()) {
-				ArrayNode includesNode = objectMapper.createArrayNode();
+				ArrayNode includesNode = OBJECT_MAPPER.createArrayNode();
 				for (Include include : queryPart.getIncludes()) {
-					ObjectNode includeNode = objectMapper.createObjectNode();
+					ObjectNode includeNode = OBJECT_MAPPER.createObjectNode();
 					
-					ArrayNode typesNode = objectMapper.createArrayNode();
+					ArrayNode typesNode = OBJECT_MAPPER.createArrayNode();
 					for (EClass type : include.getTypes()) {
 						typesNode.add(type.getName());
 					}
 					includeNode.set("types", typesNode);
 					
-					ArrayNode fieldsNode = objectMapper.createArrayNode();
+					ArrayNode fieldsNode = OBJECT_MAPPER.createArrayNode();
 					for (EReference eReference : include.getFields()) {
 						fieldsNode.add(eReference.getName());
 					}
@@ -310,10 +309,9 @@ public class JsonQueryObjectModelConverter {
 		} catch (ClassNotFoundException e1) {
 			throw new QueryException("Could not find '" + namespaceString + "' namespace in predefined queries");
 		}
-		ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+		OBJECT_MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
 		try {
-			ObjectNode predefinedQuery = objectMapper.readValue(resource, ObjectNode.class);
+			ObjectNode predefinedQuery = OBJECT_MAPPER.readValue(resource, ObjectNode.class);
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
 			Query query = converter.parseJson(namespaceString, predefinedQuery);
 			Include define = query.getDefine(singleIncludeName);
@@ -399,7 +397,7 @@ public class JsonQueryObjectModelConverter {
 					if (oidNode.isNumber()) {
 						queryPart.addOid(oidNode.asLong());
 					} else {
-						throw new QueryException("\"oids\"[" + i + "] must be of type number");
+						throw new QueryException("\"oids\"[" + i + "] must be of type number (" + oidNode + ")");
 					}
 				}
 			} else {

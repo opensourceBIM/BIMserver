@@ -24,12 +24,10 @@ import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.ObjectIdentifier;
-import org.bimserver.database.Record;
-import org.bimserver.database.RecordIterator;
+import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.plugins.deserializers.DatabaseInterface;
 import org.bimserver.shared.QueryContext;
-import org.bimserver.shared.QueryException;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;

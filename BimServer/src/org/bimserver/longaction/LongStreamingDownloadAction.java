@@ -62,6 +62,7 @@ import com.google.common.base.Joiner;
 public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey>{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongStreamingDownloadAction.class);
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private Long serializerOid;
 	private String jsonQuery;
 	private Set<Long> roids;
@@ -107,7 +108,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 				Plugin plugin = getBimServer().getPluginManager().getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 				
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
-				ObjectNode queryObject = new ObjectMapper().readValue(jsonQuery, ObjectNode.class);
+				ObjectNode queryObject = OBJECT_MAPPER.readValue(jsonQuery, ObjectNode.class);
 				Query query = converter.parseJson("query", (ObjectNode) queryObject);
 				
 				downloadDescriptor = new DownloadDescriptor(packageMetaData, jsonQuery, roids, query, serializerOid, this.filename);

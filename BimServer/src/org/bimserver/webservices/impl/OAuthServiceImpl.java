@@ -38,6 +38,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterface {
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
 	public OAuthServiceImpl(ServiceMap serviceMap) {
 		super(serviceMap);
@@ -271,8 +272,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 	public String getRemoteToken(Long soid, String code, Long serverId) throws ServerException, UserException {
 		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			NewService newService = session.get(soid, OldQuery.getDefault());
-			ObjectMapper objectMapper = new ObjectMapper();
-			ObjectNode objectNode = objectMapper.createObjectNode();
+			ObjectNode objectNode = OBJECT_MAPPER.createObjectNode();
 			objectNode.put("grant_type", "authorization_code");
 			objectNode.put("code", code);
 			OAuthServer oAuthServer = session.get(serverId, OldQuery.getDefault());

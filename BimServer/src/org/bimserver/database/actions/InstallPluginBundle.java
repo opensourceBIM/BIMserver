@@ -1,6 +1,5 @@
 package org.bimserver.database.actions;
 
-import java.nio.file.Path;
 import java.util.List;
 
 import org.bimserver.BimServer;

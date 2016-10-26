@@ -22,9 +22,9 @@ import java.util.Iterator;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.queries.om.Query;
+import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.shared.QueryContext;
-import org.bimserver.shared.QueryException;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;

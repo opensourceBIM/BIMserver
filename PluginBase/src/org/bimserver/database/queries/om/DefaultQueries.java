@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class DefaultQueries {
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+	
 	public static Query all(PackageMetaData packageMetaData) {
 		Query query = new Query(packageMetaData);
 		QueryPart part = query.createQueryPart();
@@ -14,9 +16,7 @@ public class DefaultQueries {
 	}
 	
 	public static String allAsString() {
-		ObjectMapper objectMapper = new ObjectMapper();
-		
-		ObjectNode result = objectMapper.createObjectNode();
+		ObjectNode result = OBJECT_MAPPER.createObjectNode();
 		result.put("includeAllFields", true);
 		
 		return result.toString();

@@ -18,6 +18,7 @@ package org.bimserver.database;
  *****************************************************************************/
 
 import org.bimserver.BimserverDatabaseException;
+
 import com.sleepycat.je.LockConflictException;
 
 public class BimserverLockConflictException extends BimserverDatabaseException {

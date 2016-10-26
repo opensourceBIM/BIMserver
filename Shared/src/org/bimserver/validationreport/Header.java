@@ -37,8 +37,8 @@ public class Header extends Item {
 	}
 
 	@Override
-	public ObjectNode toJson(ObjectMapper objectMapper) {
-		ObjectNode header = objectMapper.createObjectNode();
+	public ObjectNode toJson(ObjectMapper OBJECT_MAPPER) {
+		ObjectNode header = OBJECT_MAPPER.createObjectNode();
 		header.put("type", "header");
 		header.put("text", text);
 		return header;

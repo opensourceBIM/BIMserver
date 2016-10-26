@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.shared.QueryException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 

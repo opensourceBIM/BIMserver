@@ -1455,4 +1455,15 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "bcfToJson")
 	String bcfToJson(
 		@WebParam(name = "extendedDataId", partName = "bcfToJson.extendedDataId") Long extendedDataId) throws ServerException, UserException;
+
+	/**
+	 * @param name
+	 * @return A list of projects with the given name (can be multiple because subprojects are also returned)
+	 * @throws UserException 
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getSubProjectByName")
+	SProject getSubProjectByName(
+		@WebParam(name = "parentProjectId", partName = "getSubProjectByName.parentProjectId") Long parentProjectId, 
+		@WebParam(name = "name", partName = "getSubProjectByName.name") String name) throws UserException, ServerException;
 }

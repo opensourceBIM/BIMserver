@@ -41,6 +41,8 @@ import org.bimserver.webservices.ServiceMap;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface {
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+	
 	public MetaServiceImpl(ServiceMap serviceMap) {
 		super(serviceMap);
 	}
@@ -171,6 +173,6 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public String getAllAsJson() throws ServerException, UserException {
-		return getBimServer().getServicesMap().toJson(new ObjectMapper()).toString();
+		return getBimServer().getServicesMap().toJson(OBJECT_MAPPER).toString();
 	}
 }

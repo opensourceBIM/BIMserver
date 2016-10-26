@@ -82,11 +82,11 @@ public class SField implements Comparable<SField> {
 		return doc;
 	}
 
-	public ObjectNode toJson(ObjectMapper objectMapper) {
-		ObjectNode json = objectMapper.createObjectNode();
+	public ObjectNode toJson(ObjectMapper OBJECT_MAPPER) {
+		ObjectNode json = OBJECT_MAPPER.createObjectNode();
 		json.put("name", name);
-		json.set("type", getType().toJson(objectMapper));
-		json.set("genericType", getGenericType().toJson(objectMapper));
+		json.set("type", getType().toJson(OBJECT_MAPPER));
+		json.set("genericType", getGenericType().toJson(OBJECT_MAPPER));
 		json.put("doc", getDoc());
 		return json;
 	}

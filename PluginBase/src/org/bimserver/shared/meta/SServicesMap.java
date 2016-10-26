@@ -232,19 +232,19 @@ public class SServicesMap {
 		return null;
 	}
 
-	public ObjectNode toJson(ObjectMapper objectMapper) {
-		ObjectNode result = objectMapper.createObjectNode();
-		ArrayNode servicesJson = objectMapper.createArrayNode();
+	public ObjectNode toJson(ObjectMapper OBJECT_MAPPER) {
+		ObjectNode result = OBJECT_MAPPER.createObjectNode();
+		ArrayNode servicesJson = OBJECT_MAPPER.createArrayNode();
 		result.set("services", servicesJson);
 		for (SService sService : servicesByName.values()) {
-			ObjectNode serviceJson = objectMapper.createObjectNode();
+			ObjectNode serviceJson = OBJECT_MAPPER.createObjectNode();
 			serviceJson.put("name", sService.getName());
 			serviceJson.put("simpleName", sService.getSimpleName());
 			servicesJson.add(serviceJson);
-			ArrayNode methodsJson = objectMapper.createArrayNode();
+			ArrayNode methodsJson = OBJECT_MAPPER.createArrayNode();
 			serviceJson.set("methods", methodsJson);
 			for (SMethod method : sService.getMethods()) {
-				methodsJson.add(method.toJson(objectMapper));
+				methodsJson.add(method.toJson(OBJECT_MAPPER));
 			}
 		}
 		return result;

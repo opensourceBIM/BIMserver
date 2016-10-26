@@ -21,7 +21,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
-import org.bimserver.shared.QueryException;
+import org.bimserver.database.queries.om.QueryException;
 
 public class StartFrame extends StackFrame {
 

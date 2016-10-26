@@ -26,9 +26,9 @@ import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.queries.om.InBoundingBox;
+import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.shared.QueryContext;
-import org.bimserver.shared.QueryException;
 import org.eclipse.emf.ecore.EClass;
 
 public class QueryPartStackFrame extends StackFrame {

@@ -489,6 +489,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetSubProjectByNameCallback {
+		void success(org.bimserver.interfaces.objects.SProject result);
+		void error(Throwable e);
+	}
+	
 	public interface GetSubProjectsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
 		void error(Throwable e);
@@ -1761,6 +1766,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getServiceDescriptor(baseUrl, serviceIdentifier));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getSubProjectByName(final java.lang.Long parentProjectId, final java.lang.String name, final GetSubProjectByNameCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getSubProjectByName(parentProjectId, name));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

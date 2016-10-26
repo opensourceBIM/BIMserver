@@ -19,7 +19,7 @@ package org.bimserver.database.queries.om;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -54,14 +54,14 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 
 	public void addOid(long oid) {
 		if (oids == null) {
-			oids = new HashSet<>();
+			oids = new LinkedHashSet<>();
 		}
 		oids.add(oid);
 	}
 
 	public void addGuid(String guid) {
 		if (guids == null) {
-			guids = new HashSet<>();
+			guids = new LinkedHashSet<>();
 		}
 		guids.add(guid);
 	}
@@ -197,7 +197,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 
 	public void addName(String name) {
 		if (names == null) {
-			names = new HashSet<>();
+			names = new LinkedHashSet<>();
 		}
 		names.add(name);
 	}

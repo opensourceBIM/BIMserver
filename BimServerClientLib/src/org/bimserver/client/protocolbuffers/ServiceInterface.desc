@@ -1,5 +1,5 @@
 
-≈Û
+ﬁı
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -902,7 +902,13 @@ settingsId (
 serviceIdentifier (	"i
 GetServiceDescriptorResponse
 errorMessage (	3
-value (2$.org.bimserver.pb.SServiceDescriptor"%
+value (2$.org.bimserver.pb.SServiceDescriptor"C
+GetSubProjectByNameRequest
+parentProjectId (
+name (	"^
+GetSubProjectByNameResponse
+errorMessage (	)
+value (2.org.bimserver.pb.SProject"%
 GetSubProjectsRequest
 poid ("Y
 GetSubProjectsResponse
@@ -1406,7 +1412,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2⁄n
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2Œo
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1502,7 +1508,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getSerializerByName,.org.bimserver.pb.GetSerializerByNameRequest-.org.bimserver.pb.GetSerializerByNameResponseW
 
 getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceResponseu
-getServiceDescriptor-.org.bimserver.pb.GetServiceDescriptorRequest..org.bimserver.pb.GetServiceDescriptorResponsec
+getServiceDescriptor-.org.bimserver.pb.GetServiceDescriptorRequest..org.bimserver.pb.GetServiceDescriptorResponser
+getSubProjectByName,.org.bimserver.pb.GetSubProjectByNameRequest-.org.bimserver.pb.GetSubProjectByNameResponsec
 getSubProjects'.org.bimserver.pb.GetSubProjectsRequest(.org.bimserver.pb.GetSubProjectsResponse•
 $getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserializerForExtensionRequest>.org.bimserver.pb.GetSuggestedDeserializerForExtensionResponseÅ
 getTopLevelProjectByName1.org.bimserver.pb.GetTopLevelProjectByNameRequest2.org.bimserver.pb.GetTopLevelProjectByNameResponse`

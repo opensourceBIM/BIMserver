@@ -124,6 +124,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class PluginManager implements PluginManagerInterface {
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private static final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<>();
 	private final Map<Plugin, PluginContext> pluginToPluginContext = new HashMap<>();
@@ -427,10 +428,9 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	private PluginBundle loadJavaScriptProject(Path projectRoot, Path packageFile, Path pluginFolder, PluginDescriptor pluginDescriptor) {
-		ObjectMapper objectMapper = new ObjectMapper();
 		ObjectNode packageModel;
 		try {
-			packageModel = objectMapper.readValue(packageFile.toFile(), ObjectNode.class);
+			packageModel = OBJECT_MAPPER.readValue(packageFile.toFile(), ObjectNode.class);
 			SPluginBundle sPluginBundle = new SPluginBundle();
 			
 			if (!packageModel.has("organization")) {

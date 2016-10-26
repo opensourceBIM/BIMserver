@@ -55,7 +55,7 @@ public class MessagingStreamingDataSource extends ExtendedDataSource {
 	}
 
 	public void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws IOException, SerializerException {
-		while(messagingStreamingSerializer.writeMessage(outputStream, null)) {
+		while(messagingStreamingSerializer.writeMessage(outputStream, progressReporter)) {
 		}
 	}
 }

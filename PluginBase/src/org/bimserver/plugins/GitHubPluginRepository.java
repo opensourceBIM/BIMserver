@@ -34,6 +34,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class GitHubPluginRepository {
 
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private static final Logger LOGGER = LoggerFactory.getLogger(GitHubPluginRepository.class);
 	private final MavenPluginRepository mavenPluginRepository;
 	private final String url;
@@ -52,8 +53,7 @@ public class GitHubPluginRepository {
 		List<PluginLocation<?>> pluginLocations = new ArrayList<>();
 		try {
 			String content = NetUtils.getContent(new URL(url), 5000);
-			ObjectMapper objectMapper = new ObjectMapper();
-			ObjectNode objectNode = objectMapper.readValue(content, ObjectNode.class);
+			ObjectNode objectNode = OBJECT_MAPPER.readValue(content, ObjectNode.class);
 			ArrayNode pluginsNode = (ArrayNode) objectNode.get("plugins");
 			for (JsonNode pluginNode : pluginsNode) {
 				ObjectNode pluginObject = (ObjectNode)pluginNode;

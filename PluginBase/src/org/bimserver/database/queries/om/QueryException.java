@@ -1,4 +1,4 @@
-package org.bimserver.shared;
+package org.bimserver.database.queries.om;
 
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org

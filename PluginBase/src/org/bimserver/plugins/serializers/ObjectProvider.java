@@ -1,5 +1,7 @@
 package org.bimserver.plugins.serializers;
 
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -18,6 +20,7 @@ package org.bimserver.plugins.serializers;
  *****************************************************************************/
 
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.shared.HashMapVirtualObject;
 
 public interface ObjectProvider {
@@ -27,4 +30,6 @@ public interface ObjectProvider {
 	 * @throws BimserverDatabaseException
 	 */
 	HashMapVirtualObject next() throws BimserverDatabaseException;
+
+	ObjectProvider copy() throws IOException, QueryException;
 }

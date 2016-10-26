@@ -54,8 +54,8 @@ public class Line extends Item {
 	}
 
 	@Override
-	public ObjectNode toJson(ObjectMapper objectMapper) {
-		ObjectNode result = objectMapper.createObjectNode();
+	public ObjectNode toJson(ObjectMapper OBJECT_MAPPER) {
+		ObjectNode result = OBJECT_MAPPER.createObjectNode();
 		result.put("type", "line");
 		result.put("status", type.name());
 		result.put("oid", oid);

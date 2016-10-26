@@ -28,8 +28,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -49,6 +47,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class UploadServlet extends SubServlet {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UploadServlet.class);
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
 	public UploadServlet(BimServer bimServer, ServletContext servletContext) {
 		super(bimServer, servletContext);
@@ -65,9 +64,7 @@ public class UploadServlet extends SubServlet {
 		
 		String token = (String)request.getSession().getAttribute("token");
 		
-		ObjectMapper objectMapper = new ObjectMapper();
-		
-		ObjectNode result = objectMapper.createObjectNode();
+		ObjectNode result = OBJECT_MAPPER.createObjectNode();
 		response.setContentType("text/json");
 		try {
 			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -159,9 +156,8 @@ public class UploadServlet extends SubServlet {
 
 	private void sendException(HttpServletResponse response, Exception exception) {
 		try {
-			ObjectMapper objectMapper = new ObjectMapper();
-			ObjectNode responseObject = objectMapper.createObjectNode();
-			ObjectNode exceptionJson = objectMapper.createObjectNode();
+			ObjectNode responseObject = OBJECT_MAPPER.createObjectNode();
+			ObjectNode exceptionJson = OBJECT_MAPPER.createObjectNode();
 			exceptionJson.put("__type", exception.getClass().getSimpleName());
 			if (exception.getMessage() == null) {
 				exceptionJson.put("message", "Unknown exception");

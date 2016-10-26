@@ -23,5 +23,5 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public abstract class Item {
 
 	public abstract void toHtml(StringBuilder sb);
-	public abstract ObjectNode toJson(ObjectMapper objectMapper);
+	public abstract ObjectNode toJson(ObjectMapper OBJECT_MAPPER);
 }

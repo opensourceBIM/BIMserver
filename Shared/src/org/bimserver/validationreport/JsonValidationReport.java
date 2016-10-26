@@ -41,6 +41,7 @@ import com.google.common.base.Charsets;
 
 public class JsonValidationReport implements IssueInterface {
 
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private final List<Item> items = new ArrayList<Item>();
 	private final Map<String, Boolean> checkResults = new HashMap<>();
 
@@ -61,14 +62,14 @@ public class JsonValidationReport implements IssueInterface {
 		return sb.toString();
 	}
 	
-	public ObjectNode toJson(ObjectMapper objectMapper) {
-		ObjectNode result = objectMapper.createObjectNode();
-		ArrayNode itemsJson = objectMapper.createArrayNode();
-		ObjectNode checks = objectMapper.createObjectNode();
+	public ObjectNode toJson(ObjectMapper OBJECT_MAPPER) {
+		ObjectNode result = OBJECT_MAPPER.createObjectNode();
+		ArrayNode itemsJson = OBJECT_MAPPER.createArrayNode();
+		ObjectNode checks = OBJECT_MAPPER.createObjectNode();
 		result.set("checks", checks);
 		result.set("items", itemsJson);
 		for (Item item : items) {
-			itemsJson.add(item.toJson(objectMapper));
+			itemsJson.add(item.toJson(OBJECT_MAPPER));
 		}
 		for (String identifier : checkResults.keySet()) {
 			checks.put(identifier, checkResults.get(identifier));
@@ -150,8 +151,7 @@ public class JsonValidationReport implements IssueInterface {
 
 	@Override
 	public byte[] getBytes() {
-		ObjectMapper objectMapper = new ObjectMapper();
-		return toJson(objectMapper).toString().getBytes(Charsets.UTF_8);
+		return toJson(OBJECT_MAPPER).toString().getBytes(Charsets.UTF_8);
 	}
 
 	@Override

@@ -81,13 +81,13 @@ public class SParameter {
 		return doc;
 	}
 
-	public ObjectNode toJson(ObjectMapper objectMapper) {
-		ObjectNode parameterJson = objectMapper.createObjectNode();
+	public ObjectNode toJson(ObjectMapper OBJECT_MAPPER) {
+		ObjectNode parameterJson = OBJECT_MAPPER.createObjectNode();
 		parameterJson.put("name", getName());
 		parameterJson.put("doc", getDoc());
-		parameterJson.set("type", getType().toJson(objectMapper));
+		parameterJson.set("type", getType().toJson(OBJECT_MAPPER));
 		if (getGenericType() != null) {
-			parameterJson.set("genericType", getGenericType().toJson(objectMapper));
+			parameterJson.set("genericType", getGenericType().toJson(OBJECT_MAPPER));
 		}
 		return parameterJson;
 	}

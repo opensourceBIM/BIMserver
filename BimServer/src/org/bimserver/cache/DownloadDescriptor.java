@@ -38,7 +38,7 @@ import com.google.common.hash.Hashing;
 
 public class DownloadDescriptor {
 	private static final HashFunction hf = Hashing.md5();
-	private static final ObjectMapper objectMapper = new ObjectMapper();
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private Set<Long> roids;
 	private Query query;
 	private long serializerOid;
@@ -72,7 +72,7 @@ public class DownloadDescriptor {
 			ObjectNode json = new JsonQueryObjectModelConverter(packageMetaData).toJson(query);
 			try {
 				StringWriter stringWriter = new StringWriter();
-				objectMapper.writeValue(stringWriter, json);
+				OBJECT_MAPPER.writeValue(stringWriter, json);
 				System.out.println(query.toString());
 				hasher.putString(stringWriter.toString(), Charsets.UTF_8);
 				HashCode hashcode = hasher.hash();

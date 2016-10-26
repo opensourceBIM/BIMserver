@@ -35,6 +35,7 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
+import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
@@ -49,7 +50,6 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
-import org.bimserver.shared.QueryException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.common.util.AbstractEList;
@@ -62,6 +62,7 @@ import com.google.common.base.Joiner;
 
 public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private final Set<Long> roids;
 	private int progress;
 	private String json;
@@ -97,7 +98,7 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
 			ObjectNode queryObject;
 			try {
-				queryObject = new ObjectMapper().readValue(json, ObjectNode.class);
+				queryObject = OBJECT_MAPPER.readValue(json, ObjectNode.class);
 				Query query = converter.parseJson("query", (ObjectNode) queryObject);
 		
 				pidRoidMap.put(revision.getProject().getId(), roid);

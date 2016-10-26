@@ -124,6 +124,7 @@ import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByContentTypeDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByNameDatabaseAction;
+import org.bimserver.database.actions.GetSubProjectByNameDatabaseAction;
 import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
 import org.bimserver.database.actions.GetTopLevelProjectByNameDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
@@ -2592,5 +2593,19 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 		}
 		return bcfFile.toJson().toString();
+	}
+	
+	@Override
+	public SProject getSubProjectByName(Long parentProjectId, String name) throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			BimDatabaseAction<Project> action = new GetSubProjectByNameDatabaseAction(session, getInternalAccessMethod(), parentProjectId, name, getAuthorization());
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

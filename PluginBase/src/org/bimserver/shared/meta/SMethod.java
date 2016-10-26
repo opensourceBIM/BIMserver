@@ -217,15 +217,15 @@ public class SMethod {
 		return service;
 	}
 
-	public ObjectNode toJson(ObjectMapper objectMapper) {
-		ObjectNode methodJson = objectMapper.createObjectNode();
+	public ObjectNode toJson(ObjectMapper OBJECT_MAPPER) {
+		ObjectNode methodJson = OBJECT_MAPPER.createObjectNode();
 		methodJson.put("name", getName());
 		methodJson.put("doc", getDoc());
 		methodJson.put("returnDoc", getReturnDoc());
-		ArrayNode parametersJson = objectMapper.createArrayNode();
+		ArrayNode parametersJson = OBJECT_MAPPER.createArrayNode();
 		methodJson.set("parameters", parametersJson);
 		for (SParameter parameter : parameters) {
-			parametersJson.add(parameter.toJson(objectMapper));
+			parametersJson.add(parameter.toJson(OBJECT_MAPPER));
 		}
 		return methodJson;
 	}

@@ -1,5 +1,9 @@
 package org.bimserver;
 
+import java.io.IOException;
+
+import org.bimserver.database.queries.om.QueryException;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -37,5 +41,10 @@ public class ObjectProviderProxy implements ObjectProvider {
 			objectListener.newObject(next);
 		}
 		return next;
+	}
+
+	@Override
+	public ObjectProvider copy() throws IOException, QueryException {
+		return objectProvider.copy();
 	}
 }

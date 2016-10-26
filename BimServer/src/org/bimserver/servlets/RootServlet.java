@@ -47,6 +47,8 @@ public class RootServlet extends HttpServlet {
 	private OAuthRegistrationServlet oAuthRegistrationServlet;
 	private BimServer bimServer;
 
+	private BulkUploadServlet bulkUploadServlet;
+
 	@Override
 	public void init() throws ServletException {
 		super.init();
@@ -58,6 +60,7 @@ public class RootServlet extends HttpServlet {
 		jsonApiServlet = new JsonApiServlet(bimServer, servletContext);
 		syndicationServlet = new SyndicationServlet(bimServer, servletContext);
 		uploadServlet = new UploadServlet(bimServer, servletContext);
+		bulkUploadServlet = new BulkUploadServlet(bimServer, servletContext);
 		downloadServlet = new DownloadServlet(bimServer, servletContext);
 		soap11Servlet = new WebServiceServlet11(bimServer, servletContext);
 		soap11Servlet.init(getServletConfig());
@@ -137,6 +140,8 @@ public class RootServlet extends HttpServlet {
 				oAuthAuthorizationServlet.service(request, response);
 			} else if (requestUri.startsWith("/upload/") || requestUri.equals("/upload")) {
 				uploadServlet.service(request, response);
+			} else if (requestUri.startsWith("/bulkupload/") || requestUri.equals("/bulkupload")) {
+				bulkUploadServlet.service(request, response);
 			} else if (requestUri.startsWith("/download/") || requestUri.equals("/download")) {
 				downloadServlet.service(request, response);
 			} else {

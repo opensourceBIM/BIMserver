@@ -37,6 +37,9 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Charsets;
 
 public class NetUtils {
+
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
 	public static String getContent(URL url, int timeOut) throws IOException {
 		URLConnection openConnection = url.openConnection();
 		openConnection.setConnectTimeout(timeOut);
@@ -73,13 +76,12 @@ public class NetUtils {
 	public static ObjectNode post(String url, ObjectNode objectNode) throws IOException {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		try {
-			ObjectMapper objectMapper = new ObjectMapper();
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			objectMapper.writeValue(out, objectNode);
+			OBJECT_MAPPER.writeValue(out, objectNode);
 			HttpPost post = new HttpPost(url);
 			post.setEntity(new ByteArrayEntity(out.toByteArray(), ContentType.APPLICATION_JSON));
 			CloseableHttpResponse httpResponse = httpclient.execute(post);
-			ObjectNode response = objectMapper.readValue(httpResponse.getEntity().getContent(), ObjectNode.class);
+			ObjectNode response = OBJECT_MAPPER.readValue(httpResponse.getEntity().getContent(), ObjectNode.class);
 			return response;
 		} finally {
 		    httpclient.close();

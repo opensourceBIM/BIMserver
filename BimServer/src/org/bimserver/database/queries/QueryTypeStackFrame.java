@@ -24,9 +24,9 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession.GetResult;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
+import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.shared.QueryContext;
-import org.bimserver.shared.QueryException;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.ecore.EClass;
 

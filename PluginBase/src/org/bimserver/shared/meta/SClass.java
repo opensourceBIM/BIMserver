@@ -285,14 +285,14 @@ public class SClass implements Comparable<SClass> {
 		return simpleType;
 	}
 
-	public ObjectNode toJson(ObjectMapper objectMapper) {
-		ObjectNode result = objectMapper.createObjectNode();
+	public ObjectNode toJson(ObjectMapper OBJECT_MAPPER) {
+		ObjectNode result = OBJECT_MAPPER.createObjectNode();
 		result.put("name", getName());
 		result.put("simpleName", getSimpleName());
 		result.put("simpleType", getSimpleType().name());
-		ArrayNode fieldsJson = objectMapper.createArrayNode();
+		ArrayNode fieldsJson = OBJECT_MAPPER.createArrayNode();
 		for (SField field : ownFields.values()) {
-			fieldsJson.add(field.toJson(objectMapper));
+			fieldsJson.add(field.toJson(OBJECT_MAPPER));
 		}
 		result.set("fields", fieldsJson);
 		return result;

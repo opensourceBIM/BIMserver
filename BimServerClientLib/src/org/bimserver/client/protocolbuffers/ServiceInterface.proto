@@ -207,6 +207,8 @@ service ServiceInterface {
 
 	rpc getServiceDescriptor (GetServiceDescriptorRequest) returns (GetServiceDescriptorResponse);
 
+	rpc getSubProjectByName (GetSubProjectByNameRequest) returns (GetSubProjectByNameResponse);
+
 	rpc getSubProjects (GetSubProjectsRequest) returns (GetSubProjectsResponse);
 
 	rpc getSuggestedDeserializerForExtension (GetSuggestedDeserializerForExtensionRequest) returns (GetSuggestedDeserializerForExtensionResponse);
@@ -1629,6 +1631,16 @@ message GetServiceDescriptorRequest {
 message GetServiceDescriptorResponse {
 	optional string errorMessage = 1;
 	optional SServiceDescriptor value = 2;
+}
+
+message GetSubProjectByNameRequest {
+	optional int64 parentProjectId = 1;
+	optional string name = 2;
+}
+
+message GetSubProjectByNameResponse {
+	optional string errorMessage = 1;
+	optional SProject value = 2;
 }
 
 message GetSubProjectsRequest {

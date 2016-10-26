@@ -51,6 +51,7 @@ import com.google.common.base.Charsets;
 
 public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractWebModulePlugin.class);
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private PluginContext pluginContext;
 	private static final DateFormat HTTP_EXPIRES = expiresDateFormat();
 	public static final String FAR_FUTURE_EXPIRE_DATE = HTTP_EXPIRES.format(makeExpiresDate());
@@ -85,7 +86,7 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 				requestUri = "index.html";
 			}
 			if (requestUri.endsWith("plugin.version")) {
-				ObjectNode version = new ObjectMapper().createObjectNode();
+				ObjectNode version = OBJECT_MAPPER.createObjectNode();
 				version.put("groupId", pluginContext.getPluginBundle().getPluginBundleVersion().getGroupId());
 				version.put("artifactId", pluginContext.getPluginBundle().getPluginBundleVersion().getArtifactId());
 				version.put("version", pluginContext.getPluginBundle().getPluginBundleVersion().getVersion());
