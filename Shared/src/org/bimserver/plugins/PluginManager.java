@@ -203,7 +203,10 @@ public class PluginManager implements PluginManagerInterface {
 
 	public PluginBundle loadJavaProject(Path projectRoot, Path pomFile, Path pluginFolder, PluginDescriptor pluginDescriptor) throws PluginException, FileNotFoundException, IOException, XmlPullParserException {
 		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
-		Model model = mavenreader.read(new FileReader(pomFile.toFile()));
+		Model model = null;
+		try (FileReader reader = new FileReader(pomFile.toFile())) {
+			model = mavenreader.read(reader);
+		}
 		PluginBundleVersionIdentifier pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(model.getGroupId(), model.getArtifactId(), model.getVersion());
 		
 		if (pluginBundleIdentifierToPluginBundle.containsKey(pluginBundleVersionIdentifier.getPluginBundleIdentifier())) {
@@ -1359,7 +1362,10 @@ public class PluginManager implements PluginManagerInterface {
 	public PluginBundle install(MavenPluginBundle mavenPluginBundle, List<SPluginInformation> plugins, boolean strictDependencyChecking) throws Exception {
 		PluginBundleVersionIdentifier pluginBundleVersionIdentifier = mavenPluginBundle.getPluginVersionIdentifier();
 		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
-		Model model = mavenreader.read(mavenPluginBundle.getPomInputStream());
+		Model model = null;
+		try (InputStream pomInputStream = mavenPluginBundle.getPomInputStream()) {
+			model = mavenreader.read(pomInputStream);
+		}
 		
 		if (plugins == null) {
 			JarInputStream jarInputStream = new JarInputStream(mavenPluginBundle.getJarInputStream());
