@@ -110,7 +110,7 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 		synchronized (this) {
 			if (websocketSession.isOpen()) {
 				try {
-					websocketSession.getAsyncRemote().sendText(request.toString());
+					websocketSession.getBasicRemote().sendText(request.toString());
 				} catch (Exception e) {
 					// Skip
 				}
