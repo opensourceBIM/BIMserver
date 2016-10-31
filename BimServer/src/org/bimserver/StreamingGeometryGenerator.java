@@ -91,6 +91,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private volatile boolean allJobsPushed;
 
 	private int maxObjectsPerFile = 10;
+	private volatile boolean running = true;
 
 	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener) {
 		this.bimServer = bimServer;
@@ -210,6 +211,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 								Map<Long, Integer> oidToEid = oidConvertingSerializer.getOidToEid();
 								
 								for (HashMapVirtualObject ifcProduct : objects) {
+									if (!running) {
+										return;
+									}
 									Integer expressId = oidToEid.get(ifcProduct.getOid());
 									try {
 										RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(expressId);
@@ -364,11 +368,15 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							}
 						}
 					} finally {
-//						if (notFoundsObjects) {
-							writeDebugFile(bytes);
-//							Thread.sleep(60000);
-//						}
-						in.close();
+						try {
+	//						if (notFoundsObjects) {
+								writeDebugFile(bytes);
+	//							Thread.sleep(60000);
+	//						}
+							in.close();
+						} catch (Throwable e) {
+							
+						}
 						if (renderEngine != null) {
 							renderEnginePool.returnObject(renderEngine);
 						}
@@ -495,7 +503,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 												representation = next.getDirectFeature(representationFeature);
 												if (representation != null) {
 													representations = (List<Long>) representation.get("Representations");
-													if (!representations.isEmpty()) {
+													if (representations != null && !representations.isEmpty()) {
 														queryPart.addOid(next.getOid());
 														x++;
 													}
@@ -561,6 +569,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			LOGGER.info("Rendertime: " + ((end - start) / 1000000) + "ms, " + "Reused: " + Formatters.bytesToString(bytesSaved.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(totalBytes.get() - bytesSaved.get()));
 			LOGGER.info("Saveable color data: " + Formatters.bytesToString(saveableColorBytes.get()));
 		} catch (Exception e) {
+			running = false;
 			LOGGER.error("", e);
 			throw new GeometryGeneratingException(e);
 		}
