@@ -28,6 +28,7 @@ import org.bimserver.servlets.websockets.jsr356.Jsr356Impl;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
 import org.slf4j.Logger;
@@ -62,7 +63,8 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 //			context.setDefaultsDescriptor("../BimServer/www/WEB-INF/webdefault.xml");
 		}
 		
-		context.addServlet(RootServlet.class, "/*");
+		ServletHolder servletHolder = new ServletHolder(new RootServlet());
+		context.addServlet(servletHolder, "/*");
 		
 		context.getServletContext().setAttribute("bimserver", bimServer);
 		if (context.getResourceBase() == null) {

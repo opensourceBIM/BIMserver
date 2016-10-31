@@ -32,6 +32,7 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewExtendedDataOnProjectHandler;
 import org.bimserver.plugins.services.NewExtendedDataOnRevisionHandler;
@@ -210,5 +211,9 @@ public class PluginContext {
 
 	public DeserializerPlugin getDeserializerPlugin(String string, boolean b) {
 		return pluginManager.getDeserializerPlugin(string, b);
+	}
+
+	public SerializerPlugin getSerializerPlugin(String string) {
+		return pluginManager.getSerializerPlugin(string);
 	}
 }

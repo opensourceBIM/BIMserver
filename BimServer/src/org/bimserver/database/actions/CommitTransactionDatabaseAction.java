@@ -1,5 +1,8 @@
 package org.bimserver.database.actions;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -20,12 +23,14 @@ package org.bimserver.database.actions;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GeometryCache;
 import org.bimserver.GeometryGeneratingException;
 import org.bimserver.GeometryGenerator;
+import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.SummaryMap;
 import org.bimserver.changes.Change;
 import org.bimserver.changes.CreateObjectChange;
@@ -47,10 +52,12 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.LongTransaction;
 import org.bimserver.webservices.NoTransactionException;
 import org.bimserver.webservices.authorization.Authorization;
+import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -166,7 +173,34 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin() && geometryChanged) {
 			setProgress("Generating Geometry...", -1);
 			try {
-				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
+				StreamingGeometryGenerator streamingGeometryGenerator = new StreamingGeometryGenerator(bimServer, null);
+				int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(concreteRevision.getProject(), concreteRevision);
+
+				QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, project.getId(), concreteRevision.getId(), concreteRevision.getRevisions().get(0).getOid(), highestStopId);
+
+				Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
+				Map<EClass, Long> oidCounters = new HashMap<>();
+				int s = 0;
+				for (EClass eClass : packageMetaData.getEClasses()) {
+					if (!DatabaseSession.perRecordVersioning(eClass)) {
+						s++;
+					}
+				}
+				ByteBuffer buffer = ByteBuffer.allocate(8 * s);
+				buffer.order(ByteOrder.LITTLE_ENDIAN);
+				for (EClass eClass : packageMetaData.getEClasses()) {
+					long oid = startOids.get(eClass);
+					if (!DatabaseSession.perRecordVersioning(eClass)) {
+						oidCounters.put(eClass, oid);
+						buffer.putLong(oid);
+					}
+				}
+
+				queryContext.setOidCounters(oidCounters);
+
+				streamingGeometryGenerator.generateGeometry(authorization.getUoid(), getDatabaseSession(), queryContext);
+
+//				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
 			} catch (GeometryGeneratingException e) {
 				throw new UserException(e);
 			}

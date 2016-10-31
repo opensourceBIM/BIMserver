@@ -89,7 +89,7 @@ public class Streamer implements EndPoint {
 								}
 								
 								@Override
-								public void setTitle(String stage) {
+								public void setTitle(String title) {
 								}
 							};
 							do {

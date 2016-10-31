@@ -1640,4 +1640,9 @@ public class PluginManager implements PluginManagerInterface {
 			throw e;
 		}
 	}
+
+	@Override
+	public SerializerPlugin getSerializerPlugin(String pluginClassName) {
+		return getPluginByClassName(SerializerPlugin.class, pluginClassName, true);
+	}
 }

@@ -27,6 +27,7 @@ public class MavenPluginRepository {
 	private final List<RemoteRepository> repositories;
 	private List<RemoteRepository> localRepositories;
 	private final RemoteRepository remoteRepository;
+	private final RemoteRepository remoteRepository2;
 	private String defaultRepository;
 	private Path localRepoFile;
 	private RemoteRepository local;
@@ -43,7 +44,12 @@ public class MavenPluginRepository {
 		RemoteRepository.Builder builder = new RemoteRepository.Builder("central", "default", defaultRepository);
 		builder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
 		remoteRepository = builder.build();
-		repositories = new ArrayList<RemoteRepository>(Arrays.asList(remoteRepository));
+
+		RemoteRepository.Builder builder2 = new RemoteRepository.Builder("maven", "default", "https://repository.apache.org/content/repositories/releases/");
+		builder2.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
+		remoteRepository2 = builder2.build();
+
+		repositories = new ArrayList<RemoteRepository>(Arrays.asList(remoteRepository, remoteRepository2));
 		local = new RemoteRepository.Builder("local", "default", "file:" + localRepoFile).build();
 		localRepositories = new ArrayList<RemoteRepository>();
 		localRepositories.add(local);
