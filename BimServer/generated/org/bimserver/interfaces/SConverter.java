@@ -8960,6 +8960,8 @@ public class SConverter {
 		result.setSerializerId(serializerVal == null ? -1 : serializerVal.getOid());
 		Action actionVal = input.getAction();
 		result.setActionId(actionVal == null ? -1 : actionVal.getOid());
+		Project projectVal = input.getProject();
+		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
 		return result;
 	}
 
@@ -8999,6 +9001,7 @@ public class SConverter {
 		result.setAccessToken(input.getAccessToken());
 		result.setSerializer((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), input.getSerializerId(), OldQuery.getDefault()));
 		result.setAction((Action)session.get(StorePackage.eINSTANCE.getAction(), input.getActionId(), OldQuery.getDefault()));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));
 		return result;
 	}
 		public SAccessMethod convertToSObject(AccessMethod input) {

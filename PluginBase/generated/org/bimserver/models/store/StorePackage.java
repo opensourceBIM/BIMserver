@@ -6968,13 +6968,22 @@ public interface StorePackage extends EPackage {
 	int NEW_SERVICE__ACCESS_TOKEN = 13;
 
 	/**
+	 * The feature id for the '<em><b>Project</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_SERVICE__PROJECT = 14;
+
+	/**
 	 * The number of structural features of the '<em>New Service</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_SERVICE_FEATURE_COUNT = 14;
+	int NEW_SERVICE_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
@@ -13558,6 +13567,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getNewService_AccessToken();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.NewService#getProject <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Project</em>'.
+	 * @see org.bimserver.models.store.NewService#getProject()
+	 * @see #getNewService()
+	 * @generated
+	 */
+	EReference getNewService_Project();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18687,6 +18707,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NEW_SERVICE__ACCESS_TOKEN = eINSTANCE.getNewService_AccessToken();
+
+		/**
+		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NEW_SERVICE__PROJECT = eINSTANCE.getNewService_Project();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

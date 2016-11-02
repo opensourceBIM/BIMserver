@@ -35,6 +35,8 @@ public class Step0025 extends Migration {
 		schema.createEEnumLiteral(serviceStatus, "NEW");
 		schema.createEEnumLiteral(serviceStatus, "AUTHENTICATED");
 		
+		EClass projectClass = schema.getEClass("store", "Project");
+
 		EClass newServiceClass = schema.createEClass("store", "NewService");
 		schema.createEAttribute(newServiceClass, "name", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(newServiceClass, "provider", EcorePackage.eINSTANCE.getEString());
@@ -50,8 +52,9 @@ public class Step0025 extends Migration {
 		schema.createEAttribute(newServiceClass, "output", EcorePackage.eINSTANCE.getEString());
 		schema.createEReference(newServiceClass, "action", actionClass);
 		schema.createEAttribute(newServiceClass, "accessToken", EcorePackage.eINSTANCE.getEString());
+		schema.createEReference(newServiceClass, "project", projectClass);
 		
-		schema.createEReference(schema.getEClass("store", "Project"), "newServices", newServiceClass, Multiplicity.MANY);
+		schema.createEReference(projectClass, "newServices", newServiceClass, Multiplicity.MANY);
 	}
 
 	@Override

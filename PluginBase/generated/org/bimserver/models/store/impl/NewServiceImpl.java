@@ -20,6 +20,7 @@ import org.bimserver.emf.IdEObjectImpl;
 
 import org.bimserver.models.store.Action;
 import org.bimserver.models.store.NewService;
+import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServiceStatus;
 import org.bimserver.models.store.StorePackage;
@@ -48,6 +49,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getAction <em>Action</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getAccessToken <em>Access Token</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getProject <em>Project</em>}</li>
  * </ul>
  *
  * @generated
@@ -332,6 +334,24 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 */
 	public void setAccessToken(String newAccessToken) {
 		eSet(StorePackage.Literals.NEW_SERVICE__ACCESS_TOKEN, newAccessToken);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Project getProject() {
+		return (Project) eGet(StorePackage.Literals.NEW_SERVICE__PROJECT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProject(Project newProject) {
+		eSet(StorePackage.Literals.NEW_SERVICE__PROJECT, newProject);
 	}
 
 } //NewServiceImpl

@@ -55,7 +55,7 @@ public class AddNewServiceToProjectDatabaseAction extends BimDatabaseAction<Long
 		}
 		service.setStatus(ServiceStatus.NEW);
 		project.getNewServices().add(service);
-//		service.setProject(project);
+		service.setProject(project);
 		long serviceOid = getDatabaseSession().store(service);
 		getDatabaseSession().store(project);
 		return serviceOid;

@@ -49,11 +49,14 @@ import javax.mail.internet.InternetAddress;
 import org.apache.commons.collections.comparators.ComparatorChain;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
 import org.bimserver.BimServerImporter;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -873,7 +876,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public SExtendedDataSchema getExtendedDataSchemaByName(String nameSpace) throws UserException, ServerException {
 		// Not checking for real authentication here because a remote service should be able to use an exs
 		if (nameSpace == null) {
-			throw new UserException("NameSpace required");
+			throw new UserException("Name required");
 		}
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -2252,34 +2255,39 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			IOUtils.copy(result.getFile().getInputStream(), baos);
 			
+			httpPost.setHeader("Authorization", "Bearer " + newService.getAccessToken());
 			httpPost.setEntity(new ByteArrayEntity(baos.toByteArray()));
 			CloseableHttpResponse response = httpclient.execute(httpPost);
 			
-			Header[] headers = response.getHeaders("Content-Disposition");
-			String filename = "unknown";
-			if (headers.length > 0) {
-				String contentDisposition = headers[0].getValue();
-				int indexOf = contentDisposition.indexOf("filename=") + 10;
-				filename = contentDisposition.substring(indexOf, contentDisposition.indexOf("\"", indexOf + 1));
+			LOGGER.info(response.getStatusLine().toString());
+			if (response.getStatusLine().getStatusCode() == 401) {
+				throw new UserException("Remote service responded with a 401 Unauthorized");
+			} else {
+				Header[] headers = response.getHeaders("Content-Disposition");
+				String filename = "unknown";
+				if (headers.length > 0) {
+					String contentDisposition = headers[0].getValue();
+					int indexOf = contentDisposition.indexOf("filename=") + 10;
+					filename = contentDisposition.substring(indexOf, contentDisposition.indexOf("\"", indexOf + 1));
+				}
+				
+				byte[] responseBytes = ByteStreams.toByteArray(response.getEntity().getContent());
+				
+				SFile file = new SFile();
+				file.setData(responseBytes);
+				file.setFilename(filename);
+				file.setMime(response.getHeaders("Content-Type")[0].getValue());
+				Long fileId = uploadFile(file);
+				
+				SExtendedData extendedData = new SExtendedData();
+				extendedData.setAdded(new Date());
+				extendedData.setRevisionId(roid);
+				extendedData.setTitle(newService.getName() + " Results");
+				extendedData.setSize(responseBytes.length);
+				extendedData.setFileId(fileId);
+				extendedData.setSchemaId(getExtendedDataSchemaByName(newService.getOutput()).getOid());
+				addExtendedDataToRevision(roid, extendedData);
 			}
-			
-			byte[] responseBytes = ByteStreams.toByteArray(response.getEntity().getContent());
-			System.out.println(new String(responseBytes));
-			
-			SFile file = new SFile();
-			file.setData(responseBytes);
-			file.setFilename(filename);
-			file.setMime(response.getHeaders("Content-Type")[0].getValue());
-			Long fileId = uploadFile(file);
-			
-			SExtendedData extendedData = new SExtendedData();
-			extendedData.setAdded(new Date());
-			extendedData.setRevisionId(roid);
-			extendedData.setTitle(newService.getName() + " Results");
-			extendedData.setSize(responseBytes.length);
-			extendedData.setFileId(fileId);
-			extendedData.setSchemaId(getExtendedDataSchemaByName(newService.getOutput()).getOid());
-			addExtendedDataToRevision(roid, extendedData);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

@@ -24,7 +24,7 @@ import org.bimserver.models.store.StorePackage;
 
 public class GetExtendedDataSchemaByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<ExtendedDataSchema> {
 
-	public GetExtendedDataSchemaByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String namespace) {
-		super(databaseSession, accessMethod, ExtendedDataSchema.class, StorePackage.eINSTANCE.getExtendedDataSchema_Name(), namespace);
+	public GetExtendedDataSchemaByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name) {
+		super(databaseSession, accessMethod, ExtendedDataSchema.class, StorePackage.eINSTANCE.getExtendedDataSchema_Name(), name);
 	}
 }

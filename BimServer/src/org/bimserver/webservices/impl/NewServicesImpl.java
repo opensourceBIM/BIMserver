@@ -55,8 +55,8 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		sNewServiceDescriptor.setProvider("Test Service 2");
 		sNewServiceDescriptor.getInputs().add("IFC_STEP_2X3TC1");
 		sNewServiceDescriptor.getInputs().add("IFC_STEP_4");
-		sNewServiceDescriptor.getOutputs().add("BCF_1.0");
-		sNewServiceDescriptor.getOutputs().add("BCF_2.0");
+		sNewServiceDescriptor.getOutputs().add("BCF_ZIP_1.0");
+		sNewServiceDescriptor.getOutputs().add("BCF_ZIP_2.0");
 		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/clashdetection.php");
 		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
 		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
