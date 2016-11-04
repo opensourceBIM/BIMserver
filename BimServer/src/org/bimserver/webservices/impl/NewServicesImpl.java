@@ -43,7 +43,7 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		sNewServiceDescriptor.getInputs().add("IFC_JSON_2x3TC1");
 		sNewServiceDescriptor.getInputs().add("IFC_JSON_4");
 		sNewServiceDescriptor.getOutputs().add("text/csv");
-		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/stats.php");
+		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services/stats.php");
 		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
 		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
 		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
@@ -57,7 +57,7 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		sNewServiceDescriptor.getInputs().add("IFC_STEP_4");
 		sNewServiceDescriptor.getOutputs().add("BCF_ZIP_1.0");
 		sNewServiceDescriptor.getOutputs().add("BCF_ZIP_2.0");
-		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/clashdetection.php");
+		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services/clashdetection.php");
 		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
 		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
 		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
@@ -68,8 +68,32 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		sNewServiceDescriptor.setDescription("Test Service 3");
 		sNewServiceDescriptor.setProvider("Test Service 3");
 		sNewServiceDescriptor.getInputs().add("DOES_NOT_EXIST");
-		sNewServiceDescriptor.getOutputs().add("BCF_2.0");
-		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services.php");
+		sNewServiceDescriptor.getOutputs().add("BCF_ZIP_2.0");
+		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services/services.php");
+		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
+		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
+		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
+		list.add(sNewServiceDescriptor);
+
+		sNewServiceDescriptor = new SNewServiceDescriptor();
+		sNewServiceDescriptor.setName("Error service");
+		sNewServiceDescriptor.setDescription("Error service");
+		sNewServiceDescriptor.setProvider("Error service");
+		sNewServiceDescriptor.getInputs().add("IFC_STEP_2X3TC1");
+		sNewServiceDescriptor.getOutputs().add("BCF_ZIP_2.0");
+		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services/error.php");
+		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
+		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
+		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
+		list.add(sNewServiceDescriptor);
+
+		sNewServiceDescriptor = new SNewServiceDescriptor();
+		sNewServiceDescriptor.setName("Does not exist");
+		sNewServiceDescriptor.setDescription("Does not exist");
+		sNewServiceDescriptor.setProvider("Does not exist");
+		sNewServiceDescriptor.getInputs().add("IFC_STEP_2X3TC1");
+		sNewServiceDescriptor.getOutputs().add("BCF_ZIP_2.0");
+		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services/doesnotexist.php");
 		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
 		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
 		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");

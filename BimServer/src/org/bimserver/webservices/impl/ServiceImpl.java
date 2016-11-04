@@ -2262,7 +2262,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			LOGGER.info(response.getStatusLine().toString());
 			if (response.getStatusLine().getStatusCode() == 401) {
 				throw new UserException("Remote service responded with a 401 Unauthorized");
-			} else {
+			} else if (response.getStatusLine().getStatusCode() == 200) {
 				Header[] headers = response.getHeaders("Content-Disposition");
 				String filename = "unknown";
 				if (headers.length > 0) {
@@ -2287,6 +2287,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				extendedData.setFileId(fileId);
 				extendedData.setSchemaId(getExtendedDataSchemaByName(newService.getOutput()).getOid());
 				addExtendedDataToRevision(roid, extendedData);
+			} else {
+				throw new UserException("Remote service responded with a " + response.getStatusLine());
 			}
 		} catch (Exception e) {
 			handleException(e);

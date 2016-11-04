@@ -42,6 +42,7 @@ import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.models.store.ModelCheckerResult;
+import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.ServerSettings;
@@ -109,6 +110,13 @@ public class NewRevisionNotification extends Notification {
 			if  (project.isSendEmailOnNewRevision() && sendEmail) {
 				sendEmail(session, project, revision);
 			}
+			
+			for (NewService newService : project.getNewServices()) {
+				if (soid == -1 || newService.getOid() == soid) {
+					triggerNewRevision(session, getBimServer().getNotificationsManager(), getBimServer(), getBimServer().getNotificationsManager().getSiteAddress(), project, roid, Trigger.NEW_REVISION, newService);
+				}
+			}
+			
 			for (Service service : project.getServices()) {
 				if (soid == -1 || service.getOid() == soid) {
 					triggerNewRevision(session, getBimServer().getNotificationsManager(), getBimServer(), getBimServer().getNotificationsManager().getSiteAddress(), project, roid, Trigger.NEW_REVISION, service);
@@ -216,6 +224,10 @@ public class NewRevisionNotification extends Notification {
 		}
 	}
 
+	public void triggerNewRevision(DatabaseSession session, NotificationsManager notificationsManager, final BimServer bimServer, String siteAddress, Project project, final long roid, Trigger trigger, final NewService service) throws UserException, ServerException {
+		bimServer.getService(ServiceInterface.class).triggerRevisionService(roid, service.getOid());
+	}
+	
 	public void triggerNewRevision(DatabaseSession session, NotificationsManager notificationsManager, final BimServer bimServer, String siteAddress, Project project, final long roid, Trigger trigger, final Service service) throws UserException, ServerException {
 		if (service.getTrigger() == trigger) {
 			Channel channel = null;
