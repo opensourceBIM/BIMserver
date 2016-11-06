@@ -7,7 +7,7 @@ The Building Information Modelserver (short: BIMserver) enables you to store and
 
 Due to the multi-user support, multiple people can work on their own part of the model, while the complete model is updated on the fly. Other users can get update notifications when the model (or a part of it) is updated. Furthermore the BIMserver will warn you when other users have changed something in the model while you were editing.
 
-BIMserver is build for developers. We've got a great wiki on https://github.com/opensourceBIM/BIMserver/wiki and are very active supporting developers on https://github.com/opensourceBIM/BIMserver/issues 
+BIMserver is built for developers. We've got a great wiki on https://github.com/opensourceBIM/BIMserver/wiki and are very active supporting developers on https://github.com/opensourceBIM/BIMserver/issues 
 
 See a full list of features on http://www.bimserver.org/ 
 
