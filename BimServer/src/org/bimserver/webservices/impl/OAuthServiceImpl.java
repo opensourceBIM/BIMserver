@@ -281,14 +281,17 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 			
 			ObjectNode post = NetUtils.post(newService.getTokenUrl(), objectNode);
 			
-			String accessToken = post.get("access_token").asText();
-			newService.setAccessToken(accessToken);
-			newService.setStatus(ServiceStatus.AUTHENTICATED);
-			
-			session.store(newService);
-			session.commit();
-
-			return accessToken;
+			if (post.has("access_token")) {
+				String accessToken = post.get("access_token").asText();
+				newService.setAccessToken(accessToken);
+				newService.setStatus(ServiceStatus.AUTHENTICATED);
+				session.store(newService);
+				session.commit();
+				
+				return accessToken;
+			} else {
+				throw new UserException("No access_token received from oauth server");
+			}
 		} catch (Exception e) {
 			return handleException(e);
 		}
