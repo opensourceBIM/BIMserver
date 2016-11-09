@@ -1,5 +1,6 @@
 package org.bimserver.webservices.impl;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -22,9 +23,15 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NewServicesInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
+import org.bimserver.utils.NetUtils;
 import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class NewServicesImpl extends GenericServiceImpl implements NewServicesInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NewServicesImpl.class);
@@ -35,70 +42,37 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 
 	@Override
 	public List<SNewServiceDescriptor> listAllServiceDescriptors() throws ServerException, UserException {
-		List<SNewServiceDescriptor> list = new ArrayList<>();
-		SNewServiceDescriptor sNewServiceDescriptor = new SNewServiceDescriptor();
-		sNewServiceDescriptor.setName("Generates a few statistics about model as CSV");
-		sNewServiceDescriptor.setDescription("Test Service");
-		sNewServiceDescriptor.setProvider("Test Service");
-		sNewServiceDescriptor.getInputs().add("IFC_JSON_2x3TC1");
-		sNewServiceDescriptor.getInputs().add("IFC_JSON_4");
-		sNewServiceDescriptor.getOutputs().add("text/csv");
-		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services/stats.php");
-		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
-		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
-		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
-		list.add(sNewServiceDescriptor);
-
-		sNewServiceDescriptor = new SNewServiceDescriptor();
-		sNewServiceDescriptor.setName("Fake clashdetection service");
-		sNewServiceDescriptor.setDescription("Test Service 2");
-		sNewServiceDescriptor.setProvider("Test Service 2");
-		sNewServiceDescriptor.getInputs().add("IFC_STEP_2X3TC1");
-		sNewServiceDescriptor.getInputs().add("IFC_STEP_4");
-		sNewServiceDescriptor.getOutputs().add("BCF_ZIP_1.0");
-		sNewServiceDescriptor.getOutputs().add("BCF_ZIP_2.0");
-		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services/clashdetection.php");
-		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
-		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
-		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
-		list.add(sNewServiceDescriptor);
-
-		sNewServiceDescriptor = new SNewServiceDescriptor();
-		sNewServiceDescriptor.setName("Test Service 3");
-		sNewServiceDescriptor.setDescription("Test Service 3");
-		sNewServiceDescriptor.setProvider("Test Service 3");
-		sNewServiceDescriptor.getInputs().add("DOES_NOT_EXIST");
-		sNewServiceDescriptor.getOutputs().add("BCF_ZIP_2.0");
-		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services/services.php");
-		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
-		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
-		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
-		list.add(sNewServiceDescriptor);
-
-		sNewServiceDescriptor = new SNewServiceDescriptor();
-		sNewServiceDescriptor.setName("Error service");
-		sNewServiceDescriptor.setDescription("Error service");
-		sNewServiceDescriptor.setProvider("Error service");
-		sNewServiceDescriptor.getInputs().add("IFC_STEP_2X3TC1");
-		sNewServiceDescriptor.getOutputs().add("BCF_ZIP_2.0");
-		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services/error.php");
-		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
-		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
-		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
-		list.add(sNewServiceDescriptor);
-
-		sNewServiceDescriptor = new SNewServiceDescriptor();
-		sNewServiceDescriptor.setName("Does not exist");
-		sNewServiceDescriptor.setDescription("Does not exist");
-		sNewServiceDescriptor.setProvider("Does not exist");
-		sNewServiceDescriptor.getInputs().add("IFC_STEP_2X3TC1");
-		sNewServiceDescriptor.getOutputs().add("BCF_ZIP_2.0");
-		sNewServiceDescriptor.setResourceUrl("https://test.logic-labs.nl/services/doesnotexist.php");
-		sNewServiceDescriptor.setAuthorizationUrl("https://test.logic-labs.nl/authorize.php");
-		sNewServiceDescriptor.setRegisterUrl("https://test.logic-labs.nl/register.php");
-		sNewServiceDescriptor.setTokenUrl("https://test.logic-labs.nl/token.php");
-		list.add(sNewServiceDescriptor);
-		return list;
+		try {
+			String data = NetUtils.getContent(new URL("https://raw.githubusercontent.com/opensourceBIM/BIMserver-Repository/master/servicesnew.json"), 5000);
+			ObjectMapper objectMapper = new ObjectMapper();
+			ObjectNode servicesJson = objectMapper.readValue(data, ObjectNode.class);
+			ArrayNode arryaNode = (ArrayNode) servicesJson.get("services");
+			List<SNewServiceDescriptor> list = new ArrayList<>();
+			for (JsonNode jsonNode : arryaNode) {
+				SNewServiceDescriptor serviceDescriptor = new SNewServiceDescriptor();
+				serviceDescriptor.setAuthorizationUrl(jsonNode.get("authorizationUrl").asText());
+				serviceDescriptor.setDescription(jsonNode.get("description").asText());
+				serviceDescriptor.setName(jsonNode.get("name").asText());
+				serviceDescriptor.setProvider(jsonNode.get("provider").asText());
+				serviceDescriptor.setRegisterUrl(jsonNode.get("registerUrl").asText());
+				serviceDescriptor.setResourceUrl(jsonNode.get("resourceUrl").asText());
+				serviceDescriptor.setTokenUrl(jsonNode.get("tokenUrl").asText());
+				ArrayNode inputs = (ArrayNode) jsonNode.get("inputs");
+				ArrayNode outputs = (ArrayNode) jsonNode.get("outputs");
+				for (JsonNode inputNode : inputs) {
+					serviceDescriptor.getInputs().add(inputNode.asText());
+				}
+				for (JsonNode outputNode : outputs) {
+					serviceDescriptor.getOutputs().add(outputNode.asText());
+				}
+				list.add(serviceDescriptor);
+				return list;
+			}
+		} catch (Exception e) {
+			LOGGER.error("", e);
+			throw new UserException(e);
+		}
+		return null;
 	}
 
 	@Override
