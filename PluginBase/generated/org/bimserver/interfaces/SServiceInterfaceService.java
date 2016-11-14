@@ -548,6 +548,11 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SStoreExtendedData();
 					}
 				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SCheckinRevision"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SCheckinRevision();
+					}
+				}));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SServiceStatus"), null));
 				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SNewService"), new SConstructor(){
 					public Object newInstance() {

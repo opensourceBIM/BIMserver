@@ -1,5 +1,5 @@
 
-Þõ
+éø
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -86,28 +86,43 @@ revisionId (
 value ("H
 AddModelCheckerToProjectRequest
 poid (
-modelCheckerOid ("Ó
+modelCheckerOid ("?
+SCheckinRevision
+oid (
+	projectId (
+rid (".
+SStoreExtendedData
+oid (
+rid ("¾
+SAction
+__actual_type (	>
+__SCheckinRevision (2".org.bimserver.pb.SCheckinRevisionB
+__SStoreExtendedData (2$.org.bimserver.pb.SStoreExtendedData
+oid (
+rid ("ÿ
 SNewService
-accessToken (	
-actionId (
+accessToken (	)
+action (2.org.bimserver.pb.SAction
 authorizationUrl (	
 description (	
 input (	
 name (	
 	oauthCode (	
 oid (
-output	 (	
-provider
- (	
-registerUrl (	
-resourceUrl (	
-rid (
-serializerId (0
-status (2 .org.bimserver.pb.SServiceStatus
-tokenUrl (	"^
+output	 (	
+	projectId
+ (
+provider (	
+registerUrl (	
+resourceUrl (	
+rid (
+serializerId (0
+status (2 .org.bimserver.pb.SServiceStatus
+tokenUrl (	"Š
 AddNewServiceToProjectRequest
 poid (/
-sService (2.org.bimserver.pb.SNewService"E
+sService (2.org.bimserver.pb.SNewService*
+sAction (2.org.bimserver.pb.SAction"E
 AddNewServiceToProjectResponse
 errorMessage (	
 value ("8

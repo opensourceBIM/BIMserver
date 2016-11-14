@@ -66,13 +66,12 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 					serviceDescriptor.getOutputs().add(outputNode.asText());
 				}
 				list.add(serviceDescriptor);
-				return list;
 			}
+			return list;
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			throw new UserException(e);
 		}
-		return null;
 	}
 
 	@Override

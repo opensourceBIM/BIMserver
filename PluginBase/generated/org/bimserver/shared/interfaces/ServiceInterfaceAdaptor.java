@@ -41,7 +41,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	public void addModelCheckerToProject(java.lang.Long poid, java.lang.Long modelCheckerOid) throws UserException, ServerException {
 	}
 	
-	public java.lang.Long addNewServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SNewService sService) throws UserException, ServerException {
+	public java.lang.Long addNewServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SNewService sService, org.bimserver.interfaces.objects.SAction sAction) throws UserException, ServerException {
 		return null;
 	}
 	

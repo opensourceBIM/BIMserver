@@ -6,6 +6,7 @@ import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0025 extends Migration {
@@ -30,12 +31,16 @@ public class Step0025 extends Migration {
 		EClass actionClass = schema.createEClass("store", "Action");
 		
 		EClass storeExtendedDataClass = schema.createEClass("store", "StoreExtendedData", actionClass);
+		EClass checkinRevisionClass = schema.createEClass("store", "CheckinRevision", actionClass);
+
+		EClass projectClass = schema.getEClass("store", "Project");
+		
+		schema.createEReference(checkinRevisionClass, "project", projectClass);
 
 		EEnum serviceStatus = schema.createEEnum("store", "ServiceStatus");
 		schema.createEEnumLiteral(serviceStatus, "NEW");
 		schema.createEEnumLiteral(serviceStatus, "AUTHENTICATED");
 		
-		EClass projectClass = schema.getEClass("store", "Project");
 
 		EClass newServiceClass = schema.createEClass("store", "NewService");
 		schema.createEAttribute(newServiceClass, "name", EcorePackage.eINSTANCE.getEString());
@@ -50,11 +55,14 @@ public class Step0025 extends Migration {
 		schema.createEAttribute(newServiceClass, "status", serviceStatus);
 		schema.createEReference(newServiceClass, "serializer", schema.getEClass("store", "SerializerPluginConfiguration"));
 		schema.createEAttribute(newServiceClass, "output", EcorePackage.eINSTANCE.getEString());
-		schema.createEReference(newServiceClass, "action", actionClass);
+		EReference actionReference = schema.createEReference(newServiceClass, "action", actionClass);
+		actionReference.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		schema.createEAttribute(newServiceClass, "accessToken", EcorePackage.eINSTANCE.getEString());
 		schema.createEReference(newServiceClass, "project", projectClass);
 		
 		schema.createEReference(projectClass, "newServices", newServiceClass, Multiplicity.MANY);
+		
+		schema.createEReference(schema.getEClass("store", "Revision"), "servicesLinked", newServiceClass);
 	}
 
 	@Override

@@ -157,6 +157,9 @@ public class JsonConverter {
 				if (jsonObject.has("__type")) {
 					String type = jsonObject.get("__type").getAsString();
 					SClass sClass = servicesMap.getType(type);
+					if (sClass == null) {
+						throw new ConvertException("Unknown type: " + type);
+					}
 					SBase newObject = sClass.newInstance();
 					for (SField field : newObject.getSClass().getAllFields()) {
 						if (jsonObject.has(field.getName())) {

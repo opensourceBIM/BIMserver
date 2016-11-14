@@ -856,6 +856,15 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case StorePackage.CHECKIN_REVISION: {
+			CheckinRevision checkinRevision = (CheckinRevision) theEObject;
+			T result = caseCheckinRevision(checkinRevision);
+			if (result == null)
+				result = caseAction(checkinRevision);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case StorePackage.NEW_SERVICE: {
 			NewService newService = (NewService) theEObject;
 			T result = caseNewService(newService);
@@ -2365,6 +2374,21 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStoreExtendedData(StoreExtendedData object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Checkin Revision</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Checkin Revision</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheckinRevision(CheckinRevision object) {
 		return null;
 	}
 

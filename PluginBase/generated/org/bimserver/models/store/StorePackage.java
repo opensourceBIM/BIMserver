@@ -660,13 +660,22 @@ public interface StorePackage extends EPackage {
 	int REVISION__HAS_GEOMETRY = 15;
 
 	/**
+	 * The feature id for the '<em><b>Services Linked</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__SERVICES_LINKED = 16;
+
+	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 16;
+	int REVISION_FEATURE_COUNT = 17;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -6832,6 +6841,34 @@ public interface StorePackage extends EPackage {
 	int STORE_EXTENDED_DATA_FEATURE_COUNT = ACTION_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.CheckinRevisionImpl <em>Checkin Revision</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.CheckinRevisionImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinRevision()
+	 * @generated
+	 */
+	int CHECKIN_REVISION = 100;
+
+	/**
+	 * The feature id for the '<em><b>Project</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKIN_REVISION__PROJECT = ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Checkin Revision</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKIN_REVISION_FEATURE_COUNT = ACTION_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.NewServiceImpl <em>New Service</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6839,7 +6876,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNewService()
 	 * @generated
 	 */
-	int NEW_SERVICE = 100;
+	int NEW_SERVICE = 101;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6993,7 +7030,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 101;
+	int USER_TYPE = 102;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -7003,7 +7040,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 102;
+	int SI_PREFIX = 103;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -7013,7 +7050,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 103;
+	int OBJECT_STATE = 104;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -7023,7 +7060,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 104;
+	int COMPARE_TYPE = 105;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -7033,7 +7070,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 105;
+	int ACTION_STATE = 106;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -7043,7 +7080,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 106;
+	int SERVER_STATE = 107;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -7053,7 +7090,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 107;
+	int TRIGGER = 108;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
@@ -7063,7 +7100,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
 	 * @generated
 	 */
-	int SERVICE_SIMPLE_TYPE = 108;
+	int SERVICE_SIMPLE_TYPE = 109;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -7073,7 +7110,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 109;
+	int PRIMITIVE_ENUM = 110;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -7083,7 +7120,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 110;
+	int NOTIFICTION_RESULT_ENUM = 111;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -7093,7 +7130,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 111;
+	int PROGRESS_TOPIC_TYPE = 112;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ModelCheckerResultType <em>Model Checker Result Type</em>}' enum.
@@ -7103,7 +7140,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultType()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_TYPE = 112;
+	int MODEL_CHECKER_RESULT_TYPE = 113;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}' enum.
@@ -7113,7 +7150,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSmtpProtocol()
 	 * @generated
 	 */
-	int SMTP_PROTOCOL = 113;
+	int SMTP_PROTOCOL = 114;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginBundleType <em>Plugin Bundle Type</em>}' enum.
@@ -7123,7 +7160,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundleType()
 	 * @generated
 	 */
-	int PLUGIN_BUNDLE_TYPE = 114;
+	int PLUGIN_BUNDLE_TYPE = 115;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginType <em>Plugin Type</em>}' enum.
@@ -7133,7 +7170,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginType()
 	 * @generated
 	 */
-	int PLUGIN_TYPE = 115;
+	int PLUGIN_TYPE = 116;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceStatus <em>Service Status</em>}' enum.
@@ -7143,7 +7180,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceStatus()
 	 * @generated
 	 */
-	int SERVICE_STATUS = 116;
+	int SERVICE_STATUS = 117;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -7153,7 +7190,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 117;
+	int DATA_HANDLER = 118;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -7844,6 +7881,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRevision_HasGeometry();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Revision#getServicesLinked <em>Services Linked</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Services Linked</em>'.
+	 * @see org.bimserver.models.store.Revision#getServicesLinked()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EReference getRevision_ServicesLinked();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ConcreteRevision <em>Concrete Revision</em>}'.
@@ -13403,6 +13451,27 @@ public interface StorePackage extends EPackage {
 	EClass getStoreExtendedData();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.CheckinRevision <em>Checkin Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Checkin Revision</em>'.
+	 * @see org.bimserver.models.store.CheckinRevision
+	 * @generated
+	 */
+	EClass getCheckinRevision();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.CheckinRevision#getProject <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Project</em>'.
+	 * @see org.bimserver.models.store.CheckinRevision#getProject()
+	 * @see #getCheckinRevision()
+	 * @generated
+	 */
+	EReference getCheckinRevision_Project();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.NewService <em>New Service</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14279,6 +14348,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REVISION__HAS_GEOMETRY = eINSTANCE.getRevision_HasGeometry();
+
+		/**
+		 * The meta object literal for the '<em><b>Services Linked</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION__SERVICES_LINKED = eINSTANCE.getRevision_ServicesLinked();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -18585,6 +18662,24 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass STORE_EXTENDED_DATA = eINSTANCE.getStoreExtendedData();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.CheckinRevisionImpl <em>Checkin Revision</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.CheckinRevisionImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinRevision()
+		 * @generated
+		 */
+		EClass CHECKIN_REVISION = eINSTANCE.getCheckinRevision();
+
+		/**
+		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHECKIN_REVISION__PROJECT = eINSTANCE.getCheckinRevision_Project();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.NewServiceImpl <em>New Service</em>}' class.

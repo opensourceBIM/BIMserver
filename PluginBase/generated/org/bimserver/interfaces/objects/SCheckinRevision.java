@@ -16,26 +16,20 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SQueryEnginePluginConfiguration.class, SSerializerPluginConfiguration.class, SDeserializerPluginConfiguration.class, SInternalServicePluginConfiguration.class, SObjectIDMPluginConfiguration.class, SRenderEnginePluginConfiguration.class, SWebModulePluginConfiguration.class, SModelMergerPluginConfiguration.class, SModelComparePluginConfiguration.class})
-public class SPluginConfiguration implements SDataBase
+public class SCheckinRevision extends SAction implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private java.lang.String name;
-	private java.lang.Boolean enabled;
-	private java.lang.String description;
-	private long pluginDescriptorId = -1;
-	private long settingsId = -1;
+	private long projectId = -1;
 
 	public long getOid() {
 		return this.oid;
@@ -59,24 +53,12 @@ public class SPluginConfiguration implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPluginConfiguration.sClass = sClass;
+		SCheckinRevision.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("name")) {
-			return getName();
-		}
-		if (sField.getName().equals("enabled")) {
-			return getEnabled();
-		}
-		if (sField.getName().equals("description")) {
-			return getDescription();
-		}
-		if (sField.getName().equals("pluginDescriptorId")) {
-			return getPluginDescriptorId();
-		}
-		if (sField.getName().equals("settingsId")) {
-			return getSettingsId();
+		if (sField.getName().equals("projectId")) {
+			return getProjectId();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -88,24 +70,8 @@ public class SPluginConfiguration implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("name")) {
-			setName((String)val);
-			return;
-		}
-		if (sField.getName().equals("enabled")) {
-			setEnabled((Boolean)val);
-			return;
-		}
-		if (sField.getName().equals("description")) {
-			setDescription((String)val);
-			return;
-		}
-		if (sField.getName().equals("pluginDescriptorId")) {
-			setPluginDescriptorId((Long)val);
-			return;
-		}
-		if (sField.getName().equals("settingsId")) {
-			setSettingsId((Long)val);
+		if (sField.getName().equals("projectId")) {
+			setProjectId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -119,44 +85,12 @@ public class SPluginConfiguration implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public java.lang.String getName() {
-		return name;
+	public long getProjectId() {
+		return projectId;
 	}
 
-	public void setName(java.lang.String name) {
-		this.name = name;
-	}
-	
-	public java.lang.Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(java.lang.Boolean enabled) {
-		this.enabled = enabled;
-	}
-	
-	public java.lang.String getDescription() {
-		return description;
-	}
-
-	public void setDescription(java.lang.String description) {
-		this.description = description;
-	}
-	
-	public long getPluginDescriptorId() {
-		return pluginDescriptorId;
-	}
-
-	public void setPluginDescriptorId(long pluginDescriptorId) {
-		this.pluginDescriptorId = pluginDescriptorId;
-	}
-	
-	public long getSettingsId() {
-		return settingsId;
-	}
-
-	public void setSettingsId(long settingsId) {
-		this.settingsId = settingsId;
+	public void setProjectId(long projectId) {
+		this.projectId = projectId;
 	}
 	
 	@Override
@@ -175,7 +109,7 @@ public class SPluginConfiguration implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPluginConfiguration other = (SPluginConfiguration) obj;
+		SCheckinRevision other = (SCheckinRevision) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

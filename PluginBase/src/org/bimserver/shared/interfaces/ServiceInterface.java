@@ -1449,8 +1449,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action="addNewServiceToProject")
 	Long addNewServiceToProject(
-		@WebParam(name = "poid", partName = "addServiceToProject.poid") Long poid, 
-		@WebParam(name = "sService", partName = "addServiceToProject.sService") org.bimserver.interfaces.objects.SNewService sService) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "addNewServiceToProject.poid") Long poid, 
+		@WebParam(name = "sService", partName = "addNewServiceToProject.sService") org.bimserver.interfaces.objects.SNewService sService,
+		@WebParam(name = "sAction", partName = "addNewServiceToProject.sAction") org.bimserver.interfaces.objects.SAction sAction) throws ServerException, UserException;
 	
 	@WebMethod(action = "bcfToJson")
 	String bcfToJson(

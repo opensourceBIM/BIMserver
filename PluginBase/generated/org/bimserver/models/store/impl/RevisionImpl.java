@@ -23,6 +23,7 @@ import org.bimserver.models.log.RevisionRelated;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
@@ -55,6 +56,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getService <em>Service</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#isHasGeometry <em>Has Geometry</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getServicesLinked <em>Services Linked</em>}</li>
  * </ul>
  *
  * @generated
@@ -343,6 +345,24 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	public void setHasGeometry(boolean newHasGeometry) {
 		eSet(StorePackage.Literals.REVISION__HAS_GEOMETRY, newHasGeometry);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NewService getServicesLinked() {
+		return (NewService) eGet(StorePackage.Literals.REVISION__SERVICES_LINKED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setServicesLinked(NewService newServicesLinked) {
+		eSet(StorePackage.Literals.REVISION__SERVICES_LINKED, newServicesLinked);
 	}
 
 } //RevisionImpl

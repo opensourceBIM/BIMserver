@@ -131,6 +131,7 @@
         eOpposite="log#//RevisionRelated/revision"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="#//Service"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasGeometry" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="servicesLinked" eType="#//NewService"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConcreteRevision">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -996,6 +997,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Action"/>
   <eClassifiers xsi:type="ecore:EClass" name="StoreExtendedData" eSuperTypes="#//Action"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CheckinRevision" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//Project"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ServiceStatus">
     <eLiterals name="NEW"/>
     <eLiterals name="AUTHENTICATED" value="1"/>
@@ -1013,7 +1017,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//ServiceStatus"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serializer" eType="#//SerializerPluginConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="action" eType="#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="action" eType="#//Action">
+      <eAnnotations source="embedsreference"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessToken" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//Project"/>
   </eClassifiers>

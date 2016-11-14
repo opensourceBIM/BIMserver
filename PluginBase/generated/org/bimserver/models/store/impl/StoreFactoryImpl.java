@@ -269,6 +269,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createAction();
 		case StorePackage.STORE_EXTENDED_DATA:
 			return (EObject) createStoreExtendedData();
+		case StorePackage.CHECKIN_REVISION:
+			return (EObject) createCheckinRevision();
 		case StorePackage.NEW_SERVICE:
 			return (EObject) createNewService();
 		default:
@@ -1368,6 +1370,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public StoreExtendedData createStoreExtendedData() {
 		StoreExtendedDataImpl storeExtendedData = new StoreExtendedDataImpl();
 		return storeExtendedData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CheckinRevision createCheckinRevision() {
+		CheckinRevisionImpl checkinRevision = new CheckinRevisionImpl();
+		return checkinRevision;
 	}
 
 	/**

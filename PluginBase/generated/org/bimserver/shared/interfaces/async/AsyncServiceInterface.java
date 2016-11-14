@@ -737,11 +737,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void addNewServiceToProject(final java.lang.Long poid, final org.bimserver.interfaces.objects.SNewService sService, final AddNewServiceToProjectCallback callback) {
+	public void addNewServiceToProject(final java.lang.Long poid, final org.bimserver.interfaces.objects.SNewService sService, final org.bimserver.interfaces.objects.SAction sAction, final AddNewServiceToProjectCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.addNewServiceToProject(poid, sService));
+					callback.success(syncService.addNewServiceToProject(poid, sService, sAction));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

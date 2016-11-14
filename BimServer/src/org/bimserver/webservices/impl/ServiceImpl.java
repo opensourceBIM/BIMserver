@@ -45,18 +45,16 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.collections.comparators.ComparatorChain;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
 import org.bimserver.BimServerImporter;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -161,6 +159,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SAccessMethod;
+import org.bimserver.interfaces.objects.SAction;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SCompareResult;
@@ -205,6 +204,8 @@ import org.bimserver.longaction.LongStreamingDownloadAction;
 import org.bimserver.mail.EmailMessage;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.LogAction;
+import org.bimserver.models.store.Action;
+import org.bimserver.models.store.CheckinRevision;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
@@ -223,6 +224,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServiceDescriptor;
+import org.bimserver.models.store.StoreExtendedData;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -2273,20 +2275,29 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				
 				byte[] responseBytes = ByteStreams.toByteArray(response.getEntity().getContent());
 				
-				SFile file = new SFile();
-				file.setData(responseBytes);
-				file.setFilename(filename);
-				file.setMime(response.getHeaders("Content-Type")[0].getValue());
-				Long fileId = uploadFile(file);
-				
-				SExtendedData extendedData = new SExtendedData();
-				extendedData.setAdded(new Date());
-				extendedData.setRevisionId(roid);
-				extendedData.setTitle(newService.getName() + " Results");
-				extendedData.setSize(responseBytes.length);
-				extendedData.setFileId(fileId);
-				extendedData.setSchemaId(getExtendedDataSchemaByName(newService.getOutput()).getOid());
-				addExtendedDataToRevision(roid, extendedData);
+				Action action = newService.getAction();
+				if (action instanceof StoreExtendedData) {
+					SFile file = new SFile();
+					file.setData(responseBytes);
+					file.setFilename(filename);
+					file.setMime(response.getHeaders("Content-Type")[0].getValue());
+					Long fileId = uploadFile(file);
+					
+					SExtendedData extendedData = new SExtendedData();
+					extendedData.setAdded(new Date());
+					extendedData.setRevisionId(roid);
+					extendedData.setTitle(newService.getName() + " Results");
+					extendedData.setSize(responseBytes.length);
+					extendedData.setFileId(fileId);
+					extendedData.setSchemaId(getExtendedDataSchemaByName(newService.getOutput()).getOid());
+					addExtendedDataToRevision(roid, extendedData);
+				} else if (action instanceof CheckinRevision) {
+					CheckinRevision checkinRevision = (CheckinRevision)action;
+					Project targetProject = checkinRevision.getProject();
+					String extension = filename.substring(filename.lastIndexOf(".") + 1);
+					SDeserializerPluginConfiguration deserializer = getSuggestedDeserializerForExtension(extension, targetProject.getOid());
+					checkin(targetProject.getOid(), "Result of service", deserializer.getOid(), (long)responseBytes.length, filename, new DataHandler(new ByteArrayDataSource(responseBytes, "ifc")), false, true);
+				}
 			} else {
 				throw new UserException("Remote service responded with a " + response.getStatusLine());
 			}
@@ -2575,11 +2586,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public Long addNewServiceToProject(Long poid, SNewService sService) throws ServerException, UserException {
+	public Long addNewServiceToProject(Long poid, SNewService sService, SAction sAction) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			AddNewServiceToProjectDatabaseAction action = new AddNewServiceToProjectDatabaseAction(session, getInternalAccessMethod(), poid, getBimServer().getSConverter().convertFromSObject(sService, session), getAuthorization());
+			AddNewServiceToProjectDatabaseAction action = new AddNewServiceToProjectDatabaseAction(session, getInternalAccessMethod(), poid, getBimServer().getSConverter().convertFromSObject(sService, session), getBimServer().getSConverter().convertFromSObject(sAction, session), getAuthorization());
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			return handleException(e);

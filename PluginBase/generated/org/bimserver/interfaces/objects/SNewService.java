@@ -41,7 +41,7 @@ public class SNewService implements SDataBase
 	private SServiceStatus status;
 	private long serializerId = -1;
 	private java.lang.String output;
-	private long actionId = -1;
+	private SAction action;
 	private java.lang.String accessToken;
 	private long projectId = -1;
 
@@ -107,8 +107,8 @@ public class SNewService implements SDataBase
 		if (sField.getName().equals("output")) {
 			return getOutput();
 		}
-		if (sField.getName().equals("actionId")) {
-			return getActionId();
+		if (sField.getName().equals("action")) {
+			return getAction();
 		}
 		if (sField.getName().equals("accessToken")) {
 			return getAccessToken();
@@ -174,8 +174,8 @@ public class SNewService implements SDataBase
 			setOutput((String)val);
 			return;
 		}
-		if (sField.getName().equals("actionId")) {
-			setActionId((Long)val);
+		if (sField.getName().equals("action")) {
+			setAction((SAction)val);
 			return;
 		}
 		if (sField.getName().equals("accessToken")) {
@@ -293,13 +293,14 @@ public class SNewService implements SDataBase
 		this.output = output;
 	}
 	
-	public long getActionId() {
-		return actionId;
+	public SAction getAction() {
+		return action;
 	}
 
-	public void setActionId(long actionId) {
-		this.actionId = actionId;
+	public void setAction(SAction action) {
+		this.action = action;
 	}
+	
 	
 	public java.lang.String getAccessToken() {
 		return accessToken;

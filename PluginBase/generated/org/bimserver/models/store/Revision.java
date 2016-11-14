@@ -47,6 +47,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Revision#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getService <em>Service</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#isHasGeometry <em>Has Geometry</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Revision#getServicesLinked <em>Services Linked</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getRevision()
@@ -442,5 +443,31 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	void setHasGeometry(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Services Linked</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Services Linked</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Services Linked</em>' reference.
+	 * @see #setServicesLinked(NewService)
+	 * @see org.bimserver.models.store.StorePackage#getRevision_ServicesLinked()
+	 * @model
+	 * @generated
+	 */
+	NewService getServicesLinked();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getServicesLinked <em>Services Linked</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Services Linked</em>' reference.
+	 * @see #getServicesLinked()
+	 * @generated
+	 */
+	void setServicesLinked(NewService value);
 
 } // Revision

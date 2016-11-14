@@ -401,6 +401,25 @@ message AddModelCheckerToProjectRequest {
 	optional int64 modelCheckerOid = 2;
 }
 
+message SCheckinRevision {
+	optional int64 oid = 1;
+	optional int64 projectId = 2;
+	optional int32 rid = 3;
+}
+
+message SStoreExtendedData {
+	optional int64 oid = 1;
+	optional int32 rid = 2;
+}
+
+message SAction {
+	required string __actual_type = 1;
+	optional SCheckinRevision __SCheckinRevision = 2;
+	optional SStoreExtendedData __SStoreExtendedData = 3;
+	optional int64 oid = 4;
+	optional int32 rid = 5;
+}
+
 enum SServiceStatus{
 	SServiceStatus_NEW = 0;
 	SServiceStatus_AUTHENTICATED = 1;
@@ -408,7 +427,7 @@ enum SServiceStatus{
 
 message SNewService {
 	optional string accessToken = 1;
-	optional int64 actionId = 2;
+	optional SAction action = 2;
 	optional string authorizationUrl = 3;
 	optional string description = 4;
 	optional string input = 5;
@@ -416,18 +435,20 @@ message SNewService {
 	optional string oauthCode = 7;
 	optional int64 oid = 8;
 	optional string output = 9;
-	optional string provider = 10;
-	optional string registerUrl = 11;
-	optional string resourceUrl = 12;
-	optional int32 rid = 13;
-	optional int64 serializerId = 14;
-	optional SServiceStatus status = 15;
-	optional string tokenUrl = 16;
+	optional int64 projectId = 10;
+	optional string provider = 11;
+	optional string registerUrl = 12;
+	optional string resourceUrl = 13;
+	optional int32 rid = 14;
+	optional int64 serializerId = 15;
+	optional SServiceStatus status = 16;
+	optional string tokenUrl = 17;
 }
 
 message AddNewServiceToProjectRequest {
 	optional int64 poid = 1;
 	optional SNewService sService = 2;
+	optional SAction sAction = 3;
 }
 
 message AddNewServiceToProjectResponse {

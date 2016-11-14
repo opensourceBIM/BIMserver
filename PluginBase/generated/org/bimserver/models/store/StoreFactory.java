@@ -936,6 +936,15 @@ public interface StoreFactory extends EFactory {
 	StoreExtendedData createStoreExtendedData();
 
 	/**
+	 * Returns a new object of class '<em>Checkin Revision</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Checkin Revision</em>'.
+	 * @generated
+	 */
+	CheckinRevision createCheckinRevision();
+
+	/**
 	 * Returns a new object of class '<em>New Service</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

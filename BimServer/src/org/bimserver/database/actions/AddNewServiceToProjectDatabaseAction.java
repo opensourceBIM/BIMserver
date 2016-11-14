@@ -22,6 +22,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.Action;
 import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.ServiceStatus;
@@ -35,11 +36,13 @@ public class AddNewServiceToProjectDatabaseAction extends BimDatabaseAction<Long
 	private long poid;
 	private Authorization authorization;
 	private NewService service;
+	private Action action;
 
-	public AddNewServiceToProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, NewService service, Authorization authorization) {
+	public AddNewServiceToProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, NewService service, Action action, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.poid = poid;
 		this.service = service;
+		this.action = action;
 		this.authorization = authorization;
 	}
 
@@ -53,10 +56,12 @@ public class AddNewServiceToProjectDatabaseAction extends BimDatabaseAction<Long
 				throw new UserException("Service name \"" + service.getName() + "\" already used in this project");
 			}
 		}
+		service.setAction(action);
 		service.setStatus(ServiceStatus.NEW);
 		project.getNewServices().add(service);
 		service.setProject(project);
 		long serviceOid = getDatabaseSession().store(service);
+		getDatabaseSession().store(action);
 		getDatabaseSession().store(project);
 		return serviceOid;
 	}
