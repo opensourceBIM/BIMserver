@@ -897,9 +897,10 @@ message SRevision {
 	optional int64 projectId = 13;
 	optional int32 rid = 14;
 	optional int64 serviceId = 15;
-	optional int64 size = 16;
-	optional string tag = 17;
-	optional int64 userId = 18;
+	optional int64 servicesLinkedId = 16;
+	optional int64 size = 17;
+	optional string tag = 18;
+	optional int64 userId = 19;
 }
 
 message SCheckout {

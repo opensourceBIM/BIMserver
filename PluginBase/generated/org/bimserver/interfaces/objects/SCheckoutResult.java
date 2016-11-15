@@ -66,6 +66,9 @@ public class SCheckoutResult extends SDownloadResult implements SDataBase
 		if (sField.getName().equals("file")) {
 			return getFile();
 		}
+		if (sField.getName().equals("serializerOid")) {
+			return getSerializerOid();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -86,6 +89,10 @@ public class SCheckoutResult extends SDownloadResult implements SDataBase
 		}
 		if (sField.getName().equals("file")) {
 			setFile((DataHandler)val);
+			return;
+		}
+		if (sField.getName().equals("serializerOid")) {
+			setSerializerOid((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {

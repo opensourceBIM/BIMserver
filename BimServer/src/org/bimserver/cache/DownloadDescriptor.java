@@ -46,6 +46,10 @@ public class DownloadDescriptor {
 	private PackageMetaData packageMetaData;
 	private String jsonQuery;
 
+	public long getSerializerOid() {
+		return serializerOid;
+	}
+	
 	public DownloadDescriptor(PackageMetaData packageMetaData, String jsonQuery, Set<Long> roids, Query query, long serializerOid, String fileNameWithoutExtension) {
 		this.packageMetaData = packageMetaData;
 		this.jsonQuery = jsonQuery;

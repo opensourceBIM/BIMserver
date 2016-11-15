@@ -39,7 +39,6 @@ import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SFile;
-import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
@@ -166,13 +165,6 @@ public class DownloadServlet extends SubServlet {
 					}
 				}
 			} else {
-				SSerializerPluginConfiguration serializer = null;
-				if (request.getParameter("serializerOid") != null) {
-					long serializerOid = Long.parseLong(request.getParameter("serializerOid"));
-					serializer = serviceMap.getServiceInterface().getSerializerById(serializerOid);
-				} else {
-					serializer = serviceMap.getServiceInterface().getSerializerByName(request.getParameter("serializerName"));
-				}
 				if (request.getParameter("topicId") != null) {
 					topicId = Long.parseLong(request.getParameter("topicId"));
 				}
@@ -185,7 +177,7 @@ public class DownloadServlet extends SubServlet {
 					LOGGER.error("Invalid topicId: " + topicId);
 				} else {
 					DataSource dataSource = checkoutResult.getFile().getDataSource();
-					PluginConfiguration pluginConfiguration = new PluginConfiguration(serviceMap.getPluginInterface().getPluginSettings(serializer.getOid()));
+					PluginConfiguration pluginConfiguration = new PluginConfiguration(serviceMap.getPluginInterface().getPluginSettings(checkoutResult.getSerializerOid()));
 
 					final ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
 

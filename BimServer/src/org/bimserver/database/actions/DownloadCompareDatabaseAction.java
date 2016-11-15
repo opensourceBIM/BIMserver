@@ -30,6 +30,7 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.IfcCharacterStyleSelect;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcCurveStyle;
@@ -92,17 +93,24 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 	}
 	
 	public org.bimserver.plugins.modelcompare.ModelCompare getModelCompare() throws ModelCompareException, BimserverDatabaseException {
-		ModelComparePluginConfiguration modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), mcid, OldQuery.getDefault());
-		if (modelCompareObject != null) {
-			ModelComparePlugin modelComparePlugin = getBimServer().getPluginManager().getModelComparePlugin(modelCompareObject.getPluginDescriptor().getPluginClassName(), true);
-			if (modelComparePlugin != null) {
-				org.bimserver.plugins.modelcompare.ModelCompare modelCompare = modelComparePlugin.createModelCompare(new PluginConfiguration(modelCompareObject.getSettings()));
-				return modelCompare;
+		Revision revision1 = getDatabaseSession().get(roid1, OldQuery.getDefault());
+		Revision revision2 = getDatabaseSession().get(roid2, OldQuery.getDefault());
+		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision1.getProject().getSchema());
+		if (revision1.getProject().getSchema().equals(revision2.getProject().getSchema())) {
+			ModelComparePluginConfiguration modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), mcid, OldQuery.getDefault());
+			if (modelCompareObject != null) {
+				ModelComparePlugin modelComparePlugin = getBimServer().getPluginManager().getModelComparePlugin(modelCompareObject.getPluginDescriptor().getPluginClassName(), true);
+				if (modelComparePlugin != null) {
+					org.bimserver.plugins.modelcompare.ModelCompare modelCompare = modelComparePlugin.createModelCompare(new PluginConfiguration(modelCompareObject.getSettings()), packageMetaData);
+					return modelCompare;
+				} else {
+					throw new ModelCompareException("No Model Compare found " + modelCompareObject.getPluginDescriptor().getPluginClassName());
+				}
 			} else {
-				throw new ModelCompareException("No Model Compare found " + modelCompareObject.getPluginDescriptor().getPluginClassName());
+				throw new ModelCompareException("No configured Model Compare found");
 			}
 		} else {
-			throw new ModelCompareException("No configured Model Compare found");
+			throw new ModelCompareException("Schemas not the same");
 		}
 	}
 
@@ -126,7 +134,7 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 //			bimServer.getCompareCache().storeResults(roid1, roid2, compareType, compareIdentifier, compareResults);
 
 			ModelMerger merger = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid());
-			IfcModelInterface mergedModel = new ServerIfcModel(null, null, getDatabaseSession()); // TODO
+			IfcModelInterface mergedModel = new ServerIfcModel(model1.getPackageMetaData(), null, getDatabaseSession());
 			mergedModel = merger.merge(project, new IfcModelSet(model1, model2), new ModelHelper(getBimServer().getMetaDataManager(), mergedModel));
 			mergedModel.getModelMetaData().setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
 
@@ -147,19 +155,19 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 				}
 			}
 
-			IfcColourRgb red = mergedModel.create(IfcColourRgb.class);
+			IfcColourRgb red = mergedModel.createAndAdd(IfcColourRgb.class);
 			red.setName("red");
 			red.setRed(0.5);
 			red.setGreen(0.0);
 			red.setBlue(0.0);
 
-			IfcColourRgb green = mergedModel.create(IfcColourRgb.class);
+			IfcColourRgb green = mergedModel.createAndAdd(IfcColourRgb.class);
 			green.setName("green");
 			green.setRed(0);
 			green.setGreen(0.5);
 			green.setBlue(0);
 
-			IfcColourRgb blue = mergedModel.create(IfcColourRgb.class);
+			IfcColourRgb blue = mergedModel.createAndAdd(IfcColourRgb.class);
 			blue.setName("blue");
 			blue.setRed(0);
 			blue.setGreen(0);

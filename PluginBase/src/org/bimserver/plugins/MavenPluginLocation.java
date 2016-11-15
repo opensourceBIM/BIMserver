@@ -132,11 +132,11 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 					request.setArtifact(descriptorResult.getArtifact());
 					request.setRepositories(mavenPluginRepository.getRepositories());
 					ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
-					
+
 					File pomFile = resolveArtifact.getArtifact().getFile();
-					
+
 					MavenXpp3Reader mavenreader = new MavenXpp3Reader();
-	
+
 					try {
 						Model model = mavenreader.read(new FileReader(pomFile));
 						mavenPluginVersion.setModel(model);

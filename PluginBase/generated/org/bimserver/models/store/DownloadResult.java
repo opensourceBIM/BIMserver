@@ -32,6 +32,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.DownloadResult#getProjectName <em>Project Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.DownloadResult#getRevisionNr <em>Revision Nr</em>}</li>
  *   <li>{@link org.bimserver.models.store.DownloadResult#getFile <em>File</em>}</li>
+ *   <li>{@link org.bimserver.models.store.DownloadResult#getSerializerOid <em>Serializer Oid</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getDownloadResult()
@@ -117,5 +118,31 @@ public interface DownloadResult extends IdEObject {
 	 * @generated
 	 */
 	void setFile(DataHandler value);
+
+	/**
+	 * Returns the value of the '<em><b>Serializer Oid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Serializer Oid</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Serializer Oid</em>' attribute.
+	 * @see #setSerializerOid(long)
+	 * @see org.bimserver.models.store.StorePackage#getDownloadResult_SerializerOid()
+	 * @model
+	 * @generated
+	 */
+	long getSerializerOid();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.DownloadResult#getSerializerOid <em>Serializer Oid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Serializer Oid</em>' attribute.
+	 * @see #getSerializerOid()
+	 * @generated
+	 */
+	void setSerializerOid(long value);
 
 } // DownloadResult

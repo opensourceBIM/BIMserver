@@ -69,6 +69,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 	protected SCheckoutResult convertModelToCheckoutResult(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters)
 			throws UserException, NoSerializerFoundException {
 		SCheckoutResult checkoutResult = new SCheckoutResult();
+		checkoutResult.setSerializerOid(downloadParameters.getSerializerOid());
 		if (model.isValid()) {
 			checkoutResult.setProjectName(project.getName());
 			checkoutResult.setRevisionNr(model.getModelMetaData().getRevisionId());
@@ -103,6 +104,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			if (action == null) {
 				checkoutResult = new SCheckoutResult();
 				checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters));
+				checkoutResult.setSerializerOid(downloadParameters.getSerializerOid());
 			} else {
 				Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), OldQuery.getDefault());
 				if (revision == null) {
@@ -146,5 +148,9 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		} finally {
 			done();
 		}
+	}
+
+	public long getSerializerOid() {
+		return downloadParameters.getSerializerOid();
 	}
 }

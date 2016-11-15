@@ -1,5 +1,6 @@
 package org.bimserver.plugins.modelcompare;
 
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SPluginType;
 
 /******************************************************************************
@@ -23,7 +24,7 @@ import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 
 public interface ModelComparePlugin extends Plugin {
-	ModelCompare createModelCompare(PluginConfiguration pluginConfiguration) throws ModelCompareException;
+	ModelCompare createModelCompare(PluginConfiguration pluginConfiguration, PackageMetaData packageMetaData) throws ModelCompareException;
 	
 	@Override
 	default SPluginType getPluginType() {

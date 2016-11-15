@@ -19963,6 +19963,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="revisionNr" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="#/4/DataHandler"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="serializerOid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CheckoutResult" eSuperTypes="#/4/DownloadResult"/>
     <eClassifiers xsi:type="ecore:EClass" name="DataValue">

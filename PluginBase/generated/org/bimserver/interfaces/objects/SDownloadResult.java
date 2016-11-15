@@ -35,6 +35,7 @@ public class SDownloadResult implements SDataBase
 	private java.lang.String projectName;
 	private java.lang.Integer revisionNr;
 	private javax.activation.DataHandler file;
+	private long serializerOid;
 
 	public long getOid() {
 		return this.oid;
@@ -71,6 +72,9 @@ public class SDownloadResult implements SDataBase
 		if (sField.getName().equals("file")) {
 			return getFile();
 		}
+		if (sField.getName().equals("serializerOid")) {
+			return getSerializerOid();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -91,6 +95,10 @@ public class SDownloadResult implements SDataBase
 		}
 		if (sField.getName().equals("file")) {
 			setFile((DataHandler)val);
+			return;
+		}
+		if (sField.getName().equals("serializerOid")) {
+			setSerializerOid((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -126,6 +134,14 @@ public class SDownloadResult implements SDataBase
 
 	public void setFile(javax.activation.DataHandler file) {
 		this.file = file;
+	}
+	
+	public long getSerializerOid() {
+		return serializerOid;
+	}
+
+	public void setSerializerOid(long serializerOid) {
+		this.serializerOid = serializerOid;
 	}
 	
 	@Override

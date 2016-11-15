@@ -1510,6 +1510,7 @@ public class PluginManager implements PluginManagerInterface {
 	public ObjectIDM getDefaultObjectIDM() throws ObjectIDMException {
 		// TODO add a mechanism that can be used to ask a database what the
 		// default plugin is
+		
 		return null;
 	}
 

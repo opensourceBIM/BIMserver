@@ -77,6 +77,8 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 		this.serializerOid = serializerOid;
 		this.jsonQuery = jsonQuery;
 		this.roids = roids;
+
+		checkoutResult.setSerializerOid(serializerOid);
 		
 		setProgressTopic(bimServer.getNotificationsManager().createProgressTopic(SProgressTopicType.DOWNLOAD, "Download"));
 		

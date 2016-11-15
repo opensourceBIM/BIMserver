@@ -23,10 +23,12 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
+import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
@@ -58,17 +60,24 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	}
 
 	public org.bimserver.plugins.modelcompare.ModelCompare getModelCompare() throws ModelCompareException, BimserverDatabaseException {
-		ModelComparePluginConfiguration modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), mcid, OldQuery.getDefault());
-		if (modelCompareObject != null) {
-			ModelComparePlugin modelComparePlugin = bimServer.getPluginManager().getModelComparePlugin(modelCompareObject.getPluginDescriptor().getPluginClassName(), true);
-			if (modelComparePlugin != null) {
-				org.bimserver.plugins.modelcompare.ModelCompare modelCompare = modelComparePlugin.createModelCompare(new PluginConfiguration(modelCompareObject.getSettings()));
-				return modelCompare;
+		Revision revision1 = getDatabaseSession().get(roid1, OldQuery.getDefault());
+		Revision revision2 = getDatabaseSession().get(roid2, OldQuery.getDefault());
+		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(revision1.getProject().getSchema());
+		if (revision1.getProject().getSchema().equals(revision2.getProject().getSchema())) {
+			ModelComparePluginConfiguration modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), mcid, OldQuery.getDefault());
+			if (modelCompareObject != null) {
+				ModelComparePlugin modelComparePlugin = bimServer.getPluginManager().getModelComparePlugin(modelCompareObject.getPluginDescriptor().getPluginClassName(), true);
+				if (modelComparePlugin != null) {
+					org.bimserver.plugins.modelcompare.ModelCompare modelCompare = modelComparePlugin.createModelCompare(new PluginConfiguration(modelCompareObject.getSettings()), packageMetaData);
+					return modelCompare;
+				} else {
+					throw new ModelCompareException("No Model Compare found " + modelCompareObject.getPluginDescriptor().getPluginClassName());
+				}
 			} else {
-				throw new ModelCompareException("No Model Compare found " + modelCompareObject.getPluginDescriptor().getPluginClassName());
+				throw new ModelCompareException("No configured Model Compare found");
 			}
 		} else {
-			throw new ModelCompareException("No configured Model Compare found");
+			throw new ModelCompareException("Not the same schema");
 		}
 	}
 

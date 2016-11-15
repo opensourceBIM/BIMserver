@@ -1859,13 +1859,22 @@ public interface StorePackage extends EPackage {
 	int DOWNLOAD_RESULT__FILE = 2;
 
 	/**
+	 * The feature id for the '<em><b>Serializer Oid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOWNLOAD_RESULT__SERIALIZER_OID = 3;
+
+	/**
 	 * The number of structural features of the '<em>Download Result</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOWNLOAD_RESULT_FEATURE_COUNT = 3;
+	int DOWNLOAD_RESULT_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.CheckoutResultImpl <em>Checkout Result</em>}' class.
@@ -1903,6 +1912,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int CHECKOUT_RESULT__FILE = DOWNLOAD_RESULT__FILE;
+
+	/**
+	 * The feature id for the '<em><b>Serializer Oid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKOUT_RESULT__SERIALIZER_OID = DOWNLOAD_RESULT__SERIALIZER_OID;
 
 	/**
 	 * The number of structural features of the '<em>Checkout Result</em>' class.
@@ -8983,6 +9001,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getDownloadResult_File();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DownloadResult#getSerializerOid <em>Serializer Oid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Serializer Oid</em>'.
+	 * @see org.bimserver.models.store.DownloadResult#getSerializerOid()
+	 * @see #getDownloadResult()
+	 * @generated
+	 */
+	EAttribute getDownloadResult_SerializerOid();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.CheckoutResult <em>Checkout Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15178,6 +15207,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DOWNLOAD_RESULT__FILE = eINSTANCE.getDownloadResult_File();
+
+		/**
+		 * The meta object literal for the '<em><b>Serializer Oid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOWNLOAD_RESULT__SERIALIZER_OID = eINSTANCE.getDownloadResult_SerializerOid();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.CheckoutResultImpl <em>Checkout Result</em>}' class.

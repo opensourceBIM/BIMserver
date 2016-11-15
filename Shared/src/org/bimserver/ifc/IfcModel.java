@@ -105,7 +105,7 @@ public abstract class IfcModel implements IfcModelInterface {
 	public IfcModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap, int size) {
 		this.pidRoidMap = pidRoidMap;
 		if (packageMetaData == null) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("PackageMetaData is required");
 		}
 		this.packageMetaData = packageMetaData;
 		this.objects = HashBiMap.create(size);

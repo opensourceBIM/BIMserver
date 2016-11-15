@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.DownloadResultImpl#getProjectName <em>Project Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DownloadResultImpl#getRevisionNr <em>Revision Nr</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DownloadResultImpl#getFile <em>File</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.DownloadResultImpl#getSerializerOid <em>Serializer Oid</em>}</li>
  * </ul>
  *
  * @generated
@@ -120,6 +121,24 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 */
 	public void setFile(DataHandler newFile) {
 		eSet(StorePackage.Literals.DOWNLOAD_RESULT__FILE, newFile);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getSerializerOid() {
+		return (Long) eGet(StorePackage.Literals.DOWNLOAD_RESULT__SERIALIZER_OID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSerializerOid(long newSerializerOid) {
+		eSet(StorePackage.Literals.DOWNLOAD_RESULT__SERIALIZER_OID, newSerializerOid);
 	}
 
 } //DownloadResultImpl
