@@ -352,17 +352,9 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NewService getServicesLinked() {
-		return (NewService) eGet(StorePackage.Literals.REVISION__SERVICES_LINKED, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setServicesLinked(NewService newServicesLinked) {
-		eSet(StorePackage.Literals.REVISION__SERVICES_LINKED, newServicesLinked);
+	@SuppressWarnings("unchecked")
+	public EList<NewService> getServicesLinked() {
+		return (EList<NewService>) eGet(StorePackage.Literals.REVISION__SERVICES_LINKED, true);
 	}
 
 } //RevisionImpl

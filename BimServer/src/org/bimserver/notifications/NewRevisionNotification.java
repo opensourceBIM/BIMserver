@@ -28,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 
+import org.apache.cxf.ws.addressing.v200403.ServiceNameType;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.Channel;
@@ -63,6 +64,7 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.async.AsyncRemoteServiceInterface;
 import org.bimserver.shared.interfaces.async.AsyncRemoteServiceInterface.NewRevisionCallback;
 import org.bimserver.templating.TemplateIdentifier;
+import org.bimserver.webservices.ServiceMap;
 import org.bimserver.webservices.authorization.AdminAuthorization;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
@@ -77,6 +79,7 @@ public class NewRevisionNotification extends Notification {
 	private long poid;
 	private long soid;
 	private boolean sendEmail = true;
+	private Authorization authorization;
 
 	public NewRevisionNotification(BimServer bimServer, long poid, long roid, long soid) {
 		super(bimServer);
@@ -90,6 +93,14 @@ public class NewRevisionNotification extends Notification {
 		super(bimServer);
 		this.poid = poid;
 		this.roid = roid;
+		this.soid = -1;
+	}
+
+	public NewRevisionNotification(BimServer bimServer, long poid, long roid, Authorization authorization) {
+		super(bimServer);
+		this.poid = poid;
+		this.roid = roid;
+		this.authorization = authorization;
 		this.soid = -1;
 	}
 
@@ -225,7 +236,8 @@ public class NewRevisionNotification extends Notification {
 	}
 
 	public void triggerNewRevision(DatabaseSession session, NotificationsManager notificationsManager, final BimServer bimServer, String siteAddress, Project project, final long roid, Trigger trigger, final NewService service) throws UserException, ServerException {
-		bimServer.getService(ServiceInterface.class).triggerRevisionService(roid, service.getOid());
+		ServiceMap serviceMap = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL);
+		serviceMap.get(ServiceInterface.class).triggerRevisionService(roid, service.getOid());
 	}
 	
 	public void triggerNewRevision(DatabaseSession session, NotificationsManager notificationsManager, final BimServer bimServer, String siteAddress, Project project, final long roid, Trigger trigger, final Service service) throws UserException, ServerException {

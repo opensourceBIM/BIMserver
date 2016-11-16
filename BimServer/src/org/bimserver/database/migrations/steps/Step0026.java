@@ -3,6 +3,7 @@ package org.bimserver.database.migrations.steps;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
+import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0026 extends Migration {

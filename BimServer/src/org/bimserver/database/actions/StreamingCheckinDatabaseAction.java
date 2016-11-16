@@ -35,6 +35,7 @@ import org.bimserver.GenerateGeometryResult;
 import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.SummaryMap;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.queries.ConcreteRevisionStackFrame;
 import org.bimserver.database.queries.QueryObjectProvider;
@@ -50,6 +51,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.IfcHeader;
+import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
@@ -83,8 +85,9 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	private long fileSize;
 	private InputStream inputStream;
 	private StreamingDeserializer deserializer;
+	private long newServiceId;
 
-	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer, long fileSize) {
+	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer, long fileSize, long newServiceId) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.poid = poid;
@@ -94,6 +97,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		this.inputStream = inputStream;
 		this.deserializer = deserializer;
 		this.fileSize = fileSize;
+		this.newServiceId = newServiceId;
 	}
 
 	public HashMapVirtualObject getByOid(PackageMetaData packageMetaData, DatabaseSession databaseSession, long roid, long oid) throws JsonParseException, JsonMappingException, IOException, QueryException, BimserverDatabaseException {
@@ -267,6 +271,11 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			newRevisionAdded.setDate(new Date());
 			newRevisionAdded.setExecutor(user);
 			final Revision revision = concreteRevision.getRevisions().get(0);
+			
+			if (newServiceId != -1) {
+				NewService newService = getDatabaseSession().get(newServiceId, OldQuery.getDefault());
+				revision.getServicesLinked().add(newService);
+			}
 
 			concreteRevision.setSummary(new SummaryMap(packageMetaData, deserializer.getSummaryMap()).toRevisionSummary(getDatabaseSession()));
 
@@ -309,7 +318,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					bimServer.getNotificationsManager().notify(new NewRevisionNotification(bimServer, project.getOid(), revision.getOid()));
+					bimServer.getNotificationsManager().notify(new NewRevisionNotification(bimServer, project.getOid(), revision.getOid(), authorization));
 				}
 			});
 

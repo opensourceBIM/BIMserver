@@ -660,7 +660,7 @@ public interface StorePackage extends EPackage {
 	int REVISION__HAS_GEOMETRY = 15;
 
 	/**
-	 * The feature id for the '<em><b>Services Linked</b></em>' reference.
+	 * The feature id for the '<em><b>Services Linked</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -7901,10 +7901,10 @@ public interface StorePackage extends EPackage {
 	EAttribute getRevision_HasGeometry();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Revision#getServicesLinked <em>Services Linked</em>}'.
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Revision#getServicesLinked <em>Services Linked</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Services Linked</em>'.
+	 * @return the meta object for the reference list '<em>Services Linked</em>'.
 	 * @see org.bimserver.models.store.Revision#getServicesLinked()
 	 * @see #getRevision()
 	 * @generated
@@ -14379,7 +14379,7 @@ public interface StorePackage extends EPackage {
 		EAttribute REVISION__HAS_GEOMETRY = eINSTANCE.getRevision_HasGeometry();
 
 		/**
-		 * The meta object literal for the '<em><b>Services Linked</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Services Linked</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

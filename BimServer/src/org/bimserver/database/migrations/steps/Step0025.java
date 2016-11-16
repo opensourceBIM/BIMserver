@@ -62,7 +62,7 @@ public class Step0025 extends Migration {
 		
 		schema.createEReference(projectClass, "newServices", newServiceClass, Multiplicity.MANY);
 		
-		schema.createEReference(schema.getEClass("store", "Revision"), "servicesLinked", newServiceClass);
+		schema.createEReference(schema.getEClass("store", "Revision"), "servicesLinked", newServiceClass, Multiplicity.MANY);
 	}
 
 	@Override

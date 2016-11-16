@@ -445,29 +445,19 @@ public interface Revision extends IdEObject {
 	void setHasGeometry(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Services Linked</b></em>' reference.
+	 * Returns the value of the '<em><b>Services Linked</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.NewService}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Services Linked</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Services Linked</em>' reference.
-	 * @see #setServicesLinked(NewService)
+	 * @return the value of the '<em>Services Linked</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getRevision_ServicesLinked()
 	 * @model
 	 * @generated
 	 */
-	NewService getServicesLinked();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getServicesLinked <em>Services Linked</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Services Linked</em>' reference.
-	 * @see #getServicesLinked()
-	 * @generated
-	 */
-	void setServicesLinked(NewService value);
+	EList<NewService> getServicesLinked();
 
 } // Revision

@@ -1,5 +1,5 @@
 
-ƒù
+¯ù
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -408,7 +408,7 @@ dataObject (2.org.bimserver.pb.SDataObject
 errorMessage (	&
 value (2.org.bimserver.pb.SUser",
 GetAllCheckoutsByUserRequest
-uoid ("â
+uoid ("à
 	SRevision
 bmi (
 	checkouts (
@@ -426,8 +426,8 @@ dataObject (2.org.bimserver.pb.SDataObject
 oid (
 	projectId (
 rid (
-	serviceId (
-servicesLinkedId (
+	serviceId (
+servicesLinked (
 size (
 tag (	
 userId ("Ñ
@@ -653,14 +653,15 @@ settingsId (
 errorMessage (	A
 value (22.org.bimserver.pb.SDeserializerPluginConfiguration")
 GetDownloadDataRequest
-topicId ("b
+topicId ("y
 SCheckoutResult
 file (
 oid (
 projectName (	
 
 revisionNr (
-rid ("·
+rid (
+serializerOid ("Î
 SDownloadResult
 __actual_type (	<
 __SCheckoutResult (2!.org.bimserver.pb.SCheckoutResult
@@ -669,7 +670,8 @@ revisionNr (
 projectName (	
 
 revisionNr (
-rid ("a
+rid (
+serializerOid ("a
 GetDownloadDataResponse
 errorMessage (	0
 value (2!.org.bimserver.pb.SDownloadResult"%

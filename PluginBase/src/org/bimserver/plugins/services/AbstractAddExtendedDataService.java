@@ -26,14 +26,14 @@ import org.slf4j.LoggerFactory;
 
 public abstract class AbstractAddExtendedDataService extends AbstractService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractAddExtendedDataService.class);
-	private String namespace;
+	private String name;
 
-	public AbstractAddExtendedDataService(String namespace) {
-		this.namespace = namespace;
+	public AbstractAddExtendedDataService(String name) {
+		this.name = name;
 	}
 	
-	public String getNamespace() {
-		return namespace;
+	public String getName() {
+		return name;
 	}
 	
 	public void addExtendedData(byte[] data, String filename, String title, String mime, BimServerClientInterface bimServerClientInterface, long roid) {
@@ -42,11 +42,13 @@ public abstract class AbstractAddExtendedDataService extends AbstractService {
 			
 			SExtendedData extendedData = new SExtendedData();
 			extendedData.setTitle(title);
+			extendedData.setSize(data.length);
 			file.setFilename(filename);
-			SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByName(namespace);
+			SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByName(name);
 			
 			extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
 			file.setData(data);
+			file.setSize(data.length);
 			file.setMime(mime);
 
 			long fileId = bimServerClientInterface.getServiceInterface().uploadFile(file);
@@ -60,6 +62,6 @@ public abstract class AbstractAddExtendedDataService extends AbstractService {
 	
 	@Override
 	public void addRequiredRights(ServiceDescriptor serviceDescriptor) {
-		serviceDescriptor.setWriteExtendedData(namespace);
+		serviceDescriptor.setWriteExtendedData(name);
 	}
 }

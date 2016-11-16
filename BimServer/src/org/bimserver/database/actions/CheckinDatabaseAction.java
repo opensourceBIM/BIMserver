@@ -42,6 +42,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.models.store.ModelCheckerResult;
+import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
@@ -71,8 +72,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private String fileName;
 	private long fileSize;
 	private IfcModelInterface model;
+	private long newServiceId;
 
-	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model, String comment, String fileName, boolean merge) {
+	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model, String comment, String fileName, boolean merge, long newServiceId) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.poid = poid;
@@ -81,6 +83,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		this.comment = comment;
 		this.fileName = fileName;
 		this.merge = merge;
+		this.newServiceId = newServiceId;
 	}
 	
 	public IfcModelInterface getModel() {
@@ -153,6 +156,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			newRevisionAdded.setDate(new Date());
 			newRevisionAdded.setExecutor(user);
 			final Revision revision = concreteRevision.getRevisions().get(0);
+			
+			if (newServiceId != -1) {
+				NewService newService = getDatabaseSession().get(newServiceId, OldQuery.getDefault());
+				revision.getServicesLinked().add(newService);
+			}
 
 			concreteRevision.setSummary(new SummaryMap(getModel()).toRevisionSummary(getDatabaseSession()));
 
@@ -218,7 +226,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					bimServer.getNotificationsManager().notify(new NewRevisionNotification(bimServer, project.getOid(), revision.getOid()));
+					bimServer.getNotificationsManager().notify(new NewRevisionNotification(bimServer, project.getOid(), revision.getOid(), authorization));
 				}
 			});
 

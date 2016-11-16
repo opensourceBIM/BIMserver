@@ -359,7 +359,6 @@ public class ClientIfcModel extends IfcModel {
 			boolean done = false;
 			while (!done) {
 				byte type = dataInputStream.readByte();
-				System.out.println(type);
 				if (type == 0) {
 					String protocol = dataInputStream.readUTF();
 					if (!protocol.equals("BGS")) {

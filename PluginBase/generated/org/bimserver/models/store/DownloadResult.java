@@ -19,6 +19,7 @@ package org.bimserver.models.store;
 import javax.activation.DataHandler;
 
 import org.bimserver.emf.IdEObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->

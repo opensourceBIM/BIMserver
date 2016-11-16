@@ -897,7 +897,7 @@ message SRevision {
 	optional int64 projectId = 13;
 	optional int32 rid = 14;
 	optional int64 serviceId = 15;
-	optional int64 servicesLinkedId = 16;
+	repeated int64 servicesLinked = 16;
 	optional int64 size = 17;
 	optional string tag = 18;
 	optional int64 userId = 19;
@@ -1271,6 +1271,7 @@ message SCheckoutResult {
 	optional string projectName = 3;
 	optional int32 revisionNr = 4;
 	optional int32 rid = 5;
+	optional int64 serializerOid = 6;
 }
 
 message SDownloadResult {
@@ -1281,6 +1282,7 @@ message SDownloadResult {
 	optional string projectName = 5;
 	optional int32 revisionNr = 6;
 	optional int32 rid = 7;
+	optional int64 serializerOid = 8;
 }
 
 message GetDownloadDataResponse {
