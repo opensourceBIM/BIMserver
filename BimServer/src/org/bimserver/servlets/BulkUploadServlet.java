@@ -15,6 +15,7 @@ import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
+import org.apache.cxf.jaxws.handler.types.FullyQualifiedClassType;
 import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
@@ -93,7 +94,7 @@ public class BulkUploadServlet extends SubServlet {
 							ZipEntry nextEntry = zipInputStream.getNextEntry();
 							while (nextEntry != null) {
 								String fullfilename = nextEntry.getName();
-								if (fullfilename.toLowerCase().endsWith(".ifc")) {
+								if (fullfilename.toLowerCase().endsWith(".ifc") || fullfilename.toLowerCase().endsWith("ifcxml") || fullfilename.toLowerCase().endsWith(".ifczip")) {
 									InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(new FakeClosingInputStream(zipInputStream));
 									inputStreamDataSource.setName(name);
 									DataHandler ifcFile = new DataHandler(inputStreamDataSource);
@@ -106,8 +107,8 @@ public class BulkUploadServlet extends SubServlet {
 									SDeserializerPluginConfiguration deserializer = service.getSuggestedDeserializerForExtension(extension, project.getOid());
 									
 									service.checkin(project.getOid(), comment, deserializer.getOid(), -1L, filename, ifcFile, false, true);
-								} else if (fullfilename.toLowerCase().endsWith(".ifcxml")) {
 								} else {
+									LOGGER.info("Unknown fileextenstion " + fullfilename);
 								}
 								nextEntry = zipInputStream.getNextEntry();
 							}
