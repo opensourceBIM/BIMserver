@@ -2205,7 +2205,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public void triggerRevisionService(Long roid, Long soid) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();

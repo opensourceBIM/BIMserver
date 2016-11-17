@@ -97,10 +97,10 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
 	 * @param roids A set of Revision ObjectIDs
-	 * @param query The query to use
-	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param query The query to use (JSON). If you are using the BIMserver API over JSON, make sure this is BASE64 encoded
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializers
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return A topicId, which you can use for the NotificationRegistryInterface.getProgress method
+	 * @return A topicId, which you can use for the NotificationRegistryInterface.getProgress method, ServiceInterface.getDownloadData and the download servlet (/download)
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "download")
