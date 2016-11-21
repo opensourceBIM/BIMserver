@@ -2138,11 +2138,9 @@ public enum IfcCurrencyEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCurrencyEnum[] VALUES_ARRAY = new IfcCurrencyEnum[] { NULL, ATS, CHF, ITL, FJD, MXN, SCR,
-			MTL, BBD, CLP, XEU, ZAR, VND, TRL, AUD, ILS, BSD, IDR, KYD, BWP, CYS, JOD, GMD, AED, HKD, TWD, EUR, DKK,
-			BGL, ZWD, CAD, MYR, FKP, MUR, NOK, AES, GIP, LKR, CZK, OMR, PGK, PKR, KES, SEK, BHD, QAR, CBD, SAR, TTD,
-			IRP, NLG, PTN, GRX, INR, CNY, THB, DDP, KRW, JPY, PLN, GBP, BMD, HUF, KWD, PHP, LUF, JMD, BEG, EST, USD,
-			EGL, FIM, BZD, DEM, RUR, ICK, FAK, SGD, VEB, BND, NZD, SKP, FRF, BRL, };
+	private static final IfcCurrencyEnum[] VALUES_ARRAY = new IfcCurrencyEnum[] { NULL, ATS, CHF, ITL, FJD, MXN, SCR, MTL, BBD, CLP, XEU, ZAR, VND, TRL, AUD, ILS, BSD, IDR, KYD, BWP, CYS, JOD, GMD, AED, HKD, TWD, EUR, DKK, BGL, ZWD, CAD,
+			MYR, FKP, MUR, NOK, AES, GIP, LKR, CZK, OMR, PGK, PKR, KES, SEK, BHD, QAR, CBD, SAR, TTD, IRP, NLG, PTN, GRX, INR, CNY, THB, DDP, KRW, JPY, PLN, GBP, BMD, HUF, KWD, PHP, LUF, JMD, BEG, EST, USD, EGL, FIM, BZD, DEM, RUR, ICK,
+			FAK, SGD, VEB, BND, NZD, SKP, FRF, BRL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Currency Enum</b></em>' enumerators.

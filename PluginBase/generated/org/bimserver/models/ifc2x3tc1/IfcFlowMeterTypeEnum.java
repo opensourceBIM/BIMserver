@@ -263,8 +263,7 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFlowMeterTypeEnum[] VALUES_ARRAY = new IfcFlowMeterTypeEnum[] { NULL, NOTDEFINED,
-			WATERMETER, ELECTRICMETER, FLOWMETER, OILMETER, GASMETER, USERDEFINED, ENERGYMETER, };
+	private static final IfcFlowMeterTypeEnum[] VALUES_ARRAY = new IfcFlowMeterTypeEnum[] { NULL, NOTDEFINED, WATERMETER, ELECTRICMETER, FLOWMETER, OILMETER, GASMETER, USERDEFINED, ENERGYMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Flow Meter Type Enum</b></em>' enumerators.

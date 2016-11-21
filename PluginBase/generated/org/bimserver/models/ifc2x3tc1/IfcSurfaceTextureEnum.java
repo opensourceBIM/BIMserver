@@ -288,8 +288,7 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSurfaceTextureEnum[] VALUES_ARRAY = new IfcSurfaceTextureEnum[] { NULL, REFLECTION, TEXTURE,
-			NOTDEFINED, OPACITY, SHININESS, BUMP, SPECULAR, TRANSPARENCYMAP, SELFILLUMINATION, };
+	private static final IfcSurfaceTextureEnum[] VALUES_ARRAY = new IfcSurfaceTextureEnum[] { NULL, REFLECTION, TEXTURE, NOTDEFINED, OPACITY, SHININESS, BUMP, SPECULAR, TRANSPARENCYMAP, SELFILLUMINATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Surface Texture Enum</b></em>' enumerators.

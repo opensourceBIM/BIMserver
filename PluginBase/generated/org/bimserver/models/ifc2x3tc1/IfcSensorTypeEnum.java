@@ -438,9 +438,8 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSensorTypeEnum[] VALUES_ARRAY = new IfcSensorTypeEnum[] { NULL, HUMIDITYSENSOR,
-			PRESSURESENSOR, FIRESENSOR, USERDEFINED, GASSENSOR, HEATSENSOR, CO2SENSOR, MOVEMENTSENSOR, NOTDEFINED,
-			LIGHTSENSOR, SOUNDSENSOR, TEMPERATURESENSOR, FLOWSENSOR, MOISTURESENSOR, SMOKESENSOR, };
+	private static final IfcSensorTypeEnum[] VALUES_ARRAY = new IfcSensorTypeEnum[] { NULL, HUMIDITYSENSOR, PRESSURESENSOR, FIRESENSOR, USERDEFINED, GASSENSOR, HEATSENSOR, CO2SENSOR, MOVEMENTSENSOR, NOTDEFINED, LIGHTSENSOR, SOUNDSENSOR,
+			TEMPERATURESENSOR, FLOWSENSOR, MOISTURESENSOR, SMOKESENSOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sensor Type Enum</b></em>' enumerators.

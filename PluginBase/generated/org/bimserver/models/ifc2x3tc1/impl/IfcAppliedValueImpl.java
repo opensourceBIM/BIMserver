@@ -301,8 +301,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcReferencesValueDocument> getValuesReferenced() {
-		return (EList<IfcReferencesValueDocument>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__VALUES_REFERENCED,
-				true);
+		return (EList<IfcReferencesValueDocument>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__VALUES_REFERENCED, true);
 	}
 
 	/**
@@ -330,8 +329,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValueRelationship> getValueOfComponents() {
-		return (EList<IfcAppliedValueRelationship>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__VALUE_OF_COMPONENTS, true);
+		return (EList<IfcAppliedValueRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__VALUE_OF_COMPONENTS, true);
 	}
 
 	/**
@@ -359,8 +357,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValueRelationship> getIsComponentIn() {
-		return (EList<IfcAppliedValueRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__IS_COMPONENT_IN,
-				true);
+		return (EList<IfcAppliedValueRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_APPLIED_VALUE__IS_COMPONENT_IN, true);
 	}
 
 	/**

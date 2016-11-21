@@ -213,9 +213,7 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAnalysisTheoryTypeEnum[] VALUES_ARRAY = new IfcAnalysisTheoryTypeEnum[] { NULL,
-			SECOND_ORDER_THEORY, NOTDEFINED, FIRST_ORDER_THEORY, USERDEFINED, FULL_NONLINEAR_THEORY,
-			THIRD_ORDER_THEORY, };
+	private static final IfcAnalysisTheoryTypeEnum[] VALUES_ARRAY = new IfcAnalysisTheoryTypeEnum[] { NULL, SECOND_ORDER_THEORY, NOTDEFINED, FIRST_ORDER_THEORY, USERDEFINED, FULL_NONLINEAR_THEORY, THIRD_ORDER_THEORY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Analysis Theory Type Enum</b></em>' enumerators.
@@ -223,8 +221,7 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAnalysisTheoryTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAnalysisTheoryTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Analysis Theory Type Enum</b></em>' literal with the specified literal value.

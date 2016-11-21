@@ -238,8 +238,7 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSoundScaleEnum[] VALUES_ARRAY = new IfcSoundScaleEnum[] { NULL, DBA, NOTDEFINED, DBC, NR,
-			DBB, NC, USERDEFINED, };
+	private static final IfcSoundScaleEnum[] VALUES_ARRAY = new IfcSoundScaleEnum[] { NULL, DBA, NOTDEFINED, DBC, NR, DBB, NC, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sound Scale Enum</b></em>' enumerators.

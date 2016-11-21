@@ -188,8 +188,7 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTransformerTypeEnum[] VALUES_ARRAY = new IfcTransformerTypeEnum[] { NULL, VOLTAGE,
-			NOTDEFINED, FREQUENCY, USERDEFINED, CURRENT, };
+	private static final IfcTransformerTypeEnum[] VALUES_ARRAY = new IfcTransformerTypeEnum[] { NULL, VOLTAGE, NOTDEFINED, FREQUENCY, USERDEFINED, CURRENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Transformer Type Enum</b></em>' enumerators.

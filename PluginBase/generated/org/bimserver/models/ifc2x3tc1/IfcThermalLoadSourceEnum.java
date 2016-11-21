@@ -388,9 +388,8 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcThermalLoadSourceEnum[] VALUES_ARRAY = new IfcThermalLoadSourceEnum[] { NULL, EXHAUSTAIR,
-			DRYBULBTEMPERATURE, LIGHTING, USERDEFINED, VENTILATIONINDOORAIR, INFILTRATION, EQUIPMENT, RECIRCULATEDAIR,
-			NOTDEFINED, RELATIVEHUMIDITY, VENTILATIONOUTSIDEAIR, PEOPLE, AIREXCHANGERATE, };
+	private static final IfcThermalLoadSourceEnum[] VALUES_ARRAY = new IfcThermalLoadSourceEnum[] { NULL, EXHAUSTAIR, DRYBULBTEMPERATURE, LIGHTING, USERDEFINED, VENTILATIONINDOORAIR, INFILTRATION, EQUIPMENT, RECIRCULATEDAIR, NOTDEFINED,
+			RELATIVEHUMIDITY, VENTILATIONOUTSIDEAIR, PEOPLE, AIREXCHANGERATE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Thermal Load Source Enum</b></em>' enumerators.
@@ -398,8 +397,7 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcThermalLoadSourceEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcThermalLoadSourceEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Thermal Load Source Enum</b></em>' literal with the specified literal value.

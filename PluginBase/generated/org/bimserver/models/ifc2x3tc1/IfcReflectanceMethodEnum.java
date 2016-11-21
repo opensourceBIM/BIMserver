@@ -313,8 +313,7 @@ public enum IfcReflectanceMethodEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcReflectanceMethodEnum[] VALUES_ARRAY = new IfcReflectanceMethodEnum[] { NULL, GLASS,
-			NOTDEFINED, MATT, FLAT, PHONG, BLINN, METAL, STRAUSS, PLASTIC, MIRROR, };
+	private static final IfcReflectanceMethodEnum[] VALUES_ARRAY = new IfcReflectanceMethodEnum[] { NULL, GLASS, NOTDEFINED, MATT, FLAT, PHONG, BLINN, METAL, STRAUSS, PLASTIC, MIRROR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Reflectance Method Enum</b></em>' enumerators.
@@ -322,8 +321,7 @@ public enum IfcReflectanceMethodEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcReflectanceMethodEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcReflectanceMethodEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Reflectance Method Enum</b></em>' literal with the specified literal value.

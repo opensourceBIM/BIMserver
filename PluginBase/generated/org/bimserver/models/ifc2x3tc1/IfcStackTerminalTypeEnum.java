@@ -188,8 +188,7 @@ public enum IfcStackTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStackTerminalTypeEnum[] VALUES_ARRAY = new IfcStackTerminalTypeEnum[] { NULL, NOTDEFINED,
-			RAINWATERHOPPER, BIRDCAGE, USERDEFINED, COWL, };
+	private static final IfcStackTerminalTypeEnum[] VALUES_ARRAY = new IfcStackTerminalTypeEnum[] { NULL, NOTDEFINED, RAINWATERHOPPER, BIRDCAGE, USERDEFINED, COWL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Stack Terminal Type Enum</b></em>' enumerators.
@@ -197,8 +196,7 @@ public enum IfcStackTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcStackTerminalTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcStackTerminalTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Stack Terminal Type Enum</b></em>' literal with the specified literal value.

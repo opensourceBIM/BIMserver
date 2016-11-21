@@ -163,8 +163,7 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorPanelPositionEnum[] VALUES_ARRAY = new IfcDoorPanelPositionEnum[] { NULL, NOTDEFINED,
-			LEFT, RIGHT, MIDDLE, };
+	private static final IfcDoorPanelPositionEnum[] VALUES_ARRAY = new IfcDoorPanelPositionEnum[] { NULL, NOTDEFINED, LEFT, RIGHT, MIDDLE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Panel Position Enum</b></em>' enumerators.
@@ -172,8 +171,7 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDoorPanelPositionEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDoorPanelPositionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Door Panel Position Enum</b></em>' literal with the specified literal value.

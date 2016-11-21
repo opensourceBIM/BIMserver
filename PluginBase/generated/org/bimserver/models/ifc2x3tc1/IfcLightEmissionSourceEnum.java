@@ -338,9 +338,8 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLightEmissionSourceEnum[] VALUES_ARRAY = new IfcLightEmissionSourceEnum[] { NULL,
-			LOWPRESSURESODIUM, MAINVOLTAGEHALOGEN, TUNGSTENFILAMENT, FLUORESCENT, NOTDEFINED, HIGHPRESSURESODIUM,
-			LOWVOLTAGEHALOGEN, METALHALIDE, LIGHTEMITTINGDIODE, COMPACTFLUORESCENT, HIGHPRESSUREMERCURY, };
+	private static final IfcLightEmissionSourceEnum[] VALUES_ARRAY = new IfcLightEmissionSourceEnum[] { NULL, LOWPRESSURESODIUM, MAINVOLTAGEHALOGEN, TUNGSTENFILAMENT, FLUORESCENT, NOTDEFINED, HIGHPRESSURESODIUM, LOWVOLTAGEHALOGEN,
+			METALHALIDE, LIGHTEMITTINGDIODE, COMPACTFLUORESCENT, HIGHPRESSUREMERCURY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Light Emission Source Enum</b></em>' enumerators.
@@ -348,8 +347,7 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcLightEmissionSourceEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcLightEmissionSourceEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Light Emission Source Enum</b></em>' literal with the specified literal value.

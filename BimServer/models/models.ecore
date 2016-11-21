@@ -1841,7 +1841,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ItemReference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          unsettable="true"/>
+          unsettable="true">
+        <eAnnotations source="singleindex"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
     </eClassifiers>
@@ -4015,7 +4017,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssociatesClassification" eSuperTypes="#/1/IfcRelAssociates">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingClassification"
-          eType="#/1/IfcClassificationNotationSelect"/>
+          eType="#/1/IfcClassificationNotationSelect">
+        <eAnnotations source="singleindex"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssociatesConstraint" eSuperTypes="#/1/IfcRelAssociates">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Intent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

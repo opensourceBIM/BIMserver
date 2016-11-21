@@ -1,5 +1,7 @@
 package org.bimserver.plugins.deserializers;
 
+import java.util.List;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -29,4 +31,5 @@ public interface DatabaseInterface {
 	int save(VirtualObject virtualObject) throws BimserverDatabaseException;
 	int saveOverwrite(VirtualObject virtualObject) throws BimserverDatabaseException;
 	byte[] get(String tableName, byte[] key) throws BimserverDatabaseException;
+	List<byte[]> getDuplicates(String tableName, byte[] key) throws BimserverDatabaseException;
 }

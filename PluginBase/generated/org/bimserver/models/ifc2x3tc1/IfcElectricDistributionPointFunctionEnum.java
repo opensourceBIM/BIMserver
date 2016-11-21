@@ -338,8 +338,7 @@ public enum IfcElectricDistributionPointFunctionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricDistributionPointFunctionEnum[] VALUES_ARRAY = new IfcElectricDistributionPointFunctionEnum[] {
-			NULL, NOTDEFINED, DISTRIBUTIONBOARD, CONSUMERUNIT, SWITCHBOARD, GASDETECTORPANEL, MOTORCONTROLCENTRE,
+	private static final IfcElectricDistributionPointFunctionEnum[] VALUES_ARRAY = new IfcElectricDistributionPointFunctionEnum[] { NULL, NOTDEFINED, DISTRIBUTIONBOARD, CONSUMERUNIT, SWITCHBOARD, GASDETECTORPANEL, MOTORCONTROLCENTRE,
 			INDICATORPANEL, USERDEFINED, ALARMPANEL, CONTROLPANEL, MIMICPANEL, };
 
 	/**
@@ -348,8 +347,7 @@ public enum IfcElectricDistributionPointFunctionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricDistributionPointFunctionEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricDistributionPointFunctionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Distribution Point Function Enum</b></em>' literal with the specified literal value.

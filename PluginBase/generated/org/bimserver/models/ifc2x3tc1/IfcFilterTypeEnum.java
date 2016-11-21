@@ -238,8 +238,7 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFilterTypeEnum[] VALUES_ARRAY = new IfcFilterTypeEnum[] { NULL, WATERFILTER, STRAINER,
-			NOTDEFINED, OILFILTER, USERDEFINED, AIRPARTICLEFILTER, ODORFILTER, };
+	private static final IfcFilterTypeEnum[] VALUES_ARRAY = new IfcFilterTypeEnum[] { NULL, WATERFILTER, STRAINER, NOTDEFINED, OILFILTER, USERDEFINED, AIRPARTICLEFILTER, ODORFILTER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Filter Type Enum</b></em>' enumerators.

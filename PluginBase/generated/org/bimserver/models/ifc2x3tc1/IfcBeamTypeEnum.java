@@ -213,8 +213,7 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBeamTypeEnum[] VALUES_ARRAY = new IfcBeamTypeEnum[] { NULL, BEAM, JOIST, NOTDEFINED, LINTEL,
-			TBEAM, USERDEFINED, };
+	private static final IfcBeamTypeEnum[] VALUES_ARRAY = new IfcBeamTypeEnum[] { NULL, BEAM, JOIST, NOTDEFINED, LINTEL, TBEAM, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Beam Type Enum</b></em>' enumerators.

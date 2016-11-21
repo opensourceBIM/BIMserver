@@ -163,8 +163,7 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLightFixtureTypeEnum[] VALUES_ARRAY = new IfcLightFixtureTypeEnum[] { NULL, NOTDEFINED,
-			POINTSOURCE, DIRECTIONSOURCE, USERDEFINED, };
+	private static final IfcLightFixtureTypeEnum[] VALUES_ARRAY = new IfcLightFixtureTypeEnum[] { NULL, NOTDEFINED, POINTSOURCE, DIRECTIONSOURCE, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Light Fixture Type Enum</b></em>' enumerators.
@@ -172,8 +171,7 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcLightFixtureTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcLightFixtureTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Light Fixture Type Enum</b></em>' literal with the specified literal value.

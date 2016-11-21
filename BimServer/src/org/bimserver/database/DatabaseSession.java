@@ -2149,7 +2149,11 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			if (isUnsetted) {
 			} else {
 				if (eStructuralFeature == feature) {
-					return databaseSession.readPrimitiveBytes(feature.getEType(), buffer, OldQuery.getDefault());
+					if (feature instanceof EReference) {
+						return BinUtils.longToByteArrayLittleEndian(buffer.getLong());
+					} else {
+						return databaseSession.readPrimitiveBytes(feature.getEType(), buffer, OldQuery.getDefault());
+					}
 				} else {
 					databaseSession.fakeRead(buffer, feature);
 				}
@@ -2193,5 +2197,10 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	@Override
 	public byte[] get(String tableName, byte[] key) throws BimserverLockConflictException, BimserverDatabaseException {
 		return database.getKeyValueStore().get(tableName, key, this);
+	}
+
+	@Override
+	public List<byte[]> getDuplicates(String tableName, byte[] key) throws BimserverLockConflictException, BimserverDatabaseException {
+		return database.getKeyValueStore().getDuplicates(tableName, key, this);
 	}
 }

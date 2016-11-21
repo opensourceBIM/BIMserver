@@ -188,8 +188,7 @@ public enum IfcRailingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRailingTypeEnum[] VALUES_ARRAY = new IfcRailingTypeEnum[] { NULL, GUARDRAIL, NOTDEFINED,
-			HANDRAIL, USERDEFINED, BALUSTRADE, };
+	private static final IfcRailingTypeEnum[] VALUES_ARRAY = new IfcRailingTypeEnum[] { NULL, GUARDRAIL, NOTDEFINED, HANDRAIL, USERDEFINED, BALUSTRADE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Railing Type Enum</b></em>' enumerators.

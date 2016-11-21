@@ -19,6 +19,7 @@ package org.bimserver.database.queries.om;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 	private Set<String> guids;
 	private Set<String> names;
 	private Map<String, Object> properties;
+	private Set<String> classifications;
 	private PackageMetaData packageMetaData;
 	private InBoundingBox inBoundingBox;
 	private List<Include> includes;
@@ -82,7 +84,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 		return properties;
 	}
 
-	public void addProperty(String key, boolean value) {
+	public void addProperty(String key, Object value) {
 		if (this.properties == null) {
 			this.properties = new HashMap<String, Object>();
 		}
@@ -204,5 +206,16 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 
 	public Set<String> getNames() {
 		return names;
+	}
+
+	public void addClassification(String classification) {
+		if (classifications == null) {
+			classifications = new HashSet<>();
+		}
+		classifications.add(classification);
+	}
+
+	public Set<String> getClassifications() {
+		return classifications;
 	}
 }

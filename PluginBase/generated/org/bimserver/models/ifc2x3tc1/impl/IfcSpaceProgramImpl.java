@@ -296,8 +296,7 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 * @generated
 	 */
 	public void setStandardRequiredAreaAsString(String newStandardRequiredAreaAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SPACE_PROGRAM__STANDARD_REQUIRED_AREA_AS_STRING,
-				newStandardRequiredAreaAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SPACE_PROGRAM__STANDARD_REQUIRED_AREA_AS_STRING, newStandardRequiredAreaAsString);
 	}
 
 	/**
@@ -307,8 +306,7 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelInteractionRequirements> getHasInteractionReqsFrom() {
-		return (EList<IfcRelInteractionRequirements>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SPACE_PROGRAM__HAS_INTERACTION_REQS_FROM, true);
+		return (EList<IfcRelInteractionRequirements>) eGet(Ifc2x3tc1Package.Literals.IFC_SPACE_PROGRAM__HAS_INTERACTION_REQS_FROM, true);
 	}
 
 	/**
@@ -336,8 +334,7 @@ public class IfcSpaceProgramImpl extends IfcControlImpl implements IfcSpaceProgr
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelInteractionRequirements> getHasInteractionReqsTo() {
-		return (EList<IfcRelInteractionRequirements>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SPACE_PROGRAM__HAS_INTERACTION_REQS_TO, true);
+		return (EList<IfcRelInteractionRequirements>) eGet(Ifc2x3tc1Package.Literals.IFC_SPACE_PROGRAM__HAS_INTERACTION_REQS_TO, true);
 	}
 
 	/**

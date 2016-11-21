@@ -116,8 +116,7 @@ public class IfcKinematicViscosityMeasureImpl extends IdEObjectImpl implements I
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_KINEMATIC_VISCOSITY_MEASURE__WRAPPED_VALUE_AS_STRING,
-				newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_KINEMATIC_VISCOSITY_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
 	}
 
 	/**

@@ -100,8 +100,7 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 * @generated
 	 */
 	public IfcRelConnectsStructuralActivity getAssignedToStructuralItem() {
-		return (IfcRelConnectsStructuralActivity) eGet(
-				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM, true);
+		return (IfcRelConnectsStructuralActivity) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM, true);
 	}
 
 	/**
@@ -110,8 +109,7 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 * @generated
 	 */
 	public void setAssignedToStructuralItem(IfcRelConnectsStructuralActivity newAssignedToStructuralItem) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM,
-				newAssignedToStructuralItem);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM, newAssignedToStructuralItem);
 	}
 
 	/**

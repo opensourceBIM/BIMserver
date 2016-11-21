@@ -163,8 +163,7 @@ public enum IfcFlowDirectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFlowDirectionEnum[] VALUES_ARRAY = new IfcFlowDirectionEnum[] { NULL, NOTDEFINED, SINK,
-			SOURCE, SOURCEANDSINK, };
+	private static final IfcFlowDirectionEnum[] VALUES_ARRAY = new IfcFlowDirectionEnum[] { NULL, NOTDEFINED, SINK, SOURCE, SOURCEANDSINK, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Flow Direction Enum</b></em>' enumerators.

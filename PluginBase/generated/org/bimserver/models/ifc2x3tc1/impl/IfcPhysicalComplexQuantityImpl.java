@@ -65,8 +65,7 @@ public class IfcPhysicalComplexQuantityImpl extends IfcPhysicalQuantityImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPhysicalQuantity> getHasQuantities() {
-		return (EList<IfcPhysicalQuantity>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__HAS_QUANTITIES, true);
+		return (EList<IfcPhysicalQuantity>) eGet(Ifc2x3tc1Package.Literals.IFC_PHYSICAL_COMPLEX_QUANTITY__HAS_QUANTITIES, true);
 	}
 
 	/**

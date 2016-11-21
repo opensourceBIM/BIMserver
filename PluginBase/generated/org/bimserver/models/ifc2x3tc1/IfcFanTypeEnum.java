@@ -288,9 +288,8 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFanTypeEnum[] VALUES_ARRAY = new IfcFanTypeEnum[] { NULL, VANEAXIAL, NOTDEFINED,
-			CENTRIFUGALBACKWARDINCLINEDCURVED, PROPELLORAXIAL, CENTRIFUGALAIRFOIL, TUBEAXIAL, CENTRIFUGALRADIAL,
-			USERDEFINED, CENTRIFUGALFORWARDCURVED, };
+	private static final IfcFanTypeEnum[] VALUES_ARRAY = new IfcFanTypeEnum[] { NULL, VANEAXIAL, NOTDEFINED, CENTRIFUGALBACKWARDINCLINEDCURVED, PROPELLORAXIAL, CENTRIFUGALAIRFOIL, TUBEAXIAL, CENTRIFUGALRADIAL, USERDEFINED,
+			CENTRIFUGALFORWARDCURVED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Fan Type Enum</b></em>' enumerators.

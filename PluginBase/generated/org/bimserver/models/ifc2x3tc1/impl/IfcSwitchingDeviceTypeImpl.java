@@ -60,8 +60,7 @@ public class IfcSwitchingDeviceTypeImpl extends IfcFlowControllerTypeImpl implem
 	 * @generated
 	 */
 	public IfcSwitchingDeviceTypeEnum getPredefinedType() {
-		return (IfcSwitchingDeviceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SWITCHING_DEVICE_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcSwitchingDeviceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SWITCHING_DEVICE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

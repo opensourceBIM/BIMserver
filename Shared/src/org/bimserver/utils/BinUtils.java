@@ -21,6 +21,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -42,6 +43,15 @@ public class BinUtils {
 	public static byte[] longToByteArray(long inLong) {
 		byte[] bArray = new byte[8];
 		ByteBuffer bBuffer = ByteBuffer.wrap(bArray);
+		LongBuffer lBuffer = bBuffer.asLongBuffer();
+		lBuffer.put(inLong);
+		return bArray;
+	}
+
+	public static byte[] longToByteArrayLittleEndian(long inLong) {
+		byte[] bArray = new byte[8];
+		ByteBuffer bBuffer = ByteBuffer.wrap(bArray);
+		bBuffer.order(ByteOrder.LITTLE_ENDIAN);
 		LongBuffer lBuffer = bBuffer.asLongBuffer();
 		lBuffer.put(inLong);
 		return bArray;

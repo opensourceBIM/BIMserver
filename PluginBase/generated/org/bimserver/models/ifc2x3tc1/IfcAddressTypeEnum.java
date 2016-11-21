@@ -188,8 +188,7 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAddressTypeEnum[] VALUES_ARRAY = new IfcAddressTypeEnum[] { NULL, SITE, OFFICE,
-			DISTRIBUTIONPOINT, USERDEFINED, HOME, };
+	private static final IfcAddressTypeEnum[] VALUES_ARRAY = new IfcAddressTypeEnum[] { NULL, SITE, OFFICE, DISTRIBUTIONPOINT, USERDEFINED, HOME, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Address Type Enum</b></em>' enumerators.

@@ -75,8 +75,7 @@ public class IfcPropertyDependencyRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public IfcProperty getDependingProperty() {
-		return (IfcProperty) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDING_PROPERTY,
-				true);
+		return (IfcProperty) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDING_PROPERTY, true);
 	}
 
 	/**
@@ -94,8 +93,7 @@ public class IfcPropertyDependencyRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public IfcProperty getDependantProperty() {
-		return (IfcProperty) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDANT_PROPERTY,
-				true);
+		return (IfcProperty) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDANT_PROPERTY, true);
 	}
 
 	/**

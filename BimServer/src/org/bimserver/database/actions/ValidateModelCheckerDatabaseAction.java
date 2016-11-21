@@ -48,14 +48,14 @@ public class ValidateModelCheckerDatabaseAction extends BimDatabaseAction<Void> 
 			throw new UserException("Model Checker Plugin \"" + modelCheckerInstance.getModelCheckerPluginClassName() + "\" not found/enabled");
 		}
 		ModelChecker modelChecker = modelCheckerPlugin.createModelChecker(null);
-		try {
-			byte[] result = modelChecker.compile(modelCheckerInstance.getCode());
+//		try {
+//			byte[] result = modelChecker.compile(modelCheckerInstance.getCode());
 			modelCheckerInstance.setValid(true);
-			modelCheckerInstance.setCompiled(result);
+//			modelCheckerInstance.setCompiled(result);
 			getDatabaseSession().store(modelCheckerInstance);
-		} catch (ModelCheckException e) {
-			throw new UserException(e);
-		}
+//		} catch (ModelCheckException e) {
+//			throw new UserException(e);
+//		}
 		return null;
 	}
 }

@@ -713,11 +713,8 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY = new IfcElectricApplianceTypeEnum[] { NULL, TV,
-			TUMBLEDRYER, USERDEFINED, WASHINGMACHINE, FRIDGE_FREEZER, NOTDEFINED, FREEZER, ELECTRICHEATER, REFRIGERATOR,
-			DISHWASHER, WATERHEATER, TELEPHONE, RADIANTHEATER, PHOTOCOPIER, MICROWAVE, FREESTANDINGFAN, VENDINGMACHINE,
-			HANDDRYER, INDIRECTWATERHEATER, ELECTRICCOOKER, SCANNER, DIRECTWATERHEATER, PRINTER, COMPUTER, WATERCOOLER,
-			FACSIMILE, };
+	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY = new IfcElectricApplianceTypeEnum[] { NULL, TV, TUMBLEDRYER, USERDEFINED, WASHINGMACHINE, FRIDGE_FREEZER, NOTDEFINED, FREEZER, ELECTRICHEATER, REFRIGERATOR, DISHWASHER,
+			WATERHEATER, TELEPHONE, RADIANTHEATER, PHOTOCOPIER, MICROWAVE, FREESTANDINGFAN, VENDINGMACHINE, HANDDRYER, INDIRECTWATERHEATER, ELECTRICCOOKER, SCANNER, DIRECTWATERHEATER, PRINTER, COMPUTER, WATERCOOLER, FACSIMILE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Appliance Type Enum</b></em>' enumerators.
@@ -725,8 +722,7 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElectricApplianceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElectricApplianceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Electric Appliance Type Enum</b></em>' literal with the specified literal value.

@@ -163,8 +163,7 @@ public enum IfcPlateTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPlateTypeEnum[] VALUES_ARRAY = new IfcPlateTypeEnum[] { NULL, NOTDEFINED, CURTAIN_PANEL,
-			USERDEFINED, SHEET, };
+	private static final IfcPlateTypeEnum[] VALUES_ARRAY = new IfcPlateTypeEnum[] { NULL, NOTDEFINED, CURTAIN_PANEL, USERDEFINED, SHEET, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Plate Type Enum</b></em>' enumerators.

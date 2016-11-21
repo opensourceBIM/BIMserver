@@ -42,6 +42,7 @@ public class QueryPartStackFrame extends StackFrame {
 	private final Set<String> names;
 	private Map<String, Object> properties;
 	private InBoundingBox inBoundingBox;
+	private Set<String> classifications;
 
 	public QueryPartStackFrame(QueryObjectProvider queryObjectProvider, QueryPart partialQuery, QueryContext reusable) throws BimserverDatabaseException, QueryException {
 		this.queryObjectProvider = queryObjectProvider;
@@ -87,6 +88,7 @@ public class QueryPartStackFrame extends StackFrame {
 			names = null;
 		}
 		this.properties = partialQuery.getProperties();
+		this.classifications = partialQuery.getClassifications();
 		this.inBoundingBox = partialQuery.getInBoundingBox();
 	}
 
@@ -108,6 +110,8 @@ public class QueryPartStackFrame extends StackFrame {
 				queryObjectProvider.push(new QueryNamesAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, names));
 			} else if (properties != null) {
 				queryObjectProvider.push(new QueryPropertiesAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, properties));
+			} else if (classifications != null) {
+				queryObjectProvider.push(new QueryClassificationsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, classifications));
 			} else if (inBoundingBox != null) {
 				queryObjectProvider.push(new QueryBoundingBoxStackFrame(queryObjectProvider, eClass, partialQuery, reusable, inBoundingBox));
 			} else {

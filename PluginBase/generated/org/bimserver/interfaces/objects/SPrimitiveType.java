@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SDoubleType.class, SBooleanType.class, SLongType.class, SByteArrayType.class, SStringType.class})
+@XmlSeeAlso(value={SDoubleType.class, SLongType.class, SStringType.class, SByteArrayType.class, SBooleanType.class})
 public class SPrimitiveType extends SType implements SDataBase
 {
 	private long oid = -1;

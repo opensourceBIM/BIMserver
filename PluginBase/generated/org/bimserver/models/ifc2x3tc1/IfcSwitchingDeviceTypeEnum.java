@@ -238,8 +238,7 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSwitchingDeviceTypeEnum[] VALUES_ARRAY = new IfcSwitchingDeviceTypeEnum[] { NULL,
-			NOTDEFINED, TOGGLESWITCH, CONTACTOR, STARTER, USERDEFINED, EMERGENCYSTOP, SWITCHDISCONNECTOR, };
+	private static final IfcSwitchingDeviceTypeEnum[] VALUES_ARRAY = new IfcSwitchingDeviceTypeEnum[] { NULL, NOTDEFINED, TOGGLESWITCH, CONTACTOR, STARTER, USERDEFINED, EMERGENCYSTOP, SWITCHDISCONNECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Switching Device Type Enum</b></em>' enumerators.
@@ -247,8 +246,7 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSwitchingDeviceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSwitchingDeviceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Switching Device Type Enum</b></em>' literal with the specified literal value.

@@ -62,8 +62,7 @@ public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLibraryInformation> getReferenceIntoLibrary() {
-		return (EList<IfcLibraryInformation>) eGet(
-				Ifc2x3tc1Package.Literals.IFC_LIBRARY_REFERENCE__REFERENCE_INTO_LIBRARY, true);
+		return (EList<IfcLibraryInformation>) eGet(Ifc2x3tc1Package.Literals.IFC_LIBRARY_REFERENCE__REFERENCE_INTO_LIBRARY, true);
 	}
 
 	/**

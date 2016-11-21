@@ -313,9 +313,8 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFlowInstrumentTypeEnum[] VALUES_ARRAY = new IfcFlowInstrumentTypeEnum[] { NULL,
-			PRESSUREGAUGE, POWERFACTORMETER, NOTDEFINED, VOLTMETER_RMS, THERMOMETER, FREQUENCYMETER, VOLTMETER_PEAK,
-			AMMETER, USERDEFINED, PHASEANGLEMETER, };
+	private static final IfcFlowInstrumentTypeEnum[] VALUES_ARRAY = new IfcFlowInstrumentTypeEnum[] { NULL, PRESSUREGAUGE, POWERFACTORMETER, NOTDEFINED, VOLTMETER_RMS, THERMOMETER, FREQUENCYMETER, VOLTMETER_PEAK, AMMETER, USERDEFINED,
+			PHASEANGLEMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Flow Instrument Type Enum</b></em>' enumerators.
@@ -323,8 +322,7 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcFlowInstrumentTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcFlowInstrumentTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Flow Instrument Type Enum</b></em>' literal with the specified literal value.

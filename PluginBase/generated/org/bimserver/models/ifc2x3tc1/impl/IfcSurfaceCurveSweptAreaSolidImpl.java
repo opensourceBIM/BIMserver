@@ -111,8 +111,7 @@ public class IfcSurfaceCurveSweptAreaSolidImpl extends IfcSweptAreaSolidImpl imp
 	 * @generated
 	 */
 	public void setStartParamAsString(String newStartParamAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM_AS_STRING,
-				newStartParamAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID__START_PARAM_AS_STRING, newStartParamAsString);
 	}
 
 	/**

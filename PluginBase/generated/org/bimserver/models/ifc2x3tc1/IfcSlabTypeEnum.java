@@ -213,8 +213,7 @@ public enum IfcSlabTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSlabTypeEnum[] VALUES_ARRAY = new IfcSlabTypeEnum[] { NULL, FLOOR, ROOF, NOTDEFINED,
-			BASESLAB, LANDING, USERDEFINED, };
+	private static final IfcSlabTypeEnum[] VALUES_ARRAY = new IfcSlabTypeEnum[] { NULL, FLOOR, ROOF, NOTDEFINED, BASESLAB, LANDING, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Slab Type Enum</b></em>' enumerators.

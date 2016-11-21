@@ -63,8 +63,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements IfcTypeProd
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentationMap> getRepresentationMaps() {
-		return (EList<IfcRepresentationMap>) eGet(Ifc2x3tc1Package.Literals.IFC_TYPE_PRODUCT__REPRESENTATION_MAPS,
-				true);
+		return (EList<IfcRepresentationMap>) eGet(Ifc2x3tc1Package.Literals.IFC_TYPE_PRODUCT__REPRESENTATION_MAPS, true);
 	}
 
 	/**

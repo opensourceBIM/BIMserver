@@ -163,8 +163,7 @@ public enum IfcThermalLoadTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcThermalLoadTypeEnum[] VALUES_ARRAY = new IfcThermalLoadTypeEnum[] { NULL, NOTDEFINED,
-			SENSIBLE, LATENT, RADIANT, };
+	private static final IfcThermalLoadTypeEnum[] VALUES_ARRAY = new IfcThermalLoadTypeEnum[] { NULL, NOTDEFINED, SENSIBLE, LATENT, RADIANT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Thermal Load Type Enum</b></em>' enumerators.

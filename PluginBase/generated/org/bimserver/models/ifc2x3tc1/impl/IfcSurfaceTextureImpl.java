@@ -130,8 +130,7 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 * @generated
 	 */
 	public IfcCartesianTransformationOperator2D getTextureTransform() {
-		return (IfcCartesianTransformationOperator2D) eGet(
-				Ifc2x3tc1Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM, true);
+		return (IfcCartesianTransformationOperator2D) eGet(Ifc2x3tc1Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM, true);
 	}
 
 	/**

@@ -34,6 +34,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeType;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class JsonQueryObjectModelConverter {
@@ -461,13 +462,37 @@ public class JsonQueryObjectModelConverter {
 					Entry<String, JsonNode> entry = fields.next();
 					JsonNode value = entry.getValue();
 					if (value.isValueNode()) {
-						queryPart.addProperty(entry.getKey(), value.asBoolean());
+						if (value.getNodeType() == JsonNodeType.BOOLEAN) {
+							queryPart.addProperty(entry.getKey(), value.asBoolean());
+						} else if (value.getNodeType() == JsonNodeType.NUMBER) {
+							queryPart.addProperty(entry.getKey(), value.asDouble());
+						} else if (value.getNodeType() == JsonNodeType.STRING) {
+							queryPart.addProperty(entry.getKey(), value.asText());
+						} else if (value.getNodeType() == JsonNodeType.NULL) {
+							queryPart.addProperty(entry.getKey(), null);
+						} 
 					} else {
 						throw new QueryException("property \"" + entry.getKey() + "\" type not supported");
 					}
 				}
 			} else {
 				throw new QueryException("\"properties\" must be of type object");
+			}
+		}
+		if (objectNode.has("classifications")) {
+			JsonNode classificationsNode = (JsonNode) objectNode.get("classifications");
+			if (classificationsNode instanceof ArrayNode) {
+				ArrayNode arrayNode = (ArrayNode)classificationsNode;
+				for (int i=0; i<arrayNode.size(); i++) {
+					JsonNode classificationNode = arrayNode.get(i);
+					if (classificationNode.isTextual()) {
+						queryPart.addClassification(classificationNode.asText());
+					} else {
+						throw new QueryException("\"classification[" + i + "]\" must be of type string");
+					}
+				}
+			} else {
+				throw new QueryException("\"classifications\" must be of type array");
 			}
 		}
 		if (objectNode.has("inBoundingBox")) {
@@ -510,7 +535,7 @@ public class JsonQueryObjectModelConverter {
 		Iterator<String> fieldNames = objectNode.fieldNames();
 		while (fieldNames.hasNext()) {
 			String fieldName = fieldNames.next();
-			if (fieldName.equals("includeAllFields") || fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("name") || fieldName.equals("names") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes") || fieldName.equals("includeAllSubtypes")) {
+			if (fieldName.equals("includeAllFields") || fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("name") || fieldName.equals("names") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes") || fieldName.equals("includeAllSubtypes") || fieldName.equals("classifications")) {
 				// fine
 			} else {
 				throw new QueryException("Unknown field: \"" + fieldName + "\"");

@@ -138,8 +138,7 @@ public enum IfcElectricCurrentEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricCurrentEnum[] VALUES_ARRAY = new IfcElectricCurrentEnum[] { NULL, NOTDEFINED,
-			DIRECT, ALTERNATING, };
+	private static final IfcElectricCurrentEnum[] VALUES_ARRAY = new IfcElectricCurrentEnum[] { NULL, NOTDEFINED, DIRECT, ALTERNATING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Current Enum</b></em>' enumerators.

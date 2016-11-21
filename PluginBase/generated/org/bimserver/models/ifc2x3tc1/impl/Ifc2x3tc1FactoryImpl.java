@@ -39,8 +39,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 */
 	public static Ifc2x3tc1Factory init() {
 		try {
-			Ifc2x3tc1Factory theIfc2x3tc1Factory = (Ifc2x3tc1Factory) EPackage.Registry.INSTANCE
-					.getEFactory(Ifc2x3tc1Package.eNS_URI);
+			Ifc2x3tc1Factory theIfc2x3tc1Factory = (Ifc2x3tc1Factory) EPackage.Registry.INSTANCE.getEFactory(Ifc2x3tc1Package.eNS_URI);
 			if (theIfc2x3tc1Factory != null) {
 				return theIfc2x3tc1Factory;
 			}
@@ -10019,8 +10018,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public Tristate createTristateFromString(EDataType eDataType, String initialValue) {
 		Tristate result = Tristate.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10041,8 +10039,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcActionSourceTypeEnum createIfcActionSourceTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcActionSourceTypeEnum result = IfcActionSourceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10063,8 +10060,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcActionTypeEnum createIfcActionTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcActionTypeEnum result = IfcActionTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10085,8 +10081,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcActuatorTypeEnum createIfcActuatorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcActuatorTypeEnum result = IfcActuatorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10107,8 +10102,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcAddressTypeEnum createIfcAddressTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcAddressTypeEnum result = IfcAddressTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10129,8 +10123,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcAheadOrBehind createIfcAheadOrBehindFromString(EDataType eDataType, String initialValue) {
 		IfcAheadOrBehind result = IfcAheadOrBehind.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10148,12 +10141,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAirTerminalBoxTypeEnum createIfcAirTerminalBoxTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcAirTerminalBoxTypeEnum createIfcAirTerminalBoxTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcAirTerminalBoxTypeEnum result = IfcAirTerminalBoxTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10174,8 +10165,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcAirTerminalTypeEnum createIfcAirTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcAirTerminalTypeEnum result = IfcAirTerminalTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10193,12 +10183,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAirToAirHeatRecoveryTypeEnum createIfcAirToAirHeatRecoveryTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcAirToAirHeatRecoveryTypeEnum createIfcAirToAirHeatRecoveryTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcAirToAirHeatRecoveryTypeEnum result = IfcAirToAirHeatRecoveryTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10219,8 +10207,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcAlarmTypeEnum createIfcAlarmTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcAlarmTypeEnum result = IfcAlarmTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10241,8 +10228,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcAnalysisModelTypeEnum createIfcAnalysisModelTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcAnalysisModelTypeEnum result = IfcAnalysisModelTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10260,12 +10246,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnalysisTheoryTypeEnum createIfcAnalysisTheoryTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcAnalysisTheoryTypeEnum createIfcAnalysisTheoryTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcAnalysisTheoryTypeEnum result = IfcAnalysisTheoryTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10283,12 +10267,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcArithmeticOperatorEnum createIfcArithmeticOperatorEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcArithmeticOperatorEnum createIfcArithmeticOperatorEnumFromString(EDataType eDataType, String initialValue) {
 		IfcArithmeticOperatorEnum result = IfcArithmeticOperatorEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10309,8 +10291,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcAssemblyPlaceEnum createIfcAssemblyPlaceEnumFromString(EDataType eDataType, String initialValue) {
 		IfcAssemblyPlaceEnum result = IfcAssemblyPlaceEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10331,8 +10312,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcBSplineCurveForm createIfcBSplineCurveFormFromString(EDataType eDataType, String initialValue) {
 		IfcBSplineCurveForm result = IfcBSplineCurveForm.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10353,8 +10333,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcBeamTypeEnum createIfcBeamTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcBeamTypeEnum result = IfcBeamTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10375,8 +10354,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcBenchmarkEnum createIfcBenchmarkEnumFromString(EDataType eDataType, String initialValue) {
 		IfcBenchmarkEnum result = IfcBenchmarkEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10397,8 +10375,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcBoilerTypeEnum createIfcBoilerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcBoilerTypeEnum result = IfcBoilerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10419,8 +10396,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcBooleanOperator createIfcBooleanOperatorFromString(EDataType eDataType, String initialValue) {
 		IfcBooleanOperator result = IfcBooleanOperator.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10438,12 +10414,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuildingElementProxyTypeEnum createIfcBuildingElementProxyTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcBuildingElementProxyTypeEnum createIfcBuildingElementProxyTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcBuildingElementProxyTypeEnum result = IfcBuildingElementProxyTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10461,12 +10435,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCableCarrierFittingTypeEnum createIfcCableCarrierFittingTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcCableCarrierFittingTypeEnum createIfcCableCarrierFittingTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCableCarrierFittingTypeEnum result = IfcCableCarrierFittingTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10484,12 +10456,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCableCarrierSegmentTypeEnum createIfcCableCarrierSegmentTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcCableCarrierSegmentTypeEnum createIfcCableCarrierSegmentTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCableCarrierSegmentTypeEnum result = IfcCableCarrierSegmentTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10510,8 +10480,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcCableSegmentTypeEnum createIfcCableSegmentTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCableSegmentTypeEnum result = IfcCableSegmentTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10532,8 +10501,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcChangeActionEnum createIfcChangeActionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcChangeActionEnum result = IfcChangeActionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10554,8 +10522,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcChillerTypeEnum createIfcChillerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcChillerTypeEnum result = IfcChillerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10576,8 +10543,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcCoilTypeEnum createIfcCoilTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCoilTypeEnum result = IfcCoilTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10598,8 +10564,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcColumnTypeEnum createIfcColumnTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcColumnTypeEnum result = IfcColumnTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10620,8 +10585,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcCompressorTypeEnum createIfcCompressorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCompressorTypeEnum result = IfcCompressorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10642,8 +10606,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcCondenserTypeEnum createIfcCondenserTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCondenserTypeEnum result = IfcCondenserTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10664,8 +10627,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcConnectionTypeEnum createIfcConnectionTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcConnectionTypeEnum result = IfcConnectionTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10686,8 +10648,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcConstraintEnum createIfcConstraintEnumFromString(EDataType eDataType, String initialValue) {
 		IfcConstraintEnum result = IfcConstraintEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10708,8 +10669,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcControllerTypeEnum createIfcControllerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcControllerTypeEnum result = IfcControllerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10730,8 +10690,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcCooledBeamTypeEnum createIfcCooledBeamTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCooledBeamTypeEnum result = IfcCooledBeamTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10752,8 +10711,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcCoolingTowerTypeEnum createIfcCoolingTowerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCoolingTowerTypeEnum result = IfcCoolingTowerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10774,8 +10732,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcCostScheduleTypeEnum createIfcCostScheduleTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCostScheduleTypeEnum result = IfcCostScheduleTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10796,8 +10753,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcCoveringTypeEnum createIfcCoveringTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCoveringTypeEnum result = IfcCoveringTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10818,8 +10774,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcCurrencyEnum createIfcCurrencyEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCurrencyEnum result = IfcCurrencyEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10840,8 +10795,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcCurtainWallTypeEnum createIfcCurtainWallTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcCurtainWallTypeEnum result = IfcCurtainWallTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10862,8 +10816,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcDamperTypeEnum createIfcDamperTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDamperTypeEnum result = IfcDamperTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10884,8 +10837,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcDataOriginEnum createIfcDataOriginEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDataOriginEnum result = IfcDataOriginEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10906,8 +10858,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcDerivedUnitEnum createIfcDerivedUnitEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDerivedUnitEnum result = IfcDerivedUnitEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10928,8 +10879,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcDimensionExtentUsage createIfcDimensionExtentUsageFromString(EDataType eDataType, String initialValue) {
 		IfcDimensionExtentUsage result = IfcDimensionExtentUsage.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10950,8 +10900,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcDirectionSenseEnum createIfcDirectionSenseEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDirectionSenseEnum result = IfcDirectionSenseEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10969,12 +10918,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionChamberElementTypeEnum createIfcDistributionChamberElementTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcDistributionChamberElementTypeEnum createIfcDistributionChamberElementTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDistributionChamberElementTypeEnum result = IfcDistributionChamberElementTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -10992,12 +10939,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDocumentConfidentialityEnum createIfcDocumentConfidentialityEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcDocumentConfidentialityEnum createIfcDocumentConfidentialityEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDocumentConfidentialityEnum result = IfcDocumentConfidentialityEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11018,8 +10963,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcDocumentStatusEnum createIfcDocumentStatusEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDocumentStatusEnum result = IfcDocumentStatusEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11037,12 +10981,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorPanelOperationEnum createIfcDoorPanelOperationEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcDoorPanelOperationEnum createIfcDoorPanelOperationEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDoorPanelOperationEnum result = IfcDoorPanelOperationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11063,8 +11005,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcDoorPanelPositionEnum createIfcDoorPanelPositionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDoorPanelPositionEnum result = IfcDoorPanelPositionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11082,12 +11023,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorStyleConstructionEnum createIfcDoorStyleConstructionEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcDoorStyleConstructionEnum createIfcDoorStyleConstructionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDoorStyleConstructionEnum result = IfcDoorStyleConstructionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11105,12 +11044,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorStyleOperationEnum createIfcDoorStyleOperationEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcDoorStyleOperationEnum createIfcDoorStyleOperationEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDoorStyleOperationEnum result = IfcDoorStyleOperationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11131,8 +11068,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcDuctFittingTypeEnum createIfcDuctFittingTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDuctFittingTypeEnum result = IfcDuctFittingTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11153,8 +11089,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcDuctSegmentTypeEnum createIfcDuctSegmentTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDuctSegmentTypeEnum result = IfcDuctSegmentTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11175,8 +11110,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcDuctSilencerTypeEnum createIfcDuctSilencerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcDuctSilencerTypeEnum result = IfcDuctSilencerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11194,12 +11128,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricApplianceTypeEnum createIfcElectricApplianceTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcElectricApplianceTypeEnum createIfcElectricApplianceTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcElectricApplianceTypeEnum result = IfcElectricApplianceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11220,8 +11152,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcElectricCurrentEnum createIfcElectricCurrentEnumFromString(EDataType eDataType, String initialValue) {
 		IfcElectricCurrentEnum result = IfcElectricCurrentEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11239,12 +11170,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricDistributionPointFunctionEnum createIfcElectricDistributionPointFunctionEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcElectricDistributionPointFunctionEnum createIfcElectricDistributionPointFunctionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcElectricDistributionPointFunctionEnum result = IfcElectricDistributionPointFunctionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11262,12 +11191,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricFlowStorageDeviceTypeEnum createIfcElectricFlowStorageDeviceTypeEnumFromString(
-			EDataType eDataType, String initialValue) {
+	public IfcElectricFlowStorageDeviceTypeEnum createIfcElectricFlowStorageDeviceTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcElectricFlowStorageDeviceTypeEnum result = IfcElectricFlowStorageDeviceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11285,12 +11212,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricGeneratorTypeEnum createIfcElectricGeneratorTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcElectricGeneratorTypeEnum createIfcElectricGeneratorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcElectricGeneratorTypeEnum result = IfcElectricGeneratorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11308,12 +11233,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricHeaterTypeEnum createIfcElectricHeaterTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcElectricHeaterTypeEnum createIfcElectricHeaterTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcElectricHeaterTypeEnum result = IfcElectricHeaterTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11334,8 +11257,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcElectricMotorTypeEnum createIfcElectricMotorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcElectricMotorTypeEnum result = IfcElectricMotorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11353,12 +11275,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricTimeControlTypeEnum createIfcElectricTimeControlTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcElectricTimeControlTypeEnum createIfcElectricTimeControlTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcElectricTimeControlTypeEnum result = IfcElectricTimeControlTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11376,12 +11296,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElementAssemblyTypeEnum createIfcElementAssemblyTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcElementAssemblyTypeEnum createIfcElementAssemblyTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcElementAssemblyTypeEnum result = IfcElementAssemblyTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11399,12 +11317,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElementCompositionEnum createIfcElementCompositionEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcElementCompositionEnum createIfcElementCompositionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcElementCompositionEnum result = IfcElementCompositionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11425,8 +11341,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcEnergySequenceEnum createIfcEnergySequenceEnumFromString(EDataType eDataType, String initialValue) {
 		IfcEnergySequenceEnum result = IfcEnergySequenceEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11444,12 +11359,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEnvironmentalImpactCategoryEnum createIfcEnvironmentalImpactCategoryEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcEnvironmentalImpactCategoryEnum createIfcEnvironmentalImpactCategoryEnumFromString(EDataType eDataType, String initialValue) {
 		IfcEnvironmentalImpactCategoryEnum result = IfcEnvironmentalImpactCategoryEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11467,12 +11380,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEvaporativeCoolerTypeEnum createIfcEvaporativeCoolerTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcEvaporativeCoolerTypeEnum createIfcEvaporativeCoolerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcEvaporativeCoolerTypeEnum result = IfcEvaporativeCoolerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11493,8 +11404,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcEvaporatorTypeEnum createIfcEvaporatorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcEvaporatorTypeEnum result = IfcEvaporatorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11515,8 +11425,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcFanTypeEnum createIfcFanTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFanTypeEnum result = IfcFanTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11537,8 +11446,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcFilterTypeEnum createIfcFilterTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFilterTypeEnum result = IfcFilterTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11556,12 +11464,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFireSuppressionTerminalTypeEnum createIfcFireSuppressionTerminalTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcFireSuppressionTerminalTypeEnum createIfcFireSuppressionTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFireSuppressionTerminalTypeEnum result = IfcFireSuppressionTerminalTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11582,8 +11488,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcFlowDirectionEnum createIfcFlowDirectionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFlowDirectionEnum result = IfcFlowDirectionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11601,12 +11506,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowInstrumentTypeEnum createIfcFlowInstrumentTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcFlowInstrumentTypeEnum createIfcFlowInstrumentTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFlowInstrumentTypeEnum result = IfcFlowInstrumentTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11627,8 +11530,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcFlowMeterTypeEnum createIfcFlowMeterTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFlowMeterTypeEnum result = IfcFlowMeterTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11649,8 +11551,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcFootingTypeEnum createIfcFootingTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcFootingTypeEnum result = IfcFootingTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11671,8 +11572,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcGasTerminalTypeEnum createIfcGasTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcGasTerminalTypeEnum result = IfcGasTerminalTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11690,12 +11590,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGeometricProjectionEnum createIfcGeometricProjectionEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcGeometricProjectionEnum createIfcGeometricProjectionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcGeometricProjectionEnum result = IfcGeometricProjectionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11716,8 +11614,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcGlobalOrLocalEnum createIfcGlobalOrLocalEnumFromString(EDataType eDataType, String initialValue) {
 		IfcGlobalOrLocalEnum result = IfcGlobalOrLocalEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11738,8 +11635,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcHeatExchangerTypeEnum createIfcHeatExchangerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcHeatExchangerTypeEnum result = IfcHeatExchangerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11760,8 +11656,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcHumidifierTypeEnum createIfcHumidifierTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcHumidifierTypeEnum result = IfcHumidifierTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11779,12 +11674,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcInternalOrExternalEnum createIfcInternalOrExternalEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcInternalOrExternalEnum createIfcInternalOrExternalEnumFromString(EDataType eDataType, String initialValue) {
 		IfcInternalOrExternalEnum result = IfcInternalOrExternalEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11805,8 +11698,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcInventoryTypeEnum createIfcInventoryTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcInventoryTypeEnum result = IfcInventoryTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11827,8 +11719,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcJunctionBoxTypeEnum createIfcJunctionBoxTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcJunctionBoxTypeEnum result = IfcJunctionBoxTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11849,8 +11740,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcLampTypeEnum createIfcLampTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcLampTypeEnum result = IfcLampTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11871,8 +11761,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcLayerSetDirectionEnum createIfcLayerSetDirectionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcLayerSetDirectionEnum result = IfcLayerSetDirectionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11890,12 +11779,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightDistributionCurveEnum createIfcLightDistributionCurveEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcLightDistributionCurveEnum createIfcLightDistributionCurveEnumFromString(EDataType eDataType, String initialValue) {
 		IfcLightDistributionCurveEnum result = IfcLightDistributionCurveEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11913,12 +11800,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightEmissionSourceEnum createIfcLightEmissionSourceEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcLightEmissionSourceEnum createIfcLightEmissionSourceEnumFromString(EDataType eDataType, String initialValue) {
 		IfcLightEmissionSourceEnum result = IfcLightEmissionSourceEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11939,8 +11824,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcLightFixtureTypeEnum createIfcLightFixtureTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcLightFixtureTypeEnum result = IfcLightFixtureTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11961,8 +11845,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcLoadGroupTypeEnum createIfcLoadGroupTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcLoadGroupTypeEnum result = IfcLoadGroupTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -11983,8 +11866,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcLogicalOperatorEnum createIfcLogicalOperatorEnumFromString(EDataType eDataType, String initialValue) {
 		IfcLogicalOperatorEnum result = IfcLogicalOperatorEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12005,8 +11887,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcMemberTypeEnum createIfcMemberTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcMemberTypeEnum result = IfcMemberTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12024,12 +11905,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMotorConnectionTypeEnum createIfcMotorConnectionTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcMotorConnectionTypeEnum createIfcMotorConnectionTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcMotorConnectionTypeEnum result = IfcMotorConnectionTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12050,8 +11929,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcNullStyleEnum createIfcNullStyleEnumFromString(EDataType eDataType, String initialValue) {
 		IfcNullStyleEnum result = IfcNullStyleEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12072,8 +11950,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcObjectTypeEnum createIfcObjectTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcObjectTypeEnum result = IfcObjectTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12094,8 +11971,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcObjectiveEnum createIfcObjectiveEnumFromString(EDataType eDataType, String initialValue) {
 		IfcObjectiveEnum result = IfcObjectiveEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12116,8 +11992,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcOccupantTypeEnum createIfcOccupantTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcOccupantTypeEnum result = IfcOccupantTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12138,8 +12013,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcOutletTypeEnum createIfcOutletTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcOutletTypeEnum result = IfcOutletTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12157,12 +12031,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPermeableCoveringOperationEnum createIfcPermeableCoveringOperationEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcPermeableCoveringOperationEnum createIfcPermeableCoveringOperationEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPermeableCoveringOperationEnum result = IfcPermeableCoveringOperationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12183,8 +12055,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcPhysicalOrVirtualEnum createIfcPhysicalOrVirtualEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPhysicalOrVirtualEnum result = IfcPhysicalOrVirtualEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12205,8 +12076,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcPileConstructionEnum createIfcPileConstructionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPileConstructionEnum result = IfcPileConstructionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12227,8 +12097,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcPileTypeEnum createIfcPileTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPileTypeEnum result = IfcPileTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12249,8 +12118,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcPipeFittingTypeEnum createIfcPipeFittingTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPipeFittingTypeEnum result = IfcPipeFittingTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12271,8 +12139,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcPipeSegmentTypeEnum createIfcPipeSegmentTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPipeSegmentTypeEnum result = IfcPipeSegmentTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12293,8 +12160,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcPlateTypeEnum createIfcPlateTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPlateTypeEnum result = IfcPlateTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12315,8 +12181,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcProcedureTypeEnum createIfcProcedureTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcProcedureTypeEnum result = IfcProcedureTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12337,8 +12202,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcProfileTypeEnum createIfcProfileTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcProfileTypeEnum result = IfcProfileTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12356,12 +12220,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProjectOrderRecordTypeEnum createIfcProjectOrderRecordTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcProjectOrderRecordTypeEnum createIfcProjectOrderRecordTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcProjectOrderRecordTypeEnum result = IfcProjectOrderRecordTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12382,8 +12244,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcProjectOrderTypeEnum createIfcProjectOrderTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcProjectOrderTypeEnum result = IfcProjectOrderTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12401,12 +12262,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProjectedOrTrueLengthEnum createIfcProjectedOrTrueLengthEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcProjectedOrTrueLengthEnum createIfcProjectedOrTrueLengthEnumFromString(EDataType eDataType, String initialValue) {
 		IfcProjectedOrTrueLengthEnum result = IfcProjectedOrTrueLengthEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12427,8 +12286,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcPropertySourceEnum createIfcPropertySourceEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPropertySourceEnum result = IfcPropertySourceEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12446,12 +12304,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProtectiveDeviceTypeEnum createIfcProtectiveDeviceTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcProtectiveDeviceTypeEnum createIfcProtectiveDeviceTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcProtectiveDeviceTypeEnum result = IfcProtectiveDeviceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12472,8 +12328,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcPumpTypeEnum createIfcPumpTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcPumpTypeEnum result = IfcPumpTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12494,8 +12349,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcRailingTypeEnum createIfcRailingTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcRailingTypeEnum result = IfcRailingTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12516,8 +12370,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcRampFlightTypeEnum createIfcRampFlightTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcRampFlightTypeEnum result = IfcRampFlightTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12538,8 +12391,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcRampTypeEnum createIfcRampTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcRampTypeEnum result = IfcRampTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12560,8 +12412,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcReflectanceMethodEnum createIfcReflectanceMethodEnumFromString(EDataType eDataType, String initialValue) {
 		IfcReflectanceMethodEnum result = IfcReflectanceMethodEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12579,12 +12430,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcingBarRoleEnum createIfcReinforcingBarRoleEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcReinforcingBarRoleEnum createIfcReinforcingBarRoleEnumFromString(EDataType eDataType, String initialValue) {
 		IfcReinforcingBarRoleEnum result = IfcReinforcingBarRoleEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12602,12 +12451,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcingBarSurfaceEnum createIfcReinforcingBarSurfaceEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcReinforcingBarSurfaceEnum createIfcReinforcingBarSurfaceEnumFromString(EDataType eDataType, String initialValue) {
 		IfcReinforcingBarSurfaceEnum result = IfcReinforcingBarSurfaceEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12625,12 +12472,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcResourceConsumptionEnum createIfcResourceConsumptionEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcResourceConsumptionEnum createIfcResourceConsumptionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcResourceConsumptionEnum result = IfcResourceConsumptionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12651,8 +12496,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcRibPlateDirectionEnum createIfcRibPlateDirectionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcRibPlateDirectionEnum result = IfcRibPlateDirectionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12673,8 +12517,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcRoleEnum createIfcRoleEnumFromString(EDataType eDataType, String initialValue) {
 		IfcRoleEnum result = IfcRoleEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12695,8 +12538,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcRoofTypeEnum createIfcRoofTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcRoofTypeEnum result = IfcRoofTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12717,8 +12559,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcSIPrefix createIfcSIPrefixFromString(EDataType eDataType, String initialValue) {
 		IfcSIPrefix result = IfcSIPrefix.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12739,8 +12580,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcSIUnitName createIfcSIUnitNameFromString(EDataType eDataType, String initialValue) {
 		IfcSIUnitName result = IfcSIUnitName.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12758,12 +12598,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSanitaryTerminalTypeEnum createIfcSanitaryTerminalTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcSanitaryTerminalTypeEnum createIfcSanitaryTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSanitaryTerminalTypeEnum result = IfcSanitaryTerminalTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12784,8 +12622,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcSectionTypeEnum createIfcSectionTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSectionTypeEnum result = IfcSectionTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12806,8 +12643,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcSensorTypeEnum createIfcSensorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSensorTypeEnum result = IfcSensorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12828,8 +12664,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcSequenceEnum createIfcSequenceEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSequenceEnum result = IfcSequenceEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12847,12 +12682,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcServiceLifeFactorTypeEnum createIfcServiceLifeFactorTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcServiceLifeFactorTypeEnum createIfcServiceLifeFactorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcServiceLifeFactorTypeEnum result = IfcServiceLifeFactorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12873,8 +12706,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcServiceLifeTypeEnum createIfcServiceLifeTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcServiceLifeTypeEnum result = IfcServiceLifeTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12895,8 +12727,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcSlabTypeEnum createIfcSlabTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSlabTypeEnum result = IfcSlabTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12917,8 +12748,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcSoundScaleEnum createIfcSoundScaleEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSoundScaleEnum result = IfcSoundScaleEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12939,8 +12769,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcSpaceHeaterTypeEnum createIfcSpaceHeaterTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSpaceHeaterTypeEnum result = IfcSpaceHeaterTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12961,8 +12790,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcSpaceTypeEnum createIfcSpaceTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSpaceTypeEnum result = IfcSpaceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -12983,8 +12811,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcStackTerminalTypeEnum createIfcStackTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcStackTerminalTypeEnum result = IfcStackTerminalTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13005,8 +12832,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcStairFlightTypeEnum createIfcStairFlightTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcStairFlightTypeEnum result = IfcStairFlightTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13027,8 +12853,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcStairTypeEnum createIfcStairTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcStairTypeEnum result = IfcStairTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13049,8 +12874,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcStateEnum createIfcStateEnumFromString(EDataType eDataType, String initialValue) {
 		IfcStateEnum result = IfcStateEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13068,12 +12892,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralCurveTypeEnum createIfcStructuralCurveTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcStructuralCurveTypeEnum createIfcStructuralCurveTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcStructuralCurveTypeEnum result = IfcStructuralCurveTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13091,12 +12913,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralSurfaceTypeEnum createIfcStructuralSurfaceTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcStructuralSurfaceTypeEnum createIfcStructuralSurfaceTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcStructuralSurfaceTypeEnum result = IfcStructuralSurfaceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13117,8 +12937,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcSurfaceSide createIfcSurfaceSideFromString(EDataType eDataType, String initialValue) {
 		IfcSurfaceSide result = IfcSurfaceSide.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13139,8 +12958,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcSurfaceTextureEnum createIfcSurfaceTextureEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSurfaceTextureEnum result = IfcSurfaceTextureEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13158,12 +12976,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSwitchingDeviceTypeEnum createIfcSwitchingDeviceTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcSwitchingDeviceTypeEnum createIfcSwitchingDeviceTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcSwitchingDeviceTypeEnum result = IfcSwitchingDeviceTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13184,8 +13000,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcTankTypeEnum createIfcTankTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcTankTypeEnum result = IfcTankTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13206,8 +13021,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcTendonTypeEnum createIfcTendonTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcTendonTypeEnum result = IfcTendonTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13228,8 +13042,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcTextPath createIfcTextPathFromString(EDataType eDataType, String initialValue) {
 		IfcTextPath result = IfcTextPath.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13250,8 +13063,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcThermalLoadSourceEnum createIfcThermalLoadSourceEnumFromString(EDataType eDataType, String initialValue) {
 		IfcThermalLoadSourceEnum result = IfcThermalLoadSourceEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13272,8 +13084,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcThermalLoadTypeEnum createIfcThermalLoadTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcThermalLoadTypeEnum result = IfcThermalLoadTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13291,12 +13102,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTimeSeriesDataTypeEnum createIfcTimeSeriesDataTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcTimeSeriesDataTypeEnum createIfcTimeSeriesDataTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcTimeSeriesDataTypeEnum result = IfcTimeSeriesDataTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13314,12 +13123,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTimeSeriesScheduleTypeEnum createIfcTimeSeriesScheduleTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcTimeSeriesScheduleTypeEnum createIfcTimeSeriesScheduleTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcTimeSeriesScheduleTypeEnum result = IfcTimeSeriesScheduleTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13340,8 +13147,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcTransformerTypeEnum createIfcTransformerTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcTransformerTypeEnum result = IfcTransformerTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13362,8 +13168,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcTransitionCode createIfcTransitionCodeFromString(EDataType eDataType, String initialValue) {
 		IfcTransitionCode result = IfcTransitionCode.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13381,12 +13186,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTransportElementTypeEnum createIfcTransportElementTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcTransportElementTypeEnum createIfcTransportElementTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcTransportElementTypeEnum result = IfcTransportElementTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13407,8 +13210,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcTrimmingPreference createIfcTrimmingPreferenceFromString(EDataType eDataType, String initialValue) {
 		IfcTrimmingPreference result = IfcTrimmingPreference.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13429,8 +13231,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcTubeBundleTypeEnum createIfcTubeBundleTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcTubeBundleTypeEnum result = IfcTubeBundleTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13451,8 +13252,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcUnitEnum createIfcUnitEnumFromString(EDataType eDataType, String initialValue) {
 		IfcUnitEnum result = IfcUnitEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13470,12 +13270,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcUnitaryEquipmentTypeEnum createIfcUnitaryEquipmentTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcUnitaryEquipmentTypeEnum createIfcUnitaryEquipmentTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcUnitaryEquipmentTypeEnum result = IfcUnitaryEquipmentTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13496,8 +13294,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcValveTypeEnum createIfcValveTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcValveTypeEnum result = IfcValveTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13515,12 +13312,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVibrationIsolatorTypeEnum createIfcVibrationIsolatorTypeEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcVibrationIsolatorTypeEnum createIfcVibrationIsolatorTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcVibrationIsolatorTypeEnum result = IfcVibrationIsolatorTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13541,8 +13336,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcWallTypeEnum createIfcWallTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcWallTypeEnum result = IfcWallTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13563,8 +13357,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcWasteTerminalTypeEnum createIfcWasteTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcWasteTerminalTypeEnum result = IfcWasteTerminalTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13582,12 +13375,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowPanelOperationEnum createIfcWindowPanelOperationEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcWindowPanelOperationEnum createIfcWindowPanelOperationEnumFromString(EDataType eDataType, String initialValue) {
 		IfcWindowPanelOperationEnum result = IfcWindowPanelOperationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13605,12 +13396,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowPanelPositionEnum createIfcWindowPanelPositionEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcWindowPanelPositionEnum createIfcWindowPanelPositionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcWindowPanelPositionEnum result = IfcWindowPanelPositionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13628,12 +13417,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowStyleConstructionEnum createIfcWindowStyleConstructionEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcWindowStyleConstructionEnum createIfcWindowStyleConstructionEnumFromString(EDataType eDataType, String initialValue) {
 		IfcWindowStyleConstructionEnum result = IfcWindowStyleConstructionEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13651,12 +13438,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowStyleOperationEnum createIfcWindowStyleOperationEnumFromString(EDataType eDataType,
-			String initialValue) {
+	public IfcWindowStyleOperationEnum createIfcWindowStyleOperationEnumFromString(EDataType eDataType, String initialValue) {
 		IfcWindowStyleOperationEnum result = IfcWindowStyleOperationEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -13677,8 +13462,7 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcWorkControlTypeEnum createIfcWorkControlTypeEnumFromString(EDataType eDataType, String initialValue) {
 		IfcWorkControlTypeEnum result = IfcWorkControlTypeEnum.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 

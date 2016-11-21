@@ -238,8 +238,7 @@ public enum IfcWallTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWallTypeEnum[] VALUES_ARRAY = new IfcWallTypeEnum[] { NULL, SHEAR, ELEMENTEDWALL,
-			NOTDEFINED, POLYGONAL, USERDEFINED, STANDARD, PLUMBINGWALL, };
+	private static final IfcWallTypeEnum[] VALUES_ARRAY = new IfcWallTypeEnum[] { NULL, SHEAR, ELEMENTEDWALL, NOTDEFINED, POLYGONAL, USERDEFINED, STANDARD, PLUMBINGWALL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Wall Type Enum</b></em>' enumerators.
