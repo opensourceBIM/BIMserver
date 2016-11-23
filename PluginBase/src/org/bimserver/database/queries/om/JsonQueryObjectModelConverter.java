@@ -179,11 +179,11 @@ public class JsonQueryObjectModelConverter {
 			String fieldName = fieldNames.next();
 			JsonNode defineNode = jsonNode.get(fieldName);
 			ObjectNode define = (ObjectNode)defineNode;
-			parseInclude(query, define, query.getDefine(fieldName));
+			parseInclude(query, define, query.getDefine(fieldName), null);
 		}
 	}
 	
-	private Include parseInclude(Query query, ObjectNode jsonNode, Include include) throws QueryException {
+	private Include parseInclude(Query query, ObjectNode jsonNode, Include include, CanInclude parentInclude) throws QueryException {
 		if (include == null) {
 			include = new Include(packageMetaData);
 		}
@@ -333,7 +333,7 @@ public class JsonQueryObjectModelConverter {
 	private void processSubInclude(Query query, CanInclude parentInclude, JsonNode includeNode) throws QueryException {
 		if (includeNode instanceof ObjectNode) {
 			ObjectNode innerInclude = (ObjectNode)includeNode;
-			parentInclude.addInclude(parseInclude(query, innerInclude, null));
+			parentInclude.addInclude(parseInclude(query, innerInclude, null, parentInclude));
 		} else if (includeNode.isTextual()) {
 			String includeName = includeNode.asText();
 			if (includeName.contains(":")) {
