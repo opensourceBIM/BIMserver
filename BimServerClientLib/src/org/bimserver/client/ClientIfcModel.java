@@ -317,7 +317,7 @@ public class ClientIfcModel extends IfcModel {
 			
 			for (IfcProduct ifcProduct : getAllWithSubTypes(IfcProduct.class)) {
 				GeometryInfo geometry = ifcProduct.getGeometry();
-				if (geometry != null && ifcProduct.getGeometry().getData() == null) {
+				if (geometry != null) {
 					geometryInfoOidToOid.put(geometry.getOid(), ifcProduct.getOid());
 					queryPart.addOid(geometry.getOid());
 				}
@@ -498,27 +498,22 @@ public class ClientIfcModel extends IfcModel {
 		}
 		List<T> result = super.getAll(eClass);
 		try {
-			loadGeometry();
+			if (modelState != ModelState.FULLY_LOADED) {
+				loadGeometry();
+			}
 		} catch (ServerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UserException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (QueryException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (GeometryException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IfcModelInterfaceException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
