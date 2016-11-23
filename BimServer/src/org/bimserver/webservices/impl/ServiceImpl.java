@@ -389,46 +389,50 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	
 	@Override
 	public Long download(Set<Long> roids, String jsonQuery, Long serializerOid, Boolean sync) throws ServerException, UserException {
-		User user = null;
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		Plugin plugin = null;
 		try {
-			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, OldQuery.getDefault());
-			plugin = getBimServer().getPluginManager().getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-			user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
-		} catch (BimserverDatabaseException e) {
-			throw new UserException(e);
-		} finally {
-			session.close();
-		}
-		
-		if (plugin instanceof StreamingSerializerPlugin || plugin instanceof MessagingStreamingSerializerPlugin) {
-			LongStreamingDownloadAction longDownloadAction = new LongStreamingDownloadAction(getBimServer(), user == null ? "Unknown" : user.getName(), user == null ? "Unknown" : user.getUsername(), getAuthorization(), serializerOid, jsonQuery, roids);
+			User user = null;
+			DatabaseSession session = getBimServer().getDatabase().createSession();
+			Plugin plugin = null;
 			try {
-				getBimServer().getLongActionManager().start(longDownloadAction);
-			} catch (Exception e) {
-				LOGGER.error("", e);
+				SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, OldQuery.getDefault());
+				plugin = getBimServer().getPluginManager().getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+				user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			} catch (BimserverDatabaseException e) {
+				throw new UserException(e);
+			} finally {
+				session.close();
 			}
-			if (sync) {
-				longDownloadAction.waitForCompletion();
+			
+			if (plugin instanceof StreamingSerializerPlugin || plugin instanceof MessagingStreamingSerializerPlugin) {
+				LongStreamingDownloadAction longDownloadAction = new LongStreamingDownloadAction(getBimServer(), user == null ? "Unknown" : user.getName(), user == null ? "Unknown" : user.getUsername(), getAuthorization(), serializerOid, jsonQuery, roids);
+				try {
+					getBimServer().getLongActionManager().start(longDownloadAction);
+				} catch (Exception e) {
+					LOGGER.error("", e);
+				}
+				if (sync) {
+					longDownloadAction.waitForCompletion();
+				}
+				return longDownloadAction.getProgressTopic().getKey().getId();
+			} else if (plugin instanceof MessagingSerializerPlugin) {
+				requireAuthenticationAndRunningServer();
+				DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_BY_NEW_JSON_QUERY);
+				downloadParameters.setRoids(roids);
+				downloadParameters.setJsonQuery(jsonQuery);
+				downloadParameters.setSerializerOid(serializerOid);
+				return download(downloadParameters, sync);
+			} else if (plugin instanceof SerializerPlugin) {
+				requireAuthenticationAndRunningServer();
+				DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_BY_NEW_JSON_QUERY);
+				downloadParameters.setRoids(roids);
+				downloadParameters.setJsonQuery(jsonQuery);
+				downloadParameters.setSerializerOid(serializerOid);
+				return download(downloadParameters, sync);
+			} else {
+				throw new UserException("Unimplemented");
 			}
-			return longDownloadAction.getProgressTopic().getKey().getId();
-		} else if (plugin instanceof MessagingSerializerPlugin) {
-			requireAuthenticationAndRunningServer();
-			DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_BY_NEW_JSON_QUERY);
-			downloadParameters.setRoids(roids);
-			downloadParameters.setJsonQuery(jsonQuery);
-			downloadParameters.setSerializerOid(serializerOid);
-			return download(downloadParameters, sync);
-		} else if (plugin instanceof SerializerPlugin) {
-			requireAuthenticationAndRunningServer();
-			DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_BY_NEW_JSON_QUERY);
-			downloadParameters.setRoids(roids);
-			downloadParameters.setJsonQuery(jsonQuery);
-			downloadParameters.setSerializerOid(serializerOid);
-			return download(downloadParameters, sync);
-		} else {
-			throw new UserException("Unimplemented");
+		} catch (Exception e) {
+			return handleException(e);
 		}
 	}
 
