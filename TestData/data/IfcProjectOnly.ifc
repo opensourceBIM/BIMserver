@@ -1,0 +1,10 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION (('ViewDefinition [CoordinationView]'), '2;1');
+FILE_NAME ('example.ifc', '2009-01-26T11:26:35', ('Architect'), ('Building Designer Office'), 'IFC Engine DLL version 1.02 beta', 'IFC Engine DLL version 1.02 beta', 'The authorising person');
+FILE_SCHEMA (('IFC2X3'));
+ENDSEC;
+DATA;
+#1 = IFCPROJECT('2o1ykWxGT4ZxPjHNe4gayR', $, 'Default Project', 'Description of Default Project', $, $, $, (), $);
+ENDSEC;
+END-ISO-10303-21;

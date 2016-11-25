@@ -1,0 +1,643 @@
+{
+  "type": "scene",
+  "id": "Scene",
+  "canvasId": "scenejsCanvas",
+  "loggingElementId": "scenejsLog",
+  "flags": {"backfaces": false},
+  "nodes": [
+    {
+      "type": "library",
+      "nodes": [
+        {
+          "type": "material",
+          "coreId": "SpaceMaterial",
+          "baseColor": {
+            "r": 0.137254998087883,
+            "g": 0.4039219915866852,
+            "b": 0.8705880045890808
+          },
+          "alpha": 1,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "RoofMaterial",
+          "baseColor": {
+            "r": 0.8372550010681152,
+            "g": 0.20392200350761414,
+            "b": 0.2705880105495453
+          },
+          "alpha": 1,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "SlabMaterial",
+          "baseColor": {
+            "r": 0.6372550129890442,
+            "g": 0.6039220094680786,
+            "b": 0.6705880165100098
+          },
+          "alpha": 1,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "WallMaterial",
+          "baseColor": {
+            "r": 0.5372549891471863,
+            "g": 0.33725500106811523,
+            "b": 0.2372550070285797
+          },
+          "alpha": 1,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "WallStandardCaseMaterial",
+          "baseColor": {
+            "r": 1,
+            "g": 1,
+            "b": 1
+          },
+          "alpha": 1,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "DoorMaterial",
+          "baseColor": {
+            "r": 0.6372550129890442,
+            "g": 0.6039220094680786,
+            "b": 0.6705880165100098
+          },
+          "alpha": 1,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "WindowMaterial",
+          "baseColor": {
+            "r": 0.20000000298023224,
+            "g": 0.20000000298023224,
+            "b": 0.800000011920929
+          },
+          "alpha": 0.20000000298023224,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "RailingMaterial",
+          "baseColor": {
+            "r": 0.137254998087883,
+            "g": 0.20392200350761414,
+            "b": 0.2705880105495453
+          },
+          "alpha": 1,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "ColumnMaterial",
+          "baseColor": {
+            "r": 0.43725499510765076,
+            "g": 0.6039220094680786,
+            "b": 0.3705880045890808
+          },
+          "alpha": 1,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "FurnishingElementMaterial",
+          "baseColor": {
+            "r": 0.43725499510765076,
+            "g": 0.6039220094680786,
+            "b": 0.3705880045890808
+          },
+          "alpha": 1,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "CurtainWallMaterial",
+          "baseColor": {
+            "r": 0.5,
+            "g": 0.5,
+            "b": 0.5
+          },
+          "alpha": 0.5,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "StairMaterial",
+          "baseColor": {
+            "r": 0.6372550129890442,
+            "g": 0.6039220094680786,
+            "b": 0.6705880165100098
+          },
+          "alpha": 1,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "BuildingElementProxyMaterial",
+          "baseColor": {
+            "r": 0.5,
+            "g": 0.5,
+            "b": 0.5
+          },
+          "alpha": 1,
+          "emit": 0
+        },
+        {
+          "type": "material",
+          "coreId": "FlowSegmentMaterial",
+          "baseColor": {
+            "r": 0.6000000238418579,
+            "g": 0.4000000059604645,
+            "b": 0.5
+          },
+          "alpha": 1,
+          "emit": 0
+        },
+        {
+          "type": "geometry",
+          "coreId": "3Ep4r0uuX5ywPYOUG2H2A4",
+          "primitive": "triangles",
+          "positions": [
+            -2700,
+            -100,
+            -2500,
+            -2700,
+            -100,
+            2500,
+            2700,
+            -100,
+            2500,
+            2700,
+            -100,
+            2500,
+            2700,
+            -100,
+            -2500,
+            -2700,
+            -100,
+            -2500,
+            2700,
+            -100,
+            -2500,
+            2700,
+            -100,
+            2500,
+            2700,
+            100,
+            2500,
+            2700,
+            100,
+            2500,
+            2700,
+            100,
+            -2500,
+            2700,
+            -100,
+            -2500,
+            2700,
+            100,
+            -2500,
+            2700,
+            100,
+            2500,
+            -2700,
+            100,
+            2500,
+            -2700,
+            100,
+            2500,
+            -2700,
+            100,
+            -2500,
+            2700,
+            100,
+            -2500,
+            -2700,
+            100,
+            -2500,
+            -2700,
+            100,
+            2500,
+            -2700,
+            -100,
+            2500,
+            -2700,
+            -100,
+            2500,
+            -2700,
+            -100,
+            -2500,
+            -2700,
+            100,
+            -2500,
+            -2700,
+            100,
+            2500,
+            2700,
+            -100,
+            2500,
+            -2700,
+            -100,
+            2500,
+            2700,
+            -100,
+            2500,
+            -2700,
+            100,
+            2500,
+            2700,
+            100,
+            2500,
+            2700,
+            -100,
+            -2500,
+            -2700,
+            100,
+            -2500,
+            -2700,
+            -100,
+            -2500,
+            -2700,
+            100,
+            -2500,
+            2700,
+            -100,
+            -2500,
+            2700,
+            100,
+            -2500
+          ],
+          "normals": [
+            -0,
+            -1,
+            -0,
+            -0,
+            -1,
+            -0,
+            -0,
+            -1,
+            -0,
+            -0,
+            -1,
+            -0,
+            -0,
+            -1,
+            -0,
+            -0,
+            -1,
+            -0,
+            1,
+            -0,
+            -0,
+            1,
+            -0,
+            -0,
+            1,
+            -0,
+            -0,
+            1,
+            -0,
+            -0,
+            1,
+            -0,
+            -0,
+            1,
+            -0,
+            -0,
+            -0,
+            1,
+            -0,
+            -0,
+            1,
+            -0,
+            -0,
+            1,
+            -0,
+            -0,
+            1,
+            -0,
+            -0,
+            1,
+            -0,
+            -0,
+            1,
+            -0,
+            -1,
+            -0,
+            0,
+            -1,
+            -0,
+            0,
+            -1,
+            -0,
+            0,
+            -1,
+            -0,
+            0,
+            -1,
+            -0,
+            0,
+            -1,
+            -0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            -1
+          ],
+          "indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35
+          ]
+        }
+      ]
+    },
+    {
+      "type": "lookAt",
+      "id": "main-lookAt",
+      "eye": {
+        "x": 8100,
+        "y": 300,
+        "z": 7500
+      },
+      "look": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "up": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      },
+      "nodes": [{
+        "type": "camera",
+        "id": "main-camera",
+        "optics": {
+          "type": "perspective",
+          "far": 44172.390625,
+          "near": 7.362065315246582,
+          "aspect": 1,
+          "fovy": 37.8493
+        },
+        "nodes": [{
+          "type": "renderer",
+          "id": "main-renderer",
+          "clear": {
+            "color": true,
+            "depth": true,
+            "stencil": false
+          },
+          "clearColor": {
+            "r": 0.2,
+            "g": 0.2,
+            "b": 0.2,
+            "a": 0
+          },
+          "nodes": [
+            {
+              "type": "light",
+              "id": "sun-light",
+              "mode": "dir",
+              "color": {
+                "r": 0.8,
+                "g": 0.8,
+                "b": 0.8
+              },
+              "dir": {
+                "x": -0.5,
+                "y": -0.5,
+                "z": -1
+              },
+              "diffuse": true,
+              "specular": true
+            },
+            {
+              "type": "tag",
+              "tag": "wall",
+              "id": "wall",
+              "nodes": [{
+                "type": "material",
+                "coreId": "WallMaterial",
+                "nodes": [{
+                  "type": "name",
+                  "id": "3Ep4r0uuX5ywPYOUG2H2A4",
+                  "nodes": [{
+                    "type": "geometry",
+                    "coreId": "3Ep4r0uuX5ywPYOUG2H2A4"
+                  }]
+                }]
+              }]
+            }
+          ]
+        }]
+      }]
+    }
+  ],
+  "data": {
+    "bounds": [
+      5400,
+      200,
+      5000
+    ],
+    "unit": "0.0010 millimeter",
+    "ifcTypes": ["Wall"],
+    "relationships": [{
+      "type": "Project",
+      "name": "Default Project",
+      "id": "2o1ykWxGT4ZxPjHNe4gayR",
+      "decomposedBy": [{
+        "type": "Site",
+        "name": "Default Site",
+        "id": "0X4tGlJqHCcwlHMZaCq8EN",
+        "decomposedBy": [{
+          "type": "Building",
+          "name": "Default Building",
+          "id": "1MW5jGD1fBiRPPs7T9I5O8",
+          "decomposedBy": [{
+            "type": "BuildingStorey",
+            "name": "Default Building Storey",
+            "id": "36_p3GiZXEHxQ3gWcOhQPE",
+            "decomposedBy": [],
+            "definedBy": [],
+            "contains": [{
+              "type": "Wall",
+              "name": "Wall xyz",
+              "id": "3Ep4r0uuX5ywPYOUG2H2A4"
+            }]
+          }],
+          "definedBy": [],
+          "contains": []
+        }],
+        "definedBy": [],
+        "contains": []
+      }],
+      "definedBy": []
+    }],
+    "properties": {
+      "2o1ykWxGT4ZxPjHNe4gayR": {
+        "Owner History": {
+          "Owning User": {
+            "The Person": {},
+            "The Organization": {}
+          },
+          "Owning Application": {},
+          "State": "NULL",
+          "Change Action": "ADDED",
+          "Creation Date": 1232965595
+        },
+        "Description": "Description of Default Project",
+        "Is Defined By": [{"link": "3YOXzdFg99c9VH8in6w9Vy"}],
+        "Representation Contexts": [null]
+      },
+      "0X4tGlJqHCcwlHMZaCq8EN": {
+        "Owner History": {
+          "Owning User": {
+            "The Person": {},
+            "The Organization": {}
+          },
+          "Owning Application": {},
+          "State": "NULL",
+          "Change Action": "ADDED",
+          "Creation Date": 1232965595
+        },
+        "Description": "Description of Default Site",
+        "Is Defined By": [{"link": "3YOXzdFg99c9VH8in6w9Vy"}],
+        "Composition Type": "ELEMENT",
+        "Ref Latitude": [
+          "24",
+          "28",
+          "0"
+        ],
+        "Ref Longtitude": [
+          "54",
+          "25",
+          "0"
+        ],
+        "Ref Elevation": "$"
+      },
+      "1MW5jGD1fBiRPPs7T9I5O8": {
+        "Owner History": {
+          "Owning User": {
+            "The Person": {},
+            "The Organization": {}
+          },
+          "Owning Application": {},
+          "State": "NULL",
+          "Change Action": "ADDED",
+          "Creation Date": 1232965595
+        },
+        "Description": "Description of Default Building",
+        "Is Defined By": [{"link": "25vm3AeoPCrRF1YMw3b2pU"}],
+        "Composition Type": "ELEMENT",
+        "Elevation of Ref Height": "$",
+        "Elevation of Terrain": "$"
+      },
+      "36_p3GiZXEHxQ3gWcOhQPE": {
+        "Owner History": {
+          "Owning User": {
+            "The Person": {},
+            "The Organization": {}
+          },
+          "Owning Application": {},
+          "State": "NULL",
+          "Change Action": "ADDED",
+          "Creation Date": 1232965595
+        },
+        "Description": "Description of Default Building Storey",
+        "Is Defined By": [{"link": "1PCeFNJzzCWO7$TroSEmGr"}],
+        "Composition Type": "ELEMENT",
+        "Contains Elements": [{"link": "2m$RhK6IP2zh0BtKz5RbtU"}],
+        "Elevation": "0"
+      },
+      "3Ep4r0uuX5ywPYOUG2H2A4": {
+        "Owner History": {
+          "Owning User": {
+            "The Person": {},
+            "The Organization": {}
+          },
+          "Owning Application": {},
+          "State": "NULL",
+          "Change Action": "ADDED",
+          "Creation Date": 1232965595
+        },
+        "Description": "Description of Wall"
+      }
+    }
+  }
+}
