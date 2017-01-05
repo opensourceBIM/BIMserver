@@ -16,6 +16,7 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
+import java.util.Date;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -39,6 +40,7 @@ public class SPluginBundleVersion implements SDataBase
 	private byte[] icon;
 	private java.lang.String organization;
 	private java.lang.String name;
+	private java.util.Date date;
 
 	public long getOid() {
 		return this.oid;
@@ -96,6 +98,9 @@ public class SPluginBundleVersion implements SDataBase
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
+		if (sField.getName().equals("date")) {
+			return getDate();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -144,6 +149,10 @@ public class SPluginBundleVersion implements SDataBase
 		}
 		if (sField.getName().equals("name")) {
 			setName((String)val);
+			return;
+		}
+		if (sField.getName().equals("date")) {
+			setDate((Date)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -235,6 +244,14 @@ public class SPluginBundleVersion implements SDataBase
 
 	public void setName(java.lang.String name) {
 		this.name = name;
+	}
+	
+	public java.util.Date getDate() {
+		return date;
+	}
+
+	public void setDate(java.util.Date date) {
+		this.date = date;
 	}
 	
 	@Override

@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.store.impl;
 
+import java.util.Date;
 import org.bimserver.emf.IdEObjectImpl;
 
 import org.bimserver.models.store.PluginBundleType;
@@ -42,6 +43,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getIcon <em>Icon</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getOrganization <em>Organization</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginBundleVersionImpl#getDate <em>Date</em>}</li>
  * </ul>
  *
  * @generated
@@ -254,6 +256,24 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 */
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getDate() {
+		return (Date) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__DATE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDate(Date newDate) {
+		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__DATE, newDate);
 	}
 
 } //PluginBundleVersionImpl

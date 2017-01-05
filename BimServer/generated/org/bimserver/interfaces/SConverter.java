@@ -10682,6 +10682,7 @@ public class SConverter {
 		result.setIcon(input.getIcon());
 		result.setOrganization(input.getOrganization());
 		result.setName(input.getName());
+		result.setDate(input.getDate());
 		return result;
 	}
 
@@ -10717,6 +10718,7 @@ public class SConverter {
 		result.setIcon(input.getIcon());
 		result.setOrganization(input.getOrganization());
 		result.setName(input.getName());
+		result.setDate(input.getDate());
 		return result;
 	}
 		public SPluginBundleType convertToSObject(PluginBundleType input) {

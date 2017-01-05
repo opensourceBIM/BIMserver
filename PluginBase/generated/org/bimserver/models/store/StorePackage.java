@@ -6300,13 +6300,22 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_BUNDLE_VERSION__NAME = 9;
 
 	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_BUNDLE_VERSION__DATE = 10;
+
+	/**
 	 * The number of structural features of the '<em>Plugin Bundle Version</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_BUNDLE_VERSION_FEATURE_COUNT = 10;
+	int PLUGIN_BUNDLE_VERSION_FEATURE_COUNT = 11;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginBundleImpl <em>Plugin Bundle</em>}' class.
@@ -12940,6 +12949,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getPluginBundleVersion_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginBundleVersion#getDate <em>Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Date</em>'.
+	 * @see org.bimserver.models.store.PluginBundleVersion#getDate()
+	 * @see #getPluginBundleVersion()
+	 * @generated
+	 */
+	EAttribute getPluginBundleVersion_Date();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginBundle <em>Plugin Bundle</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18279,6 +18299,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLUGIN_BUNDLE_VERSION__NAME = eINSTANCE.getPluginBundleVersion_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_BUNDLE_VERSION__DATE = eINSTANCE.getPluginBundleVersion_Date();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginBundleImpl <em>Plugin Bundle</em>}' class.

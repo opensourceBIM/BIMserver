@@ -347,6 +347,7 @@ public class BimServer {
 								current.setVersion(sPluginBundleVersion.getVersion());
 								current.setOrganization(sPluginBundleVersion.getOrganization());
 								current.setName(sPluginBundleVersion.getName());
+								current.setDate(sPluginBundleVersion.getDate());
 								
 								session.store(current);
 								
@@ -546,6 +547,7 @@ public class BimServer {
 							pluginBundleVersion.setVersion(sPluginBundleVersion.getVersion());
 							pluginBundleVersion.setOrganization(sPluginBundleVersion.getOrganization());
 							pluginBundleVersion.setName(sPluginBundleVersion.getName());
+							pluginBundleVersion.setDate(sPluginBundleVersion.getDate());
 							
 							session.commit();
 							return pluginBundleVersion.getOid();

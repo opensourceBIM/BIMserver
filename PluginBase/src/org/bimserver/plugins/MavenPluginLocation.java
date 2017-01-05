@@ -1,5 +1,7 @@
 package org.bimserver.plugins;
 
+import java.io.ByteArrayInputStream;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -23,6 +25,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
@@ -43,6 +47,7 @@ import java.nio.file.Path;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.model.Model;
@@ -63,9 +68,12 @@ import org.eclipse.aether.resolution.VersionRangeRequest;
 import org.eclipse.aether.resolution.VersionRangeResolutionException;
 import org.eclipse.aether.resolution.VersionRangeResult;
 import org.eclipse.aether.version.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(MavenPluginLocation.class);
 	private String defaultrepository;
 	private String groupId;
 	private String artifactId;
@@ -132,9 +140,8 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 					request.setArtifact(descriptorResult.getArtifact());
 					request.setRepositories(mavenPluginRepository.getRepositories());
 					ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
-
+					
 					File pomFile = resolveArtifact.getArtifact().getFile();
-
 					MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 
 					try {
@@ -179,6 +186,17 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 	public Path getVersionIcon(String version) throws ArtifactResolutionException {
 		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "icon", "png", version.toString());
+		
+		ArtifactRequest request = new ArtifactRequest();
+		request.setArtifact(versionArtifact);
+		request.setRepositories(mavenPluginRepository.getRepositories());
+		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+		
+		return resolveArtifact.getArtifact().getFile().toPath();
+	}
+
+	public Path getVersionDate(String version) throws ArtifactResolutionException {
+		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "version", "properties", version.toString());
 		
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(versionArtifact);
@@ -270,6 +288,20 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 				sPluginBundleVersion.setIcon(Files.readAllBytes(icon));
 			} catch (ArtifactResolutionException e) {
 				// Not a problem
+			}
+			try {
+				Path date = getVersionDate(version);
+				byte[] bytes = Files.readAllBytes(date);
+				Properties properties = new Properties();
+				properties.load(new ByteArrayInputStream(bytes));
+				String buildDateString = properties.getProperty("build.date");
+				
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+				sPluginBundleVersion.setDate(dateFormat.parse(buildDateString));
+			} catch (ArtifactResolutionException e) {
+				// Not a problem
+			} catch (Exception e) {
+				LOGGER.error("", e);
 			}
 
 			return sPluginBundleVersion;

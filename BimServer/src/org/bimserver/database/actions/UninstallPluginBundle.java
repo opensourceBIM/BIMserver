@@ -11,16 +11,16 @@ import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UninstallPlugin extends BimDatabaseAction<Void> {
+public class UninstallPluginBundle extends BimDatabaseAction<Void> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(UninstallPlugin.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(UninstallPluginBundle.class);
 	private BimServer bimServer;
 	private String groupId;
 	private String artifactId;
 	private String version;
 	private String repository;
 
-	public UninstallPlugin(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String repository, String groupId, String artifactId, String version) {
+	public UninstallPluginBundle(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String repository, String groupId, String artifactId, String version) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.repository = repository;

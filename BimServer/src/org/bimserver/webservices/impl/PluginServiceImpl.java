@@ -77,7 +77,7 @@ import org.bimserver.database.actions.InstallPluginBundleFromBytes;
 import org.bimserver.database.actions.ListWebModulesDatabaseAction;
 import org.bimserver.database.actions.SetPluginSettingsDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
-import org.bimserver.database.actions.UninstallPlugin;
+import org.bimserver.database.actions.UninstallPluginBundle;
 import org.bimserver.database.actions.UpdateDatabaseAction;
 import org.bimserver.database.actions.UpdateDeserializerDatabaseAction;
 import org.bimserver.database.actions.UpdateModelCompareDatabaseAction;
@@ -1515,7 +1515,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			session.executeAndCommitAction(new UninstallPlugin(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version));
+			session.executeAndCommitAction(new UninstallPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

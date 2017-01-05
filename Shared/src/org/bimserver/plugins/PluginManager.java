@@ -1474,6 +1474,9 @@ public class PluginManager implements PluginManagerInterface {
 
 	public void uninstall(PluginBundleVersionIdentifier pluginBundleVersionIdentifier) {
 		PluginBundle pluginBundle = pluginBundleVersionIdentifierToPluginBundle.get(pluginBundleVersionIdentifier);
+		if (pluginBundle == null) {
+			return;
+		}
 		try {
 			pluginBundle.close();
 			pluginBundleVersionIdentifierToPluginBundle.remove(pluginBundleVersionIdentifier);
@@ -1588,7 +1591,7 @@ public class PluginManager implements PluginManagerInterface {
 						LOGGER.info("Skipping strict dependency checking for dependency " + dependency.getArtifactId());
 					}
 				} else {
-					if (pluginBundleIdentifier.getGroupId().equals("org.opensourcebim")) {
+					if (dependency.getGroupId().equals("org.opensourcebim") && (dependency.getArtifactId().equals("shared") || dependency.getArtifactId().equals("pluginbase"))) {
 						throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
 					} else {
 						MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(model.getRepositories().get(0).getUrl(), dependency.getGroupId(), dependency.getArtifactId());

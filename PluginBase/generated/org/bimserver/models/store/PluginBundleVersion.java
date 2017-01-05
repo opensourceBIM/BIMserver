@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.store;
 
+import java.util.Date;
 import org.bimserver.emf.IdEObject;
 
 /**
@@ -37,6 +38,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getIcon <em>Icon</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getOrganization <em>Organization</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginBundleVersion#getDate <em>Date</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getPluginBundleVersion()
@@ -307,5 +309,31 @@ public interface PluginBundleVersion extends IdEObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Date</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Date</em>' attribute.
+	 * @see #setDate(Date)
+	 * @see org.bimserver.models.store.StorePackage#getPluginBundleVersion_Date()
+	 * @model
+	 * @generated
+	 */
+	Date getDate();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginBundleVersion#getDate <em>Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Date</em>' attribute.
+	 * @see #getDate()
+	 * @generated
+	 */
+	void setDate(Date value);
 
 } // PluginBundleVersion
