@@ -701,6 +701,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				}
 				return result;
 			} catch (BimserverConcurrentModificationDatabaseException e) {
+				LOGGER.info("BimserverConcurrentModificationDatabaseException");
 				if (progressHandler != null) {
 					progressHandler.retry(i + 1);
 				}
