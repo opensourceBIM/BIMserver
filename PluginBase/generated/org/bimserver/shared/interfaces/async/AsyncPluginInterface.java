@@ -1338,11 +1338,11 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void installPluginBundleFromFile(final javax.activation.DataHandler data, final InstallPluginBundleFromFileCallback callback) {
+	public void installPluginBundleFromFile(final javax.activation.DataHandler data, final java.lang.Boolean installAllPluginsForAllUsers, final java.lang.Boolean installAllPluginsForNewUsers, final InstallPluginBundleFromFileCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.installPluginBundleFromFile(data);
+					syncService.installPluginBundleFromFile(data, installAllPluginsForAllUsers, installAllPluginsForNewUsers);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
@@ -1351,11 +1351,11 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void installPluginBundleFromUrl(final java.lang.String url, final InstallPluginBundleFromUrlCallback callback) {
+	public void installPluginBundleFromUrl(final java.lang.String url, final java.lang.Boolean installAllPluginsForAllUsers, final java.lang.Boolean installAllPluginsForNewUsers, final InstallPluginBundleFromUrlCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					syncService.installPluginBundleFromUrl(url);
+					syncService.installPluginBundleFromUrl(url, installAllPluginsForAllUsers, installAllPluginsForNewUsers);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

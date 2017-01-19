@@ -1,5 +1,5 @@
 
-ÃÓ
+éÔ
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"b
 AddDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration">
@@ -235,23 +235,24 @@ settingsId ("p
 GetAllWebModulesResponse
 errorMessage (	>
 value (2/.org.bimserver.pb.SWebModulePluginConfiguration""
- GetAvailablePluginBundlesRequest"†
+ GetAvailablePluginBundlesRequest"”
 SPluginBundleVersion
 
-artifactId (	
-description (	
-groupId (	
-icon (
-mismatch (
-name (	
-oid (
-organization (	
+artifactId (	
+date (
+description (	
+groupId (	
+icon (
+mismatch (
+name (	
+oid (
+organization	 (	
 
-repository	 (	
-rid
- (1
-type (2#.org.bimserver.pb.SPluginBundleType
-version (	"‘
+repository
+ (	
+rid (1
+type (2#.org.bimserver.pb.SPluginBundleType
+version (	"‘
 SPluginBundleA
 availableVersions (2&.org.bimserver.pb.SPluginBundleVersion@
 installedVersion (2&.org.bimserver.pb.SPluginBundleVersion=
@@ -492,11 +493,15 @@ repository (	
 
 artifactId (	
 version (	5
-plugins (2$.org.bimserver.pb.SPluginInformation"2
+plugins (2$.org.bimserver.pb.SPluginInformation"~
 "InstallPluginBundleFromFileRequest
-data ("0
+data ($
+installAllPluginsForAllUsers ($
+installAllPluginsForNewUsers ("|
 !InstallPluginBundleFromUrlRequest
-url (	"
+url (	$
+installAllPluginsForAllUsers ($
+installAllPluginsForNewUsers ("
 ListAllWebModulesRequest"q
 ListAllWebModulesResponse
 errorMessage (	>

@@ -1158,6 +1158,19 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
+	public List<SPluginInformation> getPluginInformationFromJar(InputStream jarInputStream) throws PluginException, FileNotFoundException, IOException, JAXBException {
+		try (JarInputStream jarInputStream2 = new JarInputStream(jarInputStream)) {
+			JarEntry next = jarInputStream2.getNextJarEntry();
+			while (next != null) {
+				if (next.getName().equals("plugin/plugin.xml")) {
+					return getPluginInformationFromPluginFile(jarInputStream2);
+				}
+				next = jarInputStream2.getNextJarEntry();
+			}
+		}
+		return null;
+	}
+
 	public List<SPluginInformation> getPluginInformationFromPluginFile(InputStream inputStream) throws PluginException, FileNotFoundException, IOException, JAXBException {
 		PluginDescriptor pluginDescriptor = getPluginDescriptor(inputStream);
 		if (pluginDescriptor == null) {

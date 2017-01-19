@@ -626,11 +626,15 @@ public interface PluginInterface extends PublicInterface {
 
 	@WebMethod(action = "installPluginBundleFromFile")
 	void installPluginBundleFromFile(
-		@WebParam(name = "data", partName = "installPluginBundleFromFile.data") @XmlMimeType("application/octet-stream") DataHandler data) throws UserException, ServerException;
+		@WebParam(name = "data", partName = "installPluginBundleFromFile.data") @XmlMimeType("application/octet-stream") DataHandler data,
+		@WebParam(name = "installAllPluginsForAllUsers", partName = "installPluginBundleFromFile.installAllPluginsForAllUsers") Boolean installAllPluginsForAllUsers, 
+		@WebParam(name = "installAllPluginsForNewUsers", partName = "installPluginBundleFromFile.installAllPluginsForNewUsers") Boolean installAllPluginsForNewUsers) throws UserException, ServerException;
 
 	@WebMethod(action = "installPluginBundleFromUrl")
 	void installPluginBundleFromUrl(
-		@WebParam(name = "url", partName = "installPluginBundleFromUrl.url") String url) throws UserException, ServerException;
+		@WebParam(name = "url", partName = "installPluginBundleFromUrl.url") String url,
+		@WebParam(name = "installAllPluginsForAllUsers", partName = "installPluginBundleFromUrl.installAllPluginsForAllUsers") Boolean installAllPluginsForAllUsers, 
+		@WebParam(name = "installAllPluginsForNewUsers", partName = "installPluginBundleFromUrl.installAllPluginsForNewUsers") Boolean installAllPluginsForNewUsers) throws UserException, ServerException;
 
 	@WebMethod(action = "uninstallPluginBundle")
 	void uninstallPluginBundle(

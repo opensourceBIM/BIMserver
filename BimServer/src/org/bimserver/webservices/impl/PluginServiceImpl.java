@@ -1458,7 +1458,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 	}
 
-	public void installPluginBundleFromFile(DataHandler file) throws UserException, ServerException {
+	public void installPluginBundleFromFile(DataHandler file, Boolean installAllPluginsForAllUsers, Boolean installAllPluginsForNewUsers) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -1472,7 +1472,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 	}
 	
-	public void installPluginBundleFromUrl(String url) throws UserException, ServerException {
+	public void installPluginBundleFromUrl(String url, Boolean installAllPluginsForAllUsers, Boolean installAllPluginsForNewUsers) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
