@@ -20,11 +20,15 @@ public class InstallPluginBundleFromBytes extends BimDatabaseAction<Void> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(InstallPluginBundleFromBytes.class);
 	private BimServer bimServer;
 	private byte[] data;
+	private Boolean installAllPluginsForAllUsers;
+	private Boolean installAllPluginsForNewUsers;
 
-	public InstallPluginBundleFromBytes(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, byte[] data) {
+	public InstallPluginBundleFromBytes(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, byte[] data, Boolean installAllPluginsForAllUsers, Boolean installAllPluginsForNewUsers) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.data = data;
+		this.installAllPluginsForAllUsers = installAllPluginsForAllUsers;
+		this.installAllPluginsForNewUsers = installAllPluginsForNewUsers;
 	}
 
 	@Override
@@ -35,10 +39,14 @@ public class InstallPluginBundleFromBytes extends BimDatabaseAction<Void> {
 			List<SPluginInformation> pluginInformationFromPluginFile = bimServer.getPluginManager().getPluginInformationFromJar(new ByteArrayInputStream(data));
 			for (SPluginInformation sPluginInformation : pluginInformationFromPluginFile) {
 				sPluginInformation.setEnabled(true);
-				sPluginInformation.setInstallForAllUsers(true);
-				sPluginInformation.setInstallForNewUsers(true);
+				if (installAllPluginsForAllUsers) {
+					sPluginInformation.setInstallForAllUsers(true);
+				}
+				if (installAllPluginsForNewUsers) {
+					sPluginInformation.setInstallForNewUsers(true);
+				}
 			}
-			bimServer.getPluginManager().install(mavenPluginBundle, null, false);
+			bimServer.getPluginManager().install(mavenPluginBundle, pluginInformationFromPluginFile, false);
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			throw new UserException(e);

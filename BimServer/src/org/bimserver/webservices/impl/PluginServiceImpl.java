@@ -1464,7 +1464,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		try {
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 			IOUtils.copy(file.getInputStream(), byteArrayOutputStream);
-			session.executeAndCommitAction(new InstallPluginBundleFromBytes(session, getInternalAccessMethod(), getBimServer(), byteArrayOutputStream.toByteArray()));
+			session.executeAndCommitAction(new InstallPluginBundleFromBytes(session, getInternalAccessMethod(), getBimServer(), byteArrayOutputStream.toByteArray(), installAllPluginsForAllUsers, installAllPluginsForNewUsers));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -1477,7 +1477,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			byte[] data = NetUtils.getContentAsBytes(new URL(url), 5000);
-			session.executeAndCommitAction(new InstallPluginBundleFromBytes(session, getInternalAccessMethod(), getBimServer(), data));
+			session.executeAndCommitAction(new InstallPluginBundleFromBytes(session, getInternalAccessMethod(), getBimServer(), data, installAllPluginsForAllUsers, installAllPluginsForNewUsers));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
