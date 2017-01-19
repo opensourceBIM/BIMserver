@@ -1,9 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.opensourcebim</groupId>
 	<artifactId>Tests</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<parent>
+		<groupId>org.opensourcebim</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.5.64-SNAPSHOT</version>
+	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
@@ -18,7 +22,6 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -44,7 +47,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
-			<artifactId>bimserver</artifactId>
+			<artifactId>bimserverjar</artifactId>
 			<version>1.5.64-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

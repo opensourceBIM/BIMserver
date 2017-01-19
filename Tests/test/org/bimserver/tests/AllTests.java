@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
+import org.bimserver.EmbeddedWebServer;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
@@ -99,20 +100,22 @@ public class AllTests {
 		
 		bimServer = new BimServer(config);
 		try {
+			bimServer.setEmbeddedWebServer(new EmbeddedWebServer(bimServer, Paths.get("."), false));
+
 			// CHANGE THESE TO MATCH YOUR CONFIGURATION
-			Path[] pluginDirectories = new Path[]{Paths.get("D:\\Git\\BIMserverMaster")};
+			Path[] pluginDirectories = new Path[]{Paths.get("C:\\Git\\IfcPlugins\\IfcPlugins"), Paths.get("C:\\Git\\IfcOpenShell-BIMserver-plugin")};
 			
+			// Start it
+			bimServer.start();
+
 			// Load plugins
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 
-			// Start it
-			bimServer.start();
-			
 			// Get a client, not using any protocol (direct connection)
 			BimServerClientInterface client = bimServer.getBimServerClientFactory().create();
 
 			// Setup the server
-			client.getAdminInterface().setup("http://localhost:8080", "Administrator", "admin@bimserver.org", "admin", null, null, null);
+			client.getAdminInterface().setup("http://localhost:8080", "Test Name", "Test Description", "noicon", "Administrator", "admin@bimserver.org", "admin");
 			
 			client.disconnect();
 		} catch (Exception e) {
