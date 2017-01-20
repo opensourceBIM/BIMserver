@@ -188,8 +188,7 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLogicalOperatorEnum[] VALUES_ARRAY = new IfcLogicalOperatorEnum[] { NULL, LOGICALXOR,
-			LOGICALOR, LOGICALNOTOR, LOGICALAND, LOGICALNOTAND, };
+	private static final IfcLogicalOperatorEnum[] VALUES_ARRAY = new IfcLogicalOperatorEnum[] { NULL, LOGICALXOR, LOGICALOR, LOGICALNOTOR, LOGICALAND, LOGICALNOTAND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Logical Operator Enum</b></em>' enumerators.

@@ -43,13 +43,14 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 	private static BimServerClientInterface bimServerClient;
 
 	@BeforeClass
-	public static void setup() {
+	public static void setup() throws Exception {
 		try {
 			ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
 			protocolBuffersMetaData.load(null, ProtocolBuffersBimServerClientFactory.class); // TODO
-			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData, null, new SServicesMap());
-			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
-			bimServerClient = factory.create(usernamePasswordAuthenticationInfo);
+			try (BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData, null, new SServicesMap())) {
+				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
+				bimServerClient = factory.create(usernamePasswordAuthenticationInfo);
+			}
 		} catch (ChannelConnectionException e1) {
 			e1.printStackTrace();
 		} catch (ServerException e) {

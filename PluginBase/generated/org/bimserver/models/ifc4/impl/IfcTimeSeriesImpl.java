@@ -282,8 +282,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_TIME_SERIES__HAS_EXTERNAL_REFERENCE, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_TIME_SERIES__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**

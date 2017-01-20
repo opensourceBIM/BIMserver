@@ -65,8 +65,8 @@ public class IfcBSplineCurveImpl extends IfcBoundedCurveImpl implements IfcBSpli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getDegree() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_BSPLINE_CURVE__DEGREE, true);
+	public long getDegree() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_BSPLINE_CURVE__DEGREE, true);
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class IfcBSplineCurveImpl extends IfcBoundedCurveImpl implements IfcBSpli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDegree(int newDegree) {
+	public void setDegree(long newDegree) {
 		eSet(Ifc4Package.Literals.IFC_BSPLINE_CURVE__DEGREE, newDegree);
 	}
 

@@ -269,8 +269,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl implem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesLibrary> getLibraryInfoForObjects() {
-		return (EList<IfcRelAssociatesLibrary>) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__LIBRARY_INFO_FOR_OBJECTS, true);
+		return (EList<IfcRelAssociatesLibrary>) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__LIBRARY_INFO_FOR_OBJECTS, true);
 	}
 
 	/**
@@ -298,8 +297,7 @@ public class IfcLibraryInformationImpl extends IfcExternalInformationImpl implem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLibraryReference> getHasLibraryReferences() {
-		return (EList<IfcLibraryReference>) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__HAS_LIBRARY_REFERENCES,
-				true);
+		return (EList<IfcLibraryReference>) eGet(Ifc4Package.Literals.IFC_LIBRARY_INFORMATION__HAS_LIBRARY_REFERENCES, true);
 	}
 
 	/**

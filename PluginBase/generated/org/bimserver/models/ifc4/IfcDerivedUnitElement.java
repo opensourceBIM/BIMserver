@@ -72,12 +72,12 @@ public interface IfcDerivedUnitElement extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Exponent</em>' attribute.
-	 * @see #setExponent(int)
+	 * @see #setExponent(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDerivedUnitElement_Exponent()
 	 * @model
 	 * @generated
 	 */
-	int getExponent();
+	long getExponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcDerivedUnitElement#getExponent <em>Exponent</em>}' attribute.
@@ -87,6 +87,6 @@ public interface IfcDerivedUnitElement extends IdEObject {
 	 * @see #getExponent()
 	 * @generated
 	 */
-	void setExponent(int value);
+	void setExponent(long value);
 
 } // IfcDerivedUnitElement

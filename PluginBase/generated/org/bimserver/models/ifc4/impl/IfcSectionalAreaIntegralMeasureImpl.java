@@ -116,8 +116,7 @@ public class IfcSectionalAreaIntegralMeasureImpl extends IdEObjectImpl implement
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc4Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE_AS_STRING,
-				newWrappedValueAsString);
+		eSet(Ifc4Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
 	}
 
 	/**

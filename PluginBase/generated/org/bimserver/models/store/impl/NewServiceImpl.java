@@ -17,14 +17,12 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.Action;
 import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServiceStatus;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

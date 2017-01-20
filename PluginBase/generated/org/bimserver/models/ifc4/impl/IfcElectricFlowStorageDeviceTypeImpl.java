@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElectricFlowStorageDeviceTypeImpl extends IfcFlowStorageDeviceTypeImpl
-		implements IfcElectricFlowStorageDeviceType {
+public class IfcElectricFlowStorageDeviceTypeImpl extends IfcFlowStorageDeviceTypeImpl implements IfcElectricFlowStorageDeviceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcElectricFlowStorageDeviceTypeImpl extends IfcFlowStorageDeviceTy
 	 * @generated
 	 */
 	public IfcElectricFlowStorageDeviceTypeEnum getPredefinedType() {
-		return (IfcElectricFlowStorageDeviceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_ELECTRIC_FLOW_STORAGE_DEVICE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcElectricFlowStorageDeviceTypeEnum) eGet(Ifc4Package.Literals.IFC_ELECTRIC_FLOW_STORAGE_DEVICE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

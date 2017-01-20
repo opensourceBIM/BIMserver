@@ -69,8 +69,8 @@ public class IfcDaylightSavingHourImpl extends IdEObjectImpl implements IfcDayli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getWrappedValue() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_DAYLIGHT_SAVING_HOUR__WRAPPED_VALUE, true);
+	public long getWrappedValue() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_DAYLIGHT_SAVING_HOUR__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class IfcDaylightSavingHourImpl extends IdEObjectImpl implements IfcDayli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWrappedValue(int newWrappedValue) {
+	public void setWrappedValue(long newWrappedValue) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_DAYLIGHT_SAVING_HOUR__WRAPPED_VALUE, newWrappedValue);
 	}
 

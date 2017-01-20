@@ -73,12 +73,12 @@ public interface IfcMaterialProfileSetUsage extends IfcMaterialUsageDefinition {
 	 * @return the value of the '<em>Cardinal Point</em>' attribute.
 	 * @see #isSetCardinalPoint()
 	 * @see #unsetCardinalPoint()
-	 * @see #setCardinalPoint(int)
+	 * @see #setCardinalPoint(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialProfileSetUsage_CardinalPoint()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	int getCardinalPoint();
+	long getCardinalPoint();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcMaterialProfileSetUsage#getCardinalPoint <em>Cardinal Point</em>}' attribute.
@@ -90,7 +90,7 @@ public interface IfcMaterialProfileSetUsage extends IfcMaterialUsageDefinition {
 	 * @see #getCardinalPoint()
 	 * @generated
 	 */
-	void setCardinalPoint(int value);
+	void setCardinalPoint(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcMaterialProfileSetUsage#getCardinalPoint <em>Cardinal Point</em>}' attribute.
@@ -98,7 +98,7 @@ public interface IfcMaterialProfileSetUsage extends IfcMaterialUsageDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetCardinalPoint()
 	 * @see #getCardinalPoint()
-	 * @see #setCardinalPoint(int)
+	 * @see #setCardinalPoint(long)
 	 * @generated
 	 */
 	void unsetCardinalPoint();
@@ -110,7 +110,7 @@ public interface IfcMaterialProfileSetUsage extends IfcMaterialUsageDefinition {
 	 * @return whether the value of the '<em>Cardinal Point</em>' attribute is set.
 	 * @see #unsetCardinalPoint()
 	 * @see #getCardinalPoint()
-	 * @see #setCardinalPoint(int)
+	 * @see #setCardinalPoint(long)
 	 * @generated
 	 */
 	boolean isSetCardinalPoint();

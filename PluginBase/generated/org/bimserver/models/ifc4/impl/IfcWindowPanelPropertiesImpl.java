@@ -68,8 +68,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl i
 	 * @generated
 	 */
 	public IfcWindowPanelOperationEnum getOperationType() {
-		return (IfcWindowPanelOperationEnum) eGet(Ifc4Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__OPERATION_TYPE,
-				true);
+		return (IfcWindowPanelOperationEnum) eGet(Ifc4Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__OPERATION_TYPE, true);
 	}
 
 	/**
@@ -87,8 +86,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl i
 	 * @generated
 	 */
 	public IfcWindowPanelPositionEnum getPanelPosition() {
-		return (IfcWindowPanelPositionEnum) eGet(Ifc4Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__PANEL_POSITION,
-				true);
+		return (IfcWindowPanelPositionEnum) eGet(Ifc4Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__PANEL_POSITION, true);
 	}
 
 	/**

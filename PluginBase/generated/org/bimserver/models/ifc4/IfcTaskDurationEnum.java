@@ -138,8 +138,7 @@ public enum IfcTaskDurationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTaskDurationEnum[] VALUES_ARRAY = new IfcTaskDurationEnum[] { NULL, ELAPSEDTIME, NOTDEFINED,
-			WORKTIME, };
+	private static final IfcTaskDurationEnum[] VALUES_ARRAY = new IfcTaskDurationEnum[] { NULL, ELAPSEDTIME, NOTDEFINED, WORKTIME, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Task Duration Enum</b></em>' enumerators.

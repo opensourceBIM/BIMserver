@@ -61,8 +61,7 @@ public class IfcRelSpaceBoundary1stLevelImpl extends IfcRelSpaceBoundaryImpl imp
 	 * @generated
 	 */
 	public IfcRelSpaceBoundary1stLevel getParentBoundary() {
-		return (IfcRelSpaceBoundary1stLevel) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY1ST_LEVEL__PARENT_BOUNDARY,
-				true);
+		return (IfcRelSpaceBoundary1stLevel) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY1ST_LEVEL__PARENT_BOUNDARY, true);
 	}
 
 	/**
@@ -99,8 +98,7 @@ public class IfcRelSpaceBoundary1stLevelImpl extends IfcRelSpaceBoundaryImpl imp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelSpaceBoundary1stLevel> getInnerBoundaries() {
-		return (EList<IfcRelSpaceBoundary1stLevel>) eGet(
-				Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY1ST_LEVEL__INNER_BOUNDARIES, true);
+		return (EList<IfcRelSpaceBoundary1stLevel>) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY1ST_LEVEL__INNER_BOUNDARIES, true);
 	}
 
 	/**

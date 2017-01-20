@@ -47,12 +47,12 @@ public interface IfcDimensionCount extends IdEObject {
 	 * @return the value of the '<em>Wrapped Value</em>' attribute.
 	 * @see #isSetWrappedValue()
 	 * @see #unsetWrappedValue()
-	 * @see #setWrappedValue(int)
+	 * @see #setWrappedValue(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcDimensionCount_WrappedValue()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	int getWrappedValue();
+	long getWrappedValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcDimensionCount#getWrappedValue <em>Wrapped Value</em>}' attribute.
@@ -64,7 +64,7 @@ public interface IfcDimensionCount extends IdEObject {
 	 * @see #getWrappedValue()
 	 * @generated
 	 */
-	void setWrappedValue(int value);
+	void setWrappedValue(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcDimensionCount#getWrappedValue <em>Wrapped Value</em>}' attribute.
@@ -72,7 +72,7 @@ public interface IfcDimensionCount extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetWrappedValue()
 	 * @see #getWrappedValue()
-	 * @see #setWrappedValue(int)
+	 * @see #setWrappedValue(long)
 	 * @generated
 	 */
 	void unsetWrappedValue();
@@ -84,7 +84,7 @@ public interface IfcDimensionCount extends IdEObject {
 	 * @return whether the value of the '<em>Wrapped Value</em>' attribute is set.
 	 * @see #unsetWrappedValue()
 	 * @see #getWrappedValue()
-	 * @see #setWrappedValue(int)
+	 * @see #setWrappedValue(long)
 	 * @generated
 	 */
 	boolean isSetWrappedValue();

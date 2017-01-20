@@ -44,8 +44,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImpl
-		implements IfcStructuralLoadSingleForce {
+public class IfcStructuralLoadSingleForceImpl extends IfcStructuralLoadStaticImpl implements IfcStructuralLoadSingleForce {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

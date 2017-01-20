@@ -80,12 +80,12 @@ public interface IfcCartesianPoint extends IfcPoint, IfcTrimmingSelect {
 	 * @return the value of the '<em>Dim</em>' attribute.
 	 * @see #isSetDim()
 	 * @see #unsetDim()
-	 * @see #setDim(int)
+	 * @see #setDim(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCartesianPoint_Dim()
 	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
-	int getDim();
+	long getDim();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCartesianPoint#getDim <em>Dim</em>}' attribute.
@@ -97,7 +97,7 @@ public interface IfcCartesianPoint extends IfcPoint, IfcTrimmingSelect {
 	 * @see #getDim()
 	 * @generated
 	 */
-	void setDim(int value);
+	void setDim(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCartesianPoint#getDim <em>Dim</em>}' attribute.
@@ -105,7 +105,7 @@ public interface IfcCartesianPoint extends IfcPoint, IfcTrimmingSelect {
 	 * <!-- end-user-doc -->
 	 * @see #isSetDim()
 	 * @see #getDim()
-	 * @see #setDim(int)
+	 * @see #setDim(long)
 	 * @generated
 	 */
 	void unsetDim();
@@ -117,7 +117,7 @@ public interface IfcCartesianPoint extends IfcPoint, IfcTrimmingSelect {
 	 * @return whether the value of the '<em>Dim</em>' attribute is set.
 	 * @see #unsetDim()
 	 * @see #getDim()
-	 * @see #setDim(int)
+	 * @see #setDim(long)
 	 * @generated
 	 */
 	boolean isSetDim();

@@ -174,8 +174,7 @@ public class IfcLibraryReferenceImpl extends IfcExternalReferenceImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesLibrary> getLibraryRefForObjects() {
-		return (EList<IfcRelAssociatesLibrary>) eGet(
-				Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__LIBRARY_REF_FOR_OBJECTS, true);
+		return (EList<IfcRelAssociatesLibrary>) eGet(Ifc4Package.Literals.IFC_LIBRARY_REFERENCE__LIBRARY_REF_FOR_OBJECTS, true);
 	}
 
 	/**

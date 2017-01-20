@@ -60,8 +60,7 @@ public class IfcDiscreteAccessoryTypeImpl extends IfcElementComponentTypeImpl im
 	 * @generated
 	 */
 	public IfcDiscreteAccessoryTypeEnum getPredefinedType() {
-		return (IfcDiscreteAccessoryTypeEnum) eGet(Ifc4Package.Literals.IFC_DISCRETE_ACCESSORY_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcDiscreteAccessoryTypeEnum) eGet(Ifc4Package.Literals.IFC_DISCRETE_ACCESSORY_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

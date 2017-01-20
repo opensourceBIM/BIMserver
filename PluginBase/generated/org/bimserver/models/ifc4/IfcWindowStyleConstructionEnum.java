@@ -263,8 +263,7 @@ public enum IfcWindowStyleConstructionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWindowStyleConstructionEnum[] VALUES_ARRAY = new IfcWindowStyleConstructionEnum[] { NULL,
-			ALUMINIUM, HIGH_GRADE_STEEL, NOTDEFINED, STEEL, WOOD, ALUMINIUM_WOOD, OTHER_CONSTRUCTION, PLASTIC, };
+	private static final IfcWindowStyleConstructionEnum[] VALUES_ARRAY = new IfcWindowStyleConstructionEnum[] { NULL, ALUMINIUM, HIGH_GRADE_STEEL, NOTDEFINED, STEEL, WOOD, ALUMINIUM_WOOD, OTHER_CONSTRUCTION, PLASTIC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Window Style Construction Enum</b></em>' enumerators.
@@ -272,8 +271,7 @@ public enum IfcWindowStyleConstructionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWindowStyleConstructionEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWindowStyleConstructionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Window Style Construction Enum</b></em>' literal with the specified literal value.

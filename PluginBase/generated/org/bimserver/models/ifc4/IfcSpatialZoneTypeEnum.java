@@ -313,8 +313,7 @@ public enum IfcSpatialZoneTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpatialZoneTypeEnum[] VALUES_ARRAY = new IfcSpatialZoneTypeEnum[] { NULL, TRANSPORT,
-			NOTDEFINED, VENTILATION, FIRESAFETY, CONSTRUCTION, SECURITY, LIGHTING, USERDEFINED, THERMAL, OCCUPANCY, };
+	private static final IfcSpatialZoneTypeEnum[] VALUES_ARRAY = new IfcSpatialZoneTypeEnum[] { NULL, TRANSPORT, NOTDEFINED, VENTILATION, FIRESAFETY, CONSTRUCTION, SECURITY, LIGHTING, USERDEFINED, THERMAL, OCCUPANCY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Spatial Zone Type Enum</b></em>' enumerators.

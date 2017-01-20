@@ -117,8 +117,8 @@ public class IfcBooleanResultImpl extends IfcGeometricRepresentationItemImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_BOOLEAN_RESULT__DIM, true);
+	public long getDim() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_BOOLEAN_RESULT__DIM, true);
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class IfcBooleanResultImpl extends IfcGeometricRepresentationItemImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDim(int newDim) {
+	public void setDim(long newDim) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_BOOLEAN_RESULT__DIM, newDim);
 	}
 

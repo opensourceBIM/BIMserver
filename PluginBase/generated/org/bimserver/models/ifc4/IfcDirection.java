@@ -36,8 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcDirection
-		extends IfcGeometricRepresentationItem, IfcGridPlacementDirectionSelect, IfcVectorOrDirection {
+public interface IfcDirection extends IfcGeometricRepresentationItem, IfcGridPlacementDirectionSelect, IfcVectorOrDirection {
 	/**
 	 * Returns the value of the '<em><b>Direction Ratios</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.Double}.
@@ -81,12 +80,12 @@ public interface IfcDirection
 	 * @return the value of the '<em>Dim</em>' attribute.
 	 * @see #isSetDim()
 	 * @see #unsetDim()
-	 * @see #setDim(int)
+	 * @see #setDim(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDirection_Dim()
 	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
-	int getDim();
+	long getDim();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcDirection#getDim <em>Dim</em>}' attribute.
@@ -98,7 +97,7 @@ public interface IfcDirection
 	 * @see #getDim()
 	 * @generated
 	 */
-	void setDim(int value);
+	void setDim(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcDirection#getDim <em>Dim</em>}' attribute.
@@ -106,7 +105,7 @@ public interface IfcDirection
 	 * <!-- end-user-doc -->
 	 * @see #isSetDim()
 	 * @see #getDim()
-	 * @see #setDim(int)
+	 * @see #setDim(long)
 	 * @generated
 	 */
 	void unsetDim();
@@ -118,7 +117,7 @@ public interface IfcDirection
 	 * @return whether the value of the '<em>Dim</em>' attribute is set.
 	 * @see #unsetDim()
 	 * @see #getDim()
-	 * @see #setDim(int)
+	 * @see #setDim(long)
 	 * @generated
 	 */
 	boolean isSetDim();

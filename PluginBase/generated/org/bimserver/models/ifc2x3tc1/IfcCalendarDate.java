@@ -44,12 +44,12 @@ public interface IfcCalendarDate extends IfcDateTimeSelect, IfcObjectReferenceSe
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Day Component</em>' attribute.
-	 * @see #setDayComponent(int)
+	 * @see #setDayComponent(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCalendarDate_DayComponent()
 	 * @model
 	 * @generated
 	 */
-	int getDayComponent();
+	long getDayComponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCalendarDate#getDayComponent <em>Day Component</em>}' attribute.
@@ -59,7 +59,7 @@ public interface IfcCalendarDate extends IfcDateTimeSelect, IfcObjectReferenceSe
 	 * @see #getDayComponent()
 	 * @generated
 	 */
-	void setDayComponent(int value);
+	void setDayComponent(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Month Component</b></em>' attribute.
@@ -70,12 +70,12 @@ public interface IfcCalendarDate extends IfcDateTimeSelect, IfcObjectReferenceSe
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Month Component</em>' attribute.
-	 * @see #setMonthComponent(int)
+	 * @see #setMonthComponent(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCalendarDate_MonthComponent()
 	 * @model
 	 * @generated
 	 */
-	int getMonthComponent();
+	long getMonthComponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCalendarDate#getMonthComponent <em>Month Component</em>}' attribute.
@@ -85,7 +85,7 @@ public interface IfcCalendarDate extends IfcDateTimeSelect, IfcObjectReferenceSe
 	 * @see #getMonthComponent()
 	 * @generated
 	 */
-	void setMonthComponent(int value);
+	void setMonthComponent(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Year Component</b></em>' attribute.
@@ -96,12 +96,12 @@ public interface IfcCalendarDate extends IfcDateTimeSelect, IfcObjectReferenceSe
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Year Component</em>' attribute.
-	 * @see #setYearComponent(int)
+	 * @see #setYearComponent(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCalendarDate_YearComponent()
 	 * @model
 	 * @generated
 	 */
-	int getYearComponent();
+	long getYearComponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCalendarDate#getYearComponent <em>Year Component</em>}' attribute.
@@ -111,6 +111,6 @@ public interface IfcCalendarDate extends IfcDateTimeSelect, IfcObjectReferenceSe
 	 * @see #getYearComponent()
 	 * @generated
 	 */
-	void setYearComponent(int value);
+	void setYearComponent(long value);
 
 } // IfcCalendarDate

@@ -468,8 +468,8 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getInputPhase() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_PHASE, true);
+	public long getInputPhase() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_PHASE, true);
 	}
 
 	/**
@@ -477,7 +477,7 @@ public class IfcElectricalBasePropertiesImpl extends IfcEnergyPropertiesImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInputPhase(int newInputPhase) {
+	public void setInputPhase(long newInputPhase) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_ELECTRICAL_BASE_PROPERTIES__INPUT_PHASE, newInputPhase);
 	}
 

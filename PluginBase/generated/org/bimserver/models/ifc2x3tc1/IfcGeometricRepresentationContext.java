@@ -49,12 +49,12 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Coordinate Space Dimension</em>' attribute.
-	 * @see #setCoordinateSpaceDimension(int)
+	 * @see #setCoordinateSpaceDimension(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcGeometricRepresentationContext_CoordinateSpaceDimension()
 	 * @model
 	 * @generated
 	 */
-	int getCoordinateSpaceDimension();
+	long getCoordinateSpaceDimension();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcGeometricRepresentationContext#getCoordinateSpaceDimension <em>Coordinate Space Dimension</em>}' attribute.
@@ -64,7 +64,7 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * @see #getCoordinateSpaceDimension()
 	 * @generated
 	 */
-	void setCoordinateSpaceDimension(int value);
+	void setCoordinateSpaceDimension(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Precision</b></em>' attribute.

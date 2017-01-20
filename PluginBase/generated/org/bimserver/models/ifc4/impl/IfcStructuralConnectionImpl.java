@@ -100,8 +100,7 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralMember> getConnectsStructuralMembers() {
-		return (EList<IfcRelConnectsStructuralMember>) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_CONNECTION__CONNECTS_STRUCTURAL_MEMBERS, true);
+		return (EList<IfcRelConnectsStructuralMember>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CONNECTION__CONNECTS_STRUCTURAL_MEMBERS, true);
 	}
 
 	/**

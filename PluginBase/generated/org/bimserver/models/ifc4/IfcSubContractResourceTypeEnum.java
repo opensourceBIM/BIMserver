@@ -163,8 +163,7 @@ public enum IfcSubContractResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSubContractResourceTypeEnum[] VALUES_ARRAY = new IfcSubContractResourceTypeEnum[] { NULL,
-			NOTDEFINED, WORK, USERDEFINED, PURCHASE, };
+	private static final IfcSubContractResourceTypeEnum[] VALUES_ARRAY = new IfcSubContractResourceTypeEnum[] { NULL, NOTDEFINED, WORK, USERDEFINED, PURCHASE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sub Contract Resource Type Enum</b></em>' enumerators.
@@ -172,8 +171,7 @@ public enum IfcSubContractResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSubContractResourceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSubContractResourceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Sub Contract Resource Type Enum</b></em>' literal with the specified literal value.

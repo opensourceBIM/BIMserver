@@ -64,8 +64,8 @@ public class IfcRelConnectsPathElementsImpl extends IfcRelConnectsElementsImpl i
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Integer> getRelatingPriorities() {
-		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATING_PRIORITIES, true);
+	public EList<Long> getRelatingPriorities() {
+		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATING_PRIORITIES, true);
 	}
 
 	/**
@@ -74,8 +74,8 @@ public class IfcRelConnectsPathElementsImpl extends IfcRelConnectsElementsImpl i
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Integer> getRelatedPriorities() {
-		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATED_PRIORITIES, true);
+	public EList<Long> getRelatedPriorities() {
+		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATED_PRIORITIES, true);
 	}
 
 	/**
@@ -84,8 +84,7 @@ public class IfcRelConnectsPathElementsImpl extends IfcRelConnectsElementsImpl i
 	 * @generated
 	 */
 	public IfcConnectionTypeEnum getRelatedConnectionType() {
-		return (IfcConnectionTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATED_CONNECTION_TYPE, true);
+		return (IfcConnectionTypeEnum) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATED_CONNECTION_TYPE, true);
 	}
 
 	/**
@@ -103,8 +102,7 @@ public class IfcRelConnectsPathElementsImpl extends IfcRelConnectsElementsImpl i
 	 * @generated
 	 */
 	public IfcConnectionTypeEnum getRelatingConnectionType() {
-		return (IfcConnectionTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATING_CONNECTION_TYPE, true);
+		return (IfcConnectionTypeEnum) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATING_CONNECTION_TYPE, true);
 	}
 
 	/**

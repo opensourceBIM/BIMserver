@@ -47,12 +47,12 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hour Component</em>' attribute.
-	 * @see #setHourComponent(int)
+	 * @see #setHourComponent(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcLocalTime_HourComponent()
 	 * @model
 	 * @generated
 	 */
-	int getHourComponent();
+	long getHourComponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcLocalTime#getHourComponent <em>Hour Component</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * @see #getHourComponent()
 	 * @generated
 	 */
-	void setHourComponent(int value);
+	void setHourComponent(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Minute Component</b></em>' attribute.
@@ -75,12 +75,12 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * @return the value of the '<em>Minute Component</em>' attribute.
 	 * @see #isSetMinuteComponent()
 	 * @see #unsetMinuteComponent()
-	 * @see #setMinuteComponent(int)
+	 * @see #setMinuteComponent(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcLocalTime_MinuteComponent()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	int getMinuteComponent();
+	long getMinuteComponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcLocalTime#getMinuteComponent <em>Minute Component</em>}' attribute.
@@ -92,7 +92,7 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * @see #getMinuteComponent()
 	 * @generated
 	 */
-	void setMinuteComponent(int value);
+	void setMinuteComponent(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcLocalTime#getMinuteComponent <em>Minute Component</em>}' attribute.
@@ -100,7 +100,7 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * <!-- end-user-doc -->
 	 * @see #isSetMinuteComponent()
 	 * @see #getMinuteComponent()
-	 * @see #setMinuteComponent(int)
+	 * @see #setMinuteComponent(long)
 	 * @generated
 	 */
 	void unsetMinuteComponent();
@@ -112,7 +112,7 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * @return whether the value of the '<em>Minute Component</em>' attribute is set.
 	 * @see #unsetMinuteComponent()
 	 * @see #getMinuteComponent()
-	 * @see #setMinuteComponent(int)
+	 * @see #setMinuteComponent(long)
 	 * @generated
 	 */
 	boolean isSetMinuteComponent();
@@ -287,12 +287,12 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * @return the value of the '<em>Daylight Saving Offset</em>' attribute.
 	 * @see #isSetDaylightSavingOffset()
 	 * @see #unsetDaylightSavingOffset()
-	 * @see #setDaylightSavingOffset(int)
+	 * @see #setDaylightSavingOffset(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcLocalTime_DaylightSavingOffset()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	int getDaylightSavingOffset();
+	long getDaylightSavingOffset();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcLocalTime#getDaylightSavingOffset <em>Daylight Saving Offset</em>}' attribute.
@@ -304,7 +304,7 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * @see #getDaylightSavingOffset()
 	 * @generated
 	 */
-	void setDaylightSavingOffset(int value);
+	void setDaylightSavingOffset(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcLocalTime#getDaylightSavingOffset <em>Daylight Saving Offset</em>}' attribute.
@@ -312,7 +312,7 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * <!-- end-user-doc -->
 	 * @see #isSetDaylightSavingOffset()
 	 * @see #getDaylightSavingOffset()
-	 * @see #setDaylightSavingOffset(int)
+	 * @see #setDaylightSavingOffset(long)
 	 * @generated
 	 */
 	void unsetDaylightSavingOffset();
@@ -324,7 +324,7 @@ public interface IfcLocalTime extends IfcDateTimeSelect, IfcObjectReferenceSelec
 	 * @return whether the value of the '<em>Daylight Saving Offset</em>' attribute is set.
 	 * @see #unsetDaylightSavingOffset()
 	 * @see #getDaylightSavingOffset()
-	 * @see #setDaylightSavingOffset(int)
+	 * @see #setDaylightSavingOffset(long)
 	 * @generated
 	 */
 	boolean isSetDaylightSavingOffset();

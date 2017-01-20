@@ -288,8 +288,7 @@ public enum IfcFurnitureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFurnitureTypeEnum[] VALUES_ARRAY = new IfcFurnitureTypeEnum[] { NULL, TABLE, BED,
-			FILECABINET, SOFA, NOTDEFINED, CHAIR, DESK, SHELF, USERDEFINED, };
+	private static final IfcFurnitureTypeEnum[] VALUES_ARRAY = new IfcFurnitureTypeEnum[] { NULL, TABLE, BED, FILECABINET, SOFA, NOTDEFINED, CHAIR, DESK, SHELF, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Furniture Type Enum</b></em>' enumerators.

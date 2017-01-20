@@ -138,8 +138,7 @@ public enum IfcBooleanOperator implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBooleanOperator[] VALUES_ARRAY = new IfcBooleanOperator[] { NULL, DIFFERENCE, INTERSECTION,
-			UNION, };
+	private static final IfcBooleanOperator[] VALUES_ARRAY = new IfcBooleanOperator[] { NULL, DIFFERENCE, INTERSECTION, UNION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Boolean Operator</b></em>' enumerators.

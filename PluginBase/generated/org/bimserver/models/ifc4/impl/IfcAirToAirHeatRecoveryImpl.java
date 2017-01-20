@@ -60,8 +60,7 @@ public class IfcAirToAirHeatRecoveryImpl extends IfcEnergyConversionDeviceImpl i
 	 * @generated
 	 */
 	public IfcAirToAirHeatRecoveryTypeEnum getPredefinedType() {
-		return (IfcAirToAirHeatRecoveryTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_AIR_TO_AIR_HEAT_RECOVERY__PREDEFINED_TYPE, true);
+		return (IfcAirToAirHeatRecoveryTypeEnum) eGet(Ifc4Package.Literals.IFC_AIR_TO_AIR_HEAT_RECOVERY__PREDEFINED_TYPE, true);
 	}
 
 	/**

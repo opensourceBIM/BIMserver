@@ -138,8 +138,8 @@ public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Integer> getColourIndex() {
-		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__COLOUR_INDEX, true);
+	public EList<Long> getColourIndex() {
+		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__COLOUR_INDEX, true);
 	}
 
 } //IfcIndexedColourMapImpl

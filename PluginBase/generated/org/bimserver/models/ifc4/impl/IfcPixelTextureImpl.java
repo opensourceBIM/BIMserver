@@ -62,8 +62,8 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getWidth() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__WIDTH, true);
+	public long getWidth() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__WIDTH, true);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWidth(int newWidth) {
+	public void setWidth(long newWidth) {
 		eSet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__WIDTH, newWidth);
 	}
 
@@ -80,8 +80,8 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getHeight() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__HEIGHT, true);
+	public long getHeight() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__HEIGHT, true);
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHeight(int newHeight) {
+	public void setHeight(long newHeight) {
 		eSet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__HEIGHT, newHeight);
 	}
 
@@ -98,8 +98,8 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getColourComponents() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS, true);
+	public long getColourComponents() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS, true);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setColourComponents(int newColourComponents) {
+	public void setColourComponents(long newColourComponents) {
 		eSet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS, newColourComponents);
 	}
 

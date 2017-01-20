@@ -71,8 +71,8 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements IfcCalendarDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getDayComponent() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__DAY_COMPONENT, true);
+	public long getDayComponent() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__DAY_COMPONENT, true);
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements IfcCalendarDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDayComponent(int newDayComponent) {
+	public void setDayComponent(long newDayComponent) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__DAY_COMPONENT, newDayComponent);
 	}
 
@@ -89,8 +89,8 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements IfcCalendarDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getMonthComponent() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__MONTH_COMPONENT, true);
+	public long getMonthComponent() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__MONTH_COMPONENT, true);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements IfcCalendarDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMonthComponent(int newMonthComponent) {
+	public void setMonthComponent(long newMonthComponent) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__MONTH_COMPONENT, newMonthComponent);
 	}
 
@@ -107,8 +107,8 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements IfcCalendarDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getYearComponent() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__YEAR_COMPONENT, true);
+	public long getYearComponent() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__YEAR_COMPONENT, true);
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class IfcCalendarDateImpl extends IdEObjectImpl implements IfcCalendarDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setYearComponent(int newYearComponent) {
+	public void setYearComponent(long newYearComponent) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_CALENDAR_DATE__YEAR_COMPONENT, newYearComponent);
 	}
 

@@ -33,8 +33,7 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcModulusOfLinearSubgradeReactionMeasure
-		extends IfcDerivedMeasureValue, IfcModulusOfTranslationalSubgradeReactionSelect {
+public interface IfcModulusOfLinearSubgradeReactionMeasure extends IfcDerivedMeasureValue, IfcModulusOfTranslationalSubgradeReactionSelect {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

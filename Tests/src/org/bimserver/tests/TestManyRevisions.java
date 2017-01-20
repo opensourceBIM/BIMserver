@@ -46,22 +46,23 @@ public class TestManyRevisions {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
 			MetaDataManager metaDataManager = new MetaDataManager(home.resolve("tmp"));
 			pluginManager.setMetaDataManager(metaDataManager);
-			BimServerClientFactory factory = new JsonBimServerClientFactory(metaDataManager, "http://localhost:8080");
-			BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			try {
-				SProject project = client.getServiceInterface().addProject("lots2", "ifc2x3tc1");
-				Path[] files = new Path[]{Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), Paths.get("../TestData/data/AC11-FZK-Haus-IFC - Alt.ifc")};
-				SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-				int fn = 0;
-				for (int i=0; i<20; i++) {
-					System.out.println(i + ": " + files[fn].getFileName().toString());
-					client.checkin(project.getOid(), "comment" + i, deserializer.getOid(), false, Flow.SYNC, files[fn]);
-					fn = 1 - fn;
+			try (BimServerClientFactory factory = new JsonBimServerClientFactory(metaDataManager, "http://localhost:8080")) {
+				BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+				try {
+					SProject project = client.getServiceInterface().addProject("lots2", "ifc2x3tc1");
+					Path[] files = new Path[]{Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), Paths.get("../TestData/data/AC11-FZK-Haus-IFC - Alt.ifc")};
+					SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+					int fn = 0;
+					for (int i=0; i<20; i++) {
+						System.out.println(i + ": " + files[fn].getFileName().toString());
+						client.checkin(project.getOid(), "comment" + i, deserializer.getOid(), false, Flow.SYNC, files[fn]);
+						fn = 1 - fn;
+					}
+				} catch (ServerException | UserException | PublicInterfaceNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-			} catch (ServerException | UserException | PublicInterfaceNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -69,8 +69,8 @@ public class IfcHourInDayImpl extends IdEObjectImpl implements IfcHourInDay {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getWrappedValue() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_HOUR_IN_DAY__WRAPPED_VALUE, true);
+	public long getWrappedValue() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_HOUR_IN_DAY__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class IfcHourInDayImpl extends IdEObjectImpl implements IfcHourInDay {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWrappedValue(int newWrappedValue) {
+	public void setWrappedValue(long newWrappedValue) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_HOUR_IN_DAY__WRAPPED_VALUE, newWrappedValue);
 	}
 

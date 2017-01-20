@@ -60,8 +60,7 @@ public class IfcAudioVisualApplianceImpl extends IfcFlowTerminalImpl implements 
 	 * @generated
 	 */
 	public IfcAudioVisualApplianceTypeEnum getPredefinedType() {
-		return (IfcAudioVisualApplianceTypeEnum) eGet(Ifc4Package.Literals.IFC_AUDIO_VISUAL_APPLIANCE__PREDEFINED_TYPE,
-				true);
+		return (IfcAudioVisualApplianceTypeEnum) eGet(Ifc4Package.Literals.IFC_AUDIO_VISUAL_APPLIANCE__PREDEFINED_TYPE, true);
 	}
 
 	/**

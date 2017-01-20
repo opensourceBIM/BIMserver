@@ -184,12 +184,12 @@ public interface IfcTask extends IfcProcess {
 	 * @return the value of the '<em>Priority</em>' attribute.
 	 * @see #isSetPriority()
 	 * @see #unsetPriority()
-	 * @see #setPriority(int)
+	 * @see #setPriority(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTask_Priority()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	int getPriority();
+	long getPriority();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcTask#getPriority <em>Priority</em>}' attribute.
@@ -201,7 +201,7 @@ public interface IfcTask extends IfcProcess {
 	 * @see #getPriority()
 	 * @generated
 	 */
-	void setPriority(int value);
+	void setPriority(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcTask#getPriority <em>Priority</em>}' attribute.
@@ -209,7 +209,7 @@ public interface IfcTask extends IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPriority()
 	 * @see #getPriority()
-	 * @see #setPriority(int)
+	 * @see #setPriority(long)
 	 * @generated
 	 */
 	void unsetPriority();
@@ -221,7 +221,7 @@ public interface IfcTask extends IfcProcess {
 	 * @return whether the value of the '<em>Priority</em>' attribute is set.
 	 * @see #unsetPriority()
 	 * @see #getPriority()
-	 * @see #setPriority(int)
+	 * @see #setPriority(long)
 	 * @generated
 	 */
 	boolean isSetPriority();

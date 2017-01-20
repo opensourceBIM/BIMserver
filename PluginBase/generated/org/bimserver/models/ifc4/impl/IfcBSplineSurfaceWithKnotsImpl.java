@@ -67,8 +67,8 @@ public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl implem
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Integer> getUMultiplicities() {
-		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__UMULTIPLICITIES, true);
+	public EList<Long> getUMultiplicities() {
+		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__UMULTIPLICITIES, true);
 	}
 
 	/**
@@ -77,8 +77,8 @@ public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl implem
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Integer> getVMultiplicities() {
-		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__VMULTIPLICITIES, true);
+	public EList<Long> getVMultiplicities() {
+		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__VMULTIPLICITIES, true);
 	}
 
 	/**

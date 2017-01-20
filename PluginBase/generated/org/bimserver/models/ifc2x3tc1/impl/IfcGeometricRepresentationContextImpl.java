@@ -67,8 +67,8 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getCoordinateSpaceDimension() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__COORDINATE_SPACE_DIMENSION, true);
+	public long getCoordinateSpaceDimension() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__COORDINATE_SPACE_DIMENSION, true);
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCoordinateSpaceDimension(int newCoordinateSpaceDimension) {
+	public void setCoordinateSpaceDimension(long newCoordinateSpaceDimension) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__COORDINATE_SPACE_DIMENSION, newCoordinateSpaceDimension);
 	}
 

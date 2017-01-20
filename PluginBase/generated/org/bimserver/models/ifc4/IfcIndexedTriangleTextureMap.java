@@ -37,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
 public interface IfcIndexedTriangleTextureMap extends IfcIndexedTextureMap {
 	/**
 	 * Returns the value of the '<em><b>Tex Coord Index</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.ifc4.ListOfEInt}.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.ListOfELong}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Tex Coord Index</em>' reference list isn't clear,
@@ -49,6 +49,6 @@ public interface IfcIndexedTriangleTextureMap extends IfcIndexedTextureMap {
 	 * @model
 	 * @generated
 	 */
-	EList<ListOfEInt> getTexCoordIndex();
+	EList<ListOfELong> getTexCoordIndex();
 
 } // IfcIndexedTriangleTextureMap

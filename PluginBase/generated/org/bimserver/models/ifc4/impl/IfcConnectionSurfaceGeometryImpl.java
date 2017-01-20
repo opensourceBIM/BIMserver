@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl
-		implements IfcConnectionSurfaceGeometry {
+public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl implements IfcConnectionSurfaceGeometry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl
 	 * @generated
 	 */
 	public IfcSurfaceOrFaceSurface getSurfaceOnRelatingElement() {
-		return (IfcSurfaceOrFaceSurface) eGet(
-				Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATING_ELEMENT, true);
+		return (IfcSurfaceOrFaceSurface) eGet(Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATING_ELEMENT, true);
 	}
 
 	/**
@@ -72,8 +70,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl
 	 * @generated
 	 */
 	public void setSurfaceOnRelatingElement(IfcSurfaceOrFaceSurface newSurfaceOnRelatingElement) {
-		eSet(Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATING_ELEMENT,
-				newSurfaceOnRelatingElement);
+		eSet(Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATING_ELEMENT, newSurfaceOnRelatingElement);
 	}
 
 	/**
@@ -82,8 +79,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl
 	 * @generated
 	 */
 	public IfcSurfaceOrFaceSurface getSurfaceOnRelatedElement() {
-		return (IfcSurfaceOrFaceSurface) eGet(
-				Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT, true);
+		return (IfcSurfaceOrFaceSurface) eGet(Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT, true);
 	}
 
 	/**
@@ -92,8 +88,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl
 	 * @generated
 	 */
 	public void setSurfaceOnRelatedElement(IfcSurfaceOrFaceSurface newSurfaceOnRelatedElement) {
-		eSet(Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT,
-				newSurfaceOnRelatedElement);
+		eSet(Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT, newSurfaceOnRelatedElement);
 	}
 
 	/**

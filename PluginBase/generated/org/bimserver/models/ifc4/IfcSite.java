@@ -42,7 +42,7 @@ import org.eclipse.emf.common.util.EList;
 public interface IfcSite extends IfcSpatialStructureElement {
 	/**
 	 * Returns the value of the '<em><b>Ref Latitude</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Ref Latitude</em>' attribute list isn't clear,
@@ -56,7 +56,7 @@ public interface IfcSite extends IfcSpatialStructureElement {
 	 * @model unique="false" unsettable="true" upper="3"
 	 * @generated
 	 */
-	EList<Integer> getRefLatitude();
+	EList<Long> getRefLatitude();
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcSite#getRefLatitude <em>Ref Latitude</em>}' attribute list.
@@ -81,7 +81,7 @@ public interface IfcSite extends IfcSpatialStructureElement {
 
 	/**
 	 * Returns the value of the '<em><b>Ref Longitude</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Ref Longitude</em>' attribute list isn't clear,
@@ -95,7 +95,7 @@ public interface IfcSite extends IfcSpatialStructureElement {
 	 * @model unique="false" unsettable="true" upper="3"
 	 * @generated
 	 */
-	EList<Integer> getRefLongitude();
+	EList<Long> getRefLongitude();
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcSite#getRefLongitude <em>Ref Longitude</em>}' attribute list.

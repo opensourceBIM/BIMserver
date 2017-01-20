@@ -80,8 +80,7 @@ public class IfcGridPlacementImpl extends IfcObjectPlacementImpl implements IfcG
 	 * @generated
 	 */
 	public IfcGridPlacementDirectionSelect getPlacementRefDirection() {
-		return (IfcGridPlacementDirectionSelect) eGet(Ifc4Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_REF_DIRECTION,
-				true);
+		return (IfcGridPlacementDirectionSelect) eGet(Ifc4Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_REF_DIRECTION, true);
 	}
 
 	/**

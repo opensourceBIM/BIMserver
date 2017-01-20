@@ -100,8 +100,7 @@ public class IfcComplexPropertyTemplateImpl extends IfcPropertyTemplateImpl impl
 	 * @generated
 	 */
 	public IfcComplexPropertyTemplateTypeEnum getTemplateType() {
-		return (IfcComplexPropertyTemplateTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_COMPLEX_PROPERTY_TEMPLATE__TEMPLATE_TYPE, true);
+		return (IfcComplexPropertyTemplateTypeEnum) eGet(Ifc4Package.Literals.IFC_COMPLEX_PROPERTY_TEMPLATE__TEMPLATE_TYPE, true);
 	}
 
 	/**
@@ -138,8 +137,7 @@ public class IfcComplexPropertyTemplateImpl extends IfcPropertyTemplateImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyTemplate> getHasPropertyTemplates() {
-		return (EList<IfcPropertyTemplate>) eGet(
-				Ifc4Package.Literals.IFC_COMPLEX_PROPERTY_TEMPLATE__HAS_PROPERTY_TEMPLATES, true);
+		return (EList<IfcPropertyTemplate>) eGet(Ifc4Package.Literals.IFC_COMPLEX_PROPERTY_TEMPLATE__HAS_PROPERTY_TEMPLATES, true);
 	}
 
 	/**

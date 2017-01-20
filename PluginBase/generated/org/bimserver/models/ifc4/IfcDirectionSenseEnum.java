@@ -113,8 +113,7 @@ public enum IfcDirectionSenseEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDirectionSenseEnum[] VALUES_ARRAY = new IfcDirectionSenseEnum[] { NULL, POSITIVE,
-			NEGATIVE, };
+	private static final IfcDirectionSenseEnum[] VALUES_ARRAY = new IfcDirectionSenseEnum[] { NULL, POSITIVE, NEGATIVE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Direction Sense Enum</b></em>' enumerators.

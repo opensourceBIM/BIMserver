@@ -188,8 +188,7 @@ public enum IfcWindowTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWindowTypeEnum[] VALUES_ARRAY = new IfcWindowTypeEnum[] { NULL, SKYLIGHT, NOTDEFINED,
-			LIGHTDOME, USERDEFINED, WINDOW, };
+	private static final IfcWindowTypeEnum[] VALUES_ARRAY = new IfcWindowTypeEnum[] { NULL, SKYLIGHT, NOTDEFINED, LIGHTDOME, USERDEFINED, WINDOW, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Window Type Enum</b></em>' enumerators.

@@ -117,12 +117,12 @@ public interface IfcCurveBoundedPlane extends IfcBoundedSurface {
 	 * @return the value of the '<em>Dim</em>' attribute.
 	 * @see #isSetDim()
 	 * @see #unsetDim()
-	 * @see #setDim(int)
+	 * @see #setDim(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCurveBoundedPlane_Dim()
 	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
-	int getDim();
+	long getDim();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCurveBoundedPlane#getDim <em>Dim</em>}' attribute.
@@ -134,7 +134,7 @@ public interface IfcCurveBoundedPlane extends IfcBoundedSurface {
 	 * @see #getDim()
 	 * @generated
 	 */
-	void setDim(int value);
+	void setDim(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCurveBoundedPlane#getDim <em>Dim</em>}' attribute.
@@ -142,7 +142,7 @@ public interface IfcCurveBoundedPlane extends IfcBoundedSurface {
 	 * <!-- end-user-doc -->
 	 * @see #isSetDim()
 	 * @see #getDim()
-	 * @see #setDim(int)
+	 * @see #setDim(long)
 	 * @generated
 	 */
 	void unsetDim();
@@ -154,7 +154,7 @@ public interface IfcCurveBoundedPlane extends IfcBoundedSurface {
 	 * @return whether the value of the '<em>Dim</em>' attribute is set.
 	 * @see #unsetDim()
 	 * @see #getDim()
-	 * @see #setDim(int)
+	 * @see #setDim(long)
 	 * @generated
 	 */
 	boolean isSetDim();

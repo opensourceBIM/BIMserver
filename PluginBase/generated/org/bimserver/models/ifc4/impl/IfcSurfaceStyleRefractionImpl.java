@@ -179,8 +179,7 @@ public class IfcSurfaceStyleRefractionImpl extends IfcPresentationItemImpl imple
 	 * @generated
 	 */
 	public void setDispersionFactorAsString(String newDispersionFactorAsString) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING,
-				newDispersionFactorAsString);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_REFRACTION__DISPERSION_FACTOR_AS_STRING, newDispersionFactorAsString);
 	}
 
 	/**

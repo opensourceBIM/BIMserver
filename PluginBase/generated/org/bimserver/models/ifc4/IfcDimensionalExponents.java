@@ -51,12 +51,12 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Length Exponent</em>' attribute.
-	 * @see #setLengthExponent(int)
+	 * @see #setLengthExponent(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDimensionalExponents_LengthExponent()
 	 * @model
 	 * @generated
 	 */
-	int getLengthExponent();
+	long getLengthExponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcDimensionalExponents#getLengthExponent <em>Length Exponent</em>}' attribute.
@@ -66,7 +66,7 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * @see #getLengthExponent()
 	 * @generated
 	 */
-	void setLengthExponent(int value);
+	void setLengthExponent(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Mass Exponent</b></em>' attribute.
@@ -77,12 +77,12 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mass Exponent</em>' attribute.
-	 * @see #setMassExponent(int)
+	 * @see #setMassExponent(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDimensionalExponents_MassExponent()
 	 * @model
 	 * @generated
 	 */
-	int getMassExponent();
+	long getMassExponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcDimensionalExponents#getMassExponent <em>Mass Exponent</em>}' attribute.
@@ -92,7 +92,7 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * @see #getMassExponent()
 	 * @generated
 	 */
-	void setMassExponent(int value);
+	void setMassExponent(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Time Exponent</b></em>' attribute.
@@ -103,12 +103,12 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Exponent</em>' attribute.
-	 * @see #setTimeExponent(int)
+	 * @see #setTimeExponent(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDimensionalExponents_TimeExponent()
 	 * @model
 	 * @generated
 	 */
-	int getTimeExponent();
+	long getTimeExponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcDimensionalExponents#getTimeExponent <em>Time Exponent</em>}' attribute.
@@ -118,7 +118,7 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * @see #getTimeExponent()
 	 * @generated
 	 */
-	void setTimeExponent(int value);
+	void setTimeExponent(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Electric Current Exponent</b></em>' attribute.
@@ -129,12 +129,12 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Electric Current Exponent</em>' attribute.
-	 * @see #setElectricCurrentExponent(int)
+	 * @see #setElectricCurrentExponent(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDimensionalExponents_ElectricCurrentExponent()
 	 * @model
 	 * @generated
 	 */
-	int getElectricCurrentExponent();
+	long getElectricCurrentExponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcDimensionalExponents#getElectricCurrentExponent <em>Electric Current Exponent</em>}' attribute.
@@ -144,7 +144,7 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * @see #getElectricCurrentExponent()
 	 * @generated
 	 */
-	void setElectricCurrentExponent(int value);
+	void setElectricCurrentExponent(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Thermodynamic Temperature Exponent</b></em>' attribute.
@@ -155,12 +155,12 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Thermodynamic Temperature Exponent</em>' attribute.
-	 * @see #setThermodynamicTemperatureExponent(int)
+	 * @see #setThermodynamicTemperatureExponent(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDimensionalExponents_ThermodynamicTemperatureExponent()
 	 * @model
 	 * @generated
 	 */
-	int getThermodynamicTemperatureExponent();
+	long getThermodynamicTemperatureExponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcDimensionalExponents#getThermodynamicTemperatureExponent <em>Thermodynamic Temperature Exponent</em>}' attribute.
@@ -170,7 +170,7 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * @see #getThermodynamicTemperatureExponent()
 	 * @generated
 	 */
-	void setThermodynamicTemperatureExponent(int value);
+	void setThermodynamicTemperatureExponent(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Amount Of Substance Exponent</b></em>' attribute.
@@ -181,12 +181,12 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Amount Of Substance Exponent</em>' attribute.
-	 * @see #setAmountOfSubstanceExponent(int)
+	 * @see #setAmountOfSubstanceExponent(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDimensionalExponents_AmountOfSubstanceExponent()
 	 * @model
 	 * @generated
 	 */
-	int getAmountOfSubstanceExponent();
+	long getAmountOfSubstanceExponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcDimensionalExponents#getAmountOfSubstanceExponent <em>Amount Of Substance Exponent</em>}' attribute.
@@ -196,7 +196,7 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * @see #getAmountOfSubstanceExponent()
 	 * @generated
 	 */
-	void setAmountOfSubstanceExponent(int value);
+	void setAmountOfSubstanceExponent(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Luminous Intensity Exponent</b></em>' attribute.
@@ -207,12 +207,12 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Luminous Intensity Exponent</em>' attribute.
-	 * @see #setLuminousIntensityExponent(int)
+	 * @see #setLuminousIntensityExponent(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDimensionalExponents_LuminousIntensityExponent()
 	 * @model
 	 * @generated
 	 */
-	int getLuminousIntensityExponent();
+	long getLuminousIntensityExponent();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcDimensionalExponents#getLuminousIntensityExponent <em>Luminous Intensity Exponent</em>}' attribute.
@@ -222,6 +222,6 @@ public interface IfcDimensionalExponents extends IdEObject {
 	 * @see #getLuminousIntensityExponent()
 	 * @generated
 	 */
-	void setLuminousIntensityExponent(int value);
+	void setLuminousIntensityExponent(long value);
 
 } // IfcDimensionalExponents

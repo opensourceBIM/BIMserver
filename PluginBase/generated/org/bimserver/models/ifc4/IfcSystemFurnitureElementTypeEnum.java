@@ -163,8 +163,7 @@ public enum IfcSystemFurnitureElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSystemFurnitureElementTypeEnum[] VALUES_ARRAY = new IfcSystemFurnitureElementTypeEnum[] {
-			NULL, PANEL, NOTDEFINED, WORKSURFACE, USERDEFINED, };
+	private static final IfcSystemFurnitureElementTypeEnum[] VALUES_ARRAY = new IfcSystemFurnitureElementTypeEnum[] { NULL, PANEL, NOTDEFINED, WORKSURFACE, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc System Furniture Element Type Enum</b></em>' enumerators.
@@ -172,8 +171,7 @@ public enum IfcSystemFurnitureElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSystemFurnitureElementTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSystemFurnitureElementTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc System Furniture Element Type Enum</b></em>' literal with the specified literal value.

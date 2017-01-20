@@ -218,12 +218,12 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * @return the value of the '<em>Last Modified Date</em>' attribute.
 	 * @see #isSetLastModifiedDate()
 	 * @see #unsetLastModifiedDate()
-	 * @see #setLastModifiedDate(int)
+	 * @see #setLastModifiedDate(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcOwnerHistory_LastModifiedDate()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	int getLastModifiedDate();
+	long getLastModifiedDate();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcOwnerHistory#getLastModifiedDate <em>Last Modified Date</em>}' attribute.
@@ -235,7 +235,7 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * @see #getLastModifiedDate()
 	 * @generated
 	 */
-	void setLastModifiedDate(int value);
+	void setLastModifiedDate(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcOwnerHistory#getLastModifiedDate <em>Last Modified Date</em>}' attribute.
@@ -243,7 +243,7 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetLastModifiedDate()
 	 * @see #getLastModifiedDate()
-	 * @see #setLastModifiedDate(int)
+	 * @see #setLastModifiedDate(long)
 	 * @generated
 	 */
 	void unsetLastModifiedDate();
@@ -255,7 +255,7 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * @return whether the value of the '<em>Last Modified Date</em>' attribute is set.
 	 * @see #unsetLastModifiedDate()
 	 * @see #getLastModifiedDate()
-	 * @see #setLastModifiedDate(int)
+	 * @see #setLastModifiedDate(long)
 	 * @generated
 	 */
 	boolean isSetLastModifiedDate();
@@ -375,12 +375,12 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Creation Date</em>' attribute.
-	 * @see #setCreationDate(int)
+	 * @see #setCreationDate(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcOwnerHistory_CreationDate()
 	 * @model
 	 * @generated
 	 */
-	int getCreationDate();
+	long getCreationDate();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcOwnerHistory#getCreationDate <em>Creation Date</em>}' attribute.
@@ -390,6 +390,6 @@ public interface IfcOwnerHistory extends IdEObject {
 	 * @see #getCreationDate()
 	 * @generated
 	 */
-	void setCreationDate(int value);
+	void setCreationDate(long value);
 
 } // IfcOwnerHistory

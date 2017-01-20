@@ -81,8 +81,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 * @generated
 	 */
 	public IfcCartesianTransformationOperator2D getOperator() {
-		return (IfcCartesianTransformationOperator2D) eGet(Ifc4Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR,
-				true);
+		return (IfcCartesianTransformationOperator2D) eGet(Ifc4Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR, true);
 	}
 
 	/**

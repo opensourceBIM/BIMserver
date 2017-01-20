@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDistributionChamberElementImpl extends IfcDistributionFlowElementImpl
-		implements IfcDistributionChamberElement {
+public class IfcDistributionChamberElementImpl extends IfcDistributionFlowElementImpl implements IfcDistributionChamberElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcDistributionChamberElementImpl extends IfcDistributionFlowElemen
 	 * @generated
 	 */
 	public IfcDistributionChamberElementTypeEnum getPredefinedType() {
-		return (IfcDistributionChamberElementTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_DISTRIBUTION_CHAMBER_ELEMENT__PREDEFINED_TYPE, true);
+		return (IfcDistributionChamberElementTypeEnum) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_CHAMBER_ELEMENT__PREDEFINED_TYPE, true);
 	}
 
 	/**

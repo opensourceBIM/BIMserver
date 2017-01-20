@@ -188,8 +188,7 @@ public enum IfcPermitTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPermitTypeEnum[] VALUES_ARRAY = new IfcPermitTypeEnum[] { NULL, NOTDEFINED, BUILDING, WORK,
-			USERDEFINED, ACCESS, };
+	private static final IfcPermitTypeEnum[] VALUES_ARRAY = new IfcPermitTypeEnum[] { NULL, NOTDEFINED, BUILDING, WORK, USERDEFINED, ACCESS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Permit Type Enum</b></em>' enumerators.

@@ -20,8 +20,7 @@ public class TestInstall {
 		ArrayList<String> pluginList = new ArrayList();
 		pluginList.add("C:/plugins/ifcplugins-0.0.15.jar");
 
-		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+		try (BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			for (String each : pluginList) {
@@ -40,6 +39,8 @@ public class TestInstall {
 			e1.printStackTrace();
 		} catch (ChannelConnectionException e1) {
 			e1.printStackTrace();
+		} catch (Exception e2) {
+			e2.printStackTrace();
 		}
 	}
 }

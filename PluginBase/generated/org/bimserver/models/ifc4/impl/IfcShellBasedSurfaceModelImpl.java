@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcShellBasedSurfaceModelImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcShellBasedSurfaceModel {
+public class IfcShellBasedSurfaceModelImpl extends IfcGeometricRepresentationItemImpl implements IfcShellBasedSurfaceModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,8 +71,8 @@ public class IfcShellBasedSurfaceModelImpl extends IfcGeometricRepresentationIte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getDim() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__DIM, true);
+	public long getDim() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__DIM, true);
 	}
 
 	/**
@@ -81,7 +80,7 @@ public class IfcShellBasedSurfaceModelImpl extends IfcGeometricRepresentationIte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDim(int newDim) {
+	public void setDim(long newDim) {
 		eSet(Ifc4Package.Literals.IFC_SHELL_BASED_SURFACE_MODEL__DIM, newDim);
 	}
 

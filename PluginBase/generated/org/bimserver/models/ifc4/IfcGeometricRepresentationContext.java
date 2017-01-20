@@ -39,8 +39,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcGeometricRepresentationContext
-		extends IfcRepresentationContext, IfcCoordinateReferenceSystemSelect {
+public interface IfcGeometricRepresentationContext extends IfcRepresentationContext, IfcCoordinateReferenceSystemSelect {
 	/**
 	 * Returns the value of the '<em><b>Coordinate Space Dimension</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,12 +49,12 @@ public interface IfcGeometricRepresentationContext
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Coordinate Space Dimension</em>' attribute.
-	 * @see #setCoordinateSpaceDimension(int)
+	 * @see #setCoordinateSpaceDimension(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcGeometricRepresentationContext_CoordinateSpaceDimension()
 	 * @model
 	 * @generated
 	 */
-	int getCoordinateSpaceDimension();
+	long getCoordinateSpaceDimension();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getCoordinateSpaceDimension <em>Coordinate Space Dimension</em>}' attribute.
@@ -65,7 +64,7 @@ public interface IfcGeometricRepresentationContext
 	 * @see #getCoordinateSpaceDimension()
 	 * @generated
 	 */
-	void setCoordinateSpaceDimension(int value);
+	void setCoordinateSpaceDimension(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Precision</b></em>' attribute.

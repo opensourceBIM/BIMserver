@@ -17,6 +17,7 @@
 package org.bimserver.models.store;
 
 import java.util.Date;
+
 import org.bimserver.emf.IdEObject;
 
 /**

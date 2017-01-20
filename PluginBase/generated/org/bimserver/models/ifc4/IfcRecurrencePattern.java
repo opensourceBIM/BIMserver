@@ -75,7 +75,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Day Component</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Day Component</em>' attribute list isn't clear,
@@ -89,7 +89,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * @model unique="false" unsettable="true"
 	 * @generated
 	 */
-	EList<Integer> getDayComponent();
+	EList<Long> getDayComponent();
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getDayComponent <em>Day Component</em>}' attribute list.
@@ -114,7 +114,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Weekday Component</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Weekday Component</em>' attribute list isn't clear,
@@ -128,7 +128,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * @model unique="false" unsettable="true"
 	 * @generated
 	 */
-	EList<Integer> getWeekdayComponent();
+	EList<Long> getWeekdayComponent();
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getWeekdayComponent <em>Weekday Component</em>}' attribute list.
@@ -153,7 +153,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Month Component</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Month Component</em>' attribute list isn't clear,
@@ -167,7 +167,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * @model unique="false" unsettable="true"
 	 * @generated
 	 */
-	EList<Integer> getMonthComponent();
+	EList<Long> getMonthComponent();
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getMonthComponent <em>Month Component</em>}' attribute list.
@@ -201,12 +201,12 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * @return the value of the '<em>Position</em>' attribute.
 	 * @see #isSetPosition()
 	 * @see #unsetPosition()
-	 * @see #setPosition(int)
+	 * @see #setPosition(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRecurrencePattern_Position()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	int getPosition();
+	long getPosition();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getPosition <em>Position</em>}' attribute.
@@ -218,7 +218,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * @see #getPosition()
 	 * @generated
 	 */
-	void setPosition(int value);
+	void setPosition(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getPosition <em>Position</em>}' attribute.
@@ -226,7 +226,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPosition()
 	 * @see #getPosition()
-	 * @see #setPosition(int)
+	 * @see #setPosition(long)
 	 * @generated
 	 */
 	void unsetPosition();
@@ -238,7 +238,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * @return whether the value of the '<em>Position</em>' attribute is set.
 	 * @see #unsetPosition()
 	 * @see #getPosition()
-	 * @see #setPosition(int)
+	 * @see #setPosition(long)
 	 * @generated
 	 */
 	boolean isSetPosition();
@@ -254,12 +254,12 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * @return the value of the '<em>Interval</em>' attribute.
 	 * @see #isSetInterval()
 	 * @see #unsetInterval()
-	 * @see #setInterval(int)
+	 * @see #setInterval(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRecurrencePattern_Interval()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	int getInterval();
+	long getInterval();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getInterval <em>Interval</em>}' attribute.
@@ -271,7 +271,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * @see #getInterval()
 	 * @generated
 	 */
-	void setInterval(int value);
+	void setInterval(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getInterval <em>Interval</em>}' attribute.
@@ -279,7 +279,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetInterval()
 	 * @see #getInterval()
-	 * @see #setInterval(int)
+	 * @see #setInterval(long)
 	 * @generated
 	 */
 	void unsetInterval();
@@ -291,7 +291,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * @return whether the value of the '<em>Interval</em>' attribute is set.
 	 * @see #unsetInterval()
 	 * @see #getInterval()
-	 * @see #setInterval(int)
+	 * @see #setInterval(long)
 	 * @generated
 	 */
 	boolean isSetInterval();
@@ -307,12 +307,12 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * @return the value of the '<em>Occurrences</em>' attribute.
 	 * @see #isSetOccurrences()
 	 * @see #unsetOccurrences()
-	 * @see #setOccurrences(int)
+	 * @see #setOccurrences(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRecurrencePattern_Occurrences()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	int getOccurrences();
+	long getOccurrences();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getOccurrences <em>Occurrences</em>}' attribute.
@@ -324,7 +324,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * @see #getOccurrences()
 	 * @generated
 	 */
-	void setOccurrences(int value);
+	void setOccurrences(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcRecurrencePattern#getOccurrences <em>Occurrences</em>}' attribute.
@@ -332,7 +332,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetOccurrences()
 	 * @see #getOccurrences()
-	 * @see #setOccurrences(int)
+	 * @see #setOccurrences(long)
 	 * @generated
 	 */
 	void unsetOccurrences();
@@ -344,7 +344,7 @@ public interface IfcRecurrencePattern extends IdEObject {
 	 * @return whether the value of the '<em>Occurrences</em>' attribute is set.
 	 * @see #unsetOccurrences()
 	 * @see #getOccurrences()
-	 * @see #setOccurrences(int)
+	 * @see #setOccurrences(long)
 	 * @generated
 	 */
 	boolean isSetOccurrences();

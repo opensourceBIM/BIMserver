@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcOrganizationRelationshipImpl extends IfcResourceLevelRelationshipImpl
-		implements IfcOrganizationRelationship {
+public class IfcOrganizationRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcOrganizationRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,8 +81,7 @@ public class IfcOrganizationRelationshipImpl extends IfcResourceLevelRelationshi
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganization> getRelatedOrganizations() {
-		return (EList<IfcOrganization>) eGet(Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS,
-				true);
+		return (EList<IfcOrganization>) eGet(Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS, true);
 	}
 
 } //IfcOrganizationRelationshipImpl

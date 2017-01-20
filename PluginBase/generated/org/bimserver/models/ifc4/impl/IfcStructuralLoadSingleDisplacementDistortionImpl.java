@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLoadSingleDisplacementDistortionImpl extends IfcStructuralLoadSingleDisplacementImpl
-		implements IfcStructuralLoadSingleDisplacementDistortion {
+public class IfcStructuralLoadSingleDisplacementDistortionImpl extends IfcStructuralLoadSingleDisplacementImpl implements IfcStructuralLoadSingleDisplacementDistortion {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,8 +96,7 @@ public class IfcStructuralLoadSingleDisplacementDistortionImpl extends IfcStruct
 	 * @generated
 	 */
 	public String getDistortionAsString() {
-		return (String) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION_AS_STRING, true);
 	}
 
 	/**
@@ -107,8 +105,7 @@ public class IfcStructuralLoadSingleDisplacementDistortionImpl extends IfcStruct
 	 * @generated
 	 */
 	public void setDistortionAsString(String newDistortionAsString) {
-		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION_AS_STRING,
-				newDistortionAsString);
+		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION__DISTORTION_AS_STRING, newDistortionAsString);
 	}
 
 	/**

@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCartesianTransformationOperator2DnonUniformImpl extends IfcCartesianTransformationOperator2DImpl
-		implements IfcCartesianTransformationOperator2DnonUniform {
+public class IfcCartesianTransformationOperator2DnonUniformImpl extends IfcCartesianTransformationOperator2DImpl implements IfcCartesianTransformationOperator2DnonUniform {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,8 +96,7 @@ public class IfcCartesianTransformationOperator2DnonUniformImpl extends IfcCarte
 	 * @generated
 	 */
 	public String getScale2AsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2_AS_STRING, true);
 	}
 
 	/**
@@ -107,8 +105,7 @@ public class IfcCartesianTransformationOperator2DnonUniformImpl extends IfcCarte
 	 * @generated
 	 */
 	public void setScale2AsString(String newScale2AsString) {
-		eSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2_AS_STRING,
-				newScale2AsString);
+		eSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM__SCALE2_AS_STRING, newScale2AsString);
 	}
 
 	/**

@@ -379,8 +379,7 @@ public class IfcReinforcingBarTypeImpl extends IfcReinforcingElementTypeImpl imp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcBendingParameterSelect> getBendingParameters() {
-		return (EList<IfcBendingParameterSelect>) eGet(
-				Ifc4Package.Literals.IFC_REINFORCING_BAR_TYPE__BENDING_PARAMETERS, true);
+		return (EList<IfcBendingParameterSelect>) eGet(Ifc4Package.Literals.IFC_REINFORCING_BAR_TYPE__BENDING_PARAMETERS, true);
 	}
 
 	/**

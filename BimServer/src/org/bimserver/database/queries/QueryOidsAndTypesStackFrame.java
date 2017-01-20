@@ -18,7 +18,6 @@ package org.bimserver.database.queries;
  *****************************************************************************/
 
 import java.nio.ByteBuffer;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 

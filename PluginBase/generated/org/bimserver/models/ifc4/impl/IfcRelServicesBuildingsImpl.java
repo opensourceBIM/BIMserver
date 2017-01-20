@@ -82,8 +82,7 @@ public class IfcRelServicesBuildingsImpl extends IfcRelConnectsImpl implements I
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSpatialElement> getRelatedBuildings() {
-		return (EList<IfcSpatialElement>) eGet(Ifc4Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATED_BUILDINGS,
-				true);
+		return (EList<IfcSpatialElement>) eGet(Ifc4Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATED_BUILDINGS, true);
 	}
 
 } //IfcRelServicesBuildingsImpl

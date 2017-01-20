@@ -200,7 +200,7 @@ public interface IfcReference extends IfcAppliedValueSelect, IfcMetricValueSelec
 
 	/**
 	 * Returns the value of the '<em><b>List Positions</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>List Positions</em>' attribute list isn't clear,
@@ -214,7 +214,7 @@ public interface IfcReference extends IfcAppliedValueSelect, IfcMetricValueSelec
 	 * @model unique="false" unsettable="true"
 	 * @generated
 	 */
-	EList<Integer> getListPositions();
+	EList<Long> getListPositions();
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcReference#getListPositions <em>List Positions</em>}' attribute list.

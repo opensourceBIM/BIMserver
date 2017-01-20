@@ -27,8 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyTemplateDefinitionImpl extends IfcPropertyDefinitionImpl
-		implements IfcPropertyTemplateDefinition {
+public class IfcPropertyTemplateDefinitionImpl extends IfcPropertyDefinitionImpl implements IfcPropertyTemplateDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

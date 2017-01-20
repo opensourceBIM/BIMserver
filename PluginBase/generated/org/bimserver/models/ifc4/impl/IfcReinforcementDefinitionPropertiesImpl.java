@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcReinforcementDefinitionPropertiesImpl extends IfcPreDefinedPropertySetImpl
-		implements IfcReinforcementDefinitionProperties {
+public class IfcReinforcementDefinitionPropertiesImpl extends IfcPreDefinedPropertySetImpl implements IfcReinforcementDefinitionProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,8 +99,7 @@ public class IfcReinforcementDefinitionPropertiesImpl extends IfcPreDefinedPrope
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcSectionReinforcementProperties> getReinforcementSectionDefinitions() {
-		return (EList<IfcSectionReinforcementProperties>) eGet(
-				Ifc4Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__REINFORCEMENT_SECTION_DEFINITIONS, true);
+		return (EList<IfcSectionReinforcementProperties>) eGet(Ifc4Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__REINFORCEMENT_SECTION_DEFINITIONS, true);
 	}
 
 } //IfcReinforcementDefinitionPropertiesImpl

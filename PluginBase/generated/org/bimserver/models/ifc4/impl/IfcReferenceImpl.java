@@ -183,8 +183,8 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Integer> getListPositions() {
-		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_REFERENCE__LIST_POSITIONS, true);
+	public EList<Long> getListPositions() {
+		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_REFERENCE__LIST_POSITIONS, true);
 	}
 
 	/**

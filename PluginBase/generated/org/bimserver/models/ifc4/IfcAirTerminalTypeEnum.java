@@ -213,8 +213,7 @@ public enum IfcAirTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAirTerminalTypeEnum[] VALUES_ARRAY = new IfcAirTerminalTypeEnum[] { NULL, REGISTER,
-			NOTDEFINED, LOUVRE, GRILLE, USERDEFINED, DIFFUSER, };
+	private static final IfcAirTerminalTypeEnum[] VALUES_ARRAY = new IfcAirTerminalTypeEnum[] { NULL, REGISTER, NOTDEFINED, LOUVRE, GRILLE, USERDEFINED, DIFFUSER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Air Terminal Type Enum</b></em>' enumerators.

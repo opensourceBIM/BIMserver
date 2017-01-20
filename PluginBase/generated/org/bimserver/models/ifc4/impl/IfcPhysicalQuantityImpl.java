@@ -131,8 +131,7 @@ public class IfcPhysicalQuantityImpl extends IdEObjectImpl implements IfcPhysica
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReferences() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_PHYSICAL_QUANTITY__HAS_EXTERNAL_REFERENCES, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_PHYSICAL_QUANTITY__HAS_EXTERNAL_REFERENCES, true);
 	}
 
 	/**
@@ -160,8 +159,7 @@ public class IfcPhysicalQuantityImpl extends IdEObjectImpl implements IfcPhysica
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPhysicalComplexQuantity> getPartOfComplex() {
-		return (EList<IfcPhysicalComplexQuantity>) eGet(Ifc4Package.Literals.IFC_PHYSICAL_QUANTITY__PART_OF_COMPLEX,
-				true);
+		return (EList<IfcPhysicalComplexQuantity>) eGet(Ifc4Package.Literals.IFC_PHYSICAL_QUANTITY__PART_OF_COMPLEX, true);
 	}
 
 	/**

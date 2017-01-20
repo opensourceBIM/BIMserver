@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDocumentInformationRelationshipImpl extends IfcResourceLevelRelationshipImpl
-		implements IfcDocumentInformationRelationship {
+public class IfcDocumentInformationRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcDocumentInformationRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +63,7 @@ public class IfcDocumentInformationRelationshipImpl extends IfcResourceLevelRela
 	 * @generated
 	 */
 	public IfcDocumentInformation getRelatingDocument() {
-		return (IfcDocumentInformation) eGet(
-				Ifc4Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATING_DOCUMENT, true);
+		return (IfcDocumentInformation) eGet(Ifc4Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATING_DOCUMENT, true);
 	}
 
 	/**
@@ -84,8 +82,7 @@ public class IfcDocumentInformationRelationshipImpl extends IfcResourceLevelRela
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDocumentInformation> getRelatedDocuments() {
-		return (EList<IfcDocumentInformation>) eGet(
-				Ifc4Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATED_DOCUMENTS, true);
+		return (EList<IfcDocumentInformation>) eGet(Ifc4Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATED_DOCUMENTS, true);
 	}
 
 	/**

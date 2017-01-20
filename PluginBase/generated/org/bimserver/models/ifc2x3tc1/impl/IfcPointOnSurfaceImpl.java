@@ -154,8 +154,8 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_SURFACE__DIM, true);
+	public long getDim() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_SURFACE__DIM, true);
 	}
 
 	/**
@@ -163,7 +163,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDim(int newDim) {
+	public void setDim(long newDim) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_POINT_ON_SURFACE__DIM, newDim);
 	}
 

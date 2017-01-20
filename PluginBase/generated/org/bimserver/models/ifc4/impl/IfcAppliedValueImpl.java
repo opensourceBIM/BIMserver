@@ -438,8 +438,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_APPLIED_VALUE__HAS_EXTERNAL_REFERENCE, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**

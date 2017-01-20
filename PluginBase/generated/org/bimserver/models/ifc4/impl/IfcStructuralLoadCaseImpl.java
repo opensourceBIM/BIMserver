@@ -90,8 +90,7 @@ public class IfcStructuralLoadCaseImpl extends IfcStructuralLoadGroupImpl implem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getSelfWeightCoefficientsAsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CASE__SELF_WEIGHT_COEFFICIENTS_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CASE__SELF_WEIGHT_COEFFICIENTS_AS_STRING, true);
 	}
 
 	/**

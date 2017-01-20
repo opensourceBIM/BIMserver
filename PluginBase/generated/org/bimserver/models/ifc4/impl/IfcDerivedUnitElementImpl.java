@@ -89,8 +89,8 @@ public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements IfcDeriv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getExponent() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT, true);
+	public long getExponent() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT, true);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class IfcDerivedUnitElementImpl extends IdEObjectImpl implements IfcDeriv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExponent(int newExponent) {
+	public void setExponent(long newExponent) {
 		eSet(Ifc4Package.Literals.IFC_DERIVED_UNIT_ELEMENT__EXPONENT, newExponent);
 	}
 

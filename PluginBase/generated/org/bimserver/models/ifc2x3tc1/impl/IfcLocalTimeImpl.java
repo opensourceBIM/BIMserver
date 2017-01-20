@@ -75,8 +75,8 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getHourComponent() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_LOCAL_TIME__HOUR_COMPONENT, true);
+	public long getHourComponent() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_LOCAL_TIME__HOUR_COMPONENT, true);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHourComponent(int newHourComponent) {
+	public void setHourComponent(long newHourComponent) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_LOCAL_TIME__HOUR_COMPONENT, newHourComponent);
 	}
 
@@ -93,8 +93,8 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getMinuteComponent() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_LOCAL_TIME__MINUTE_COMPONENT, true);
+	public long getMinuteComponent() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_LOCAL_TIME__MINUTE_COMPONENT, true);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMinuteComponent(int newMinuteComponent) {
+	public void setMinuteComponent(long newMinuteComponent) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_LOCAL_TIME__MINUTE_COMPONENT, newMinuteComponent);
 	}
 
@@ -237,8 +237,8 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getDaylightSavingOffset() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_LOCAL_TIME__DAYLIGHT_SAVING_OFFSET, true);
+	public long getDaylightSavingOffset() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_LOCAL_TIME__DAYLIGHT_SAVING_OFFSET, true);
 	}
 
 	/**
@@ -246,7 +246,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDaylightSavingOffset(int newDaylightSavingOffset) {
+	public void setDaylightSavingOffset(long newDaylightSavingOffset) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_LOCAL_TIME__DAYLIGHT_SAVING_OFFSET, newDaylightSavingOffset);
 	}
 

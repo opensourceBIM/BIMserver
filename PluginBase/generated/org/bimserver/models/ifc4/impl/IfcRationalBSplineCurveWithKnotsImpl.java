@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRationalBSplineCurveWithKnotsImpl extends IfcBSplineCurveWithKnotsImpl
-		implements IfcRationalBSplineCurveWithKnots {
+public class IfcRationalBSplineCurveWithKnotsImpl extends IfcBSplineCurveWithKnotsImpl implements IfcRationalBSplineCurveWithKnots {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,8 +72,7 @@ public class IfcRationalBSplineCurveWithKnotsImpl extends IfcBSplineCurveWithKno
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getWeightsDataAsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS_DATA_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS_DATA_AS_STRING, true);
 	}
 
 } //IfcRationalBSplineCurveWithKnotsImpl

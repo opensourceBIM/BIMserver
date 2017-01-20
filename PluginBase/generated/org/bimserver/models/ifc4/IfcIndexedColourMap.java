@@ -147,7 +147,7 @@ public interface IfcIndexedColourMap extends IfcPresentationItem {
 
 	/**
 	 * Returns the value of the '<em><b>Colour Index</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Colour Index</em>' attribute list isn't clear,
@@ -159,6 +159,6 @@ public interface IfcIndexedColourMap extends IfcPresentationItem {
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Integer> getColourIndex();
+	EList<Long> getColourIndex();
 
 } // IfcIndexedColourMap

@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialProfileSetUsageImpl extends IfcMaterialUsageDefinitionImpl
-		implements IfcMaterialProfileSetUsage {
+public class IfcMaterialProfileSetUsageImpl extends IfcMaterialUsageDefinitionImpl implements IfcMaterialProfileSetUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,8 +80,8 @@ public class IfcMaterialProfileSetUsageImpl extends IfcMaterialUsageDefinitionIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getCardinalPoint() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__CARDINAL_POINT, true);
+	public long getCardinalPoint() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__CARDINAL_POINT, true);
 	}
 
 	/**
@@ -90,7 +89,7 @@ public class IfcMaterialProfileSetUsageImpl extends IfcMaterialUsageDefinitionIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCardinalPoint(int newCardinalPoint) {
+	public void setCardinalPoint(long newCardinalPoint) {
 		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__CARDINAL_POINT, newCardinalPoint);
 	}
 
@@ -163,8 +162,7 @@ public class IfcMaterialProfileSetUsageImpl extends IfcMaterialUsageDefinitionIm
 	 * @generated
 	 */
 	public void setReferenceExtentAsString(String newReferenceExtentAsString) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT_AS_STRING,
-				newReferenceExtentAsString);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT_AS_STRING, newReferenceExtentAsString);
 	}
 
 	/**

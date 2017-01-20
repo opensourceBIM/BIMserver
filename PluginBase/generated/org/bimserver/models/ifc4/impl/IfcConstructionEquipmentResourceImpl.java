@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConstructionEquipmentResourceImpl extends IfcConstructionResourceImpl
-		implements IfcConstructionEquipmentResource {
+public class IfcConstructionEquipmentResourceImpl extends IfcConstructionResourceImpl implements IfcConstructionEquipmentResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcConstructionEquipmentResourceImpl extends IfcConstructionResourc
 	 * @generated
 	 */
 	public IfcConstructionEquipmentResourceTypeEnum getPredefinedType() {
-		return (IfcConstructionEquipmentResourceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_CONSTRUCTION_EQUIPMENT_RESOURCE__PREDEFINED_TYPE, true);
+		return (IfcConstructionEquipmentResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_CONSTRUCTION_EQUIPMENT_RESOURCE__PREDEFINED_TYPE, true);
 	}
 
 	/**

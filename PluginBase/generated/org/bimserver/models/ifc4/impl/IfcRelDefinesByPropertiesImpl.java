@@ -64,8 +64,7 @@ public class IfcRelDefinesByPropertiesImpl extends IfcRelDefinesImpl implements 
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcObjectDefinition> getRelatedObjects() {
-		return (EList<IfcObjectDefinition>) eGet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATED_OBJECTS,
-				true);
+		return (EList<IfcObjectDefinition>) eGet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATED_OBJECTS, true);
 	}
 
 	/**
@@ -74,8 +73,7 @@ public class IfcRelDefinesByPropertiesImpl extends IfcRelDefinesImpl implements 
 	 * @generated
 	 */
 	public IfcPropertySetDefinitionSelect getRelatingPropertyDefinition() {
-		return (IfcPropertySetDefinitionSelect) eGet(
-				Ifc4Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION, true);
+		return (IfcPropertySetDefinitionSelect) eGet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION, true);
 	}
 
 	/**
@@ -84,8 +82,7 @@ public class IfcRelDefinesByPropertiesImpl extends IfcRelDefinesImpl implements 
 	 * @generated
 	 */
 	public void setRelatingPropertyDefinition(IfcPropertySetDefinitionSelect newRelatingPropertyDefinition) {
-		eSet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION,
-				newRelatingPropertyDefinition);
+		eSet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_PROPERTIES__RELATING_PROPERTY_DEFINITION, newRelatingPropertyDefinition);
 	}
 
 } //IfcRelDefinesByPropertiesImpl

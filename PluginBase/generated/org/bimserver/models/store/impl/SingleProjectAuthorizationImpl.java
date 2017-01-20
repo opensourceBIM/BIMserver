@@ -19,7 +19,6 @@ package org.bimserver.models.store.impl;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SingleProjectAuthorization;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

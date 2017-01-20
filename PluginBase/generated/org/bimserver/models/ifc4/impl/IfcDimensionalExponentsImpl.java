@@ -75,8 +75,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getLengthExponent() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LENGTH_EXPONENT, true);
+	public long getLengthExponent() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LENGTH_EXPONENT, true);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLengthExponent(int newLengthExponent) {
+	public void setLengthExponent(long newLengthExponent) {
 		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LENGTH_EXPONENT, newLengthExponent);
 	}
 
@@ -93,8 +93,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getMassExponent() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__MASS_EXPONENT, true);
+	public long getMassExponent() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__MASS_EXPONENT, true);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMassExponent(int newMassExponent) {
+	public void setMassExponent(long newMassExponent) {
 		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__MASS_EXPONENT, newMassExponent);
 	}
 
@@ -111,8 +111,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getTimeExponent() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__TIME_EXPONENT, true);
+	public long getTimeExponent() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__TIME_EXPONENT, true);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTimeExponent(int newTimeExponent) {
+	public void setTimeExponent(long newTimeExponent) {
 		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__TIME_EXPONENT, newTimeExponent);
 	}
 
@@ -129,8 +129,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getElectricCurrentExponent() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__ELECTRIC_CURRENT_EXPONENT, true);
+	public long getElectricCurrentExponent() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__ELECTRIC_CURRENT_EXPONENT, true);
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElectricCurrentExponent(int newElectricCurrentExponent) {
+	public void setElectricCurrentExponent(long newElectricCurrentExponent) {
 		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__ELECTRIC_CURRENT_EXPONENT, newElectricCurrentExponent);
 	}
 
@@ -147,8 +147,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getThermodynamicTemperatureExponent() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT, true);
+	public long getThermodynamicTemperatureExponent() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT, true);
 	}
 
 	/**
@@ -156,9 +156,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThermodynamicTemperatureExponent(int newThermodynamicTemperatureExponent) {
-		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT,
-				newThermodynamicTemperatureExponent);
+	public void setThermodynamicTemperatureExponent(long newThermodynamicTemperatureExponent) {
+		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT, newThermodynamicTemperatureExponent);
 	}
 
 	/**
@@ -166,8 +165,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getAmountOfSubstanceExponent() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT, true);
+	public long getAmountOfSubstanceExponent() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT, true);
 	}
 
 	/**
@@ -175,9 +174,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAmountOfSubstanceExponent(int newAmountOfSubstanceExponent) {
-		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT,
-				newAmountOfSubstanceExponent);
+	public void setAmountOfSubstanceExponent(long newAmountOfSubstanceExponent) {
+		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT, newAmountOfSubstanceExponent);
 	}
 
 	/**
@@ -185,8 +183,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getLuminousIntensityExponent() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LUMINOUS_INTENSITY_EXPONENT, true);
+	public long getLuminousIntensityExponent() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LUMINOUS_INTENSITY_EXPONENT, true);
 	}
 
 	/**
@@ -194,7 +192,7 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLuminousIntensityExponent(int newLuminousIntensityExponent) {
+	public void setLuminousIntensityExponent(long newLuminousIntensityExponent) {
 		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LUMINOUS_INTENSITY_EXPONENT, newLuminousIntensityExponent);
 	}
 

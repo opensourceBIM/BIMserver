@@ -163,8 +163,7 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCurveInterpolationEnum[] VALUES_ARRAY = new IfcCurveInterpolationEnum[] { NULL, NOTDEFINED,
-			LOG_LOG, LOG_LINEAR, LINEAR, };
+	private static final IfcCurveInterpolationEnum[] VALUES_ARRAY = new IfcCurveInterpolationEnum[] { NULL, NOTDEFINED, LOG_LOG, LOG_LINEAR, LINEAR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Curve Interpolation Enum</b></em>' enumerators.
@@ -172,8 +171,7 @@ public enum IfcCurveInterpolationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCurveInterpolationEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCurveInterpolationEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Curve Interpolation Enum</b></em>' literal with the specified literal value.

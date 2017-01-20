@@ -23,8 +23,7 @@ public class TestGetDataObjectsByType {
 	}
 
 	private void start() {
-		try {
-			JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			SProject project = client.getServiceInterface().addProject(new Random().nextInt() + "", "ifc2x3tc1");
 			SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
@@ -45,6 +44,8 @@ public class TestGetDataObjectsByType {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
 }

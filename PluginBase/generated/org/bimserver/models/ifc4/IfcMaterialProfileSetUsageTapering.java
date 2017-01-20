@@ -71,12 +71,12 @@ public interface IfcMaterialProfileSetUsageTapering extends IfcMaterialProfileSe
 	 * @return the value of the '<em>Cardinal End Point</em>' attribute.
 	 * @see #isSetCardinalEndPoint()
 	 * @see #unsetCardinalEndPoint()
-	 * @see #setCardinalEndPoint(int)
+	 * @see #setCardinalEndPoint(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialProfileSetUsageTapering_CardinalEndPoint()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	int getCardinalEndPoint();
+	long getCardinalEndPoint();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcMaterialProfileSetUsageTapering#getCardinalEndPoint <em>Cardinal End Point</em>}' attribute.
@@ -88,7 +88,7 @@ public interface IfcMaterialProfileSetUsageTapering extends IfcMaterialProfileSe
 	 * @see #getCardinalEndPoint()
 	 * @generated
 	 */
-	void setCardinalEndPoint(int value);
+	void setCardinalEndPoint(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcMaterialProfileSetUsageTapering#getCardinalEndPoint <em>Cardinal End Point</em>}' attribute.
@@ -96,7 +96,7 @@ public interface IfcMaterialProfileSetUsageTapering extends IfcMaterialProfileSe
 	 * <!-- end-user-doc -->
 	 * @see #isSetCardinalEndPoint()
 	 * @see #getCardinalEndPoint()
-	 * @see #setCardinalEndPoint(int)
+	 * @see #setCardinalEndPoint(long)
 	 * @generated
 	 */
 	void unsetCardinalEndPoint();
@@ -108,7 +108,7 @@ public interface IfcMaterialProfileSetUsageTapering extends IfcMaterialProfileSe
 	 * @return whether the value of the '<em>Cardinal End Point</em>' attribute is set.
 	 * @see #unsetCardinalEndPoint()
 	 * @see #getCardinalEndPoint()
-	 * @see #setCardinalEndPoint(int)
+	 * @see #setCardinalEndPoint(long)
 	 * @generated
 	 */
 	boolean isSetCardinalEndPoint();

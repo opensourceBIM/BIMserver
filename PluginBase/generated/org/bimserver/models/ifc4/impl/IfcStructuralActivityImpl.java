@@ -102,8 +102,7 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralActivity> getAssignedToStructuralItem() {
-		return (EList<IfcRelConnectsStructuralActivity>) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM, true);
+		return (EList<IfcRelConnectsStructuralActivity>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM, true);
 	}
 
 	/**

@@ -588,9 +588,8 @@ public enum IfcLaborResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLaborResourceTypeEnum[] VALUES_ARRAY = new IfcLaborResourceTypeEnum[] { NULL, SURVEYING,
-			PAVING, ADMINISTRATION, MASONRY, CLEANING, ROOFING, STEELWORK, USERDEFINED, PLUMBING, FLOORING, GENERAL,
-			CONCRETE, HVAC, NOTDEFINED, PAINTING, SITEGRADING, DRYWALL, FINISHING, ELECTRIC, CARPENTRY, LANDSCAPING, };
+	private static final IfcLaborResourceTypeEnum[] VALUES_ARRAY = new IfcLaborResourceTypeEnum[] { NULL, SURVEYING, PAVING, ADMINISTRATION, MASONRY, CLEANING, ROOFING, STEELWORK, USERDEFINED, PLUMBING, FLOORING, GENERAL, CONCRETE, HVAC,
+			NOTDEFINED, PAINTING, SITEGRADING, DRYWALL, FINISHING, ELECTRIC, CARPENTRY, LANDSCAPING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Labor Resource Type Enum</b></em>' enumerators.
@@ -598,8 +597,7 @@ public enum IfcLaborResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcLaborResourceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcLaborResourceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Labor Resource Type Enum</b></em>' literal with the specified literal value.

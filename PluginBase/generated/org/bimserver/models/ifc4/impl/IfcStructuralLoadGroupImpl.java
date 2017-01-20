@@ -235,8 +235,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements IfcStruc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralResultGroup> getSourceOfResultGroup() {
-		return (EList<IfcStructuralResultGroup>) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__SOURCE_OF_RESULT_GROUP, true);
+		return (EList<IfcStructuralResultGroup>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__SOURCE_OF_RESULT_GROUP, true);
 	}
 
 	/**
@@ -264,8 +263,7 @@ public class IfcStructuralLoadGroupImpl extends IfcGroupImpl implements IfcStruc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralAnalysisModel> getLoadGroupFor() {
-		return (EList<IfcStructuralAnalysisModel>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__LOAD_GROUP_FOR,
-				true);
+		return (EList<IfcStructuralAnalysisModel>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_GROUP__LOAD_GROUP_FOR, true);
 	}
 
 	/**

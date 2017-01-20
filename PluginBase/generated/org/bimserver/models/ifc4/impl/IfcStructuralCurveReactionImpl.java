@@ -60,8 +60,7 @@ public class IfcStructuralCurveReactionImpl extends IfcStructuralReactionImpl im
 	 * @generated
 	 */
 	public IfcStructuralCurveActivityTypeEnum getPredefinedType() {
-		return (IfcStructuralCurveActivityTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_REACTION__PREDEFINED_TYPE, true);
+		return (IfcStructuralCurveActivityTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_REACTION__PREDEFINED_TYPE, true);
 	}
 
 	/**

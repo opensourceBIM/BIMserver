@@ -63,8 +63,8 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements IfcSta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getNumberOfRiser() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER, true);
+	public long getNumberOfRiser() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER, true);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements IfcSta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNumberOfRiser(int newNumberOfRiser) {
+	public void setNumberOfRiser(long newNumberOfRiser) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER, newNumberOfRiser);
 	}
 
@@ -99,8 +99,8 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements IfcSta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getNumberOfTreads() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_TREADS, true);
+	public long getNumberOfTreads() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_TREADS, true);
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements IfcSta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNumberOfTreads(int newNumberOfTreads) {
+	public void setNumberOfTreads(long newNumberOfTreads) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_TREADS, newNumberOfTreads);
 	}
 

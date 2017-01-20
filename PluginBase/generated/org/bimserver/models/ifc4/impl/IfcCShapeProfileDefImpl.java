@@ -257,8 +257,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setInternalFilletRadiusAsString(String newInternalFilletRadiusAsString) {
-		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS_AS_STRING,
-				newInternalFilletRadiusAsString);
+		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS_AS_STRING, newInternalFilletRadiusAsString);
 	}
 
 	/**

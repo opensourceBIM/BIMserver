@@ -58,8 +58,8 @@ public class IfcSolidModelImpl extends IfcGeometricRepresentationItemImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_SOLID_MODEL__DIM, true);
+	public long getDim() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_SOLID_MODEL__DIM, true);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class IfcSolidModelImpl extends IfcGeometricRepresentationItemImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDim(int newDim) {
+	public void setDim(long newDim) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_SOLID_MODEL__DIM, newDim);
 	}
 

@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
 public interface IfcTriangulatedFaceSet extends IfcTessellatedFaceSet {
 	/**
 	 * Returns the value of the '<em><b>Coord Index</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.ifc4.ListOfEInt}.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.ListOfELong}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Coord Index</em>' reference list isn't clear,
@@ -50,11 +50,11 @@ public interface IfcTriangulatedFaceSet extends IfcTessellatedFaceSet {
 	 * @model
 	 * @generated
 	 */
-	EList<ListOfEInt> getCoordIndex();
+	EList<ListOfELong> getCoordIndex();
 
 	/**
 	 * Returns the value of the '<em><b>Normal Index</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.ifc4.ListOfEInt}.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.ListOfELong}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Normal Index</em>' reference list isn't clear,
@@ -66,6 +66,6 @@ public interface IfcTriangulatedFaceSet extends IfcTessellatedFaceSet {
 	 * @model
 	 * @generated
 	 */
-	EList<ListOfEInt> getNormalIndex();
+	EList<ListOfELong> getNormalIndex();
 
 } // IfcTriangulatedFaceSet

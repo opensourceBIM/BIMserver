@@ -163,8 +163,7 @@ public enum IfcRampFlightTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRampFlightTypeEnum[] VALUES_ARRAY = new IfcRampFlightTypeEnum[] { NULL, NOTDEFINED,
-			STRAIGHT, SPIRAL, USERDEFINED, };
+	private static final IfcRampFlightTypeEnum[] VALUES_ARRAY = new IfcRampFlightTypeEnum[] { NULL, NOTDEFINED, STRAIGHT, SPIRAL, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Ramp Flight Type Enum</b></em>' enumerators.

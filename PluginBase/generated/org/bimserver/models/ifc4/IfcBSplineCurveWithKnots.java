@@ -40,7 +40,7 @@ import org.eclipse.emf.common.util.EList;
 public interface IfcBSplineCurveWithKnots extends IfcBSplineCurve {
 	/**
 	 * Returns the value of the '<em><b>Knot Multiplicities</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Knot Multiplicities</em>' attribute list isn't clear,
@@ -52,7 +52,7 @@ public interface IfcBSplineCurveWithKnots extends IfcBSplineCurve {
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Integer> getKnotMultiplicities();
+	EList<Long> getKnotMultiplicities();
 
 	/**
 	 * Returns the value of the '<em><b>Knots</b></em>' attribute list.

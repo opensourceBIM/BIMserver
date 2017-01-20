@@ -113,8 +113,7 @@ public enum IfcComplexPropertyTemplateTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcComplexPropertyTemplateTypeEnum[] VALUES_ARRAY = new IfcComplexPropertyTemplateTypeEnum[] {
-			NULL, PCOMPLEX, QCOMPLEX, };
+	private static final IfcComplexPropertyTemplateTypeEnum[] VALUES_ARRAY = new IfcComplexPropertyTemplateTypeEnum[] { NULL, PCOMPLEX, QCOMPLEX, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Complex Property Template Type Enum</b></em>' enumerators.
@@ -122,8 +121,7 @@ public enum IfcComplexPropertyTemplateTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcComplexPropertyTemplateTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcComplexPropertyTemplateTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Complex Property Template Type Enum</b></em>' literal with the specified literal value.

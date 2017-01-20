@@ -69,8 +69,8 @@ public class IfcIntegerCountRateMeasureImpl extends IdEObjectImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getWrappedValue() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_INTEGER_COUNT_RATE_MEASURE__WRAPPED_VALUE, true);
+	public long getWrappedValue() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_INTEGER_COUNT_RATE_MEASURE__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class IfcIntegerCountRateMeasureImpl extends IdEObjectImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWrappedValue(int newWrappedValue) {
+	public void setWrappedValue(long newWrappedValue) {
 		eSet(Ifc4Package.Literals.IFC_INTEGER_COUNT_RATE_MEASURE__WRAPPED_VALUE, newWrappedValue);
 	}
 

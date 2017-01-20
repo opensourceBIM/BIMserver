@@ -98,8 +98,8 @@ public class IfcRecurrencePatternImpl extends IdEObjectImpl implements IfcRecurr
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Integer> getDayComponent() {
-		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__DAY_COMPONENT, true);
+	public EList<Long> getDayComponent() {
+		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__DAY_COMPONENT, true);
 	}
 
 	/**
@@ -126,8 +126,8 @@ public class IfcRecurrencePatternImpl extends IdEObjectImpl implements IfcRecurr
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Integer> getWeekdayComponent() {
-		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__WEEKDAY_COMPONENT, true);
+	public EList<Long> getWeekdayComponent() {
+		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__WEEKDAY_COMPONENT, true);
 	}
 
 	/**
@@ -154,8 +154,8 @@ public class IfcRecurrencePatternImpl extends IdEObjectImpl implements IfcRecurr
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Integer> getMonthComponent() {
-		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__MONTH_COMPONENT, true);
+	public EList<Long> getMonthComponent() {
+		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__MONTH_COMPONENT, true);
 	}
 
 	/**
@@ -181,8 +181,8 @@ public class IfcRecurrencePatternImpl extends IdEObjectImpl implements IfcRecurr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getPosition() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__POSITION, true);
+	public long getPosition() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__POSITION, true);
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class IfcRecurrencePatternImpl extends IdEObjectImpl implements IfcRecurr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPosition(int newPosition) {
+	public void setPosition(long newPosition) {
 		eSet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__POSITION, newPosition);
 	}
 
@@ -217,8 +217,8 @@ public class IfcRecurrencePatternImpl extends IdEObjectImpl implements IfcRecurr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getInterval() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__INTERVAL, true);
+	public long getInterval() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__INTERVAL, true);
 	}
 
 	/**
@@ -226,7 +226,7 @@ public class IfcRecurrencePatternImpl extends IdEObjectImpl implements IfcRecurr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInterval(int newInterval) {
+	public void setInterval(long newInterval) {
 		eSet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__INTERVAL, newInterval);
 	}
 
@@ -253,8 +253,8 @@ public class IfcRecurrencePatternImpl extends IdEObjectImpl implements IfcRecurr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getOccurrences() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__OCCURRENCES, true);
+	public long getOccurrences() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__OCCURRENCES, true);
 	}
 
 	/**
@@ -262,7 +262,7 @@ public class IfcRecurrencePatternImpl extends IdEObjectImpl implements IfcRecurr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOccurrences(int newOccurrences) {
+	public void setOccurrences(long newOccurrences) {
 		eSet(Ifc4Package.Literals.IFC_RECURRENCE_PATTERN__OCCURRENCES, newOccurrences);
 	}
 

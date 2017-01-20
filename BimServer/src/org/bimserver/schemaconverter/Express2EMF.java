@@ -403,7 +403,7 @@ public class Express2EMF {
 			eAttribute.setName(attrib.getName());
 			eAttribute.setUpperBound(-1);
 			eAttribute.setUnique(false);
-			eAttribute.setEType(EcorePackage.eINSTANCE.getEInt());
+			eAttribute.setEType(EcorePackage.eINSTANCE.getELong());
 			eAttribute.setUnsettable(expAttrib.isOptional());
 			cls.getEStructuralFeatures().add(eAttribute);
 			return;
@@ -545,7 +545,7 @@ public class Express2EMF {
 				eAttribute.setName(attrib.getName());
 				eAttribute.setUpperBound(-1);
 				eAttribute.setUnique(false);
-				eAttribute.setEType(EcorePackage.eINSTANCE.getEInt());
+				eAttribute.setEType(EcorePackage.eINSTANCE.getELong());
 				eAttribute.setUnsettable(expAttrib.isOptional());
 				cls.getEStructuralFeatures().add(eAttribute);
 			} else if (bt instanceof NumberType) {
@@ -553,7 +553,7 @@ public class Express2EMF {
 				eAttribute.setName(attrib.getName());
 				eAttribute.setUpperBound(-1);
 				eAttribute.setUnique(false);
-				eAttribute.setEType(EcorePackage.eINSTANCE.getEInt());
+				eAttribute.setEType(EcorePackage.eINSTANCE.getELong());
 				eAttribute.setUnsettable(expAttrib.isOptional());
 				cls.getEStructuralFeatures().add(eAttribute);
 			} else if (bt instanceof LogicalType) {
@@ -595,7 +595,7 @@ public class Express2EMF {
 				EAttribute eAttribute = eFactory.createEAttribute();
 				eAttribute.setUnsettable(expAttrib.isOptional());
 				eAttribute.setName(attrib.getName());
-				eAttribute.setEType(EcorePackage.eINSTANCE.getEInt());
+				eAttribute.setEType(EcorePackage.eINSTANCE.getELong());
 				cls.getEStructuralFeatures().add(eAttribute);
 			} else if (domain instanceof LogicalType) {
 				EAttribute eAttribute = eFactory.createEAttribute();
@@ -643,7 +643,7 @@ public class Express2EMF {
 		} else if (entityName.equals("IfcColourRgbList") && attribName.equals("ColourList")) {
 			finalType = schemaPack.getEClassifier("IfcNormalisedRatioMeasure");
 		} else if (entityName.equals("IfcIndexedTriangleTextureMap") && attribName.equals("TexCoordIndex")) {
-			finalType = EcorePackage.eINSTANCE.getEInt();
+			finalType = EcorePackage.eINSTANCE.getELong();
 		} else if (entityName.equals("IfcRationalBSplineSurfaceWithKnots") && attribName.equals("WeightsData")) {
 			finalType = EcorePackage.eINSTANCE.getEDouble();
 		} else if (entityName.equals("IfcStructuralLoadConfiguration") && attribName.equals("Locations")) {
@@ -653,9 +653,9 @@ public class Express2EMF {
 		} else if (entityName.equals("IfcTextureVertexList") && attribName.equals("TexCoordsList")) {
 			finalType = schemaPack.getEClassifier("IfcParameterValue");
 		} else if (entityName.equals("IfcTriangulatedFaceSet") && attribName.equals("CoordIndex")) {
-			finalType = EcorePackage.eINSTANCE.getEInt();
+			finalType = EcorePackage.eINSTANCE.getELong();
 		} else if (entityName.equals("IfcTriangulatedFaceSet") && attribName.equals("NormalIndex")) {
-			finalType = EcorePackage.eINSTANCE.getEInt();
+			finalType = EcorePackage.eINSTANCE.getELong();
 		} else {
 			throw new RuntimeException("Unimplemented " + entityName + "." + attribName);
 		}
@@ -804,7 +804,7 @@ public class Express2EMF {
 		EAttribute wrapperAttrib = eFactory.createEAttribute();
 		wrapperAttrib.setName("wrappedValue");
 		if (type.getDomain() instanceof IntegerType) {
-			wrapperAttrib.setEType(ePackage.getEInt());
+			wrapperAttrib.setEType(ePackage.getELong());
 		} else if (type.getDomain() instanceof RealType) {
 			wrapperAttrib.setEType(ePackage.getEDouble());
 		} else if (type.getDomain() instanceof StringType) {

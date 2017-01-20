@@ -639,12 +639,12 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Input Phase</em>' attribute.
-	 * @see #setInputPhase(int)
+	 * @see #setInputPhase(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcElectricalBaseProperties_InputPhase()
 	 * @model
 	 * @generated
 	 */
-	int getInputPhase();
+	long getInputPhase();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcElectricalBaseProperties#getInputPhase <em>Input Phase</em>}' attribute.
@@ -654,6 +654,6 @@ public interface IfcElectricalBaseProperties extends IfcEnergyProperties {
 	 * @see #getInputPhase()
 	 * @generated
 	 */
-	void setInputPhase(int value);
+	void setInputPhase(long value);
 
 } // IfcElectricalBaseProperties

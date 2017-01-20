@@ -64,8 +64,8 @@ public class IfcBSplineCurveWithKnotsImpl extends IfcBSplineCurveImpl implements
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Integer> getKnotMultiplicities() {
-		return (EList<Integer>) eGet(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOT_MULTIPLICITIES, true);
+	public EList<Long> getKnotMultiplicities() {
+		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOT_MULTIPLICITIES, true);
 	}
 
 	/**

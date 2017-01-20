@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProtectiveDeviceTrippingUnitTypeImpl extends IfcDistributionControlElementTypeImpl
-		implements IfcProtectiveDeviceTrippingUnitType {
+public class IfcProtectiveDeviceTrippingUnitTypeImpl extends IfcDistributionControlElementTypeImpl implements IfcProtectiveDeviceTrippingUnitType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcProtectiveDeviceTrippingUnitTypeImpl extends IfcDistributionCont
 	 * @generated
 	 */
 	public IfcProtectiveDeviceTrippingUnitTypeEnum getPredefinedType() {
-		return (IfcProtectiveDeviceTrippingUnitTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT_TYPE__PREDEFINED_TYPE, true);
+		return (IfcProtectiveDeviceTrippingUnitTypeEnum) eGet(Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

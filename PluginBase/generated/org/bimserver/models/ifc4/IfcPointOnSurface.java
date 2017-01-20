@@ -179,12 +179,12 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * @return the value of the '<em>Dim</em>' attribute.
 	 * @see #isSetDim()
 	 * @see #unsetDim()
-	 * @see #setDim(int)
+	 * @see #setDim(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPointOnSurface_Dim()
 	 * @model unsettable="true" derived="true"
 	 * @generated
 	 */
-	int getDim();
+	long getDim();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcPointOnSurface#getDim <em>Dim</em>}' attribute.
@@ -196,7 +196,7 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * @see #getDim()
 	 * @generated
 	 */
-	void setDim(int value);
+	void setDim(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcPointOnSurface#getDim <em>Dim</em>}' attribute.
@@ -204,7 +204,7 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * <!-- end-user-doc -->
 	 * @see #isSetDim()
 	 * @see #getDim()
-	 * @see #setDim(int)
+	 * @see #setDim(long)
 	 * @generated
 	 */
 	void unsetDim();
@@ -216,7 +216,7 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * @return whether the value of the '<em>Dim</em>' attribute is set.
 	 * @see #unsetDim()
 	 * @see #getDim()
-	 * @see #setDim(int)
+	 * @see #setDim(long)
 	 * @generated
 	 */
 	boolean isSetDim();

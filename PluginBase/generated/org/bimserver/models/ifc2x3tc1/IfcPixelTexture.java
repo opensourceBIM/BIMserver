@@ -47,12 +47,12 @@ public interface IfcPixelTexture extends IfcSurfaceTexture {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Width</em>' attribute.
-	 * @see #setWidth(int)
+	 * @see #setWidth(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcPixelTexture_Width()
 	 * @model
 	 * @generated
 	 */
-	int getWidth();
+	long getWidth();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcPixelTexture#getWidth <em>Width</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcPixelTexture extends IfcSurfaceTexture {
 	 * @see #getWidth()
 	 * @generated
 	 */
-	void setWidth(int value);
+	void setWidth(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Height</b></em>' attribute.
@@ -73,12 +73,12 @@ public interface IfcPixelTexture extends IfcSurfaceTexture {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Height</em>' attribute.
-	 * @see #setHeight(int)
+	 * @see #setHeight(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcPixelTexture_Height()
 	 * @model
 	 * @generated
 	 */
-	int getHeight();
+	long getHeight();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcPixelTexture#getHeight <em>Height</em>}' attribute.
@@ -88,7 +88,7 @@ public interface IfcPixelTexture extends IfcSurfaceTexture {
 	 * @see #getHeight()
 	 * @generated
 	 */
-	void setHeight(int value);
+	void setHeight(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Colour Components</b></em>' attribute.
@@ -99,12 +99,12 @@ public interface IfcPixelTexture extends IfcSurfaceTexture {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Colour Components</em>' attribute.
-	 * @see #setColourComponents(int)
+	 * @see #setColourComponents(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcPixelTexture_ColourComponents()
 	 * @model
 	 * @generated
 	 */
-	int getColourComponents();
+	long getColourComponents();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcPixelTexture#getColourComponents <em>Colour Components</em>}' attribute.
@@ -114,7 +114,7 @@ public interface IfcPixelTexture extends IfcSurfaceTexture {
 	 * @see #getColourComponents()
 	 * @generated
 	 */
-	void setColourComponents(int value);
+	void setColourComponents(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Pixel</b></em>' attribute list.

@@ -232,8 +232,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 * @generated
 	 */
 	public IfcCurveInterpolationEnum getCurveInterpolation() {
-		return (IfcCurveInterpolationEnum) eGet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__CURVE_INTERPOLATION,
-				true);
+		return (IfcCurveInterpolationEnum) eGet(Ifc4Package.Literals.IFC_PROPERTY_TABLE_VALUE__CURVE_INTERPOLATION, true);
 	}
 
 	/**

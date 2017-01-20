@@ -170,8 +170,8 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getLastModifiedDate() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFIED_DATE, true);
+	public long getLastModifiedDate() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFIED_DATE, true);
 	}
 
 	/**
@@ -179,7 +179,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLastModifiedDate(int newLastModifiedDate) {
+	public void setLastModifiedDate(long newLastModifiedDate) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFIED_DATE, newLastModifiedDate);
 	}
 
@@ -278,8 +278,8 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getCreationDate() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_OWNER_HISTORY__CREATION_DATE, true);
+	public long getCreationDate() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_OWNER_HISTORY__CREATION_DATE, true);
 	}
 
 	/**
@@ -287,7 +287,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCreationDate(int newCreationDate) {
+	public void setCreationDate(long newCreationDate) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_OWNER_HISTORY__CREATION_DATE, newCreationDate);
 	}
 

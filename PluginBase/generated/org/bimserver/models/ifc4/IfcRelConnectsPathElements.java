@@ -40,7 +40,7 @@ import org.eclipse.emf.common.util.EList;
 public interface IfcRelConnectsPathElements extends IfcRelConnectsElements {
 	/**
 	 * Returns the value of the '<em><b>Relating Priorities</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Relating Priorities</em>' attribute list isn't clear,
@@ -52,11 +52,11 @@ public interface IfcRelConnectsPathElements extends IfcRelConnectsElements {
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Integer> getRelatingPriorities();
+	EList<Long> getRelatingPriorities();
 
 	/**
 	 * Returns the value of the '<em><b>Related Priorities</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Related Priorities</em>' attribute list isn't clear,
@@ -68,7 +68,7 @@ public interface IfcRelConnectsPathElements extends IfcRelConnectsElements {
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Integer> getRelatedPriorities();
+	EList<Long> getRelatedPriorities();
 
 	/**
 	 * Returns the value of the '<em><b>Related Connection Type</b></em>' attribute.

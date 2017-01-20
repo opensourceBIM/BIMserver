@@ -47,12 +47,12 @@ public interface IfcDayInMonthNumber extends IdEObject {
 	 * @return the value of the '<em>Wrapped Value</em>' attribute.
 	 * @see #isSetWrappedValue()
 	 * @see #unsetWrappedValue()
-	 * @see #setWrappedValue(int)
+	 * @see #setWrappedValue(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDayInMonthNumber_WrappedValue()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	int getWrappedValue();
+	long getWrappedValue();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcDayInMonthNumber#getWrappedValue <em>Wrapped Value</em>}' attribute.
@@ -64,7 +64,7 @@ public interface IfcDayInMonthNumber extends IdEObject {
 	 * @see #getWrappedValue()
 	 * @generated
 	 */
-	void setWrappedValue(int value);
+	void setWrappedValue(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcDayInMonthNumber#getWrappedValue <em>Wrapped Value</em>}' attribute.
@@ -72,7 +72,7 @@ public interface IfcDayInMonthNumber extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetWrappedValue()
 	 * @see #getWrappedValue()
-	 * @see #setWrappedValue(int)
+	 * @see #setWrappedValue(long)
 	 * @generated
 	 */
 	void unsetWrappedValue();
@@ -84,7 +84,7 @@ public interface IfcDayInMonthNumber extends IdEObject {
 	 * @return whether the value of the '<em>Wrapped Value</em>' attribute is set.
 	 * @see #unsetWrappedValue()
 	 * @see #getWrappedValue()
-	 * @see #setWrappedValue(int)
+	 * @see #setWrappedValue(long)
 	 * @generated
 	 */
 	boolean isSetWrappedValue();

@@ -101,8 +101,7 @@ public class IfcRelInterferesElementsImpl extends IfcRelConnectsImpl implements 
 	 * @generated
 	 */
 	public IfcConnectionGeometry getInterferenceGeometry() {
-		return (IfcConnectionGeometry) eGet(Ifc4Package.Literals.IFC_REL_INTERFERES_ELEMENTS__INTERFERENCE_GEOMETRY,
-				true);
+		return (IfcConnectionGeometry) eGet(Ifc4Package.Literals.IFC_REL_INTERFERES_ELEMENTS__INTERFERENCE_GEOMETRY, true);
 	}
 
 	/**

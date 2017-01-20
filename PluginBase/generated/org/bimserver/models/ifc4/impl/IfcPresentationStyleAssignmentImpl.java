@@ -73,8 +73,7 @@ public class IfcPresentationStyleAssignmentImpl extends IdEObjectImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationStyleSelect> getStyles() {
-		return (EList<IfcPresentationStyleSelect>) eGet(Ifc4Package.Literals.IFC_PRESENTATION_STYLE_ASSIGNMENT__STYLES,
-				true);
+		return (EList<IfcPresentationStyleSelect>) eGet(Ifc4Package.Literals.IFC_PRESENTATION_STYLE_ASSIGNMENT__STYLES, true);
 	}
 
 } //IfcPresentationStyleAssignmentImpl

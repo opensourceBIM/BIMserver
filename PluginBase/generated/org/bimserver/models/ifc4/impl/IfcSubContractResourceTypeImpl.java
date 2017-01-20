@@ -34,8 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSubContractResourceTypeImpl extends IfcConstructionResourceTypeImpl
-		implements IfcSubContractResourceType {
+public class IfcSubContractResourceTypeImpl extends IfcConstructionResourceTypeImpl implements IfcSubContractResourceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +60,7 @@ public class IfcSubContractResourceTypeImpl extends IfcConstructionResourceTypeI
 	 * @generated
 	 */
 	public IfcSubContractResourceTypeEnum getPredefinedType() {
-		return (IfcSubContractResourceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_SUB_CONTRACT_RESOURCE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcSubContractResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_SUB_CONTRACT_RESOURCE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

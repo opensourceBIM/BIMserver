@@ -19,6 +19,7 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcTriangulatedFaceSet;
 import org.bimserver.models.ifc4.ListOfEInt;
+import org.bimserver.models.ifc4.ListOfELong;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
@@ -62,8 +63,8 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<ListOfEInt> getCoordIndex() {
-		return (EList<ListOfEInt>) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__COORD_INDEX, true);
+	public EList<ListOfELong> getCoordIndex() {
+		return (EList<ListOfELong>) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__COORD_INDEX, true);
 	}
 
 	/**
@@ -72,8 +73,8 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<ListOfEInt> getNormalIndex() {
-		return (EList<ListOfEInt>) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NORMAL_INDEX, true);
+	public EList<ListOfELong> getNormalIndex() {
+		return (EList<ListOfELong>) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NORMAL_INDEX, true);
 	}
 
 } //IfcTriangulatedFaceSetImpl

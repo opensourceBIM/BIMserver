@@ -28,7 +28,6 @@ import java.util.concurrent.TimeUnit;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 
-import org.apache.cxf.ws.addressing.v200403.ServiceNameType;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.Channel;

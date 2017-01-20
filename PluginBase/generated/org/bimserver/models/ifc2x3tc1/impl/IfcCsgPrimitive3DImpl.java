@@ -78,8 +78,8 @@ public class IfcCsgPrimitive3DImpl extends IfcGeometricRepresentationItemImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_CSG_PRIMITIVE3_D__DIM, true);
+	public long getDim() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_CSG_PRIMITIVE3_D__DIM, true);
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class IfcCsgPrimitive3DImpl extends IfcGeometricRepresentationItemImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDim(int newDim) {
+	public void setDim(long newDim) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_CSG_PRIMITIVE3_D__DIM, newDim);
 	}
 

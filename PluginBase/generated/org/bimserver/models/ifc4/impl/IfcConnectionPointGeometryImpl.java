@@ -61,8 +61,7 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * @generated
 	 */
 	public IfcPointOrVertexPoint getPointOnRelatingElement() {
-		return (IfcPointOrVertexPoint) eGet(
-				Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT, true);
+		return (IfcPointOrVertexPoint) eGet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT, true);
 	}
 
 	/**
@@ -80,8 +79,7 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * @generated
 	 */
 	public IfcPointOrVertexPoint getPointOnRelatedElement() {
-		return (IfcPointOrVertexPoint) eGet(
-				Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT, true);
+		return (IfcPointOrVertexPoint) eGet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT, true);
 	}
 
 	/**

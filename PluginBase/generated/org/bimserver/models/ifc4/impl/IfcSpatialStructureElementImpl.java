@@ -60,8 +60,7 @@ public class IfcSpatialStructureElementImpl extends IfcSpatialElementImpl implem
 	 * @generated
 	 */
 	public IfcElementCompositionEnum getCompositionType() {
-		return (IfcElementCompositionEnum) eGet(Ifc4Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__COMPOSITION_TYPE,
-				true);
+		return (IfcElementCompositionEnum) eGet(Ifc4Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__COMPOSITION_TYPE, true);
 	}
 
 	/**

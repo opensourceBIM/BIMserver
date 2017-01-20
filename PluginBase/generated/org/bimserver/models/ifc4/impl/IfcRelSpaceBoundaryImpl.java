@@ -140,8 +140,7 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * @generated
 	 */
 	public IfcPhysicalOrVirtualEnum getPhysicalOrVirtualBoundary() {
-		return (IfcPhysicalOrVirtualEnum) eGet(
-				Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY__PHYSICAL_OR_VIRTUAL_BOUNDARY, true);
+		return (IfcPhysicalOrVirtualEnum) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY__PHYSICAL_OR_VIRTUAL_BOUNDARY, true);
 	}
 
 	/**
@@ -159,8 +158,7 @@ public class IfcRelSpaceBoundaryImpl extends IfcRelConnectsImpl implements IfcRe
 	 * @generated
 	 */
 	public IfcInternalOrExternalEnum getInternalOrExternalBoundary() {
-		return (IfcInternalOrExternalEnum) eGet(
-				Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY__INTERNAL_OR_EXTERNAL_BOUNDARY, true);
+		return (IfcInternalOrExternalEnum) eGet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY__INTERNAL_OR_EXTERNAL_BOUNDARY, true);
 	}
 
 	/**

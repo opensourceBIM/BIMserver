@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialProfileSetUsageTaperingImpl extends IfcMaterialProfileSetUsageImpl
-		implements IfcMaterialProfileSetUsageTapering {
+public class IfcMaterialProfileSetUsageTaperingImpl extends IfcMaterialProfileSetUsageImpl implements IfcMaterialProfileSetUsageTapering {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +61,7 @@ public class IfcMaterialProfileSetUsageTaperingImpl extends IfcMaterialProfileSe
 	 * @generated
 	 */
 	public IfcMaterialProfileSet getForProfileEndSet() {
-		return (IfcMaterialProfileSet) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__FOR_PROFILE_END_SET, true);
+		return (IfcMaterialProfileSet) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__FOR_PROFILE_END_SET, true);
 	}
 
 	/**
@@ -80,8 +78,8 @@ public class IfcMaterialProfileSetUsageTaperingImpl extends IfcMaterialProfileSe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getCardinalEndPoint() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__CARDINAL_END_POINT, true);
+	public long getCardinalEndPoint() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__CARDINAL_END_POINT, true);
 	}
 
 	/**
@@ -89,7 +87,7 @@ public class IfcMaterialProfileSetUsageTaperingImpl extends IfcMaterialProfileSe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCardinalEndPoint(int newCardinalEndPoint) {
+	public void setCardinalEndPoint(long newCardinalEndPoint) {
 		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__CARDINAL_END_POINT, newCardinalEndPoint);
 	}
 

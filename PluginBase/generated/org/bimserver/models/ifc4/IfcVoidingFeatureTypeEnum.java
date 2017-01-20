@@ -263,8 +263,7 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcVoidingFeatureTypeEnum[] VALUES_ARRAY = new IfcVoidingFeatureTypeEnum[] { NULL, HOLE,
-			NOTDEFINED, CHAMFER, CUTOUT, NOTCH, MITER, USERDEFINED, EDGE, };
+	private static final IfcVoidingFeatureTypeEnum[] VALUES_ARRAY = new IfcVoidingFeatureTypeEnum[] { NULL, HOLE, NOTDEFINED, CHAMFER, CUTOUT, NOTCH, MITER, USERDEFINED, EDGE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Voiding Feature Type Enum</b></em>' enumerators.
@@ -272,8 +271,7 @@ public enum IfcVoidingFeatureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcVoidingFeatureTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcVoidingFeatureTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Voiding Feature Type Enum</b></em>' literal with the specified literal value.

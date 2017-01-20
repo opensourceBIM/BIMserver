@@ -24,7 +24,6 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelCheckerInstance;
-import org.bimserver.plugins.modelchecker.ModelCheckException;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.shared.exceptions.UserException;

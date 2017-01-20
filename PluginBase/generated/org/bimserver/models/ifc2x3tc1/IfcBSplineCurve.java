@@ -48,12 +48,12 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Degree</em>' attribute.
-	 * @see #setDegree(int)
+	 * @see #setDegree(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcBSplineCurve_Degree()
 	 * @model
 	 * @generated
 	 */
-	int getDegree();
+	long getDegree();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcBSplineCurve#getDegree <em>Degree</em>}' attribute.
@@ -63,7 +63,7 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * @see #getDegree()
 	 * @generated
 	 */
-	void setDegree(int value);
+	void setDegree(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Control Points List</b></em>' reference list.

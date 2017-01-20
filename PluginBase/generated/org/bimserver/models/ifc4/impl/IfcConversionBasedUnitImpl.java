@@ -101,8 +101,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements IfcC
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__HAS_EXTERNAL_REFERENCE, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**

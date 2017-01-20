@@ -64,8 +64,7 @@ public class IfcPropertyTemplateImpl extends IfcPropertyTemplateDefinitionImpl i
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcComplexPropertyTemplate> getPartOfComplexTemplate() {
-		return (EList<IfcComplexPropertyTemplate>) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_COMPLEX_TEMPLATE, true);
+		return (EList<IfcComplexPropertyTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_COMPLEX_TEMPLATE, true);
 	}
 
 	/**
@@ -93,8 +92,7 @@ public class IfcPropertyTemplateImpl extends IfcPropertyTemplateDefinitionImpl i
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertySetTemplate> getPartOfPsetTemplate() {
-		return (EList<IfcPropertySetTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_PSET_TEMPLATE,
-				true);
+		return (EList<IfcPropertySetTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_PSET_TEMPLATE, true);
 	}
 
 	/**

@@ -47,12 +47,12 @@ public interface IfcCoordinatedUniversalTimeOffset extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hour Offset</em>' attribute.
-	 * @see #setHourOffset(int)
+	 * @see #setHourOffset(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCoordinatedUniversalTimeOffset_HourOffset()
 	 * @model
 	 * @generated
 	 */
-	int getHourOffset();
+	long getHourOffset();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCoordinatedUniversalTimeOffset#getHourOffset <em>Hour Offset</em>}' attribute.
@@ -62,7 +62,7 @@ public interface IfcCoordinatedUniversalTimeOffset extends IdEObject {
 	 * @see #getHourOffset()
 	 * @generated
 	 */
-	void setHourOffset(int value);
+	void setHourOffset(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Minute Offset</b></em>' attribute.
@@ -75,12 +75,12 @@ public interface IfcCoordinatedUniversalTimeOffset extends IdEObject {
 	 * @return the value of the '<em>Minute Offset</em>' attribute.
 	 * @see #isSetMinuteOffset()
 	 * @see #unsetMinuteOffset()
-	 * @see #setMinuteOffset(int)
+	 * @see #setMinuteOffset(long)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCoordinatedUniversalTimeOffset_MinuteOffset()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	int getMinuteOffset();
+	long getMinuteOffset();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCoordinatedUniversalTimeOffset#getMinuteOffset <em>Minute Offset</em>}' attribute.
@@ -92,7 +92,7 @@ public interface IfcCoordinatedUniversalTimeOffset extends IdEObject {
 	 * @see #getMinuteOffset()
 	 * @generated
 	 */
-	void setMinuteOffset(int value);
+	void setMinuteOffset(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCoordinatedUniversalTimeOffset#getMinuteOffset <em>Minute Offset</em>}' attribute.
@@ -100,7 +100,7 @@ public interface IfcCoordinatedUniversalTimeOffset extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetMinuteOffset()
 	 * @see #getMinuteOffset()
-	 * @see #setMinuteOffset(int)
+	 * @see #setMinuteOffset(long)
 	 * @generated
 	 */
 	void unsetMinuteOffset();
@@ -112,7 +112,7 @@ public interface IfcCoordinatedUniversalTimeOffset extends IdEObject {
 	 * @return whether the value of the '<em>Minute Offset</em>' attribute is set.
 	 * @see #unsetMinuteOffset()
 	 * @see #getMinuteOffset()
-	 * @see #setMinuteOffset(int)
+	 * @see #setMinuteOffset(long)
 	 * @generated
 	 */
 	boolean isSetMinuteOffset();

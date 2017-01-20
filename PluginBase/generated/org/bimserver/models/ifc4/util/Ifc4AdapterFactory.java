@@ -483,8 +483,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCartesianTransformationOperator2DnonUniform(
-				IfcCartesianTransformationOperator2DnonUniform object) {
+		public Adapter caseIfcCartesianTransformationOperator2DnonUniform(IfcCartesianTransformationOperator2DnonUniform object) {
 			return createIfcCartesianTransformationOperator2DnonUniformAdapter();
 		}
 
@@ -494,8 +493,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCartesianTransformationOperator3DnonUniform(
-				IfcCartesianTransformationOperator3DnonUniform object) {
+		public Adapter caseIfcCartesianTransformationOperator3DnonUniform(IfcCartesianTransformationOperator3DnonUniform object) {
 			return createIfcCartesianTransformationOperator3DnonUniformAdapter();
 		}
 
@@ -3275,8 +3273,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadSingleDisplacementDistortion(
-				IfcStructuralLoadSingleDisplacementDistortion object) {
+		public Adapter caseIfcStructuralLoadSingleDisplacementDistortion(IfcStructuralLoadSingleDisplacementDistortion object) {
 			return createIfcStructuralLoadSingleDisplacementDistortionAdapter();
 		}
 
@@ -4216,8 +4213,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(
-				IfcModulusOfRotationalSubgradeReactionMeasure object) {
+		public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(IfcModulusOfRotationalSubgradeReactionMeasure object) {
 			return createIfcModulusOfRotationalSubgradeReactionMeasureAdapter();
 		}
 
@@ -4682,8 +4678,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfRotationalSubgradeReactionSelect(
-				IfcModulusOfRotationalSubgradeReactionSelect object) {
+		public Adapter caseIfcModulusOfRotationalSubgradeReactionSelect(IfcModulusOfRotationalSubgradeReactionSelect object) {
 			return createIfcModulusOfRotationalSubgradeReactionSelectAdapter();
 		}
 
@@ -4693,8 +4688,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfTranslationalSubgradeReactionSelect(
-				IfcModulusOfTranslationalSubgradeReactionSelect object) {
+		public Adapter caseIfcModulusOfTranslationalSubgradeReactionSelect(IfcModulusOfTranslationalSubgradeReactionSelect object) {
 			return createIfcModulusOfTranslationalSubgradeReactionSelectAdapter();
 		}
 
@@ -4854,8 +4848,8 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseListOfEInt(ListOfEInt object) {
-			return createListOfEIntAdapter();
+		public Adapter caseListOfELong(ListOfELong object) {
+			return createListOfELongAdapter();
 		}
 
 		@Override
@@ -18244,16 +18238,16 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.ListOfEInt <em>List Of EInt</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.ListOfELong <em>List Of ELong</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc4.ListOfEInt
+	 * @see org.bimserver.models.ifc4.ListOfELong
 	 * @generated
 	 */
-	public Adapter createListOfEIntAdapter() {
+	public Adapter createListOfELongAdapter() {
 		return null;
 	}
 

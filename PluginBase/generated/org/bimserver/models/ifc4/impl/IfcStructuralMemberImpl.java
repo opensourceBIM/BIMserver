@@ -62,8 +62,7 @@ public class IfcStructuralMemberImpl extends IfcStructuralItemImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralMember> getConnectedBy() {
-		return (EList<IfcRelConnectsStructuralMember>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_MEMBER__CONNECTED_BY,
-				true);
+		return (EList<IfcRelConnectsStructuralMember>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_MEMBER__CONNECTED_BY, true);
 	}
 
 	/**

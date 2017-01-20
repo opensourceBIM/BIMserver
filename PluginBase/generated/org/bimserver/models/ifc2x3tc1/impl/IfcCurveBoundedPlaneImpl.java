@@ -110,8 +110,8 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getDim() {
-		return (Integer) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_BOUNDED_PLANE__DIM, true);
+	public long getDim() {
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_BOUNDED_PLANE__DIM, true);
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDim(int newDim) {
+	public void setDim(long newDim) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_CURVE_BOUNDED_PLANE__DIM, newDim);
 	}
 

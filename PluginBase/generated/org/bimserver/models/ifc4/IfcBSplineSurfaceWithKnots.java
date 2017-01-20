@@ -43,7 +43,7 @@ import org.eclipse.emf.common.util.EList;
 public interface IfcBSplineSurfaceWithKnots extends IfcBSplineSurface {
 	/**
 	 * Returns the value of the '<em><b>UMultiplicities</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>UMultiplicities</em>' attribute list isn't clear,
@@ -55,11 +55,11 @@ public interface IfcBSplineSurfaceWithKnots extends IfcBSplineSurface {
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Integer> getUMultiplicities();
+	EList<Long> getUMultiplicities();
 
 	/**
 	 * Returns the value of the '<em><b>VMultiplicities</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * The list contents are of type {@link java.lang.Long}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>VMultiplicities</em>' attribute list isn't clear,
@@ -71,7 +71,7 @@ public interface IfcBSplineSurfaceWithKnots extends IfcBSplineSurface {
 	 * @model unique="false"
 	 * @generated
 	 */
-	EList<Integer> getVMultiplicities();
+	EList<Long> getVMultiplicities();
 
 	/**
 	 * Returns the value of the '<em><b>UKnots</b></em>' attribute list.

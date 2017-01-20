@@ -8091,13 +8091,13 @@ public interface Ifc4Factory extends EFactory {
 	ListOfIfcNormalisedRatioMeasure createListOfIfcNormalisedRatioMeasure();
 
 	/**
-	 * Returns a new object of class '<em>List Of EInt</em>'.
+	 * Returns a new object of class '<em>List Of ELong</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>List Of EInt</em>'.
+	 * @return a new object of class '<em>List Of ELong</em>'.
 	 * @generated
 	 */
-	ListOfEInt createListOfEInt();
+	ListOfELong createListOfELong();
 
 	/**
 	 * Returns a new object of class '<em>List Of EDouble</em>'.

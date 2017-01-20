@@ -17,12 +17,10 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.Authorization;
 import org.bimserver.models.store.OAuthAuthorizationCode;
 import org.bimserver.models.store.OAuthServer;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

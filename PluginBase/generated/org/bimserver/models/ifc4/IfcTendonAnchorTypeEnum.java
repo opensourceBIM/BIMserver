@@ -188,8 +188,7 @@ public enum IfcTendonAnchorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTendonAnchorTypeEnum[] VALUES_ARRAY = new IfcTendonAnchorTypeEnum[] { NULL, COUPLER,
-			TENSIONING_END, NOTDEFINED, FIXED_END, USERDEFINED, };
+	private static final IfcTendonAnchorTypeEnum[] VALUES_ARRAY = new IfcTendonAnchorTypeEnum[] { NULL, COUPLER, TENSIONING_END, NOTDEFINED, FIXED_END, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Tendon Anchor Type Enum</b></em>' enumerators.
@@ -197,8 +196,7 @@ public enum IfcTendonAnchorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcTendonAnchorTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcTendonAnchorTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Tendon Anchor Type Enum</b></em>' literal with the specified literal value.

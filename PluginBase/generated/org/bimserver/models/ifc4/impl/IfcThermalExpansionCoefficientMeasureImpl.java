@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcThermalExpansionCoefficientMeasureImpl extends IdEObjectImpl
-		implements IfcThermalExpansionCoefficientMeasure {
+public class IfcThermalExpansionCoefficientMeasureImpl extends IdEObjectImpl implements IfcThermalExpansionCoefficientMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -108,8 +107,7 @@ public class IfcThermalExpansionCoefficientMeasureImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE__WRAPPED_VALUE_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE__WRAPPED_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -118,8 +116,7 @@ public class IfcThermalExpansionCoefficientMeasureImpl extends IdEObjectImpl
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc4Package.Literals.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE__WRAPPED_VALUE_AS_STRING,
-				newWrappedValueAsString);
+		eSet(Ifc4Package.Literals.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
 	}
 
 	/**

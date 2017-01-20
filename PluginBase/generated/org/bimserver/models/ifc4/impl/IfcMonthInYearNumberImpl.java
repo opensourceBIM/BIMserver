@@ -69,8 +69,8 @@ public class IfcMonthInYearNumberImpl extends IdEObjectImpl implements IfcMonthI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getWrappedValue() {
-		return (Integer) eGet(Ifc4Package.Literals.IFC_MONTH_IN_YEAR_NUMBER__WRAPPED_VALUE, true);
+	public long getWrappedValue() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_MONTH_IN_YEAR_NUMBER__WRAPPED_VALUE, true);
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class IfcMonthInYearNumberImpl extends IdEObjectImpl implements IfcMonthI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWrappedValue(int newWrappedValue) {
+	public void setWrappedValue(long newWrappedValue) {
 		eSet(Ifc4Package.Literals.IFC_MONTH_IN_YEAR_NUMBER__WRAPPED_VALUE, newWrappedValue);
 	}
 

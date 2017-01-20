@@ -208,12 +208,12 @@ public class CreateFromScratch {
 		localPlacement.setRelativePlacement(axis2Placement3D);
 		site.setObjectPlacement(localPlacement);
 		site.setCompositionType(IfcElementCompositionEnum.ELEMENT);
-		site.getRefLatitude().add(24);
-		site.getRefLatitude().add(28);
-		site.getRefLatitude().add(0);
-		site.getRefLongitude().add(54);
-		site.getRefLongitude().add(25);
-		site.getRefLongitude().add(0);
+		site.getRefLatitude().add(24L);
+		site.getRefLatitude().add(28L);
+		site.getRefLatitude().add(0L);
+		site.getRefLongitude().add(54L);
+		site.getRefLongitude().add(25L);
+		site.getRefLongitude().add(0L);
 
 		IfcRelAggregates buildingBuildingStorey = model.create(IfcRelAggregates.class);
 		buildingBuildingStorey.setRelatingObject(site);
