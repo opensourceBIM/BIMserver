@@ -75,6 +75,9 @@ public class Starter extends JFrame {
 	private JButton browserJvm;
 	private JTextField jvmField;
 	private JTextField homeDirField;
+	private JCheckBox useProxy;
+	private JTextField proxyHost;
+	private JTextField proxyPort;
 
 	public static void main(String[] args) {
 		new Starter().start();
@@ -89,6 +92,8 @@ public class Starter extends JFrame {
 			jarSettings.setHeapsize(heapSizeField.getText());
 			jarSettings.setHomedir(homeDirField.getText());
 			jarSettings.setForceipv4(forceIpv4Field.isSelected());
+			jarSettings.setProxyHost(proxyHost.getText());
+			jarSettings.setProxyPort(Integer.parseInt(proxyPort.getText()));
 			jarSettings.save();
 		} catch (Exception e) {
 			// ignore
@@ -212,8 +217,26 @@ public class Starter extends JFrame {
 		forceIpv4Field = new JCheckBox();
 		forceIpv4Field.setSelected(jarSettings.isForceipv4());
 		fields.add(forceIpv4Field);
+
+		JLabel useProxyLabel = new JLabel("User proxy server");
+		useProxy = new JCheckBox("Use proxy server");
+		useProxy.setSelected(jarSettings.isUseProxy());
+		fields.add(useProxyLabel);
+		fields.add(useProxy);
 		
-		SpringUtilities.makeCompactGrid(fields, 7, 2, // rows, cols
+		JLabel proxyHostLabel = new JLabel("Proxy Host");
+		fields.add(proxyHostLabel);
+		
+		proxyHost = new JTextField(jarSettings.getProxyHost());
+		fields.add(proxyHost);
+		
+		JLabel proxyPortLabel = new JLabel("Proxy Port");
+		fields.add(proxyPortLabel);
+		
+		proxyPort = new JTextField("" + jarSettings.getProxyPort());
+		fields.add(proxyPort);
+		
+		SpringUtilities.makeCompactGrid(fields, 10, 2, // rows, cols
 				6, 6, // initX, initY
 				6, 6); // xPad, yPad
 
@@ -272,6 +295,14 @@ public class Starter extends JFrame {
 		portField.getDocument().addDocumentListener(documentChangeListener);
 		heapSizeField.getDocument().addDocumentListener(documentChangeListener);
 		stackSizeField.getDocument().addDocumentListener(documentChangeListener);
+		useProxy.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				save();
+			}
+		});
+		proxyHost.getDocument().addDocumentListener(documentChangeListener);
+		proxyPort.getDocument().addDocumentListener(documentChangeListener);
 		forceIpv4Field.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -334,6 +365,9 @@ public class Starter extends JFrame {
 		homeDirField.setEditable(enabled);
 		browserHomeDir.setEnabled(enabled);
 		browserJvm.setEnabled(enabled);
+		proxyHost.setEnabled(enabled);
+		proxyPort.setEnabled(enabled);
+		useProxy.setEnabled(enabled);
 	}
 	
 	private void start(File destDir, String address, String port, String heapsize, String stacksize, String jvmPath, String homedir) {
@@ -390,6 +424,12 @@ public class Starter extends JFrame {
 //			if (debug ) {
 //				command += " -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y";
 //			}
+			
+			if (useProxy.isSelected()) {
+				commands.add("-Dhttp.proxyHost=" + proxyHost.getText());
+				commands.add("-Dhttp.proxyPort=" + proxyPort.getText());
+			}
+			
 			String cp = "." + File.pathSeparator;
 			boolean escapeCompletePath = isMac;
 //			if (escapeCompletePath) {

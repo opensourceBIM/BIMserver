@@ -43,6 +43,15 @@ public class JarSettings {
 	private String address = "localhost";
 
 	@XmlElement
+	private String proxyHost = "proxyHost";
+
+	@XmlElement
+	private boolean useProxy = false;
+
+	@XmlElement
+	private int proxyPort = 1080;
+	
+	@XmlElement
 	private int port = 8082;
 
 	@XmlElement
@@ -157,5 +166,29 @@ public class JarSettings {
 
 	public void setForceipv4(boolean forceipv4) {
 		this.forceipv4 = forceipv4;
+	}
+
+	public String getProxyHost() {
+		return proxyHost;
+	}
+
+	public void setProxyHost(String proxyHost) {
+		this.proxyHost = proxyHost;
+	}
+
+	public int getProxyPort() {
+		return proxyPort;
+	}
+
+	public void setProxyPort(int proxyPort) {
+		this.proxyPort = proxyPort;
+	}
+
+	public boolean isUseProxy() {
+		return useProxy;
+	}
+
+	public void setUseProxy(boolean useProxy) {
+		this.useProxy = useProxy;
 	}
 }
