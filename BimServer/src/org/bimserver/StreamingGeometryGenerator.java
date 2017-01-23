@@ -3,7 +3,6 @@ package org.bimserver;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -11,7 +10,6 @@ import java.nio.ByteOrder;
 import java.nio.DoubleBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -25,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.ProgressListener;
@@ -370,7 +369,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					} finally {
 						try {
 	//						if (notFoundsObjects) {
-								writeDebugFile(bytes);
+//								writeDebugFile(bytes, false);
 	//							Thread.sleep(60000);
 	//						}
 							in.close();
@@ -385,7 +384,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					}
 				} catch (Exception e) {
 					LOGGER.error("", e);
-					writeDebugFile(bytes);
+					writeDebugFile(bytes, true);
 //					LOGGER.error("Original query: " + originalQuery, e);
 				}
 			} catch (Exception e) {
@@ -394,16 +393,19 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			}
 		}
 
-		private void writeDebugFile(byte[] bytes) throws FileNotFoundException, IOException {
-			boolean debug = false;
+		private void writeDebugFile(byte[] bytes, boolean error) throws FileNotFoundException, IOException {
+			boolean debug = true;
 			if (debug) {
-				Path debugPath = Paths.get("debug");
+				Path debugPath = bimServer.getHomeDir().resolve("debug");
 				if (!Files.exists(debugPath)) {
 					Files.createDirectories(debugPath);
 				}
 				String basefilenamename = "all";
 				if (eClass != null) {
 					basefilenamename = eClass.getName();
+				}
+				if (error) {
+					basefilenamename += "-error";
 				}
 				Path file = debugPath.resolve(basefilenamename + ".ifc");
 				int i=0;
@@ -412,9 +414,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					i++;
 				}
 				LOGGER.info("Writing debug file to " + file.toAbsolutePath().toString());
-				FileOutputStream fos = new FileOutputStream(file.toFile());
-				IOUtils.copy(new ByteArrayInputStream(bytes), fos);
-				fos.close();
+				FileUtils.writeByteArrayToFile(file.toFile(), bytes);
 			}
 		}
 
