@@ -12,6 +12,7 @@
                "field": "Units",
                "includes": [
                   "ConversionFactor",
+                  "IfcDerivedUnit",
                   "Dimensions"
                ]
             },
@@ -28,6 +29,23 @@
       "IfcGeometricRepresentationSubContext": {
          "type": "IfcGeometricRepresentationSubContext",
          "field": "ParentContext"
+      },
+      "IfcAnnotationContainedInStructure": {
+         "type": "IfcAnnotation",
+         "field": "ContainedInStructure",
+         "includes": [
+            {
+               "type": "IfcRelContainedInSpatialStructure",
+               "fields": [
+                  "RelatingStructure"
+               ],
+               "includes": [
+                  "Decomposes",
+                  "OwnerHistory"
+               ]
+            },
+            "OwnerHistory"
+         ]
       },
       "ContainedInStructure": {
          "type": "IfcElement",
@@ -46,9 +64,33 @@
             "OwnerHistory"
          ]
       },
+      "IfcSIUnit": {
+         "type": "IfcSIUnit"
+      },
+      "IfcContextDependentUnit": {
+         "type": "IfcContextDependentUnit"
+      },
+      "IfcConversionBasedUnit": {
+         "type": "IfcConversionBasedUnit"
+      },
+      "IfcDerivedUnitElement": {
+        "type": "IfcDerivedUnitElement",
+        "field": "Unit",
+        "includes": [
+           "IfcContextDependentUnit",
+           "IfcConversionBasedUnit",
+           "IfcSIUnit"
+        ]
+      },
       "Dimensions": {
          "type": "IfcConversionBasedUnit",
-         "field": "Dimensions"
+         "field": "Dimensions",
+         "include": "IfcDerivedUnitElement"
+      },
+      "IfcDerivedUnit": {
+         "type": "IfcDerivedUnit",
+         "field": "Elements",
+         "include": "IfcDerivedUnitElement"
       },
       "ConversionFactor": {
          "type": "IfcConversionBasedUnit",
@@ -68,7 +110,8 @@
                "includes": [
                   "Decomposes",
                   "Units",
-                  "OwnerHistory"
+                  "OwnerHistory",
+                  "ContainedInStructure"
                ]
             },
             "OwnerHistory"
@@ -88,7 +131,17 @@
                   },
                   {
                      "type": "IfcPersonAndOrganization",
-                     "field": "TheOrganization"
+                     "field": "TheOrganization",
+                     "includes": [
+                        {
+                           "type": "IfcOrganization",
+                           "field": "Roles"
+                        },
+                        {
+                           "type": "IfcOrganization",
+                           "field": "Addresses"
+                        }
+                     ]
                   }
                ]
             },
@@ -102,41 +155,322 @@
             }
          ]
       },
+      "IfcSurfaceStyleRendering": {
+         "type": "IfcSurfaceStyleRendering",
+         "fields": [
+            "SurfaceColour",
+            "DiffuseColour",
+            "TransmissionColour",
+            "DiffuseTransmissionColour",
+            "ReflectionColour",
+            "SpecularColour",
+            "SpecularHighlight"
+         ]
+      },
+      "IfcSurfaceStyleShading": {
+         "type": "IfcSurfaceStyleShading",
+         "fields": [
+            "SurfaceColour"
+         ]
+      },
       "IfcSurfaceStyle": {
          "type": "IfcSurfaceStyle",
          "field": "Styles",
-         "include": {
-            "type": "IfcSurfaceStyleRendering",
-            "fields": [
-               "SurfaceColour",
-               "DiffuseColour",
-               "TransmissionColour",
-               "DiffuseTransmissionColour",
-               "ReflectionColour",
-               "SpecularColour",
-               "SpecularHighlight"
-            ]
-         }
+         "includes": [
+            "IfcSurfaceStyleRendering",
+            "IfcSurfaceStyleShading"
+         ]
       },
       "IfcFillAreaStyle": {
          "type": "IfcFillAreaStyle",
          "field": "FillStyles"
       },
+      "TextCharacterAppearance": {
+         "type": "IfcTextStyleForDefinedFont",
+         "fields": [
+            "Colour",
+            "BackgroundColour"
+         ]
+      },
+      "IfcTextStyle": {
+         "type": "IfcTextStyle",
+         "fields": [
+            "TextCharacterAppearance",
+            "TextStyle",
+            "TextFontStyle"
+         ],
+         "includes": [
+            "TextCharacterAppearance"
+         ]
+      },
+      "IfcPresentationStyleAssignment": {
+         "type": "IfcPresentationStyleAssignment",
+         "field": "Styles",
+         "includes": [
+            "IfcFillAreaStyle",
+            "IfcSurfaceStyle",
+            "IfcTextStyle"
+         ]
+      },
+      "IfcStyledItem": {
+         "type": "IfcStyledItem",
+         "fields": [
+            "Item",
+            "Styles"
+         ],
+         "includes": [
+            "IfcPresentationStyleAssignment",
+            "IfcRepresentationItem"
+         ]
+      },
       "IfcRepresentationItem": {
          "type": "IfcRepresentationItem",
          "field": "StyledByItem",
+         "include": "IfcStyledItem"
+      },
+      "IfcBoundingBox": {
+         "type": "IfcBoundingBox",
+         "field": "Corner"
+      },
+      "AllProperties": {
+         "type": "IfcObject",
+         "field": "IsDefinedBy",
          "include": {
-            "type": "IfcStyledItem",
-            "field": "Styles",
+            "type": "IfcRelDefinesByProperties",
+            "field": "RelatingPropertyDefinition",
             "include": {
-               "type": "IfcPresentationStyleAssignment",
-               "field": "Styles",
-               "includes": [
-                  "IfcFillAreaStyle",
-                  "IfcSurfaceStyle"
-               ]
+               "type": "IfcPropertySet",
+               "field": "HasProperties"
             }
          }
+      },
+      "IfcOpenShell": {
+         "type": "IfcOpenShell",
+         "field": "CfsFaces",
+         "include": {
+            "type": "IfcFace",
+            "field": "Bounds",
+            "include": {
+               "type": "IfcFaceBound",
+               "field": "Bound",
+               "include": {
+                  "type": "IfcPolyLoop",
+                  "field": "Polygon"
+               }
+            }
+         }
+      },
+      "IfcShellBasedSurfaceModel": {
+         "type": "IfcShellBasedSurfaceModel",
+         "field": "SbsmBoundary",
+         "include": "IfcOpenShell"
+      },
+      "IfcTextLiteralWithExtent": {
+         "type": "IfcTextLiteralWithExtent",
+         "fields": [
+            "Placement",
+            "Extent"
+         ],
+         "includes": [
+            "IfcAxis2Placement2D",
+            "IfcAxis2Placement3D"
+         ]
+      },
+      "IfcCartesianPoint": {
+         "type": "IfcCartesianPoint"
+      },
+      "IfcPointOnCurve": {
+         "type": "IfcPointOnCurve"
+      },
+      "IfcPointOnSurface": {
+         "type": "IfcPointOnSurface"
+      },
+      "IfcBoundedCurve": {
+         "type": "IfcBoundedCurve"
+      },
+      "IfcCircle": {
+         "type": "IfcCircle",
+         "field": "Position",
+         "includes": [
+            "IfcAxis2Placement2D",
+            "IfcAxis2Placement3D"
+         ]
+      },
+      "IfcEllipse": {
+         "type": "IfcEllipse"
+      },
+      "IfcDirection": {
+         "type": "IfcDirection"
+      },
+      "IfcVector": {
+         "type": "IfcVector",
+         "field": "Orientation",
+         "include": "IfcDirection"
+      },
+      "IfcLine": {
+         "type": "IfcLine",
+         "fields": [
+            "Pnt",
+            "Dir"
+         ],
+         "includes": [
+            "IfcCartesianPoint",
+            "IfcVector"
+         ]
+      },
+      "IfcOffsetCurve2D": {
+         "type": "IfcOffsetCurve2D"
+      },
+      "IfcOffsetCurve3D": {
+         "type": "IfcOffsetCurve3D"
+      },
+      "IfcElementarySurface": {
+         "type": "IfcElementarySurface"
+      },
+      "IfcSurfaceOfRevolution": {
+         "type": "IfcSurfaceOfRevolution"
+      },
+      "IfcSurfaceOfLinearExtrusion": {
+         "type": "IfcSurfaceOfLinearExtrusion"
+      },
+      "IfcCurveBoundedPlane": {
+         "type": "IfcCurveBoundedPlane"
+      },
+      "IfcRectangularTrimmedSurface": {
+         "type": "IfcRectangularTrimmedSurface"
+      },
+      "IfcCompositeCurveSegment": {
+         "type": "IfcCompositeCurveSegment",
+         "fields": [
+            "ParentCurve",
+            "UsingCurves"
+         ],
+         "includes": [
+            "IfcCompositeCurve",
+            "IfcPolyline",
+            "IfcTrimmedCurve",
+            "IfcBSplineCurve",
+            "IfcCircle",
+            "IfcEllipse",
+            "IfcLine",
+            "IfcOffsetCurve2D",
+            "IfcOffsetCurve3D"
+         ]
+      },
+      "IfcCompositeCurve": {
+         "type": "IfcCompositeCurve",
+         "field": "Segments",
+         "include": "IfcCompositeCurveSegment"
+      },
+      "IfcParameterValue": {
+         "type": "IfcParameterValue"
+      },
+      "IfcTrimmedCurve": {
+         "type": "IfcTrimmedCurve",
+         "fields": [
+            "BasisCurve",
+            "Trim1",
+            "Trim2"
+         ],
+         "includes": [
+            "IfcCompositeCurve",
+            "IfcPolyline",
+            "IfcTrimmedCurve",
+            "IfcBSplineCurve",
+            "IfcCircle",
+            "IfcEllipse",
+            "IfcLine",
+            "IfcOffsetCurve2D",
+            "IfcOffsetCurve3D",
+            "IfcCartesianPoint",
+            "IfcParameterValue"
+         ]
+      },
+      "IfcBSplineCurve": {
+         "type": "IfcBSplineCurve"
+      },
+      "IfcGeometricCurveSet": {
+         "type": "IfcGeometricCurveSet",
+         "field": "Elements",
+         "includes": [
+            "IfcCartesianPoint",
+            "IfcPointOnCurve",
+            "IfcPointOnSurface",
+            "IfcCompositeCurve",
+            "IfcPolyline",
+            "IfcTrimmedCurve",
+            "IfcBSplineCurve",
+            "IfcCircle",
+            "IfcEllipse",
+            "IfcLine",
+            "IfcOffsetCurve2D",
+            "IfcOffsetCurve3D",
+            "IfcElementarySurface",
+            "IfcSurfaceOfRevolution",
+            "IfcSurfaceOfLinearExtrusion",
+            "IfcCurveBoundedPlane",
+            "IfcRectangularTrimmedSurface"
+         ]
+      },
+      "IfcRepresentation": {
+         "type": "IfcRepresentation",
+         "fields": [
+            "Items",
+            "ContextOfItems"
+         ],
+         "includes": [
+            "IfcRepresentationItem",
+            "IfcStyledItem",
+            "IfcPolyline",
+            "IfcGeometricRepresentationContext",
+            "IfcGeometricRepresentationSubContext",
+            "IfcMappedItem",
+            "IfcFacetedBrep",
+            "IfcPolygonalBoundedHalfSpace",
+            "IfcBooleanResult",
+            "IfcExtrudedAreaSolid",
+            "IfcBoundingBox",
+            "IfcShellBasedSurfaceModel",
+            "IfcTextLiteralWithExtent",
+            "IfcGeometricCurveSet",
+            "IfcTrimmedCurve",
+            "IfcFaceBasedSurfaceModel"
+         ]
+      },
+      "IfcShapeRepresentation": {
+         "type": "IfcShapeRepresentation",
+         "field": "Items",
+         "includes": [
+            "IfcRepresentationItem",
+            "IfcStyledItem",
+            "IfcPolyline",
+            "IfcGeometricRepresentationContext",
+            "IfcGeometricRepresentationSubContext",
+            "IfcMappedItem",
+            "IfcFacetedBrep",
+            "IfcPolygonalBoundedHalfSpace",
+            "IfcBooleanResult",
+            "IfcExtrudedAreaSolid",
+            "IfcBoundingBox",
+            "IfcShellBasedSurfaceModel",
+            "IfcTextLiteralWithExtent",
+            "IfcGeometricCurveSet",
+            "IfcTrimmedCurve",
+            "IfcFaceBasedSurfaceModel"
+         ]
+      },
+      "IfcFaceBasedSurfaceModel": {
+         "type": "IfcFaceBasedSurfaceModel",
+         "field": "FbsmFaces",
+         "includes": [
+            "IfcConnectedFaceSet"
+         ]
+      },
+      "IfcTopologyRepresentation": {
+         "type": "IfcTopologyRepresentation"
+      },
+      "IfcStyledRepresentation": {
+         "type": "IfcTopologyRepresentation"
       },
       "Representation": {
          "type": "IfcProduct",
@@ -145,47 +479,34 @@
             "type": "IfcProductRepresentation",
             "field": "Representations",
             "includes": [
-               {
-                  "type": "IfcRepresentation",
-                  "fields": [
-                     "Items",
-                     "ContextOfItems"
-                  ],
-                  "includes": [
-                     "IfcRepresentationItem",
-                     "IfcPolyline",
-                     "IfcGeometricRepresentationContext",
-                     "IfcGeometricRepresentationSubContext",
-                     "IfcMappedItem",
-                     "IfcFacetedBrep",
-                     "IfcPolygonalBoundedHalfSpace",
-                     "IfcBooleanResult",
-                     "IfcExtrudedAreaSolid"
-                  ]
-               },
-               "IfcBooleanResult"
+               "IfcRepresentation",
+               "IfcBooleanResult",
+               "IfcShapeRepresentation",
+               "IfcTopologyRepresentation",
+               "IfcStyledRepresentation"
             ]
+         }
+      },
+      "IfcConnectedFaceSet": {
+         "type": "IfcConnectedFaceSet",
+         "field": "CfsFaces",
+         "include": {
+            "type": "IfcFace",
+            "field": "Bounds",
+            "include": {
+               "type": "IfcFaceBound",
+               "field": "Bound",
+               "include": {
+                  "type": "IfcPolyLoop",
+                  "field": "Polygon"
+               }
+            }
          }
       },
       "IfcFacetedBrep": {
          "type": "IfcFacetedBrep",
          "field": "Outer",
-         "include": {
-            "type": "IfcClosedShell",
-            "field": "CfsFaces",
-            "include": {
-               "type": "IfcFace",
-               "field": "Bounds",
-               "include": {
-                  "type": "IfcFaceBound",
-                  "field": "Bound",
-                  "include": {
-                     "type": "IfcPolyLoop",
-                     "field": "Polygon"
-                  }
-               }
-            }
-         }
+         "include": "IfcConnectedFaceSet"
       },
       "IfcMappedItem": {
          "type": "IfcMappedItem",
@@ -211,7 +532,8 @@
                ],
                "includes": [
                   "IfcAxis2Placement2D",
-                  "IfcAxis2Placement3D"
+                  "IfcAxis2Placement3D",
+                  "IfcRepresentation"
                ]
             }
          ]
@@ -223,7 +545,35 @@
       "IfcArbitraryClosedProfileDef": {
          "type": "IfcArbitraryClosedProfileDef",
          "field": "OuterCurve",
-         "include": "IfcPolyline"
+         "includes": [
+            "IfcCompositeCurve",
+            "IfcPolyline",
+            "IfcTrimmedCurve",
+            "IfcBSplineCurve",
+            "IfcCircle",
+            "IfcEllipse",
+            "IfcLine",
+            "IfcOffsetCurve2D",
+            "IfcOffsetCurve3D"
+         ]
+      },
+      "IfcArbitraryProfileDefWithVoids": {
+         "type": "IfcArbitraryProfileDefWithVoids",
+         "fields": [
+            "OuterCurve",
+            "InnerCurves"
+         ],
+         "includes": [
+            "IfcCompositeCurve",
+            "IfcPolyline",
+            "IfcTrimmedCurve",
+            "IfcBSplineCurve",
+            "IfcCircle",
+            "IfcEllipse",
+            "IfcLine",
+            "IfcOffsetCurve2D",
+            "IfcOffsetCurve3D"
+         ]
       },
       "IfcHalfSpaceSolid": {
          "type": "IfcHalfSpaceSolid",
@@ -254,6 +604,7 @@
          "includes": [
             "IfcAxis2Placement3D",
             "IfcArbitraryClosedProfileDef",
+            "IfcArbitraryProfileDefWithVoids",
             "IfcParameterizedProfileDef"
          ]
       },
@@ -279,7 +630,11 @@
          ],
          "includes": [
             "IfcPlane",
-            "IfcPolyline"
+            "IfcPolyline",
+            "IfcAxis2Placement3D",
+            "IfcCompositeCurve",
+            "IfcTrimmedCurve",
+            "IfcBSplineCurve"
          ]
       },
       "IfcBooleanResult": {
