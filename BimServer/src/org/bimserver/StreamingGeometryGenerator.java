@@ -102,14 +102,12 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		private EClass eClass;
 		private RenderEngineSettings renderEngineSettings;
 		private RenderEngineFilter renderEngineFilter;
-		private RenderEngineFilter renderEngineFilterTransformed = new RenderEngineFilter(true);
 		private StreamingSerializerPlugin ifcSerializerPlugin;
 		private GenerateGeometryResult generateGeometryResult;
 		private ObjectProvider objectProvider;
 		private QueryContext queryContext;
 		private DatabaseSession databaseSession;
 		private RenderEnginePool renderEnginePool;
-		private Query originalQuery;
 
 		public Runner(EClass eClass, RenderEnginePool renderEnginePool, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider, StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext, Query originalQuery) {
 			this.eClass = eClass;
@@ -121,7 +119,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			this.renderEngineFilter = renderEngineFilter;
 			this.generateGeometryResult = generateGeometryResult;
 			this.queryContext = queryContext;
-			this.originalQuery = originalQuery;
 		}
 
 		@Override
@@ -186,7 +183,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					IOUtils.copy(ifcSerializer.getInputStream(), baos);
 					bytes = baos.toByteArray();
 					InputStream in = new ByteArrayInputStream(bytes);
-					boolean notFoundsObjects = false;
 					try {
 						if (!objects.isEmpty()) {
 							renderEngine = renderEnginePool.borrowObject();
@@ -357,7 +353,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	//										}
 	//									}
 										if (!ignoreNotFound) {
-											notFoundsObjects = true;
 											LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + (expressId) + "/" + ifcProduct.getOid());
 										}
 									} catch (BimserverDatabaseException | RenderEngineException e) {
@@ -429,6 +424,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public GenerateGeometryResult generateGeometry(long uoid, final DatabaseSession databaseSession, QueryContext queryContext) throws BimserverDatabaseException, GeometryGeneratingException {
 		GenerateGeometryResult generateGeometryResult = new GenerateGeometryResult();
 		packageMetaData = queryContext.getPackageMetaData();
@@ -644,14 +640,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		generateGeometryResult.setMaxX(Math.max(x, generateGeometryResult.getMaxX()));
 		generateGeometryResult.setMaxY(Math.max(y, generateGeometryResult.getMaxY()));
 		generateGeometryResult.setMaxZ(Math.max(z, generateGeometryResult.getMaxZ()));
-	}
-
-	private float[] doubleToFloat(double[] tranformationMatrix) {
-		float[] result = new float[tranformationMatrix.length];
-		for (int i=0; i<tranformationMatrix.length; i++) {
-			result[i] = (float) tranformationMatrix[i];
-		}
-		return result;
 	}
 
 	private void setTransformationMatrix(VirtualObject geometryInfo, double[] transformationMatrix) throws BimserverDatabaseException {

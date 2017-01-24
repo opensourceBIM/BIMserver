@@ -337,6 +337,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		return concreteRevision;
 	}
 
+	@SuppressWarnings("unchecked")
 	private void fixInverses(PackageMetaData packageMetaData, long newRoid) throws QueryException, JsonParseException, JsonMappingException, IOException, BimserverDatabaseException {
 		// TODO remove cache, this is essentially a big part of the model in memory again
 		Map<Long, HashMapVirtualObject> cache = new HashMap<Long, HashMapVirtualObject>();

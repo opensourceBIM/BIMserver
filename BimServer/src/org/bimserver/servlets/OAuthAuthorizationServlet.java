@@ -111,11 +111,9 @@ public class OAuthAuthorizationServlet extends SubServlet {
 			try {
 				OAuthResponse response = OAuthASResponse.errorResponse(HttpServletResponse.SC_FOUND).error(e)
 						.location(redirectUri).buildQueryMessage();
-				final URI location = new URI(response.getLocationUri());
+//				final URI location = new URI(response.getLocationUri());
 				httpServletResponse.sendRedirect(response.getLocationUri());
 			} catch (OAuthSystemException e1) {
-				e1.printStackTrace();
-			} catch (URISyntaxException e1) {
 				e1.printStackTrace();
 			}
 		} catch (OAuthSystemException e) {

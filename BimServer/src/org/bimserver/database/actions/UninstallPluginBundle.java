@@ -8,12 +8,9 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.MavenPluginLocation;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class UninstallPluginBundle extends BimDatabaseAction<Void> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(UninstallPluginBundle.class);
 	private BimServer bimServer;
 	private String groupId;
 	private String artifactId;

@@ -147,11 +147,11 @@ public class OfflineGeometryGenerator {
 
 					geometryInfo.setData(geometryData);
 
-					long length = (geometryData.getIndices() != null ? geometryData.getIndices().length : 0) + 
-								  (geometryData.getVertices() != null ? geometryData.getVertices().length : 0) + 
-								  (geometryData.getNormals() != null ? geometryData.getNormals().length : 0) + 
-								  (geometryData.getMaterials() != null ? geometryData.getMaterials().length : 0) +
-								  (geometryData.getMaterialIndices() != null ? geometryData.getMaterialIndices().length : 0);
+//					long length = (geometryData.getIndices() != null ? geometryData.getIndices().length : 0) + 
+//								  (geometryData.getVertices() != null ? geometryData.getVertices().length : 0) + 
+//								  (geometryData.getNormals() != null ? geometryData.getNormals().length : 0) + 
+//								  (geometryData.getMaterials() != null ? geometryData.getMaterials().length : 0) +
+//								  (geometryData.getMaterialIndices() != null ? geometryData.getMaterialIndices().length : 0);
 
 					setTransformationMatrix(geometryInfo, tranformationMatrix);
 					int hash = hash(geometryData);

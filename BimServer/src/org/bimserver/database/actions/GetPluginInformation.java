@@ -13,12 +13,9 @@ import org.bimserver.plugins.MavenPluginLocation;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.aether.resolution.ArtifactResolutionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class GetPluginInformation extends BimDatabaseAction<List<SPluginInformation>> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(GetPluginInformation.class);
 	private BimServer bimServer;
 	private String groupId;
 	private String artifactId;

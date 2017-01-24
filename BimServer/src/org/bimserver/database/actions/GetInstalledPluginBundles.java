@@ -38,11 +38,8 @@ import org.bimserver.plugins.PluginBundleIdentifier;
 import org.bimserver.plugins.PluginLocation;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<SPluginBundle>> {
-	private static final Logger LOGGER = LoggerFactory.getLogger(GetInstalledPluginBundles.class);
 	private BimServer bimServer;
 	private boolean strictVersionChecking;
 	private DefaultArtifactVersion bimserverVersion;

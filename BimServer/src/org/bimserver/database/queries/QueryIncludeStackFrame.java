@@ -41,7 +41,7 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 	private Iterator<EReference> featureIterator;
 	private Include include;
 	private EReference feature;
-	private HashSet directFeatureSet;
+	private HashSet<?> directFeatureSet;
 
 	public QueryIncludeStackFrame(QueryObjectProvider queryObjectProvider, QueryContext queryContext, CanInclude previousInclude, Include include, HashMapVirtualObject currentObject, QueryPart queryPart) throws QueryException, BimserverDatabaseException {
 		super(queryContext, queryObjectProvider, queryPart);

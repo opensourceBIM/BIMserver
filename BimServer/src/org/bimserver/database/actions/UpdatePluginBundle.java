@@ -7,11 +7,8 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.OldQuery;
-import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.MavenPluginLocation;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -53,11 +50,11 @@ public class UpdatePluginBundle extends BimDatabaseAction<Void> {
 					plugins = bimServer.getPluginManager().getPluginInformationFromJar(jarFile);
 				}
 
-				IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), OldQuery.getDefault());
+//				IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), OldQuery.getDefault());
 				
-				for (SPluginInformation sPluginInformation : plugins) {
+//				for (SPluginInformation sPluginInformation : plugins) {
 					// update plugin information with data from potentially existing plugins
-				}
+//				}
 				
 				bimServer.getPluginManager().update(mavenPluginLocation.getPluginVersionIdentifier(version), mavenPluginLocation.getPluginBundle(version), mavenPluginLocation.getPluginBundleVersion(version), jarFile, pomFile, plugins);
 			} catch (Exception e) {

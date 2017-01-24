@@ -30,7 +30,7 @@ public class Step0025 extends Migration {
 		
 		EClass actionClass = schema.createEClass("store", "Action");
 		
-		EClass storeExtendedDataClass = schema.createEClass("store", "StoreExtendedData", actionClass);
+		schema.createEClass("store", "StoreExtendedData", actionClass);
 		EClass checkinRevisionClass = schema.createEClass("store", "CheckinRevision", actionClass);
 
 		EClass projectClass = schema.getEClass("store", "Project");

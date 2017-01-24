@@ -23,8 +23,7 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class TestMultiple {
 	public static void main(String[] args) throws InterruptedException {
-		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+		try (BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 2, 1, TimeUnit.DAYS, new ArrayBlockingQueue<>(2));
@@ -55,6 +54,8 @@ public class TestMultiple {
 			e.printStackTrace();
 		} catch (ChannelConnectionException e) {
 			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
 }

@@ -26,7 +26,6 @@ import java.util.Map;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
-import org.bimserver.GeometryCache;
 import org.bimserver.GeometryGeneratingException;
 import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.SummaryMap;
@@ -67,7 +66,6 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 	private Revision revision;
 	private Authorization authorization;
 	private BimServer bimServer;
-	private final GeometryCache geometryCache = new GeometryCache();
 
 	public CommitTransactionDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, LongTransaction longTransaction, String comment) {
 		super(databaseSession, accessMethod);

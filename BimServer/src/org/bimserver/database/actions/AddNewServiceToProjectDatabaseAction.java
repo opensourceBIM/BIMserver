@@ -27,14 +27,12 @@ import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.ServiceStatus;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
 public class AddNewServiceToProjectDatabaseAction extends BimDatabaseAction<Long> {
 
 	private long poid;
-	private Authorization authorization;
 	private NewService service;
 	private Action action;
 
@@ -43,13 +41,12 @@ public class AddNewServiceToProjectDatabaseAction extends BimDatabaseAction<Long
 		this.poid = poid;
 		this.service = service;
 		this.action = action;
-		this.authorization = authorization;
 	}
 
 	@Override
 	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Project project = getDatabaseSession().get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());
-		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
+//		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
 //		service.setUser(user);
 		for (org.bimserver.models.store.Service existing : project.getServices()) {
 			if (existing.getName().equals(service.getName())) {

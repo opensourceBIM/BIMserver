@@ -128,7 +128,6 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	public long getSerializerOid() {
 		return (Long) eGet(StorePackage.Literals.DOWNLOAD_RESULT__SERIALIZER_OID, true);
 	}

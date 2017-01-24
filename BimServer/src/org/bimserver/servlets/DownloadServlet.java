@@ -136,7 +136,6 @@ public class DownloadServlet extends SubServlet {
 				} else if (action.equals("getBcfImage")) {
 					long extendedDataId = Long.parseLong(request.getParameter("extendedDataId"));
 					String topicGuid = request.getParameter("topicGuid");
-					String imageGuid = request.getParameter("imageGuid");
 					String name = request.getParameter("name");
 					BcfFile bcfFile = BcfCache.INSTANCE.get(extendedDataId);
 					if (bcfFile == null) {

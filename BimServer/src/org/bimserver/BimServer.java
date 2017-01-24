@@ -818,6 +818,7 @@ public class BimServer {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void updateUserPlugin(DatabaseSession session, User user, PluginDescriptor pluginDescriptor, PluginContext pluginContext) throws BimserverDatabaseException {
 		if (pluginDescriptor.isInstallForNewUsers()) {
 			UserSettings userSettings = user.getUserSettings();
@@ -964,6 +965,7 @@ public class BimServer {
 		return null;
 	}
 
+	@SuppressWarnings("unused")
 	private WebModulePluginConfiguration findWebModule(ServerSettings serverSettings, String identifier) {
 		for (Entry<PluginContext, WebModulePlugin> entry : pluginManager.getAllWebPlugins(true).entrySet()) {
 			WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), identifier);

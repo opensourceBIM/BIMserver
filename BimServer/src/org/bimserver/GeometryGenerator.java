@@ -348,6 +348,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 			return result;
 		}
 
+		@SuppressWarnings("unused")
 		private void createBoundingBoxGeometry(IfcBoundingBox ifcBoundingBox, IdEObject ifcProduct) throws IfcModelInterfaceException, BimserverDatabaseException {
 			System.out.println("bb " + ifcProduct.getOid());
 			GeometryInfo geometryInfo = model.createAndAdd(GeometryPackage.eINSTANCE.getGeometryInfo(), databaseSession.newOid(GeometryPackage.eINSTANCE.getGeometryInfo()));

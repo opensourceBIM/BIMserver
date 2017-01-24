@@ -122,9 +122,8 @@ public class BimServerImporter {
 	}
 	
 	public void start() {
-		try {
+		try (BimServerClientFactory factory = new JsonBimServerClientFactory(bimServer.getMetaDataManager(), address)) {
 			LOGGER.info("Importing...");
-			BimServerClientFactory factory = new JsonBimServerClientFactory(bimServer.getMetaDataManager(), address);
 			remoteClient = factory.create(new UsernamePasswordAuthenticationInfo(username, password));
 			final BimDatabase database = bimServer.getDatabase();
 			DatabaseSession databaseSession = database.createSession();
@@ -242,6 +241,8 @@ public class BimServerImporter {
 			LOGGER.error("", e);
 		} catch (BimServerClientException e1) {
 			LOGGER.error("", e1);
+		} catch (Exception e2) {
+			LOGGER.error("", e2);
 		}
 	}
 

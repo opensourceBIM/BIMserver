@@ -11,14 +11,12 @@ import org.bimserver.webservices.authorization.Authorization;
 public class GetSubProjectByNameDatabaseAction extends BimDatabaseAction<Project> {
 
 	private final String name;
-	private Authorization authorization;
 	private Long parentProjectId;
 
 	public GetSubProjectByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Long parentProjectId, String name, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.parentProjectId = parentProjectId;
 		this.name = name;
-		this.authorization = authorization;
 	}
 
 	@Override

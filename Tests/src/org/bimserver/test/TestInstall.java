@@ -17,7 +17,7 @@ import org.bimserver.utils.FileDataSource;
 
 public class TestInstall {
 	public static void main(String[] args) {
-		ArrayList<String> pluginList = new ArrayList();
+		ArrayList<String> pluginList = new ArrayList<>();
 		pluginList.add("C:/plugins/ifcplugins-0.0.15.jar");
 
 		try (BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {

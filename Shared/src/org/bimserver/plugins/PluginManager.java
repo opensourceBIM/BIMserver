@@ -430,6 +430,7 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private PluginBundle loadJavaScriptProject(Path projectRoot, Path packageFile, Path pluginFolder, PluginDescriptor pluginDescriptor) {
 		ObjectNode packageModel;
 		try {
@@ -1591,18 +1592,18 @@ public class PluginManager implements PluginManagerInterface {
 			} else {
 				PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(dependency.getGroupId(), dependency.getArtifactId());
 				if (pluginBundleIdentifierToPluginBundle.containsKey(pluginBundleIdentifier)) {
-					if (false) {
-						VersionRange versionRange = VersionRange.createFromVersion(dependency.getVersion());
-						String version = pluginBundleIdentifierToPluginBundle.get(pluginBundleIdentifier).getPluginBundleVersion().getVersion();
-						ArtifactVersion artifactVersion = new DefaultArtifactVersion(version);
-						if (versionRange.containsVersion(artifactVersion)) {
-							// OK
-						} else {
-							throw new Exception("Required dependency " + pluginBundleIdentifier + " is installed, but it's version (" + version + ") does not comply to the required version (" + dependency.getVersion() + ")");
-						}
-					} else {
+//					if (false) {
+//						VersionRange versionRange = VersionRange.createFromVersion(dependency.getVersion());
+//						String version = pluginBundleIdentifierToPluginBundle.get(pluginBundleIdentifier).getPluginBundleVersion().getVersion();
+//						ArtifactVersion artifactVersion = new DefaultArtifactVersion(version);
+//						if (versionRange.containsVersion(artifactVersion)) {
+//							// OK
+//						} else {
+//							throw new Exception("Required dependency " + pluginBundleIdentifier + " is installed, but it's version (" + version + ") does not comply to the required version (" + dependency.getVersion() + ")");
+//						}
+//					} else {
 						LOGGER.info("Skipping strict dependency checking for dependency " + dependency.getArtifactId());
-					}
+//					}
 				} else {
 					if (dependency.getGroupId().equals("org.opensourcebim") && (dependency.getArtifactId().equals("shared") || dependency.getArtifactId().equals("pluginbase"))) {
 						throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");

@@ -51,8 +51,7 @@ public class TestBigFilesRemote {
 		System.out.println("Username: " + username);
 		System.out.println("Password: " + password);
 		System.out.println("Basepath: " + basepath);
-		try {
-			JsonBimServerClientFactory factory = new JsonBimServerClientFactory(null, address);
+		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory(null, address)){
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo(args[1], args[2]));
 			
 			String[] fileNames = new String[]{
@@ -97,6 +96,8 @@ public class TestBigFilesRemote {
 			e.printStackTrace();
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
 }

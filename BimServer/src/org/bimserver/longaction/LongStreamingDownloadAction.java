@@ -63,9 +63,6 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongStreamingDownloadAction.class);
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-	private Long serializerOid;
-	private String jsonQuery;
-	private Set<Long> roids;
 	private StreamingSerializer serializer;
 	private MessagingStreamingSerializer messagingStreamingSerializer;
 	private String filename;
@@ -74,9 +71,6 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 
 	public LongStreamingDownloadAction(BimServer bimServer, String username, String userUsername, Authorization authorization, Long serializerOid, String jsonQuery, Set<Long> roids) {
 		super(bimServer, username, userUsername, authorization);
-		this.serializerOid = serializerOid;
-		this.jsonQuery = jsonQuery;
-		this.roids = roids;
 
 		checkoutResult.setSerializerOid(serializerOid);
 		

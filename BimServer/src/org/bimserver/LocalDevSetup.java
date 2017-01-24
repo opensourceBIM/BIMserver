@@ -99,6 +99,7 @@ public class LocalDevSetup {
 	 * @param address
 	 * @return
 	 */
+	@SuppressWarnings("resource")
 	public static final BimServerClientInterface setupJson(String address) {
 		try {
 			Path home = Paths.get("home");
@@ -142,15 +143,12 @@ public class LocalDevSetup {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
 			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
-			BimServerClientFactory factory = new SoapBimServerClientFactory(metaDataManager, address);
-			return factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			try (BimServerClientFactory factory = new SoapBimServerClientFactory(metaDataManager, address)) {
+				return factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			} catch (Exception e) {
+				LOGGER.error("", e);
+			}
 		} catch (PluginException e) {
-			LOGGER.error("", e);
-		} catch (ServiceException e) {
-			LOGGER.error("", e);
-		} catch (ChannelConnectionException e) {
-			LOGGER.error("", e);
-		} catch (BimServerClientException e) {
 			LOGGER.error("", e);
 		}
 		return null;

@@ -36,6 +36,7 @@ public class QueryClassificationsAndTypesStackFrame extends DatabaseReadingStack
 	private Record record;
 	private Set<Long> allowedOids = new HashSet<>();
 
+	@SuppressWarnings("unchecked")
 	public QueryClassificationsAndTypesStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, QueryPart partialQuery, QueryContext reusable, Set<String> classifications) throws BimserverDatabaseException {
 		super(reusable, queryObjectProvider, partialQuery);
 		this.eClass = eClass;

@@ -31,12 +31,10 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SRevisionSummaryContainer;
 import org.bimserver.interfaces.objects.SRevisionSummaryType;
-import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
@@ -49,7 +47,6 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
-import org.bimserver.utils.SerializerUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -93,8 +90,7 @@ public class TestClientEmfModelLocal {
 	public void test() {
 		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		protocolBuffersMetaData.load(bimServer.getServicesMap(), ProtocolBuffersBimServerClientFactory.class);
-		try {
-			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData, null, new SServicesMap());
+		try (BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData, null, new SServicesMap())) {
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 			bimServerClient = factory.create(usernamePasswordAuthenticationInfo);
 		} catch (ChannelConnectionException e1) {
@@ -107,6 +103,8 @@ public class TestClientEmfModelLocal {
 			e.printStackTrace();
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
+		} catch (Exception e2) {
+			e2.printStackTrace();
 		}
 		try {
 			IfcModelInterface model = bimServerClient.newModel(createProject(), false);
@@ -129,24 +127,18 @@ public class TestClientEmfModelLocal {
 
 	private void dumpToFile(SProject project, long roid) throws SerializerException {
 		try {
-			IfcModelInterface model = bimServerClient.getModel(project, roid, false, false);
-			Serializer serializer = null;//new Ifc4StepSerializer(new PluginConfiguration());
+//			IfcModelInterface model = bimServerClient.getModel(project, roid, false, false);
+//			Serializer serializer = null;//new Ifc4StepSerializer(new PluginConfiguration());
 			
-			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
+//			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
 			
-			serializer.init(model, null, bimServer.getPluginManager(), false);
+//			serializer.init(model, null, bimServer.getPluginManager(), false);
 			Path output = Paths.get("output");
 			if (!Files.exists(output)) {
 				Files.createDirectory(output);
 			}
 			
-			SerializerUtils.writeToFile(serializer, output.resolve(roid + ".ifc"));
-		} catch (BimServerClientException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (ServerException e) {
-			e.printStackTrace();
+//			SerializerUtils.writeToFile(serializer, output.resolve(roid + ".ifc"));
 		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

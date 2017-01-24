@@ -2,8 +2,6 @@ package org.bimserver.servlets;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -59,7 +57,7 @@ public class OAuthRegistrationServlet extends SubServlet {
             		}
             		oAuthServer.setRedirectUrl(oauthRequest.getRedirectURI());
             		
-            		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+//            		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
             		
             		GregorianCalendar expires = new GregorianCalendar();
             		expires.add(Calendar.YEAR, 1);

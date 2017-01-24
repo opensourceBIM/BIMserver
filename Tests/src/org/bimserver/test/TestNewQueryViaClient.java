@@ -26,8 +26,7 @@ public class TestNewQueryViaClient {
 	}
 
 	private void start() {
-		try {
-			JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")){
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			String projectName = "Test " + new Random().nextInt();
@@ -61,6 +60,8 @@ public class TestNewQueryViaClient {
 			e.printStackTrace();
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
 }

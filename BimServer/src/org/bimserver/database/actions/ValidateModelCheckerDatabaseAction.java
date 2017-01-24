@@ -24,7 +24,6 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelCheckerInstance;
-import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -46,7 +45,7 @@ public class ValidateModelCheckerDatabaseAction extends BimDatabaseAction<Void> 
 		if (modelCheckerPlugin == null) {
 			throw new UserException("Model Checker Plugin \"" + modelCheckerInstance.getModelCheckerPluginClassName() + "\" not found/enabled");
 		}
-		ModelChecker modelChecker = modelCheckerPlugin.createModelChecker(null);
+//		ModelChecker modelChecker = modelCheckerPlugin.createModelChecker(null);
 //		try {
 //			byte[] result = modelChecker.compile(modelCheckerInstance.getCode());
 			modelCheckerInstance.setValid(true);

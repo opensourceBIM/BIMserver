@@ -5,12 +5,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.bimserver.utils.MultiplexingOutputStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class CacheStoringStreamingSerializerDataSource extends ExtendedDataSource {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CacheStoringStreamingSerializerDataSource.class);
 	private RemovableFileOutputStream diskCacheOutputStream;
 	private StreamingSerializer serializer;
 	private DoneListener doneListener;

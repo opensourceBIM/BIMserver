@@ -64,8 +64,7 @@ public class GetLogs {
 	}
 
 	private void start() {
-		try {
-			JsonBimServerClientFactory factory = new JsonBimServerClientFactory(null, "[ADD]");
+		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory(null, "[ADD]")){
 			client = factory.create(new UsernamePasswordAuthenticationInfo("[ADD]", "[ADD]"));
 			List<SLogAction> logs = client.getAdminInterface().getLogs();
 			Path file = Paths.get("log.txt");
@@ -126,6 +125,8 @@ public class GetLogs {
 			e.printStackTrace();
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
 	

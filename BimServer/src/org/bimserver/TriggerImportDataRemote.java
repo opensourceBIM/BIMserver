@@ -25,12 +25,9 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
-import org.bimserver.shared.exceptions.ServiceException;
 
 public class TriggerImportDataRemote {
 	public static void main(String[] args) {
@@ -48,18 +45,15 @@ public class TriggerImportDataRemote {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(home);
 			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
-			JsonBimServerClientFactory factory = new JsonBimServerClientFactory(metaDataManager, args[0]);
-			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo(args[1], args[2]));
-			client.getServiceInterface().importData(args[3], args[1], args[2], args[4]);
+			try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory(metaDataManager, args[0])) {
+				BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo(args[1], args[2]));
+				client.getServiceInterface().importData(args[3], args[1], args[2], args[4]);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} catch (PluginException e) {
 			e.printStackTrace();
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		} catch (ChannelConnectionException e) {
-			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
-		} catch (BimServerClientException e) {
 			e.printStackTrace();
 		}
 	}
