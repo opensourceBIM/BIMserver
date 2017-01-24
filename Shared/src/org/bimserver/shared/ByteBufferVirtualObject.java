@@ -333,4 +333,9 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 	public boolean useFeatureForSerialization(EStructuralFeature feature, int index) {
 		throw new UnsupportedOperationException();
 	}
+	
+	@Override
+	public String toString() {
+		return "ByteBufferVirtualObject/" + eClass.getName();
+	}
 }
