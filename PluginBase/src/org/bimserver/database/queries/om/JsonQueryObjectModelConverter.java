@@ -169,7 +169,7 @@ public class JsonQueryObjectModelConverter {
 				Include include = new Include(packageMetaData);
 				query.addDefine(fieldName, include);
 			} else {
-				throw new QueryException("\"defines\"[" + i + "] must be of type object");
+				throw new QueryException("\"defines\"[" + fieldName + "] must be of type object");
 			}
 			i++;
 		}

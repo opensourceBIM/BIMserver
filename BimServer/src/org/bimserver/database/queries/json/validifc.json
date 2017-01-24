@@ -73,20 +73,15 @@
       "IfcConversionBasedUnit": {
          "type": "IfcConversionBasedUnit"
       },
-      "IfcDerivedUnitElement": [
-         {
-            "type": "IfcDerivedUnitElement",
-            "field": "Unit",
-            "includes": [
-               "IfcContextDependentUnit",
-               "IfcConversionBasedUnit",
-               "IfcSIUnit"
-            ]
-         },
-         {
-            "type": "IfcDerivedUnitElement"
-         }
-      ],
+      "IfcDerivedUnitElement": {
+        "type": "IfcDerivedUnitElement",
+        "field": "Unit",
+        "includes": [
+           "IfcContextDependentUnit",
+           "IfcConversionBasedUnit",
+           "IfcSIUnit"
+        ]
+      },
       "Dimensions": {
          "type": "IfcConversionBasedUnit",
          "field": "Dimensions",
