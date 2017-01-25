@@ -92,6 +92,7 @@ public class Starter extends JFrame {
 			jarSettings.setHeapsize(heapSizeField.getText());
 			jarSettings.setHomedir(homeDirField.getText());
 			jarSettings.setForceipv4(forceIpv4Field.isSelected());
+			jarSettings.setUseProxy(useProxy.isSelected());
 			jarSettings.setProxyHost(proxyHost.getText());
 			jarSettings.setProxyPort(Integer.parseInt(proxyPort.getText()));
 			jarSettings.save();
@@ -363,6 +364,7 @@ public class Starter extends JFrame {
 		stackSizeField.setEditable(enabled);
 		jvmField.setEditable(enabled);
 		homeDirField.setEditable(enabled);
+		forceIpv4Field.setEnabled(enabled);
 		browserHomeDir.setEnabled(enabled);
 		browserJvm.setEnabled(enabled);
 		proxyHost.setEnabled(enabled);

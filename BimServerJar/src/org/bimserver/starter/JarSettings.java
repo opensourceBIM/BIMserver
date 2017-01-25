@@ -43,7 +43,7 @@ public class JarSettings {
 	private String address = "localhost";
 
 	@XmlElement
-	private String proxyHost = "proxyHost";
+	private String proxyHost = "";
 
 	@XmlElement
 	private boolean useProxy = false;
