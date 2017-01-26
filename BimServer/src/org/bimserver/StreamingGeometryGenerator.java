@@ -353,7 +353,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	//										}
 	//									}
 										if (!ignoreNotFound) {
-											LOGGER.info("Entity not found " + ifcProduct.eClass().getName() + " " + (expressId) + "/" + ifcProduct.getOid());
+											LOGGER.warn("Entity not found " + ifcProduct.eClass().getName() + " " + (expressId) + "/" + ifcProduct.getOid());
 										}
 									} catch (BimserverDatabaseException | RenderEngineException e) {
 										LOGGER.error("", e);
@@ -492,7 +492,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 									queryPart.addType(eClass, false);
 									int x = 0;
 									queryPart.addOid(next.getOid());
-									while (next != null && x < maxObjectsPerFile) {
+									while (next != null && x < maxObjectsPerFile - 1) {
 										next = queryObjectProvider2.next();
 										if (next != null) {
 											if (next.eClass() == eClass) {
@@ -519,6 +519,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 										queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcAnnotationContainedInStructure"));
 									} else {
 										queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure"));
+									}
+									if (packageMetaData.getSchema() == Schema.IFC4) {
+										queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IsTypedBy"));
 									}
 									queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes"));
 									queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory"));
