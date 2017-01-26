@@ -514,27 +514,67 @@ public class PackageMetaData implements ObjectFactory {
 			hasInverse = isInverse(eReference.getEOpposite());
 		}
 		if (!hasInverse) {
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
-				hasInverse = true;
-			}
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems()) {
-				hasInverse = true;
-			}
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects()) {
-				hasInverse = true;
-			}
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcTerminatorSymbol_AnnotatedCurve()) {
-				hasInverse = true;
-			}
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
-				hasInverse = true;
-			}
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcProduct_Representation()) {
-				hasInverse = true;
-			}
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
-				hasInverse = true;
-			}
+			if (eReference.getEContainingClass().getEPackage() == Ifc2x3tc1Package.eINSTANCE) {
+				if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
+					hasInverse = true;
+				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems()) {
+					hasInverse = true;
+				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects()) {
+					hasInverse = true;
+				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcTerminatorSymbol_AnnotatedCurve()) {
+					hasInverse = true;
+				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
+					hasInverse = true;
+				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcProduct_Representation()) {
+					hasInverse = true;
+				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
+					hasInverse = true;
+				}
+			} else if (eReference.getEContainingClass().getEPackage() == Ifc4Package.eINSTANCE) {
+				if (eReference == Ifc4Package.eINSTANCE.getIfcExternalReferenceRelationship_RelatedResourceObjects()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelCoversBldgElements_RelatingBuildingElement()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesClassification_RelatingClassification()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcClassificationReference_ReferencedSource()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelDefinesByProperties_RelatedObjects()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesDocument_RelatingDocument()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelSpaceBoundary_RelatingSpace()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesLibrary_RelatingLibrary()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesMaterial_RelatingMaterial()) {
+					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelDeclares_RelatedDefinitions()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociates_RelatedObjects()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToProcess_RelatingProcess()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToProduct_RelatingProduct()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcProduct_Representation()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcShapeAspect_PartOfProductDefinitionShape()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelDefinesByProperties_RelatingPropertyDefinition()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToResource_RelatingResource()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
+ 					hasInverse = true;
+ 				}			
+			} 
 		}
 		hasInverseCache.put(eReference, hasInverse);
 		return hasInverse;
@@ -548,86 +588,243 @@ public class PackageMetaData implements ObjectFactory {
 		if (eReference.getEOpposite() != null) {
 			return eReference.getEOpposite();
 		}
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
-			if (Ifc2x3tc1Package.eINSTANCE.getIfcElement().isSuperTypeOf(eClassOfOtherEnd)) {
-				return Ifc2x3tc1Package.eINSTANCE.getIfcElement_ContainedInStructure();
-			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcAnnotation().isSuperTypeOf(eClassOfOtherEnd)) {
-				return Ifc2x3tc1Package.eINSTANCE.getIfcAnnotation_ContainedInStructure();
-			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcGrid().isSuperTypeOf(eClassOfOtherEnd)) {
-				return Ifc2x3tc1Package.eINSTANCE.getIfcGrid_ContainedInStructure();
+		if (eReference.getEContainingClass().getEPackage() == Ifc2x3tc1Package.eINSTANCE) {
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
+				if (Ifc2x3tc1Package.eINSTANCE.getIfcElement().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc2x3tc1Package.eINSTANCE.getIfcElement_ContainedInStructure();
+				} else if (Ifc2x3tc1Package.eINSTANCE.getIfcAnnotation().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc2x3tc1Package.eINSTANCE.getIfcAnnotation_ContainedInStructure();
+				} else if (Ifc2x3tc1Package.eINSTANCE.getIfcGrid().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc2x3tc1Package.eINSTANCE.getIfcGrid_ContainedInStructure();
+				}
 			}
-		}
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems()) {
-			if (Ifc2x3tc1Package.eINSTANCE.getIfcRepresentation().isSuperTypeOf(eClassOfOtherEnd)) {
-				return Ifc2x3tc1Package.eINSTANCE.getIfcRepresentation_LayerAssignments();
-			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem().isSuperTypeOf(eClassOfOtherEnd)) {
-				return Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_LayerAssignments();
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems()) {
+				if (Ifc2x3tc1Package.eINSTANCE.getIfcRepresentation().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc2x3tc1Package.eINSTANCE.getIfcRepresentation_LayerAssignments();
+				} else if (Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_LayerAssignments();
+				}
 			}
-		}
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects()) {
-			if (Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
-				return Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations();
-			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcPropertyDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
-				return Ifc2x3tc1Package.eINSTANCE.getIfcPropertyDefinition_HasAssociations();
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects()) {
+				if (Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations();
+				} else if (Ifc2x3tc1Package.eINSTANCE.getIfcPropertyDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc2x3tc1Package.eINSTANCE.getIfcPropertyDefinition_HasAssociations();
+				}
 			}
-		}
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcTerminatorSymbol_AnnotatedCurve()) {
-			if (Ifc2x3tc1Package.eINSTANCE.getIfcDimensionCurve().isSuperTypeOf(eClassOfOtherEnd)) {
-				return Ifc2x3tc1Package.eINSTANCE.getIfcDimensionCurve_AnnotatedBySymbols();
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcTerminatorSymbol_AnnotatedCurve()) {
+				if (Ifc2x3tc1Package.eINSTANCE.getIfcDimensionCurve().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc2x3tc1Package.eINSTANCE.getIfcDimensionCurve_AnnotatedBySymbols();
+				}
 			}
-		}
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
-			if (Ifc2x3tc1Package.eINSTANCE.getIfcElement().isSuperTypeOf(eClassOfOtherEnd)) {
-				return Ifc2x3tc1Package.eINSTANCE.getIfcElement_ReferencedInStructures();
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
+				if (Ifc2x3tc1Package.eINSTANCE.getIfcElement().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc2x3tc1Package.eINSTANCE.getIfcElement_ReferencedInStructures();
+				}
 			}
-		}
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcProduct_Representation()) {
-			if (Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape().isSuperTypeOf(eClassOfOtherEnd)) {
-				return Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape_ShapeOfProduct();
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcProduct_Representation()) {
+				if (Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape_ShapeOfProduct();
+				}
 			}
-		}
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
-			if (Ifc2x3tc1Package.eINSTANCE.getIfcStructuralItem().isSuperTypeOf(eClassOfOtherEnd)) {
-				return Ifc2x3tc1Package.eINSTANCE.getIfcStructuralItem_AssignedStructuralActivity();
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
+				if (Ifc2x3tc1Package.eINSTANCE.getIfcStructuralItem().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc2x3tc1Package.eINSTANCE.getIfcStructuralItem_AssignedStructuralActivity();
+				}
 			}
-		}
-		
-		// The other way around
-		
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcElement_ContainedInStructure()) {
-			return Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements();
-		} else if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcAnnotation_ContainedInStructure()) {
-			return Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements();
-		} else if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcGrid_ContainedInStructure()) {
-			return Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements();
-		}
-		
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRepresentation_LayerAssignments()) {
-			return Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems();
-		} else if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_LayerAssignments()) {
-			return Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems();
-		}
-		
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations()) {
-			return Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects();
-		} else if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcPropertyDefinition_HasAssociations()) {
-			return Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects();
-		}
-		
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcStyledItem_Item()) {
-			return Ifc2x3tc1Package.eINSTANCE.getIfcTerminatorSymbol_AnnotatedCurve();
-		}
-		
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcElement_ReferencedInStructures()) {
-			return Ifc2x3tc1Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements();
-		}
-		
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape_ShapeOfProduct()) {
-			return Ifc2x3tc1Package.eINSTANCE.getIfcProduct_Representation();
-		}
-		
-		if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcStructuralItem_AssignedStructuralActivity()) {
-			return Ifc2x3tc1Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement();
+			
+			// The other way around, is this really necessary? Aren't those defined as inverses anyways?
+			
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcElement_ContainedInStructure()) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements();
+			} else if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcAnnotation_ContainedInStructure()) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements();
+			} else if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcGrid_ContainedInStructure()) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements();
+			}
+			
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRepresentation_LayerAssignments()) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems();
+			} else if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_LayerAssignments()) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems();
+			}
+			
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations()) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects();
+			} else if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcPropertyDefinition_HasAssociations()) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects();
+			}
+			
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcStyledItem_Item()) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcTerminatorSymbol_AnnotatedCurve();
+			}
+			
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcElement_ReferencedInStructures()) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements();
+			}
+			
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape_ShapeOfProduct()) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcProduct_Representation();
+			}
+			
+			if (eStructuralFeature == Ifc2x3tc1Package.eINSTANCE.getIfcStructuralItem_AssignedStructuralActivity()) {
+				return Ifc2x3tc1Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement();
+			}
+		} else if (eStructuralFeature.getEContainingClass().getEPackage() == Ifc4Package.eINSTANCE) {
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
+				if (Ifc4Package.eINSTANCE.getIfcElement().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcElement_ContainedInStructure();
+				} else if (Ifc4Package.eINSTANCE.getIfcAnnotation().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcAnnotation_ContainedInStructure();
+				} else if (Ifc4Package.eINSTANCE.getIfcGrid().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcGrid_ContainedInStructure();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems()) {
+				if (Ifc4Package.eINSTANCE.getIfcRepresentation().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcRepresentation_LayerAssignments();
+				} else if (Ifc4Package.eINSTANCE.getIfcRepresentationItem().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcRepresentationItem_LayerAssignment();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelAssociates_RelatedObjects()) {
+				if (Ifc4Package.eINSTANCE.getIfcObjectDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcObjectDefinition_HasAssociations();
+				} else if (Ifc4Package.eINSTANCE.getIfcPropertyDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcPropertyDefinition_HasAssociations();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
+				if (Ifc4Package.eINSTANCE.getIfcElement().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcElement_ReferencedInStructures();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcProduct_Representation()) {
+				if (Ifc4Package.eINSTANCE.getIfcProductDefinitionShape().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcProductDefinitionShape_ShapeOfProduct();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
+				if (Ifc4Package.eINSTANCE.getIfcStructuralItem().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcStructuralItem_AssignedStructuralActivity();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcExternalReferenceRelationship_RelatedResourceObjects()) {
+				if (Ifc4Package.eINSTANCE.getIfcActorRole().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcActorRole_HasExternalReference();
+				} else if (Ifc4Package.eINSTANCE.getIfcAppliedValue().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcAppliedValue_HasExternalReference();
+				} else if (Ifc4Package.eINSTANCE.getIfcApproval().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcApproval_HasExternalReferences();
+				} else if (Ifc4Package.eINSTANCE.getIfcConstraint().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcConstraint_HasExternalReferences();
+				} else if (Ifc4Package.eINSTANCE.getIfcContextDependentUnit().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcContextDependentUnit_HasExternalReference();
+				} else if (Ifc4Package.eINSTANCE.getIfcConversionBasedUnit().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcConversionBasedUnit_HasExternalReference();
+				} else if (Ifc4Package.eINSTANCE.getIfcMaterialDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcMaterialDefinition_HasExternalReferences();
+				} else if (Ifc4Package.eINSTANCE.getIfcPhysicalQuantity().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcPhysicalQuantity_HasExternalReferences();
+				} else if (Ifc4Package.eINSTANCE.getIfcProfileDef().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcProfileDef_HasExternalReference();
+				} else if (Ifc4Package.eINSTANCE.getIfcPropertyAbstraction().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcPropertyAbstraction_HasExternalReferences();
+				} else if (Ifc4Package.eINSTANCE.getIfcTimeSeries().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcTimeSeries_HasExternalReference();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelCoversBldgElements_RelatingBuildingElement()) {
+				if (Ifc4Package.eINSTANCE.getIfcBuildingElement().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcBuildingElement_HasCoverings();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelAssociatesClassification_RelatingClassification()) {
+				if (Ifc4Package.eINSTANCE.getIfcClassification().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcClassification_ClassificationForObjects();
+				} else if (Ifc4Package.eINSTANCE.getIfcClassificationReference().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcClassificationReference_ClassificationRefForObjects();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcClassificationReference_ReferencedSource()) {
+				if (Ifc4Package.eINSTANCE.getIfcClassification().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcClassification_HasReferences();
+				} else if (Ifc4Package.eINSTANCE.getIfcClassificationReference().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcClassificationReference_HasReferences();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelDefinesByProperties_RelatedObjects()) {
+				if (Ifc4Package.eINSTANCE.getIfcContext().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcContext_IsDefinedBy();
+				} else if (Ifc4Package.eINSTANCE.getIfcObject().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcObject_IsDefinedBy();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelAssociatesDocument_RelatingDocument()) {
+				if (Ifc4Package.eINSTANCE.getIfcDocumentInformation().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcDocumentInformation_DocumentInfoForObjects();
+				} else if (Ifc4Package.eINSTANCE.getIfcDocumentReference().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcDocumentReference_DocumentRefForObjects();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelSpaceBoundary_RelatingSpace()) {
+				if (Ifc4Package.eINSTANCE.getIfcExternalSpatialElement().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcExternalSpatialElement_BoundedBy();
+				} else if (Ifc4Package.eINSTANCE.getIfcSpace().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcSpace_BoundedBy();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelAssociatesLibrary_RelatingLibrary()) {
+				if (Ifc4Package.eINSTANCE.getIfcLibraryInformation().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcLibraryInformation_LibraryInfoForObjects();
+				} else if (Ifc4Package.eINSTANCE.getIfcLibraryReference().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcLibraryReference_LibraryRefForObjects();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelAssociatesMaterial_RelatingMaterial()) {
+				if (Ifc4Package.eINSTANCE.getIfcMaterialDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcMaterialDefinition_AssociatedTo();
+				} else if (Ifc4Package.eINSTANCE.getIfcMaterialUsageDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcMaterialUsageDefinition_AssociatedTo();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelDeclares_RelatedDefinitions()) {
+				if (Ifc4Package.eINSTANCE.getIfcObjectDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcObjectDefinition_HasContext();
+				} else if (Ifc4Package.eINSTANCE.getIfcPropertyDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcPropertyDefinition_HasContext();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelAssignsToProcess_RelatingProcess()) {
+				if (Ifc4Package.eINSTANCE.getIfcProcess().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcProcess_OperatesOn();
+				} else if (Ifc4Package.eINSTANCE.getIfcProduct().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcProduct_ReferencedBy();
+				} else if (Ifc4Package.eINSTANCE.getIfcTypeProduct().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcTypeProduct_ReferencedBy();
+				} else if (Ifc4Package.eINSTANCE.getIfcTypeProcess().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcTypeProcess_OperatesOn();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcShapeAspect_PartOfProductDefinitionShape()) {
+				if (Ifc4Package.eINSTANCE.getIfcProductDefinitionShape().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcProductDefinitionShape_HasShapeAspects();
+				} else if (Ifc4Package.eINSTANCE.getIfcRepresentationMap().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcRepresentationMap_HasShapeAspects();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelDefinesByProperties_RelatingPropertyDefinition()) {
+				if (Ifc4Package.eINSTANCE.getIfcPropertySetDefinition().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcPropertySetDefinition_DefinesOccurrence();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelAssignsToResource_RelatingResource()) {
+				if (Ifc4Package.eINSTANCE.getIfcResource().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcResource_ResourceOf();
+				} else if (Ifc4Package.eINSTANCE.getIfcTypeResource().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcTypeResource_ResourceOf();
+				}
+			}
 		}
 		
  		return null;
