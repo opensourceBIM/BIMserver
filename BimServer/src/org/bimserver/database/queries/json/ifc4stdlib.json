@@ -100,6 +100,31 @@
             "field": "UnitComponent"
          }
       },
+      "IfcRepresentationMap": {
+           "type": "IfcRepresentationMap",
+           "fields": [
+              "MappingOrigin",
+              "MappedRepresentation"
+           ],
+           "includes": [
+              "IfcAxis2Placement2D",
+              "IfcAxis2Placement3D",
+              "IfcRepresentation"
+           ]
+      },      
+      "IsTypedBy": {
+      	 "type": "IfcObject",
+      	 "field": "IsTypedBy",
+      	 "include": {
+      	   "type": "IfcRelDefinesByType",
+      	   "field": "RelatingType",
+      	   "include": {
+      	   	"type": "IfcTypeProduct",
+      	   	"field": "RepresentationMaps",
+      	   	"include": "IfcRepresentationMap"
+      	   }
+      	 }
+      },
       "Decomposes": {
          "type": "IfcObjectDefinition",
          "field": "Decomposes",
@@ -260,10 +285,26 @@
             }
          }
       },
+      "IfcClosedShell": {
+         "type": "IfcClosedShell",
+         "field": "CfsFaces",
+         "include": {
+            "type": "IfcFace",
+            "field": "Bounds",
+            "include": {
+               "type": "IfcFaceBound",
+               "field": "Bound",
+               "include": {
+                  "type": "IfcPolyLoop",
+                  "field": "Polygon"
+               }
+            }
+         }
+      },
       "IfcShellBasedSurfaceModel": {
          "type": "IfcShellBasedSurfaceModel",
          "field": "SbsmBoundary",
-         "include": "IfcOpenShell"
+         "includes": ["IfcOpenShell", "IfcClosedShell"]
       },
       "IfcTextLiteralWithExtent": {
          "type": "IfcTextLiteralWithExtent",
@@ -524,18 +565,7 @@
                   "Axis3"
                ]
             },
-            {
-               "type": "IfcRepresentationMap",
-               "fields": [
-                  "MappingOrigin",
-                  "MappedRepresentation"
-               ],
-               "includes": [
-                  "IfcAxis2Placement2D",
-                  "IfcAxis2Placement3D",
-                  "IfcRepresentation"
-               ]
-            }
+            "IfcRepresentationMap"
          ]
       },
       "IfcPolyline": {
@@ -658,14 +688,15 @@
             {
                "type": "IfcLocalPlacement",
                "field": "RelativePlacement",
-               "include": {
-                  "type": "IfcAxis2Placement3D",
-                  "fields": [
-                     "Location",
-                     "Axis",
-                     "RefDirection"
-                  ]
-               }
+               "includes": [
+                  "RelativePlacement", {
+	                  "type": "IfcAxis2Placement3D",
+	                  "fields": [
+	                     "Location",
+	                     "Axis",
+	                     "RefDirection"
+	                  ]
+               }]
             }
          ]
       },
