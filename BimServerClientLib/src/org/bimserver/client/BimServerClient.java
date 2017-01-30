@@ -25,6 +25,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -272,6 +273,23 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	public long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException {
 		return channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, fileSize, filename, inputStream);
+	}
+
+	public long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, URL url) throws UserException, ServerException {
+		try {
+			InputStream openStream = url.openStream();
+			if (flow == Flow.SYNC) {
+				long checkin = channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, -1, url.toString(), openStream);
+				openStream.close();
+				return checkin;
+			} else {
+				long checkin = channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, -1, url.toString(), openStream);
+				return checkin;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 
 	public void download(long roid, long serializerOid, OutputStream outputStream) {

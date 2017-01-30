@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Random;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.EmbeddedWebServer;
-import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
@@ -71,7 +71,6 @@ import org.junit.runners.Suite;
 public class AllTests {
 	public static BimServer bimServer;
 	public static boolean running = false;
-	private static BimServerClientFactory factory;
 
 	@BeforeClass
 	public static void beforeClass() {
@@ -81,7 +80,7 @@ public class AllTests {
 
 	private static void setup() {
 		// Create a config
-		Path home = Paths.get("home");
+		Path home = Paths.get("home-" + new Random().nextInt(1000000000));
 		
 		// Remove the home dir if it's there
 		if (Files.exists(home)) {
@@ -124,6 +123,7 @@ public class AllTests {
 			
 			client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "ifcplugins", null, null);
 			client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "binaryserializers", null, null);
+			client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "ifcopenshellplugin", null, null);
 			
 			client.disconnect();
 		} catch (Exception e) {
@@ -134,17 +134,14 @@ public class AllTests {
 	
 	@AfterClass
 	public static void afterClass() {
-		bimServer.stop();
-		running = false;
+		resetBimServer();
 	}
 
 	public static BimServerClientFactory getFactory() {
-		if (factory == null) {
-			factory = bimServer.getBimServerClientFactory();
-//			factory = new JsonBimServerClientFactory(bimServer.getMetaDataManager(), "http://localhost:8080");
-//			factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
+		if (bimServer == null) {
+			setup();
 		}
-		return factory;
+		return bimServer.getBimServerClientFactory();
 	}
 	
 	public static BimServer getBimServer() {
@@ -152,5 +149,18 @@ public class AllTests {
 			setup();
 		}
 		return bimServer;
+	}
+
+	public static void resetBimServer() {
+		if (bimServer != null) {
+			bimServer.stop();
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			bimServer = null;
+			running = false;
+		}
 	}
 }

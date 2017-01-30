@@ -20,6 +20,7 @@ package org.bimserver.plugins.services;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.nio.file.Path;
 
 import org.bimserver.emf.IfcModelInterface;
@@ -80,4 +81,5 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	void disconnect();
 	
 	MetaDataManager getMetaDataManager();
+	long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, URL url) throws UserException, ServerException;
 }
