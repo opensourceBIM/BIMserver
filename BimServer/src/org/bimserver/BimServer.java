@@ -1193,11 +1193,9 @@ public class BimServer {
 		FileAppender<ILoggingEvent> fileAppender = new FileAppender<ILoggingEvent>();
 		String filename = file.toAbsolutePath().toString();
 
-		ILoggerFactory loggerFactory = LoggerFactory.getILoggerFactory();
-		if (loggerFactory instanceof LoggerContext) {
-		    LoggerContext context = (LoggerContext) loggerFactory;
-		    if (!context.isStarted()) {
-		    	context.start();
+		if (lc instanceof LoggerContext) {
+		    if (!lc.isStarted()) {
+		    	lc.start();
 		    }
 		}
 		
@@ -1267,7 +1265,10 @@ public class BimServer {
 		LOGGER.info("Stopping BIMserver");
 		executorService.shutdown();
 		if (bimDatabase != null) {
-			bimDatabase.close();
+			try {
+				bimDatabase.close();
+			} catch (Throwable t) {
+			}
 		}
 		if (bimScheduler != null) {
 			bimScheduler.close();
@@ -1289,11 +1290,11 @@ public class BimServer {
 		}
 		pluginManager.close();
 		LOGGER.info("BIMserver stopped");
-		ILoggerFactory loggerFactory = LoggerFactory.getILoggerFactory();
-		if (loggerFactory instanceof LoggerContext) {
-		    LoggerContext context = (LoggerContext) loggerFactory;
-		    context.stop();
-		}
+//		ILoggerFactory loggerFactory = LoggerFactory.getILoggerFactory();
+//		if (loggerFactory instanceof LoggerContext) {
+//		    LoggerContext context = (LoggerContext) loggerFactory;
+//		    context.stop();
+//		}
 	}
 
 	public PluginManager getPluginManager() {

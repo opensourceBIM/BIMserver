@@ -15,59 +15,9 @@ import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.tests.emf.CreateGuid;
-import org.bimserver.tests.emf.DeleteObjects;
-import org.bimserver.tests.emf.ListWalls;
-import org.bimserver.tests.emf.LoadCompleteModel;
-import org.bimserver.tests.emf.ReadTrim;
-import org.bimserver.tests.emf.RemoveReferenceList;
-import org.bimserver.tests.lowlevel.AddReferenceWithOpposite;
-import org.bimserver.tests.lowlevel.AddReferenceWithOppositeExisting;
-import org.bimserver.tests.lowlevel.CreateLists;
-import org.bimserver.tests.lowlevel.CreateReferenceListsAndClear;
-import org.bimserver.tests.lowlevel.CreateUnknownType;
-import org.bimserver.tests.lowlevel.GetDataObjectsByType;
-import org.bimserver.tests.lowlevel.IfcMeasureWithUnit;
-import org.bimserver.tests.lowlevel.RemoveObject;
-import org.bimserver.tests.lowlevel.RemoveObject2;
-import org.bimserver.tests.lowlevel.RemoveReferenceWithOpposite;
-import org.bimserver.tests.lowlevel.SetReferenceWithOpposite;
-import org.bimserver.tests.lowlevel.SetString;
-import org.bimserver.tests.lowlevel.UnsetReference;
-import org.bimserver.tests.lowlevel.UnsetReferenceWithOpposite;
-import org.bimserver.tests.serviceinterface.MultiCheckinAndDownload;
-import org.bimserver.tests.serviceinterface.SingleCheckinAndDownload;
-import org.bimserver.tests.serviceinterface.UpdateProject;
 import org.bimserver.utils.PathUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
-		AddReferenceWithOpposite.class,
-		AddReferenceWithOppositeExisting.class,
-        CreateGuid.class,
-        CreateLists.class,
-        CreateReferenceListsAndClear.class,
-        CreateUnknownType.class,
-        GetDataObjectsByType.class,
-        IfcMeasureWithUnit.class,
-        SetString.class,
-        RemoveObject.class,
-        RemoveObject2.class,
-        RemoveReferenceWithOpposite.class,
-        SetReferenceWithOpposite.class,
-        UnsetReference.class,
-        UnsetReferenceWithOpposite.class,
-        DeleteObjects.class,
-        ListWalls.class,
-        LoadCompleteModel.class,
-        MultiCheckinAndDownload.class,
-        ReadTrim.class,
-        SingleCheckinAndDownload.class,
-        RemoveReferenceList.class,
-        UpdateProject.class})
 public class AllTests {
 	public static BimServer bimServer;
 	public static boolean running = false;
@@ -141,7 +91,9 @@ public class AllTests {
 		if (bimServer == null) {
 			setup();
 		}
-		return bimServer.getBimServerClientFactory();
+		BimServerClientFactory bimServerClientFactory = bimServer.getBimServerClientFactory();
+		System.out.println(bimServerClientFactory);
+		return bimServerClientFactory;
 	}
 	
 	public static BimServer getBimServer() {
@@ -152,15 +104,19 @@ public class AllTests {
 	}
 
 	public static void resetBimServer() {
-		if (bimServer != null) {
-			bimServer.stop();
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		try {
+			if (bimServer != null) {
+				bimServer.stop();
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				bimServer = null;
+				running = false;
 			}
-			bimServer = null;
-			running = false;
+		} catch (Throwable e) {
+			e.printStackTrace();
 		}
 	}
 }

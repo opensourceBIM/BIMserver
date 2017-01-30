@@ -1395,6 +1395,10 @@ public class PluginManager implements PluginManagerInterface {
 						PluginDescriptor pluginDescriptor = getPluginDescriptor(new FakeClosingInputStream(jarInputStream));
 						plugins = new ArrayList<>();
 						processPluginDescriptor(pluginDescriptor, plugins);
+						for (SPluginInformation info : plugins) {
+							info.setInstallForAllUsers(true);
+							info.setInstallForNewUsers(true);
+						}
 						break;
 					}
 					nextJarEntry = jarInputStream.getNextJarEntry();

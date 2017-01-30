@@ -45,6 +45,10 @@ public class InstallPluginBundle extends BimDatabaseAction<Void> {
 		}
 		MavenPluginBundle mavenPluginBundle = mavenPluginLocation.getMavenPluginBundle(version);
 
+		if (plugins == null) {
+			
+		}
+		
 		try {
 			bimServer.getPluginManager().install(mavenPluginBundle, plugins, false);
 		} catch (Exception e) {
