@@ -14,6 +14,7 @@ import org.eclipse.aether.RepositorySystemSession;
 import org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory;
 import org.eclipse.aether.impl.DefaultServiceLocator;
 import org.eclipse.aether.repository.LocalRepository;
+import org.eclipse.aether.repository.LocalRepositoryManager;
 import org.eclipse.aether.repository.RemoteRepository;
 import org.eclipse.aether.repository.RepositoryPolicy;
 import org.eclipse.aether.spi.connector.RepositoryConnectorFactory;
@@ -44,7 +45,7 @@ public class MavenPluginRepository {
 		RemoteRepository.Builder builder = new RemoteRepository.Builder("central", "default", defaultRepository);
 		builder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
 		remoteRepository = builder.build();
-
+		
 //		RemoteRepository.Builder builder2 = new RemoteRepository.Builder("maven", "default", "https://repository.apache.org/content/repositories/releases/");
 //		builder2.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
 //		remoteRepository2 = builder2.build();
@@ -87,7 +88,8 @@ public class MavenPluginRepository {
 		DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
 
 		LocalRepository localRepo = new LocalRepository(localRepoFile.toFile());
-		session.setLocalRepositoryManager(system.newLocalRepositoryManager(session, localRepo));
+		LocalRepositoryManager manager = system.newLocalRepositoryManager(session, localRepo);
+		session.setLocalRepositoryManager(manager);
 
 		return session;
 	}

@@ -144,8 +144,8 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 					File pomFile = resolveArtifact.getArtifact().getFile();
 					MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 
-					try {
-						Model model = mavenreader.read(new FileReader(pomFile));
+					try (FileReader fileReader = new FileReader(pomFile)) {
+						Model model = mavenreader.read(fileReader);
 						mavenPluginVersion.setModel(model);
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
@@ -204,15 +204,17 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 				File pomFile = resolveArtifact.getArtifact().getFile();
 				MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 
-				try {
-					Model model = mavenreader.read(new FileReader(pomFile));
-					mavenPluginVersion.setModel(model);
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (XmlPullParserException e) {
-					e.printStackTrace();
+				try (FileReader fileReader = new FileReader(pomFile)) {
+					try {
+						Model model = mavenreader.read(fileReader);
+						mavenPluginVersion.setModel(model);
+					} catch (XmlPullParserException e) {
+						e.printStackTrace();
+					}
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
 				}
 
 				for (org.eclipse.aether.graph.Dependency dependency : descriptorResult.getDependencies()) {
@@ -304,7 +306,10 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 			
 			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 
-			Model model = mavenreader.read(new FileReader(pomFile));
+			Model model = null;
+			try (FileReader fileReader = new FileReader(pomFile)) {
+				model = mavenreader.read(fileReader);
+			}
 			SPluginBundle sPluginBundle = new SPluginBundle();
 			
 			sPluginBundle.setOrganization(model.getOrganization().getName());
@@ -329,7 +334,10 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 			
 			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 
-			Model model = mavenreader.read(new FileReader(pomFile.toFile()));
+			Model model = null;
+			try (FileReader fileReader = new FileReader(pomFile.toFile())) {
+				model = mavenreader.read(fileReader);
+			}
 			SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
 			sPluginBundleVersion.setOrganization(model.getOrganization().getName());
 			sPluginBundleVersion.setName(model.getName());
