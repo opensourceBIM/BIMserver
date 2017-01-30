@@ -14,6 +14,7 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
+import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.emf.CreateGuid;
 import org.bimserver.tests.emf.DeleteObjects;
 import org.bimserver.tests.emf.ListWalls;
@@ -116,6 +117,10 @@ public class AllTests {
 
 			// Setup the server
 			client.getAdminInterface().setup("http://localhost:8080", "Test Name", "Test Description", "noicon", "Administrator", "admin@bimserver.org", "admin");
+		
+			client.disconnect();
+			
+			client = bimServer.getBimServerClientFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "ifcplugins", null, null);
 			client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "binaryserializers", null, null);
