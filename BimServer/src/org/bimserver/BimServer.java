@@ -120,6 +120,7 @@ import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -1191,6 +1192,14 @@ public class BimServer {
 		ple.start();
 		FileAppender<ILoggingEvent> fileAppender = new FileAppender<ILoggingEvent>();
 		String filename = file.toAbsolutePath().toString();
+
+		ILoggerFactory loggerFactory = LoggerFactory.getILoggerFactory();
+		if (loggerFactory instanceof LoggerContext) {
+		    LoggerContext context = (LoggerContext) loggerFactory;
+		    if (!context.isStarted()) {
+		    	context.start();
+		    }
+		}
 		
 		System.out.println("Logging to " + filename);
 		
@@ -1278,7 +1287,13 @@ public class BimServer {
 		if (commandLine != null) {
 			commandLine.shutdown();
 		}
+		pluginManager.close();
 		LOGGER.info("BIMserver stopped");
+		ILoggerFactory loggerFactory = LoggerFactory.getILoggerFactory();
+		if (loggerFactory instanceof LoggerContext) {
+		    LoggerContext context = (LoggerContext) loggerFactory;
+		    context.stop();
+		}
 	}
 
 	public PluginManager getPluginManager() {
