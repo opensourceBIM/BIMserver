@@ -37,12 +37,13 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 			};
 			
 			for (File file : files) {
-				bimServerClient.checkin(newProject.getOid(), "initial", deserializer.getOid(), false, Flow.SYNC, Paths.get("../TestData/data/revit2013_unicode.ifc"));
+				bimServerClient.checkin(newProject.getOid(), "initial", deserializer.getOid(), false, Flow.SYNC, file.toPath());
 				newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 				SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
 				bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("bimserver_" + file.getName()));
 			}
 		} catch (Throwable e) {
+			e.printStackTrace();
 			if (e instanceof AssertionError) {
 				throw (AssertionError)e;
 			}

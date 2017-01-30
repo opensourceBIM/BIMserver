@@ -7,27 +7,23 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 public class TestWithEmbeddedServer {
-	private static BimServer bimServer;
-	private static BimServerClientFactory factory;
 
 	@BeforeClass
 	public static void beforeClass() {
-		bimServer = AllTests.getBimServer();
-		factory = AllTests.getFactory();
 	}
 	
 	public BimServer getBimServer() {
-		return bimServer;
+		return AllTests.getBimServer();
 	}
 	
 	public BimServerClientFactory getFactory() {
-		return factory;
+		return AllTests.getFactory();
 	}
 	
 	@AfterClass
 	public static void afterClass() {
 		if (!AllTests.running) {
-			bimServer.stop();
+			AllTests.resetBimServer();
 		}
 	}
 }
