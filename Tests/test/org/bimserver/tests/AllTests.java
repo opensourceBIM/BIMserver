@@ -94,7 +94,7 @@ public class AllTests {
 		BimServerConfig config = new BimServerConfig();
 		config.setHomeDir(home);
 		config.setStartEmbeddedWebServer(true);
-		config.setPort(8080);
+		config.setPort(7010);
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(Paths.get("../")));
 		config.setClassPath(System.getProperty("java.class.path"));
 		
