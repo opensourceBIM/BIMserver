@@ -173,6 +173,64 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		return pluginVersions;
 	}
 
+	public MavenPluginVersion getLatestVersion() {
+		Artifact artifact = new DefaultArtifact(groupId + ":" + artifactId + ":LATEST");
+		
+		VersionRangeRequest rangeRequest = new VersionRangeRequest();
+		rangeRequest.setArtifact(artifact);
+		rangeRequest.setRepositories(mavenPluginRepository.getRepositories());
+		
+		// RemoteRepository centralRepo = newCentralRepository();
+		try {
+			VersionRangeResult rangeResult = mavenPluginRepository.getSystem().resolveVersionRange(mavenPluginRepository.getSession(), rangeRequest);
+			List<Version> versions = rangeResult.getVersions();
+			if (!versions.isEmpty()) {
+				Version version = versions.get(0);
+				ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
+
+				Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":pom:" + version.toString());
+
+				descriptorRequest.setArtifact(versionArtifact);
+				descriptorRequest.setRepositories(mavenPluginRepository.getRepositories());
+
+				MavenPluginVersion mavenPluginVersion = new MavenPluginVersion(versionArtifact, version);
+				ArtifactDescriptorResult descriptorResult = mavenPluginRepository.getSystem().readArtifactDescriptor(mavenPluginRepository.getSession(), descriptorRequest);
+
+				ArtifactRequest request = new ArtifactRequest();
+				request.setArtifact(descriptorResult.getArtifact());
+				request.setRepositories(mavenPluginRepository.getRepositories());
+				ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+
+				File pomFile = resolveArtifact.getArtifact().getFile();
+				MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+
+				try {
+					Model model = mavenreader.read(new FileReader(pomFile));
+					mavenPluginVersion.setModel(model);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (XmlPullParserException e) {
+					e.printStackTrace();
+				}
+
+				for (org.eclipse.aether.graph.Dependency dependency : descriptorResult.getDependencies()) {
+					DefaultArtifactVersion artifactVersion = new DefaultArtifactVersion(dependency.getArtifact().getVersion());
+					mavenPluginVersion.addDependency(new MavenDependency(dependency.getArtifact(), artifactVersion));
+				}
+				return mavenPluginVersion;
+			}
+		} catch (VersionRangeResolutionException e) {
+			e.printStackTrace();
+		} catch (ArtifactDescriptorException e) {
+			e.printStackTrace();
+		} catch (ArtifactResolutionException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public Path getVersionJar(String version) throws ArtifactResolutionException {
 		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "jar", version.toString());
 		

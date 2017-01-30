@@ -101,21 +101,24 @@ public class AllTests {
 		bimServer = new BimServer(config);
 		try {
 			bimServer.setEmbeddedWebServer(new EmbeddedWebServer(bimServer, Paths.get("."), false));
-
+			
 			// CHANGE THESE TO MATCH YOUR CONFIGURATION
-			Path[] pluginDirectories = new Path[]{Paths.get("C:\\Git\\IfcPlugins\\IfcPlugins"), Paths.get("C:\\Git\\IfcOpenShell-BIMserver-plugin")};
+//			Path[] pluginDirectories = new Path[]{Paths.get("C:\\Git\\IfcPlugins\\IfcPlugins"), Paths.get("C:\\Git\\IfcOpenShell-BIMserver-plugin")};
 			
 			// Start it
 			bimServer.start();
 
 			// Load plugins
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
+//			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 
 			// Get a client, not using any protocol (direct connection)
 			BimServerClientInterface client = bimServer.getBimServerClientFactory().create();
 
 			// Setup the server
 			client.getAdminInterface().setup("http://localhost:8080", "Test Name", "Test Description", "noicon", "Administrator", "admin@bimserver.org", "admin");
+			
+			client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "ifcplugins", null, null);
+			client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "binaryserializers", null, null);
 			
 			client.disconnect();
 		} catch (Exception e) {
