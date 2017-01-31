@@ -37,6 +37,7 @@ public class TestCreateGuid extends TestWithEmbeddedServer {
 			IfcFurnishingElement newF = furnishingElements.get(0);
 			assertTrue("GUID must be 0uyjn9Jan3nRq36Uj6gwws", newF.getGlobalId().equals("0uyjn9Jan3nRq36Uj6gwws"));
 		} catch (Throwable e) {
+			e.printStackTrace();
 			if (e instanceof AssertionError) {
 				throw (AssertionError)e;
 			}
