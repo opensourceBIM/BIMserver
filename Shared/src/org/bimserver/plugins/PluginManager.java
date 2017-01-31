@@ -26,6 +26,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystemNotFoundException;
@@ -35,6 +36,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -766,41 +768,6 @@ public class PluginManager implements PluginManagerInterface {
 		}
 		return pluginContext;
 	}
-
-	/**
-	 * Load all plugins that can be found in the current classloader, if you
-	 * downloaded a BIMserver client library and added certain plugins to the
-	 * classpath, this method should be able to find and load them
-	 */
-//	@Deprecated
-//	public void loadPluginsFromCurrentClassloader() {
-//		try {
-//			Enumeration<URL> resources = getClass().getClassLoader().getResources("plugin/plugin.xml");
-//			while (resources.hasMoreElements()) {
-//				URL url = resources.nextElement();
-//				LOGGER.info("Loading " + url);
-//				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
-//
-//				ResourceLoader resourceLoader = new ResourceLoader() {
-//					@Override
-//					public InputStream load(String name) {
-//						return getClass().getClassLoader().getResourceAsStream(name);
-//					}
-//				};
-//
-//				// TODO
-////				loadPlugins(new PluginBundleImpl(null, null), resourceLoader, getClass().getClassLoader(), url.toURI(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL, null);
-//			}
-//		} catch (IOException e) {
-//			LOGGER.error("", e);
-//		} catch (JAXBException e) {
-//			LOGGER.error("", e);
-//		} catch (PluginException e) {
-//			LOGGER.error("", e);
-//		} catch (URISyntaxException e) {
-//			LOGGER.error("", e);
-//		}
-//	}
 
 	public void enablePlugin(String name) {
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
