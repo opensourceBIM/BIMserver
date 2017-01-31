@@ -52,5 +52,15 @@
 			<artifactId>bimserverjar</artifactId>
 			<version>1.5.66-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>org.opensourcebim</groupId>
+			<artifactId>ifcplugins</artifactId>
+			<version>0.0.18-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.opensourcebim</groupId>
+			<artifactId>ifcopenshellplugin</artifactId>
+			<version>0.5.18-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>
