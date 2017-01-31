@@ -120,7 +120,6 @@ import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -600,7 +599,7 @@ public class BimServer {
 			if (!Files.exists(mavenPath)) {
 				Files.createDirectories(mavenPath);
 			}
-			mavenPluginRepository = new MavenPluginRepository(mavenPath, "~/.m2/repository");
+			mavenPluginRepository = new MavenPluginRepository(mavenPath, "http://central.maven.org/maven2", "~/.m2/repository");
 			
 			OldQuery.setPackageMetaDataForDefaultQuery(metaDataManager.getPackageMetaData("store"));
 

@@ -182,7 +182,6 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		rangeRequest.setArtifact(artifact);
 		rangeRequest.setRepositories(mavenPluginRepository.getRepositories());
 		
-		// RemoteRepository centralRepo = newCentralRepository();
 		try {
 			VersionRangeResult rangeResult = mavenPluginRepository.getSystem().resolveVersionRange(mavenPluginRepository.getSession(), rangeRequest);
 			List<Version> versions = rangeResult.getVersions();
