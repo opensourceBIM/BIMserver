@@ -84,7 +84,7 @@ public class AllTests {
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), paths);
 			} else {
 				client.getPluginInterface().installPluginBundle("~/.m2/repository", "org.opensourcebim", "ifcplugins", null, null);
-				client.getPluginInterface().installPluginBundle("~/.m2/repository", "org.opensourcebim", "binaryserializers", null, null);
+//				client.getPluginInterface().installPluginBundle("~/.m2/repository", "org.opensourcebim", "binaryserializers", null, null);
 				client.getPluginInterface().installPluginBundle("~/.m2/repository", "org.opensourcebim", "ifcopenshellplugin", null, null);
 			}
 
