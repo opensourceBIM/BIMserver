@@ -45,22 +45,22 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>pluginbase</artifactId>
-			<version>LATEST</version>
+			<version>1.5.66-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bimserverjar</artifactId>
-			<version>LATEST</version>
+			<version>1.5.66-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>ifcplugins</artifactId>
-			<version>LATEST</version>
+			<version>0.0.19-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>ifcopenshellplugin</artifactId>
-			<version>LATEST</version>
+			<version>0.5.18-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
