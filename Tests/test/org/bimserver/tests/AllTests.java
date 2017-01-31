@@ -20,6 +20,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.utils.PathUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.slf4j.LoggerFactory;
 public class AllTests {
 	public static BimServer bimServer;
 	public static boolean running = false;
@@ -83,6 +84,7 @@ public class AllTests {
 				}
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), paths);
 			} else {
+				LoggerFactory.getLogger(AllTests.class).info("Installing plugins");
 				client.getPluginInterface().installPluginBundle("~/.m2/repository", "org.opensourcebim", "ifcplugins", null, null);
 //				client.getPluginInterface().installPluginBundle("~/.m2/repository", "org.opensourcebim", "binaryserializers", null, null);
 				client.getPluginInterface().installPluginBundle("~/.m2/repository", "org.opensourcebim", "ifcopenshellplugin", null, null);
