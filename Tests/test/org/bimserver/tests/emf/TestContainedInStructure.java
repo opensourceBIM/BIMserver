@@ -2,6 +2,7 @@ package org.bimserver.tests.emf;
 
 import static org.junit.Assert.fail;
 
+import java.net.URL;
 import java.nio.file.Paths;
 
 import org.bimserver.emf.IfcModelInterface;
@@ -33,7 +34,7 @@ public class TestContainedInStructure extends TestWithEmbeddedServer {
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 
 			// Checkin the file
-			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
+			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 
 			// Refresh project info
 			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
