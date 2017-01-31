@@ -1306,7 +1306,7 @@ public class PluginManager implements PluginManagerInterface {
 				if (sPluginInformation.isEnabled()) {
 					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
 					if (pluginContext == null) {
-						throw new Exception("No plugin context found for " + sPluginInformation.getIdentifier());
+						LOGGER.info("No plugin context found for " + sPluginInformation.getIdentifier());
 					}
 					pluginContext.getPlugin().init(pluginContext);
 				}
