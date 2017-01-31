@@ -11,6 +11,8 @@ import java.util.Random;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.EmbeddedWebServer;
+import org.bimserver.LocalDevPluginLoader;
+import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
@@ -71,9 +73,20 @@ public class AllTests {
 			
 			client = bimServer.getBimServerClientFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
-			client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "ifcplugins", null, null);
-			client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "binaryserializers", null, null);
-			client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "ifcopenshellplugin", null, null);
+			String pluginsString = System.getProperty("plugins");
+			if (pluginsString != null) {
+				String[] plugins = pluginsString.split(";");
+				Path[] paths = new Path[plugins.length];
+				int i=0;
+				for (String p : plugins) {
+					paths[i++] = Paths.get(p);
+				}
+				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), paths);
+			} else {
+				client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "ifcplugins", null, null);
+				client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "binaryserializers", null, null);
+				client.getPluginInterface().installPluginBundle("http://central.maven.org/maven2", "org.opensourcebim", "ifcopenshellplugin", null, null);
+			}
 			
 			client.disconnect();
 		} catch (Exception e) {

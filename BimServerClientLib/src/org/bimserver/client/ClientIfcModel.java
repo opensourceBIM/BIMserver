@@ -458,10 +458,13 @@ public class ClientIfcModel extends IfcModel {
 
 	private void processDownload(Long download) throws UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
 		InputStream downloadData = bimServerClient.getDownloadData(download, getJsonSerializerOid());
+		if (downloadData == null) {
+			throw new IfcModelInterfaceException("No InputStream to read from");
+		}
 		try {
 			new SharedJsonDeserializer(true).read(downloadData, this, false);
 		} catch (DeserializeException e) {
-			LOGGER.error("", e);
+			throw new IfcModelInterfaceException(e);
 		} finally {
 			if (downloadData != null) {
 				downloadData.close();

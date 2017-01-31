@@ -396,6 +396,8 @@ public class SharedJsonDeserializer {
 			return jsonReader.nextBoolean();
 		} else if (eClassifier == EcorePackage.eINSTANCE.getEInt()) {
 			return jsonReader.nextInt();
+		} else if (eClassifier == EcorePackage.eINSTANCE.getELong()) {
+			return jsonReader.nextLong();
 		} else if (eClassifier == EcorePackage.eINSTANCE.getEIntegerObject()) {
 			return jsonReader.nextInt();
 		} else if (eClassifier == EcorePackage.eINSTANCE.getEByteArray()) {

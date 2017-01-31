@@ -1,5 +1,7 @@
 package org.bimserver.emf;
 
+import org.bimserver.plugins.deserializers.DeserializeException;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -22,5 +24,9 @@ public class IfcModelInterfaceException extends Exception {
 
 	public IfcModelInterfaceException(String message) {
 		super(message);
+	}
+
+	public IfcModelInterfaceException(Exception e) {
+		super(e);
 	}
 }

@@ -172,7 +172,7 @@ public abstract class Channel implements ServiceHolder {
 	}
 
 	public InputStream getDownloadData(String baseAddress, String token, long topicId, long serializerOid) throws IOException {
-		String address = baseAddress + "/download?token=" + token + "&topicId=" + topicId + "&serializerOid=" + serializerOid;
+		String address = baseAddress + "/download?token=" + token + "&topicId=" + topicId;
 		HttpPost httppost = new HttpPost(address);
 		try {
 			HttpResponse httpResponse = closeableHttpClient.execute(httppost);

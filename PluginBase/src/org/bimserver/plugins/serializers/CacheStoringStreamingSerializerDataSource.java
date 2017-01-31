@@ -47,7 +47,7 @@ public class CacheStoringStreamingSerializerDataSource extends ExtendedDataSourc
 
 	@Override
 	public InputStream getInputStream() throws IOException {
-		return null;
+		return serializer.getInputStream();
 	}
 
 	@Override

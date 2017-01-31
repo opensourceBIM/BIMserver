@@ -406,7 +406,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			if (eReference.getName().equals("RelatedElements") && referencedObject.eClass().getName().equals("IfcSpace")) {
 				// Ignore, IfcSpace should have  a field called RelatedElements, but it doesn't.
 			} else {
-				LOGGER.error("No opposite " + eReference.getName() + " found");
+//				LOGGER.error("No opposite " + eReference.getName() + " found");
 			}
 		} else {
 			if (oppositeReference.isMany()) {

@@ -3,7 +3,6 @@ package org.bimserver.tests.emf;
 import static org.junit.Assert.fail;
 
 import java.net.URL;
-import java.nio.file.Paths;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
