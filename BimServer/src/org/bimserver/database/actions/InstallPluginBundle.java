@@ -38,6 +38,7 @@ public class InstallPluginBundle extends BimDatabaseAction<Void> {
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
+		LOGGER.info("Installing plugin " + repository + " " + groupId + "." + artifactId + "." + version);
 		MavenPluginLocation mavenPluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(repository, groupId, artifactId);
 		if (version == null) {
 			MavenPluginVersion latestVersion = mavenPluginLocation.getLatestVersion();
