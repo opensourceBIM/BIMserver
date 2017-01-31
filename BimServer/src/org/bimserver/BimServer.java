@@ -600,7 +600,7 @@ public class BimServer {
 			if (!Files.exists(mavenPath)) {
 				Files.createDirectories(mavenPath);
 			}
-			mavenPluginRepository = new MavenPluginRepository(mavenPath, "https://repo1.maven.org/maven2");
+			mavenPluginRepository = new MavenPluginRepository(mavenPath, "~/.m2/repository");
 			
 			OldQuery.setPackageMetaDataForDefaultQuery(metaDataManager.getPackageMetaData("store"));
 

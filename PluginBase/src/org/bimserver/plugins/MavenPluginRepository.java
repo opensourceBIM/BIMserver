@@ -52,6 +52,7 @@ public class MavenPluginRepository {
 
 		repositories = new ArrayList<RemoteRepository>(Arrays.asList(remoteRepository));
 		local = new RemoteRepository.Builder("local", "default", "file:" + localRepoFile).build();
+		repositories.add(local);
 		localRepositories = new ArrayList<RemoteRepository>();
 		localRepositories.add(local);
 	}
