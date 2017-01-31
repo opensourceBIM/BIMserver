@@ -463,7 +463,9 @@ public class ClientIfcModel extends IfcModel {
 		} catch (DeserializeException e) {
 			LOGGER.error("", e);
 		} finally {
-			downloadData.close();
+			if (downloadData != null) {
+				downloadData.close();
+			}
 		}
 	}
 

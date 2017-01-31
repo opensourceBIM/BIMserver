@@ -15,7 +15,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class ContainedInStructure extends TestWithEmbeddedServer {
+public class TestContainedInStructure extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {

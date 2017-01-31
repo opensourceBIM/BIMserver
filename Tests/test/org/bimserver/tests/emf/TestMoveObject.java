@@ -20,7 +20,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class MoveObject extends TestWithEmbeddedServer{
+public class TestMoveObject extends TestWithEmbeddedServer{
 	@Test
 	public void test() {
 		try {

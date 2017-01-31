@@ -15,7 +15,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class RemoveReferenceList extends TestWithEmbeddedServer {
+public class TestRemoveReferenceList extends TestWithEmbeddedServer {
 	
 	// This test makes no sense, since getContainedInStructure is a Set (unordered)
 	@Test

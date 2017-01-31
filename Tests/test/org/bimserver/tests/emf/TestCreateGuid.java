@@ -8,13 +8,13 @@ import java.util.List;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcWall;
+import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class DeleteObjects extends TestWithEmbeddedServer {
+public class TestCreateGuid extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {
@@ -26,27 +26,16 @@ public class DeleteObjects extends TestWithEmbeddedServer {
 			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			IfcModelInterface model = bimServerClient.newModel(newProject, true);
+			IfcFurnishingElement furnishing = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement());
+			furnishing.setGlobalId("0uyjn9Jan3nRq36Uj6gwws");
 			
-			for (int i=0; i<10; i++) {
-				IfcWall wall = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
-				wall.setName("Wall " + i);
-				wall.setGlobalId("Wall " + i);
-			}
-
 			long roid = model.commit("Initial model");
 
-			model = bimServerClient.getModel(newProject, roid, true, true);
-			List<IfcWall> walls = model.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
-			assertTrue(walls.size() == 10);
-			IfcWall wall6 = (IfcWall) model.getByGuid("Wall 6");
-			assertTrue(wall6 != null);
-			wall6.remove();
-
-			roid = model.commit("Removed wall 6");
-
-			model = bimServerClient.getModel(newProject, roid, true, false);
-			walls = model.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
-			assertTrue(walls.size() == 9);
+			IfcModelInterface newModel = bimServerClient.getModel(newProject, roid, true, false);
+			List<IfcFurnishingElement> furnishingElements = newModel.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement());
+			assertTrue("There must be 1 furnishing element, not " + furnishingElements.size(), furnishingElements.size() == 1);
+			IfcFurnishingElement newF = furnishingElements.get(0);
+			assertTrue("GUID must be 0uyjn9Jan3nRq36Uj6gwws", newF.getGlobalId().equals("0uyjn9Jan3nRq36Uj6gwws"));
 		} catch (Throwable e) {
 			if (e instanceof AssertionError) {
 				throw (AssertionError)e;

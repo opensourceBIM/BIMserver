@@ -28,8 +28,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CreateProperties extends TestWithEmbeddedServer  {
-	private static final Logger LOGGER = LoggerFactory.getLogger(CreateProperties.class);
+public class TestCreateProperties extends TestWithEmbeddedServer  {
+	private static final Logger LOGGER = LoggerFactory.getLogger(TestCreateProperties.class);
 	@Test
 	public void test() {
 		try {
