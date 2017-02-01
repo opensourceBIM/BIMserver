@@ -13,6 +13,7 @@ import org.bimserver.plugins.MavenPluginLocation;
 import org.bimserver.plugins.MavenPluginVersion;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.aether.resolution.ArtifactResolutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,6 +45,12 @@ public class InstallPluginBundle extends BimDatabaseAction<Void> {
 			MavenPluginVersion latestVersion = mavenPluginLocation.getLatestVersion();
 			LOGGER.info("Using version " + latestVersion.getVersion() + " because no version given");
 			version = latestVersion.getVersion();
+		}
+		LOGGER.info(mavenPluginLocation.getRepository());
+		try {
+			LOGGER.info(mavenPluginLocation.getVersionDate(version).toString());
+		} catch (ArtifactResolutionException e1) {
+			e1.printStackTrace();
 		}
 		MavenPluginBundle mavenPluginBundle = mavenPluginLocation.getMavenPluginBundle(version);
 		LOGGER.info(mavenPluginBundle.getVersion());
