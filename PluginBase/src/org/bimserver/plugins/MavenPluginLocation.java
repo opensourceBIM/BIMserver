@@ -82,7 +82,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 	protected MavenPluginLocation(MavenPluginRepository mavenPluginRepository, String defaultrepository, String groupId, String artifactId) {
 		this.mavenPluginRepository = mavenPluginRepository;
-		this.mavenPluginRepository.getLocalRepositories().add(new RemoteRepository.Builder("given", "default", defaultrepository).build());
+		this.mavenPluginRepository.getRepositories().add(new RemoteRepository.Builder("given", "default", defaultrepository).build());
 		this.defaultrepository = defaultrepository;
 		this.groupId = groupId;
 		this.artifactId = artifactId;
@@ -174,7 +174,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 	}
 
 	public String getLatestVersionString() {
-		Artifact lastArt = new DefaultArtifact("org.opensourcebim", "ifcplugins", "jar", "LATEST");
+		Artifact lastArt = new DefaultArtifact(groupId, artifactId, "jar", "LATEST");
 
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(lastArt);
