@@ -70,7 +70,12 @@ public class QueryPartStackFrame extends StackFrame {
 		}
 		if (!partialQuery.hasTypes()) {
 			if (oids == null) {
-				typeIterator = reusable.getOidCounters().keySet().iterator();
+				if (reusable.getOidCounters() == null) {
+					// TODO not efficient, should make sure there are always oid counters (also after low-level changes)
+					typeIterator = reusable.getPackageMetaData().getAllClasses().iterator();
+				} else {
+					typeIterator = reusable.getOidCounters().keySet().iterator();
+				}
 			} else {
 				typeIterator = oids.keySet().iterator();
 			}
