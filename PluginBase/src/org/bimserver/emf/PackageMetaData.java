@@ -20,8 +20,10 @@ package org.bimserver.emf;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -884,5 +886,15 @@ public class PackageMetaData implements ObjectFactory {
 
 	public Path getSchemaPath() {
 		return schemaPath;
+	}
+
+	public List<EClass> getAllClasses() {
+		List<EClass> result = new ArrayList<>();
+		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				result.add((EClass)eClassifier);
+			}
+		}
+		return result;
 	}
 }

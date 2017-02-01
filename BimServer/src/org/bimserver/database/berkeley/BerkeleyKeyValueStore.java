@@ -44,6 +44,7 @@ import org.bimserver.utils.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sleepycat.je.CacheMode;
 import com.sleepycat.je.Cursor;
 import com.sleepycat.je.CursorConfig;
 import com.sleepycat.je.Database;
@@ -153,6 +154,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		databaseConfig.setAllowCreate(true);
 		boolean finalTransactional = transactional && useTransactions;
 		databaseConfig.setDeferredWrite(!finalTransactional);
+//		if (!transactional) {
+//			databaseConfig.setCacheMode(CacheMode.EVICT_BIN);
+//		}
 		databaseConfig.setTransactional(finalTransactional);
 		databaseConfig.setSortedDuplicates(false);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);
@@ -171,6 +175,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(true);
 		boolean finalTransactional = transactional && useTransactions;
+//		if (!transactional) {
+//			databaseConfig.setCacheMode(CacheMode.EVICT_BIN);
+//		}
 		databaseConfig.setDeferredWrite(!finalTransactional);
 		databaseConfig.setTransactional(finalTransactional);
 		databaseConfig.setSortedDuplicates(true);
@@ -190,6 +197,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(false);
 		boolean finalTransactional = transactional && useTransactions;
+//		if (!transactional) {
+//			databaseConfig.setCacheMode(CacheMode.EVICT_BIN);
+//		}
 		databaseConfig.setDeferredWrite(!finalTransactional);
 		databaseConfig.setTransactional(finalTransactional);
 		databaseConfig.setSortedDuplicates(false);
@@ -208,6 +218,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(false);
 		boolean finalTransactional = transactional && useTransactions;
+//		if (!transactional) {
+//			databaseConfig.setCacheMode(CacheMode.EVICT_BIN);
+//		}
 		databaseConfig.setDeferredWrite(!finalTransactional);
 		databaseConfig.setTransactional(finalTransactional);
 		databaseConfig.setSortedDuplicates(true);
@@ -325,7 +338,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		try {
 			environment.sync();
 			environment.flushLog(true);
-			environment.evictMemory();
+//			environment.evictMemory();
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
 		}
@@ -571,6 +584,12 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		if (this.committedWrites / 100000 != lastPrintedCommittedWrites) {
 			LOGGER.info("writes: " + this.committedWrites);
 			lastPrintedCommittedWrites = this.committedWrites / 100000;
+			long start = System.nanoTime();
+			
+			// This is a test, when writing large amount of data (IFC data), this should keep memory usage limited because it'll write the data to disk
+			sync();
+			long end = System.nanoTime();
+			LOGGER.info((((end - start) / 1000000) + " ms sync"));
 		}
 	}
 
