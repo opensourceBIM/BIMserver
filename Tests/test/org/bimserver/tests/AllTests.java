@@ -85,9 +85,9 @@ public class AllTests {
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), paths);
 			} else {
 				LoggerFactory.getLogger(AllTests.class).info("Installing plugins");
-				client.getPluginInterface().installPluginBundle("http://archiva.logic-labs.nl", "org.opensourcebim", "ifcplugins", null, null);
-				client.getPluginInterface().installPluginBundle("http://archiva.logic-labs.nl", "org.opensourcebim", "binaryserializers", null, null);
-				client.getPluginInterface().installPluginBundle("http://archiva.logic-labs.nl", "org.opensourcebim", "ifcopenshellplugin", null, null);
+				client.getPluginInterface().installPluginBundle("http://archiva.logic-labs.nl/repository/snapshots", "org.opensourcebim", "ifcplugins", null, null);
+				client.getPluginInterface().installPluginBundle("http://archiva.logic-labs.nl/repository/snapshots", "org.opensourcebim", "binaryserializers", null, null);
+				client.getPluginInterface().installPluginBundle("http://archiva.logic-labs.nl/repository/snapshots", "org.opensourcebim", "ifcopenshellplugin", null, null);
 			}
 
 			client.disconnect();
