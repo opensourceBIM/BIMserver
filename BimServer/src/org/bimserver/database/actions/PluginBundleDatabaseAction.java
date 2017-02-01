@@ -76,7 +76,11 @@ public abstract class PluginBundleDatabaseAction<T> extends BimDatabaseAction<T>
 					sPluginBundleVersion.setOrganization(mavenPluginVersion.getModel().getOrganization().getName());
 					sPluginBundleVersion.setArtifactId(mavenPluginLocation.getArtifactId());
 					sPluginBundleVersion.setGroupId(mavenPluginLocation.getGroupId());
-					sPluginBundleVersion.setRepository(mavenPluginLocation.getRepository());
+					try {
+						sPluginBundleVersion.setRepository(mavenPluginLocation.getRepository(mavenPluginVersion.getVersion().toString()));
+					} catch (ArtifactResolutionException e) {
+						LOGGER.error("", e);
+					}
 					sPluginBundleVersion.setType(SPluginBundleType.MAVEN);
 					sPluginBundleVersion.setVersion(mavenPluginVersion.getVersion().toString());
 					sPluginBundleVersion.setDescription(mavenPluginVersion.getModel().getDescription());

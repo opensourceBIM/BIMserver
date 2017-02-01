@@ -79,7 +79,6 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 	private String groupId;
 	private String artifactId;
 	private MavenPluginRepository mavenPluginRepository;
-	private String repository;
 
 	protected MavenPluginLocation(MavenPluginRepository mavenPluginRepository, String defaultrepository, String groupId, String artifactId) {
 		this.mavenPluginRepository = mavenPluginRepository;
@@ -87,7 +86,6 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		this.defaultrepository = defaultrepository;
 		this.groupId = groupId;
 		this.artifactId = artifactId;
-		this.repository = mavenPluginRepository.getRemoteRepositoryUrl();
 	}
 
 	public void setGroupId(String groupId) {
@@ -388,8 +386,15 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		return new PluginBundleVersionIdentifier(getPluginIdentifier(), version);
 	}
 
-	public String getRepository() {
-		return repository;
+	public String getRepository(String version) throws ArtifactResolutionException {
+		Artifact pomArtifact = new DefaultArtifact(groupId, artifactId, "pom", version.toString());
+
+		ArtifactRequest request = new ArtifactRequest();
+		request.setArtifact(pomArtifact);
+		request.setRepositories(mavenPluginRepository.getRepositories());
+		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+		
+		return resolveArtifact.getRepository().toString();
 	}
 
 	public MavenPluginBundle getMavenPluginBundle(String version) {

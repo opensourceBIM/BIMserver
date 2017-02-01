@@ -46,8 +46,8 @@ public class InstallPluginBundle extends BimDatabaseAction<Void> {
 			LOGGER.info("Using version " + latestVersion.getVersion() + " because no version given");
 			version = latestVersion.getVersion();
 		}
-		LOGGER.info(mavenPluginLocation.getRepository());
 		try {
+			LOGGER.info(mavenPluginLocation.getRepository(version));
 			LOGGER.info(mavenPluginLocation.getVersionDate(version).toString());
 		} catch (ArtifactResolutionException e1) {
 			e1.printStackTrace();

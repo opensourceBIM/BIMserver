@@ -21,8 +21,11 @@ import org.eclipse.aether.spi.connector.RepositoryConnectorFactory;
 import org.eclipse.aether.spi.connector.transport.TransporterFactory;
 import org.eclipse.aether.transport.file.FileTransporterFactory;
 import org.eclipse.aether.transport.http.HttpTransporterFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MavenPluginRepository {
+	private static final Logger LOGGER = LoggerFactory.getLogger(MavenPluginRepository.class);
 	private final RepositorySystem system;
 	private final RepositorySystemSession session;
 	private final List<RemoteRepository> repositories = new ArrayList<>();
@@ -47,13 +50,14 @@ public class MavenPluginRepository {
 		builder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
 		remoteRepository = builder.build();
 
+		repositories.add(remoteRepository);
+
 		if (defaultLocalRepositoryLocation != null) {
 			RemoteRepository.Builder localRepoBuilder = new RemoteRepository.Builder("local", "default", "file://" + defaultLocalRepositoryLocation);
 			localRepoBuilder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
 			repositories.add(localRepoBuilder.build());
+			LOGGER.info("Adding " + defaultLocalRepositoryLocation + " as repository");
 		}
-
-		repositories.add(remoteRepository);
 
 		localRepositories = new ArrayList<RemoteRepository>();
 		localRepositories.add(local);
@@ -107,10 +111,6 @@ public class MavenPluginRepository {
 	
 	public RepositorySystem getSystem() {
 		return system;
-	}
-
-	public String getRemoteRepositoryUrl() {
-		return defaultRemoteRepositoryLocation;
 	}
 
 	public void clearCache() throws IOException {
