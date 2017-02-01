@@ -86,7 +86,7 @@ public class AllTests {
 			} else {
 				LoggerFactory.getLogger(AllTests.class).info("Installing plugins");
 				client.getPluginInterface().installPluginBundle("~/.m2/repository", "org.opensourcebim", "ifcplugins", null, null);
-//				client.getPluginInterface().installPluginBundle("~/.m2/repository", "org.opensourcebim", "binaryserializers", null, null);
+				client.getPluginInterface().installPluginBundle("~/.m2/repository", "org.opensourcebim", "binaryserializers", null, null);
 				client.getPluginInterface().installPluginBundle("~/.m2/repository", "org.opensourcebim", "ifcopenshellplugin", null, null);
 			}
 
