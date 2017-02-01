@@ -173,6 +173,22 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		return pluginVersions;
 	}
 
+	public String getLatestVersionString() {
+		Artifact lastArt = new DefaultArtifact("org.opensourcebim", "ifcplugins", "jar", "LATEST");
+
+		ArtifactRequest request = new ArtifactRequest();
+		request.setArtifact(lastArt);
+		request.setRepositories(mavenPluginRepository.getRepositories());
+		
+		try {
+			ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+			return resolveArtifact.getArtifact().getVersion();
+		} catch (ArtifactResolutionException e1) {
+			e1.printStackTrace();
+		}
+		return null;
+	}
+	
 	public MavenPluginVersion getLatestVersion() {
 		Artifact artifact = new DefaultArtifact(groupId + ":" + artifactId + ":LATEST");
 		

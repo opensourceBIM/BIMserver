@@ -42,9 +42,9 @@ public class InstallPluginBundle extends BimDatabaseAction<Void> {
 		LOGGER.info("Installing plugin " + repository + " " + groupId + "." + artifactId + "." + version);
 		MavenPluginLocation mavenPluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(repository, groupId, artifactId);
 		if (version == null) {
-			MavenPluginVersion latestVersion = mavenPluginLocation.getLatestVersion();
-			LOGGER.info("Using version " + latestVersion.getVersion() + " because no version given");
-			version = latestVersion.getVersion();
+			String latestVersion = mavenPluginLocation.getLatestVersionString();
+			LOGGER.info("Using version " + latestVersion + " because no version given");
+			version = latestVersion;
 		}
 		try {
 			LOGGER.info(mavenPluginLocation.getRepository(version));
