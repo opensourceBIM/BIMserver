@@ -420,7 +420,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private void updateProgress() {
 		if (allJobsPushed) {
-			progressListener.updateProgress("Generating geometry...", (int) (100.0 * jobsDone.get() / jobsTotal.get()));
+			if (progressListener != null) {
+				progressListener.updateProgress("Generating geometry...", (int) (100.0 * jobsDone.get() / jobsTotal.get()));
+			}
 		}
 	}
 	

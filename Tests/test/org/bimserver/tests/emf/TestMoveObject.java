@@ -40,7 +40,7 @@ public class TestMoveObject extends TestWithEmbeddedServer{
 			// Refresh project info
 			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 
-			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
+			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, true);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAllWithSubTypes(IfcFurnishingElement.class)) {
 				IfcObjectPlacement objectPlacement = ifcFurnishingElement.getObjectPlacement();
 				if (objectPlacement != null && objectPlacement instanceof IfcLocalPlacement) {

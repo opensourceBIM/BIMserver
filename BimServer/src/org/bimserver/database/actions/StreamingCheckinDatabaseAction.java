@@ -399,6 +399,9 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		HashMapVirtualObject referencedObject = cache.get(refOid);
 		if (referencedObject == null) {
 			referencedObject = getByOid(packageMetaData, getDatabaseSession(), newRoid, refOid);
+			if (referencedObject == null) {
+				throw new BimserverDatabaseException("Referenced object with oid " + refOid + ", referenced from " + next.eClass().getName() + " not found");
+			}
 			cache.put(refOid, referencedObject);
 		}
 		EReference oppositeReference = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), eReference);

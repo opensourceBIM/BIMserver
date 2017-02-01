@@ -136,8 +136,6 @@ public class QueryObjectProvider implements ObjectProvider {
 				if (stackFrame instanceof ObjectProvidingStackFrame) {
 					HashMapVirtualObject currentObject = ((ObjectProvidingStackFrame) stackFrame).getCurrentObject();
 					if (currentObject != null) {
-						if (currentObject.eClass().getName().equals("IfcWallStandardCase")) {
-						}
 						if (!oidsRead.contains(currentObject.getOid())) {
 							oidsRead.add(currentObject.getOid());
 							return currentObject;

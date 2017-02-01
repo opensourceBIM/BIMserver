@@ -66,6 +66,7 @@ public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame imple
 			record = typeRecordIterator.next();
 		} else {
 //			LOGGER.warn("Potential too-many-reads");
+			oidIterator = oids.iterator();
 			typeRecordIterator = queryObjectProvider.getDatabaseSession().getKeyValueStore().getRecordIterator(tableName, BinUtils.intToByteArray(getReusable().getPid()), BinUtils.intToByteArray(getReusable().getPid()), queryObjectProvider.getDatabaseSession());
 			record = typeRecordIterator.next();
 		}

@@ -42,7 +42,7 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 				bimServerClient.checkin(newProject.getOid(), "initial", deserializer.getOid(), false, Flow.SYNC, url);
 				newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 				SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
-				bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("bimserver_" + url.getFile()));
+				bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("bimserver_" + url.getFile().substring(url.getFile().lastIndexOf("/") + 1)));
 			}
 		} catch (Throwable e) {
 			e.printStackTrace();
