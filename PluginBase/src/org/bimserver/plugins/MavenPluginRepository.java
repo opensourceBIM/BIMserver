@@ -50,7 +50,7 @@ public class MavenPluginRepository {
 		builder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
 		remoteRepository = builder.build();
 
-		repositories.add(remoteRepository);
+//		repositories.add(remoteRepository);
 
 		if (defaultLocalRepositoryLocation != null) {
 			RemoteRepository.Builder localRepoBuilder = new RemoteRepository.Builder("local", "default", "file://" + defaultLocalRepositoryLocation);
