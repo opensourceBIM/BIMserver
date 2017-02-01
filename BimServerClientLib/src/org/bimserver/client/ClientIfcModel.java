@@ -250,6 +250,9 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	public long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
+		if (tid == -1) {
+			throw new UserException("No transaction was started");
+		}
 		return bimServerClient.getLowLevelInterface().commitTransaction(tid, comment);
 	}
 
@@ -724,7 +727,7 @@ public class ClientIfcModel extends IfcModel {
 		if (recordChanges) {
 			idEObject.eAdapters().add(adapter);
 			try {
-				Long oid = bimServerClient.getLowLevelInterface().createObject(tid, eClass.getName(), true);
+				Long oid = bimServerClient.getLowLevelInterface().createObject(tid, eClass.getName(), eClass.getEStructuralFeature("GlobalId") != null);
 				idEObject.setOid(oid);
 			} catch (Exception e) {
 				LOGGER.error("", e);

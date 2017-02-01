@@ -48,7 +48,7 @@ public class TestCreateProperties extends TestWithEmbeddedServer  {
 			project = bimServerClient.getServiceInterface().getProjectByPoid(project.getOid());
 			
 			// Load model without lazy loading (complete model at once)
-			IfcModelInterface model = bimServerClient.getModel(project, project.getLastRevisionId(), true, false);
+			IfcModelInterface model = bimServerClient.getModel(project, project.getLastRevisionId(), true, true);
 
 			String propertyName = "BooleanProperty";
 
@@ -59,10 +59,9 @@ public class TestCreateProperties extends TestWithEmbeddedServer  {
 				createProperty(window, model, propertyName, "Description of property", true);
 			}
 			
-			model.commit("Added boolean properties to " + nrWindowsFirst + " windows");
+			long newRoid = model.commit("Added boolean properties to " + nrWindowsFirst + " windows");
 			
-			project = bimServerClient.getServiceInterface().getProjectByPoid(project.getOid());
-			model = bimServerClient.getModel(project, project.getLastRevisionId(), true, false);
+			model = bimServerClient.getModel(project, newRoid, true, false);
 			int foundOke = 0;
 			int nrWindowsSecond = 0;
 			Set<Long> counted = new HashSet<Long>();
