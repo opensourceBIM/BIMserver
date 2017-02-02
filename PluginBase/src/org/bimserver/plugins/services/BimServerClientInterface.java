@@ -35,6 +35,7 @@ import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 
 public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
@@ -74,6 +75,7 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 
 	AuthInterface getBimServerAuthInterface() throws PublicInterfaceNotFoundException;
 	RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException;
+	NotificationRegistryInterface getNotificationRegistryInterface() throws PublicInterfaceNotFoundException;
 
 	/**
 	 * This will close all the connections, call this method as soon as you are done using this BimServerClient

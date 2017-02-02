@@ -6,6 +6,7 @@ import java.net.URL;
 import java.nio.file.Paths;
 
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -23,12 +24,6 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 			// Create a new BimServerClient with authentication
 			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
-			// Create a new project
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
-			
-			// Find a deserializer to use
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
-
 			URL[] urls = new URL[]{
 				new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/ac16_sjis.ifc"),
 				new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/ac16_unicode.ifc"),
@@ -39,7 +34,15 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 			};
 			
 			for (URL url : urls) {
-				bimServerClient.checkin(newProject.getOid(), "initial", deserializer.getOid(), false, Flow.SYNC, url);
+				// Create a new project
+				SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+				
+				// Find a deserializer to use
+				SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+
+				long topicId = bimServerClient.checkin(newProject.getOid(), "initial", deserializer.getOid(), false, Flow.SYNC, url);
+				SLongActionState progress = bimServerClient.getNotificationRegistryInterface().getProgress(topicId);
+				
 				newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 				SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
 				bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("bimserver_" + url.getFile().substring(url.getFile().lastIndexOf("/") + 1)));
