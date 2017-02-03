@@ -30,6 +30,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -41,6 +42,8 @@ import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.interfaces.objects.SActionState;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
@@ -81,6 +84,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.base.Joiner;
 
 public class BimServerClient implements ConnectDisconnectListener, TokenHolder, ServiceHolder, BimServerClientInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimServerClient.class);
@@ -279,12 +283,18 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		try {
 			InputStream openStream = url.openStream();
 			if (flow == Flow.SYNC) {
-				long checkin = channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, -1, url.toString(), openStream);
+				long topicId = channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, -1, url.toString(), openStream);
 				openStream.close();
-				return checkin;
+				
+				SLongActionState progress = getNotificationRegistryInterface().getProgress(topicId);
+				if (progress.getState() == SActionState.AS_ERROR) {
+					throw new UserException(Joiner.on(", ").join(progress.getErrors()));
+				} else {
+					return topicId;
+				}
 			} else {
-				long checkin = channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, -1, url.toString(), openStream);
-				return checkin;
+				long topicId = channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, -1, url.toString(), openStream);
+				return topicId;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -292,15 +302,20 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return -1;
 	}
 
-	public void download(long roid, long serializerOid, OutputStream outputStream) {
+	public void download(long roid, long serializerOid, OutputStream outputStream) throws BimServerClientException {
 		try {
 			Long topicId = getServiceInterface().download(Collections.singleton(roid), DefaultQueries.allAsString(), serializerOid, true);
-			InputStream inputStream = getDownloadData(topicId, serializerOid);
-			try {
-				IOUtils.copy(inputStream, outputStream);
-				getServiceInterface().cleanupLongAction(topicId);
-			} finally {
-				inputStream.close();
+			SLongActionState progress = getNotificationRegistryInterface().getProgress(topicId);
+			if (progress.getState() == SActionState.AS_ERROR) {
+				throw new BimServerClientException(Joiner.on(", ").join(progress.getErrors()));
+			} else {
+				InputStream inputStream = getDownloadData(topicId, serializerOid);
+				try {
+					IOUtils.copy(inputStream, outputStream);
+					getServiceInterface().cleanupLongAction(topicId);
+				} finally {
+					inputStream.close();
+				}
 			}
 		} catch (ServerException e) {
 			LOGGER.error("", e);
@@ -313,7 +328,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		}
 	}
 
-	public void download(long roid, long serializerOid, Path file) throws IOException {
+	public void download(long roid, long serializerOid, Path file) throws IOException, BimServerClientException {
 		FileOutputStream outputStream = new FileOutputStream(file.toFile());
 		try {
 			download(roid, serializerOid, outputStream);
@@ -388,6 +403,8 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (BimServerClientException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -429,5 +446,10 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	@Override
 	public NewServicesInterface getNewServicesInterface() throws PublicInterfaceNotFoundException {
 		return get(NewServicesInterface.class);
+	}
+
+	@Override
+	public NotificationRegistryInterface getNotificationRegistryInterface() throws PublicInterfaceNotFoundException {
+		return get(NotificationRegistryInterface.class);
 	}
 }

@@ -23,6 +23,7 @@ import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
 
@@ -42,6 +43,9 @@ public class TestConstantlyDownloading {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
+		} catch (BimServerClientException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

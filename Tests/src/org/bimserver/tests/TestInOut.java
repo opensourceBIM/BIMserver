@@ -40,6 +40,7 @@ import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
+import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -113,6 +114,8 @@ public class TestInOut {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (CompareException e) {
+			e.printStackTrace();
+		} catch (BimServerClientException e) {
 			e.printStackTrace();
 		}
 	}

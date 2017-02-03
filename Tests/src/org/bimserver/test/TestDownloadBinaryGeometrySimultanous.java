@@ -24,6 +24,7 @@ import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
 
@@ -50,7 +51,7 @@ public class TestDownloadBinaryGeometrySimultanous {
 		public void run() {
 			try {
 				client.download(project.getLastRevisionId(), serializer.getOid(), Paths.get("output" + i + ".data"));
-			} catch (IOException e) {
+			} catch (IOException | BimServerClientException e) {
 				e.printStackTrace();
 			}
 		}
