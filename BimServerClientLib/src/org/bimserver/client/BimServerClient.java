@@ -30,7 +30,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -279,27 +278,22 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, fileSize, filename, inputStream);
 	}
 
-	public long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, URL url) throws UserException, ServerException {
-		try {
-			InputStream openStream = url.openStream();
-			if (flow == Flow.SYNC) {
-				long topicId = channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, -1, url.toString(), openStream);
-				openStream.close();
-				
-				SLongActionState progress = getNotificationRegistryInterface().getProgress(topicId);
-				if (progress.getState() == SActionState.AS_ERROR) {
-					throw new UserException(Joiner.on(", ").join(progress.getErrors()));
-				} else {
-					return topicId;
-				}
+	public long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, URL url) throws UserException, ServerException, IOException {
+		InputStream openStream = url.openStream();
+		if (flow == Flow.SYNC) {
+			long topicId = channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, -1, url.toString(), openStream);
+			openStream.close();
+			
+			SLongActionState progress = getNotificationRegistryInterface().getProgress(topicId);
+			if (progress.getState() == SActionState.AS_ERROR) {
+				throw new UserException(Joiner.on(", ").join(progress.getErrors()));
 			} else {
-				long topicId = channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, -1, url.toString(), openStream);
 				return topicId;
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		} else {
+			long topicId = channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, -1, url.toString(), openStream);
+			return topicId;
 		}
-		return -1;
 	}
 
 	public void download(long roid, long serializerOid, OutputStream outputStream) throws BimServerClientException {
