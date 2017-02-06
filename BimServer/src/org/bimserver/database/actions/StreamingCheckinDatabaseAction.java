@@ -331,7 +331,6 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			if (e instanceof UserException) {
 				throw (UserException) e;
 			}
-			LOGGER.error("", e);
 			throw new UserException(e);
 		}
 		return concreteRevision;
