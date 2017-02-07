@@ -84,7 +84,7 @@ public class AddReferenceChange implements Change {
 				added = true;
 			} else {
 				IdEObject oldReferencing = (IdEObject) referencedObject.eGet(eReference.getEOpposite());
-				if (oldReferencing != null) {
+				if (oldReferencing != null && oldReferencing != idEObject) {
 					throw new UserException("You cannot add a reference on " + idEObject.eClass().getName() + " (" + idEObject.getOid() + ")." + eReference.getName() + " to " + referencedObject.eClass().getName() + " (" + referencedObject.getOid() + ") because another object (" + oldReferencing.eClass().getName() + " (" + oldReferencing.getOid() + ")) is already and there is a singular inverse defined", ErrorCode.SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET);
 				}
 				referencedObject.eSet(eReference.getEOpposite(), idEObject); // This will also trigger EMF's opposite, so added=true

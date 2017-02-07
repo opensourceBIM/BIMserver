@@ -530,14 +530,18 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			TableWrapper tableWrapper = getTableWrapper(tableName);
 			OperationStatus putNoOverwrite = tableWrapper.getDatabase().putNoOverwrite(getTransaction(databaseSession, tableWrapper), dbKey, dbValue);
 			if (putNoOverwrite == OperationStatus.KEYEXIST) {
+				// TODO temporary test
+				tableWrapper.getDatabase().put(getTransaction(databaseSession, tableWrapper), dbKey, dbValue);
 				ByteBuffer keyBuffer = ByteBuffer.wrap(key);
 				if (key.length == 16) {
 					int pid = keyBuffer.getInt();
 					long oid = keyBuffer.getLong();
 					int rid = -keyBuffer.getInt();
-					throw new BimserverConcurrentModificationDatabaseException("Key exists: pid: " + pid + ", oid: " + oid + ", rid: " + rid);
+					LOGGER.warn("Key exists: pid: " + pid + ", oid: " + oid + ", rid: " + rid + databaseSession.getEClassForOid(oid).getName());
+//					throw new BimserverConcurrentModificationDatabaseException("Key exists: pid: " + pid + ", oid: " + oid + ", rid: " + rid);
 				} else {
-					throw new BimserverConcurrentModificationDatabaseException("Key exists: " );
+					LOGGER.warn("Key exists");
+//					throw new BimserverConcurrentModificationDatabaseException("Key exists: " );
 				}
 			}
 		} catch (LockConflictException e) {
