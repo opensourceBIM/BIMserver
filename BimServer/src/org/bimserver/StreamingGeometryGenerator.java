@@ -241,16 +241,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBounds(), minBounds);
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBounds(), maxBounds);
 	
-	//										try {
-	//											double area = renderEngineInstance.getArea();
-	//											geometryInfo.setArea(area);
-	//											double volume = renderEngineInstance.getVolume();
-	//											if (volume < 0d) {
-	//												volume = -volume;
-	//											}
-	//											geometryInfo.setVolume(volume);
-	//										} catch (NotImplementedException e) {
-	//										}
+											renderEngineInstance.getArea();
+											
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), renderEngineInstance.getArea());
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), renderEngineInstance.getVolume());
 											
 											VirtualObject geometryData = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryData());
 	
