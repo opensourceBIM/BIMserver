@@ -75,7 +75,7 @@ public class StringUtils {
 		for (int i=start; i<length; i++) {
 			c = in.charAt(i);
 			if (c == ',') {
-				if (parentheses == 0 && quotes == 0 && escapeMode != 3) {
+				if (parentheses == 0 && quotes == 0 && escapeMode != 3 && escapeMode != 6) {
 					return i+1;
 				}
 			} else if (c == '(') {
@@ -99,10 +99,55 @@ public class StringUtils {
 				} else {
 					escapeMode = 1;
 				}
+			} else if (c == '/') {
+				if (escapeMode == 7) {
+					escapeMode = 0;
+					
+				} else {
+					escapeMode = 5;
+				}
+			} else if (c == '*') {
+				if (escapeMode == 5) {
+					escapeMode = 6;
+				} else if (escapeMode == 6) {
+					escapeMode = 7;
+				}
 			} else if (c == 'S' && escapeMode == 1) {
 				escapeMode = 2;
 			}
 			if (escapeMode == 3) {
+				escapeMode = 0;
+			}
+		}
+		return length + 1;
+	}
+
+	public static int nextField(String in, int start) {
+		int parentheses = 0;
+		int quotes = 0;
+		char c;
+		int length = in.length();
+		int escapeMode = 0;
+		for (int i=start; i<length; i++) {
+			c = in.charAt(i);
+			if (c == ' ') {
+				// Continue
+			} else if (c == '/') {
+				if (escapeMode == 7) {
+					escapeMode = 0;
+				} else {
+					escapeMode = 5;
+				}
+			} else if (c == '*') {
+				if (escapeMode == 5) {
+					escapeMode = 6;
+				} else if (escapeMode == 6) {
+					escapeMode = 7;
+				}
+			} else if (c == '\'' || c == '(' || c == '$') {
+				if (escapeMode != 6) {
+					return i;
+				}
 				escapeMode = 0;
 			}
 		}
