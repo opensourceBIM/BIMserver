@@ -44,9 +44,9 @@ public abstract class AbstractAddExtendedDataService extends AbstractService {
 			extendedData.setTitle(title);
 			extendedData.setSize(data.length);
 			file.setFilename(filename);
-			SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByName(name);
+			SExtendedDataSchema extendedDataSchemaByName = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByName(name);
 			
-			extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
+			extendedData.setSchemaId(extendedDataSchemaByName.getOid());
 			file.setData(data);
 			file.setSize(data.length);
 			file.setMime(mime);
