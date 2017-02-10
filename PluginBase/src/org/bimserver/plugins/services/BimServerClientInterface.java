@@ -60,7 +60,7 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	 * @return
 	 * @throws IOException
 	 */
-	InputStream getDownloadData(long download, long serializerOid) throws IOException;
+	InputStream getDownloadData(long topicId) throws IOException;
 	
 	void setAuthentication(AuthenticationInfo authenticationInfo) throws ServerException, UserException, ChannelConnectionException;
 	

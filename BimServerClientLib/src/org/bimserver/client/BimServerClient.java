@@ -310,7 +310,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			if (progress.getState() == SActionState.AS_ERROR) {
 				throw new BimServerClientException(Joiner.on(", ").join(progress.getErrors()));
 			} else {
-				InputStream inputStream = getDownloadData(topicId, serializerOid);
+				InputStream inputStream = getDownloadData(topicId);
 				try {
 					IOUtils.copy(inputStream, outputStream);
 					getServiceInterface().cleanupLongAction(topicId);
@@ -338,8 +338,8 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		}
 	}
 
-	public InputStream getDownloadData(long topicId, long serializerOid) throws IOException {
-		return channel.getDownloadData(baseAddress, token, topicId, serializerOid);
+	public InputStream getDownloadData(long topicId) throws IOException {
+		return channel.getDownloadData(baseAddress, token, topicId);
 	}
 
 	public IfcModelInterface newModel(SProject project, boolean recordChanges) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
@@ -412,7 +412,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	public long getBinaryGeometryMessagingStreamingSerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
 		if (binaryGeometryMessagingStreamingSerializer == -1) {
-			SSerializerPluginConfiguration serializerPluginConfiguration = getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometryMessagingStreamingSerializerPlugin");
+			SSerializerPluginConfiguration serializerPluginConfiguration = getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometryMessagingStreamingSerializerPlugin3NoSplits");
 			if (serializerPluginConfiguration != null) {
 				binaryGeometryMessagingStreamingSerializer = serializerPluginConfiguration.getOid();
 			} else {
@@ -433,13 +433,13 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 
 	public void downloadExtendedData(long edid, Path outputFile) throws IOException {
-		try (InputStream downloadData = channel.getDownloadData(baseAddress, token, edid)) {
+		try (InputStream downloadData = channel.getDownloadExtendedData(baseAddress, token, edid)) {
 			Files.copy(downloadData, outputFile, StandardCopyOption.REPLACE_EXISTING);
 		}
 	}
 
 	public void downloadExtendedData(long edid, OutputStream outputStream) throws IOException {
-		try (InputStream downloadData = channel.getDownloadData(baseAddress, token, edid)) {
+		try (InputStream downloadData = channel.getDownloadExtendedData(baseAddress, token, edid)) {
 			IOUtils.copy(downloadData, outputStream);
 		}
 	}

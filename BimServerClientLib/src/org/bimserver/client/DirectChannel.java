@@ -80,9 +80,9 @@ public class DirectChannel extends Channel implements TokenChangeListener {
 	}
 	
 	@Override
-	public InputStream getDownloadData(String baseAddress, String token, long download, long serializerOid) throws IOException {
+	public InputStream getDownloadData(String baseAddress, String token, long topicId) throws IOException {
 		try {
-			SDownloadResult downloadData = get(ServiceInterface.class).getDownloadData(download);
+			SDownloadResult downloadData = get(ServiceInterface.class).getDownloadData(topicId);
 			return downloadData.getFile().getInputStream();
 		} catch (ServerException e) {
 			LOGGER.error("", e);
