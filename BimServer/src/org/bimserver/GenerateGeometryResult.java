@@ -26,8 +26,8 @@ public class GenerateGeometryResult {
 	private double[] max;
 
 	public GenerateGeometryResult() {
-		min = new double[3];
-		max = new double[3];
+		min = new double[]{Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
+		max = new double[]{-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE};
 	}
 
 	public double[] getMin() {
