@@ -70,6 +70,12 @@ public class Query {
 		addQueryPart(queryPart);
 		return queryPart;
 	}
+	
+	public Include createDefine(String name) {
+		Include include = new Include(packageMetaData);
+		this.defines.put(name, include);
+		return include;
+	}
 
 	@Override
 	public String toString() {
