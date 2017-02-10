@@ -250,9 +250,13 @@ public class BimServer {
 			pluginManager.setMetaDataManager(metaDataManager);
 			LOGGER.debug("PluginManager created");
 
-			versionChecker = new VersionChecker(config.getResourceFetcher());
-			LOGGER.debug("Version Checker created");
-
+			try {
+				LOGGER.debug("Version Checker created");
+				versionChecker = new VersionChecker(config.getResourceFetcher());
+			} catch (Exception e) {
+				LOGGER.error(e.getMessage());
+			}
+			
 			compareCache = new CompareCache();
 			LOGGER.debug("Compare cache created");
 			if (config.isStartEmbeddedWebServer()) {
@@ -290,9 +294,13 @@ public class BimServer {
 	public void start() throws DatabaseInitException, BimserverDatabaseException, PluginException, DatabaseRestartRequiredException, ServerException {
 		try {
 			LOGGER.debug("Starting BIMserver");
-			SVersion localVersion = versionChecker.getLocalVersion();
-			if (localVersion != null) {
-				LOGGER.info("Version: " + localVersion.getFullString());
+			if (versionChecker != null) {
+				SVersion localVersion = versionChecker.getLocalVersion();
+				if (localVersion != null) {
+					LOGGER.info("Version: " + localVersion.getFullString());
+				} else {
+					LOGGER.info("Unknown version");
+				}
 			} else {
 				LOGGER.info("Unknown version");
 			}
