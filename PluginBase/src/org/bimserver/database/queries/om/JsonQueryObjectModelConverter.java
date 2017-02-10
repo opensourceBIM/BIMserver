@@ -91,28 +91,7 @@ public class JsonQueryObjectModelConverter {
 			if (queryPart.hasIncludes()) {
 				ArrayNode includesNode = OBJECT_MAPPER.createArrayNode();
 				for (Include include : queryPart.getIncludes()) {
-					ObjectNode includeNode = OBJECT_MAPPER.createObjectNode();
-					
-					ArrayNode typesNode = OBJECT_MAPPER.createArrayNode();
-					for (EClass type : include.getTypes()) {
-						typesNode.add(type.getName());
-					}
-					includeNode.set("types", typesNode);
-					
-					ArrayNode fieldsNode = OBJECT_MAPPER.createArrayNode();
-					for (EReference eReference : include.getFields()) {
-						fieldsNode.add(eReference.getName());
-					}
-					includeNode.set("fields", fieldsNode);
-					
-					if (include.hasOutputTypes()) {
-						throw new RuntimeException("Not implemented");
-					}
-					
-					if (include.hasIncludes()) {
-						throw new RuntimeException("Not implemented");
-					}
-					
+					ObjectNode includeNode = dumpInclude(include);
 					includesNode.add(includeNode);
 				}
 				queryPartNode.set("includes", includesNode);
@@ -120,6 +99,35 @@ public class JsonQueryObjectModelConverter {
 			queryPartsNode.add(queryPartNode);
 		}
 		return queryNode;
+	}
+
+	private ObjectNode dumpInclude(Include include) {
+		ObjectNode includeNode = OBJECT_MAPPER.createObjectNode();
+		
+		ArrayNode typesNode = OBJECT_MAPPER.createArrayNode();
+		for (EClass type : include.getTypes()) {
+			typesNode.add(type.getName());
+		}
+		includeNode.set("types", typesNode);
+		
+		ArrayNode fieldsNode = OBJECT_MAPPER.createArrayNode();
+		for (EReference eReference : include.getFields()) {
+			fieldsNode.add(eReference.getName());
+		}
+		includeNode.set("fields", fieldsNode);
+		
+		if (include.hasIncludes()) {
+			ArrayNode includes = OBJECT_MAPPER.createArrayNode();
+			includeNode.set("includes", includes);
+			for (Include nextInclude : include.getIncludes()) {
+				includes.add(dumpInclude(nextInclude));
+			}
+		}
+
+		if (include.hasOutputTypes()) {
+			throw new RuntimeException("Not implemented");
+		}
+		return includeNode;
 	}
 	
 	public Query parseJson(String queryName, ObjectNode fullQuery) throws QueryException {
