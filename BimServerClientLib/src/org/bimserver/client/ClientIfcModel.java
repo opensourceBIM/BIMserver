@@ -1,5 +1,9 @@
 package org.bimserver.client;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.EOFException;
+
 /******************************************************************************
  * Copyright (C) 2009-2016  BIMserver.org
  * 
@@ -27,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.io.IOUtils;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
@@ -329,9 +334,11 @@ public class ClientIfcModel extends IfcModel {
 			long topicId = bimServerClient.query(query, roid, serializerOid);
 			// TODO use websocket notifications
 			waitForDonePreparing(topicId);
-			InputStream inputStream = bimServerClient.getDownloadData(topicId, serializerOid);
+			InputStream inputStream = bimServerClient.getDownloadData(topicId);
 			try {
-				processGeometryInputStream(inputStream, geometryInfoOidToOid);
+				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+				IOUtils.copy(inputStream, byteArrayOutputStream);
+				processGeometryInputStream(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()), geometryInfoOidToOid);
 			} catch (Throwable e) {
 				e.printStackTrace();
 			} finally {
@@ -368,8 +375,8 @@ public class ClientIfcModel extends IfcModel {
 						throw new GeometryException("Protocol != BGS (" + protocol + ")");
 					}
 					byte formatVersion = dataInputStream.readByte();
-					if (formatVersion != 8) {
-						throw new GeometryException("Unsupported version " + formatVersion + " / 8");
+					if (formatVersion != 10) {
+						throw new GeometryException("Unsupported version " + formatVersion + " / 10");
 					}
 					int skip = 4 - (7 % 4);
 					if(skip != 0 && skip != 4) {
@@ -432,9 +439,13 @@ public class ClientIfcModel extends IfcModel {
 					}
 					
 					int nrIndices = dataInputStream.readInt();
-					byte[] indices = new byte[nrIndices * 4];
+					byte[] indices = new byte[nrIndices * 2];
 					dataInputStream.readFully(indices);
 					geometryData.setIndices(indices);
+	
+					if (nrIndices % 2 != 0) {
+						dataInputStream.readFully(new byte[2]);
+					}
 					
 					int nrVertices = dataInputStream.readInt();
 					byte[] vertices = new byte[nrVertices * 4];
@@ -456,11 +467,13 @@ public class ClientIfcModel extends IfcModel {
 					throw new GeometryException("Unimplemented type: " + type);
 				}
 			}
+		} catch (EOFException e) {
+			//
 		}
 	}
 
 	private void processDownload(Long download) throws UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
-		InputStream downloadData = bimServerClient.getDownloadData(download, getJsonSerializerOid());
+		InputStream downloadData = bimServerClient.getDownloadData(download);
 		if (downloadData == null) {
 			throw new IfcModelInterfaceException("No InputStream to read from");
 		}
