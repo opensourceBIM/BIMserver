@@ -337,7 +337,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	public void sync() {
 		try {
 			environment.sync();
-			environment.flushLog(true);
+//			environment.flushLog(true);
 //			environment.evictMemory();
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);
