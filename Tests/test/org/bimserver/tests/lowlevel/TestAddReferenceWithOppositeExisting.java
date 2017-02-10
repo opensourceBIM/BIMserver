@@ -8,10 +8,10 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ErrorCode;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.tests.utils.TestWithEmbeddedServer;
+import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class AddReferenceWithOppositeExisting extends TestWithEmbeddedServer {
+public class TestAddReferenceWithOppositeExisting extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {

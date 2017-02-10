@@ -53,7 +53,7 @@ public class TestSceneJsDownload {
 					Long download = bimServerClient.getServiceInterface().download(Collections.singleton(project.getLastRevisionId()), DefaultQueries.allAsString(), serializerByContentType.getOid(), true);
 					System.out.println(((System.nanoTime() - start) / 1000000) + " ms");
 					start = System.nanoTime();
-					InputStream inputStream = bimServerClient.getDownloadData(download, serializerByContentType.getOid());
+					InputStream inputStream = bimServerClient.getDownloadData(download);
 					FileOutputStream fileOutputStream = new FileOutputStream(Paths.get("test.json").toFile());
 					IOUtils.copy(inputStream, fileOutputStream);
 					fileOutputStream.close();

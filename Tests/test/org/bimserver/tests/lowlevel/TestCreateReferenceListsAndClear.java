@@ -9,10 +9,10 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.tests.utils.TestWithEmbeddedServer;
+import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class CreateReferenceListsAndClear extends TestWithEmbeddedServer {
+public class TestCreateReferenceListsAndClear extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {

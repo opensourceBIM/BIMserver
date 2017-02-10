@@ -9,10 +9,10 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.tests.utils.TestWithEmbeddedServer;
+import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class RemoveReferenceWithOpposite2 extends TestWithEmbeddedServer {
+public class TestRemoveReferenceWithOpposite2 extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {

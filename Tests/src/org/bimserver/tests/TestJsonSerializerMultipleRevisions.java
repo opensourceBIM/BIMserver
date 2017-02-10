@@ -42,11 +42,11 @@ public class TestJsonSerializerMultipleRevisions {
 			long roid2 = 131075;
 			
 			Long download1 = client.getServiceInterface().download(Collections.singleton(roid1), DefaultQueries.allAsString(), jsonSerializer.getOid(), true);
-			InputStream downloadData1 = client.getDownloadData(download1, jsonSerializer.getOid());
+			InputStream downloadData1 = client.getDownloadData(download1);
 			IOUtils.copy(downloadData1, new FileOutputStream(Paths.get("roid1.json").toFile()));
 
 			Long download2 = client.getServiceInterface().download(Collections.singleton(roid2), DefaultQueries.allAsString(), jsonSerializer.getOid(), true);
-			InputStream downloadData2 = client.getDownloadData(download2, jsonSerializer.getOid());
+			InputStream downloadData2 = client.getDownloadData(download2);
 			IOUtils.copy(downloadData2, new FileOutputStream(Paths.get("roid2.json").toFile()));
 		} catch (ServiceException e) {
 			e.printStackTrace();

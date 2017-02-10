@@ -9,10 +9,10 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.tests.utils.TestWithEmbeddedServer;
+import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class RemoveObject2 extends TestWithEmbeddedServer {
+public class TestRemoveObject2 extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {

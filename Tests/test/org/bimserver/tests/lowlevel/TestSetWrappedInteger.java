@@ -13,10 +13,10 @@ import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.tests.utils.TestWithEmbeddedServer;
+import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class SetWrappedInteger extends TestWithEmbeddedServer {
+public class TestSetWrappedInteger extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {
