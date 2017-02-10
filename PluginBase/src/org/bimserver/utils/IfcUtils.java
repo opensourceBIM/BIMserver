@@ -19,9 +19,11 @@ package org.bimserver.utils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
@@ -225,6 +227,75 @@ public class IfcUtils {
 		return null;
 	}
 
+	/**
+	 * Lists all properties of a given IfcPopertySet that are of type IfcPropertySingleValue, all values are converted to the appropriate Java type
+	 * 
+	 * @param ifcObject
+	 * @param propertySetName
+	 * @return
+	 */
+	public static Map<String, Object> listProperties(IfcObject ifcObject, String propertySetName) {
+		Map<String, Object> result = new HashMap<>();
+		for (IfcRelDefines ifcRelDefines : ifcObject.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof IfcPropertySet) {
+					IfcPropertySet ifcPropertySet = (IfcPropertySet)propertySetDefinition;
+					if (ifcPropertySet.getName() != null && ifcPropertySet.getName().equalsIgnoreCase(propertySetName)) {
+						for (IfcProperty ifcProperty : ifcPropertySet.getHasProperties()) {
+							if (ifcProperty instanceof IfcPropertySingleValue) {
+								IfcPropertySingleValue propertyValue = (IfcPropertySingleValue)ifcProperty;
+								result.put(propertyValue.getName(), nominalValueToObject(propertyValue.getNominalValue()));
+							}
+						}
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+	private static Object nominalValueToObject(IfcValue nominalValue) {
+		if (nominalValue instanceof IfcLabel) {
+			return ((IfcLabel)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcIdentifier) {
+			return ((IfcIdentifier)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcBoolean) {
+			return ((IfcBoolean)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcText) {
+			return ((IfcText)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcLengthMeasure) {
+			return ((IfcLengthMeasure)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcPlaneAngleMeasure) {
+			return ((IfcPlaneAngleMeasure)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcAreaMeasure) {
+			return ((IfcAreaMeasure)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcVolumeMeasure) {
+			return ((IfcVolumeMeasure)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcReal) {
+			return ((IfcReal)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcPowerMeasure) {
+			return ((IfcPowerMeasure)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcInteger) {
+			return ((IfcInteger)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcElectricCurrentMeasure) {
+			return ((IfcElectricCurrentMeasure)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcLogical) {
+			return ((IfcLogical)nominalValue).getWrappedValue();
+		} else {
+			throw new RuntimeException("Not implemented: " + nominalValue.eClass().getName());
+		}
+	}
+	
+	private static String nominalValueToString(IfcValue nominalValue) {
+		Object object = nominalValueToObject(nominalValue);
+		if (object == null) {
+			return null;
+		}
+		return object.toString();
+	}
+
 	public static String getStringProperty(IfcObject ifcObject, String propertyName) {
 		for (IfcRelDefines ifcRelDefines : ifcObject.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
@@ -237,35 +308,7 @@ public class IfcUtils {
 							IfcPropertySingleValue propertyValue = (IfcPropertySingleValue)ifcProperty;
 							if (ifcProperty.getName().equals(propertyName)) {
 								IfcValue nominalValue = propertyValue.getNominalValue();
-								if (nominalValue instanceof IfcLabel) {
-									return ((IfcLabel)nominalValue).getWrappedValue();
-								} else if (nominalValue instanceof IfcIdentifier) {
-									return ((IfcIdentifier)nominalValue).getWrappedValue();
-								} else if (nominalValue instanceof IfcBoolean) {
-									return ((IfcBoolean)nominalValue).getWrappedValue().toString();
-								} else if (nominalValue instanceof IfcText) {
-									return ((IfcText)nominalValue).getWrappedValue();
-								} else if (nominalValue instanceof IfcLengthMeasure) {
-									return String.valueOf(((IfcLengthMeasure)nominalValue).getWrappedValue());
-								} else if (nominalValue instanceof IfcPlaneAngleMeasure) {
-									return String.valueOf(((IfcPlaneAngleMeasure)nominalValue).getWrappedValue());
-								} else if (nominalValue instanceof IfcAreaMeasure) {
-									return String.valueOf(((IfcAreaMeasure)nominalValue).getWrappedValue());
-								} else if (nominalValue instanceof IfcVolumeMeasure) {
-									return String.valueOf(((IfcVolumeMeasure)nominalValue).getWrappedValue());
-								} else if (nominalValue instanceof IfcReal) {
-									return String.valueOf(((IfcReal)nominalValue).getWrappedValue());
-								} else if (nominalValue instanceof IfcPowerMeasure) {
-									return String.valueOf(((IfcPowerMeasure)nominalValue).getWrappedValue());
-								} else if (nominalValue instanceof IfcInteger) {
-									return String.valueOf(((IfcInteger)nominalValue).getWrappedValue());
-								} else if (nominalValue instanceof IfcElectricCurrentMeasure) {
-									return String.valueOf(((IfcElectricCurrentMeasure)nominalValue).getWrappedValue());
-								} else if (nominalValue instanceof IfcLogical) {
-									return String.valueOf(((IfcLogical)nominalValue).getWrappedValue());
-								} else {
-									throw new RuntimeException(nominalValue.eClass().getName());
-								}
+								return nominalValueToString(nominalValue);
 							}
 						}
 					}
