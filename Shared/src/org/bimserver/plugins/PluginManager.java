@@ -275,20 +275,22 @@ public class PluginManager implements PluginManagerInterface {
 				} else {
 					// Snapshot projects linked in Eclipse
 					ArtifactRequest request = new ArtifactRequest();
-					request.setArtifact(dependency2.getArtifact());
-					request.setRepositories(mavenPluginRepository.getLocalRepositories());
-					try {
-						ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
-						if (resolveArtifact.getArtifact().getFile() != null) {
-							bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
-						} else {
-							// TODO error?
+					if (!depend.getScope().equals("test")) {
+						request.setArtifact(dependency2.getArtifact());
+						request.setRepositories(mavenPluginRepository.getLocalRepositories());
+						try {
+							ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+							if (resolveArtifact.getArtifact().getFile() != null) {
+								bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
+							} else {
+								// TODO error?
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
-					} catch (ArtifactResolutionException e) {
-						e.printStackTrace();
-					}
-
+						
 //					bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
+					}
 				}
 				
 				CollectRequest collectRequest = new CollectRequest();
