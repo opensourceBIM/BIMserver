@@ -15,4 +15,6 @@ public interface IssueInterface {
 	void validate() throws IssueValidationException;
 	
 	void setCheckValid(String identifier, boolean valid);
+
+	boolean isValid();
 }

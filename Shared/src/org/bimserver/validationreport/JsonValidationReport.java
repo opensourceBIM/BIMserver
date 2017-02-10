@@ -41,7 +41,7 @@ import com.google.common.base.Charsets;
 
 public class JsonValidationReport implements IssueInterface {
 
-	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+	public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private final List<Item> items = new ArrayList<Item>();
 	private final Map<String, Boolean> checkResults = new HashMap<>();
 
@@ -61,7 +61,7 @@ public class JsonValidationReport implements IssueInterface {
 		sb.append(footer);
 		return sb.toString();
 	}
-	
+
 	public ObjectNode toJson(ObjectMapper OBJECT_MAPPER) {
 		ObjectNode result = OBJECT_MAPPER.createObjectNode();
 		ArrayNode itemsJson = OBJECT_MAPPER.createArrayNode();
@@ -162,5 +162,18 @@ public class JsonValidationReport implements IssueInterface {
 	@Override
 	public void setCheckValid(String identifier, boolean valid) {
 		checkResults.put(identifier, valid);
+	}
+
+	@Override
+	public boolean isValid() {
+		for (Item item : items) {
+			if (item instanceof Line) {
+				Line line = (Line)item;
+				if (line.getType() == Type.ERROR) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }
