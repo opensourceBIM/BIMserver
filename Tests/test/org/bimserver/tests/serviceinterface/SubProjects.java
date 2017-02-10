@@ -15,7 +15,7 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.tests.utils.TestWithEmbeddedServer;
+import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class SubProjects extends TestWithEmbeddedServer {
@@ -50,7 +50,7 @@ public class SubProjects extends TestWithEmbeddedServer {
 //			Long topicId = bimServerClient.getServiceInterface().downloadByTypes(Collections.singleton(mainProject.getLastRevisionId()),
 //					Collections.singleton("IfcWall"), serializer.getOid(), true, false, true, true);
 			Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(mainProject.getLastRevisionId()), DefaultQueries.allAsString(), serializer.getOid(), true);
-			IOUtils.copy(bimServerClient.getDownloadData(topicId, serializer.getOid()), new FileOutputStream(new File("out.ifc")));
+			IOUtils.copy(bimServerClient.getDownloadData(topicId), new FileOutputStream(new File("out.ifc")));
 			bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 			long e = System.nanoTime();
 			System.out.println(((e - s) / 1000000) + " ms");

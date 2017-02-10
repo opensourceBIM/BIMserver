@@ -21,7 +21,7 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.tests.utils.TestWithEmbeddedServer;
+import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
@@ -73,7 +73,7 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 					}
 				} else {
 					Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(newProject.getLastRevisionId()), DefaultQueries.allAsString(), serializer.getOid(), false); // Note: sync: false
-					InputStream downloadData = bimServerClient.getDownloadData(topicId, serializer.getOid());
+					InputStream downloadData = bimServerClient.getDownloadData(topicId);
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
 					IOUtils.copy(downloadData, baos);
 					System.out.println(baos.size() + " bytes downloaded");

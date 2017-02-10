@@ -16,7 +16,7 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.tests.utils.TestWithEmbeddedServer;
+import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class SingleCheckinAndDownloadSimplified extends TestWithEmbeddedServer {
@@ -47,7 +47,7 @@ public class SingleCheckinAndDownloadSimplified extends TestWithEmbeddedServer {
 			
 			// Download the latest revision  (the one we just checked in)
 			Long topicIdId = bimServerClient.getServiceInterface().download(Collections.singleton(newProject.getLastRevisionId()), DefaultQueries.allAsString(), colladaSerializer.getOid(), false); // Note: sync: false
-			InputStream downloadData = bimServerClient.getDownloadData(topicIdId, colladaSerializer.getOid());
+			InputStream downloadData = bimServerClient.getDownloadData(topicIdId);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			IOUtils.copy(downloadData, baos);
 			System.out.println(baos.size() + " bytes downloaded");
