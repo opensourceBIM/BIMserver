@@ -16,7 +16,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.tests.utils.TestWithEmbeddedServer;
+import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class MultiCheckinAndDownload extends TestWithEmbeddedServer {
