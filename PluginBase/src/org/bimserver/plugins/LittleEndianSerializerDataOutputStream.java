@@ -95,7 +95,7 @@ public class LittleEndianSerializerDataOutputStream extends SerializerDataOutput
 
 	@Override
 	public void writeUTF(String str) throws IOException {
-		outputStream.write(str.getBytes(Charsets.UTF_8));
+		new DataOutputStream(outputStream).writeUTF(str);
 	}
 
 	@Override
@@ -115,5 +115,4 @@ public class LittleEndianSerializerDataOutputStream extends SerializerDataOutput
 	public void writeByte(byte val) throws IOException {
 		outputStream.write((byte)val);
 	}
-
 }
