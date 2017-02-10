@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,7 @@ import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
+import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
@@ -330,6 +332,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	
 											ifcProduct.setReference(geometryFeature, geometryInfo.getOid(), 0);
 											ifcProduct.saveOverwrite();
+											
+											// Doing a sync here because probably writing large amounts of data, and db only syncs every 100.000 writes by default
+											databaseSession.getKeyValueStore().sync();
 										} else {
 											// TODO
 										}
@@ -467,6 +472,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(10000000));
 
+			Map<Long, AtomicInteger> counters = new HashMap<>();
+			
 			for (EClass eClass : queryContext.getOidCounters().keySet()) {
 				if (packageMetaData.getEClass("IfcProduct").isSuperTypeOf(eClass)) {
 					Query query2 = new Query("test", packageMetaData);
@@ -479,6 +486,15 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					HashMapVirtualObject next = queryObjectProvider2.next();
 					while (next != null) {
 						if (next.eClass() == eClass) {
+							Set<Long> representationItems = getRepresentationItems(databaseSession, queryContext, next);
+							for (Long l : representationItems) {
+								AtomicInteger atomicInteger = counters.get(l);
+								if (atomicInteger == null) {
+									atomicInteger = new AtomicInteger(0);
+									counters.put(l, atomicInteger);
+								}
+								atomicInteger.incrementAndGet();
+							}
 							HashMapVirtualObject representation = next.getDirectFeature(representationFeature);
 							if (representation != null) {
 								List<Long> representations = (List<Long>) representation.get("Representations");
@@ -555,6 +571,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				}
 			}
 			
+//			for (Long l : counters.keySet()) {
+//				LOGGER.info(databaseSession.getEClassForOid(l).getName() + "(" + l + "): " + counters.get(l));
+//			}
+			
 			allJobsPushed = true;
 			
 			executor.shutdown();
@@ -571,6 +591,46 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return generateGeometryResult;
 	}
 	
+	private Set<Long> getRepresentationItems(DatabaseSession databaseSession, QueryContext queryContext, HashMapVirtualObject next) throws QueryException, IOException {
+		Set<Long> result = new HashSet<>();
+		Query query = new Query("test", packageMetaData);
+		
+		Include representation = query.createDefine("Representation");
+		representation.addType(packageMetaData.getEClass("IfcShapeRepresentation"), true);
+		representation.addField("Items");
+		Include mapped = representation.createInclude();
+		mapped.addType(packageMetaData.getEClass("IfcMappedItem"), true);
+		mapped.addField("MappingSource");
+		Include mappingSource = mapped.createInclude();
+		mappingSource.addType(packageMetaData.getEClass("IfcRepresentationMap"), false);
+		mappingSource.addField("MappedRepresentation");
+		mappingSource.addInclude(representation);
+		
+		QueryPart queryPart = query.createQueryPart();
+		queryPart.addOid(next.getOid());
+		Include include = queryPart.createInclude();
+		include.addType(next.eClass(), false);
+		include.addField("Representation");
+		Include representations = include.createInclude();
+		representations.addType(packageMetaData.getEClass("IfcProductDefinitionShape"), true);
+		representations.addField("Representations");
+		representations.addInclude(representation);
+		
+		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
+		try {
+			HashMapVirtualObject next2 = queryObjectProvider.next();
+			while (next2 != null) {
+				if (packageMetaData.getEClass("IfcRepresentationItem").isSuperTypeOf(next2.eClass())) {
+					result.add(next2.getOid());
+				}
+				next2 = queryObjectProvider.next();
+			}
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	private long getSize(VirtualObject geometryData) {
 		long size = 0;
 		if (geometryData.has("indices")) {
