@@ -54,7 +54,9 @@ public class ServerInfoManager {
 
 	public void update() {
 		try {
-			serverInfo.setVersion(bimServer.getSConverter().convertFromSObject(bimServer.getVersionChecker().getLocalVersion()));
+			if (bimServer.getVersionChecker() != null) {
+				serverInfo.setVersion(bimServer.getSConverter().convertFromSObject(bimServer.getVersionChecker().getLocalVersion()));
+			}
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		}
