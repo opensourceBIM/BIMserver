@@ -45,9 +45,12 @@ public class RootServlet extends HttpServlet {
 	private DownloadServlet downloadServlet;
 	private OAuthAuthorizationServlet oAuthAuthorizationServlet;
 	private OAuthRegistrationServlet oAuthRegistrationServlet;
+	private OAuthAccessTokenServlet oAuthAccesssTokenServlet;
+
 	private BimServer bimServer;
 
 	private BulkUploadServlet bulkUploadServlet;
+
 
 	@Override
 	public void init() throws ServletException {
@@ -67,6 +70,7 @@ public class RootServlet extends HttpServlet {
 		soap12Servlet = new WebServiceServlet12(bimServer, servletContext);
 		soap12Servlet.init(getServletConfig());
 		oAuthAuthorizationServlet = new OAuthAuthorizationServlet(bimServer, servletContext);
+		oAuthAccesssTokenServlet = new OAuthAccessTokenServlet(bimServer, servletContext);
 		oAuthRegistrationServlet = new OAuthRegistrationServlet(bimServer, servletContext);
 	}
 
@@ -136,8 +140,10 @@ public class RootServlet extends HttpServlet {
 				jsonApiServlet.service(request, response);
 			} else if (requestUri.startsWith("/oauth/register")) {
 				oAuthRegistrationServlet.service(request, response);
-			} else if (requestUri.startsWith("/oauth")) {
+			} else if (requestUri.startsWith("/oauth/authorize")) {
 				oAuthAuthorizationServlet.service(request, response);
+			} else if (requestUri.startsWith("/oauth/access")) {
+				oAuthAccesssTokenServlet.service(request, response);
 			} else if (requestUri.startsWith("/upload/") || requestUri.equals("/upload")) {
 				uploadServlet.service(request, response);
 			} else if (requestUri.startsWith("/bulkupload/") || requestUri.equals("/bulkupload")) {

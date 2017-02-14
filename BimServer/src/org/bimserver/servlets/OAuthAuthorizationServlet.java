@@ -23,9 +23,12 @@ import org.apache.oltu.oauth2.common.utils.OAuthUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OldQuery;
+import org.bimserver.models.store.Authorization;
 import org.bimserver.models.store.OAuthAuthorizationCode;
 import org.bimserver.models.store.SingleProjectAuthorization;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
 
 public class OAuthAuthorizationServlet extends SubServlet {
 
@@ -54,17 +57,17 @@ public class OAuthAuthorizationServlet extends SubServlet {
 				oauthCode = session.querySingle(StorePackage.eINSTANCE.getOAuthAuthorizationCode_Code(), code);
 				authorization = oauthCode.getAuthorization();
 				authorization.load();
-			}
-			
-//			String token = request.getParameter("token");
-//			Authorization authorization = Authorization.fromToken(getBimServer().getEncryptionKey(), token);
-//			long uoid = authorization.getUoid();
-//			User user = session.get(uoid, OldQuery.getDefault());
-//			for (OAuthAuthorizationCode oAuthAuthorizationCode : user.getOAuthIssuedAuthorizationCodes()) {
-//				if (oAuthAuthorizationCode.getOauthServer() == oAuthServer) {
-//					// This issuing user has already authorized this application
+//			} else {
+//				String token = request.getParameter("token");
+//				authorization = Authorization.fromToken(getBimServer().getEncryptionKey(), token);
+//				long uoid = authorization.getUoid();
+//				User user = session.get(uoid, OldQuery.getDefault());
+//				for (OAuthAuthorizationCode oAuthAuthorizationCode : user.getOAuthIssuedAuthorizationCodes()) {
+//					if (oAuthAuthorizationCode.getOauthServer() == oAuthServer) {
+//						// This issuing user has already authorized this application
+//					}
 //				}
-//			}
+			}
 		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
 		}
@@ -78,6 +81,8 @@ public class OAuthAuthorizationServlet extends SubServlet {
 
 			if (responseType.equals(ResponseType.CODE.toString())) {
 				builder.setCode(oauthCode.getCode());
+//			} else if (responseType.equals(ResponseType.TOKEN))) {
+//				builder.setAccessToken(oauthCode.get)
 			}
 //			if (responseType.equals(ResponseType.TOKEN.toString())) {
 //				builder.setAccessToken(oauthIssuerImpl.accessToken());

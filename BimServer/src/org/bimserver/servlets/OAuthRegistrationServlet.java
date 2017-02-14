@@ -52,8 +52,12 @@ public class OAuthRegistrationServlet extends SubServlet {
             		oAuthServer.setClientDescription(oauthRequest.getClientDescription());
             		
             		if (oauthRequest.getClientIcon() != null) {
-            			byte[] icon = NetUtils.getContentAsBytes(new URL(oauthRequest.getClientIcon()), 5000);
-            			oAuthServer.setClientIcon(icon);
+            			try {
+            				byte[] icon = NetUtils.getContentAsBytes(new URL(oauthRequest.getClientIcon()), 5000);
+            				oAuthServer.setClientIcon(icon);
+            			} catch (Exception e) {
+            				//
+            			}
             		}
             		oAuthServer.setRedirectUrl(oauthRequest.getRedirectURI());
             		
@@ -80,6 +84,7 @@ public class OAuthRegistrationServlet extends SubServlet {
             			.setParam("message", "OK")
             			.buildJSONMessage();
             	httpResponse.setStatus(response.getResponseStatus());
+            	httpResponse.setContentType(response.getHeaders().get("Content-Type"));
             	httpResponse.getWriter().write(response.getBody());
             } catch (BimserverDatabaseException e) {
 				e.printStackTrace();
