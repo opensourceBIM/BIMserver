@@ -163,7 +163,7 @@ public class IfcUtils {
 		return null;
 	}
 
-	public static List<IfcProduct> getChildren(IfcBuildingStorey ifcBuildingStorey) {
+	public static List<IfcProduct> getDecomposition(IfcBuildingStorey ifcBuildingStorey) {
 		List<IfcProduct> list = new ArrayList<>();
 		for (IfcRelDecomposes ifcRelDecomposes : ifcBuildingStorey.getIsDecomposedBy()) {
 			for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
@@ -175,6 +175,16 @@ public class IfcUtils {
 		return list;
 	}
 
+	public static List<IfcProduct> getContains(IfcBuildingStorey ifcBuildingStorey) {
+		List<IfcProduct> list = new ArrayList<>();
+		for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : ifcBuildingStorey.getContainsElements()) {
+			for (IfcProduct ifcProduct : ifcRelContainedInSpatialStructure.getRelatedElements()) {
+				list.add(ifcProduct);
+			}
+		}
+		return list;
+	}
+	
 	public static IfcProject getIfcProject(IfcProduct ifcProduct) {
 		if (ifcProduct instanceof IfcProject) {
 			return (IfcProject) ifcProduct;
