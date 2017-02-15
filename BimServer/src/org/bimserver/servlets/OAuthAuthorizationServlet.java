@@ -24,14 +24,18 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
-import org.bimserver.models.store.Authorization;
 import org.bimserver.models.store.OAuthAuthorizationCode;
+import org.bimserver.models.store.OAuthServer;
 import org.bimserver.models.store.SingleProjectAuthorization;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.webservices.authorization.AuthenticationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OAuthAuthorizationServlet extends SubServlet {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(OAuthAuthorizationServlet.class);
+	
 	public OAuthAuthorizationServlet(BimServer bimServer, ServletContext servletContext) {
 		super(bimServer, servletContext);
 	}
@@ -50,25 +54,21 @@ public class OAuthAuthorizationServlet extends SubServlet {
 		org.bimserver.models.store.Authorization authorization = null;
 		
 		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
-//			OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_ClientId(), request.getParameter("client_id")));
+			OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_ClientId(), request.getParameter("client_id"));
 
-			if (request.getParameter("code") != null) {
-				String code = (String) request.getParameter("code");
-				oauthCode = session.querySingle(StorePackage.eINSTANCE.getOAuthAuthorizationCode_Code(), code);
-				authorization = oauthCode.getAuthorization();
-				authorization.load();
-//			} else {
-//				String token = request.getParameter("token");
-//				authorization = Authorization.fromToken(getBimServer().getEncryptionKey(), token);
-//				long uoid = authorization.getUoid();
-//				User user = session.get(uoid, OldQuery.getDefault());
-//				for (OAuthAuthorizationCode oAuthAuthorizationCode : user.getOAuthIssuedAuthorizationCodes()) {
-//					if (oAuthAuthorizationCode.getOauthServer() == oAuthServer) {
-//						// This issuing user has already authorized this application
-//					}
-//				}
+			String token = request.getParameter("token");
+			org.bimserver.webservices.authorization.Authorization realAuth = org.bimserver.webservices.authorization.Authorization.fromToken(getBimServer().getEncryptionKey(), token);
+			long uoid = realAuth.getUoid();
+			User user = session.get(uoid, OldQuery.getDefault());
+			for (OAuthAuthorizationCode oAuthAuthorizationCode : user.getOAuthIssuedAuthorizationCodes()) {
+				if (oAuthAuthorizationCode.getOauthServer() == oAuthServer) {
+					authorization = oAuthAuthorizationCode.getAuthorization();
+					oauthCode = oAuthAuthorizationCode;
+				}
 			}
 		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} catch (AuthenticationException e) {
 			e.printStackTrace();
 		}
 		
@@ -101,7 +101,7 @@ public class OAuthAuthorizationServlet extends SubServlet {
 			String locationUri = response.getLocationUri();
 			URI url = new URI(locationUri);
 
-			System.out.println("Redirecting to " + url);
+			LOGGER.info("Redirecting to " + url);
 			
 			httpServletResponse.sendRedirect(locationUri);
 		} catch (OAuthProblemException e) {
