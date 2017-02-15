@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.common.message.types.ResponseType;
 import org.apache.oltu.oauth2.ext.dynamicreg.client.OAuthRegistrationClient;
@@ -23,6 +25,7 @@ import org.bimserver.models.store.Authorization;
 import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.OAuthAuthorizationCode;
 import org.bimserver.models.store.OAuthServer;
+import org.bimserver.models.store.Project;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServiceStatus;
 import org.bimserver.models.store.SingleProjectAuthorization;
@@ -224,19 +227,21 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 				SSingleProjectAuthorization sSingleProjectAuthorization = (SSingleProjectAuthorization)authorization;
 				
 				SingleProjectAuthorization singleProjectAuthorization = session.create(SingleProjectAuthorization.class);
-				singleProjectAuthorization.setProject(session.get(sSingleProjectAuthorization.getProjectId(), OldQuery.getDefault()));
-				
-				org.bimserver.webservices.authorization.SingleProjectAuthorization singleProjectAuthorization2 = new org.bimserver.webservices.authorization.SingleProjectAuthorization(getBimServer(), user.getOid(), sSingleProjectAuthorization.getProjectId());
-				String token = singleProjectAuthorization2.asHexToken(getBimServer().getEncryptionKey());
+				Project project = session.get(sSingleProjectAuthorization.getProjectId(), OldQuery.getDefault());
+				if (project == null) {
+					throw new UserException("No project found with poid " + sSingleProjectAuthorization.getProjectId());
+				}
+				singleProjectAuthorization.setProject(project);
 				
 				OAuthAuthorizationCode code = session.create(OAuthAuthorizationCode.class);
-				code.setCode(token);
-//				code.setOauthServer(session.get(oAuthServerOid, OldQuery.getDefault()));
+				code.setCode(RandomStringUtils.random(50));
+				code.setOauthServer(session.get(oAuthServerOid, OldQuery.getDefault()));
 				code.setAuthorization(singleProjectAuthorization);
 				
 				user.getOAuthIssuedAuthorizationCodes().add(code);
 				
 				session.store(user);
+				session.store(singleProjectAuthorization);
 				
 				session.commit();
 				

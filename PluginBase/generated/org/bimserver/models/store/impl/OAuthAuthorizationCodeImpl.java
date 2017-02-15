@@ -21,6 +21,7 @@ import org.bimserver.models.store.Authorization;
 import org.bimserver.models.store.OAuthAuthorizationCode;
 import org.bimserver.models.store.OAuthServer;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl#getOauthServer <em>Oauth Server</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl#getCode <em>Code</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl#getAuthorization <em>Authorization</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl#getUser <em>User</em>}</li>
  * </ul>
  *
  * @generated
@@ -120,6 +122,24 @@ public class OAuthAuthorizationCodeImpl extends IdEObjectImpl implements OAuthAu
 	 */
 	public void setAuthorization(Authorization newAuthorization) {
 		eSet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__AUTHORIZATION, newAuthorization);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public User getUser() {
+		return (User) eGet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__USER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUser(User newUser) {
+		eSet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__USER, newUser);
 	}
 
 } //OAuthAuthorizationCodeImpl

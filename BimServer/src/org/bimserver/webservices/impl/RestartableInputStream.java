@@ -30,11 +30,6 @@ public class RestartableInputStream extends InputStream {
 
 	@Override
 	public int read(byte[] b, int off, int len) throws IOException {
-		if (canRestart) {
-			LOGGER.info("Switching to reading from cached file");
-			currentInputStream = Files.newInputStream(cachingFile);
-			canRestart = false;
-		}
 		int read = currentInputStream.read(b, off, len);
 		if (read == -1) {
 			canRestart = true;
@@ -44,15 +39,18 @@ public class RestartableInputStream extends InputStream {
 
 	@Override
 	public int read() throws IOException {
-		if (canRestart) {
-			LOGGER.info("Switching to reading from cached file");
-			currentInputStream = Files.newInputStream(cachingFile);
-			canRestart = false;
-		}
 		int read = currentInputStream.read();
 		if (read == -1) {
 			canRestart = true;
 		}
 		return read;
+	}
+
+	public void restartIfAtEnd() throws IOException {
+		if (canRestart) {
+			LOGGER.info("Switching to reading from cached file");
+			currentInputStream = Files.newInputStream(cachingFile);
+			canRestart = false;
+		}
 	}
 }

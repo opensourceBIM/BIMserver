@@ -30,6 +30,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.OAuthAuthorizationCode#getOauthServer <em>Oauth Server</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthAuthorizationCode#getCode <em>Code</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthAuthorizationCode#getAuthorization <em>Authorization</em>}</li>
+ *   <li>{@link org.bimserver.models.store.OAuthAuthorizationCode#getUser <em>User</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getOAuthAuthorizationCode()
@@ -115,5 +116,33 @@ public interface OAuthAuthorizationCode extends IdEObject {
 	 * @generated
 	 */
 	void setAuthorization(Authorization value);
+
+	/**
+	 * Returns the value of the '<em><b>User</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.User#getOAuthIssuedAuthorizationCodes <em>OAuth Issued Authorization Codes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>User</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>User</em>' reference.
+	 * @see #setUser(User)
+	 * @see org.bimserver.models.store.StorePackage#getOAuthAuthorizationCode_User()
+	 * @see org.bimserver.models.store.User#getOAuthIssuedAuthorizationCodes
+	 * @model opposite="oAuthIssuedAuthorizationCodes"
+	 * @generated
+	 */
+	User getUser();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.OAuthAuthorizationCode#getUser <em>User</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>User</em>' reference.
+	 * @see #getUser()
+	 * @generated
+	 */
+	void setUser(User value);
 
 } // OAuthAuthorizationCode

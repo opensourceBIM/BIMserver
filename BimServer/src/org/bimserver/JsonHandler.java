@@ -22,6 +22,10 @@ import java.io.Writer;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
+import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
+import org.apache.oltu.oauth2.common.message.types.ParameterStyle;
+import org.apache.oltu.oauth2.rs.request.OAuthAccessResourceRequest;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -62,6 +66,7 @@ public class JsonHandler {
 				processMultiRequest(incomingMessage.getAsJsonArray("requests"), token, oAuthCode, httpRequest, jsonWriter);
 			}
 		} catch (Throwable throwable) {
+			throwable.printStackTrace();
 			handleThrowable(jsonWriter, throwable);
 		} finally {
 			try {
@@ -197,6 +202,15 @@ public class JsonHandler {
 		if (methodName.equals("login") || methodName.equals("autologin")) {
 			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
 		}
+		
+		OAuthAccessResourceRequest oauthRequest;
+		try {
+			oauthRequest = new OAuthAccessResourceRequest(httpRequest, ParameterStyle.HEADER);
+			token = oauthRequest.getAccessToken();
+		} catch (OAuthSystemException e) {
+		} catch (OAuthProblemException e) {
+		}
+		
 		if (token == null) {
 			token = httpRequest == null ? null : (String) httpRequest.getSession().getAttribute("token");
 		}

@@ -51,7 +51,6 @@ public class OAuthAuthorizationServlet extends SubServlet {
 		}
 
 		OAuthAuthorizationCode oauthCode = null;
-		org.bimserver.models.store.Authorization authorization = null;
 		
 		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_ClientId(), request.getParameter("client_id"));
@@ -62,8 +61,9 @@ public class OAuthAuthorizationServlet extends SubServlet {
 			User user = session.get(uoid, OldQuery.getDefault());
 			for (OAuthAuthorizationCode oAuthAuthorizationCode : user.getOAuthIssuedAuthorizationCodes()) {
 				if (oAuthAuthorizationCode.getOauthServer() == oAuthServer) {
-					authorization = oAuthAuthorizationCode.getAuthorization();
-					oauthCode = oAuthAuthorizationCode;
+					if (oAuthAuthorizationCode.getAuthorization() != null && oAuthAuthorizationCode.getAuthorization() instanceof SingleProjectAuthorization && ((SingleProjectAuthorization)oAuthAuthorizationCode.getAuthorization()).getProject() != null) {
+						oauthCode = oAuthAuthorizationCode;
+					}
 				}
 			}
 		} catch (BimserverDatabaseException e) {
@@ -93,8 +93,8 @@ public class OAuthAuthorizationServlet extends SubServlet {
 			String redirectURI = oauthRequest.getParam(OAuth.OAUTH_REDIRECT_URI);
 
 			OAuthAuthorizationResponseBuilder build = builder.location(redirectURI).setParam("address", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/json");
-			if (authorization instanceof SingleProjectAuthorization) {
-				SingleProjectAuthorization singleProjectAuthorization = (SingleProjectAuthorization)authorization;
+			if (oauthCode.getAuthorization() instanceof SingleProjectAuthorization) {
+				SingleProjectAuthorization singleProjectAuthorization = (SingleProjectAuthorization)oauthCode.getAuthorization();
 				build.setParam("poid", "" + singleProjectAuthorization.getProject().getOid());
 			}
 			final OAuthResponse response = build.buildQueryMessage();
