@@ -64,6 +64,7 @@ import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
+import org.bimserver.webservices.impl.RestartableInputStream;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.slf4j.Logger;
@@ -112,6 +113,10 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {
+			if (inputStream instanceof RestartableInputStream) {
+				((RestartableInputStream)inputStream).restartIfAtEnd();
+			}
+			
 			if (fileSize == -1) {
 //				setProgress("Deserializing IFC file...", -1);
 			} else {

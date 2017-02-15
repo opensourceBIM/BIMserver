@@ -32,6 +32,7 @@ public class SOAuthAuthorizationCode implements SDataBase
 	private long oauthServerId = -1;
 	private java.lang.String code;
 	private long authorizationId = -1;
+	private long userId = -1;
 
 	public long getOid() {
 		return this.oid;
@@ -68,6 +69,9 @@ public class SOAuthAuthorizationCode implements SDataBase
 		if (sField.getName().equals("authorizationId")) {
 			return getAuthorizationId();
 		}
+		if (sField.getName().equals("userId")) {
+			return getUserId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -88,6 +92,10 @@ public class SOAuthAuthorizationCode implements SDataBase
 		}
 		if (sField.getName().equals("authorizationId")) {
 			setAuthorizationId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("userId")) {
+			setUserId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -123,6 +131,14 @@ public class SOAuthAuthorizationCode implements SDataBase
 
 	public void setAuthorizationId(long authorizationId) {
 		this.authorizationId = authorizationId;
+	}
+	
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 	
 	@Override

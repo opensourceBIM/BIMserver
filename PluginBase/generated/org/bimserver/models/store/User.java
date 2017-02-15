@@ -531,6 +531,7 @@ public interface User extends IdEObject {
 	/**
 	 * Returns the value of the '<em><b>OAuth Issued Authorization Codes</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.store.OAuthAuthorizationCode}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.OAuthAuthorizationCode#getUser <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>OAuth Issued Authorization Codes</em>' reference list isn't clear,
@@ -539,7 +540,8 @@ public interface User extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>OAuth Issued Authorization Codes</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getUser_OAuthIssuedAuthorizationCodes()
-	 * @model
+	 * @see org.bimserver.models.store.OAuthAuthorizationCode#getUser
+	 * @model opposite="user"
 	 * @generated
 	 */
 	EList<OAuthAuthorizationCode> getOAuthIssuedAuthorizationCodes();

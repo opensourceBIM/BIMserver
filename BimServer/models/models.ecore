@@ -19773,7 +19773,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="oAuthAuthorizationCodes"
           upperBound="-1" eType="#/4/OAuthAuthorizationCode"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="oAuthIssuedAuthorizationCodes"
-          upperBound="-1" eType="#/4/OAuthAuthorizationCode"/>
+          upperBound="-1" eType="#/4/OAuthAuthorizationCode" eOpposite="#/4/OAuthAuthorizationCode/user"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Revision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -20656,6 +20656,8 @@
         <eAnnotations source="singleindex"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="authorization" eType="#/4/Authorization"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/4/User"
+          eOpposite="#/4/User/oAuthIssuedAuthorizationCodes"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Authorization"/>
     <eClassifiers xsi:type="ecore:EClass" name="SingleProjectAuthorization" eSuperTypes="#/4/Authorization">
