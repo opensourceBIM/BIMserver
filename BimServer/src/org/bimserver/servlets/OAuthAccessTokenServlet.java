@@ -17,9 +17,13 @@ import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.OAuthResponse;
 import org.bimserver.BimServer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OAuthAccessTokenServlet extends SubServlet {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(OAuthAccessTokenServlet.class);
+	
 	public OAuthAccessTokenServlet(BimServer bimServer, ServletContext servletContext) {
 		super(bimServer, servletContext);
 	}
@@ -48,6 +52,7 @@ public class OAuthAccessTokenServlet extends SubServlet {
 			pw.flush();
 			pw.close();
 		} catch (OAuthProblemException ex) {
+			LOGGER.error("", ex);
 			try {
 				OAuthResponse r = OAuthResponse.errorResponse(401).error(ex).buildJSONMessage();
 				response.setStatus(r.getResponseStatus());
@@ -56,15 +61,12 @@ public class OAuthAccessTokenServlet extends SubServlet {
 				pw.print(r.getBody());
 				pw.flush();
 				pw.close();
-				
-				response.sendError(401);
 			} catch (OAuthSystemException e) {
-				e.printStackTrace();
+				LOGGER.error("", ex);
 			}
 		} catch (OAuthSystemException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
-
 	}
 
 	private void validateClient(OAuthTokenRequest oauthRequest) {
