@@ -34,6 +34,14 @@ public class OAuthAccessTokenServlet extends SubServlet {
 
 		OAuthIssuer oauthIssuerImpl = new OAuthIssuerImpl(new MD5Generator());
 
+		if (!request.getContentType().equals("application/x-www-form-urlencoded")) {
+			response.setStatus(405);
+			PrintWriter pw = response.getWriter();
+			pw.print("ContentType must be application/x-www-form-urlencoded");
+			pw.flush();
+			pw.close();
+			return;
+		}
 		try {
 			oauthRequest = new OAuthTokenRequest(request);
 
