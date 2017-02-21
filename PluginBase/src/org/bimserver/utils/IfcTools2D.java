@@ -1,7 +1,10 @@
 package org.bimserver.utils;
 
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Path2D;
+import java.awt.geom.PathIterator;
+import java.awt.geom.Point2D;
 
 import org.bimserver.geometry.Matrix;
 import org.bimserver.geometry.Vector;
@@ -239,6 +242,86 @@ public class IfcTools2D {
 			}
 			path2d.closePath();
 			return path2d;
+		}
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		new Path2D.Double();
+	}
+	
+	public static Path2D enlargeSlightlyInPlace(Path2D path2d) {
+		AffineTransform aLittleLarger = new AffineTransform();
+		double centerX = path2d.getBounds2D().getCenterX();
+		double centerY = path2d.getBounds2D().getCenterY();
+		aLittleLarger.translate(centerX, centerY);
+		aLittleLarger.scale(1.01, 1.01);
+		aLittleLarger.translate(-centerX, -centerY);
+
+		path2d.transform(aLittleLarger);
+		return path2d;
+	}
+
+	public static Area enlargeSlightlyInPlace(Area area) {
+		AffineTransform aLittleLarger = new AffineTransform();
+		double centerX = area.getBounds2D().getCenterX();
+		double centerY = area.getBounds2D().getCenterY();
+		aLittleLarger.translate(centerX, centerY);
+		aLittleLarger.scale(1.01, 1.01);
+		aLittleLarger.translate(-centerX, -centerY);
+		
+		area.transform(aLittleLarger);
+		return area;
+	}
+	
+	public static boolean containsAllPoints(Area areaOutside, Area areaInside) {
+		Area clone = (Area) areaOutside.clone();
+		IfcTools2D.enlargeSlightlyInPlace(clone);
+		PathIterator iterator = areaInside.getPathIterator(null);
+		double[] coords = new double[6];
+		boolean allInside = true;
+		while (!iterator.isDone()) {
+			iterator.currentSegment(coords);
+			if (!clone.contains(new Point2D.Double(coords[0], coords[1]))) {
+				allInside = false;
+				break;
+			}
+			iterator.next();
+		}
+		return allInside;
+	}
+	
+	public static Area findSmallest(Area area) {
+		if (area.isSingular()) {
+			System.out.println("Is singular");
+			return null;
+		}
+		PathIterator pathIterator = area.getPathIterator(null);
+		Path2D.Double tmp = new Path2D.Double();
+		Path2D.Double smallest = null;
+		Path2D smallestPath = null;
+		while (!pathIterator.isDone()) {
+			double[] coords = new double[6];
+			int type = pathIterator.currentSegment(coords);
+			if (type == 0) {
+				tmp.moveTo(coords[0], coords[1]);
+			} else if (type == 4) {
+				tmp.closePath();
+				
+				// TODO use area, not the containment of aabb's, this only sort of works for rectangular "spaces"
+				if (smallestPath == null || IfcTools2D.containsAllPoints(new Area(smallestPath), new Area(new Path2D.Double(tmp)))) {
+					smallestPath = new Path2D.Double(tmp);
+					enlargeSlightlyInPlace(smallestPath);
+					smallest = tmp;
+				}
+				tmp = new Path2D.Double();
+			} else if (type == 1) {
+				tmp.lineTo(coords[0], coords[1]);
+			}
+			pathIterator.next();
+		}
+		if (smallest != null) {
+			return new Area(smallest);
 		}
 		return null;
 	}
