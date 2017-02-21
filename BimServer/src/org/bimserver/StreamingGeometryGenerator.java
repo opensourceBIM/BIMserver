@@ -486,15 +486,15 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					HashMapVirtualObject next = queryObjectProvider2.next();
 					while (next != null) {
 						if (next.eClass() == eClass) {
-							Set<Long> representationItems = getRepresentationItems(databaseSession, queryContext, next);
-							for (Long l : representationItems) {
-								AtomicInteger atomicInteger = counters.get(l);
-								if (atomicInteger == null) {
-									atomicInteger = new AtomicInteger(0);
-									counters.put(l, atomicInteger);
-								}
-								atomicInteger.incrementAndGet();
-							}
+//							Set<Long> representationItems = getRepresentationItems(databaseSession, queryContext, next);
+//							for (Long l : representationItems) {
+//								AtomicInteger atomicInteger = counters.get(l);
+//								if (atomicInteger == null) {
+//									atomicInteger = new AtomicInteger(0);
+//									counters.put(l, atomicInteger);
+//								}
+//								atomicInteger.incrementAndGet();
+//							}
 							HashMapVirtualObject representation = next.getDirectFeature(representationFeature);
 							if (representation != null) {
 								List<Long> representations = (List<Long>) representation.get("Representations");
