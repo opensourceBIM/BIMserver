@@ -8,6 +8,8 @@ import java.awt.geom.Point2D;
 
 import org.bimserver.geometry.Matrix;
 import org.bimserver.geometry.Vector;
+import org.bimserver.models.geometry.GeometryData;
+import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcArbitraryClosedProfileDef;
 import org.bimserver.models.ifc2x3tc1.IfcArbitraryProfileDefWithVoids;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement;
@@ -18,6 +20,7 @@ import org.bimserver.models.ifc2x3tc1.IfcCompositeCurveSegment;
 import org.bimserver.models.ifc2x3tc1.IfcCurve;
 import org.bimserver.models.ifc2x3tc1.IfcDirection;
 import org.bimserver.models.ifc2x3tc1.IfcExtrudedAreaSolid;
+import org.bimserver.models.ifc2x3tc1.IfcFacetedBrep;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcPolyline;
@@ -29,6 +32,7 @@ import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcTrimmedCurve;
+import org.bimserver.plugins.services.Geometry;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,140 +50,240 @@ public class IfcTools2D {
 			return null;
 		}
 		for (IfcRepresentation ifcRepresentation : representation.getRepresentations()) {
-			if (ifcRepresentation instanceof IfcShapeRepresentation) {
-				IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation) ifcRepresentation;
-				for (IfcRepresentationItem ifcRepresentationItem : ifcShapeRepresentation.getItems()) {
-					if (ifcRepresentationItem instanceof IfcExtrudedAreaSolid) {
-						IfcExtrudedAreaSolid ifcExtrudedAreaSolid = (IfcExtrudedAreaSolid) ifcRepresentationItem;
-						IfcAxis2Placement3D position = ifcExtrudedAreaSolid.getPosition();
-						
-//							1 0 0 0 <- 3de argument
-//							0 1 0 0 <- cross product van 2 en 3 (levert ortogonale vector op)
-//							0 0 1 0 <- 2st argument
-//							5 0 0 1 <- 1st argument
-						
-						double[] matrix = placement3DToMatrix(position);
-						if (productMatrix != null) {
-							double[] rhs = matrix;
-							matrix = Matrix.identity();
-							Matrix.multiplyMM(matrix, 0, productMatrix, 0, rhs, 0);
-						}
-						
-						IfcDirection extrudedDirection = ifcExtrudedAreaSolid.getExtrudedDirection();
-						// TODO do something with this
-						
-						IfcProfileDef ifcProfileDef = ifcExtrudedAreaSolid.getSweptArea();
-						if (ifcProfileDef instanceof IfcArbitraryProfileDefWithVoids) {
-							IfcArbitraryProfileDefWithVoids ifcArbitraryProfileDefWithVoids = (IfcArbitraryProfileDefWithVoids) ifcProfileDef;
-							IfcCurve outerCurve = ifcArbitraryProfileDefWithVoids.getOuterCurve();
-							Path2D outerPath = null;
-							if (outerCurve instanceof IfcPolyline) {
-								outerPath = curveToPath(matrix, outerCurve, multiplierMillimeters);
-							} else {
-								LOGGER.info("Unimplemented: " + outerCurve);
-							}
-
-							if (outerPath != null) {
-								Area area = new Area(outerPath);
-								for (IfcCurve innerCurve : ifcArbitraryProfileDefWithVoids.getInnerCurves()) {
-									Path2D.Float innerPath = curveToPath(matrix, innerCurve, multiplierMillimeters);
-									if (innerPath != null) {
-										area.subtract(new Area(innerPath));
-									}
-								}
-								return area;
-							}
-						} else if (ifcProfileDef instanceof IfcArbitraryClosedProfileDef) {
-							IfcArbitraryClosedProfileDef ifcArbitraryClosedProfileDef = (IfcArbitraryClosedProfileDef) ifcProfileDef;
-							Path2D.Float path2d = new Path2D.Float();
-							IfcCurve outerCurve = ifcArbitraryClosedProfileDef.getOuterCurve();
-							boolean first = true;
-							if (outerCurve instanceof IfcPolyline) {
-								IfcPolyline ifcPolyline = (IfcPolyline) outerCurve;
-
-								double[] res = new double[4];
-
-								int i=0;
-								for (IfcCartesianPoint cartesianPoint : ifcPolyline.getPoints()) {
-									EList<Double> coords = cartesianPoint.getCoordinates();
-
-									Matrix.multiplyMV(res, 0, matrix, 0, new double[]{coords.get(0), coords.get(1), 0, 1}, 0);
-									
-									if (first) {
-										path2d.moveTo(res[0] * multiplierMillimeters, res[1] * multiplierMillimeters);
-										first = false;
-									} else {
-										if (i > 1) {
-											
-										}
-										path2d.lineTo(res[0] * multiplierMillimeters, res[1] * multiplierMillimeters);
-									}
-									i++;
-								}
-								path2d.closePath();
-
-								return new Area(path2d);
-							} else if (outerCurve instanceof IfcCompositeCurve) {
-								IfcCompositeCurve ifcCompositeCurve = (IfcCompositeCurve)outerCurve;
-
-								for (IfcCompositeCurveSegment ifcCompositeCurveSegment : ifcCompositeCurve.getSegments()) {
-									IfcCurve curve = ifcCompositeCurveSegment.getParentCurve();
-									if (curve instanceof IfcPolyline) {
-										IfcPolyline ifcPolyline = (IfcPolyline)curve;
-										double[] res = new double[4];
-										for (IfcCartesianPoint cartesianPoint : ifcPolyline.getPoints()) {
-											EList<Double> coords = cartesianPoint.getCoordinates();
-
-											Matrix.multiplyMV(res, 0, matrix, 0, new double[]{coords.get(0), coords.get(1), 0, 1}, 0);
-											
-											if (first) {
-												path2d.moveTo(res[0] * multiplierMillimeters, res[1] * multiplierMillimeters);
-												first = false;
-											} else {
-												path2d.lineTo(res[0] * multiplierMillimeters, res[1] * multiplierMillimeters);
-											}
-										}
-									} else if (curve instanceof IfcTrimmedCurve) {
-										IfcTrimmedCurve ifcTrimmedCurve = (IfcTrimmedCurve)curve;
-										
-										LOGGER.info("Unimplemented: " + curve);
-									} else {
-										LOGGER.info("Unimplemented: " + curve);
-									}
-								}
-								try {
-									path2d.closePath();
-									return new Area(path2d);
-								} catch (Exception e) {
-									//
-								}
-							}
-						} else if (ifcProfileDef instanceof IfcRectangleProfileDef) {
-							IfcRectangleProfileDef ifcRectangleProfileDef = (IfcRectangleProfileDef) ifcProfileDef;
-
-							double[] min = new double[]{ifcRectangleProfileDef.getPosition().getLocation().getCoordinates().get(0) - ifcRectangleProfileDef.getXDim() / 2, ifcRectangleProfileDef.getPosition().getLocation().getCoordinates().get(1) - ifcRectangleProfileDef.getYDim() / 2, 0, 1};
-							double[] max = new double[]{ifcRectangleProfileDef.getPosition().getLocation().getCoordinates().get(0) + ifcRectangleProfileDef.getXDim() / 2, ifcRectangleProfileDef.getPosition().getLocation().getCoordinates().get(1) + ifcRectangleProfileDef.getYDim() / 2, 0, 1};
-
-							Cube cube = new Cube(min, max);
-							cube.transform(matrix);
-							double[] transformedMin = cube.getMin();
-							double[] transformedMax = cube.getMax();
-							
-							Path2D.Float path2d = new Path2D.Float();
-							path2d.moveTo(transformedMin[0] * multiplierMillimeters, transformedMin[1] * multiplierMillimeters);
-							path2d.lineTo(transformedMax[0] * multiplierMillimeters, transformedMin[1] * multiplierMillimeters);
-							path2d.lineTo(transformedMax[0] * multiplierMillimeters, transformedMax[1] * multiplierMillimeters);
-							path2d.lineTo(transformedMin[0] * multiplierMillimeters, transformedMax[1] * multiplierMillimeters);
-							path2d.lineTo(transformedMin[0] * multiplierMillimeters, transformedMin[1] * multiplierMillimeters);
-							
-							path2d.closePath();
-							return new Area(path2d);
-						} else {
-							LOGGER.info("Unimplemented: " + ifcProfileDef);
+			if ("Curve2D".equals(ifcRepresentation.getRepresentationType())) {
+				// Skip
+			} else {
+				if (ifcRepresentation instanceof IfcShapeRepresentation) {
+					IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation) ifcRepresentation;
+					for (IfcRepresentationItem ifcRepresentationItem : ifcShapeRepresentation.getItems()) {
+						Area area = getArea(multiplierMillimeters, productMatrix, ifcRepresentationItem);
+						if (area != null && area.getPathIterator(null).isDone()) {
+							return area;
 						}
 					}
 				}
 			}
+		}
+		
+		// Fall back to 3D geometry projected from the top
+		GeometryInfo geometry = ifcProduct.getGeometry();
+		if (geometry != null) {
+			GeometryData geometryData = geometry.getData();
+			if (geometryData != null) {
+				LOGGER.info("Falling back to 3D generated geometry");
+				int[] indices = GeometryUtils.toIntegerArray(geometryData.getIndices());
+				float[] vertices = GeometryUtils.toFloatArray(geometryData.getVertices());
+				float[] matrix = GeometryUtils.toFloatArray(GeometryUtils.toDoubleArray(geometry.getTransformation()));
+				
+				Area area = new Area();
+				
+				for (int i=0; i<indices.length; i+=3) {
+					int index1 = indices[i + 0];
+					int index2 = indices[i + 1];
+					int index3 = indices[i + 2];
+
+					float[] a = new float[]{vertices[index1 * 3], vertices[index1 * 3 + 1], vertices[index1 * 3 + 2]};
+					float[] b = new float[]{vertices[index2 * 3], vertices[index2 * 3 + 1], vertices[index2 * 3 + 2]};
+					float[] c = new float[]{vertices[index3 * 3], vertices[index3 * 3 + 1], vertices[index3 * 3 + 2]};
+
+					float[][] points = new float[][]{a, b, c};
+					
+//					if (similar(a[2], b[2], c[2])) {
+						boolean first = true;
+						Path2D.Float path = new Path2D.Float();
+						for (int j=0; j<3; j++) {
+							float[] point = points[j];
+							float[] res = new float[4];
+							Matrix.multiplyMV(res, 0, matrix, 0, new float[]{point[0], point[1], point[2], 1}, 0);
+							
+							float x = (float) (res[0]); // * multiplierMillimeters
+							float y = (float) (res[1]); // * multiplierMillimeters
+							if (first) {
+								path.moveTo(x, y);
+								first = false;
+							} else {
+								path.lineTo(x, y);
+							}
+						}
+						path.closePath();
+						area.add(new Area(path));
+//					}
+				}
+				return area;
+			}
+		} else {
+			LOGGER.info("No geometry generated for " + ifcProduct);
+		}
+		
+		return null;
+	}
+	
+	private static boolean similar(float... floats) {
+		float max = -Float.MAX_VALUE;
+		float min = Float.MAX_VALUE;
+		for (float f : floats) {
+			if (f > max) {
+				max = f;
+			}
+			if (f < min) {
+				min = f;
+			}
+		}
+		return max - min < 0.1f;
+	}
+
+	private static Area getArea(double multiplierMillimeters, double[] productMatrix, IfcRepresentationItem ifcRepresentationItem) {
+		if (ifcRepresentationItem instanceof IfcExtrudedAreaSolid) {
+			IfcExtrudedAreaSolid ifcExtrudedAreaSolid = (IfcExtrudedAreaSolid) ifcRepresentationItem;
+			IfcAxis2Placement3D position = ifcExtrudedAreaSolid.getPosition();
+			
+//							1 0 0 0 <- 3de argument
+//							0 1 0 0 <- cross product van 2 en 3 (levert ortogonale vector op)
+//							0 0 1 0 <- 2st argument
+//							5 0 0 1 <- 1st argument
+			
+			double[] matrix = placement3DToMatrix(position);
+			if (productMatrix != null) {
+				double[] rhs = matrix;
+				matrix = Matrix.identity();
+				Matrix.multiplyMM(matrix, 0, productMatrix, 0, rhs, 0);
+			}
+			
+			IfcDirection extrudedDirection = ifcExtrudedAreaSolid.getExtrudedDirection();
+			// TODO do something with this
+			
+			IfcProfileDef ifcProfileDef = ifcExtrudedAreaSolid.getSweptArea();
+			if (ifcProfileDef instanceof IfcArbitraryProfileDefWithVoids) {
+				IfcArbitraryProfileDefWithVoids ifcArbitraryProfileDefWithVoids = (IfcArbitraryProfileDefWithVoids) ifcProfileDef;
+				IfcCurve outerCurve = ifcArbitraryProfileDefWithVoids.getOuterCurve();
+				Path2D outerPath = null;
+				if (outerCurve instanceof IfcPolyline) {
+					outerPath = curveToPath(matrix, outerCurve, multiplierMillimeters);
+				} else {
+					LOGGER.info("Unimplemented: " + outerCurve);
+				}
+
+				if (outerPath != null) {
+					Area area = new Area(outerPath);
+					for (IfcCurve innerCurve : ifcArbitraryProfileDefWithVoids.getInnerCurves()) {
+						Path2D.Float innerPath = curveToPath(matrix, innerCurve, multiplierMillimeters);
+						if (innerPath != null) {
+							area.subtract(new Area(innerPath));
+						}
+					}
+					return area;
+				}
+			} else if (ifcProfileDef instanceof IfcArbitraryClosedProfileDef) {
+				IfcArbitraryClosedProfileDef ifcArbitraryClosedProfileDef = (IfcArbitraryClosedProfileDef) ifcProfileDef;
+				Path2D.Float path2d = new Path2D.Float();
+				IfcCurve outerCurve = ifcArbitraryClosedProfileDef.getOuterCurve();
+				boolean first = true;
+				if (outerCurve instanceof IfcPolyline) {
+					IfcPolyline ifcPolyline = (IfcPolyline) outerCurve;
+
+					double[] res = new double[4];
+
+					int i=0;
+					for (IfcCartesianPoint cartesianPoint : ifcPolyline.getPoints()) {
+						EList<Double> coords = cartesianPoint.getCoordinates();
+
+						Matrix.multiplyMV(res, 0, matrix, 0, new double[]{coords.get(0), coords.get(1), 0, 1}, 0);
+						
+						if (first) {
+							path2d.moveTo(res[0] * multiplierMillimeters, res[1] * multiplierMillimeters);
+							first = false;
+						} else {
+							if (i > 1) {
+								
+							}
+							path2d.lineTo(res[0] * multiplierMillimeters, res[1] * multiplierMillimeters);
+						}
+						i++;
+					}
+					path2d.closePath();
+
+					return new Area(path2d);
+				} else if (outerCurve instanceof IfcCompositeCurve) {
+					IfcCompositeCurve ifcCompositeCurve = (IfcCompositeCurve)outerCurve;
+
+					for (IfcCompositeCurveSegment ifcCompositeCurveSegment : ifcCompositeCurve.getSegments()) {
+						IfcCurve curve = ifcCompositeCurveSegment.getParentCurve();
+						if (curve instanceof IfcPolyline) {
+							IfcPolyline ifcPolyline = (IfcPolyline)curve;
+							double[] res = new double[4];
+							for (IfcCartesianPoint cartesianPoint : ifcPolyline.getPoints()) {
+								EList<Double> coords = cartesianPoint.getCoordinates();
+
+								Matrix.multiplyMV(res, 0, matrix, 0, new double[]{coords.get(0), coords.get(1), 0, 1}, 0);
+								
+								if (first) {
+									path2d.moveTo(res[0] * multiplierMillimeters, res[1] * multiplierMillimeters);
+									first = false;
+								} else {
+									path2d.lineTo(res[0] * multiplierMillimeters, res[1] * multiplierMillimeters);
+								}
+							}
+						} else if (curve instanceof IfcTrimmedCurve) {
+							IfcTrimmedCurve ifcTrimmedCurve = (IfcTrimmedCurve)curve;
+							
+							LOGGER.info("Unimplemented: " + curve);
+						} else {
+							LOGGER.info("Unimplemented: " + curve);
+						}
+					}
+					try {
+						path2d.closePath();
+						return new Area(path2d);
+					} catch (Exception e) {
+						//
+					}
+				}
+			} else if (ifcProfileDef instanceof IfcRectangleProfileDef) {
+				IfcRectangleProfileDef ifcRectangleProfileDef = (IfcRectangleProfileDef) ifcProfileDef;
+
+				double[] min = new double[]{ifcRectangleProfileDef.getPosition().getLocation().getCoordinates().get(0) - ifcRectangleProfileDef.getXDim() / 2, ifcRectangleProfileDef.getPosition().getLocation().getCoordinates().get(1) - ifcRectangleProfileDef.getYDim() / 2, 0, 1};
+				double[] max = new double[]{ifcRectangleProfileDef.getPosition().getLocation().getCoordinates().get(0) + ifcRectangleProfileDef.getXDim() / 2, ifcRectangleProfileDef.getPosition().getLocation().getCoordinates().get(1) + ifcRectangleProfileDef.getYDim() / 2, 0, 1};
+
+				Cube cube = new Cube(min, max);
+				cube.transform(matrix);
+				double[] transformedMin = cube.getMin();
+				double[] transformedMax = cube.getMax();
+				
+				Path2D.Float path2d = new Path2D.Float();
+				path2d.moveTo(transformedMin[0] * multiplierMillimeters, transformedMin[1] * multiplierMillimeters);
+				path2d.lineTo(transformedMax[0] * multiplierMillimeters, transformedMin[1] * multiplierMillimeters);
+				path2d.lineTo(transformedMax[0] * multiplierMillimeters, transformedMax[1] * multiplierMillimeters);
+				path2d.lineTo(transformedMin[0] * multiplierMillimeters, transformedMax[1] * multiplierMillimeters);
+				path2d.lineTo(transformedMin[0] * multiplierMillimeters, transformedMin[1] * multiplierMillimeters);
+				
+				path2d.closePath();
+				return new Area(path2d);
+			} else {
+				LOGGER.info("Unimplemented: " + ifcProfileDef);
+			}
+		} else if (ifcRepresentationItem instanceof IfcFacetedBrep) {
+			LOGGER.info("Unimplemented: " + ifcRepresentationItem);
+		} else if (ifcRepresentationItem instanceof IfcPolyline) {
+			IfcPolyline ifcPolyline = (IfcPolyline)ifcRepresentationItem;
+			double[] res = new double[4];
+			Path2D.Float path2d = new Path2D.Float();
+			boolean first = true;
+
+			for (IfcCartesianPoint cartesianPoint : ifcPolyline.getPoints()) {
+				EList<Double> coords = cartesianPoint.getCoordinates();
+				Matrix.multiplyMV(res, 0, productMatrix, 0, new double[]{coords.get(0), coords.get(1), 0, 1}, 0);
+				
+				if (first) {
+					path2d.moveTo(res[0] * multiplierMillimeters, res[1] * multiplierMillimeters);
+					first = false;
+				} else {
+					path2d.lineTo(res[0] * multiplierMillimeters, res[1] * multiplierMillimeters);
+				}
+			}
+			path2d.closePath();
+			return new Area(path2d);
+		} else {
+			LOGGER.info("Unimplemented: " + ifcRepresentationItem);
 		}
 		return null;
 	}
@@ -247,7 +351,14 @@ public class IfcTools2D {
 	}
 	
 	public static void main(String[] args) {
-		new Path2D.Double();
+		Path2D.Float path = new Path2D.Float();
+		path.moveTo(0, 0);
+		path.lineTo(0, 10);
+		path.lineTo(10, 10);
+		path.lineTo(10, 0);
+		path.closePath();
+		
+		System.out.println(getArea(new Area(path)));
 	}
 	
 	public static Path2D enlargeSlightlyInPlace(Path2D path2d) {
@@ -308,7 +419,6 @@ public class IfcTools2D {
 			} else if (type == 4) {
 				tmp.closePath();
 				
-				// TODO use area, not the containment of aabb's, this only sort of works for rectangular "spaces"
 				if (smallestPath == null || IfcTools2D.containsAllPoints(new Area(smallestPath), new Area(new Path2D.Double(tmp)))) {
 					smallestPath = new Path2D.Double(tmp);
 					enlargeSlightlyInPlace(smallestPath);
@@ -324,5 +434,33 @@ public class IfcTools2D {
 			return new Area(smallest);
 		}
 		return null;
+	}
+	
+	public static float getArea(Area area) {
+		float sum = 0;
+		PathIterator pathIterator = area.getPathIterator(null);
+		float[] coords = new float[6];
+		float[] last = null;
+		float[] first = null;
+		while (!pathIterator.isDone()) {
+			int currentSegment = pathIterator.currentSegment(coords);
+			if (currentSegment == PathIterator.SEG_CLOSE) {
+				
+			} else if (currentSegment == PathIterator.SEG_MOVETO) {
+				last = new float[]{coords[0], coords[1]};
+				if (first == null) {
+					first = new float[]{coords[0], coords[1]};
+				}
+			} else if (currentSegment == PathIterator.SEG_LINETO) {
+				if (last != null) {
+					sum = sum + last[0] * coords[1] - last[1] * coords[0];
+				}
+
+				last = new float[]{coords[0], coords[1]};
+			}
+			pathIterator.next();
+		}
+		sum = sum + last[0] * first[1] - last[1] * first[0];
+		return sum / 2f;
 	}
 }
