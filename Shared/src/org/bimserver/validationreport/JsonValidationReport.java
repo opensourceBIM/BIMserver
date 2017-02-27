@@ -140,8 +140,10 @@ public class JsonValidationReport implements IssueInterface {
 		items.add(new Line(messageType, oid, key, is, shouldBe));
 	}
 
-	public void add(Type messageType, String type, String guid, Long oid, String key, Object is, String shouldBe) {
-		items.add(new Line(messageType, oid, key, is == null ? "" : is.toString(), shouldBe));
+	public Issue add(Type messageType, String type, String guid, Long oid, String key, Object is, String shouldBe) {
+		Line line = new Line(messageType, oid, key, is == null ? "" : is.toString(), shouldBe);
+		items.add(line);
+		return line;
 	}
 	
 	@Override
@@ -175,5 +177,15 @@ public class JsonValidationReport implements IssueInterface {
 			}
 		}
 		return true;
+	}
+
+	public List<Item> getErrors() {
+		List<Item> list = new ArrayList<>();
+		for (Item item : items) {
+			if (item.getType() == Type.ERROR) {
+				list.add(item);
+			}
+		}
+		return list;
 	}
 }

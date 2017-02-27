@@ -43,4 +43,9 @@ public class Header extends Item {
 		header.put("text", text);
 		return header;
 	}
+
+	@Override
+	public Type getType() {
+		return null;
+	}
 }

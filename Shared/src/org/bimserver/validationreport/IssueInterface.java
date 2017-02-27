@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public interface IssueInterface {
 
-	void add(Type messageType, String type, String guid, Long oid, String message, Object is, String shouldBe) throws IssueException;
+	Issue add(Type messageType, String type, String guid, Long oid, String message, Object is, String shouldBe) throws IssueException;
 
 	void add(Type messageType, String message, Object is, String shouldBe) throws IssueException;
 

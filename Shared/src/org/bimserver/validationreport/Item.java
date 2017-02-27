@@ -20,8 +20,9 @@ package org.bimserver.validationreport;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public abstract class Item {
+public abstract class Item extends Issue {
 
 	public abstract void toHtml(StringBuilder sb);
 	public abstract ObjectNode toJson(ObjectMapper OBJECT_MAPPER);
+	public abstract Type getType();
 }
