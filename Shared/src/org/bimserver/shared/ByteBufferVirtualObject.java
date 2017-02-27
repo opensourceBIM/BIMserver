@@ -164,10 +164,6 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 			throw new BimserverDatabaseException("Not all features seem to have been set on " + this.eClass.getName() + " " + featureCounter + " / " + nrFeatures);
 		}
 		
-		if (eClass.getName().equals("IfcShapeRepresentation") && buffer.position() == 27) {
-			System.out.println();
-		}
-		
 		return buffer;
 //
 //		if (buffer.position() != bufferSize) {
