@@ -275,7 +275,7 @@ public class PluginManager implements PluginManagerInterface {
 				} else {
 					// Snapshot projects linked in Eclipse
 					ArtifactRequest request = new ArtifactRequest();
-					if (!depend.getScope().equals("test")) {
+					if (!"test".equals(depend.getScope())) {
 						request.setArtifact(dependency2.getArtifact());
 						request.setRepositories(mavenPluginRepository.getLocalRepositories());
 						try {
