@@ -439,14 +439,10 @@ public class ClientIfcModel extends IfcModel {
 					}
 					
 					int nrIndices = dataInputStream.readInt();
-					byte[] indices = new byte[nrIndices * 2];
+					byte[] indices = new byte[nrIndices * 4];
 					dataInputStream.readFully(indices);
 					geometryData.setIndices(indices);
 	
-					if (nrIndices % 2 != 0) {
-						dataInputStream.readFully(new byte[2]);
-					}
-					
 					int nrVertices = dataInputStream.readInt();
 					byte[] vertices = new byte[nrVertices * 4];
 					dataInputStream.readFully(vertices);
