@@ -22,6 +22,18 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="area" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="volume" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="minBoundsUntranslated"
+        eType="#//Vector3f">
+      <eAnnotations source="dbembed"/>
+      <eAnnotations source="embedsreference"/>
+      <eAnnotations source="hidden"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maxBoundsUntranslated"
+        eType="#//Vector3f">
+      <eAnnotations source="dbembed"/>
+      <eAnnotations source="embedsreference"/>
+      <eAnnotations source="hidden"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Vector3f">
     <eAnnotations source="hidden"/>

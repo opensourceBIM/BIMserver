@@ -242,7 +242,21 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBounds(), minBounds);
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBounds(), maxBounds);
-	
+
+											WrappedVirtualObject minBoundsUntranslated = new HashMapWrappedVirtualObject(queryContext, GeometryPackage.eINSTANCE.getVector3f());
+											WrappedVirtualObject maxBoundsUntranslated = new HashMapWrappedVirtualObject(queryContext, GeometryPackage.eINSTANCE.getVector3f());
+
+											minBoundsUntranslated.set("x", Double.POSITIVE_INFINITY);
+											minBoundsUntranslated.set("y", Double.POSITIVE_INFINITY);
+											minBoundsUntranslated.set("z", Double.POSITIVE_INFINITY);
+											
+											maxBoundsUntranslated.set("x", -Double.POSITIVE_INFINITY);
+											maxBoundsUntranslated.set("y", -Double.POSITIVE_INFINITY);
+											maxBoundsUntranslated.set("z", -Double.POSITIVE_INFINITY);
+											
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBoundsUntranslated(), minBoundsUntranslated);
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBoundsUntranslated(), maxBoundsUntranslated);
+											
 											renderEngineInstance.getArea();
 											
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), renderEngineInstance.getArea());
@@ -301,6 +315,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	
 											for (int i = 0; i < indices.length; i++) {
 												processExtends(geometryInfo, tranformationMatrix, vertices, indices[i] * 3, generateGeometryResult);
+												processExtendsUntranslated(geometryInfo, vertices, indices[i] * 3, generateGeometryResult);
 											}
 											
 											calculateObb(geometryInfo, tranformationMatrix, indices, vertices, generateGeometryResult);
@@ -669,6 +684,22 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			hashCode += Arrays.hashCode((byte[])geometryData.get("materials"));
 		}
 		return hashCode;
+	}
+
+	private void processExtendsUntranslated(VirtualObject geometryInfo, float[] vertices, int index, GenerateGeometryResult generateGeometryResult2) throws BimserverDatabaseException {
+		double x = vertices[index];
+		double y = vertices[index + 1];
+		double z = vertices[index + 2];
+		
+		HashMapWrappedVirtualObject minBounds = (HashMapWrappedVirtualObject) geometryInfo.eGet(GeometryPackage.eINSTANCE.getGeometryInfo_MinBoundsUntranslated());
+		HashMapWrappedVirtualObject maxBounds = (HashMapWrappedVirtualObject) geometryInfo.eGet(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBoundsUntranslated());
+		
+		minBounds.set("x", Math.min(x, (double)minBounds.eGet("x")));
+		minBounds.set("y", Math.min(y, (double)minBounds.eGet("y")));
+		minBounds.set("z", Math.min(z, (double)minBounds.eGet("z")));
+		maxBounds.set("x", Math.max(x, (double)maxBounds.eGet("x")));
+		maxBounds.set("y", Math.max(y, (double)maxBounds.eGet("y")));
+		maxBounds.set("z", Math.max(z, (double)maxBounds.eGet("z")));
 	}
 
 	private void processExtends(VirtualObject geometryInfo, double[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {

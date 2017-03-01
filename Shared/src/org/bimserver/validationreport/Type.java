@@ -19,5 +19,6 @@ package org.bimserver.validationreport;
 
 public enum Type {
 	ERROR,
-	SUCCESS
+	SUCCESS, 
+	CANNOT_CHECK
 }

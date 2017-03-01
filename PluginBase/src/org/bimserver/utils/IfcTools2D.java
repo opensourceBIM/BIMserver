@@ -460,7 +460,9 @@ public class IfcTools2D {
 			}
 			pathIterator.next();
 		}
-		sum = sum + last[0] * first[1] - last[1] * first[0];
+		if (last != null && first != null) {
+			sum = sum + last[0] * first[1] - last[1] * first[0];
+		}
 		return sum / 2f;
 	}
 }

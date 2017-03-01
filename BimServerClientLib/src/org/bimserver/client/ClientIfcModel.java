@@ -315,21 +315,28 @@ public class ClientIfcModel extends IfcModel {
 		if (includeGeometry) {
 			Query query = new Query("test", getPackageMetaData());
 			QueryPart queryPart = query.createQueryPart();
+
+			Map<Long, Long> geometryInfoOidToOid = new HashMap<>();
+			
+			for (IdEObject idEObject : getObjects().values()) {
+				if (idEObject instanceof IfcProduct) {
+					IfcProduct ifcProduct = (IfcProduct)idEObject;
+					queryPart.addOid(idEObject.getOid());
+					GeometryInfo geometry = ifcProduct.getGeometry();
+					if (geometry != null) {
+						geometryInfoOidToOid.put(geometry.getOid(), ifcProduct.getOid());
+					}
+				}
+			}
+			if (queryPart.getOids() == null) {
+				return;
+			}
 			EClass geometryInfoClass = getPackageMetaData().getEClassIncludingDependencies("GeometryInfo");
 			queryPart.addType(geometryInfoClass, false);
 			Include include = queryPart.createInclude();
 			include.addType(geometryInfoClass, false);
 			include.addField("data");
-			
-			Map<Long, Long> geometryInfoOidToOid = new HashMap<>();
-			
-			for (IfcProduct ifcProduct : getAllWithSubTypes(IfcProduct.class)) {
-				GeometryInfo geometry = ifcProduct.getGeometry();
-				if (geometry != null) {
-					geometryInfoOidToOid.put(geometry.getOid(), ifcProduct.getOid());
-					queryPart.addOid(geometry.getOid());
-				}
-			}
+
 			long serializerOid = bimServerClient.getBinaryGeometryMessagingStreamingSerializerOid();
 			long topicId = bimServerClient.query(query, roid, serializerOid);
 			// TODO use websocket notifications
@@ -494,7 +501,7 @@ public class ClientIfcModel extends IfcModel {
 				Query query = new Query(getPackageMetaData());
 				QueryPart queryPart = query.createQueryPart();
 				queryPart.addType(eClass, false);
-				if (includeGeometry) {
+				if (includeGeometry && getPackageMetaData().getEClass("IfcProduct").isSuperTypeOf(eClass)) {
 					Include include = queryPart.createInclude();
 					include.addType(eClass, false);
 					include.addField("geometry");

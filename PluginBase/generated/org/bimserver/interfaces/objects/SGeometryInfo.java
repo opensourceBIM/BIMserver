@@ -38,6 +38,8 @@ public class SGeometryInfo implements SDataBase
 	private byte[] transformation;
 	private double area;
 	private double volume;
+	private SVector3f minBoundsUntranslated;
+	private SVector3f maxBoundsUntranslated;
 
 	public long getOid() {
 		return this.oid;
@@ -92,6 +94,12 @@ public class SGeometryInfo implements SDataBase
 		if (sField.getName().equals("volume")) {
 			return getVolume();
 		}
+		if (sField.getName().equals("minBoundsUntranslated")) {
+			return getMinBoundsUntranslated();
+		}
+		if (sField.getName().equals("maxBoundsUntranslated")) {
+			return getMaxBoundsUntranslated();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -136,6 +144,14 @@ public class SGeometryInfo implements SDataBase
 		}
 		if (sField.getName().equals("volume")) {
 			setVolume((Double)val);
+			return;
+		}
+		if (sField.getName().equals("minBoundsUntranslated")) {
+			setMinBoundsUntranslated((SVector3f)val);
+			return;
+		}
+		if (sField.getName().equals("maxBoundsUntranslated")) {
+			setMaxBoundsUntranslated((SVector3f)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -222,6 +238,24 @@ public class SGeometryInfo implements SDataBase
 	public void setVolume(double volume) {
 		this.volume = volume;
 	}
+	
+	public SVector3f getMinBoundsUntranslated() {
+		return minBoundsUntranslated;
+	}
+
+	public void setMinBoundsUntranslated(SVector3f minBoundsUntranslated) {
+		this.minBoundsUntranslated = minBoundsUntranslated;
+	}
+	
+	
+	public SVector3f getMaxBoundsUntranslated() {
+		return maxBoundsUntranslated;
+	}
+
+	public void setMaxBoundsUntranslated(SVector3f maxBoundsUntranslated) {
+		this.maxBoundsUntranslated = maxBoundsUntranslated;
+	}
+	
 	
 	@Override
 	public int hashCode() {

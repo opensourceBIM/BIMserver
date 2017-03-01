@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.geometry.impl;
 
+import org.bimserver.models.geometry.*;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
@@ -42,8 +43,7 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 */
 	public static GeometryFactory init() {
 		try {
-			GeometryFactory theGeometryFactory = (GeometryFactory) EPackage.Registry.INSTANCE
-					.getEFactory(GeometryPackage.eNS_URI);
+			GeometryFactory theGeometryFactory = (GeometryFactory) EPackage.Registry.INSTANCE.getEFactory(GeometryPackage.eNS_URI);
 			if (theGeometryFactory != null) {
 				return theGeometryFactory;
 			}

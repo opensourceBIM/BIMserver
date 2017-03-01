@@ -36,6 +36,8 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getTransformation <em>Transformation</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getArea <em>Area</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getVolume <em>Volume</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getMinBoundsUntranslated <em>Min Bounds Untranslated</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getMaxBoundsUntranslated <em>Max Bounds Untranslated</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo()
@@ -277,5 +279,57 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setVolume(double value);
+
+	/**
+	 * Returns the value of the '<em><b>Min Bounds Untranslated</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Min Bounds Untranslated</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Min Bounds Untranslated</em>' reference.
+	 * @see #setMinBoundsUntranslated(Vector3f)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_MinBoundsUntranslated()
+	 * @model
+	 * @generated
+	 */
+	Vector3f getMinBoundsUntranslated();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getMinBoundsUntranslated <em>Min Bounds Untranslated</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Min Bounds Untranslated</em>' reference.
+	 * @see #getMinBoundsUntranslated()
+	 * @generated
+	 */
+	void setMinBoundsUntranslated(Vector3f value);
+
+	/**
+	 * Returns the value of the '<em><b>Max Bounds Untranslated</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Max Bounds Untranslated</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Max Bounds Untranslated</em>' reference.
+	 * @see #setMaxBoundsUntranslated(Vector3f)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_MaxBoundsUntranslated()
+	 * @model
+	 * @generated
+	 */
+	Vector3f getMaxBoundsUntranslated();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getMaxBoundsUntranslated <em>Max Bounds Untranslated</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Max Bounds Untranslated</em>' reference.
+	 * @see #getMaxBoundsUntranslated()
+	 * @generated
+	 */
+	void setMaxBoundsUntranslated(Vector3f value);
 
 } // GeometryInfo

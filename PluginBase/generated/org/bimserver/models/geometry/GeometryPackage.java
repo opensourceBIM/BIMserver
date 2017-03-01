@@ -161,13 +161,31 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO__VOLUME = 8;
 
 	/**
+	 * The feature id for the '<em><b>Min Bounds Untranslated</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__MIN_BOUNDS_UNTRANSLATED = 9;
+
+	/**
+	 * The feature id for the '<em><b>Max Bounds Untranslated</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__MAX_BOUNDS_UNTRANSLATED = 10;
+
+	/**
 	 * The number of structural features of the '<em>Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO_FEATURE_COUNT = 9;
+	int GEOMETRY_INFO_FEATURE_COUNT = 11;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
@@ -389,6 +407,28 @@ public interface GeometryPackage extends EPackage {
 	EAttribute getGeometryInfo_Volume();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getMinBoundsUntranslated <em>Min Bounds Untranslated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Min Bounds Untranslated</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getMinBoundsUntranslated()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EReference getGeometryInfo_MinBoundsUntranslated();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getMaxBoundsUntranslated <em>Max Bounds Untranslated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Max Bounds Untranslated</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getMaxBoundsUntranslated()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EReference getGeometryInfo_MaxBoundsUntranslated();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector3f <em>Vector3f</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -599,6 +639,22 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GEOMETRY_INFO__VOLUME = eINSTANCE.getGeometryInfo_Volume();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Bounds Untranslated</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEOMETRY_INFO__MIN_BOUNDS_UNTRANSLATED = eINSTANCE.getGeometryInfo_MinBoundsUntranslated();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Bounds Untranslated</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEOMETRY_INFO__MAX_BOUNDS_UNTRANSLATED = eINSTANCE.getGeometryInfo_MaxBoundsUntranslated();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.

@@ -1,5 +1,5 @@
 
-·"
+Ú"
 OAuthInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoNotificationInterface.protoRemoteServiceInterface.protoLowLevelInterface.proto#NotificationRegistryInterface.proto"J
 SSingleProjectAuthorization
 oid (
@@ -64,13 +64,14 @@ clientName (	
 GetRemoteTokenResponse
 errorMessage (	
 value (	"
-ListAuthorizationCodesRequest"q
+ListAuthorizationCodesRequest"Å
 SOAuthAuthorizationCode
 authorizationId (
 code (	
 oauthServerId (
 oid (
-rid ("p
+rid (
+userId ("p
 ListAuthorizationCodesResponse
 errorMessage (	8
 value (2).org.bimserver.pb.SOAuthAuthorizationCode"%

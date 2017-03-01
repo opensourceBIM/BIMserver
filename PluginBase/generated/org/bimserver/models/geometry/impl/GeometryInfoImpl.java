@@ -40,6 +40,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getTransformation <em>Transformation</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getArea <em>Area</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getVolume <em>Volume</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMinBoundsUntranslated <em>Min Bounds Untranslated</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMaxBoundsUntranslated <em>Max Bounds Untranslated</em>}</li>
  * </ul>
  *
  * @generated
@@ -234,6 +236,42 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 */
 	public void setVolume(double newVolume) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__VOLUME, newVolume);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Vector3f getMinBoundsUntranslated() {
+		return (Vector3f) eGet(GeometryPackage.Literals.GEOMETRY_INFO__MIN_BOUNDS_UNTRANSLATED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMinBoundsUntranslated(Vector3f newMinBoundsUntranslated) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__MIN_BOUNDS_UNTRANSLATED, newMinBoundsUntranslated);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Vector3f getMaxBoundsUntranslated() {
+		return (Vector3f) eGet(GeometryPackage.Literals.GEOMETRY_INFO__MAX_BOUNDS_UNTRANSLATED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaxBoundsUntranslated(Vector3f newMaxBoundsUntranslated) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__MAX_BOUNDS_UNTRANSLATED, newMaxBoundsUntranslated);
 	}
 
 } //GeometryInfoImpl

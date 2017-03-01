@@ -163,6 +163,7 @@ message SOAuthAuthorizationCode {
 	optional int64 oauthServerId = 3;
 	optional int64 oid = 4;
 	optional int32 rid = 5;
+	optional int64 userId = 6;
 }
 
 message ListAuthorizationCodesResponse {
