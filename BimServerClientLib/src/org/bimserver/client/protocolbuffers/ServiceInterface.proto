@@ -59,6 +59,8 @@ service ServiceInterface {
 
 	rpc changeUserType (ChangeUserTypeRequest) returns (VoidResponse);
 
+	rpc checkInternetConnection (CheckInternetConnectionRequest) returns (CheckInternetConnectionResponse);
+
 	rpc checkin (CheckinRequest) returns (CheckinResponse);
 
 	rpc checkinFromUrl (CheckinFromUrlRequest) returns (CheckinFromUrlResponse);
@@ -651,6 +653,14 @@ message BranchToNewProjectResponse {
 message ChangeUserTypeRequest {
 	optional int64 uoid = 1;
 	optional SUserType userType = 2;
+}
+
+message CheckInternetConnectionRequest {
+}
+
+message CheckInternetConnectionResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
 }
 
 message CheckinRequest {
@@ -1391,14 +1401,16 @@ message SGeometryInfo {
 	optional double area = 1;
 	optional int64 dataId = 2;
 	optional SVector3f maxBounds = 3;
-	optional SVector3f minBounds = 4;
-	optional int64 oid = 5;
-	optional int32 primitiveCount = 6;
-	optional int32 rid = 7;
-	optional int32 startIndex = 8;
-	optional int32 startVertex = 9;
-	optional bytes transformation = 10;
-	optional double volume = 11;
+	optional SVector3f maxBoundsUntranslated = 4;
+	optional SVector3f minBounds = 5;
+	optional SVector3f minBoundsUntranslated = 6;
+	optional int64 oid = 7;
+	optional int32 primitiveCount = 8;
+	optional int32 rid = 9;
+	optional int32 startIndex = 10;
+	optional int32 startVertex = 11;
+	optional bytes transformation = 12;
+	optional double volume = 13;
 }
 
 message GetGeometryInfoResponse {

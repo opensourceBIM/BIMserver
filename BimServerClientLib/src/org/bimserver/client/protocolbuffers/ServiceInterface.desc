@@ -1,5 +1,5 @@
 
-Ø˘
+ë¸
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -250,7 +250,11 @@ parentPoid (
 value ("T
 ChangeUserTypeRequest
 uoid (-
-userType (2.org.bimserver.pb.SUserType"ó
+userType (2.org.bimserver.pb.SUserType" 
+CheckInternetConnectionRequest"F
+CheckInternetConnectionResponse
+errorMessage (	
+value ("ó
 CheckinRequest
 poid (
 comment (	
@@ -735,21 +739,23 @@ revisionNr (
 rid (	
 x (	
 y (	
-z ("ê
+z ("à
 SGeometryInfo
 area (
 dataId (.
-	maxBounds (2.org.bimserver.pb.SVector3f.
-	minBounds (2.org.bimserver.pb.SVector3f
-oid (
-primitiveCount (
-rid (
+	maxBounds (2.org.bimserver.pb.SVector3f:
+maxBoundsUntranslated (2.org.bimserver.pb.SVector3f.
+	minBounds (2.org.bimserver.pb.SVector3f:
+minBoundsUntranslated (2.org.bimserver.pb.SVector3f
+oid (
+primitiveCount (
+rid	 (
 
-startIndex (
-startVertex	 (
-transformation
- (
-volume ("_
+startIndex
+ (
+startVertex (
+transformation (
+volume ("_
 GetGeometryInfoResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SGeometryInfo"$
@@ -1430,7 +1436,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2Œo
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2Œp
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1450,7 +1456,8 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 	bcfToJson".org.bimserver.pb.BcfToJsonRequest#.org.bimserver.pb.BcfToJsonResponse~
 branchToExistingProject0.org.bimserver.pb.BranchToExistingProjectRequest1.org.bimserver.pb.BranchToExistingProjectResponseo
 branchToNewProject+.org.bimserver.pb.BranchToNewProjectRequest,.org.bimserver.pb.BranchToNewProjectResponseY
-changeUserType'.org.bimserver.pb.ChangeUserTypeRequest.org.bimserver.pb.VoidResponseN
+changeUserType'.org.bimserver.pb.ChangeUserTypeRequest.org.bimserver.pb.VoidResponse~
+checkInternetConnection0.org.bimserver.pb.CheckInternetConnectionRequest1.org.bimserver.pb.CheckInternetConnectionResponseN
 checkin .org.bimserver.pb.CheckinRequest!.org.bimserver.pb.CheckinResponsec
 checkinFromUrl'.org.bimserver.pb.CheckinFromUrlRequest(.org.bimserver.pb.CheckinFromUrlResponsei
 checkinInitiated).org.bimserver.pb.CheckinInitiatedRequest*.org.bimserver.pb.CheckinInitiatedResponseQ
