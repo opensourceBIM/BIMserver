@@ -119,6 +119,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface CheckInternetConnectionCallback {
+		void success(java.lang.Boolean result);
+		void error(Throwable e);
+	}
+	
 	public interface CheckinCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
@@ -876,6 +881,18 @@ public class AsyncServiceInterface {
 				try {
 					syncService.changeUserType(uoid, userType);
 					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void checkInternetConnection(final CheckInternetConnectionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.checkInternetConnection());
 				} catch (Throwable e) {
 					callback.error(e);
 				}

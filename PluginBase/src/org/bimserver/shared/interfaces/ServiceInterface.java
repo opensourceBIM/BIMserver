@@ -1467,4 +1467,7 @@ public interface ServiceInterface extends PublicInterface {
 	SProject getSubProjectByName(
 		@WebParam(name = "parentProjectId", partName = "getSubProjectByName.parentProjectId") Long parentProjectId, 
 		@WebParam(name = "name", partName = "getSubProjectByName.name") String name) throws UserException, ServerException;
+	
+	@WebMethod(action = "checkInternetConnection")
+	Boolean checkInternetConnection() throws UserException, ServerException;
 }

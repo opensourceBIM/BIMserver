@@ -14,7 +14,7 @@ import org.apache.oltu.oauth2.ext.dynamicreg.common.OAuthRegistration;
 public class SendUrl {
 	public static void main(String[] args) {
 		try {
-			OAuthClientRequest request = OAuthClientRegistrationRequest.location("http://localhost:8080/oauth/register/", OAuthRegistration.Type.PUSH).setName("Zapier").setUrl("https://zapier.com/dashboard/auth/oauth/return/App56192API").setDescription("App Description")
+			OAuthClientRequest request = OAuthClientRegistrationRequest.location("https://thisisanexperimentalserver.com/oauth/register/", OAuthRegistration.Type.PUSH).setName("Zapier").setUrl("https://zapier.com/dashboard/auth/oauth/return/App56192API").setDescription("App Description")
 					.setRedirectURL("https://zapier.com/dashboard/auth/oauth/return/App56192API").buildJSONMessage();
 			OAuthRegistrationClient oauthclient = new OAuthRegistrationClient(new org.bimserver.webservices.impl.URLConnectionClient());
 			OAuthClientRegistrationResponse response = oauthclient.clientInfo(request);

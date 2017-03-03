@@ -275,7 +275,7 @@ public class PluginManager implements PluginManagerInterface {
 				} else {
 					// Snapshot projects linked in Eclipse
 					ArtifactRequest request = new ArtifactRequest();
-					if (!"test".equals(depend.getScope())) {
+					if ((!"test".equals(dependency2.getScope()) && !dependency2.getArtifact().isSnapshot())) {
 						request.setArtifact(dependency2.getArtifact());
 						request.setRepositories(mavenPluginRepository.getLocalRepositories());
 						try {
@@ -286,6 +286,7 @@ public class PluginManager implements PluginManagerInterface {
 								// TODO error?
 							}
 						} catch (Exception e) {
+							LOGGER.info(dependency2.getArtifact().toString());
 							e.printStackTrace();
 						}
 						

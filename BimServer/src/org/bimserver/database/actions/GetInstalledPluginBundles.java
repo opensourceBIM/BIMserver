@@ -23,6 +23,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bimserver.BimServer;
@@ -63,6 +66,9 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 			repositoryKnownLocation.put(pluginLocation.getPluginIdentifier(), pluginLocation);
 		}
 		
+		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(32, 32, 1L, TimeUnit.HOURS, new ArrayBlockingQueue<>(100));
+
+		
 		for (PluginBundle pluginBundle : bimServer.getPluginManager().getPluginBundles()) {
 			SPluginBundleVersion installedVersion = pluginBundle.getPluginBundleVersion();
 
@@ -70,28 +76,40 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 			if (repositoryKnownLocation.containsKey(pluginBundleIdentifier)) {
 				PluginLocation<?> pluginLocation = repositoryKnownLocation.get(pluginBundleIdentifier);
 
-				SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictVersionChecking, bimserverVersion);
-
-				if (sPluginBundle == null) {
-					// No versions found on repository
-					sPluginBundle = pluginBundle.getPluginBundle();
-				}
-				
-				boolean found = false;
-				for (SPluginBundleVersion sPluginBundleVersion : sPluginBundle.getAvailableVersions()) {
-					if (sPluginBundleVersion.getVersion().equals(pluginBundle.getPluginBundleVersion().getVersion())) {
-						found = true;
-					}
-				}
-				if (!found) {
-					sPluginBundle.getAvailableVersions().add(pluginBundle.getPluginBundleVersion());
-				}
-				sPluginBundle.setInstalledVersion(installedVersion);
-				
-				result.add(sPluginBundle);
+				threadPoolExecutor.submit(new Runnable(){
+					@Override
+					public void run() {
+						SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictVersionChecking, bimserverVersion);
+						
+						if (sPluginBundle == null) {
+							// No versions found on repository
+							sPluginBundle = pluginBundle.getPluginBundle();
+						}
+						
+						boolean found = false;
+						for (SPluginBundleVersion sPluginBundleVersion : sPluginBundle.getAvailableVersions()) {
+							if (sPluginBundleVersion.getVersion().equals(pluginBundle.getPluginBundleVersion().getVersion())) {
+								found = true;
+							}
+						}
+						if (!found) {
+							sPluginBundle.getAvailableVersions().add(pluginBundle.getPluginBundleVersion());
+						}
+						sPluginBundle.setInstalledVersion(installedVersion);
+						
+						result.add(sPluginBundle);
+					}});
 			} else {
 				// TODO newly developed plugin on local machine?
 			}
+		}
+
+
+		threadPoolExecutor.shutdown();
+		try {
+			threadPoolExecutor.awaitTermination(1, TimeUnit.HOURS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 
 		Collections.sort(result, new Comparator<SPluginBundle>(){

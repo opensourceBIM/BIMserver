@@ -41,6 +41,6 @@ public class GetPluginBundle extends PluginBundleDatabaseAction<SPluginBundle> {
 				return sPluginBundle;
 			}
 		}
-		throw new UserException("Plugin bundle not found");
+		throw new UserException("Plugin bundle already installed " + groupId + "." + artifactId);
 	}
 }

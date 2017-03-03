@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bimserver.BimServer;
@@ -54,15 +57,28 @@ public class GetAvailablePluginBundles extends PluginBundleDatabaseAction<List<S
 
 		bimserverVersion = new DefaultArtifactVersion(bimServer.getVersionChecker().getLocalVersion().getFullString());
 
+		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(32, 32, 1L, TimeUnit.HOURS, new ArrayBlockingQueue<>(100));
+
 		for (PluginLocation<?> pluginLocation : repository.listPluginLocations()) {
 			PluginBundle pluginBundle = bimServer.getPluginManager().getPluginBundle(pluginLocation.getPluginIdentifier());
 			// Skipping all plugin bundles that already have an installed version
 			if (pluginBundle == null) {
-				SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictVersionChecking, bimserverVersion);
-				if (sPluginBundle != null) {
-					result.add(sPluginBundle);
-				}
+				threadPoolExecutor.submit(new Runnable(){
+					@Override
+					public void run() {
+						SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictVersionChecking, bimserverVersion);
+						if (sPluginBundle != null) {
+							result.add(sPluginBundle);
+						}
+					}					
+				});
 			}
+		}
+		threadPoolExecutor.shutdown();
+		try {
+			threadPoolExecutor.awaitTermination(1, TimeUnit.HOURS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 
 		Collections.sort(result, new Comparator<SPluginBundle>(){

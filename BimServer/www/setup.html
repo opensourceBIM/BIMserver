@@ -6,6 +6,7 @@
 			<li role="presentation"><a class="adminBtn">Admin Account</a></li>
 			<li role="presentation"><a class="emailBtn">Email</a></li>
 			<li role="presentation"><a class="pluginsBtn">Plugins</a></li>
+			<li role="presentation"><a class="extendedDataSchemasBtn">Extended Data Schemas</a></li>
 			<li role="presentation"><a class="finishBtn">Finish</a></li>
 		</ul>
 		
@@ -123,11 +124,17 @@
 	
 			<div class="contentdiv plugins">
 				<div class="well well-sm">
-					A BIMserver without plugins will be pretty useless, so we have selected a few plugins that you might want to install. You can install more plugins after the setup.
+					<p>
+					A BIMserver without plugins will be pretty useless, so we have selected a few plugins that you might want to install. You can install more plugins after the setup. Please note that for installing plugins this way, your BIMserver will have to have a working (outgoing) internet connection.
+					</p>
+					<p>
+					For all selected plugins the latest version available will be downloaded and installed. Make sure you are running the latest version of BIMserver as well because otherwise the plugins may not be compatible with your version of BIMserver.
+					</p>
 				</div>
-				<div class="media">
+				<div class="list-group">
+				<div class="media list-group-item">
 					<div class="media-left media-middle">
-						<input type="checkbox" class="bimviews"/>
+						<input type="checkbox" class="bimviews" checked="checked"/>
 					</div>
 					<div class="media-left">
 						<div class="well" style="width: 260px; ; height: 153px; padding: 0px"><img class="media-object" height="150" src="img/bimviews.png"></div>
@@ -144,22 +151,86 @@
 						<li>Upload/download models</li>
 						</ul>
 						
+						<br/>
 						<span class="label label-warning">Not installing</span> Access to BIMserver functionality will be limited to the technical interfaces JSON, SOAP and Protocol Buffers and no GUI will be available if this plugin is not installed.
 					</div>
 				</div>
-				<div class="media">
+				<div class="media list-group-item">
 					<div class="media-left media-middle">
-						<input type="checkbox" class="ifcopenshellplugin"/>
+						<input type="checkbox" class="ifcopenshellplugin" checked="checked"/>
 					</div>
 					<div class="media-left">
 						<div class="well" style="width: 260px; height: 153px; padding: 10px"><img class="media-object" height="130" style="margin-left: auto; margin-right: auto" src="img/ifcopenshell_logo.png"></div>
 					</div>
 					<div class="media-body">
 						<h4 class="media-heading">IfcOpenShell</h4>
-						The open source ifc toolkit and geometry engine.<br/>
+						The open source ifc toolkit and geometry engine.<br/><br/>
 						
 						<span class="label label-warning">Not installing</span> Without this plugin BIMserver will not be able to convert IFC geometry to triangles, and thus no viewers will be able to visualize the model in 3D
 					</div>
+				</div>
+				<div class="media list-group-item">
+					<div class="media-left media-middle">
+						<input type="checkbox" class="ifcplugins" checked="checked"/>
+					</div>
+					<div class="media-left">
+						<div class="well" style="width: 260px; height: 153px; padding: 10px"><img class="media-object" height="130" style="margin-left: auto; margin-right: auto" src="img/opensourcebim.png"></div>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">IfcPlugins</h4>
+						Contains serializers and deserializers for IFC and IfcXML and IfcJSON<br/><br/>
+						<span class="label label-warning">Not installing</span> Without this plugin BIMserver will not be able to read/write IFC
+					</div>
+				</div>
+				<div class="media list-group-item">
+					<div class="media-left media-middle">
+						<input type="checkbox" class="binaryserializers" checked="checked"/>
+					</div>
+					<div class="media-left">
+						<div class="well" style="width: 260px; height: 153px; padding: 10px"><img class="media-object" height="130" style="margin-left: auto; margin-right: auto" src="img/opensourcebim.png"></div>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">BinarySerializers</h4>
+						Contains binary serializers required for loading geometry ov<br/><br/>
+						<span class="label label-warning">Not installing</span> Without this plugin BIMsurfer will not be able to load 3D geometry
+					</div>
+				</div>
+				<div class="media list-group-item">
+					<div class="media-left media-middle">
+						<input type="checkbox" class="bimserverapi" checked="checked"/>
+					</div>
+					<div class="media-left">
+						<div class="well" style="width: 260px; height: 153px; padding: 10px"><img class="media-object" height="130" style="margin-left: auto; margin-right: auto" src="img/opensourcebim.png"></div>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">BimServerJavaScriptApi</h4>
+						JavaScript API for BIMserver.<br/><br/>
+						<span class="label label-warning">Not installing</span> Without this plugin all JavaScript based plugins will not be able to communicatie with BIMserver (BIMvie.ws, BIMsurfer, Console).
+					</div>
+				</div>
+				<div class="media list-group-item">
+					<div class="media-left media-middle">
+						<input type="checkbox" class="console" checked="checked"/>
+					</div>
+					<div class="media-left">
+						<div class="well" style="width: 260px; height: 153px; padding: 10px"><img class="media-object" height="130" style="margin-left: auto; margin-right: auto" src="img/opensourcebim.png"></div>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">Console</h4>
+						Webbased user interface for calling methods of the BIMserver API and reading the documentation<br/>
+					</div>
+				</div>
+				</div>
+				<button class="btn btn-default extendedDataSchemasBtn">Next</button>
+				<br/><br/>
+			</div>
+
+			<div class="contentdiv extendeddataschemas">
+				<div class="well well-sm">
+					<div class="txt">To communicate with other BIM-enabled servers, a set of <a href="https://github.com/opensourceBIM/BIMserver-Repository/wiki/Extended-Data-Schemas">Extended Data Schemas</a> is available. You need a working internet connection _from_ your BIMserver for this to work.</div>
+				</div>
+				<div>
+				<label>Install all extended data schemas <input type="checkbox" class="installExtendedDataSchemas" checked="checked"></label>
 				</div>
 				<button class="btn btn-default finishBtn">Next</button>
 			</div>
@@ -177,6 +248,9 @@
 <script>
 function Setup(cd, address) {
 	var o = this;
+	o.level = 0;
+	o.pluginsInstalled = {};
+	
 	if (address.endsWith(":80")) {
 		address = address.substring(0, address.length - 3);
 	}
@@ -219,6 +293,13 @@ function Setup(cd, address) {
 		cd.find(".plugins").show();
 	};
 
+	this.showExtendedDataSchemas = function(){
+		cd.find(".nav-pills .active").removeClass("active");
+		cd.find(".extendedDataSchemasBtn").parent().addClass("active");
+		cd.find(".contentdiv").hide();
+		cd.find(".extendeddataschemas").show();
+	};
+
 	this.showFinish = function(){
 		cd.find(".nav-pills .active").removeClass("active");
 		cd.find(".finishBtn").parent().addClass("active");
@@ -230,18 +311,39 @@ function Setup(cd, address) {
 	cd.find(".adminBtn").click(o.showAdmin);
 	cd.find(".emailBtn").click(o.showEmail);
 	cd.find(".pluginsBtn").click(o.showPlugins);
+	cd.find(".extendedDataSchemasBtn").click(o.showExtendedDataSchemas);
 	cd.find(".finishBtn").click(o.showFinish);
 	cd.find(".welcome").show();
 	
+	this.incLevel = function(){
+		o.level++;
+	};
+	
+	this.decLevel = function(){
+		o.level--;
+	};
+	
 	this.logError = function(message){
+		for (var i=0; i<o.level; i++) {
+			message = "\t" + message;
+		}
 		cd.find(".finish pre").append("<span class=\"error\">" + message + "</span>\n");
 	};
 	
 	this.logInfo = function(message){
+		for (var i=0; i<o.level; i++) {
+			message = "\t" + message;
+		}
 		cd.find(".finish pre").append("<span class=\"info\">" + message + "</span>\n");
 	};
 
 	this.logSuccess = function(message){
+		if (message == null) {
+			message = "";
+		}
+		for (var i=0; i<o.level; i++) {
+			message = "\t" + message;
+		}
 		cd.find(".finish pre").append("<span class=\"success\">" + message + "</span>\n");
 	};
 	
@@ -255,9 +357,9 @@ function Setup(cd, address) {
 		cd.find(".finish .well").hide();
 		cd.find(".finish pre").show();
 		cd.find(".setupButton").hide();
-		
-		cd.find(".finish pre").html("Setting up...\n");
-		
+
+		o.logInfo("Setting up...");
+		o.incLevel();
 		o.logInfo("Setting up admin account...");
 
 		var address = $(".setup .siteAddressInput").val();
@@ -273,16 +375,20 @@ function Setup(cd, address) {
 			adminUsername: $(".setup .adminUsernameInput").val(),
 			adminPassword: $(".setup .adminPasswordInput").val()
 		}, function(){
+			o.incLevel();
 			o.logSuccess("Admin account successfully setup");
+			o.decLevel();
 			o.stage = 1;
 			next();
 		}, function(message){
 			o.logError(message);
+			o.decLevel();
 			o.abort();
 		});
 	};
 	
 	this.stage2 = function(){
+		o.incLevel();
 		o.logInfo("Setting up email...");
 		Global.api.call("AuthInterface", "login", {username: $(".setup .adminUsernameInput").val(), password: $(".setup .adminPasswordInput").val()}, function(data){
 			Global.api.call("SettingsInterface", "getServerSettings", {}, function(serverSettings){
@@ -295,14 +401,17 @@ function Setup(cd, address) {
 				serverSettings.emailSenderName = $(".setup .emailSenderName").val();
 				Global.api.call("SettingsInterface", "setServerSettings", {serverSettings: serverSettings}, function(data){
 					o.logSuccess("Email successfully setup");
+					o.decLevel();
 					o.stage3();
 				});			
 			}, function(message){
 				o.logError(message);
+				o.decLevel();
 				o.abort();
 			});
 		}, function(message){
 			o.logError(message);
+			o.decLevel();
 			o.abort();
 		});
 	};
@@ -341,6 +450,7 @@ function Setup(cd, address) {
 					plugins: plugins
 				}, function(){
 					delete requiredPlugins[latestVersion.artifactId];
+					o.pluginsInstalled[latestVersion.artifactId] = true;
 					o.logSuccess("Successfully installed " + pluginBundle.name + " (" + latestVersion.groupId + ":" + latestVersion.artifactId + ":" + latestVersion.version + ")\n");
 					if (Object.keys(requiredPlugins).length == 0) {
 						callback();
@@ -358,7 +468,13 @@ function Setup(cd, address) {
 			});
 		}, function(message){
 			o.logError(message);
-			o.abort();
+			delete requiredPlugins[next];
+			if (Object.keys(requiredPlugins).length == 0) {
+				callback();
+				return;
+			} else {
+				o.installPluginBundle(requiredPlugins, callback);
+			}
 		});
 	}
 	
@@ -391,55 +507,106 @@ function Setup(cd, address) {
         });
 	}
 	
-	this.stage3 = function(){
-		o.logInfo("Installing all extended data schemas...\n");
-		Global.api.call("ServiceInterface", "getAllRepositoryExtendedDataSchemas", {}, function(data){
-			var requests = [];
-			data.forEach(function(extendedDataSchema){
-				var request = [
-					"ServiceInterface", "addExtendedDataSchema", {extendedDataSchema: extendedDataSchema}
-				];
-				requests.push(request);
+	this.installExtendedDataSchemas = function(callback){
+		if (o.hasInternet) {
+			o.logInfo("Installing all extended data schemas...");
+			o.incLevel();
+			Global.api.call("ServiceInterface", "getAllRepositoryExtendedDataSchemas", {}, function(data){
+				var requests = [];
+				data.forEach(function(extendedDataSchema){
+					var request = {
+						interface: "ServiceInterface",
+						method: "addExtendedDataSchema",
+						parameters: {extendedDataSchema: extendedDataSchema}
+					};
+					requests.push(request);
+				});
+				Global.api.multiCall(requests, function(){
+					data.forEach(function(extendedDataSchema){
+						o.logSuccess(extendedDataSchema.name + " installed OK");
+					});
+					o.logSuccess("Extended Data Schemas installed OK");
+					o.decLevel();
+					callback();
+				});
 			});
-			Global.api.multiCall(requests, function(){
-			});
-		});
+		} else {
+			o.logInfo("Not installing extended data schemas because there is no internet connection");
+			callback();
+		}
+	};
 
-		o.logInfo("Installing plugins...\n");
-		
-		var pluginsToInstall = {
-			ifcplugins: {repository: "http://central.maven.org/maven2", groupId: "org.opensourcebim", artifactId: "ifcplugins"},
-			binaryserializers: {repository: "http://central.maven.org/maven2", groupId: "org.opensourcebim", artifactId: "binaryserializers"},
-			bimserverapi: {repository: "http://central.maven.org/maven2", groupId: "org.opensourcebim", artifactId: "bimserverapi"},
-			console: {repository: "http://central.maven.org/maven2", groupId: "org.opensourcebim", artifactId: "console"}
-		};
-		cd.find(".plugins input[type=\"checkbox\"]:checked").each(function(index, checkbox){
-			var artifactId = $(checkbox).attr("class");
-			if (artifactId == "bimviews") {
-				pluginsToInstall["bimsurfer"] = {
+	this.installPlugins = function(){
+		if (o.hasInternet) {
+			o.logInfo("Installing plugins...");
+			
+			var pluginsToInstall = {
+			};
+			cd.find(".plugins input[type=\"checkbox\"]:checked").each(function(index, checkbox){
+				var artifactId = $(checkbox).attr("class");
+				if (artifactId == "bimviews") {
+					pluginsToInstall["bimsurfer"] = {
+						repository: "http://central.maven.org/maven2",
+						groupId: "org.opensourcebim",
+						artifactId: "bimsurfer"
+					};
+				}
+				pluginsToInstall[artifactId] = {
 					repository: "http://central.maven.org/maven2",
 					groupId: "org.opensourcebim",
-					artifactId: "bimsurfer"
+					artifactId: artifactId
 				};
+			});
+			
+			o.incLevel();
+			installRequiredPlugins(pluginsToInstall, function(){
+				o.logSuccess("All plugins successfully installed");
+				o.decLevel();
+				o.decLevel();
+				o.finished();
+			});
+		} else {
+			o.logInfo("Not installing plugins because there is no internet connection");
+			o.finished();
+		}
+	};
+	
+	this.stage3 = function(){
+		o.logInfo("Checking internet connection _from_ your BIMserver...");
+		o.incLevel();
+		Global.api.call("ServiceInterface", "checkInternetConnection", {}, function(data){
+			o.hasInternet = data;
+			if (data == true) {
+				o.logSuccess("Internet connection OK");
+				o.decLevel();
+			} else {
+				o.logError("Your BIMserver does not seem to have a <a href=\"https://github.com/opensourceBIM/BIMserver/wiki/Outgoing-internet-connection\">working outgoing internet connection</a>.");
+				o.decLevel();
 			}
-			pluginsToInstall[artifactId] = {
-				repository: "http://central.maven.org/maven2",
-				groupId: "org.opensourcebim",
-				artifactId: artifactId
-			};
-		});
-		
-		installRequiredPlugins(pluginsToInstall, function(){
-			o.logSuccess("All plugins successfully installed");
-			if (pluginsToInstall["bimviews"] != null) {
-				var link = $("<a>Open BIMvie.ws</a>");
-				link.click(function(){
-					document.location = $(".setup .siteAddressInput").val() + "/apps/bimviews";
+			if ($(".installExtendedDataSchemas").is(":checked")) {
+				o.installExtendedDataSchemas(function(){
+					o.installPlugins();
 				});
-				cd.find(".finish pre").append("<br/>");
-				cd.find(".finish pre").append(link);
+			} else {
+				o.logInfo("Not installing extended data schemas");
+				o.installPlugins();
 			}
 		});
+	};
+	
+	this.finished = function(){
+		if (o.pluginsInstalled["bimviews"] != null) {
+			var link = $("<a>Open BIMvie.ws</a>");
+			link.click(function(){
+				document.location = $(".setup .siteAddressInput").val() + "/apps/bimviews";
+			});
+			o.logSuccess();
+			o.logSuccess(link);
+		} else {
+			o.decLevel();
+			o.logSuccess();
+			o.logSuccess("Setup successful, <a href=\"/\">refresh to go to the status page</a>");
+		}
 	};
 	
 	this.finalStage = function(){

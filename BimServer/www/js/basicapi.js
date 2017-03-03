@@ -35,4 +35,23 @@ function BasicApi(serverAddress) {
 			}
 		});
 	}
+
+	this.multiCall = function(requests, callback) {
+		var request = {requests: requests};
+		if (o.token != null) {
+			request.token = o.token;
+		}
+		$.ajax({
+			dataType: "json",
+			method: "POST",
+			url: o.serverAddress + "/json",
+			data: JSON.stringify(request),
+			success: function(data){
+				var responses = data.responses;
+				if (callback != null) {
+					callback();
+				}
+			}
+		});
+	}
 }

@@ -87,6 +87,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	public void changeUserType(java.lang.Long uoid, org.bimserver.interfaces.objects.SUserType userType) throws UserException, ServerException {
 	}
 	
+	public java.lang.Boolean checkInternetConnection() throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.Long checkin(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.Long fileSize, java.lang.String fileName, javax.activation.DataHandler data, java.lang.Boolean merge, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}

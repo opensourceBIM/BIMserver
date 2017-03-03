@@ -113,7 +113,8 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 	public List<MavenPluginVersion> getAllVersions() {
 		List<MavenPluginVersion> pluginVersions = new ArrayList<>();
 
-		Artifact artifact = new DefaultArtifact(groupId + ":" + artifactId + ":[0,)");
+		
+		Artifact artifact = new DefaultArtifact(groupId, artifactId, null, ":[0,)");
 
 		VersionRangeRequest rangeRequest = new VersionRangeRequest();
 		rangeRequest.setArtifact(artifact);
@@ -124,7 +125,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 			VersionRangeResult rangeResult = mavenPluginRepository.getSystem().resolveVersionRange(mavenPluginRepository.getSession(), rangeRequest);
 			List<Version> versions = rangeResult.getVersions();
 			if (!versions.isEmpty()) {
-				for (int i=versions.size() - 1; i >= Math.max(0, versions.size() - 4); i--) {
+				for (int i=versions.size() - 1; i >= Math.max(0, versions.size() - 3); i--) {
 					Version version = versions.get(i);
 					ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
 					
