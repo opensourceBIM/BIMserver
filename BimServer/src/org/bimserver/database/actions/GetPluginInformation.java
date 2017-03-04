@@ -1,5 +1,6 @@
 package org.bimserver.database.actions;
 
+import java.io.ByteArrayInputStream;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -36,8 +37,7 @@ public class GetPluginInformation extends BimDatabaseAction<List<SPluginInformat
 		MavenPluginLocation mavenPluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(repository, groupId, artifactId);
 		try {
 			try {
-				Path pluginXml = mavenPluginLocation.getVersionPluginXml(version);
-				return bimServer.getPluginManager().getPluginInformationFromPluginFile(pluginXml);
+				return bimServer.getPluginManager().getPluginInformationFromPluginFile(new ByteArrayInputStream(mavenPluginLocation.getVersionPluginXml(version)));
 			} catch (ArtifactResolutionException e) {
 				Path jar = mavenPluginLocation.getVersionJar(version);
 				return bimServer.getPluginManager().getPluginInformationFromJar(jar);

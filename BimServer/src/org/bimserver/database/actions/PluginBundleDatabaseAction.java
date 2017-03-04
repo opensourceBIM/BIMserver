@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 import java.util.Properties;
 
 import org.apache.maven.artifact.versioning.ArtifactVersion;
@@ -91,10 +92,7 @@ public abstract class PluginBundleDatabaseAction<T> extends BimDatabaseAction<T>
 					pluginBundle.getAvailableVersions().add(sPluginBundleVersion);
 
 					try {
-						Path icon = mavenPluginLocation.getVersionIcon(mavenPluginVersion.getVersion().toString());
-						if (icon != null) {
-							sPluginBundleVersion.setIcon(Files.readAllBytes(icon));
-						}
+						sPluginBundleVersion.setIcon(mavenPluginLocation.getVersionIcon(mavenPluginVersion.getVersion().toString()));
 					} catch (ArtifactResolutionException e) {
 						// This is not important
 					} catch (IOException e) {
@@ -102,18 +100,20 @@ public abstract class PluginBundleDatabaseAction<T> extends BimDatabaseAction<T>
 					}
 					
 					try {
-						Path date = mavenPluginLocation.getVersionDate(mavenPluginVersion.getVersion().toString());
-						byte[] bytes = Files.readAllBytes(date);
-						Properties properties = new Properties();
-						properties.load(new ByteArrayInputStream(bytes));
-						String buildDateString = properties.getProperty("build.date");
-						
-						DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-						try {
-							sPluginBundleVersion.setDate(dateFormat.parse(buildDateString));
-						} catch (ParseException e) {
-//							LOGGER.error("Invalid date format for plugin " + mavenPluginVersion.getModel().getName() + ": '" + buildDateString + "'");
+						GregorianCalendar date = mavenPluginLocation.getVersionDate(mavenPluginVersion.getVersion().toString());
+						if (date != null) {
+							sPluginBundleVersion.setDate(date.getTime());
 						}
+//						byte[] bytes = Files.readAllBytes(date);
+//						Properties properties = new Properties();
+//						properties.load(new ByteArrayInputStream(bytes));
+//						String buildDateString = properties.getProperty("build.date");
+//						
+//						DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+//						try {
+//						} catch (ParseException e) {
+//							LOGGER.error("Invalid date format for plugin " + mavenPluginVersion.getModel().getName() + ": '" + buildDateString + "'");
+//						}
 					} catch (ArtifactResolutionException e) {
 						// Not a problem
 					} catch (Exception e) {

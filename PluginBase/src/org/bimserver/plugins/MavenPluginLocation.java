@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 /******************************************************************************
@@ -46,8 +47,12 @@ import java.text.SimpleDateFormat;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Properties;
+import java.util.jar.JarEntry;
+import java.util.jar.JarInputStream;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.model.Model;
@@ -55,6 +60,8 @@ import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.interfaces.objects.SPluginBundleType;
 import org.bimserver.interfaces.objects.SPluginBundleVersion;
+import org.bimserver.interfaces.objects.SPluginInformation;
+import org.bimserver.utils.FakeClosingInputStream;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.eclipse.aether.artifact.Artifact;
 import org.eclipse.aether.artifact.DefaultArtifact;
@@ -71,6 +78,8 @@ import org.eclipse.aether.resolution.VersionRangeResult;
 import org.eclipse.aether.version.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.io.ByteStreams;
 
 public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
@@ -114,7 +123,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		List<MavenPluginVersion> pluginVersions = new ArrayList<>();
 
 		
-		Artifact artifact = new DefaultArtifact(groupId, artifactId, null, ":[0,)");
+		Artifact artifact = new DefaultArtifact(groupId, artifactId, null, "[0,)");
 
 		VersionRangeRequest rangeRequest = new VersionRangeRequest();
 		rangeRequest.setArtifact(artifact);
@@ -129,7 +138,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 					Version version = versions.get(i);
 					ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
 					
-					Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":pom:" + version.toString());
+					Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "pom", version.toString());
 					
 					descriptorRequest.setArtifact(versionArtifact);
 					descriptorRequest.setRepositories(mavenPluginRepository.getRepositories());
@@ -260,37 +269,67 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		return resolveArtifact.getArtifact().getFile().toPath();
 	}
 
-	public Path getVersionIcon(String version) throws ArtifactResolutionException {
-		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "icon", "png", version.toString());
-		
-		ArtifactRequest request = new ArtifactRequest();
-		request.setArtifact(versionArtifact);
-		request.setRepositories(mavenPluginRepository.getRepositories());
-		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
-		
-		return resolveArtifact.getArtifact().getFile().toPath();
+	public byte[] getVersionIcon(String version) throws ArtifactResolutionException, IOException {
+		byte[] jarContent = getJarContent(version, "plugin/icon.png");
+		return jarContent;
+//		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "icon", "png", version.toString());
+//		
+//		ArtifactRequest request = new ArtifactRequest();
+//		request.setArtifact(versionArtifact);
+//		request.setRepositories(mavenPluginRepository.getRepositories());
+//		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+//		
+//		return resolveArtifact.getArtifact().getFile().toPath();
 	}
 
-	public Path getVersionDate(String version) throws ArtifactResolutionException {
-		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "version", "properties", version.toString());
-		
-		ArtifactRequest request = new ArtifactRequest();
-		request.setArtifact(versionArtifact);
-		request.setRepositories(mavenPluginRepository.getRepositories());
-		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
-		
-		return resolveArtifact.getArtifact().getFile().toPath();
+	public GregorianCalendar getVersionDate(String version) throws ArtifactResolutionException, ParseException, IOException {
+		byte[] jarContent = getJarContent(version, "plugin/version.properties");
+		if (jarContent != null) {
+			Properties properties = new Properties();
+			properties.load(new ByteArrayInputStream(jarContent));
+			String buildDate = properties.getProperty("build.date");
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");;
+			Date parse = dateFormat.parse(buildDate);
+			GregorianCalendar gregorianCalendar = new GregorianCalendar();
+			gregorianCalendar.setTimeInMillis(parse.getTime());
+			return gregorianCalendar;
+		}
+		return null;
+
+//		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "version", "properties", version.toString());
+//		
+//		ArtifactRequest request = new ArtifactRequest();
+//		request.setArtifact(versionArtifact);
+//		request.setRepositories(mavenPluginRepository.getRepositories());
+//		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+//		
+//		return resolveArtifact.getArtifact().getFile().toPath();
 	}
 
-	public Path getVersionPluginXml(String version) throws ArtifactResolutionException {
-		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "plugin", "xml", version.toString());
-		
-		ArtifactRequest request = new ArtifactRequest();
-		request.setArtifact(versionArtifact);
-		request.setRepositories(mavenPluginRepository.getRepositories());
-		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
-		
-		return resolveArtifact.getArtifact().getFile().toPath();
+	private byte[] getJarContent(String version, String filename) throws IOException, ArtifactResolutionException {
+		try (JarInputStream jarInputStream = new JarInputStream(Files.newInputStream(getVersionJar(version)))) {
+			JarEntry nextJarEntry = jarInputStream.getNextJarEntry();
+			while (nextJarEntry != null) {
+				if (nextJarEntry.getName().equals(filename)) {
+					return ByteStreams.toByteArray(jarInputStream);
+				}
+				nextJarEntry = jarInputStream.getNextJarEntry();
+			}
+		}
+		return null;
+	}
+	
+	public byte[] getVersionPluginXml(String version) throws ArtifactResolutionException, IOException {
+		return getJarContent(version, "plugin/plugin.xml");
+
+//		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "plugin", "xml", version.toString());
+//		
+//		ArtifactRequest request = new ArtifactRequest();
+//		request.setArtifact(versionArtifact);
+//		request.setRepositories(mavenPluginRepository.getRepositories());
+//		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+//		
+//		return resolveArtifact.getArtifact().getFile().toPath();
 	}
 
 	public Path getVersionPom(String version) throws ArtifactResolutionException {
@@ -366,20 +405,21 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 			sPluginBundleVersion.setMismatch(false);
 			
 			try {
-				Path icon = getVersionIcon(version);
-				sPluginBundleVersion.setIcon(Files.readAllBytes(icon));
+				sPluginBundleVersion.setIcon(getVersionIcon(version));
 			} catch (ArtifactResolutionException e) {
 				// Not a problem
 			}
 			try {
-				Path date = getVersionDate(version);
-				byte[] bytes = Files.readAllBytes(date);
-				Properties properties = new Properties();
-				properties.load(new ByteArrayInputStream(bytes));
-				String buildDateString = properties.getProperty("build.date");
-				
-				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-				sPluginBundleVersion.setDate(dateFormat.parse(buildDateString));
+				GregorianCalendar date = getVersionDate(version);
+//				byte[] bytes = Files.readAllBytes(date);
+//				Properties properties = new Properties();
+//				properties.load(new ByteArrayInputStream(bytes));
+//				String buildDateString = properties.getProperty("build.date");
+//				
+//				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+				if (date != null) {
+					sPluginBundleVersion.setDate(date.getTime());
+				}
 			} catch (ArtifactResolutionException e) {
 				// Not a problem
 			} catch (Exception e) {

@@ -1,5 +1,6 @@
 package org.bimserver.database.actions;
 
+import java.io.ByteArrayInputStream;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -44,8 +45,7 @@ public class UpdatePluginBundle extends BimDatabaseAction<Void> {
 			try {
 				List<SPluginInformation> plugins = null;
 				try {
-					Path pluginXml = mavenPluginLocation.getVersionPluginXml(version);
-					plugins = bimServer.getPluginManager().getPluginInformationFromPluginFile(pluginXml);
+					plugins = bimServer.getPluginManager().getPluginInformationFromPluginFile(new ByteArrayInputStream(mavenPluginLocation.getVersionPluginXml(version)));
 				} catch (ArtifactResolutionException e) {
 					plugins = bimServer.getPluginManager().getPluginInformationFromJar(jarFile);
 				}

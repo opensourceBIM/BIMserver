@@ -26,7 +26,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystemNotFoundException;
@@ -36,7 +35,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -1310,8 +1308,9 @@ public class PluginManager implements PluginManagerInterface {
 					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
 					if (pluginContext == null) {
 						LOGGER.info("No plugin context found for " + sPluginInformation.getIdentifier());
+					} else {
+						pluginContext.getPlugin().init(pluginContext);
 					}
-					pluginContext.getPlugin().init(pluginContext);
 				}
 			}
 		} catch (Exception e) {

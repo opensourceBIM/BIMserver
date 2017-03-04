@@ -1761,7 +1761,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			ExtendedDataSchema convert = getBimServer().getSConverter().convertFromSObject(extendedDataSchema, session);
+			ExtendedDataSchema create = session.create(ExtendedDataSchema.class);
+			ExtendedDataSchema convert = getBimServer().getSConverter().convertFromSObject(extendedDataSchema, create, session);
 			return session.executeAndCommitAction(new AddExtendedDataSchemaDatabaseAction(session, getInternalAccessMethod(), convert));
 		} catch (Exception e) {
 			return handleException(e);

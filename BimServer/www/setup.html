@@ -125,14 +125,21 @@
 			<div class="contentdiv plugins">
 				<div class="well well-sm">
 					<p>
-					A BIMserver without plugins will be pretty useless, so we have selected a few plugins that you might want to install. You can install more plugins after the setup. Please note that for installing plugins this way, your BIMserver will have to have a working (outgoing) internet connection.
+						A BIMserver without plugins will be pretty useless, so we have selected a few plugins that you might want to install. You can install more plugins after the setup. Please note that for installing plugins this way, your BIMserver will have to have a working (outgoing) internet connection.
 					</p>
 					<p>
-					For all selected plugins the latest version available will be downloaded and installed. Make sure you are running the latest version of BIMserver as well because otherwise the plugins may not be compatible with your version of BIMserver.
+						For all selected plugins the latest version available will be downloaded and installed. Make sure you are running the latest version of BIMserver as well because otherwise the plugins may not be compatible with your version of BIMserver.
+					</p>
+					<p>
+						<b>No internet connection</b>
+						You can also <a class="btnUploadPlugins">upload JAR files of plugins</a> to install them, this is not the recommended way.
 					</p>
 				</div>
 				<div class="list-group">
-				<div class="media list-group-item">
+				<div class="media list-group-item uploadPlugins ih">
+					Upload plugin JAR files
+				</div>
+				<div class="media list-group-item maven">
 					<div class="media-left media-middle">
 						<input type="checkbox" class="bimviews" checked="checked"/>
 					</div>
@@ -155,7 +162,7 @@
 						<span class="label label-warning">Not installing</span> Access to BIMserver functionality will be limited to the technical interfaces JSON, SOAP and Protocol Buffers and no GUI will be available if this plugin is not installed.
 					</div>
 				</div>
-				<div class="media list-group-item">
+				<div class="media list-group-item maven">
 					<div class="media-left media-middle">
 						<input type="checkbox" class="ifcopenshellplugin" checked="checked"/>
 					</div>
@@ -169,7 +176,7 @@
 						<span class="label label-warning">Not installing</span> Without this plugin BIMserver will not be able to convert IFC geometry to triangles, and thus no viewers will be able to visualize the model in 3D
 					</div>
 				</div>
-				<div class="media list-group-item">
+				<div class="media list-group-item maven">
 					<div class="media-left media-middle">
 						<input type="checkbox" class="ifcplugins" checked="checked"/>
 					</div>
@@ -182,7 +189,7 @@
 						<span class="label label-warning">Not installing</span> Without this plugin BIMserver will not be able to read/write IFC
 					</div>
 				</div>
-				<div class="media list-group-item">
+				<div class="media list-group-item maven">
 					<div class="media-left media-middle">
 						<input type="checkbox" class="binaryserializers" checked="checked"/>
 					</div>
@@ -195,7 +202,7 @@
 						<span class="label label-warning">Not installing</span> Without this plugin BIMsurfer will not be able to load 3D geometry
 					</div>
 				</div>
-				<div class="media list-group-item">
+				<div class="media list-group-item maven">
 					<div class="media-left media-middle">
 						<input type="checkbox" class="bimserverapi" checked="checked"/>
 					</div>
@@ -208,7 +215,7 @@
 						<span class="label label-warning">Not installing</span> Without this plugin all JavaScript based plugins will not be able to communicatie with BIMserver (BIMvie.ws, BIMsurfer, Console).
 					</div>
 				</div>
-				<div class="media list-group-item">
+				<div class="media list-group-item maven">
 					<div class="media-left media-middle">
 						<input type="checkbox" class="console" checked="checked"/>
 					</div>
@@ -307,6 +314,41 @@ function Setup(cd, address) {
 		cd.find(".finish").show();
 	};
 	
+	this.fileChange = function(e){
+		var plugin = $("<div>");
+		plugin.addClass("media");
+		plugin.addClass("list-group-item");
+		plugin.addClass("uploaded");
+		
+		var middle = $("<div class=\"media-left media-middle\">");
+		var checkbox = $("<input type=\"checkbox\" checked=\"checked\">");
+		middle.append(checkbox);
+
+		var mediaBody = $("<div class=\"media-body\">");
+
+		plugin.append(middle);
+		plugin.append(mediaBody);
+		
+		mediaBody.append("<h4 class=\"media-heading\">" + e.currentTarget.files[0].name + "</h4>");
+	
+		cd.find(".uploadPlugins").after(plugin);
+		var file = $(e.currentTarget);
+		file.hide();
+		file.detach().appendTo(plugin);
+		
+		var file = $("<input type=\"file\" class=\"form-control fileInput\"/>");
+		cd.find(".uploadPlugins").append(file);
+		file.change(o.fileChange);
+	};
+	
+	this.showUploadPlugins = function(){
+		cd.find(".uploadPlugins").show();
+
+		var file = $("<input type=\"file\" class=\"form-control fileInput\"/>");
+		file.change(o.fileChange);
+		cd.find(".uploadPlugins").append(file);
+	};
+	
 	cd.find(".welcomeBtn").click(o.showWelcome);
 	cd.find(".adminBtn").click(o.showAdmin);
 	cd.find(".emailBtn").click(o.showEmail);
@@ -314,6 +356,7 @@ function Setup(cd, address) {
 	cd.find(".extendedDataSchemasBtn").click(o.showExtendedDataSchemas);
 	cd.find(".finishBtn").click(o.showFinish);
 	cd.find(".welcome").show();
+	cd.find(".btnUploadPlugins").click(o.showUploadPlugins);
 	
 	this.incLevel = function(){
 		o.level++;
@@ -341,10 +384,13 @@ function Setup(cd, address) {
 		if (message == null) {
 			message = "";
 		}
+		var msg = $("<span class=\"success\">");
 		for (var i=0; i<o.level; i++) {
-			message = "\t" + message;
+			msg.append("\t");
 		}
-		cd.find(".finish pre").append("<span class=\"success\">" + message + "</span>\n");
+		msg.append(message);
+		cd.find(".finish pre").append(success);
+		cd.find(".finish pre").append("\n");
 	};
 	
 	this.abort = function(){
@@ -536,13 +582,13 @@ function Setup(cd, address) {
 		}
 	};
 
-	this.installPlugins = function(){
+	this.installPlugins = function(callback){
 		if (o.hasInternet) {
 			o.logInfo("Installing plugins...");
 			
 			var pluginsToInstall = {
 			};
-			cd.find(".plugins input[type=\"checkbox\"]:checked").each(function(index, checkbox){
+			cd.find(".plugins .maven input[type=\"checkbox\"]:checked").each(function(index, checkbox){
 				var artifactId = $(checkbox).attr("class");
 				if (artifactId == "bimviews") {
 					pluginsToInstall["bimsurfer"] = {
@@ -563,12 +609,54 @@ function Setup(cd, address) {
 				o.logSuccess("All plugins successfully installed");
 				o.decLevel();
 				o.decLevel();
-				o.finished();
+				callback();
 			});
 		} else {
 			o.logInfo("Not installing plugins because there is no internet connection");
-			o.finished();
+			callback();
 		}
+	};
+	
+	this.installUploadedPlugins = function(callback){
+		var reader  = new FileReader();
+
+		var tried = 0;
+		
+		var checkboxes = cd.find(".plugins .uploaded input[type=\"checkbox\"]:checked");
+		if (checkboxes.size() == 0) {
+			callback();
+		}
+		checkboxes.each(function(index, checkbox){
+			reader.addEventListener("load", function () {
+				var base64 = reader.result.substring(reader.result.indexOf(",") + 1);
+				Global.api.call("PluginInterface", "installPluginBundleFromFile", {
+					data: base64,
+					installAllPluginsForAllUsers: true,
+					installAllPluginsForNewUsers: true
+				}, function(){
+					tried++;
+					if (checkboxes.size() == tried) {
+						callback();
+					}
+				}, function(message){
+					tried++;
+					o.logError(message);
+					if (checkboxes.size() == tried) {
+						callback();
+					}
+				});
+			}, false);
+	
+			var files = $(checkbox).parent().parent().find(".fileInput").each(function(index, fileInput){
+				var file = fileInput.files[0];
+				if (file) {
+					o.logInfo("Installing uploaded plugin " + file.name);
+				    reader.readAsDataURL(file);
+				} else {
+					console.log("No file");
+				}
+			});
+		});
 	};
 	
 	this.stage3 = function(){
@@ -585,11 +673,15 @@ function Setup(cd, address) {
 			}
 			if ($(".installExtendedDataSchemas").is(":checked")) {
 				o.installExtendedDataSchemas(function(){
-					o.installPlugins();
+					o.installPlugins(function(){
+						o.installUploadedPlugins(o.finished);
+					});
 				});
 			} else {
 				o.logInfo("Not installing extended data schemas");
-				o.installPlugins();
+				o.installPlugins(function(){
+					o.installUploadedPlugins(o.finished);
+				});
 			}
 		});
 	};
