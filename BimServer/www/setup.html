@@ -389,7 +389,7 @@ function Setup(cd, address) {
 			msg.append("\t");
 		}
 		msg.append(message);
-		cd.find(".finish pre").append(success);
+		cd.find(".finish pre").append(msg);
 		cd.find(".finish pre").append("\n");
 	};
 	
@@ -606,8 +606,7 @@ function Setup(cd, address) {
 			
 			o.incLevel();
 			installRequiredPlugins(pluginsToInstall, function(){
-				o.logSuccess("All plugins successfully installed");
-				o.decLevel();
+				o.logSuccess("All remote plugins successfully installed");
 				o.decLevel();
 				callback();
 			});
@@ -617,46 +616,64 @@ function Setup(cd, address) {
 		}
 	};
 	
-	this.installUploadedPlugins = function(callback){
+	this.installUploadedPlugin = function(toInstall, callback){
 		var reader  = new FileReader();
-
-		var tried = 0;
+		var next = toInstall[0];
 		
+		reader.addEventListener("load", function () {
+			var base64 = reader.result.substring(reader.result.indexOf(",") + 1);
+			Global.api.call("PluginInterface", "installPluginBundleFromFile", {
+				data: base64,
+				installAllPluginsForAllUsers: true,
+				installAllPluginsForNewUsers: true
+			}, function(){
+				o.logSuccess("Uploading plugin " + next.get(0).files[0].name + " installed OK");
+				toInstall.splice(0, 1);
+				if (toInstall.length == 0) {
+					o.decLevel();
+					callback();
+				} else {
+					o.installUploadedPlugin(toInstall, callback);
+				}
+			}, function(message){
+				o.logError(message);
+				callback();
+			});
+		}, false);
+
+		var files = next.each(function(index, fileInput){
+			var file = fileInput.files[0];
+			if (file) {
+				o.logInfo("Installing uploaded plugin " + file.name);
+			    reader.readAsDataURL(file);
+			} else {
+				console.log("No file");
+			}
+		});
+	};
+	
+	this.installUploadedPlugins = function(callback){
 		var checkboxes = cd.find(".plugins .uploaded input[type=\"checkbox\"]:checked");
 		if (checkboxes.size() == 0) {
 			callback();
+			return;
 		}
+		
+		var toInstall = [];
+		
 		checkboxes.each(function(index, checkbox){
-			reader.addEventListener("load", function () {
-				var base64 = reader.result.substring(reader.result.indexOf(",") + 1);
-				Global.api.call("PluginInterface", "installPluginBundleFromFile", {
-					data: base64,
-					installAllPluginsForAllUsers: true,
-					installAllPluginsForNewUsers: true
-				}, function(){
-					tried++;
-					if (checkboxes.size() == tried) {
-						callback();
-					}
-				}, function(message){
-					tried++;
-					o.logError(message);
-					if (checkboxes.size() == tried) {
-						callback();
-					}
-				});
-			}, false);
-	
-			var files = $(checkbox).parent().parent().find(".fileInput").each(function(index, fileInput){
-				var file = fileInput.files[0];
-				if (file) {
-					o.logInfo("Installing uploaded plugin " + file.name);
-				    reader.readAsDataURL(file);
-				} else {
-					console.log("No file");
+			var div = $(checkbox).parent().parent();
+			var input = div.find(".fileInput");
+			if (input.size() > 0) {
+				if (input.get(0).files.length == 1) {
+					toInstall.push(input);
 				}
-			});
+			}
 		});
+		
+		o.incLevel();
+		
+		o.installUploadedPlugin(toInstall, callback);
 	};
 	
 	this.stage3 = function(){
