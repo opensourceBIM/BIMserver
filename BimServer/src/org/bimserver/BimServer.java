@@ -714,7 +714,7 @@ public class BimServer {
 			try (DatabaseSession session = bimDatabase.createSession()) {
 				IfcModelInterface pluginBundleVersions = session.getAllOfType(StorePackage.eINSTANCE.getPluginBundleVersion(), OldQuery.getDefault());
 				for (PluginBundleVersion pluginBundleVersion : pluginBundleVersions.getAll(PluginBundleVersion.class)) {
-					if (pluginBundleVersion.getType() == PluginBundleType.MAVEN) {
+					if (pluginBundleVersion.getType() == PluginBundleType.MAVEN || pluginBundleVersion.getType() == PluginBundleType.LOCAL) {
 						PluginBundleVersionIdentifier pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(pluginBundleVersion.getGroupId(), pluginBundleVersion.getArtifactId(), pluginBundleVersion.getVersion());
 						
 						IfcModelInterface pluginDescriptors = session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), OldQuery.getDefault());
