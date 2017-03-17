@@ -19,7 +19,6 @@ public class IssueBuilder {
 
 	public IssueBuilder(IssueContainer issueContainer) {
 		this.issueContainer = issueContainer;
-		
 	}
 	
 	public String getObjectIdentifier(IfcProduct ifcProduct) {
@@ -53,6 +52,27 @@ public class IssueBuilder {
 
 	private Issue create() {
 		Issue issue = new Issue();
+		if (type != null) {
+			issue.setType(type);
+		}
+		if (message != null) {
+			issue.setMessage(message);
+		}
+		if (ifcBuildingStorey != null) {
+			issue.setIfcBuildingStorey(ifcBuildingStorey);
+		}
+		if (is != null) {
+			issue.setIs(is);
+		}
+		if (shouldBe != null) {
+			issue.setShouldBe(shouldBe);
+		}
+		if (object != null) {
+			issue.setObject(object);
+		}
+		if (image != null) {
+			issue.setImage(image);
+		}
 		return issue;
 	}
 
