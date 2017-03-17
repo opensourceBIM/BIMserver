@@ -59,7 +59,16 @@ public enum PluginBundleType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOCAL(2, "LOCAL", "LOCAL");
+	LOCAL(2, "LOCAL", "LOCAL"),
+	/**
+	* The '<em><b>LOCAL DEV</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #LOCAL_DEV_VALUE
+	* @generated
+	* @ordered
+	*/
+	LOCAL_DEV(3, "LOCAL_DEV", "LOCAL_DEV");
 
 	/**
 	 * The '<em><b>MAVEN</b></em>' literal value.
@@ -107,12 +116,27 @@ public enum PluginBundleType implements Enumerator {
 	public static final int LOCAL_VALUE = 2;
 
 	/**
+	 * The '<em><b>LOCAL DEV</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LOCAL DEV</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LOCAL_DEV
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LOCAL_DEV_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Plugin Bundle Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PluginBundleType[] VALUES_ARRAY = new PluginBundleType[] { MAVEN, GITHUB, LOCAL, };
+	private static final PluginBundleType[] VALUES_ARRAY = new PluginBundleType[] { MAVEN, GITHUB, LOCAL, LOCAL_DEV, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Plugin Bundle Type</b></em>' enumerators.
@@ -174,6 +198,8 @@ public enum PluginBundleType implements Enumerator {
 			return GITHUB;
 		case LOCAL_VALUE:
 			return LOCAL;
+		case LOCAL_DEV_VALUE:
+			return LOCAL_DEV;
 		}
 		return null;
 	}

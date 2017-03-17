@@ -1,5 +1,5 @@
 
-‘ü
+·ü
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -1396,10 +1396,11 @@ serviceOid ("F
 STrigger
 STrigger_NEW_REVISION 
 STrigger_NEW_PROJECT
-STrigger_NEW_EXTENDED_DATA*J
+STrigger_NEW_EXTENDED_DATA*p
 SServiceStatus
 SServiceStatus_NEW  
-SServiceStatus_AUTHENTICATED*´
+SServiceStatus_AUTHENTICATED$
+ SServiceStatus_NO_AUTHENTICATION*´
 	SSIPrefix
 SSIPrefix_meter 
 SSIPrefix_attometer

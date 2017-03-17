@@ -67,7 +67,6 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 		}
 		
 		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(32, 32, 1L, TimeUnit.HOURS, new ArrayBlockingQueue<>(100));
-
 		
 		for (PluginBundle pluginBundle : bimServer.getPluginManager().getPluginBundles()) {
 			SPluginBundleVersion installedVersion = pluginBundle.getPluginBundleVersion();
@@ -100,7 +99,7 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 						result.add(sPluginBundle);
 					}});
 			} else {
-				// TODO newly developed plugin on local machine?
+				System.out.println(pluginBundleIdentifier);
 			}
 		}
 

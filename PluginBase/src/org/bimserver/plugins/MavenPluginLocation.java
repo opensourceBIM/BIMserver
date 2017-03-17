@@ -60,8 +60,6 @@ import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.interfaces.objects.SPluginBundleType;
 import org.bimserver.interfaces.objects.SPluginBundleVersion;
-import org.bimserver.interfaces.objects.SPluginInformation;
-import org.bimserver.utils.FakeClosingInputStream;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.eclipse.aether.artifact.Artifact;
 import org.eclipse.aether.artifact.DefaultArtifact;
@@ -288,11 +286,15 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 			Properties properties = new Properties();
 			properties.load(new ByteArrayInputStream(jarContent));
 			String buildDate = properties.getProperty("build.date");
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");;
-			Date parse = dateFormat.parse(buildDate);
-			GregorianCalendar gregorianCalendar = new GregorianCalendar();
-			gregorianCalendar.setTimeInMillis(parse.getTime());
-			return gregorianCalendar;
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+			try {
+				Date parse = dateFormat.parse(buildDate);
+				GregorianCalendar gregorianCalendar = new GregorianCalendar();
+				gregorianCalendar.setTimeInMillis(parse.getTime());
+				return gregorianCalendar;
+			} catch (ParseException e) {
+				return null;
+			}
 		}
 		return null;
 

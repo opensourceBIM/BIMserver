@@ -10,10 +10,8 @@ import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.MavenPluginBundle;
 import org.bimserver.plugins.MavenPluginLocation;
-import org.bimserver.plugins.MavenPluginVersion;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.eclipse.aether.resolution.ArtifactResolutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

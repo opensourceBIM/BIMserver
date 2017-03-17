@@ -473,7 +473,7 @@ public class PluginManager implements PluginManagerInterface {
 			sPluginBundleVersion.setDescription(packageModel.get("description").asText());
 			
 			sPluginBundleVersion.setRepository("local");
-			sPluginBundleVersion.setType(SPluginBundleType.LOCAL);
+			sPluginBundleVersion.setType(SPluginBundleType.LOCAL_DEV);
 			sPluginBundleVersion.setMismatch(false); // TODO
 			
 			sPluginBundle.setInstalledVersion(sPluginBundleVersion);
@@ -640,9 +640,9 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	private SPluginBundleVersion createPluginBundleVersionFromMavenModel(Model model, boolean isLocal) {
+	private SPluginBundleVersion createPluginBundleVersionFromMavenModel(Model model, boolean isLocalDev) {
 		SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
-		sPluginBundleVersion.setType(isLocal ? SPluginBundleType.LOCAL : SPluginBundleType.MAVEN);
+		sPluginBundleVersion.setType(isLocalDev ? SPluginBundleType.LOCAL_DEV : SPluginBundleType.MAVEN);
 		sPluginBundleVersion.setGroupId(model.getGroupId());
 		sPluginBundleVersion.setArtifactId(model.getArtifactId());
 		sPluginBundleVersion.setVersion(model.getVersion());

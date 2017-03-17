@@ -425,6 +425,7 @@ message SAction {
 enum SServiceStatus{
 	SServiceStatus_NEW = 0;
 	SServiceStatus_AUTHENTICATED = 1;
+	SServiceStatus_NO_AUTHENTICATION = 2;
 }
 
 message SNewService {

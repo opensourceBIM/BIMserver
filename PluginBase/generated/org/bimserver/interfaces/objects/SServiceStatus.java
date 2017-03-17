@@ -19,7 +19,8 @@ package org.bimserver.interfaces.objects;
 
 public enum SServiceStatus {
 	NEW(0),
-	AUTHENTICATED(1);
+	AUTHENTICATED(1),
+	NO_AUTHENTICATION(2);
 	int ordinal;
 
 	SServiceStatus(int ordinal) {

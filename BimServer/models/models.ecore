@@ -20601,6 +20601,7 @@
       <eLiterals name="MAVEN"/>
       <eLiterals name="GITHUB" value="1"/>
       <eLiterals name="LOCAL" value="2"/>
+      <eLiterals name="LOCAL_DEV" value="3"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="PluginType">
       <eLiterals name="SERIALIZER"/>
@@ -20703,6 +20704,7 @@
     <eClassifiers xsi:type="ecore:EEnum" name="ServiceStatus">
       <eLiterals name="NEW"/>
       <eLiterals name="AUTHENTICATED" value="1"/>
+      <eLiterals name="NO_AUTHENTICATION" value="2"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NewService">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

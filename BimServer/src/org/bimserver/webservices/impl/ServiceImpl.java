@@ -2269,7 +2269,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			IOUtils.copy(result.getFile().getInputStream(), baos);
 			
-			httpPost.setHeader("Authorization", "Bearer " + newService.getAccessToken());
+			if (newService.getAccessToken() != null) {
+				httpPost.setHeader("Authorization", "Bearer " + newService.getAccessToken());
+			}
 			httpPost.setHeader("Input-Type", newService.getInput());
 			httpPost.setHeader("Output-Type", newService.getOutput());
 			httpPost.setEntity(new ByteArrayEntity(baos.toByteArray()));

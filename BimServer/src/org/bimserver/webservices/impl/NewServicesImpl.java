@@ -50,13 +50,17 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 			List<SNewServiceDescriptor> list = new ArrayList<>();
 			for (JsonNode jsonNode : arryaNode) {
 				SNewServiceDescriptor serviceDescriptor = new SNewServiceDescriptor();
-				serviceDescriptor.setAuthorizationUrl(jsonNode.get("authorizationUrl").asText());
+				
+				if (jsonNode.has("oauth")) {
+					ObjectNode oauth = (ObjectNode)jsonNode.get("oauth");
+					serviceDescriptor.setRegisterUrl(oauth.get("registerUrl").asText());
+					serviceDescriptor.setTokenUrl(oauth.get("tokenUrl").asText());
+					serviceDescriptor.setAuthorizationUrl(oauth.get("authorizationUrl").asText());
+				}
 				serviceDescriptor.setDescription(jsonNode.get("description").asText());
 				serviceDescriptor.setName(jsonNode.get("name").asText());
 				serviceDescriptor.setProvider(jsonNode.get("provider").asText());
-				serviceDescriptor.setRegisterUrl(jsonNode.get("registerUrl").asText());
 				serviceDescriptor.setResourceUrl(jsonNode.get("resourceUrl").asText());
-				serviceDescriptor.setTokenUrl(jsonNode.get("tokenUrl").asText());
 				ArrayNode inputs = (ArrayNode) jsonNode.get("inputs");
 				ArrayNode outputs = (ArrayNode) jsonNode.get("outputs");
 				for (JsonNode inputNode : inputs) {

@@ -50,7 +50,16 @@ public enum ServiceStatus implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AUTHENTICATED(1, "AUTHENTICATED", "AUTHENTICATED");
+	AUTHENTICATED(1, "AUTHENTICATED", "AUTHENTICATED"),
+	/**
+	 * The '<em><b>NO AUTHENTICATION</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	 * @see #NO_AUTHENTICATION_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	NO_AUTHENTICATION(2, "NO_AUTHENTICATION", "NO_AUTHENTICATION");
 
 	/**
 	 * The '<em><b>NEW</b></em>' literal value.
@@ -83,12 +92,27 @@ public enum ServiceStatus implements Enumerator {
 	public static final int AUTHENTICATED_VALUE = 1;
 
 	/**
+	 * The '<em><b>NO AUTHENTICATION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NO AUTHENTICATION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NO_AUTHENTICATION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NO_AUTHENTICATION_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>Service Status</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ServiceStatus[] VALUES_ARRAY = new ServiceStatus[] { NEW, AUTHENTICATED, };
+	private static final ServiceStatus[] VALUES_ARRAY = new ServiceStatus[] { NEW, AUTHENTICATED, NO_AUTHENTICATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Service Status</b></em>' enumerators.
@@ -148,6 +172,8 @@ public enum ServiceStatus implements Enumerator {
 			return NEW;
 		case AUTHENTICATED_VALUE:
 			return AUTHENTICATED;
+		case NO_AUTHENTICATION_VALUE:
+			return NO_AUTHENTICATION;
 		}
 		return null;
 	}
