@@ -161,6 +161,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SAction;
+import org.bimserver.interfaces.objects.SCheckinRevision;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SCompareResult;
@@ -187,6 +188,7 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
+import org.bimserver.interfaces.objects.SStoreExtendedData;
 import org.bimserver.interfaces.objects.STrigger;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSettings;
@@ -2608,8 +2610,18 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			AddNewServiceToProjectDatabaseAction action = new AddNewServiceToProjectDatabaseAction(session, getInternalAccessMethod(), poid, getBimServer().getSConverter().convertFromSObject(sService, session), getBimServer().getSConverter().convertFromSObject(sAction, session), getAuthorization());
-			return session.executeAndCommitAction(action);
+			Action action = null;
+			if (sAction instanceof SCheckinRevision) {
+				action = (Action) session.create(StorePackage.eINSTANCE.getCheckinRevision());
+			} else if (sAction instanceof SStoreExtendedData) {
+				action = (Action) session.create(StorePackage.eINSTANCE.getStoreExtendedData());
+			}
+			getBimServer().getSConverter().convertFromSObject(sAction, action, session);
+			NewService service = (NewService) session.create(StorePackage.eINSTANCE.getNewService());
+			getBimServer().getSConverter().convertFromSObject(sService, service, session);
+			
+			AddNewServiceToProjectDatabaseAction dbAction = new AddNewServiceToProjectDatabaseAction(session, getInternalAccessMethod(), poid, service, action, getAuthorization());
+			return session.executeAndCommitAction(dbAction);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

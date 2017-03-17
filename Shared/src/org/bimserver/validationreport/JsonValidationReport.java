@@ -39,7 +39,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Charsets;
 
-public class JsonValidationReport implements IssueInterface {
+public class JsonValidationReport implements IssueContainerSerializer {
 
 	public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private final List<Item> items = new ArrayList<Item>();
@@ -152,7 +152,7 @@ public class JsonValidationReport implements IssueInterface {
 	}
 
 	@Override
-	public byte[] getBytes() {
+	public byte[] getBytes(Validation) {
 		return toJson(OBJECT_MAPPER).toString().getBytes(Charsets.UTF_8);
 	}
 
@@ -187,5 +187,11 @@ public class JsonValidationReport implements IssueInterface {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public void reset() {
+		items.clear();
+		checkResults.clear();
 	}
 }

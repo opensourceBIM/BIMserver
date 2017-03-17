@@ -155,7 +155,12 @@ public class RootServlet extends HttpServlet {
 					requestUri = "/index.html";
 				}
 				String modulePath = requestUri;
-				if (modulePath.startsWith("/apps/")) {
+				if (modulePath.startsWith("/apps")) {
+					if (modulePath.equals("/apps") || modulePath.equals("/apps/")) {
+						response.setStatus(404);
+						response.getWriter().println("Nothing here, go up one level to list all apps");
+						return;
+					}
 					modulePath = modulePath.substring(6);
 					if (modulePath.indexOf("/", 1) != -1) {
 						modulePath = modulePath.substring(0, modulePath.indexOf("/", 1));
