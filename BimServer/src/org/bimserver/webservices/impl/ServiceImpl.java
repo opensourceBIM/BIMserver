@@ -2270,6 +2270,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			IOUtils.copy(result.getFile().getInputStream(), baos);
 			
 			httpPost.setHeader("Authorization", "Bearer " + newService.getAccessToken());
+			httpPost.setHeader("Input-Type", newService.getInput());
+			httpPost.setHeader("Output-Type", newService.getOutput());
 			httpPost.setEntity(new ByteArrayEntity(baos.toByteArray()));
 			CloseableHttpResponse response = httpclient.execute(httpPost);
 			
