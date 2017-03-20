@@ -1272,8 +1272,7 @@ public class PluginManager implements PluginManagerInterface {
 							LOGGER.info("Skipping strict dependency checking for dependency " + dependency.getArtifactId());
 						}
 					} else {
-						if (pluginBundleIdentifier.getGroupId().equals("org.opensourcebim")) {
-							throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
+						if (dependency.getGroupId().equals("org.opensourcebim") && (dependency.getArtifactId().equals("shared") || dependency.getArtifactId().equals("pluginbase"))) {
 						} else {
 							MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(model.getRepositories().get(0).getUrl(), dependency.getGroupId(), dependency.getArtifactId());
 							

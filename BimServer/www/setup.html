@@ -474,9 +474,9 @@ function Setup(cd, address) {
 	
 	this.installPluginBundle = function(requiredPlugins, callback) {
 		var next = Object.keys(requiredPlugins)[0];
+		o.logInfo("Installing " + next + "...");
 		Global.api.call("PluginInterface", "getPluginBundle", requiredPlugins[next], function(pluginBundle){
 			var latestVersion = pluginBundle.latestVersion;
-			o.logInfo("Installing " + pluginBundle.name + "...");
 			Global.api.call("PluginInterface", "getPluginInformation", {
 				repository: latestVersion.repository,
 				groupId: latestVersion.groupId,
