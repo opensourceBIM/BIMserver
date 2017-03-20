@@ -43,7 +43,7 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 	@Override
 	public List<SNewServiceDescriptor> listAllServiceDescriptors() throws ServerException, UserException {
 		try {
-			String data = NetUtils.getContent(new URL("https://raw.githubusercontent.com/opensourceBIM/BIMserver-Repository/master/servicesnew.json"), 5000);
+			String data = NetUtils.getContent(new URL(getBimServer().getServerSettingsCache().getServerSettings().getServiceRepositoryUrl() + "/servicesnew.json"), 5000);
 			ObjectMapper objectMapper = new ObjectMapper();
 			ObjectNode servicesJson = objectMapper.readValue(data, ObjectNode.class);
 			ArrayNode arryaNode = (ArrayNode) servicesJson.get("services");
@@ -89,11 +89,12 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 					PluginDescriptor pluginDescriptor = session.get(pluginConfiguration.getPluginDescriptorId(), OldQuery.getDefault());
 					Plugin plugin = getBimServer().getPluginManager().getPlugin(pluginDescriptor.getIdentifier(), true);
 					String outputFormat = null;
-					if (plugin instanceof SerializerPlugin) {
-						outputFormat = ((SerializerPlugin)plugin).getOutputFormat(Schema.valueOf(project.getSchema().toUpperCase()));
-					} else if (plugin instanceof StreamingSerializerPlugin) {
+					
+					// TODO For now only streaming serializers
+					if (plugin instanceof StreamingSerializerPlugin) {
 						outputFormat = ((StreamingSerializerPlugin)plugin).getOutputFormat(Schema.valueOf(project.getSchema().toUpperCase()));
 					}
+
 					if (outputFormat != null) {
 						SFormatSerializerMap map = outputs.get(outputFormat);
 						if (map == null) {

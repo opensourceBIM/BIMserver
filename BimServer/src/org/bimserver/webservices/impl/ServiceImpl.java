@@ -42,6 +42,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.activation.DataHandler;
+import javax.activation.DataSource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -49,7 +50,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.collections.comparators.ComparatorChain;
-import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -243,6 +243,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.StreamingDeserializer;
 import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.plugins.serializers.ExtendedDataSource;
 import org.bimserver.plugins.serializers.MessagingSerializerPlugin;
 import org.bimserver.plugins.serializers.MessagingStreamingSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -2230,7 +2231,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			
 			PackageMetaData pmd = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 			Query query = DefaultQueries.all(pmd);
-			Long topicId = download(Collections.singleton(roid), new JsonQueryObjectModelConverter(pmd).toJson(query).toString(), serializer.getOid(), true);
+			Long topicId = download(Collections.singleton(roid), new JsonQueryObjectModelConverter(pmd).toJson(query).toString(), serializer.getOid(), false);
 
 			CloseableHttpClient httpclient = HttpClients.createDefault();
 			HttpPost httpPost = new HttpPost(url);
@@ -2269,7 +2270,14 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			IOUtils.copy(result.getFile().getInputStream(), baos);
+			LOGGER.info("Starting serialization");
+			
+			DataSource datasource = result.getFile().getDataSource();
+			if (datasource instanceof ExtendedDataSource) {
+				((ExtendedDataSource) datasource).writeToOutputStream(baos, null);
+			}
+			
+			LOGGER.info("Serialization done");
 			
 			if (newService.getAccessToken() != null) {
 				httpPost.setHeader("Authorization", "Bearer " + newService.getAccessToken());
@@ -2292,6 +2300,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				}
 				
 				byte[] responseBytes = ByteStreams.toByteArray(response.getEntity().getContent());
+				LOGGER.info(new String(responseBytes, Charsets.UTF_8));
 				
 				Action action = newService.getAction();
 				if (action instanceof StoreExtendedData) {
