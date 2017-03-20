@@ -236,7 +236,17 @@ public class NewRevisionNotification extends Notification {
 
 	public void triggerNewRevision(DatabaseSession session, NotificationsManager notificationsManager, final BimServer bimServer, String siteAddress, Project project, final long roid, Trigger trigger, final NewService service) throws UserException, ServerException {
 		ServiceMap serviceMap = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL);
-		serviceMap.get(ServiceInterface.class).triggerRevisionService(roid, service.getOid());
+		Thread thread = new Thread(){
+			@Override
+			public void run() {
+				try {
+					serviceMap.get(ServiceInterface.class).triggerRevisionService(roid, service.getOid());
+				} catch (Exception e) {
+					LOGGER.error("", e);
+				}
+			}
+		};
+		thread.start();
 	}
 	
 	public void triggerNewRevision(DatabaseSession session, NotificationsManager notificationsManager, final BimServer bimServer, String siteAddress, Project project, final long roid, Trigger trigger, final Service service) throws UserException, ServerException {
