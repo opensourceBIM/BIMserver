@@ -2298,6 +2298,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					int indexOf = contentDisposition.indexOf("filename=") + 10;
 					filename = contentDisposition.substring(indexOf, contentDisposition.indexOf("\"", indexOf + 1));
 				}
+				Header dataTitleHeader = response.getFirstHeader("Data-Title");
+				String dataTitle = newService.getName() + " Results";
+				if (dataTitleHeader != null) {
+					dataTitle = dataTitleHeader.getValue();
+				}
 				
 				byte[] responseBytes = ByteStreams.toByteArray(response.getEntity().getContent());
 				LOGGER.info(new String(responseBytes, Charsets.UTF_8));
@@ -2307,13 +2312,14 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					SFile file = new SFile();
 					file.setData(responseBytes);
 					file.setFilename(filename);
+					file.setSize(responseBytes.length);
 					file.setMime(response.getHeaders("Content-Type")[0].getValue());
 					Long fileId = uploadFile(file);
 					
 					SExtendedData extendedData = new SExtendedData();
 					extendedData.setAdded(new Date());
 					extendedData.setRevisionId(roid);
-					extendedData.setTitle(newService.getName() + " Results");
+					extendedData.setTitle(dataTitle);
 					extendedData.setSize(responseBytes.length);
 					extendedData.setFileId(fileId);
 					extendedData.setSchemaId(getExtendedDataSchemaByName(newService.getOutput()).getOid());
@@ -2325,7 +2331,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					SDeserializerPluginConfiguration deserializer = getSuggestedDeserializerForExtension(extension, targetProject.getOid());
 					
 					Long checkingTopicId = initiateCheckin(targetProject.getOid(), deserializer.getOid());
-					checkinInitiatedInternal(checkingTopicId, targetProject.getOid(), "Result of service", deserializer.getOid(), (long)responseBytes.length, filename, new DataHandler(new ByteArrayDataSource(responseBytes, "ifc")), false, true, newService.getOid());
+					checkinInitiatedInternal(checkingTopicId, targetProject.getOid(), dataTitle, deserializer.getOid(), (long)responseBytes.length, filename, new DataHandler(new ByteArrayDataSource(responseBytes, "ifc")), false, true, newService.getOid());
 				}
 			} else {
 				throw new UserException("Remote service responded with a " + response.getStatusLine());
