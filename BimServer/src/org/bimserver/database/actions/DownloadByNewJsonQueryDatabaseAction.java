@@ -168,6 +168,8 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 							} else if (r instanceof HashMapWrappedVirtualObject) {
 								HashMapWrappedVirtualObject hashMapWrappedVirtualObject = (HashMapWrappedVirtualObject)r;
 								IdEObject embeddedObject = ifcModel.create(hashMapWrappedVirtualObject.eClass());
+								((IdEObjectImpl)embeddedObject).setOid(-1);
+								((IdEObjectImpl)embeddedObject).setPid(revision.getProject().getId());
 								idEObject.eSet(eReference, embeddedObject);
 								for (EAttribute eAttribute : hashMapWrappedVirtualObject.eClass().getEAllAttributes()) {
 									embeddedObject.eSet(eAttribute, hashMapWrappedVirtualObject.eGet(eAttribute));
