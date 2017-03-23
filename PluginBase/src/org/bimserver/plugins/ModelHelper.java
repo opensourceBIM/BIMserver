@@ -18,7 +18,6 @@ package org.bimserver.plugins;
  *****************************************************************************/
 
 import java.util.Collections;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -185,6 +184,7 @@ public class ModelHelper {
 			return converted.get(original);
 		}
 		IdEObject newObject = (IdEObject) objectFactory.create(original.eClass());
+		((IdEObjectImpl)newObject).setPid(original.getPid());
 		((IdEObjectImpl)newObject).setLoadingState(State.LOADED);
 		long oid = -1;
 		if (keepOriginalOids) {
@@ -203,7 +203,11 @@ public class ModelHelper {
 		}
 		converted.put(original, newObject);
 		if (newObject.eClass().getEAnnotation("wrapped") == null) {
-			targetModel.add(newObject.getOid(), newObject);
+			try {
+				targetModel.add(newObject.getOid(), newObject);
+			} catch (ObjectAlreadyStoredException e) {
+				System.out.println(e.getAlreadyStored().getPid() + " / " + e.getNewToStore().getPid());
+			}
 		}
 
 		if (inverseFixes.containsKey(original.getOid())) {

@@ -62,6 +62,7 @@ import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralActivityAssignmentSelect;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralItem;
 import org.bimserver.models.ifc2x3tc1.IfcTerminatorSymbol;
+import org.bimserver.plugins.ObjectAlreadyStoredException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -375,7 +376,7 @@ public abstract class IfcModel implements IfcModelInterface {
 			if (objects.containsKey(oid)) {
 				if (!ignoreDuplicateOids) {
 					if (objects.get(oid) != eObject) {
-						throw new IfcModelInterfaceException("Oid already stored: " + oid + " " + eObject + " (old: " + objects.get(oid));
+						throw new ObjectAlreadyStoredException("Oid already stored: " + oid + " " + eObject + " (old: " + objects.get(oid) + ")", objects.get(oid), eObject);
 					}
 				}
 			} else {
