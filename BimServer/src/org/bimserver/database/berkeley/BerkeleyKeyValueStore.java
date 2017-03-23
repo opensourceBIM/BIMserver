@@ -538,7 +538,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 					long oid = keyBuffer.getLong();
 					int rid = -keyBuffer.getInt();
 					LOGGER.warn("Key exists: pid: " + pid + ", oid: " + oid + ", rid: " + rid + databaseSession.getEClassForOid(oid).getName());
-//					throw new BimserverConcurrentModificationDatabaseException("Key exists: pid: " + pid + ", oid: " + oid + ", rid: " + rid);
+					throw new BimserverConcurrentModificationDatabaseException("Key exists: pid: " + pid + ", oid: " + oid + ", rid: " + rid);
 				} else {
 					LOGGER.warn("Key exists");
 //					throw new BimserverConcurrentModificationDatabaseException("Key exists: " );
