@@ -107,9 +107,14 @@ import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.eclipse.aether.artifact.Artifact;
 import org.eclipse.aether.artifact.DefaultArtifact;
 import org.eclipse.aether.collection.CollectRequest;
+import org.eclipse.aether.collection.CollectResult;
 import org.eclipse.aether.collection.DependencyCollectionException;
 import org.eclipse.aether.graph.Dependency;
 import org.eclipse.aether.graph.DependencyNode;
+import org.eclipse.aether.graph.DependencyVisitor;
+import org.eclipse.aether.resolution.ArtifactDescriptorException;
+import org.eclipse.aether.resolution.ArtifactDescriptorRequest;
+import org.eclipse.aether.resolution.ArtifactDescriptorResult;
 import org.eclipse.aether.resolution.ArtifactRequest;
 import org.eclipse.aether.resolution.ArtifactResolutionException;
 import org.eclipse.aether.resolution.ArtifactResult;
@@ -203,6 +208,154 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
+	private PublicFindClassClassLoader loadDependencies(Set<org.bimserver.plugins.Dependency> bimServerDependencies, Model model, PublicFindClassClassLoader previous) throws FileNotFoundException, IOException {
+		LOGGER.info("Loading " + model.getGroupId() + ":" + model.getArtifactId());
+		LOGGER.info("");
+
+		List<org.apache.maven.model.Dependency> dependencies = model.getDependencies();
+		Iterator<org.apache.maven.model.Dependency> it = dependencies.iterator();
+
+		Path workspaceDir = Paths.get("..");
+		bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("PluginBase/target/classes")));
+		bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("Shared/target/classes")));
+
+		while (it.hasNext()) {
+			org.apache.maven.model.Dependency depend = it.next();
+			try {
+				if (depend.getGroupId().equals("org.opensourcebim") && (depend.getArtifactId().equals("shared") || depend.getArtifactId().equals("pluginbase"))) {
+					// Skip this one, because we have already
+					// TODO we might want to check the version though
+					continue;
+				}
+				if (depend.isOptional() || "test".equals(depend.getScope())) {
+					continue;
+				}
+				Dependency dependency2 = new Dependency(new DefaultArtifact(depend.getGroupId() + ":" + depend.getArtifactId() + ":jar:" + depend.getVersion()), "compile");
+				DelegatingClassLoader depDelLoader = new DelegatingClassLoader(previous);
+
+				if (!dependency2.getArtifact().isSnapshot()) {
+					if (dependency2.getArtifact().getFile() != null) {
+						bimServerDependencies.add(new org.bimserver.plugins.Dependency(dependency2.getArtifact().getFile().toPath()));
+						loadDependencies(dependency2.getArtifact().getFile().toPath(), depDelLoader);
+					} else {
+						ArtifactRequest request = new ArtifactRequest();
+						request.setArtifact(dependency2.getArtifact());
+						request.setRepositories(mavenPluginRepository.getRepositories());
+						try {
+							ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+							if (resolveArtifact.getArtifact().getFile() != null) {
+								bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
+								loadDependencies(resolveArtifact.getArtifact().getFile().toPath(), depDelLoader);
+							} else {
+								// TODO error?
+							}
+						} catch (ArtifactResolutionException e) {
+							e.printStackTrace();
+						}
+					}
+				} else {
+					// Snapshot projects linked in Eclipse
+					ArtifactRequest request = new ArtifactRequest();
+					if ((!"test".equals(dependency2.getScope()) && !dependency2.getArtifact().isSnapshot())) {
+						request.setArtifact(dependency2.getArtifact());
+						request.setRepositories(mavenPluginRepository.getLocalRepositories());
+						try {
+							ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+							if (resolveArtifact.getArtifact().getFile() != null) {
+								bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
+								loadDependencies(resolveArtifact.getArtifact().getFile().toPath(), depDelLoader);
+							} else {
+								// TODO error?
+							}
+						} catch (Exception e) {
+							LOGGER.info(dependency2.getArtifact().toString());
+							e.printStackTrace();
+						}
+						
+//					bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
+					}
+				}
+				ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
+				descriptorRequest.setArtifact( dependency2.getArtifact() );
+				descriptorRequest.setRepositories(mavenPluginRepository.getRepositories() );
+				ArtifactDescriptorResult descriptorResult = mavenPluginRepository.getSystem().readArtifactDescriptor( mavenPluginRepository.getSession(), descriptorRequest );
+				
+				CollectRequest collectRequest = new CollectRequest();
+				collectRequest.setRootArtifact(descriptorResult.getArtifact());
+				collectRequest.setDependencies( descriptorResult.getDependencies() );
+				collectRequest.setManagedDependencies( descriptorResult.getManagedDependencies() );
+				collectRequest.setRepositories( descriptorResult.getRepositories() );
+				DependencyNode node = mavenPluginRepository.getSystem().collectDependencies(mavenPluginRepository.getSession(), collectRequest).getRoot();
+
+				DependencyRequest dependencyRequest = new DependencyRequest();
+				dependencyRequest.setRoot(node);
+				
+				CollectResult collectResult = mavenPluginRepository.getSystem().collectDependencies( mavenPluginRepository.getSession(), collectRequest );
+
+				PreorderNodeListGenerator nlg = new PreorderNodeListGenerator();
+		        collectResult.getRoot().accept(new ConsoleDependencyGraphDumper());
+		        collectResult.getRoot().accept(nlg);
+				
+				try {
+					mavenPluginRepository.getSystem().resolveDependencies(mavenPluginRepository.getSession(), dependencyRequest);
+				} catch (DependencyResolutionException e) {
+					// Ignore
+				}
+
+				for (DependencyNode dependencyNode : nlg.getNodes()) {
+					ArtifactRequest newRequest = new ArtifactRequest(dependencyNode);
+					newRequest.setRepositories(mavenPluginRepository.getRepositories());
+					ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), newRequest);
+					
+					Artifact artifact = resolveArtifact.getArtifact();
+					Path jarFile = Paths.get(artifact.getFile().getAbsolutePath());
+
+					loadDependencies(jarFile, depDelLoader);
+					
+					Artifact versionArtifact = new DefaultArtifact(artifact.getGroupId(), artifact.getArtifactId(), "pom", artifact.getVersion());
+
+					ArtifactRequest request = new ArtifactRequest();
+					request.setArtifact(versionArtifact);
+					request.setRepositories(mavenPluginRepository.getRepositories());
+	
+//					try {
+//						ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+//						File depPomFile = resolveArtifact.getArtifact().getFile();
+//						if (depPomFile != null) {
+//							MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+//							Model depModel = null;
+//							try (FileReader reader = new FileReader(depPomFile)) {
+//								try {
+//									depModel = mavenreader.read(reader);
+//								} catch (XmlPullParserException e) {
+//									e.printStackTrace();
+//								}
+//							}
+//							previous = loadDependencies(bimServerDependencies, depModel, previous);
+//						} else {
+//							LOGGER.info("Artifact not found " + versionArtifact);
+//						}
+//					} catch (ArtifactResolutionException e1) {
+//						LOGGER.error(e1.getMessage());
+//					}
+
+//					EclipsePluginClassloader depLoader = new EclipsePluginClassloader(depDelLoader, projectRoot);
+
+					bimServerDependencies.add(new org.bimserver.plugins.Dependency(jarFile));
+
+				}
+				previous = depDelLoader;
+			} catch (DependencyCollectionException e) {
+				e.printStackTrace();
+			} catch (ArtifactDescriptorException e2) {
+				e2.printStackTrace();
+			} catch (ArtifactResolutionException e) {
+				e.printStackTrace();
+			}
+		}
+		return previous;
+	}
+	
 	public PluginBundle loadJavaProject(Path projectRoot, Path pomFile, Path pluginFolder, PluginDescriptor pluginDescriptor) throws PluginException, FileNotFoundException, IOException, XmlPullParserException {
 		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 		Model model = null;
@@ -235,99 +388,7 @@ public class PluginManager implements PluginManagerInterface {
 
 		pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(new PluginBundleIdentifier(model.getGroupId(), model.getArtifactId()), model.getVersion());
 		
-		List<org.apache.maven.model.Dependency> dependencies = model.getDependencies();
-		Iterator<org.apache.maven.model.Dependency> it = dependencies.iterator();
-
-		Path workspaceDir = Paths.get("..");
-		bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("PluginBase/target/classes")));
-		bimServerDependencies.add(new org.bimserver.plugins.Dependency(workspaceDir.resolve("Shared/target/classes")));
-
-		while (it.hasNext()) {
-			org.apache.maven.model.Dependency depend = it.next();
-			try {
-				if (depend.getGroupId().equals("org.opensourcebim") && (depend.getArtifactId().equals("shared") || depend.getArtifactId().equals("pluginbase"))) {
-					// Skip this one, because we have already
-					// TODO we might want to check the version though
-					continue;
-				}
-				Dependency dependency2 = new Dependency(new DefaultArtifact(depend.getGroupId() + ":" + depend.getArtifactId() + ":jar:" + depend.getVersion()), "compile");
-
-				if (!dependency2.getArtifact().isSnapshot()) {
-					if (dependency2.getArtifact().getFile() != null) {
-						bimServerDependencies.add(new org.bimserver.plugins.Dependency(dependency2.getArtifact().getFile().toPath()));
-					} else {
-						ArtifactRequest request = new ArtifactRequest();
-						request.setArtifact(dependency2.getArtifact());
-						request.setRepositories(mavenPluginRepository.getRepositories());
-						try {
-							ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
-							if (resolveArtifact.getArtifact().getFile() != null) {
-								bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
-							} else {
-								// TODO error?
-							}
-						} catch (ArtifactResolutionException e) {
-							e.printStackTrace();
-						}
-					}
-				} else {
-					// Snapshot projects linked in Eclipse
-					ArtifactRequest request = new ArtifactRequest();
-					if ((!"test".equals(dependency2.getScope()) && !dependency2.getArtifact().isSnapshot())) {
-						request.setArtifact(dependency2.getArtifact());
-						request.setRepositories(mavenPluginRepository.getLocalRepositories());
-						try {
-							ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
-							if (resolveArtifact.getArtifact().getFile() != null) {
-								bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
-							} else {
-								// TODO error?
-							}
-						} catch (Exception e) {
-							LOGGER.info(dependency2.getArtifact().toString());
-							e.printStackTrace();
-						}
-						
-//					bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
-					}
-				}
-				
-				CollectRequest collectRequest = new CollectRequest();
-				collectRequest.setRoot(dependency2);
-				DependencyNode node = mavenPluginRepository.getSystem().collectDependencies(mavenPluginRepository.getSession(), collectRequest).getRoot();
-
-				DependencyRequest dependencyRequest = new DependencyRequest();
-				dependencyRequest.setRoot(node);
-
-				try {
-					mavenPluginRepository.getSystem().resolveDependencies(mavenPluginRepository.getSession(), dependencyRequest);
-				} catch (DependencyResolutionException e) {
-					// Ignore
-				}
-
-				PreorderNodeListGenerator nlg = new PreorderNodeListGenerator();
-				node.accept(nlg);
-
-				DelegatingClassLoader depDelLoader = new DelegatingClassLoader(previous);
-				for (Artifact artifact : nlg.getArtifacts(false)) {
-					Path jarFile = Paths.get(artifact.getFile().getAbsolutePath());
-
-					LOGGER.debug("Loading " + jarFile);
-
-					// Path path =
-					// projectRoot.getParent().resolve(nlg.getClassPath());
-
-					loadDependencies(jarFile, depDelLoader);
-//					EclipsePluginClassloader depLoader = new EclipsePluginClassloader(depDelLoader, projectRoot);
-
-					bimServerDependencies.add(new org.bimserver.plugins.Dependency(jarFile));
-
-				}
-				previous = depDelLoader;
-			} catch (DependencyCollectionException e) {
-				e.printStackTrace();
-			}
-		}
+		previous = loadDependencies(bimServerDependencies, model, previous);
 
 		delegatingClassLoader.add(previous);
 		// Path libFolder = projectRoot.resolve("lib");

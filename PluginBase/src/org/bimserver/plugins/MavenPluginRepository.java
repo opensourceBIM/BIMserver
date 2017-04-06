@@ -51,6 +51,11 @@ public class MavenPluginRepository {
 
 		repositories.add(remoteRepository);
 
+		builder = new RemoteRepository.Builder("github", "default", "https://rubendel.github.io/Maven");
+		builder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_IGNORE));
+		RemoteRepository remoteRepository2 = builder.build();
+		repositories.add(remoteRepository2);
+
 		if (defaultLocalRepositoryLocation != null) {
 			RemoteRepository.Builder localRepoBuilder = new RemoteRepository.Builder("local", "default", "file://" + defaultLocalRepositoryLocation);
 			localRepoBuilder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
