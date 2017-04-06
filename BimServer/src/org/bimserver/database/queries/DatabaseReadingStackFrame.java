@@ -112,6 +112,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			for (TypeDef filterClass : include.getTypes()) {
 				if (!filterClass.geteClass().isSuperTypeOf(currentObject.eClass())) {
 //					System.out.println(filterClass.getName() + " / " + currentObject.eClass().getName());
+					// TODO too many times queries are spending time here
 					return;
 				}
 			}

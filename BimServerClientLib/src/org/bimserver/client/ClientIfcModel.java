@@ -322,9 +322,9 @@ public class ClientIfcModel extends IfcModel {
 			for (IdEObject idEObject : getObjects().values()) {
 				if (idEObject instanceof IfcProduct) {
 					IfcProduct ifcProduct = (IfcProduct)idEObject;
-					queryPart.addOid(idEObject.getOid());
 					GeometryInfo geometry = ifcProduct.getGeometry();
 					if (geometry != null) {
+						queryPart.addOid(geometry.getOid());
 						geometryInfoOidToOid.put(geometry.getOid(), ifcProduct.getOid());
 					}
 				}
@@ -333,12 +333,12 @@ public class ClientIfcModel extends IfcModel {
 				return;
 			}
 			EClass geometryInfoClass = getPackageMetaData().getEClassIncludingDependencies("GeometryInfo");
-			queryPart.addType(geometryInfoClass, false);
 			Include include = queryPart.createInclude();
 			include.addType(geometryInfoClass, false);
 			include.addField("data");
 
 			long serializerOid = bimServerClient.getBinaryGeometryMessagingStreamingSerializerOid();
+			
 			long topicId = bimServerClient.query(query, roid, serializerOid);
 			// TODO use websocket notifications
 			waitForDonePreparing(topicId);
