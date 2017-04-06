@@ -57,6 +57,7 @@ import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.plugins.ModelHelper;
+import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
@@ -349,7 +350,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		}
 
 		@SuppressWarnings("unused")
-		private void createBoundingBoxGeometry(IfcBoundingBox ifcBoundingBox, IdEObject ifcProduct) throws IfcModelInterfaceException, BimserverDatabaseException {
+		private void createBoundingBoxGeometry(IfcBoundingBox ifcBoundingBox, IdEObject ifcProduct) throws IfcModelInterfaceException, BimserverDatabaseException, ObjectAlreadyExistsException {
 			System.out.println("bb " + ifcProduct.getOid());
 			GeometryInfo geometryInfo = model.createAndAdd(GeometryPackage.eINSTANCE.getGeometryInfo(), databaseSession.newOid(GeometryPackage.eINSTANCE.getGeometryInfo()));
 			databaseSession.store(geometryInfo, pid, rid);
@@ -636,7 +637,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		}
 	}
 
-	private Vector3f createVector3f(PackageMetaData packageMetaData, IfcModelInterface model, double defaultValue, DatabaseSession session, boolean store, int pid, int rid) throws BimserverDatabaseException, IfcModelInterfaceException {
+	private Vector3f createVector3f(PackageMetaData packageMetaData, IfcModelInterface model, double defaultValue, DatabaseSession session, boolean store, int pid, int rid) throws BimserverDatabaseException, IfcModelInterfaceException, ObjectAlreadyExistsException {
 		Vector3f vector3f = null;
 		if (store) {
 			vector3f = model.createAndAdd(GeometryPackage.eINSTANCE.getVector3f(), session.newOid(GeometryPackage.eINSTANCE.getVector3f()));

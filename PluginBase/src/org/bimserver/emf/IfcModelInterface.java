@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
+import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -153,16 +154,18 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	 * @param oid The given OID
 	 * @param newObject The new object to add to this model
 	 * @throws IfcModelInterfaceException
+	 * @throws ObjectAlreadyStoredException 
 	 */
-	void add(long oid, IdEObject newObject) throws IfcModelInterfaceException;
+	void add(long oid, IdEObject newObject) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
 	
 	/**
 	 * Add an object to this model with an explicit OID, allow the object to exist in multiple models, only use this method in BIMserver internal code
 	 * @param oid The given OID
 	 * @param newObject The new object to add to this model
 	 * @throws IfcModelInterfaceException
+	 * @throws ObjectAlreadyStoredException 
 	 */
-	void addAllowMultiModel(long oid, IdEObject newObject) throws IfcModelInterfaceException;
+	void addAllowMultiModel(long oid, IdEObject newObject) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
 
 	/**
 	 * Remove an object
@@ -204,8 +207,8 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 
 	long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException;
 
-	<T extends IdEObject> T create(Class<T> class1, OidProvider oidProvider) throws IfcModelInterfaceException;
-	<T extends IdEObject> T create(EClass eClass, OidProvider oidProvider) throws IfcModelInterfaceException;
+	<T extends IdEObject> T create(Class<T> class1, OidProvider oidProvider) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
+	<T extends IdEObject> T create(EClass eClass, OidProvider oidProvider) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
 	
 	PackageMetaData getPackageMetaData();
 	Map<Integer, Long> getPidRoidMap();
@@ -216,7 +219,7 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 
 	<T extends IdEObject> T create(EClass eClass, long oid) throws IfcModelInterfaceException;
 
-	<T extends IdEObject> T createAndAdd(Class<T> class1) throws IfcModelInterfaceException;
+	<T extends IdEObject> T createAndAdd(Class<T> class1) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
 
 	boolean containsNoFetch(long oid);
 
@@ -228,7 +231,7 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 
 	void query(ObjectNode query);
 
-	<T extends IdEObject> T createAndAdd(EClass eClass, long oid) throws IfcModelInterfaceException;
+	<T extends IdEObject> T createAndAdd(EClass eClass, long oid) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
 
-	<T extends IdEObject> T createAndAdd(EClass eClass) throws IfcModelInterfaceException;
+	<T extends IdEObject> T createAndAdd(EClass eClass) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
 }

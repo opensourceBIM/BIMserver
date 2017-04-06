@@ -147,7 +147,7 @@ public class ModelHelper {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void copyDecomposes(IdEObject ifcObjectDefinition, IdEObject ownerHistory) throws IfcModelInterfaceException {
+	public void copyDecomposes(IdEObject ifcObjectDefinition, IdEObject ownerHistory) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		IdEObject newObjectDefinition = copy(ifcObjectDefinition, false, skipRepresentation);
 		EStructuralFeature decomposesFeature = newObjectDefinition.eClass().getEStructuralFeature("Decomposes");
 		for (IdEObject ifcRelDecomposes : (List<IdEObject>)ifcObjectDefinition.eGet(decomposesFeature)) {
@@ -203,11 +203,7 @@ public class ModelHelper {
 		}
 		converted.put(original, newObject);
 		if (newObject.eClass().getEAnnotation("wrapped") == null) {
-			try {
-				targetModel.add(newObject.getOid(), newObject);
-			} catch (ObjectAlreadyStoredException e) {
-				System.out.println(e.getAlreadyStored().getPid() + " / " + e.getNewToStore().getPid());
-			}
+			targetModel.add(newObject.getOid(), newObject);
 		}
 
 		if (inverseFixes.containsKey(original.getOid())) {

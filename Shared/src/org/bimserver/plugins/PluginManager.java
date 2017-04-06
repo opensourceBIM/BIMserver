@@ -293,7 +293,7 @@ public class PluginManager implements PluginManagerInterface {
 				CollectResult collectResult = mavenPluginRepository.getSystem().collectDependencies( mavenPluginRepository.getSession(), collectRequest );
 
 				PreorderNodeListGenerator nlg = new PreorderNodeListGenerator();
-		        collectResult.getRoot().accept(new ConsoleDependencyGraphDumper());
+//		        collectResult.getRoot().accept(new ConsoleDependencyGraphDumper());
 		        collectResult.getRoot().accept(nlg);
 				
 				try {

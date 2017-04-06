@@ -32,6 +32,7 @@ import org.bimserver.ifc.TracingGarbageCollector;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
+import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
@@ -338,7 +339,7 @@ public class RevisionMerger {
 		}
 	}
 
-	private void copyAttributesGuidObjectsAndAddNewObjects() throws IfcModelInterfaceException {
+	private void copyAttributesGuidObjectsAndAddNewObjects() throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		for (IdEObject idEObject : newModel.getValues()) {
 			if (idEObject instanceof IfcRoot) {
 				IfcRoot ifcRoot = (IfcRoot) idEObject;

@@ -62,7 +62,7 @@ import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralActivityAssignmentSelect;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralItem;
 import org.bimserver.models.ifc2x3tc1.IfcTerminatorSymbol;
-import org.bimserver.plugins.ObjectAlreadyStoredException;
+import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -356,17 +356,17 @@ public abstract class IfcModel implements IfcModelInterface {
 		return unidentifiedObjects;
 	}
 
-	public void add(long oid, IdEObject eObject) throws IfcModelInterfaceException {
+	public void add(long oid, IdEObject eObject) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		add(oid, eObject, false, false);
 	}
 
 	@Override
-	public void addAllowMultiModel(long oid, IdEObject eObject) throws IfcModelInterfaceException {
+	public void addAllowMultiModel(long oid, IdEObject eObject) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		add(oid, eObject, false, true);
 	}
 
 	@SuppressWarnings("unchecked")
-	private void add(long oid, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException {
+	private void add(long oid, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		if (((IdEObjectImpl) eObject).hasModel() && !allowMultiModel && ((IdEObjectImpl) eObject).getModel() != this) {
 			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel() + ", not this " + this);
 		}
@@ -376,7 +376,7 @@ public abstract class IfcModel implements IfcModelInterface {
 			if (objects.containsKey(oid)) {
 				if (!ignoreDuplicateOids) {
 					if (objects.get(oid) != eObject) {
-						throw new ObjectAlreadyStoredException("Oid already stored: " + oid + " " + eObject + " (old: " + objects.get(oid) + ")", objects.get(oid), eObject);
+//						throw new ObjectAlreadyExistsException("Oid already stored: " + oid + " " + eObject + " (old: " + objects.get(oid) + ")", objects.get(oid), eObject);
 					}
 				}
 			} else {
@@ -871,7 +871,7 @@ public abstract class IfcModel implements IfcModelInterface {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEObject> T createAndAdd(Class<T> clazz) throws IfcModelInterfaceException {
+	public <T extends IdEObject> T createAndAdd(Class<T> clazz) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		EClass eClass = packageMetaData.getEClass(clazz);
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		object.setLoadingState(State.LOADED);
@@ -882,7 +882,7 @@ public abstract class IfcModel implements IfcModelInterface {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEObject> T createAndAdd(EClass eClass) throws IfcModelInterfaceException {
+	public <T extends IdEObject> T createAndAdd(EClass eClass) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		object.setLoadingState(State.LOADED);
 		long oid = oidCounter++;
@@ -901,7 +901,7 @@ public abstract class IfcModel implements IfcModelInterface {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEObject> T createAndAdd(EClass eClass, long oid) throws IfcModelInterfaceException {
+	public <T extends IdEObject> T createAndAdd(EClass eClass, long oid) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		object.setModel(this);
 		object.setOid(oid);
@@ -911,7 +911,7 @@ public abstract class IfcModel implements IfcModelInterface {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEObject> T create(EClass eClass, OidProvider oidProvider) throws IfcModelInterfaceException {
+	public <T extends IdEObject> T create(EClass eClass, OidProvider oidProvider) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		long oid = oidProvider.newOid(eClass);
 		((IdEObjectImpl) object).setOid(oid);
@@ -928,7 +928,7 @@ public abstract class IfcModel implements IfcModelInterface {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEObject> T create(Class<T> clazz, OidProvider oidProvider) throws IfcModelInterfaceException {
+	public <T extends IdEObject> T create(Class<T> clazz, OidProvider oidProvider) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		return (T) create(packageMetaData.getEClass(clazz), oidProvider);
 	}
 	

@@ -64,6 +64,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.deserializers.DatabaseInterface;
 import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.exceptions.ServerException;

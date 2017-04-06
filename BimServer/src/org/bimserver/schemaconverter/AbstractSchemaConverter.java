@@ -23,6 +23,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -47,7 +48,7 @@ public abstract class AbstractSchemaConverter implements SchemaConverter {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected IdEObject copy(IdEObject original) throws IfcModelInterfaceException {
+	protected IdEObject copy(IdEObject original) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		if (!((IdEObjectImpl)original).isLoadedOrLoading()) {
 			return null;
 		}

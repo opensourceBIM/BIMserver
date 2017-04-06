@@ -58,6 +58,7 @@ import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
+import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.serializers.SerializerInputstream;
 import org.bimserver.plugins.services.Flow;
@@ -472,6 +473,9 @@ public class ClientIfcModel extends IfcModel {
 			}
 		} catch (EOFException e) {
 			//
+		} catch (ObjectAlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -713,7 +717,7 @@ public class ClientIfcModel extends IfcModel {
 		return idEObject;
 	}
 
-	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException {
+	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		EClassifier eClassifier = Ifc2x3tc1Package.eINSTANCE.getEClassifier(clazz.getSimpleName());
 		if (eClassifier == null) {
 			eClassifier = GeometryPackage.eINSTANCE.getEClassifier(clazz.getSimpleName());
@@ -736,7 +740,7 @@ public class ClientIfcModel extends IfcModel {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException {
+	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		final IdEObjectImpl idEObject = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		idEObject.setModel(this);
 		
