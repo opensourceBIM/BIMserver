@@ -24,4 +24,7 @@ public interface CanInclude {
 	boolean hasIncludes();
 	List<Include> getIncludes();
 	boolean isIncludeAllFields();
+	void addIncludeReference(Include down, String name);
+	boolean hasReferences();
+	List<Reference> getReferences();
 }

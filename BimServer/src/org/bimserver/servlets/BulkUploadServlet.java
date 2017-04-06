@@ -87,15 +87,16 @@ public class BulkUploadServlet extends SubServlet {
 									InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(new FakeClosingInputStream(zipInputStream));
 									inputStreamDataSource.setName(name);
 									DataHandler ifcFile = new DataHandler(inputStreamDataSource);
-
-									String path = fullfilename.substring(0, fullfilename.lastIndexOf("/"));
-									String filename = fullfilename.substring(fullfilename.lastIndexOf("/") + 1);
-									String extension = filename.substring(filename.lastIndexOf(".") + 1);
-
-									SProject project = getOrCreatePath(service, mainProject, mainProject, path);
-									SDeserializerPluginConfiguration deserializer = service.getSuggestedDeserializerForExtension(extension, project.getOid());
-									
-									service.checkin(project.getOid(), comment, deserializer.getOid(), -1L, filename, ifcFile, false, true);
+									if (fullfilename.contains("/")) {
+										String path = fullfilename.substring(0, fullfilename.lastIndexOf("/"));
+										String filename = fullfilename.substring(fullfilename.lastIndexOf("/") + 1);
+										String extension = filename.substring(filename.lastIndexOf(".") + 1);
+										
+										SProject project = getOrCreatePath(service, mainProject, mainProject, path);
+										SDeserializerPluginConfiguration deserializer = service.getSuggestedDeserializerForExtension(extension, project.getOid());
+										
+										service.checkin(project.getOid(), comment, deserializer.getOid(), -1L, filename, ifcFile, false, true);
+									}
 								} else {
 									LOGGER.info("Unknown fileextenstion " + fullfilename);
 								}

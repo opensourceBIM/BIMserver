@@ -18,6 +18,7 @@ package org.bimserver.database.queries;
  *****************************************************************************/
 
 import java.nio.ByteBuffer;
+import java.util.List;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Record;
@@ -35,11 +36,13 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 	private boolean hasRun = false;
 	private Include include;
 	private EReference fromReference;
+	private long fromOid;
 	
-	public FollowReferenceStackFrame(QueryObjectProvider queryObjectProvider, Long oid, QueryContext reusable, QueryPart queryPart, EReference fromReference, Include include) {
+	public FollowReferenceStackFrame(QueryObjectProvider queryObjectProvider, Long oid, QueryContext reusable, QueryPart queryPart, EReference fromReference, long fromOid, Include include) {
 		super(reusable, queryObjectProvider, queryPart);
 		this.oid = oid;
 		this.fromReference = fromReference;
+		this.fromOid = fromOid;
 		this.include = include;
 	}
 
@@ -90,7 +93,14 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 					if (currentObject != null) {
 						EReference opposite = getPackageMetaData().getInverseOrOpposite(currentObject.eClass(), fromReference);
 						if (opposite != null) {
-							currentObject.addUseForSerialization(opposite);
+							Object x = currentObject.get(opposite.getName());
+							if (x instanceof List) {
+								List<Long> list = (List<Long>)x;
+								int index = list.indexOf(fromOid);
+								currentObject.addUseForSerialization(opposite, index);
+							} else {
+								currentObject.addUseForSerialization(opposite);
+							}
 						}
 					}
 					

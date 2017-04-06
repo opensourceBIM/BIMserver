@@ -26,6 +26,7 @@ import java.util.Set;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryException;
@@ -192,11 +193,27 @@ public class QueryObjectProvider implements ObjectProvider {
 			stack.push(stackFrame);
 		}
 	}
+	
+	private boolean typeDefContains(QueryPart queryPart, EClass eClass) {
+		for (TypeDef typeDef : queryPart.getTypes()) {
+			if (typeDef.geteClass() == eClass) {
+				return true;
+			}
+			if (typeDef.isIncludeSubTypes()) {
+				for (EClass subType : packageMetaData.getAllSubClasses(eClass)) {
+					if (subType == eClass) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
 
 	public boolean hasReadOrIsGoingToRead(EClass eClass) {
 		for (QueryPart queryPart : query.getQueryParts()) {
 			if (queryPart.hasTypes()) {
-				if (queryPart.getTypes().contains(eClass)) {
+				if (typeDefContains(queryPart, eClass)) {
 					if (queryPart.getGuids() == null && queryPart.getNames() == null && queryPart.getOids() == null && queryPart.getInBoundingBox() == null && queryPart.getProperties() == null && queryPart.getClassifications() == null) {
 						return true;
 					}

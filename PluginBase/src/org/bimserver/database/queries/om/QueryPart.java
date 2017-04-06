@@ -25,11 +25,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.emf.PackageMetaData;
 import org.eclipse.emf.ecore.EClass;
 
 public class QueryPart extends PartOfQuery implements CanInclude {
-	private List<EClass> types;
+	private List<TypeDef> types;
 	private Set<Long> oids;
 	private Set<String> guids;
 	private Set<String> names;
@@ -39,6 +40,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 	private InBoundingBox inBoundingBox;
 	private List<Include> includes;
 	private boolean includeAllFields;
+	private List<Reference> references;
 	
 	public QueryPart(PackageMetaData packageMetaData) {
 		this.packageMetaData = packageMetaData;
@@ -48,10 +50,10 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 		if (types == null) {
 			types = new ArrayList<>();
 		}
-		types.add(type);
-		if (includeAllSubTypes) {
-			types.addAll(packageMetaData.getAllSubClasses(type));
-		}
+		types.add(new TypeDef(type, includeAllSubTypes));
+//		if (includeAllSubTypes) {
+//			types.addAll(packageMetaData.getAllSubClasses(type));
+//		}
 	}
 
 	public void addOid(long oid) {
@@ -68,7 +70,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 		guids.add(guid);
 	}
 	
-	public List<EClass> getTypes() {
+	public List<TypeDef> getTypes() {
 		return types;
 	}
 	
@@ -153,8 +155,8 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 		}
 		if (hasTypes()) {
 			sb.append(indent(indent) + "types\n");
-			for (EClass type : getTypes()) {
-				sb.append(indent(indent + 1) + type.getName() + "\n");
+			for (TypeDef type : getTypes()) {
+				sb.append(indent(indent + 1) + type.geteClass().getName() + ", " + type.isIncludeSubTypes() + "\n");
 			}
 		}
 		if (hasOids()) {
@@ -217,5 +219,21 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 
 	public Set<String> getClassifications() {
 		return classifications;
+	}
+
+	@Override
+	public void addIncludeReference(Include down, String name) {
+		if (references == null) {
+			references = new ArrayList<>();
+		}
+		references.add(new Reference(down, name));
+	}
+
+	public boolean hasReferences() {
+		return references != null;
+	}
+
+	public List<Reference> getReferences() {
+		return references;
 	}
 }

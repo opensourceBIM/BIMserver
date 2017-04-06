@@ -19,6 +19,7 @@ package org.bimserver.database.queries;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.queries.om.InBoundingBox;
+import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.shared.QueryContext;
@@ -80,7 +82,14 @@ public class QueryPartStackFrame extends StackFrame {
 				typeIterator = oids.keySet().iterator();
 			}
 		} else {
-			typeIterator = partialQuery.getTypes().iterator();
+			Set<EClass> set = new HashSet<>();
+			for (TypeDef typeDef : partialQuery.getTypes()) {
+				set.add(typeDef.geteClass());
+				if (typeDef.isIncludeSubTypes()) {
+					set.addAll(reusable.getPackageMetaData().getAllSubClasses(typeDef.geteClass()));
+				}
+			}
+			typeIterator = set.iterator();
 		}
 		if (this.partialQuery.getGuids() != null) {
 			this.guids = partialQuery.getGuids();

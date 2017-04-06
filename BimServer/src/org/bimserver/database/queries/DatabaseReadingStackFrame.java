@@ -29,8 +29,10 @@ import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.queries.om.CanInclude;
 import org.bimserver.database.queries.om.Include;
+import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
+import org.bimserver.database.queries.om.Reference;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
@@ -81,11 +83,17 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 	
 	protected void processPossibleIncludes(EClass previousType, CanInclude canInclude) throws QueryException, BimserverDatabaseException {
 		if (currentObject != null) {
+			if (canInclude.hasReferences()) {
+				for (Reference reference : canInclude.getReferences()) {
+					processPossibleInclude(canInclude, reference.getInclude());
+				}
+			}
 			if (canInclude.hasIncludes()) {
 				for (Include include : canInclude.getIncludes()) {
 					processPossibleInclude(canInclude, include);
 				}
-			} else if (canInclude.isIncludeAllFields()) {
+			}
+			if (canInclude.isIncludeAllFields()) {
 				for (EReference eReference : currentObject.eClass().getEAllReferences()) {
 					Include include = new Include(reusable.getPackageMetaData());
 					include.addType(currentObject.eClass(), false);
@@ -101,8 +109,8 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 
 	protected void processPossibleInclude(CanInclude previousInclude, Include include) throws QueryException, BimserverDatabaseException {
 		if (include.hasTypes()) {
-			for (EClass filterClass : include.getTypes()) {
-				if (!filterClass.isSuperTypeOf(currentObject.eClass())) {
+			for (TypeDef filterClass : include.getTypes()) {
+				if (!filterClass.geteClass().isSuperTypeOf(currentObject.eClass())) {
 //					System.out.println(filterClass.getName() + " / " + currentObject.eClass().getName());
 					return;
 				}

@@ -26,6 +26,7 @@ public class InBoundingBox extends PartOfQuery {
 	private double width;
 	private double height;
 	private double depth;
+	private boolean partial;
 
 	public InBoundingBox(double x, double y, double z, double width, double height, double depth) {
 		this.x = x;
@@ -71,5 +72,13 @@ public class InBoundingBox extends PartOfQuery {
 	
 	public void dump(int indent, StringBuilder sb) {
 		sb.append(indent(indent) + "x: " + x + ", y: " + y + ", z: " + z + ", width: " + width + ", height: " + height + ", depth: " + depth);
+	}
+
+	public boolean isPartial() {
+		return partial;
+	}
+
+	public void setPartial(boolean partial) {
+		this.partial = partial;
 	}
 }

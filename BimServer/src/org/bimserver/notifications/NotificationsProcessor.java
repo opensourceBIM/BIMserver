@@ -29,6 +29,7 @@ public class NotificationsProcessor extends Thread {
 	private volatile boolean running = true;
 
 	public NotificationsProcessor(BimServer bimServer) {
+		setName("Notifications processor");
 	}
 
 	@Override

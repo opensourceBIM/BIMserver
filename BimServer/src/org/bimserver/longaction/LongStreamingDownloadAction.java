@@ -33,6 +33,7 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -51,6 +52,7 @@ import org.bimserver.plugins.serializers.StreamingSerializer;
 import org.bimserver.plugins.serializers.StreamingSerializerDataSource;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.serializers.Writer;
+import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -115,6 +117,17 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 					
 					changeActionState(ActionState.STARTED, "Done preparing", -1);
 				} else {
+					if (query.isDoubleBuffer()) {
+						Query newQuery = new Query(packageMetaData);
+						QueryPart newQueryPart = newQuery.createQueryPart();
+						QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, getBimServer(), query, roids, packageMetaData);
+						HashMapVirtualObject next = queryObjectProvider.next();
+						while (next != null) {
+							newQueryPart.addOid(next.getOid());
+							next = queryObjectProvider.next();
+						}
+						query = newQuery;
+					}
 					// TODO passing a databasesession here, make sure it will be closed!!
 					QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, getBimServer(), query, roids, packageMetaData);
 					if (plugin instanceof MessagingStreamingSerializerPlugin) {
@@ -136,7 +149,8 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 					}
 				}
 			}
-		} catch (Exception e) {
+		} catch (Throwable e) {
+			LOGGER.error("", e);
 			error(e);
 		}
 	}

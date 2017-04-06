@@ -519,7 +519,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	@SuppressWarnings("unchecked")
 	public void addUseForSerialization(EStructuralFeature eStructuralFeature, int index) {
 		if (eStructuralFeature.getEContainingClass().isSuperTypeOf(eClass)) {
-			Set<Integer> set = (Set<Integer>) useForSerializationFeatures.get(eStructuralFeature);
+			Set<Object> set = (Set<Object>) useForSerializationFeatures.get(eStructuralFeature);
 			if (set == null) {
 				set = new HashSet<>();
 				useForSerializationFeatures.put(eStructuralFeature, set);

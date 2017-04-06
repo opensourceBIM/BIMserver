@@ -27,11 +27,31 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
 public class Include extends PartOfQuery implements CanInclude {
-	private Set<EClass> types;
+	
+	public static class TypeDef {
+		private EClass eClass;
+		private boolean includeSubTypes;
+		
+		public TypeDef(EClass eClass, boolean includeSubTypes) {
+			this.eClass = eClass;
+			this.includeSubTypes = includeSubTypes;
+		}
+		
+		public EClass geteClass() {
+			return eClass;
+		}
+		
+		public boolean isIncludeSubTypes() {
+			return includeSubTypes;
+		}
+	}
+	
+	private Set<TypeDef> types;
 	private List<EClass> outputTypes;
 	private List<EReference> fields;
 	private List<EReference> fieldsDirect;
 	private List<Include> includes;
+	private List<Reference> references;
 	private PackageMetaData packageMetaData;
 	
 	public Include(PackageMetaData packageMetaData) {
@@ -46,18 +66,18 @@ public class Include extends PartOfQuery implements CanInclude {
 	 */
 	public void addField(String fieldName) throws QueryException {
 		EReference feature = null;
-		for (EClass eClass : types) {
-			if (eClass.getEStructuralFeature(fieldName) == null) {
-				throw new QueryException("Class \"" + eClass.getName() + "\" does not have the field \"" + fieldName + "\"");
+		for (TypeDef typeDef : types) {
+			if (typeDef.geteClass().getEStructuralFeature(fieldName) == null) {
+				throw new QueryException("Class \"" + typeDef.geteClass().getName() + "\" does not have the field \"" + fieldName + "\"");
 			}
 			if (feature == null) {
-				if (!(eClass.getEStructuralFeature(fieldName) instanceof EReference)) {
+				if (!(typeDef.geteClass().getEStructuralFeature(fieldName) instanceof EReference)) {
 					throw new QueryException(fieldName + " is not a reference");
 				}
-				feature = (EReference) eClass.getEStructuralFeature(fieldName);
+				feature = (EReference) typeDef.geteClass().getEStructuralFeature(fieldName);
 			} else {
-				if (feature != eClass.getEStructuralFeature(fieldName)) {
-					throw new QueryException("Classes \"" + eClass.getName() + "\" and \"" + feature.getEContainingClass().getName() + "\" have fields with the same name, but they are not logically the same");
+				if (feature != typeDef.geteClass().getEStructuralFeature(fieldName)) {
+					throw new QueryException("Classes \"" + typeDef.geteClass().getName() + "\" and \"" + feature.getEContainingClass().getName() + "\" have fields with the same name, but they are not logically the same");
 				}
 			}
 		}
@@ -69,18 +89,18 @@ public class Include extends PartOfQuery implements CanInclude {
 	
 	public void addFieldDirect(String fieldName) throws QueryException {
 		EReference feature = null;
-		for (EClass eClass : types) {
-			if (eClass.getEStructuralFeature(fieldName) == null) {
-				throw new QueryException("Class \"" + eClass.getName() + "\" does not have the field \"" + fieldName + "\"");
+		for (TypeDef typeDef : types) {
+			if (typeDef.geteClass().getEStructuralFeature(fieldName) == null) {
+				throw new QueryException("Class \"" + typeDef.geteClass().getName() + "\" does not have the field \"" + fieldName + "\"");
 			}
 			if (feature == null) {
-				if (!(eClass.getEStructuralFeature(fieldName) instanceof EReference)) {
+				if (!(typeDef.geteClass().getEStructuralFeature(fieldName) instanceof EReference)) {
 					throw new QueryException(fieldName + " is not a reference");
 				}
-				feature = (EReference) eClass.getEStructuralFeature(fieldName);
+				feature = (EReference) typeDef.geteClass().getEStructuralFeature(fieldName);
 			} else {
-				if (feature != eClass.getEStructuralFeature(fieldName)) {
-					throw new QueryException("Classes \"" + eClass.getName() + "\" and \"" + feature.getEContainingClass().getName() + "\" have fields with the same name, but they are not logically the same");
+				if (feature != typeDef.geteClass().getEStructuralFeature(fieldName)) {
+					throw new QueryException("Classes \"" + typeDef.geteClass().getName() + "\" and \"" + feature.getEContainingClass().getName() + "\" have fields with the same name, but they are not logically the same");
 				}
 			}
 		}
@@ -112,10 +132,10 @@ public class Include extends PartOfQuery implements CanInclude {
 		if (types == null) {
 			types = new HashSet<>();
 		}
-		types.add(eClass);
-		if (includeAllSubTypes) {
-			types.addAll(packageMetaData.getAllSubClasses(eClass));
-		}
+		types.add(new TypeDef(eClass, includeAllSubTypes));
+//		if (includeAllSubTypes) {
+//			types.addAll(packageMetaData.getAllSubClasses(eClass));
+//		}
 	}
 
 	public void addOutputType(EClass eClass) {
@@ -133,7 +153,7 @@ public class Include extends PartOfQuery implements CanInclude {
 		return outputTypes != null;
 	}
 	
-	public Set<EClass> getTypes() {
+	public Set<TypeDef> getTypes() {
 		return types;
 	}
 
@@ -165,8 +185,8 @@ public class Include extends PartOfQuery implements CanInclude {
 		}
 		if (hasTypes()) {
 			sb.append(indent(indent) + "types\n");
-			for (EClass eClass : getTypes()) {
-				sb.append(indent(indent + 1) + eClass.getName() + "\n");
+			for (TypeDef typeDef : getTypes()) {
+				sb.append(indent(indent + 1) + typeDef.geteClass().getName() + "\n");
 			}
 		}
 		if (hasFields()) {
@@ -197,5 +217,20 @@ public class Include extends PartOfQuery implements CanInclude {
 
 	public boolean hasDirectFields() {
 		return fieldsDirect != null && !fieldsDirect.isEmpty();
+	}
+
+	public void addIncludeReference(Include down, String name) {
+		if (references == null) {
+			references = new ArrayList<>();
+		}
+		references.add(new Reference(down, name));
+	}
+
+	public List<Reference> getReferences() {
+		return references;
+	}
+
+	public boolean hasReferences() {
+		return references != null;
 	}
 }

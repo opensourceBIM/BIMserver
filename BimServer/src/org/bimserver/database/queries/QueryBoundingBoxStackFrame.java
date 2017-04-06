@@ -103,15 +103,26 @@ public class QueryBoundingBoxStackFrame extends DatabaseReadingStackFrame implem
 				double maxX = (double) maxBounds.eGet("x");
 				double maxY = (double) maxBounds.eGet("y");
 				double maxZ = (double) maxBounds.eGet("z");
-				if (
+				if (inBoundingBox.isPartial()) {
+					if (
+					 (minX <= inBoundingBox.getX() + inBoundingBox.getWidth() && maxX >= inBoundingBox.getX()) &&
+			         (minY <= inBoundingBox.getY() + inBoundingBox.getHeight() && maxY >= inBoundingBox.getY()) &&
+			         (minZ <= inBoundingBox.getZ() + inBoundingBox.getDepth() && maxZ >= inBoundingBox.getZ())) {
+						
+					} else {
+						currentObject = null;
+					}
+				} else {
+					if (
 						minX > inBoundingBox.getX() &&
 						minY > inBoundingBox.getY() &&
 						minZ > inBoundingBox.getZ() &&
 						maxX < inBoundingBox.getX() + inBoundingBox.getWidth() &&
 						maxY < inBoundingBox.getY() + inBoundingBox.getHeight() &&
 						maxZ < inBoundingBox.getZ() + inBoundingBox.getDepth()) {
-				} else {
-					currentObject = null;
+					} else {
+						currentObject = null;
+					}
 				}
 			} else {
 				currentObject = null;

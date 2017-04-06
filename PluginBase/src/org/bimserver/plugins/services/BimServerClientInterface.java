@@ -23,6 +23,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.nio.file.Path;
 
+import org.bimserver.database.queries.om.Query;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.objects.SProject;
@@ -49,6 +50,7 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	
 	void download(long roid, long serializerOid, OutputStream outputStream) throws BimServerClientException;
 	void download(long roid, long serializerOid, Path file) throws IOException, BimServerClientException;
+	void download(long roid, Query query, long serializerOid, Path file) throws IOException, BimServerClientException;
 	
 	long checkin(long poid, String string, long deserializerOid, boolean merge, Flow flow, Path file) throws IOException, UserException, ServerException;
 	
@@ -84,4 +86,5 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	
 	MetaDataManager getMetaDataManager();
 	long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, URL url) throws UserException, ServerException;
+	void download(long roid, String query, long oid, Path file) throws ServerException, UserException, PublicInterfaceNotFoundException, IOException;
 }

@@ -18,7 +18,7 @@ package org.bimserver.plugins;
  *****************************************************************************/
 
 public interface Reporter {
-	void error(Exception error);
+	void error(Throwable error);
 	void warning(String warning);
 	void info(String info);
 }

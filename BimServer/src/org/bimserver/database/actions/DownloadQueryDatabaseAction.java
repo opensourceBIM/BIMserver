@@ -93,7 +93,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 						}});
 					IfcModelInterface finalResult = queryEngine.query(ifcModel, code, new Reporter(){
 						@Override
-						public void error(Exception error) {
+						public void error(Throwable error) {
 						}
 
 						@Override

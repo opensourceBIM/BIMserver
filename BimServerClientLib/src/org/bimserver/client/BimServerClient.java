@@ -337,6 +337,27 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			outputStream.close();
 		}
 	}
+	
+	@Override
+	public void download(long roid, Query query, long serializerOid, Path file) throws IOException, BimServerClientException {
+//		JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter();
+//		Long topicId = getServiceInterface().download(Collections.singleton(roid), jsonQueryObjectModelConverter.toJson(query).toString(), serializerOid, true);
+//		InputStream downloadData = getDownloadData(topicId);
+//		IOUtils.copy(downloadData, new FileOutputStream(file.toFile()));
+	}
+	
+	@Override
+	public void download(long roid, String query, long serializerOid, Path file) throws ServerException, UserException, PublicInterfaceNotFoundException, IOException {
+		Long topicId = getServiceInterface().download(Collections.singleton(roid), query, serializerOid, false);
+		InputStream downloadData = getDownloadData(topicId);
+		FileOutputStream fos = new FileOutputStream(file.toFile());
+		try {
+			IOUtils.copy(downloadData, fos);
+		} finally {
+			downloadData.close();
+			fos.close();
+		}
+	}
 
 	public InputStream getDownloadData(long topicId) throws IOException {
 		return channel.getDownloadData(baseAddress, token, topicId);

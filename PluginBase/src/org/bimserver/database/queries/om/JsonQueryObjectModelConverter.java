@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.emf.PackageMetaData;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -51,14 +52,10 @@ public class JsonQueryObjectModelConverter {
 		Map<String, Include> defines = query.getDefines();
 		ObjectNode definesNode = OBJECT_MAPPER.createObjectNode();
 		queryNode.set("defines", definesNode);
+		queryNode.put("doublebuffer", query.isDoubleBuffer());
 		for (String key : defines.keySet()) {
-			ObjectNode includeNode = OBJECT_MAPPER.createObjectNode();
 			Include include = defines.get(key);
-			ArrayNode fieldsNode = OBJECT_MAPPER.createArrayNode();
-			for (EReference eReference : include.getFields()) {
-				fieldsNode.add(eReference.getName());
-			}
-			definesNode.set(key, includeNode);
+			definesNode.set(key, dumpInclude(include));
 		}
 		ArrayNode queryPartsNode = OBJECT_MAPPER.createArrayNode();
 		queryNode.set("queries", queryPartsNode);
@@ -67,8 +64,15 @@ public class JsonQueryObjectModelConverter {
 			if (queryPart.hasTypes()) {
 				ArrayNode typesNode = OBJECT_MAPPER.createArrayNode();
 				queryPartNode.set("types", typesNode);
-				for (EClass type : queryPart.getTypes()) {
-					typesNode.add(type.getName());
+				for (TypeDef type : queryPart.getTypes()) {
+					if (type.isIncludeSubTypes()) {
+						ObjectNode typeDefNode = OBJECT_MAPPER.createObjectNode();
+						typeDefNode.put("name", type.geteClass().getName());
+						typeDefNode.put("includeAllSubTypes", type.isIncludeSubTypes());
+						typesNode.add(typeDefNode);
+					} else {
+						typesNode.add(type.geteClass().getName());
+					}
 				}
 			}
 			if (queryPart.hasOids()) {
@@ -86,15 +90,23 @@ public class JsonQueryObjectModelConverter {
 				inBoundingBoxNode.put("width", queryPart.getInBoundingBox().getWidth());
 				inBoundingBoxNode.put("height", queryPart.getInBoundingBox().getHeight());
 				inBoundingBoxNode.put("depth", queryPart.getInBoundingBox().getDepth());
+				inBoundingBoxNode.put("partial", queryPart.getInBoundingBox().isPartial());
 				queryPartNode.set("inBoundingBox", inBoundingBoxNode);
 			}
-			if (queryPart.hasIncludes()) {
+			if (queryPart.hasIncludes() || queryPart.hasReferences()) {
 				ArrayNode includesNode = OBJECT_MAPPER.createArrayNode();
-				for (Include include : queryPart.getIncludes()) {
-					ObjectNode includeNode = dumpInclude(include);
-					includesNode.add(includeNode);
-				}
 				queryPartNode.set("includes", includesNode);
+				if (queryPart.hasIncludes()) {
+					for (Include include : queryPart.getIncludes()) {
+						ObjectNode includeNode = dumpInclude(include);
+						includesNode.add(includeNode);
+					}
+				}
+				if (queryPart.hasReferences()) {
+					for (Reference reference : queryPart.getReferences()) {
+						includesNode.add(reference.getName());
+					}
+				}
 			}
 			queryPartsNode.add(queryPartNode);
 		}
@@ -105,8 +117,8 @@ public class JsonQueryObjectModelConverter {
 		ObjectNode includeNode = OBJECT_MAPPER.createObjectNode();
 		
 		ArrayNode typesNode = OBJECT_MAPPER.createArrayNode();
-		for (EClass type : include.getTypes()) {
-			typesNode.add(type.getName());
+		for (TypeDef type : include.getTypes()) {
+			typesNode.add(type.geteClass().getName());
 		}
 		includeNode.set("types", typesNode);
 		
@@ -116,11 +128,18 @@ public class JsonQueryObjectModelConverter {
 		}
 		includeNode.set("fields", fieldsNode);
 		
-		if (include.hasIncludes()) {
+		if (include.hasIncludes() || include.hasReferences()) {
 			ArrayNode includes = OBJECT_MAPPER.createArrayNode();
 			includeNode.set("includes", includes);
-			for (Include nextInclude : include.getIncludes()) {
-				includes.add(dumpInclude(nextInclude));
+			if (include.hasIncludes()) {
+				for (Include nextInclude : include.getIncludes()) {
+					includes.add(dumpInclude(nextInclude));
+				}
+			}
+			if (include.hasReferences()) {
+				for (Reference reference : include.getReferences()) {
+					includes.add(reference.getName());
+				}
 			}
 		}
 
@@ -132,6 +151,7 @@ public class JsonQueryObjectModelConverter {
 	
 	public Query parseJson(String queryName, ObjectNode fullQuery) throws QueryException {
 		Query query = new Query(queryName, packageMetaData);
+		query.setDoubleBuffer(fullQuery.has("doublebuffer") ? fullQuery.get("doublebuffer").asBoolean() : false);
 		if (fullQuery.has("defines")) {
 			JsonNode defines = fullQuery.get("defines");
 			if (defines instanceof ObjectNode) {
@@ -345,13 +365,13 @@ public class JsonQueryObjectModelConverter {
 		} else if (includeNode.isTextual()) {
 			String includeName = includeNode.asText();
 			if (includeName.contains(":")) {
-				parentInclude.addInclude(getDefineFromFile(includeName));
+				parentInclude.addIncludeReference(getDefineFromFile(includeName), includeName);
 			} else {
 				Include otherInclude = query.getDefine(includeName);
 				if (otherInclude == null) {
 					throw new QueryException("Cannot find define \"" + includeName + "\"");
 				}
-				parentInclude.addInclude(otherInclude);
+				parentInclude.addIncludeReference(otherInclude, includeName);
 			}
 		} else {
 			throw new QueryException("\"include\" must be of type object or string");
@@ -364,7 +384,10 @@ public class JsonQueryObjectModelConverter {
 			JsonNode typeNode = objectNode.get("type");
 			if (typeNode.isTextual()) {
 				String type = typeNode.asText();
-				addType(objectNode, queryPart, type);
+				addType(objectNode, queryPart, type, false);
+			} else if (typeNode.isObject()) {
+				ObjectNode typeDef = (ObjectNode) typeNode;
+				addType(objectNode, queryPart, typeDef.get("name").asText(), typeDef.get("includeAllSubTypes").asBoolean());
 			} else {
 				throw new QueryException("\"type\" must be of type string");
 			}
@@ -377,7 +400,10 @@ public class JsonQueryObjectModelConverter {
 					JsonNode typeNode = types.get(i);
 					if (typeNode.isTextual()) {
 						String type = typeNode.asText();
-						addType(objectNode, queryPart, type);
+						addType(objectNode, queryPart, type, false);
+					} else if (typeNode.isObject()) {
+						ObjectNode typeDef = (ObjectNode) typeNode;
+						addType(objectNode, queryPart, typeDef.get("name").asText(), typeDef.get("includeAllSubTypes").asBoolean());
 					} else {
 						throw new QueryException("\"types\"[" + i + "] must be of type string");
 					}
@@ -513,7 +539,11 @@ public class JsonQueryObjectModelConverter {
 				double width = checkFloat(boundingBox, "width");
 				double height = checkFloat(boundingBox, "height");
 				double depth = checkFloat(boundingBox, "depth");
-				queryPart.setInBoundingBox(new InBoundingBox(x, y, z, width, height, depth));
+				InBoundingBox inBoundingBox = new InBoundingBox(x, y, z, width, height, depth);
+				if (boundingBox.has("partial")) {
+					inBoundingBox.setPartial(boundingBox.get("partial").asBoolean());
+				}
+				queryPart.setInBoundingBox(inBoundingBox);
 			} else {
 				throw new QueryException("\"inBoundingBox\" should be of type object");
 			}
@@ -565,7 +595,7 @@ public class JsonQueryObjectModelConverter {
 		}
 	}
 
-	private void addType(ObjectNode objectNode, QueryPart queryPart, String type) throws QueryException {
+	private void addType(ObjectNode objectNode, QueryPart queryPart, String type, boolean includeAllSubTypes) throws QueryException {
 		if (type.equals("Object")) {
 			// no type filter
 			return;
@@ -574,6 +604,6 @@ public class JsonQueryObjectModelConverter {
 		if (eClass == null) {
 			throw new QueryException("Type \"" + type + "\" not found");
 		}
-		queryPart.addType(eClass, objectNode.has("includeAllSubtypes") && objectNode.get("includeAllSubtypes").asBoolean());
+		queryPart.addType(eClass, includeAllSubTypes);
 	}
 }

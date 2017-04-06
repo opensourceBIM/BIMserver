@@ -181,7 +181,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	}
 	
 	@Override
-	public void error(Exception error) {
+	public void error(Throwable error) {
 		if (error == null) {
 			LOGGER.error("Unknown error");
 			changeActionState(ActionState.AS_ERROR, "Unknown Error", 0);

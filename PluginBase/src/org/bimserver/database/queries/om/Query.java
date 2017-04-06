@@ -30,6 +30,7 @@ public class Query {
 	private final List<QueryPart> queryParts = new ArrayList<>();
 	private String name;
 	private PackageMetaData packageMetaData;
+	private boolean doubleBuffer;
 	
 	public Query(String name, PackageMetaData packageMetaData) {
 		this.name = name;
@@ -95,5 +96,13 @@ public class Query {
 
 	public PackageMetaData getPackageMetaData() {
 		return packageMetaData;
+	}
+
+	public void setDoubleBuffer(boolean doubleBuffer) {
+		this.doubleBuffer = doubleBuffer;
+	}
+	
+	public boolean isDoubleBuffer() {
+		return doubleBuffer;
 	}
 }

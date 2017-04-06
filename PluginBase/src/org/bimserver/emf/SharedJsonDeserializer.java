@@ -166,9 +166,6 @@ public class SharedJsonDeserializer {
 			long oid = jsonReader.nextLong();
 			if (jsonReader.nextName().equals("_t")) {
 				String type = jsonReader.nextString();
-				if (type.equals("IfcBuildingStorey")) {
-					System.out.println();
-				}
 				if (eClass == null) {
 					eClass = model.getPackageMetaData().getEClassIncludingDependencies(type);
 				}
@@ -191,9 +188,6 @@ public class SharedJsonDeserializer {
 						object.setLoadingState(State.LOADED);
 						while (jsonReader.hasNext()) {
 							String featureName = jsonReader.nextName();
-							if (featureName.equals("_rRelatingPropertyDefinition")) {
-								System.out.println();
-							}
 							boolean embedded = false;
 							if (featureName.startsWith("_r")) {
 								featureName = featureName.substring(2);
