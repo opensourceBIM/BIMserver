@@ -1,9 +1,7 @@
 package org.bimserver.emf;
 
-import org.bimserver.plugins.deserializers.DeserializeException;
-
 /******************************************************************************
- * Copyright (C) 2009-2016  BIMserver.org
+ * Copyright (C) 2009-2017  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,6 +16,8 @@ import org.bimserver.plugins.deserializers.DeserializeException;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
+
+import org.bimserver.plugins.deserializers.DeserializeException;
 
 public class IfcModelInterfaceException extends Exception {
 	private static final long serialVersionUID = -2230831482236508693L;

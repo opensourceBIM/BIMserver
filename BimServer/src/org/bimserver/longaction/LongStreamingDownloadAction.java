@@ -1,10 +1,7 @@
 package org.bimserver.longaction;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /******************************************************************************
- * Copyright (C) 2009-2016  BIMserver.org
+ * Copyright (C) 2009-2017  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,6 +16,9 @@ import java.util.List;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
+
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Set;
 

@@ -1,9 +1,7 @@
 package org.bimserver.servlets;
 
-import java.io.ByteArrayInputStream;
-
 /******************************************************************************
- * Copyright (C) 2009-2016  BIMserver.org
+ * Copyright (C) 2009-2017  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,6 +16,8 @@ import java.io.ByteArrayInputStream;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
+
+import java.io.ByteArrayInputStream;
 
 import java.io.EOFException;
 import java.io.IOException;

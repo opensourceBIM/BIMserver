@@ -1,16 +1,7 @@
 package org.bimserver;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import javax.servlet.ServletException;
-import javax.websocket.DeploymentException;
-
-import org.bimserver.servlets.RootServlet;
-import org.bimserver.servlets.websockets.jsr356.Jsr356Impl;
-
 /******************************************************************************
- * Copyright (C) 2009-2016  BIMserver.org
+ * Copyright (C) 2009-2017  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -25,6 +16,15 @@ import org.bimserver.servlets.websockets.jsr356.Jsr356Impl;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import javax.servlet.ServletException;
+import javax.websocket.DeploymentException;
+
+import org.bimserver.servlets.RootServlet;
+import org.bimserver.servlets.websockets.jsr356.Jsr356Impl;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;

@@ -1,9 +1,7 @@
 package org.bimserver.plugins;
 
-import org.bimserver.interfaces.objects.SPluginType;
-
 /******************************************************************************
- * Copyright (C) 2009-2016  BIMserver.org
+ * Copyright (C) 2009-2017  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -18,6 +16,8 @@ import org.bimserver.interfaces.objects.SPluginType;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
+
+import org.bimserver.interfaces.objects.SPluginType;
 
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.shared.exceptions.PluginException;
