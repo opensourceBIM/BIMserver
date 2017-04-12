@@ -41,8 +41,11 @@ import org.bimserver.plugins.PluginBundleIdentifier;
 import org.bimserver.plugins.PluginLocation;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<SPluginBundle>> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(GetInstalledPluginBundle.class);
 	private BimServer bimServer;
 	private boolean strictVersionChecking;
 	private DefaultArtifactVersion bimserverVersion;
@@ -72,35 +75,31 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 			SPluginBundleVersion installedVersion = pluginBundle.getPluginBundleVersion();
 
 			PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(installedVersion.getGroupId(), installedVersion.getArtifactId());
-			if (repositoryKnownLocation.containsKey(pluginBundleIdentifier)) {
-				PluginLocation<?> pluginLocation = repositoryKnownLocation.get(pluginBundleIdentifier);
+			PluginLocation<?> pluginLocation = repositoryKnownLocation.get(pluginBundleIdentifier);
 
-				threadPoolExecutor.submit(new Runnable(){
-					@Override
-					public void run() {
-						SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictVersionChecking, bimserverVersion);
-						
-						if (sPluginBundle == null) {
-							// No versions found on repository
-							sPluginBundle = pluginBundle.getPluginBundle();
+			threadPoolExecutor.submit(new Runnable(){
+				@Override
+				public void run() {
+					SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictVersionChecking, bimserverVersion);
+					
+					if (sPluginBundle == null) {
+						// No versions found on repository
+						sPluginBundle = pluginBundle.getPluginBundle();
+					}
+					
+					boolean found = false;
+					for (SPluginBundleVersion sPluginBundleVersion : sPluginBundle.getAvailableVersions()) {
+						if (sPluginBundleVersion.getVersion().equals(pluginBundle.getPluginBundleVersion().getVersion())) {
+							found = true;
 						}
-						
-						boolean found = false;
-						for (SPluginBundleVersion sPluginBundleVersion : sPluginBundle.getAvailableVersions()) {
-							if (sPluginBundleVersion.getVersion().equals(pluginBundle.getPluginBundleVersion().getVersion())) {
-								found = true;
-							}
-						}
-						if (!found) {
-							sPluginBundle.getAvailableVersions().add(pluginBundle.getPluginBundleVersion());
-						}
-						sPluginBundle.setInstalledVersion(installedVersion);
-						
-						result.add(sPluginBundle);
-					}});
-			} else {
-				System.out.println(pluginBundleIdentifier);
-			}
+					}
+					if (!found) {
+						sPluginBundle.getAvailableVersions().add(pluginBundle.getPluginBundleVersion());
+					}
+					sPluginBundle.setInstalledVersion(installedVersion);
+					
+					result.add(sPluginBundle);
+				}});
 		}
 
 
