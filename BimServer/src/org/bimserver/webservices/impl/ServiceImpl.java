@@ -20,7 +20,6 @@ package org.bimserver.webservices.impl;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
@@ -269,6 +268,7 @@ import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
+import org.eclipse.emf.common.util.EList;
 import org.opensourcebim.bcf.BcfException;
 import org.opensourcebim.bcf.BcfFile;
 import org.opensourcebim.bcf.ReadOptions;
@@ -788,6 +788,29 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				throw new UserException("No revision found with roid " + roid);
 			}
 			return getBimServer().getSConverter().convertToSListExtendedData(revision.getExtendedData());
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public List<SExtendedData> getAllExtendedDataOfRevisionAndSchema(Long roid, Long schemaId) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
+			if (revision == null) {
+				throw new UserException("No revision found with roid " + roid);
+			}
+			EList<ExtendedData> list = revision.getExtendedData();
+			List<SExtendedData> result = new ArrayList<>();
+			for (ExtendedData extendedData : list) {
+				if (extendedData.getSchema().getOid() == schemaId) {
+					result.add(getBimServer().getSConverter().convertToSObject(extendedData));
+				}
+			}
+			return result;
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

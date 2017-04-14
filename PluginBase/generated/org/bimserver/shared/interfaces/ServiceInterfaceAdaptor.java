@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces;
 
 /******************************************************************************
- * Copyright (C) 2009-2016  BIMserver.org
+ * Copyright (C) 2009-2017  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -154,6 +154,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SExtendedData> getAllExtendedDataOfRevision(java.lang.Long roid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<org.bimserver.interfaces.objects.SExtendedData> getAllExtendedDataOfRevisionAndSchema(java.lang.Long roid, java.lang.Long schemaId) throws UserException, ServerException {
 		return null;
 	}
 	

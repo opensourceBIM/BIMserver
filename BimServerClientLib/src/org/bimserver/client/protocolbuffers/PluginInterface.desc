@@ -1,5 +1,5 @@
 
-éÔ
+‹Õ
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"b
 AddDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration">
@@ -553,11 +553,12 @@ artifactId (	
 renderEngine (22.org.bimserver.pb.SRenderEnginePluginConfiguration"_
 UpdateSerializerRequestD
 
-serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*k
+serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*Œ
 SPluginBundleType
 SPluginBundleType_MAVEN 
 SPluginBundleType_GITHUB
-SPluginBundleType_LOCAL*Õ
+SPluginBundleType_LOCAL
+SPluginBundleType_LOCAL_DEV*Õ
 SPluginType
 SPluginType_SERIALIZER 
 SPluginType_DESERIALIZER

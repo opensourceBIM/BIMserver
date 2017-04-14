@@ -1,7 +1,7 @@
 package org.bimserver.pb;
 
 /******************************************************************************
- * Copyright (C) 2009-2016  BIMserver.org
+ * Copyright (C) 2009-2017  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -94,6 +94,8 @@ service ServiceInterface {
 	rpc getAllCheckoutsOfRevision (GetAllCheckoutsOfRevisionRequest) returns (GetAllCheckoutsOfRevisionResponse);
 
 	rpc getAllExtendedDataOfRevision (GetAllExtendedDataOfRevisionRequest) returns (GetAllExtendedDataOfRevisionResponse);
+
+	rpc getAllExtendedDataOfRevisionAndSchema (GetAllExtendedDataOfRevisionAndSchemaRequest) returns (GetAllExtendedDataOfRevisionAndSchemaResponse);
 
 	rpc getAllExtendedDataSchemas (GetAllExtendedDataSchemasRequest) returns (GetAllExtendedDataSchemasResponse);
 
@@ -963,6 +965,16 @@ message GetAllExtendedDataOfRevisionRequest {
 }
 
 message GetAllExtendedDataOfRevisionResponse {
+	optional string errorMessage = 1;
+	repeated SExtendedData value = 2;
+}
+
+message GetAllExtendedDataOfRevisionAndSchemaRequest {
+	optional int64 roid = 1;
+	optional int64 schemaId = 2;
+}
+
+message GetAllExtendedDataOfRevisionAndSchemaResponse {
 	optional string errorMessage = 1;
 	repeated SExtendedData value = 2;
 }

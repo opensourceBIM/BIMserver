@@ -1,7 +1,7 @@
 package org.bimserver.shared.interfaces.async;
 
 /******************************************************************************
- * Copyright (C) 2009-2016  BIMserver.org
+ * Copyright (C) 2009-2017  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -205,6 +205,11 @@ public class AsyncServiceInterface {
 	}
 	
 	public interface GetAllExtendedDataOfRevisionCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SExtendedData> result);
+		void error(Throwable e);
+	}
+	
+	public interface GetAllExtendedDataOfRevisionAndSchemaCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SExtendedData> result);
 		void error(Throwable e);
 	}
@@ -1099,6 +1104,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllExtendedDataOfRevision(roid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllExtendedDataOfRevisionAndSchema(final java.lang.Long roid, final java.lang.Long schemaId, final GetAllExtendedDataOfRevisionAndSchemaCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllExtendedDataOfRevisionAndSchema(roid, schemaId));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

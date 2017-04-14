@@ -1,5 +1,5 @@
 
-∑¸
+©ˇ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -466,6 +466,12 @@ dataObject (2.org.bimserver.pb.SDataObject
 #GetAllExtendedDataOfRevisionRequest
 roid ("l
 $GetAllExtendedDataOfRevisionResponse
+errorMessage (	.
+value (2.org.bimserver.pb.SExtendedData"N
+,GetAllExtendedDataOfRevisionAndSchemaRequest
+roid (
+schemaId ("u
+-GetAllExtendedDataOfRevisionAndSchemaResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SExtendedData""
  GetAllExtendedDataSchemasRequest"o
@@ -1437,7 +1443,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2Œp
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2˘q
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1476,7 +1482,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getAllCheckoutsOfProject1.org.bimserver.pb.GetAllCheckoutsOfProjectRequest2.org.bimserver.pb.GetAllCheckoutsOfProjectResponse´
 &getAllCheckoutsOfProjectAndSubProjects?.org.bimserver.pb.GetAllCheckoutsOfProjectAndSubProjectsRequest@.org.bimserver.pb.GetAllCheckoutsOfProjectAndSubProjectsResponseÑ
 getAllCheckoutsOfRevision2.org.bimserver.pb.GetAllCheckoutsOfRevisionRequest3.org.bimserver.pb.GetAllCheckoutsOfRevisionResponseç
-getAllExtendedDataOfRevision5.org.bimserver.pb.GetAllExtendedDataOfRevisionRequest6.org.bimserver.pb.GetAllExtendedDataOfRevisionResponseÑ
+getAllExtendedDataOfRevision5.org.bimserver.pb.GetAllExtendedDataOfRevisionRequest6.org.bimserver.pb.GetAllExtendedDataOfRevisionResponse®
+%getAllExtendedDataOfRevisionAndSchema>.org.bimserver.pb.GetAllExtendedDataOfRevisionAndSchemaRequest?.org.bimserver.pb.GetAllExtendedDataOfRevisionAndSchemaResponseÑ
 getAllExtendedDataSchemas2.org.bimserver.pb.GetAllExtendedDataSchemasRequest3.org.bimserver.pb.GetAllExtendedDataSchemasResponser
 getAllLocalProfiles,.org.bimserver.pb.GetAllLocalProfilesRequest-.org.bimserver.pb.GetAllLocalProfilesResponseê
 getAllLocalServiceDescriptors6.org.bimserver.pb.GetAllLocalServiceDescriptorsRequest7.org.bimserver.pb.GetAllLocalServiceDescriptorsResponser
