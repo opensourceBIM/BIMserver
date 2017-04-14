@@ -1,5 +1,5 @@
 
-©ÿ
+ ‚
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -784,7 +784,13 @@ SIfcHeader
 	timeStamp ("Y
 GetIfcHeaderResponse
 errorMessage (	+
-value (2.org.bimserver.pb.SIfcHeader"0
+value (2.org.bimserver.pb.SIfcHeader"O
+-GetLastExtendedDataOfRevisionAndSchemaRequest
+roid (
+schemaId ("v
+.GetLastExtendedDataOfRevisionAndSchemaResponse
+errorMessage (	.
+value (2.org.bimserver.pb.SExtendedData"0
 GetModelCheckerInstanceRequest
 mcioid ("o
 GetModelCheckerInstanceResponse
@@ -1443,7 +1449,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2ùq
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2§s
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1522,7 +1528,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getFileMeta$.org.bimserver.pb.GetFileMetaRequest%.org.bimserver.pb.GetFileMetaResponseT
 	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponsef
 getGeometryInfo(.org.bimserver.pb.GetGeometryInfoRequest).org.bimserver.pb.GetGeometryInfoResponse]
-getIfcHeader%.org.bimserver.pb.GetIfcHeaderRequest&.org.bimserver.pb.GetIfcHeaderResponse~
+getIfcHeader%.org.bimserver.pb.GetIfcHeaderRequest&.org.bimserver.pb.GetIfcHeaderResponse«
+&getLastExtendedDataOfRevisionAndSchema?.org.bimserver.pb.GetLastExtendedDataOfRevisionAndSchemaRequest@.org.bimserver.pb.GetLastExtendedDataOfRevisionAndSchemaResponse~
 getModelCheckerInstance0.org.bimserver.pb.GetModelCheckerInstanceRequest1.org.bimserver.pb.GetModelCheckerInstanceResponse`
 getNewService&.org.bimserver.pb.GetNewServiceRequest'.org.bimserver.pb.GetNewServiceResponsef
 getNrPrimitives(.org.bimserver.pb.GetNrPrimitivesRequest).org.bimserver.pb.GetNrPrimitivesResponse]

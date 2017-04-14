@@ -819,6 +819,34 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
+	public SExtendedData getLastExtendedDataOfRevisionAndSchema(Long roid, Long schemaId) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
+			if (revision == null) {
+				throw new UserException("No revision found with roid " + roid);
+			}
+			EList<ExtendedData> list = revision.getExtendedData();
+			ExtendedData last = null;
+			for (ExtendedData extendedData : list) {
+				if (extendedData.getSchema().getOid() == schemaId) {
+					if (last == null || last.getAdded().before(extendedData.getAdded())) {
+						last = extendedData;
+					}
+				}
+			}
+			if (last != null) {
+				return getBimServer().getSConverter().convertToSObject(last);
+			}
+			return null;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
 	public Boolean undeleteProject(Long poid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();

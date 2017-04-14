@@ -317,6 +317,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SExtendedData getLastExtendedDataOfRevisionAndSchema(java.lang.Long roid, java.lang.Long schemaId) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SModelCheckerInstance getModelCheckerInstance(java.lang.Long mcioid) throws UserException, ServerException {
 		return null;
 	}

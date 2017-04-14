@@ -234,6 +234,16 @@ public interface ServiceInterface extends PublicInterface {
 	List<SExtendedData> getAllExtendedDataOfRevisionAndSchema(
 		@WebParam(name = "roid", partName = "getAllExtendedDataOfRevision.roid") Long roid,
 		@WebParam(name = "schemaId", partName = "getAllExtendedDataOfRevision.schemaId") Long schemaId) throws ServerException, UserException;
+
+	/**
+	 * @param roid ObjectID of the Revision
+	 * @return ExtendedData
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getLastExtendedDataOfRevisionAndSchema")
+	SExtendedData getLastExtendedDataOfRevisionAndSchema(
+			@WebParam(name = "roid", partName = "getAllExtendedDataOfRevision.roid") Long roid,
+			@WebParam(name = "schemaId", partName = "getAllExtendedDataOfRevision.schemaId") Long schemaId) throws ServerException, UserException;
 	
 	/**
 	 * @param poid ObjectID of the Project

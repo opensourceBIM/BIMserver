@@ -409,6 +409,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetLastExtendedDataOfRevisionAndSchemaCallback {
+		void success(org.bimserver.interfaces.objects.SExtendedData result);
+		void error(Throwable e);
+	}
+	
 	public interface GetModelCheckerInstanceCallback {
 		void success(org.bimserver.interfaces.objects.SModelCheckerInstance result);
 		void error(Throwable e);
@@ -1584,6 +1589,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getIfcHeader(croid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getLastExtendedDataOfRevisionAndSchema(final java.lang.Long roid, final java.lang.Long schemaId, final GetLastExtendedDataOfRevisionAndSchemaCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getLastExtendedDataOfRevisionAndSchema(roid, schemaId));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

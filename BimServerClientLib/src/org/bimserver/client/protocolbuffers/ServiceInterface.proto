@@ -175,6 +175,8 @@ service ServiceInterface {
 
 	rpc getIfcHeader (GetIfcHeaderRequest) returns (GetIfcHeaderResponse);
 
+	rpc getLastExtendedDataOfRevisionAndSchema (GetLastExtendedDataOfRevisionAndSchemaRequest) returns (GetLastExtendedDataOfRevisionAndSchemaResponse);
+
 	rpc getModelCheckerInstance (GetModelCheckerInstanceRequest) returns (GetModelCheckerInstanceResponse);
 
 	rpc getNewService (GetNewServiceRequest) returns (GetNewServiceResponse);
@@ -1453,6 +1455,16 @@ message SIfcHeader {
 message GetIfcHeaderResponse {
 	optional string errorMessage = 1;
 	optional SIfcHeader value = 2;
+}
+
+message GetLastExtendedDataOfRevisionAndSchemaRequest {
+	optional int64 roid = 1;
+	optional int64 schemaId = 2;
+}
+
+message GetLastExtendedDataOfRevisionAndSchemaResponse {
+	optional string errorMessage = 1;
+	optional SExtendedData value = 2;
 }
 
 message GetModelCheckerInstanceRequest {
