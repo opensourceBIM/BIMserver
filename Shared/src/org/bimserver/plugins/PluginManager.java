@@ -515,76 +515,76 @@ public class PluginManager implements PluginManagerInterface {
 		}
 	}
 
-	@SuppressWarnings("unused")
-	private PluginBundle loadJavaScriptProject(Path projectRoot, Path packageFile, Path pluginFolder, PluginDescriptor pluginDescriptor) {
-		ObjectNode packageModel;
-		try {
-			packageModel = OBJECT_MAPPER.readValue(packageFile.toFile(), ObjectNode.class);
-			SPluginBundle sPluginBundle = new SPluginBundle();
-
-			if (!packageModel.has("organization")) {
-				throw new PluginException("package.json does not contain 'organization'");
-			}
-
-			sPluginBundle.setOrganization(packageModel.get("organization").asText());
-			sPluginBundle.setName(packageModel.get("name").asText());
-
-			SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
-			sPluginBundleVersion.setType(SPluginBundleType.GITHUB);
-
-			if (!packageModel.has("organization")) {
-				throw new PluginException("package.json does not contain 'groupId'");
-			}
-			sPluginBundleVersion.setGroupId(packageModel.get("groupId").asText());
-
-			if (!packageModel.has("organization")) {
-				throw new PluginException("package.json does not contain 'artifactId'");
-			}
-			sPluginBundleVersion.setArtifactId(packageModel.get("artifactId").asText());
-
-			if (!packageModel.has("organization")) {
-				throw new PluginException("package.json does not contain 'version'");
-			}
-			sPluginBundleVersion.setVersion(packageModel.get("version").asText());
-
-			if (!packageModel.has("organization")) {
-				throw new PluginException("package.json does not contain 'description'");
-			}
-			sPluginBundleVersion.setDescription(packageModel.get("description").asText());
-
-			sPluginBundleVersion.setRepository("local");
-			sPluginBundleVersion.setType(SPluginBundleType.LOCAL_DEV);
-			sPluginBundleVersion.setMismatch(false); // TODO
-
-			sPluginBundle.setInstalledVersion(sPluginBundleVersion);
-
-			PluginBundleVersionIdentifier pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(new PluginBundleIdentifier(packageModel.get("groupId").asText(), packageModel.get("artifactId").asText()),
-					packageModel.get("version").asText());
-
-			ResourceLoader resourceLoader = new ResourceLoader() {
-				@Override
-				public InputStream load(String name) {
-					try {
-						return Files.newInputStream(pluginFolder.resolve(name));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					return null;
-				}
-			};
-
-			return loadPlugins(pluginBundleVersionIdentifier, resourceLoader, null, projectRoot.toUri(), null, pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT, null, sPluginBundle, sPluginBundleVersion);
-		} catch (JsonParseException e1) {
-			e1.printStackTrace();
-		} catch (JsonMappingException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (PluginException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	@SuppressWarnings("unused")
+//	private PluginBundle loadJavaScriptProject(Path projectRoot, Path packageFile, Path pluginFolder, PluginDescriptor pluginDescriptor) {
+//		ObjectNode packageModel;
+//		try {
+//			packageModel = OBJECT_MAPPER.readValue(packageFile.toFile(), ObjectNode.class);
+//			SPluginBundle sPluginBundle = new SPluginBundle();
+//
+//			if (!packageModel.has("organization")) {
+//				throw new PluginException("package.json does not contain 'organization'");
+//			}
+//
+//			sPluginBundle.setOrganization(packageModel.get("organization").asText());
+//			sPluginBundle.setName(packageModel.get("name").asText());
+//
+//			SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
+//			sPluginBundleVersion.setType(SPluginBundleType.GITHUB);
+//
+//			if (!packageModel.has("organization")) {
+//				throw new PluginException("package.json does not contain 'groupId'");
+//			}
+//			sPluginBundleVersion.setGroupId(packageModel.get("groupId").asText());
+//
+//			if (!packageModel.has("organization")) {
+//				throw new PluginException("package.json does not contain 'artifactId'");
+//			}
+//			sPluginBundleVersion.setArtifactId(packageModel.get("artifactId").asText());
+//
+//			if (!packageModel.has("organization")) {
+//				throw new PluginException("package.json does not contain 'version'");
+//			}
+//			sPluginBundleVersion.setVersion(packageModel.get("version").asText());
+//
+//			if (!packageModel.has("organization")) {
+//				throw new PluginException("package.json does not contain 'description'");
+//			}
+//			sPluginBundleVersion.setDescription(packageModel.get("description").asText());
+//
+//			sPluginBundleVersion.setRepository("local");
+//			sPluginBundleVersion.setType(SPluginBundleType.LOCAL_DEV);
+//			sPluginBundleVersion.setMismatch(false); // TODO
+//
+//			sPluginBundle.setInstalledVersion(sPluginBundleVersion);
+//
+//			PluginBundleVersionIdentifier pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(new PluginBundleIdentifier(packageModel.get("groupId").asText(), packageModel.get("artifactId").asText()),
+//					packageModel.get("version").asText());
+//
+//			ResourceLoader resourceLoader = new ResourceLoader() {
+//				@Override
+//				public InputStream load(String name) {
+//					try {
+//						return Files.newInputStream(pluginFolder.resolve(name));
+//					} catch (IOException e) {
+//						e.printStackTrace();
+//					}
+//					return null;
+//				}
+//			};
+//
+//			return loadPlugins(pluginBundleVersionIdentifier, resourceLoader, null, projectRoot.toUri(), null, pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT, null, sPluginBundle, sPluginBundleVersion);
+//		} catch (JsonParseException e1) {
+//			e1.printStackTrace();
+//		} catch (JsonMappingException e1) {
+//			e1.printStackTrace();
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		} catch (PluginException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 	private void loadDependencies(Path libFile, DelegatingClassLoader classLoader) throws FileNotFoundException, IOException {
 		if (libFile.getFileName().toString().toLowerCase().endsWith(".jar")) {

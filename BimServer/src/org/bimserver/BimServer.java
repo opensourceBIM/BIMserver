@@ -525,6 +525,21 @@ public class BimServer {
 								for (PluginConfiguration pluginConfiguration : pluginDescriptor.getConfigurations()) {
 									session.delete(pluginConfiguration, -1);
 								}
+								if (pluginContext.getPlugin() instanceof WebModulePlugin) {
+									ServerSettings serverSettings = getServerSettingsCache().getServerSettings();
+									WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), pluginContext.getIdentifier());
+									serverSettings.getWebModules().remove(webPluginConfiguration);
+									session.store(serverSettings);
+									
+									String contextPath = "";
+									
+									for (Parameter parameter : webPluginConfiguration.getSettings().getParameters()) {
+										if (parameter.getName().equals("contextPath")) {
+											contextPath = ((StringType) parameter.getValue()).getValue();
+										}
+									}
+									webModules.remove(contextPath);
+								}
 								session.delete(pluginDescriptor, -1);
 							} else {
 								LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getClass().getName());
