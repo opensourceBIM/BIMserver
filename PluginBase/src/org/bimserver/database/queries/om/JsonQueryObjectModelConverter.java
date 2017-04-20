@@ -387,7 +387,10 @@ public class JsonQueryObjectModelConverter {
 				addType(objectNode, queryPart, type, false);
 			} else if (typeNode.isObject()) {
 				ObjectNode typeDef = (ObjectNode) typeNode;
-				addType(objectNode, queryPart, typeDef.get("name").asText(), typeDef.get("includeAllSubTypes").asBoolean());
+				if (!typeDef.has("name")) {
+					throw new QueryException("Missing name");
+				}
+				addType(objectNode, queryPart, typeDef.get("name").asText(), typeDef.has("includeAllSubTypes") && typeDef.get("includeAllSubTypes").asBoolean());
 			} else {
 				throw new QueryException("\"type\" must be of type string");
 			}
