@@ -260,10 +260,26 @@
             }
          }
       },
+      "IfcClosedShell": {
+         "type": "IfcClosedShell",
+         "field": "CfsFaces",
+         "include": {
+            "type": "IfcFace",
+            "field": "Bounds",
+            "include": {
+               "type": "IfcFaceBound",
+               "field": "Bound",
+               "include": {
+                  "type": "IfcPolyLoop",
+                  "field": "Polygon"
+               }
+            }
+         }
+      },
       "IfcShellBasedSurfaceModel": {
          "type": "IfcShellBasedSurfaceModel",
          "field": "SbsmBoundary",
-         "include": "IfcOpenShell"
+         "includes": ["IfcOpenShell", "IfcClosedShell"]
       },
       "IfcTextLiteralWithExtent": {
          "type": "IfcTextLiteralWithExtent",
