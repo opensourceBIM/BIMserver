@@ -471,9 +471,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 			}
 
 			int maxSimultanousThreads = Math.min(bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses(), Runtime.getRuntime().availableProcessors());
-			if (maxSimultanousThreads < 1) {
-				maxSimultanousThreads = 1;
-			}
+			maxSimultanousThreads = 1;
 
 			final RenderEngineSettings settings = new RenderEngineSettings();
 			settings.setPrecision(Precision.SINGLE);
