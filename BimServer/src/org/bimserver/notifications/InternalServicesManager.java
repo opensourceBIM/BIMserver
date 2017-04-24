@@ -65,9 +65,12 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 
 	private String url;
 
+	private ReflectorFactory reflectorFactory;
+
 	public InternalServicesManager(BimServer bimServer, String url) {
 		this.bimServer = bimServer;
 		this.url = url;
+		reflectorFactory = bimServer.getReflectorFactory();
 //		for (String s : internalServices.keySet()) {
 //			internalServices.get(s).setUrl(url);
 //		}
@@ -170,8 +173,6 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 					if (factories.containsKey(apiUrl)) {
 						factory = factories.get(apiUrl);
 					} else {
-						RealtimeReflectorFactoryBuilder factoryBuilder = new RealtimeReflectorFactoryBuilder(bimServer.getServicesMap());
-						ReflectorFactory reflectorFactory = factoryBuilder.newReflectorFactory();
 						factory = new JsonBimServerClientFactory(apiUrl, bimServer.getServicesMap(), new JsonSocketReflectorFactory(bimServer.getServicesMap()), reflectorFactory, bimServer.getMetaDataManager());
 						factories.put(apiUrl, factory);
 					}
