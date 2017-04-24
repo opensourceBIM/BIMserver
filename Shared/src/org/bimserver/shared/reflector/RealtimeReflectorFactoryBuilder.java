@@ -38,7 +38,7 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 	private static final Logger LOGGER = LoggerFactory.getLogger(RealtimeReflectorFactoryBuilder.class);
 	private SServicesMap servicesMap;
 	private ClassPool pool;
-	private static int implementationCounter = 0;
+	private static volatile int implementationCounter = 0;
 	private static final String GENERATED_CLASSES_PACKAGE = "org.bimserver.generated";
 
 	public RealtimeReflectorFactoryBuilder(SServicesMap servicesMap) {
