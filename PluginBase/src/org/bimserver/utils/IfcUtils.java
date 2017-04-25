@@ -36,6 +36,7 @@ import org.bimserver.models.ifc2x3tc1.IfcBoolean;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcClassificationNotationSelect;
+import org.bimserver.models.ifc2x3tc1.IfcCountMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcElectricCurrentMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcElement;
 import org.bimserver.models.ifc2x3tc1.IfcElementQuantity;
@@ -293,6 +294,8 @@ public class IfcUtils {
 			return ((IfcElectricCurrentMeasure)nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcLogical) {
 			return ((IfcLogical)nominalValue).getWrappedValue();
+		} else if (nominalValue instanceof IfcCountMeasure) {
+			return ((IfcCountMeasure)nominalValue).getWrappedValue();
 		} else {
 			throw new RuntimeException("Not implemented: " + nominalValue.eClass().getName());
 		}
