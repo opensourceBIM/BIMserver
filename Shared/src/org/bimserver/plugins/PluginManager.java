@@ -217,9 +217,6 @@ public class PluginManager implements PluginManagerInterface {
 	}
 
 	private PublicFindClassClassLoader loadDependencies(Set<org.bimserver.plugins.Dependency> bimServerDependencies, Model model, PublicFindClassClassLoader previous) throws FileNotFoundException, IOException {
-		LOGGER.info("Loading " + model.getGroupId() + ":" + model.getArtifactId());
-		LOGGER.info("");
-
 		List<org.apache.maven.model.Dependency> dependencies = model.getDependencies();
 		Iterator<org.apache.maven.model.Dependency> it = dependencies.iterator();
 
