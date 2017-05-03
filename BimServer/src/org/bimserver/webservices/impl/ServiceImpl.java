@@ -367,6 +367,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	public Long download(DownloadParameters downloadParameters, Boolean sync) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
 		User user = null;
 		for (long roid : downloadParameters.getRoids()) {
 			getAuthorization().canDownload(roid);
