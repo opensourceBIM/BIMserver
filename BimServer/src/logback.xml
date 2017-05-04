@@ -56,7 +56,7 @@
 	<logger name="org.eclipse.jetty" level="warn" additivity="false">
 		<appender-ref ref="STDERR" />
 	</logger>
-	<logger name="org.apache.cxf" level="warn" additivity="false">
+	<logger name="org.apache.cxf" level="error" additivity="false">
 		<appender-ref ref="STDERR" />
 	</logger>
 	<logger name="nl.tue.buildingsmart" level="warn" additivity="false">
@@ -83,7 +83,7 @@
 		<appender-ref ref="STDERR" />
 	</logger>
 
-	<root level="debug">
+	<root level="info">
 		<appender-ref ref="STDERR" />
 		<appender-ref ref="STDOUT" />
 	</root>
