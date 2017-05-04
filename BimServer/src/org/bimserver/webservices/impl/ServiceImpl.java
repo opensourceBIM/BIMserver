@@ -2337,6 +2337,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			httpPost.setHeader("Input-Type", newService.getInput());
 			httpPost.setHeader("Output-Type", newService.getOutput());
 			httpPost.setEntity(new ByteArrayEntity(baos.toByteArray()));
+			
 			CloseableHttpResponse response = httpclient.execute(httpPost);
 			
 			LOGGER.info(response.getStatusLine().toString());
@@ -2357,7 +2358,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				}
 				
 				byte[] responseBytes = ByteStreams.toByteArray(response.getEntity().getContent());
-				LOGGER.info(new String(responseBytes, Charsets.UTF_8));
 				
 				Action action = newService.getAction();
 				if (action instanceof StoreExtendedData) {
@@ -2677,17 +2677,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			Action action = null;
-			if (sAction instanceof SCheckinRevision) {
-				action = (Action) session.create(StorePackage.eINSTANCE.getCheckinRevision());
-			} else if (sAction instanceof SStoreExtendedData) {
-				action = (Action) session.create(StorePackage.eINSTANCE.getStoreExtendedData());
-			}
-			getBimServer().getSConverter().convertFromSObject(sAction, action, session);
 			NewService service = (NewService) session.create(StorePackage.eINSTANCE.getNewService());
 			getBimServer().getSConverter().convertFromSObject(sService, service, session);
 			
-			AddNewServiceToProjectDatabaseAction dbAction = new AddNewServiceToProjectDatabaseAction(session, getInternalAccessMethod(), poid, service, action, getAuthorization());
+			AddNewServiceToProjectDatabaseAction dbAction = new AddNewServiceToProjectDatabaseAction(session, getInternalAccessMethod(), poid, service, service.getAction(), getAuthorization());
 			return session.executeAndCommitAction(dbAction);
 		} catch (Exception e) {
 			return handleException(e);
