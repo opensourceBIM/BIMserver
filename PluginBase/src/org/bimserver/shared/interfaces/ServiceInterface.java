@@ -478,12 +478,13 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Download a compare of a model
 	 * 
-	 * @param roid1
-	 * @param roid2
-	 * @param identifier
-	 * @param type
-	 * @param sync
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
+	 * @param serializerOid The ObjectID of the Serializer configuration to use
+	 * @param roid1 The ObjectID of the first Revision
+	 * @param roid2 The ObjectID of the second Revision
+	 * @param mcid The ObjectID of the Model Compare plugin configuration
+	 * @param type How to compare (All, Only Added, Only Modified or Only Deleted)
+	 * @param sync Whether to call this method synchronously
+	 * @return A topicId, which you can use for the NotificationRegistryInterface.getProgress method, ServiceInterface.getDownloadData and the download servlet (/download)
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "downloadCompareResults")
@@ -769,8 +770,8 @@ public interface ServiceInterface extends PublicInterface {
 	 * @param roid1 The ObjectID of the first Revision
 	 * @param roid2 The ObjectID of the second Revision
 	 * @param sCompareType How to compare (All, Only Added, Only Modified or Only Deleted)
-	 * @param sCompareIdentifier How to identify equal objects (by Guid or by Name)
-	 * @return The result of the compare
+	 * @param mcid The ObjectID of the Model Compare plugin configuration
+	 * @return The result of the compare as an SCompareResult object, consisting of a List of SCompareContainer objects
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "compare")
