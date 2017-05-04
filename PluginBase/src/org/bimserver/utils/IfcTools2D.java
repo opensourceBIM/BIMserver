@@ -391,11 +391,15 @@ public class IfcTools2D {
 	}
 
 	public static Area enlargeSlightlyInPlace(Area area) {
+		return enlargeSlightlyInPlace(area, 1.01f);
+	}
+	
+	public static Area enlargeSlightlyInPlace(Area area, float scale) {
 		AffineTransform aLittleLarger = new AffineTransform();
 		double centerX = area.getBounds2D().getCenterX();
 		double centerY = area.getBounds2D().getCenterY();
 		aLittleLarger.translate(centerX, centerY);
-		aLittleLarger.scale(1.01, 1.01);
+		aLittleLarger.scale(scale, scale);
 		aLittleLarger.translate(-centerX, -centerY);
 		
 		area.transform(aLittleLarger);
