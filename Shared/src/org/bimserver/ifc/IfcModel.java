@@ -182,7 +182,9 @@ public abstract class IfcModel implements IfcModelInterface {
 			IdEObject value = objects.get((Long) key);
 			if (value instanceof IfcRoot) {
 				IfcRoot ifcRoot = (IfcRoot) value;
-				guidIndex.get(value.eClass()).put(ifcRoot.getGlobalId(), value);
+				if (ifcRoot.getGlobalId() != null) {
+					guidIndex.get(value.eClass()).put(ifcRoot.getGlobalId(), value);
+				}
 			}
 		}
 	}
