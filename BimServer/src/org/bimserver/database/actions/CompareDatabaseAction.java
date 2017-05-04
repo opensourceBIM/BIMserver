@@ -36,9 +36,13 @@ import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 
 public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 
+	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(CompareDatabaseAction.class);
 	private final long roid1;
 	private final long roid2;
 	private final CompareType sCompareType;
@@ -90,8 +94,9 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, serializerOid, authorization, null).execute();
 			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, serializerOid, authorization, null).execute();
 			try {
-				compareResults =  getModelCompare().compare(model1, model2, sCompareType);
+				compareResults = getModelCompare().compare(model1, model2, sCompareType);
 			} catch (ModelCompareException e) {
+				LOGGER.error("", e);
 				throw new UserException(e);
 			}
 //			bimServer.getCompareCache().storeResults(roid1, roid2, sCompareType, sCompareIdentifier, compareResults);
