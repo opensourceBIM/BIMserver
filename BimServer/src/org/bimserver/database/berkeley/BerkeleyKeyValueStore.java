@@ -278,6 +278,10 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		}
 	}
 	
+	public boolean isTransactional(DatabaseSession databaseSession, String tableName) throws BimserverDatabaseException {
+		return getTableWrapper(tableName).isTransactional() ? getTransaction(databaseSession) != null : false;
+	}
+	
 	public Transaction getTransaction(DatabaseSession databaseSession, TableWrapper tableWrapper) {
 		return tableWrapper.isTransactional() ? getTransaction(databaseSession) : null;
 	}
@@ -537,7 +541,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 					int pid = keyBuffer.getInt();
 					long oid = keyBuffer.getLong();
 					int rid = -keyBuffer.getInt();
-					LOGGER.warn("Key exists: pid: " + pid + ", oid: " + oid + ", rid: " + rid + databaseSession.getEClassForOid(oid).getName());
+					LOGGER.warn("Key exists: pid: " + pid + ", oid: " + oid + ", rid: " + rid + ", " + databaseSession.getEClassForOid(oid).getName());
 					throw new BimserverConcurrentModificationDatabaseException("Key exists: pid: " + pid + ", oid: " + oid + ", rid: " + rid);
 				} else {
 					LOGGER.warn("Key exists");
