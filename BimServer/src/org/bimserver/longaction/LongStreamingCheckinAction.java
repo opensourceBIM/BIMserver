@@ -22,6 +22,7 @@ import java.io.IOException;
 import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.ProgressHandler;
+import org.bimserver.database.RollbackListener;
 import org.bimserver.database.actions.StreamingCheckinDatabaseAction;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -73,6 +74,11 @@ public class LongStreamingCheckinAction extends LongAction<LongCheckinActionKey>
 				@Override
 				public void retry(int count) {
 					this.count = count;
+				}
+			}, new RollbackListener() {
+				@Override
+				public void rollback() {
+					checkinDatabaseAction.rollback();
 				}
 			});
 		} catch (Exception e) {
