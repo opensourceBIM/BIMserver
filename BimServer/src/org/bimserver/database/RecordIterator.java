@@ -17,7 +17,7 @@ package org.bimserver.database;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public interface RecordIterator {
+public interface RecordIterator extends AutoCloseable {
 	Record next() throws BimserverLockConflictException;
 	void close();
 	Record last() throws BimserverLockConflictException;
