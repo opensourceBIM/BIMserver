@@ -506,7 +506,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	@Override
 	public List<SModelComparePluginConfiguration> getAllModelCompares(Boolean onlyEnabled) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			UserSettings userSettings = getUserSettings(session);

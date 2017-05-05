@@ -295,8 +295,8 @@ public class NewRevisionNotification extends Notification {
 				List<Long> roidsList = new ArrayList<>();
 				Set<Project> relatedProjects = getRelatedProjects(project);
 				for (Project p : relatedProjects) {
-					if (p.getLastRevision() != null) {
-						roidsList.add(p.getLastRevision().getOid());
+					for (Revision revision : p.getRevisions()) {
+						roidsList.add(revision.getOid());
 					}
 				}
 				
