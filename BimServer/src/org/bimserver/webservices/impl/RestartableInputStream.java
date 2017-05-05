@@ -33,11 +33,12 @@ public class RestartableInputStream extends InputStream {
 	private Path cachingFile;
 	private InputStream currentInputStream;
 	private volatile boolean canRestart = false;
+	private OutputStream outputStream;
 
 	public RestartableInputStream(InputStream originalInputStream, Path file) {
 		this.cachingFile = file;
 		try {
-			OutputStream outputStream = Files.newOutputStream(file);
+			outputStream = Files.newOutputStream(file);
 			currentInputStream = new MultiplexingInputStream(originalInputStream, outputStream);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -65,6 +66,7 @@ public class RestartableInputStream extends InputStream {
 
 	public void restartIfAtEnd() throws IOException {
 		if (canRestart) {
+			outputStream.close();
 			LOGGER.info("Switching to reading from cached file");
 			currentInputStream = Files.newInputStream(cachingFile);
 			canRestart = false;
