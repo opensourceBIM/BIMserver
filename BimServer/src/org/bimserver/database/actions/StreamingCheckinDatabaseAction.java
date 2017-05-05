@@ -34,9 +34,12 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GenerateGeometryResult;
 import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.SummaryMap;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.PostCommitAction;
+import org.bimserver.database.Record;
+import org.bimserver.database.RecordIterator;
 import org.bimserver.database.queries.ConcreteRevisionStackFrame;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.QueryTypeStackFrame;
@@ -87,6 +90,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	private InputStream inputStream;
 	private StreamingDeserializer deserializer;
 	private long newServiceId;
+	private Revision newRevision;
+	private PackageMetaData packageMetaData;
 
 	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer, long fileSize, long newServiceId) {
 		super(databaseSession, accessMethod);
@@ -117,6 +122,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				((RestartableInputStream)inputStream).restartIfAtEnd();
 			}
 			
+			getDatabaseSession().clearPostCommitActions();
+			
 			if (fileSize == -1) {
 //				setProgress("Deserializing IFC file...", -1);
 			} else {
@@ -139,7 +146,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 //				checkCheckSum(project);
 //			}
 			
-			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
+			packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
 
 			// TODO checksum
 			// TODO modelcheckers
@@ -170,7 +177,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			
 			CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), -1, project, user, comment.trim());
 
-			long newRoid = result.getRevisions().get(0).getOid();
+			newRevision = result.getRevisions().get(0);
+			long newRoid = newRevision.getOid();
 			QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId(), newRoid, -1); // TODO check
 			
 			if (fileSize != -1) {
@@ -456,5 +464,55 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 
 	public void close() throws IOException {
 		inputStream.close();
+	}
+
+	public void rollback() {
+		LOGGER.info("Rolling back");
+		int pid = newRevision.getProject().getId();
+		int rid = newRevision.getRid();
+		
+		Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
+		int deleted = 0;
+		for (EClass eClass : startOids.keySet()) {
+			Long startOid = startOids.get(eClass);
+			ByteBuffer mustStartWith = ByteBuffer.wrap(new byte[4]);
+			mustStartWith.putInt(pid);
+			ByteBuffer startSearchWith = ByteBuffer.wrap(new byte[12]);
+			startSearchWith.putInt(pid);
+			startSearchWith.putLong(startOid);
+			
+			String tableName = eClass.getEPackage().getName() + "_" + eClass.getName();
+			try {
+				if (!getDatabaseSession().getKeyValueStore().isTransactional(getDatabaseSession(), tableName)) {
+					// We only need to check the non-transactional tables, the rest is rolled-back by bdb
+//					System.out.println("Checking " + tableName);
+					try (RecordIterator recordIterator = getDatabaseSession().getKeyValueStore().getRecordIterator(tableName, mustStartWith.array(), startSearchWith.array(), getDatabaseSession())){
+						Record record = recordIterator.next();
+						while (record != null) {
+//							System.out.println("Deleting from " + tableName);
+							
+							ByteBuffer keyBuffer = ByteBuffer.wrap(record.getKey());
+							keyBuffer.getInt(); // pid
+							keyBuffer.getLong(); // oid
+							int keyRid = -keyBuffer.getInt();
+							
+							if (keyRid == rid) {
+								getDatabaseSession().getKeyValueStore().delete(tableName, record.getKey(), getDatabaseSession());
+								deleted++;
+							}
+							record = recordIterator.next();
+						}
+					} catch (BimserverLockConflictException e) {
+						e.printStackTrace();
+					} catch (BimserverDatabaseException e) {
+						e.printStackTrace();
+					}
+				}
+			} catch (BimserverDatabaseException e1) {
+				e1.printStackTrace();
+			}
+		}
+		LOGGER.info("Deleted " + deleted + " objects in rollback");
+//		getDatabaseSession().getKeyValueStore().sync();
 	}
 }
