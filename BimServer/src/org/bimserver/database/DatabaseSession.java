@@ -64,7 +64,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.deserializers.DatabaseInterface;
 import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.exceptions.ServerException;
@@ -681,17 +680,27 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		// }
 	}
 
+	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, ProgressHandler progressHandler, RollbackListener rollbackListener) throws BimserverDatabaseException, ServiceException {
+		checkOpen();
+		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, progressHandler, rollbackListener);
+	}
+
+	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, RollbackListener rollbackListener) throws BimserverDatabaseException, UserException, ServerException {
+		checkOpen();
+		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, null, rollbackListener);
+	}
+	
 	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, ProgressHandler progressHandler) throws BimserverDatabaseException, ServiceException {
 		checkOpen();
-		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, progressHandler);
+		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, progressHandler, null);
 	}
-
+	
 	public <T> T executeAndCommitAction(BimDatabaseAction<T> action) throws BimserverDatabaseException, UserException, ServerException {
 		checkOpen();
-		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, null);
+		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, null, null);
 	}
 
-	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries, ProgressHandler progressHandler) throws BimserverDatabaseException, UserException,
+	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries, ProgressHandler progressHandler, RollbackListener rollbackListener) throws BimserverDatabaseException, UserException,
 			ServerException {
 		checkOpen();
 		for (int i = 0; i < retries; i++) {
@@ -709,10 +718,19 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				if (bimTransaction != null) {
 					bimTransaction.rollback();
 				}
+				if (rollbackListener != null) {
+					rollbackListener.rollback();
+				}
 				objectCache.clear();
 				objectsToCommit.clear();
+				startOids.clear();
+				for (EClass eClass : database.getClasses()) {
+					startOids.put(eClass, getCounter(eClass));
+				}
 				if (bimTransaction != null) {
 					bimTransaction = database.getKeyValueStore().startTransaction();
+				} else {
+					// No transaction used, no transactional rollback available/executed, but we still might have to clean up some stuff, see rollback listener
 				}
 			} catch (BimserverLockConflictException e) {
 				LOGGER.info("BimserverLockConflictException");
@@ -2204,5 +2222,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	@Override
 	public List<byte[]> getDuplicates(String tableName, byte[] key) throws BimserverLockConflictException, BimserverDatabaseException {
 		return database.getKeyValueStore().getDuplicates(tableName, key, this);
+	}
+
+	public void clearPostCommitActions() {
+		postCommitActions.clear();
 	}
 }
