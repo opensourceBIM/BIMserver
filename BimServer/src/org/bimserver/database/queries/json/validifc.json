@@ -428,6 +428,21 @@
             "IfcRectangularTrimmedSurface"
          ]
       },
+      "IfcSweptDiskSolid": {
+      	 "type": "IfcSweptDiskSolid",
+      	 "field":"Directrix",
+      	 "includes": [
+      	    "IfcCompositeCurve",
+            "IfcPolyline",
+            "IfcTrimmedCurve",
+            "IfcBSplineCurve",
+            "IfcCircle",
+            "IfcEllipse",
+            "IfcLine",
+            "IfcOffsetCurve2D",
+            "IfcOffsetCurve3D"
+      	 ]
+      },
       "IfcRepresentation": {
          "type": "IfcRepresentation",
          "fields": [
@@ -450,7 +465,8 @@
             "IfcTextLiteralWithExtent",
             "IfcGeometricCurveSet",
             "IfcTrimmedCurve",
-            "IfcFaceBasedSurfaceModel"
+            "IfcFaceBasedSurfaceModel",
+            "IfcSweptDiskSolid"
          ]
       },
       "IfcShapeRepresentation": {
