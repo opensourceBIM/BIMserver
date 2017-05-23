@@ -61,13 +61,13 @@ public enum PluginBundleType implements Enumerator {
 	 */
 	LOCAL(2, "LOCAL", "LOCAL"),
 	/**
-	* The '<em><b>LOCAL DEV</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>LOCAL DEV</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #LOCAL_DEV_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #LOCAL_DEV_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	LOCAL_DEV(3, "LOCAL_DEV", "LOCAL_DEV");
 
 	/**

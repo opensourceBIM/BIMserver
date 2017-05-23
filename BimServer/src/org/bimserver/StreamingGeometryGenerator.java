@@ -202,6 +202,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					IOUtils.copy(ifcSerializer.getInputStream(), baos);
 					bytes = baos.toByteArray();
 					InputStream in = new ByteArrayInputStream(bytes);
+					boolean notFoundsObjects = false;
 					try {
 						if (!objects.isEmpty()) {
 							renderEngine = renderEnginePool.borrowObject();
@@ -383,6 +384,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	//									}
 										if (!ignoreNotFound) {
 											LOGGER.warn("Entity not found " + ifcProduct.eClass().getName() + " " + (expressId) + "/" + ifcProduct.getOid());
+											notFoundsObjects = true;
 										}
 									} catch (BimserverDatabaseException | RenderEngineException e) {
 										LOGGER.error("", e);
@@ -392,10 +394,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						}
 					} finally {
 						try {
-	//						if (notFoundsObjects) {
+//							if (notFoundsObjects) {
 //								writeDebugFile(bytes, false);
-	//							Thread.sleep(60000);
-	//						}
+//								Thread.sleep(60000);
+//							}
 							in.close();
 						} catch (Throwable e) {
 							

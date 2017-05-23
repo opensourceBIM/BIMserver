@@ -58,6 +58,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getIcon <em>Icon</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#isStoreLastLogin <em>Store Last Login</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getServerSettings()
@@ -834,5 +835,31 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setIcon(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Store Last Login</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Store Last Login</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Store Last Login</em>' attribute.
+	 * @see #setStoreLastLogin(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_StoreLastLogin()
+	 * @model
+	 * @generated
+	 */
+	boolean isStoreLastLogin();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#isStoreLastLogin <em>Store Last Login</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Store Last Login</em>' attribute.
+	 * @see #isStoreLastLogin()
+	 * @generated
+	 */
+	void setStoreLastLogin(boolean value);
 
 } // ServerSettings

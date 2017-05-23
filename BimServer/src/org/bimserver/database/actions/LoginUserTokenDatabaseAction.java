@@ -71,8 +71,10 @@ public class LoginUserTokenDatabaseAction extends BimDatabaseAction<String> {
 			authorization.setUoid(user.getOid());
 			String asHexToken = authorization.asHexToken(bimServer.getEncryptionKey());
 			serviceMap.setAuthorization(authorization);
-			user.setLastSeen(new Date());
-			getDatabaseSession().store(user);
+			if (bimServer.getServerSettingsCache().getServerSettings().isStoreLastLogin()) {
+				user.setLastSeen(new Date());
+				getDatabaseSession().store(user);
+			}
 			return asHexToken;					
 		}
 		try {

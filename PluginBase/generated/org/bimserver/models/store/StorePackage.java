@@ -1267,13 +1267,22 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS__ICON = 29;
 
 	/**
+	 * The feature id for the '<em><b>Store Last Login</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__STORE_LAST_LOGIN = 30;
+
+	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 30;
+	int SERVER_SETTINGS_FEATURE_COUNT = 31;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -8608,6 +8617,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getServerSettings_Icon();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#isStoreLastLogin <em>Store Last Login</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Store Last Login</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#isStoreLastLogin()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_StoreLastLogin();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.UserSettings <em>User Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14929,6 +14949,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVER_SETTINGS__ICON = eINSTANCE.getServerSettings_Icon();
+
+		/**
+		 * The meta object literal for the '<em><b>Store Last Login</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__STORE_LAST_LOGIN = eINSTANCE.getServerSettings_StoreLastLogin();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.

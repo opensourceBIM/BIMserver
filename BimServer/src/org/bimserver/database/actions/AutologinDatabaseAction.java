@@ -58,12 +58,14 @@ public class AutologinDatabaseAction extends BimDatabaseAction<String>{
 			} else if (user.getUserType() == UserType.SYSTEM) {
 				throw new UserException("System user cannot login");
 			}
-			user.setLastSeen(new Date());
+			if (bimServer.getServerSettingsCache().getServerSettings().isStoreLastLogin()) {
+				user.setLastSeen(new Date());
+				getDatabaseSession().store(user);
+			}
 			authorization.setUoid(user.getOid());
 			String asHexToken = authorization.asHexToken(bimServer.getEncryptionKey());
 			
 			serviceMap.setAuthorization(authorization);
-			getDatabaseSession().store(user);
 			return asHexToken;
 		} catch (AuthenticationException e) {
 			LOGGER.error("", e);

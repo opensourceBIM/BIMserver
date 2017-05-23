@@ -62,6 +62,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getIcon <em>Icon</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isStoreLastLogin <em>Store Last Login</em>}</li>
  * </ul>
  *
  * @generated
@@ -618,6 +619,24 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setIcon(String newIcon) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__ICON, newIcon);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isStoreLastLogin() {
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__STORE_LAST_LOGIN, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStoreLastLogin(boolean newStoreLastLogin) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__STORE_LAST_LOGIN, newStoreLastLogin);
 	}
 
 } //ServerSettingsImpl

@@ -61,6 +61,7 @@ public class SServerSettings implements SDataBase
 	private java.lang.String name;
 	private java.lang.String description;
 	private java.lang.String icon;
+	private boolean storeLastLogin;
 
 	public long getOid() {
 		return this.oid;
@@ -177,6 +178,9 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("icon")) {
 			return getIcon();
+		}
+		if (sField.getName().equals("storeLastLogin")) {
+			return isStoreLastLogin();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -307,6 +311,10 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("icon")) {
 			setIcon((String)val);
+			return;
+		}
+		if (sField.getName().equals("storeLastLogin")) {
+			setStoreLastLogin((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -559,6 +567,14 @@ public class SServerSettings implements SDataBase
 
 	public void setIcon(java.lang.String icon) {
 		this.icon = icon;
+	}
+	
+	public boolean isStoreLastLogin() {
+		return storeLastLogin;
+	}
+
+	public void setStoreLastLogin(boolean storeLastLogin) {
+		this.storeLastLogin = storeLastLogin;
 	}
 	
 	@Override
