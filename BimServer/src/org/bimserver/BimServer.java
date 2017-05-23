@@ -184,7 +184,7 @@ public class BimServer {
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private SecretKeySpec encryptionkey;
 	private BimServerClientFactory bimServerClientFactory;
-	private Map<String, WebModulePlugin> webModules;
+	private Map<String, WebModulePlugin> webModules = new HashMap<String, WebModulePlugin>();
 	private WebModulePlugin defaultWebModule;
 	private ExecutorService executorService = Executors.newCachedThreadPool();
 	private InternalServicesManager internalServicesManager;
@@ -743,36 +743,6 @@ public class BimServer {
 				commandLine.start();
 			}
 			
-			try (DatabaseSession session = bimDatabase.createSession()) {
-				IfcModelInterface pluginBundleVersions = session.getAllOfType(StorePackage.eINSTANCE.getPluginBundleVersion(), OldQuery.getDefault());
-				for (PluginBundleVersion pluginBundleVersion : pluginBundleVersions.getAll(PluginBundleVersion.class)) {
-					if (pluginBundleVersion.getType() == PluginBundleType.MAVEN || pluginBundleVersion.getType() == PluginBundleType.LOCAL) {
-						PluginBundleVersionIdentifier pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(pluginBundleVersion.getGroupId(), pluginBundleVersion.getArtifactId(), pluginBundleVersion.getVersion());
-						
-						IfcModelInterface pluginDescriptors = session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), OldQuery.getDefault());
-						
-						List<SPluginInformation> plugins = new ArrayList<>();
-						
-						for (PluginDescriptor pluginDescriptor : pluginDescriptors.getAll(PluginDescriptor.class)) {
-							if (pluginDescriptor.getPluginBundleVersion() == pluginBundleVersion && pluginDescriptor.getEnabled()) {
-								SPluginInformation sPluginInformation = new SPluginInformation();
-								
-								sPluginInformation.setEnabled(true);
-								sPluginInformation.setDescription(pluginDescriptor.getDescription());
-								sPluginInformation.setIdentifier(pluginDescriptor.getIdentifier());
-								sPluginInformation.setInstallForAllUsers(pluginDescriptor.isInstallForNewUsers());
-								sPluginInformation.setInstallForNewUsers(pluginDescriptor.isInstallForNewUsers());
-								sPluginInformation.setName(pluginDescriptor.getName());
-								sPluginInformation.setType(pluginManager.getPluginTypeFromClass(pluginDescriptor.getPluginClassName()));
-								
-								plugins.add(sPluginInformation);
-							}
-						}
-						
-						pluginManager.loadFromPluginDir(pluginBundleVersionIdentifier, getSConverter().convertToSObject(pluginBundleVersion), plugins, serverSettingsCache.getServerSettings().isPluginStrictVersionChecking());
-					}
-				}
-			}
 			if (getServerInfoManager().getServerState() == ServerState.SETUP) {
 				getServerInfoManager().setServerState(ServerState.RUNNING);
 			}
@@ -1123,6 +1093,39 @@ public class BimServer {
 
 			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap, pluginManager, metaDataManager);
 			pluginManager.setBimServerClientFactory(bimServerClientFactory);
+			
+			try (DatabaseSession session2 = bimDatabase.createSession()) {
+				IfcModelInterface pluginBundleVersions = session2.getAllOfType(StorePackage.eINSTANCE.getPluginBundleVersion(), OldQuery.getDefault());
+				for (PluginBundleVersion pluginBundleVersion : pluginBundleVersions.getAll(PluginBundleVersion.class)) {
+					if (pluginBundleVersion.getType() == PluginBundleType.MAVEN || pluginBundleVersion.getType() == PluginBundleType.LOCAL) {
+						PluginBundleVersionIdentifier pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(pluginBundleVersion.getGroupId(), pluginBundleVersion.getArtifactId(), pluginBundleVersion.getVersion());
+						
+						IfcModelInterface pluginDescriptors = session2.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), OldQuery.getDefault());
+						
+						List<SPluginInformation> plugins = new ArrayList<>();
+						
+						for (PluginDescriptor pluginDescriptor : pluginDescriptors.getAll(PluginDescriptor.class)) {
+							if (pluginDescriptor.getPluginBundleVersion() == pluginBundleVersion && pluginDescriptor.getEnabled()) {
+								SPluginInformation sPluginInformation = new SPluginInformation();
+								
+								sPluginInformation.setEnabled(true);
+								sPluginInformation.setDescription(pluginDescriptor.getDescription());
+								sPluginInformation.setIdentifier(pluginDescriptor.getIdentifier());
+								sPluginInformation.setInstallForAllUsers(pluginDescriptor.isInstallForNewUsers());
+								sPluginInformation.setInstallForNewUsers(pluginDescriptor.isInstallForNewUsers());
+								sPluginInformation.setName(pluginDescriptor.getName());
+								sPluginInformation.setType(pluginManager.getPluginTypeFromClass(pluginDescriptor.getPluginClassName()));
+								
+								plugins.add(sPluginInformation);
+							}
+						}
+						
+						pluginManager.loadFromPluginDir(pluginBundleVersionIdentifier, getSConverter().convertToSObject(pluginBundleVersion), plugins, serverSettingsCache.getServerSettings().isPluginStrictVersionChecking());
+					}
+				}
+			} catch (Exception e) {
+				throw new BimserverDatabaseException(e);
+			}
 		} catch (BimserverLockConflictException e) {
 			throw new BimserverDatabaseException(e);
 //		} catch (PluginException e) {

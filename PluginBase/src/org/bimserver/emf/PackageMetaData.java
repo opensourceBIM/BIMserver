@@ -134,14 +134,17 @@ public class PackageMetaData implements ObjectFactory {
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
 				EClass eClass = (EClass)eClassifier;
-				calculateUnsettedLength(eClass);
+				calculateUnsettedLength(eClass, null);
 			}
 		}
 	}
 
-	private int calculateUnsettedLength(EClass eClass) {
+	private int calculateUnsettedLength(EClass eClass, EAttribute skipAttribute) {
 		int fieldCounter = 0;
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
+			if (feature == skipAttribute) {
+				continue;
+			}
 			if (this.useForDatabaseStorage(eClass, feature)) {
 				fieldCounter++;
 			}
@@ -500,9 +503,13 @@ public class PackageMetaData implements ObjectFactory {
 	}
 
 	public int getUnsettedLength(EClass eClass) {
+		return getUnsettedLength(eClass, null);
+	}
+
+	public int getUnsettedLength(EClass eClass, EAttribute skipAttribute) {
 		Integer integer = unsettedLengths.get(eClass);
 		if (integer == null) {
-			return calculateUnsettedLength(eClass);
+			return calculateUnsettedLength(eClass, skipAttribute);
 		}
 		return integer;
 	}

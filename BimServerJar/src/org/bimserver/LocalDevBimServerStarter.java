@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.OptionsParser;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.PluginException;
@@ -59,17 +60,32 @@ public class LocalDevBimServerStarter {
 		bimServer.setEmbeddedWebServer(new EmbeddedWebServer(bimServer, config.getDevelopmentBaseDir(), config.isLocalDev()));
 		try {
 			bimServer.start();
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
-			try {
-				AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
-				adminInterface.setup("http://localhost:" + port, "My BIMserver", "My Description", "http://localhost:" + port + "/img/bimserver.png", "Administrator", "admin@bimserver.org", "admin");
-				SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
-				settingsInterface.setCacheOutputFiles(false);
-				settingsInterface.setPluginStrictVersionChecking(false);
-			} catch (Exception e) {
-				// Ignore
+			if (bimServer.getServerInfo().getServerState() != ServerState.MIGRATION_REQUIRED) {
+				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
+				try {
+					AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
+					adminInterface.setup("http://localhost:" + port, "My BIMserver", "My Description", "http://localhost:" + port + "/img/bimserver.png", "Administrator", "admin@bimserver.org", "admin");
+					SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
+					settingsInterface.setCacheOutputFiles(false);
+					settingsInterface.setPluginStrictVersionChecking(false);
+				} catch (Exception e) {
+					// Ignore
+				}
+				bimServer.activateServices();
+			} else {
+				bimServer.getServerInfoManager().registerStateChangeListener(new StateChangeListener() {
+					@Override
+					public void stateChanged(ServerState oldState, ServerState newState) {
+						if (oldState == ServerState.MIGRATION_REQUIRED && newState == ServerState.RUNNING) {
+							try {
+								LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
+							} catch (PluginException e) {
+								LOGGER.error("", e);
+							}
+						}
+					}
+				});
 			}
-			bimServer.activateServices();
 		} catch (PluginException e) {
 			LOGGER.error("", e);
 		} catch (ServiceException e) {

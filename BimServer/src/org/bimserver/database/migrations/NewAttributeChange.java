@@ -18,6 +18,7 @@ package org.bimserver.database.migrations;
  *****************************************************************************/
 
 import java.nio.ByteBuffer;
+import java.util.List;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -26,8 +27,11 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
+import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.PackageMetaData;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +47,7 @@ public class NewAttributeChange implements Change {
 		this.nrFeaturesBefore = nrFeaturesBefore;
 		this.eAttribute = eAttribute;
 	}
-
+	
 	@Override
 	public void change(Database database, DatabaseSession databaseSession) throws NotImplementedException, BimserverDatabaseException {
 		EClass eClass = eAttribute.getEContainingClass();
@@ -58,26 +62,28 @@ public class NewAttributeChange implements Change {
 						while (record != null) {
 							ByteBuffer buffer = ByteBuffer.wrap(record.getValue());
 
-							int nrStartBytesBefore = (int) Math.ceil(nrFeaturesBefore / 8.0);
-							int nrStartBytesAfter = (int) Math.ceil((nrFeaturesBefore + 1) / 8.0);
+							PackageMetaData packageMetaData = database.getMetaDataManager().getPackageMetaData(subClass.getEPackage().getName());
+							int newUnsettedLength = packageMetaData.getUnsettedLength(subClass);
+							int previousUnsettedLength = packageMetaData.getUnsettedLength(subClass, eAttribute);
 							
-							byte x = buffer.get();
-							
-							if (x != nrStartBytesBefore) {
-								throw new BimserverDatabaseException("Size does not match");
+							byte[] unsetted = new byte[newUnsettedLength];
+							buffer.get(unsetted, 0, previousUnsettedLength);
+
+							int fieldCounter = 0;
+							for (EStructuralFeature feature : subClass.getEAllStructuralFeatures()) {
+								if (packageMetaData.useForDatabaseStorage(subClass, feature)) {
+									if (feature == eAttribute) {
+										unsetted[fieldCounter / 8] |= (1 << (fieldCounter % 8));
+									}
+									fieldCounter++;
+								}
 							}
-							
-							byte[] unsetted = new byte[nrStartBytesAfter];
-							buffer.get(unsetted, 0, x);
-							
-							unsetted[(nrFeaturesBefore) / 8] |= (1 << ((nrFeaturesBefore) % 8));
 							
 							int extra = 0;
 							
-							ByteBuffer newBuffer = ByteBuffer.allocate(record.getValue().length + (nrStartBytesAfter - nrStartBytesBefore) + extra);
-							newBuffer.put((byte)nrStartBytesAfter);
+							ByteBuffer newBuffer = ByteBuffer.allocate(record.getValue().length + (newUnsettedLength - previousUnsettedLength) + extra);
 							newBuffer.put(unsetted);
-							buffer.position(1 + nrStartBytesBefore);
+							buffer.position(previousUnsettedLength);
 							newBuffer.put(buffer);
 							
 							keyValueStore.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), newBuffer.array(), databaseSession);
