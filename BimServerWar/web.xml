@@ -48,11 +48,11 @@
 
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
-		<url-pattern>/soap11</url-pattern>
+		<url-pattern>/soap11/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
-		<url-pattern>/soap12</url-pattern>
+		<url-pattern>/soap12/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
