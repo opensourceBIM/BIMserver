@@ -351,6 +351,7 @@ public class GenericWebServiceServlet extends SubServlet {
 			serverFactoryBean.getOutFaultInterceptors().add(new StatusCodeModifyingFaultInterceptor());
 			serverFactoryBean.setInvoker(new CustomInvoker(getBimServer().getServiceFactory(), clazz));
 //			serverFactoryBean.setAddress((bindingId == WSDLConstants.NS_SOAP11 ? "/soap11/" : "/soap12/") + clazz.getSimpleName()); // equals check allowed, just keep using the constant
+			serverFactoryBean.setAddress("/" + clazz.getSimpleName()); // equals check allowed, just keep using the constant
 			serverFactoryBean.setTransportId("http://schemas.xmlsoap.org/soap/http");
 			serverFactoryBean.create();
 		}
