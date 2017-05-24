@@ -19,9 +19,6 @@
 				</includes>
 			</resource>
 			<resource>
-				<directory>conf</directory>
-			</resource>
-			<resource>
 				<directory>..</directory>
 				<includes>
 					<include>pom.xml</include>

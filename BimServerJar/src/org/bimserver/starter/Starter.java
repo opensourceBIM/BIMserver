@@ -452,6 +452,7 @@ public class Starter extends JFrame {
 			if (cp.endsWith(File.pathSeparator)) {
 				cp = cp.substring(0, cp.length()-1);
 			}
+			commands.add("-Dorg.apache.cxf.Logger=org.apache.cxf.common.logging.Slf4jLogger");
 			commands.add("-classpath");
 			commands.add(cp);
 //			if (escapeCompletePath) {
