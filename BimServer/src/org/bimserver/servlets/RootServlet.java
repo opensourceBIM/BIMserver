@@ -46,11 +46,9 @@ public class RootServlet extends HttpServlet {
 	private OAuthAuthorizationServlet oAuthAuthorizationServlet;
 	private OAuthRegistrationServlet oAuthRegistrationServlet;
 	private OAuthAccessTokenServlet oAuthAccesssTokenServlet;
-
-	private BimServer bimServer;
-
 	private BulkUploadServlet bulkUploadServlet;
 
+	private BimServer bimServer;
 
 	@Override
 	public void init() throws ServletException {
