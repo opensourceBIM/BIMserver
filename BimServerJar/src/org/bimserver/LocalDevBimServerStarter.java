@@ -52,6 +52,7 @@ public class LocalDevBimServerStarter {
 		config.setStartEmbeddedWebServer(true);
 		config.setClassPath(System.getProperty("java.class.path"));
 		config.setLocalDev(true);
+		config.setEnvironment(Environment.LOCAL_DEV);
 		config.setPort(port);
 		config.setStartCommandLine(true);
 		config.setDevelopmentBaseDir(Paths.get("../BimServer"));

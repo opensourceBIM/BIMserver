@@ -73,6 +73,7 @@ public class JarBimServer {
 		bimServerConfig.setHomeDir(Paths.get(homedir));
 		bimServerConfig.setResourceFetcher(new JarResourceFetcher());
 		bimServerConfig.setStartEmbeddedWebServer(true);
+		bimServerConfig.setEnvironment(Environment.JAR);
 		bimServerConfig.setPort(port);
 		bimServerConfig.setClassPath(System.getProperty("java.class.path"));
 		bimServer = new BimServer(bimServerConfig);

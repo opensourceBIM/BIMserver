@@ -56,6 +56,7 @@ import org.apache.cxf.transport.servlet.ServletController;
 import org.apache.cxf.transport.servlet.servicelist.ServiceListGeneratorServlet;
 import org.apache.cxf.wsdl.WSDLConstants;
 import org.bimserver.BimServer;
+import org.bimserver.Environment;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.webservices.CustomInvoker;
@@ -350,7 +351,7 @@ public class GenericWebServiceServlet extends SubServlet {
 			serverFactoryBean.setServiceClass(clazz);
 			serverFactoryBean.getOutFaultInterceptors().add(new StatusCodeModifyingFaultInterceptor());
 			serverFactoryBean.setInvoker(new CustomInvoker(getBimServer().getServiceFactory(), clazz));
-			if (getBimServer().getConfig().isLocalDev()) {
+			if (getBimServer().getConfig().getEnvironment() != Environment.WAR) {
 				serverFactoryBean.setAddress((bindingId == WSDLConstants.NS_SOAP11 ? "/soap11/" : "/soap12/") + clazz.getSimpleName()); // equals check allowed, just keep using the constant
 			} else {
 				serverFactoryBean.setAddress("/" + clazz.getSimpleName()); // equals check allowed, just keep using the constant

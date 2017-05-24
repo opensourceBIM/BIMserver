@@ -31,6 +31,7 @@ public class BimServerConfig {
 	private boolean localDev;
 	private boolean autoMigrate = false;
 	private Path developmentBaseDir;
+	private Environment environment;
 	
 	public boolean isStartEmbeddedWebServer() {
 		return startEmbeddedWebServer;
@@ -102,6 +103,14 @@ public class BimServerConfig {
 		return localDev;
 	}
 
+	public void setEnvironment(Environment environment) {
+		this.environment = environment;
+	}
+	
+	public Environment getEnvironment() {
+		return environment;
+	}
+	
 	/**
 	 * @param localDev Whether this is a local development environment, it's only used for a hack to attach the webdefault.xml to jetty
 	 */
