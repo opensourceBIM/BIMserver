@@ -72,8 +72,18 @@ public class StringUtils {
 		char c;
 		int length = in.length();
 		int escapeMode = 0;
+		
+		// 5: Just had a slash, looking for * to complete a comment block start
+		// 7: Just had a *, looking for / to complete a comment block end
+		
 		for (int i=start; i<length; i++) {
 			c = in.charAt(i);
+			if (escapeMode == 5 && c != '*') {
+				escapeMode = 0;
+			}
+			if (escapeMode == 7 && c != '/') {
+				escapeMode = 0;
+			}
 			if (c == ',') {
 				if (parentheses == 0 && quotes == 0 && escapeMode != 3 && escapeMode != 6) {
 					return i+1;
@@ -102,7 +112,6 @@ public class StringUtils {
 			} else if (c == '/') {
 				if (escapeMode == 7) {
 					escapeMode = 0;
-					
 				} else {
 					escapeMode = 5;
 				}
