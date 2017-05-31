@@ -19,6 +19,7 @@ package org.bimserver.changes;
 
 import java.util.Map;
 
+import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -29,6 +30,7 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.shared.GuidCompressor;
+import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -53,30 +55,7 @@ public class CreateObjectChange implements Change {
 	}
 	
 	@Override
-	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		EClass eClass = databaseSession.getEClass(project.getSchema(), type);
-		if (eClass == null) {
-			throw new UserException("Type " + type + " does not exist");
-		}
-		eObject = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
-		eObject.setOid(oid);
-		eObject.setPid(project.getId());
-		eObject.setRid(concreteRevision.getId());
-		eObject.setLoaded();
-		try {
-			model.add(oid, eObject);
-		} catch (IfcModelInterfaceException e) {
-			throw new UserException(e);
-		}
-		if (generateGuid) {
-			EStructuralFeature globalIdFeature = eObject.eClass().getEStructuralFeature("GlobalId");
-			if (globalIdFeature != null) {
-				eObject.eSet(globalIdFeature, GuidCompressor.getNewIfcGloballyUniqueId());
-			} else {
-				throw new UserException("Cannot generate GUID for " + eObject.eClass().getName() + ", no GlobalId property");
-			}
-		}
-		databaseSession.store(eObject, project.getId(), concreteRevision.getId());
-		created.put(oid, eObject);
+	public void execute(BimServer bimServer, long roid, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, HashMapVirtualObject> created, Map<Long, HashMapVirtualObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		throw new UserException("Unimplemented");
 	}
 }

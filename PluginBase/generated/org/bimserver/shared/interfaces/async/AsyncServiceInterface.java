@@ -419,6 +419,16 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetModelMaxBoundsCallback {
+		void success(org.bimserver.interfaces.objects.SVector3f result);
+		void error(Throwable e);
+	}
+	
+	public interface GetModelMinBoundsCallback {
+		void success(org.bimserver.interfaces.objects.SVector3f result);
+		void error(Throwable e);
+	}
+	
 	public interface GetNewServiceCallback {
 		void success(org.bimserver.interfaces.objects.SNewService result);
 		void error(Throwable e);
@@ -1613,6 +1623,30 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getModelCheckerInstance(mcioid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getModelMaxBounds(final java.lang.Long roid, final GetModelMaxBoundsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getModelMaxBounds(roid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getModelMinBounds(final java.lang.Long roid, final GetModelMinBoundsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getModelMinBounds(roid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

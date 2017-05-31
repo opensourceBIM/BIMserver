@@ -325,6 +325,14 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SVector3f getModelMaxBounds(java.lang.Long roid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SVector3f getModelMinBounds(java.lang.Long roid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SNewService getNewService(java.lang.Long soid) throws UserException, ServerException {
 		return null;
 	}

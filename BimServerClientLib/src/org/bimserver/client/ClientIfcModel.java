@@ -314,6 +314,9 @@ public class ClientIfcModel extends IfcModel {
 
 	private void loadGeometry() throws QueryException, ServerException, UserException, PublicInterfaceNotFoundException, IOException, GeometryException, IfcModelInterfaceException {
 		if (includeGeometry) {
+			getModelMetaData().setMinBounds(getBimServerClient().getServiceInterface().getModelMinBounds(roid));
+			getModelMetaData().setMaxBounds(getBimServerClient().getServiceInterface().getModelMaxBounds(roid));
+			
 			Query query = new Query("test", getPackageMetaData());
 			QueryPart queryPart = query.createQueryPart();
 
@@ -836,6 +839,13 @@ public class ClientIfcModel extends IfcModel {
 							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
 								lowLevelInterface.setIntegerAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Integer) newValue);
 							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+								if (newValue instanceof byte[]) {
+									Byte[] n = new Byte[((byte[])newValue).length];
+									for (int i=0; i<n.length; i++) {
+										n[i] = ((byte[])newValue)[i];										
+									}
+									newValue = n;
+								}
 								lowLevelInterface.setByteArrayAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Byte[]) newValue);
 							} else if (eFeature.getEType() instanceof EEnum) {
 								lowLevelInterface.setEnumAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((Enum<?>) newValue).toString());

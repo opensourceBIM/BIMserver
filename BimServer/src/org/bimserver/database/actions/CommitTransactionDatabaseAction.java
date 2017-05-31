@@ -1,5 +1,7 @@
 package org.bimserver.database.actions;
 
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -26,7 +28,9 @@ import java.util.Map;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.GenerateGeometryResult;
 import org.bimserver.GeometryGeneratingException;
+import org.bimserver.GeometryGenerator;
 import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.SummaryMap;
 import org.bimserver.changes.Change;
@@ -37,6 +41,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.OldQuery.Deep;
 import org.bimserver.database.PostCommitAction;
+import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
@@ -49,6 +54,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.LongTransaction;
@@ -89,10 +95,12 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 			throw new UserException("Users must have a valid e-mail address to checkin");
 		}
 		long size = 0;
+		Revision previousRevision = project.getLastRevision();
 		if (project.getLastRevision() != null) {
-			for (ConcreteRevision concreteRevision : project.getLastRevision().getConcreteRevisions()) {
-				size += concreteRevision.getSize();
-			}
+			size += project.getLastRevision().getSize();
+//			for (ConcreteRevision concreteRevision : project.getLastRevision().getConcreteRevisions()) {
+//				size += concreteRevision.getSize();
+//			}
 		}
 		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
@@ -146,11 +154,15 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		// TODO actually change this variable...
 		
 		// First create all new objects
-		Map<Long, IdEObject> created = new HashMap<Long, IdEObject>();
-		Map<Long, IdEObject> deleted = new HashMap<Long, IdEObject>();
+		Map<Long, HashMapVirtualObject> created = new HashMap<>();
+		Map<Long, HashMapVirtualObject> deleted = new HashMap<>();
 		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
-				change.execute(ifcModel, project, concreteRevision, getDatabaseSession(), created, deleted);
+				try {
+					change.execute(bimServer, previousRevision.getOid(), project, concreteRevision, getDatabaseSession(), created, deleted);
+				} catch (IOException | QueryException e) {
+					e.printStackTrace();
+				}
 				summaryMap.add(((CreateObjectChange)change).geteClass(), 1);
 			}
 		}
@@ -160,7 +172,13 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				if (change instanceof RemoveObjectChange) {
 					summaryMap.remove(((RemoveObjectChange)change).geteClass(), 1);
 				}
-				change.execute(ifcModel, project, concreteRevision, getDatabaseSession(), created, deleted);
+				try {
+					change.execute(bimServer, previousRevision.getOid(), project, concreteRevision, getDatabaseSession(), created, deleted);
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (QueryException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
@@ -194,9 +212,10 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 
 				queryContext.setOidCounters(oidCounters);
 
-				streamingGeometryGenerator.generateGeometry(authorization.getUoid(), getDatabaseSession(), queryContext);
-
-//				new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
+				GenerateGeometryResult generateGeometry = streamingGeometryGenerator.generateGeometry(authorization.getUoid(), getDatabaseSession(), queryContext);
+				
+				concreteRevision.setMinBounds(generateGeometry.getMinBoundsAsVector3f());
+				concreteRevision.setMaxBounds(generateGeometry.getMaxBoundsAsVector3f());
 			} catch (GeometryGeneratingException e) {
 				throw new UserException(e);
 			}

@@ -2189,9 +2189,13 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 
 	@Override
 	public int save(VirtualObject object) throws BimserverLockConflictException, BimserverConcurrentModificationDatabaseException, BimserverDatabaseException {
+		return save(object, object.getRid());
+	}
+	
+	public int save(VirtualObject object, int newRid) throws BimserverLockConflictException, BimserverConcurrentModificationDatabaseException, BimserverDatabaseException {
 		ByteBuffer valueBuffer = object.write();
 		EClass eClass = object.eClass();
-		ByteBuffer keyBuffer = createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
+		ByteBuffer keyBuffer = createKeyBuffer(object.getPid(), object.getOid(), newRid);
 		database.getKeyValueStore().storeNoOverwrite(eClass.getEPackage().getName() + "_" + eClass.getName(), keyBuffer.array(), valueBuffer.array(), 0, valueBuffer.position(), this);
 		
 		processPossibleIndices(keyBuffer, object.getPid(), object.getRid(), object.getOid(), object.eClass(), valueBuffer);

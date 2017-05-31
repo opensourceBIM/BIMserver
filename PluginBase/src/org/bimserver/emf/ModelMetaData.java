@@ -19,6 +19,7 @@ package org.bimserver.emf;
 
 import java.util.Date;
 
+import org.bimserver.interfaces.objects.SVector3f;
 import org.bimserver.models.store.IfcHeader;
 
 public class ModelMetaData {
@@ -28,6 +29,8 @@ public class ModelMetaData {
 	private Date date;
 	private int revisionId;
 	private IfcHeader ifcHeader;
+	private SVector3f minBounds;
+	private SVector3f maxBounds;
 
 	public String getAuthorizedUser() {
 		return authorizedUser;
@@ -75,5 +78,21 @@ public class ModelMetaData {
 	
 	public void setIfcHeader(IfcHeader ifcHeader) {
 		this.ifcHeader = ifcHeader;
+	}
+
+	public SVector3f getMinBounds() {
+		return minBounds;
+	}
+
+	public void setMinBounds(SVector3f minBounds) {
+		this.minBounds = minBounds;
+	}
+
+	public SVector3f getMaxBounds() {
+		return maxBounds;
+	}
+
+	public void setMaxBounds(SVector3f maxBounds) {
+		this.maxBounds = maxBounds;
 	}
 }

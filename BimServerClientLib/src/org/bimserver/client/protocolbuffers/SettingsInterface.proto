@@ -148,9 +148,10 @@ message SServerSettings {
 	optional SSmtpProtocol smtpProtocol = 27;
 	optional string smtpServer = 28;
 	optional string smtpUsername = 29;
-	optional int64 webModuleId = 30;
-	repeated int64 webModules = 31;
-	repeated string whitelistedDomains = 32;
+	optional bool storeLastLogin = 30;
+	optional int64 webModuleId = 31;
+	repeated int64 webModules = 32;
+	repeated string whitelistedDomains = 33;
 }
 
 message GetServerSettingsResponse {

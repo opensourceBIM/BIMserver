@@ -1,5 +1,8 @@
 package org.bimserver.changes;
 
+import java.io.IOException;
+import java.util.Collections;
+
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -20,15 +23,18 @@ package org.bimserver.changes;
 import java.util.List;
 import java.util.Map;
 
+import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.OldQuery;
-import org.bimserver.emf.IdEObject;
-import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.database.queries.QueryObjectProvider;
+import org.bimserver.database.queries.om.Query;
+import org.bimserver.database.queries.om.QueryException;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
+import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -49,17 +55,23 @@ public class SetAttributeChange implements Change {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public void execute(BimServer bimServer, long roid, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, HashMapVirtualObject> created, Map<Long, HashMapVirtualObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException, IOException, QueryException {
 		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
-		IdEObject idEObject = databaseSession.get(model, oid, new OldQuery(packageMetaData, project.getId(), concreteRevision.getId(), -1));
+
+		Query query = new Query(packageMetaData);
+		QueryPart queryPart = query.createQueryPart();
+		queryPart.addOid(oid);
+		
+		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(roid), packageMetaData);
+		HashMapVirtualObject object = queryObjectProvider.next();
+		
 		EClass eClass = databaseSession.getEClassForOid(oid);
-		if (idEObject == null) {
-			idEObject = created.get(oid);
+		if (object == null) {
+			object = created.get(oid);
 		}
-		if (idEObject == null) {
+		if (object == null) {
 			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + project.getId());
 		}
-		idEObject.load();
 		EAttribute eAttribute = packageMetaData.getEAttribute(eClass.getName(), attributeName);
 		if (eAttribute == null) {
 			throw new UserException("No attribute with the name \"" + attributeName + "\" found in class \"" + eClass.getName() + "\"");
@@ -69,11 +81,11 @@ public class SetAttributeChange implements Change {
 			if (!eAttribute.isMany()) {
 				throw new UserException("Attribute is not of type 'many'");
 			}
-			List list = (List)idEObject.eGet(eAttribute);
+			List list = (List)object.eGet(eAttribute);
 			list.clear();
 			List asStringList = null;
 			if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-				asStringList = (List)idEObject.eGet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"));
+				asStringList = (List)object.eGet(object.eClass().getEStructuralFeature(attributeName + "AsString"));
 				asStringList.clear();
 			}
 			for (Object o : sourceList) {
@@ -82,21 +94,21 @@ public class SetAttributeChange implements Change {
 				}
 				list.add(o);
 			}
-			databaseSession.store(idEObject, project.getId(), concreteRevision.getId());
+			databaseSession.save(object, concreteRevision.getId());
 		} else {
 			if (eAttribute.isMany()) {
 				throw new UserException("Attribute is not of type 'single'");
 			}
 			if (eAttribute.getEType() instanceof EEnum) {
 				EEnum eEnum = (EEnum) eAttribute.getEType();
-				idEObject.eSet(eAttribute, eEnum.getEEnumLiteral(((String) value).toUpperCase()).getInstance());
+				object.set(eAttribute.getName(), eEnum.getEEnumLiteral(((String) value).toUpperCase()).getInstance());
 			} else {
-				idEObject.eSet(eAttribute, value);
+				object.set(eAttribute.getName(), value);
 			}
 			if (value instanceof Double) {
-				idEObject.eSet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"), String.valueOf((Double)value));
+				object.set(object.eClass().getEStructuralFeature(attributeName + "AsString").getName(), String.valueOf((Double)value));
 			}
-			databaseSession.store(idEObject, project.getId(), concreteRevision.getId());
+			databaseSession.save(object, concreteRevision.getId());
 		}
 	}
 }

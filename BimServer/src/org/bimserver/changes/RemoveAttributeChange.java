@@ -20,6 +20,7 @@ package org.bimserver.changes;
 import java.util.List;
 import java.util.Map;
 
+import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -29,6 +30,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
+import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -47,25 +49,7 @@ public class RemoveAttributeChange implements Change {
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
-		IdEObject idEObject = databaseSession.get(model, oid, new OldQuery(packageMetaData, project.getId(), concreteRevision.getId(), -1));
-		EClass eClass = databaseSession.getEClassForOid(oid);
-		if (idEObject == null) {
-			idEObject = created.get(oid);
-		}
-		if (idEObject == null) {
-			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + project.getId());
-		}
-		EAttribute eAttribute = packageMetaData.getEAttribute(eClass.getName(), attributeName);
-		if (eAttribute == null) {
-			throw new UserException("No attribute with the name " + attributeName + " found in class " + eClass.getName());
-		}
-		if (!eAttribute.isMany()) {
-			throw new UserException("Attribute is not of type 'many'");
-		}
-		List list = (List) idEObject.eGet(eAttribute);
-		list.remove(index);
-		databaseSession.store(idEObject, project.getId(), concreteRevision.getId());
+	public void execute(BimServer bimServer, long roid, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, HashMapVirtualObject> created, Map<Long, HashMapVirtualObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		throw new UserException("Not implemented");
 	}
 }

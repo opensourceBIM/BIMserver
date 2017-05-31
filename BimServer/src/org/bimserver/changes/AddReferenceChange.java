@@ -20,6 +20,7 @@ package org.bimserver.changes;
 import java.util.List;
 import java.util.Map;
 
+import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -29,6 +30,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
+import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.ErrorCode;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
@@ -48,56 +50,7 @@ public class AddReferenceChange implements Change {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
-		IdEObject idEObject = databaseSession.get(model, oid, new OldQuery(packageMetaData, project.getId(), concreteRevision.getId(), -1));
-		if (idEObject == null) {
-			idEObject = created.get(oid);
-		}
-		EClass eClass = databaseSession.getEClassForOid(oid);
-		if (idEObject == null) {
-			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + project.getId());
-		}
-		EReference eReference = packageMetaData.getEReference(eClass.getName(), referenceName);
-		if (eReference == null) {
-			throw new UserException("No reference with the name " + referenceName + " found in class " + eClass.getName());
-		}
-		if (!eReference.isMany()) {
-			throw new UserException("Reference is not of type 'many'");
-		}
-		IdEObject referencedObject = databaseSession.get(referenceOid, new OldQuery(packageMetaData, project.getId(), concreteRevision.getId(), -1));
-		if (referencedObject == null) {
-			referencedObject = created.get(oid);
-		}
-		if (referencedObject == null) {
-			EClass referenceEClass = databaseSession.getEClassForOid(referenceOid);
-			throw new UserException("Referenced object of type " + referenceEClass.getName() + " with oid " + referenceOid + " not found");
-		}
-		
-		boolean added = false;
-		
-		if (eReference.getEOpposite() != null) {
-			if (eReference.getEOpposite().isMany()) {
-				List oppositeList = (List)referencedObject.eGet(eReference.getEOpposite());
-				oppositeList.add(idEObject);
-				databaseSession.store(referencedObject, project.getId(), concreteRevision.getId());
-				added = true;
-			} else {
-				IdEObject oldReferencing = (IdEObject) referencedObject.eGet(eReference.getEOpposite());
-				if (oldReferencing != null && oldReferencing != idEObject) {
-					throw new UserException("You cannot add a reference on " + idEObject.eClass().getName() + " (" + idEObject.getOid() + ")." + eReference.getName() + " to " + referencedObject.eClass().getName() + " (" + referencedObject.getOid() + ") because another object (" + oldReferencing.eClass().getName() + " (" + oldReferencing.getOid() + ")) is already and there is a singular inverse defined", ErrorCode.SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET);
-				}
-				referencedObject.eSet(eReference.getEOpposite(), idEObject); // This will also trigger EMF's opposite, so added=true
-				databaseSession.store(referencedObject, project.getId(), concreteRevision.getId());
-				added = true;
-			}
-		}
-		
-		if (!added) {
-			List list = (List) idEObject.eGet(eReference);
-			list.add(referencedObject);
-		}
-
-		databaseSession.store(idEObject, project.getId(), concreteRevision.getId());
+	public void execute(BimServer bimServer, long roid, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, HashMapVirtualObject> created, Map<Long, HashMapVirtualObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		throw new UserException("Not implemented");
 	}
 }

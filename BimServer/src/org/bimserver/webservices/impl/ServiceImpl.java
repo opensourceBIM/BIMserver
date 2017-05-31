@@ -192,6 +192,7 @@ import org.bimserver.interfaces.objects.STrigger;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.interfaces.objects.SVector3f;
 import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.longaction.DownloadParameters.DownloadType;
@@ -2734,5 +2735,31 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	    } catch (IOException e) {
 	        return false;
 	    }
+	}
+	
+	@Override
+	public SVector3f getModelMaxBounds(Long roid) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Revision revision = session.get(roid, OldQuery.getDefault());
+			return getBimServer().getSConverter().convertToSObject(revision.getLastConcreteRevision().getMaxBounds());
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public SVector3f getModelMinBounds(Long roid) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Revision revision = session.get(roid, OldQuery.getDefault());
+			return getBimServer().getSConverter().convertToSObject(revision.getLastConcreteRevision().getMinBounds());
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

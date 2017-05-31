@@ -20,22 +20,15 @@ package org.bimserver.changes;
 import java.util.List;
 import java.util.Map;
 
+import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
+import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
-
-import nl.tue.buildingsmart.schema.Attribute;
-import nl.tue.buildingsmart.schema.EntityDefinition;
-import nl.tue.buildingsmart.schema.InverseAttribute;
 
 public class RemoveReferenceChange implements Change {
 
@@ -73,56 +66,7 @@ public class RemoveReferenceChange implements Change {
 	
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
-		IdEObject idEObject = databaseSession.get(model, oid, new OldQuery(packageMetaData, project.getId(), concreteRevision.getId(), -1));
-		EClass eClass = databaseSession.getEClassForOid(oid);
-		if (idEObject == null) {
-			idEObject = created.get(oid);
-		}
-		if (idEObject == null) {
-			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + project.getId());
-		}
-		EReference eReference = packageMetaData.getEReference(eClass.getName(), referenceName);
-		if (eReference == null) {
-			throw new UserException("No reference with the name " + referenceName + " found in class " + eClass.getName());
-		}
-		if (!eReference.isMany()) {
-			throw new UserException("Reference is not of type 'many'");
-		}
-		List list = (List) idEObject.eGet(eReference);
-		EntityDefinition entityBN = packageMetaData.getSchemaDefinition().getEntityBN(idEObject.eClass().getName());
-		Attribute attributeBNWithSuper = entityBN.getAttributeBNWithSuper(eReference.getName());
-		EReference oppositeReference = eReference.getEOpposite();
-		if (oppositeReference != null) {
-			IdEObject referenced = getReferencedObject(list);
-			if (oppositeReference.isMany()) {
-				List oppositeList = (List)referenced.eGet(oppositeReference);
-				oppositeList.remove(idEObject);
-				((List)idEObject.eGet(eReference)).remove(referenced); // Opposites don't seem to work here, no clue why, let's just delete...
-				databaseSession.store(referenced, project.getId(), concreteRevision.getId());
-			} else {
-				referenced.eSet(oppositeReference, null); // This will automatically remove the object from the list
-				databaseSession.store(referenced, project.getId(), concreteRevision.getId());
-			}
-		} else {
-			IdEObject referenced = getReferencedObject(list);
-			if (attributeBNWithSuper instanceof InverseAttribute) {
-				InverseAttribute inverse = (InverseAttribute) attributeBNWithSuper;
-				EReference inverseReference = (EReference) referenced.eClass().getEStructuralFeature(inverse.getInverted_attr().getName());
-				if (referenced instanceof List) {
-					((List)referenced).remove(idEObject);
-				} else {
-					referenced.eUnset(inverseReference);
-				}
-				databaseSession.store(referenced, project.getId(), concreteRevision.getId());
-			}
-			if (index != -1) {
-				list.remove(index);
-			} else if (referencedOid != -1) {
-				list.remove(referenced);
-			}
-		}
-		databaseSession.store(idEObject, project.getId(), concreteRevision.getId());
+	public void execute(BimServer bimServer, long roid, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, HashMapVirtualObject> created, Map<Long, HashMapVirtualObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		throw new UserException("Not implemented");
 	}
 }

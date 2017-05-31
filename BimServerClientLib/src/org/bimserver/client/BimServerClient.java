@@ -305,9 +305,9 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	public void download(long roid, long serializerOid, OutputStream outputStream) throws BimServerClientException {
 		try {
-			Long topicId = getServiceInterface().download(Collections.singleton(roid), DefaultQueries.allAsString(), serializerOid, true);
+			Long topicId = getServiceInterface().download(Collections.singleton(roid), DefaultQueries.allAsString(), serializerOid, false);
 			SLongActionState progress = getNotificationRegistryInterface().getProgress(topicId);
-			if (progress.getState() == SActionState.AS_ERROR) {
+			if (progress != null && progress.getState() == SActionState.AS_ERROR) {
 				throw new BimServerClientException(Joiner.on(", ").join(progress.getErrors()));
 			} else {
 				InputStream inputStream = getDownloadData(topicId);

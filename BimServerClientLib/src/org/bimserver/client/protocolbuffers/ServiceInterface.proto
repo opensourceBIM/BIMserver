@@ -179,6 +179,10 @@ service ServiceInterface {
 
 	rpc getModelCheckerInstance (GetModelCheckerInstanceRequest) returns (GetModelCheckerInstanceResponse);
 
+	rpc getModelMaxBounds (GetModelMaxBoundsRequest) returns (GetModelMaxBoundsResponse);
+
+	rpc getModelMinBounds (GetModelMinBoundsRequest) returns (GetModelMinBoundsResponse);
+
 	rpc getNewService (GetNewServiceRequest) returns (GetNewServiceResponse);
 
 	rpc getNrPrimitives (GetNrPrimitivesRequest) returns (GetNrPrimitivesResponse);
@@ -1474,6 +1478,24 @@ message GetModelCheckerInstanceRequest {
 message GetModelCheckerInstanceResponse {
 	optional string errorMessage = 1;
 	optional SModelCheckerInstance value = 2;
+}
+
+message GetModelMaxBoundsRequest {
+	optional int64 roid = 1;
+}
+
+message GetModelMaxBoundsResponse {
+	optional string errorMessage = 1;
+	optional SVector3f value = 2;
+}
+
+message GetModelMinBoundsRequest {
+	optional int64 roid = 1;
+}
+
+message GetModelMinBoundsResponse {
+	optional string errorMessage = 1;
+	optional SVector3f value = 2;
 }
 
 message GetNewServiceRequest {

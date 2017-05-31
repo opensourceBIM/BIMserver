@@ -8,6 +8,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.geometry.GeometryInfo;
+import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.Flow;
@@ -46,16 +47,24 @@ public class TestGeometry extends TestWithEmbeddedServer {
 			project = bimServerClient.getServiceInterface().getProjectByPoid(project.getOid());
 			
 			int nrTriangles = 0;
-			
+
 			// Load model without lazy loading (complete model at once)
-			IfcModelInterface model = bimServerClient.getModel(project, project.getLastRevisionId(), true, true);
+			IfcModelInterface model = bimServerClient.getModel(project, project.getLastRevisionId(), true, true, true);
+			
+			Assert.assertNotNull(model.getModelMetaData().getMinBounds());
+			Assert.assertNotNull(model.getModelMetaData().getMaxBounds());
+			
 			for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 				GeometryInfo geometryInfo = ifcProduct.getGeometry();
 				if (geometryInfo != null) {
+					Vector3f minBounds = geometryInfo.getMinBounds();
+					Vector3f maxBounds = geometryInfo.getMinBounds();
+					Assert.assertNotNull(minBounds);
+					Assert.assertNotNull(maxBounds);
 					nrTriangles += geometryInfo.getPrimitiveCount();
 				}
 			}
-			Assert.assertEquals(45268, nrTriangles);
+			Assert.assertEquals(45260, nrTriangles);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());

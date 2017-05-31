@@ -20,6 +20,7 @@ package org.bimserver.changes;
 import java.util.List;
 import java.util.Map;
 
+import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -29,6 +30,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
+import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -45,26 +47,8 @@ public class RemoveAllReferencesChange implements Change {
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException,
+	public void execute(BimServer bimServer, long roid, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, HashMapVirtualObject> created, Map<Long, HashMapVirtualObject> deleted) throws UserException, BimserverLockConflictException,
 			BimserverDatabaseException {
-		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
-		IdEObject idEObject = databaseSession.get(model, oid, new OldQuery(packageMetaData, project.getId(), concreteRevision.getId(), -1));
-		EClass eClass = databaseSession.getEClassForOid(oid);
-		if (idEObject == null) {
-			idEObject = created.get(oid);
-		}
-		if (idEObject == null) {
-			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + project.getId());
-		}
-		EReference eReference = packageMetaData.getEReference(eClass.getName(), referenceName);
-		if (eReference == null) {
-			throw new UserException("No reference with the name " + referenceName + " found in class " + eClass.getName());
-		}
-		if (!eReference.isMany()) {
-			throw new UserException("Reference is not of type 'many'");
-		}
-		List list = (List) idEObject.eGet(eReference);
-		list.clear();
-		databaseSession.store(idEObject, project.getId(), concreteRevision.getId());
+		throw new UserException("Not implemented");
 	}
 }

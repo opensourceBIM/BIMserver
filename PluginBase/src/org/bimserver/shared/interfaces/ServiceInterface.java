@@ -56,6 +56,7 @@ import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.interfaces.objects.SVector3f;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -1490,4 +1491,10 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "checkInternetConnection")
 	Boolean checkInternetConnection() throws UserException, ServerException;
+	
+	@WebMethod(action = "getModelMinBounds")
+	SVector3f getModelMinBounds(@WebParam(name = "roid", partName = "getModelMinBounds.roid") Long roid) throws ServerException, UserException;
+
+	@WebMethod(action = "getModelMaxBounds")
+	SVector3f getModelMaxBounds(@WebParam(name = "roid", partName = "getModelMaxBounds.roid") Long roid) throws ServerException, UserException;
 }

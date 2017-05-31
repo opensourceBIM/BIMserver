@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -34,6 +35,7 @@ import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
+import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -60,55 +62,7 @@ public class RemoveObjectChange implements Change {
 	
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void execute(IfcModelInterface model, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
-		IdEObject idEObject = databaseSession.get(model, oid, new OldQuery(packageMetaData, project.getId(), concreteRevision.getId() - 1, -1));
-		if (idEObject == null) {
-			idEObject = created.get(oid);
-		}
-		if (idEObject == null) {
-			throw new UserException("Object with oid " + oid + " not found");
-		}
-
-		int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
-		OldQuery query = new OldQuery(packageMetaData, project.getId(), concreteRevision.getId(), -1, null, Deep.YES, highestStopId);
-		IfcModel subModel = new BasicIfcModel(packageMetaData, null);
-		databaseSession.getMap(subModel, query);
-		for (IdEObject idEObject2 : subModel.getValues()) {
-			if (idEObject2 == idEObject) {
-				continue;
-			}
-			if (deleted.containsKey(idEObject2.getOid())) {
-				continue;
-			}
-			boolean changed = false;
-			for (EReference eReference : idEObject2.eClass().getEAllReferences()) {
-				Object val = idEObject2.eGet(eReference);
-				if (val != null) {
-					if (eReference.isMany()) {
-						List list = (List)val;
-						Iterator iterator = list.iterator();
-						while (iterator.hasNext()) {
-							IdEObject item = (IdEObject) iterator.next();
-							if (item == idEObject) {
-								iterator.remove();
-								changed = true;
-							}
-						}
-					} else {
-						IdEObject ref = (IdEObject)val;
-						if (ref == idEObject) {
-							idEObject2.eSet(eReference, null);
-							changed = true;
-						}
-					}
-				}
-			}
-			if (changed) {
-				databaseSession.store(idEObject2, project.getId(), concreteRevision.getId());
-			}
-		}
-		deleted.put(idEObject.getOid(), idEObject);
-		databaseSession.delete(idEObject, concreteRevision.getId());
+	public void execute(BimServer bimServer, long roid, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, HashMapVirtualObject> created, Map<Long, HashMapVirtualObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		throw new UserException("Not implemented");
 	}
 }
