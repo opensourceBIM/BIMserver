@@ -159,7 +159,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
 				try {
-					change.execute(bimServer, previousRevision.getOid(), project, concreteRevision, getDatabaseSession(), created, deleted);
+					change.execute(bimServer, previousRevision, project, concreteRevision, getDatabaseSession(), created, deleted);
 				} catch (IOException | QueryException e) {
 					e.printStackTrace();
 				}
@@ -173,7 +173,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 					summaryMap.remove(((RemoveObjectChange)change).geteClass(), 1);
 				}
 				try {
-					change.execute(bimServer, previousRevision.getOid(), project, concreteRevision, getDatabaseSession(), created, deleted);
+					change.execute(bimServer, previousRevision, project, concreteRevision, getDatabaseSession(), created, deleted);
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (QueryException e) {

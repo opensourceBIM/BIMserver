@@ -32,7 +32,7 @@ public class TestSetWrappedBoolean extends TestWithEmbeddedServer {
 			bimServerClient.checkin(newProject.getOid(), "initial", suggestedDeserializerForExtension.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/revit_quantities.ifc"));
 			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 			
-			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByName("Ifc2x3");
+			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByName("Ifc2x3tc1 (Streaming)");
 			
 			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("test1.ifc"));
 

@@ -31,7 +31,7 @@ public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject im
 	private EClass eClass;
 	private final Map<EStructuralFeature, Object> map = new HashMap<>();
 
-	public HashMapWrappedVirtualObject(QueryContext reusable, EClass eClass) {
+	public HashMapWrappedVirtualObject(EClass eClass) {
 		this.eClass = eClass;
 	}
 

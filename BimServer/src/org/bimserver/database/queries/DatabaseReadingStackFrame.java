@@ -47,8 +47,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class DatabaseReadingStackFrame extends StackFrame implements ObjectProvidingStackFrame {
+	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseReadingStackFrame.class);
 	private QueryContext reusable;
 	private QueryObjectProvider queryObjectProvider;
 	protected HashMapVirtualObject currentObject;
@@ -273,7 +276,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 	private HashMapWrappedVirtualObject readWrappedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass) throws BimserverDatabaseException {
 		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature("wrappedValue");
 		Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer);
-		HashMapWrappedVirtualObject eObject = new HashMapWrappedVirtualObject(reusable, eClass);
+		HashMapWrappedVirtualObject eObject = new HashMapWrappedVirtualObject(eClass);
 		eObject.setAttribute(eStructuralFeature, primitiveValue);
 		if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
 			EStructuralFeature strFeature = eClass.getEStructuralFeature("wrappedValueAsString");
@@ -284,7 +287,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 	}
 
 	private HashMapWrappedVirtualObject readEmbeddedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass) throws BimserverDatabaseException {
-		HashMapWrappedVirtualObject eObject = new HashMapWrappedVirtualObject(reusable, eClass);
+		HashMapWrappedVirtualObject eObject = new HashMapWrappedVirtualObject(eClass);
 		for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 			if (eStructuralFeature.isMany()) {
 			} else {
@@ -344,6 +347,9 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 				buffer.position(buffer.position() + 1);
 			} else {
 				int listSize = buffer.getInt();
+				if (listSize > 1000000) {
+					LOGGER.warn("List of size > 1000000, probably an error");
+				}
 
 				for (int i = 0; i < listSize; i++) {
 					if (feature.getEAnnotation("twodimensionalarray") != null) {

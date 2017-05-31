@@ -247,8 +247,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 										if (geometry != null && geometry.getNrIndices() > 0) {
 											VirtualObject geometryInfo = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryInfo());
 											
-											WrappedVirtualObject minBounds = new HashMapWrappedVirtualObject(queryContext, GeometryPackage.eINSTANCE.getVector3f());
-											WrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(queryContext, GeometryPackage.eINSTANCE.getVector3f());
+											WrappedVirtualObject minBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
+											WrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 											
 											minBounds.set("x", Double.POSITIVE_INFINITY);
 											minBounds.set("y", Double.POSITIVE_INFINITY);
@@ -261,8 +261,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBounds(), minBounds);
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBounds(), maxBounds);
 
-											WrappedVirtualObject minBoundsUntranslated = new HashMapWrappedVirtualObject(queryContext, GeometryPackage.eINSTANCE.getVector3f());
-											WrappedVirtualObject maxBoundsUntranslated = new HashMapWrappedVirtualObject(queryContext, GeometryPackage.eINSTANCE.getVector3f());
+											WrappedVirtualObject minBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
+											WrappedVirtualObject maxBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 
 											minBoundsUntranslated.set("x", Double.POSITIVE_INFINITY);
 											minBoundsUntranslated.set("y", Double.POSITIVE_INFINITY);

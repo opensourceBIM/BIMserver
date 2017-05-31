@@ -84,6 +84,11 @@ public class AsyncOAuthInterface {
 		void error(Throwable e);
 	}
 	
+	public interface RegisterRemoteApplicationCallback {
+		void success(org.bimserver.interfaces.objects.SOAuthServer result);
+		void error(Throwable e);
+	}
+	
 	public interface RevokeApplicationCallback {
 		void success();
 		void error(Throwable e);
@@ -226,6 +231,18 @@ public class AsyncOAuthInterface {
 			public void run(){
 				try {
 					callback.success(syncService.registerApplication(registrationEndpoint, apiUrl, redirectUrl));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void registerRemoteApplication(final java.lang.String redirectUrl, final java.lang.String name, final java.lang.String description, final RegisterRemoteApplicationCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.registerRemoteApplication(redirectUrl, name, description));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

@@ -65,6 +65,10 @@ public class OAuthInterfaceAdaptor implements org.bimserver.shared.interfaces.OA
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SOAuthServer registerRemoteApplication(java.lang.String redirectUrl, java.lang.String name, java.lang.String description) throws UserException, ServerException {
+		return null;
+	}
+	
 	public void revokeApplication(java.lang.Long oid) throws UserException, ServerException {
 	}
 	

@@ -104,4 +104,10 @@ public interface OAuthInterface extends PublicInterface {
 		@WebParam(name = "soid", partName = "getRemoteToken.soid") Long soid,
 		@WebParam(name = "code", partName = "getRemoteToken.code") String code,
 		@WebParam(name = "serverId", partName = "getRemoteToken.serverId") Long serverId) throws ServerException, UserException;
+
+	@WebMethod(action="registerRemoteApplication")
+	SOAuthServer registerRemoteApplication(
+		@WebParam(name = "redirectUrl", partName = "registerRemoteApplication.redirectUrl") String redirectUrl, 
+		@WebParam(name = "name", partName = "registerRemoteApplication.name") String name, 
+		@WebParam(name = "description", partName = "registerRemoteApplication.description") String description) throws UserException, ServerException;
 }

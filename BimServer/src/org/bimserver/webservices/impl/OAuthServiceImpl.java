@@ -22,7 +22,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
@@ -64,6 +63,23 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 		super(serviceMap);
 	}
 
+	public SOAuthServer registerRemoteApplication(String redirectUrl, String name, String description) throws UserException {
+		try {
+			OAuthClientRequest request = OAuthClientRegistrationRequest.location(getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth/register/", 
+					OAuthRegistration.Type.PUSH).setName(name).setUrl(redirectUrl).setDescription(description)
+					.setRedirectURL(redirectUrl).buildJSONMessage();
+			OAuthRegistrationClient oauthclient = new OAuthRegistrationClient(new org.bimserver.webservices.impl.URLConnectionClient());
+			OAuthClientRegistrationResponse response = oauthclient.clientInfo(request);
+			
+			SOAuthServer server = new SOAuthServer();
+			server.setClientId(response.getClientId());
+			server.setClientSecret(response.getClientSecret());
+			return server;
+		} catch (Exception e) {
+			throw new UserException(e);
+		}
+	}
+	
 	@Override
 	public Long registerApplication(String registrationEndpoint, String apiUrl, String redirectUrl) throws UserException, ServerException {
         try {

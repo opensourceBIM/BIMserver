@@ -1,5 +1,5 @@
 
-ò"
+¿%
 OAuthInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoNotificationInterface.protoRemoteServiceInterface.protoLowLevelInterface.proto#NotificationRegistryInterface.proto"J
 SSingleProjectAuthorization
 oid (
@@ -93,14 +93,21 @@ $ListIssuedAuthorizationCodesResponse
 redirectUrl (	"B
 RegisterApplicationResponse
 errorMessage (	
-value ("'
+value ("Z
+ RegisterRemoteApplicationRequest
+redirectUrl (	
+name (	
+description (	"h
+!RegisterRemoteApplicationResponse
+errorMessage (	-
+value (2.org.bimserver.pb.SOAuthServer"'
 RevokeApplicationRequest
 oid (")
 RevokeAuthorizationRequest
 oid ("B
 SetAuthorizationCodeRequest
 applicationId (
-code (	2Ú
+code (	2á
 OAuthInterfaceT
 	authorize".org.bimserver.pb.AuthorizeRequest#.org.bimserver.pb.AuthorizeResponseo
 generateForwardUrl+.org.bimserver.pb.GenerateForwardUrlRequest,.org.bimserver.pb.GenerateForwardUrlResponseu
@@ -112,7 +119,8 @@ $ListIssuedAuthorizationCodesResponse
 listIssuedAuthorizationCodes5.org.bimserver.pb.ListIssuedAuthorizationCodesRequest6.org.bimserver.pb.ListIssuedAuthorizationCodesResponsex
 listRegisteredServers..org.bimserver.pb.ListRegisteredServersRequest/.org.bimserver.pb.ListRegisteredServersResponse‡
 listRegisteredServersLocal3.org.bimserver.pb.ListRegisteredServersLocalRequest4.org.bimserver.pb.ListRegisteredServersLocalResponser
-registerApplication,.org.bimserver.pb.RegisterApplicationRequest-.org.bimserver.pb.RegisterApplicationResponse_
+registerApplication,.org.bimserver.pb.RegisterApplicationRequest-.org.bimserver.pb.RegisterApplicationResponse„
+registerRemoteApplication2.org.bimserver.pb.RegisterRemoteApplicationRequest3.org.bimserver.pb.RegisterRemoteApplicationResponse_
 revokeApplication*.org.bimserver.pb.RevokeApplicationRequest.org.bimserver.pb.VoidResponsec
 revokeAuthorization,.org.bimserver.pb.RevokeAuthorizationRequest.org.bimserver.pb.VoidResponsee
 setAuthorizationCode-.org.bimserver.pb.SetAuthorizationCodeRequest.org.bimserver.pb.VoidResponseBBOAuthInterfaceImplHˆ
