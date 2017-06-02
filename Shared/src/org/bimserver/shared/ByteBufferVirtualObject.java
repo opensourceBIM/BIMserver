@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject implements VirtualObject {
+public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject implements ListCapableVirtualObject, VirtualObject {
 	private static final Logger LOGGER = LoggerFactory.getLogger(VirtualObject.class);
 	private EClass eClass;
 	private long oid;

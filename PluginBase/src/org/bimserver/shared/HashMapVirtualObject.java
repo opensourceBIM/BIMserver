@@ -99,6 +99,8 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 				for (Object o : l) {
 					if (o instanceof VirtualObject) {
 						refSize += 8;
+					} else if (o instanceof WrappedVirtualObject) {
+						refSize += ((WrappedVirtualObject)o).getSize();
 					} else {
 						refSize += getPrimitiveSize((EDataType) eStructuralFeature.getEType(), o);
 					}
@@ -124,6 +126,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 
 	private int getExactSize(VirtualObject virtualObject) {
 		int size = 0;
+		int lastSize = 0;
 
 		for (EStructuralFeature eStructuralFeature : eClass().getEAllStructuralFeatures()) {
 			if (getPackageMetaData().useForDatabaseStorage(eClass, eStructuralFeature)) {
@@ -150,6 +153,8 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 							size += getWrappedValueSize(val, eReference);
 						}
 					}
+					System.out.println("S " + eStructuralFeature.getName() + ": " + (size - lastSize));
+					lastSize = size;
 				}
 			}
 		}
@@ -182,6 +187,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	}
 	
 	public ByteBuffer write() throws BimserverDatabaseException {
+		System.out.println();
 		int bufferSize = getExactSize(this);
 		ByteBuffer buffer = ByteBuffer.allocate(bufferSize);
 		byte[] unsetted = new byte[getPackageMetaData().getUnsettedLength(eClass)];
@@ -204,6 +210,9 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		for (EStructuralFeature feature : eClass().getEAllStructuralFeatures()) {
 			if (getPackageMetaData().useForDatabaseStorage(eClass, feature)) {
 				if (!useUnsetBit(feature)) {
+					if (feature.getName().equals("CoordIndex")) {
+						System.out.println();
+					}
 					if (feature.isMany()) {
 						writeList(this, buffer, getPackageMetaData(), feature);
 					} else {
@@ -238,6 +247,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 							writePrimitiveValue(feature, value, buffer);
 						}
 					}
+					System.out.println(feature.getName() + ": " + buffer.position());
 				}
 			}
 		}
@@ -336,10 +346,14 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 				}
 			}
 		} else if (feature.getEType() instanceof EDataType) {
-			List list = (List) eGet(feature);
-			buffer.putInt(list.size());
-			for (Object o : list) {
-				writePrimitiveValue(feature, o, buffer);
+			List list = (List) virtualObject.eGet(feature);
+			if (list == null) {
+				buffer.putInt(-1);
+			} else {
+				buffer.putInt(list.size());
+				for (Object o : list) {
+					writePrimitiveValue(feature, o, buffer);
+				}
 			}
 		}
 	}
