@@ -33,8 +33,10 @@ import org.bimserver.plugins.serializers.StreamingReader;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.MinimalVirtualObject;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jdt.internal.compiler.util.HashtableOfPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -152,6 +154,7 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 									} else if (wrapped != 0 && referred == 0) {
 										print("\"_e" + eStructuralFeature.getName() + "\":[");
 									} else if (wrapped == 0 && referred == 0) {
+										print("\"_e" + eStructuralFeature.getName() + "\":[");
 										// should not happen
 									} else {
 										// both, this can occur,
@@ -192,6 +195,24 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 												}
 											} else if (o instanceof HashMapWrappedVirtualObject) {
 												write((HashMapWrappedVirtualObject) o);
+											} else if (eStructuralFeature.getEAnnotation("twodimensionalarray") != null) {
+												EClass type = (EClass) eStructuralFeature.getEType();
+												EStructuralFeature listFeature = type.getEStructuralFeature("List");
+												List listX = (List)(((HashMapVirtualObject)o).eGet(listFeature));
+												print("[");
+												boolean fq = true;
+												for (Object k : listX) {
+													if (!fq) {
+														print(",");
+													}
+													fq = false;
+													if (k instanceof HashMapWrappedVirtualObject) {
+														write((HashMapWrappedVirtualObject)k);
+													} else {
+														print("\"" + k + "\"");
+													}
+												}
+												print("]");
 											} else {
 												LOGGER.info("Unimplemented " + o);
 											}

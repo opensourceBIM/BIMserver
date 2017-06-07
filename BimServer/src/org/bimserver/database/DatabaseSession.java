@@ -1442,7 +1442,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				List<?> l = (List<?>)eObject.eGet(eStructuralFeature);
 				for (Object o : l) {
 					if (o instanceof EObject) {
-						refSize += 8;
+						refSize += getWrappedValueSize(o, (EReference) eStructuralFeature, packageMetaData);
 					} else {
 						refSize += getPrimitiveSize((EDataType) eStructuralFeature.getEType(), o);
 					}

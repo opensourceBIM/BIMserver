@@ -111,6 +111,9 @@ public class IfcSchemaToJson {
 					
 					jsonWriter.name("fields");
 					jsonWriter.beginObject();
+					if (eClass.getName().equals("IfcCartesianPointList3D")) {
+						System.out.println();
+					}
 					for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
 						jsonWriter.name(eStructuralFeature.getName());
 						jsonWriter.beginObject();
