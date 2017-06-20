@@ -122,7 +122,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		authenticate();
 	}
 
-	private void authenticate() throws ServerException, UserException {
+	public void authenticate() throws ServerException, UserException {
 		try {
 			AuthInterface authInterface = channel.get(AuthInterface.class);
 			if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {

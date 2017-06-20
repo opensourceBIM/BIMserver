@@ -102,6 +102,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		connManager.setMaxTotal(100);
 		connManager.setDefaultMaxPerRoute(100);
 		builder.setConnectionManager(connManager);
+		builder.disableAutomaticRetries();
 		
 //		builder.addInterceptorFirst(new HttpRequestInterceptor() {
 //			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {

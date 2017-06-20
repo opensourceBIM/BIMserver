@@ -365,7 +365,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											ifcProduct.saveOverwrite();
 											
 											// Doing a sync here because probably writing large amounts of data, and db only syncs every 100.000 writes by default
-											databaseSession.getKeyValueStore().sync();
+//											databaseSession.getKeyValueStore().sync();
 										} else {
 											// TODO
 										}
@@ -383,7 +383,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	//										}
 	//									}
 										if (!ignoreNotFound) {
-											LOGGER.warn("Entity not found " + ifcProduct.eClass().getName() + " " + (expressId) + "/" + ifcProduct.getOid());
+//											LOGGER.warn("Entity not found " + ifcProduct.eClass().getName() + " " + (expressId) + "/" + ifcProduct.getOid());
 											notFoundsObjects = true;
 										}
 									} catch (BimserverDatabaseException | RenderEngineException e) {

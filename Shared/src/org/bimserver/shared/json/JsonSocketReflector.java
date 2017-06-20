@@ -86,7 +86,7 @@ public class JsonSocketReflector extends JsonReflector {
 						return (JsonObject) parser.parse(new InputStreamReader(resultEntity.getContent(), Charsets.UTF_8));
 					}
 				} else {
-					throw new ReflectorException("Call unsuccessful, status code: " + response.getStatusLine().getStatusCode() + " (" + response.getStatusLine().getReasonPhrase() + ")");
+					throw new ReflectorException("Call unsuccessful, status code: " + response.getStatusLine().getStatusCode() + " (" + response.getStatusLine().getReasonPhrase() + "), " + remoteAddress);
 				}
 			} finally {
 				httppost.releaseConnection();

@@ -88,4 +88,5 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, URL url) throws UserException, ServerException;
 	void download(long roid, String query, long oid, Path file) throws ServerException, UserException, PublicInterfaceNotFoundException, IOException;
 	long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException;
+	void authenticate() throws ServerException, UserException;
 }

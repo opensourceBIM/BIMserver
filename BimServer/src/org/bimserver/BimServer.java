@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -194,6 +195,7 @@ public class BimServer {
 	private MetricsRegistry metricsRegistry;
 	private RenderEnginePools renderEnginePools;
 	private MavenPluginRepository mavenPluginRepository;
+	private final ConcurrentHashMap<Long, Long> checkinsInProgress = new ConcurrentHashMap<>(); // poid -> uoid
 
 	/**
 	 * Create a new BIMserver
@@ -1453,5 +1455,12 @@ public class BimServer {
 
 	public void setEmbeddedWebServer(EmbeddedWebServerInterface embeddedWebServer) {
 		this.embeddedWebServer = embeddedWebServer;
+	}
+	
+	public ConcurrentHashMap<Long, Long> getCheckinsInProgress() {
+//		for (Long key : checkinsInProgress.keySet()) {
+//			System.out.println(key + ": " + checkinsInProgress.get(key));
+//		}
+		return checkinsInProgress;
 	}
 }

@@ -19,6 +19,7 @@ package org.bimserver.servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.InflaterInputStream;
 
@@ -130,14 +131,28 @@ public class UploadServlet extends SubServlet {
 							DataHandler ifcFile = new DataHandler(inputStreamDataSource);
 							
 							if (token != null) {
-								if (topicId == -1) {
-									ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-									long newTopicId = service.checkin(poid, comment, deserializerOid, -1L, name, ifcFile, merge, sync);
-									result.put("topicId", newTopicId);
-								} else {
-									ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-									long newTopicId = service.checkinInitiated(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge, true);
-									result.put("topicId", newTopicId);
+								try {
+									if (topicId == -1) {
+										ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+										long newTopicId = service.checkin(poid, comment, deserializerOid, -1L, name, ifcFile, merge, sync);
+										result.put("topicId", newTopicId);
+									} else {
+										ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+										long newTopicId = service.checkinInitiated(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge, true);
+										result.put("topicId", newTopicId);
+									}
+								} catch (Exception e) {
+									// First handle the remaining stream, so we can send the exception
+									IOUtils.copy(realStream, new OutputStream() {
+										@Override
+										public void write(int b) throws IOException {
+										}
+										
+										@Override
+										public void write(byte[] b, int off, int len) throws IOException {
+										}
+									});
+									throw e;
 								}
 							}
 						} else {

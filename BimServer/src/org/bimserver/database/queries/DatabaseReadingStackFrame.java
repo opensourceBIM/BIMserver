@@ -348,25 +348,24 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			} else {
 				int listSize = buffer.getInt();
 
-				// DEBUG
-				int limit = 2000;
-				if (listSize > limit) {
-					LOGGER.warn("List of size " + listSize + " > " + limit + ", probably an error");
-				}
+//				// DEBUG
+//				int limit = 2000;
+//				if (listSize > limit) {
+//					LOGGER.warn("List of size " + listSize + " > " + limit + ", probably an error");
+//				}
 
 				for (int i = 0; i < listSize; i++) {
 					if (feature.getEAnnotation("twodimensionalarray") != null) {
 						HashMapVirtualObject newObject = new HashMapVirtualObject(reusable, (EClass) feature.getEType());
 						
-//						buffer.order(ByteOrder.LITTLE_ENDIAN);
-//						short cid = buffer.getShort();
-//						buffer.order(ByteOrder.BIG_ENDIAN);
-//						EClass referenceClass = queryObjectProvider.getDatabaseSession().getEClass((short) (-cid));
-//						if (referenceClass == null) {
-//							throw new BimserverDatabaseException("No class found for cid " + (-cid));
-//						}
+						buffer.order(ByteOrder.LITTLE_ENDIAN);
+						short cid = buffer.getShort();
+						buffer.order(ByteOrder.BIG_ENDIAN);
+						EClass referenceClass = queryObjectProvider.getDatabaseSession().getEClass((short) (-cid));
+						if (referenceClass == null) {
+							throw new BimserverDatabaseException("No class found for cid " + (-cid));
+						}
 						EStructuralFeature eStructuralFeature = ((EClass)feature.getEType()).getEStructuralFeature("List");
-						System.out.println(eStructuralFeature.getEType().getName());
 						Object result = readList(newObject, buffer, eStructuralFeature);
 						if (result != null) {
 							newObject.setAttribute(newObject.eClass().getEStructuralFeature("List"), result);

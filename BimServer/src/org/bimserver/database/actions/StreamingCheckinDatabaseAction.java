@@ -118,6 +118,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {
+			bimServer.getCheckinsInProgress().put(poid, getActingUid());
+
 			if (inputStream instanceof RestartableInputStream) {
 				((RestartableInputStream)inputStream).restartIfAtEnd();
 			}
@@ -179,6 +181,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 
 			newRevision = result.getRevisions().get(0);
 			long newRoid = newRevision.getOid();
+			LOGGER.info("New ROID: " + newRoid + " /rid: " + newRevision.getId() + "/poid: " + poid);
 			QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId(), newRoid, -1); // TODO check
 			
 			if (fileSize != -1) {
@@ -331,6 +334,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
+					bimServer.getCheckinsInProgress().remove(poid);
 					bimServer.getNotificationsManager().notify(new NewRevisionNotification(bimServer, project.getOid(), revision.getOid(), authorization));
 				}
 			});
@@ -412,7 +416,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		if (referencedObject == null) {
 			referencedObject = getByOid(packageMetaData, getDatabaseSession(), newRoid, refOid);
 			if (referencedObject == null) {
-				throw new BimserverDatabaseException("Referenced object with oid " + refOid + ", referenced from " + next.eClass().getName() + " not found");
+				throw new BimserverDatabaseException("Referenced object with oid " + refOid + " (" + getDatabaseSession().getEClassForOid(refOid).getName() + ")" + ", referenced from " + next.eClass().getName() + " not found");
 			}
 			cache.put(refOid, referencedObject);
 		}
