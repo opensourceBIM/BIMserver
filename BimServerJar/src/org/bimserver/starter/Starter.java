@@ -78,6 +78,8 @@ public class Starter extends JFrame {
 	private JCheckBox useProxy;
 	private JTextField proxyHost;
 	private JTextField proxyPort;
+	private JLabel proxyHostLabel;
+	private JLabel proxyPortLabel;
 
 	public static void main(String[] args) {
 		new Starter().start();
@@ -219,19 +221,19 @@ public class Starter extends JFrame {
 		forceIpv4Field.setSelected(jarSettings.isForceipv4());
 		fields.add(forceIpv4Field);
 
-		JLabel useProxyLabel = new JLabel("User proxy server");
+		JLabel useProxyLabel = new JLabel("");
 		useProxy = new JCheckBox("Use proxy server");
 		useProxy.setSelected(jarSettings.isUseProxy());
 		fields.add(useProxyLabel);
 		fields.add(useProxy);
 		
-		JLabel proxyHostLabel = new JLabel("Proxy Host");
+		proxyHostLabel = new JLabel("Proxy Host");
 		fields.add(proxyHostLabel);
 		
 		proxyHost = new JTextField(jarSettings.getProxyHost());
 		fields.add(proxyHost);
 		
-		JLabel proxyPortLabel = new JLabel("Proxy Port");
+		proxyPortLabel = new JLabel("Proxy Port");
 		fields.add(proxyPortLabel);
 		
 		proxyPort = new JTextField("" + jarSettings.getProxyPort());
@@ -299,6 +301,7 @@ public class Starter extends JFrame {
 		useProxy.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
+				updateProxyVisibility();
 				save();
 			}
 		});
@@ -345,6 +348,8 @@ public class Starter extends JFrame {
 		getContentPane().add(fields, BorderLayout.NORTH);
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		getContentPane().add(buttons, BorderLayout.SOUTH);
+		
+		updateProxyVisibility();
 
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 			@Override
@@ -355,6 +360,13 @@ public class Starter extends JFrame {
 			}
 		}, "Thutdown Hook"));
 		setVisible(true);
+	}
+
+	protected void updateProxyVisibility() {
+		proxyHostLabel.setVisible(useProxy.isSelected());
+		proxyPortLabel.setVisible(useProxy.isSelected());
+		proxyHost.setVisible(useProxy.isSelected());
+		proxyPort.setVisible(useProxy.isSelected());
 	}
 
 	private void setComponentsEnabled(boolean enabled) {
@@ -397,7 +409,7 @@ public class Starter extends JFrame {
 					
 					System.out.println("Using " + jreLib.getAbsolutePath() + " for bootclasspath");
 					
-					String xbcp = "-Xbootclasspath:";
+					String xbcp = "-Xbootclasspath ";
 					for (File file : jreLib.listFiles()) {
 						if (file.getName().endsWith(".jar")) {
 							if (file.getAbsolutePath().contains(" ")) {
