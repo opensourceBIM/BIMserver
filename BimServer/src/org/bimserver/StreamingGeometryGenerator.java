@@ -27,8 +27,12 @@ import java.nio.ByteOrder;
 import java.nio.DoubleBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -110,6 +114,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private int maxObjectsPerFile = 10;
 	private volatile boolean running = true;
+
+	private String debugIdentifier;
 
 	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener) {
 		this.bimServer = bimServer;
@@ -202,7 +208,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					IOUtils.copy(ifcSerializer.getInputStream(), baos);
 					bytes = baos.toByteArray();
 					InputStream in = new ByteArrayInputStream(bytes);
-					boolean notFoundsObjects = false;
+					Map<Integer, String> notFoundObjects = new HashMap<>();
 					try {
 						if (!objects.isEmpty()) {
 							renderEngine = renderEnginePool.borrowObject();
@@ -384,7 +390,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	//									}
 										if (!ignoreNotFound) {
 //											LOGGER.warn("Entity not found " + ifcProduct.eClass().getName() + " " + (expressId) + "/" + ifcProduct.getOid());
-											notFoundsObjects = true;
+											notFoundObjects.put(expressId, ifcProduct.eClass().getName());
 										}
 									} catch (BimserverDatabaseException | RenderEngineException e) {
 										LOGGER.error("", e);
@@ -394,10 +400,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						}
 					} finally {
 						try {
-//							if (notFoundsObjects) {
-//								writeDebugFile(bytes, false);
-//								Thread.sleep(60000);
-//							}
+							if (!notFoundObjects.isEmpty()) {
+								writeDebugFile(bytes, false, notFoundObjects);
+							}
 							in.close();
 						} catch (Throwable e) {
 							
@@ -410,7 +415,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					}
 				} catch (Exception e) {
 					LOGGER.error("", e);
-					writeDebugFile(bytes, true);
+					writeDebugFile(bytes, true, null);
 //					LOGGER.error("Original query: " + originalQuery, e);
 				}
 			} catch (Exception e) {
@@ -419,13 +424,19 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			}
 		}
 
-		private void writeDebugFile(byte[] bytes, boolean error) throws FileNotFoundException, IOException {
+		private void writeDebugFile(byte[] bytes, boolean error, Map<Integer, String> notFoundObjects) throws FileNotFoundException, IOException {
 			boolean debug = true;
 			if (debug) {
 				Path debugPath = bimServer.getHomeDir().resolve("debug");
 				if (!Files.exists(debugPath)) {
 					Files.createDirectories(debugPath);
 				}
+
+				Path folder = debugPath.resolve(debugIdentifier);
+				if (!Files.exists(folder)) {
+					Files.createDirectories(folder);
+				}
+				
 				String basefilenamename = "all";
 				if (eClass != null) {
 					basefilenamename = eClass.getName();
@@ -433,12 +444,22 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				if (error) {
 					basefilenamename += "-error";
 				}
-				Path file = debugPath.resolve(basefilenamename + ".ifc");
+
+				Path file = folder.resolve(basefilenamename + ".ifc");
 				int i=0;
 				while (Files.exists((file))) {
-					file = debugPath.resolve(basefilenamename + "-" + i + ".ifc");
+					file = folder.resolve(basefilenamename + "-" + i + ".ifc");
 					i++;
 				}
+
+				if (notFoundObjects != null) {
+					StringBuilder sb = new StringBuilder();
+					for (Integer expressId : notFoundObjects.keySet()) {
+						sb.append(notFoundObjects.get(expressId) + ": " + expressId + "\r\n");
+					}
+					FileUtils.writeStringToFile(Paths.get(file.toAbsolutePath().toString() + ".txt").toFile(), sb.toString());
+				}
+
 				LOGGER.info("Writing debug file to " + file.toAbsolutePath().toString());
 				FileUtils.writeByteArrayToFile(file.toFile(), bytes);
 			}
@@ -464,6 +485,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		productClass = packageMetaData.getEClass("IfcProduct");
 		geometryFeature = productClass.getEStructuralFeature("geometry");
 		representationFeature = productClass.getEStructuralFeature("Representation");
+
+		GregorianCalendar now = new GregorianCalendar();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+		debugIdentifier = dateFormat.format(now.getTime());
 
 		long start = System.nanoTime();
 		String pluginName = "";

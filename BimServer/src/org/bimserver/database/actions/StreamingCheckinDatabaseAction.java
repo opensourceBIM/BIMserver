@@ -334,7 +334,6 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					bimServer.getCheckinsInProgress().remove(poid);
 					bimServer.getNotificationsManager().notify(new NewRevisionNotification(bimServer, project.getOid(), revision.getOid(), authorization));
 				}
 			});
@@ -349,6 +348,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				throw (UserException) e;
 			}
 			throw new UserException(e);
+		} finally {
+			bimServer.getCheckinsInProgress().remove(poid);
 		}
 		return concreteRevision;
 	}
