@@ -290,7 +290,13 @@ public class BimServer {
 			} else {
 				LOGGER.error("", e);
 			}
-			serverInfoManager.setErrorMessage(e.getMessage());
+			if (serverInfoManager != null) {
+				if (e.getMessage() != null) {
+					serverInfoManager.setErrorMessage(e.getMessage());
+				} else {
+					serverInfoManager.setErrorMessage(e.toString());
+				}
+			}
 		}
 	}
 
