@@ -68,7 +68,7 @@ public abstract class PluginBundleDatabaseAction<T> extends BimDatabaseAction<T>
 						// for the plugin, it's version has to be ok
 						if (artifactId.equals("shared") || artifactId.equals("pluginbase")) {
 							VersionRange versionRange = VersionRange.createFromVersion(mavenDependency.getArtifact().getVersion());
-							if (versionRange.containsVersion(bimserverVersion)) {
+							if (bimserverVersion != null && versionRange.containsVersion(bimserverVersion)) {
 
 							} else {
 								sPluginBundleVersion.setMismatch(true);

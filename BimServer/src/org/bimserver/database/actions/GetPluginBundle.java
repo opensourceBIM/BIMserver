@@ -46,7 +46,9 @@ public class GetPluginBundle extends PluginBundleDatabaseAction<SPluginBundle> {
 
 	@Override
 	public SPluginBundle execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
-		bimserverVersion = new DefaultArtifactVersion(bimServer.getVersionChecker().getLocalVersion().getFullString());
+		if (bimServer.getVersionChecker().getLocalVersion() != null) {
+			bimserverVersion = new DefaultArtifactVersion(bimServer.getVersionChecker().getLocalVersion().getFullString());
+		}
 
 		MavenPluginLocation pluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(repository, groupId, artifactId);
 		
