@@ -74,7 +74,8 @@
 	<logger name="org.eclipse.aether" level="warn" additivity="false">
 		<appender-ref ref="STDERR" />
 	</logger>
-	<logger name="org.ifcopenshell" level="warn" additivity="false">
+	<logger name="org.ifcopenshell" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
 		<appender-ref ref="STDERR" />
 	</logger>
 

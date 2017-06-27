@@ -93,7 +93,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		if (val instanceof VirtualObject) {
 			VirtualObject eObject = (VirtualObject) val;
 			if (eReference.getEAnnotation("twodimensionalarray") != null) {
-				int refSize = 4;
+				int refSize = 6;
 				EStructuralFeature eStructuralFeature = eObject.eClass().getEStructuralFeature("List");
 				List<?> l = (List<?>)eObject.eGet(eStructuralFeature);
 				for (Object o : l) {
@@ -153,7 +153,6 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 							size += getWrappedValueSize(val, eReference);
 						}
 					}
-					System.out.println("S " + eStructuralFeature.getName() + ": " + (size - lastSize));
 					lastSize = size;
 				}
 			}
@@ -187,7 +186,6 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	}
 	
 	public ByteBuffer write() throws BimserverDatabaseException {
-		System.out.println();
 		int bufferSize = getExactSize(this);
 		ByteBuffer buffer = ByteBuffer.allocate(bufferSize);
 		byte[] unsetted = new byte[getPackageMetaData().getUnsettedLength(eClass)];
@@ -210,9 +208,6 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		for (EStructuralFeature feature : eClass().getEAllStructuralFeatures()) {
 			if (getPackageMetaData().useForDatabaseStorage(eClass, feature)) {
 				if (!useUnsetBit(feature)) {
-					if (feature.getName().equals("CoordIndex")) {
-						System.out.println();
-					}
 					if (feature.isMany()) {
 						writeList(this, buffer, getPackageMetaData(), feature);
 					} else {
@@ -247,7 +242,6 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 							writePrimitiveValue(feature, value, buffer);
 						}
 					}
-					System.out.println(feature.getName() + ": " + buffer.position());
 				}
 			}
 		}
@@ -329,6 +323,12 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 					if (o instanceof VirtualObject) {
 						VirtualObject listObject = (VirtualObject)o;
 						if (feature.getEAnnotation("twodimensionalarray") != null) {
+							Short cid = getDatabaseInterface().getCidOfEClass((EClass) feature.getEType());
+							
+							buffer.order(ByteOrder.LITTLE_ENDIAN);
+							buffer.putShort((short) -cid);
+							buffer.order(ByteOrder.BIG_ENDIAN);
+							
 							EStructuralFeature lf = listObject.eClass().getEStructuralFeature("List");
 							writeList(listObject, buffer, packageMetaData, lf);
 						} else {

@@ -93,6 +93,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {
+			bimServer.getCheckinsInProgress().put(poid, getActingUid());
 			if (fileSize == -1) {
 				setProgress("Deserializing IFC file...", -1);
 			} else {
@@ -226,6 +227,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
+					bimServer.getCheckinsInProgress().remove(poid);
 					bimServer.getNotificationsManager().notify(new NewRevisionNotification(bimServer, project.getOid(), revision.getOid(), authorization));
 				}
 			});

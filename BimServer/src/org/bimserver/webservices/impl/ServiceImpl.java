@@ -39,6 +39,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -992,6 +993,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
+			if (getBimServer().getCheckinsInProgress().containsKey(poid)) {
+				Thread.sleep(1000);
+				throw new UserException("Checkin in progress on this project, please try again later");
+			}
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			Project project = session.get(poid, OldQuery.getDefault());
 			if (project == null) {
@@ -1035,6 +1040,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			final DatabaseSession session, String username, String userUsername, Project project, Path file, long newServiceId)
 					throws BimserverDatabaseException, UserException, IOException, DeserializeException,
 					CannotBeScheduledException {
+		if (getBimServer().getCheckinsInProgress().containsKey(poid)) {
+			throw new UserException("Checkin in progress on this project, please try again later");
+		}
+		getBimServer().getCheckinsInProgress().put(poid, getAuthorization().getUoid());
 		DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
 		if (deserializerPluginConfiguration == null) {
 			throw new UserException("Deserializer with oid " + deserializerOid + " not found");
@@ -1100,6 +1109,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
+			if (getBimServer().getCheckinsInProgress().containsKey(poid)) {
+				throw new UserException("Checkin in progress on this project, please try again later");
+			}
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			username = user.getName();
 			userUsername = user.getUsername();
