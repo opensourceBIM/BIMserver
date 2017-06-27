@@ -46,7 +46,7 @@ public class GetPluginBundle extends PluginBundleDatabaseAction<SPluginBundle> {
 
 	@Override
 	public SPluginBundle execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
-		if (bimServer.getVersionChecker().getLocalVersion() != null) {
+		if (bimServer.getVersionChecker() != null && bimServer.getVersionChecker().getLocalVersion() != null) {
 			bimserverVersion = new DefaultArtifactVersion(bimServer.getVersionChecker().getLocalVersion().getFullString());
 		}
 
