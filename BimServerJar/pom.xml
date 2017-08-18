@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<name>BimServerJar</name>
 	<description>Standalone runnable JAR for BIMserver evaluation without having to setup a full BIMserver</description>
 	<modelVersion>4.0.0</modelVersion>
@@ -8,7 +7,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.83-SNAPSHOT</version>
+		<version>1.5.83</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -58,7 +57,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bimserver</artifactId>
-			<version>1.5.83-SNAPSHOT</version>
+			<version>1.5.83</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
