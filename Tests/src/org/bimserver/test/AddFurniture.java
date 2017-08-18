@@ -167,7 +167,7 @@ public class AddFurniture {
 
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(null);
-			serializer.init(model, null, pluginManager, true);
+			serializer.init(model, null, true);
 			SerializerUtils.writeToFile(serializer, Paths.get("withfurn.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();

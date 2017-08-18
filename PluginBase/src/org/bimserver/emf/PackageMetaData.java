@@ -120,6 +120,9 @@ public class PackageMetaData implements ObjectFactory {
 				}
 				schemaPath = tempDir.resolve(schema.name() + ".exp");
 				if (!Files.exists(schemaPath)) {
+					if (!Files.exists(tempDir)) {
+						Files.createDirectories(tempDir);
+					}
 					Files.write(schemaPath, schemaDefinition.getSchemaData());
 				}
 			} catch (IOException e) {

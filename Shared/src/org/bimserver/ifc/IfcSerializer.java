@@ -26,7 +26,7 @@ import org.bimserver.plugins.serializers.SerializerException;
 public abstract class IfcSerializer extends EmfSerializer {
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManagerInterface pluginManager, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, normalizeOids);
 	}
 }

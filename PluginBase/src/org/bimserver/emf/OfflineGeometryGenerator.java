@@ -66,7 +66,7 @@ public class OfflineGeometryGenerator {
 
 	public void generateForAllElements() {
 		try {
-			serializer.init(model, null, null, true);
+			serializer.init(model, null, true);
 			InputStream in = new SerializerInputstream(serializer);
 			renderEngineModel = renderEngine.openModel(in);
 			final RenderEngineSettings settings = new RenderEngineSettings();

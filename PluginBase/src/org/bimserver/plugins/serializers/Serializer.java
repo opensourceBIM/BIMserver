@@ -37,7 +37,7 @@ public interface Serializer extends StreamingReader {
 	 * @param normalizeOids Whether to normalize the oids (usually means the oid will be regenerated from 1)
 	 * @throws SerializerException
 	 */
-	void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManagerInterface pluginManager, boolean normalizeOids) throws SerializerException;
+	void init(IfcModelInterface model, ProjectInfo projectInfo, boolean normalizeOids) throws SerializerException;
 
 	/**
 	 * @param outputStream The stream to write to

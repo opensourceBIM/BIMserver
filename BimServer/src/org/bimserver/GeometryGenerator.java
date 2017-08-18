@@ -144,7 +144,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 			RenderEngine renderEngine = null;
 			try {
 				renderEngine = renderEnginePool.borrowObject();
-				ifcSerializer.init(targetModel, null, bimServer.getPluginManager(), true);
+				ifcSerializer.init(targetModel, null, true);
 
 				boolean debug = false;
 				InputStream in = null;

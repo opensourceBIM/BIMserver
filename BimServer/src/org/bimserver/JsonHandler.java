@@ -66,6 +66,7 @@ public class JsonHandler {
 				processMultiRequest(incomingMessage.getAsJsonArray("requests"), token, oAuthCode, httpRequest, jsonWriter);
 			}
 		} catch (Throwable throwable) {
+			LOGGER.info(incomingMessage.toString());
 //			throwable.printStackTrace();
 			handleThrowable(jsonWriter, throwable);
 		} finally {
