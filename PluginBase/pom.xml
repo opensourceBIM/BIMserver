@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<name>PluginBase</name>
 	<description>Base project for BIMserver plugin development. Some plugins mights also need the Shared library</description>
 	<modelVersion>4.0.0</modelVersion>
@@ -184,4 +185,11 @@
 			<version>1.0.4</version>
 		</dependency>
 	</dependencies>
+	<licenses>
+		<license>
+			<distribution>repo</distribution>
+			<name>GNU Affero General Public License 3</name>
+			<url>https://www.gnu.org/licenses/agpl-3.0.en.html</url>
+		</license>
+	</licenses>
 </project>
