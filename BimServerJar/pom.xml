@@ -16,6 +16,12 @@
 				<directory>src</directory>
 				<includes>
 					<include>org/bimserver/starter/logo_small.png</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src</directory>
+				<targetPath>/</targetPath>
+				<includes>
 					<include>main/resources/logback.xml</include>
 				</includes>
 			</resource>
@@ -32,7 +38,7 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<descriptor>assembly.xml</descriptor>
-					<finalName>bimserverstarter-${project.version}</finalName>
+					<finalName>${project.version}</finalName>
 					<archive>
 						<manifest>
 							<mainClass>org.bimserver.starter.Starter</mainClass>
