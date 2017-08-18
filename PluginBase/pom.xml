@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.82-SNAPSHOT</version>
+		<version>1.5.83-SNAPSHOT</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
