@@ -17,6 +17,7 @@
 				<directory>src</directory>
 				<includes>
 					<include>org/bimserver/starter/logo_small.png</include>
+					<include>main/resources/logback.xml</include>
 				</includes>
 			</resource>
 			<resource>
