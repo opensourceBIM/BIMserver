@@ -25,6 +25,10 @@
 			<outputDirectory>/emailtemplates</outputDirectory>
 		</fileSet>
 		<fileSet>
+			<directory>src/main/resources</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+		<fileSet>
 			<directory>../BimServer/www</directory>
 			<outputDirectory>/www</outputDirectory>
 		</fileSet>
