@@ -141,11 +141,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
-import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.core.FileAppender;
-
 /*
  * Main class to start a BIMserver
  */
@@ -210,7 +205,6 @@ public class BimServer {
 				initHomeDir();
 			}
 
-			fixLogging();
 			UncaughtExceptionHandler uncaughtExceptionHandler = new UncaughtExceptionHandler() {
 				@Override
 				public void uncaughtException(Thread t, Throwable e) {
@@ -1220,47 +1214,6 @@ public class BimServer {
 
 	public void setDefaultWebModule(WebModulePlugin defaultWebModule) {
 		this.defaultWebModule = defaultWebModule;
-	}
-
-	/**
-	 * Add a file appender to every logger we can find (the loggers should already have been configured via logback.xml)
-	 * 
-	 * @throws IOException
-	 */
-	private void fixLogging() throws IOException {
-		Path logFolder = config.getHomeDir().resolve("logs");
-		if (!Files.isDirectory(logFolder)) {
-			Files.createDirectories(logFolder);
-		}
-		Path file = logFolder.resolve("bimserver.log");
-
-		LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-		PatternLayoutEncoder ple = new PatternLayoutEncoder();
-
-		ple.setPattern("%date %level [%thread] %logger{10} [%file:%line] %msg%n");
-		ple.setContext(lc);
-		ple.start();
-		FileAppender<ILoggingEvent> fileAppender = new FileAppender<ILoggingEvent>();
-		String filename = file.toAbsolutePath().toString();
-
-		if (lc instanceof LoggerContext) {
-		    if (!lc.isStarted()) {
-		    	lc.start();
-		    }
-		}
-		
-		System.out.println("Logging to " + filename);
-		
-		fileAppender.setFile(filename);
-		fileAppender.setEncoder(ple);
-		fileAppender.setContext(lc);
-		fileAppender.start();
-
-		for (ch.qos.logback.classic.Logger log : lc.getLoggerList()) {
-			if (log.getLevel() != null) {
-				log.addAppender(fileAppender);
-			}
-		}
 	}
 	
 	private void initHomeDir() throws IOException {

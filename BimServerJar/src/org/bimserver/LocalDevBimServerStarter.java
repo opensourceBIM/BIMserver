@@ -1,5 +1,8 @@
 package org.bimserver;
 
+import java.io.IOException;
+import java.nio.file.Files;
+
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -36,6 +39,11 @@ import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.FileAppender;
+
 public class LocalDevBimServerStarter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimServerStarter.class);
 	private BimServer bimServer;
@@ -56,6 +64,13 @@ public class LocalDevBimServerStarter {
 		config.setPort(port);
 		config.setStartCommandLine(true);
 		config.setDevelopmentBaseDir(Paths.get("../BimServer"));
+		
+//		try {
+//			fixLogging(config);
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
+		
 		bimServer = new BimServer(config);
 		bimServer.getVersionChecker().getLocalVersion().setDate(new Date());
 		bimServer.setEmbeddedWebServer(new EmbeddedWebServer(bimServer, config.getDevelopmentBaseDir(), config.isLocalDev()));
@@ -97,6 +112,47 @@ public class LocalDevBimServerStarter {
 			LOGGER.error("", e);
 		} catch (DatabaseRestartRequiredException e) {
 			LOGGER.error("", e);
+		}
+	}
+
+	/**
+	 * Add a file appender to every logger we can find (the loggers should already have been configured via logback.xml)
+	 * 
+	 * @throws IOException
+	 */
+	private void fixLogging(BimServerConfig config) throws IOException {
+		Path logFolder = config.getHomeDir().resolve("logs");
+		if (!Files.isDirectory(logFolder)) {
+			Files.createDirectories(logFolder);
+		}
+		Path file = logFolder.resolve("bimserver.log");
+
+		LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+		PatternLayoutEncoder ple = new PatternLayoutEncoder();
+
+		ple.setPattern("%date %level [%thread] %logger{10} [%file:%line] %msg%n");
+		ple.setContext(lc);
+		ple.start();
+		FileAppender<ILoggingEvent> fileAppender = new FileAppender<ILoggingEvent>();
+		String filename = file.toAbsolutePath().toString();
+
+		if (lc instanceof LoggerContext) {
+		    if (!lc.isStarted()) {
+		    	lc.start();
+		    }
+		}
+		
+		System.out.println("Logging to " + filename);
+		
+		fileAppender.setFile(filename);
+		fileAppender.setEncoder(ple);
+		fileAppender.setContext(lc);
+		fileAppender.start();
+
+		for (ch.qos.logback.classic.Logger log : lc.getLoggerList()) {
+			if (log.getLevel() != null) {
+				log.addAppender(fileAppender);
+			}
 		}
 	}
 

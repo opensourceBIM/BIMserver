@@ -38,7 +38,6 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.LoggerFactory;
 
-import ch.qos.logback.classic.Logger;
 
 public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 
