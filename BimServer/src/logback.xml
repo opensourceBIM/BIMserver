@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration debug="false">
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{HH:mm:ss} %-5level [%thread]: %-80message \(%file:%line\) %n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>TRACE</level>
+			<onMatch>ACCEPT</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>DENY</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>DENY</onMatch>
+		</filter>
+	</appender>
+	<appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{HH:mm:ss} %-5level [%thread]: %-80message \(%file:%line\) %n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>DENY</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>DENY</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>TRACE</level>
+			<onMatch>DENY</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>ACCEPT</onMatch>
+		</filter>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+		</filter>
+		<target>System.err</target>
+	</appender>
+
+	<logger name="org.eclipse.jetty" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.apache.cxf" level="error" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="nl.tue.buildingsmart" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.apache.http" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.quartz" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="com.jcabi.github" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.eclipse.aether" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.ifcopenshell" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="STDERR" />
+	</logger>
+
+	<logger name="org.bimserver" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="STDERR" />
+	</logger>
+
+	<root level="info">
+		<appender-ref ref="STDERR" />
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>

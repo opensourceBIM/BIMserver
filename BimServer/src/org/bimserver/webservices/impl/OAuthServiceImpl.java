@@ -22,8 +22,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.codec.binary.Hex;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.common.message.types.ResponseType;
 import org.apache.oltu.oauth2.ext.dynamicreg.client.OAuthRegistrationClient;
@@ -47,11 +49,14 @@ import org.bimserver.models.store.ServiceStatus;
 import org.bimserver.models.store.SingleProjectAuthorization;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.OAuthInterface;
 import org.bimserver.utils.NetUtils;
 import org.bimserver.webservices.ServiceMap;
+import org.bimserver.webservices.authorization.AdminAuthorization;
+import org.bimserver.webservices.authorization.UserAuthorization;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -267,7 +272,12 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 				singleProjectAuthorization.setProject(project);
 				
 				OAuthAuthorizationCode code = session.create(OAuthAuthorizationCode.class);
-				code.setCode(RandomStringUtils.random(50));
+
+				org.bimserver.webservices.authorization.Authorization auth = new org.bimserver.webservices.authorization.SingleProjectAuthorization(getBimServer(), user.getOid(), project.getOid());
+				
+				String asHexToken = auth.asHexToken(getBimServer().getEncryptionKey());
+
+				code.setCode(asHexToken);
 				code.setOauthServer(session.get(oAuthServerOid, OldQuery.getDefault()));
 				code.setAuthorization(singleProjectAuthorization);
 				

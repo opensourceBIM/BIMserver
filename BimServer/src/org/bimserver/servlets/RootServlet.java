@@ -46,6 +46,7 @@ public class RootServlet extends HttpServlet {
 	private OAuthAuthorizationServlet oAuthAuthorizationServlet;
 	private OAuthRegistrationServlet oAuthRegistrationServlet;
 	private OAuthAccessTokenServlet oAuthAccesssTokenServlet;
+	private ServiceRunnerServlet serviceRunner;
 	private BulkUploadServlet bulkUploadServlet;
 
 	private BimServer bimServer;
@@ -141,6 +142,8 @@ public class RootServlet extends HttpServlet {
 			} else if (requestUri.startsWith("/oauth/authorize")) {
 				oAuthAuthorizationServlet.service(request, response);
 			} else if (requestUri.startsWith("/oauth/access")) {
+				oAuthAccesssTokenServlet.service(request, response);
+			} else if (requestUri.startsWith("/services/")) {
 				oAuthAccesssTokenServlet.service(request, response);
 			} else if (requestUri.startsWith("/upload/") || requestUri.equals("/upload")) {
 				uploadServlet.service(request, response);
