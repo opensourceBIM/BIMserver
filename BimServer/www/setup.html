@@ -342,11 +342,13 @@ function Setup(cd, address) {
 	};
 	
 	this.showUploadPlugins = function(){
-		cd.find(".uploadPlugins").show();
-
-		var file = $("<input type=\"file\" class=\"form-control fileInput\"/>");
-		file.change(o.fileChange);
-		cd.find(".uploadPlugins").append(file);
+		var uploadDiv = cd.find(".uploadPlugins");
+		uploadDiv.show();
+		if (!uploadDiv.find(".fileInput")){
+			var file = $("<input type=\"file\" class=\"form-control fileInput\"/>");
+			file.change(o.fileChange);
+			cd.find(".uploadPlugins").append(file);
+		}
 	};
 	
 	cd.find(".welcomeBtn").click(o.showWelcome);
