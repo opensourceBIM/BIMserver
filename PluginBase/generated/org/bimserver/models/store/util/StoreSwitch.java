@@ -872,6 +872,15 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case StorePackage.RUN_SERVICE_AUTHORIZATION: {
+			RunServiceAuthorization runServiceAuthorization = (RunServiceAuthorization) theEObject;
+			T result = caseRunServiceAuthorization(runServiceAuthorization);
+			if (result == null)
+				result = caseAuthorization(runServiceAuthorization);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -2404,6 +2413,21 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNewService(NewService object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Run Service Authorization</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Run Service Authorization</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRunServiceAuthorization(RunServiceAuthorization object) {
 		return null;
 	}
 

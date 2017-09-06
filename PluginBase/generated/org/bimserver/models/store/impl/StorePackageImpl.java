@@ -775,6 +775,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass runServiceAuthorizationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -6668,6 +6675,27 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getNewService_Project() {
 		return (EReference) getNewService().getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRunServiceAuthorization() {
+		if (runServiceAuthorizationEClass == null) {
+			runServiceAuthorizationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(119);
+		}
+		return runServiceAuthorizationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRunServiceAuthorization_Service() {
+		return (EReference) getRunServiceAuthorization().getEStructuralFeatures().get(0);
 	}
 
 	/**

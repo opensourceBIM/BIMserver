@@ -188,6 +188,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SCheckinRevision");
 		Class.forName("org.bimserver.interfaces.objects.SServiceStatus");
 		Class.forName("org.bimserver.interfaces.objects.SNewService");
+		Class.forName("org.bimserver.interfaces.objects.SRunServiceAuthorization");
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

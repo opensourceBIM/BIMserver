@@ -71,6 +71,7 @@ public class RootServlet extends HttpServlet {
 		oAuthAuthorizationServlet = new OAuthAuthorizationServlet(bimServer, servletContext);
 		oAuthAccesssTokenServlet = new OAuthAccessTokenServlet(bimServer, servletContext);
 		oAuthRegistrationServlet = new OAuthRegistrationServlet(bimServer, servletContext);
+		serviceRunner = new ServiceRunnerServlet(bimServer, servletContext);
 	}
 
 	@Override
@@ -144,7 +145,7 @@ public class RootServlet extends HttpServlet {
 			} else if (requestUri.startsWith("/oauth/access")) {
 				oAuthAccesssTokenServlet.service(request, response);
 			} else if (requestUri.startsWith("/services/")) {
-				oAuthAccesssTokenServlet.service(request, response);
+				serviceRunner.service(request, response);
 			} else if (requestUri.startsWith("/upload/") || requestUri.equals("/upload")) {
 				uploadServlet.service(request, response);
 			} else if (requestUri.startsWith("/bulkupload/") || requestUri.equals("/bulkupload")) {

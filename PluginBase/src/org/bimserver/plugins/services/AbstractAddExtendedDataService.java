@@ -35,7 +35,7 @@ public abstract class AbstractAddExtendedDataService extends AbstractService {
 	public String getName() {
 		return name;
 	}
-	
+
 	public void addExtendedData(byte[] data, String filename, String title, String mime, BimServerClientInterface bimServerClientInterface, long roid) {
 		try {
 			SFile file = new SFile();

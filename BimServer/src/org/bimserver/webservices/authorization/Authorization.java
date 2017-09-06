@@ -199,6 +199,9 @@ public abstract class Authorization {
 				case SingleProjectAuthorization.ID:
 					authorization = SingleProjectAuthorization.fromBuffer(buffer);
 					break;
+				case RunServiceAuthorization.ID:
+					authorization = RunServiceAuthorization.fromBuffer(buffer);
+					break;
 				default:
 					throw new AuthenticationException("Unknown authorization type: " + type);
 				}

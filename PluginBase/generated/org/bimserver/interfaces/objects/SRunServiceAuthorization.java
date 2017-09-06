@@ -16,21 +16,20 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SDoubleType.class, SLongType.class, SStringType.class, SBooleanType.class, SByteArrayType.class})
-public class SPrimitiveType extends SType implements SDataBase
+public class SRunServiceAuthorization extends SAuthorization implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
+	private long serviceId = -1;
 
 	public long getOid() {
 		return this.oid;
@@ -54,10 +53,13 @@ public class SPrimitiveType extends SType implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPrimitiveType.sClass = sClass;
+		SRunServiceAuthorization.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
+		if (sField.getName().equals("serviceId")) {
+			return getServiceId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -68,6 +70,10 @@ public class SPrimitiveType extends SType implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("serviceId")) {
+			setServiceId((Long)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -77,6 +83,14 @@ public class SPrimitiveType extends SType implements SDataBase
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
+	public long getServiceId() {
+		return serviceId;
+	}
+
+	public void setServiceId(long serviceId) {
+		this.serviceId = serviceId;
 	}
 	
 	@Override
@@ -95,7 +109,7 @@ public class SPrimitiveType extends SType implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPrimitiveType other = (SPrimitiveType) obj;
+		SRunServiceAuthorization other = (SRunServiceAuthorization) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

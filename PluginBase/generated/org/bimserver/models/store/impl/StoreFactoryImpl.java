@@ -273,6 +273,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createCheckinRevision();
 		case StorePackage.NEW_SERVICE:
 			return (EObject) createNewService();
+		case StorePackage.RUN_SERVICE_AUTHORIZATION:
+			return (EObject) createRunServiceAuthorization();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1390,6 +1392,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public NewService createNewService() {
 		NewServiceImpl newService = new NewServiceImpl();
 		return newService;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RunServiceAuthorization createRunServiceAuthorization() {
+		RunServiceAuthorizationImpl runServiceAuthorization = new RunServiceAuthorizationImpl();
+		return runServiceAuthorization;
 	}
 
 	/**

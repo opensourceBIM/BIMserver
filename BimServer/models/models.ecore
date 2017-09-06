@@ -20726,5 +20726,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessToken" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/4/Project"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RunServiceAuthorization" eSuperTypes="#/4/Authorization">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="#/4/InternalServicePluginConfiguration"/>
+    </eClassifiers>
   </ecore:EPackage>
 </xmi:XMI>

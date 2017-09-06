@@ -22,10 +22,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.codec.binary.Hex;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.common.message.types.ResponseType;
 import org.apache.oltu.oauth2.ext.dynamicreg.client.OAuthRegistrationClient;
@@ -38,25 +35,25 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.interfaces.objects.SAuthorization;
 import org.bimserver.interfaces.objects.SOAuthAuthorizationCode;
 import org.bimserver.interfaces.objects.SOAuthServer;
+import org.bimserver.interfaces.objects.SRunServiceAuthorization;
 import org.bimserver.interfaces.objects.SSingleProjectAuthorization;
 import org.bimserver.models.store.Authorization;
+import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.OAuthAuthorizationCode;
 import org.bimserver.models.store.OAuthServer;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.RunServiceAuthorization;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServiceStatus;
 import org.bimserver.models.store.SingleProjectAuthorization;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.OAuthInterface;
 import org.bimserver.utils.NetUtils;
 import org.bimserver.webservices.ServiceMap;
-import org.bimserver.webservices.authorization.AdminAuthorization;
-import org.bimserver.webservices.authorization.UserAuthorization;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -285,6 +282,37 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 				
 				session.store(user);
 				session.store(singleProjectAuthorization);
+				
+				session.commit();
+				
+				return code.getCode();
+			} else if (authorization instanceof SRunServiceAuthorization) {
+				SRunServiceAuthorization serviceAuthorization = (SRunServiceAuthorization)authorization;
+
+				User user = session.get(getCurrentUser().getOid(), OldQuery.getDefault());
+				
+				RunServiceAuthorization runServiceAuth = session.create(RunServiceAuthorization.class);
+				InternalServicePluginConfiguration conf = session.get(serviceAuthorization.getServiceId(), OldQuery.getDefault());
+				if (conf == null) {
+					throw new UserException("No service found with soid " + serviceAuthorization.getServiceId());
+				}
+				runServiceAuth.setService(conf);
+				
+				OAuthAuthorizationCode code = session.create(OAuthAuthorizationCode.class);
+
+				org.bimserver.webservices.authorization.Authorization auth = new org.bimserver.webservices.authorization.RunServiceAuthorization(getBimServer(), user.getOid(), conf.getOid());
+				
+				String asHexToken = auth.asHexToken(getBimServer().getEncryptionKey());
+
+				code.setCode(asHexToken);
+				code.setOauthServer(session.get(oAuthServerOid, OldQuery.getDefault()));
+				code.setAuthorization(runServiceAuth);
+				
+				user.getOAuthIssuedAuthorizationCodes().add(code);
+				
+				session.store(user);
+				session.store(code);
+				session.store(runServiceAuth);
 				
 				session.commit();
 				

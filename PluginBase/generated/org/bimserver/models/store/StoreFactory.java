@@ -954,6 +954,15 @@ public interface StoreFactory extends EFactory {
 	NewService createNewService();
 
 	/**
+	 * Returns a new object of class '<em>Run Service Authorization</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Run Service Authorization</em>'.
+	 * @generated
+	 */
+	RunServiceAuthorization createRunServiceAuthorization();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -31,6 +31,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GeometryGenerator;
+import org.bimserver.bimbots.BimBotsException;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
@@ -57,8 +58,13 @@ import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.PluginDescriptor;
+import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
+import org.bimserver.plugins.PluginConfiguration;
+import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
@@ -339,7 +345,17 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 			IfcModelInterface model = new BasicIfcModel(packageMetaData, null);
 			session.getMap(model, new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), -1));
-			new GeometryGenerator(getBimServer()).generateGeometry(getAuthorization().getUoid(), getBimServer().getPluginManager(), session, model, concreteRevision.getProject().getId(), concreteRevision.getId(), true, null);
+			
+			User user = session.get(getAuthorization().getUoid(), OldQuery.getDefault());
+			UserSettings userSettings = user.getUserSettings();
+			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
+			if (defaultRenderEngine == null) {
+				throw new BimBotsException("No default render engine has been selected for this user");
+			}
+			
+			RenderEnginePool pool = getBimServer().getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
+			
+			new GeometryGenerator(getBimServer()).generateGeometry(pool, getBimServer().getPluginManager(), session, model, concreteRevision.getProject().getId(), concreteRevision.getId(), true, null);
 			session.commit();
 		} catch (Exception e) {
 			handleException(e);

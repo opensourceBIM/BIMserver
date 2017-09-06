@@ -559,6 +559,11 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SNewService();
 					}
 				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SRunServiceAuthorization"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SRunServiceAuthorization();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);

@@ -1178,8 +1178,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "triggerRevisionService")
 	void triggerRevisionService(
-			@WebParam(name = "roid", partName = "triggerRevisionService.roid") Long roid, 
-			@WebParam(name = "soid", partName = "triggerRevisionService.soid") Long soid) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "triggerRevisionService.roid") Long roid, 
+		@WebParam(name = "soid", partName = "triggerRevisionService.soid") Long soid) throws ServerException, UserException;
 
 	/**
 	 * @param edid

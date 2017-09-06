@@ -75,6 +75,8 @@ import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerInputstream;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.renderengine.RenderEnginePool;
+import org.bimserver.shared.HashMapWrappedVirtualObject;
+import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.utils.Formatters;
@@ -201,6 +203,8 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 
 									geometryInfo.setMinBounds(createVector3f(packageMetaData, model, Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
 									geometryInfo.setMaxBounds(createVector3f(packageMetaData, model, -Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+									geometryInfo.setMinBoundsUntranslated(createVector3f(packageMetaData, model, Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+									geometryInfo.setMaxBoundsUntranslated(createVector3f(packageMetaData, model, -Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
 
 									try {
 										double area = renderEngineInstance.getArea();
@@ -259,6 +263,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 									}
 
 									for (int i = 0; i < geometry.getIndices().length; i++) {
+										processExtendsUntranslated(geometryInfo, geometry.getVertices(), geometry.getIndices()[i] * 3, generateGeometryResult);
 										processExtends(geometryInfo, tranformationMatrix, geometry.getVertices(), geometry.getIndices()[i] * 3, generateGeometryResult);
 									}
 
@@ -271,14 +276,16 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 												  (geometryData.getMaterialIndices() != null ? geometryData.getMaterialIndices().length : 0);
 
 									setTransformationMatrix(geometryInfo, tranformationMatrix);
-									if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
-										int hash = hash(geometryData);
-										if (hashes.containsKey(hash)) {
-											databaseSession.removeFromCommit(geometryData);
-											geometryInfo.setData(hashes.get(hash));
-											bytesSaved.addAndGet(length);
-										} else {
-											hashes.put(hash, geometryData);
+									if (store) {
+										if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
+											int hash = hash(geometryData);
+											if (hashes.containsKey(hash)) {
+												databaseSession.removeFromCommit(geometryData);
+												geometryInfo.setData(hashes.get(hash));
+												bytesSaved.addAndGet(length);
+											} else {
+												hashes.put(hash, geometryData);
+											}
 										}
 									}
 									totalBytes.addAndGet(length);
@@ -435,7 +442,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public GenerateGeometryResult generateGeometry(long uoid, final PluginManager pluginManager, final DatabaseSession databaseSession, final IfcModelInterface model, final int pid, final int rid,
+	public GenerateGeometryResult generateGeometry(RenderEnginePool renderEnginePool, final PluginManager pluginManager, final DatabaseSession databaseSession, final IfcModelInterface model, final int pid, final int rid,
 			final boolean store, GeometryCache geometryCache) throws BimserverDatabaseException, GeometryGeneratingException {
 		GenerateGeometryResult generateGeometryResult = new GenerateGeometryResult();
 		packageMetaData = model.getPackageMetaData();
@@ -463,13 +470,6 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 				throw new UserException("No IFC serializer found");
 			}
 
-			User user = (User) databaseSession.get(uoid, OldQuery.getDefault());
-			UserSettings userSettings = user.getUserSettings();
-			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
-			if (defaultRenderEngine == null) {
-				throw new UserException("No default render engine has been selected for this user");
-			}
-
 			int maxSimultanousThreads = Math.min(bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses(), Runtime.getRuntime().availableProcessors());
 			maxSimultanousThreads = 1;
 
@@ -482,10 +482,8 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 			
 			final RenderEngineFilter renderEngineFilter = new RenderEngineFilter();
 
-			RenderEnginePool pool = bimServer.getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
-			
 			if (maxSimultanousThreads == 1) {
-				Runner runner = new Runner(null, pool, databaseSession, settings, store, model, ifcSerializerPlugin, model, pid, rid, null, renderEngineFilter, generateGeometryResult);
+				Runner runner = new Runner(null, renderEnginePool, databaseSession, settings, store, model, ifcSerializerPlugin, model, pid, rid, null, renderEngineFilter, generateGeometryResult);
 				runner.run();
 			} else {
 				Set<EClass> classes = new HashSet<>();
@@ -539,7 +537,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 						}
 					}
 
-					executor.submit(new Runner(eClass, pool, databaseSession, settings, store, targetModel, ifcSerializerPlugin, model, pid, rid, bigMap, renderEngineFilter, generateGeometryResult));
+					executor.submit(new Runner(eClass, renderEnginePool, databaseSession, settings, store, targetModel, ifcSerializerPlugin, model, pid, rid, bigMap, renderEngineFilter, generateGeometryResult));
 				}
 				executor.shutdown();
 				executor.awaitTermination(24, TimeUnit.HOURS);				
@@ -572,6 +570,22 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 			hashCode += Arrays.hashCode(geometryData.getMaterials());
 		}
 		return hashCode;
+	}
+
+	private void processExtendsUntranslated(GeometryInfo geometryInfo, float[] vertices, int index, GenerateGeometryResult generateGeometryResult2) throws BimserverDatabaseException {
+		double x = vertices[index];
+		double y = vertices[index + 1];
+		double z = vertices[index + 2];
+		
+		Vector3f minBounds = geometryInfo.getMinBoundsUntranslated();
+		Vector3f maxBounds = geometryInfo.getMaxBoundsUntranslated();
+		
+		minBounds.setX(Math.min(x, (double)minBounds.getX()));
+		minBounds.setY(Math.min(y, (double)minBounds.getY()));
+		minBounds.setZ(Math.min(z, (double)minBounds.getZ()));
+		maxBounds.setX(Math.max(x, (double)maxBounds.getX()));
+		maxBounds.setY(Math.max(y, (double)maxBounds.getY()));
+		maxBounds.setZ(Math.max(z, (double)maxBounds.getZ()));
 	}
 
 	private void processExtends(GeometryInfo geometryInfo, double[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) {

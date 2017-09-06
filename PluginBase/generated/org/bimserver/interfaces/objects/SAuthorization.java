@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SSingleProjectAuthorization.class})
+@XmlSeeAlso(value={SRunServiceAuthorization.class, SSingleProjectAuthorization.class})
 public class SAuthorization implements SDataBase
 {
 	private long oid = -1;

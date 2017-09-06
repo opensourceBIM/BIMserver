@@ -44,13 +44,17 @@ import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.models.store.ModelCheckerResult;
 import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSettings;
 import org.bimserver.notifications.NewRevisionNotification;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
+import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
@@ -190,7 +194,16 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
 			if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
 				setProgress("Generating Geometry...", -1);
-				GenerateGeometryResult generateGeometry = new GeometryGenerator(bimServer).generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
+				
+				UserSettings userSettings = user.getUserSettings();
+				RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
+				if (defaultRenderEngine == null) {
+					throw new UserException("No default render engine has been selected for this user");
+				}
+				
+				RenderEnginePool pool = bimServer.getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
+
+				GenerateGeometryResult generateGeometry = new GeometryGenerator(bimServer).generateGeometry(pool, bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
 				concreteRevision.setMinBounds(generateGeometry.getMinBoundsAsVector3f());
 				concreteRevision.setMaxBounds(generateGeometry.getMaxBoundsAsVector3f());
 				for (Revision other : concreteRevision.getRevisions()) {
