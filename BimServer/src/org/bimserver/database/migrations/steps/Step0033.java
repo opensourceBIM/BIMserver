@@ -21,6 +21,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0033 extends Migration {
 
@@ -28,6 +29,8 @@ public class Step0033 extends Migration {
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
 		EClass runServiceAuthorization = schema.createEClass("store", "RunServiceAuthorization", schema.getEClass("store", "Authorization"));
 		schema.createEReference(runServiceAuthorization, "service", schema.getEClass("store", "InternalServicePluginConfiguration"));
+		
+		schema.createEAttribute(schema.getEClass("store", "ServerSettings"), "storeServiceRuns", EcorePackage.eINSTANCE.getEBoolean());
 	}
 
 	@Override

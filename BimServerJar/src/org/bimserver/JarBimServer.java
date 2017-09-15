@@ -1,5 +1,9 @@
 package org.bimserver;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -22,6 +26,11 @@ import java.nio.file.Paths;
 import org.bimserver.resources.JarResourceFetcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.FileAppender;
 
 public class JarBimServer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JarBimServer.class);
@@ -62,6 +71,47 @@ public class JarBimServer {
 		}
 		LOGGER.info("Server stopped successfully");
 	}
+	
+	/**
+	 * Add a file appender to every logger we can find (the loggers should already have been configured via logback.xml)
+	 * 
+	 * @throws IOException
+	 */
+	private void fixLogging(BimServerConfig config) throws IOException {
+		Path logFolder = config.getHomeDir().resolve("logs");
+		if (!Files.isDirectory(logFolder)) {
+			Files.createDirectories(logFolder);
+		}
+		Path file = logFolder.resolve("bimserver.log");
+
+		LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+		PatternLayoutEncoder ple = new PatternLayoutEncoder();
+
+		ple.setPattern("%date %level [%thread] %logger{10} [%file:%line] %msg%n");
+		ple.setContext(lc);
+		ple.start();
+		FileAppender<ILoggingEvent> fileAppender = new FileAppender<ILoggingEvent>();
+		String filename = file.toAbsolutePath().toString();
+
+		if (lc instanceof LoggerContext) {
+		    if (!lc.isStarted()) {
+		    	lc.start();
+		    }
+		}
+		
+		System.out.println("Logging to " + filename);
+		
+		fileAppender.setFile(filename);
+		fileAppender.setEncoder(ple);
+		fileAppender.setContext(lc);
+		fileAppender.start();
+
+		for (ch.qos.logback.classic.Logger log : lc.getLoggerList()) {
+			if (log.getLevel() != null) {
+				log.addAppender(fileAppender);
+			}
+		}
+	}
 
 	public void start(String address, int port, String homedir, String resourceBase) {
 		// Strange hack needed for OSX
@@ -77,6 +127,13 @@ public class JarBimServer {
 		bimServerConfig.setPort(port);
 		bimServerConfig.setClassPath(System.getProperty("java.class.path"));
 		bimServer = new BimServer(bimServerConfig);
+		
+		try {
+			fixLogging(bimServerConfig);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
 	 	try {
 	 		LOGGER.debug("Setting resourcebase to www");
 	 		EmbeddedWebServer embeddedWebServer = new EmbeddedWebServer(bimServer, bimServerConfig.getDevelopmentBaseDir(), bimServerConfig.isLocalDev());

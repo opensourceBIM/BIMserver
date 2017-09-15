@@ -20,6 +20,8 @@ package org.bimserver.servlets.websockets.jsr356;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Future;
 
 import javax.servlet.ServletContext;
@@ -33,6 +35,7 @@ import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.ServerContainer;
 import javax.websocket.server.ServerEndpoint;
 
 import org.bimserver.BimServer;
@@ -56,13 +59,16 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	// to the websocket methods would be via the httpsession, which we don't
 	// have/use/want. This will probably be fixed in a later
 	// version of JSR-356 and implementations
-	private static ServletContext servletContext;
+	
+	// The reason for using JSR-356 in the first place is because we don't want to have different implementations for jetty and tomcat
+	private static Map<ServerContainer, ServletContext> servletContexts = new HashMap<>();
 	
 	@OnOpen
 	public void onOpen(Session websocketSession, EndpointConfig config) {
 		LOGGER.debug("WebSocket open");
 		try {
 			this.websocketSession = websocketSession;
+			ServletContext servletContext = servletContexts.get(websocketSession.getContainer());
 			BimServer bimServer = (BimServer) servletContext.getAttribute("bimserver");
 			streamer = new Streamer(this, bimServer);
 			streamer.onOpen();
@@ -71,14 +77,13 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 		}
 	}
 
-	public static void setServletContext(ServletContext servletContext) {
-		Jsr356Impl.servletContext = servletContext;
+	public static void setServletContext(ServerContainer serverContainer, ServletContext servletContext) {
+		Jsr356Impl.servletContexts.put(serverContainer, servletContext);
 	}
 	
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		LOGGER.info("WebSocket context initialized");
-        servletContext = servletContextEvent.getServletContext();
     }
 
 	@Override

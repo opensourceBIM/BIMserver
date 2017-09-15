@@ -59,6 +59,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getIcon <em>Icon</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isStoreLastLogin <em>Store Last Login</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#isStoreServiceRuns <em>Store Service Runs</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getServerSettings()
@@ -861,5 +862,31 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setStoreLastLogin(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Store Service Runs</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Store Service Runs</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Store Service Runs</em>' attribute.
+	 * @see #setStoreServiceRuns(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_StoreServiceRuns()
+	 * @model
+	 * @generated
+	 */
+	boolean isStoreServiceRuns();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#isStoreServiceRuns <em>Store Service Runs</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Store Service Runs</em>' attribute.
+	 * @see #isStoreServiceRuns()
+	 * @generated
+	 */
+	void setStoreServiceRuns(boolean value);
 
 } // ServerSettings

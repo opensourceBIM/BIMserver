@@ -50,7 +50,7 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 
 		try {
 			org.eclipse.jetty.websocket.jsr356.server.ServerContainer configureContext = WebSocketServerContainerInitializer.configureContext(context);
-			Jsr356Impl.setServletContext(context.getServletContext());
+			Jsr356Impl.setServletContext(configureContext, context.getServletContext());
 			configureContext.addEndpoint(Jsr356Impl.class);
 		} catch (ServletException e) {
 			e.printStackTrace();

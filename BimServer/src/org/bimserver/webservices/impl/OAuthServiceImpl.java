@@ -142,7 +142,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 			if (oAuthServer == null) {
 				throw new UserException("Application not registered");
 			}
-			OAuthClientRequest request2 = OAuthClientRequest.authorizationLocation(authorizeUrl).setClientId(oAuthServer.getClientId()).setRedirectURI(returnUrl).setResponseType(ResponseType.CODE.toString()).setState("state").buildQueryMessage();
+			OAuthClientRequest request2 = OAuthClientRequest.authorizationLocation(authorizeUrl).setParameter("auth_type", "service").setClientId(oAuthServer.getClientId()).setRedirectURI(returnUrl).setResponseType(ResponseType.CODE.toString()).setState("state").buildQueryMessage();
 			return request2.getLocationUri();
 		} catch (Exception e) {
 			return handleException(e);

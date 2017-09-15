@@ -19,7 +19,6 @@ package org.bimserver.plugins;
 
 import java.io.ByteArrayInputStream;
 import java.io.Closeable;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -111,7 +110,6 @@ import org.eclipse.aether.collection.CollectResult;
 import org.eclipse.aether.collection.DependencyCollectionException;
 import org.eclipse.aether.graph.Dependency;
 import org.eclipse.aether.graph.DependencyNode;
-import org.eclipse.aether.graph.DependencyVisitor;
 import org.eclipse.aether.resolution.ArtifactDescriptorException;
 import org.eclipse.aether.resolution.ArtifactDescriptorRequest;
 import org.eclipse.aether.resolution.ArtifactDescriptorResult;
@@ -124,10 +122,7 @@ import org.eclipse.aether.util.graph.visitor.PreorderNodeListGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class PluginManager implements PluginManagerInterface {
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
@@ -997,6 +992,21 @@ public class PluginManager implements PluginManagerInterface {
 			throw new PluginException("No deserializers with extension " + extension + " found");
 		}
 		return allDeserializerPlugins.iterator().next();
+	}
+
+	public StreamingDeserializerPlugin getFirstStreamingDeserializer(String extension, Schema schema, boolean onlyEnabled) throws PluginException {
+		Map<PluginContext, StreamingDeserializerPlugin> allDeserializerPlugins = getAllStreamingDeserializerPlugins(onlyEnabled);
+		Iterator<StreamingDeserializerPlugin> iterator = allDeserializerPlugins.values().iterator();
+		while (iterator.hasNext()) {
+			StreamingDeserializerPlugin next = iterator.next();
+			if (!next.getSupportedSchemas().contains(schema)) {
+				iterator.remove();
+			}
+		}
+		if (allDeserializerPlugins.size() == 0) {
+			throw new PluginException("No deserializers with extension " + extension + " found");
+		}
+		return allDeserializerPlugins.values().iterator().next();
 	}
 
 	public ObjectIDMPlugin getObjectIDMByName(String className, boolean onlyEnabled) {

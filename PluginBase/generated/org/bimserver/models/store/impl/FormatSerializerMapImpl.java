@@ -92,7 +92,8 @@ public class FormatSerializerMapImpl extends IdEObjectImpl implements FormatSeri
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<SerializerPluginConfiguration> getSerializers() {
-		return (EList<SerializerPluginConfiguration>) eGet(StorePackage.Literals.FORMAT_SERIALIZER_MAP__SERIALIZERS, true);
+		return (EList<SerializerPluginConfiguration>) eGet(StorePackage.Literals.FORMAT_SERIALIZER_MAP__SERIALIZERS,
+				true);
 	}
 
 } //FormatSerializerMapImpl

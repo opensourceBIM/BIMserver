@@ -66,6 +66,12 @@ service OAuthInterface {
 
 }
 
+message SRunServiceAuthorization {
+	optional int64 oid = 1;
+	optional int32 rid = 2;
+	optional int64 serviceId = 3;
+}
+
 message SSingleProjectAuthorization {
 	optional int64 oid = 1;
 	optional int64 projectId = 2;
@@ -74,9 +80,10 @@ message SSingleProjectAuthorization {
 
 message SAuthorization {
 	required string __actual_type = 1;
-	optional SSingleProjectAuthorization __SSingleProjectAuthorization = 2;
-	optional int64 oid = 3;
-	optional int32 rid = 4;
+	optional SRunServiceAuthorization __SRunServiceAuthorization = 2;
+	optional SSingleProjectAuthorization __SSingleProjectAuthorization = 3;
+	optional int64 oid = 4;
+	optional int32 rid = 5;
 }
 
 message AuthorizeRequest {

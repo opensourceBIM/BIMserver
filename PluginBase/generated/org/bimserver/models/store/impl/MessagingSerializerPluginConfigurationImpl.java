@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class MessagingSerializerPluginConfigurationImpl extends SerializerPluginConfigurationImpl implements MessagingSerializerPluginConfiguration {
+public class MessagingSerializerPluginConfigurationImpl extends SerializerPluginConfigurationImpl
+		implements MessagingSerializerPluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

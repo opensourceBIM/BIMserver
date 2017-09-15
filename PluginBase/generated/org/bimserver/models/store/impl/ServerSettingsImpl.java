@@ -63,6 +63,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getIcon <em>Icon</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isStoreLastLogin <em>Store Last Login</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isStoreServiceRuns <em>Store Service Runs</em>}</li>
  * </ul>
  *
  * @generated
@@ -112,7 +113,8 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setSendConfirmationEmailAfterRegistration(boolean newSendConfirmationEmailAfterRegistration) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION, newSendConfirmationEmailAfterRegistration);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION,
+				newSendConfirmationEmailAfterRegistration);
 	}
 
 	/**
@@ -148,7 +150,8 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setAllowUsersToCreateTopLevelProjects(boolean newAllowUsersToCreateTopLevelProjects) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS, newAllowUsersToCreateTopLevelProjects);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS,
+				newAllowUsersToCreateTopLevelProjects);
 	}
 
 	/**
@@ -637,6 +640,24 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setStoreLastLogin(boolean newStoreLastLogin) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__STORE_LAST_LOGIN, newStoreLastLogin);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isStoreServiceRuns() {
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__STORE_SERVICE_RUNS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStoreServiceRuns(boolean newStoreServiceRuns) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__STORE_SERVICE_RUNS, newStoreServiceRuns);
 	}
 
 } //ServerSettingsImpl

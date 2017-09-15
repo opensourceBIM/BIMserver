@@ -1826,7 +1826,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public Long addExtendedDataSchema(SExtendedDataSchema extendedDataSchema) throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+//		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			ExtendedDataSchema create = session.create(ExtendedDataSchema.class);

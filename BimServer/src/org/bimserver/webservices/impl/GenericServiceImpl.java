@@ -85,12 +85,14 @@ public class GenericServiceImpl {
 	}
 
 	protected void requireAdminAuthentication() throws UserException {
-		if (serviceMap.getAuthorization() == null) {
+		Authorization authorization = serviceMap.getAuthorization();
+		if (authorization == null) {
 			throw new UserException("Authentication required for this call");
 		}
-		if (!(serviceMap.getAuthorization() instanceof AdminAuthorization) && !(serviceMap.getAuthorization() instanceof SystemAuthorization)) {
-			throw new UserException("Administrator rights required for this call");
+		if (authorization instanceof AdminAuthorization || authorization instanceof SystemAuthorization) {
+			return;
 		}
+		throw new UserException("Administrator rights required for this call");
 	}
 
 	protected void requireSelfregistrationAllowed() throws UserException {
