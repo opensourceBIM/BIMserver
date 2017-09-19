@@ -141,7 +141,7 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 			}
 		}
 		
-		processPossibleIncludes(eClass, getQueryPart());
+		processPossibleIncludes(currentObject, eClass, getQueryPart());
 		
 		return false;
 	}

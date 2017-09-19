@@ -120,7 +120,7 @@ public class ServiceRunnerServlet extends SubServlet {
 						}
 						
 						BimServerBimBotsInput input = new BimServerBimBotsInput(getBimServer(), authorization.getUoid(), null, null, model);
-						BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, foundService.getSettings());
+						BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, getBimServer().getSConverter().convertToSObject(foundService.getSettings()));
 						
 						SExtendedData extendedData = new SExtendedData();
 						SFile file = new SFile();
@@ -165,7 +165,7 @@ public class ServiceRunnerServlet extends SubServlet {
 						IfcModelInterface model = deserializer.read(new ByteArrayInputStream(data), schema.name(), data.length, null);
 						
 						BimServerBimBotsInput input = new BimServerBimBotsInput(getBimServer(), authorization.getUoid(), schema, data, model);
-						BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, foundService.getSettings());
+						BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, getBimServer().getSConverter().convertToSObject(foundService.getSettings()));
 						response.setHeader("Output-Type", output.getSchemaName().name());
 						response.setHeader("Data-Title", output.getTitle());
 						response.setHeader("Content-Type", output.getContentType());

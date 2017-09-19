@@ -129,7 +129,7 @@ public class QueryBoundingBoxStackFrame extends DatabaseReadingStackFrame implem
 			}
 		}
 		
-		processPossibleIncludes(eClass, getQueryPart());
+		processPossibleIncludes(currentObject, eClass, getQueryPart());
 		
 		return false;
 	}

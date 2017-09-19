@@ -49,7 +49,7 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 	@Override
 	public boolean process() throws BimserverDatabaseException, QueryException {
 		if (getQueryObjectProvider().hasRead(oid)) {
-			processPossibleIncludes(null, include);
+			processPossibleIncludes(currentObject, null, include);
 			return true;
 		}
 		
@@ -104,7 +104,7 @@ public class FollowReferenceStackFrame extends DatabaseReadingStackFrame impleme
 						}
 					}
 					
-					processPossibleIncludes(null, include);
+					processPossibleIncludes(currentObject, null, include);
 				}
 			} else {
 				return true;

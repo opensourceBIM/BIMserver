@@ -88,7 +88,7 @@ public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements Ob
 			record = typeRecordIterator.next();
 		}
 
-		processPossibleIncludes(eClass, getQueryPart());
+		processPossibleIncludes(currentObject, eClass, getQueryPart());
 		
 		return false;
 	}

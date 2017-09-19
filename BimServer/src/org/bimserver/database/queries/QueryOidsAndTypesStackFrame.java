@@ -106,7 +106,7 @@ public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame imple
 			record = typeRecordIterator.next();
 		}
 
-		processPossibleIncludes(eClass, getQueryPart());
+		processPossibleIncludes(currentObject, eClass, getQueryPart());
 		
 		if (record == null) {
 			typeRecordIterator.close();

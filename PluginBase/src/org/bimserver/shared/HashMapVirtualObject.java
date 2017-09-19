@@ -54,6 +54,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	private QueryContext reusable;
 	private Map<EStructuralFeature, Object> useForSerializationFeatures = new HashMap<>();
 	private HashMap<EReference, HashMapVirtualObject> directReferences;
+	private HashMap<EReference, List<HashMapVirtualObject>> directListReferences;
 	
 	public HashMapVirtualObject(QueryContext reusable, EClass eClass) {
 		this.reusable = reusable;
@@ -570,10 +571,29 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		directReferences.put(feature2, byOid);
 	}
 
+	public void addDirectListReference(EReference feature2, HashMapVirtualObject byOid) {
+		if (directListReferences == null) {
+			directListReferences = new HashMap<>();
+		}
+		List<HashMapVirtualObject> list = directListReferences.get(feature2);
+		if (list == null) {
+			list = new ArrayList<>();
+			directListReferences.put(feature2, list);
+		}
+		list.add(byOid);
+	}
+
 	public HashMapVirtualObject getDirectFeature(EStructuralFeature representationFeature) {
 		if (directReferences == null) {
 			return null;
 		}
 		return directReferences.get(representationFeature);
+	}
+
+	public List<HashMapVirtualObject> getDirectListFeature(EStructuralFeature representationFeature) {
+		if (directListReferences == null) {
+			return null;
+		}
+		return directListReferences.get(representationFeature);
 	}
 }

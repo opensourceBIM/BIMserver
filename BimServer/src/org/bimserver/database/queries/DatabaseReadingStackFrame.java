@@ -22,6 +22,7 @@ import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Date;
+import java.util.List;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession.GetResult;
@@ -84,36 +85,36 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		return queryPart;
 	}
 	
-	protected void processPossibleIncludes(EClass previousType, CanInclude canInclude) throws QueryException, BimserverDatabaseException {
-		if (currentObject != null) {
+	protected void processPossibleIncludes(HashMapVirtualObject object, EClass previousType, CanInclude canInclude) throws QueryException, BimserverDatabaseException {
+		if (object != null) {
 			if (canInclude.hasReferences()) {
 				for (Reference reference : canInclude.getReferences()) {
-					processPossibleInclude(canInclude, reference.getInclude());
+					processPossibleInclude(object, canInclude, reference.getInclude());
 				}
 			}
 			if (canInclude.hasIncludes()) {
 				for (Include include : canInclude.getIncludes()) {
-					processPossibleInclude(canInclude, include);
+					processPossibleInclude(object, canInclude, include);
 				}
 			}
 			if (canInclude.isIncludeAllFields()) {
-				for (EReference eReference : currentObject.eClass().getEAllReferences()) {
+				for (EReference eReference : object.eClass().getEAllReferences()) {
 					Include include = new Include(reusable.getPackageMetaData());
-					include.addType(currentObject.eClass(), false);
+					include.addType(object.eClass(), false);
 					include.addField(eReference.getName());
-					processPossibleInclude(canInclude, include);
+					processPossibleInclude(object, canInclude, include);
 				}
 			}
 			if (canInclude instanceof Include) {
-				processPossibleInclude(null, (Include) canInclude);
+				processPossibleInclude(object, null, (Include) canInclude);
 			}
 		}
 	}
 
-	protected void processPossibleInclude(CanInclude previousInclude, Include include) throws QueryException, BimserverDatabaseException {
+	protected void processPossibleInclude(HashMapVirtualObject object, CanInclude previousInclude, Include include) throws QueryException, BimserverDatabaseException {
 		if (include.hasTypes()) {
 			for (TypeDef filterClass : include.getTypes()) {
-				if (!filterClass.geteClass().isSuperTypeOf(currentObject.eClass())) {
+				if (!filterClass.geteClass().isSuperTypeOf(object.eClass())) {
 //					System.out.println(filterClass.getName() + " / " + currentObject.eClass().getName());
 					// TODO too many times queries are spending time here
 					return;
@@ -122,21 +123,30 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		}
 		if (include.hasDirectFields()) {
 			for (EReference eReference : include.getFieldsDirect()) {
-				Object ref = currentObject.get(eReference.getName());
+				Object ref = object.get(eReference.getName());
 				if (ref != null) {
-					HashMapVirtualObject byOid = getByOid((Long)ref);
-					currentObject.setDirectReference(eReference, byOid);
+					if (ref instanceof List) {
+						for (Long r : (List<Long>)ref) {
+							HashMapVirtualObject byOid = getByOid(r);
+							object.addDirectListReference(eReference, byOid);
+							processPossibleIncludes(byOid, byOid.eClass(), include);
+						}
+					} else {
+						HashMapVirtualObject byOid = getByOid((Long)ref);
+						object.setDirectReference(eReference, byOid);
+						processPossibleIncludes(byOid, byOid.eClass(), include);
+					}
 				}
 			}
 		}
 		if (include.hasFields()) {
 			for (EStructuralFeature eStructuralFeature : include.getFields()) {
 				// TODO do we really have to iterate through the EAtrributes as well?
-				currentObject.addUseForSerialization(eStructuralFeature);
+				object.addUseForSerialization(eStructuralFeature);
 			}
 		}
 
-		getQueryObjectProvider().push(new QueryIncludeStackFrame(getQueryObjectProvider(), getReusable(), previousInclude, include, currentObject, queryPart));
+		getQueryObjectProvider().push(new QueryIncludeStackFrame(getQueryObjectProvider(), getReusable(), previousInclude, include, object, queryPart));
 	}
 	
 	public GetResult getMap(EClass originalQueryClass, EClass eClass, ByteBuffer buffer, int keyPid, long keyOid, int keyRid) throws BimserverDatabaseException {

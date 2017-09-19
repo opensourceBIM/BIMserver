@@ -83,8 +83,9 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 				for (Object r : list) {
 					if (r instanceof Long) {
 						if (directFeatureSet != null && directFeatureSet.contains(feature)) {
-							// TODO not supported for now
-//							processDirectReference((Long)r);
+							HashMapVirtualObject byOid = getByOid((long) r);
+							currentObject.addDirectListReference(feature, byOid);
+							processPossibleIncludes(byOid, byOid.eClass(), include);
 						} else {
 							processReference((Long)r);
 						}
@@ -96,7 +97,9 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 				if (value instanceof Long) {
 					long refOid = (Long) value;
 					if (directFeatureSet != null && directFeatureSet.contains(feature)) {
-						processDirectReference(currentObject, feature, (Long)refOid);
+						HashMapVirtualObject byOid = getByOid((Long)refOid);
+						currentObject.setDirectReference(feature, byOid);
+						processPossibleIncludes(byOid, byOid.eClass(), include);
 					} else {
 						processReference(refOid);
 					}
@@ -107,11 +110,6 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 		}
 		
 		return !featureIterator.hasNext();
-	}
-
-	private void processDirectReference(HashMapVirtualObject currentObject, EReference feature2, Long oid) throws BimserverDatabaseException {
-		HashMapVirtualObject byOid = getByOid(oid);
-		currentObject.setDirectReference(feature2, byOid);
 	}
 
 	private void processReference(long refOid) {

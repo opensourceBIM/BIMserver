@@ -193,7 +193,7 @@ public class QueryClassificationsAndTypesStackFrame extends DatabaseReadingStack
 			}
 		}
 
-		processPossibleIncludes(eClass, getQueryPart());
+		processPossibleIncludes(currentObject, eClass, getQueryPart());
 
 		return false;
 	}
