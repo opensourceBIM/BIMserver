@@ -305,7 +305,7 @@ public class IfcTools2D {
 		return null;
 	}
 
-	private static double[] placement3DToMatrix(IfcAxis2Placement3D ifcAxis2Placement3D) {
+	public static double[] placement3DToMatrix(IfcAxis2Placement3D ifcAxis2Placement3D) {
 		if (ifcAxis2Placement3D.getAxis() != null && ifcAxis2Placement3D.getRefDirection() != null) {
 			double[] cross = Vector.crossProduct(new double[]{ifcAxis2Placement3D.getAxis().getDirectionRatios().get(0), ifcAxis2Placement3D.getAxis().getDirectionRatios().get(1), ifcAxis2Placement3D.getAxis().getDirectionRatios().get(2), 1}, new double[]{ifcAxis2Placement3D.getRefDirection().getDirectionRatios().get(0), ifcAxis2Placement3D.getRefDirection().getDirectionRatios().get(1), ifcAxis2Placement3D.getRefDirection().getDirectionRatios().get(2), 1});
 			return new double[]{
@@ -325,7 +325,7 @@ public class IfcTools2D {
 		return Matrix.identity();
 	}
 
-	private static double[] placementToMatrix(IfcObjectPlacement objectPlacement) {
+	public static double[] placementToMatrix(IfcObjectPlacement objectPlacement) {
 		double[] matrix = Matrix.identity();
 		if (objectPlacement instanceof IfcLocalPlacement) {
 			IfcLocalPlacement ifcLocalPlacement = (IfcLocalPlacement)objectPlacement;

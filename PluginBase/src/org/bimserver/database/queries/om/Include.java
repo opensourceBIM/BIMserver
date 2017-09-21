@@ -233,4 +233,28 @@ public class Include extends PartOfQuery implements CanInclude {
 	public boolean hasReferences() {
 		return references != null;
 	}
+
+	public void makeDirectRecursive(Set<Include> done) {
+		if (done.contains(this)) {
+			return;
+		}
+		done.add(this);
+		if (this.fieldsDirect == null) {
+			this.fieldsDirect = new ArrayList<>();
+		}
+		if (this.fields != null) {
+			this.fieldsDirect.addAll(this.fields);
+			this.fields.clear();
+		}
+		if (hasIncludes()) {
+			for (Include inc : this.includes) {
+				inc.makeDirectRecursive(done);
+			}
+		}
+		if (hasReferences()) {
+			for (Reference reference : references) {
+				reference.getInclude().makeDirectRecursive(done);
+			}
+		}
+	}
 }

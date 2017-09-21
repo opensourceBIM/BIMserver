@@ -688,20 +688,28 @@
       },
       "RelativePlacement": {
          "type": "IfcLocalPlacement",
-         "field": "PlacementRelTo",
+         "fields": ["PlacementRelTo", "RelativePlacement"],
          "includes": [
             "RelativePlacement",
             {
+              "type": "IfcAxis2Placement3D",
+                  "fields": [
+                     "Location",
+                     "Axis",
+                     "RefDirection"
+                  ]
+            },
+            {
                "type": "IfcLocalPlacement",
-               "field": "RelativePlacement",
-               "include": {
+               "fields": ["RelativePlacement", "PlacementRelTo"],
+               "includes": ["RelativePlacement", {
                   "type": "IfcAxis2Placement3D",
                   "fields": [
                      "Location",
                      "Axis",
                      "RefDirection"
                   ]
-               }
+               }]
             }
          ]
       },

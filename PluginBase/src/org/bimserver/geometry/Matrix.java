@@ -1,5 +1,7 @@
 package org.bimserver.geometry;
 
+import java.util.Arrays;
+
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -976,6 +978,12 @@ public class Matrix {
 		}
 	}
 
+	public static void dumpIfNotId(double[] matrix) {
+		if (!Arrays.equals(matrix, identity())) {
+			dump(matrix);
+		}
+	}
+	
 	public static double[] identity() {
 		double matrix[] = new double[16];
 		setIdentityM(matrix, 0);
