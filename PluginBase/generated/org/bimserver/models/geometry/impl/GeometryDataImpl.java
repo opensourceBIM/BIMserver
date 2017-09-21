@@ -19,6 +19,7 @@ package org.bimserver.models.geometry.impl;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.geometry.Vector4f;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getNormals <em>Normals</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMaterials <em>Materials</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMaterialIndices <em>Material Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getColor <em>Color</em>}</li>
  * </ul>
  *
  * @generated
@@ -156,6 +158,24 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 */
 	public void setMaterialIndices(byte[] newMaterialIndices) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__MATERIAL_INDICES, newMaterialIndices);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Vector4f getColor() {
+		return (Vector4f) eGet(GeometryPackage.Literals.GEOMETRY_DATA__COLOR, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setColor(Vector4f newColor) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__COLOR, newColor);
 	}
 
 } //GeometryDataImpl

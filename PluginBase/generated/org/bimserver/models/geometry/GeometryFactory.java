@@ -63,6 +63,15 @@ public interface GeometryFactory extends EFactory {
 	GeometryData createGeometryData();
 
 	/**
+	 * Returns a new object of class '<em>Vector4f</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Vector4f</em>'.
+	 * @generated
+	 */
+	Vector4f createVector4f();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

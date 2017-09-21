@@ -102,7 +102,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private EStructuralFeature representationFeature;
 	private PackageMetaData packageMetaData;
 
-	private AtomicLong bytesSaved = new AtomicLong();
+	private AtomicLong bytesSavedByHash = new AtomicLong();
+	private AtomicLong bytesSavedByTransformation = new AtomicLong();
 	private AtomicLong totalBytes = new AtomicLong();
 	private AtomicLong saveableColorBytes = new AtomicLong();
 
@@ -141,8 +142,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		private DatabaseSession databaseSession;
 		private RenderEnginePool renderEnginePool;
 		private boolean geometryReused;
+		private Set<ProductDef> set;
 
-		public Runner(EClass eClass, RenderEnginePool renderEnginePool, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider, StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext, Query originalQuery, boolean geometryReused) {
+		public Runner(EClass eClass, RenderEnginePool renderEnginePool, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider, StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext, Query originalQuery, boolean geometryReused, Set<ProductDef> set) {
 			this.eClass = eClass;
 			this.renderEnginePool = renderEnginePool;
 			this.databaseSession = databaseSession;
@@ -153,6 +155,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			this.generateGeometryResult = generateGeometryResult;
 			this.queryContext = queryContext;
 			this.geometryReused = geometryReused;
+			this.set = set;
 		}
 
 		@Override
@@ -312,7 +315,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 											Set<Color4f> usedColors = new HashSet<>();
 											
-											int saveableColorBytes = 0;
+											int savedColorBytes = 0;
 											
 											if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 												boolean hasMaterial = false;
@@ -333,10 +336,16 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 														}
 													}
 												}
-												if (!usedColors.isEmpty()) {
-													if (usedColors.size() == 1) {
-														saveableColorBytes = (4 * vertex_colors.length) - 16;
-													}
+												if (usedColors.size() == 1) {
+													savedColorBytes = (4 * vertex_colors.length) - 16;
+													WrappedVirtualObject color = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector4f());
+													Color4f firstColor = usedColors.iterator().next();
+													color.set("x", firstColor.getR());
+													color.set("y", firstColor.getG());
+													color.set("z", firstColor.getB());
+													color.set("w", firstColor.getA());
+													geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Color(), color);
+													hasMaterial = false;
 												}
 												if (hasMaterial) {
 													geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Materials(), floatArrayToByteArray(vertex_colors));
@@ -367,7 +376,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 												Range range = new Range(firstVertex, lastVertex);
 												if (hashes.containsKey(hash)) {
 													geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), hashes.get(hash), 0);
-													bytesSaved.addAndGet(size);
+													bytesSavedByHash.addAndGet(size);
 												} else if (geometryReused) {
 													boolean found = false;
 													for (Range r : reusableGeometryData) {
@@ -376,7 +385,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 															float[] offset = r.getOffset(range);
 															Matrix.translateM(tranformationMatrix, 0, offset[0], offset[1], offset[2]);
 															setTransformationMatrix(geometryInfo, tranformationMatrix);
-															bytesSaved.addAndGet(size);
+															bytesSavedByTransformation.addAndGet(size);
 															found = true;
 															break;
 														}
@@ -395,7 +404,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 														reusableGeometryData.add(range);
 													}
 													hashes.put(hash, geometryData.getOid());
-													StreamingGeometryGenerator.this.saveableColorBytes.addAndGet(saveableColorBytes);
+													StreamingGeometryGenerator.this.saveableColorBytes.addAndGet(savedColorBytes);
 													geometryData.save();
 	//												sizes.put(size, ifcProduct);
 												}
@@ -606,7 +615,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					targetInclude.addFieldDirect("Axis3");
 					targetInclude.addFieldDirect("LocalOrigin");
 
-					Map<Long, Set<Long>> representationMapToProduct = new HashMap<>();
+					Map<Long, Set<ProductDef>> representationMapToProduct = new HashMap<>();
 					
 					QueryObjectProvider queryObjectProvider2 = new QueryObjectProvider(databaseSession, bimServer, query2, Collections.singleton(queryContext.getRoid()), packageMetaData);
 					HashMapVirtualObject next = queryObjectProvider2.next();
@@ -620,6 +629,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 										List<HashMapVirtualObject> items = representationItem.getDirectListFeature(itemsFeature);
 										for (HashMapVirtualObject item : items) {
 											HashMapVirtualObject mappingTarget = item.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcMappedItem_MappingTarget());
+											double[] matrix = null;
 											if (mappingTarget != null) {
 												HashMapVirtualObject axis1 = mappingTarget.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcCartesianTransformationOperator_Axis1());
 												HashMapVirtualObject axis2 = mappingTarget.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcCartesianTransformationOperator_Axis2());
@@ -630,7 +640,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 													List<Double> a2 = (List<Double>) axis2.get("DirectionRatios");
 													List<Double> a3 = (List<Double>) axis3.get("DirectionRatios");
 													List<Double> t = (List<Double>)localOrigin.get("Coordinates");
-													double[] matrix = new double[]{
+													matrix = new double[]{
 															a3.get(0).doubleValue(), a3.get(1).doubleValue(), a3.get(2).doubleValue(), t.get(0).doubleValue(),
 															a1.get(0).doubleValue(), a1.get(1).doubleValue(), a1.get(2).doubleValue(), t.get(1).doubleValue(),
 															a2.get(0).doubleValue(), a2.get(1).doubleValue(), a2.get(2).doubleValue(), t.get(2).doubleValue(),
@@ -640,12 +650,14 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											}
 											HashMapVirtualObject mappingSource = item.getDirectFeature(mappingSourceFeature);
 											if (mappingSource != null) {
-												Set<Long> set = representationMapToProduct.get(mappingSource.getOid());
+												Set<ProductDef> set = representationMapToProduct.get(mappingSource.getOid());
 												if (set == null) {
 													set = new HashSet<>();
 													representationMapToProduct.put(mappingSource.getOid(), set);
 												}
-												set.add(next.getOid());
+												ProductDef pd = new ProductDef(next.getOid());
+												set.add(pd);
+												pd.setMatrix(matrix);
 											}
 										}
 									}
@@ -658,21 +670,21 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					Set<Long> done = new HashSet<>();
 					
 					for (Long repMapId : representationMapToProduct.keySet()) {
-						Set<Long> set = representationMapToProduct.get(repMapId);
+						Set<ProductDef> set = representationMapToProduct.get(repMapId);
 						
 						if (set.size() > 1) {
 							Query query = new Query("test", packageMetaData);
 							QueryPart queryPart = query.createQueryPart();
 							queryPart.addType(eClass, false);
 
-							for (Long l : set) {
-								done.add(l);
-								queryPart.addOid(l);
+							for (ProductDef pd : set) {
+								done.add(pd.getOid());
+								queryPart.addOid(pd.getOid());
 							}
 							
 							LOGGER.info("Running " + set.size() + " objects in one batch because of reused geometry");
 
-							processX(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, true);
+							processX(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, true, set);
 						}
 					}
 					
@@ -711,7 +723,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											}
 										}
 									}
-									processX(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false);
+									processX(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null);
 								}
 							}
 						}
@@ -730,8 +742,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			executor.awaitTermination(24, TimeUnit.HOURS);				
 
 			long end = System.nanoTime();
-			LOGGER.info("Rendertime: " + ((end - start) / 1000000) + "ms, " + "Reused: " + Formatters.bytesToString(bytesSaved.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(totalBytes.get() - bytesSaved.get()));
-			LOGGER.info("Saveable color data: " + Formatters.bytesToString(saveableColorBytes.get()));
+			LOGGER.info("Rendertime: " + ((end - start) / 1000000) + "ms, " + "Reused (by hash): " + Formatters.bytesToString(bytesSavedByHash.get()) + ", Reused (by transformation): " + Formatters.bytesToString(bytesSavedByTransformation.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(totalBytes.get() - (bytesSavedByHash.get() + bytesSavedByTransformation.get())));
+			LOGGER.info("Saved color data: " + Formatters.bytesToString(saveableColorBytes.get()));
 		} catch (Exception e) {
 			running = false;
 			LOGGER.error("", e);
@@ -741,7 +753,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	}
 
 	private void processX(final DatabaseSession databaseSession, QueryContext queryContext, GenerateGeometryResult generateGeometryResult, final StreamingSerializerPlugin ifcSerializerPlugin, final RenderEngineSettings settings,
-			final RenderEngineFilter renderEngineFilter, RenderEnginePool renderEnginePool, ThreadPoolExecutor executor, EClass eClass, Query query, QueryPart queryPart, boolean geometryReused) throws QueryException, IOException {
+			final RenderEngineFilter renderEngineFilter, RenderEnginePool renderEnginePool, ThreadPoolExecutor executor, EClass eClass, Query query, QueryPart queryPart, boolean geometryReused, Set<ProductDef> set) throws QueryException, IOException {
 		JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
 		
 		String queryNameSpace = "validifc";
@@ -782,7 +794,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		}
 		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
 		
-		Runner runner = new Runner(eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, query, geometryReused);
+		Runner runner = new Runner(eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, query, geometryReused, set);
 		executor.submit(runner);
 		jobsTotal.incrementAndGet();
 	}
@@ -830,7 +842,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private long getSize(VirtualObject geometryData) {
 		long size = 0;
 		if (geometryData.has("indices")) {
-			size += ((byte[])geometryData.get("vertices")).length;
+			size += ((byte[])geometryData.get("indices")).length;
 		}
 		if (geometryData.has("vertices")) {
 			size += ((byte[])geometryData.get("vertices")).length;

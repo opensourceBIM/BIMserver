@@ -76,6 +76,22 @@ public class Color4f {
 		}
 	}
 	
+	public float getA() {
+		return a;
+	}
+	
+	public float getB() {
+		return b;
+	}
+	
+	public float getG() {
+		return g;
+	}
+	
+	public float getR() {
+		return r;
+	}
+	
 	@Override
 	public String toString() {
 		return r + ", " + g + ", " + b + ", " + a;

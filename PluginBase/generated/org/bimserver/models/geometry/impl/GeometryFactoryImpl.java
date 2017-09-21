@@ -77,6 +77,8 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 			return (EObject) createVector3f();
 		case GeometryPackage.GEOMETRY_DATA:
 			return (EObject) createGeometryData();
+		case GeometryPackage.VECTOR4F:
+			return (EObject) createVector4f();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -110,6 +112,16 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	public GeometryData createGeometryData() {
 		GeometryDataImpl geometryData = new GeometryDataImpl();
 		return geometryData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Vector4f createVector4f() {
+		Vector4fImpl vector4f = new Vector4fImpl();
+		return vector4f;
 	}
 
 	/**

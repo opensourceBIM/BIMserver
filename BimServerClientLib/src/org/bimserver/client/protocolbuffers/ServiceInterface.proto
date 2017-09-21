@@ -1408,6 +1408,15 @@ message GetGeometryInfoRequest {
 	optional int64 oid = 2;
 }
 
+message SVector4f {
+	optional int64 oid = 1;
+	optional int32 rid = 2;
+	optional float w = 3;
+	optional float x = 4;
+	optional float y = 5;
+	optional float z = 6;
+}
+
 message SVector3f {
 	optional int64 oid = 1;
 	optional int32 rid = 2;
@@ -1418,18 +1427,19 @@ message SVector3f {
 
 message SGeometryInfo {
 	optional double area = 1;
-	optional int64 dataId = 2;
-	optional SVector3f maxBounds = 3;
-	optional SVector3f maxBoundsUntranslated = 4;
-	optional SVector3f minBounds = 5;
-	optional SVector3f minBoundsUntranslated = 6;
-	optional int64 oid = 7;
-	optional int32 primitiveCount = 8;
-	optional int32 rid = 9;
-	optional int32 startIndex = 10;
-	optional int32 startVertex = 11;
-	optional bytes transformation = 12;
-	optional double volume = 13;
+	optional SVector4f color = 2;
+	optional int64 dataId = 3;
+	optional SVector3f maxBounds = 4;
+	optional SVector3f maxBoundsUntranslated = 5;
+	optional SVector3f minBounds = 6;
+	optional SVector3f minBoundsUntranslated = 7;
+	optional int64 oid = 8;
+	optional int32 primitiveCount = 9;
+	optional int32 rid = 10;
+	optional int32 startIndex = 11;
+	optional int32 startVertex = 12;
+	optional bytes transformation = 13;
+	optional double volume = 14;
 }
 
 message GetGeometryInfoResponse {

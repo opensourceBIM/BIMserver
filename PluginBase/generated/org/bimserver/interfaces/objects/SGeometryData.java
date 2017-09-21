@@ -34,6 +34,7 @@ public class SGeometryData implements SDataBase
 	private byte[] normals;
 	private byte[] materials;
 	private byte[] materialIndices;
+	private SVector4f color;
 
 	public long getOid() {
 		return this.oid;
@@ -76,6 +77,9 @@ public class SGeometryData implements SDataBase
 		if (sField.getName().equals("materialIndices")) {
 			return getMaterialIndices();
 		}
+		if (sField.getName().equals("color")) {
+			return getColor();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -104,6 +108,10 @@ public class SGeometryData implements SDataBase
 		}
 		if (sField.getName().equals("materialIndices")) {
 			setMaterialIndices((byte[])val);
+			return;
+		}
+		if (sField.getName().equals("color")) {
+			setColor((SVector4f)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -156,6 +164,15 @@ public class SGeometryData implements SDataBase
 	public void setMaterialIndices(byte[] materialIndices) {
 		this.materialIndices = materialIndices;
 	}
+	
+	public SVector4f getColor() {
+		return color;
+	}
+
+	public void setColor(SVector4f color) {
+		this.color = color;
+	}
+	
 	
 	@Override
 	public int hashCode() {

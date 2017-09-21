@@ -289,13 +289,77 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_DATA__MATERIAL_INDICES = 4;
 
 	/**
+	 * The feature id for the '<em><b>Color</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__COLOR = 5;
+
+	/**
 	 * The number of structural features of the '<em>Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA_FEATURE_COUNT = 5;
+	int GEOMETRY_DATA_FEATURE_COUNT = 6;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.geometry.impl.Vector4fImpl
+	 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getVector4f()
+	 * @generated
+	 */
+	int VECTOR4F = 3;
+
+	/**
+	 * The feature id for the '<em><b>X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VECTOR4F__X = 0;
+
+	/**
+	 * The feature id for the '<em><b>Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VECTOR4F__Y = 1;
+
+	/**
+	 * The feature id for the '<em><b>Z</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VECTOR4F__Z = 2;
+
+	/**
+	 * The feature id for the '<em><b>W</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VECTOR4F__W = 3;
+
+	/**
+	 * The number of structural features of the '<em>Vector4f</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VECTOR4F_FEATURE_COUNT = 4;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.GeometryInfo <em>Info</em>}'.
@@ -537,6 +601,71 @@ public interface GeometryPackage extends EPackage {
 	EAttribute getGeometryData_MaterialIndices();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getColor <em>Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Color</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getColor()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EReference getGeometryData_Color();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector4f <em>Vector4f</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Vector4f</em>'.
+	 * @see org.bimserver.models.geometry.Vector4f
+	 * @generated
+	 */
+	EClass getVector4f();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.Vector4f#getX <em>X</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>X</em>'.
+	 * @see org.bimserver.models.geometry.Vector4f#getX()
+	 * @see #getVector4f()
+	 * @generated
+	 */
+	EAttribute getVector4f_X();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.Vector4f#getY <em>Y</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Y</em>'.
+	 * @see org.bimserver.models.geometry.Vector4f#getY()
+	 * @see #getVector4f()
+	 * @generated
+	 */
+	EAttribute getVector4f_Y();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.Vector4f#getZ <em>Z</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Z</em>'.
+	 * @see org.bimserver.models.geometry.Vector4f#getZ()
+	 * @see #getVector4f()
+	 * @generated
+	 */
+	EAttribute getVector4f_Z();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.Vector4f#getW <em>W</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>W</em>'.
+	 * @see org.bimserver.models.geometry.Vector4f#getW()
+	 * @see #getVector4f()
+	 * @generated
+	 */
+	EAttribute getVector4f_W();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -739,6 +868,56 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GEOMETRY_DATA__MATERIAL_INDICES = eINSTANCE.getGeometryData_MaterialIndices();
+
+		/**
+		 * The meta object literal for the '<em><b>Color</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEOMETRY_DATA__COLOR = eINSTANCE.getGeometryData_Color();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.geometry.impl.Vector4fImpl
+		 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getVector4f()
+		 * @generated
+		 */
+		EClass VECTOR4F = eINSTANCE.getVector4f();
+
+		/**
+		 * The meta object literal for the '<em><b>X</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VECTOR4F__X = eINSTANCE.getVector4f_X();
+
+		/**
+		 * The meta object literal for the '<em><b>Y</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VECTOR4F__Y = eINSTANCE.getVector4f_Y();
+
+		/**
+		 * The meta object literal for the '<em><b>Z</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VECTOR4F__Z = eINSTANCE.getVector4f_Z();
+
+		/**
+		 * The meta object literal for the '<em><b>W</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VECTOR4F__W = eINSTANCE.getVector4f_W();
 
 	}
 

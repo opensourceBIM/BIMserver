@@ -97,6 +97,11 @@ public class GeometryAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseVector4f(Vector4f object) {
+			return createVector4fAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -154,6 +159,20 @@ public class GeometryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGeometryDataAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.geometry.Vector4f <em>Vector4f</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.geometry.Vector4f
+	 * @generated
+	 */
+	public Adapter createVector4fAdapter() {
 		return null;
 	}
 

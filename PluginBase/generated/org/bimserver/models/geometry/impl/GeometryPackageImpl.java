@@ -76,6 +76,13 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	private EClass geometryDataEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vector4fEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -355,6 +362,63 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	public EAttribute getGeometryData_MaterialIndices() {
 		return (EAttribute) getGeometryData().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGeometryData_Color() {
+		return (EReference) getGeometryData().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVector4f() {
+		if (vector4fEClass == null) {
+			vector4fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(3);
+		}
+		return vector4fEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVector4f_X() {
+		return (EAttribute) getVector4f().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVector4f_Y() {
+		return (EAttribute) getVector4f().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVector4f_Z() {
+		return (EAttribute) getVector4f().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVector4f_W() {
+		return (EAttribute) getVector4f().getEStructuralFeatures().get(3);
 	}
 
 	/**

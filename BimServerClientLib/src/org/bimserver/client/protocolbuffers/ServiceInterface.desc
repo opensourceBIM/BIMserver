@@ -1,5 +1,5 @@
 
-éÜ
+çá
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -739,29 +739,37 @@ revisionNr (
 value (2.org.bimserver.pb.SGeoTag"3
 GetGeometryInfoRequest
 roid (
-oid ("F
+oid ("Q
+	SVector4f
+oid (
+rid (	
+w (	
+x (	
+y (	
+z ("F
 	SVector3f
 oid (
 rid (	
 x (	
 y (	
-z ("à
+z ("¥
 SGeometryInfo
-area (
-dataId (.
-	maxBounds (2.org.bimserver.pb.SVector3f:
-maxBoundsUntranslated (2.org.bimserver.pb.SVector3f.
-	minBounds (2.org.bimserver.pb.SVector3f:
-minBoundsUntranslated (2.org.bimserver.pb.SVector3f
-oid (
-primitiveCount (
-rid	 (
+area (*
+color (2.org.bimserver.pb.SVector4f
+dataId (.
+	maxBounds (2.org.bimserver.pb.SVector3f:
+maxBoundsUntranslated (2.org.bimserver.pb.SVector3f.
+	minBounds (2.org.bimserver.pb.SVector3f:
+minBoundsUntranslated (2.org.bimserver.pb.SVector3f
+oid (
+primitiveCount	 (
+rid
+ (
 
-startIndex
- (
-startVertex (
-transformation (
-volume ("_
+startIndex (
+startVertex (
+transformation (
+volume ("_
 GetGeometryInfoResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SGeometryInfo"$

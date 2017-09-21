@@ -32,6 +32,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getNormals <em>Normals</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getMaterials <em>Materials</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getMaterialIndices <em>Material Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getColor <em>Color</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
@@ -169,5 +170,31 @@ public interface GeometryData extends IdEObject {
 	 * @generated
 	 */
 	void setMaterialIndices(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Color</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Color</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Color</em>' reference.
+	 * @see #setColor(Vector4f)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_Color()
+	 * @model
+	 * @generated
+	 */
+	Vector4f getColor();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getColor <em>Color</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Color</em>' reference.
+	 * @see #getColor()
+	 * @generated
+	 */
+	void setColor(Vector4f value);
 
 } // GeometryData
