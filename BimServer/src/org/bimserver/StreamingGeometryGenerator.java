@@ -165,7 +165,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		public void run() {
 			try {
 				HashMapVirtualObject next = objectProvider.next();
-				Query query = new Query("test", packageMetaData);
+				Query query = new Query("Double buffer query " + eClass.getName(), packageMetaData);
 				QueryPart queryPart = query.createQueryPart();
 				while (next != null) {
 					queryPart.addOid(next.getOid());
@@ -248,6 +248,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 								
 								OidConvertingSerializer oidConvertingSerializer = (OidConvertingSerializer)ifcSerializer;
 								Map<Long, Integer> oidToEid = oidConvertingSerializer.getOidToEid();
+								Map<Long, double[]> matrices = new HashMap<>();
 								
 								for (HashMapVirtualObject ifcProduct : objects) {
 									if (!running) {
@@ -380,25 +381,25 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 													bytesSavedByHash.addAndGet(size);
 												} else if (geometryReused) {
 													boolean found = false;
-													for (Range r : reusableGeometryData) {
-														if (r.isSimilar(range)) {
-															geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), r.getGeometryDataOid(), 0);
-															float[] offset = r.getOffset(range);
-															ProductDef productDef = map.get(ifcProduct.getOid());
-															double[] mappedItemMatrix = null;
-															if (productDef != null && productDef.getMatrix() != null) {
-																mappedItemMatrix = productDef.getMatrix();
-															} else {
-																Matrix.translateM(mappedItemMatrix, 0, offset[0], offset[1], offset[2]);
-															}
-															double[] result = new double[16];
-															Matrix.multiplyMM(result, 0, mappedItemMatrix, 0, productTranformationMatrix, 0);
-															setTransformationMatrix(geometryInfo, result); // Overwritten?
-															bytesSavedByTransformation.addAndGet(size);
-															found = true;
-															break;
-														}
-													}
+//													for (Range r : reusableGeometryData) {
+//														if (r.isSimilar(range)) {
+//															geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), r.getGeometryDataOid(), 0);
+//															float[] offset = r.getOffset(range);
+//															ProductDef productDef = map.get(ifcProduct.getOid());
+//															double[] mappedItemMatrix = null;
+//															if (productDef != null && productDef.getMatrix() != null) {
+//																mappedItemMatrix = productDef.getMatrix();
+//															} else {
+//																Matrix.translateM(mappedItemMatrix, 0, offset[0], offset[1], offset[2]);
+//															}
+//															double[] result = new double[16];
+//															Matrix.multiplyMM(result, 0, mappedItemMatrix, 0, productTranformationMatrix, 0);
+//															setTransformationMatrix(geometryInfo, result); // Overwritten?
+//															bytesSavedByTransformation.addAndGet(size);
+//															found = true;
+//															break;
+//														}
+//													}
 													if (!found) {
 														range.setGeometryDataOid(geometryData.getOid());
 														reusableGeometryData.add(range);
@@ -430,6 +431,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 											calculateObb(geometryInfo, productTranformationMatrix, indices, vertices, generateGeometryResult);
 											setTransformationMatrix(geometryInfo, productTranformationMatrix);
+											matrices.put(ifcProduct.getOid(), productTranformationMatrix);
 											
 											geometryInfo.save();
 											totalBytes.addAndGet(size);
@@ -465,9 +467,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 								}
 								
 								if (geometryReused && map != null) {
-									ProductDef first = map.values().iterator().next();
-									for (Long key : map.keySet()) {
-										if (key != first.getOid()) {
+									long firstKey = map.keySet().iterator().next();
+									ProductDef masterProductDef = map.get(firstKey);
+									for (long key : map.keySet()) {
+										if (key != firstKey) {
 											ProductDef productDef = map.get(key);
 											HashMapVirtualObject ifcProduct = productDef.getObject();
 											
@@ -484,8 +487,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											double[] mibt = new double[4];
 											double[] mabt = new double[4];
 											
-											Matrix.multiplyMV(mibt, 0, productDef.getMatrix(), 0, mibu, 0);
-											Matrix.multiplyMV(mabt, 0, productDef.getMatrix(), 0, mabu, 0);
+											// TODO
+											Matrix.multiplyMV(mibt, 0, productDef.getProductMatrix(), 0, mibu, 0);
+											Matrix.multiplyMV(mabt, 0, productDef.getProductMatrix(), 0, mabu, 0);
 
 											minBounds.set("x", mibt[0]);
 											minBounds.set("y", mibt[1]);
@@ -523,8 +527,25 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											bytesSavedByMapping.addAndGet(q.getSize());
 											totalBytes.addAndGet(q.getSize());
 											
-											double[] totalTranformationMatrix = productDef.getMatrix();
-
+											double[] inverted = Matrix.identity();
+											if (!Matrix.invertM(inverted, 0, masterProductDef.getMappingMatrix(), 0)) {
+												System.out.println("No inverse");
+											}
+											
+											double[] finalMatrix = Matrix.identity();
+											double[] totalTranformationMatrix = Matrix.identity();
+											Matrix.multiplyMM(finalMatrix, 0, productDef.getMappingMatrix(), 0, inverted, 0);
+											Matrix.multiplyMM(totalTranformationMatrix, 0, productDef.getProductMatrix(), 0, finalMatrix, 0);
+											
+											if (matrices.containsKey(ifcProduct.getOid())) {
+												if (!Arrays.equals(matrices.get(ifcProduct.getOid()), totalTranformationMatrix)) {
+													System.out.println("Not the same " + ifcProduct.get("GlobalId"));
+													Matrix.dump(matrices.get(ifcProduct.getOid()));
+													System.out.println();
+													Matrix.dump(totalTranformationMatrix);
+												}
+											}
+											
 											geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), q.getOid(), 0);
 	
 //											for (int i = 0; i < indices.length; i++) {
@@ -691,14 +712,14 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 			for (EClass eClass : queryContext.getOidCounters().keySet()) {
 				if (packageMetaData.getEClass("IfcProduct").isSuperTypeOf(eClass)) {
-					Query query2 = new Query("test", packageMetaData);
+					Query query2 = new Query(eClass.getName() + "Main query", packageMetaData);
 					QueryPart queryPart2 = query2.createQueryPart();
 					queryPart2.addType(eClass, false);
 					Include representationInclude = queryPart2.createInclude();
 					representationInclude.addType(eClass, false);
 					representationInclude.addFieldDirect("Representation");
 					Include representationsInclude = representationInclude.createInclude();
-					representationsInclude.addType(Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape(), false);
+					representationsInclude.addType(Ifc2x3tc1Package.eINSTANCE.getIfcProductRepresentation(), true);
 					representationsInclude.addFieldDirect("Representations");
 					Include itemsInclude = representationsInclude.createInclude();
 					itemsInclude.addType(Ifc2x3tc1Package.eINSTANCE.getIfcShapeRepresentation(), false);
@@ -740,26 +761,68 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 													HashMapVirtualObject axis2 = mappingTarget.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcCartesianTransformationOperator_Axis2());
 													HashMapVirtualObject axis3 = mappingTarget.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcCartesianTransformationOperator3D_Axis3());
 													HashMapVirtualObject localOrigin = mappingTarget.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcCartesianTransformationOperator_LocalOrigin());
-													if (axis1 != null && axis2 != null && axis3 != null) {
-														List<Double> a1 = (List<Double>) axis1.get("DirectionRatios");
-														List<Double> a2 = (List<Double>) axis2.get("DirectionRatios");
-														List<Double> a3 = (List<Double>) axis3.get("DirectionRatios");
-														List<Double> t = (List<Double>)localOrigin.get("Coordinates");
-														mappingMatrix = new double[]{
-															a1.get(0).doubleValue(), a1.get(1).doubleValue(), a1.get(2).doubleValue(), t.get(0).doubleValue(),
-															a2.get(0).doubleValue(), a2.get(1).doubleValue(), a2.get(2).doubleValue(), t.get(1).doubleValue(),
-															a3.get(0).doubleValue(), a3.get(1).doubleValue(), a3.get(2).doubleValue(), t.get(2).doubleValue(),
-															0, 0, 0, 1
-														};
-													} else if (localOrigin != null) {
-														List<Double> t = (List<Double>)localOrigin.get("Coordinates");
-														mappingMatrix = new double[]{
-															1, 0, 0, t.get(0).doubleValue(),
-															0, 1, 0, t.get(1).doubleValue(),
-															0, 0, 1, t.get(2).doubleValue(),
-															0, 0, 0, 1
-														};
+													
+													double[] a1 = null;
+													double[] a2 = null;
+													double[] a3 = null;
+
+													if (axis3 != null) {
+														List<Double> list = (List<Double>) axis3.get("DirectionRatios");
+														a3 = new double[]{list.get(0), list.get(1), list.get(2)};
+													} else {
+														a3 = new double[]{0, 0, 1, 1};
+														Vector.normalize(a3);
 													}
+
+													if (axis1 != null) {
+														List<Double> list = (List<Double>) axis1.get("DirectionRatios");
+														a1 = new double[]{list.get(0), list.get(1), list.get(2)};
+														Vector.normalize(a1);
+													} else {
+//														if (a3[0] == 1 && a3[1] == 0 && a3[2] == 0) {
+															a1 = new double[]{1, 0, 0, 1};
+//														} else {
+//															a1 = new double[]{0, 1, 0, 1};
+//														}
+													}
+													
+													double[] xVec = Vector.scalarProduct(Vector.dot(a1, a3), a3);
+										            double[] xAxis = Vector.subtract(a1, xVec);
+										            Vector.normalize(xAxis);
+
+										            if (axis2 != null) {
+										            	List<Double> list = (List<Double>) axis2.get("DirectionRatios");
+														a2 = new double[]{list.get(0), list.get(1), list.get(2)};
+														Vector.normalize(a2);
+										            } else {
+										            	a2 = new double[]{0, 1, 0, 1};
+										            }
+
+										            double[] tmp = Vector.scalarProduct(Vector.dot(a2, a3), a3);
+										            double[] yAxis = Vector.subtract(a2, tmp);
+										            tmp = Vector.scalarProduct(Vector.dot(a2, xAxis), xAxis);
+										            yAxis = Vector.subtract(yAxis, tmp);
+										            Vector.normalize(yAxis);
+
+										            a2 = yAxis;
+										            a1 = xAxis;
+													
+													List<Double> t = (List<Double>)localOrigin.get("Coordinates");
+													mappingMatrix = new double[]{
+														a1[0], a1[1], a1[2], 0,
+														a2[0], a2[1], a2[2], 0,
+														a3[0], a3[1], a3[2], 0,
+														t.get(0).doubleValue(), t.get(1).doubleValue(), t.get(2).doubleValue(), 1
+													};
+													
+//													double[] inverted = new double[16];
+//													Matrix.invertM(inverted, 0, mappingMatrix, 0);
+//													mappingMatrix = inverted;
+													
+//													System.out.println(next.get("GlobalId"));
+//													Matrix.dumpIfNotId(inverted);
+													
+//													mappingMatrix = Matrix.identity();
 												}
 												
 												HashMapVirtualObject placement = next.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcProduct_ObjectPlacement());
@@ -769,19 +832,27 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 												
 												HashMapVirtualObject mappingSource = item.getDirectFeature(mappingSourceFeature);
 												if (mappingSource != null) {
-													Map<Long, ProductDef> set = representationMapToProduct.get(mappingSource.getOid());
-													if (set == null) {
-														set = new LinkedHashMap<>();
-														representationMapToProduct.put(mappingSource.getOid(), set);
+													Map<Long, ProductDef> map = representationMapToProduct.get(mappingSource.getOid());
+													if (map == null) {
+														map = new LinkedHashMap<>();
+														representationMapToProduct.put(mappingSource.getOid(), map);
 													}
 													ProductDef pd = new ProductDef(next.getOid());
 													pd.setObject(next);
 													
-													double[] finalMatrix = Matrix.identity();
-													Matrix.multiplyMM(finalMatrix, 0, productMatrix, 0, mappingMatrix, 0);
+//													double[] finalMatrix = Matrix.identity();
+//													if (next.get("GlobalId").equals("1jYD9F3rxYJRnz0YM$R3YY")) {
+//														Matrix.dump(productMatrix);
+//														Matrix.dump(mappingMatrix);
+//														System.out.println();
+//													}
+//													Matrix.multiplyMM(finalMatrix, 0, productMatrix, 0, mappingMatrix, 0);
 													
-													pd.setMatrix(finalMatrix);
-													set.put(next.getOid(), pd);
+//													Matrix.dumpIfNotId(finalMatrix);
+													
+													pd.setProductMatrix(productMatrix);
+													pd.setMappingMatrix(mappingMatrix);
+													map.put(next.getOid(), pd);
 												}
 											}
 										}
@@ -798,7 +869,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						Map<Long, ProductDef> map = representationMapToProduct.get(repMapId);
 						
 						if (map.size() > 1) {
-							Query query = new Query("test", packageMetaData);
+							Query query = new Query("Reuse query " + eClass.getName(), packageMetaData);
 							QueryPart queryPart = query.createQueryPart();
 							queryPart.addType(eClass, false);
 
@@ -807,21 +878,25 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 								done.add(pd.getOid());
 								pd.setMasterOid(masterOid);
 							}
-							// Only add one...
 							queryPart.addOid(masterOid);
 							
-							LOGGER.info("Running " + map.size() + " objects in one batch because of reused geometry");
+							LOGGER.info("Running " + map.size() + " objects in one batch because of reused geometry " + (eClass.getName()));
 
 							processX(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, true, map);
 						}
 					}
 					
-					Query query3 = new Query("test", packageMetaData);
+					Query query3 = new Query("Remaining " + eClass.getName(), packageMetaData);
 					QueryPart queryPart3 = query3.createQueryPart();
 					queryPart3.addType(eClass, false);
 					Include include3 = queryPart3.createInclude();
 					include3.addType(eClass, false);
 					include3.addFieldDirect("Representation");
+					Include rInclude = include3.createInclude();
+					rInclude.addType(Ifc2x3tc1Package.eINSTANCE.getIfcProductRepresentation(), false);
+					rInclude.addFieldDirect("Representations");
+					Include representationsInclude2 = rInclude.createInclude();
+					representationsInclude2.addType(Ifc2x3tc1Package.eINSTANCE.getIfcShapeModel(), false);
 					
 					queryObjectProvider2 = new QueryObjectProvider(databaseSession, bimServer, query3, Collections.singleton(queryContext.getRoid()), packageMetaData);
 					next = queryObjectProvider2.next();
@@ -829,9 +904,17 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						if (next.eClass() == eClass && !done.contains(next.getOid())) {
 							HashMapVirtualObject representation = next.getDirectFeature(representationFeature);
 							if (representation != null) {
-								List<Long> representations = (List<Long>) representation.get("Representations");
-								if (representations != null && !representations.isEmpty()) {
-									Query query = new Query("test", packageMetaData);
+								List<HashMapVirtualObject> list = representation.getDirectListFeature(Ifc2x3tc1Package.eINSTANCE.getIfcProductRepresentation_Representations());
+								boolean goForIt = false;
+								if (list != null) {
+									for (HashMapVirtualObject o : list) {
+										if (o.get("RepresentationIdentifier").equals("Body")) {
+											goForIt = true;
+										}
+									}
+								}
+								if (goForIt) {
+									Query query = new Query("Main " + eClass.getName(), packageMetaData);
 									QueryPart queryPart = query.createQueryPart();
 									queryPart.addType(eClass, false);
 									int x = 0;
@@ -842,8 +925,16 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											if (next.eClass() == eClass && !done.contains(next.getOid())) {
 												representation = next.getDirectFeature(representationFeature);
 												if (representation != null) {
-													representations = (List<Long>) representation.get("Representations");
-													if (representations != null && !representations.isEmpty()) {
+													list = representation.getDirectListFeature(Ifc2x3tc1Package.eINSTANCE.getIfcProductRepresentation_Representations());
+													boolean goForIt2 = false;
+													if (list != null) {
+														for (HashMapVirtualObject o : list) {
+															if (o.get("RepresentationIdentifier").equals("Body")) {
+																goForIt2 = true;
+															}
+														}
+													}
+													if (goForIt2) {
 														queryPart.addOid(next.getOid());
 														x++;
 													}
@@ -870,7 +961,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			executor.awaitTermination(24, TimeUnit.HOURS);				
 
 			long end = System.nanoTime();
-			LOGGER.info("Rendertime: " + ((end - start) / 1000000) + "ms, " + "Reused (by hash): " + Formatters.bytesToString(bytesSavedByHash.get()) + ", Reused (by transformation): " + Formatters.bytesToString(bytesSavedByTransformation.get()) + ", Reused (by mapping): " + Formatters.bytesToString(bytesSavedByMapping.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(totalBytes.get() - (bytesSavedByHash.get() + bytesSavedByTransformation.get() + bytesSavedByMapping.get())));
+			LOGGER.info("Rendertime: " + Formatters.formatNanoSeconds(end - start) + "ms, " + "Reused (by hash): " + Formatters.bytesToString(bytesSavedByHash.get()) + ", Reused (by transformation): " + Formatters.bytesToString(bytesSavedByTransformation.get()) + ", Reused (by mapping): " + Formatters.bytesToString(bytesSavedByMapping.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(totalBytes.get() - (bytesSavedByHash.get() + bytesSavedByTransformation.get() + bytesSavedByMapping.get())));
 			LOGGER.info("Saved color data: " + Formatters.bytesToString(saveableColorBytes.get()));
 		} catch (Exception e) {
 			running = false;
@@ -880,6 +971,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return generateGeometryResult;
 	}
 
+	// Pretty sure this is working correctly
 	public double[] placement3DToMatrix(HashMapVirtualObject ifcAxis2Placement3D) {
 		HashMapVirtualObject location = ifcAxis2Placement3D.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcPlacement_Location());
 		if (ifcAxis2Placement3D.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcAxis2Placement3D_Axis()) != null && ifcAxis2Placement3D.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcAxis2Placement3D_RefDirection()) != null) {
@@ -974,45 +1066,45 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		jobsTotal.incrementAndGet();
 	}
 	
-	private Set<Long> getRepresentationItems(DatabaseSession databaseSession, QueryContext queryContext, HashMapVirtualObject next) throws QueryException, IOException {
-		Set<Long> result = new HashSet<>();
-		Query query = new Query("test", packageMetaData);
-		
-		Include representation = query.createDefine("Representation");
-		representation.addType(packageMetaData.getEClass("IfcShapeRepresentation"), true);
-		representation.addField("Items");
-		Include mapped = representation.createInclude();
-		mapped.addType(packageMetaData.getEClass("IfcMappedItem"), true);
-		mapped.addField("MappingSource");
-		Include mappingSource = mapped.createInclude();
-		mappingSource.addType(packageMetaData.getEClass("IfcRepresentationMap"), false);
-		mappingSource.addField("MappedRepresentation");
-		mappingSource.addInclude(representation);
-		
-		QueryPart queryPart = query.createQueryPart();
-		queryPart.addOid(next.getOid());
-		Include include = queryPart.createInclude();
-		include.addType(next.eClass(), false);
-		include.addField("Representation");
-		Include representations = include.createInclude();
-		representations.addType(packageMetaData.getEClass("IfcProductDefinitionShape"), true);
-		representations.addField("Representations");
-		representations.addInclude(representation);
-		
-		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
-		try {
-			HashMapVirtualObject next2 = queryObjectProvider.next();
-			while (next2 != null) {
-				if (packageMetaData.getEClass("IfcRepresentationItem").isSuperTypeOf(next2.eClass())) {
-					result.add(next2.getOid());
-				}
-				next2 = queryObjectProvider.next();
-			}
-		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
+//	private Set<Long> getRepresentationItems(DatabaseSession databaseSession, QueryContext queryContext, HashMapVirtualObject next) throws QueryException, IOException {
+//		Set<Long> result = new HashSet<>();
+//		Query query = new Query("getRepresentationItems", packageMetaData);
+//		
+//		Include representation = query.createDefine("Representation");
+//		representation.addType(packageMetaData.getEClass("IfcShapeRepresentation"), true);
+//		representation.addField("Items");
+//		Include mapped = representation.createInclude();
+//		mapped.addType(packageMetaData.getEClass("IfcMappedItem"), true);
+//		mapped.addField("MappingSource");
+//		Include mappingSource = mapped.createInclude();
+//		mappingSource.addType(packageMetaData.getEClass("IfcRepresentationMap"), false);
+//		mappingSource.addField("MappedRepresentation");
+//		mappingSource.addInclude(representation);
+//		
+//		QueryPart queryPart = query.createQueryPart();
+//		queryPart.addOid(next.getOid());
+//		Include include = queryPart.createInclude();
+//		include.addType(next.eClass(), false);
+//		include.addField("Representation");
+//		Include representations = include.createInclude();
+//		representations.addType(packageMetaData.getEClass("IfcProductDefinitionShape"), true);
+//		representations.addField("Representations");
+//		representations.addInclude(representation);
+//		
+//		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
+//		try {
+//			HashMapVirtualObject next2 = queryObjectProvider.next();
+//			while (next2 != null) {
+//				if (packageMetaData.getEClass("IfcRepresentationItem").isSuperTypeOf(next2.eClass())) {
+//					result.add(next2.getOid());
+//				}
+//				next2 = queryObjectProvider.next();
+//			}
+//		} catch (BimserverDatabaseException e) {
+//			e.printStackTrace();
+//		}
+//		return result;
+//	}
 
 	private long getSize(VirtualObject geometryData) {
 		long size = 0;

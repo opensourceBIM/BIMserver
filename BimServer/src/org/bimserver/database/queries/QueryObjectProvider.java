@@ -69,7 +69,7 @@ public class QueryObjectProvider implements ObjectProvider {
 
 	private Set<Long> roids;
 
-	private PackageMetaData packageMetaData;
+	private final PackageMetaData packageMetaData;
 
 	public QueryObjectProvider(DatabaseSession databaseSession, BimServer bimServer, Query query, Set<Long> roids, PackageMetaData packageMetaData) throws IOException, QueryException {
 		this.databaseSession = databaseSession;
@@ -87,7 +87,15 @@ public class QueryObjectProvider implements ObjectProvider {
 			}
 		}
 	}
+	
+	public void cache(HashMapVirtualObject object) {
+		databaseSession.cache(object);
+	}
 
+	public HashMapVirtualObject getFromCache(long oid) {
+		return databaseSession.getFromCache(oid);
+	}
+	
 	public QueryObjectProvider copy() throws IOException, QueryException {
 		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, roids, packageMetaData);
 		return queryObjectProvider;
@@ -169,7 +177,7 @@ public class QueryObjectProvider implements ObjectProvider {
 			}
 		}
 		long end = System.nanoTime();
-		LOGGER.debug("Query, " + reads + " reads, " + stackFramesProcessed + " stack frames processed, " + oidsRead.size() + " objects read, " + ((end - start) / 1000000) + "ms");
+		LOGGER.info("Query " + query.getName() + ", " + reads + " reads, " + stackFramesProcessed + " stack frames processed, " + oidsRead.size() + " objects read, " + ((end - start) / 1000000) + "ms");
 	}
 
 	public void incReads() {
@@ -238,5 +246,9 @@ public class QueryObjectProvider implements ObjectProvider {
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	public void addRead(long oid) {
+		oidsRead.add(oid);
 	}
 }

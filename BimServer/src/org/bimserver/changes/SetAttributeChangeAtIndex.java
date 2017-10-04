@@ -41,22 +41,24 @@ public class SetAttributeChangeAtIndex implements Change {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void execute(BimServer bimServer, Revision previousRevision, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, HashMapVirtualObject> created, Map<Long, HashMapVirtualObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException, IOException, QueryException {
-		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
+	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException, IOException, QueryException {
+		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());
 
 		Query query = new Query(packageMetaData);
 		QueryPart queryPart = query.createQueryPart();
 		queryPart.addOid(oid);
 		
-		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(previousRevision.getOid()), packageMetaData);
-		HashMapVirtualObject object = queryObjectProvider.next();
-		
-		EClass eClass = databaseSession.getEClassForOid(oid);
+		HashMapVirtualObject object = transaction.get(oid);
 		if (object == null) {
-			object = created.get(oid);
+			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
+			object = queryObjectProvider.next();
+			transaction.updated(object);
 		}
+		
+		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
+		object = transaction.get(oid);
 		if (object == null) {
-			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + project.getId());
+			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + transaction.getProject().getId());
 		}
 		EAttribute eAttribute = packageMetaData.getEAttribute(eClass.getName(), attributeName);
 		if (eAttribute == null) {
@@ -80,7 +82,6 @@ public class SetAttributeChangeAtIndex implements Change {
 				}
 				list.add(o);
 			}
-			databaseSession.save(object, concreteRevision.getId());
 		} else {
 			if (eAttribute.isMany()) {
 				throw new UserException("Attribute is not of type 'single'");
@@ -95,7 +96,6 @@ public class SetAttributeChangeAtIndex implements Change {
 				EStructuralFeature asStringAttribute = object.eClass().getEStructuralFeature(attributeName + "AsString");
 				object.setListItem(asStringAttribute, index, String.valueOf((Double)value));
 			}
-			databaseSession.save(object, concreteRevision.getId());
 		}
 	}
 }

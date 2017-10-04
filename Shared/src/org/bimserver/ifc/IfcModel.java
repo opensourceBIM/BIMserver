@@ -1089,4 +1089,9 @@ public abstract class IfcModel implements IfcModelInterface {
 	@Override
 	public void query(ObjectNode query) {
 	}
+	
+	@Override
+	public <T extends IdEObject> T getFirst(Class<T> class1) {
+		return getAll(class1).iterator().next();
+	}
 }

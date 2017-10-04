@@ -22,15 +22,25 @@ public class Vector {
     public static float dot(float[] u,float[] v) {
         return ((u[X] * v[X]) + (u[Y] * v[Y]) + (u[Z] * v[Z]));
     }
+    public static double dot(double[] u,double[] v) {
+    	return ((u[X] * v[X]) + (u[Y] * v[Y]) + (u[Z] * v[Z]));
+    }
     public static float[] minus(float[] u, float[] v){
         return new float[]{u[X]-v[X],u[Y]-v[Y],u[Z]-v[Z]};
     }
     public static float[] addition(float[] u, float[] v){
         return new float[]{u[X]+v[X],u[Y]+v[Y],u[Z]+v[Z]};
     }
+    public static double[] subtract(double[] u, double[] v){
+    	return new double[]{u[X]-v[X],u[Y]-v[Y],u[Z]-v[Z], 1};
+    }
     //scalar product
     public static float[] scalarProduct(float r, float[] u){
         return new float[]{u[X]*r,u[Y]*r,u[Z]*r};
+    }
+    //scalar product
+    public static double[] scalarProduct(double r, double[] u){
+    	return new double[]{u[X]*r,u[Y]*r,u[Z]*r};
     }
     // (cross product)
     public static float[] crossProduct(float[] u, float[] v){
@@ -46,12 +56,24 @@ public class Vector {
     public static float length(float[] u){
         return (float) Math.abs(Math.sqrt((u[X] *u[X]) + (u[Y] *u[Y]) + (u[Z] *u[Z])));
     }
+    public static double length(double[] u){
+    	return (double) Math.abs(Math.sqrt((u[X] *u[X]) + (u[Y] *u[Y]) + (u[Z] *u[Z])));
+    }
  
     public static final int X = 0;
     public static final int Y = 1;
     public static final int Z = 2;
 	public static void normalize(float[] rayDir) {
 		float l = length(rayDir);
+		rayDir[0] = rayDir[0] / l;
+		rayDir[1] = rayDir[1] / l;
+		rayDir[2] = rayDir[2] / l;
+	}
+	public static void normalize(double[] rayDir) {
+		double l = length(rayDir);
+		if (l == 0) {
+			return;
+		}
 		rayDir[0] = rayDir[0] / l;
 		rayDir[1] = rayDir[1] / l;
 		rayDir[2] = rayDir[2] / l;

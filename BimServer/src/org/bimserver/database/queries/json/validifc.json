@@ -24,11 +24,13 @@
          "fields": [
             "WorldCoordinateSystem",
             "TrueNorth"
-         ]
+         ],
+         "includes": ["IfcAxis2Placement3D"]
       },
       "IfcGeometricRepresentationSubContext": {
          "type": "IfcGeometricRepresentationSubContext",
-         "field": "ParentContext"
+         "field": "ParentContext",
+         "include": "IfcGeometricRepresentationContext"
       },
       "IfcAnnotationContainedInStructure": {
          "type": "IfcAnnotation",
@@ -428,6 +430,22 @@
             "IfcRectangularTrimmedSurface"
          ]
       },
+      "IfcAxis1Placement": {
+        "type": "IfcAxis1Placement",
+      	"fields": ["Axis", "Location"],
+      	"includes": ["IfcDirection", "IfcCartesianPoint"]
+      },
+	  "IfcRevolvedAreaSolid": {
+	    "type": "IfcRevolvedAreaSolid",
+	    "fields": ["SweptArea", "Position", "Axis"],
+	    "includes": [
+	    	"IfcArbitraryClosedProfileDef",
+            "IfcArbitraryProfileDefWithVoids",
+            "IfcParameterizedProfileDef",
+	    	"IfcAxis2Placement3D",
+	    	"IfcAxis1Placement"
+	    ]
+	  },
       "IfcSweptDiskSolid": {
       	 "type": "IfcSweptDiskSolid",
       	 "field":"Directrix",
@@ -466,12 +484,13 @@
             "IfcGeometricCurveSet",
             "IfcTrimmedCurve",
             "IfcFaceBasedSurfaceModel",
-            "IfcSweptDiskSolid"
+            "IfcSweptDiskSolid",
+            "IfcRevolvedAreaSolid"
          ]
       },
       "IfcShapeRepresentation": {
          "type": "IfcShapeRepresentation",
-         "field": "Items",
+         "fields": ["Items", "ContextOfItems"],
          "includes": [
             "IfcRepresentationItem",
             "IfcStyledItem",
@@ -488,7 +507,8 @@
             "IfcTextLiteralWithExtent",
             "IfcGeometricCurveSet",
             "IfcTrimmedCurve",
-            "IfcFaceBasedSurfaceModel"
+            "IfcFaceBasedSurfaceModel",
+            "IfcRevolvedAreaSolid"
          ]
       },
       "IfcFaceBasedSurfaceModel": {

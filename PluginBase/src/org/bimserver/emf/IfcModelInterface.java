@@ -24,6 +24,7 @@ import java.util.Set;
 
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
+import org.bimserver.plugins.ObjectAlreadyStoredException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -234,4 +235,6 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	<T extends IdEObject> T createAndAdd(EClass eClass, long oid) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
 
 	<T extends IdEObject> T createAndAdd(EClass eClass) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
+
+	<T extends IdEObject> T getFirst(Class<T> class1);
 }

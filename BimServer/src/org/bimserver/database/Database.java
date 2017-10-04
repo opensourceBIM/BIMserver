@@ -58,10 +58,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.jetty.util.ConcurrentHashSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sleepycat.je.DatabaseException;
 import com.sleepycat.je.DatabaseNotFoundException;
 
 public class Database implements BimDatabase {
@@ -362,7 +362,10 @@ public class Database implements BimDatabase {
 		return eClassToCid.keySet();
 	}
 
-	public EClass getEClassForCid(short cid) {
+	public EClass getEClassForCid(short cid) throws BimserverDatabaseException {
+		if (cid == -1) {
+			throw new BimserverDatabaseException("Invalid cid: " + cid);
+		}
 		return cidToEclass[cid];
 	}
 

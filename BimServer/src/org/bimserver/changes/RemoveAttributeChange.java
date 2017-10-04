@@ -50,7 +50,7 @@ public class RemoveAttributeChange implements Change {
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void execute(BimServer bimServer, Revision previousRevision, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, HashMapVirtualObject> created, Map<Long, HashMapVirtualObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		throw new UserException("Not implemented");
 	}
 }

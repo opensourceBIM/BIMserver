@@ -5,20 +5,13 @@ import org.bimserver.shared.HashMapVirtualObject;
 public class ProductDef {
 
 	private long oid;
-	private double[] matrix;
 	private HashMapVirtualObject object;
 	private long masterOid;
+	private double[] mappingMatrix;
+	private double[] productMatrix;
 
 	public ProductDef(long oid) {
 		this.oid = oid;
-	}
-
-	public void setMatrix(double[] matrix) {
-		this.matrix = matrix;
-	}
-	
-	public double[] getMatrix() {
-		return matrix;
 	}
 
 	public long getOid() {
@@ -39,5 +32,21 @@ public class ProductDef {
 	
 	public long getMasterOid() {
 		return masterOid;
+	}
+
+	public void setProductMatrix(double[] productMatrix) {
+		this.productMatrix = productMatrix;
+	}
+
+	public void setMappingMatrix(double[] mappingMatrix) {
+		this.mappingMatrix = mappingMatrix;
+	}
+	
+	public double[] getProductMatrix() {
+		return productMatrix;
+	}
+	
+	public double[] getMappingMatrix() {
+		return mappingMatrix;
 	}
 }

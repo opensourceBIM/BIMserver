@@ -56,9 +56,13 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 				if (reusableQueryContexts.containsKey(concreteRevision.getOid())) {
 					queryContext.setOidCounters(reusableQueryContexts.get(concreteRevision.getOid()));
 				} else {
-					Map<EClass, Long> updateOidCounters = updateOidCounters(concreteRevision, queryObjectProvider.getDatabaseSession());
-					queryContext.setOidCounters(updateOidCounters);
-					reusableQueryContexts.put(concreteRevision.getOid(), updateOidCounters);
+					try {
+						Map<EClass, Long> updateOidCounters = updateOidCounters(concreteRevision, queryObjectProvider.getDatabaseSession());
+						queryContext.setOidCounters(updateOidCounters);
+						reusableQueryContexts.put(concreteRevision.getOid(), updateOidCounters);
+					} catch (BimserverDatabaseException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -68,7 +72,7 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 		reusableQueryContexts.remove(croid);
 	}
 	
-	private Map<EClass, Long> updateOidCounters(ConcreteRevision subRevision, DatabaseSession databaseSession) {
+	private Map<EClass, Long> updateOidCounters(ConcreteRevision subRevision, DatabaseSession databaseSession) throws BimserverDatabaseException {
 		if (subRevision.getOidCounters() != null) {
 			Map<EClass, Long> oidCounters = new HashMap<>(subRevision.getOidCounters().length / 8);
 			ByteBuffer buffer = ByteBuffer.wrap(subRevision.getOidCounters());

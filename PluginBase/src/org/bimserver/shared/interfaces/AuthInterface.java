@@ -116,9 +116,9 @@ public interface AuthInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setHash")
 	void setHash(
-			@WebParam(name = "uoid", partName = "setHash.uoid") Long uoid,
-			@WebParam(name = "hash", partName = "setHash.hash") byte[] hash,
-			@WebParam(name = "salt", partName = "setHash.salt") byte[] salt) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "setHash.uoid") Long uoid,
+		@WebParam(name = "hash", partName = "setHash.hash") byte[] hash,
+		@WebParam(name = "salt", partName = "setHash.salt") byte[] salt) throws ServerException, UserException;
 	
 	/**
 	 * Request a password change, an e-mail will be send with a validation url

@@ -146,7 +146,7 @@ public class ClientIfcModel extends IfcModel {
 						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
 							throw new UnsupportedOperationException();
 						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
-							bimServerClient.getLowLevelInterface().addDoubleAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewDoubleValue());
+							bimServerClient.getLowLevelInterface().addDoubleAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Double) notification.getNewValue());
 						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
 							bimServerClient.getLowLevelInterface().addBooleanAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewBooleanValue());
 						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {

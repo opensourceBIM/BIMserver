@@ -127,12 +127,12 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 				if (ref != null) {
 					if (ref instanceof List) {
 						for (Long r : (List<Long>)ref) {
-							HashMapVirtualObject byOid = getByOid(r);
+							HashMapVirtualObject byOid = getByOid(r, true);
 							object.addDirectListReference(eReference, byOid);
 							processPossibleIncludes(byOid, byOid.eClass(), include);
 						}
 					} else {
-						HashMapVirtualObject byOid = getByOid((Long)ref);
+						HashMapVirtualObject byOid = getByOid((Long)ref, true);
 						object.setDirectReference(eReference, byOid);
 						processPossibleIncludes(byOid, byOid.eClass(), include);
 					}
@@ -430,6 +430,14 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 	}
 	
 	public HashMapVirtualObject getByOid(long oid) throws BimserverDatabaseException {
+		return getByOid(oid, false);
+	}
+	
+	public HashMapVirtualObject getByOid(long oid, boolean useCache) throws BimserverDatabaseException {
+		HashMapVirtualObject byOid = getQueryObjectProvider().getFromCache((long)oid);
+		if (byOid != null) {
+			return byOid;
+		}
 		EClass eClass = getQueryObjectProvider().getDatabaseSession().getEClassForOid(oid);
 		ByteBuffer mustStartWith = ByteBuffer.wrap(new byte[12]);
 		mustStartWith.putInt(reusable.getPid());
@@ -458,7 +466,11 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 					return null;
 					// deleted entity
 				} else {
-					return convertByteArrayToObject(eClass, keyOid, valueBuffer, keyRid);
+					byOid = convertByteArrayToObject(eClass, keyOid, valueBuffer, keyRid);
+					if (byOid != null && useCache) {
+						getQueryObjectProvider().cache(byOid);
+					}
+					return byOid;
 				}
 			} else {
 				return null;

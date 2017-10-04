@@ -65,6 +65,7 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.deserializers.DatabaseInterface;
+import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -105,6 +106,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	private StackTraceElement[] stackTrace;
 	private final ObjectCache objectCache = new ObjectCache();
 	private final Map<EClass, Long> startOids = new HashMap<EClass, Long>();
+	private final Map<Long, HashMapVirtualObject> voCache = new HashMap<>();
 	private long reads;
 
 	public enum SessionState {
@@ -1065,7 +1067,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		return databaseInformation;
 	}
 
-	public EClass getEClass(short cid) {
+	public EClass getEClass(short cid) throws BimserverDatabaseException {
 		return database.getEClassForCid(cid);
 	}
 
@@ -2230,5 +2232,13 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 
 	public void clearPostCommitActions() {
 		postCommitActions.clear();
+	}
+
+	public void cache(HashMapVirtualObject object) {
+		voCache.put(object.getOid(), object);
+	}
+	
+	public HashMapVirtualObject getFromCache(long oid) {
+		return voCache.get(oid);
 	}
 }

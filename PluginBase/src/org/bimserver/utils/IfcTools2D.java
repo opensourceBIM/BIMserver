@@ -49,7 +49,6 @@ import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcTrimmedCurve;
-import org.bimserver.plugins.services.Geometry;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

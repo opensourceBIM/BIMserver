@@ -1,5 +1,8 @@
 package org.bimserver.changes;
 
+import java.io.IOException;
+import java.util.Collections;
+
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -25,6 +28,10 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.queries.QueryObjectProvider;
+import org.bimserver.database.queries.om.Query;
+import org.bimserver.database.queries.om.QueryException;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
@@ -49,9 +56,35 @@ public class AddReferenceChange implements Change {
 		this.referenceOid = referenceOid;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void execute(BimServer bimServer, Revision previousRevision, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, HashMapVirtualObject> created, Map<Long, HashMapVirtualObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		throw new UserException("Not implemented");
+	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException, IOException, QueryException {
+		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());
+
+		HashMapVirtualObject object = transaction.get(oid);
+		if (object == null) {
+			Query query = new Query(packageMetaData);
+			QueryPart queryPart = query.createQueryPart();
+			queryPart.addOid(oid);
+
+			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
+			object = queryObjectProvider.next();
+			transaction.updated(object);
+		}
+		
+		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
+		if (object == null) {
+			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + transaction.getProject().getId());
+		}
+		EReference eReference = packageMetaData.getEReference(eClass.getName(), referenceName);
+		if (eReference == null) {
+			throw new UserException("No reference with the name \"" + referenceName + "\" found in class \"" + eClass.getName() + "\"");
+		}
+		if (!eReference.isMany()) {
+			throw new UserException("Reference is not of type 'many'");
+		}
+		
+		EClass eClassForOid = transaction.getDatabaseSession().getEClassForOid(referenceOid);
+		
+		object.addReference(eReference, eClassForOid, referenceOid);
 	}
 }

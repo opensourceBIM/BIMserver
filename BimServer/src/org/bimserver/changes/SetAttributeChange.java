@@ -21,20 +21,14 @@ import java.util.Collections;
  *****************************************************************************/
 
 import java.util.List;
-import java.util.Map;
 
-import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EAttribute;
@@ -49,6 +43,9 @@ public class SetAttributeChange implements Change {
 	private final Object value;
 
 	public SetAttributeChange(long oid, String attributeName, Object value) {
+		if (oid == -1) {
+			throw new IllegalArgumentException("oid cannot be -1");
+		}
 		this.oid = oid;
 		this.attributeName = attributeName;
 		this.value = value;
@@ -56,22 +53,27 @@ public class SetAttributeChange implements Change {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void execute(BimServer bimServer, Revision previousRevision, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, HashMapVirtualObject> created, Map<Long, HashMapVirtualObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException, IOException, QueryException {
-		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
+	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException, IOException, QueryException {
+		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());
 
-		Query query = new Query(packageMetaData);
-		QueryPart queryPart = query.createQueryPart();
-		queryPart.addOid(oid);
-		
-		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(previousRevision.getOid()), packageMetaData);
-		HashMapVirtualObject object = queryObjectProvider.next();
-		
-		EClass eClass = databaseSession.getEClassForOid(oid);
-		if (object == null) {
-			object = created.get(oid);
+		if (transaction.getDatabaseSession().getEClassForOid(oid).getName().equals("IfcFurnishingElement")) {
+			System.out.println();
 		}
+		
+		HashMapVirtualObject object = transaction.get(oid);
 		if (object == null) {
-			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + project.getId());
+			Query query = new Query(packageMetaData);
+			QueryPart queryPart = query.createQueryPart();
+			queryPart.addOid(oid);
+
+			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
+			object = queryObjectProvider.next();
+			transaction.updated(object);
+		}
+		
+		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
+		if (object == null) {
+			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + transaction.getProject().getId());
 		}
 		EAttribute eAttribute = packageMetaData.getEAttribute(eClass.getName(), attributeName);
 		if (eAttribute == null) {
@@ -95,7 +97,6 @@ public class SetAttributeChange implements Change {
 				}
 				list.add(o);
 			}
-			databaseSession.save(object, concreteRevision.getId());
 		} else {
 			if (eAttribute.isMany()) {
 				throw new UserException("Attribute is not of type 'single'");
@@ -109,7 +110,6 @@ public class SetAttributeChange implements Change {
 			if (value instanceof Double) {
 				object.set(object.eClass().getEStructuralFeature(attributeName + "AsString").getName(), String.valueOf((Double)value));
 			}
-			databaseSession.save(object, concreteRevision.getId());
 		}
 	}
 }

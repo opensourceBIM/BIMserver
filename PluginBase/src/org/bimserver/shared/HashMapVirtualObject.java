@@ -62,6 +62,12 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		this.oid = reusable.getDatabaseInterface().newOid(eClass);
 	}
 
+	public HashMapVirtualObject(QueryContext reusable, EClass eClass, long oid) {
+		this.reusable = reusable;
+		this.eClass = eClass;
+		this.oid = oid;
+	}
+	
 	public void eUnset(EStructuralFeature feature) {
 		map.remove(feature);
 	}
@@ -437,6 +443,12 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		List list = getOrCreateList(structuralFeature, index + 1);
 		list.set(index, value);
 	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void addListItem(EStructuralFeature structuralFeature, Object value) {
+		List list = getOrCreateList(structuralFeature, 0);
+		list.add(value);
+	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void setListItemReference(EStructuralFeature structuralFeature, int index, EClass referenceEClass, Long referencedOid, int bufferPosition) {
@@ -595,5 +607,10 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 			return null;
 		}
 		return directListReferences.get(representationFeature);
+	}
+
+	public void addReference(EReference eReference, EClass eClassForOid, long referencedOid) {
+		List<Long> list = getOrCreateList(eReference, 0);
+		list.add(referencedOid);
 	}
 }

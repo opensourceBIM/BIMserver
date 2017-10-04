@@ -22,6 +22,7 @@ import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.models.store.ConcreteRevision;
@@ -123,7 +124,7 @@ public class OldQuery implements QueryInterface {
 		this.deep = deep;
 	}
 
-	public void updateOidCounters(ConcreteRevision subRevision, DatabaseSession databaseSession) {
+	public void updateOidCounters(ConcreteRevision subRevision, DatabaseSession databaseSession) throws BimserverDatabaseException {
 		if (subRevision.getOidCounters() != null) {
 			Map<EClass, Long> oidCounters = new HashMap<>();
 			ByteBuffer buffer = ByteBuffer.wrap(subRevision.getOidCounters());

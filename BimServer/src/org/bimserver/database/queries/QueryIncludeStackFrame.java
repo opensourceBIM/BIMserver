@@ -83,7 +83,8 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 				for (Object r : list) {
 					if (r instanceof Long) {
 						if (directFeatureSet != null && directFeatureSet.contains(feature)) {
-							HashMapVirtualObject byOid = getByOid((long) r);
+							HashMapVirtualObject byOid = getByOid((long)r, true);
+							getQueryObjectProvider().addRead(byOid.getOid());
 							currentObject.addDirectListReference(feature, byOid);
 							processPossibleIncludes(byOid, byOid.eClass(), include);
 						} else {
@@ -97,7 +98,8 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 				if (value instanceof Long) {
 					long refOid = (Long) value;
 					if (directFeatureSet != null && directFeatureSet.contains(feature)) {
-						HashMapVirtualObject byOid = getByOid((Long)refOid);
+						HashMapVirtualObject byOid = getByOid((Long)refOid, true);
+						getQueryObjectProvider().addRead(byOid.getOid());
 						currentObject.setDirectReference(feature, byOid);
 						processPossibleIncludes(byOid, byOid.eClass(), include);
 					} else {

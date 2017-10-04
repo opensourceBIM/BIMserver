@@ -3,23 +3,16 @@ package org.bimserver.changes;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
-import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcBoolean;
 import org.bimserver.models.ifc2x3tc1.Tristate;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
@@ -44,23 +37,25 @@ public class SetWrappedAttributeChange implements Change {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void execute(BimServer bimServer, Revision previousRevision, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, HashMapVirtualObject> created, Map<Long, HashMapVirtualObject> deleted) throws UserException, BimserverLockConflictException,
+	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException,
 			BimserverDatabaseException, IOException, QueryException {
-		PackageMetaData packageMetaData = databaseSession.getMetaDataManager().getPackageMetaData(project.getSchema());
+		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());
 		
 		Query query = new Query(packageMetaData);
 		QueryPart queryPart = query.createQueryPart();
 		queryPart.addOid(oid);
 		
-		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(previousRevision.getOid()), packageMetaData);
-		HashMapVirtualObject object = queryObjectProvider.next();
+		HashMapVirtualObject object = transaction.get(oid);
 		
-		EClass eClass = databaseSession.getEClassForOid(oid);
 		if (object == null) {
-			object = created.get(oid);
+			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
+			object = queryObjectProvider.next();
+			transaction.updated(object);
 		}
+		
+		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
 		if (object == null) {
-			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + project.getId());
+			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + transaction.getProject().getId());
 		}
 		EReference eReference = packageMetaData.getEReference(eClass.getName(), attributeName);
 		if (eReference == null) {
@@ -79,7 +74,6 @@ public class SetWrappedAttributeChange implements Change {
 				}
 				list.add(o);
 			}
-			databaseSession.save(object, concreteRevision.getId());
 		} else {
 			if (eReference.isMany()) {
 				throw new UserException("Attribute is not of type 'single'");
@@ -106,7 +100,6 @@ public class SetWrappedAttributeChange implements Change {
 //			if (value instanceof Double) {
 //				idEObject.eSet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"), String.valueOf((Double)value));
 //			}
-			databaseSession.save(object, concreteRevision.getId());
 		}
 	}
 }

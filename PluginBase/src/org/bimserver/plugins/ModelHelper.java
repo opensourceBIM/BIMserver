@@ -198,7 +198,7 @@ public class ModelHelper {
 				}
 			}
 		}
-		if (setOid) {
+		if (setOid && newObject.getOid() == -1) {
 			((IdEObjectImpl)newObject).setOid(oid);
 		}
 		converted.put(original, newObject);
